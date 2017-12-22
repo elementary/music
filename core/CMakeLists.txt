@@ -23,7 +23,7 @@ set (CORE_SOURCE
   Library.vala
   LibrariesManager.vala
   NotificationManager.vala
-  Media.vala
+  Medium.vala
   Album.vala
   Resources.vala
   Devices/Device.vala
@@ -87,4 +87,3 @@ if (BUILD_SHARED_LIBS)
 endif ()
 
 add_subdirectory (tests)
-

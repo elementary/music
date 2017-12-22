@@ -268,14 +268,14 @@ public class Noise.ListView : ContentView, Gtk.Box {
         return list_view.playlist;
     }
 
-    public Gee.Collection<Media> get_media () {
-        var media = new Gee.ArrayList<Media> ();
+    public Gee.Collection<Medium> get_media () {
+        var media = new Gee.ArrayList<Medium> ();
         media.add_all (list_view.get_table ());
         return media;
     }
 
-    public Gee.Collection<Media> get_visible_media () {
-        var media = new Gee.ArrayList<Media> ();
+    public Gee.Collection<Medium> get_visible_media () {
+        var media = new Gee.ArrayList<Medium> ();
         media.add_all (list_view.get_visible_table ());
         return media;
     }
@@ -287,27 +287,27 @@ public class Noise.ListView : ContentView, Gtk.Box {
         }
     }
 
-    public void set_as_current_list (int media_id) {
-        list_view.set_as_current_list (view_wrapper.library.media_from_id (media_id));
+    public void set_as_current_list (int medium_id) {
+        list_view.set_as_current_list (view_wrapper.library.medium_from_id (medium_id));
     }
 
     public bool get_is_current_list ()  {
         return list_view.get_is_current_list ();
     }
 
-    public void add_media (Gee.Collection<Media> to_add) {
+    public void add_media (Gee.Collection<Medium> to_add) {
         list_view.add_media (to_add);
         list_view.research_needed = true;
         refilter ();
     }
 
-    public void remove_media (Gee.Collection<Media> to_remove) {
+    public void remove_media (Gee.Collection<Medium> to_remove) {
         list_view.remove_media (to_remove);
         list_view.research_needed = true;
         refilter ();
     }
 
-    public void set_media (Gee.Collection<Media> media) {
+    public void set_media (Gee.Collection<Medium> media) {
         obey_column_browser = false;
 
         list_view.set_media (media);
@@ -320,7 +320,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
         obey_column_browser = true;
     }
 
-    public void update_media (Gee.Collection<Media> media) {
+    public void update_media (Gee.Collection<Medium> media) {
         refilter ();
     }
 
@@ -343,7 +343,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
             column_browser.set_media (view_wrapper.library.get_search_result ());
     }
 
-    private void view_search_func (string search, Gee.ArrayList<Media> table, Gee.ArrayList<Media> showing) {
+    private void view_search_func (string search, Gee.ArrayList<Medium> table, Gee.ArrayList<Medium> showing) {
         list_text_overlay.message_visible = false;
         var result = view_wrapper.library.get_search_result ();
 
@@ -352,9 +352,9 @@ public class Noise.ListView : ContentView, Gtk.Box {
         // (populated by this method).
         bool obey_column_browser = column_browser_enabled && this.obey_column_browser;
 
-        if (result.size != view_wrapper.library.get_medias ().size) {
+        if (result.size != view_wrapper.library.get_media ().size) {
             foreach (var m in table) {
-                if (obey_column_browser && !column_browser.match_media (m)) {
+                if (obey_column_browser && !column_browser.match_medium (m)) {
                     continue;
                 }
 
@@ -364,7 +364,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
             }
         } else {
             foreach (var m in table) {
-                if (obey_column_browser && !column_browser.match_media (m)) {
+                if (obey_column_browser && !column_browser.match_medium (m)) {
                     continue;
                 }
 

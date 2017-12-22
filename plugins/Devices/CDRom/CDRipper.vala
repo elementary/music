@@ -33,13 +33,13 @@ public class Noise.CDRipper : GLib.Object {
     public dynamic Gst.Element filter;
     public dynamic Gst.Element sink;
 
-    Noise.Media current_media; // media currently being processed/ripped
+    Noise.Medium current_medium; // medium currently being processed/ripped
     private string _device;
     public int track_count;
     public int track_index;
     private Gst.Format _format;
 
-    public signal void media_ripped (Noise.Media s, bool success);
+    public signal void medium_ripped (Noise.Medium s, bool success);
     public signal void progress_notification (double progress);
     public signal void error (string err, Gst.Message message);
 
@@ -152,8 +152,8 @@ public class Noise.CDRipper : GLib.Object {
                 break;
             case Gst.MessageType.EOS:
                 pipeline.set_state (Gst.State.NULL);
-                current_media.uri = File.new_for_path (sink.location).get_uri ();
-                media_ripped (current_media, true);
+                current_medium.uri = File.new_for_path (sink.location).get_uri ();
+                medium_ripped (current_medium, true);
 
                 break;
             default:
@@ -163,17 +163,18 @@ public class Noise.CDRipper : GLib.Object {
         return true;
     }
 
-    public void rip_media (uint track, Noise.Media s) {
+    public void rip_medium (uint track, Noise.Medium s) {
         var f = FileUtils.get_new_destination (s);
 
         sink.set_state (Gst.State.NULL);
         sink.set ("location", f.get_path ());
         src.set ("track", track);
-        if (current_media != null)
-            current_media.unique_status_image = new ThemedIcon ("process-completed-symbolic");
+        if (current_medium != null) {
+            current_medium.unique_status_image = new ThemedIcon ("process-completed-symbolic");
+        }
         track_index++;
-        current_media = s;
-        current_media.unique_status_image = new ThemedIcon ("view-refresh-symbolic");
+        current_medium = s;
+        current_medium.unique_status_image = new ThemedIcon ("view-refresh-symbolic");
 
         pipeline.set_state (Gst.State.PLAYING);
     }

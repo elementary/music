@@ -172,7 +172,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
     private void refresh_space_widget () {
         uint64 other_files_size = 0;
         uint64 music_size = 0;
-        foreach (var m in device.get_library ().get_medias ()) {
+        foreach (var m in device.get_library ().get_media ()) {
             if (m != null)
                 music_size += m.file_size;
         }
@@ -222,7 +222,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         sync_music_combobox.sensitive = sync_music_check.active;
     }
 
-    public bool all_medias_selected () {
+    public bool all_media_selected () {
         return false;
     }
 
@@ -280,11 +280,11 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
     }
 
     public void sync_clicked () {
-        var list = new Gee.TreeSet<Media>();
+        var list = new Gee.TreeSet<Medium>();
 
         if (preferences.sync_music) {
             if (preferences.sync_all_music) {
-                foreach (var s in libraries_manager.local_library.get_medias ()) {
+                foreach (var s in libraries_manager.local_library.get_media ()) {
                     if (s.isTemporary == false)
                         list.add (s);
                 }
@@ -314,10 +314,10 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
             NotificationManager.get_default ().show_alert (_("Cannot Sync"), _("Device is already doing an operation."));
         } else {
             var found = new Gee.TreeSet<int>();
-            var not_found = new Gee.TreeSet<Media>();
-            libraries_manager.local_library.media_from_name (device.get_library ().get_medias(), found, not_found);
+            var not_found = new Gee.TreeSet<Medium>();
+            libraries_manager.local_library.media_from_name (device.get_library ().get_media (), found, not_found);
 
-            if(not_found.size > 0) { // hand control over to SWD
+            if (not_found.size > 0) { // hand control over to SWD
                 var swd = new SyncWarningDialog (device, list, not_found);
                 swd.response.connect ((src, id) => {
                     switch (id) {

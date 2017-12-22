@@ -27,7 +27,7 @@
  */
 
 /**
- * Represents every possible column that can go in a media list.
+ * Represents every possible column that can go in a medium list.
  *
  * New column types must be appended at the end in order to ensure backwards
  * compatibility with older TreeViewSetup representations.
@@ -132,7 +132,7 @@ public enum Noise.ListColumn {
 
     public Type get_data_type () {
         // Order is broken here to organize columns by common type. Types should
-        // match the type of the media field, so that conversions are not needed
+        // match the type of the medium field, so that conversions are not needed
         // in the value function or cell-data functions.
         switch (this) {
             case ICON:
@@ -172,13 +172,13 @@ public enum Noise.ListColumn {
     /**
      * Returns the value of the data that should be displayed by the column in the view.
      *
-     * media_row_index is only necessary for {@link ListColumn.NUMBER}.
+     * @param medium_row_index Only necessary for {@link ListColumn.NUMBER}.
      */
-    public Value? get_value_for_media (Media m, int media_row_index = -1) {
+    public Value? get_value_for_medium (Medium m, int medium_row_index = -1) {
         switch (this) {
             case ICON:
                 GLib.Icon? icon;
-                var currently_playing = App.player.current_media;
+                var currently_playing = App.player.current_medium;
 
                 if (m == currently_playing && currently_playing != null)
                     icon = new ThemedIcon ("audio-volume-high-symbolic");
@@ -188,8 +188,8 @@ public enum Noise.ListColumn {
                 return icon;
 
             case NUMBER:
-                assert (media_row_index >= 0);
-                return (uint) media_row_index + 1;
+                assert (medium_row_index >= 0);
+                return (uint) medium_row_index + 1;
 
             case TRACK:
                 return m.track;

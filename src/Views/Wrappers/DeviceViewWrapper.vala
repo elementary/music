@@ -29,7 +29,7 @@
 
 public class Noise.DeviceViewWrapper : ViewWrapper {
     public Device d { get; private set; }
-    
+
     public DeviceViewWrapper (TreeViewSetup tvs, Device d, Library library) {
         base (tvs.hint, library);
 
@@ -55,10 +55,10 @@ public class Noise.DeviceViewWrapper : ViewWrapper {
         this.d = device;
         library.file_operations_done.connect (sync_finished);
 
-        set_media_async.begin (library.get_medias ());
+        set_media_async.begin (library.get_media ());
     }
 
-    private void import_request (Gee.Collection<Media> to_import) {
+    private void import_request (Gee.Collection<Medium> to_import) {
         if (!library.doing_file_operations()) {
             libraries_manager.transfer_to_local_library (to_import);
         }
@@ -66,7 +66,6 @@ public class Noise.DeviceViewWrapper : ViewWrapper {
 
     private void sync_finished () {
         if (hint == ViewWrapper.Hint.DEVICE_AUDIO)
-            set_media_async.begin (library.get_medias ());
+            set_media_async.begin (library.get_media ());
     }
 }
-

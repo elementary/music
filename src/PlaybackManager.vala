@@ -30,17 +30,13 @@
 /**
 * Manages song playback, queue, repeating and shuffling
 *
-* Finds the appropriate {@link Noise.Playback} to play a media
+* Finds the appropriate {@link Noise.Playback} to play a medium.
 */
 public class Noise.PlaybackManager : Object, Noise.Player {
-    // TODO: Have a correct implementation based on playlists.
-    //        Show the next 2 medias in the queue when shuffle mode is enabled and create a playlist to remember shuffled songs
-    //        Get the current filter (search, playlist) to be able to store and set it back when restart.
-
     public signal void queue_cleared ();
-    public signal void media_queued (Gee.Collection<Media> queued);
+    public signal void media_queued (Gee.Collection<Medium> queued);
 
-    public signal void media_played (Media played_media);
+    public signal void medium_played (Medium played_medium);
     public signal void playback_stopped (int64 was_playing);
     public signal void playback_started ();
     public signal void playback_paused ();
@@ -101,9 +97,9 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         }
     }
 
-    public Noise.Streamer file_player;
-    public Noise.Playback player;
-    public Noise.Media current_media { private set; get; }
+    public Streamer file_player;
+    public Playback player;
+    public Medium current_medium { private set; get; }
 
     construct {
         history_playlist = new HistoryPlaylist ();
@@ -120,15 +116,15 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         player = file_player;
     }
 
-    public void add_playback (Noise.Playback playback) {
+    public void add_playback (Playback playback) {
         playbacks.add (playback);
     }
 
-    public void queue_media (Media to_queue) {
-        queue_medias (new Gee.ArrayList<Media>.wrap ({ to_queue }));
+    public void queue_medium (Medium to_queue) {
+        queue_media (new Gee.ArrayList<Medium>.wrap ({ to_queue }));
     }
 
-    public void queue_medias (Gee.Collection<Media> to_queue) {
+    public void queue_media (Gee.Collection<Medium> to_queue) {
         if (to_queue.size < 1) {
             return;
         }
@@ -137,31 +133,31 @@ public class Noise.PlaybackManager : Object, Noise.Player {
             debug ("QUEUED: %s", q.title);
         }
 
-        ordered_queue.add_medias (to_queue);
+        ordered_queue.add_media (to_queue);
         reshuffle ();
 
-        foreach (var q in queue_playlist.medias) {
+        foreach (var q in queue_playlist.media) {
             debug ("NEUE QUEUE: %s", q.title);
         }
         media_queued (to_queue);
     }
 
-    public void queue_medias_by_id (Gee.Collection<int> ids) {
-        queue_medias (library.medias_from_ids (ids));
+    public void queue_media_by_id (Gee.Collection<int> ids) {
+        queue_media (library.media_from_ids (ids));
     }
 
-    public void unqueue_media (Media to_unqueue) {
-        unqueue_medias (new Gee.ArrayList<Media>.wrap ({ to_unqueue }));
+    public void unqueue_medium (Medium to_unqueue) {
+        unqueue_media (new Gee.ArrayList<Medium>.wrap ({ to_unqueue }));
     }
 
-    public void unqueue_medias (Gee.Collection<Media> to_unqueue) {
-        ordered_queue.remove_medias (to_unqueue);
+    public void unqueue_media (Gee.Collection<Medium> to_unqueue) {
+        ordered_queue.remove_media (to_unqueue);
         reshuffle ();
         queue_playlist.media_removed (to_unqueue);
     }
 
-    public void unqueue_medias_by_id (Gee.Collection<int> ids) {
-        unqueue_medias (library.medias_from_ids (ids));
+    public void unqueue_media_by_id (Gee.Collection<int> ids) {
+        unqueue_media (library.media_from_ids (ids));
     }
 
     public void clear_queue () {
@@ -173,12 +169,12 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         reshuffle ();
     }
 
-    public Media media_from_current_index (int index_in_current) {
+    public Medium medium_from_current_index (int index_in_current) {
         return queue_playlist[index_in_current];
     }
 
-    public Gee.Collection<Media> get_current_media_list () {
-        return queue_playlist.medias;
+    public Gee.Collection<Medium> get_current_medium_list () {
+        return queue_playlist.media;
     }
 
     public void set_repeat_mode (Noise.Settings.Repeat mode) {
@@ -204,15 +200,15 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         queue_playlist.clear ();
         if (is_shuffled) {
             debug ("Shuffled");
-            queue_playlist.medias.add_all (ordered_queue.medias);
+            queue_playlist.media.add_all (ordered_queue.media);
 
             //create temp list of all of current's media
-            var temp = new Gee.ArrayList<Media> ();
-            temp.add_all (ordered_queue.medias);
+            var temp = new Gee.ArrayList<Medium> ();
+            temp.add_all (ordered_queue.media);
 
             //loop through all current media id's and pick a random one remaining
             //and set that int i as one of those this is confusing just a sort
-            for (int i = 1; i < ordered_queue.medias.size; i++) {
+            for (int i = 1; i < ordered_queue.media.size; i++) {
                 int n_media = temp.size;
                 if (n_media == 0) {
                     break;
@@ -220,8 +216,8 @@ public class Noise.PlaybackManager : Object, Noise.Player {
 
                 int random = n_media <= 1 ? 0 : Random.int_range (0, n_media - 1);
 
-                if (current_media != null && temp[random] == current_media) {
-                    queue_playlist[0] = current_media;
+                if (current_medium != null && temp[random] == current_medium) {
+                    queue_playlist[0] = current_medium;
                     i--;
                 } else {
                     queue_playlist[i] = temp[random];
@@ -229,34 +225,34 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                 temp.remove(temp[random]);
             }
 
-            queue_playlist.media_added (queue_playlist.medias);
+            queue_playlist.media_added (queue_playlist.media);
         } else {
             debug ("Not shuffled");
-            if (current_media != null) {
+            if (current_medium != null) {
                 //make sure we continue playing where we left off
-                current_index = ordered_queue.medias.index_of (current_media);
+                current_index = ordered_queue.media.index_of (current_medium);
             } else {
                 current_index = 0;
             }
 
-            queue_playlist.add_medias (ordered_queue.medias);
+            queue_playlist.add_media (ordered_queue.media);
         }
     }
 
     /**
-    * Gets the media of the queue at a certain position, relatively to the current one.
+    * Gets the medium of the queue at a certain position, relatively to the current one.
     *
-    * For instance, calling this method with position = -1 will return the media just before the current one.
+    * For instance, calling this method with position = -1 will return the medium just before the current one.
     */
-    public Media? get_media_at (int position, out int media_index) {
+    public Medium? get_medium_at (int position, out int medium_index) {
         int index = current_index + position;
-        media_index = fix_index (index);
-        Media? res = queue_playlist.medias.size > index > 0 ? queue_playlist[index] : null;
+        medium_index = fix_index (index);
+        Medium? res = queue_playlist.media.size > index > 0 ? queue_playlist[index] : null;
 
         var main_settings = Settings.Main.get_default ();
         switch (main_settings.repeat_mode) {
-            case Noise.Settings.Repeat.MEDIA:
-                return current_media;
+            case Noise.Settings.Repeat.MEDIUM:
+                return current_medium;
             case Noise.Settings.Repeat.ALL:
 
                 // go back to the beggining, or to the end if needed
@@ -264,7 +260,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
             case Noise.Settings.Repeat.OFF:
 
                 if (res == null) { // end of the queue
-                    current_media = null;
+                    current_medium = null;
                     ordered_queue.clear ();
                     queue_playlist.clear ();
                 }
@@ -276,7 +272,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                 for (int i = current_index + 1; i != current_index; i += position) {
                     i = fix_index (i);
 
-                    if (queue_playlist[i].album == current_media.album) {
+                    if (queue_playlist[i].album == current_medium.album) {
                         return queue_playlist[i];
                     }
                 }
@@ -287,7 +283,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
                 for (int i = current_index + 1; i != current_index; i += position) {
                     i = fix_index (i);
 
-                    if (queue_playlist[i].artist == current_media.artist) {
+                    if (queue_playlist[i].artist == current_medium.artist) {
                         return queue_playlist[i];
                     }
                 }
@@ -298,36 +294,36 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     }
 
     /**
-    * Make sure index of media is never out of the queue.
+    * Make sure index of medium is never out of the queue.
     */
     public int fix_index (int index) {
-        return (queue_playlist.medias.size + index) % queue_playlist.medias.size;
+        return (queue_playlist.media.size + index) % queue_playlist.media.size;
     }
 
-    public Media? get_next (bool play) {
+    public Medium? get_next (bool play) {
         int index;
-        var next = get_media_at (1, out index);
+        var next = get_medium_at (1, out index);
         if (play) {
             if (next == null) {
                 stop_playback ();
             } else {
                 current_index = index;
-                play_media (next);
+                play_medium (next);
             }
         }
 
         return next;
     }
 
-    public Media? get_previous (bool play) {
+    public Medium? get_previous (bool play) {
         int index;
-        var prev = get_media_at (-1, out index);
+        var prev = get_medium_at (-1, out index);
         if (play) {
             if (prev == null) {
                 stop_playback ();
             } else {
                 current_index = index;
-                play_media (prev);
+                play_medium (prev);
             }
         }
 
@@ -335,9 +331,9 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     }
 
 
-    public void play_media (Media m) {
-        // set the current media
-        current_media = m;
+    public void play_medium (Medium m) {
+        // set the current medium
+        current_medium = m;
 
         // To avoid infinite loop, if we come across a song we already know does not exist
         // stop playback
@@ -345,7 +341,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
             if (File.new_for_uri (m.uri).query_exists ()) { // we did not know location, but it has re-appearred
                 m.location_unknown = false;
                 m.unique_status_image = null;
-                //App.main_window.media_found(m.rowid);
+                // App.main_window.medium_found(m.rowid);
             } else { // to avoid infinite loop with repeat on, don't try to play next again
                 stop_playback ();
                 return;
@@ -382,7 +378,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         if (!m.file.query_exists ()) {
             m.unique_status_image = new ThemedIcon ("process-error-symbolic");
             m.location_unknown = true;
-            //App.main_window.media_not_found(id);
+            //App.main_window.medium_not_found(id);
             get_next (true);
             return;
         } else {
@@ -394,33 +390,33 @@ public class Noise.PlaybackManager : Object, Noise.Player {
 
         change_gains_thread ();
 
-        player.set_media (m); // actually play the media
+        player.set_medium (m); // actually play the medium
 
-        //pause if paused
+        // pause if paused
         if (!playing) {
             player.pause ();
         }
 
         //update settings
         if (m.rowid >= 0 && !Settings.Main.get_default ().privacy_mode_enabled ()) {
-            Settings.Main.get_default ().last_media_playing = m.rowid;
+            Settings.Main.get_default ().last_medium_playing = m.rowid;
         }
 
         if (m != null) {
-            media_played (m);
+            medium_played (m);
         }
 
-        /* if same media 1 second later... */
+        /* if same medium 1 second later... */
         Timeout.add (1000, () => {
-            if (m != null && current_media == m) {
-                history_playlist.add_media (m);
-                // potentially fix media length
+            if (m != null && current_medium == m) {
+                history_playlist.add_medium (m);
+                // potentially fix medium length
                 uint player_duration_s = (uint)(player.get_duration() / TimeUtils.NANO_INV);
                 if (player_duration_s > 1) {
                     int delta_s = (int)player_duration_s - (int)(m.length / TimeUtils.MILI_INV);
                     if (Math.fabs ((double)delta_s) > 3) {
                         m.length = (uint)(player_duration_s * TimeUtils.MILI_INV);
-                        library.update_media (m, false, false);
+                        library.update_medium (m, false, false);
                     }
                 }
             }
@@ -436,11 +432,11 @@ public class Noise.PlaybackManager : Object, Noise.Player {
             string selected_preset = equalizer_settings.selected_preset;
 
             foreach (var p in equalizer_settings.get_presets ()) {
-                if (p != null && current_media != null)  {
+                if (p != null && current_medium != null)  {
                     var preset_name = p.name.down ();
-                    var media_genre = current_media.genre.down();
+                    var medium_genre = current_medium.genre.down();
 
-                    bool match_genre = (preset_name in media_genre) || (media_genre in preset_name);
+                    bool match_genre = (preset_name in medium_genre) || (medium_genre in preset_name);
 
                     if ((automatic_enabled && match_genre) ||
                         (!automatic_enabled && p.name == selected_preset)) {
@@ -454,11 +450,11 @@ public class Noise.PlaybackManager : Object, Noise.Player {
             }
 
             foreach (var p in Equalizer.get_default_presets ()) {
-                if (p != null && current_media != null)  {
+                if (p != null && current_medium != null)  {
                     var preset_name = p.name.down ();
-                    var media_genre = current_media.genre.down();
+                    var medium_genre = current_medium.genre.down();
 
-                    bool match_genre = (preset_name in media_genre) || (media_genre in preset_name);
+                    bool match_genre = (preset_name in medium_genre) || (medium_genre in preset_name);
 
                     if ((automatic_enabled && match_genre) ||
                         (!automatic_enabled && p.name == selected_preset)) {
@@ -482,14 +478,14 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         playing = false;
 
         int64 was_playing = 0;
-        if (current_media != null) {
-            was_playing = current_media.rowid;
+        if (current_medium != null) {
+            was_playing = current_medium.rowid;
         }
 
         if (!Settings.Main.get_default ().privacy_mode_enabled ()) {
-            Settings.Main.get_default ().last_media_playing = 0;
+            Settings.Main.get_default ().last_medium_playing = 0;
         }
-        current_media = null;
+        current_medium = null;
 
         playback_stopped (was_playing);
     }

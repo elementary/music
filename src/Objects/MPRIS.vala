@@ -127,23 +127,23 @@ public class MprisPlayer : GLib.Object {
     construct {
         _metadata = new HashTable<string, Variant> (str_hash, str_equal);
 
-        Noise.App.player.media_played.connect_after (on_media_played);
+        Noise.App.player.medium_played.connect_after (on_medium_played);
         Noise.App.player.playback_stopped.connect_after (() => { update_metadata (null); });
 
-        Noise.libraries_manager.local_library.media_updated.connect_after (refresh_current_media);
+        Noise.libraries_manager.local_library.media_updated.connect_after (refresh_current_medium);
         Noise.App.main_window.play_pause_changed.connect_after (playing_changed);
 
         var default_image = new Noise.Icon ("albumart_2").get_file ();
         default_image_url = default_image != null ? default_image.get_uri () : "";
 
         // initial update
-        refresh_current_media ();
+        refresh_current_medium ();
     }
 
-    private void refresh_current_media () {
-        var current_media = Noise.App.player.current_media;
-        if (current_media != null) {
-            on_media_played (current_media);
+    private void refresh_current_medium () {
+        var current_medium = Noise.App.player.current_medium;
+        if (current_medium != null) {
+            on_medium_played (current_medium);
         }
     }
 
@@ -167,13 +167,13 @@ public class MprisPlayer : GLib.Object {
         });
     }
 
-    private void on_media_played (Noise.Media? s) {
-        if (s == Noise.App.player.current_media) {
+    private void on_medium_played (Noise.Medium? s) {
+        if (s == Noise.App.player.current_medium) {
             update_metadata (s);
         }
     }
 
-    private void update_metadata (Noise.Media? s) {
+    private void update_metadata (Noise.Medium? s) {
         if (s == null) {
             _metadata.remove_all ();
         } else {
@@ -183,7 +183,7 @@ public class MprisPlayer : GLib.Object {
         trigger_metadata_update ();
     }
 
-    private void set_media_metadata (Noise.Media s) {
+    private void set_media_metadata (Noise.Medium s) {
         _metadata = new HashTable<string, Variant> (null, null);
 
         _metadata.insert ("mpris:trackid", get_track_id (s));
@@ -215,7 +215,7 @@ public class MprisPlayer : GLib.Object {
         return array;
     }
 
-    private ObjectPath get_track_id (Noise.Media m) {
+    private ObjectPath get_track_id (Noise.Medium m) {
         return new ObjectPath ("/org/pantheon/noise/Track/%lld".printf (m.rowid));
     }
 
@@ -269,7 +269,7 @@ public class MprisPlayer : GLib.Object {
         owned get { //TODO signal org.freedesktop.DBus.Properties.PropertiesChanged
             if (Noise.App.player.playing) {
                 return "Playing";
-            } else if (!Noise.App.player.playing && Noise.App.player.current_media == null) {
+            } else if (!Noise.App.player.playing && Noise.App.player.current_medium == null) {
                 return "Stopped";
             } else if (!Noise.App.player.playing) {
                 return "Paused";
@@ -284,7 +284,7 @@ public class MprisPlayer : GLib.Object {
             switch (Noise.Settings.Main.get_default ().repeat_mode) {
                 case (Noise.Settings.Repeat.OFF):
                     return "None";
-                case (Noise.Settings.Repeat.MEDIA):
+                case (Noise.Settings.Repeat.MEDIUM):
                     return "Track";
                 case (Noise.Settings.Repeat.ALBUM):
                 case (Noise.Settings.Repeat.ARTIST):
@@ -299,7 +299,7 @@ public class MprisPlayer : GLib.Object {
                     Noise.App.player.set_repeat_mode (Noise.Settings.Repeat.OFF);
                     break;
                 case ("Track"):
-                    Noise.App.player.set_repeat_mode (Noise.Settings.Repeat.MEDIA);
+                    Noise.App.player.set_repeat_mode (Noise.Settings.Repeat.MEDIUM);
                     break;
                 case ("Playlist"):
                     Noise.App.player.set_repeat_mode (Noise.Settings.Repeat.ALL);
@@ -339,7 +339,7 @@ public class MprisPlayer : GLib.Object {
 
     public HashTable<string, Variant>? metadata { //a{sv}
         owned get {
-            update_metadata (Noise.App.player.current_media);
+            update_metadata (Noise.App.player.current_medium);
             return _metadata;
         }
     }
@@ -399,12 +399,12 @@ public class MprisPlayer : GLib.Object {
 
     public void next () {
         // inhibit notifications
-        Noise.App.main_window.play_next_media (true);
+        Noise.App.main_window.play_next_medium (true);
     }
 
     public void previous () {
         // inhibit notifications
-        Noise.App.main_window.play_previous_media (true);
+        Noise.App.main_window.play_previous_medium (true);
     }
 
     public void pause () {
@@ -416,7 +416,7 @@ public class MprisPlayer : GLib.Object {
 
     public void play_pause () {
         // inhibit notifications
-        Noise.App.main_window.play_media (true);
+        Noise.App.main_window.play_medium (true);
     }
 
     public void stop () {

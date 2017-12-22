@@ -30,7 +30,7 @@
 public class Noise.GStreamerTagger : Object {
     private const int DISCOVERER_TIMEOUT = 5;
 
-    public signal void media_imported (Media m);
+    public signal void medium_imported (Medium m);
     public signal void import_error (string file_uri, Error error);
     public signal void queue_finished ();
 
@@ -45,7 +45,7 @@ public class Noise.GStreamerTagger : Object {
 
         try {
             d = new Gst.PbUtils.Discoverer ((Gst.ClockTime) (DISCOVERER_TIMEOUT * Gst.SECOND));
-            d.discovered.connect (import_media);
+            d.discovered.connect (import_medium);
             d.finished.connect (file_set_finished);
         } catch (Error err) {
             critical ("Could not create Gst discoverer object: %s", err.message);
@@ -86,7 +86,7 @@ public class Noise.GStreamerTagger : Object {
         });
     }
 
-    private void import_media (Gst.PbUtils.DiscovererInfo info, Error err) {
+    private void import_medium (Gst.PbUtils.DiscovererInfo info, Error err) {
         if (cancellable.is_cancelled ()) {
             d.stop ();
             lock (uri_queue) {
@@ -137,7 +137,7 @@ public class Noise.GStreamerTagger : Object {
             return;
         }
 
-        var m = new Media (uri);
+        var m = new Medium (uri);
         // Get length in nanoseconds. We use the tag length as fallback
         uint64 duration = info.get_duration ();
 
@@ -205,7 +205,7 @@ public class Noise.GStreamerTagger : Object {
 
             uint rating;
             if (tags.get_uint (Gst.Tags.USER_RATING, out rating))
-                m.rating = rating; // Noise.Media will clamp the value
+                m.rating = rating; // Noise.Medium will clamp the value
 
             // Get the year, try datetime first, otherwise try date
             // NOTE: date might be superfluous, it was the original method,
@@ -260,6 +260,6 @@ public class Noise.GStreamerTagger : Object {
 
         m.file_size = FileUtils.get_size (m.file);
         m.date_added = (int) time_t ();
-        media_imported (m);
+        medium_imported (m);
     }
 }

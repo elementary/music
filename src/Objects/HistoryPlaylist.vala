@@ -41,19 +41,19 @@ public class Noise.HistoryPlaylist : StaticPlaylist {
         log = Zeitgeist.Log.get_default ();
     }
 
-    public override void add_media (Media m) {
-        base.add_media (m);
+    public override void add_medium (Medium m) {
+        base.add_medium (m);
         log_interaction.begin (m);
     }
 
-    public override void add_medias (Gee.Collection<Media> to_add) {
-        base.add_medias (to_add);
+    public override void add_media (Gee.Collection<Medium> to_add) {
+        base.add_media (to_add);
         foreach (var m in to_add) {
             log_interaction.begin (m);
         }
     }
 
-    private async void log_interaction (Media song) {
+    private async void log_interaction (Medium song) {
         var time = new DateTime.now_local ().to_unix () * 1000;
 
         FileInfo? info = null;
@@ -100,34 +100,34 @@ public class Noise.HistoryPlaylist : StaticPlaylist {
         z_event.add_subject (z_subject);
 
         event_templates.add (z_event);
-        var added_media = new Gee.LinkedList<Media> ();
-        var new_medias = new Gee.ArrayQueue<Media>();
+        var added_media = new Gee.LinkedList<Medium> ();
+        var new_media = new Gee.ArrayQueue<Medium>();
 
         try {
             var events = yield log.find_events (timerange, event_templates, Zeitgeist.StorageState.ANY, 0, Zeitgeist.ResultType.MOST_RECENT_EVENTS, null);
             foreach (var event in events) {
-                for (int i = 0; new_medias.size < HISTORY_LIMIT && i < event.subjects.length; i++) {
+                for (int i = 0; new_media.size < HISTORY_LIMIT && i < event.subjects.length; i++) {
                     Zeitgeist.Subject subject = event.subjects.get (i);
 
-                    var m = libraries_manager.local_library.media_from_uri (subject.uri);
+                    var m = libraries_manager.local_library.medium_from_uri (subject.uri);
                     if (m == null)
                         continue;
 
-                    if (allow_duplicate || (medias.contains (m) == false && new_medias.contains (m) == false)) {
-                        new_medias.add (m);
+                    if (allow_duplicate || (media.contains (m) == false && new_media.contains (m) == false)) {
+                        new_media.add (m);
                     }
                 }
 
-                if (new_medias.size >= HISTORY_LIMIT) {
+                if (new_media.size >= HISTORY_LIMIT) {
                     break;
                 }
             }
 
-            var media = new_medias.poll_tail ();
-            while (media != null) {
-                medias.add (media);
-                added_media.add (media);
-                media = new_medias.poll_tail ();
+            var medium = new_media.poll_tail ();
+            while (medium != null) {
+                media.add (medium);
+                added_media.add (medium);
+                medium = new_media.poll_tail ();
             }
 
             updated ();
@@ -270,18 +270,18 @@ namespace SecurityPrivacy {
             var event = new Zeitgeist.Event ();
             event.manifestation = Zeitgeist.ZG.USER_ACTIVITY;
             event.actor = "application://%s".printf (id);
-            
+
             var events = new GenericArray<Zeitgeist.Event> ();
             events.add (event);
-            
+
             var event2 = new Zeitgeist.Event ();
             event2.manifestation = Zeitgeist.ZG.USER_ACTIVITY;
             var subj = new Zeitgeist.Subject ();
             subj.uri = "application://%s".printf (id);
             event2.add_subject (subj);
-            
+
             events.add (event2);
-            
+
             try {
                 uint32[] results = yield log.find_event_ids (new Zeitgeist.TimeRange.anytime (),
                                                     events,
@@ -289,7 +289,7 @@ namespace SecurityPrivacy {
                                                     0,
                                                     Zeitgeist.ResultType.MOST_RECENT_EVENTS,
                                                     null);
-                                                    
+
                 var counter = results.length/100;
                 store.set_value (iter, 5, counter);
             } catch (Error e) {

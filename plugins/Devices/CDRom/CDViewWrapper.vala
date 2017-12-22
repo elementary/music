@@ -57,8 +57,7 @@ public class Noise.Plugins.CDViewWrapper : ViewWrapper {
 
         // Do initial population. Further additions and removals will be handled
         // by the handlers connected below through connect_data_signals()
-        yield set_media_async (p.medias);
-
+        yield set_media_async (p.media);
     }
 
     public void set_no_media_alert_message (string head, string body) {
@@ -75,16 +74,15 @@ public class Noise.Plugins.CDViewWrapper : ViewWrapper {
         embedded_alert.description = message_body;
     }
 
-    private async void on_playlist_media_added (Gee.Collection<Media> to_add) {
+    private async void on_playlist_media_added (Gee.Collection<Medium> to_add) {
         yield add_media_async (to_add);
     }
 
-    private async void on_playlist_media_removed (Gee.Collection<Media> to_remove) {
+    private async void on_playlist_media_removed (Gee.Collection<Medium> to_remove) {
         yield remove_media_async (to_remove);
     }
 
     private async void on_playlist_cleared () {
-        yield set_media_async (new Gee.LinkedList<Media> ());
+        yield set_media_async (new Gee.LinkedList<Medium> ());
     }
 }
-

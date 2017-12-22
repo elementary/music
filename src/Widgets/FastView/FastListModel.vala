@@ -35,7 +35,7 @@ public class Noise.FastModel : GLib.Object, Gtk.TreeModel, Gtk.TreeSortable {
     private int stamp; // all iters must match this
 
     /* data storage variables */
-    Gee.ArrayList<Object> rows = new Gee.ArrayList<Media> ();
+    Gee.ArrayList<Object> rows = new Gee.ArrayList<Medium> ();
     public Gee.List<Type> columns { get; construct set; }
 
     private int sort_column_id;

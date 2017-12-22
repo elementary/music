@@ -26,8 +26,11 @@
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
-public class Noise.Media : Object {
 
+/**
+* Model representing a single medium of the library.
+*/
+public class Noise.Medium : Object {
     /// Used for unknown titles, artists, or album names.
     protected static string UNKNOWN = _("Unknown");
 
@@ -189,16 +192,16 @@ public class Noise.Media : Object {
         }
     }
 
-    public Media (string uri) {
-        this.uri = uri;
+    public Medium (string uri) {
+        Object (uri: uri);
     }
 
-    public Media.from_file (File file) {
-        this.file = file;
+    public Medium.from_file (File file) {
+        Object (file: file);
     }
 
-    public Media copy () {
-        Media rv = new Media (uri);
+    public Medium copy () {
+        Medium rv = new Medium (uri);
 
         rv.file_size = file_size;
         rv.track = track;

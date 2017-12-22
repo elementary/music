@@ -83,11 +83,11 @@ public class Noise.TopDisplay : Gtk.Stack {
 
         track_eventbox.button_press_event.connect ((e) => {
             if (e.button == Gdk.BUTTON_SECONDARY) {
-                var current = new Gee.TreeSet<Media> ();
-                if (App.player.current_media != null) {
-                    current.add (App.player.current_media);
+                var current = new Gee.TreeSet<Medium> ();
+                if (App.player.current_medium != null) {
+                    current.add (App.player.current_medium);
                 }
-                list_view.popup_media_menu (current);
+                list_view.popup_medium_menu (current);
                 return true;
             }
 
@@ -224,14 +224,14 @@ public class Noise.TopDisplay : Gtk.Stack {
     }
 
     public virtual void player_position_update (int64 position) {
-        if (App.player.current_media != null) {
+        if (App.player.current_medium != null) {
             seek_bar.playback_progress = ((double) TimeUtils.nanoseconds_to_seconds (position)) / seek_bar.playback_duration;
         }
     }
 
     public void update_media () {
-        update_current_media ();
-        // If the media changes while an action is goind, show it for 5 seconds then come back to the action.
+        update_current_medium ();
+        // If the medium changes while an action is going, show it for 5 seconds then come back to the action.
         if (progress_bar.fraction >= 0.0 && progress_bar.fraction < 1.0) {
             progress_timeout_id = Timeout.add (300, () => {
                 update_view ();
@@ -242,15 +242,15 @@ public class Noise.TopDisplay : Gtk.Stack {
     }
 
     private void media_updated (Gee.Collection<int64?> ids) {
-        if (App.player.current_media != null && ids.contains (App.player.current_media.rowid)) {
-            update_current_media ();
+        if (App.player.current_medium != null && ids.contains (App.player.current_medium.rowid)) {
+            update_current_medium ();
         }
     }
 
-    private void update_current_media () {
+    private void update_current_medium () {
         var notification_manager = NotificationManager.get_default ();
 
-        var m = App.player.current_media;
+        var m = App.player.current_medium;
         if (m != null) {
             notification_manager.update_track (m.get_title_markup ());
             seek_bar.playback_duration = ((double) m.length) / 1000.0;
@@ -261,7 +261,7 @@ public class Noise.TopDisplay : Gtk.Stack {
     private void update_view () {
         if (progress_bar.fraction >= 0.0 && progress_bar.fraction < 1.0) {
             visible_child_name = "action";
-        } else if (App.player.current_media != null) {
+        } else if (App.player.current_medium != null) {
             visible_child_name = "time";
         } else {
             visible_child_name = "empty";

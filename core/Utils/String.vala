@@ -27,7 +27,6 @@
  */
 
 namespace Noise.String {
-
     public inline bool is_empty (string? text, bool check_white_space) {
         if (text != null)
             return check_white_space ? is_white_space (text) : text == "";
@@ -158,7 +157,7 @@ namespace Noise.String {
      * Base method used for searches. It does a previous parsing on the search string.
      *
      * If the output value of parsed_rating is greater than 0, then the view should
-     * only display the media with that rating in the search results, and ignore
+     * only display the medium with that rating in the search results, and ignore
      * the value of parsed_search_string.
      *
      * @param search Non-parsed version of the search string.

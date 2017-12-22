@@ -27,7 +27,6 @@
  */
 
 namespace Noise.Search {
-
     /**
      * Linear exact-string-matching search method.
      *
@@ -35,33 +34,35 @@ namespace Noise.Search {
      * -1 for integer parameters.
      *
      * Please note that this method compares against the values returned by
-     * Media.get_display_*(), and not the real fields. This means that a value
-     * like 'Unknown' will have a matching media even if the actual field is empty.
+     * Medium.get_display_*(), and not the real fields. This means that a value
+     * like 'Unknown' will have a matching medium even if the actual field is empty.
      *
      *
      * Used by the column browser. Fields compared must match those *displayed* by the browser.
      *
      * /!\ Modify carefully.
      */
-    public void search_in_media_list (Gee.Collection<Media> to_search,
-                                      out Gee.Collection<Media> results,
-                                      string album_artist = "",
-                                      string album = "",
-                                      string genre = "",
-                                      string grouping = "",
-                                      string composer = "",
-                                      int year = -1,
-                                      int rating = -1,
-                                      Cancellable? cancellable = null)
+    public void search_in_media (Gee.Collection<Medium> to_search,
+                                out Gee.Collection<Medium> results,
+                                string album_artist = "",
+                                string album = "",
+                                string genre = "",
+                                string grouping = "",
+                                string composer = "",
+                                int year = -1,
+                                int rating = -1,
+                                Cancellable? cancellable = null)
     {
-        results = new Gee.TreeSet<Media> ();
+        results = new Gee.TreeSet<Medium> ();
 
-        foreach (var media in to_search) {
-            if (cancellable != null && cancellable.is_cancelled ())
+        foreach (var medium in to_search) {
+            if (cancellable != null && cancellable.is_cancelled ()) {
                 break;
+            }
 
-            if (match_fields_to_media (media, album_artist, album, genre, grouping, composer, year, rating))
-                results.add (media);
+            if (match_fields_to_medium (medium, album_artist, album, genre, grouping, composer, year, rating)) {
+                results.add (medium);
+            }
         }
     }
 
@@ -70,7 +71,7 @@ namespace Noise.Search {
      *
      * /!\ Modify carefully.
      */
-    public inline bool match_fields_to_media (Media media,
+    public inline bool match_fields_to_medium (Medium medium,
                                               string album_artist = "",
                                               string album = "",
                                               string genre = "",
@@ -79,13 +80,13 @@ namespace Noise.Search {
                                               int year = -1,
                                               int rating = -1)
     {
-        return (rating == -1 || media.rating == rating)
-            && (year == -1 || media.year == year)
-            && (String.is_empty (genre, false) || media.get_display_genre () == genre)
-            && (String.is_empty (album_artist, false) || media.get_display_album_artist () == album_artist)
-            && (String.is_empty (album, false) || media.get_display_album () == album)
-            && (String.is_empty (grouping, false) || media.grouping == grouping)
-            && (String.is_empty (composer, false) || media.get_display_composer () == composer);
+        return (rating == -1 || medium.rating == rating)
+            && (year == -1 || medium.year == year)
+            && (String.is_empty (genre, false) || medium.get_display_genre () == genre)
+            && (String.is_empty (album_artist, false) || medium.get_display_album_artist () == album_artist)
+            && (String.is_empty (album, false) || medium.get_display_album () == album)
+            && (String.is_empty (grouping, false) || medium.grouping == grouping)
+            && (String.is_empty (composer, false) || medium.get_display_composer () == composer);
     }
 
     public inline string get_valid_search_string (string s) {
@@ -107,9 +108,7 @@ namespace Noise.Search {
      *   "  "
      *   "**a"
      */
-    public inline uint? get_rating_from_string (string rating_string)
-        ensures (result != 0)
-    {
+    public inline uint? get_rating_from_string (string rating_string) ensures (result != 0) {
         int i = 0;
         unichar c;
         uint rating;
@@ -125,7 +124,7 @@ namespace Noise.Search {
         return rating;
     }
 
-    public inline bool match_string_to_media (Media m, string search) {
+    public inline bool match_string_to_medium (Medium m, string search) {
         return search == m.year.to_string ()
             || search in get_valid_search_string (m.get_display_title ())
             || search in get_valid_search_string (m.album)

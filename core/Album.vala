@@ -32,7 +32,7 @@
  * Currently only used by the album grid view to keep an internal cache.
  *
  * TODO (a lot of work for 1.0 ++)
- * - Replace album-related Media fields with an album object.
+ * - Replace album-related Medium fields with an album object.
  * - Allow organizing media by disc number. Creating a Disc object would probably
  *   be overkill, considering our basic needs.
  * - Modify code accordingly
@@ -55,7 +55,7 @@ public class Noise.Album : Object {
 
     public GLib.Icon? cover_icon { get; set; default = null; }
 
-    private Gee.HashSet<Media> media = new Gee.HashSet<Media> ();
+    private Gee.HashSet<Medium> media = new Gee.HashSet<Medium> ();
     private Gdk.Pixbuf cover_pixbuf;
     private int cover_pixbuf_scale = 1;
 
@@ -78,7 +78,7 @@ public class Noise.Album : Object {
         }
     }
 
-    public Album.from_media (Media m) {
+    public Album.from_medium (Medium m) {
         name = m.album;
         artist = m.album_artist;
         year = m.year;
@@ -107,30 +107,30 @@ public class Noise.Album : Object {
     }
 
     public inline string get_display_name () {
-        return Media.get_simple_display_text (name);
+        return Medium.get_simple_display_text (name);
     }
 
     public inline string get_display_artist () {
-        return Media.get_simple_display_text (artist);
+        return Medium.get_simple_display_text (artist);
     }
 
-    public bool contains (Media m) {
+    public bool contains (Medium m) {
         return media.contains (m);
     }
 
-    public bool is_compatible (Media m) {
+    public bool is_compatible (Medium m) {
         if (m.get_album_hashkey () == get_hashkey ())
             return true;
         else
             return false;
     }
 
-    public void remove_media (Media m) {
+    public void remove_medium (Medium m) {
         m.album_info = null;
         media.remove (m);
     }
 
-    public void add_media (Media m) {
+    public void add_medium (Medium m) {
         media.add (m);
         m.album_info = this;
     }
@@ -145,7 +145,7 @@ public class Noise.Album : Object {
     /**
      * Returns the media contained by the disc specified
      */
-    public Gee.Collection<Media> get_media (uint n_disc = 1)
+    public Gee.Collection<Medium> get_media (uint n_disc = 1)
         requires (n_disc > 0)
         requires (n_disc <= n_discs)
     {

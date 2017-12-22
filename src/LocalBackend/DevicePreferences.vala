@@ -118,7 +118,7 @@ public class Noise.DevicePreferences : GLib.Object {
                 builder.add_field_value_as_gvalue ("unique_id", id);
                 connection.statement_execute_non_select (builder.get_statement (), null, null);
             } catch (Error e) {
-                warning ("Could not save media: %s", e.message);
+                warning ("Could not save medium: %s", e.message);
             }
         }
     }

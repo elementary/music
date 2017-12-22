@@ -28,7 +28,7 @@
  */
 
 public class Noise.MusicViewWrapper : ViewWrapper {
-    
+
     public MusicViewWrapper (TreeViewSetup? tvs = null, Library library, TopDisplay topDisplay) {
         base (Hint.MUSIC, library);
         build_async.begin (tvs, topDisplay);
@@ -67,7 +67,7 @@ public class Noise.MusicViewWrapper : ViewWrapper {
         _devices = new Gee.HashMap<Device, int> ();
 
         embedded_alert = new Granite.Widgets.AlertView ("", "", "");
-        
+
         // Drag n drop in welcome widget
         Gtk.TargetEntry uris = {"text/uri-list", 0, 0};
         Gtk.drag_dest_set (welcome_screen, Gtk.DestDefaults.ALL, {uris}, Gdk.DragAction.COPY);
@@ -80,16 +80,16 @@ public class Noise.MusicViewWrapper : ViewWrapper {
             }
             App.main_window.library_manager.add_files_to_library (files);
         });
-        
+
         // Refresh view layout
         pack_views ();
 
         connect_data_signals ();
-        yield set_media_async (library.get_medias ());
+        yield set_media_async (library.get_media ());
     }
 
     private void connect_data_signals () {
-        /** 
+        /**
          * Listen for library additions, removals and updates. These all are only
          * possible with internal media. This view wrapper is not intended for use
          * with external (i.e. doesn't belong to library) media anyway.
@@ -156,7 +156,7 @@ public class Noise.MusicViewWrapper : ViewWrapper {
         } else {
             foreach (var device_entry in _devices.entries) {
                 if (device_entry.value == index) {
-                    libraries_manager.transfer_to_local_library (((Device)device_entry.key).get_library ().get_medias ());
+                    libraries_manager.transfer_to_local_library (((Device)device_entry.key).get_library ().get_media ());
                 }
             }
         }

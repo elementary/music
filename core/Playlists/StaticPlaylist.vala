@@ -40,10 +40,11 @@ public class Noise.StaticPlaylist : Playlist {
         icon = new ThemedIcon ("playlist");
     }
 
-    public override void add_media (Media m) {
-        var added_media = new Gee.LinkedList<Media> ();
-        if (allow_duplicate || medias.contains (m) == false) {
-            medias.add (m);
+    public override void add_medium (Medium m) {
+        if (allow_duplicate || media.contains (m) == false) {
+            media.add (m);
+
+            var added_media = new Gee.LinkedList<Medium> ();
             added_media.add (m);
             media_added (added_media);
         }
@@ -51,11 +52,11 @@ public class Noise.StaticPlaylist : Playlist {
         updated ();
     }
 
-    public override void add_medias (Gee.Collection<Media> to_add) {
-        var added_media = new Gee.LinkedList<Media> ();
-        foreach (Media m in to_add) {
-            if (allow_duplicate || medias.contains (m) == false) {
-                medias.add (m);
+    public override void add_media (Gee.Collection<Medium> to_add) {
+        var added_media = new Gee.LinkedList<Medium> ();
+        foreach (Medium m in to_add) {
+            if (allow_duplicate || media.contains (m) == false) {
+                media.add (m);
                 added_media.add (m);
             }
         }
@@ -64,23 +65,24 @@ public class Noise.StaticPlaylist : Playlist {
         media_added (added_media);
     }
 
-    public override void remove_media (Media to_remove) {
-        if (to_remove != null && medias.contains (to_remove)) {
-            var removed_media = new Gee.LinkedList<Media> ();
+    public override void remove_medium (Medium to_remove) {
+        if (to_remove != null && media.contains (to_remove)) {
+            media.remove (to_remove);
+
+            var removed_media = new Gee.LinkedList<Medium> ();
             removed_media.add (to_remove);
-            medias.remove (to_remove);
             media_removed (removed_media);
         }
 
         updated ();
     }
 
-    public override void remove_medias (Gee.Collection<Media> to_remove) {
-        var removed_media = new Gee.LinkedList<Media> ();
+    public override void remove_media (Gee.Collection<Medium> to_remove) {
+        var removed_media = new Gee.LinkedList<Medium> ();
         foreach (var m in to_remove) {
-            if (m != null && medias.contains (m)) {
+            if (m != null && media.contains (m)) {
                 removed_media.add (m);
-                medias.remove (m);
+                media.remove (m);
             }
         }
 
@@ -89,7 +91,7 @@ public class Noise.StaticPlaylist : Playlist {
     }
 
     public override void clear() {
-        medias.clear ();
+        media.clear ();
         cleared ();
         updated ();
     }
