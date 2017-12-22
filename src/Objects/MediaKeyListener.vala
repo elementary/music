@@ -57,7 +57,7 @@ public class Noise.MediaKeyListener : Object {
         }
 
         if (media_object != null) {
-            media_object.MediaPlayerKeyPressed.connect(mediaKeyPressed);
+            media_object.MediaPlayerKeyPressed.connect (media_key_pressed);
             try {
                 media_object.GrabMediaPlayerKeys (((Noise.App) GLib.Application.get_default ()).exec_name, (uint32)0);
             } catch (IOError err) {
@@ -66,7 +66,7 @@ public class Noise.MediaKeyListener : Object {
         }
     }
 
-    public void releaseMediaKeys() {
+    public void release_media_keys () {
         try {
             media_object.ReleaseMediaPlayerKeys (((Noise.App) GLib.Application.get_default ()).exec_name);
         } catch (IOError err) {
@@ -74,7 +74,7 @@ public class Noise.MediaKeyListener : Object {
         }
     }
 
-    private void mediaKeyPressed (dynamic Object bus, string application, string key) {
+    private void media_key_pressed (dynamic Object bus, string application, string key) {
         if (application != ((Noise.App) GLib.Application.get_default ()).exec_name) {
             return;
         }
