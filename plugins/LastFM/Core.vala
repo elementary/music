@@ -40,7 +40,7 @@ public class LastFM.Core : Object {
     public bool is_initialized = false;
 
     private const string API_URL = "http://ws.audioscrobbler.com/2.0/";
-    private LastFM.SimilarMedias similarMedias;
+    private LastFM.SimilarMedia similarMedia;
     //TODO: make them private and have all transactions in the Core.
     public string api_key;
     public string api_secret;
@@ -58,11 +58,11 @@ public class LastFM.Core : Object {
 
     private Core () {
         fetch_cancellable = new GLib.Cancellable ();
-        similarMedias = new LastFM.SimilarMedias ();
+        similarMedia = new LastFM.SimilarMedia ();
         Noise.App.main_window.update_medium_info.connect (postNowPlaying);
         Noise.App.main_window.medium_half_played.connect (postScrobbleTrack);
         Noise.libraries_manager.local_library.media_added.connect ((media) => { fetch_albums_slowly.begin (media); });
-        similarMedias.similar_retrieved.connect(similar_retrieved_signal);
+        similarMedia.similar_retrieved.connect(similar_retrieved_signal);
     }
 
     public void initialize (string api_key, string api_secret, string session_key) {
@@ -73,7 +73,7 @@ public class LastFM.Core : Object {
     }
 
     public Noise.StaticPlaylist get_similar_playlist () {
-        return similarMedias.similar_playlist;
+        return similarMedia.similar_playlist;
     }
 
     public void loveTrack (string title, string artist) {
@@ -179,7 +179,7 @@ public class LastFM.Core : Object {
     }
 
     public void fetchCurrentSimilarSongs () {
-        similarMedias.query_for_similar (Noise.App.player.current_medium);
+        similarMedia.query_for_similar (Noise.App.player.current_medium);
     }
 
     private void similar_retrieved_signal (Gee.LinkedList<int> similarIDs, Gee.LinkedList<Noise.Medium> similarDont) {

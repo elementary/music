@@ -27,14 +27,14 @@
  *              Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-public class Noise.SimilarMediasView : Gtk.TreeView {
+public class Noise.SimilarMediaView : Gtk.TreeView {
     private new Gtk.ListStore model;
-    private Gee.LinkedList<Media> media;
+    private Gee.LinkedList<Medium> media;
 
     private Gee.LinkedList<string> urlsToOpen;//queue for opening urls
 
-    public SimilarMediasView () {
-        media = new Gee.LinkedList<Media> ();
+    public SimilarMediaView () {
+        media = new Gee.LinkedList<Medium> ();
         urlsToOpen = new Gee.LinkedList<string> ();
 
         /* id is always first and is stored as an int. Then the rest are (1)
@@ -42,7 +42,7 @@ public class Noise.SimilarMediasView : Gtk.TreeView {
          * #, track, title, artist, album, genre, comment, year, rating, (9)
          * bitrate, play count, last played, date added, file name, (5)
          * bpm, length, file size, (3) */
-        model = new Gtk.ListStore (2, typeof (Noise.Media), typeof (string));
+        model = new Gtk.ListStore (2, typeof (Noise.Medium), typeof (string));
 
         var col = new Gtk.TreeViewColumn ();
         col.title = _("media");
@@ -57,11 +57,11 @@ public class Noise.SimilarMediasView : Gtk.TreeView {
         row_activated.connect (viewDoubleClick);
     }
 
-    public void populateView (Gee.Collection<Media> nMedias) {
+    public void populateView (Gee.Collection<Medium> n_media) {
         media.clear ();
         model.clear ();
         int count = 0;
-        foreach (Media s in nMedias) {
+        foreach (Medium s in n_media) {
             media.add (s);
 
             Gtk.TreeIter iter;
@@ -89,7 +89,7 @@ public class Noise.SimilarMediasView : Gtk.TreeView {
     public void* take_action () {
         Gtk.TreeIter iter;
         Gtk.TreeModel mo;
-        Media s;
+        Medium s;
 
         get_selection ().get_selected (out mo, out iter);
         mo.get (iter, 0, out s);

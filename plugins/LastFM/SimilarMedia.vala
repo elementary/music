@@ -28,17 +28,17 @@
  */
 
 /* Merely a place holder for multiple pieces of information regarding
- * the current media playing. Mostly here because of dependence. */
+ * the current medium playing. Mostly here because of dependence. */
 
-public class LastFM.SimilarMedias : Object {
+public class LastFM.SimilarMedia : Object {
     public const int MAX_FETCHED = 20;
 
-    public signal void similar_retrieved (Gee.LinkedList<int64?> similarIDs, Gee.LinkedList<Noise.Media> similarDont);
+    public signal void similar_retrieved (Gee.LinkedList<int64?> similarIDs, Gee.LinkedList<Noise.Medium> similarDont);
 
     public Noise.StaticPlaylist similar_playlist;
     private GLib.Cancellable cancellable;
 
-    public class SimilarMedias () {
+    public class SimilarMedia () {
         cancellable = new GLib.Cancellable ();
         similar_playlist = new Noise.StaticPlaylist ();
         similar_playlist.name = _("Similar");
@@ -53,7 +53,7 @@ public class LastFM.SimilarMedias : Object {
         });
     }
 
-    public virtual void query_for_similar (Noise.Media s) {
+    public virtual void query_for_similar (Noise.Medium s) {
         if (cancellable.is_cancelled () == false) {
             cancellable.cancel ();
         }
@@ -61,7 +61,7 @@ public class LastFM.SimilarMedias : Object {
         similar_async.begin (s);
     }
 
-    public async void similar_async (Noise.Media s) {
+    public async void similar_async (Noise.Medium s) {
         debug ("In the similar thread");
         cancellable.reset ();
         var similar_media = yield Core.get_default ().get_similar_tracks (s.title, s.artist, cancellable);
@@ -69,8 +69,8 @@ public class LastFM.SimilarMedias : Object {
             return;
 
         var similarIDs = new Gee.LinkedList<int64?> ();
-        var similarDont = new Gee.LinkedList<Noise.Media> ();
-        Noise.libraries_manager.local_library.medium_from_name (similar_media, similarIDs, similarDont);
+        var similarDont = new Gee.LinkedList<Noise.Medium> ();
+        Noise.libraries_manager.local_library.media_from_name (similar_media, similarIDs, similarDont);
         if (cancellable.is_cancelled ())
             return;
 
