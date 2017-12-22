@@ -91,7 +91,7 @@ public class Noise.MediaKeyListener : Object {
                 break;
             default:
                 message ("Unused key pressed: %s", key);
-                break
+                break;
         }
     }
 }
