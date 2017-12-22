@@ -5,6 +5,7 @@ set(CLIENT_SOURCE
     FileOperator.vala
     Objects/MediaKeyListener.vala
     Objects/HistoryPlaylist.vala
+    Objects/MPRIS.vala
     LocalBackend/LocalLibrary.vala
     LocalBackend/LocalMedia.vala
     LocalBackend/LocalSmartPlaylist.vala

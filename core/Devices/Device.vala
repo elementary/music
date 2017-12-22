@@ -31,7 +31,7 @@
 public interface Noise.Device : GLib.Object {
     public signal void initialized (Device d);
     public signal void device_unmounted ();
-    public signal void infobar_message (string message, Gtk.MessageType type);
+    public signal void infobar_message (string label, Gtk.MessageType message_type);
 
     public abstract bool start_initialization();
     public abstract void finish_initialization();

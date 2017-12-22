@@ -273,7 +273,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         connect_to_sourcelist_signals ();
     }
 
-    public void connect_to_sourcelist_signals () {
+    private void connect_to_sourcelist_signals () {
 
         source_list_view.selection_changed.connect ((page_number) => {
             view_container.set_current_view_from_index (page_number);
@@ -286,7 +286,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         source_list_view.item_action_activated.connect ((page_number) => {
             var view = view_container.get_view (page_number);
             if (view is DeviceView) {
-                ((DeviceView)view).d.eject ();
+                ((DeviceView) view).device.eject ();
             }
         });
         source_list_view.edited.connect (playlist_name_edited);
@@ -529,7 +529,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         GLib.Application.get_default ().send_notification (context, notification);
     }
 
-    public async void show_notification_from_medium_async (Medium medium) {
+    private async void show_notification_from_medium_async (Medium medium) {
         if (medium == null)
             return;
 
@@ -558,7 +558,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     /**
      * Sets the given view as the active item
      */
-    public void set_active_view (ViewWrapper view) {
+    private void set_active_view (ViewWrapper view) {
         if (!initialization_finished)
             return;
 
@@ -566,10 +566,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         if (view is ViewWrapper)
             (view as ViewWrapper).set_as_current_view ();
-    }
-
-    public void remove_view_and_update (int index) {
-        view_container.remove_view (view_container.get_view (index));
     }
 
     private void load_playlists () {
@@ -602,7 +598,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
      * SourceList Configuration
      */
 
-    public void update_badge_on_playlist_update (Playlist p, SourceListEntry entry) {
+    private void update_badge_on_playlist_update (Playlist p, SourceListEntry entry) {
         p.media_added.connect((s) => { update_playlist_badge (p); });
         p.media_removed.connect((s) => { update_playlist_badge (p); });
         p.cleared.connect((s) => { update_playlist_badge (p); });
@@ -621,7 +617,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     private bool update_sensitivities_pending = false;
 
-    public async void update_sensitivities () {
+    private async void update_sensitivities () {
         if (update_sensitivities_pending)
             return;
 
@@ -662,14 +658,18 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     private void remove_device (Device device) {
-        if (!match_devices.has_key (device.get_unique_identifier ()))
+        if (!match_devices.has_key (device.get_unique_identifier ())) {
             return;
-        int page_number = match_devices.get (device.get_unique_identifier ());
-        foreach (int number in source_list_view.remove_device(page_number)) {
-            remove_view_and_update (number);
         }
+
+        int page_number = match_devices.get (device.get_unique_identifier ());
+
+        foreach (int number in source_list_view.remove_device (page_number)) {
+            view_container.remove_view (view_container.get_view (number));
+        }
+
         match_devices.unset (device.get_unique_identifier ());
-        remove_view_and_update (page_number);
+        view_container.remove_view (view_container.get_view (page_number));
     }
 
     private void create_device_source_list (Device d) {
@@ -716,7 +716,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             match_playlist_entry.unset (playlist);
             match_playlists.unset (playlist);
         }
-        remove_view_and_update (page_number);
+
+        view_container.remove_view (view_container.get_view (page_number));
     }
 
     public void create_new_playlist (Library? library = library_manager) {
@@ -726,7 +727,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         library.add_playlist(playlist);
     }
 
-    public void show_playlist_view (Playlist p) {
+    private void show_playlist_view (Playlist p) {
         if (match_playlists.has_key (p)) {
             source_list_view.selected = match_playlist_entry.get (p);
             set_active_view ((Noise.ViewWrapper)view_container.get_view (match_playlists.get (p)));
@@ -796,7 +797,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             source_list_view.remove_playlist(page_number);
             match_playlists.unset (smartplaylist);
         }
-        remove_view_and_update (page_number);
+
+        view_container.remove_view (view_container.get_view (page_number));
     }
 
     private void playlist_name_edited (int page_number, string new_name) {
@@ -871,7 +873,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
      * XXX: this doesn't belong here, but to the playback manager
      * @param s The medium that is now playing
      */
-    public void medium_played (Medium m) {
+    private void medium_played (Medium m) {
         //reset the medium position
         top_display.update_media ();
 
@@ -1011,7 +1013,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
     }
 
-    public void editPreferencesClick () {
+    private void editPreferencesClick () {
         if (preferences == null)
             preferences = new PreferencesWindow ();
         preferences.show_all ();
@@ -1094,15 +1096,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
     }
 
-    public void medium_not_found(int id) {
-// XXX FIXME TODO Don't depend on ids
-#if 0
-        var not_found = new FileNotFoundDialog(library_manager, this, id);
-        not_found.show ();
-#endif
-    }
-
-    public void search_entry_activate () {
+    private void search_entry_activate () {
         var vw = view_container.get_current_view ();
 
         if (vw != null && vw is ViewWrapper) {
