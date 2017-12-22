@@ -325,7 +325,7 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
     public override void remove_medium (Medium s, bool trash) {
         var list = new Gee.ArrayList<Medium> ();
         list.add (s);
-        remove_medias (list, trash);
+        remove_media (list, trash);
     }
 
     public override void remove_media (Gee.Collection<Medium> toRemove, bool trash) {
@@ -337,7 +337,7 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
         libraries_manager.current_operation = _("Removing from <b>%s</b>…").printf (device.getDisplayName ());
         is_doing_file_operations = true;
         Timeout.add (500, libraries_manager.do_progress_notification_with_timeout);
-        remove_medias_async.begin (toRemove);
+        remove_media_async.begin (toRemove);
         return;
     }
 

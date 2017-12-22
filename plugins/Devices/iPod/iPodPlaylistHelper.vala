@@ -49,7 +49,7 @@
  */
 
 public class Noise.Plugins.iPodPlaylistHelper {
-    public static GPod.Playlist get_gpod_playlist_from_playlist (Noise.Playlist pl, Gee.HashMap<unowned GPod.Track, Noise.Media> library, GPod.iTunesDB db) {
+    public static GPod.Playlist get_gpod_playlist_from_playlist (Noise.Playlist pl, Gee.HashMap<unowned GPod.Track, Noise.Medium> library, GPod.iTunesDB db) {
         var rv = new GPod.Playlist (pl.name, false);
         rv.itdb = db;
         int32 index = 0;
@@ -66,7 +66,7 @@ public class Noise.Plugins.iPodPlaylistHelper {
         return rv;
     }
 
-    public static Gee.Collection<unowned GPod.Track> get_gpod_tracks_from_media (Gee.Collection<Media> media, Gee.HashMap<unowned GPod.Track, Noise.Media> library) {
+    public static Gee.Collection<unowned GPod.Track> get_gpod_tracks_from_media (Gee.Collection<Medium> media, Gee.HashMap<unowned GPod.Track, Noise.Medium> library) {
         var list = new Gee.LinkedList <unowned GPod.Track> ();
         foreach (var m in media) {
             foreach (var entry in library.entries) {
@@ -80,7 +80,7 @@ public class Noise.Plugins.iPodPlaylistHelper {
         return list;
     }
 
-    public static Noise.Playlist? get_playlist_from_gpod_playlist (GPod.Playlist pl, Gee.HashMap<unowned GPod.Track, Noise.Media> library) {
+    public static Noise.Playlist? get_playlist_from_gpod_playlist (GPod.Playlist pl, Gee.HashMap<unowned GPod.Track, Noise.Medium> library) {
         if (pl.is_spl) {
 
         } else if (pl.is_podcasts () == false && pl.is_audiobooks () == false && pl.is_mpl() == false) {
