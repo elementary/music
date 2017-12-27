@@ -27,49 +27,63 @@
  */
 
 public class Noise.InstallGstreamerPluginsDialog : Gtk.Dialog {
-    Gst.Message message;
-    string detail;
+    private string detail;
+
+    public Gst.Message message;
 
     public InstallGstreamerPluginsDialog (Gst.Message message) {
         this.message = message;
-        this.detail = Gst.PbUtils.missing_plugin_message_get_description (message);
+        detail = Gst.PbUtils.missing_plugin_message_get_description (message);
 
-        this.set_modal (true);
-        this.set_transient_for (App.main_window);
-        this.destroy_with_parent = true;
-        this.border_width = 6;
-        resizable = false;
-        deletable = false;
+        var image_icon = new Gtk.Image.from_icon_name ("dialog-question", Gtk.IconSize.DIALOG);
+        image_icon.valign = Gtk.Align.START;
 
-        var content = get_content_area () as Gtk.Box;
+        var primary_label = new Gtk.Label (_("Would you like to install the %s plugin?").printf (Markup.escape_text (detail)));
+        primary_label.get_style_context ().add_class (Granite.STYLE_CLASS_PRIMARY_LABEL);
+        primary_label.selectable = true;
+        primary_label.max_width_chars = 50;
+        primary_label.wrap = true;
+        primary_label.xalign = 0;
 
-        var question = new Gtk.Image.from_icon_name ("dialog-question", Gtk.IconSize.DIALOG);
-        question.yalign = 0;
-
-        var info = new Gtk.Label ("<span weight=\"bold\" size=\"larger\">" +
-            _("Would you like to install the %s plugin?\n").printf (Markup.escape_text (detail)) +
-            "</span>" + _("\nThis song cannot be played. The %s plugin is required to play the song.").printf ("<b>" +
-            Markup.escape_text (detail) + "</b>")
+        var secondary_label = new Gtk.Label (
+            _("This song cannot be played. The %s plugin is required to play the song.").printf ("<b>" + Markup.escape_text (detail) + "</b>")
         );
+        secondary_label.use_markup = true;
+        secondary_label.selectable = true;
+        secondary_label.max_width_chars = 50;
+        secondary_label.wrap = true;
+        secondary_label.xalign = 0;
 
-        info.set_halign (Gtk.Align.START);
-        info.set_selectable (true);
-        info.set_use_markup (true);
+        var message_grid = new Gtk.Grid ();
+        message_grid.column_spacing = 12;
+        message_grid.row_spacing = 6;
+        message_grid.margin_start = message_grid.margin_end = 12;
+        message_grid.attach (image_icon, 0, 0, 1, 2);
+        message_grid.attach (primary_label, 1, 0, 1, 1);
+        message_grid.attach (secondary_label, 1, 1, 1, 1);
 
-        var layout = new Gtk.Grid ();
-        layout.set_column_spacing (12);
-        layout.set_margin_right (6);
-        layout.set_margin_bottom (24);
-        layout.set_margin_left (6);
-        layout.add (question);
-        layout.add (info);
+        get_content_area ().add (message_grid);
 
-        content.add (layout);
+        show_all ();
+    }
+
+    construct {
+        deletable = false;
+        destroy_with_parent = true;
+        modal = true;
+        resizable = false;
+        transient_for = App.main_window;
+
+        var action_area = get_action_area ();
+        action_area.margin = 6;
+        action_area.margin_top = 14;
 
         add_button (_("Cancel"), Gtk.ResponseType.CLOSE);
-        add_button (_("Install Plugin"), Gtk.ResponseType.APPLY);
 
-        this.response.connect ((response_id) => {
+        var install_button = add_button (_("Install Plugin"), Gtk.ResponseType.APPLY);
+        install_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+
+        response.connect ((response_id) => {
             switch (response_id) {
                 case Gtk.ResponseType.APPLY:
                     install_plugin_clicked ();
@@ -79,8 +93,6 @@ public class Noise.InstallGstreamerPluginsDialog : Gtk.Dialog {
                     break;
             }
         });
-
-        show_all ();
     }
 
     public void install_plugin_clicked () {
