@@ -47,7 +47,7 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
     }
 
     public override void initialize_library () {
-    
+
     }
 
     public async void finish_initialization_async () {
@@ -81,7 +81,7 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
     }
 
     public override void add_files_to_library (Gee.Collection<string> files) {
-    
+
     }
 
     public override void search_medias (string search) {
@@ -315,11 +315,11 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
     }
 
     public override void update_media (Media s, bool updateMeta, bool record_time) {
-    
+
     }
 
     public override void update_medias (Gee.Collection<Media> updates, bool updateMeta, bool record_time) {
-    
+
     }
 
     public override void remove_media (Media s, bool trash) {
@@ -403,7 +403,7 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
     }
 
     public override void add_smart_playlist (SmartPlaylist p) {
-        
+
     }
 
     public override bool support_smart_playlists () {
@@ -411,7 +411,7 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
     }
 
     public override void remove_smart_playlist (int64 id) {
-        
+
     }
 
     public override SmartPlaylist? smart_playlist_from_id (int64 id) {
@@ -523,7 +523,7 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
     }
 
     public override void finish_file_operations () {
-    
+
     }
 
     void remove_media_from_ipod (GPod.Track t) {

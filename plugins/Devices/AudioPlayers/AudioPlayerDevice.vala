@@ -46,9 +46,9 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
 
     public void finish_initialization() {
         device_unmounted.connect( () => {
-            
+
         });
-        
+
         finish_initialization_async.begin ();
     }
     public bool start_initialization() {
@@ -57,11 +57,11 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
     private async void finish_initialization_async() {
         if (is_androphone) {
             music_folders.add (mount.get_root ().get_uri () + "/Music/");
-            
+
         } else {
             var file = GLib.File.new_for_uri(mount.get_root ().get_uri () + "/.is_audio_player");
             try {
-                if(file.query_exists() == true){
+                if(file.query_exists() == true) {
                     var dis = new DataInputStream (file.read ());
                     string line;
                     // Read lines until end of file (null) is reached
@@ -92,23 +92,23 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
             library.queue_finished ();
 
         Idle.add( () => {
-            
+
             return false;
         });
     }
-    
+
     public Library get_library() {
         return library;
     }
-    
+
     public string getEmptyDeviceTitle() {
         return _("Empty device!");
     }
-    
+
     public string getEmptyDeviceDescription() {
         return _("This device does not contain any music.");
     }
-    
+
     public string getContentType() {
         if (is_androphone) {
             return "android";
@@ -123,7 +123,7 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
             var file = GLib.File.new_for_path(mount.get_root ().get_path () + "/.is_audio_player");
             string name = mount.get_name();
             try {
-                if(file.query_exists() == true){
+                if(file.query_exists() == true) {
                     var dis = new DataInputStream (file.read ());
                     string line;
                     // Read lines until end of file (null) is reached
@@ -143,11 +143,11 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
             return name;
         }
     }
-    
+
     public void setDisplayName(string name) {
-        
+
     }
-    
+
     public string get_fancy_description() {
         if (is_androphone) {
             return _("Android Phone");
@@ -155,88 +155,87 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
             return _("Audio Player");
         }
     }
-    
+
     public void set_mount(Mount mount) {
         this.mount = mount;
     }
-    
+
     public Mount? get_mount() {
         return mount;
     }
-    
+
     public string get_uri() {
         return mount.get_default_location().get_uri();
     }
-    
+
     public void set_icon(GLib.Icon icon) {
         this.icon = icon;
     }
-    
+
     public GLib.Icon get_icon() {
         return icon;
     }
-    
 
     public uint64 get_capacity() {
         uint64 rv = 0;
-        
+
         try {
             var file_info = File.new_for_uri(get_uri()).query_filesystem_info("filesystem::*", null);
             rv = file_info.get_attribute_uint64(GLib.FileAttribute.FILESYSTEM_SIZE);
         } catch(Error err) {
             stdout.printf("Error calculating capacity of iPod: %s\n", err.message);
         }
-        
+
         return (uint64)rv;
     }
-    
+
     public string get_fancy_capacity() {
         return GLib.format_size (get_capacity());
     }
-    
+
     public uint64 get_used_space() {
         return get_capacity() - get_free_space();
     }
-    
+
     public string get_music_folder () {
         return music_folders.get(0);
     }
-    
+
     public uint64 get_free_space() {
         uint64 rv = 0;
-        
+
         try {
             var file_info = File.new_for_uri(get_uri()).query_filesystem_info("filesystem::*", null);
             rv = file_info.get_attribute_uint64(GLib.FileAttribute.FILESYSTEM_FREE);
         } catch(Error err) {
             stdout.printf("Error calculating free space on iPod: %s\n", err.message);
         }
-        
+
         return rv;
     }
-    
+
     public void unmount() {
         mount.unmount_with_operation.begin (GLib.MountUnmountFlags.NONE, null);
     }
-    
+
     public void eject() {
         if (mount.can_eject ()) {
             mount.get_volume ().get_drive ().eject_with_operation.begin (GLib.MountUnmountFlags.NONE, null);
         }
     }
-    
+
     public void synchronize () {
-        
+
     }
-    
+
     public bool only_use_custom_view () {
         return false;
     }
-    
+
     public Gtk.Widget? get_custom_view() {
         return null;
     }
-    
+
     public bool read_only() {
         return false;
     }

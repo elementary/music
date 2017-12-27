@@ -25,7 +25,7 @@
  */
 
 namespace Noise.Plugins {
-    
+
     public class LastFMPlugin : Peas.ExtensionBase, Peas.Activatable {
         public GLib.Object object { owned get; construct; }
 
@@ -52,7 +52,7 @@ namespace Noise.Plugins {
             manager.account_created.connect ((uid) => {
                 parse_account.begin (uid);
             });
-            
+
         }
 
         private async void parse_account (uint uid) {

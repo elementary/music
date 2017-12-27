@@ -65,7 +65,7 @@ public class Noise.SmartQuery : Object {
     public GLib.Value value { get; set; default = GLib.Value (typeof (int)); }
 
     public SmartQuery () {
-        
+
     }
 
     public SmartQuery.with_info (FieldType field, ComparatorType comparator, GLib.Value value) {
