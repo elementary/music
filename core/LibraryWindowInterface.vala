@@ -29,7 +29,7 @@
 public interface Noise.LibraryWindowInterface : Object {
     public abstract async void update_sensitivities ();
     public signal void source_list_added (GLib.Object o, int view_number);
-    
+
     public signal void media_half_played (Media m); // send after the half of the song
     public signal void update_media_info (Media m); // send after 3 seconds
 }

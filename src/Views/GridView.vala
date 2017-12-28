@@ -87,7 +87,7 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
     protected void set_research_needed (bool value) {
         this.icon_view.research_needed = value;
     }
-    
+
     protected void add_objects (Gee.Collection<Object> objects) {
         icon_view.add_objects (objects);
     }
@@ -334,7 +334,7 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
 
         if (album_b == null)
             return 1;
-        
+
         int order = String.compare (album_a.get_display_artist (), album_b.get_display_artist ());
 
         if (order == 0)

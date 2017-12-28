@@ -29,7 +29,7 @@
 
 public class Noise.DeviceViewWrapper : ViewWrapper {
     public Device d { get; private set; }
-    
+
     public DeviceViewWrapper (TreeViewSetup tvs, Device d, Library library) {
         base (tvs.hint, library);
 

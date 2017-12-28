@@ -82,7 +82,7 @@ public class Noise.Plugins.iPodPlaylistHelper {
 
     public static Noise.Playlist? get_playlist_from_gpod_playlist (GPod.Playlist pl, Gee.HashMap<unowned GPod.Track, Noise.Media> library) {
         if (pl.is_spl) {
-            
+
         } else if (pl.is_podcasts () == false && pl.is_audiobooks () == false && pl.is_mpl() == false) {
             var playlist = new StaticPlaylist.with_info (0, pl.name);
             foreach (var track in pl.members) {
@@ -368,7 +368,7 @@ public class Noise.Plugins.iPodPlaylistHelper {
             } else if (comparator == SmartQuery.ComparatorType.IS_BEFORE) {
                 rule.action = GPod.SPLAction.IS_LESS_THAN;
             }
-            
+
             message ("in smartplaylist  has rule and string %s\n", rule.@string);
         }
 

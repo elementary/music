@@ -73,7 +73,7 @@ public class  Noise.Plugins.iPodStreamer : Noise.Playback, GLib.Object {
     public void set_media (Media media) {
         set_state (Gst.State.READY);
         var device = dm.get_device_for_uri (media.uri);
-        string uri = "%s/.gvfs/%s/%s".printf (GLib.File.new_for_path (GLib.Environment.get_home_dir ()).get_uri (), 
+        string uri = "%s/.gvfs/%s/%s".printf (GLib.File.new_for_path (GLib.Environment.get_home_dir ()).get_uri (),
             device.mount.get_name (), media.uri.replace (device.get_uri (), ""));
         debug ("set uri to %s\n", uri);
         pipe.playbin.set_property ("uri", uri.replace("#", "%23"));
@@ -169,7 +169,7 @@ public class  Noise.Plugins.iPodStreamer : Noise.Playback, GLib.Object {
             default:
                 break;
         }
- 
+
         return true;
     }
 }

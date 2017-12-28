@@ -77,7 +77,7 @@ public class Noise.DeviceManager : GLib.Object {
 
         Idle.add(() => {
             foreach (var m in mounts) {
-                mounts_availables.add (m); 
+                mounts_availables.add (m);
                 mount_added (m);
             }
 
