@@ -47,7 +47,7 @@ public class Noise.Plugins.Interface : Object {
 
     public delegate void HookFunction ();
     public delegate void HookFunctionArg (Object object);
-    
+
     public Gtk.Notebook context {internal set; get; }
     public Gtk.Notebook sidebar {internal set; get; }
     public Gtk.Notebook bottombar {internal set; get; }
@@ -81,7 +81,7 @@ public class Noise.Plugins.Interface : Object {
             all_source_view.append(m);
         });
     }
-    
+
     public void register_function_arg (Hook hook, HookFunctionArg hook_function) {
         switch (hook) {
         case Hook.SOURCE_VIEW:
@@ -99,7 +99,7 @@ public class Noise.Plugins.Interface : Object {
             break;
         }
     }
-    
+
     public void register_function_signal (Hook hook, string signal_name, Object obj) {
         switch(hook) {
         case Hook.BOTTOMBAR:
@@ -112,7 +112,7 @@ public class Noise.Plugins.Interface : Object {
             break;
         }
     }
-    
+
     public void register_function (Hook hook, HookFunction hook_function) {
         switch(hook) {
         case Hook.CONTEXT:
@@ -173,7 +173,6 @@ public class Noise.Plugins.Interface : Object {
             break;
         }
     }
-    
 }
 
 
@@ -189,7 +188,7 @@ public class Noise.Plugins.Manager : Object {
 
     Peas.Engine engine;
     Peas.ExtensionSet exts;
-        
+
     public Gtk.Toolbar toolbar { set { plugin_iface.toolbar = value; } }
     public Gtk.Application noise_app { set { plugin_iface.noise_app = value;  }}
     public Noise.Plugins.Interface plugin_iface { private set; get; }
@@ -197,8 +196,9 @@ public class Noise.Plugins.Manager : Object {
     private static Manager? plugin_manager = null;
 
     public static Manager get_default () {
-        if (plugin_manager == null)
+        if (plugin_manager == null) {
             plugin_manager = new Manager ();
+        }
         return plugin_manager;
     }
 
@@ -210,13 +210,13 @@ public class Noise.Plugins.Manager : Object {
         /* Let's init the engine */
         engine = Peas.Engine.get_default ();
         engine.add_search_path (Build.PLUGIN_DIR, null);
-        
+
         /* Do not load blacklisted plugins */
         var disabled_plugins = new Gee.LinkedList<string> ();
         foreach (var plugin in Settings.Main.get_default ().plugins_disabled) {
             disabled_plugins.add (plugin);
         }
-        
+
         foreach (var plugin in engine.get_plugin_list ()) {
             if (!disabled_plugins.contains (plugin.get_module_name ())) {
                 engine.try_load_plugin (plugin);
@@ -229,15 +229,14 @@ public class Noise.Plugins.Manager : Object {
         param.name = "object";
         exts = new Peas.ExtensionSet (engine, typeof(Peas.Activatable), "object", plugin_iface, null);
 
-        exts.extension_added.connect( (info, ext) => {  
+        exts.extension_added.connect( (info, ext) => {
                 ((Peas.Activatable)ext).activate();
         });
         exts.extension_removed.connect(on_extension_removed);
-        
+
         exts.foreach (on_extension_added);
-        
     }
-    
+
     public Gtk.Widget get_view () {
         var view = new PeasGtk.PluginManager (engine);
         var bottom_box = view.get_children ().nth_data (1) as Gtk.Box;
@@ -246,20 +245,19 @@ public class Noise.Plugins.Manager : Object {
         bottom_box.get_children ().nth_data(0).visible = false;
         return view;
     }
-    
+
     void on_extension_added(Peas.ExtensionSet set, Peas.PluginInfo info, Peas.Extension extension) {
         var core_list = engine.get_plugin_list ().copy ();
         for (int i = 0; i < core_list.length(); i++) {
             string module = core_list.nth_data (i).get_module_name ();
-            if (module == info.get_module_name ()) 
+            if (module == info.get_module_name ()) {
                 ((Peas.Activatable)extension).activate();
-            /* Enable plugin set */
-            else if (module == plugin_iface.set_name) {
+            } else if (module == plugin_iface.set_name) {
                 debug ("Loaded %s", module);
                 ((Peas.Activatable)extension).activate();
-            }
-            else
+            } else {
                 ((Peas.Activatable)extension).deactivate();
+            }
         }
     }
 
@@ -270,15 +268,15 @@ public class Noise.Plugins.Manager : Object {
     public void hook_app(Gtk.Application app) {
         plugin_iface.noise_app = app;
     }
-    
+
     public Gtk.Notebook context { set { plugin_iface.context = value; } }
-    public signal void hook_notebook_context (); 
-    
+    public signal void hook_notebook_context ();
+
     public Gtk.Notebook sidebar { set { plugin_iface.sidebar = value; } }
-    public signal void hook_notebook_sidebar (); 
-    
+    public signal void hook_notebook_sidebar ();
+
     public signal void hook_addons_menu(Gtk.Menu menu);
-    
+
     public void hook_example(string arg) {
     }
 }

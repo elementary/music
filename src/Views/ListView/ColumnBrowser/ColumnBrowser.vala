@@ -113,7 +113,7 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
                     no_column_enabled = false;
             }
 
-            // In case no column is visible 
+            // In case no column is visible
             if (no_column_enabled) {
                 var col = columns.first ();
                 if (col != null)
@@ -222,11 +222,11 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
         //reset_filters ();
         search_results.clear ();
         search_results.add_all (media); // equivalent to resetting filters without losing column selections
-        
+
         var highest_category = BrowserColumn.Category.first ();
         //update_search_results (highest_category);
         populate_columns (highest_category, true);
-        
+
         changed ();
     }
 
@@ -317,7 +317,7 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
                         // Avoid changing uint_from_string()'s behavior at all cost.
                         rating = String.is_empty (selected, false) ? -1 : (int) String.uint_from_string (selected);
                     break;
-                    
+
                     default:
                         assert_not_reached ();
                 }
@@ -362,7 +362,7 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
             case BrowserColumn.Category.GROUPING:
                 foreach (var m in search_results) {
                     string grouping = m.grouping;
-                    
+
                     // TODO XXX If grouping is an empty string, append "Ungrouped" instead
                     if (!String.is_empty (grouping, false) && !column_set.contains (grouping))
                         column_set.add (grouping);

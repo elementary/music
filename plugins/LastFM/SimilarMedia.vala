@@ -46,7 +46,7 @@ public class LastFM.SimilarMedias : Object {
         similar_playlist.show_badge = true;
         similar_playlist.icon = new GLib.ThemedIcon ("playlist-similar");
 
-        Noise.App.player.changing_player.connect ((m)=>{
+        Noise.App.player.changing_player.connect ((m) => {
             lock (similar_playlist) {
                 similar_playlist.clear ();
             }
@@ -60,7 +60,7 @@ public class LastFM.SimilarMedias : Object {
 
         similar_async.begin (s);
     }
-    
+
     public async void similar_async (Noise.Media s) {
         debug ("In the similar thread");
         cancellable.reset ();
@@ -80,5 +80,4 @@ public class LastFM.SimilarMedias : Object {
         similar_playlist.add_medias (found_medias);
         similar_retrieved (similarIDs, similarDont);
     }
-    
 }

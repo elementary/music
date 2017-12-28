@@ -470,7 +470,7 @@ namespace Granite.Widgets {
             if(0 < _rating && ((state & Gtk.StateFlags.SELECTED) != state) && ((state & Gtk.StateFlags.PRELIGHT) != state)) {
                 n_stars = (int)rating;
             }
-            
+
             renderer.style_context = style_context;
             renderer.render ();
             update_pixbuf ();

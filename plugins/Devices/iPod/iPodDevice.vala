@@ -89,9 +89,9 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         }
         DeviceManager.get_default ().device_name_changed (this);
     }
-    
+
     public string get_fancy_description () {
-        
+
         GPod.iPodGeneration enum_gen = db.device.get_ipod_info ().ipod_generation;
         switch (enum_gen) {
             case GPod.iPodGeneration.FIRST:
@@ -194,15 +194,15 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
 
         return rv;
     }
-    
+
     public string get_fancy_capacity () {
         return GLib.format_size (get_capacity ());
     }
-    
+
     public uint64 get_used_space () {
         return get_capacity () - get_free_space ();
     }
-    
+
     public uint64 get_free_space () {
         uint64 rv = 0;
         try {

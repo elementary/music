@@ -83,26 +83,26 @@ public class Noise.MusicListView : GenericList {
         media_scroll_to_current = new Gtk.MenuItem.with_label (_("Scroll to Current Song"));
         media_scroll_to_current.activate.connect (media_scroll_to_current_requested);
         media_scroll_to_current.sensitive = false;
-        
+
         media_edit_media = new Gtk.MenuItem.with_label (_("Edit Song Info"));
         media_edit_media.activate.connect (media_edit_media_clicked);
-        
+
         media_file_browse = new Gtk.MenuItem.with_label (_("Show in File Browser"));
         media_file_browse.activate.connect (media_file_browse_clicked);
-        
+
         media_menu_contractor_entry = new Gtk.MenuItem.with_label (_("Other actions"));
-        
+
         media_menu_queue = new Gtk.MenuItem.with_label (C_("Action item (verb)", "Queue"));
         media_menu_queue.activate.connect (media_menu_queue_clicked);
-        
+
         media_menu_add_to_playlist = new Gtk.MenuItem.with_label (_("Add to Playlist"));
-        
+
         media_remove = new Gtk.MenuItem.with_label (_("Remove Song"));
         media_remove.activate.connect (mediaRemoveClicked);
-        
+
         import_to_library = new Gtk.MenuItem.with_label (_("Import to Library"));
         import_to_library.activate.connect (import_to_library_clicked);
-        
+
         media_rate_media = new Granite.Widgets.RatingMenuItem ();
         media_rate_media.activate.connect (media_rate_media_clicked);
 
@@ -150,7 +150,7 @@ public class Noise.MusicListView : GenericList {
 
     public override void update_sensitivities () {
         media_action_menu.show_all ();
-        
+
         switch (hint) {
             case ViewWrapper.Hint.ALBUM_LIST:
             case ViewWrapper.Hint.MUSIC:
@@ -180,13 +180,13 @@ public class Noise.MusicListView : GenericList {
                 media_remove.visible = false;
                 import_to_library.visible = false;
                 break;
-        }         
+        }
     }
 
     public void popup_media_menu (Gee.Collection<Media> selection) {
         var media_menu_new_playlist = new Gtk.MenuItem.with_label (_("New Playlist…"));
         media_menu_new_playlist.activate.connect (media_menu_new_playlist_clicked);
-        
+
         var add_to_playlist_menu = new Gtk.Menu ();
         add_to_playlist_menu.append (media_menu_new_playlist);
         if (parent_wrapper.library.support_playlists () == false) {
@@ -421,7 +421,7 @@ public class Noise.MusicListView : GenericList {
                 dvw.library.remove_medias (selected_media, true);
                 break;
             case ViewWrapper.Hint.PLAYLIST:
-                playlist.remove_medias (selected_media); 
+                playlist.remove_medias (selected_media);
                 break;
             case ViewWrapper.Hint.READ_ONLY_PLAYLIST:
                 if (playlist == App.player.queue_playlist) {

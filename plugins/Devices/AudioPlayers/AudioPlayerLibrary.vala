@@ -27,7 +27,7 @@
  */
 
 public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
-    
+
     AudioPlayerDevice device;
     Gee.LinkedList<Noise.Media> medias;
     Gee.LinkedList<Noise.Media> searched_medias;
@@ -40,18 +40,18 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
     public int medias_rowid = 0;
     public int playlists_rowid = 0;
     public int smartplaylists_rowid = 0;
-    
+
     public GStreamerTagger tagger;
-    
+
     public AudioPlayerLibrary (AudioPlayerDevice device) {
         this.device = device;
         medias = new Gee.LinkedList<Noise.Media> ();
         searched_medias = new Gee.LinkedList<Noise.Media> ();
         playlists = new Gee.LinkedList<Noise.StaticPlaylist> ();
         imported_files = new Gee.LinkedList<string> ();
-    
+
         tagger = new GStreamerTagger();
-        
+
         tagger.media_imported.connect (media_imported_from_tagger);
         tagger.import_error.connect (import_error);
         tagger.queue_finished.connect (queue_finished);
@@ -66,10 +66,10 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
         if (queue_is_finished)
             file_operations_done ();
     }
-    
+
     void import_error(string file) {
     }
-    
+
     public void queue_finished () {
         queue_is_finished = true;
         libraries_manager.progress = 1;
@@ -79,15 +79,15 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
             search_medias ("");
         }
     }
-    
+
     public override void initialize_library () {
-        
+
     }
-    
+
     public override void add_files_to_library (Gee.Collection<string> files) {
-    
+
     }
-    
+
     public override Gee.Collection<Media> get_medias () {
         return medias;
     }
@@ -97,7 +97,7 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
     public override Gee.Collection<SmartPlaylist> get_smart_playlists () {
         return new Gee.LinkedList<SmartPlaylist> ();
     }
-    
+
     public override void search_medias (string search) {
         lock (searched_medias) {
             searched_medias.clear ();
@@ -106,12 +106,12 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
                 search_finished ();
                 return;
             }
-            
+
             uint parsed_rating;
             string parsed_search_string;
             String.base_search_method (search, out parsed_rating, out parsed_search_string);
             bool rating_search = parsed_rating > 0;
-            
+
             lock (medias) {
                 foreach (var m in medias) {
                     if (rating_search) {
@@ -125,11 +125,11 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
         }
         search_finished ();
     }
-    
+
     public override Gee.Collection<Media> get_search_result () {
         return searched_medias;
     }
-    
+
     public override void add_media (Media m) {
         if(m == null)
             return;
@@ -139,10 +139,10 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
         current_operation = current_operation.replace ("$ARTIST", m.artist ?? "");
         libraries_manager.current_operation = current_operation.replace ("$DEVICE", device.getDisplayName() ?? "");
         debug ("Adding media %s by %s\n", m.title, m.artist);
-        
+
         var file = File.new_for_uri (m.uri);
         var destination_file = File.new_for_uri (device.get_music_folder () + file.get_basename ());
-        
+
         try {
             file.copy (destination_file,GLib.FileCopyFlags.ALL_METADATA);
         } catch(Error err) {
@@ -151,24 +151,24 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
         }
         imported_files.add (destination_file.get_uri());
     }
-    
+
     public override void add_medias (Gee.Collection<Media> list) {
         if(doing_file_operations ()) {
             warning("Tried to add when already syncing\n");
             return;
         }
-        
+
         libraries_manager.current_operation = _("Syncing <b>%s</b>…").printf (device.getDisplayName ());
-        
+
         is_doing_file_operations = true;
         Timeout.add(500, libraries_manager.do_progress_notification_with_timeout);
         int sub_index = 0;
-        
+
         var medias_to_sync = new Gee.LinkedList<Noise.Media> ();
         medias_to_sync.add_all (device.delete_doubles (list, medias));
         message("Found %d medias to add.", medias_to_sync.size);
         int total_medias = medias_to_sync.size;
-        
+
         if (total_medias > 0) {
             if (device.will_fit(medias_to_sync)) {
                 imported_files = new Gee.LinkedList<string> ();
@@ -223,7 +223,7 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
 
         return media_collection;
     }
-    
+
     public override Media? find_media (Media to_find) {
         Media? found = null;
         lock (medias) {
@@ -257,10 +257,10 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
         return null;
     }
     public override void update_media (Media s, bool updateMeta, bool record_time) {
-    
+
     }
     public override void update_medias (Gee.Collection<Media> updates, bool updateMeta, bool record_time) {
-    
+
     }
     public override void remove_media (Media m, bool trash) {
         string current_operation = _("Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE");
@@ -270,7 +270,7 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
         /* first check if the file exists disk */
         if(m.uri != null) {
             var file = File.new_for_uri(m.uri);
-            
+
             if(file.query_exists()) {
                 var media_list = new Gee.ArrayList<Media> ();
                 media_list.add (m);
@@ -293,12 +293,12 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
             warning("Tried to add when already syncing\n");
             return;
         }
-        
+
         libraries_manager.current_operation = _("Removing from <b>%s</b>…").printf (device.getDisplayName ());
-        
+
         int total = list.size;
         Timeout.add(500, libraries_manager.do_progress_notification_with_timeout);
-        
+
         int sub_index = 0;
         foreach(var m in list) {
             remove_media (m, true);
@@ -308,16 +308,16 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
         libraries_manager.progress = 1;
         file_operations_done ();
     }
-    
+
     public override bool support_smart_playlists () {
         return false;
     }
-    
+
     public override void add_smart_playlist (SmartPlaylist p) {
-    
+
     }
     public override void remove_smart_playlist (int64 id) {
-    
+
     }
     public override SmartPlaylist? smart_playlist_from_id (int64 id) {
         return null;
@@ -325,13 +325,13 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
     public override SmartPlaylist? smart_playlist_from_name (string name) {
         return null;
     }
-    
+
     public override bool support_playlists () {
         return false;
     }
-    
+
     public override void add_playlist (StaticPlaylist p) {
-        
+
         playlists.add (p);
         playlist_added (p);
         keep_playlist_synchronized (p);
@@ -353,7 +353,7 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
             }
         }
     }
-    
+
     private void remove_playlist_from_name (string name) {
         File dest = GLib.File.new_for_uri (Path.build_path("/", device.get_music_folder (), "Playlists", name.replace("/", "_") + ".m3u"));
         try {
@@ -366,20 +366,20 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
             warning ("Could not remove playlist %s to file %s: %s", name, dest.get_path(), err.message);
         }
     }
-    
+
     private void keep_playlist_synchronized (StaticPlaylist p) {
         string content = PlaylistsUtils.get_playlist_m3u_file (p, device.get_uri ());
         content = content.replace (GLib.File.new_for_uri (device.get_uri ()).get_path (), "");
-        
+
         File dest = GLib.File.new_for_uri (Path.build_path("/", device.get_music_folder (), "Playlists", p.name.replace("/", "_") + ".m3u"));
         try {
             // find a file path that doesn't exist
             if (dest.query_exists()) {
                 dest.delete ();
             }
-            
+
             var file_stream = dest.create(FileCreateFlags.NONE);
-            
+
             // Write text data to file
             var data_stream = new DataOutputStream (file_stream);
             data_stream.put_string(content);
@@ -388,7 +388,7 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
             warning ("Could not save playlist %s to m3u file %s: %s\n", p.name, dest.get_path(), err.message);
         }
     }
-    
+
     public override StaticPlaylist? playlist_from_id (int64 id) {
         if (id < get_playlists ().size) {
             var array = new Gee.ArrayList<StaticPlaylist> ();
@@ -408,10 +408,10 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
         }
         return null;
     }
-    
+
     public override bool start_file_operations (string? message) {
         if (doing_file_operations ()) {
-            
+
             return true;
         } else
             return false;
@@ -420,7 +420,6 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
         return is_doing_file_operations;
     }
     public override void finish_file_operations () {
-    
+
     }
-    
 }
