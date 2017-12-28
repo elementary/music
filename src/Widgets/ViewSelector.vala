@@ -75,7 +75,7 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
 
         var list = new Gtk.Image.from_icon_name ("view-list-symbolic", Gtk.IconSize.MENU);
         list.tooltip_text = _("View as List");
-        
+
         var column = new Gtk.Image.from_icon_name ("view-column-symbolic", Gtk.IconSize.MENU);
         column.tooltip_text = _("View in Columns");
 

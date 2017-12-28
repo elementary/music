@@ -27,11 +27,11 @@
  */
 
 public abstract class Noise.Library : GLib.Object {
-    
+
     /*
      * Signals
      */
-    
+
     public signal void file_operations_started ();
     public signal void file_operations_done ();
 
@@ -40,25 +40,25 @@ public abstract class Noise.Library : GLib.Object {
     public signal void media_removed (Gee.Collection<Media> medias);
     public signal void media_imported (Gee.Collection<Media> medias); // Only sent at the end of import.
     public signal void search_finished ();
-    
+
     public signal void playlist_added (StaticPlaylist playlist);
     public signal void playlist_name_updated (StaticPlaylist playlist);
     public signal void playlist_removed (StaticPlaylist playlist);
-    
+
     public signal void smartplaylist_added (SmartPlaylist smartplaylist);
     public signal void smartplaylist_name_updated (SmartPlaylist smartplaylist);
     public signal void smartplaylist_removed (SmartPlaylist smartplaylist);
-    
+
     public abstract void initialize_library ();
     public abstract void add_files_to_library (Gee.Collection<string> files);
-    
+
     public abstract Gee.Collection<Media> get_medias ();
     public abstract Gee.Collection<StaticPlaylist> get_playlists ();
     public abstract Gee.Collection<SmartPlaylist> get_smart_playlists ();
-    
+
     public abstract void search_medias (string search);
     public abstract Gee.Collection<Media> get_search_result ();
-    
+
     public abstract void add_media (Media s);
     public abstract void add_medias (Gee.Collection<Media> new_media);
     public abstract Media? find_media (Media to_find);
@@ -71,23 +71,23 @@ public abstract class Noise.Library : GLib.Object {
     public abstract void update_medias (Gee.Collection<Media> updates, bool updateMeta, bool record_time);
     public abstract void remove_media (Media s, bool trash);
     public abstract void remove_medias (Gee.Collection<Media> toRemove, bool trash);
-    
+
     public abstract bool support_smart_playlists ();
     public abstract void add_smart_playlist (SmartPlaylist p);
     public abstract void remove_smart_playlist (int64 id);
     public abstract SmartPlaylist? smart_playlist_from_id (int64 id);
     public abstract SmartPlaylist? smart_playlist_from_name (string name);
-    
+
     public abstract bool support_playlists ();
     public abstract void add_playlist (StaticPlaylist p);
     public abstract void remove_playlist (int64 id);
     public abstract StaticPlaylist? playlist_from_id (int64 id);
     public abstract StaticPlaylist? playlist_from_name (string name);
-    
+
     public abstract bool start_file_operations (string? message);
     public abstract bool doing_file_operations ();
     public abstract void finish_file_operations ();
-    
+
     public int playlist_count_without_read_only () {
         int i = 0;
         foreach (var p in get_playlists ()) {
@@ -107,5 +107,4 @@ public abstract class Noise.Library : GLib.Object {
             }
         }
     }
-    
 }

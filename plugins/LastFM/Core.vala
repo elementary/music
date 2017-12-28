@@ -168,7 +168,7 @@ public class LastFM.Core : Object {
                                    "timestamp", timestamp.to_string(),
                                    "sk", session_key,
                                    "api_sig", generate_trackscrobble_signature (m.artist, m.title, timestamp));
-   
+
         var session = new Soup.Session ();
         Soup.Message message = new Soup.Message.from_uri ("POST", uri);
 
@@ -192,7 +192,7 @@ public class LastFM.Core : Object {
      */
     public async Gee.TreeSet<Noise.Media> get_similar_tracks (string title, string artist, GLib.Cancellable cancellable) {
         var returned_medias = new Gee.TreeSet<Noise.Media> ();
-        
+
         var uri = new Soup.URI (API_URL);
         uri.set_query_from_fields ("method", "track.getsimilar",
                                    "api_key", api_key,

@@ -50,7 +50,7 @@ namespace Noise.Plugins {
         }
 
         public void update_state () {
-            
+
         }
     }
 

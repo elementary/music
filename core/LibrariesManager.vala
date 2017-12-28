@@ -49,76 +49,83 @@ public class Noise.LibrariesManager : GLib.Object {
     public LibrariesManager () {
         libraries = new Gee.HashMap<Library, int> ();
     }
-    
+
     public void add_library (Library library) {
         if (!libraries.keys.contains (library)) {
             libraries.set (library, current_index);
             library_added (library);
         }
     }
-    
+
     public void remove_library (Library library) {
         if (libraries.keys.contains (library)) {
             library_removed (library);
             libraries.unset (library);
         }
     }
-    
+
     public Library? get_library_from_index (int index) {
         foreach (var entry in libraries.entries) {
-            if (entry.value == index)
+            if (entry.value == index) {
                 return entry.key;
+            }
         }
         return null;
     }
-    
+
     public void search_for_string (string search) {
-        if (old_search == search)
+        if (old_search == search) {
             return;
+        }
+
         old_search = search;
         foreach (var library in libraries.keys) {
             library.search_medias (search);
         }
     }
-    
+
     public void transfer_to_local_library (Gee.Collection<Media> to_transfer) {
-        if (local_library == null)
+        if (local_library == null) {
             return;
+        }
+
         if(to_transfer == null || to_transfer.size == 0) {
             warning("No songs in transfer list\n");
             return;
         }
-        
+
         debug ("Found %d medias to import.", to_transfer.size);
-        
+
         transfer_medias_async.begin (to_transfer);
         return;
     }
-    
+
     public async void transfer_medias_async (Gee.Collection<Noise.Media> list) {
-        if(list == null || list.size == 0)
+        if(list == null || list.size == 0) {
             return;
-        
+        }
+
         int index = 0;
-        
+
         progress = 0;
         Timeout.add(500, do_progress_notification_with_timeout);
-        
+
         int total = list.size;
         var copied_list = new Gee.TreeSet<Media> ();
-        
+
         foreach(var m in list) {
-            
+
             if(File.new_for_uri(m.uri).query_exists()) {
                 try {
                     File dest = FileUtils.get_new_destination(m);
-                    if(dest == null)
+                    if(dest == null) {
                         break;
-                    
+                    }
+
                     /* copy the file over */
                     bool success = false;
                     success = m.file.copy (dest, FileCopyFlags.NONE, null, null);
-                    
+
                     if(success) {
                         Noise.Media copy = m.copy();
                         debug("success copying file\n");
@@ -127,8 +134,7 @@ public class Noise.LibrariesManager : GLib.Object {
                         copy.isTemporary = false;
                         copy.date_added = (int)time_t();
                         copied_list.add (copy);
-                    }
-                    else {
+                    } else {
                         warning("Failure: Could not copy imported media %s to media folder %s", m.uri, dest.get_path());
                         break;
                     }
@@ -137,7 +143,7 @@ public class Noise.LibrariesManager : GLib.Object {
                     warning("Could not copy imported media %s to media folder: %s\n", m.uri, err.message);
                     break;
                 }
-                
+
                 current_operation = _("Importing <b>$NAME</b> by <b>$ARTIST</b> to library…");
                 current_operation = current_operation.replace ("$NAME", m.get_display_title ());
                 current_operation = current_operation.replace ("$ARTIST", m.get_display_artist ());
@@ -147,23 +153,23 @@ public class Noise.LibrariesManager : GLib.Object {
             index++;
             progress = (double)index/total;
         }
-        
+
         progress = 1;
-        
+
         Idle.add( () => {
             local_library.add_medias (copied_list);
             return false;
         });
     }
-    
+
     public bool do_progress_notification_with_timeout () {
-        
+
         NotificationManager.get_default ().update_progress (current_operation.replace("&", "&amp;"), progress);
-        
+
         if (progress < 1) {
             return true;
         }
-        
+
         return false;
     }
 }
