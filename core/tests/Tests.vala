@@ -32,13 +32,13 @@ static bool check_list_element_has_suffix (Gee.Collection<string> list, string s
     }
     return found;
 }
- 
+
 void add_file_utils_tests () {
     Test.add_func ("/FileUtils/count_music_files", () => {
         var files = new Gee.ArrayList<string> ();
         assert (Noise.FileUtils.count_music_files (File.new_for_path (TEST_DATA_FILE + "/data/count_music_files/"),
                 files) == 3);
-        
+
         assert (check_list_element_has_suffix (files, "tests/data/count_music_files/file1.mp3"));
         assert (check_list_element_has_suffix (files, "tests/data/count_music_files/file1.ogg"));
         assert (check_list_element_has_suffix (files, "tests/data/count_music_files/file1.wav"));
@@ -48,14 +48,14 @@ void add_file_utils_tests () {
 
         assert (Noise.FileUtils.count_music_files (File.new_for_path (TEST_DATA_FILE + "/data/count_music_files_subdir/"),
                 files) == 4);
-        
+
         assert (check_list_element_has_suffix (files, "tests/data/count_music_files_subdir/file1.mp3"));
         assert (check_list_element_has_suffix (files, "tests/data/count_music_files_subdir/file1.ogg"));
         assert (check_list_element_has_suffix (files, "tests/data/count_music_files_subdir/file1.wav"));
         assert (check_list_element_has_suffix (files, "tests/data/count_music_files_subdir/sub/file1.mp3"));
 
     });
-    
+
     Test.add_func ("/FileUtils/is_valid_content_type", () => {
         assert (Noise.FileUtils.is_valid_content_type ("audio/mpeg", {"audio/mpeg"}));
     });

@@ -195,7 +195,7 @@ public class Noise.TreeViewSetup : Object {
         int type = column.get_data<int> (TYPE_DATA_KEY);
 
         if (type < 0) {
-            critical ("get_column_type: Column '%s' has no associated type.", column.title); 
+            critical ("get_column_type: Column '%s' has no associated type.", column.title);
             return_val_if_reached (null);
         }
 

@@ -102,7 +102,7 @@ public class Noise.FastGrid : Widgets.TileView {
         // resort the new songs in. this will also call do_search
         resort ();
     }
-    
+
     public void do_search () {
         if (search_func == null || research_needed == false)
             return;
@@ -126,25 +126,25 @@ public class Noise.FastGrid : Widgets.TileView {
                 fm.iter_nth_child (out iter, null, fm.iter_n_children (null) - 1);
                 fm.remove (iter);
             }
-            
+
             fm.set_table (showing);
             queue_draw ();
         } else if (showing.size > old_size) { // adding
             Gtk.TreeIter iter;
-            
+
             while (fm.iter_n_children (null) < showing.size) {
                 fm.append (out iter);
             }
-            
+
             fm.set_table (showing);
             queue_draw ();
         }
     }
-    
+
     public void redraw_row (int row_index) {
         fm.update_row (row_index);
     }
-    
+
     /** Sorting is done in the treeview, not the model. That way the whole
      * table is sorted and ready to go and we do not need to resort every
      * time we repopulate/search the model
@@ -152,23 +152,23 @@ public class Noise.FastGrid : Widgets.TileView {
     public void set_compare_func (SortCompareFunc func) {
         compare_func = func;
     }
-    
+
     public void resort () {
         quicksort (0, table.size - 1);
         do_search ();
     }
-    
+
     void swap (int a, int b) {
         GLib.Object temp = table.get (a);
         table.set (a, table.get (b));
         table.set (b, temp);
     }
-    
+
     public void quicksort (int start, int end) {
         GLib.Object pivot = table.get ( (start+end)/2);
         int i = start;
         int j = end;
-        
+
         while (i <= j) {
             while (i < end && compare_func (table.get (i), pivot) < 0) ++i;
             while (j > start && compare_func (table.get (j), pivot) > 0) --j;
@@ -178,7 +178,7 @@ public class Noise.FastGrid : Widgets.TileView {
                 ++i; --j;
             }
         }
-        
+
         if (start < j)    quicksort (start, j);
         if (i < end)        quicksort (i, end);
     }

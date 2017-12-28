@@ -287,9 +287,9 @@ public class Noise.PresetList : Gtk.ComboBox {
 
                 if (store.iter_next(ref new_iter)) {
                     store.get(new_iter, 1, out text);
-                    already_added = (text == DELETE_PRESET);				
+                    already_added = (text == DELETE_PRESET);
                 }
-            
+
                 break;
             }
         }

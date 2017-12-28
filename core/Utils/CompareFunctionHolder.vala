@@ -28,7 +28,7 @@
  */
 
 namespace Noise.Compare {
-    
+
     public inline int titles (Media a, Media b) {
         return String.compare (a.get_display_title (), b.get_display_title ());
     }
