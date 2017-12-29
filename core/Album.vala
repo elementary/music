@@ -42,10 +42,10 @@
 public class Noise.Album : Object {
     public signal void cover_rendered ();
 
-    public string artist { get; set; default = ""; }
-    public string name { get; set; default = ""; }
-    public uint year { get; set; default = 0; }
-    public GLib.Icon? cover_icon { get; set; default = null; }
+    public string artist { get; construct set; default = ""; }
+    public string name { get; construct set; default = ""; }
+    public uint year { get; construct set; default = 0; }
+    public GLib.Icon? cover_icon { get; set; }
 
     // Number of discs contained by this album
     private uint n_discs { get; set; default = 1; }
@@ -68,6 +68,11 @@ public class Noise.Album : Object {
             artist: artist,
             name: name
         );
+
+        var cover_file = get_cached_cover_file ();
+        if (cover_file != null) {
+            cover_icon = new FileIcon (cover_file);
+        }
     }
 
     public Album.from_media (Media media) {
@@ -80,14 +85,14 @@ public class Noise.Album : Object {
         if (String.is_empty (artist, true)) {
             artist = media.artist;
         }
-    }
 
-    construct {
         var cover_file = get_cached_cover_file ();
         if (cover_file != null) {
             cover_icon = new FileIcon (cover_file);
         }
+    }
 
+    construct {
         notify["cover-icon"].connect (() => {
             cover_pixbuf = null;
         });
