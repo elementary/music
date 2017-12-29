@@ -41,20 +41,14 @@
  */
 public class Noise.Album : Object {
     public signal void cover_rendered ();
-    public string name { get; set; default = ""; }
+
     public string artist { get; set; default = ""; }
-
-    // Number of discs contained by this album
-    public uint n_discs { get; set; default = 1; }
-
-    //public uint rating { get; set; default = 0; }
-    //public Date release_date { get; set; }
-
-    // store release year, date is overkill and not stored in most tags.
+    public string name { get; set; default = ""; }
     public uint year { get; set; default = 0; }
-
     public GLib.Icon? cover_icon { get; set; default = null; }
 
+    // Number of discs contained by this album
+    private uint n_discs { get; set; default = 1; }
     private Gee.HashSet<Media> media = new Gee.HashSet<Media> ();
     private Gdk.Pixbuf cover_pixbuf;
     private int cover_pixbuf_scale = 1;
@@ -70,35 +64,36 @@ public class Noise.Album : Object {
      * deprecated after the TODO list is completed.
      */
     public Album (string name, string artist) {
-        this.name = name;
-        this.artist = artist;
-        var cover_file = get_cached_cover_file ();
-        if (cover_file != null) {
-            cover_icon = new FileIcon (cover_file);
-        }
+        Object (
+            artist: artist,
+            name: name
+        );
     }
 
-    public Album.from_media (Media m) {
-        name = m.album;
-        artist = m.album_artist;
-        year = m.year;
+    public Album.from_media (Media media) {
+        Object (
+            artist: media.album_artist,
+            name: media.album,
+            year: media.year
+        );
 
-        if (String.is_empty (artist, true))
-            artist = m.artist;
-
-        var cover_file = get_cached_cover_file ();
-        if (cover_file != null) {
-            cover_icon = new FileIcon (cover_file);
+        if (String.is_empty (artist, true)) {
+            artist = media.artist;
         }
     }
 
     construct {
+        var cover_file = get_cached_cover_file ();
+        if (cover_file != null) {
+            cover_icon = new FileIcon (cover_file);
+        }
+
         notify["cover-icon"].connect (() => {
             cover_pixbuf = null;
         });
     }
 
-    public uint n_media {
+    private uint n_media {
         get { return media.size; }
     }
 
@@ -112,10 +107,6 @@ public class Noise.Album : Object {
 
     public inline string get_display_artist () {
         return Media.get_simple_display_text (artist);
-    }
-
-    public bool contains (Media m) {
-        return media.contains (m);
     }
 
     public bool is_compatible (Media m) {
