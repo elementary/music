@@ -98,12 +98,8 @@ public class Noise.Album : Object {
         });
     }
 
-    private uint n_media {
-        get { return media.size; }
-    }
-
     public bool is_empty {
-        get { return n_media < 1; }
+        get { return media.size < 1; }
     }
 
     public inline string get_display_name () {
