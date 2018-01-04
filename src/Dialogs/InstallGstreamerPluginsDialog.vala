@@ -26,57 +26,26 @@
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-public class Noise.InstallGstreamerPluginsDialog : Gtk.Dialog {
-    private string detail;
-
+public class Noise.InstallGstreamerPluginsDialog : Granite.MessageDialog {
     public Gst.Message message;
 
     public InstallGstreamerPluginsDialog (Gst.Message message) {
+        Object ();
+
         this.message = message;
-        detail = Gst.PbUtils.missing_plugin_message_get_description (message);
+        var detail = Gst.PbUtils.missing_plugin_message_get_description (message);
 
-        var image_icon = new Gtk.Image.from_icon_name ("dialog-question", Gtk.IconSize.DIALOG);
-        image_icon.valign = Gtk.Align.START;
-
-        var primary_label = new Gtk.Label (_("Would you like to install the %s plugin?").printf (Markup.escape_text (detail)));
-        primary_label.get_style_context ().add_class (Granite.STYLE_CLASS_PRIMARY_LABEL);
-        primary_label.selectable = true;
-        primary_label.max_width_chars = 50;
-        primary_label.wrap = true;
-        primary_label.xalign = 0;
-
-        var secondary_label = new Gtk.Label (
-            _("This song cannot be played. The %s plugin is required to play the song.").printf ("<b>" + Markup.escape_text (detail) + "</b>")
-        );
-        secondary_label.use_markup = true;
-        secondary_label.selectable = true;
-        secondary_label.max_width_chars = 50;
-        secondary_label.wrap = true;
-        secondary_label.xalign = 0;
-
-        var message_grid = new Gtk.Grid ();
-        message_grid.column_spacing = 12;
-        message_grid.row_spacing = 6;
-        message_grid.margin_start = message_grid.margin_end = 12;
-        message_grid.attach (image_icon, 0, 0, 1, 2);
-        message_grid.attach (primary_label, 1, 0, 1, 1);
-        message_grid.attach (secondary_label, 1, 1, 1, 1);
-
-        get_content_area ().add (message_grid);
-
-        show_all ();
+        primary_text = _("Would you like to install the %s plugin?").printf (Markup.escape_text (detail));
+        secondary_text = _("This song cannot be played. The %s plugin is required to play the song.").printf ("<b>" + Markup.escape_text (detail) + "</b>");
     }
 
     construct {
         deletable = false;
         destroy_with_parent = true;
+        image_icon = new GLib.ThemedIcon ("dialog-question");
         modal = true;
         resizable = false;
         transient_for = App.main_window;
-
-        var action_area = get_action_area ();
-        action_area.margin = 6;
-        action_area.margin_top = 14;
 
         add_button (_("Cancel"), Gtk.ResponseType.CLOSE);
 
@@ -93,6 +62,8 @@ public class Noise.InstallGstreamerPluginsDialog : Gtk.Dialog {
                     break;
             }
         });
+
+        show_all ();
     }
 
     public void install_plugin_clicked () {
