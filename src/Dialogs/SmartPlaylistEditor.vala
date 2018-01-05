@@ -303,6 +303,7 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
             field_changed (false);
 
             remove_button.clicked.connect (remove_clicked);
+            remove_button.show ();
             field_combobox.changed.connect (() => {field_changed (true);});
         }
 
