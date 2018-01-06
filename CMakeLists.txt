@@ -124,9 +124,5 @@ add_subdirectory (images)
 
 
 # Tests
-include (CTest)
-if (BUILD_TESTING)
-    add_test (core core/tests/noise-core_tests)
-    add_test (NAME validate-desktop-file COMMAND desktop-file-validate ${CMAKE_BINARY_DIR}/data/org.pantheon.noise.desktop)
-    add_test (NAME validate-appdata COMMAND appstreamcli validate ${CMAKE_BINARY_DIR}/data/org.pantheon.noise.appdata.xml)
-endif ()
+
+add_test (core core/tests/noise-core_tests)
