@@ -28,14 +28,14 @@
  */
 
 public class Noise.DeviceManager : GLib.Object {
-    private VolumeMonitor vm;
+    VolumeMonitor vm;
 
-    private signal void device_added (Device d);
-    private signal void device_removed (Device d);
-    private signal void device_name_changed (Device d);
+    public signal void device_added (Device d);
+    public signal void device_removed (Device d);
+    public signal void device_name_changed (Device d);
 
-    private signal void mount_added (Mount mount);
-    private signal void mount_removed (Mount mount);
+    public signal void mount_added (Mount mount);
+    public signal void mount_removed (Mount mount);
 
     private Gee.TreeSet<unowned Device> initialized_devices;
     private Gee.TreeSet<unowned Mount> mounts_availables;
@@ -44,10 +44,8 @@ public class Noise.DeviceManager : GLib.Object {
     private static DeviceManager? device_manager = null;
 
     public static DeviceManager get_default () {
-        if (device_manager == null) {
+        if (device_manager == null)
             device_manager = new DeviceManager ();
-        }
-
         return device_manager;
     }
 
@@ -57,17 +55,10 @@ public class Noise.DeviceManager : GLib.Object {
         local_playlists = new Gee.TreeSet<Playlist> ();
 
         vm = VolumeMonitor.get ();
-
-        vm.mount_added.connect ((mount) => {
-            mounts_availables.add (mount);
-            mount_added (mount);
-        });
-
-        vm.mount_removed.connect ((mount) => {
-            mounts_availables.remove (mount);
-            mount_removed (mount);
-        });
-
+        vm.mount_added.connect ((mount) => {mounts_availables.add (mount); mount_added (mount);});
+        vm.mount_changed.connect (mount_changed);
+        vm.mount_pre_unmount.connect (mount_pre_unmount);
+        vm.mount_removed.connect ((mount) => {mounts_availables.remove (mount); mount_removed (mount);});
         vm.volume_added.connect (volume_added);
         get_pre_existing_mounts.begin ();
     }
@@ -98,8 +89,8 @@ public class Noise.DeviceManager : GLib.Object {
         });
     }
 
-    private void volume_added(Volume volume) {
-        if (Settings.Main.get_default ().music_mount_name == volume.get_name () && volume.get_mount () == null) {
+    void volume_added(Volume volume) {
+        if(Settings.Main.get_default ().music_mount_name == volume.get_name () && volume.get_mount () == null) {
             debug ("mounting %s because it is believed to be the music folder\n", volume.get_name ());
             volume.mount.begin (MountMountFlags.NONE, null, null);
         }
@@ -109,6 +100,14 @@ public class Noise.DeviceManager : GLib.Object {
         debug ("adding device\n");
         device_added (d);
         initialized_devices.add (d);
+    }
+
+    public virtual void mount_changed (Mount mount) {
+        //message ("mount_changed:%s\n", mount.get_uuid());
+    }
+
+    public virtual void mount_pre_unmount (Mount mount) {
+        //message ("mount_preunmount:%s\n", mount.get_uuid());
     }
 
     public Gee.Collection<unowned Device> get_initialized_devices () {
