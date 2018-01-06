@@ -2,7 +2,7 @@
 
 cmake_minimum_required (VERSION 2.8)
 cmake_policy (VERSION 2.8)
-project (noise C)
+project (io.elementary.music C)
 list (APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
 enable_testing()
@@ -13,9 +13,6 @@ set (VERSION "0.4.2")
 set (VERSION_INFO "Stable Release")
 
 include (GNUInstallDirs)
-set (DATADIR ${CMAKE_INSTALL_PREFIX}/share)
-set (PKG_DATADIR ${DATADIR}/${CMAKE_PROJECT_NAME})
-set (ICON_DIR ${DATADIR}/${CMAKE_PROJECT_NAME}/icons)
 set (PLUGIN_DIR_UNPREFIXED ${CMAKE_INSTALL_LIBDIR}/${CMAKE_PROJECT_NAME}/plugins)
 set (PLUGIN_DIR ${CMAKE_INSTALL_PREFIX}/${PLUGIN_DIR_UNPREFIXED})
 
@@ -25,12 +22,6 @@ add_definitions ("-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\"")
 add_definitions (-w)
 
 option (BUILD_SHARED_LIBS "Switch between shared and static libraries" ON)
-option (BUILD_FOR_ELEMENTARY "Noise name will be replaced by Music" ON)
-
-set (APP_NAME "Noise")
-if (BUILD_FOR_ELEMENTARY)
-    set (APP_NAME "Music")
-endif ()
 
 if (BUILD_SHARED_LIBS)
   message ("-- Shared libraries enabled")
@@ -133,5 +124,9 @@ add_subdirectory (images)
 
 
 # Tests
-
-add_test (core core/tests/noise-core_tests)
+include (CTest)
+if (BUILD_TESTING)
+    add_test (core core/tests/noise-core_tests)
+    add_test (NAME validate-desktop-file COMMAND desktop-file-validate ${CMAKE_BINARY_DIR}/data/org.pantheon.noise.desktop)
+    add_test (NAME validate-appdata COMMAND appstreamcli validate ${CMAKE_BINARY_DIR}/data/org.pantheon.noise.appdata.xml)
+endif ()
