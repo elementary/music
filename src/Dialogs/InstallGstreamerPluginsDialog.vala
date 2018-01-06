@@ -26,50 +26,33 @@
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-public class Noise.InstallGstreamerPluginsDialog : Gtk.Dialog {
-    Gst.Message message;
-    string detail;
+public class Noise.InstallGstreamerPluginsDialog : Granite.MessageDialog {
+    public Gst.Message message;
 
     public InstallGstreamerPluginsDialog (Gst.Message message) {
+        Object ();
+
         this.message = message;
-        this.detail = Gst.PbUtils.missing_plugin_message_get_description (message);
+        var detail = Gst.PbUtils.missing_plugin_message_get_description (message);
 
-        this.set_modal (true);
-        this.set_transient_for (App.main_window);
-        this.destroy_with_parent = true;
-        this.border_width = 6;
-        resizable = false;
+        primary_text = _("Would you like to install the %s plugin?").printf (Markup.escape_text (detail));
+        secondary_text = _("This song cannot be played. The %s plugin is required to play the song.").printf ("<b>" + Markup.escape_text (detail) + "</b>");
+    }
+
+    construct {
         deletable = false;
-
-        var content = get_content_area () as Gtk.Box;
-
-        var question = new Gtk.Image.from_icon_name ("dialog-question", Gtk.IconSize.DIALOG);
-        question.yalign = 0;
-
-        var info = new Gtk.Label ("<span weight=\"bold\" size=\"larger\">" +
-            _("Would you like to install the %s plugin?\n").printf (Markup.escape_text (detail)) +
-            "</span>" + _("\nThis song cannot be played. The %s plugin is required to play the song.").printf ("<b>" +
-            Markup.escape_text (detail) + "</b>")
-        );
-
-        info.set_halign (Gtk.Align.START);
-        info.set_selectable (true);
-        info.set_use_markup (true);
-
-        var layout = new Gtk.Grid ();
-        layout.set_column_spacing (12);
-        layout.set_margin_right (6);
-        layout.set_margin_bottom (24);
-        layout.set_margin_left (6);
-        layout.add (question);
-        layout.add (info);
-
-        content.add (layout);
+        destroy_with_parent = true;
+        image_icon = new GLib.ThemedIcon ("dialog-question");
+        modal = true;
+        resizable = false;
+        transient_for = App.main_window;
 
         add_button (_("Cancel"), Gtk.ResponseType.CLOSE);
-        add_button (_("Install Plugin"), Gtk.ResponseType.APPLY);
 
-        this.response.connect ((response_id) => {
+        var install_button = add_button (_("Install Plugin"), Gtk.ResponseType.APPLY);
+        install_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+
+        response.connect ((response_id) => {
             switch (response_id) {
                 case Gtk.ResponseType.APPLY:
                     install_plugin_clicked ();
