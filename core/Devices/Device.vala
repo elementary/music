@@ -29,6 +29,7 @@
 
 
 public interface Noise.Device : GLib.Object {
+    public signal void initialized (Device d);
     public signal void device_unmounted ();
     public signal void infobar_message (string label, Gtk.MessageType message_type);
 
@@ -56,6 +57,35 @@ public interface Noise.Device : GLib.Object {
     public abstract Gtk.Widget? get_custom_view (); // If it's null, use the standard device view
     public abstract bool read_only ();
     public abstract Library get_library ();
+
+    public Gee.Collection<Noise.Media> delete_doubles (Gee.Collection<Noise.Media> source_list, Gee.Collection<Noise.Media> to_remove) {
+        var new_list = new Gee.LinkedList<Noise.Media> ();
+        foreach (var m in source_list) {
+            if (m != null) {
+                bool needed = true;
+                foreach (var med in to_remove) {
+                    if (med != null && med.title != null) {
+                        if (med.album != null && m.album != null) { // If you don't have the album name, don't care of it
+                            if (med.title.down () == m.title.down () && med.artist.down () == m.artist.down () && med.album.down () == m.album.down ()) {
+                                needed = false;
+                                break;
+                            }
+                        } else {
+                            if (med.title.down () == m.title.down () && med.artist.down () == m.artist.down ()) {
+                                needed = false;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (needed == true) {
+                    new_list.add (m);
+                }
+            }
+        }
+
+        return new_list;
+    }
 
     public bool will_fit (Gee.Collection<Noise.Media> list) {
         uint64 list_size = 0;
