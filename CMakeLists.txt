@@ -125,4 +125,4 @@ add_subdirectory (images)
 
 # Tests
 
-add_test (core core/tests/noise-core_tests)
+add_test (core core/tests/${CORE_LIBRARY_NAME}_tests)
