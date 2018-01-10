@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-  <enum id="org.pantheon.noise.repeat">
+  <enum id="io.elementary.music.repeat">
     <value value="0" nick="off"/>
     <value value="1" nick="media"/>
     <value value="2" nick="all"/>
   </enum>
-  <enum id="org.pantheon.noise.shuffle">
+  <enum id="io.elementary.music.shuffle">
     <value value="0" nick="off"/>
     <value value="1" nick="all"/>
   </enum>
-  <enum id="org.pantheon.noise.windowstate">
+  <enum id="io.elementary.music.windowstate">
     <value value="0" nick="normal"/>
     <value value="1" nick="maximized"/>
   </enum>
-  <schema path="/org/pantheon/noise/settings/" id="org.pantheon.noise.settings">
+  <schema path="/io/elementary/music/settings/" id="io.elementary.music.settings">
     <key type="s" name="music-folder">
       <default>''</default>
       <summary>Path to music folder</summary>
@@ -59,12 +59,12 @@
       <summary>Position, in seconds, of media</summary>
       <description>Position, in seconds, of media when noise last closed</description>
     </key>
-    <key enum="org.pantheon.noise.shuffle" name="shuffle-mode">
+    <key enum="io.elementary.music.shuffle" name="shuffle-mode">
       <default>'off'</default>
       <summary>An index representing the shuffle mode</summary>
       <description>An index representing the shuffle mode</description>
     </key>
-    <key enum="org.pantheon.noise.repeat" name="repeat-mode">
+    <key enum="io.elementary.music.repeat" name="repeat-mode">
       <default>'off'</default>
       <summary>An index representing the repeat mode</summary>
       <description>An index representing the repeat mode</description>
@@ -86,7 +86,7 @@
     </key>
   </schema>
 
-  <schema path="/org/pantheon/noise/saved-state/" id="org.pantheon.noise.saved-state">
+  <schema path="/io/elementary/music/saved-state/" id="io.elementary.music.saved-state">
     <key type="i" name="window-width">
       <default>1100</default>
       <summary>Window width</summary>
@@ -107,7 +107,7 @@
       <summary>Window y position</summary>
       <description>Window y position</description>
     </key>
-    <key enum="org.pantheon.noise.windowstate" name="window-state">
+    <key enum="io.elementary.music.windowstate" name="window-state">
       <default>'normal'</default>
       <summary>The saved state of the window.</summary>
       <description>The saved state of the window.</description>
@@ -149,7 +149,7 @@
     </key>
   </schema>
 
-  <schema path="/org/pantheon/noise/equalizer/" id="org.pantheon.noise.equalizer">
+  <schema path="/io/elementary/music/equalizer/" id="io.elementary.music.equalizer">
     <key type="b" name="equalizer-enabled">
       <default>false</default>
       <summary>Whether or not the equalizer is enabled</summary>
