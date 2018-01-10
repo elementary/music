@@ -44,7 +44,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     private bool media_considered_played { get; set; default = false; } // whether or not we have updated last played and added to already played list
     private bool added_to_play_count { get; set; default = false; } // whether or not we have added one to play count on playing media
-    private bool tested_for_video { get; set; default = false; } // whether or not we have tested if media is video and shown video
     private bool media_considered_previewed { get; set; default = false; }
     private bool media_half_played_sended { get; set; default = false; }
     private bool search_field_has_focus { get; set; default = true; }
@@ -878,7 +877,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         top_display.update_media ();
 
         //reset some booleans
-        tested_for_video = false;
         media_considered_previewed = false;
         media_considered_played = false;
         added_to_play_count = false;
@@ -902,7 +900,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public virtual void playback_stopped (int64 was_playing) {
         play_button.set_image (new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
         //reset some booleans
-        tested_for_video = false;
         media_considered_previewed = false;
         media_considered_played = false;
         added_to_play_count = false;
