@@ -7,7 +7,7 @@ list (APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
 enable_testing()
 
-set (GETTEXT_PACKAGE ${CMAKE_PROJECT_NAME})
+set (GETTEXT_PACKAGE "noise")
 set (RELEASE_NAME "Luna")
 set (VERSION "0.4.2")
 set (VERSION_INFO "Stable Release")
