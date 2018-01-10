@@ -103,8 +103,6 @@ set (BASIC_VALAC_OPTIONS
   --vapidir=${CMAKE_SOURCE_DIR}/vapi
   --target-glib=2.39
   --thread
-  # Remove it when vala bindings are no more experimental (see https://bugzilla.gnome.org/show_bug.cgi?id=719597)
-  --enable-experimental
 )
 
 set (GLOBAL_VALAC_OPTIONS
