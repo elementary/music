@@ -76,7 +76,7 @@ public class Noise.HistoryPlaylist : StaticPlaylist {
         event.timestamp = time;
         event.interpretation = Zeitgeist.ZG.ACCESS_EVENT;
         event.manifestation = Zeitgeist.ZG.USER_ACTIVITY;
-        event.actor = "application://org.pantheon.noise.desktop";
+        event.actor = "application://io.elementary.music.desktop";
         event.add_subject (subject);
 
         try {
