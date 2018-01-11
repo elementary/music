@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2017-12-30 00:09+0000\n"
+"PO-Revision-Date: 2018-01-11 08:45+0000\n"
 "Last-Translator: Subhadeep Jasu <subhajasu@gmail.com>\n"
 "Language-Team: Bengali "
 "<https://weblate.elementary.io/projects/music/music/bn/>\n"
@@ -375,7 +375,7 @@ msgstr "বুদ্ধিমান সংগীত-তালিকা যোগ
 #. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: ../src/Widgets/StatusBar.vala:189
 msgid "Equalizer: %s"
-msgstr "ইকুয়ালাইজার"
+msgstr "ইকুয়ালাইজার: %s"
 
 #: ../src/Widgets/StatusBar.vala:199
 msgid "Hide"
