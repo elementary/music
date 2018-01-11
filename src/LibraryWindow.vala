@@ -229,13 +229,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         search_entry.placeholder_text = _("Search Music");
 
         view_selector = new Widgets.ViewSelector ();
-        view_selector.margin_left = 12;
-        view_selector.margin_right = 6;
+        view_selector.margin_start = 12;
+        view_selector.margin_end = 6;
         view_selector.valign = Gtk.Align.CENTER;
 
         top_display = new TopDisplay ();
-        top_display.margin_left = 30;
-        top_display.margin_right = 30;
+        top_display.margin_start = 30;
+        top_display.margin_end = 30;
 
         var headerbar = new Gtk.HeaderBar ();
         headerbar.show_close_button = true;
