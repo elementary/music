@@ -1,6 +1,6 @@
 // -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012-2017 elementary LLC. (https://elementary.io)
+ * Copyright (c) 2012-2018 elementary LLC. (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -32,10 +32,21 @@
 *
 * Finds the appropriate {@link Noise.Playback} to play a media
 */
-public class Noise.PlaybackManager : Object, Noise.Player {
+public class Noise.PlaybackManager : Object {
     // TODO: Have a correct implementation based on playlists.
     //        Show the next 2 medias in the queue when shuffle mode is enabled and create a playlist to remember shuffled songs
     //        Get the current filter (search, playlist) to be able to store and set it back when restart.
+
+    public enum Shuffle {
+        OFF,
+        ALL
+    }
+
+    public enum Repeat {
+        OFF,
+        MEDIA,
+        ALL
+    }
 
     public signal void queue_cleared ();
     public signal void media_queued (Gee.Collection<Media> queued);
