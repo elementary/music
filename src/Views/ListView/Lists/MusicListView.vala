@@ -587,7 +587,6 @@ public class Noise.MusicListView : GenericList {
                 column_resizable = false;
 
                 var icon_renderer = new Gtk.CellRendererPixbuf ();
-                icon_renderer.follow_state = true;
 
                 var spinner_renderer = new Gtk.CellRendererSpinner ();
 

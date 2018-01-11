@@ -77,7 +77,6 @@ public abstract class Noise.GenericList : FastView {
         set_headers_clickable (true);
         set_headers_visible (hint != ViewWrapper.Hint.ALBUM_LIST);
         set_fixed_height_mode (true);
-        set_rules_hint (true);
         set_reorderable (false);
 
         add_columns ();
