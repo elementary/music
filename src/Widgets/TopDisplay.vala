@@ -142,22 +142,15 @@ public class Noise.TopDisplay : Gtk.Stack {
 
             update_option ();
 
-            option_changed.connect (on_option_changed);
+            option_changed.connect (() => {
+                App.player.set_repeat_mode ((Noise.Settings.Repeat) current_option);
+            });
+
             App.player.notify["repeat"].connect (update_option);
         }
 
         private void update_option () {
             set_option ((int) Settings.Main.get_default ().repeat_mode);
-        }
-
-        private void on_option_changed () {
-            int val = current_option;
-
-            if ((int) Settings.Main.get_default ().repeat_mode == val) {
-                return;
-            }
-
-            App.player.set_repeat_mode ((Noise.Settings.Repeat)val);
         }
     }
 
