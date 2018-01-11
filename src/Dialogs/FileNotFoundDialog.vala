@@ -71,10 +71,9 @@ public class Noise.FileNotFoundDialog : Gtk.Dialog {
         rescanLibrary.set_sensitive (!libraries_manager.local_library.doing_file_operations ());
 
         var layout = new Gtk.Grid ();
-        layout.set_column_spacing (12);
-        layout.set_margin_right (6);
-        layout.set_margin_bottom (24);
-        layout.set_margin_left (6);
+        layout.column_spacing = 12;
+        layout.margin_end = layout.margin_start = 6;
+        layout.margin_bottom = 24;
         layout.add (warning);
         layout.add (info);
 
