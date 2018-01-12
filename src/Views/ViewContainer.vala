@@ -54,10 +54,6 @@ public class Noise.ViewContainer : Gtk.Stack {
         view.destroy ();
     }
 
-    public Gtk.Widget? get_view (int index) {
-        return get_child_by_name (index.to_string ());
-    }
-
     /**
      * Tries to set the given view as current.
      * @return false if fails.
