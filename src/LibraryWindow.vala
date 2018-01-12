@@ -1094,7 +1094,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     private void search_entry_activate () {
-        var vw = view_container.get_current_view ();
+        var vw = view_container.visible_child;
 
         if (vw != null && vw is ViewWrapper) {
             (vw as ViewWrapper).play_first_media ();

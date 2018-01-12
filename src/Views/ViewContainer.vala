@@ -58,23 +58,6 @@ public class Noise.ViewContainer : Gtk.Stack {
         return get_child_by_name (index.to_string ());
     }
 
-    public Gtk.Widget? get_nth_page (int index) {
-        return get_view (index);
-    }
-
-    public int get_current_index () {
-        return int.parse (visible_child_name);
-    }
-
-    public Gtk.Widget? get_current_view () {
-        return visible_child;
-    }
-
-    public uint get_n_pages ()
-    {
-        return get_children ().length ();
-    }
-
     /**
      * Tries to set the given view as current.
      * @return false if fails.
@@ -109,7 +92,7 @@ public class Noise.ViewContainer : Gtk.Stack {
         return true;
     }
 
-    void update_visible () {
+    private void update_visible () {
         if (visible_child == null)
             return;
 

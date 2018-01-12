@@ -79,7 +79,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
 
     protected ViewType current_view {
         get {
-            var view = view_container.get_current_view ();
+            var view = view_container.visible_child;
 
             if (view == grid_view)
                 return ViewType.GRID;
