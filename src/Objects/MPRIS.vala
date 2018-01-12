@@ -27,7 +27,7 @@
 namespace Noise.MPRIS {
     public void initialize () {
         var owner_id = Bus.own_name (BusType.SESSION,
-                                "org.mpris.MediaPlayer2.Noise",
+                                "org.mpris.MediaPlayer2.Music",
                                 GLib.BusNameOwnerFlags.NONE,
                                 on_bus_acquired,
                                 null,
@@ -216,7 +216,7 @@ public class MprisPlayer : GLib.Object {
     }
 
     private ObjectPath get_track_id (Noise.Media m) {
-        return new ObjectPath ("/org/pantheon/noise/Track/%lld".printf (m.rowid));
+        return new ObjectPath ("/io/elementary/music/Track/%lld".printf (m.rowid));
     }
 
     private bool send_property_change () {
@@ -471,7 +471,7 @@ public class MprisPlaylists : GLib.Object {
     [DBus (visible = false)]
     public unowned DBusConnection conn { get; construct set; }
     private const string INTERFACE_NAME = "org.mpris.MediaPlayer2.Playlists";
-    const string PLAYLIST_ID = "/org/pantheon/noise/Playlists/%d";
+    const string PLAYLIST_ID = "/io/elementary/music/Playlists/%d";
 
     private uint send_property_source = 0;
     private HashTable<string,Variant> changed_properties = null;
@@ -547,7 +547,7 @@ public class MprisPlaylists : GLib.Object {
     }
 
     public void activate_playlist (ObjectPath path) {
-        string playlist_id = path.replace ("/org/pantheon/noise/Playlists/", "");
+        string playlist_id = path.replace ("/io/elementary/music/Playlists/", "");
 
         Noise.Playlist p = Noise.libraries_manager.local_library.playlist_from_id (int.parse (playlist_id));
         if (p == null) {

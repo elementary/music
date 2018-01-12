@@ -436,7 +436,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         icon_name = "multimedia-audio-player";
         title = ((Noise.App) GLib.Application.get_default ()).program_name;
 
-        saved_state_settings = new GLib.Settings ("org.pantheon.noise.saved-state");
+        saved_state_settings = new GLib.Settings ("io.elementary.music.saved-state");
 
         set_default_size (saved_state_settings.get_int ("window-width"), saved_state_settings.get_int ("window-height"));
         var window_x = saved_state_settings.get_int ("window-x");

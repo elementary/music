@@ -88,7 +88,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
     }
 
     construct {
-        saved_state_settings = new GLib.Settings ("org.pantheon.noise.saved-state");
+        saved_state_settings = new GLib.Settings ("io.elementary.music.saved-state");
 
         var list_scrolled = new Gtk.ScrolledWindow (null, null);
         list_scrolled.add (list_view);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application id="noise-lastfm">
   <description>Music</description>
-  <desktop-entry>org.pantheon.noise.desktop</desktop-entry>
+  <desktop-entry>io.elementary.music.desktop</desktop-entry>
   <translations>noise</translations>
   <services>
     <service id="lastfm-scrobble">

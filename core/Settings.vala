@@ -59,7 +59,7 @@ namespace Noise.Settings {
         }
 
         private Main ()  {
-            base ("org.pantheon.noise.settings");
+            base ("io.elementary.music.settings");
             if (music_folder == "") {
                 music_folder = GLib.Environment.get_user_special_dir (GLib.UserDirectory.MUSIC);
             }
@@ -83,7 +83,7 @@ namespace Noise.Settings {
         }
 
         private Equalizer () {
-            base ("org.pantheon.noise.equalizer");
+            base ("io.elementary.music.equalizer");
         }
 
         public Gee.Collection<Noise.EqualizerPreset> get_presets () {
