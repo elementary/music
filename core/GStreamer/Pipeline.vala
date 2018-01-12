@@ -37,6 +37,8 @@ public class Noise.Pipeline : GLib.Object {
     public dynamic Gst.Element audiosinkqueue;
     public dynamic Gst.Element eq_audioconvert;
     public dynamic Gst.Element eq_audioconvert2;
+    
+    public dynamic Gst.Element fake;
 
     public dynamic Gst.Element playbin;
     public dynamic Gst.Element audiotee;
@@ -47,6 +49,9 @@ public class Noise.Pipeline : GLib.Object {
 
         pipe = new Gst.Pipeline("pipeline");
         playbin = Gst.ElementFactory.make ("playbin", "play");
+        
+        fake = Gst.ElementFactory.make ("fakesink", "fake");
+        playbin.set ("video-sink", fake );
 
         audiosink = Gst.ElementFactory.make("autoaudiosink", "audio-sink");
 
