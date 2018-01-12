@@ -136,6 +136,10 @@ public class Noise.PlaybackManager : Object {
         player = file_player;
     }
 
+    public void add_playback (Noise.Playback playback) {
+        playbacks.add (playback);
+    }
+
     public void queue_medias (Gee.Collection<Media> to_queue) {
         if (to_queue.size < 1) {
             return;
