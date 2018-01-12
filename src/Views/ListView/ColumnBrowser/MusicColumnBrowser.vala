@@ -41,7 +41,7 @@ public class Noise.MusicColumnBrowser : Noise.ColumnBrowser {
 
         base (view_wrapper, columns);
 
-        saved_state_settings = new GLib.Settings ("org.pantheon.noise.saved-state");
+        saved_state_settings = new GLib.Settings ("io.elementary.music.saved-state");
 
         var visible_categories = new Gee.TreeSet<BrowserColumn.Category> ();
 

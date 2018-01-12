@@ -43,10 +43,10 @@ public class Noise.App : Granite.Application {
         build_version_info = Build.VERSION_INFO;
 
         program_name = _(Build.APP_NAME);
-        exec_name = "noise";
+        exec_name = "io.elementary.music";
 
-        application_id = "org.pantheon.noise";
-        app_launcher = "org.pantheon.noise.desktop";
+        application_id = "io.elementary.music";
+        app_launcher = "io.elementary.music.desktop";
 
         weak Gtk.IconTheme default_theme = Gtk.IconTheme.get_default ();
         default_theme.add_resource_path ("/io/elementary/music");
