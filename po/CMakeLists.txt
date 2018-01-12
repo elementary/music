@@ -5,6 +5,6 @@ add_translations_catalog (${GETTEXT_PACKAGE}
     ../src
     ../plugins
     DESKTOP_FILES
-        ${CMAKE_BINARY_DIR}/data/io.elementary.music.desktop.in
+        ${CMAKE_BINARY_DIR}/data/io.elementary.music.desktop
     APPDATA_FILES
         ../data/io.elementary.music.appdata.xml.in)
