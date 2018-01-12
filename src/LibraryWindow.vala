@@ -561,7 +561,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         if (!initialization_finished)
             return;
 
-        view_stack.set_current_view (view);
+        view_stack.visible_child = view;
 
         if (view is ViewWrapper)
             (view as ViewWrapper).set_as_current_view ();

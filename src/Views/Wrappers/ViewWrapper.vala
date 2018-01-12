@@ -177,7 +177,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         switch (type) {
             case ViewType.LIST:
                 if (has_list_view) {
-                    successful = view_stack.set_current_view (list_view);
+                    view_stack.visible_child = list_view;
                     list_view.list_view.scroll_to_current_media (true);
                 } else {
                     successful = false;
@@ -185,20 +185,20 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
                 break;
             case ViewType.GRID:
                 if (has_grid_view) {
-                    successful = view_stack.set_current_view (grid_view);
+                    view_stack.visible_child = grid_view;
                 } else {
                     if (has_list_view) {
-                        successful = view_stack.set_current_view (list_view);
+                        view_stack.visible_child = list_view;
                         list_view.list_view.scroll_to_current_media (true);
                     }
                     successful = false;
                 }
                 break;
             case ViewType.ALERT:
-                successful = view_stack.set_current_view (embedded_alert);
+                view_stack.visible_child = embedded_alert;
                 break;
             case ViewType.WELCOME:
-                successful = view_stack.set_current_view (welcome_screen);
+                view_stack.visible_child = welcome_screen;
                 break;
         }
 
@@ -369,10 +369,10 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         else if (new_view == ViewType.GRID && has_grid_view)
             set_active_view (ViewType.GRID);
         else if (has_list_view) {
-            view_stack.set_current_view (list_view);
+            view_stack.visible_child = list_view;
             list_view.list_view.scroll_to_current_media (true);
         } else if (has_grid_view)
-            view_stack.set_current_view (grid_view);
+            view_stack.visible_child = grid_view;
     }
 
     /**

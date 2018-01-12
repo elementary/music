@@ -63,16 +63,6 @@ public class Noise.ViewStack : Gtk.Stack {
     }
 
     /**
-     * Tries to set the given view as current.
-     * @return false if fails.
-     */
-    public bool set_current_view (Gtk.Widget view) {
-        visible_child = view;
-
-        return true;
-    }
-
-    /**
      * Tries to set the given view index as current.
      * @return false if fails.
      */
