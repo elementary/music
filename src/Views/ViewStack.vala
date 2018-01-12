@@ -26,10 +26,10 @@
  * Authored by: Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public class Noise.ViewContainer : Gtk.Stack {
+public class Noise.ViewStack : Gtk.Stack {
     private int nextview_number { get; set; default=0; }
 
-    public ViewContainer () {
+    public ViewStack () {
         expand = true;
     }
 

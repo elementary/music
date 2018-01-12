@@ -309,7 +309,7 @@ public abstract class Noise.GenericList : FastView {
 
         // order the queue like this list
         var queue_view_id = App.main_window.match_playlists[App.player.queue_playlist];
-        var view = (ViewWrapper) App.main_window.view_container.get_child_by_name (queue_view_id.to_string ());
+        var view = (ViewWrapper) App.main_window.view_stack.get_child_by_name (queue_view_id.to_string ());
         view.list_view.list_view.set_sort_column_id (tvs.sort_column_id, tvs.sort_direction);
 
         media_played.begin (App.player.current_media);
