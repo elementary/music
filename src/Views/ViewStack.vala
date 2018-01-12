@@ -29,8 +29,16 @@
 public class Noise.ViewStack : Gtk.Stack {
     private int nextview_number { get; set; default=0; }
 
-    public ViewStack () {
+    construct {
         expand = true;
+
+        this.notify["visible-child"].connect (() => {
+            if (visible_child == null) {
+                critical ("Cannot set view as current view");
+            }
+
+            update_visible ();
+        });
     }
 
     /**
@@ -61,13 +69,6 @@ public class Noise.ViewStack : Gtk.Stack {
     public bool set_current_view (Gtk.Widget view) {
         visible_child = view;
 
-        if (visible_child == null) {
-            critical ("Cannot set view as current view");
-            return false;
-        }
-
-        update_visible ();
-
         return true;
     }
 
@@ -77,13 +78,6 @@ public class Noise.ViewStack : Gtk.Stack {
      */
     public bool set_current_view_from_index (int index) {
         visible_child_name = index.to_string ();
-
-        if (visible_child == null) {
-            critical ("Cannot set view index %i as current view", index);
-            return false;
-        }
-
-        update_visible ();
 
         return true;
     }
