@@ -119,7 +119,7 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
 
         main_grid = new Gtk.Grid ();
         main_grid.expand = true;
-        main_grid.margin_left = main_grid.margin_right = 12;
+        main_grid.margin_start = main_grid.margin_end = 12;
         main_grid.column_spacing = 12;
         main_grid.row_spacing = 6;
         main_grid.attach (new Granite.HeaderLabel (_("Name of Playlist")), 0, 0, 3, 1);

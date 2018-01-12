@@ -237,9 +237,10 @@ namespace Noise.Database {
          * Creating the playlists table
          */
         var operation = Gda.ServerOperation.prepare_create_table (connection, "playlists", e,
-                                                                      "name", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "media", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "rowid", typeof (int64), Gda.ServerOperationCreateTableFlag.PKEY_AUTOINC_FLAG);
+            "name", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "media", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "rowid", typeof (int64), Gda.ServerOperationCreateTableFlag.PKEY_AUTOINC_FLAG
+        );
         if (e != null) {
             critical (e.message);
         } else {
@@ -257,12 +258,13 @@ namespace Noise.Database {
          * Creating the smart_playlists table
          */
         operation = Gda.ServerOperation.prepare_create_table (connection, "smart_playlists", e,
-                                                                      "name", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "and_or", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "queries", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "limited", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "limit_amount", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "rowid", typeof (int64), Gda.ServerOperationCreateTableFlag.PKEY_AUTOINC_FLAG);
+            "name", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "and_or", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "queries", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "limited", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "limit_amount", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "rowid", typeof (int64), Gda.ServerOperationCreateTableFlag.PKEY_AUTOINC_FLAG
+        );
         if (e != null) {
             critical (e.message);
         } else {
@@ -280,11 +282,12 @@ namespace Noise.Database {
          * Creating the columns table
          */
         operation = Gda.ServerOperation.prepare_create_table (connection, "columns", e,
-                                                                      "unique_id", typeof (string), Gda.ServerOperationCreateTableFlag.UNIQUE_FLAG,
-                                                                      "sort_column_id", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "sort_direction", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "columns", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "rowid", typeof (int64), Gda.ServerOperationCreateTableFlag.PKEY_AUTOINC_FLAG);
+            "unique_id", typeof (string), Gda.ServerOperationCreateTableFlag.UNIQUE_FLAG,
+            "sort_column_id", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "sort_direction", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "columns", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "rowid", typeof (int64), Gda.ServerOperationCreateTableFlag.PKEY_AUTOINC_FLAG
+        );
         if (e != null) {
             critical (e.message);
         } else {
@@ -302,34 +305,35 @@ namespace Noise.Database {
          * Creating the media table
          */
         operation = Gda.ServerOperation.prepare_create_table (connection, "media", e,
-                                                                      "uri", typeof (string), Gda.ServerOperationCreateTableFlag.UNIQUE_FLAG,
-                                                                      "file_size", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "title", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "artist", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "composer", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "album_artist", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "album", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "grouping", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "genre", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "comment", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "lyrics", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "has_embedded", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "year", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "track", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "track_count", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "album_number", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "album_count", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "bitrate", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "length", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "samplerate", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "rating", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "playcount", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "skipcount", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "dateadded", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "lastplayed", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "lastmodified", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "rowid", typeof (int64), Gda.ServerOperationCreateTableFlag.PKEY_AUTOINC_FLAG,
-                                                                      "show", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG);
+            "uri", typeof (string), Gda.ServerOperationCreateTableFlag.UNIQUE_FLAG,
+            "file_size", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "title", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "artist", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "composer", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "album_artist", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "album", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "grouping", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "genre", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "comment", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "lyrics", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "has_embedded", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "year", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "track", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "track_count", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "album_number", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "album_count", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "bitrate", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "length", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "samplerate", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "rating", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "playcount", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "skipcount", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "dateadded", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "lastplayed", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "lastmodified", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "rowid", typeof (int64), Gda.ServerOperationCreateTableFlag.PKEY_AUTOINC_FLAG,
+            "show", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG
+        );
         if (e != null) {
             critical (e.message);
         } else {
@@ -347,12 +351,13 @@ namespace Noise.Database {
          * Creating the devices table
          */
         operation = Gda.ServerOperation.prepare_create_table (connection, "devices", e,
-                                                                      "unique_id", typeof (string), Gda.ServerOperationCreateTableFlag.UNIQUE_FLAG,
-                                                                      "sync_when_mounted", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "sync_music", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "sync_all_music", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "music_playlist", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
-                                                                      "last_sync_time", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG);
+            "unique_id", typeof (string), Gda.ServerOperationCreateTableFlag.UNIQUE_FLAG,
+            "sync_when_mounted", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "sync_music", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "sync_all_music", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "music_playlist", typeof (string), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG,
+            "last_sync_time", typeof (int), Gda.ServerOperationCreateTableFlag.NOTHING_FLAG
+        );
         if (e != null) {
             critical (e.message);
         } else {

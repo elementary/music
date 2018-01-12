@@ -1,6 +1,6 @@
 // -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012-2017 elementary LLC. (https://elementary.io)
+ * Copyright (c) 2012-2018 elementary LLC. (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -142,22 +142,15 @@ public class Noise.TopDisplay : Gtk.Stack {
 
             update_option ();
 
-            option_changed.connect (on_option_changed);
+            option_changed.connect (() => {
+                App.player.set_repeat_mode ((Noise.Settings.Repeat) current_option);
+            });
+
             App.player.notify["repeat"].connect (update_option);
         }
 
         private void update_option () {
             set_option ((int) Settings.Main.get_default ().repeat_mode);
-        }
-
-        private void on_option_changed () {
-            int val = current_option;
-
-            if ((int) Settings.Main.get_default ().repeat_mode == val) {
-                return;
-            }
-
-            App.player.set_repeat_mode ((Noise.Settings.Repeat)val);
         }
     }
 
@@ -169,22 +162,15 @@ public class Noise.TopDisplay : Gtk.Stack {
 
             update_mode ();
 
-            option_changed.connect (on_option_changed);
+            option_changed.connect (() => {
+                App.player.set_shuffle_mode ((Noise.Settings.Shuffle) current_option);
+            });
+
             App.player.notify["shuffle"].connect (update_mode);
         }
 
         private void update_mode () {
             set_option ((int) Settings.Main.get_default ().shuffle_mode);
-        }
-
-        private void on_option_changed () {
-            int val = current_option;
-
-            if ((int) Settings.Main.get_default ().shuffle_mode == val) {
-                return;
-            }
-
-            App.player.set_shuffle_mode ((Noise.Settings.Shuffle) val);
         }
     }
 
