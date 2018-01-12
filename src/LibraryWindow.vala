@@ -275,7 +275,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private void connect_to_sourcelist_signals () {
 
         source_list_view.selection_changed.connect ((page_number) => {
-            view_stack.set_current_view_from_index (page_number);
+            view_stack.visible_child_name = page_number.to_string ();
         });
 
         source_list_view.activated.connect ( () => {

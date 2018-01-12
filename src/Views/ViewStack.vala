@@ -27,7 +27,7 @@
  */
 
 public class Noise.ViewStack : Gtk.Stack {
-    private int nextview_number { get; set; default=0; }
+    private int nextview_number { get; set; default = 0; }
 
     construct {
         expand = true;
@@ -35,9 +35,9 @@ public class Noise.ViewStack : Gtk.Stack {
         this.notify["visible-child"].connect (() => {
             if (visible_child == null) {
                 critical ("Cannot set view as current view");
+            } else {
+                update_visible ();
             }
-
-            update_visible ();
         });
     }
 
@@ -62,20 +62,7 @@ public class Noise.ViewStack : Gtk.Stack {
         view.destroy ();
     }
 
-    /**
-     * Tries to set the given view index as current.
-     * @return false if fails.
-     */
-    public bool set_current_view_from_index (int index) {
-        visible_child_name = index.to_string ();
-
-        return true;
-    }
-
     private void update_visible () {
-        if (visible_child == null)
-            return;
-
         if (visible_child is ViewWrapper) {
             ((ViewWrapper) visible_child).set_as_current_view ();
         } else if (visible_child is Gtk.Grid) {
