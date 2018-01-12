@@ -18,7 +18,6 @@ set (CORE_SOURCE
   PluginManager.vala
   Settings.vala
   EqualizerPreset.vala
-  Player.vala
   LibraryWindowInterface.vala
   Library.vala
   LibrariesManager.vala

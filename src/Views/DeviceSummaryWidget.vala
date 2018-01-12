@@ -50,7 +50,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         var device_name_title_label = new Gtk.Label (device.getDisplayName () ?? "");
         device_name_title_label.halign = Gtk.Align.END;
         device_name_title_label.margin = 20;
-        device_name_title_label.margin_right = 0;
+        device_name_title_label.margin_end = 0;
         device_name_title_label.get_style_context ().add_class (Granite.STYLE_CLASS_H1_LABEL);
 
         var device_name_description_label = new Gtk.Label (device.get_fancy_description () ?? "");

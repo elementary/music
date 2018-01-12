@@ -1,6 +1,6 @@
 // -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012-2017 elementary LLC. (https://elementary.io)
+ * Copyright (c) 2012-2018 elementary LLC. (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -32,26 +32,36 @@
 *
 * Finds the appropriate {@link Noise.Playback} to play a media
 */
-public class Noise.PlaybackManager : Object, Noise.Player {
+public class Noise.PlaybackManager : Object {
     // TODO: Have a correct implementation based on playlists.
     //        Show the next 2 medias in the queue when shuffle mode is enabled and create a playlist to remember shuffled songs
     //        Get the current filter (search, playlist) to be able to store and set it back when restart.
 
-    public signal void queue_cleared ();
-    public signal void media_queued (Gee.Collection<Media> queued);
+    public enum Shuffle {
+        OFF,
+        ALL
+    }
 
+    public enum Repeat {
+        OFF,
+        MEDIA,
+        ALL
+    }
+
+    public signal void changing_player ();
     public signal void media_played (Media played_media);
     public signal void playback_stopped (int64 was_playing);
     public signal void playback_started ();
     public signal void playback_paused ();
-    public signal void changing_player ();
     public signal void player_changed ();
+    public signal void queue_cleared ();
 
     private Gee.TreeSet<unowned Noise.Playback> playbacks = new Gee.TreeSet<unowned Noise.Playback> ();
 
     // We keep the ordered_queue to be able to restore it when shuffling is turned off
     private StaticPlaylist ordered_queue;
 
+    private StaticPlaylist _queue_playlist = new StaticPlaylist ();
     /**
     * Either contains the ordered or the shuffled queue
     *
@@ -66,9 +76,8 @@ public class Noise.PlaybackManager : Object, Noise.Player {
             reshuffle ();
         }
     }
-    private StaticPlaylist _queue_playlist = new StaticPlaylist ();
 
-    public bool is_shuffled {
+    private bool is_shuffled {
         get {
             return Settings.Main.get_default ().shuffle_mode == Noise.Settings.Shuffle.ALL;
         }
@@ -82,14 +91,21 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     public HistoryPlaylist history_playlist;
 
     // TODO: REWRITE IT USING THE LIBRARY
-    public Library library { get { return libraries_manager.local_library; } }
+    private Library library { get { return libraries_manager.local_library; } }
 
     int _ci;
-    public int current_index { get {
-        return _ci;
-        } set { debug ("Current index: %d", value); _ci = value; } }
+    public int current_index {
+        get {
+            return _ci;
+        }
+        set {
+            debug ("Current index: %d", value);
+            _ci = value;
+        }
+    }
 
     public bool playing { get; private set; default = false; }
+
     private double saved_volume = 1;
     public double volume {
         get {
@@ -124,10 +140,6 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         playbacks.add (playback);
     }
 
-    public void queue_media (Media to_queue) {
-        queue_medias (new Gee.ArrayList<Media>.wrap ({ to_queue }));
-    }
-
     public void queue_medias (Gee.Collection<Media> to_queue) {
         if (to_queue.size < 1) {
             return;
@@ -143,25 +155,12 @@ public class Noise.PlaybackManager : Object, Noise.Player {
         foreach (var q in queue_playlist.medias) {
             debug ("NEUE QUEUE: %s", q.title);
         }
-        media_queued (to_queue);
-    }
-
-    public void queue_medias_by_id (Gee.Collection<int> ids) {
-        queue_medias (library.medias_from_ids (ids));
-    }
-
-    public void unqueue_media (Media to_unqueue) {
-        unqueue_medias (new Gee.ArrayList<Media>.wrap ({ to_unqueue }));
     }
 
     public void unqueue_medias (Gee.Collection<Media> to_unqueue) {
         ordered_queue.remove_medias (to_unqueue);
         reshuffle ();
         queue_playlist.media_removed (to_unqueue);
-    }
-
-    public void unqueue_medias_by_id (Gee.Collection<int> ids) {
-        unqueue_medias (library.medias_from_ids (ids));
     }
 
     public void clear_queue () {
@@ -199,7 +198,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     /**
     * Regenerate the shuffled queue if needed
     */
-    public void reshuffle () {
+    private void reshuffle () {
         debug ("Reshuffling");
         queue_playlist.clear ();
         if (is_shuffled) {
@@ -248,7 +247,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     *
     * For instance, calling this method with position = -1 will return the media just before the current one.
     */
-    public Media? get_media_at (int position, out int media_index) {
+    private Media? get_media_at (int position, out int media_index) {
         int index = current_index + position;
         media_index = fix_index (index);
         Media? res = queue_playlist.medias.size > index > 0 ? queue_playlist[index] : null;
@@ -300,7 +299,7 @@ public class Noise.PlaybackManager : Object, Noise.Player {
     /**
     * Make sure index of media is never out of the queue.
     */
-    public int fix_index (int index) {
+    private int fix_index (int index) {
         return (queue_playlist.medias.size + index) % queue_playlist.medias.size;
     }
 
