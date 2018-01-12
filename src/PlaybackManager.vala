@@ -337,11 +337,12 @@ public class Noise.PlaybackManager : Object {
     public void play_media (Media m) {
         // set the current media
         current_media = m;
+        var media_file = File.new_for_uri (m.uri);
 
         // To avoid infinite loop, if we come across a song we already know does not exist
         // stop playback
         if (m.location_unknown) {
-            if (File.new_for_uri (m.uri).query_exists ()) { // we did not know location, but it has re-appearred
+            if (media_file.query_exists ()) { // we did not know location, but it has re-appearred
                 m.location_unknown = false;
                 m.unique_status_image = null;
                 //App.main_window.media_found(m.rowid);
@@ -349,6 +350,23 @@ public class Noise.PlaybackManager : Object {
                 stop_playback ();
                 return;
             }
+        }
+
+        try {
+            var info = media_file.query_info (FileAttribute.STANDARD_CONTENT_TYPE, FileQueryInfoFlags.NONE);
+            if (!FileUtils.is_valid_content_type (info.get_content_type ())) {
+                debug ("Launching default app");
+
+                unqueue_medias (new Gee.ArrayList<Media>.wrap ({ m })); // remove it from the queue
+
+                var app = AppInfo.get_default_for_type (info.get_content_type (), true);
+                var files = new List<File> ();
+                files.append (media_file);
+                app.launch (files, null);
+                return;
+            }
+        } catch (Error err) {
+            warning ("Can't open unsupported file with another application: %s\n", err.message);
         }
 
         var found = false;
@@ -414,7 +432,7 @@ public class Noise.PlaybackManager : Object {
             if (m != null && current_media == m) {
                 history_playlist.add_media (m);
                 // potentially fix media length
-                uint player_duration_s = (uint)(player.get_duration() / TimeUtils.NANO_INV);
+                uint player_duration_s = (uint)(player.get_duration () / TimeUtils.NANO_INV);
                 if (player_duration_s > 1) {
                     int delta_s = (int)player_duration_s - (int)(m.length / TimeUtils.MILI_INV);
                     if (Math.fabs ((double)delta_s) > 3) {
