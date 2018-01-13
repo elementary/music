@@ -294,7 +294,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
             if (media_being_ripped != s || media_being_ripped == null)
                 return false;
 
-            var wrapper = App.main_window.view_container.get_current_view () as DeviceViewWrapper;
+            var wrapper = App.main_window.view_stack.visible_child as DeviceViewWrapper;
 
             if (wrapper != null) {
                 if (wrapper.d == this)

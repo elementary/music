@@ -79,7 +79,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
 
     protected ViewType current_view {
         get {
-            var view = view_container.get_current_view ();
+            var view = view_stack.visible_child;
 
             if (view == grid_view)
                 return ViewType.GRID;
@@ -108,7 +108,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
 
     public bool is_current_wrapper {
         get {
-            return (App.main_window.initialization_finished && App.main_window.view_container.visible_child == this);
+            return (App.main_window.initialization_finished && App.main_window.view_stack.visible_child == this);
         }
     }
 
@@ -122,7 +122,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
     protected const int VIEW_CONSTRUCT_PRIORITY = Priority.DEFAULT_IDLE - 10;
 
     private bool widgets_ready = false;
-    private ViewContainer view_container;
+    private ViewStack view_stack;
     private ViewType last_used_view = ViewType.NONE;
 
     // Whether a call to set_media() has been issues on this view. This is important.
@@ -136,8 +136,8 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
     construct {
         orientation = Gtk.Orientation.VERTICAL;
 
-        view_container = new ViewContainer ();
-        add (view_container);
+        view_stack = new ViewStack ();
+        add (view_stack);
 
         App.main_window.view_selector.mode_changed.connect (view_selector_changed);
         library.search_finished.connect (search_field_changed);
@@ -147,19 +147,19 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
      * Checks which views are available and packs them in (if they are not packed yet)
      */
     protected void pack_views () {
-        assert (view_container != null);
+        assert (view_stack != null);
 
-        if (has_grid_view && grid_view.parent != view_container)
-            view_container.add_view (grid_view);
+        if (has_grid_view && grid_view.parent != view_stack)
+            view_stack.add_view (grid_view);
 
-        if (has_list_view && list_view.parent != view_container)
-            view_container.add_view (list_view);
+        if (has_list_view && list_view.parent != view_stack)
+            view_stack.add_view (list_view);
 
-        if (has_welcome_screen && welcome_screen.parent != view_container)
-            view_container.add_view (welcome_screen);
+        if (has_welcome_screen && welcome_screen.parent != view_stack)
+            view_stack.add_view (welcome_screen);
 
-        if (has_embedded_alert && embedded_alert.parent != view_container)
-            view_container.add_view (embedded_alert);
+        if (has_embedded_alert && embedded_alert.parent != view_stack)
+            view_stack.add_view (embedded_alert);
 
         widgets_ready = true;
         show_all ();
@@ -177,7 +177,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         switch (type) {
             case ViewType.LIST:
                 if (has_list_view) {
-                    successful = view_container.set_current_view (list_view);
+                    view_stack.visible_child = list_view;
                     list_view.list_view.scroll_to_current_media (true);
                 } else {
                     successful = false;
@@ -185,20 +185,20 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
                 break;
             case ViewType.GRID:
                 if (has_grid_view) {
-                    successful = view_container.set_current_view (grid_view);
+                    view_stack.visible_child = grid_view;
                 } else {
                     if (has_list_view) {
-                        successful = view_container.set_current_view (list_view);
+                        view_stack.visible_child = list_view;
                         list_view.list_view.scroll_to_current_media (true);
                     }
                     successful = false;
                 }
                 break;
             case ViewType.ALERT:
-                successful = view_container.set_current_view (embedded_alert);
+                view_stack.visible_child = embedded_alert;
                 break;
             case ViewType.WELCOME:
-                successful = view_container.set_current_view (welcome_screen);
+                view_stack.visible_child = welcome_screen;
                 break;
         }
 
@@ -369,10 +369,10 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         else if (new_view == ViewType.GRID && has_grid_view)
             set_active_view (ViewType.GRID);
         else if (has_list_view) {
-            view_container.set_current_view (list_view);
+            view_stack.visible_child = list_view;
             list_view.list_view.scroll_to_current_media (true);
         } else if (has_grid_view)
-            view_container.set_current_view (grid_view);
+            view_stack.visible_child = grid_view;
     }
 
     /**

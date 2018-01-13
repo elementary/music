@@ -1,6 +1,6 @@
 // -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012-2017 elementary LLC. (https://elementary.io)
+ * Copyright (c) 2012-2018 elementary LLC. (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -26,11 +26,19 @@
  * Authored by: Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public class Noise.ViewContainer : Gtk.Stack {
-    private int nextview_number { get; set; default=0; }
+public class Noise.ViewStack : Gtk.Stack {
+    private int nextview_number { get; set; default = 0; }
 
-    public ViewContainer () {
+    construct {
         expand = true;
+
+        this.notify["visible-child"].connect (() => {
+            if (visible_child == null) {
+                critical ("Cannot set view as current view");
+            } else {
+                update_visible ();
+            }
+        });
     }
 
     /**
@@ -54,65 +62,7 @@ public class Noise.ViewContainer : Gtk.Stack {
         view.destroy ();
     }
 
-    public Gtk.Widget? get_view (int index) {
-        return get_child_by_name (index.to_string ());
-    }
-
-    public Gtk.Widget? get_nth_page (int index) {
-        return get_view (index);
-    }
-
-    public int get_current_index () {
-        return int.parse (visible_child_name);
-    }
-
-    public Gtk.Widget? get_current_view () {
-        return visible_child;
-    }
-
-    public uint get_n_pages ()
-    {
-        return get_children ().length ();
-    }
-
-    /**
-     * Tries to set the given view as current.
-     * @return false if fails.
-     */
-    public bool set_current_view (Gtk.Widget view) {
-        visible_child = view;
-
-        if (visible_child == null) {
-            critical ("Cannot set view as current view");
-            return false;
-        }
-
-        update_visible ();
-
-        return true;
-    }
-
-    /**
-     * Tries to set the given view index as current.
-     * @return false if fails.
-     */
-    public bool set_current_view_from_index (int index) {
-        visible_child_name = index.to_string ();
-
-        if (visible_child == null) {
-            critical ("Cannot set view index %i as current view", index);
-            return false;
-        }
-
-        update_visible ();
-
-        return true;
-    }
-
-    void update_visible () {
-        if (visible_child == null)
-            return;
-
+    private void update_visible () {
         if (visible_child is ViewWrapper) {
             ((ViewWrapper) visible_child).set_as_current_view ();
         } else if (visible_child is Gtk.Grid) {
