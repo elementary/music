@@ -26,7 +26,7 @@
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-public class Noise.SyncWarningDialog : Gtk.Dialog {
+public class Noise.SyncWarningDialog : Granite.MessageDialog {
     public enum ResponseId {
         IMPORT_MEDIA = 1,
         CONTINUE,
@@ -37,58 +37,33 @@ public class Noise.SyncWarningDialog : Gtk.Dialog {
     public Gee.TreeSet<Media> to_sync { get; construct; }
     public Gee.TreeSet<Media> to_remove { get; construct; }
 
-    Gtk.Widget import_media_button;
-    Gtk.Widget continue_button;
-    Gtk.Widget stop_button;
+    private Gtk.Widget import_media_button;
+    private Gtk.Widget continue_button;
 
     construct {
-        type_hint = Gdk.WindowTypeHint.DIALOG;
+        deletable = false;
+        destroy_with_parent = true;
         modal = true;
         transient_for = App.main_window;
-        destroy_with_parent = true;
-        set_default_size (475, -1);
-        resizable = false;
-        border_width = 20;
 
-        // create buttons
-        import_media_button = add_button (_("Import media to Library"), ResponseId.IMPORT_MEDIA);
+        image_icon = new GLib.ThemedIcon ("dialog-warning");
+
+        // be a bit explicit to make translations better
+        primary_text = ngettext ("Sync will remove %i item from %s", "Sync will remove %i items from %s", to_remove.size)
+                                .printf (to_remove.size, device.getDisplayName ());
+
+        secondary_text = _("If you continue to sync, media will be removed from %s since they are not on the sync list. Would you like to import them to your library first?").printf ("<b>" + Markup.escape_text (device.getDisplayName ()) + "</b>");
+
         continue_button = add_button (_("Continue Syncing"), ResponseId.CONTINUE);
-        stop_button = add_button (_("Stop Syncing"), ResponseId.STOP);
+        continue_button.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
+
+        var stop_button = add_button (_("Cancel"), ResponseId.STOP);
+
+        import_media_button = add_button (_("Import"), ResponseId.IMPORT_MEDIA);
+        import_media_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
 
         import_media_button.sensitive = !libraries_manager.local_library.doing_file_operations ();
         continue_button.sensitive = !libraries_manager.local_library.doing_file_operations ();
-
-        Gtk.Box content = get_content_area ();
-        content.spacing = 10;
-
-        // initialize controls
-        Gtk.Image warning = new Gtk.Image.from_icon_name ("dialog-error", Gtk.IconSize.DIALOG);
-        Gtk.Label title = new Gtk.Label ("");
-        Gtk.Label info = new Gtk.Label ("");
-
-        // pretty up labels
-        title.halign = Gtk.Align.START;
-        info.halign = Gtk.Align.START;
-
-        info.set_line_wrap (true);
-        var info_text = _("If you continue to sync, media will be removed from %s since they are not on the sync list. Would you like to import them to your library first?").printf ("<b>" + Markup.escape_text (device.getDisplayName ()) + "</b>");
-        info.set_markup (info_text);
-
-        // be a bit explicit to make translations better
-        var title_text = ngettext ("Sync will remove %i item from %s", "Sync will remove %i items from %s", to_remove.size)
-                                .printf (to_remove.size, device.getDisplayName ());
-
-        var MARKUP_TEMPLATE = "<span weight=\"bold\" size=\"larger\">%s</span>";
-        var title_string = MARKUP_TEMPLATE.printf (Markup.escape_text (title_text, -1));
-        title.set_markup (title_string);
-
-        /* set up controls layout */
-        var information = new Gtk.Grid ();
-        information.column_spacing = 10;
-        information.attach (warning, 0, 0, 1, 2);
-        information.attach (title, 1, 0);
-        information.attach (info, 1, 1);
-        content.pack_start (information, false, true, 0);
 
         show_all ();
     }

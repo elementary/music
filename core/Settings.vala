@@ -27,32 +27,6 @@
  */
 
 namespace Noise.Settings {
-    public class SavedState : Granite.Services.Settings {
-
-        public int window_width { get; set; }
-        public int window_height { get; set; }
-        public WindowState window_state { get; set; }
-        public int sidebar_width { get; set; }
-        public int view_mode { get; set; }
-        public int column_browser_width { get; set; }
-        public int column_browser_height { get; set; }
-        public bool column_browser_enabled { get; set; }
-        public string[] column_browser_visible_columns { get; set; }
-        public int column_browser_position { get; set; }
-
-        private static SavedState? saved_state = null;
-
-        public static SavedState get_default () {
-            if (saved_state == null)
-                saved_state = new SavedState ();
-            return saved_state;
-        }
-
-        private SavedState () {
-            base ("org.pantheon.noise.saved-state");
-        }
-    }
-
     public class Main : Granite.Services.Settings {
 
         public string music_mount_name { get; set; }
@@ -69,7 +43,6 @@ namespace Noise.Settings {
         public string search_string { get; set; }
         public string path_string { get; set; }
         public string[] plugins_disabled { get; set;}
-        public string[] minimize_while_playing_shells { get; set; }
 
         private static Main? main_settings = null;
 
@@ -86,7 +59,7 @@ namespace Noise.Settings {
         }
 
         private Main ()  {
-            base ("org.pantheon.noise.settings");
+            base ("io.elementary.music.settings");
             if (music_folder == "") {
                 music_folder = GLib.Environment.get_user_special_dir (GLib.UserDirectory.MUSIC);
             }
@@ -110,7 +83,7 @@ namespace Noise.Settings {
         }
 
         private Equalizer () {
-            base ("org.pantheon.noise.equalizer");
+            base ("io.elementary.music.equalizer");
         }
 
         public Gee.Collection<Noise.EqualizerPreset> get_presets () {
@@ -143,11 +116,5 @@ namespace Noise.Settings {
         ALBUM,
         ARTIST,
         ALL
-    }
-
-    public enum WindowState {
-        NORMAL,
-        MAXIMIZED,
-        FULLSCREEN
     }
 }

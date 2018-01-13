@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-27 19:42-0500\n"
+"POT-Creation-Date: 2018-01-12 11:16-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,6 +38,18 @@ msgstr ""
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices, CDs, and album art."
+msgstr ""
+
+msgid "Detect library changes at startup."
+msgstr ""
+
+msgid "Support searching by URI"
+msgstr ""
+
+msgid "Change the queue mechanism to make it less confusing."
+msgstr ""
+
+msgid "Improve equalizer style."
 msgstr ""
 
 msgid "Minor bug fixes."

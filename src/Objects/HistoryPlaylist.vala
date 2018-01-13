@@ -76,7 +76,7 @@ public class Noise.HistoryPlaylist : StaticPlaylist {
         event.timestamp = time;
         event.interpretation = Zeitgeist.ZG.ACCESS_EVENT;
         event.manifestation = Zeitgeist.ZG.USER_ACTIVITY;
-        event.actor = "application://org.pantheon.noise.desktop";
+        event.actor = "application://io.elementary.music.desktop";
         event.add_subject (subject);
 
         try {
@@ -270,18 +270,18 @@ namespace SecurityPrivacy {
             var event = new Zeitgeist.Event ();
             event.manifestation = Zeitgeist.ZG.USER_ACTIVITY;
             event.actor = "application://%s".printf (id);
-            
+
             var events = new GenericArray<Zeitgeist.Event> ();
             events.add (event);
-            
+
             var event2 = new Zeitgeist.Event ();
             event2.manifestation = Zeitgeist.ZG.USER_ACTIVITY;
             var subj = new Zeitgeist.Subject ();
             subj.uri = "application://%s".printf (id);
             event2.add_subject (subj);
-            
+
             events.add (event2);
-            
+
             try {
                 uint32[] results = yield log.find_event_ids (new Zeitgeist.TimeRange.anytime (),
                                                     events,
@@ -289,7 +289,7 @@ namespace SecurityPrivacy {
                                                     0,
                                                     Zeitgeist.ResultType.MOST_RECENT_EVENTS,
                                                     null);
-                                                    
+
                 var counter = results.length/100;
                 store.set_value (iter, 5, counter);
             } catch (Error e) {

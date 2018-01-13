@@ -46,7 +46,7 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListE
 
     public int page_number { get; set; default = -1; }
     public ViewWrapper.Hint hint;
-    
+
     //for playlist right click
     Gtk.Menu playlistMenu;
     Gtk.MenuItem playlistRename;
@@ -62,7 +62,7 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListE
         this.hint = hint;
         if (activatable_icon != null)
             this.activatable = activatable_icon;
-        
+
         if (hint == ViewWrapper.Hint.PLAYLIST) {
             playlistMenu = new Gtk.Menu();
             playlistRename = new Gtk.MenuItem.with_label(_("Rename"));
@@ -102,9 +102,9 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListE
             playlistSave.activate.connect(() => {playlist_save_clicked (page_number);});
             playlistExport.activate.connect(() => {playlist_export_clicked (page_number);});
         }
-        
+
     }
-    
+
     public override Gtk.Menu? get_context_menu () {
         if (playlistMenu != null) {
             if (playlistMenu.get_attach_widget () != null)
@@ -129,7 +129,7 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListE
 public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.ExpandableItem, SourceListEntry {
     public int page_number { get; set; default = -1; }
     public ViewWrapper.Hint hint;
-    
+
     //for device right click
     Gtk.Menu deviceMenu;
     Gtk.MenuItem deviceImportToLibrary;
@@ -186,7 +186,7 @@ public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.Expanda
             deviceMenu.show_all ();
         }
     }
-    
+
     public override Gtk.Menu? get_context_menu () {
         return deviceMenu;
     }
@@ -204,18 +204,18 @@ public class Noise.PlayListCategory : Granite.Widgets.SourceList.ExpandableItem,
 
     public PlayListCategory (string name) {
         base (name);
-        
+
         //playlist right click menu
         playlistMenu = new Gtk.Menu();
         playlistNew = new Gtk.MenuItem.with_label(_("New Playlist"));
         smartPlaylistNew = new Gtk.MenuItem.with_label(_("New Smart Playlist"));
         playlistImport = new Gtk.MenuItem.with_label(_("Import Playlists"));
-        
+
         playlistMenu.append(playlistNew);
         playlistMenu.append(smartPlaylistNew);
         playlistMenu.append(playlistImport);
         playlistMenu.show_all ();
-        
+
         playlistNew.activate.connect(() => {App.main_window.create_new_playlist ();});
         smartPlaylistNew.activate.connect(() => {App.main_window.show_smart_playlist_dialog ();});
         playlistImport.activate.connect(() => {playlist_import_clicked ();});
@@ -295,12 +295,12 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
     Granite.Widgets.SourceList.ExpandableItem devices_category;
     Granite.Widgets.SourceList.ExpandableItem network_category;
     PlayListCategory playlists_category;
-    
+
     public signal void edited (int page_number, string new_name);
     public signal void item_action_activated (int page_number);
     public signal void selection_changed (int page_number);
     public signal void activated ();
-    
+
     public signal void playlist_rename_clicked (int page_number);
     public signal void playlist_edit_clicked (int page_number);
     public signal void playlist_remove_clicked (int page_number);
@@ -333,15 +333,15 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
         Gtk.TargetEntry uri_list_entry = { "text/uri-list", Gtk.TargetFlags.SAME_APP, 0 };
         enable_drag_dest ({ uri_list_entry }, Gdk.DragAction.COPY);
     }
-    
+
     /**
      * Change the visibility of each category
      */
-    
+
     public void change_playlist_category_visibility (bool visible) {
         playlists_category.visible = visible;
     }
-    
+
     /**
      * Adds an item to the sidebar for the ViewWrapper object.
      * It chooses the appropiate category based on the object's hint property.
@@ -354,18 +354,18 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
                         GLib.Icon icon,
                         GLib.Icon? activatable_icon = null,
                         SourceListExpandableItem? into_expandable = null, Object? give_more_information = null) {
-        
+
         // Initialize all widgets
         var sourcelist_item = new SourceListItem (page_number, name, hint, icon, activatable_icon);
         var expandable_item = new SourceListExpandableItem (page_number, name, hint, icon, activatable_icon, give_more_information);
-        
+
         if (hint == ViewWrapper.Hint.DEVICE) {
             expandable_item.collapsible = false;
             expandable_item.icon = icon;
             if (activatable_icon != null)
                 expandable_item.activatable = activatable_icon;
         }
-        
+
         // Connect to signals
         sourcelist_item.activated.connect (() => {activated ();});
         sourcelist_item.edited.connect ((new_name) => {this.edited (sourcelist_item.page_number, new_name);});
@@ -376,13 +376,13 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
         sourcelist_item.playlist_save_clicked.connect ((pn) => {playlist_save_clicked (pn);});
         sourcelist_item.playlist_export_clicked.connect ((pn) => {playlist_export_clicked (pn);});
         sourcelist_item.playlist_media_added.connect ((pn, uris) => {playlist_media_added (pn, uris);});
-        
+
         expandable_item.device_import_clicked.connect ((pn) => {device_import_clicked (get_device_from_item(expandable_item));});
         expandable_item.device_eject_clicked.connect ((pn) => {device_eject_clicked (pn);});
         expandable_item.device_sync_clicked.connect ((pn) => {device_sync_clicked (pn);});
         expandable_item.device_new_playlist_clicked.connect ((pn) => {device_new_playlist_clicked (pn);});
         expandable_item.device_new_smartplaylist_clicked.connect ((pn) => {device_new_smartplaylist_clicked (pn);});
-    
+
         switch (hint) {
             case ViewWrapper.Hint.MUSIC:
                 if (into_expandable == null) {
@@ -448,7 +448,7 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
             return sourcelist_item;
         }
     }
-    
+
     public override void item_selected (Granite.Widgets.SourceList.Item? item) {
         if (item is Noise.SourceListItem) {
             var sidebar_item = item as SourceListItem;
@@ -458,7 +458,7 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
             selection_changed (sidebar_item.page_number);
         }
     }
-    
+
     // removes the playlist from menu
     public void remove_playlist (int page_number) {
         foreach (var playlist in playlists_category.children) {
@@ -509,7 +509,7 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
         }
         return -1;
     }
-    
+
     public void enumerate_children_pages (SourceListExpandableItem exp_item, ref Gee.TreeSet<int> pages) {
         foreach (var views in ((SourceListExpandableItem)exp_item).children) {
             if (views is SourceListExpandableItem) {
@@ -520,7 +520,7 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
             }
         }
     }
-    
+
     public void enumerate_children_items (SourceListExpandableItem exp_item, ref Gee.TreeSet<SourceListItem> pages) {
         foreach (var views in ((SourceListExpandableItem)exp_item).children) {
             if (views is SourceListExpandableItem) {
@@ -530,7 +530,7 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
             }
         }
     }
-    
+
     // change the name shown
     public void change_playlist_name (int page_number, string new_name) {
         foreach (var playlist in playlists_category.children) {
@@ -554,7 +554,7 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
             }
         }
     }
-    
+
     // change the name shown
     public void change_device_name (int page_number, string new_name) {
         foreach (var device in devices_category.children) {

@@ -29,7 +29,7 @@
 public class Noise.MediaEditor : Gtk.Dialog {
     public const int MIN_WIDTH = 600;
     public const int MIN_HEIGHT = 400;
-    
+
     private Gtk.Entry title_entry;
     private Gtk.Entry artist_entry;
     private Gtk.Entry album_artist_entry;

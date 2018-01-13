@@ -1,23 +1,23 @@
 set(CLIENT_SOURCE
-    main.vala
-    Noise.vala
+    Application.vala
     LibraryWindow.vala
     PlaybackManager.vala
     FileOperator.vala
     Objects/MediaKeyListener.vala
     Objects/HistoryPlaylist.vala
+    Objects/MPRIS.vala
     LocalBackend/LocalLibrary.vala
     LocalBackend/LocalMedia.vala
     LocalBackend/LocalSmartPlaylist.vala
     LocalBackend/LocalStaticPlaylist.vala
     LocalBackend/DevicePreferences.vala
+    Widgets/AlbumListGrid.vala
     Widgets/TopDisplay.vala
     Widgets/SimpleOptionChooser.vala
     Widgets/PresetList.vala
     Widgets/SourceListView.vala
     Widgets/StatusBar.vala
     Widgets/RatingWidget.vala
-    Widgets/SpaceWidget.vala
     Widgets/ViewSelector.vala
     Widgets/EqualizerPopover.vala
     Widgets/FastView/TileView/TileRenderer.vala
@@ -39,9 +39,7 @@ set(CLIENT_SOURCE
     Views/DeviceSummaryWidget.vala
     Views/ContentView.vala
     Views/ViewTextOverlay.vala
-    Views/GridView/GridLayout.vala
-    Views/GridView/GridView.vala
-    Views/GridView/PopupListView.vala
+    Views/GridView.vala
     Views/ListView/ListView.vala
     Views/ListView/ColumnBrowser/BrowserColumnModel.vala
     Views/ListView/ColumnBrowser/BrowserColumn.vala
@@ -65,7 +63,6 @@ set(CLIENT_SOURCE
 
 set (CLIENT_VALAC_OPTIONS
   ${GLOBAL_VALAC_OPTIONS}
-  #--define=HAVE_ADD_PLAYLIST_AS_BUTTON
   #--define=ENABLE_EXPERIMENTAL
 )
 

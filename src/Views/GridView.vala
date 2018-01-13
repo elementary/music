@@ -27,69 +27,147 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public class Noise.GridView : ContentView, GridLayout {
-    // The window used to present album contents
-    private static PopupListView? _popup = null;
-    public PopupListView popup_list_view {
+public class Noise.GridView : ContentView, ViewTextOverlay {
+    private Gtk.Paned hpaned;
+    private FastGrid icon_view;
+
+    private static AlbumListGrid? _popup = null;
+    public AlbumListGrid popup_list_view {
         get {
             if (_popup == null) {
-                _popup = new PopupListView (this);
-                _popup.focus_out_event.connect ( () => {
-                    if (_popup.visible && App.main_window.has_focus) {
-                        _popup.show_all ();
-                        _popup.present ();
-                    }
-                    return false;
-                });
+                _popup = new AlbumListGrid (parent_view_wrapper);
+                hpaned.pack2 (_popup, false, false);
             }
 
             return _popup;
         }
     }
 
-    private Gdk.Pixbuf fallback_pixbuf;
+    public ViewWrapper parent_view_wrapper { get; protected set; }
 
     public GridView (ViewWrapper view_wrapper) {
-        base (view_wrapper);
+        Object (parent_view_wrapper: view_wrapper);
+
+        icon_view = new FastGrid ();
+        icon_view.set_compare_func (compare_func);
+        icon_view.set_columns (-1);
+        icon_view.drag_begin.connect_after (on_drag_begin);
+        icon_view.drag_data_get.connect (on_drag_data_get);
+        icon_view.item_activated.connect (on_item_activated);
+        icon_view.set_search_func (search_func);
+
+        var scroll = new Gtk.ScrolledWindow (null, null);
+        scroll.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
+        scroll.add (icon_view);
+
+        hpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
+        hpaned.pack1 (scroll, true, false);
+
+        add (hpaned);
+        show_all ();
+
         message = Markup.escape_text (_("No Albums Found."));
+
+        clear_objects ();
         reset_pixbufs ();
+
         notify["scale-factor"].connect (() => {
             reset_pixbufs ();
             queue_resize ();
         });
 
         setup_focus ();
+
+        parent_view_wrapper.library.search_finished.connect (() => {this.icon_view.research_needed = true;});
+
+        Gtk.TargetEntry te = { "text/uri-list", Gtk.TargetFlags.SAME_APP, 0 };
+        Gtk.drag_source_set (icon_view, Gdk.ModifierType.BUTTON1_MASK, { te }, Gdk.DragAction.COPY);
+    }
+
+    protected void set_research_needed (bool value) {
+        this.icon_view.research_needed = value;
+    }
+
+    protected void add_objects (Gee.Collection<Object> objects) {
+        icon_view.add_objects (objects);
+    }
+
+    protected void do_search () {
+        icon_view.do_search ();
+    }
+
+    protected void remove_objects (Gee.Collection<Object> objects) {
+        icon_view.remove_objects (objects);
+    }
+
+    protected void clear_objects () {
+        icon_view.set_table (new Gee.HashMap<int, Album> (), true);
+    }
+
+    protected Gee.Collection<Object> get_objects () {
+        return icon_view.get_table ().values;
+    }
+
+    protected Gee.Collection<Object> get_visible_objects () {
+        return icon_view.get_visible_table ().values;
+    }
+
+    private void on_item_activated (Gtk.TreePath? path) {
+        if (path == null)
+            item_activated (null);
+
+        var obj = icon_view.get_object_from_index (path.get_indices ()[0]);
+        item_activated (obj);
+    }
+
+    private void on_drag_begin (Gtk.Widget sender, Gdk.DragContext context) {
+        debug ("drag begin");
+
+        var selected_items = icon_view.get_selected_items ();
+
+        if (selected_items.length () > 0)  {
+            var path = selected_items.nth_data (0);
+            var obj = icon_view.get_object_from_index (path.get_indices ()[0]);
+            var drag_icon = get_icon (obj);
+            Gtk.drag_set_icon_gicon (context, drag_icon, 0, 0);
+        }
+    }
+
+    private void on_drag_data_get (Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {
+        string[] uris = null;
+
+        var selected_items = icon_view.get_selected_items ();
+
+        if (selected_items.length () <= 0)
+            return;
+
+        // this code assumes only 1 item can be selected at a time
+        var path = selected_items.nth_data (0);
+        var obj = icon_view.get_object_from_index (path.get_indices ()[0]);
+
+        if (obj == null)
+            return;
+
+        foreach (var m in get_selected_media (obj))
+            uris += m.uri;
+
+        if (uris != null)
+            selection_data.set_uris (uris);
     }
 
     public void reset_pixbufs () {
-        var scale = get_style_context ().get_scale ();
-        var icon_info = Gtk.IconTheme.get_default ().lookup_by_gicon_for_scale (new ThemedIcon ("albumart"), 128, scale, Gtk.IconLookupFlags.GENERIC_FALLBACK);
-        try {
-            fallback_pixbuf = icon_info.load_icon ();
-        } catch (Error e) {
-            critical (e.message);
-        }
-
         queue_draw ();
     }
 
     public void setup_focus () {
         var focus_blacklist = new Gee.LinkedList<Gtk.Widget> ();
-        focus_blacklist.add (App.main_window.viewSelector);
-        focus_blacklist.add (App.main_window.searchField);
+        focus_blacklist.add (App.main_window.view_selector);
+        focus_blacklist.add (App.main_window.search_entry);
         focus_blacklist.add (App.main_window.source_list_view);
         focus_blacklist.add (App.main_window.statusbar);
 
-        App.main_window.viewSelector.mode_changed.connect ( () => {
-            popup_list_view.hide ();
-        });
-
         foreach (var w in focus_blacklist) {
             w.add_events (Gdk.EventMask.BUTTON_PRESS_MASK);
-            w.button_press_event.connect ( () => {
-                popup_list_view.hide ();
-                return false;
-            });
         }
     }
 
@@ -223,7 +301,7 @@ public class Noise.GridView : ContentView, GridLayout {
         return -1;
     }
 
-    protected override void item_activated (Object? object) {
+    protected void item_activated (Object? object) {
         if (!App.main_window.initialization_finished)
             return;
 
@@ -235,42 +313,18 @@ public class Noise.GridView : ContentView, GridLayout {
         var album = object as Album;
         return_if_fail (album != null);
 
-        popup_list_view.set_parent_wrapper (this.parent_view_wrapper);
+        popup_list_view.view_wrapper = parent_view_wrapper;
         popup_list_view.set_album (album);
-
-        // find window's location
-        int x, y;
-        Gtk.Allocation alloc;
-        App.main_window.get_position (out x, out y);
-        get_allocation (out alloc);
-
-        // move down to icon view's allocation
-        x += App.main_window.main_hpaned.position;
-        y += alloc.y;
-
-        int window_width = 0;
-        int window_height = 0;
-        
-        popup_list_view.get_size (out window_width, out window_height);
-
-        // center it on this icon view
-        x += (alloc.width - window_width) / 2;
-        y += (alloc.height - window_height) / 2 + 60;
-
-        bool was_visible = popup_list_view.visible;
-        if (!was_visible)
-            popup_list_view.move (x, y);
         popup_list_view.show_all ();
-        popup_list_view.present ();
     }
 
-    protected override GLib.Icon? get_icon (Object o) {
+    protected GLib.Icon? get_icon (Object o) {
         var album = o as Album;
         return_val_if_fail (album != null, null);
         return album.cover_icon;
     }
 
-    protected override int compare_func (Object o_a, Object o_b) {
+    protected int compare_func (Object o_a, Object o_b) {
         var album_a = o_a as Album;
         var album_b = o_b as Album;
 
@@ -280,7 +334,7 @@ public class Noise.GridView : ContentView, GridLayout {
 
         if (album_b == null)
             return 1;
-        
+
         int order = String.compare (album_a.get_display_artist (), album_b.get_display_artist ());
 
         if (order == 0)
@@ -292,8 +346,7 @@ public class Noise.GridView : ContentView, GridLayout {
         return order;
     }
 
-
-    protected override void search_func (Gee.HashMap<int, Object> showing) {
+    protected void search_func (Gee.HashMap<int, Object> showing) {
         message_visible = false;
         var result = parent_view_wrapper.library.get_search_result ();
         var albums = new Gee.TreeSet<Album> ();
@@ -311,7 +364,7 @@ public class Noise.GridView : ContentView, GridLayout {
         }
     }
 
-    protected override Gee.Collection<Media> get_selected_media (Object obj) {
+    protected Gee.Collection<Media> get_selected_media (Object obj) {
         var album = obj as Album;
         return_val_if_fail (album != null, null);
 

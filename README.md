@@ -7,10 +7,7 @@ You'll need the following dependencies:
 * cmake
 * libaccounts-glib-dev
 * libclutter-gtk-1.0-dev
-* libdbusmenu-glib-dev
-* libdbusmenu-gtk3-dev
 * libdbus-glib-1-dev
-* libindicate-dev
 * libgda-5.0-dev
 * libgee-0.8-dev
 * libglib2.0-dev
@@ -25,7 +22,6 @@ You'll need the following dependencies:
 * libpeas-dev
 * libsoup2.4-dev
 * libtagc0-dev
-* libwebkitgtk-dev
 * libxml2-dev
 * libzeitgeist-2.0-dev
 * valac
@@ -34,13 +30,13 @@ It's recommended to create a clean build environment
 
     mkdir build
     cd build/
-    
+
 Run `cmake` to configure the build environment and then `make` to build
 
     cmake -DCMAKE_INSTALL_PREFIX=/usr ..
     make
-    
-To install, use `make install`, then execute with `noise`
+
+To install, use `make install`, then execute with `io.elementary.music`
 
     sudo make install
-    noise
+    io.elementary.music

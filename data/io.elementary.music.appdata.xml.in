@@ -65,8 +65,8 @@
         </release>
     </releases>
     <provides>
-        <binary>noise</binary>
-        <library>libnoise-core.so.0</library>
+        <binary>io.elementary.music</binary>
+        <library>libio.elementary.music-core.so.0</library>
     </provides>
     <developer_name>elementary LLC.</developer_name>
     <url type="homepage">https://elementary.io/</url>

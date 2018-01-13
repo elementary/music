@@ -27,16 +27,8 @@
  *              Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-public class Noise.CompareFuncHolder {
-    public unowned Gtk.TreeIterCompareFunc sort_func;
-
-    public CompareFuncHolder (Gtk.TreeIterCompareFunc func) {
-        sort_func = func;
-    }
-}
-
 namespace Noise.Compare {
-    
+
     public inline int titles (Media a, Media b) {
         return String.compare (a.get_display_title (), b.get_display_title ());
     }

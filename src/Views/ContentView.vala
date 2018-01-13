@@ -1,6 +1,6 @@
 // -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012-2017 elementary LLC. (https://elementary.io)
+ * Copyright (c) 2012-2018 elementary LLC. (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -28,8 +28,6 @@
  */
 
 public interface Noise.ContentView : Gtk.Widget {
-    public const string FULL_STATUSBAR_FORMAT = NC_("Format used on statusbar: $description, $total_duration, $total_file_size", "%s, %s, %s");
-
     /**
      * Used for device syncing.
      */
@@ -57,6 +55,5 @@ public interface Noise.ContentView : Gtk.Widget {
     public abstract void add_media (Gee.Collection<Media> to_add);
     public abstract void remove_media (Gee.Collection<Media> to_remove);
     public abstract void update_media (Gee.Collection<Media> to_update);
-
 }
 

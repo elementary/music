@@ -34,12 +34,9 @@ public class Noise.NotificationManager : Object {
 
     private static NotificationManager? notification_manager = null;
     public static NotificationManager get_default () {
-        if (notification_manager == null)
+        if (notification_manager == null) {
             notification_manager = new NotificationManager ();
+        }
         return notification_manager;
-    }
-
-    private NotificationManager () {
-    
     }
 }

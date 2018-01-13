@@ -30,7 +30,7 @@ public interface Noise.Playback : GLib.Object {
 
     public abstract Gee.Collection<string> get_supported_uri ();
 
-    /* 
+    /*
      * Signals
      */
 
@@ -39,7 +39,7 @@ public interface Noise.Playback : GLib.Object {
     public signal void media_not_found ();
     public signal void error_occured ();
 
-    /* 
+    /*
      * Basic playback functions
      */
 
@@ -53,7 +53,7 @@ public interface Noise.Playback : GLib.Object {
     public abstract void set_volume (double val);
     public abstract double get_volume ();
 
-    /* 
+    /*
      * Extra stuff
      */
 

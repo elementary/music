@@ -34,12 +34,13 @@ public interface GnomeMediaKeys : Object {
 }
 
 public class Noise.MediaKeyListener : Object {
-
     private static MediaKeyListener? _instance;
     public static MediaKeyListener instance {
         get {
-            if (_instance == null)
+            if (_instance == null) {
                 _instance = new MediaKeyListener ();
+            }
+
             return _instance;
         }
     }
@@ -54,45 +55,43 @@ public class Noise.MediaKeyListener : Object {
         } catch (IOError e) {
             warning ("Mediakeys error: %s", e.message);
         }
-        
-        if(media_object != null) {
-            media_object.MediaPlayerKeyPressed.connect(mediaKeyPressed);
+
+        if (media_object != null) {
+            media_object.MediaPlayerKeyPressed.connect (media_key_pressed);
             try {
                 media_object.GrabMediaPlayerKeys (((Noise.App) GLib.Application.get_default ()).exec_name, (uint32)0);
-            }
-            catch(IOError err) {
+            } catch (IOError err) {
                 warning ("Could not grab media player keys: %s", err.message);
             }
         }
     }
-    
-    public void releaseMediaKeys() {
+
+    public void release_media_keys () {
         try {
             media_object.ReleaseMediaPlayerKeys (((Noise.App) GLib.Application.get_default ()).exec_name);
-        }
-        catch(IOError err) {
-            warning("Could not release media player keys: %s", err.message);
+        } catch (IOError err) {
+            warning ("Could not release media player keys: %s", err.message);
         }
     }
-    
-    private void mediaKeyPressed(dynamic Object bus, string application, string key) {
-        if (application != ((Noise.App) GLib.Application.get_default ()).exec_name)
-            return;
 
-        if(key == "Previous") {
-            App.main_window.play_previous_media ();
+    private void media_key_pressed (dynamic Object bus, string application, string key) {
+        if (application != ((Noise.App) GLib.Application.get_default ()).exec_name) {
+            return;
         }
-        else if(key == "Play") {
-            App.main_window.play_media ();
-        }
-        else if(key == "Next") {
-            App.main_window.play_next_media ();
-        }
-        else if(key == "Pause") {
-            // TODO
-        }
-        else {
-            message ("Unused key pressed: %s", key);
+
+        switch (key) {
+            case "Previous":
+                App.main_window.play_previous_media ();
+                break;
+            case "Play":
+                App.main_window.play_media ();
+                break;
+            case "Next":
+                App.main_window.play_next_media ();
+                break;
+            default:
+                message ("Unused key pressed: %s", key);
+                break;
         }
     }
 }
