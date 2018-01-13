@@ -12,6 +12,7 @@ set(CLIENT_SOURCE
     LocalBackend/LocalStaticPlaylist.vala
     LocalBackend/DevicePreferences.vala
     Widgets/AlbumListGrid.vala
+    Widgets/HeaderBar.vala
     Widgets/TopDisplay.vala
     Widgets/SimpleOptionChooser.vala
     Widgets/PresetList.vala

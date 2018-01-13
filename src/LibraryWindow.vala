@@ -51,10 +51,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private Gtk.Button previous_button;
     private Gtk.Button play_button;
     private Gtk.Button next_button;
-    private Gtk.MenuItem import_menuitem;
     private Gtk.Paned main_hpaned;
     private Cancellable notification_cancellable;
-    private PreferencesWindow? preferences = null;
     private Settings.Main main_settings;
     private GLib.Settings saved_state_settings;
     private TopDisplay top_display;
@@ -63,7 +61,20 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private Gee.HashMap<string, int> match_devices;
     private Gee.HashMap<unowned Playlist, SourceListEntry> match_playlist_entry;
 
+    public SimpleActionGroup actions { get; construct; }
+
+    public const string ACTION_PREFIX = "win.";
+    public const string ACTION_IMPORT = "action_import";
+
+    private const ActionEntry[] action_entries = {
+        { ACTION_IMPORT, action_import }
+    };
+
     construct {
+        actions = new SimpleActionGroup ();
+        actions.add_action_entries (action_entries, this);
+        insert_action_group ("win", actions);
+
         main_settings = Settings.Main.get_default ();
 
         library_manager.media_added.connect (update_sensitivities);
@@ -199,22 +210,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     private inline void build_main_widgets () {
-        import_menuitem = new Gtk.MenuItem.with_label (_("Import to Library…"));
-        import_menuitem.activate.connect (fileImportMusicClick);
-
-        var preferences_menuitem = new Gtk.MenuItem.with_label (_("Preferences"));
-        preferences_menuitem.activate.connect (editPreferencesClick);
-
-        var menu = new Gtk.Menu ();
-        menu.append (import_menuitem);
-        menu.append (new Gtk.SeparatorMenuItem ());
-        menu.append (preferences_menuitem);
-        menu.show_all ();
-
-        var menu_button = new Gtk.MenuButton ();
-        menu_button.image = new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR);
-        menu_button.popup = menu;
-
         previous_button = new Gtk.Button.from_icon_name ("media-skip-backward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
         previous_button.tooltip_text = _("Previous");
 
@@ -237,13 +232,12 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         top_display.margin_start = 30;
         top_display.margin_end = 30;
 
-        var headerbar = new Gtk.HeaderBar ();
+        var headerbar = new Noise.HeaderBar ();
         headerbar.show_close_button = true;
         headerbar.pack_start (previous_button);
         headerbar.pack_start (play_button);
         headerbar.pack_start (next_button);
         headerbar.pack_start (view_selector);
-        headerbar.pack_end (menu_button);
         headerbar.pack_end (search_entry);
         headerbar.set_title (((Noise.App) GLib.Application.get_default ()).program_name);
         headerbar.set_custom_title (top_display);
@@ -632,7 +626,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         bool doing_ops = library_manager.doing_file_operations ();
         bool media_active = App.player.current_media != null;
 
-        import_menuitem.sensitive = !doing_ops && folder_set;
+        ((SimpleAction) actions.lookup_action (ACTION_IMPORT)).set_enabled (!doing_ops && folder_set);
 
         // Play, pause, ...
         bool media_available = App.player.get_current_media_list ().size > 0;
@@ -979,7 +973,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
     }
 
-    public virtual void fileImportMusicClick () {
+    public virtual void action_import () {
         if (!library_manager.doing_file_operations ()) {
 
             var folders = new Gee.TreeSet<string> ();
@@ -1008,14 +1002,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         } else {
             debug("Can't add to library.. already doing file operations\n");
         }
-    }
-
-    private void editPreferencesClick () {
-        if (preferences == null)
-            preferences = new PreferencesWindow ();
-        preferences.show_all ();
-        preferences.run ();
-        preferences = null;
     }
 
     public void setMusicFolder(string folder) {
