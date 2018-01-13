@@ -44,22 +44,24 @@ core_files = files(
   'Build.vala'
 )
 
+core_deps = [
+  dependency('glib-2.0', version: '>=2.39'),
+  dependency('gobject-2.0'),
+  dependency('gio-2.0'),
+  dependency('gee-0.8'),
+  dependency('libpeas-1.0'),
+  dependency('libpeas-gtk-1.0'),
+  dependency('gtk+-3.0', version: '>=3.11.6'),
+  dependency('granite', version: '>=0.5'),
+  dependency('gstreamer-1.0'),
+  dependency('gstreamer-pbutils-1.0'),
+  dependency('gstreamer-tag-1.0')
+]
+
 core_lib = library(
   core_name,
   core_files,
-  dependencies: [
-    dependency('glib-2.0'),
-    dependency('gobject-2.0'),
-    dependency('gio-2.0'),
-    dependency('gee-0.8'),
-    dependency('libpeas-1.0'),
-    dependency('libpeas-gtk-1.0'),
-    dependency('gtk+-3.0'),
-    dependency('granite'),
-    dependency('gstreamer-1.0'),
-    dependency('gstreamer-pbutils-1.0'),
-    dependency('gstreamer-tag-1.0')
-  ],
+  dependencies: core_deps,
   install: true,
   install_dir: [true, true, true]
 )

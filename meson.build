@@ -1,9 +1,9 @@
 project('io.elementary.music', 'vala', 'c')
 
-app_name = 'io.elementary.music'
+app_name = meson.project_name()
 short_name = 'music'
 version = '0.4.2'
-version_info = '' # Describes the version
+version_info = 'Stable release'
 release_name = 'juno'
 
 prefix = get_option('prefix')
@@ -79,23 +79,13 @@ executable (
     'src/Dialogs/NotImportedWindow.vala',
     'src/Dialogs/SetMusicFolderConfirmation.vala',
     'src/Dialogs/SyncWarningDialog.vala',
-    dependencies : [
-        dependency('glib-2.0'),
-        dependency('gio-2.0'),
-        dependency('gee-0.8'),
-        dependency('libpeas-1.0'),
-        dependency('libpeas-gtk-1.0'),
-        dependency('gtk+-3.0'),
-        dependency('granite'),
-        dependency('gstreamer-1.0'),
-        dependency('gstreamer-pbutils-1.0'),
-        dependency('gstreamer-tag-1.0'),
-        dependency('zeitgeist-2.0'),
-        dependency('libgda-5.0'),
-        dependency('taglib_c'),
-        core,
-        meson.get_compiler('vala').find_library('posix'),
-        meson.get_compiler('c').find_library('m', required : false)
+    dependencies : core_deps + [
+      core, 
+      dependency('zeitgeist-2.0'),
+      dependency('libgda-5.0'),
+      dependency('taglib_c'),
+      meson.get_compiler('vala').find_library('posix'),
+      meson.get_compiler('c').find_library('m', required : false)
     ],
     install: true
 )
@@ -104,3 +94,4 @@ meson.add_install_script('meson/post_install.py')
 
 subdir('po')
 subdir('data')
+subdir('images')
