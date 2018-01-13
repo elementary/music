@@ -2,12 +2,12 @@ project('io.elementary.music', 'vala', 'c')
 
 app_name = 'io.elementary.music'
 
-add_project_arguments(['--vapidir', join_paths(meson.current_source_dir(), 'vapi')], 
+add_project_arguments(['--vapidir', join_paths(meson.current_source_dir(), 'vapi')],
                       language: 'vala')
 
 i18n = import('i18n')
 
-add_global_arguments('-DGETTEXT_PACKAGE="noise"', language:'c')
+add_global_arguments('-DGETTEXT_PACKAGE="io.elementary.music"', language:'c')
 
 executable (
     'io.elementary.music',
@@ -15,7 +15,6 @@ executable (
     'core/PluginManager.vala',
     'core/Settings.vala',
     'core/EqualizerPreset.vala',
-    'core/Player.vala',
     'core/LibraryWindowInterface.vala',
     'core/Library.vala',
     'core/LibrariesManager.vala',
@@ -33,38 +32,33 @@ executable (
     'core/Utils/FileUtils.vala',
     'core/Utils/TimeUtils.vala',
     'core/Utils/String.vala',
-    'core/Utils/UI.vala',
     'core/Utils/CompareFunctionHolder.vala',
-    'core/Utils/Utils.vala',
     'core/Utils/PlaylistsUtils.vala',
     'core/Utils/Icon.vala',
-    'core/Utils/Icons.vala',
     'core/Utils/Search.vala',
-    'core/Utils/PixbufUtils.vala',
     'core/GStreamer/Pipeline.vala',
     'core/GStreamer/Equalizer.vala',
     'core/GStreamer/Playback.vala',
     'core/Widgets/AlbumImage.vala',
-    'core/Widgets/SettingsWidgets.vala',
-    'src/main.vala',
-    'src/Noise.vala',
+    'src/Application.vala',
     'src/LibraryWindow.vala',
     'src/PlaybackManager.vala',
     'src/FileOperator.vala',
     'src/Objects/MediaKeyListener.vala',
     'src/Objects/HistoryPlaylist.vala',
+    'src/Objects/MPRIS.vala',
     'src/LocalBackend/LocalLibrary.vala',
     'src/LocalBackend/LocalMedia.vala',
     'src/LocalBackend/LocalSmartPlaylist.vala',
     'src/LocalBackend/LocalStaticPlaylist.vala',
     'src/LocalBackend/DevicePreferences.vala',
+    'src/Widgets/AlbumListGrid.vala',
     'src/Widgets/TopDisplay.vala',
     'src/Widgets/SimpleOptionChooser.vala',
     'src/Widgets/PresetList.vala',
     'src/Widgets/SourceListView.vala',
     'src/Widgets/StatusBar.vala',
     'src/Widgets/RatingWidget.vala',
-    'src/Widgets/SpaceWidget.vala',
     'src/Widgets/ViewSelector.vala',
     'src/Widgets/EqualizerPopover.vala',
     'src/Widgets/FastView/TileView/TileRenderer.vala',
@@ -86,9 +80,7 @@ executable (
     'src/Views/DeviceSummaryWidget.vala',
     'src/Views/ContentView.vala',
     'src/Views/ViewTextOverlay.vala',
-    'src/Views/GridView/GridLayout.vala',
-    'src/Views/GridView/GridView.vala',
-    'src/Views/GridView/PopupListView.vala',
+    'src/Views/GridView.vala',
     'src/Views/ListView/ListView.vala',
     'src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala',
     'src/Views/ListView/ColumnBrowser/BrowserColumn.vala',
