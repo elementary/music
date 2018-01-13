@@ -50,7 +50,7 @@ executable (
     'src/GStreamer/GStreamerTagger.vala',
     'src/GStreamer/CoverImport.vala',
     'src/GStreamer/Streamer.vala',
-    'src/Views/ViewContainer.vala',
+    'src/Views/ViewStack.vala',
     'src/Views/Wrappers/ViewWrapper.vala',
     'src/Views/Wrappers/MusicViewWrapper.vala',
     'src/Views/Wrappers/DeviceViewWrapper.vala',
