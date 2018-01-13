@@ -116,7 +116,8 @@ executable (
         dependency('taglib_c'),
         meson.get_compiler('vala').find_library('posix'),
         meson.get_compiler('c').find_library('m', required : false)
-    ]
+    ],
+    install: true
 )
 
 meson.add_install_script('meson/post_install.py')
