@@ -30,7 +30,7 @@ set(CLIENT_SOURCE
     GStreamer/GStreamerTagger.vala
     GStreamer/CoverImport.vala
     GStreamer/Streamer.vala
-    Views/ViewContainer.vala
+    Views/ViewStack.vala
     Views/Wrappers/ViewWrapper.vala
     Views/Wrappers/MusicViewWrapper.vala
     Views/Wrappers/DeviceViewWrapper.vala
