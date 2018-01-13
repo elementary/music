@@ -1,45 +1,24 @@
 project('io.elementary.music', 'vala', 'c')
 
 app_name = 'io.elementary.music'
+short_name = 'music'
+version = '0.4.2'
+version_info = '' # Describes the version
+release_name = 'juno'
 
-add_project_arguments(['--vapidir', join_paths(meson.current_source_dir(), 'vapi')],
-                      language: 'vala')
+prefix = get_option('prefix')
+datadir = join_paths(prefix, get_option('datadir'))
+pkg_datadir = join_paths(datadir, short_name)
+plugindir = join_paths(prefix, get_option('libdir'), short_name, 'plugins')
+icondir = join_paths(datadir, short_name, 'icons')
 
-i18n = import('i18n')
-
+add_project_arguments(['--vapidir', join_paths(meson.current_source_dir(), 'vapi')], language: 'vala')
 add_global_arguments('-DGETTEXT_PACKAGE="io.elementary.music"', language:'c')
+
+subdir('core')
 
 executable (
     'io.elementary.music',
-    'core/build.vala',
-    'core/PluginManager.vala',
-    'core/Settings.vala',
-    'core/EqualizerPreset.vala',
-    'core/LibraryWindowInterface.vala',
-    'core/Library.vala',
-    'core/LibrariesManager.vala',
-    'core/NotificationManager.vala',
-    'core/Media.vala',
-    'core/Album.vala',
-    'core/Resources.vala',
-    'core/Devices/Device.vala',
-    'core/Devices/NetworkDevice.vala',
-    'core/Devices/DeviceManager.vala',
-    'core/Playlists/Playlist.vala',
-    'core/Playlists/StaticPlaylist.vala',
-    'core/Playlists/SmartPlaylist.vala',
-    'core/Playlists/SmartQuery.vala',
-    'core/Utils/FileUtils.vala',
-    'core/Utils/TimeUtils.vala',
-    'core/Utils/String.vala',
-    'core/Utils/CompareFunctionHolder.vala',
-    'core/Utils/PlaylistsUtils.vala',
-    'core/Utils/Icon.vala',
-    'core/Utils/Search.vala',
-    'core/GStreamer/Pipeline.vala',
-    'core/GStreamer/Equalizer.vala',
-    'core/GStreamer/Playback.vala',
-    'core/Widgets/AlbumImage.vala',
     'src/Application.vala',
     'src/LibraryWindow.vala',
     'src/PlaybackManager.vala',
@@ -114,6 +93,7 @@ executable (
         dependency('zeitgeist-2.0'),
         dependency('libgda-5.0'),
         dependency('taglib_c'),
+        core,
         meson.get_compiler('vala').find_library('posix'),
         meson.get_compiler('c').find_library('m', required : false)
     ],
