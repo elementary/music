@@ -5,61 +5,61 @@
     <metadata_license>CC0-1.0</metadata_license>
     <project_group>elementary</project_group>
     <project_license>GPL-3.0+</project_license>
-    <_name>Music</_name>
-    <_summary>The official elementary music player</_summary>
+    <name>Music</name>
+    <summary>The official elementary music player</summary>
     <description>
-        <_p>
+        <p>
         Music is a fast and beautiful audio player with a focus on
         music and libraries. It handles external devices, CDs, and
         album art.
-        </_p>
+        </p>
     </description>
     <releases>
         <release version="0.4.2" date="2017-10-27" urgency="medium">
             <description>
-                <_p>Detect library changes at startup.</_p>
-                <_p>Support searching by URI</_p>
-                <_p>Change the queue mechanism to make it less confusing.</_p>
-                <_p>Improve equalizer style.</_p>
-                <_p>Minor bug fixes.</_p>
+                <p>Detect library changes at startup.</p>
+                <p>Support searching by URI</p>
+                <p>Change the queue mechanism to make it less confusing.</p>
+                <p>Improve equalizer style.</p>
+                <p>Minor bug fixes.</p>
             </description>
         </release>
         <release version="0.4.1" date="2017-07-27" urgency="medium">
             <description>
-                <_p>Minor bug fixes.</_p>
+                <p>Minor bug fixes.</p>
             </description>
         </release>
         <release version="0.4.0.3" date="2017-04-21" urgency="medium">
             ⁠<description>
-                <_p>Minor bug fixes.</_p>
+                <p>Minor bug fixes.</p>
             </description>
         </release>
         <release version="0.4.0.2" date="2016-12-01" urgency="medium">
             ⁠<description>
-                <_p>Minor bug fixes.</_p>
+                <p>Minor bug fixes.</p>
             ⁠</description>
         </release>
         <release version="0.4.0.1" date="2016-09-20" urgency="medium">
             ⁠<description>
-                <_p>Add rounded bottom window corner.</_p>
+                <p>Add rounded bottom window corner.</p>
                 <ul>
-                    <_li>Minor bug fixes</_li>
-                    <_li>New translations</_li>
+                    <li>Minor bug fixes</li>
+                    <li>New translations</li>
                 </ul>
             ⁠</description>
         </release>
         <release version="0.4.0" date="2016-08-10" urgency="medium">
             ⁠<description>
-                <_p>Release for Loki.</_p>
+                <p>Release for Loki.</p>
                 <ul>
-                    <_li>Add support for Opus Ogg</_li>
-                    <_li>Fix Ctrl+Q support for non-Latin keyboard layouts</_li>
-                    <_li>Reorganize media edition layout</_li>
-                    <_li>Port grid to support HiDPI displays</_li>
-                    <_li>Update icons to latest elementary icon release</_li>
-                    <_li>Respect privacy mode</_li>
-                    <_li>Minor bug fixes</_li>
-                    <_li>New translations</_li>
+                    <li>Add support for Opus Ogg</li>
+                    <li>Fix Ctrl+Q support for non-Latin keyboard layouts</li>
+                    <li>Reorganize media edition layout</li>
+                    <li>Port grid to support HiDPI displays</li>
+                    <li>Update icons to latest elementary icon release</li>
+                    <li>Respect privacy mode</li>
+                    <li>Minor bug fixes</li>
+                    <li>New translations</li>
                 </ul>
             ⁠</description>
         </release>

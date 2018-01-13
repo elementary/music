@@ -3,7 +3,7 @@ install_data(
     install_dir: join_paths(get_option('datadir'), 'glib-2.0', 'schemas')
 )
 
-i18n.merge_file (
+i18n.merge_file(
     'desktop',
     input: meson.project_name() + '.desktop.in',
     output: meson.project_name() + '.desktop',
@@ -13,7 +13,7 @@ i18n.merge_file (
     type: 'desktop'
 )
 
-i18n.merge_file (
+i18n.merge_file(
     'appdata',
     input: meson.project_name() + '.appdata.xml.in',
     output: meson.project_name() + '.appdata.xml',
@@ -22,13 +22,13 @@ i18n.merge_file (
     po_dir: join_paths(meson.source_root(), 'po', 'extra')
 )
 
-test (
+test(
     'Validate desktop file',
     find_program('desktop-file-validate'),
     args: join_paths(meson.current_build_dir(), meson.project_name() + '.desktop')
 )
 
-test (
+test(
     'Validate appdata file',
     find_program('appstreamcli'),
     args: ['validate', join_paths(meson.current_build_dir(), meson.project_name() + '.appdata.xml')]
