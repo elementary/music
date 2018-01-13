@@ -48,9 +48,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private bool media_half_played_sended { get; set; default = false; }
     private bool search_field_has_focus { get; set; default = true; }
 
-    private Gtk.Button previous_button;
     private Gtk.Button play_button;
-    private Gtk.Button next_button;
     private Gtk.Paned main_hpaned;
     private Cancellable notification_cancellable;
     private Settings.Main main_settings;
@@ -65,9 +63,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     public const string ACTION_PREFIX = "win.";
     public const string ACTION_IMPORT = "action_import";
+    public const string ACTION_PLAY_NEXT = "action_play_next";
+    public const string ACTION_PLAY_PREVIOUS = "action_play_previous";
 
     private const ActionEntry[] action_entries = {
-        { ACTION_IMPORT, action_import }
+        { ACTION_IMPORT, action_import },
+        { ACTION_PLAY_NEXT, action_play_next },
+        { ACTION_PLAY_PREVIOUS, action_play_previous }
     };
 
     construct {
@@ -210,13 +212,11 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     private inline void build_main_widgets () {
-        previous_button = new Gtk.Button.from_icon_name ("media-skip-backward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-        previous_button.tooltip_text = _("Previous");
-
         play_button = new Gtk.Button.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
         play_button.tooltip_text = _("Play");
 
-        next_button = new Gtk.Button.from_icon_name ("media-skip-forward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+        var next_button = new Gtk.Button.from_icon_name ("media-skip-forward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+        next_button.action_name = ACTION_PREFIX + ACTION_PLAY_NEXT;
         next_button.tooltip_text = _("Next");
 
         search_entry = new Gtk.SearchEntry ();
@@ -233,13 +233,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         top_display.margin_end = 30;
 
         var headerbar = new Noise.HeaderBar ();
-        headerbar.show_close_button = true;
-        headerbar.pack_start (previous_button);
         headerbar.pack_start (play_button);
         headerbar.pack_start (next_button);
         headerbar.pack_start (view_selector);
         headerbar.pack_end (search_entry);
-        headerbar.set_title (((Noise.App) GLib.Application.get_default ()).program_name);
         headerbar.set_custom_title (top_display);
         headerbar.show_all ();
 
@@ -477,9 +474,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             show_playlist_view (library_manager.p_music);
         }
 
-        previous_button.clicked.connect (() => {play_previous_media ();});
         play_button.clicked.connect (() => {play_media ();});
-        next_button.clicked.connect (() => {play_next_media ();});
 
         search_entry.activate.connect (search_entry_activate);
         search_entry.search_changed.connect (() => {
@@ -625,14 +620,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         bool have_media = library_manager.get_medias ().size > 0;
         bool doing_ops = library_manager.doing_file_operations ();
         bool media_active = App.player.current_media != null;
+        bool media_available = App.player.get_current_media_list ().size > 0;
+
+        play_button.set_sensitive (media_active || media_available);
 
         ((SimpleAction) actions.lookup_action (ACTION_IMPORT)).set_enabled (!doing_ops && folder_set);
-
-        // Play, pause, ...
-        bool media_available = App.player.get_current_media_list ().size > 0;
-        previous_button.set_sensitive (media_active || media_available);
-        play_button.set_sensitive (media_active || media_available);
-        next_button.set_sensitive (media_active || media_available);
+        ((SimpleAction) actions.lookup_action (ACTION_PLAY_NEXT)).set_enabled (media_active || media_available);
+        ((SimpleAction) actions.lookup_action (ACTION_PLAY_PREVIOUS)).set_enabled (media_active || media_available);
 
         // hide playlists when media list is empty
         source_list_view.change_playlist_category_visibility (have_media);
@@ -1002,6 +996,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         } else {
             debug("Can't add to library.. already doing file operations\n");
         }
+    }
+
+    private void action_play_next () {
+        play_next_media ();
+    }
+
+    private void action_play_previous () {
+        play_previous_media ();
     }
 
     public void setMusicFolder(string folder) {

@@ -31,6 +31,10 @@ public class Noise.HeaderBar : Gtk.HeaderBar {
     private PreferencesWindow? preferences = null;
 
     construct {
+        var previous_button = new Gtk.Button.from_icon_name ("media-skip-backward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+        previous_button.action_name = LibraryWindow.ACTION_PREFIX + LibraryWindow.ACTION_PLAY_PREVIOUS;
+        previous_button.tooltip_text = _("Previous");
+
         var import_menuitem = new Gtk.MenuItem.with_label (_("Import to Library…"));
         import_menuitem.action_name = LibraryWindow.ACTION_PREFIX + LibraryWindow.ACTION_IMPORT;
 
@@ -50,6 +54,7 @@ public class Noise.HeaderBar : Gtk.HeaderBar {
 
         show_close_button = true;
         title = ((Noise.App) GLib.Application.get_default ()).program_name;
+        pack_start (previous_button);
         pack_end (menu_button);
     }
 
