@@ -514,14 +514,14 @@ public class Noise.PlaybackManager : Object {
     public void start_playback () {
         player.play ();
         playing = true;
-
+        ((SimpleAction) App.main_window.actions.lookup_action (LibraryWindow.ACTION_PLAY)).set_state (true);
         playback_started ();
     }
 
     public void pause_playback () {
         player.pause ();
         playing = false;
-
+        ((SimpleAction) App.main_window.actions.lookup_action (LibraryWindow.ACTION_PLAY)).set_state (false);
         playback_paused ();
     }
 }

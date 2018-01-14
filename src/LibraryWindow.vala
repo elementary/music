@@ -101,8 +101,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         App.player.player.error_occured.connect (error_occured);
         App.player.media_played.connect_after (media_played);
         App.player.playback_stopped.connect (playback_stopped);
-        App.player.playback_started.connect (playback_started);
-        App.player.playback_paused.connect (playback_paused);
         App.player.changing_player.connect (() => {
             App.player.player.end_of_stream.disconnect (end_of_stream);
             App.player.player.current_position_update.disconnect (current_position_update);
@@ -936,16 +934,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         update_sensitivities.begin ();
 
         debug ("playback stopped");
-    }
-
-    public virtual void playback_started () {
-        ((SimpleAction) actions.lookup_action (ACTION_PLAY)).set_state (true);
-        debug ("playback started");
-    }
-
-    public virtual void playback_paused () {
-        ((SimpleAction) actions.lookup_action (ACTION_PLAY)).set_state (false);
-        debug ("playback paused");
     }
 
     public virtual void play_media (bool inhibit_notifications = false) {
