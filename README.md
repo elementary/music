@@ -4,7 +4,7 @@
 ## Building, Testing, and Installation
 
 You'll need the following dependencies:
-* cmake
+* meson
 * libaccounts-glib-dev
 * libclutter-gtk-1.0-dev
 * libdbus-glib-1-dev
@@ -26,17 +26,15 @@ You'll need the following dependencies:
 * libzeitgeist-2.0-dev
 * valac
 
-It's recommended to create a clean build environment
+It's recommended to create a clean build environment. Run `meson` to configure the build environment and then `ninja` to build
 
-    mkdir build
-    cd build/
+    meson build
+    cd build
+    ninja
 
-Run `cmake` to configure the build environment and then `make` to build
+To install, use `ninja install`, then execute with `io.elementary.music`
 
-    cmake -DCMAKE_INSTALL_PREFIX=/usr ..
-    make
-
-To install, use `make install`, then execute with `io.elementary.music`
-
-    sudo make install
+    sudo ninja install
     io.elementary.music
+
+You can run tests with `ninja test`, and reset the build environment with `ninja clean`.
