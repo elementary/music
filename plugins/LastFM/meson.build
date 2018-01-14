@@ -3,17 +3,17 @@ lastfm_dir = join_paths(plugindir, 'LastFM')
 lastfm_deps = [
   app_dep,
   dependency('json-glib-1.0'),
-  dependency('libsoup-2.4'),
   dependency('libaccounts-glib'),
-  dependency('libgsignon-glib')
+  dependency('libgsignon-glib'),
+  dependency('libsoup-2.4')
 ]
 
 lastfm_files = files(
-  'LastFM.vala',
   'Core.vala',
-  'Tag.vala',
+  'LastFM.vala',
   'SimilarMedia.vala',
-  'SimilarMediaView.vala'
+  'SimilarMediaView.vala',
+  'Tag.vala'
 )
 
 lastfm = library(

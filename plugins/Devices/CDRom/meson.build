@@ -1,14 +1,14 @@
 cdrom_dir = join_paths(plugindir, 'CDRom-Device')
 
 cdrom_files = files(
+  'CDDA.vala',
+  'CDPlayer.vala',
+  'CDRipper.vala',
   'CDRom.vala',
   'CDRomDevice.vala',
   'CDRomDeviceManager.vala',
-  'CDDA.vala',
-  'CDRipper.vala',
-  'CDPlayer.vala',
-  'CDViewWrapper.vala',
-  'CDView.vala'
+  'CDView.vala',
+  'CDViewWrapper.vala'
 )
 
 library(

@@ -2,12 +2,12 @@ ipod_dir = join_paths(plugindir, 'iPod-Device')
 
 ipod_files = files(
   'iPod.vala',
-  'iPodLibrary.vala',
   'iPodDevice.vala',
   'iPodDeviceManager.vala',
-  'iPodStreamer.vala',
+  'iPodLibrary.vala',
   'iPodMediaHelper.vala',
-  'iPodPlaylistHelper.vala'
+  'iPodPlaylistHelper.vala',
+  'iPodStreamer.vala'
 )
 
 library(
