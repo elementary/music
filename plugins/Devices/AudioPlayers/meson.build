@@ -15,7 +15,4 @@ library(
   install_dir: audioplayer_dir
 )
 
-install_data(
-  'audioplayer-device.plugin',
-  install_dir: audioplayer_dir
-)
+install_data('audioplayer-device.plugin', install_dir: audioplayer_dir)

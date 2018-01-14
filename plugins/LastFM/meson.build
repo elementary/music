@@ -23,12 +23,6 @@ lastfm = library(
   install_dir: lastfm_dir
 )
 
-install_data(
-  'lastfm.plugin',
-  install_dir: lastfm_dir
-)
+install_data('lastfm.plugin', install_dir: lastfm_dir)
 
-install_data(
-  'noise-lastfm.application',
-  install_dir: join_paths(datadir, 'accounts', 'applications')
-)
+install_data('noise-lastfm.application', install_dir: join_paths(datadir, 'accounts', 'applications'))

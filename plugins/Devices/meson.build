@@ -1,1 +1,2 @@
 subdir('AudioPlayers')
+subdir('CDRom')
