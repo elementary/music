@@ -38,3 +38,13 @@ To install, use `ninja install`, then execute with `io.elementary.music`
     io.elementary.music
 
 You can run tests with `ninja test`, and reset the build environment with `ninja clean`.
+
+You can use these options to configure your build:
+* `build-plugins`: `true` to build plugins or `false` to ony compile the core and the application
+* `plugins`: any of `lastfm`, `audio-device`, `cdrom` and `ipod`, separated by commas
+* `prefix`: the installation prefix
+
+To define their values, use `meson configure`
+
+    # For instance, if you want to disable plugins:
+    meson configure -Dbuild-plugins=false
