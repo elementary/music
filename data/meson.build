@@ -1,8 +1,16 @@
+gnome = import('gnome')
+icon_res = gnome.compile_resources(
+  app_name + '-icon-resources',
+  files('icons/icons.gresource.xml'),
+  source_dir: [ join_paths(meson.source_root(), 'data', 'icons') ]
+)
+
 install_data(
     meson.project_name() + '.gschema.xml',
     install_dir: join_paths(get_option('datadir'), 'glib-2.0', 'schemas')
 )
 
+i18n = import('i18n')
 i18n.merge_file(
     'desktop',
     input: meson.project_name() + '.desktop.in',

@@ -17,6 +17,7 @@ add_project_arguments(['--vapidir', join_paths(meson.current_source_dir(), 'plug
 add_global_arguments('-DGETTEXT_PACKAGE="io.elementary.music"', language:'c')
 
 subdir('core')
+subdir('data')
 
 app_deps = core_deps + [
   core,
@@ -92,7 +93,7 @@ app_files = files(
 
 app = executable (
     app_name,
-    app_files,
+    [ app_files, icon_res ],
     dependencies: app_deps,
     install: true
 )
@@ -107,5 +108,4 @@ if get_option('build-plugins')
 endif
 
 subdir('po')
-subdir('data')
 subdir('images')
