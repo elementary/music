@@ -20,8 +20,7 @@ lastfm = library(
   app_files + lastfm_files,
   dependencies: lastfm_deps,
   install: true,
-  install_dir: lastfm_dir,
-  include_directories: include_directories('../../src')
+  install_dir: lastfm_dir
 )
 
 install_data(
