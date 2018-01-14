@@ -129,7 +129,7 @@ public class Noise.MusicViewWrapper : ViewWrapper {
 
     private void welcome_screen_activated (int index) {
         if (index == 0) {
-            App.main_window.fileImportMusicClick ();
+            App.main_window.action_import ();
         } else if (index == 1) {
             if (!library.doing_file_operations ()) {
                 var file_chooser = new Gtk.FileChooserDialog (_("Select Music Folder"), App.main_window,
