@@ -1,2 +1,5 @@
 subdir('Devices')
-subdir('LastFM')
+
+if plugins.contains('lastfm')
+  subdir('LastFM')
+endif

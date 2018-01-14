@@ -93,13 +93,17 @@ app_files = files(
 executable (
     'io.elementary.music',
     app_files,
-    dependencies : app_deps,
+    dependencies: app_deps,
     install: true
 )
 
 meson.add_install_script('meson/post_install.py')
 
-subdir('plugins')
+if get_option('build-plugins')
+  plugins = get_option('plugins')
+  subdir('plugins')
+endif
+
 subdir('po')
 subdir('data')
 subdir('images')

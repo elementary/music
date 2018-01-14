@@ -1,0 +1,7 @@
+option('build-plugins', type: 'boolean', value: true)
+option(
+  'plugins',
+  type: 'array',
+  choices: [ 'lastfm', 'audioplayer', 'cdrom', 'ipod' ],
+  value: [ 'lastfm', 'audioplayer', 'cdrom', 'ipod' ]
+)
