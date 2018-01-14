@@ -91,7 +91,7 @@ app_files = files(
 )
 
 executable (
-    'io.elementary.music',
+    app_name,
     app_files,
     dependencies: app_deps,
     install: true

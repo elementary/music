@@ -79,3 +79,5 @@ pkgconfig.generate(
   filebase: core_name,
   description: 'Library to write plugins for elementary Music'
 )
+
+subdir('Tests')
