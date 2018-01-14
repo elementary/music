@@ -9,8 +9,8 @@ audioplayer_files = files(
 
 library(
   'audioplayer-device',
-  app_files + audioplayer_files,
-  dependencies: app_deps,
+  audioplayer_files,
+  dependencies: [ app_dep ],
   install: true,
   install_dir: audioplayer_dir
 )

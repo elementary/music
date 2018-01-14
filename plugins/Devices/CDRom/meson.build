@@ -13,8 +13,8 @@ cdrom_files = files(
 
 library(
   'cdrom-device',
-  app_files + cdrom_files,
-  dependencies: app_deps,
+  cdrom_files,
+  dependencies: [ app_dep ],
   install: true,
   install_dir: cdrom_dir
 )

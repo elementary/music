@@ -12,8 +12,11 @@ ipod_files = files(
 
 library(
   'ipod-device',
-  app_files + ipod_files,
-  dependencies: app_deps + [ dependency('libgpod-1.0') ],
+  ipod_files,
+  dependencies: [
+    app_dep,
+    dependency('libgpod-1.0')
+  ],
   install: true,
   install_dir: ipod_dir
 )

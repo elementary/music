@@ -1,6 +1,7 @@
 lastfm_dir = join_paths(plugindir, 'LastFM')
 
-lastfm_deps = app_deps + [
+lastfm_deps = [
+  app_dep,
   dependency('json-glib-1.0'),
   dependency('libsoup-2.4'),
   dependency('libaccounts-glib'),
@@ -17,7 +18,7 @@ lastfm_files = files(
 
 lastfm = library(
   'lastfm',
-  app_files + lastfm_files,
+  lastfm_files,
   dependencies: lastfm_deps,
   install: true,
   install_dir: lastfm_dir

@@ -90,12 +90,14 @@ app_files = files(
   'src/Dialogs/SyncWarningDialog.vala'
 )
 
-executable (
+app = executable (
     app_name,
     app_files,
     dependencies: app_deps,
     install: true
 )
+
+app_dep = declare_dependency(dependencies: app_deps, include_directories: include_directories('.'), sources: app_files)
 
 meson.add_install_script('meson/post_install.py')
 
