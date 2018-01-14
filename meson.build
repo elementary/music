@@ -13,12 +13,13 @@ plugindir = join_paths(prefix, get_option('libdir'), short_name, 'plugins')
 icondir = join_paths(datadir, short_name, 'icons')
 
 add_project_arguments(['--vapidir', join_paths(meson.current_source_dir(), 'vapi')], language: 'vala')
+add_project_arguments(['--vapidir', join_paths(meson.current_source_dir(), 'plugins', 'Devices', 'iPod', 'vapi')], language: 'vala')
 add_global_arguments('-DGETTEXT_PACKAGE="io.elementary.music"', language:'c')
 
 subdir('core')
 
 app_deps = core_deps + [
-  core, 
+  core,
   dependency('zeitgeist-2.0'),
   dependency('libgda-5.0'),
   dependency('taglib_c'),
