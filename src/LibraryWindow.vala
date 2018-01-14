@@ -66,7 +66,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public const string ACTION_PLAY = "action_play";
     public const string ACTION_PLAY_NEXT = "action_play_next";
     public const string ACTION_PLAY_PREVIOUS = "action_play_previous";
-    public const string ACTION_SEARCH = "action_search";
 
     private const ActionEntry[] action_entries = {
         { ACTION_IMPORT, action_import },
