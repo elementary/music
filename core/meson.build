@@ -10,7 +10,7 @@ config.set('version', version)
 config.set('version_info', version_info)
 config.set('icondir', icondir)
 config.set('plugindir', plugindir)
-configure_file(input : 'Build.vala', output: 'Build.vala', configuration: config)
+build_config = configure_file(input : 'Build.vala', output: 'Build.vala', configuration: config)
 
 core_files = files(
   'PluginManager.vala',
@@ -41,7 +41,7 @@ core_files = files(
   'GStreamer/Equalizer.vala',
   'GStreamer/Playback.vala',
   'Widgets/AlbumImage.vala',
-  'Build.vala'
+  join_paths(meson.build_root(), '@0@'.format(build_config)),
 )
 
 core_deps = [
