@@ -35,6 +35,14 @@ public class Noise.HeaderBar : Gtk.HeaderBar {
         previous_button.action_name = LibraryWindow.ACTION_PREFIX + LibraryWindow.ACTION_PLAY_PREVIOUS;
         previous_button.tooltip_text = _("Previous");
 
+        var play_button = new Gtk.Button.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+        play_button.action_name = LibraryWindow.ACTION_PREFIX + LibraryWindow.ACTION_PLAY;
+        play_button.tooltip_text = _("Play");
+
+        var next_button = new Gtk.Button.from_icon_name ("media-skip-forward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+        next_button.action_name = LibraryWindow.ACTION_PREFIX + LibraryWindow.ACTION_PLAY_NEXT;
+        next_button.tooltip_text = _("Next");
+
         var import_menuitem = new Gtk.MenuItem.with_label (_("Import to Library…"));
         import_menuitem.action_name = LibraryWindow.ACTION_PREFIX + LibraryWindow.ACTION_IMPORT;
 
@@ -55,7 +63,21 @@ public class Noise.HeaderBar : Gtk.HeaderBar {
         show_close_button = true;
         title = ((Noise.App) GLib.Application.get_default ()).program_name;
         pack_start (previous_button);
+        pack_start (play_button);
+        pack_start (next_button);
         pack_end (menu_button);
+
+        App.main_window.actions.action_state_changed.connect ((name, new_state) => {
+            if (name == LibraryWindow.ACTION_PLAY) {
+                if (new_state.get_boolean () == false) {
+                    play_button.image = new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+                    play_button.tooltip_text = _("Play");
+                } else {
+                    play_button.image = new Gtk.Image.from_icon_name ("media-playback-pause-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+                    play_button.tooltip_text = _("Pause");
+                }
+            }
+        });
     }
 
     private void open_preferences () {

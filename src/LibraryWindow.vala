@@ -48,7 +48,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private bool media_half_played_sended { get; set; default = false; }
     private bool search_field_has_focus { get; set; default = true; }
 
-    private Gtk.Button play_button;
     private Gtk.Paned main_hpaned;
     private Cancellable notification_cancellable;
     private Settings.Main main_settings;
@@ -63,11 +62,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     public const string ACTION_PREFIX = "win.";
     public const string ACTION_IMPORT = "action_import";
+    public const string ACTION_PLAY = "action_play";
     public const string ACTION_PLAY_NEXT = "action_play_next";
     public const string ACTION_PLAY_PREVIOUS = "action_play_previous";
 
     private const ActionEntry[] action_entries = {
         { ACTION_IMPORT, action_import },
+        { ACTION_PLAY, action_play, null, "false" },
         { ACTION_PLAY_NEXT, action_play_next },
         { ACTION_PLAY_PREVIOUS, action_play_previous }
     };
@@ -98,8 +99,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         App.player.player.error_occured.connect (error_occured);
         App.player.media_played.connect_after (media_played);
         App.player.playback_stopped.connect (playback_stopped);
-        App.player.playback_started.connect (playback_started);
-        App.player.playback_paused.connect (playback_paused);
         App.player.changing_player.connect (() => {
             App.player.player.end_of_stream.disconnect (end_of_stream);
             App.player.player.current_position_update.disconnect (current_position_update);
@@ -212,13 +211,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     private inline void build_main_widgets () {
-        play_button = new Gtk.Button.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-        play_button.tooltip_text = _("Play");
-
-        var next_button = new Gtk.Button.from_icon_name ("media-skip-forward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-        next_button.action_name = ACTION_PREFIX + ACTION_PLAY_NEXT;
-        next_button.tooltip_text = _("Next");
-
         search_entry = new Gtk.SearchEntry ();
         search_entry.valign = Gtk.Align.CENTER;
         search_entry.placeholder_text = _("Search Music");
@@ -233,8 +225,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         top_display.margin_end = 30;
 
         var headerbar = new Noise.HeaderBar ();
-        headerbar.pack_start (play_button);
-        headerbar.pack_start (next_button);
         headerbar.pack_start (view_selector);
         headerbar.pack_end (search_entry);
         headerbar.set_custom_title (top_display);
@@ -474,8 +464,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             show_playlist_view (library_manager.p_music);
         }
 
-        play_button.clicked.connect (() => {play_media ();});
-
         search_entry.activate.connect (search_entry_activate);
         search_entry.search_changed.connect (() => {
             if (search_entry.text_length != 1) {
@@ -622,9 +610,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         bool media_active = App.player.current_media != null;
         bool media_available = App.player.get_current_media_list ().size > 0;
 
-        play_button.set_sensitive (media_active || media_available);
-
         ((SimpleAction) actions.lookup_action (ACTION_IMPORT)).set_enabled (!doing_ops && folder_set);
+        ((SimpleAction) actions.lookup_action (ACTION_PLAY)).set_enabled (media_active || media_available);
         ((SimpleAction) actions.lookup_action (ACTION_PLAY_NEXT)).set_enabled (media_active || media_available);
         ((SimpleAction) actions.lookup_action (ACTION_PLAY_PREVIOUS)).set_enabled (media_active || media_available);
 
@@ -632,8 +619,12 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         source_list_view.change_playlist_category_visibility (have_media);
         statusbar.playlist_menubutton_sensitive = folder_set && have_media;
 
-        if (!media_active || have_media && !App.player.playing)
-            play_button.set_image (new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
+        if (!media_active || have_media && !App.player.playing) {
+            ((SimpleAction) actions.lookup_action (ACTION_PLAY)).set_state (false);
+        } else {
+            ((SimpleAction) actions.lookup_action (ACTION_PLAY)).set_state (true);
+        }
+
     }
 
     /**
@@ -886,7 +877,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 
     public virtual void playback_stopped (int64 was_playing) {
-        play_button.set_image (new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
+        ((SimpleAction) actions.lookup_action (ACTION_PLAY)).set_state (false);
         //reset some booleans
         media_considered_previewed = false;
         media_considered_played = false;
@@ -895,18 +886,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         update_sensitivities.begin ();
 
         debug ("playback stopped");
-    }
-
-    public virtual void playback_started () {
-        play_button.set_image (new Gtk.Image.from_icon_name ("media-playback-pause-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
-        play_button.set_tooltip_text (_("Pause"));
-        debug ("playback started");
-    }
-
-    public virtual void playback_paused () {
-        play_button.set_image (new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
-        play_button.set_tooltip_text (_("Play"));
-        debug ("playback paused");
     }
 
     public virtual void play_media (bool inhibit_notifications = false) {
@@ -996,6 +975,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         } else {
             debug("Can't add to library.. already doing file operations\n");
         }
+    }
+
+    private void action_play () {
+        play_media ();
     }
 
     private void action_play_next () {
