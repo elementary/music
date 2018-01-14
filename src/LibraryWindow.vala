@@ -48,7 +48,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private bool media_half_played_sended { get; set; default = false; }
     private bool search_field_has_focus { get; set; default = true; }
 
-    private Gtk.Button play_button;
     private Gtk.Paned main_hpaned;
     private Cancellable notification_cancellable;
     private PreferencesWindow? preferences = null;
@@ -64,12 +63,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     public const string ACTION_PREFIX = "win.";
     public const string ACTION_IMPORT = "action_import";
+    public const string ACTION_PLAY = "action_play";
     public const string ACTION_PLAY_NEXT = "action_play_next";
     public const string ACTION_PLAY_PREVIOUS = "action_play_previous";
     public const string ACTION_SEARCH = "action_search";
 
     private const ActionEntry[] action_entries = {
         { ACTION_IMPORT, action_import },
+        { ACTION_PLAY, action_play, null, "false" },
         { ACTION_PLAY_NEXT, action_play_next },
         { ACTION_PLAY_PREVIOUS, action_play_previous }
     };
@@ -234,7 +235,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         previous_button.action_name = ACTION_PREFIX + ACTION_PLAY_PREVIOUS;
         previous_button.tooltip_text = _("Previous");
 
-        play_button = new Gtk.Button.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+        var play_button = new Gtk.Button.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+        play_button.action_name = ACTION_PREFIX + ACTION_PLAY;
         play_button.tooltip_text = _("Play");
 
         var next_button = new Gtk.Button.from_icon_name ("media-skip-forward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
@@ -285,6 +287,18 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         add (main_hpaned);
         set_titlebar (headerbar);
+
+        actions.action_state_changed.connect ((name, new_state) => {
+            if (name == ACTION_PLAY) {
+                if (new_state.get_boolean () == false) {
+                    play_button.image = new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+                    play_button.tooltip_text = _("Play");
+                } else {
+                    play_button.image = new Gtk.Image.from_icon_name ("media-playback-pause-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+                    play_button.tooltip_text = _("Pause");
+                }
+            }
+        });
 
         connect_to_sourcelist_signals ();
     }
@@ -500,8 +514,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             show_playlist_view (library_manager.p_music);
         }
 
-        play_button.clicked.connect (() => {play_media ();});
-
         search_entry.activate.connect (search_entry_activate);
         search_entry.search_changed.connect (() => {
             if (search_entry.text_length != 1) {
@@ -648,9 +660,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         bool media_active = App.player.current_media != null;
         bool media_available = App.player.get_current_media_list ().size > 0;
 
-        play_button.set_sensitive (media_active || media_available);
-
         ((SimpleAction) actions.lookup_action (ACTION_IMPORT)).set_enabled (!doing_ops && folder_set);
+        ((SimpleAction) actions.lookup_action (ACTION_PLAY)).set_enabled (media_active || media_available);
         ((SimpleAction) actions.lookup_action (ACTION_PLAY_NEXT)).set_enabled (media_active || media_available);
         ((SimpleAction) actions.lookup_action (ACTION_PLAY_PREVIOUS)).set_enabled (media_active || media_available);
 
@@ -658,8 +669,12 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         source_list_view.change_playlist_category_visibility (have_media);
         statusbar.playlist_menubutton_sensitive = folder_set && have_media;
 
-        if (!media_active || have_media && !App.player.playing)
-            play_button.set_image (new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
+        if (!media_active || have_media && !App.player.playing) {
+            ((SimpleAction) actions.lookup_action (ACTION_PLAY)).set_state (false);
+        } else {
+            ((SimpleAction) actions.lookup_action (ACTION_PLAY)).set_state (true);
+        }
+
     }
 
     /**
@@ -912,7 +927,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 
     public virtual void playback_stopped (int64 was_playing) {
-        play_button.set_image (new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
+        ((SimpleAction) actions.lookup_action (ACTION_PLAY)).set_state (false);
         //reset some booleans
         media_considered_previewed = false;
         media_considered_played = false;
@@ -924,14 +939,12 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     public virtual void playback_started () {
-        play_button.set_image (new Gtk.Image.from_icon_name ("media-playback-pause-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
-        play_button.set_tooltip_text (_("Pause"));
+        ((SimpleAction) actions.lookup_action (ACTION_PLAY)).set_state (true);
         debug ("playback started");
     }
 
     public virtual void playback_paused () {
-        play_button.set_image (new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR));
-        play_button.set_tooltip_text (_("Play"));
+        ((SimpleAction) actions.lookup_action (ACTION_PLAY)).set_state (false);
         debug ("playback paused");
     }
 
@@ -1022,6 +1035,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         } else {
             debug("Can't add to library.. already doing file operations\n");
         }
+    }
+
+    private void action_play () {
+        play_media ();
     }
 
     private void action_play_next () {
