@@ -1,6 +1,8 @@
 # Music
 [![Translation status](https://l10n.elementary.io/widgets/music/-/svg-badge.svg)](https://l10n.elementary.io/projects/music/?utm_source=widget)
 
+![Screenshot](data/screenshot.png?raw=true)
+
 ## Building, Testing, and Installation
 
 You'll need the following dependencies:
