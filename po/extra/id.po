@@ -2,21 +2,21 @@
 # Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
 # This file is distributed under the same license as the beat-box package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2016-01-04 18:55+0000\n"
-"Last-Translator: Corentin Noël <corentin@elementaryos.org>\n"
+"PO-Revision-Date: 2017-06-20 13:59+0700\n"
+"Last-Translator: Kukuh Syafaat <syafaatkukuh@gmail.com>\n"
 "Language-Team: Indonesian <id@li.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 1.8.11\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
-"X-Generator: Launchpad (build 18330)\n"
 
 msgid "Music"
 msgstr "Musik"
@@ -31,18 +31,20 @@ msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 msgstr "Noise;Audio;Player;MP3;IPod;Player;CD;Songs;Lagu;Musik;"
 
 msgid "About Music"
-msgstr ""
+msgstr "Tentang Musik"
 
 msgid "Noise"
-msgstr ""
+msgstr "Bising"
 
 msgid "About Noise"
-msgstr ""
+msgstr "Tentang Bising"
 
 msgid "The official elementary music player"
-msgstr ""
+msgstr "Pemutar musik resmi elementary"
 
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices, CDs, and album art."
 msgstr ""
+"Musik adalah pemutar audio yang cepat dan indah dengan fokus pada musik dan "
+"pustaka. Ini menangani perangkat eksternal, CD, dan kesenian album."
