@@ -39,6 +39,9 @@ set (CORE_SOURCE
   Utils/PlaylistsUtils.vala
   Utils/Search.vala
   Utils/Icon.vala
+  Views/Category.vala
+  Views/View.vala
+  Views/ViewManager.vala
   GStreamer/Pipeline.vala
   GStreamer/Equalizer.vala
   GStreamer/Playback.vala
@@ -86,4 +89,3 @@ if (BUILD_SHARED_LIBS)
 endif ()
 
 add_subdirectory (tests)
-
