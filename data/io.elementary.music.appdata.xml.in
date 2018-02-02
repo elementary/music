@@ -75,4 +75,9 @@
     <url type="help">https://elementaryos.stackexchange.com/questions/tagged/noise</url>
     <url type="translate">https://l10n.elementary.io/projects/music</url>
     <update_contact>contact_at_elementary.io</update_contact>
+    <screenshots>
+        <screenshot type="default">
+        <image>https://raw.githubusercontent.com/elementary/music/master/data/screenshot.png</image>
+        </screenshot>
+    </screenshots>
 </component>
