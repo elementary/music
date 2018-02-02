@@ -121,7 +121,10 @@ add_subdirectory (po)
 add_subdirectory (data)
 add_subdirectory (images)
 
-
 # Tests
-
-add_test (core core/tests/${CORE_LIBRARY_NAME}_tests)
+include (CTest)
+if (BUILD_TESTING)
+    add_test (core core/tests/${CORE_LIBRARY_NAME}_tests)
+    add_test (NAME validate-desktop-file COMMAND desktop-file-validate ${CMAKE_CURRENT_BINARY_DIR}/data/${CMAKE_PROJECT_NAME}.desktop)
+    add_test (NAME validate-appdata COMMAND appstreamcli validate ${CMAKE_CURRENT_BINARY_DIR}/data/${CMAKE_PROJECT_NAME}.appdata.xml)
+endif ()
