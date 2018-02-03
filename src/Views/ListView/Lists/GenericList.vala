@@ -286,9 +286,6 @@ public abstract class Noise.GenericList : FastView {
         // }
 
         var queue = start_at (to_set, get_visible_table ());
-        foreach (var q in queue) {
-            debug ("QUEING: %s", q.title);
-        }
         App.player.clear_queue ();
         App.player.queue_medias (queue);
         App.player.current_index = 0;
