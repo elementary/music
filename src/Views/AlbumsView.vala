@@ -1,7 +1,20 @@
 public class Noise.AlbumsView : View {
     private Gtk.Paned hpaned;
     private FastGrid icon_view;
-    private AlbumListGrid popup_list_view;
+
+    private AlbumListGrid? _popup = null;
+    private AlbumListGrid popup_list_view {
+        get {
+            if (_popup == null) {
+                _popup = new AlbumListGrid ();
+                hpaned.pack2 (_popup, false, false);
+            }
+            return _popup;
+        }
+        set {
+            _popup = value;
+        }
+    }
 
     public Gee.Collection<Media> media_coll { get; construct set; }
 
@@ -24,11 +37,8 @@ public class Noise.AlbumsView : View {
         scroll.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
         scroll.add (icon_view);
 
-        popup_list_view = new AlbumListGrid ();
-
         hpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
         hpaned.pack1 (scroll, true, false);
-        hpaned.pack2 (popup_list_view, false, false);
 
         add (hpaned);
         show_all ();
