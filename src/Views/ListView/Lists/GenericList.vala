@@ -148,6 +148,7 @@ public abstract class Noise.GenericList : FastView {
 
         // resort the new songs in. this will also call do_search
         resort ();
+        queue_draw ();
     }
 
     public abstract void update_sensitivities ();

@@ -112,7 +112,7 @@ public class Noise.FastView : Gtk.TreeView {
     }
 
     public void do_search (string? search = null) {
-        if (search_func == null || research_needed == false) {
+        if (search_func == null/* || research_needed == false*/) {
             return;
         }
 

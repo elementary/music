@@ -14,10 +14,10 @@ public class Noise.PlaylistView : View {
 
         list_view = new MusicListView ();
         list_view.set_compare_func (compare_func);
-        foreach (var m in playlist.medias) {
-            debug ("orig pl : %s", m.title);
-        }
         list_view.set_media (playlist.medias);
+        list_view.set_search_func ((search, table, showing) => {
+            showing.add_all (table);
+        });
         add (list_view);
         show_all ();
 
@@ -32,9 +32,6 @@ public class Noise.PlaylistView : View {
     }
 
     private void on_playlist_media_added (Gee.Collection<Media> to_add) {
-        foreach (var m in playlist.medias) {
-            debug ("pl : %s", m.title);
-        }
         list_view.set_media (playlist.medias);
     }
 

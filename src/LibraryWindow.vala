@@ -602,20 +602,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             yield show_notification_from_media_async (App.player.current_media);
     }
 
-
-    /**
-     * Sets the given view as the active item
-     */
-    private void set_active_view (ViewWrapper view) {
-        if (!initialization_finished)
-            return;
-
-        view_stack.visible_child = view;
-
-        if (view is ViewWrapper)
-            (view as ViewWrapper).set_as_current_view ();
-    }
-
     private void load_playlists () {
         debug ("Loading playlists");
 

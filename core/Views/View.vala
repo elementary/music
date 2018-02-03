@@ -1,4 +1,4 @@
-public abstract class Noise.View : Gtk.Bin {
+public abstract class Noise.View : Gtk.ScrolledWindow {
     public string title { get; set; default = ""; }
     public string id { get; construct set; default = ""; }
     public GLib.Icon icon { get; set; }
