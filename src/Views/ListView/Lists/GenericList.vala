@@ -30,52 +30,26 @@
 public abstract class Noise.GenericList : FastView {
     public signal void import_requested (Gee.Collection<Media> to_import);
 
-    public Playlist? playlist { get; set; default = null; }
-    public ViewWrapper.Hint hint {
-        get {
-            return tvs.hint;
-        }
-        set {
-            tvs.hint = value;
-        }
-    }
-
     //for header column chooser
     protected Gtk.Menu column_chooser_menu;
     private Gtk.MenuItem autosize_menu_item;
 
-    private ViewWrapper _parent_wrapper;
-    public ViewWrapper parent_wrapper {
-        get {
-            return _parent_wrapper;
-        }
-        construct set {
-            _parent_wrapper = value;
-            playlist = value.playlist;
-        }
-    }
-
-    public TreeViewSetup tvs { get; construct set; }
     protected bool is_current_list;
 
     protected bool dragging;
 
     protected CellDataFunctionHelper cell_data_helper;
 
-    public GenericList (ViewWrapper view_wrapper, TreeViewSetup tvs) {
-        Object (parent_wrapper: view_wrapper, tvs: tvs);
-    }
-
     construct {
         cell_data_helper = new CellDataFunctionHelper (this);
 
         // Set sort data from saved session
-        set_sort_column_id (tvs.sort_column_id, tvs.sort_direction);
+        // set_sort_column_id (tvs.sort_column_id, tvs.sort_direction);
 
         enable_search = false; // we don't want the built-in search
 
         set_headers_clickable (true);
-        set_headers_visible (hint != ViewWrapper.Hint.ALBUM_LIST);
+        set_headers_visible (true /*hint != ViewWrapper.Hint.ALBUM_LIST*/);
         set_fixed_height_mode (true);
         set_reorderable (false);
 
@@ -103,7 +77,7 @@ public abstract class Noise.GenericList : FastView {
         drag_data_get.connect (on_drag_data_get);
         drag_end.connect (on_drag_end);
 
-        parent_wrapper.library.media_updated.connect (media_updated);
+        // parent_wrapper.library.media_updated.connect (media_updated);
 
         App.player.queue_cleared.connect (current_cleared);
         App.player.media_played.connect (media_played);
@@ -115,8 +89,8 @@ public abstract class Noise.GenericList : FastView {
         if (type == ListColumn.TITLE || type == ListColumn.ICON)
             return;
 
-        if (hint == ViewWrapper.Hint.MUSIC && type == ListColumn.NUMBER)
-            return;
+        //if (hint == ViewWrapper.Hint.MUSIC && type == ListColumn.NUMBER)
+        //    return;
 
         if (column_chooser_menu == null) {
             column_chooser_menu = new Gtk.Menu ();
@@ -211,8 +185,19 @@ public abstract class Noise.GenericList : FastView {
     protected abstract void add_column (Gtk.TreeViewColumn column, ListColumn type);
 
     protected void add_columns () {
-        foreach (Gtk.TreeViewColumn tvc in tvs.get_columns ())
+        var cols = new Gtk.TreeViewColumn[] {
+            TreeViewSetup.to_gtk_column (ListColumn.ICON),
+            TreeViewSetup.to_gtk_column (ListColumn.NUMBER),
+            TreeViewSetup.to_gtk_column (ListColumn.TRACK),
+            TreeViewSetup.to_gtk_column (ListColumn.TITLE),
+            TreeViewSetup.to_gtk_column (ListColumn.LENGTH),
+            TreeViewSetup.to_gtk_column (ListColumn.ARTIST),
+            TreeViewSetup.to_gtk_column (ListColumn.ALBUM),
+            TreeViewSetup.to_gtk_column (ListColumn.GENRE)
+        };
+        foreach (var tvc in cols) {
             add_column (tvc, TreeViewSetup.get_column_type (tvc));
+        }
     }
 
     public Media? get_media_from_index (int index) {
@@ -222,15 +207,15 @@ public abstract class Noise.GenericList : FastView {
     // When the user clicks over a cell in the rating column, that cell renderer
     // emits the rating_changed signal. We need to update that rating...
     protected void on_rating_cell_changed (int new_rating, Gtk.Widget widget, string path) {
-        var m = get_media_from_index (int.parse (path));
+        // var m = get_media_from_index (int.parse (path));
 
-        return_if_fail (m != null);
+        // return_if_fail (m != null);
 
-        m.rating = new_rating;
+        // m.rating = new_rating;
 
-        var to_update = new Gee.TreeSet<Media> ();
-        to_update.add (m);
-        parent_wrapper.library.update_medias (to_update, true, true);
+        // var to_update = new Gee.TreeSet<Media> ();
+        // to_update.add (m);
+        // parent_wrapper.library.update_medias (to_update, true, true);
     }
 
     protected bool view_header_click (Gdk.EventButton e, bool is_selector_col) {
@@ -283,21 +268,21 @@ public abstract class Noise.GenericList : FastView {
         Media to_set = m == null ? App.player.current_media : m;
 
         is_current_list = true;
-        var main_settings = Settings.Main.get_default ();
+        // var main_settings = Settings.Main.get_default ();
 
-        if (!main_settings.privacy_mode_enabled ()) {
-            if (playlist == null || playlist == ((Noise.LocalLibrary)libraries_manager.local_library).p_music || parent_wrapper.library != libraries_manager.local_library) {
-                main_settings.last_playlist_playing = "";
-            } else if (playlist is SmartPlaylist) {
-                main_settings.last_playlist_playing = "s%lld".printf (playlist.rowid);
-            } else {
-                if (((StaticPlaylist)playlist).read_only == false) {
-                    main_settings.last_playlist_playing = "p%lld".printf (playlist.rowid);
-                } else {
-                    main_settings.last_playlist_playing = "";
-                }
-            }
-        }
+        // if (!main_settings.privacy_mode_enabled ()) {
+        //     if (playlist == null || playlist == ((Noise.LocalLibrary)libraries_manager.local_library).p_music || parent_wrapper.library != libraries_manager.local_library) {
+        //         main_settings.last_playlist_playing = "";
+        //     } else if (playlist is SmartPlaylist) {
+        //         main_settings.last_playlist_playing = "s%lld".printf (playlist.rowid);
+        //     } else {
+        //         if (((StaticPlaylist)playlist).read_only == false) {
+        //             main_settings.last_playlist_playing = "p%lld".printf (playlist.rowid);
+        //         } else {
+        //             main_settings.last_playlist_playing = "";
+        //         }
+        //     }
+        // }
 
         var queue = start_at (to_set, get_visible_table ());
         foreach (var q in queue) {
@@ -308,9 +293,9 @@ public abstract class Noise.GenericList : FastView {
         App.player.current_index = 0;
 
         // order the queue like this list
-        var queue_view_id = App.main_window.match_playlists[App.player.queue_playlist];
-        var view = (ViewWrapper) App.main_window.view_stack.get_child_by_name (queue_view_id.to_string ());
-        view.list_view.list_view.set_sort_column_id (tvs.sort_column_id, tvs.sort_direction);
+        // var queue_view_id = App.main_window.match_playlists[App.player.queue_playlist];
+        // var view = (ViewWrapper) App.main_window.view_stack.get_child_by_name (queue_view_id.to_string ());
+        // view.list_view.list_view.set_sort_column_id (tvs.sort_column_id, tvs.sort_direction);
 
         media_played.begin (App.player.current_media);
     }

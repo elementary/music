@@ -83,7 +83,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
 
     public ListView (ViewWrapper view_wrapper, TreeViewSetup tvs, bool add_browser = false) {
         Object (view_wrapper: view_wrapper,
-                list_view: new MusicListView (view_wrapper, tvs),
+                list_view: new MusicListView (),
                 column_browser: add_browser ? new MusicColumnBrowser (view_wrapper) : null);
     }
 
@@ -261,11 +261,11 @@ public class Noise.ListView : ContentView, Gtk.Box {
      */
 
     public ViewWrapper.Hint get_hint () {
-        return list_view.hint;
+        return ViewWrapper.Hint.NONE; // list_view.hint;
     }
 
     public Playlist get_playlist () {
-        return list_view.playlist;
+        return new StaticPlaylist (); // list_view.playlist;
     }
 
     public Gee.Collection<Media> get_media () {

@@ -90,18 +90,27 @@ public class Noise.ViewManager : Object {
             get_category (view.category);
             if (!(view in views)) {
                 views.add (view);
-                view_added (view);
-                view.removed.connect(() => {
-                    view_removed (view);
-                });
 
                 if (selected_view == null || select) {
                     selected_view = view;
                 }
+
+                view_added (view);
+                view.remove.connect(() => {
+                    view_removed (view);
+                });
             }
         } catch (Error err) {
             warning (@"Tried to register a new view ($(view.id)) but its category ($(view.category)) wasn't registered yet.");
         }
+    }
+
+    /**
+    * Remove a view.
+    */
+    public void remove_view (View view) {
+        views.remove (view);
+        view_removed (view);
     }
 
     /**

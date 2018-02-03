@@ -59,10 +59,6 @@ public class Noise.FastView : Gtk.TreeView {
 
     public signal void rows_reordered ();
 
-    public FastView (Gee.List<Type> types) {
-        Object (columns: types);
-    }
-
     construct {
         columns = new Gee.ArrayList<Type> ();
         foreach (var type in ListColumn.get_all ()) {

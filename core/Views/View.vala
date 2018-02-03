@@ -1,18 +1,14 @@
-public interface Noise.View : Gtk.Widget {
-    public abstract string title { get; protected set; }
-    public abstract string id { get; construct; }
-    public abstract Icon icon { get; protected set; }
-    public abstract string category { get; protected set; }
+public abstract class Noise.View : Gtk.Bin {
+    public string title { get; set; default = ""; }
+    public string id { get; construct set; default = ""; }
+    public GLib.Icon icon { get; set; }
+    public string category { get; set; default = "library"; }
 
-    public signal void removed ();
+    public signal void remove_view ();
 
-    public abstract void shown ();
+    public virtual void shown () {}
 
-    public abstract void hide ();
-
-    public void remove () {
-        removed ();
-    }
+    public virtual void hidden () {}
 
     public abstract bool filter (string search);
 }

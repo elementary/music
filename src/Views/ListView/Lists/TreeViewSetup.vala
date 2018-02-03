@@ -172,22 +172,26 @@ public class Noise.TreeViewSetup : Object {
      * columns_to_string() won't work and bad things could happen.
      */
     public Gtk.TreeViewColumn create_column (ListColumn type, bool visible = true) {
+        return TreeViewSetup.to_gtk_column (type, visible);
+    }
+
+    public static Gtk.TreeViewColumn to_gtk_column (ListColumn type, bool visible = true) {
         var column = new Gtk.TreeViewColumn ();
         set_column_type (column, type);
         column.title = type.to_string ();
         column.visible = visible;
-        if (type == sort_column_id) {
-            column.set_sort_order (sort_direction);
-        }
-
-        column.notify["visible"].connect (() => {
-            set_field ("columns", columns_to_string ());
-        });
-
-        column.clicked.connect (() => {
-            sort_direction = column.get_sort_order ();
-            sort_column_id = get_column_type (column);
-        });
+        // if (type == sort_column_id) {
+        //     column.set_sort_order (sort_direction);
+        // }
+        //
+        // column.notify["visible"].connect (() => {
+        //     set_field ("columns", columns_to_string ());
+        // });
+        //
+        // column.clicked.connect (() => {
+        //     sort_direction = column.get_sort_order ();
+        //     sort_column_id = get_column_type (column);
+        // });
         return column;
     }
 
