@@ -40,6 +40,7 @@ set (CORE_SOURCE
   Utils/Search.vala
   Utils/Icon.vala
   Views/Category.vala
+  Views/SwitchableView.vala
   Views/View.vala
   Views/ViewManager.vala
   GStreamer/Pipeline.vala

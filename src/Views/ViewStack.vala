@@ -31,14 +31,6 @@ public class Noise.ViewStack : Gtk.Stack {
 
     construct {
         expand = true;
-
-        this.notify["visible-child"].connect (() => {
-            if (visible_child == null) {
-                critical ("Cannot set view as current view");
-            } else {
-                update_visible ();
-            }
-        });
     }
 
     /**
@@ -60,15 +52,5 @@ public class Noise.ViewStack : Gtk.Stack {
     public void remove_view (Gtk.Widget view) {
         remove (view);
         view.destroy ();
-    }
-
-    private void update_visible () {
-        if (visible_child is ViewWrapper) {
-            ((ViewWrapper) visible_child).set_as_current_view ();
-        } else if (visible_child is Gtk.Grid) {
-            App.main_window.view_selector.selected = Noise.Widgets.ViewSelector.Mode.LIST;
-            App.main_window.view_selector.set_sensitive (false);
-            App.main_window.search_entry.set_sensitive (false);
-        }
     }
 }

@@ -148,12 +148,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
     }
 
-    private void change_view (Widgets.ViewSelector.Mode mode) {
-        if (view_selector.get_sensitive ()) {
-            view_selector.selected = mode;
-        }
-    }
-
     /** Returns true if the code parameter matches the keycode of the keyval parameter for
     * any keyboard group or level (in order to allow for non-QWERTY keyboards) **/
     protected bool match_keycode (int keyval, uint code) {
@@ -197,13 +191,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         } else if ((event.state & Gdk.ModifierType.CONTROL_MASK) != 0) {
             switch (event.keyval) {
                 case Gdk.Key.@1:
-                    change_view (Widgets.ViewSelector.Mode.GRID);
+                    // change_view (Widgets.ViewSelector.Mode.GRID);
                     break;
                 case Gdk.Key.@2:
-                    change_view (Widgets.ViewSelector.Mode.LIST);
+                    // change_view (Widgets.ViewSelector.Mode.LIST);
                     break;
                 case Gdk.Key.@3:
-                    change_view (Widgets.ViewSelector.Mode.COLUMN);
+                    // change_view (Widgets.ViewSelector.Mode.COLUMN);
                     break;
             }
 
@@ -473,11 +467,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         view_manager.add_category (new Category ("playlists", _("Playlists")));
 
         // Add Music Library View
-        var music_view = new PlaylistView (library_manager.p_music);
-        music_view.title = _("Music");
-        music_view.icon = new ThemedIcon ("library-music");
-        music_view.category = "library";
-        view_manager.add (music_view, true);
+        view_manager.add (new HomeView (), true);
     }
 
     public void build_ui () {
@@ -510,7 +500,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         load_playlists ();
         update_sensitivities_sync (); // we need to do this synchronously to avoid weird initial states
 
-        view_selector.selected = (Widgets.ViewSelector.Mode) saved_state_settings.get_int ("view-mode");
+        view_selector.mode_button.selected = saved_state_settings.get_int ("view-mode");
 
         library_manager.rescan_music_folder ();
         initialization_finished = true;
@@ -1072,7 +1062,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             main_settings.search_string = search_entry.text;
         }
 
-        saved_state_settings.set_int ("view-mode", view_selector.selected);
+        saved_state_settings.set_int ("view-mode", view_selector.mode_button.selected);
 
         if (is_maximized) {
             saved_state_settings.set_enum ("window-state", 1);

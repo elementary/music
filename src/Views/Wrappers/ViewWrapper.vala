@@ -139,7 +139,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         view_stack = new ViewStack ();
         add (view_stack);
 
-        App.main_window.view_selector.mode_changed.connect (view_selector_changed);
+        // App.main_window.view_selector.mode_changed.connect (view_selector_changed);
         library.search_finished.connect (search_field_changed);
     }
 
@@ -240,34 +240,34 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         // that it is not null because the column_browser is not guaranteed to
         // exist. This is done separately from below because of ViewSelector's
         // poor API.
-        App.main_window.view_selector.set_column_browser_toggle_active (list_view.column_browser != null
-                                                                       && list_view.column_browser.visible);
+        //App.main_window.view_selector.set_column_browser_toggle_active (list_view.column_browser != null
+        //                                                               && list_view.column_browser.visible);
 
         // select the right view in the view selector if it's one of the three views.
         // The order is important here. The sensitivity set above must be set before this,
         // as view_selector_changed() depends on that.
-        if (!App.main_window.view_selector.get_column_browser_toggle_active ()) {
-            if (App.main_window.view_selector.selected != (int)last_used_view && (int)last_used_view <= 1)
-                App.main_window.view_selector.selected = (Widgets.ViewSelector.Mode)last_used_view;
-        }
+        // if (!App.main_window.view_selector.get_column_browser_toggle_active ()) {
+        //     if (App.main_window.view_selector.selected != (int)last_used_view && (int)last_used_view <= 1)
+        //         App.main_window.view_selector.selected = (Widgets.ViewSelector.Mode)last_used_view;
+        // }
     }
 
     public void view_selector_changed () {
-        if (!App.main_window.initialization_finished || !App.main_window.view_selector.sensitive)
-            return;
+        // if (!App.main_window.initialization_finished || !App.main_window.view_selector.sensitive)
+        //     return;
 
-        if ((current_view == ViewType.ALERT && media_count < 1) ||
-        current_view == ViewType.WELCOME)
-            return;
+        // if ((current_view == ViewType.ALERT && media_count < 1) ||
+        // current_view == ViewType.WELCOME)
+        //     return;
 
-        debug ("view_selector_changed [%s]", hint.to_string());
+        // debug ("view_selector_changed [%s]", hint.to_string());
 
-        var selected_view = (ViewType) App.main_window.view_selector.selected;
+        // var selected_view = (ViewType) App.main_window.view_selector.selected;
 
-        if (is_current_wrapper) {
-            set_active_view (selected_view);
-        } else
-            last_used_view = selected_view;
+        // if (is_current_wrapper) {
+        //     set_active_view (selected_view);
+        // } else
+        //     last_used_view = selected_view;
     }
 
     public void play_first_media (bool? force=false) {
@@ -358,7 +358,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
     }
 
     protected virtual void select_proper_content_view () {
-        var new_view = (ViewType) App.main_window.view_selector.selected;
+        /* var new_view = (ViewType) App.main_window.view_selector.selected;
 
         const int N_VIEWS = 2; // list and grid views
         if (new_view < 0 || new_view > N_VIEWS - 1)
@@ -372,7 +372,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
             view_stack.visible_child = list_view;
             list_view.list_view.scroll_to_current_media (true);
         } else if (has_grid_view)
-            view_stack.visible_child = grid_view;
+            view_stack.visible_child = grid_view;*/
     }
 
     /**
