@@ -3,7 +3,7 @@ public class Noise.AlbumsView : View {
     private FastGrid icon_view;
     private AlbumListGrid popup_list_view;
 
-    public Gee.Collection<Media> media_coll { get; set; }
+    public Gee.Collection<Media> media_coll { get; construct set; }
 
     public AlbumsView (Gee.Collection<Media> media) {
         Object (media_coll: media);
@@ -32,6 +32,7 @@ public class Noise.AlbumsView : View {
 
         add (hpaned);
         show_all ();
+        refilter ();
 
         clear_objects ();
         reset_pixbufs ();
