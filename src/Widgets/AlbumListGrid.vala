@@ -28,17 +28,6 @@
  */
 
 public class Noise.AlbumListGrid : Gtk.Grid {
-    private ViewWrapper _view_wrapper;
-    public ViewWrapper view_wrapper {
-        get {
-            return _view_wrapper;
-        }
-        construct set {
-            // list_view.parent_wrapper = value;
-            _view_wrapper = value;
-        }
-    }
-
     private Album album;
     private Widgets.AlbumImage album_cover;
     private Gee.TreeSet<Media> media_list = new Gee.TreeSet<Media> ();
@@ -47,10 +36,6 @@ public class Noise.AlbumListGrid : Gtk.Grid {
     private Gtk.Label artist_label;
     private Gtk.Menu cover_action_menu;
     private Granite.Widgets.Rating rating;
-
-    public AlbumListGrid (ViewWrapper view_wrapper) {
-        Object (view_wrapper: view_wrapper);
-    }
 
     construct {
         album_cover = new Widgets.AlbumImage ();
@@ -161,7 +146,6 @@ public class Noise.AlbumListGrid : Gtk.Grid {
 
         // Set rating
         update_album_rating ();
-        view_wrapper.library.media_updated.connect (update_album_rating);
     }
 
     void update_album_cover () {
@@ -208,8 +192,6 @@ public class Noise.AlbumListGrid : Gtk.Grid {
             }
 
         }
-
-        view_wrapper.library.update_medias (updated, false, true);
     }
 
     private void view_search_func (string search, Gee.ArrayList<Media> table, Gee.ArrayList<Media> showing) {

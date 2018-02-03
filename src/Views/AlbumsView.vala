@@ -1,53 +1,15 @@
-// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
-/*-
- * Copyright (c) 2012-2017 elementary LLC. (https://elementary.io)
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * The Noise authors hereby grant permission for non-GPL compatible
- * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
- * you may extend this exception to your version of the code, but you are not
- * obligated to do so. If you do not wish to do so, delete this exception
- * statement from your version.
- *
- * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
- *              Victor Eduardo <victoreduardm@gmail.com>
- */
-
-public class Noise.GridView : ContentView, ViewTextOverlay {
+public class Noise.AlbumsView : View {
     private Gtk.Paned hpaned;
     private FastGrid icon_view;
+    private AlbumListGrid popup_list_view;
 
-    private static AlbumListGrid? _popup = null;
-    public AlbumListGrid popup_list_view {
-        get {
-            if (_popup == null) {
-                _popup = new AlbumListGrid ();
-                hpaned.pack2 (_popup, false, false);
-            }
+    public Gee.Collection<Media> media_coll { get; set; }
 
-            return _popup;
-        }
+    public AlbumsView (Gee.Collection<Media> media) {
+        Object (media_coll: media);
     }
 
-    public ViewWrapper parent_view_wrapper { get; protected set; }
-
-    public GridView (ViewWrapper view_wrapper) {
-        Object (parent_view_wrapper: view_wrapper);
-
+    construct {
         icon_view = new FastGrid ();
         icon_view.set_compare_func (compare_func);
         icon_view.set_columns (-1);
@@ -56,17 +18,20 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
         icon_view.item_activated.connect (on_item_activated);
         icon_view.set_search_func (search_func);
 
+        set_media (media_coll);
+
         var scroll = new Gtk.ScrolledWindow (null, null);
         scroll.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
         scroll.add (icon_view);
 
+        popup_list_view = new AlbumListGrid ();
+
         hpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
         hpaned.pack1 (scroll, true, false);
+        hpaned.pack2 (popup_list_view, false, false);
 
         add (hpaned);
         show_all ();
-
-        message = Markup.escape_text (_("No Albums Found."));
 
         clear_objects ();
         reset_pixbufs ();
@@ -78,14 +43,12 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
 
         setup_focus ();
 
-        parent_view_wrapper.library.search_finished.connect (() => {this.icon_view.research_needed = true;});
-
         Gtk.TargetEntry te = { "text/uri-list", Gtk.TargetFlags.SAME_APP, 0 };
         Gtk.drag_source_set (icon_view, Gdk.ModifierType.BUTTON1_MASK, { te }, Gdk.DragAction.COPY);
     }
 
     protected void set_research_needed (bool value) {
-        this.icon_view.research_needed = value;
+        icon_view.research_needed = value;
     }
 
     protected void add_objects (Gee.Collection<Object> objects) {
@@ -113,16 +76,15 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
     }
 
     private void on_item_activated (Gtk.TreePath? path) {
-        if (path == null)
+        if (path == null) {
             item_activated (null);
+        }
 
         var obj = icon_view.get_object_from_index (path.get_indices ()[0]);
         item_activated (obj);
     }
 
     private void on_drag_begin (Gtk.Widget sender, Gdk.DragContext context) {
-        debug ("drag begin");
-
         var selected_items = icon_view.get_selected_items ();
 
         if (selected_items.length () > 0)  {
@@ -169,10 +131,6 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
         foreach (var w in focus_blacklist) {
             w.add_events (Gdk.EventMask.BUTTON_PRESS_MASK);
         }
-    }
-
-    public ViewWrapper.Hint get_hint() {
-        return parent_view_wrapper.hint;
     }
 
     public Gee.Collection<Media> get_visible_media () {
@@ -319,8 +277,7 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
 
     protected GLib.Icon? get_icon (Object o) {
         var album = o as Album;
-        return_val_if_fail (album != null, null);
-        return album.cover_icon;
+        return album == null ? null : album.cover_icon;
     }
 
     protected int compare_func (Object o_a, Object o_b) {
@@ -346,20 +303,8 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
     }
 
     protected void search_func (Gee.HashMap<int, Object> showing) {
-        message_visible = false;
-        var result = parent_view_wrapper.library.get_search_result ();
-        var albums = new Gee.TreeSet<Album> ();
-        foreach (var m in result) {
-            albums.add (m.album_info);
-        }
-
-        foreach (var album in albums) {
-            showing.set (showing.size, album);
-        }
-
-        // If nothing will be shown, display the "no albums found" message.
-        if (showing.size < 1) {
-            message_visible = true;
+        foreach (var album in get_albums ()) {
+            showing[showing.size] = album;
         }
     }
 
@@ -368,5 +313,9 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
         return_val_if_fail (album != null, null);
 
         return album.get_media ();
+    }
+
+    public override bool filter (string search) {
+        return true;
     }
 }

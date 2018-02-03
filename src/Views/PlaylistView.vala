@@ -19,7 +19,11 @@ public class Noise.PlaylistView : View {
         list_view.set_search_func ((search, table, showing) => {
             showing.add_all (table);
         });
-        add (list_view);
+
+        var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 5);
+        box.pack_start (new Gtk.Label (playlist.name) { margin = 24 });
+        box.pack_start (list_view);
+        add (box);
         show_all ();
 
         playlist.media_added.connect (on_playlist_media_added);

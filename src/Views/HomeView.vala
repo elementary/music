@@ -5,7 +5,7 @@ public class Noise.HomeView : SwitchableView {
         category = "library";
         id = "local/music";
 
-        var grid_view = new PlaylistView (App.main_window.library_manager.p_music);
+        var grid_view = new AlbumsView (App.main_window.library_manager.get_medias());
         grid_view.title = _("View as Albums");
         grid_view.id = "grid";
         grid_view.icon = new ThemedIcon ("view-grid-symbolic");
@@ -16,5 +16,7 @@ public class Noise.HomeView : SwitchableView {
         list_view.id = "list";
         list_view.icon = new ThemedIcon ("view-list-symbolic");
         add_view (list_view);
+
+        show_all ();
     }
 }
