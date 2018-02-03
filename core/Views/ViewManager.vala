@@ -89,6 +89,7 @@ public class Noise.ViewManager : Object {
         try {
             get_category (view.category);
             if (!(view in views)) {
+                debug ("Adding view: %s", view.id);
                 views.add (view);
 
                 if (selected_view == null || select) {

@@ -59,7 +59,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     internal Gee.HashMap<unowned Playlist, int> match_playlists;
     private Gee.HashMap<string, int> match_devices;
-    private Gee.HashMap<unowned Playlist, SourceListEntry> match_playlist_entry;
 
     public SimpleActionGroup actions { get; construct; }
 
@@ -86,6 +85,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         view_manager = new ViewManager ();
         view_manager.view_added.connect ((view) => {
             view_stack.add_titled (view, view.id, view.title);
+            view_stack.set_visible_child (view_manager.selected_view);
         });
         view_manager.notify["selected-view"].connect (() => {
             view_stack.visible_child = view_manager.selected_view;
@@ -125,7 +125,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         match_playlists = new Gee.HashMap<unowned Playlist, int> ();
         match_devices = new Gee.HashMap<string, int> ();
-        match_playlist_entry = new Gee.HashMap<unowned Playlist, SourceListEntry> ();
 
         libraries_manager.add_headless_playlist.connect ((playlist) => {
             add_playlist (playlist);
@@ -478,7 +477,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         music_view.title = _("Music");
         music_view.icon = new ThemedIcon ("library-music");
         music_view.category = "library";
-        view_manager.add (music_view);
+        view_manager.add (music_view, true);
     }
 
     public void build_ui () {
@@ -624,17 +623,17 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
      * SourceList Configuration
      */
 
-    private void update_badge_on_playlist_update (Playlist p, SourceListEntry entry) {
-        p.media_added.connect((s) => { update_playlist_badge (p); });
-        p.media_removed.connect((s) => { update_playlist_badge (p); });
-        p.cleared.connect((s) => { update_playlist_badge (p); });
-    }
+    // private void update_badge_on_playlist_update (Playlist p, SourceListEntry entry) {
+    //     p.media_added.connect((s) => { update_playlist_badge (p); });
+    //     p.media_removed.connect((s) => { update_playlist_badge (p); });
+    //     p.cleared.connect((s) => { update_playlist_badge (p); });
+    // }
 
     private void update_playlist_badge (Playlist playlist) {
-        var entry = match_playlist_entry.get (playlist);
-        int media_count = playlist.medias.size;
-        string new_badge = media_count > 0 ? media_count.to_string () : "";
-        entry.badge = new_badge;
+        // var entry = match_playlist_entry.get (playlist);
+        // int media_count = playlist.medias.size;
+        // string new_badge = media_count > 0 ? media_count.to_string () : "";
+        // entry.badge = new_badge;
     }
 
     /**

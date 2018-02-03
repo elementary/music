@@ -3,6 +3,7 @@ public abstract class Noise.View : Gtk.ScrolledWindow {
     public string id { get; construct set; default = ""; }
     public GLib.Icon icon { get; set; }
     public string category { get; set; default = "library"; }
+    public int priority { get; construct set; default = 0; }
 
     public signal void remove_view ();
 

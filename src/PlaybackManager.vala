@@ -145,16 +145,8 @@ public class Noise.PlaybackManager : Object {
             return;
         }
 
-        foreach (var q in to_queue) {
-            debug ("QUEUED: %s", q.title);
-        }
-
         ordered_queue.add_medias (to_queue);
         reshuffle ();
-
-        foreach (var q in queue_playlist.medias) {
-            debug ("NEUE QUEUE: %s", q.title);
-        }
     }
 
     public void unqueue_medias (Gee.Collection<Media> to_unqueue) {

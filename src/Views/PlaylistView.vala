@@ -8,9 +8,10 @@ public class Noise.PlaylistView : View {
 
     construct {
         title = playlist.name;
-        id = playlist.id;
+        id = "local/playlist/" + playlist.id;
         category = "playlists";
         icon = playlist.icon;
+        priority = 1;
 
         list_view = new MusicListView ();
         list_view.set_compare_func (compare_func);

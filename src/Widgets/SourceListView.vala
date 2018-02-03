@@ -26,105 +26,38 @@
  * Authored by: Corentin Noël <corentin@elementary.io>
  */
 
-// Add an interface so that SourceListItem and SourceListExpandableItem still share a common
-// ancestor that is compatible with the SourceList widget.
-public interface Noise.SourceListEntry : Granite.Widgets.SourceList.Item {
-}
-
 /**
  * SourceList item. It stores the number of the corresponding page in the notebook widget.
  */
-public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListEntry, Granite.Widgets.SourceListDragDest {
-    public signal void playlist_rename_clicked (int page_number);
-    public signal void playlist_edit_clicked (int page_number);
-    public signal void playlist_remove_clicked (int page_number);
-    public signal void playlist_save_clicked (int page_number);
-    public signal void playlist_export_clicked (int page_number);
-    public signal void playlist_media_added (int page_number, string[] media);
+public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, Granite.Widgets.SourceListDragDest {
+    public View view { get; construct; }
 
-    public int page_number { get; set; default = -1; }
-    public ViewWrapper.Hint hint;
+    public SourceListItem (View view) {
+        Object (view: view);
+    }
 
-    //for playlist right click
-    Gtk.Menu playlistMenu;
-    Gtk.MenuItem playlistRename;
-    Gtk.MenuItem playlistEdit;
-    Gtk.MenuItem playlistRemove;
-    Gtk.MenuItem playlistSave;
-    Gtk.MenuItem playlistExport;
-
-    public SourceListItem (int page_number, string name, ViewWrapper.Hint hint, GLib.Icon icon, GLib.Icon? activatable_icon = null) {
-        base (name);
-        this.page_number = page_number;
-        this.icon = icon;
-        this.hint = hint;
-        if (activatable_icon != null)
-            this.activatable = activatable_icon;
-
-        if (hint == ViewWrapper.Hint.PLAYLIST) {
-            playlistMenu = new Gtk.Menu();
-            playlistRename = new Gtk.MenuItem.with_label(_("Rename"));
-            playlistRemove = new Gtk.MenuItem.with_label(_("Remove"));
-            playlistExport = new Gtk.MenuItem.with_label(_("Export…"));
-            playlistMenu.append(playlistRename);
-            playlistMenu.append(playlistRemove);
-            playlistMenu.append(playlistExport);
-            playlistMenu.show_all ();
-            playlistRename.activate.connect(() => {playlist_rename_clicked (page_number);});
-            playlistRemove.activate.connect(() => {playlist_remove_clicked (page_number);});
-            playlistExport.activate.connect(() => {playlist_export_clicked (page_number);});
-        }
-        if (hint == ViewWrapper.Hint.SMART_PLAYLIST) {
-            playlistMenu = new Gtk.Menu();
-            playlistRename = new Gtk.MenuItem.with_label(_("Rename"));
-            playlistEdit = new Gtk.MenuItem.with_label(_("Edit…"));
-            playlistRemove = new Gtk.MenuItem.with_label(_("Remove"));
-            playlistExport = new Gtk.MenuItem.with_label(_("Export…"));
-            playlistMenu.append(playlistRename);
-            playlistMenu.append(playlistEdit);
-            playlistMenu.append(playlistRemove);
-            playlistMenu.append(playlistExport);
-            playlistMenu.show_all ();
-            playlistRename.activate.connect(() => {playlist_rename_clicked (page_number);});
-            playlistEdit.activate.connect(() => {playlist_edit_clicked (page_number);});
-            playlistRemove.activate.connect(() => {playlist_remove_clicked (page_number);});
-            playlistExport.activate.connect(() => {playlist_export_clicked (page_number);});
-        }
-        if (hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST) {
-            playlistMenu = new Gtk.Menu();
-            playlistSave = new Gtk.MenuItem.with_label(_("Save as Playlist"));
-            playlistMenu.append(playlistSave);
-            playlistExport = new Gtk.MenuItem.with_label(_("Export…"));
-            playlistMenu.append(playlistExport);
-            playlistMenu.show_all ();
-            playlistSave.activate.connect(() => {playlist_save_clicked (page_number);});
-            playlistExport.activate.connect(() => {playlist_export_clicked (page_number);});
-        }
-
+    construct {
+        name = view.title;
+        icon = view.icon;
     }
 
     public override Gtk.Menu? get_context_menu () {
-        if (playlistMenu != null) {
-            if (playlistMenu.get_attach_widget () != null)
-                playlistMenu.detach ();
-            return playlistMenu;
-        }
         return null;
+        // TODO: return view.get_sidebar_context_menu ();
     }
 
     public bool data_drop_possible (Gdk.DragContext context, Gtk.SelectionData data) {
-        // TODO: need a 'hint' for for QUEUE more specific than READ_ONLY_PLAYLIST
-        return hint == ViewWrapper.Hint.PLAYLIST
-            && data.get_target () == Gdk.Atom.intern_static_string ("text/uri-list");
+        return false;
+        // TODO: return view.accept_data_drop && data.get_target () == Gdk.Atom.intern_static_string ("text/uri-list");
     }
 
     public Gdk.DragAction data_received (Gdk.DragContext context, Gtk.SelectionData data) {
-        playlist_media_added (page_number, data.get_uris ());
+        // TODO: view.data_drop (data);
         return Gdk.DragAction.COPY;
     }
 }
 
-public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.ExpandableItem, SourceListEntry {
+public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.ExpandableItem {
     public int page_number { get; set; default = -1; }
     public ViewWrapper.Hint hint;
 
@@ -190,9 +123,7 @@ public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.Expanda
     }
 }
 
-public class Noise.PlayListCategory : Granite.Widgets.SourceList.ExpandableItem,
-                                      Granite.Widgets.SourceListSortable
-{
+public class Noise.PlayListCategory : Granite.Widgets.SourceList.ExpandableItem, Granite.Widgets.SourceListSortable {
     //for playlist right click
     Gtk.Menu playlistMenu;
     Gtk.MenuItem playlistNew;
@@ -232,42 +163,15 @@ public class Noise.PlayListCategory : Granite.Widgets.SourceList.ExpandableItem,
         var item_a = a as SourceListItem;
         var item_b = b as SourceListItem;
 
-        if (item_a == null || item_b == null)
+        if (item_a == null || item_b == null) {
             return 0;
-
-        if (item_a.hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST) {
-            // sort read-only playlists alphabetically
-            if (item_b.hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST)
-                return strcmp (item_a.name.collate_key (), item_b.name.collate_key ());
-
-            // place read-only playlists before any item of different kind
-            return -1;
         }
 
-        if (item_a.hint == ViewWrapper.Hint.SMART_PLAYLIST) {
-            // place smart playlists after read-only playlists
-            if (item_b.hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST)
-                return 1;
+        var res = item_a.view.priority - item_b.view.priority;
 
-            // allow free sorting between smart playlists (users can move them around)
-            if (item_b.hint == ViewWrapper.Hint.SMART_PLAYLIST)
-                return 0;
-
-            // place smart playlists before static playlists
-            if (item_b.hint == ViewWrapper.Hint.PLAYLIST)
-                return -1;
-        }
-
-        if (item_a.hint == ViewWrapper.Hint.PLAYLIST) {
-            // allow free sorting between static playlists (users can move them around)
-            if (item_b.hint == ViewWrapper.Hint.PLAYLIST)
-                return 0;
-
-            // place static playlists after everything else
-            return 1;
-        }
-
-        return 0;
+        return res == 0
+            ? strcmp (item_a.name.collate_key (), item_b.name.collate_key ()) // order them alphabetically
+            : res;
     }
 }
 
@@ -325,6 +229,20 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
             add_view (view);
         }
 
+        App.main_window.view_manager.notify["selected-view"].connect (() => {
+            foreach (var cat in root.children) {
+                if (cat is Granite.Widgets.SourceList.ExpandableItem) {
+                    foreach (var item in ((Granite.Widgets.SourceList.ExpandableItem)cat).children) {
+                        if (item is SourceListItem) {
+                            if (((SourceListItem)item).view == App.main_window.view_manager.selected_view) {
+                                selected = item;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
         Gtk.TargetEntry uri_list_entry = { "text/uri-list", Gtk.TargetFlags.SAME_APP, 0 };
         enable_drag_dest ({ uri_list_entry }, Gdk.DragAction.COPY);
     }
@@ -344,8 +262,7 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
     }
 
     private void add_view (View view) {
-        var item = new Granite.Widgets.SourceList.Item (view.title);
-        item.icon = view.icon;
+        var item = new SourceListItem (view);
         categories[view.category].add (item);
         categories[view.category].expand_all ();
 
@@ -359,12 +276,8 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
     }
 
     public override void item_selected (Granite.Widgets.SourceList.Item? item) {
-        if (item is Noise.SourceListItem) {
-            var sidebar_item = item as SourceListItem;
-            selection_changed (sidebar_item.page_number);
-        } else if (item is Noise.SourceListExpandableItem) {
-            var sidebar_item = item as SourceListExpandableItem;
-            selection_changed (sidebar_item.page_number);
+        if (item is SourceListItem) {
+            App.main_window.view_manager.select (((SourceListItem)item).view);
         }
     }
 
@@ -385,70 +298,70 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
 
     // get the device page_number associated to the view
     public int get_device_from_item (Noise.SourceListExpandableItem item) {
-        foreach (var device in devices_category.children) {
-            if (item.parent == (Granite.Widgets.SourceList.ExpandableItem)device) {
-                if (device is SourceListExpandableItem) {
-                    return ((SourceListExpandableItem)device).page_number;
-                }
-            }
-        }
+        // foreach (var device in devices_category.children) {
+        //     if (item.parent == (Granite.Widgets.SourceList.ExpandableItem)device) {
+        //         if (device is SourceListExpandableItem) {
+        //             return ((SourceListExpandableItem)device).page_number;
+        //         }
+        //     }
+        // }
         return -1;
     }
 
     public void enumerate_children_pages (SourceListExpandableItem exp_item, ref Gee.TreeSet<int> pages) {
-        foreach (var views in ((SourceListExpandableItem)exp_item).children) {
-            if (views is SourceListExpandableItem) {
-                pages.add (((SourceListExpandableItem)views).page_number);
-                enumerate_children_pages ((SourceListExpandableItem)views, ref pages);
-            } else if (views is SourceListItem) {
-                pages.add (((SourceListItem)views).page_number);
-            }
-        }
+        // foreach (var views in ((SourceListExpandableItem)exp_item).children) {
+        //     if (views is SourceListExpandableItem) {
+        //         pages.add (((SourceListExpandableItem)views).page_number);
+        //         enumerate_children_pages ((SourceListExpandableItem)views, ref pages);
+        //     } else if (views is SourceListItem) {
+        //         pages.add (((SourceListItem)views).page_number);
+        //     }
+        // }
     }
 
     public void enumerate_children_items (SourceListExpandableItem exp_item, ref Gee.TreeSet<SourceListItem> pages) {
-        foreach (var views in ((SourceListExpandableItem)exp_item).children) {
-            if (views is SourceListExpandableItem) {
-                enumerate_children_items ((SourceListExpandableItem)views, ref pages);
-            } else if (views is SourceListItem) {
-                pages.add (((SourceListItem)views));
-            }
-        }
+        // foreach (var views in ((SourceListExpandableItem)exp_item).children) {
+        //     if (views is SourceListExpandableItem) {
+        //         enumerate_children_items ((SourceListExpandableItem)views, ref pages);
+        //     } else if (views is SourceListItem) {
+        //         pages.add (((SourceListItem)views));
+        //     }
+        // }
     }
 
     // change the name shown
     public void change_playlist_name (int page_number, string new_name) {
-        foreach (var playlist in playlists_category.children) {
-            if (playlist is SourceListItem) {
-                if (page_number == ((SourceListItem)playlist).page_number) {
-                    ((SourceListItem)playlist).name = new_name;
-                    return;
-                }
-            }
-        }
-        var items = new Gee.TreeSet<SourceListItem> ();
-        foreach (var device in devices_category.children) {
-            if (device is SourceListExpandableItem) {
-                enumerate_children_items ((SourceListExpandableItem)device, ref items);
-                foreach (var item in items) {
-                    if (item.page_number == page_number) {
-                        ((SourceListItem)item).name = new_name;
-                        return;
-                    }
-                }
-            }
-        }
+        // foreach (var playlist in playlists_category.children) {
+        //     if (playlist is SourceListItem) {
+        //         if (page_number == ((SourceListItem)playlist).page_number) {
+        //             ((SourceListItem)playlist).name = new_name;
+        //             return;
+        //         }
+        //     }
+        // }
+        // var items = new Gee.TreeSet<SourceListItem> ();
+        // foreach (var device in devices_category.children) {
+        //     if (device is SourceListExpandableItem) {
+        //         enumerate_children_items ((SourceListExpandableItem)device, ref items);
+        //         foreach (var item in items) {
+        //             if (item.page_number == page_number) {
+        //                 ((SourceListItem)item).name = new_name;
+        //                 return;
+        //             }
+        //         }
+        //     }
+        // }
     }
 
     // change the name shown
     public void change_device_name (int page_number, string new_name) {
-        foreach (var device in devices_category.children) {
-            if (device is SourceListItem) {
-                if (page_number == ((SourceListItem)device).page_number) {
-                    ((SourceListItem)device).name = new_name;
-                    return;
-                }
-            }
-        }
+        // foreach (var device in devices_category.children) {
+        //     if (device is SourceListItem) {
+        //         if (page_number == ((SourceListItem)device).page_number) {
+        //             ((SourceListItem)device).name = new_name;
+        //             return;
+        //         }
+        //     }
+        // }
     }
 }
