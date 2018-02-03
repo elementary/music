@@ -89,6 +89,8 @@ public class Noise.LocalLibrary : Library {
             }
 
             _medias.set (m.rowid, m);
+            debug ("added media: %s", m.title);
+            p_music.add_media (m);
 
             // Append the media into an album.
             if (m.get_album_hashkey () in album_info.keys) {

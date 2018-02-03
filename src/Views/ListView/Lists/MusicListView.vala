@@ -448,7 +448,9 @@ public class Noise.MusicListView : GenericList {
      */
     public int view_compare_func (int column, Gtk.SortType dir, Media media_a, Media media_b, int a_pos, int b_pos) {
         int order = 0;
-        return_val_if_fail (column >= 0 && column < ListColumn.N_COLUMNS, order);
+        if (column < 0 || column >= ListColumn.N_COLUMNS) {
+            return order;
+        }
 
         switch (column) {
             case ListColumn.NUMBER: // We assume there are no two indentical numbers for this case
