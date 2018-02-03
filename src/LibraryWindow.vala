@@ -748,7 +748,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
      * StaticPlaylists
      */
     private void add_playlist (StaticPlaylist playlist) {
-        // view_manager.add (new StaticPlaylistView (playlist));
+        view_manager.add (new StaticPlaylistView (playlist));
     }
 
     private void remove_playlist (StaticPlaylist playlist) {
@@ -783,7 +783,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
      */
 
     private void add_smartplaylist (SmartPlaylist smartplaylist) {
-        // view_manager.add (new SmartPlaylistView (smartplaylist));
+        view_manager.add (new SmartPlaylistView (smartplaylist));
     }
 
     private void remove_smartplaylist (SmartPlaylist smartplaylist) {

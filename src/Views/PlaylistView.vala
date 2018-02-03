@@ -7,6 +7,11 @@ public class Noise.PlaylistView : View {
     }
 
     construct {
+        title = playlist.name;
+        id = playlist.id;
+        category = "playlists";
+        icon = playlist.icon;
+
         list_view = new MusicListView ();
         list_view.set_compare_func (compare_func);
         foreach (var m in playlist.medias) {
