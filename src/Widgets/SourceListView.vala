@@ -33,26 +33,19 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, Granite.Wid
     public View view { get; construct; }
 
     public SourceListItem (View view) {
-        Object (view: view);
-    }
-
-    construct {
-        name = view.title;
-        icon = view.icon;
+        Object (view: view, name: view.title, icon: view.icon);
     }
 
     public override Gtk.Menu? get_context_menu () {
-        return null;
-        // TODO: return view.get_sidebar_context_menu ();
+        return view.get_sidebar_context_menu ();
     }
 
     public bool data_drop_possible (Gdk.DragContext context, Gtk.SelectionData data) {
-        return false;
-        // TODO: return view.accept_data_drop && data.get_target () == Gdk.Atom.intern_static_string ("text/uri-list");
+        return view.accept_data_drop && data.get_target () == Gdk.Atom.intern_static_string ("text/uri-list");
     }
 
     public Gdk.DragAction data_received (Gdk.DragContext context, Gtk.SelectionData data) {
-        // TODO: view.data_drop (data);
+        view.data_drop (data);
         return Gdk.DragAction.COPY;
     }
 }
@@ -168,6 +161,7 @@ public class Noise.PlayListCategory : Granite.Widgets.SourceList.ExpandableItem,
         }
 
         var res = item_a.view.priority - item_b.view.priority;
+        debug ("ORderign (%s & %s) : %d", item_a.name, item_b.name, res);
 
         return res == 0
             ? strcmp (item_a.name.collate_key (), item_b.name.collate_key ()) // order them alphabetically

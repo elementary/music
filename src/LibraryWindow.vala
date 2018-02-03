@@ -654,10 +654,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         ((SimpleAction) actions.lookup_action (ACTION_PLAY_NEXT)).set_enabled (media_active || media_available);
         ((SimpleAction) actions.lookup_action (ACTION_PLAY_PREVIOUS)).set_enabled (media_active || media_available);
 
-        // VIEW-TODO: hide playlists when media list is empty
-        // source_list_view.change_playlist_category_visibility (have_media);
-        // statusbar.playlist_menubutton_sensitive = folder_set && have_media;
-
         if (!media_active || have_media && !App.player.playing) {
             ((SimpleAction) actions.lookup_action (ACTION_PLAY)).set_state (false);
         } else {
