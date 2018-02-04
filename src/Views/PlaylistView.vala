@@ -57,6 +57,18 @@ public class Noise.PlaylistView : View {
     }
 
     public override bool filter (string search) {
-        return true;
+        App.main_window.library_manager.search_medias (search);
+        var result = App.main_window.library_manager.get_search_result ();
+
+        var showing = new Gee.ArrayList<Media> ();
+        foreach (var m in playlist.medias) {
+            if (m in result) {
+                showing.add (m);
+            }
+        }
+
+        list_view.set_visible_media (showing);
+
+        return showing.size > 0;
     }
 }

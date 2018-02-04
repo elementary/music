@@ -130,7 +130,8 @@ public class Noise.FastGrid : Widgets.TileView {
             queue_draw ();
         }
 
-        showing = new_vis;
+        showing.clear ();
+        showing.set_all (new_vis);
     }
 
     public void redraw_row (int row_index) {

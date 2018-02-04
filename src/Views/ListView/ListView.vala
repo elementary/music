@@ -283,7 +283,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
     private void column_browser_changed () {
         if (App.main_window.initialization_finished) {
             // This is supposed to take the browser's filter into account because obey_column_browser is #false
-            list_view.do_search (null);
+            // list_view.do_search (null);
         }
     }
 
@@ -336,7 +336,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
         // We can safely do this because the browser is smart enough to keep its current
         // selection/filter as long as the new media contains properties matching the criteria.
         obey_column_browser = false;
-        list_view.do_search ();
+        // list_view.do_search ();
         obey_column_browser = true;
 
         if (has_column_browser)

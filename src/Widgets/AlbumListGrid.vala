@@ -138,7 +138,7 @@ public class Noise.AlbumListGrid : Gtk.Grid {
             list_view.set_media (media_list);
 
             // Search again to match the view wrapper's search
-            list_view.do_search (App.main_window.search_entry.text);
+            // list_view.do_search (App.main_window.search_entry.text);
         }
 
         if (list_view.get_realized ())
