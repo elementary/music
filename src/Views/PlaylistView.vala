@@ -82,4 +82,10 @@ public class Noise.PlaylistView : View {
 
         return showing.size > 0;
     }
+
+    public override void update_alert (Granite.Widgets.AlertView alert) {
+        alert.icon_name = "dialog-information";
+        alert.title = _("No Songs");
+        alert.description = _("To add songs to this playlist, use the <b>secondary click</b> on an item and choose <b>Add to Playlist</b>.");
+    }
 }

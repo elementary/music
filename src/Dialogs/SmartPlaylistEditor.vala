@@ -47,6 +47,12 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
         this.library = library;
         this.deletable = false;
 
+        window_position = Gtk.WindowPosition.CENTER;
+        type_hint = Gdk.WindowTypeHint.DIALOG;
+        set_transient_for (App.main_window);
+        set_modal (true);
+        destroy_with_parent = true;
+
         if (sp == null) {
             is_new = true;
             this.sp = new SmartPlaylist (library);
@@ -131,6 +137,8 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
         main_grid.attach (limiter_grid, 0, 6, 3, 1);
         main_grid.attach (button_box, 0, 7, 3, 1);
         ((Gtk.Container) get_content_area ()).add (main_grid);
+
+        load_smart_playlist ();
     }
 
     public void load_smart_playlist () {

@@ -274,7 +274,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         headerbar.set_custom_title (top_display);
         headerbar.show_all ();
 
-        alert_view = new Granite.Widgets.AlertView ("No results", "Try another search", "edit-find-symbolic");
+        alert_view = new Granite.Widgets.AlertView (_("No results"), _("Try another search"), "edit-find-symbolic");
         view_stack = new ViewStack ();
         view_stack.add_named (alert_view, "alert-view");
         source_list_view = new SourceListView ();
@@ -555,6 +555,11 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         if (view_manager.filter_view (search_entry.text)) {
             view_stack.visible_child = view_manager.selected_view;
         } else {
+            view_stack.remove (alert_view);
+            alert_view = new Granite.Widgets.AlertView (_("No results"), _("Try another search"), "edit-find-symbolic");
+            view_manager.selected_view.update_alert (alert_view);
+            alert_view.show_all ();
+            view_stack.add_named (alert_view, "alert-view");
             view_stack.visible_child = alert_view;
         }
     }
@@ -775,22 +780,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 view_manager.remove_view (view);
             }
         }
-    }
-
-    /**
-     * Dialogs from the interface
-     */
-
-    public void show_smart_playlist_dialog (SmartPlaylist? smartplaylist = null) {
-        SmartPlaylistEditor spe = null;
-        spe = new SmartPlaylistEditor (smartplaylist, library_manager);
-        spe.window_position = Gtk.WindowPosition.CENTER;
-        spe.type_hint = Gdk.WindowTypeHint.DIALOG;
-        spe.set_transient_for (this);
-        spe.set_modal(true);
-        spe.destroy_with_parent = true;
-        spe.load_smart_playlist ();
-        spe.show ();
     }
 
     /** This should be used whenever a call to play a new media is made

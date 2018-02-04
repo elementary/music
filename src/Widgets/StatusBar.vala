@@ -59,7 +59,8 @@ namespace Noise.Widgets {
             });
 
             add_spl_menuitem.activate.connect (() => {
-                App.main_window.show_smart_playlist_dialog ();
+                var spe = new SmartPlaylistEditor (null, App.main_window.library_manager);
+                spe.show ();
             });
         }
     }

@@ -86,4 +86,11 @@ public abstract class Noise.View : Gtk.ScrolledWindow {
     * If this view accept data drop, make sure to set {@link Noise.View.accept_data_drop} to true.
     */
     public virtual void data_drop (Gtk.SelectionData data) {}
+
+    /**
+    * Let you update the {@link Granite.Widgets.AlertView} that will be displayed if this view is empty
+    *
+    * A view is considered to be empty when {@link Noise.View.filter} returned false
+    */
+    public virtual void update_alert (Granite.Widgets.AlertView alert) {}
 }
