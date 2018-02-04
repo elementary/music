@@ -15,6 +15,8 @@ public class Noise.ColumnBrowserView : View {
     }
 
     construct {
+        var saved_state_settings = new GLib.Settings ("io.elementary.music.saved-state");
+
         media = new Gee.ArrayList<Media> ();
         media.add_all (playlist.medias);
 
@@ -27,11 +29,16 @@ public class Noise.ColumnBrowserView : View {
         var scroll = new Gtk.ScrolledWindow (null, null);
         scroll.add (list_view);
 
-        var vpaned = new Gtk.Paned (Gtk.Orientation.VERTICAL);
-        vpaned.pack1 (column_browser, false, false);
-        vpaned.pack2 (scroll, true, false);
+        var vpane = new Gtk.Paned (Gtk.Orientation.VERTICAL);
+        vpane.position = saved_state_settings.get_int ("column-browser-height");
+        vpane.pack1 (column_browser, false, false);
+        vpane.pack2 (scroll, true, false);
 
-        add (vpaned);
+        add (vpane);
+
+        destroy.connect (() => {
+            saved_state_settings.set_int ("column-browser-height", vpane.position);
+        });
     }
 
     public void filter_changed () {
