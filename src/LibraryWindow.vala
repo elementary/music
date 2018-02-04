@@ -319,28 +319,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             }
         });
 
-        source_list_view.playlist_edit_clicked.connect ((page_number) => {
-            var view = view_stack.get_child_by_name (page_number.to_string ());
-            if (view is PlaylistViewWrapper) {
-                var p = ((PlaylistViewWrapper)view).playlist;
-                if (p is SmartPlaylist) {
-                    show_smart_playlist_dialog ((SmartPlaylist) p);
-                }
-            }
-        });
-
-        source_list_view.playlist_remove_clicked.connect ((page_number) => {
-            var view = view_stack.get_child_by_name (page_number.to_string ());
-            if (view is PlaylistViewWrapper) {
-                var playlistview = (PlaylistViewWrapper)view;
-                if (playlistview.hint == ViewWrapper.Hint.PLAYLIST) {
-                    playlistview.library.remove_playlist (playlistview.playlist.rowid);
-                } else if (playlistview.hint == ViewWrapper.Hint.SMART_PLAYLIST) {
-                    playlistview.library.remove_smart_playlist (playlistview.playlist.rowid);
-                }
-            }
-        });
-
         source_list_view.device_import_clicked.connect ((page_number) => {
             foreach (var device in DeviceManager.get_default ().get_initialized_devices ()) {
                 if (page_number == match_devices.get (device.get_unique_identifier ())) {
@@ -704,7 +682,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private void remove_playlist (StaticPlaylist playlist) {
         foreach (var view in view_manager.views) {
             if (view is PlaylistView && ((PlaylistView)view).playlist == playlist) {
-                debug ("removing view");
                 view_manager.remove_view (view);
                 return;
             }
@@ -745,8 +722,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     private void remove_smartplaylist (SmartPlaylist smartplaylist) {
         foreach (var view in view_manager.views) {
-            if (view.id == smartplaylist.id) {
+            if (view is PlaylistView && ((PlaylistView)view).playlist == smartplaylist) {
                 view_manager.remove_view (view);
+                return;
             }
         }
     }
