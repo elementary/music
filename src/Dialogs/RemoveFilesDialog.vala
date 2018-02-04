@@ -35,7 +35,7 @@ public class Noise.RemoveFilesDialog : Gtk.Dialog {
     private Gtk.Button trash_button;
     private Gtk.Button cancel_button;
 
-    public RemoveFilesDialog (Gee.Collection<Media> to_remove, ViewWrapper.Hint media_type) {
+    public RemoveFilesDialog (Gee.Collection<Media> to_remove) {
         var app_name = ((Noise.App) GLib.Application.get_default ()).program_name;
 
         this.set_modal(true);

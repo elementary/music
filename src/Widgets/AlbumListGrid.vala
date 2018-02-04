@@ -69,11 +69,17 @@ public class Noise.AlbumListGrid : Gtk.Grid {
         artist_label.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
 
         var tvs = new TreeViewSetup.minimal ();
-        list_view = new MusicListView (tvs);
+        list_view = new MusicListView (tvs, false, false);
         list_view.headers_visible = false;
         list_view.expand = true;
         list_view.set_search_func (view_search_func);
         list_view.get_style_context ().remove_class (Gtk.STYLE_CLASS_VIEW);
+        list_view.remove_request.connect ((media) => {
+            var dialog = new RemoveFilesDialog (media);
+            dialog.remove_media.connect ((delete_files) => {
+                App.main_window.library_manager.remove_medias (media, delete_files);
+            });
+        });
 
         var list_view_scrolled = new Gtk.ScrolledWindow (null, null);
         list_view_scrolled.margin_top = 18;

@@ -28,6 +28,12 @@ public class Noise.ColumnBrowserView : View {
 
         list_view = new MusicListView (tvs);
         list_view.set_media (playlist.medias);
+        list_view.remove_request.connect ((media) => {
+            var dialog = new RemoveFilesDialog (media);
+            dialog.remove_media.connect ((delete_files) => {
+                App.main_window.library_manager.remove_medias (media, delete_files);
+            });
+        });
         var scroll = new Gtk.ScrolledWindow (null, null);
         scroll.add (list_view);
 

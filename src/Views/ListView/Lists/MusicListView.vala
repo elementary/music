@@ -57,6 +57,13 @@ public class Noise.ContractMenuItem : Gtk.MenuItem {
 }
 
 public class Noise.MusicListView : GenericList {
+    public bool read_only { get; construct; }
+    public bool can_scroll_to_current { get; construct; }
+
+    public virtual signal bool show_in_playlist_menu (Playlist playlist) {
+        return true;
+    }
+
     //for media list right click
     Gtk.Menu media_action_menu;
     Gtk.MenuItem media_edit_media;
@@ -69,8 +76,8 @@ public class Noise.MusicListView : GenericList {
     Gtk.MenuItem import_to_library;
     Gtk.MenuItem media_scroll_to_current;
 
-    public MusicListView (TreeViewSetup tvs) {
-        Object (tvs: tvs);
+    public MusicListView (TreeViewSetup tvs, bool read_only = false, bool can_scroll_to_current = true) {
+        Object (tvs: tvs, read_only: read_only, can_scroll_to_current: can_scroll_to_current);
     }
 
     construct {
@@ -108,31 +115,26 @@ public class Noise.MusicListView : GenericList {
 
         media_action_menu = new Gtk.Menu ();
         media_action_menu.attach_to_widget (this, null);
-        // if(hint != ViewWrapper.Hint.ALBUM_LIST) {
-        //     media_action_menu.append (media_scroll_to_current);
-        //     media_action_menu.append (new Gtk.SeparatorMenuItem ());
-        // }
-        // var read_only = hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST;
-        // if (read_only == false) {
-        //     media_action_menu.append (media_edit_media);
-        // }
-        // media_action_menu.append (media_file_browse);
-        // media_action_menu.append (media_menu_contractor_entry);
-        // if (read_only == false) {
-        //     media_action_menu.append (media_rate_media);
-        // }
-        // media_action_menu.append (new Gtk.SeparatorMenuItem ());
-        // media_action_menu.append (media_menu_queue);
-        // if (read_only == false) {
-        //     media_action_menu.append (media_menu_add_to_playlist);
-        // }
-        // if (hint != ViewWrapper.Hint.SMART_PLAYLIST &&
-        //     hint != ViewWrapper.Hint.ALBUM_LIST &&
-        //     hint != ViewWrapper.Hint.READ_ONLY_PLAYLIST) {
-        //         media_action_menu.append (new Gtk.SeparatorMenuItem ());
-        // }
-        // media_action_menu.append (media_remove);
-        // media_action_menu.append (import_to_library);
+        if (can_scroll_to_current) {
+            media_action_menu.append (media_scroll_to_current);
+            media_action_menu.append (new Gtk.SeparatorMenuItem ());
+        }
+        if (read_only == false) {
+            media_action_menu.append (media_edit_media);
+        }
+        media_action_menu.append (media_file_browse);
+        media_action_menu.append (media_menu_contractor_entry);
+        if (read_only == false) {
+            media_action_menu.append (media_rate_media);
+        }
+        media_action_menu.append (new Gtk.SeparatorMenuItem ());
+        media_action_menu.append (media_menu_queue);
+        if (read_only == false) {
+            media_action_menu.append (media_menu_add_to_playlist);
+        }
+
+        media_action_menu.append (media_remove);
+        media_action_menu.append (import_to_library);
 
         App.player.playback_stopped.connect (() => {
             media_scroll_to_current.sensitive = false;
@@ -142,73 +144,39 @@ public class Noise.MusicListView : GenericList {
             media_scroll_to_current.sensitive = true;
         });
 
-        // headers_visible = hint != ViewWrapper.Hint.ALBUM_LIST;
-        // headers_clickable = playlist != App.player.queue_playlist; // You can't reorder the queue
+        // TODO: headers_clickable = playlist != App.player.queue_playlist; // You can't reorder the queue
 
         update_sensitivities ();
     }
 
     public override void update_sensitivities () {
         media_action_menu.show_all ();
-
-        /*switch (hint) {
-            case ViewWrapper.Hint.ALBUM_LIST:
-            case ViewWrapper.Hint.MUSIC:
-                media_remove.label = _("Remove from Library");
-                import_to_library.visible = false;
-                break;
-            case ViewWrapper.Hint.PLAYLIST:
-                import_to_library.visible = false;
-                break;
-            case ViewWrapper.Hint.READ_ONLY_PLAYLIST:
-                import_to_library.visible = false;
-                if (playlist == App.player.queue_playlist) {
-                    media_remove.label = _("Remove from Queue");
-                    media_menu_queue.visible = false;
-                } else {
-                    media_remove.visible = false;
-                }
-                break;
-            case ViewWrapper.Hint.DEVICE_AUDIO:
-                media_edit_media.visible = false;
-                media_remove.label = _("Remove from Device");
-                if (parent_wrapper.library.support_playlists () == false) {
-                    media_menu_add_to_playlist.visible = false;
-                }
-                break;
-            default:
-                media_remove.visible = false;
-                import_to_library.visible = false;
-                break;
-        }*/
     }
 
     public void popup_media_menu (Gee.Collection<Media> selection) {
         var media_menu_new_playlist = new Gtk.MenuItem.with_label (_("New Playlist…"));
         media_menu_new_playlist.activate.connect (media_menu_new_playlist_clicked);
 
-        // var add_to_playlist_menu = new Gtk.Menu ();
-        // add_to_playlist_menu.append (media_menu_new_playlist);
-        // if (parent_wrapper.library.support_playlists () == false) {
-        //     media_menu_new_playlist.visible = false;
-        // }
-        // foreach (var playlist in parent_wrapper.library.get_playlists ()) {
-        //     // Don't include this playlist in the list of available options
-        //     if (playlist == this.playlist)
-        //         continue;
+        var add_to_playlist_menu = new Gtk.Menu ();
+        add_to_playlist_menu.append (media_menu_new_playlist);
+        if (App.main_window.library_manager.support_playlists () == false) {
+            media_menu_new_playlist.visible = false;
+        }
+        foreach (var playlist in App.main_window.library_manager.get_playlists ()) {
+            if (show_in_playlist_menu (playlist)) {
+                if (playlist.read_only == true)
+                    continue;
 
-        //     if (playlist.read_only == true)
-        //         continue;
+                var playlist_item = new Gtk.MenuItem.with_label (playlist.name);
+                add_to_playlist_menu.append (playlist_item);
 
-        //     var playlist_item = new Gtk.MenuItem.with_label (playlist.name);
-        //     add_to_playlist_menu.append (playlist_item);
-
-        //     playlist_item.activate.connect (() => {
-        //         playlist.add_medias (selection.read_only_view);
-        //     });
-        // }
-        // add_to_playlist_menu.show_all ();
-        // media_menu_add_to_playlist.submenu = add_to_playlist_menu;
+                playlist_item.activate.connect (() => {
+                    playlist.add_medias (selection.read_only_view);
+                });
+            }
+        }
+        add_to_playlist_menu.show_all ();
+        media_menu_add_to_playlist.submenu = add_to_playlist_menu;
 
         // if all medias are downloaded already, desensitize.
         // if half and half, change text to 'Download %external of %total'
@@ -390,35 +358,32 @@ public class Noise.MusicListView : GenericList {
     }
 
     protected virtual void media_menu_new_playlist_clicked () {
-        // var p = new StaticPlaylist ();
-        // p.add_medias (get_selected_medias ().read_only_view);
-        // p.name = PlaylistsUtils.get_new_playlist_name (parent_wrapper.library.get_playlists ());
-        // parent_wrapper.library.add_playlist (p);
+        var p = new StaticPlaylist ();
+        p.add_medias (get_selected_medias ().read_only_view);
+        p.name = PlaylistsUtils.get_new_playlist_name (App.main_window.library_manager.get_playlists ());
+        App.main_window.library_manager.add_playlist (p);
     }
 
     protected void media_rate_media_clicked () {
-        // int new_rating = media_rate_media.rating_value;
-        // var selected = get_selected_medias ().read_only_view;
-        // foreach (Media m in selected) {
-        //     m.rating = new_rating;
-        // }
-        // parent_wrapper.library.update_medias (selected, false, true);
+        int new_rating = media_rate_media.rating_value;
+        var selected = get_selected_medias ().read_only_view;
+        foreach (Media m in selected) {
+            m.rating = new_rating;
+        }
+        App.main_window.library_manager.update_medias (selected, false, true);
     }
 
     protected override void mediaRemoveClicked () {
-        // var selected_media = get_selected_medias ().read_only_view;
+        var selected_media = get_selected_medias ().read_only_view;
+        remove_request (selected_media);
 
         // switch (hint) {
         //     case ViewWrapper.Hint.ALBUM_LIST:
         //     case ViewWrapper.Hint.MUSIC:
         //         var dialog = new RemoveFilesDialog (selected_media, hint);
         //         dialog.remove_media.connect ((delete_files) => {
-        //             parent_wrapper.library.remove_medias (selected_media, delete_files);
+        //             App.main_window.library_manager.remove_medias (selected_media, delete_files);
         //         });
-        //         break;
-        //     case ViewWrapper.Hint.DEVICE_AUDIO:
-        //         var dvw = (DeviceViewWrapper) parent_wrapper;
-        //         dvw.library.remove_medias (selected_media, true);
         //         break;
         //     case ViewWrapper.Hint.PLAYLIST:
         //         playlist.remove_medias (selected_media);

@@ -18,10 +18,24 @@ public class Noise.PlaylistView : View {
         icon = playlist.icon;
         priority = 1;
 
-        list_view = new MusicListView (tvs);
+        bool read_only = (playlist is StaticPlaylist) && (((StaticPlaylist)playlist).read_only);
+        list_view = new MusicListView (tvs, read_only);
         list_view.set_compare_func (compare_func);
         list_view.set_search_func ((search, table, showing) => {
             showing.add_all (table);
+        });
+        list_view.show_in_playlist_menu.connect ((pl) => {
+            return pl != playlist;
+        });
+        list_view.remove_request.connect ((media) => {
+            if (playlist == App.main_window.library_manager.p_music) {
+                var dialog = new RemoveFilesDialog (media);
+                dialog.remove_media.connect ((delete_files) => {
+                    App.main_window.library_manager.remove_medias (media, delete_files);
+                });
+            } else if (!read_only || playlist == App.player.queue_playlist) {
+                playlist.remove_medias (media);
+            }
         });
         list_view.set_media (playlist.medias);
 

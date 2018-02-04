@@ -28,6 +28,7 @@
  */
 
 public abstract class Noise.GenericList : FastView {
+    public signal void remove_request (Gee.Collection<Media> to_remove);
     public signal void import_requested (Gee.Collection<Media> to_import);
 
     //for header column chooser
@@ -319,6 +320,9 @@ public abstract class Noise.GenericList : FastView {
 
         foreach (Gtk.TreePath path in get_selection ().get_selected_rows (out temp)) {
             var m = get_media_from_index (int.parse (path.to_string ()));
+            if (m == null) {
+                debug ("null media in selection");
+            }
             rv.add (m);
         }
 

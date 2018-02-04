@@ -105,6 +105,8 @@ public class Noise.FastView : Gtk.TreeView {
             set_model (null);
             fm.set_table (new_table);
             set_model (fm);
+
+            showing.add_all (new_table);
         }
 
         if (do_resort) {
@@ -146,45 +148,6 @@ public class Noise.FastView : Gtk.TreeView {
 
     public void set_search_func (ViewSearchFunc func) {
         search_func = func;
-    }
-
-    public void _do_search (string? search = null) {
-        if (search_func == null/* || research_needed == false*/) {
-            return;
-        }
-
-        research_needed = false;
-        var old_size = showing.size;
-
-        showing.clear ();
-        search_func (search ?? "", table, showing);
-
-        if (showing.size == old_size) {
-            fm.set_table (showing);
-            queue_draw ();
-        } else if (old_size == 0) { // if first population, just do normal
-            set_model (null);
-            fm.set_table (showing);
-            set_model (fm);
-        } else if (old_size > showing.size) { // removing
-            while (fm.iter_n_children (null) > showing.size) {
-                Gtk.TreeIter iter;
-                fm.iter_nth_child (out iter, null, fm.iter_n_children (null) - 1);
-                fm.remove (iter);
-            }
-
-            fm.set_table (showing);
-            queue_draw ();
-        } else if (showing.size > old_size) { // adding
-            Gtk.TreeIter iter;
-
-            while (fm.iter_n_children (null) < showing.size) {
-                fm.append (out iter);
-            }
-
-            fm.set_table (showing);
-            queue_draw ();
-        }
     }
 
     public void redraw_row (int row_index) {
