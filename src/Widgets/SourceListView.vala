@@ -62,73 +62,7 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, Granite.Wid
         return Gdk.DragAction.COPY;
     }
 }
-/*
-public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.ExpandableItem {
-    public int page_number { get; set; default = -1; }
-    public ViewWrapper.Hint hint;
 
-    //for device right click
-    Gtk.Menu deviceMenu;
-    Gtk.MenuItem deviceImportToLibrary;
-    Gtk.MenuItem deviceEject;
-    Gtk.MenuItem deviceAddPlaylist;
-    Gtk.MenuItem deviceAddSmartPlaylist;
-    Gtk.MenuItem deviceSync;
-
-    public signal void device_import_clicked (int page_number);
-    public signal void device_eject_clicked (int page_number);
-    public signal void device_sync_clicked (int page_number);
-    public signal void device_new_playlist_clicked (int page_number);
-    public signal void device_new_smartplaylist_clicked (int page_number);
-
-    public SourceListExpandableItem (int page_number, string name, ViewWrapper.Hint hint, GLib.Icon icon, GLib.Icon? activatable_icon = null, Object? give_more_information = null) {
-        base (name);
-        this.page_number = page_number;
-        this.icon = icon;
-        this.hint = hint;
-        if (activatable_icon != null)
-            this.activatable = activatable_icon;
-
-        if (hint == ViewWrapper.Hint.DEVICE_AUDIO) {
-            deviceMenu = new Gtk.Menu();
-            deviceImportToLibrary = new Gtk.MenuItem.with_label(_("Import to Library"));
-            deviceImportToLibrary.activate.connect (() => {device_import_clicked (page_number);});
-            deviceMenu.append (deviceImportToLibrary);
-            deviceMenu.show_all ();
-        }
-
-        if (hint == ViewWrapper.Hint.DEVICE) {
-            deviceMenu = new Gtk.Menu();
-            deviceEject = new Gtk.MenuItem.with_label (_("Eject"));
-            deviceEject.activate.connect (() => {device_eject_clicked (page_number);});
-            if (give_more_information is Device) {
-                var device = (Device)give_more_information;
-                if (device.get_library ().support_playlists ()) {
-                    deviceAddPlaylist = new Gtk.MenuItem.with_label (_("New Playlist"));
-                    deviceAddPlaylist.activate.connect (() => {device_new_playlist_clicked (page_number);});
-                    deviceMenu.append (deviceAddPlaylist);
-                }
-                if (device.get_library ().support_smart_playlists ()) {
-                    deviceAddSmartPlaylist = new Gtk.MenuItem.with_label (_("New Smart Playlist"));
-                    deviceAddSmartPlaylist.activate.connect (() => {device_new_smartplaylist_clicked (page_number);});
-                    deviceMenu.append (deviceAddSmartPlaylist);
-                }
-                if (device.read_only() == false) {
-                    deviceSync = new Gtk.MenuItem.with_label (_("Sync"));
-                    deviceSync.activate.connect (() => {device_sync_clicked (page_number);});
-                    deviceMenu.append (deviceSync);
-                }
-            }
-            deviceMenu.append (deviceEject);
-            deviceMenu.show_all ();
-        }
-    }
-
-    public override Gtk.Menu? get_context_menu () {
-        return deviceMenu;
-    }
-}
-*/
 public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.ExpandableItem, Granite.Widgets.SourceListSortable {
     public Category category { get; set; }
     public Gtk.Menu? menu { get; set; default = null; }

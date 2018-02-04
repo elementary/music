@@ -55,4 +55,44 @@ public class Noise.DeviceMusicView : View {
     public override bool filter (string search) {
         return true;
     }
+
+    public override Gtk.Menu? get_sidebar_context_menu (Granite.Widgets.SourceList list, Granite.Widgets.SourceList.Item item) {
+        var menu = new Gtk.Menu ();
+        var import_to_library = new Gtk.MenuItem.with_label (_("Import to Library"));
+        import_to_library.activate.connect (() => {
+            libraries_manager.transfer_to_local_library (device.get_library ().get_medias ());
+        });
+        menu.append (import_to_library);
+
+        var eject = new Gtk.MenuItem.with_label (_("Eject"));
+        eject.activate.connect (() => {
+            device.eject ();
+        });
+        menu.append (eject);
+
+        if (device.get_library ().support_playlists ()) {
+            var add_playlist = new Gtk.MenuItem.with_label (_("New Playlist"));
+            add_playlist.activate.connect (() => {
+                App.main_window.create_new_playlist (device.get_library ());
+            });
+            menu.append (add_playlist);
+        }
+
+        if (device.get_library ().support_smart_playlists ()) {
+            var add_smart_playlist = new Gtk.MenuItem.with_label (_("New Smart Playlist"));
+            add_smart_playlist.activate.connect (() => {});
+            menu.append (add_smart_playlist);
+        }
+
+        if (device.read_only () == false) {
+            var sync = new Gtk.MenuItem.with_label (_("Sync"));
+            sync.activate.connect (() => {
+                device.synchronize ();
+            });
+            menu.append (sync);
+        }
+
+        menu.show_all ();
+        return menu;
+    }
 }

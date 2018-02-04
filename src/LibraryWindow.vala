@@ -302,89 +302,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 }
             }
         });
-
-        connect_to_sourcelist_signals ();
-    }
-
-    private void connect_to_sourcelist_signals () {
-        /*
-        source_list_view.device_import_clicked.connect ((page_number) => {
-            foreach (var device in DeviceManager.get_default ().get_initialized_devices ()) {
-                if (page_number == match_devices.get (device.get_unique_identifier ())) {
-                    libraries_manager.transfer_to_local_library (device.get_library ().get_medias ());
-                    break;
-                }
-            }
-        });
-
-        source_list_view.device_new_playlist_clicked.connect ((page_number) => {
-            foreach (var device in DeviceManager.get_default ().get_initialized_devices ()) {
-                if (page_number == match_devices.get (device.get_unique_identifier ())) {
-                    create_new_playlist (device.get_library ());
-                    break;
-                }
-            }
-        });
-
-        source_list_view.device_sync_clicked.connect ((page_number) => {
-            foreach (var device in DeviceManager.get_default ().get_initialized_devices ()) {
-                if (page_number == match_devices.get (device.get_unique_identifier ())) {
-                    device.synchronize ();
-                    break;
-                }
-            }
-        });
-
-        source_list_view.device_eject_clicked.connect ((page_number) => {
-            foreach (var device in DeviceManager.get_default ().get_initialized_devices ()) {
-                if (page_number == match_devices.get (device.get_unique_identifier ())) {
-                    device.eject ();
-                    break;
-                }
-            }
-        });
-
-        source_list_view.playlist_remove_clicked.connect ((page_number) => {
-            var view = view_stack.get_child_by_name (page_number.to_string ());
-            if (view is PlaylistViewWrapper) {
-                var playlistview = (PlaylistViewWrapper)view;
-                if (playlistview.hint == ViewWrapper.Hint.PLAYLIST) {
-                    playlistview.library.remove_playlist (playlistview.playlist.rowid);
-                } else if (playlistview.hint == ViewWrapper.Hint.SMART_PLAYLIST) {
-                    playlistview.library.remove_smart_playlist (playlistview.playlist.rowid);
-                }
-            }
-        });
-
-        source_list_view.playlist_save_clicked.connect ((page_number) => {
-            var view = view_stack.get_child_by_name (page_number.to_string ());
-            if (view is PlaylistViewWrapper) {
-                var playlistview = (PlaylistViewWrapper)view;
-                if (playlistview.hint != ViewWrapper.Hint.READ_ONLY_PLAYLIST)
-                    return;
-                var playlist = playlistview.playlist;
-                if (playlist != null) {
-                    var new_playlist = new StaticPlaylist ();
-                    new_playlist.name = PlaylistsUtils.get_new_playlist_name (library_manager.get_playlists (), playlist.name);
-                    new_playlist.add_medias (playlist.medias);
-                    library_manager.add_playlist (new_playlist);
-                }
-            }
-        });
-
-        source_list_view.playlist_import_clicked.connect ( () => {
-            try {
-                PlaylistsUtils.import_from_playlist_file_info(Noise.PlaylistsUtils.get_playlists_to_import (), library_manager);
-                update_sensitivities.begin ();
-            } catch (GLib.Error e) {
-                warning (e.message);
-            }
-        });*/
     }
 
     public void create_views () {
         view_manager.add_category (new Category ("library", _("Library")));
-        view_manager.add_category (new Category ("devices", _("Devices")));
         view_manager.add_category (new Category ("network", _("Network")));
         view_manager.add_category (new Category ("playlists", _("Playlists")));
 
