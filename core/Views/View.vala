@@ -25,6 +25,11 @@ public abstract class Noise.View : Gtk.ScrolledWindow {
     public GLib.Icon icon { get; set; }
 
     /**
+    * The badge to display next to the name of the view in the sidebar
+    */
+    public string badge { get; set; }
+
+    /**
     * The category of this view.
     *
     * Views are grouped by category in the sidebar.

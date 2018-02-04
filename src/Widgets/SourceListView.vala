@@ -33,7 +33,13 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, Granite.Wid
     public View view { get; construct; }
 
     public SourceListItem (View view) {
-        Object (view: view, name: view.title, icon: view.icon);
+        Object (view: view, name: view.title, icon: view.icon, badge: view.badge);
+    }
+
+    construct {
+        view.notify["badge"].connect (() => {
+            badge = view.badge;
+        });
     }
 
     public override Gtk.Menu? get_context_menu () {

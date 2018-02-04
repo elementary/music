@@ -51,6 +51,8 @@ public abstract class Noise.Playlist : Object {
         }
     }
 
+    public bool show_badge { get; set; default = false; }
+
     public signal void media_added (Gee.Collection<Media> media);
     public signal void media_removed (Gee.Collection<Media> media);
     public signal void updated (string? old_name = null);

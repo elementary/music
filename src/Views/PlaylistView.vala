@@ -38,16 +38,25 @@ public class Noise.PlaylistView : View {
         // });
     }
 
+    private void update_badge () {
+        if (playlist.show_badge) {
+            badge = playlist.medias.size > 0 ? playlist.medias.size.to_string () : "";
+        }
+    }
+
     private void on_playlist_media_added (Gee.Collection<Media> to_add) {
         list_view.set_media (playlist.medias);
+        update_badge ();
     }
 
     private void on_playlist_media_removed (Gee.Collection<Media> to_remove) {
         list_view.set_media (playlist.medias);
+        update_badge ();
     }
 
     private void on_playlist_cleared () {
         list_view.set_media (new Gee.ArrayList<Media> ());
+        update_badge ();
     }
 
     protected int compare_func (int column, Gtk.SortType dir, Media media_a, Media media_b, int a_pos, int b_pos) {

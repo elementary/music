@@ -624,24 +624,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         debug ("Finished loading playlists");
     }
 
-
-    /**
-     * SourceList Configuration
-     */
-
-    // private void update_badge_on_playlist_update (Playlist p, SourceListEntry entry) {
-    //     p.media_added.connect((s) => { update_playlist_badge (p); });
-    //     p.media_removed.connect((s) => { update_playlist_badge (p); });
-    //     p.cleared.connect((s) => { update_playlist_badge (p); });
-    // }
-
-    private void update_playlist_badge (Playlist playlist) {
-        // var entry = match_playlist_entry.get (playlist);
-        // int media_count = playlist.medias.size;
-        // string new_badge = media_count > 0 ? media_count.to_string () : "";
-        // entry.badge = new_badge;
-    }
-
     /**
      * Updating the interface
      */
