@@ -31,9 +31,16 @@
  */
 public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, Granite.Widgets.SourceListDragDest {
     public View view { get; construct; }
+    public Granite.Widgets.SourceList source_list { get; construct; }
 
-    public SourceListItem (View view) {
-        Object (view: view, name: view.title, icon: view.icon, badge: view.badge);
+    public SourceListItem (View view, Granite.Widgets.SourceList source_list) {
+        Object (
+            view: view,
+            name: view.title,
+            icon: view.icon,
+            badge: view.badge,
+            source_list: source_list
+        );
     }
 
     construct {
@@ -43,7 +50,7 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, Granite.Wid
     }
 
     public override Gtk.Menu? get_context_menu () {
-        return view.get_sidebar_context_menu ();
+        return view.get_sidebar_context_menu (source_list, this);
     }
 
     public bool data_drop_possible (Gdk.DragContext context, Gtk.SelectionData data) {
@@ -172,25 +179,6 @@ public class Noise.SourceListRoot : Granite.Widgets.SourceList.ExpandableItem, G
 public class Noise.SourceListView : Granite.Widgets.SourceList {
     Gee.HashMap<string, Granite.Widgets.SourceList.ExpandableItem> categories = new Gee.HashMap<string, Granite.Widgets.SourceList.ExpandableItem> ();
 
-    public signal void edited (int page_number, string new_name);
-    public signal void item_action_activated (int page_number);
-    public signal void selection_changed (int page_number);
-    public signal void activated ();
-
-    public signal void playlist_rename_clicked (int page_number);
-    public signal void playlist_edit_clicked (int page_number);
-    public signal void playlist_remove_clicked (int page_number);
-    public signal void playlist_save_clicked (int page_number);
-    public signal void playlist_export_clicked (int page_number);
-    public signal void playlist_import_clicked ();
-    public signal void playlist_media_added (int page_number, string[] uris);
-
-    public signal void device_import_clicked (int page_number);
-    public signal void device_eject_clicked (int page_number);
-    public signal void device_sync_clicked (int page_number);
-    public signal void device_new_playlist_clicked (int page_number);
-    public signal void device_new_smartplaylist_clicked (int page_number);
-
     public SourceListView () {
         base (new SourceListRoot ());
 
@@ -238,7 +226,7 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
     }
 
     private void add_view (View view) {
-        var item = new SourceListItem (view);
+        var item = new SourceListItem (view, this);
         categories[view.category].add (item);
         categories[view.category].expand_all ();
 
@@ -246,7 +234,7 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
             selected = item;
         }
 
-        view.remove.connect (() => {
+        view.destroy.connect (() => {
             categories[view.category].remove (item);
         });
     }

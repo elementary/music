@@ -117,6 +117,7 @@ public class Noise.ViewManager : Object {
     */
     public void remove_view (View view) {
         views.remove (view);
+        view.destroy ();
         view_removed (view);
     }
 

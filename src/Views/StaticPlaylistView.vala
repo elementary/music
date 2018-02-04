@@ -15,6 +15,36 @@ public class Noise.StaticPlaylistView : PlaylistView {
         priority = 3;
     }
 
+    public override Gtk.Menu? get_sidebar_context_menu (Granite.Widgets.SourceList list, Granite.Widgets.SourceList.Item item) {
+        var menu = new Gtk.Menu();
+
+        var rename = new Gtk.MenuItem.with_label(_("Rename"));
+        rename.activate.connect (() => {
+            item.editable = true;
+            list.start_editing_item (item);
+            item.edited.connect ((new_name) => {
+                playlist.name = new_name;
+            });
+        });
+
+        var remove = new Gtk.MenuItem.with_label(_("Remove"));
+        remove.activate.connect (() => {
+            App.main_window.library_manager.remove_playlist (playlist.rowid);
+        });
+
+        var export = new Gtk.MenuItem.with_label(_("Export…"));
+        export.activate.connect (() => {
+            PlaylistsUtils.export_playlist (playlist);
+        });
+
+        menu.append(rename);
+        menu.append(remove);
+        menu.append(export);
+
+        menu.show_all ();
+        return menu;
+    }
+
     public override void update_alert (Granite.Widgets.AlertView alert) {
         alert.icon_name = "dialog-information";
 

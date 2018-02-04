@@ -312,27 +312,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     private void connect_to_sourcelist_signals () {
-        source_list_view.selection_changed.connect ((page_number) => {
-            view_stack.visible_child_name = page_number.to_string ();
-        });
-
-        source_list_view.activated.connect ( () => {
-            search_field_has_focus = false;
-        });
-/*
-        source_list_view.item_action_activated.connect ((page_number) => {
+        /*source_list_view.item_action_activated.connect ((page_number) => {
             var view = view_stack.get_child_by_name (page_number.to_string ());
             if (view is DeviceView) {
                 ((DeviceView) view).device.eject ();
-            }
-        });
-        source_list_view.edited.connect (playlist_name_edited);
-
-        source_list_view.playlist_rename_clicked.connect ((page_number) => {
-            var view = view_stack.get_child_by_name (page_number.to_string ());
-            if (view is PlaylistViewWrapper) {
-                search_field_has_focus = false;
-                source_list_view.start_editing_item(source_list_view.selected);
             }
         });
 
@@ -418,22 +401,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                     new_playlist.name = PlaylistsUtils.get_new_playlist_name (library_manager.get_playlists (), playlist.name);
                     new_playlist.add_medias (playlist.medias);
                     library_manager.add_playlist (new_playlist);
-                }
-            }
-        });
-
-        source_list_view.playlist_export_clicked.connect ((page_number) => {
-            var view = view_stack.get_child_by_name (page_number.to_string ());
-            if (view is PlaylistViewWrapper) {
-                var playlistview = (PlaylistViewWrapper)view;
-                switch (playlistview.hint) {
-                    case ViewWrapper.Hint.PLAYLIST:
-                    case ViewWrapper.Hint.READ_ONLY_PLAYLIST:
-                        PlaylistsUtils.export_playlist (playlistview.playlist);
-                        break;
-                    case ViewWrapper.Hint.SMART_PLAYLIST:
-                        PlaylistsUtils.export_playlist (playlistview.playlist);
-                        break;
                 }
             }
         });
@@ -736,8 +703,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     private void remove_playlist (StaticPlaylist playlist) {
         foreach (var view in view_manager.views) {
-            if (view.id == playlist.id) {
+            if (view is PlaylistView && ((PlaylistView)view).playlist == playlist) {
+                debug ("removing view");
                 view_manager.remove_view (view);
+                return;
             }
         }
     }

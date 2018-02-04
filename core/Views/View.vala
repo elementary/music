@@ -49,11 +49,6 @@ public abstract class Noise.View : Gtk.ScrolledWindow {
     public bool accept_data_drop { get; set; default = false; }
 
     /**
-    * Deletes this view.
-    */
-    public signal void remove_view ();
-
-    /**
     * Called every time this view is shown
     */
     public virtual void shown () {}
@@ -75,8 +70,11 @@ public abstract class Noise.View : Gtk.ScrolledWindow {
 
     /**
     * Get the context menu to display for the sidebar item of this view
+    *
+    * @param list The source list
+    * @param item The sidebar item associated with this view
     */
-    public virtual Gtk.Menu? get_sidebar_context_menu () {
+    public virtual Gtk.Menu? get_sidebar_context_menu (Granite.Widgets.SourceList list, Granite.Widgets.SourceList.Item item) {
         return null;
     }
 
