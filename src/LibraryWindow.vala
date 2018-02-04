@@ -383,26 +383,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             }
         });
 
-        source_list_view.playlist_media_added.connect ((page_number, uris) => {
-            var view = view_stack.get_child_by_name (page_number.to_string ());
-            if (view is PlaylistViewWrapper) {
-                var playlistview = (PlaylistViewWrapper) view;
-                if (playlistview.hint == ViewWrapper.Hint.PLAYLIST) {
-                    var library = playlistview.library;
-                    var playlist = playlistview.playlist;
-                    if (playlist == null)
-                        return;
-
-                    var uri_set = new Gee.HashSet<string> ();
-                    foreach (string uri in uris)
-                        uri_set.add (uri);
-
-                    var media_list = library.medias_from_uris (uri_set);
-                    playlist.add_medias (media_list);
-                }
-            }
-        });
-
         source_list_view.playlist_import_clicked.connect ( () => {
             try {
                 PlaylistsUtils.import_from_playlist_file_info(Noise.PlaylistsUtils.get_playlists_to_import (), library_manager);

@@ -13,6 +13,7 @@ public class Noise.StaticPlaylistView : PlaylistView {
             id = "local/playlist/queue/"; // else queue and history have the same ID
         }
         priority = 3;
+        accept_data_drop = true;
     }
 
     public override Gtk.Menu? get_sidebar_context_menu (Granite.Widgets.SourceList list, Granite.Widgets.SourceList.Item item) {
@@ -70,5 +71,15 @@ public class Noise.StaticPlaylistView : PlaylistView {
             alert.title = _("No Songs");
             alert.description = _("Updating playlist. Please wait.");
         }
+    }
+
+    public override void data_drop (Gtk.SelectionData data) {
+        var uri_set = new Gee.HashSet<string> ();
+        foreach (string uri in data.get_uris ()) {
+            uri_set.add (uri);
+        }
+
+        var media_list = App.main_window.library_manager.medias_from_uris (uri_set);
+        playlist.add_medias (media_list);
     }
 }
