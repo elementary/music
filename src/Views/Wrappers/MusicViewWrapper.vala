@@ -45,7 +45,7 @@ public class Noise.MusicViewWrapper : ViewWrapper {
         // Add list view and column browser
         TreeViewSetup music_setup;
         if (tvs == null) {
-            music_setup = new TreeViewSetup (ViewWrapper.Hint.MUSIC);
+            music_setup = new TreeViewSetup ();
         } else {
             music_setup = tvs;
         }

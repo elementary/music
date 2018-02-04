@@ -69,6 +69,10 @@ public class Noise.MusicListView : GenericList {
     Gtk.MenuItem import_to_library;
     Gtk.MenuItem media_scroll_to_current;
 
+    public MusicListView (TreeViewSetup tvs) {
+        Object (tvs: tvs);
+    }
+
     construct {
         // This is vital
         set_value_func (view_value_func);

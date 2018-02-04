@@ -31,7 +31,7 @@ public class Noise.DeviceViewWrapper : ViewWrapper {
     public Device d { get; private set; }
 
     public DeviceViewWrapper (TreeViewSetup tvs, Device d, Library library) {
-        base (tvs.hint, library);
+        base (Hint.DEVICE, library);
 
         list_view = new ListView (this, tvs);
         embedded_alert = new Granite.Widgets.AlertView ("", "", "");
@@ -69,4 +69,3 @@ public class Noise.DeviceViewWrapper : ViewWrapper {
             set_media_async.begin (library.get_medias ());
     }
 }
-

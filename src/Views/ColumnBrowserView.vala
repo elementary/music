@@ -10,8 +10,10 @@ public class Noise.ColumnBrowserView : View {
     public MusicColumnBrowser column_browser { get; construct; }
     public MusicListView list_view { get; construct; }
 
-    public ColumnBrowserView (Playlist playlist) {
-        Object (playlist: playlist);
+    public TreeViewSetup tvs { get; construct; }
+
+    public ColumnBrowserView (Playlist playlist, TreeViewSetup tvs) {
+        Object (playlist: playlist, tvs: tvs);
     }
 
     construct {
@@ -24,7 +26,7 @@ public class Noise.ColumnBrowserView : View {
         column_browser.set_media (playlist.medias);
         column_browser.changed.connect (filter_changed);
 
-        list_view = new MusicListView ();
+        list_view = new MusicListView (tvs);
         list_view.set_media (playlist.medias);
         var scroll = new Gtk.ScrolledWindow (null, null);
         scroll.add (list_view);

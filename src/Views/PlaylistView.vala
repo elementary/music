@@ -5,8 +5,10 @@ public class Noise.PlaylistView : View {
     public Playlist playlist { get; construct; }
     private MusicListView list_view { get; set; }
 
-    public PlaylistView (Playlist playlist) {
-        Object (playlist: playlist);
+    public TreeViewSetup tvs { get; construct; }
+
+    public PlaylistView (Playlist playlist, TreeViewSetup tvs) {
+        Object (playlist: playlist, tvs: tvs);
     }
 
     construct {
@@ -16,7 +18,7 @@ public class Noise.PlaylistView : View {
         icon = playlist.icon;
         priority = 1;
 
-        list_view = new MusicListView ();
+        list_view = new MusicListView (tvs);
         list_view.set_compare_func (compare_func);
         list_view.set_search_func ((search, table, showing) => {
             showing.add_all (table);

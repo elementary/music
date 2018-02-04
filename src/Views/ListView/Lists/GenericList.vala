@@ -40,11 +40,17 @@ public abstract class Noise.GenericList : FastView {
 
     protected CellDataFunctionHelper cell_data_helper;
 
+    public TreeViewSetup tvs { get; construct; }
+
+    public GenericList (TreeViewSetup tvs) {
+        Object (tvs: tvs);
+    }
+
     construct {
         cell_data_helper = new CellDataFunctionHelper (this);
 
         // Set sort data from saved session
-        // set_sort_column_id (tvs.sort_column_id, tvs.sort_direction);
+        set_sort_column_id (tvs.sort_column_id, tvs.sort_direction);
 
         enable_search = false; // we don't want the built-in search
 
@@ -186,17 +192,7 @@ public abstract class Noise.GenericList : FastView {
     protected abstract void add_column (Gtk.TreeViewColumn column, ListColumn type);
 
     protected void add_columns () {
-        var cols = new Gtk.TreeViewColumn[] {
-            TreeViewSetup.to_gtk_column (ListColumn.ICON),
-            TreeViewSetup.to_gtk_column (ListColumn.NUMBER),
-            TreeViewSetup.to_gtk_column (ListColumn.TRACK),
-            TreeViewSetup.to_gtk_column (ListColumn.TITLE),
-            TreeViewSetup.to_gtk_column (ListColumn.LENGTH),
-            TreeViewSetup.to_gtk_column (ListColumn.ARTIST),
-            TreeViewSetup.to_gtk_column (ListColumn.ALBUM),
-            TreeViewSetup.to_gtk_column (ListColumn.GENRE)
-        };
-        foreach (var tvc in cols) {
+        foreach (var tvc in tvs.get_columns ()) {
             add_column (tvc, TreeViewSetup.get_column_type (tvc));
         }
     }

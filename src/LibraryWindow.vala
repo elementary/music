@@ -735,7 +735,16 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
      * StaticPlaylists
      */
     private void add_playlist (StaticPlaylist playlist) {
-        view_manager.add (new StaticPlaylistView (playlist));
+        var tvs = new TreeViewSetup (true);
+        if (playlist is LocalStaticPlaylist) {
+            tvs = new TreeViewSetup (true, "library:playlist%lld".printf (playlist.rowid), library_manager.connection);
+        } else if (playlist == App.player.queue_playlist) {
+            tvs = new TreeViewSetup (true, "library:queue", library_manager.connection);
+        } else if (playlist == App.player.history_playlist) {
+            tvs = new TreeViewSetup (true, "library:history", library_manager.connection);
+        }
+
+        view_manager.add (new StaticPlaylistView (playlist, tvs));
     }
 
     private void remove_playlist (StaticPlaylist playlist) {
@@ -770,7 +779,12 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
      */
 
     private void add_smartplaylist (SmartPlaylist smartplaylist) {
-        view_manager.add (new SmartPlaylistView (smartplaylist));
+        var tvs = new TreeViewSetup (true);
+        if (smartplaylist is LocalSmartPlaylist) {
+            tvs = new TreeViewSetup (true, "library:s%lld".printf (smartplaylist.rowid), library_manager.connection);
+        }
+
+        view_manager.add (new SmartPlaylistView (smartplaylist, tvs));
     }
 
     private void remove_smartplaylist (SmartPlaylist smartplaylist) {
