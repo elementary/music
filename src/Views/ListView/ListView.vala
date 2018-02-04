@@ -84,7 +84,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
     public ListView (ViewWrapper view_wrapper, TreeViewSetup tvs, bool add_browser = false) {
         Object (view_wrapper: view_wrapper,
                 list_view: new MusicListView (),
-                column_browser: add_browser ? new MusicColumnBrowser (view_wrapper) : null);
+                column_browser: add_browser ? new MusicColumnBrowser () : null);
     }
 
     construct {

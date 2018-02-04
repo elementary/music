@@ -25,6 +25,12 @@ public class Noise.HomeView : SwitchableView {
         list_view.icon = new ThemedIcon ("view-list-symbolic");
         add_view (list_view);
 
+        var column_browser = new ColumnBrowserView (App.main_window.library_manager.p_music);
+        column_browser.title = _("View in Columns");
+        column_browser.id = "column";
+        column_browser.icon = new ThemedIcon ("view-column-symbolic");
+        add_view (column_browser);
+
         show_all ();
     }
 }

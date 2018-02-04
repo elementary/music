@@ -6,7 +6,6 @@
 * Its children don't need to define a category, only an ID, icon and title.
 */
 public class Noise.SwitchableView : View {
-    private string last_search = "";
     public Gtk.Stack stack { get; private set; }
 
     public Gee.ArrayList<View> children { get; set; }
@@ -16,10 +15,6 @@ public class Noise.SwitchableView : View {
 
         stack = new Gtk.Stack ();
         add (stack);
-
-        stack.notify["visible-child"].connect (() => {
-            filter (last_search);
-        });
     }
 
     /**
@@ -31,7 +26,6 @@ public class Noise.SwitchableView : View {
     }
 
     public override bool filter (string search) {
-        last_search = search;
         return ((View)stack.visible_child).filter (search);
     }
 }

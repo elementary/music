@@ -29,7 +29,7 @@
 public class Noise.MusicColumnBrowser : Noise.ColumnBrowser {
     private GLib.Settings saved_state_settings;
 
-    public MusicColumnBrowser (ViewWrapper view_wrapper) {
+    public MusicColumnBrowser () {
         var columns = new BrowserColumn.Category [0];
         columns += BrowserColumn.Category.RATING;
         columns += BrowserColumn.Category.GROUPING;
@@ -39,7 +39,7 @@ public class Noise.MusicColumnBrowser : Noise.ColumnBrowser {
         columns += BrowserColumn.Category.ARTIST;
         columns += BrowserColumn.Category.ALBUM;
 
-        base (view_wrapper, columns);
+        base (columns);
 
         saved_state_settings = new GLib.Settings ("io.elementary.music.saved-state");
 

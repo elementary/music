@@ -31,6 +31,7 @@ set(CLIENT_SOURCE
     GStreamer/CoverImport.vala
     GStreamer/Streamer.vala
     Views/AlbumsView.vala
+    Views/ColumnBrowserView.vala
     Views/HomeView.vala
     Views/PlaylistView.vala
     Views/StaticPlaylistView.vala
