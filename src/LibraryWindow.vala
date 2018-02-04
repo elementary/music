@@ -106,11 +106,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         library_manager.smartplaylist_added.connect ((p) => {add_smartplaylist (p);});
         library_manager.smartplaylist_removed.connect ((p) => {remove_smartplaylist (p);});
 
-        var device_manager = DeviceManager.get_default ();
-        device_manager.device_added.connect ((item) => {create_device_source_list (item);});
-        device_manager.device_name_changed.connect (change_device_name);
-        device_manager.device_removed.connect (remove_device);
-
         App.player.player.end_of_stream.connect (end_of_stream);
         App.player.player.current_position_update.connect (current_position_update);
         App.player.player.error_occured.connect (error_occured);
@@ -312,13 +307,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     private void connect_to_sourcelist_signals () {
-        /*source_list_view.item_action_activated.connect ((page_number) => {
-            var view = view_stack.get_child_by_name (page_number.to_string ());
-            if (view is DeviceView) {
-                ((DeviceView) view).device.eject ();
-            }
-        });
-
+        /*
         source_list_view.device_import_clicked.connect ((page_number) => {
             foreach (var device in DeviceManager.get_default ().get_initialized_devices ()) {
                 if (page_number == match_devices.get (device.get_unique_identifier ())) {
@@ -588,59 +577,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             ((SimpleAction) actions.lookup_action (ACTION_PLAY)).set_state (true);
         }
 
-    }
-
-    /**
-     * Devices
-     */
-    private void change_device_name (Device device) {
-        int page_number = match_devices.get (device.get_unique_identifier ());
-        source_list_view.change_device_name (page_number, device.getDisplayName ());
-    }
-
-    private void remove_device (Device device) {
-        if (!match_devices.has_key (device.get_unique_identifier ())) {
-            return;
-        }
-
-        int page_number = match_devices.get (device.get_unique_identifier ());
-
-        foreach (int number in source_list_view.remove_device (page_number)) {
-            view_stack.remove_view (view_stack.get_child_by_name (number.to_string ()));
-        }
-
-        match_devices.unset (device.get_unique_identifier ());
-        view_stack.remove_view (view_stack.get_child_by_name (page_number.to_string ()));
-    }
-
-    private void create_device_source_list (Device d) {
-        // lock (match_devices) {
-        //     SourceListEntry? entry;
-        //     var pref = library_manager.get_preferences_for_device (d);
-        //     var dv = new DeviceView (d, pref);
-        //     int view_number = view_stack.add_view (dv);
-        //     match_devices.set (d.get_unique_identifier (), view_number);
-        //     if (d.only_use_custom_view ()) {
-        //         message("new custom device (probably a CD) added with %d songs.\n", d.get_library ().get_medias ().size);
-
-        //         entry = source_list_view.add_item  (view_number, d.getDisplayName (), ViewWrapper.Hint.DEVICE, d.get_icon (), new ThemedIcon ("media-eject-symbolic"), null, d);
-        //     } else {
-        //         debug ("adding device view with %d\n", d.get_library ().get_medias ().size);
-        //         var tvs = new TreeViewSetup (ViewWrapper.Hint.DEVICE_AUDIO);
-        //         var music_view_wrapper = new DeviceViewWrapper(tvs, d, d.get_library ());
-
-        //         int subview_number = view_stack.add_view (music_view_wrapper);
-        //         entry = source_list_view.add_item  (view_number, d.getDisplayName (), ViewWrapper.Hint.DEVICE, d.get_icon (), new ThemedIcon ("media-eject-symbolic"), null, d);
-        //         source_list_view.add_item (subview_number, _("Music"), ViewWrapper.Hint.DEVICE_AUDIO, new ThemedIcon ("library-music"), null, entry as SourceListExpandableItem, d);
-        //         if (d.get_library ().support_playlists () == true) {
-        //             foreach (var p in d.get_library ().get_playlists ()) {
-        //                 create_playlist_source_list (p, (SourceListExpandableItem)entry, d.get_library ());
-        //             }
-        //             d.get_library ().playlist_added.connect ( (np) => {add_playlist (np, d.get_library (), (SourceListExpandableItem)entry);});
-        //             d.get_library ().playlist_removed.connect ( (np) => {remove_playlist (np);});
-        //         }
-        //     }
-        // }
     }
 
     /**

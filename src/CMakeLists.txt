@@ -32,6 +32,8 @@ set(CLIENT_SOURCE
     GStreamer/Streamer.vala
     Views/AlbumsView.vala
     Views/ColumnBrowserView.vala
+    Views/DeviceSummaryView.vala
+    Views/DeviceMusicView.vala
     Views/HomeView.vala
     Views/PlaylistView.vala
     Views/StaticPlaylistView.vala
