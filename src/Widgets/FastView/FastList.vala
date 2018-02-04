@@ -98,7 +98,6 @@ public class Noise.FastView : Gtk.TreeView {
     }
 
     public void set_table (Gee.ArrayList<Media> table, bool do_resort) {
-        debug ("New table : %d", table.size);
         this.table = table;
 
         if (do_resort) {
@@ -114,7 +113,6 @@ public class Noise.FastView : Gtk.TreeView {
 
     public void do_search (string? search = null) {
         if (search_func == null/* || research_needed == false*/) {
-            debug ("No search func !");
             return;
         }
 
@@ -123,8 +121,6 @@ public class Noise.FastView : Gtk.TreeView {
 
         showing.clear ();
         search_func (search ?? "", table, showing);
-
-        debug ("SEARCH : %d , %d", showing.size, old_size);
 
         if (showing.size == old_size) {
             fm.set_table (showing);

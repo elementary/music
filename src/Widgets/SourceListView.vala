@@ -49,7 +49,7 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, Granite.Wid
         return Gdk.DragAction.COPY;
     }
 }
-
+/*
 public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.ExpandableItem {
     public int page_number { get; set; default = -1; }
     public ViewWrapper.Hint hint;
@@ -115,41 +115,22 @@ public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.Expanda
         return deviceMenu;
     }
 }
+*/
+public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.ExpandableItem, Granite.Widgets.SourceListSortable {
+    public Category category { get; set; }
+    public Gtk.Menu? menu { get; set; }
+    public bool allow_user_sorting { get; set; default = false; }
 
-public class Noise.PlayListCategory : Granite.Widgets.SourceList.ExpandableItem, Granite.Widgets.SourceListSortable {
-    //for playlist right click
-    Gtk.Menu playlistMenu;
-    Gtk.MenuItem playlistNew;
-    Gtk.MenuItem smartPlaylistNew;
-    Gtk.MenuItem playlistImport;
-    public signal void playlist_import_clicked ();
-
-    public PlayListCategory (string name) {
-        base (name);
-
-        //playlist right click menu
-        playlistMenu = new Gtk.Menu();
-        playlistNew = new Gtk.MenuItem.with_label(_("New Playlist"));
-        smartPlaylistNew = new Gtk.MenuItem.with_label(_("New Smart Playlist"));
-        playlistImport = new Gtk.MenuItem.with_label(_("Import Playlists"));
-
-        playlistMenu.append(playlistNew);
-        playlistMenu.append(smartPlaylistNew);
-        playlistMenu.append(playlistImport);
-        playlistMenu.show_all ();
-
-        playlistNew.activate.connect(() => {App.main_window.create_new_playlist ();});
-        smartPlaylistNew.activate.connect(() => {App.main_window.show_smart_playlist_dialog ();});
-        playlistImport.activate.connect(() => {playlist_import_clicked ();});
+    public SourceListExpandableItem (Category cat) {
+        Object (category: cat, name: cat.name);
     }
 
     public override Gtk.Menu? get_context_menu () {
-        return playlistMenu;
+        return menu;
     }
 
-    // implement Sortable interface
     public bool allow_dnd_sorting () {
-        return true;
+        return allow_user_sorting;
     }
 
     public int compare (Granite.Widgets.SourceList.Item a, Granite.Widgets.SourceList.Item b) {
@@ -160,8 +141,8 @@ public class Noise.PlayListCategory : Granite.Widgets.SourceList.ExpandableItem,
             return 0;
         }
 
-        var res = item_a.view.priority - item_b.view.priority;
-        debug ("ORderign (%s & %s) : %d", item_a.name, item_b.name, res);
+        var res = item_b.view.priority - item_a.view.priority;
+        debug ("ordering : %d", res);
 
         return res == 0
             ? strcmp (item_a.name.collate_key (), item_b.name.collate_key ()) // order them alphabetically
@@ -185,11 +166,6 @@ public class Noise.SourceListRoot : Granite.Widgets.SourceList.ExpandableItem, G
 
 public class Noise.SourceListView : Granite.Widgets.SourceList {
     Gee.HashMap<string, Granite.Widgets.SourceList.ExpandableItem> categories = new Gee.HashMap<string, Granite.Widgets.SourceList.ExpandableItem> ();
-
-    Granite.Widgets.SourceList.ExpandableItem library_category;
-    Granite.Widgets.SourceList.ExpandableItem devices_category;
-    Granite.Widgets.SourceList.ExpandableItem network_category;
-    PlayListCategory playlists_category;
 
     public signal void edited (int page_number, string new_name);
     public signal void item_action_activated (int page_number);
@@ -223,6 +199,7 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
             add_view (view);
         }
 
+        // update the selected item when the selected view changes
         App.main_window.view_manager.notify["selected-view"].connect (() => {
             foreach (var cat in root.children) {
                 if (cat is Granite.Widgets.SourceList.ExpandableItem) {
@@ -242,7 +219,7 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
     }
 
     private void add_category (Category cat) {
-        var item = new Granite.Widgets.SourceList.ExpandableItem (cat.name);
+        var item = new SourceListExpandableItem (cat);
         root.add (item);
 
         cat.hide.connect (() => {
@@ -278,15 +255,15 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
     // removes the device from menu
     public Gee.Collection<int> remove_device (int page_number) {
         var pages = new Gee.TreeSet<int>();
-        foreach (var device in devices_category.children) {
-            if (device is SourceListExpandableItem) {
-                if (page_number == ((SourceListExpandableItem)device).page_number) {
-                    enumerate_children_pages((SourceListExpandableItem)device, ref pages);
-                    devices_category.remove (device);
-                    return pages;
-                }
-            }
-        }
+        // foreach (var device in devices_category.children) {
+        //     if (device is SourceListExpandableItem) {
+        //         if (page_number == ((SourceListExpandableItem)device).page_number) {
+        //             enumerate_children_pages((SourceListExpandableItem)device, ref pages);
+        //             devices_category.remove (device);
+        //             return pages;
+        //         }
+        //     }
+        // }
         return pages;
     }
 
