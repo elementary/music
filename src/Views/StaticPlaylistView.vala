@@ -37,8 +37,20 @@ public class Noise.StaticPlaylistView : PlaylistView {
             PlaylistsUtils.export_playlist (playlist);
         });
 
-        menu.append(rename);
-        menu.append(remove);
+        var save = new Gtk.MenuItem.with_label(_("Save as Playlist"));
+        save.activate.connect(() => {
+            var new_playlist = new StaticPlaylist ();
+            new_playlist.name = PlaylistsUtils.get_new_playlist_name (App.main_window.library_manager.get_playlists (), playlist.name);
+            new_playlist.add_medias (playlist.medias);
+            App.main_window.library_manager.add_playlist (new_playlist);
+        });
+
+        if (((StaticPlaylist)playlist).read_only) {
+            menu.append (save);
+        } else {
+            menu.append(rename);
+            menu.append(remove);
+        }
         menu.append(export);
 
         menu.show_all ();
