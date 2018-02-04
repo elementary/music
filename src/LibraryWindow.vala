@@ -42,6 +42,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public Widgets.ViewSelector view_selector { get; private set; }
     public Gtk.SearchEntry search_entry { get; private set; }
     public Widgets.StatusBar statusbar { get; private set; }
+    public Granite.Widgets.AlertView alert_view { get; private set; }
     public Noise.LocalLibrary library_manager { get { return (Noise.LocalLibrary)libraries_manager.local_library; } }
 
     private bool media_considered_played { get; set; default = false; } // whether or not we have updated last played and added to already played list
@@ -93,7 +94,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             }
 
             view_stack.visible_child = view_manager.selected_view;
-            view_manager.filter_view (search_entry.text);
+            trigger_search ();
         });
 
         library_manager.media_added.connect (update_sensitivities);
@@ -273,7 +274,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         headerbar.set_custom_title (top_display);
         headerbar.show_all ();
 
+        alert_view = new Granite.Widgets.AlertView ("No results", "Try another search", "edit-find-symbolic");
         view_stack = new ViewStack ();
+        view_stack.add_named (alert_view, "alert-view");
         source_list_view = new SourceListView ();
 
         statusbar = new Widgets.StatusBar ();
@@ -533,7 +536,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         search_entry.activate.connect (search_entry_activate);
         search_entry.search_changed.connect (() => {
             if (search_entry.text_length != 1) {
-                view_manager.filter_view (search_entry.text);
+                trigger_search ();
             }
         });
         search_entry.text = main_settings.search_string;
@@ -546,6 +549,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             }
         }
         libraries_manager.search_for_string (Settings.Main.get_default ().search_string);
+    }
+
+    private void trigger_search () {
+        if (view_manager.filter_view (search_entry.text)) {
+            view_stack.visible_child = view_manager.selected_view;
+        } else {
+            view_stack.visible_child = alert_view;
+        }
     }
 
     /**
