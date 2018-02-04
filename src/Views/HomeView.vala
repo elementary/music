@@ -1,3 +1,6 @@
+/**
+* The default view, showing all your local library
+*/
 public class Noise.HomeView : SwitchableView {
     construct {
         title = _("Music");

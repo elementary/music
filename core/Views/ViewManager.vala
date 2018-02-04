@@ -1,4 +1,10 @@
-public errordomain ViewError {
+/**
+* Errors related to view management
+*/
+public errordomain Noise.ViewError {
+    /**
+    * A requested view or category was not found
+    */
     NOT_FOUND
 }
 

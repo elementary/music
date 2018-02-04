@@ -1,3 +1,6 @@
+/**
+* A view displaying a playlist, as a list of songs
+*/
 public class Noise.PlaylistView : View {
     public Playlist playlist { get; construct; }
     private MusicListView list_view { get; set; }
