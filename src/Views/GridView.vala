@@ -93,7 +93,7 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
     }
 
     protected void do_search () {
-        icon_view.do_search ();
+        // icon_view.do_search ();
     }
 
     protected void remove_objects (Gee.Collection<Object> objects) {

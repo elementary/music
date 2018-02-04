@@ -12,7 +12,7 @@ public class Noise.HomeView : SwitchableView {
         var grid_view = new AlbumsView (media);
         App.main_window.library_manager.media_added.connect ((media) => {
             grid_view.set_media (App.main_window.library_manager.get_medias ());
-            grid_view.refilter ();
+            // TODO: refilter
         });
         grid_view.title = _("View as Albums");
         grid_view.id = "grid";

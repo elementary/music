@@ -64,6 +64,7 @@ public abstract class Noise.View : Gtk.ScrolledWindow {
     * Called when the text of the search box changes
     *
     * @param search The search string
+    * @return true if something was found
     */
     public abstract bool filter (string search);
 

@@ -27,7 +27,7 @@
  */
 
 /**
- * SourceList item. It stores the number of the corresponding page in the notebook widget.
+ * SourceList item.
  */
 public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, Granite.Widgets.SourceListDragDest {
     public View view { get; construct; }
@@ -118,7 +118,7 @@ public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.Expanda
 */
 public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.ExpandableItem, Granite.Widgets.SourceListSortable {
     public Category category { get; set; }
-    public Gtk.Menu? menu { get; set; }
+    public Gtk.Menu? menu { get; set; default = null; }
     public bool allow_user_sorting { get; set; default = false; }
 
     public SourceListExpandableItem (Category cat) {
@@ -142,7 +142,6 @@ public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.Expanda
         }
 
         var res = item_b.view.priority - item_a.view.priority;
-        debug ("ordering : %d", res);
 
         return res == 0
             ? strcmp (item_a.name.collate_key (), item_b.name.collate_key ()) // order them alphabetically

@@ -163,4 +163,13 @@ public class Noise.ViewManager : Object {
         warning (@"Cant' show requested view: no view with the $id ID found");
         return false;
     }
+
+    /**
+    * Filter the current view
+    *
+    * @return true if something was found, false otherwise
+    */
+    public bool filter_view (string search) {
+        return selected_view.filter (search);
+    }
 }

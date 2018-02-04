@@ -83,12 +83,17 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         main_settings = Settings.Main.get_default ();
 
         view_manager = new ViewManager ();
-        view_manager.view_added.connect ((view) => {
-            view_stack.add_titled (view, view.id, view.title);
-            view_stack.set_visible_child (view_manager.selected_view);
-        });
         view_manager.notify["selected-view"].connect (() => {
+            var view = view_manager.selected_view;
+
+            // add this view to the stack if needed
+            if (view_stack.get_child_by_name (view.id) == null) {
+                view_stack.add_titled (view, view.id, view.title);
+                view_stack.set_visible_child (view_manager.selected_view);
+            }
+
             view_stack.visible_child = view_manager.selected_view;
+            view_manager.filter_view (search_entry.text);
         });
 
         library_manager.media_added.connect (update_sensitivities);
@@ -528,7 +533,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         search_entry.activate.connect (search_entry_activate);
         search_entry.search_changed.connect (() => {
             if (search_entry.text_length != 1) {
-                libraries_manager.search_for_string (search_entry.text);
+                view_manager.filter_view (search_entry.text);
             }
         });
         search_entry.text = main_settings.search_string;

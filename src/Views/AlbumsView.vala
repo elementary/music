@@ -29,7 +29,6 @@ public class Noise.AlbumsView : View {
         icon_view.drag_begin.connect_after (on_drag_begin);
         icon_view.drag_data_get.connect (on_drag_data_get);
         icon_view.item_activated.connect (on_item_activated);
-        icon_view.set_search_func (search_func);
 
         set_media (media_coll);
 
@@ -42,7 +41,6 @@ public class Noise.AlbumsView : View {
 
         add (hpaned);
         show_all ();
-        refilter ();
 
         clear_objects ();
         reset_pixbufs ();
@@ -58,16 +56,8 @@ public class Noise.AlbumsView : View {
         Gtk.drag_source_set (icon_view, Gdk.ModifierType.BUTTON1_MASK, { te }, Gdk.DragAction.COPY);
     }
 
-    protected void set_research_needed (bool value) {
-        icon_view.research_needed = value;
-    }
-
     protected void add_objects (Gee.Collection<Object> objects) {
         icon_view.add_objects (objects);
-    }
-
-    protected void do_search () {
-        icon_view.do_search ();
     }
 
     protected void remove_objects (Gee.Collection<Object> objects) {
@@ -174,10 +164,6 @@ public class Noise.AlbumsView : View {
         return (Gee.Collection<Album>)get_objects ();
     }
 
-    public void refilter () {
-        do_search ();
-    }
-
     public void update_media (Gee.Collection<Media> media) {
         var medias_to_update = new Gee.TreeSet<Media> ();
         medias_to_update.add_all (media);
@@ -205,7 +191,7 @@ public class Noise.AlbumsView : View {
 
         remove_objects (albums_to_remove);
         add_media (medias_to_add);
-        set_research_needed (true);
+        // TODO: refilter
     }
 
     public void set_media (Gee.Collection<Media> to_add) {
@@ -233,7 +219,7 @@ public class Noise.AlbumsView : View {
 
         // Add new albums
         add_objects (albums_to_append);
-        set_research_needed (true);
+        // TODO: refilter
     }
 
     /* There is a special case. Let's say that we're removing
@@ -263,7 +249,7 @@ public class Noise.AlbumsView : View {
             return;
 
         remove_objects (albums_to_remove);
-        set_research_needed (true);
+        // TODO: refilter
     }
 
     public int get_relative_id () {
@@ -313,12 +299,6 @@ public class Noise.AlbumsView : View {
         return order;
     }
 
-    protected void search_func (Gee.HashMap<int, Object> showing) {
-        foreach (var album in get_albums ()) {
-            showing[showing.size] = album;
-        }
-    }
-
     protected Gee.Collection<Media> get_selected_media (Object obj) {
         var album = obj as Album;
         return_val_if_fail (album != null, null);
@@ -327,6 +307,20 @@ public class Noise.AlbumsView : View {
     }
 
     public override bool filter (string search) {
-        return true;
+        // TODO: maybe handle search here, not in the library manager?
+        App.main_window.library_manager.search_medias (search);
+        var result = App.main_window.library_manager.get_search_result ();
+        var albums = new Gee.TreeSet<Album> ();
+        foreach (var m in result) {
+            albums.add (m.album_info);
+        }
+
+        var showing = new Gee.HashMap<int, Album> ();
+        foreach (var album in albums) {
+            showing[showing.size] = album;
+        }
+        icon_view.set_visible_albums (showing);
+
+        return result.size > 0;
     }
 }

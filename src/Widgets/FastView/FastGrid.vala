@@ -70,14 +70,19 @@ public class Noise.FastGrid : Widgets.TileView {
         return showing.get (index);
     }
 
-    public void set_table (Gee.HashMap<int, GLib.Object> table, bool do_resort) {
-        this.table.clear ();
-        this.table.set_all (table);
+    public void set_table (Gee.HashMap<int, GLib.Object> new_table, bool do_resort) {
+        table.clear ();
+        table.set_all (new_table);
 
-        if (do_resort)
-            resort (); // this also calls search
-        else
-            do_search ();
+        if (showing.size == 0) { // first population
+            set_model (null);
+            fm.set_table (table);
+            set_model (fm);
+        }
+
+        if (do_resort) {
+            resort ();
+        }
     }
 
     // If a GLib.Object is in objects but not in table, will just ignore
@@ -89,8 +94,6 @@ public class Noise.FastGrid : Widgets.TileView {
         }
 
         table.unset_all (to_remove);
-
-        do_search ();
     }
 
     // Does NOT check for duplicates
@@ -99,46 +102,35 @@ public class Noise.FastGrid : Widgets.TileView {
         foreach (var o in objects)
             table.set (table.size, o);
 
-        // resort the new songs in. this will also call do_search
+        // resort the new songs in.
         resort ();
     }
 
-    public void do_search () {
-        if (search_func == null || research_needed == false)
-            return;
-
-        research_needed = false;
-        var old_size = showing.size;
-
-        showing.clear ();
-        search_func (showing);
-
-        if (showing.size == old_size) {
-            fm.set_table (showing);
+    public void set_visible_albums (Gee.HashMap<int, Album> new_vis) {
+        if (new_vis.size == showing.size) {
+            fm.set_table (new_vis);
             queue_draw ();
-        } else if (old_size == 0) { // if first population, just do normal
-            set_model (null);
-            fm.set_table (showing);
-            set_model (fm);
-        } else if (old_size > showing.size) { // removing
-            while (fm.iter_n_children (null) > showing.size) {
+        } else if (showing.size > new_vis.size) { // removing
+            while (fm.iter_n_children (null) > new_vis.size) {
                 Gtk.TreeIter iter;
                 fm.iter_nth_child (out iter, null, fm.iter_n_children (null) - 1);
                 fm.remove (iter);
             }
 
-            fm.set_table (showing);
+            fm.set_table (new_vis);
             queue_draw ();
-        } else if (showing.size > old_size) { // adding
+        } else if (new_vis.size > showing.size) { // adding
             Gtk.TreeIter iter;
 
-            while (fm.iter_n_children (null) < showing.size) {
+            while (fm.iter_n_children (null) < new_vis.size) {
                 fm.append (out iter);
             }
 
-            fm.set_table (showing);
+            fm.set_table (new_vis);
             queue_draw ();
         }
+
+        showing = new_vis;
     }
 
     public void redraw_row (int row_index) {
@@ -155,7 +147,6 @@ public class Noise.FastGrid : Widgets.TileView {
 
     public void resort () {
         quicksort (0, table.size - 1);
-        do_search ();
     }
 
     void swap (int a, int b) {
