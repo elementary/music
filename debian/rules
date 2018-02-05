@@ -5,7 +5,7 @@
 export DEB_BUILD_MAINT_OPTIONS=hardening=+all
 
 %:
-	dh $@
+	dh $@ --buildsystem=meson
 
 override_dh_builddeb:
 	dh_builddeb -- -Zxz
