@@ -7,727 +7,583 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-18 14:43+0100\n"
+"POT-Creation-Date: 2018-02-05 11:30-0800\n"
 "PO-Revision-Date: 2017-04-21 13:58+0000\n"
 "Last-Translator: Moo <hazap@hotmail.com>\n"
-"Language-Team: Lithuanian "
-"<https://l10n.elementary.io/projects/music/music/lt/>\n"
+"Language-Team: Lithuanian <https://l10n.elementary.io/projects/music/music/"
+"lt/>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"(n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
+"%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 2.13-dev\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:53+0000\n"
 
-#: ../core/LibrariesManager.vala:143
+#: core/LibrariesManager.vala:147
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 msgstr "Į biblioteką importuojama <b>$NAME</b>, kurią atlieka <b>$ARTIST</b>…"
 
-#: ../core/Utils/TimeUtils.vala:51 ../core/Utils/TimeUtils.vala:60
-msgid "%u second"
-msgid_plural "%u seconds"
-msgstr[0] "%u sekundė"
-msgstr[1] "%u sekundės"
-msgstr[2] "%u sekundžių"
-
-#: ../core/Utils/TimeUtils.vala:57 ../core/Utils/TimeUtils.vala:75
-msgid "%u minute"
-msgid_plural "%u minutes"
-msgstr[0] "%u minutė"
-msgstr[1] "%u minutės"
-msgstr[2] "%u minučių"
-
-#. / Minutes and seconds
-#: ../core/Utils/TimeUtils.vala:62
-msgctxt "minutes and seconds"
-msgid "%s and %s"
-msgstr "%s ir %s"
-
-#: ../core/Utils/TimeUtils.vala:69
-msgid "%u day"
-msgid_plural "%u days"
-msgstr[0] "%u diena"
-msgstr[1] "%u dienos"
-msgstr[2] "%u dienų"
-
-#: ../core/Utils/TimeUtils.vala:72
-msgid "%u hour"
-msgid_plural "%u hours"
-msgstr[0] "%u valanda"
-msgstr[1] "%u valandos"
-msgstr[2] "%u valandų"
-
-#. / days, hours and minutes
-#: ../core/Utils/TimeUtils.vala:83
-msgctxt "days, hours and minutes"
-msgid "%s, %s and %s"
-msgstr "%s, %s ir %s"
-
-#. / days and hours
-#: ../core/Utils/TimeUtils.vala:86
-msgctxt "days and hours"
-msgid "%s and %s"
-msgstr "%s ir %s"
-
-#. / days and minutes
-#: ../core/Utils/TimeUtils.vala:91
-msgctxt "days and minutes"
-msgid "%s and %s"
-msgstr "%s ir %s"
-
-#. / hours and minutes
-#: ../core/Utils/TimeUtils.vala:100
-msgctxt "hours and minutes"
-msgid "%s and %s"
-msgstr "%s ir %s"
-
-#. / Format of date strings. See reference documentation of g_date_time_format()
-#. / for more details.
-#: ../core/Utils/TimeUtils.vala:159
-msgid "%m/%e/%Y %l:%M %p"
-msgstr "%Y-%m-%e %k:%M"
-
-#: ../core/Utils/PlaylistsUtils.vala:96
-msgid "%s (%d)"
-msgstr "%s (%d)"
-
-#: ../core/Utils/PlaylistsUtils.vala:236
-msgid "New playlist"
-msgstr "Naujas grojaraštis"
-
-#: ../core/Utils/PlaylistsUtils.vala:247
-msgid "%s (%i)"
-msgstr "%s (%i)"
-
-#: ../core/Utils/PlaylistsUtils.vala:274
-msgid "Export Playlist"
-msgstr "Eksportuoti grojaraštį"
-
-#: ../core/Utils/PlaylistsUtils.vala:276 ../core/Utils/PlaylistsUtils.vala:370
-#: ../src/Widgets/TopDisplay.vala:90
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:63
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:61
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:109
-#: ../src/Dialogs/FileNotFoundDialog.vala:87
-#: ../src/Dialogs/FileNotFoundDialog.vala:126
-#: ../src/Dialogs/RemoveFilesDialog.vala:52
-#: ../src/Dialogs/SmartPlaylistEditor.vala:118 ../src/LibraryWindow.vala:1066
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:131
-msgid "Cancel"
-msgstr "Atsisakyti"
-
-#: ../core/Utils/PlaylistsUtils.vala:277 ../src/Dialogs/MediaEditor.vala:151
-#: ../src/Dialogs/SmartPlaylistEditor.vala:116
-msgid "Save"
-msgstr "Įrašyti"
-
-#: ../core/Utils/PlaylistsUtils.vala:282 ../core/Utils/PlaylistsUtils.vala:377
-msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr "MPEG versija 3.0 išplėstinis (*.m3u)"
-
-#: ../core/Utils/PlaylistsUtils.vala:287 ../core/Utils/PlaylistsUtils.vala:382
-msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr "Shoutcast grojaraštis versija 2.0 (*.pls)"
-
-#: ../core/Utils/PlaylistsUtils.vala:362
-msgid "Playlist"
-msgstr "Grojaraštis"
-
-#: ../core/Utils/PlaylistsUtils.vala:368
-msgid "Import %s"
-msgstr "Importuoti %s"
-
-#: ../core/Utils/PlaylistsUtils.vala:371
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:110
-#: ../src/Dialogs/FileNotFoundDialog.vala:127 ../src/LibraryWindow.vala:1067
-#: ../src/Views/GridView/PopupListView.vala:255
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:133
-msgid "Open"
-msgstr "Atverti"
-
-#: ../core/Utils/PlaylistsUtils.vala:402
-msgid "Unrecognized playlist file. Import failed."
-msgstr "Neatpažintas grojaraščio failas. Importavimas nepavyko."
-
-#: ../core/Utils/FileUtils.vala:294
-msgid " (%d)"
-msgstr " (%d)"
-
-#. / Used for unknown titles, artists, or album names.
-#: ../core/Media.vala:34
+#: core/Media.vala:32
 msgid "Unknown"
 msgstr "Nežinoma"
 
-#. / Please keep $NAME and $ALBUM, they will be replaced by their values
-#: ../core/Media.vala:180
+#: core/Media.vala:179
 msgid "$NAME on $ALBUM"
 msgstr "$NAME iš albumo $ALBUM"
 
-#. / Please keep $NAME and $ARTIST, they will be replaced by their values
-#: ../core/Media.vala:183
+#: core/Media.vala:182
 msgid "$NAME by $ARTIST"
 msgstr "$NAME, kurią atlieka $ARTIST"
 
-#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
-#: ../core/Media.vala:189
+#: core/Media.vala:188
 msgid "$NAME by $ARTIST on $ALBUM"
 msgstr "$NAME, kurią atlieka $ARTIST iš albumo $ALBUM"
 
-#: ../core/GStreamer/Equalizer.vala:72
+#: core/GStreamer/Equalizer.vala:71
 msgid "Flat"
 msgstr "Paprasta"
 
-#: ../core/GStreamer/Equalizer.vala:73
+#: core/GStreamer/Equalizer.vala:72
 msgid "Classical"
 msgstr "Klasikinė"
 
-#: ../core/GStreamer/Equalizer.vala:74
+#: core/GStreamer/Equalizer.vala:73
 msgid "Club"
 msgstr "Klubinė"
 
-#: ../core/GStreamer/Equalizer.vala:75
+#: core/GStreamer/Equalizer.vala:74
 msgid "Dance"
 msgstr "Šokių"
 
-#: ../core/GStreamer/Equalizer.vala:76
+#: core/GStreamer/Equalizer.vala:75
 msgid "Full Bass"
 msgstr "Visi žemi tonai"
 
-#: ../core/GStreamer/Equalizer.vala:77
+#: core/GStreamer/Equalizer.vala:76
 msgid "Full Treble"
 msgstr "Visi aukšti tonai"
 
-#: ../core/GStreamer/Equalizer.vala:78
+#: core/GStreamer/Equalizer.vala:77
 msgid "Full Bass + Treble"
 msgstr "Visi žemi + aukšti tonai"
 
-#: ../core/GStreamer/Equalizer.vala:79
+#: core/GStreamer/Equalizer.vala:78
 msgid "Headphones"
 msgstr "Ausinės"
 
-#: ../core/GStreamer/Equalizer.vala:80
+#: core/GStreamer/Equalizer.vala:79
 msgid "Large Hall"
 msgstr "Didelė salė"
 
-#: ../core/GStreamer/Equalizer.vala:81
+#: core/GStreamer/Equalizer.vala:80
 msgid "Live"
 msgstr "Gyvai"
 
-#: ../core/GStreamer/Equalizer.vala:82
+#: core/GStreamer/Equalizer.vala:81
 msgid "Party"
 msgstr "Vakarėlis"
 
-#: ../core/GStreamer/Equalizer.vala:83
+#: core/GStreamer/Equalizer.vala:82
 msgid "Pop"
 msgstr "Pop"
 
-#: ../core/GStreamer/Equalizer.vala:84
+#: core/GStreamer/Equalizer.vala:83
 msgid "Reggae"
 msgstr "Regis"
 
-#: ../core/GStreamer/Equalizer.vala:85
+#: core/GStreamer/Equalizer.vala:84
 msgid "Rock"
 msgstr "Rokas"
 
-#: ../core/GStreamer/Equalizer.vala:86
+#: core/GStreamer/Equalizer.vala:85
 msgid "Soft"
 msgstr "Švelni"
 
-#: ../core/GStreamer/Equalizer.vala:87
+#: core/GStreamer/Equalizer.vala:86
 msgid "Ska"
 msgstr "Ska"
 
-#: ../core/GStreamer/Equalizer.vala:88
+#: core/GStreamer/Equalizer.vala:87
 msgid "Soft Rock"
 msgstr "Švelnus rokas"
 
-#: ../core/GStreamer/Equalizer.vala:89
+#: core/GStreamer/Equalizer.vala:88
 msgid "Techno"
 msgstr "Techno"
 
-#: ../src/Widgets/PresetList.vala:46 ../src/Widgets/EqualizerPopover.vala:335
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:147
-msgid "Automatic"
-msgstr "Automatiškai"
+#: core/Utils/FileUtils.vala:182
+#, c-format
+msgid " (%d)"
+msgstr " (%d)"
 
-#: ../src/Widgets/PresetList.vala:47
-msgid "Delete Current"
-msgstr "Ištrinti esamą"
+#: core/Utils/PlaylistsUtils.vala:95
+#, c-format
+msgid "%s (%d)"
+msgstr "%s (%d)"
 
-#: ../src/Widgets/SourceListView.vala:59 ../src/Widgets/SourceListView.vala:72
-msgid "Rename"
-msgstr "Pervadinti"
-
-#: ../src/Widgets/SourceListView.vala:60 ../src/Widgets/SourceListView.vala:74
-#: ../src/Dialogs/SmartPlaylistEditor.vala:260
-msgid "Remove"
-msgstr "Šalinti"
-
-#: ../src/Widgets/SourceListView.vala:61 ../src/Widgets/SourceListView.vala:75
-#: ../src/Widgets/SourceListView.vala:90
-msgid "Export…"
-msgstr "Eksportuoti…"
-
-#: ../src/Widgets/SourceListView.vala:73
-msgid "Edit…"
-msgstr "Taisyti…"
-
-#: ../src/Widgets/SourceListView.vala:88
-msgid "Save as Playlist"
-msgstr "Įrašyti kaip grojaraštį"
-
-#: ../src/Widgets/SourceListView.vala:148
-#: ../src/Views/ListView/Lists/MusicListView.vala:124
-msgid "Import to Library"
-msgstr "Importuoti į biblioteką"
-
-#: ../src/Widgets/SourceListView.vala:156
-msgid "Eject"
-msgstr "Išstumti"
-
-#: ../src/Widgets/SourceListView.vala:161
-#: ../src/Widgets/SourceListView.vala:201
-msgid "New Playlist"
+#: core/Utils/PlaylistsUtils.vala:235
+msgid "New playlist"
 msgstr "Naujas grojaraštis"
 
-#: ../src/Widgets/SourceListView.vala:166
-#: ../src/Widgets/SourceListView.vala:202
-msgid "New Smart Playlist"
-msgstr "Naujas išmanusis grojaraštis"
+#: core/Utils/PlaylistsUtils.vala:246
+#, c-format
+msgid "%s (%i)"
+msgstr "%s (%i)"
 
-#: ../src/Widgets/SourceListView.vala:171 ../src/Widgets/SpaceWidget.vala:237
-msgid "Sync"
-msgstr "Sinchronizavimas"
+#: core/Utils/PlaylistsUtils.vala:273
+msgid "Export Playlist"
+msgstr "Eksportuoti grojaraštį"
 
-#: ../src/Widgets/SourceListView.vala:203
-msgid "Import Playlists"
-msgstr "Importuoti grojaraščius"
+#: core/Utils/PlaylistsUtils.vala:275 core/Utils/PlaylistsUtils.vala:369
+#: src/LibraryWindow.vala:1002 src/Dialogs/FileNotFoundDialog.vala:84
+#: src/Dialogs/FileNotFoundDialog.vala:123
+#: src/Dialogs/InstallGstreamerPluginsDialog.vala:50
+#: src/Dialogs/RemoveFilesDialog.vala:58
+#: src/Dialogs/SetMusicFolderConfirmation.vala:67
+#: src/Dialogs/SetMusicFolderConfirmation.vala:115
+#: src/Dialogs/SmartPlaylistEditor.vala:111
+#: src/Dialogs/SyncWarningDialog.vala:60
+#: src/Views/Wrappers/MusicViewWrapper.vala:137 src/Widgets/TopDisplay.vala:64
+msgid "Cancel"
+msgstr "Atsisakyti"
 
-#: ../src/Widgets/SourceListView.vala:313
-msgid "Library"
-msgstr "Biblioteka"
+#: core/Utils/PlaylistsUtils.vala:276 src/Dialogs/MediaEditor.vala:138
+#: src/Dialogs/SmartPlaylistEditor.vala:107
+msgid "Save"
+msgstr "Įrašyti"
 
-#: ../src/Widgets/SourceListView.vala:314
-msgid "Devices"
-msgstr "Įrenginiai"
+#: core/Utils/PlaylistsUtils.vala:281 core/Utils/PlaylistsUtils.vala:376
+msgid "MPEG Version 3.0 Extended (*.m3u)"
+msgstr "MPEG versija 3.0 išplėstinis (*.m3u)"
 
-#: ../src/Widgets/SourceListView.vala:315
-msgid "Network"
-msgstr "Tinklas"
+#: core/Utils/PlaylistsUtils.vala:286 core/Utils/PlaylistsUtils.vala:381
+msgid "Shoutcast Playlist Version 2.0 (*.pls)"
+msgstr "Shoutcast grojaraštis versija 2.0 (*.pls)"
 
-#: ../src/Widgets/SourceListView.vala:316 ../plugins/MPRIS/MPRIS.vala:639
-msgid "Playlists"
-msgstr "Grojaraščiai"
+#: core/Utils/PlaylistsUtils.vala:361
+msgid "Playlist"
+msgstr "Grojaraštis"
 
-#: ../src/Widgets/StatusBar.vala:64 ../src/Widgets/StatusBar.vala:94
-#: ../src/Widgets/EqualizerPopover.vala:339
-msgid "Off"
-msgstr "Išjungta"
+#: core/Utils/PlaylistsUtils.vala:367
+#, c-format
+msgid "Import %s"
+msgstr "Importuoti %s"
 
-#: ../src/Widgets/StatusBar.vala:64
-msgid "Enable Repeat"
-msgstr "Įjungti kartojimą"
+#: core/Utils/PlaylistsUtils.vala:370 src/LibraryWindow.vala:1003
+#: src/Dialogs/FileNotFoundDialog.vala:124
+#: src/Dialogs/SetMusicFolderConfirmation.vala:116
+#: src/Views/Wrappers/MusicViewWrapper.vala:139
+#: src/Widgets/AlbumListGrid.vala:243
+msgid "Open"
+msgstr "Atverti"
 
-#: ../src/Widgets/StatusBar.vala:65
-msgid "Song"
-msgstr "Daina"
+#: core/Utils/PlaylistsUtils.vala:401
+msgid "Unrecognized playlist file. Import failed."
+msgstr "Neatpažintas grojaraščio failas. Importavimas nepavyko."
 
-#: ../src/Widgets/StatusBar.vala:65
-msgid "Repeat Song"
-msgstr "Kartoti dainą"
+#: core/Utils/TimeUtils.vala:47
+msgid "%m/%e/%Y %l:%M %p"
+msgstr "%Y-%m-%e %k:%M"
 
-#: ../src/Widgets/StatusBar.vala:66
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:121
-#: ../src/Dialogs/SmartPlaylistEditor.vala:263
-msgid "Album"
-msgstr "Albumas"
+#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:105
+#: plugins/Devices/iPod/iPodDevice.vala:65
+msgid "Empty device!"
+msgstr "Įrenginys tuščias!"
 
-#: ../src/Widgets/StatusBar.vala:66
-msgid "Repeat Album"
-msgstr "Kartoti albumą"
+#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:109
+#: plugins/Devices/iPod/iPodDevice.vala:69
+msgid "This device does not contain any music."
+msgstr "Šiame įrenginyje nėra jokios muzikos."
 
-#: ../src/Widgets/StatusBar.vala:67
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:120
-#: ../src/Dialogs/SmartPlaylistEditor.vala:264
-msgid "Artist"
-msgstr "Atlikėjas"
+#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:153
+msgid "Android Phone"
+msgstr "Android telefonas"
 
-#: ../src/Widgets/StatusBar.vala:67
-msgid "Repeat Artist"
-msgstr "Kartoti atlikėją"
+#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:155
+msgid "Audio Player"
+msgstr "Garso grotuvas"
 
-#: ../src/Widgets/StatusBar.vala:68 ../src/Widgets/StatusBar.vala:95
-msgid "All"
-msgstr "Visi"
+#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:137
+#: plugins/Devices/iPod/iPodLibrary.vala:148
+msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
+msgstr "Į $DEVICE pridedama <b>$NAME</b>, kurią atlieka <b>$ARTIST</b>"
 
-#: ../src/Widgets/StatusBar.vala:68
-msgid "Disable Repeat"
-msgstr "Išjungti kartojimą"
+#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:161
+#: plugins/Devices/iPod/iPodLibrary.vala:196
+#, c-format
+msgid "Syncing <b>%s</b>…"
+msgstr "Sinchronizuojama <b>%s</b>…"
 
-#: ../src/Widgets/StatusBar.vala:94
-msgid "Enable Shuffle"
-msgstr "Įjungti maišymą"
+#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:266
+#: plugins/Devices/iPod/iPodLibrary.vala:530
+msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
+msgstr "Iš $DEVICE šalinama <b>$NAME</b>, kurią atlieką <b>$ARTIST</b>"
 
-#: ../src/Widgets/StatusBar.vala:95
-msgid "Disable Shuffle"
-msgstr "Išjungti maišymą"
+#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:297
+#: plugins/Devices/iPod/iPodLibrary.vala:337
+#, c-format
+msgid "Removing from <b>%s</b>…"
+msgstr "Šalinama iš <b>%s</b>…"
 
-#: ../src/Widgets/StatusBar.vala:128 ../src/Widgets/StatusBar.vala:139
-msgid "Add Playlist"
-msgstr "Pridėti grojaraštį"
+#: plugins/Devices/CDRom/CDRomDevice.vala:91
+msgid "Audio CD Invalid"
+msgstr "Garso CD neteisingas"
 
-#: ../src/Widgets/StatusBar.vala:140
-msgid "Add Smart Playlist"
-msgstr "Pridėti išmanųjį grojaraštį"
+#: plugins/Devices/CDRom/CDRomDevice.vala:95
+msgid "Impossible to read the contents of this Audio CD"
+msgstr "Neįmanoma perskaityti šio Garso CD turinio"
 
-#. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
-#: ../src/Widgets/StatusBar.vala:189
-msgid "Equalizer: %s"
-msgstr "Glodintuvas: %s"
+#: plugins/Devices/CDRom/CDRomDevice.vala:247
+msgid "Could not find Music Folder"
+msgstr "Nepavyko rasti muzikos aplanko"
 
-#: ../src/Widgets/StatusBar.vala:199
-msgid "Hide"
-msgstr "Slėpti"
+#: plugins/Devices/CDRom/CDRomDevice.vala:247
+msgid ""
+"Please make sure that your music folder is accessible and mounted before "
+"importing the CD."
+msgstr ""
+"Prieš importuodami CD diską, įsitikinkite, kad jūsų muzikos aplankas yra "
+"prijungtas ir prieinamas."
 
-#: ../src/Widgets/StatusBar.vala:199
-msgid "Show Info Panel"
-msgstr "Rodyti informacijos skydelį"
+#: plugins/Devices/CDRom/CDRomDevice.vala:253
+msgid ""
+"The Application could not find any songs on the CD. No songs can be imported"
+msgstr "Programa CD diske nerado jokių dainų. Dainos negali būti importuotos"
 
-#: ../src/Widgets/StatusBar.vala:200
-msgid "Show"
-msgstr "Rodyti"
+#: plugins/Devices/CDRom/CDRomDevice.vala:354
+msgid "Importation of a song from Audio CD finished."
+msgstr "Dainos importavimas iš Garso CD užbaigtas."
 
-#: ../src/Widgets/StatusBar.vala:200
-msgid "Hide Info Panel"
-msgstr "Slėpti informacijos skydelį"
+#: plugins/Devices/CDRom/CDRomDevice.vala:354
+#, c-format
+msgid "Importation of %i songs from Audio CD finished."
+msgstr "%i dainų importavimas iš Garso CD užbaigtas."
 
-#: ../src/Widgets/EqualizerPopover.vala:163
-msgid "Save preset"
-msgstr "Įrašyti išankstinę parinktį"
+#: plugins/Devices/CDRom/CDRomDevice.vala:359
+#, c-format
+msgid "Importing track %u: %s"
+msgstr "Importuojamas takelis %u: %s"
 
-#: ../src/Widgets/EqualizerPopover.vala:426
-msgid "%s (Custom)"
-msgstr "%s (Tinkinta)"
+#: plugins/Devices/CDRom/CDRomDevice.vala:364
+msgid "CD import will be <b>cancelled</b> after current import."
+msgstr "Po esamo importavimo, CD disko importavimas bus <b>atšauktas</b>."
 
-#: ../src/Widgets/EqualizerPopover.vala:428
-msgid "%s (Custom %i)"
-msgstr "%s (Tinkinta %i)"
+#: plugins/Devices/CDRom/CDRomDevice.vala:383
+msgid "An error occured during the Import of this CD"
+msgstr "Šio CD disko importavimo metu įvyko klaida"
 
-#: ../src/Widgets/EqualizerPopover.vala:431
-msgid "Custom Preset"
-msgstr "Tinkinta išankstinė parinktis"
+#: plugins/Devices/CDRom/CDView.vala:94 src/Dialogs/SyncWarningDialog.vala:62
+msgid "Import"
+msgstr "Importuoti"
 
-#: ../src/Widgets/EqualizerPopover.vala:433
-msgid "Custom Preset %i"
-msgstr "Tinkinta išankstinė parinktis %i"
+#: plugins/Devices/CDRom/CDViewWrapper.vala:37
+msgid "An Error Occured"
+msgstr "Įvyko klaida"
 
-#: ../src/Widgets/ViewSelector.vala:68
-msgid "View as Albums"
-msgstr "Rodyti kaip albumus"
+#: plugins/Devices/CDRom/CDViewWrapper.vala:38
+msgid "There was an error while loading this Audio CD."
+msgstr "Įkeliant šį garso CD, įvyko klaida."
 
-#: ../src/Widgets/ViewSelector.vala:72
-msgid "View as List"
-msgstr "Rodyti kaip sąrašą"
+#: plugins/Devices/iPod/iPodLibrary.vala:218
+#: plugins/Devices/iPod/iPodLibrary.vala:374
+msgid "Finishing sync process…"
+msgstr "Užbaigiamas sinchronizavimo procesas…"
 
-#: ../src/Widgets/ViewSelector.vala:76
-msgid "View in Columns"
-msgstr "Rodyti stulpeliuose"
+#: plugins/Devices/iPod/iPodLibrary.vala:230
+#: plugins/Devices/iPod/iPodLibrary.vala:386
+msgid "Cancelling Sync…"
+msgstr "Atšaukiamas sinchronizavimas…"
 
-#: ../src/Widgets/SpaceWidget.vala:266
-msgid "Free"
-msgstr "Laisva"
+#: plugins/LastFM/LastFM.vala:97
+msgid "No similar songs found"
+msgstr "Panašių dainų nerasta"
 
-#: ../src/Widgets/SpaceWidget.vala:383
-msgid "Using %s of %s (%.2f%)"
-msgstr "Naudojama %s iš %s (%.2f%)"
+#: plugins/LastFM/LastFM.vala:97
+msgid ""
+"There are no songs similar to the current song in your library. Make sure "
+"all song info is correct and you are connected to the Internet. Some songs "
+"may not have matches."
+msgstr ""
+"Nėra į jūsų bibliotekoje esamą dainą panašių dainų. Įsitikinkite, kad visa "
+"informacija apie dainą yra teisinga ir, kad esate prisijungę prie interneto. "
+"Kai kurios dainos gali neturėti atitikimų."
 
-#: ../src/PlaybackManager.vala:96
-msgctxt "Name of the playlist"
-msgid "Queue"
-msgstr "Eilė"
+#: plugins/LastFM/SimilarMedia.vala:44
+msgid "Similar"
+msgstr "Panaši"
 
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:44
-msgid "Would you like to install the %s plugin?\n"
+#: plugins/LastFM/SimilarMediaView.vala:48
+msgid "media"
+msgstr "medija"
+
+#: plugins/LastFM/SimilarMediaView.vala:54
+msgid "Similar Media"
+msgstr "Panaši medija"
+
+#: src/FileOperator.vala:305
+msgid "Import Complete"
+msgstr "Importavimas baigtas"
+
+#: src/FileOperator.vala:305
+#, c-format
+msgid "%s has imported your library."
+msgstr "%s importavo jūsų biblioteką."
+
+#: src/FileOperator.vala:315
+msgid "<b>Copying</b> files to <b>Music Folder</b>…"
+msgstr "<b>Kopijuojami</b> failai į <b>Muzikos aplanką</b>…"
+
+#: src/LibraryWindow.vala:215
+msgid "Import to Library…"
+msgstr "Importuoti į biblioteką…"
+
+#: src/LibraryWindow.vala:218 src/Dialogs/PreferencesWindow.vala:40
+msgid "Preferences"
+msgstr "Nuostatos"
+
+#: src/LibraryWindow.vala:233
+msgid "Previous"
+msgstr "Ankstesnis"
+
+#: src/LibraryWindow.vala:237 src/LibraryWindow.vala:292
+msgid "Play"
+msgstr "Groti"
+
+#: src/LibraryWindow.vala:241
+msgid "Next"
+msgstr "Kitas"
+
+#: src/LibraryWindow.vala:245
+msgid "Search Music"
+msgstr "Ieškoti muzikos"
+
+#: src/LibraryWindow.vala:295
+msgid "Pause"
+msgstr "Pristabdyti"
+
+#: src/LibraryWindow.vala:612 src/LibraryWindow.vala:718
+msgid "Music"
+msgstr "Muzika"
+
+#: src/LibraryWindow.vala:787
+msgid "No songs in Queue"
+msgstr "Eilėje nėra dainų"
+
+#: src/LibraryWindow.vala:787
+msgid ""
+"To add songs to the queue, use the <b>secondary click</b> on an item and "
+"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
+"first before the next song in the currently playing list."
+msgstr ""
+"Norėdami pridėti dainas į eilę, naudokite <b>antrinį spustelėjimą</b> ant "
+"elemento ir pasirinkite <b>Į eilę</b>. Dainai užsibaigus, iš pradžių, bus "
+"grojamos eilėje esančios dainos, o paskui kitos grojaraščio sąrašo dainos."
+
+#: src/LibraryWindow.vala:790
+msgid "No songs in History"
+msgstr "Žurnale nėra dainų"
+
+#: src/LibraryWindow.vala:790
+msgid ""
+"After a part of a song has been played, it is added to the history list.\n"
+"You can use this list to see all the songs you have played during the "
+"current session."
+msgstr ""
+"Po to, kai buvo grojama dainos dalis, daina yra pridedama į žurnalo sąrašą.\n"
+"Jūs galite naudotis šiuo sąrašu, kad pamatytumėte visas per šį seansą grotas "
+"dainas."
+
+#: src/LibraryWindow.vala:1000 src/Views/Wrappers/MusicViewWrapper.vala:60
+msgid "Import Music"
+msgstr "Importuoti muziką"
+
+#: src/Dialogs/FileNotFoundDialog.vala:51
+msgid "File not found"
+msgstr "Failas nerastas"
+
+#: src/Dialogs/FileNotFoundDialog.vala:57
+#, c-format
+msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
+msgstr "Nepavyko rasti muzikinio failo <b>%s</b> pagal <b>%s</b>."
+
+#: src/Dialogs/FileNotFoundDialog.vala:60
+#, c-format
+msgid "%i music files could not be found?"
+msgstr "Nepavyko rasti %i muzikinių failų?"
+
+#: src/Dialogs/FileNotFoundDialog.vala:82
+msgid "Rescan Library"
+msgstr "Peržvelgti biblioteką"
+
+#: src/Dialogs/FileNotFoundDialog.vala:83
+#: src/Views/ListView/Lists/MusicListView.vala:100
+msgid "Remove Song"
+msgstr "Šalinti dainą"
+
+#: src/Dialogs/FileNotFoundDialog.vala:85
+msgid "Find Song"
+msgstr "Rasti dainą"
+
+#: src/Dialogs/FileNotFoundDialog.vala:121
+#: src/Dialogs/SetMusicFolderConfirmation.vala:113
+msgid "Choose Music Folder"
+msgstr "Pasirinkti muzikos aplanką"
+
+#: src/Dialogs/InstallGstreamerPluginsDialog.vala:38
+#, fuzzy, c-format
+msgid "Would you like to install the %s plugin?"
 msgstr "Ar norėtumėte įdiegti %s įskiepį?\n"
 
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:45
-msgid ""
-"\n"
-"This song cannot be played. The %s plugin is required to play the song."
+#: src/Dialogs/InstallGstreamerPluginsDialog.vala:39
+#, fuzzy, c-format
+msgid "This song cannot be played. The %s plugin is required to play the song."
 msgstr ""
 "\n"
 "Ši daina negali būti atkurta. Norint groti šią dainą, reikalingas %s "
 "įskiepis."
 
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:64
+#: src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid "Install Plugin"
 msgstr "Įdiegti įskiepį"
 
-#: ../src/Dialogs/MediaEditor.vala:72
+#: src/Dialogs/MediaEditor.vala:103
 msgid "Title:"
 msgstr "Pavadinimas:"
 
-#: ../src/Dialogs/MediaEditor.vala:74
+#: src/Dialogs/MediaEditor.vala:105
 msgid "Artist:"
 msgstr "Atlikėjas:"
 
-#: ../src/Dialogs/MediaEditor.vala:76
-msgid "Album Artist:"
-msgstr "Albumo atlikėjas:"
-
-#: ../src/Dialogs/MediaEditor.vala:78
+#: src/Dialogs/MediaEditor.vala:107
 msgid "Album:"
 msgstr "Albumas:"
 
-#: ../src/Dialogs/MediaEditor.vala:80
-msgid "Genre:"
-msgstr "Žanras:"
+#: src/Dialogs/MediaEditor.vala:109
+msgid "Album Artist:"
+msgstr "Albumo atlikėjas:"
 
-#: ../src/Dialogs/MediaEditor.vala:82
+#: src/Dialogs/MediaEditor.vala:111
 msgid "Composer:"
 msgstr "Kompozitorius:"
 
-#: ../src/Dialogs/MediaEditor.vala:84
+#: src/Dialogs/MediaEditor.vala:113
 msgid "Grouping:"
 msgstr "Grupavimas:"
 
-#: ../src/Dialogs/MediaEditor.vala:86
-msgid "Comment:"
-msgstr "Komentaras:"
+#: src/Dialogs/MediaEditor.vala:115
+msgid "Genre:"
+msgstr "Žanras:"
 
-#: ../src/Dialogs/MediaEditor.vala:88
-msgid "Track:"
-msgstr "Takelis:"
-
-#: ../src/Dialogs/MediaEditor.vala:90
-msgid "Disk:"
-msgstr "Diskas:"
-
-#: ../src/Dialogs/MediaEditor.vala:92
+#: src/Dialogs/MediaEditor.vala:117
 msgid "Year:"
 msgstr "Metai:"
 
-#: ../src/Dialogs/MediaEditor.vala:94
+#: src/Dialogs/MediaEditor.vala:119
+msgid "Track:"
+msgstr "Takelis:"
+
+#: src/Dialogs/MediaEditor.vala:121
+msgid "Disk:"
+msgstr "Diskas:"
+
+#: src/Dialogs/MediaEditor.vala:123
 msgid "Rating:"
 msgstr "Vertinimas:"
 
-#: ../src/Dialogs/MediaEditor.vala:153 ../src/Dialogs/PreferencesWindow.vala:99
+#: src/Dialogs/MediaEditor.vala:125
+msgid "Comment:"
+msgstr "Komentaras:"
+
+#: src/Dialogs/MediaEditor.vala:140 src/Dialogs/PreferencesWindow.vala:96
+#: src/Views/DeviceView.vala:45
 msgid "Close"
 msgstr "Užverti"
 
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:59
-msgid "Export Playlists"
-msgstr "Eksportuoti grojaraščius"
-
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:60
-msgid "Set Music Folder"
-msgstr "Nustatyti muzikos aplanką"
-
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:67
-msgid "Set Music Folder?"
-msgstr "Nustatyti muzikos aplanką?"
-
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:70
-msgid ""
-"Are you sure you want to set the music folder to %s? This will reset your "
-"library and remove your playlists."
-msgstr ""
-"Ar tikrai norite nustatyti muzikos aplanką į %s? Tai atstatys jūsų "
-"biblioteką ir pašalins jūsų grojaraščius."
-
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
-#: ../src/Dialogs/FileNotFoundDialog.vala:124
-msgid "Choose Music Folder"
-msgstr "Pasirinkti muzikos aplanką"
-
-#: ../src/Dialogs/NotImportedWindow.vala:52
-#: ../src/Dialogs/NotImportedWindow.vala:55
+#: src/Dialogs/NotImportedWindow.vala:51
+#, c-format
 msgid "Unable to import %d items from %s"
 msgstr "Nepavyko importuoti %d elementų iš %s"
 
-#: ../src/Dialogs/NotImportedWindow.vala:56
+#: src/Dialogs/NotImportedWindow.vala:56
+#, c-format
 msgid "%s was unable to import %d items. The files may be damaged."
 msgstr "%s nesugebėjo importuoti %d elementų. Gali būti, kad failai pažeisti."
 
-#: ../src/Dialogs/NotImportedWindow.vala:59
+#: src/Dialogs/NotImportedWindow.vala:60
 msgid "Move all corrupted files to trash"
 msgstr "Perkelti visus pažeistus failus į šiukšlinę"
 
-#: ../src/Dialogs/NotImportedWindow.vala:64
-#: ../src/Dialogs/RemoveFilesDialog.vala:50
-msgid "Move to Trash"
-msgstr "Perkelti į šiukšlinę"
-
-#: ../src/Dialogs/NotImportedWindow.vala:66
-msgid "Ignore"
-msgstr "Nepaisyti"
-
-#: ../src/Dialogs/NotImportedWindow.vala:81
+#: src/Dialogs/NotImportedWindow.vala:67
 msgid "del"
 msgstr "ištr"
 
-#: ../src/Dialogs/NotImportedWindow.vala:86
+#: src/Dialogs/NotImportedWindow.vala:76
 msgid "File Location"
 msgstr "Failo vieta"
 
-#: ../src/Dialogs/NotImportedWindow.vala:101
+#: src/Dialogs/NotImportedWindow.vala:92
 msgid "Select individual files to move to trash:"
 msgstr "Pasirinkti atskirus failus, kuriuos perkelti į šiukšlinę:"
 
-#: ../src/Dialogs/PreferencesWindow.vala:46
+#: src/Dialogs/NotImportedWindow.vala:96 src/Dialogs/RemoveFilesDialog.vala:56
+msgid "Move to Trash"
+msgstr "Perkelti į šiukšlinę"
+
+#: src/Dialogs/NotImportedWindow.vala:99
+msgid "Ignore"
+msgstr "Nepaisyti"
+
+#: src/Dialogs/PreferencesWindow.vala:48
 msgid "Select Music Folder…"
 msgstr "Pasirinkite muzikos aplanką…"
 
-#: ../src/Dialogs/PreferencesWindow.vala:86 ../src/LibraryWindow.vala:272
-msgid "Preferences"
-msgstr "Nuostatos"
-
-#: ../src/Dialogs/PreferencesWindow.vala:131
-msgid "General"
-msgstr "Bendra"
-
-#: ../src/Dialogs/PreferencesWindow.vala:137
+#: src/Dialogs/PreferencesWindow.vala:77
 msgid "Music Folder Location"
 msgstr "Muzikos aplanko vieta"
 
-#: ../src/Dialogs/PreferencesWindow.vala:145
+#: src/Dialogs/PreferencesWindow.vala:79
 msgid "Library Management"
 msgstr "Bibliotekos tvarkymas"
 
-#: ../src/Dialogs/PreferencesWindow.vala:152
+#: src/Dialogs/PreferencesWindow.vala:80
 msgid "Keep Music folder organized:"
 msgstr "Išlaikyti muzikos aplanką sutvarkytą:"
 
-#: ../src/Dialogs/PreferencesWindow.vala:156
+#: src/Dialogs/PreferencesWindow.vala:82
 msgid "Write metadata to file:"
 msgstr "Rašyti metaduomenis į failą:"
 
-#: ../src/Dialogs/PreferencesWindow.vala:160
+#: src/Dialogs/PreferencesWindow.vala:84
 msgid "Copy imported files to Library:"
 msgstr "Kopijuoti importuotus failus į biblioteką:"
 
-#: ../src/Dialogs/PreferencesWindow.vala:162
+#: src/Dialogs/PreferencesWindow.vala:86
 msgid "Desktop Integration"
 msgstr "Darbalaukio integracija"
 
-#: ../src/Dialogs/PreferencesWindow.vala:167
+#: src/Dialogs/PreferencesWindow.vala:87
 msgid "Continue playback when closed:"
 msgstr "Užvėrus, tęsti grojimą:"
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:53
-msgid "File not found"
-msgstr "Failas nerastas"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:59
-msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
-msgstr "Nepavyko rasti muzikinio failo <b>%s</b> pagal <b>%s</b>."
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:62
-msgid "%i music files could not be found?"
-msgstr "Nepavyko rasti %i muzikinių failų?"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:85
-msgid "Rescan Library"
-msgstr "Peržvelgti biblioteką"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:86
-#: ../src/Views/ListView/Lists/MusicListView.vala:123
-msgid "Remove Song"
-msgstr "Šalinti dainą"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:88
-msgid "Find Song"
-msgstr "Rasti dainą"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:53
-msgid "Import from Device"
-msgstr "Importuoti iš įrenginio"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:70
-msgid "Import media from %s"
-msgstr "Importuoti mediją iš %s"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:71
-msgid ""
-"The following files were found on %s, but are not in your library. Check all "
-"the files you would like to import."
-msgstr ""
-"Šie failai buvo rasti %s įrenginyje, tačiau jų nėra jūsų bibliotekoje. "
-"Pažymėkite visus failus, kuriuos norėtumėte importuoti."
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:72
-msgid "Import all media"
-msgstr "Importuoti visą mediją"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:77
-#: ../plugins/Devices/CDRom/CDView.vala:88
-msgid "Import"
-msgstr "Importuoti"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:78
-msgid "Don't Import"
-msgstr "Neimportuoti"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:86
-msgid "Import %i items from %s"
-msgstr "Importuoti %i elementus iš %s"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:90
-msgid "Import %s from %s"
-msgstr "Importuoti %s iš %s"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:118
-msgid "ID"
-msgstr "ID"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:119
-#: ../src/Dialogs/SmartPlaylistEditor.vala:276
-msgid "Title"
-msgstr "Pavadinimas"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:170
-msgid "Select individual media to import:"
-msgstr "Pasirinkite atskirą mediją, kurią importuoti:"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:188
-msgid "Check Item"
-msgstr "Pažymėti elementą"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:189
-msgid "Check Album"
-msgstr "Pažymėti albumą"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:190
-msgid "Check Artist"
-msgstr "Pažymėti atlikėją"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:287
-msgid "Cannot Import"
-msgstr "Nepavyksta importuoti"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:287
-msgid ""
-"Noise is already doing file operations. Please wait until those finish to "
-"import from %s"
-msgstr ""
-"Noise jau atlieka failų operacijas. Palaukite, kol jos užsibaigs, kad "
-"importuotumėte iš %s"
-
-#: ../src/Dialogs/RemoveFilesDialog.vala:51
+#: src/Dialogs/RemoveFilesDialog.vala:57
+#, c-format
 msgid "Remove from %s"
 msgstr "Šalinti iš %s"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:61
+#: src/Dialogs/RemoveFilesDialog.vala:67
+#, c-format
 msgid "Remove %d Songs From %s?"
 msgstr "Šalinti %d dainų iš %s?"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:64
+#: src/Dialogs/RemoveFilesDialog.vala:70
+#, c-format
 msgid "Remove \"%s\" From %s?"
 msgstr "Šalinti \"%s\" iš %s?"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:73
+#: src/Dialogs/RemoveFilesDialog.vala:79
+#, c-format
 msgid ""
 "This will remove the song from your library and from any device that "
 "automatically syncs with %s."
@@ -744,19 +600,200 @@ msgstr[2] ""
 "Tai pašalins dainas iš jūsų bibliotekos ir iš bet kurio įrenginio, kuris yra "
 "automatiškai sinchronizuojamas su %s."
 
-#: ../src/Dialogs/SyncWarningDialog.vala:57
-msgid "Import media to Library"
-msgstr "Importuoti mediją į biblioteką"
+#: src/Dialogs/SetMusicFolderConfirmation.vala:65
+msgid "Export Playlists"
+msgstr "Eksportuoti grojaraščius"
 
-#: ../src/Dialogs/SyncWarningDialog.vala:58
-msgid "Continue Syncing"
-msgstr "Tęsti sinchronizavimą"
+#: src/Dialogs/SetMusicFolderConfirmation.vala:66
+msgid "Set Music Folder"
+msgstr "Nustatyti muzikos aplanką"
 
-#: ../src/Dialogs/SyncWarningDialog.vala:59
-msgid "Stop Syncing"
-msgstr "Stabdyti sinchronizavimą"
+#: src/Dialogs/SetMusicFolderConfirmation.vala:73
+msgid "Set Music Folder?"
+msgstr "Nustatyti muzikos aplanką?"
 
-#: ../src/Dialogs/SyncWarningDialog.vala:66
+#: src/Dialogs/SetMusicFolderConfirmation.vala:76
+#, c-format
+msgid ""
+"Are you sure you want to set the music folder to %s? This will reset your "
+"library and remove your playlists."
+msgstr ""
+"Ar tikrai norite nustatyti muzikos aplanką į %s? Tai atstatys jūsų "
+"biblioteką ir pašalins jūsų grojaraščius."
+
+#: src/Dialogs/SmartPlaylistEditor.vala:46
+msgid "Smart Playlist Editor"
+msgstr "Išmaniojo grojaraščio redaktorius"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:59
+msgid "Playlist Title"
+msgstr "Grojaraščio pavadinimas"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:64
+msgid "any"
+msgstr "bet kuriuos"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:65
+msgid "all"
+msgstr "visus"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:73
+msgid "Match"
+msgstr "Atitikti"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:75
+msgid "of the following:"
+msgstr "šiuos kriterijus:"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:84
+msgid "Add"
+msgstr "Pridėti"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:89
+msgid "Limit to"
+msgstr "Apriboti iki"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:105
+msgid "items"
+msgstr "elementų"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:125
+msgid "Name of Playlist"
+msgstr "Grojaraščio pavadinimas"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:127
+msgid "Rules"
+msgstr "Taisyklės"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:130
+msgid "Options"
+msgstr "Parinktys"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:254 src/Widgets/SourceListView.vala:69
+#: src/Widgets/SourceListView.vala:83
+msgid "Remove"
+msgstr "Šalinti"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:257
+msgid "Album"
+msgstr "Albumas"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:258
+msgid "Artist"
+msgstr "Atlikėjas"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:259
+msgid "Bitrate"
+msgstr "Pralaidumas"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:260
+msgid "Comment"
+msgstr "Komentaras"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:261
+msgid "Composer"
+msgstr "Kompozitorius"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:262
+msgid "Date Added"
+msgstr "Pridėjimo data"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:263
+msgid "Genre"
+msgstr "Žanras"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:264
+msgid "Grouping"
+msgstr "Grupavimas"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:265
+msgid "Last Played"
+msgstr "Vėliausiai grota"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:266
+#: src/Dialogs/SmartPlaylistEditor.vala:410
+msgid "Length"
+msgstr "Trukmė"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:267
+msgid "Playcount"
+msgstr "Grojimų skaičius"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:268
+msgid "Rating"
+msgstr "Vertinimas"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:269
+msgid "Skipcount"
+msgstr "Praleidimų skaičius"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:270
+msgid "Title"
+msgstr "Pavadinimas"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:271
+msgid "Year"
+msgstr "Metai"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:272
+msgid "URI"
+msgstr ""
+
+#: src/Dialogs/SmartPlaylistEditor.vala:345
+msgid "is"
+msgstr "yra"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:346
+msgid "contains"
+msgstr "kuriame yra"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:347
+msgid "does not contain"
+msgstr "kuriame nėra"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:373
+#: src/Dialogs/SmartPlaylistEditor.vala:387
+msgid "is exactly"
+msgstr "yra tiksliai"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:374
+msgid "is at most"
+msgstr "yra daugiausiai"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:375
+msgid "is at least"
+msgstr "yra mažiausiai"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:388
+msgid "is within"
+msgstr "yra ne daugiau kaip"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:389
+msgid "is before"
+msgstr "yra prieš"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:411
+msgid "seconds"
+msgstr "sekundžių"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:414
+msgid "days ago"
+msgstr "dienų atgal"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:417
+msgid "kbps"
+msgstr "kbps"
+
+#: src/Dialogs/SyncWarningDialog.vala:52
+#, fuzzy, c-format
+msgid "Sync will remove %i item from %s"
+msgid_plural "Sync will remove %i items from %s"
+msgstr[0] "Sinchronizavimas pašalins %i elementų iš %s"
+msgstr[1] "Sinchronizavimas pašalins %i elementų iš %s"
+msgstr[2] "Sinchronizavimas pašalins %i elementų iš %s"
+
+#: src/Dialogs/SyncWarningDialog.vala:55
+#, c-format
 msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
@@ -764,280 +801,408 @@ msgstr ""
 "Jeigu tęsite sinchronizavimą, medija iš %s bus pašalinta, kadangi ji nėra "
 "sinchronizavimo sąraše. Ar norite ją iš pradžių importuoti į savo biblioteką?"
 
-#: ../src/Dialogs/SyncWarningDialog.vala:72
-msgid "Sync will remove %i items from %s"
-msgstr "Sinchronizavimas pašalins %i elementų iš %s"
+#: src/Dialogs/SyncWarningDialog.vala:57
+msgid "Continue Syncing"
+msgstr "Tęsti sinchronizavimą"
 
-#: ../src/Dialogs/SyncWarningDialog.vala:75
-msgid "Sync will remove 1 item from %s"
-msgstr "Sinchronizavimas pašalins 1 elementą iš %s"
+#: src/LocalBackend/LocalLibrary.vala:189
+#, c-format
+msgid "Importing music from %s…"
+msgstr "Importuojama muzika iš %s…"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:36
-msgid "Smart Playlist Editor"
-msgstr "Išmaniojo grojaraščio redaktorius"
+#: src/LocalBackend/LocalLibrary.vala:213
+msgid "Adding files to library…"
+msgstr "Pridedami failai į biblioteką…"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:48
-#: ../src/Dialogs/SmartPlaylistEditor.vala:56
-msgid "Name of Playlist"
-msgstr "Grojaraščio pavadinimas"
+#: src/LocalBackend/LocalLibrary.vala:226
+msgid "<b>Importing</b> music to library…"
+msgstr "<b>Importuojama</b> muzika į biblioteką…"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:49
-#: ../src/Dialogs/SmartPlaylistEditor.vala:57
-msgid "Rules"
-msgstr "Taisyklės"
+#: src/LocalBackend/LocalLibrary.vala:248
+msgid "All music files are already in your library"
+msgstr "Visi muzikiniai failai jau yra jūsų bibliotekoje"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:50
-#: ../src/Dialogs/SmartPlaylistEditor.vala:58
-msgid "Options"
-msgstr "Parinktys"
+#: src/LocalBackend/LocalLibrary.vala:248
+msgid "No files were imported."
+msgstr "Nebuvo importuoti jokie failai."
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:62
-msgid "Playlist Title"
-msgstr "Grojaraščio pavadinimas"
+#: src/LocalBackend/LocalLibrary.vala:253
+msgid "Rescanning music for changes. This may take a while…"
+msgstr "Peržvelgiami muzikos pakeitimai. Tai gali šiek tiek užtrukti…"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:68
-msgid "Match"
-msgstr "Atitikti"
+#: src/LocalBackend/LocalLibrary.vala:354
+msgid "Added to your queue:"
+msgstr "Pridėta į jūsų eilę:"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:70
-msgid "any"
-msgstr "bet kuriuos"
+#: src/LocalBackend/LocalLibrary.vala:365
+#, c-format
+msgid "%d Track"
+msgid_plural "%d Tracks"
+msgstr[0] "%d takelis"
+msgstr[1] "%d takeliai"
+msgstr[2] "%d takelių"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:71
-msgid "all"
-msgstr "visus"
+#: src/LocalBackend/LocalSmartPlaylist.vala:217
+msgid "Favorite Songs"
+msgstr "Mėgstamos dainos"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:77
-msgid "of the following:"
-msgstr "šiuos kriterijus:"
+#: src/LocalBackend/LocalSmartPlaylist.vala:225
+msgid "Recently Added"
+msgstr "Neseniai pridėtos"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:89
-msgid "Add"
-msgstr "Pridėti"
+#: src/LocalBackend/LocalSmartPlaylist.vala:233
+msgid "Recent Favorites"
+msgstr "Neseniai pamėgtos"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:94
-msgid "Limit to"
-msgstr "Apriboti iki"
+#: src/LocalBackend/LocalSmartPlaylist.vala:241
+msgid "Never Played"
+msgstr "Niekada negrotos"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:96
-msgid "items"
-msgstr "elementų"
+#: src/LocalBackend/LocalSmartPlaylist.vala:249
+msgid "Over Played"
+msgstr "Per daug grotos"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:265
-msgid "Bitrate"
-msgstr "Pralaidumas"
+#: src/LocalBackend/LocalSmartPlaylist.vala:257
+msgid "Not Recently Played"
+msgstr "Paskutiniu metu negrotos"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:266
-msgid "Comment"
-msgstr "Komentaras"
+#: src/Objects/HistoryPlaylist.vala:38
+msgid "History"
+msgstr "Žurnalas"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:267
-msgid "Composer"
-msgstr "Kompozitorius"
+#: src/Objects/MPRIS.vala:618 src/Widgets/SourceListView.vala:325
+msgid "Playlists"
+msgstr "Grojaraščiai"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:268
-msgid "Date Added"
-msgstr "Pridėjimo data"
+#: src/Views/DeviceSummaryWidget.vala:60
+msgid "Device Name:"
+msgstr "Įrenginio pavadinimas:"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:269
-msgid "Genre"
-msgstr "Žanras"
+#: src/Views/DeviceSummaryWidget.vala:64
+msgid "Device Name"
+msgstr "Įrenginio pavadinimas"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:270
-msgid "Grouping"
-msgstr "Grupavimas"
+#: src/Views/DeviceSummaryWidget.vala:66
+msgid "Automatically sync when plugged in:"
+msgstr "Prijungus, automatiškai sinchronizuoti:"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:271
-msgid "Last Played"
-msgstr "Vėliausiai grota"
+#: src/Views/DeviceSummaryWidget.vala:72
+msgid "Sync:"
+msgstr "Sinchronizuoti:"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:272
-#: ../src/Dialogs/SmartPlaylistEditor.vala:406
-msgid "Length"
-msgstr "Trukmė"
+#: src/Views/DeviceSummaryWidget.vala:85 src/Widgets/SourceListView.vala:180
+msgid "Sync"
+msgstr "Sinchronizavimas"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:273
-msgid "Playcount"
-msgstr "Grojimų skaičius"
+#: src/Views/DeviceSummaryWidget.vala:245
+msgid "All Music"
+msgstr "Visa muzika"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:274
-msgid "Rating"
-msgstr "Vertinimas"
+#: src/Views/DeviceSummaryWidget.vala:300
+msgid "Sync Failed"
+msgstr "Sinchronizavimas nepavyko"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:275
-msgid "Skipcount"
-msgstr "Praleidimų skaičius"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:277
-msgid "Year"
-msgstr "Metai"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:341
-msgid "is"
-msgstr "yra"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:342
-msgid "contains"
-msgstr "kuriame yra"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:343
-msgid "does not contain"
-msgstr "kuriame nėra"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:369
-#: ../src/Dialogs/SmartPlaylistEditor.vala:383
-msgid "is exactly"
-msgstr "yra tiksliai"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:370
-msgid "is at most"
-msgstr "yra daugiausiai"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:371
-msgid "is at least"
-msgstr "yra mažiausiai"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:384
-msgid "is within"
-msgstr "yra ne daugiau kaip"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:385
-msgid "is before"
-msgstr "yra prieš"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:407
-msgid "seconds"
-msgstr "sekundžių"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:410
-msgid "days ago"
-msgstr "dienų atgal"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:413
-msgid "kbps"
-msgstr "kbps"
-
-#: ../src/LibraryWindow.vala:269
-msgid "Import to Library…"
-msgstr "Importuoti į biblioteką…"
-
-#: ../src/LibraryWindow.vala:289
-msgid "Previous"
-msgstr "Ankstesnis"
-
-#: ../src/LibraryWindow.vala:291 ../src/LibraryWindow.vala:991
-msgid "Play"
-msgstr "Groti"
-
-#: ../src/LibraryWindow.vala:293
-msgid "Next"
-msgstr "Kitas"
-
-#: ../src/LibraryWindow.vala:297
-msgid "Search Music"
-msgstr "Ieškoti muzikos"
-
-#: ../src/LibraryWindow.vala:659 ../src/LibraryWindow.vala:763
-#: ../src/Views/DeviceSummaryWidget.vala:99
-msgid "Music"
-msgstr "Muzika"
-
-#: ../src/LibraryWindow.vala:831
-msgid "No songs in Queue"
-msgstr "Eilėje nėra dainų"
-
-#: ../src/LibraryWindow.vala:831
+#: src/Views/DeviceSummaryWidget.vala:300
+#, c-format
 msgid ""
-"To add songs to the queue, use the <b>secondary click</b> on an item and "
-"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
-"first before the next song in the currently playing list."
+"The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
-"Norėdami pridėti dainas į eilę, naudokite <b>antrinį spustelėjimą</b> ant "
-"elemento ir pasirinkite <b>Į eilę</b>. Dainai užsibaigus, iš pradžių, bus "
-"grojamos eilėje esančios dainos, o paskui kitos grojaraščio sąrašo dainos."
+"Grojaraštis pavadinimu %s yra naudojamas sinchronizuoti %s įrenginį, tačiau "
+"jo rasti nepavyko."
 
-#: ../src/LibraryWindow.vala:834
-msgid "No songs in History"
-msgstr "Žurnale nėra dainų"
+#: src/Views/DeviceSummaryWidget.vala:312
+#: src/Views/DeviceSummaryWidget.vala:314
+msgid "Cannot Sync"
+msgstr "Nepavyko sinchronizuoti"
 
-#: ../src/LibraryWindow.vala:834
+#: src/Views/DeviceSummaryWidget.vala:312
 msgid ""
-"After a part of a song has been played, it is added to the history list.\n"
-"You can use this list to see all the songs you have played during the "
-"current session."
+"Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
-"Po to, kai buvo grojama dainos dalis, daina yra pridedama į žurnalo sąrašą.\n"
-"Jūs galite naudotis šiuo sąrašu, kad pamatytumėte visas per šį seansą grotas "
-"dainas."
+"Nepavyko sinchronizuoti įrenginio, naudojant pasirinktus sinchronizavimo "
+"nustatymus. Diske trūksta vietos"
 
-#: ../src/LibraryWindow.vala:985
-msgid "Pause"
-msgstr "Pristabdyti"
+#: src/Views/DeviceSummaryWidget.vala:314
+msgid "Device is already doing an operation."
+msgstr "Įrenginys jau atlieka operaciją."
 
-#: ../src/LibraryWindow.vala:1064
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:54
-msgid "Import Music"
-msgstr "Importuoti muziką"
+#: src/Views/DeviceView.vala:66
+msgid "Cancelling…"
+msgstr "Atšaukiama…"
 
-#: ../src/FileOperator.vala:307
-msgid "Import Complete"
-msgstr "Importavimas baigtas"
+#: src/Views/DeviceView.vala:66
+msgid "Device operation has been cancelled and will stop after this media."
+msgstr "Įrenginio operacija buvo atšaukta ir bus sustabdyta po šios medijos."
 
-#: ../src/FileOperator.vala:307
-msgid "%s has imported your library."
-msgstr "%s importavo jūsų biblioteką."
-
-#: ../src/FileOperator.vala:317
-msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr "<b>Kopijuojami</b> failai į <b>Muzikos aplanką</b>…"
-
-#: ../src/Views/GridView/GridView.vala:44
+#: src/Views/GridView.vala:69
 msgid "No Albums Found."
 msgstr "Nerasta jokių albumų."
 
-#: ../src/Views/GridView/GridView.vala:141
-msgid "%u album"
-msgid_plural "%u albums"
-msgstr[0] "%u albumas"
-msgstr[1] "%u albumai"
-msgstr[2] "%u albumų"
+#: src/Views/ListView/ListView.vala:99
+msgid "No Songs Found."
+msgstr "Nerasta jokių dainų."
 
-#: ../src/Views/GridView/PopupListView.vala:59
-msgid "Set new album cover"
-msgstr "Nustatyti naują albumo viršelį"
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
+msgid "Genres"
+msgstr "Žanrai"
 
-#: ../src/Views/GridView/PopupListView.vala:156
-msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
-msgid "%s by %s"
-msgstr "%s pagal %s"
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:60
+msgid "Artists"
+msgstr "Atlikėjai"
 
-#: ../src/Views/GridView/PopupListView.vala:256
-msgid "_Cancel"
-msgstr "_Atsisakyti"
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:62
+msgid "Albums"
+msgstr "Albumai"
 
-#: ../src/Views/GridView/PopupListView.vala:256
-msgid "_Open"
-msgstr "At_verti"
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:64
+msgid "Years"
+msgstr "Metai"
 
-#: ../src/Views/GridView/PopupListView.vala:259
-msgid "Image files"
-msgstr "Paveikslų failai"
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:66
+msgid "Ratings"
+msgstr "Vertinimai"
 
-#: ../src/Views/Wrappers/ViewWrapper.vala:442
-msgid "No media"
-msgstr "Nėra medijos"
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:68
+msgid "Composers"
+msgstr "Kompozitoriai"
 
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:46
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:50
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:66
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:70
+msgid "Groupings"
+msgstr "Grupavimai"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:218
+msgid "All Genres"
+msgstr "Visi žanrai"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:220
+#, c-format
+msgid "All %i Genres"
+msgstr "Visi %i žanrai"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:222
+msgid "No Genres"
+msgstr "Žanrų nėra"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:227
+msgid "All Artists"
+msgstr "Visi atlikėjai"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:229
+#, c-format
+msgid "All %i Artists"
+msgstr "Visi %i atlikėjai"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:231
+msgid "No Artists"
+msgstr "Atlikėjų nėra"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:236
+msgid "All Albums"
+msgstr "Visi albumai"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:238
+#, c-format
+msgid "All %i Albums"
+msgstr "Visi %i albumai"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:240
+msgid "No Albums"
+msgstr "Albumų nėra"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:245
+msgid "All Years"
+msgstr "Visi metai"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:247
+#, c-format
+msgid "All %i Years"
+msgstr "Visi %i metai"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:249
+msgid "No Years"
+msgstr "Metų nėra"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:254
+msgid "All Ratings"
+msgstr "Visi vertinimai"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:256
+msgid "No Ratings"
+msgstr "Vertinimų nėra"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:261
+msgid "All Groupings"
+msgstr "Visi grupavimai"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:263
+#, c-format
+msgid "All %i Groupings"
+msgstr "Visi %i grupavimai"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:265
+msgid "No Groupings"
+msgstr "Grupavimų nėra"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:270
+msgid "All Composers"
+msgstr "Visi koompozitoriai"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:272
+#, c-format
+msgid "All %i Composers"
+msgstr "Visi %i kompozitoriai"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:274
+msgid "No Composers"
+msgstr "Kompozitorių nėra"
+
+#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:157
+#: src/Widgets/EqualizerPopover.vala:326 src/Widgets/PresetList.vala:52
+msgid "Automatic"
+msgstr "Automatiškai"
+
+#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:159
+msgid "On Left"
+msgstr "Kairėje"
+
+#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:161
+msgid "On Top"
+msgstr "Viršuje"
+
+#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:410
+msgid "Unrated"
+msgstr "Nevertintos"
+
+#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:412
+#, c-format
+msgid "%u Star"
+msgid_plural "%u Stars"
+msgstr[0] "%u žvaigždutė"
+msgstr[1] "%u žvaigždutės"
+msgstr[2] "%u žvaigždučių"
+
+#: src/Views/ListView/Lists/CellDataFunctionHelper.vala:134
+#, c-format
+msgid "%u kbps"
+msgstr "%u kbps"
+
+#: src/Views/ListView/Lists/CellDataFunctionHelper.vala:159
+#: src/Views/ListView/Lists/MusicListView.vala:628
+msgid "Never"
+msgstr "Niekada"
+
+#: src/Views/ListView/Lists/GenericList.vala:124
+msgid "Autosize Columns"
+msgstr "Automatiškai keisti stulpelių dydį"
+
+#: src/Views/ListView/Lists/MusicListView.vala:83
+msgid "Scroll to Current Song"
+msgstr "Pereiti prie dabartinės dainos"
+
+#: src/Views/ListView/Lists/MusicListView.vala:87
+msgid "Edit Song Info"
+msgstr "Taisyti dainos informaciją"
+
+#: src/Views/ListView/Lists/MusicListView.vala:90
+msgid "Show in File Browser"
+msgstr "Rodyti failų naršyklėje"
+
+#: src/Views/ListView/Lists/MusicListView.vala:93
+msgid "Other actions"
+msgstr "Kiti veiksmai"
+
+#: src/Views/ListView/Lists/MusicListView.vala:98
+msgid "Add to Playlist"
+msgstr "Pridėti į grojaraštį"
+
+#: src/Views/ListView/Lists/MusicListView.vala:103
+#: src/Widgets/SourceListView.vala:157
+msgid "Import to Library"
+msgstr "Importuoti į biblioteką"
+
+#: src/Views/ListView/Lists/MusicListView.vala:157
+msgid "Remove from Library"
+msgstr "Šalinti iš bibliotekos"
+
+#: src/Views/ListView/Lists/MusicListView.vala:166
+msgid "Remove from Queue"
+msgstr "Šalinti iš eilės"
+
+#: src/Views/ListView/Lists/MusicListView.vala:174
+msgid "Remove from Device"
+msgstr "Šalinti iš įrenginio"
+
+#: src/Views/ListView/Lists/MusicListView.vala:187
+msgid "New Playlist…"
+msgstr "Naujas grojaraštis…"
+
+#: src/Views/ListView/Lists/MusicListView.vala:228
+#, c-format
+msgid "Import %i of %i selected songs"
+msgstr "Importuoti %i iš %i pažymėtų dainų"
+
+#: src/Views/ListView/Lists/MusicListView.vala:230
+#, c-format
+msgid "Import %i song"
+msgid_plural "Import %i songs"
+msgstr[0] "Importuoti %i dainą"
+msgstr[1] "Importuoti %i dainas"
+msgstr[2] "Importuoti %i dainų"
+
+#: src/Views/ListView/Lists/MusicListView.vala:613
+msgid "1234 kbps"
+msgstr "1234 kbps"
+
+#: src/Views/ListView/Lists/MusicListView.vala:684
+msgid "Sample List String"
+msgstr "Arnoldas Jalianiauskas"
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:57
+msgid "Get Some Tunes"
+msgstr "Gaukite melodijas"
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:58
+msgid "Add music to your library."
+msgstr "Pridėkite muziką į savo biblioteką."
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:61
+msgid "Import music from a source into your library."
+msgstr "Importuokite muziką iš šaltinio į savo biblioteką."
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:63
+msgid "Change Music Folder"
+msgstr "Keisti muzikos aplanką"
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:64
+msgid "Load music from a folder, a network or an external disk."
+msgstr "Įkelkite muziką iš aplanko, tinklo ar išorinio disko."
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:109
+#: src/Views/Wrappers/MusicViewWrapper.vala:125
+msgid "Import your Music"
+msgstr "Importuokite savo muziką"
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:109
+#: src/Views/Wrappers/MusicViewWrapper.vala:125
+#, c-format
+msgid "Import all your Music from %s into your library."
+msgstr "Importuoti visą jūsų muziką iš %s į jūsų biblioteką."
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:135
+msgid "Select Music Folder"
+msgstr "Pasirinkti muzikos aplanką"
+
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:50
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:54
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:64
 msgid "No Songs"
 msgstr "Nėra dainų"
 
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:47
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:51
 msgid "Updating playlist. Please wait."
 msgstr "Atnaujinamas grojaraštis. Prašome palaukti."
 
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:51
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:55
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
@@ -1045,11 +1210,11 @@ msgstr ""
 "Norėdami pridėti dainas į šį grojaraštį, naudokite <b>antrinį spustelėjimą</"
 "b> ant elemento ir pasirinkite <b>Pridėti į grojaraštį</b>."
 
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:55
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:58
 msgid "Edit Smart Playlist"
 msgstr "Taisyti išmanųjį grojaraštį"
 
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:67
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:65
 msgid ""
 "This playlist will be automatically populated with songs that match its "
 "rules. To modify these rules, use the <b>secondary click</b> on it in the "
@@ -1061,650 +1226,426 @@ msgstr ""
 "naudokite <b>antrinį spustelėjimą</b> ir spustelėkite <b>Taisyti</b>. "
 "Pasirinktinai galite spustelėti žemiau esantį mygtuką."
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:51
-msgid "Get Some Tunes"
-msgstr "Gaukite melodijas"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:52
-msgid "Add music to your library."
-msgstr "Pridėkite muziką į savo biblioteką."
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:55
-msgid "Import music from a source into your library."
-msgstr "Importuokite muziką iš šaltinio į savo biblioteką."
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:57
-msgid "Change Music Folder"
-msgstr "Keisti muzikos aplanką"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:58
-msgid "Load music from a folder, a network or an external disk."
-msgstr "Įkelkite muziką iš aplanko, tinklo ar išorinio disko."
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:103
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:119
-msgid "Import your Music"
-msgstr "Importuokite savo muziką"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:103
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:119
-msgid "Import all your Music from %s into your library."
-msgstr "Importuoti visą jūsų muziką iš %s į jūsų biblioteką."
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:129
-msgid "Select Music Folder"
-msgstr "Pasirinkti muzikos aplanką"
-
-#: ../src/Views/ContentView.vala:21
-msgctxt ""
-"Format used on statusbar: $description, $total_duration, $total_file_size"
-msgid "%s, %s, %s"
-msgstr "%s, %s, %s"
-
-#: ../src/Views/DeviceView.vala:38
-msgid "Cancelling…"
-msgstr "Atšaukiama…"
-
-#: ../src/Views/DeviceView.vala:38
-msgid "Device operation has been cancelled and will stop after this media."
-msgstr "Įrenginio operacija buvo atšaukta ir bus sustabdyta po šios medijos."
-
-#: ../src/Views/DeviceView.vala:59
-msgid "OK"
-msgstr "Gerai"
-
-#: ../src/Views/DeviceView.vala:100
-msgid "No External Songs"
-msgstr "Išorinių dainų nėra"
-
-#: ../src/Views/DeviceView.vala:100
-msgid "There were no songs found on this device that are not in your library."
-msgstr ""
-"Šiame įrenginyje nebuvo rasta jokių dainų, kurių dar nebūtų jūsų "
-"bibliotekoje."
-
-#: ../src/Views/ListView/Lists/GenericList.vala:118
-msgid "Autosize Columns"
-msgstr "Automatiškai keisti stulpelių dydį"
-
-#: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:124
-msgid "%u kbps"
-msgstr "%u kbps"
-
-#: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
-#: ../src/Views/ListView/Lists/MusicListView.vala:615
-msgid "Never"
-msgstr "Niekada"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:84
-msgid "Remove from Library"
-msgstr "Šalinti iš bibliotekos"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:91
-msgid "Remove from Queue"
-msgstr "Šalinti iš eilės"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:101
-msgid "Remove from Device"
-msgstr "Šalinti iš įrenginio"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:114
-msgid "Scroll to Current Song"
-msgstr "Pereiti prie dabartinės dainos"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:118
-msgid "Edit Song Info"
-msgstr "Taisyti dainos informaciją"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:119
-msgid "Show in File Browser"
-msgstr "Rodyti failų naršyklėje"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:120
-msgid "Other actions"
-msgstr "Kiti veiksmai"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:121
-msgctxt "Action item (verb)"
-msgid "Queue"
-msgstr "Į eilę"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:122
-msgid "Add to Playlist"
-msgstr "Pridėti į grojaraštį"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:187
-msgid "New Playlist…"
-msgstr "Naujas grojaraštis…"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:227
-msgid "Import %i of %i selected songs"
-msgstr "Importuoti %i iš %i pažymėtų dainų"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:229
-msgid "Import %i song"
-msgid_plural "Import %i songs"
-msgstr[0] "Importuoti %i dainą"
-msgstr[1] "Importuoti %i dainas"
-msgstr[2] "Importuoti %i dainų"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:600
-msgid "1234 kbps"
-msgstr "1234 kbps"
-
-#. / Sample string used to measure the ideal size of the Title, Artist,
-#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
-#. / list view. It's *never* displayed in the user interface. The translated
-#. / string should have a reasonable length, similar to the average length
-#. / of a song title or artist name in your language. The automatic column
-#. / width will depend on the length of this string and the space needed
-#. / by the column's title header.
-#: ../src/Views/ListView/Lists/MusicListView.vala:671
-msgid "Sample List String"
-msgstr "Arnoldas Jalianiauskas"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:59
-msgctxt "List column title"
-msgid "#"
-msgstr "Nr."
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:62
-msgctxt "List column title"
-msgid "Track"
-msgstr "Takelis"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:65
-msgctxt "List column title"
-msgid "Title"
-msgstr "Pavadinimas"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:68
-msgctxt "List column title"
-msgid "Length"
-msgstr "Trukmė"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:71
-msgctxt "List column title"
-msgid "Artist"
-msgstr "Atlikėjas"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:74
-msgctxt "List column title"
-msgid "Album"
-msgstr "Albumas"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:77
-msgctxt "List column title"
-msgid "Album Artist"
-msgstr "Albumo atlikėjas"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:80
-msgctxt "List column title"
-msgid "Composer"
-msgstr "Kompozitorius"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:83
-msgctxt "List column title"
-msgid "Genre"
-msgstr "Žanras"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:86
-msgctxt "List column title"
-msgid "Year"
-msgstr "Metai"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:89
-msgctxt "List column title"
-msgid "Grouping"
-msgstr "Grupavimas"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:92
-msgctxt "List column title"
-msgid "Bitrate"
-msgstr "Pralaidumas"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:95
-msgctxt "List column title"
-msgid "Rating"
-msgstr "Vertinimas"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:98
-msgctxt "List column title"
-msgid "Plays"
-msgstr "Grojimų"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:101
-msgctxt "List column title"
-msgid "Skips"
-msgstr "Praleidimų"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:104
-msgctxt "List column title"
-msgid "Date Added"
-msgstr "Pridėjimo data"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:107
-msgctxt "List column title"
-msgid "Last Played"
-msgstr "Vėliausiai grota"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:110
-msgctxt "List column title (beats per minute)"
-msgid "BPM"
-msgstr "BPM"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:113
-msgctxt "List column title (file location)"
-msgid "Location"
-msgstr "Vieta"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:116
-msgctxt "List column title"
-msgid "File Size"
-msgstr "Failo dydis"
-
-#: ../src/Views/ListView/ListView.vala:86
-msgid "No Songs Found."
-msgstr "Nerasta jokių dainų."
-
-#: ../src/Views/ListView/ListView.vala:357
-msgid "%i track"
-msgid_plural "%i tracks"
-msgstr[0] "%i takelis"
-msgstr[1] "%i takeliai"
-msgstr[2] "%i takelių"
-
-#: ../src/Views/ListView/ListView.vala:359
-msgid "%u song"
-msgid_plural "%u songs"
-msgstr[0] "%u daina"
-msgstr[1] "%u dainos"
-msgstr[2] "%u dainų"
-
-#: ../src/Views/ListView/ListView.vala:367
-msgctxt "Format used on statusbar: $description, $total_duration"
-msgid "%s, %s"
-msgstr "%s, %s"
-
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:149
-msgid "On Left"
-msgstr "Kairėje"
-
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:151
-msgid "On Top"
-msgstr "Viršuje"
-
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:400
-msgid "Unrated"
-msgstr "Nevertintos"
-
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
-msgid "%u Star"
-msgid_plural "%u Stars"
-msgstr[0] "%u žvaigždutė"
-msgstr[1] "%u žvaigždutės"
-msgstr[2] "%u žvaigždučių"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
-msgid "All Genres"
-msgstr "Visi žanrai"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:212
-msgid "All %i Genres"
-msgstr "Visi %i žanrai"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:214
-msgid "No Genres"
-msgstr "Žanrų nėra"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
-msgid "All Artists"
-msgstr "Visi atlikėjai"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
-msgid "All %i Artists"
-msgstr "Visi %i atlikėjai"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
-msgid "No Artists"
-msgstr "Atlikėjų nėra"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
-msgid "All Albums"
-msgstr "Visi albumai"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
-msgid "All %i Albums"
-msgstr "Visi %i albumai"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
-msgid "No Albums"
-msgstr "Albumų nėra"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
-msgid "All Years"
-msgstr "Visi metai"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
-msgid "All %i Years"
-msgstr "Visi %i metai"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
-msgid "No Years"
-msgstr "Metų nėra"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
-msgid "All Ratings"
-msgstr "Visi vertinimai"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
-msgid "No Ratings"
-msgstr "Vertinimų nėra"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
-msgid "All Groupings"
-msgstr "Visi grupavimai"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
-msgid "All %i Groupings"
-msgstr "Visi %i grupavimai"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
-msgid "No Groupings"
-msgstr "Grupavimų nėra"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
-msgid "All Composers"
-msgstr "Visi koompozitoriai"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
-msgid "All %i Composers"
-msgstr "Visi %i kompozitoriai"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
-msgid "No Composers"
-msgstr "Kompozitorių nėra"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:53
-msgid "Genres"
-msgstr "Žanrai"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:55
-msgid "Artists"
-msgstr "Atlikėjai"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:57
-msgid "Albums"
-msgstr "Albumai"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:59
-msgid "Years"
-msgstr "Metai"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:61
-msgid "Ratings"
-msgstr "Vertinimai"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:63
-msgid "Composers"
-msgstr "Kompozitoriai"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:65
-msgid "Groupings"
-msgstr "Grupavimai"
-
-#: ../src/Views/DeviceSummaryWidget.vala:73
-msgid "Device Name:"
-msgstr "Įrenginio pavadinimas:"
-
-#: ../src/Views/DeviceSummaryWidget.vala:77
-msgid "Device Name"
-msgstr "Įrenginio pavadinimas"
-
-#: ../src/Views/DeviceSummaryWidget.vala:79
-msgid "Automatically sync when plugged in:"
-msgstr "Prijungus, automatiškai sinchronizuoti:"
-
-#: ../src/Views/DeviceSummaryWidget.vala:86
-msgid "Sync:"
-msgstr "Sinchronizuoti:"
-
-#: ../src/Views/DeviceSummaryWidget.vala:98
-msgid "Other Files"
-msgstr "Kiti failai"
-
-#: ../src/Views/DeviceSummaryWidget.vala:253
-msgid "All Music"
-msgstr "Visa muzika"
-
-#: ../src/Views/DeviceSummaryWidget.vala:308
-msgid "Sync Failed"
-msgstr "Sinchronizavimas nepavyko"
-
-#: ../src/Views/DeviceSummaryWidget.vala:308
-msgid ""
-"The playlist named %s is used to sync device %s, but could not be found."
-msgstr ""
-"Grojaraštis pavadinimu %s yra naudojamas sinchronizuoti %s įrenginį, tačiau "
-"jo rasti nepavyko."
-
-#: ../src/Views/DeviceSummaryWidget.vala:320
-#: ../src/Views/DeviceSummaryWidget.vala:322
-msgid "Cannot Sync"
-msgstr "Nepavyko sinchronizuoti"
-
-#: ../src/Views/DeviceSummaryWidget.vala:320
-msgid ""
-"Cannot sync device with selected sync settings. Not enough space on disk"
-msgstr ""
-"Nepavyko sinchronizuoti įrenginio, naudojant pasirinktus sinchronizavimo "
-"nustatymus. Diske trūksta vietos"
-
-#: ../src/Views/DeviceSummaryWidget.vala:322
-msgid "Device is already doing an operation."
-msgstr "Įrenginys jau atlieka operaciją."
-
-#: ../src/Noise.vala:65
-msgid "translator-credits"
-msgstr ""
-"Launchpad Contributions:\n"
-"  Daniel Fore https://launchpad.net/~danrabbit\n"
-"  Moo https://launchpad.net/~mooo\n"
-"  Simonas Gudjonis https://launchpad.net/~simonas-8"
-
-#: ../src/Objects/LyricFetcher.vala:141
-msgid "Lyrics fetched from www.lyricsmania.com"
-msgstr "Dainos žodžiai gauti iš www.lyricsmania.com"
-
-#: ../src/Objects/HistoryPlaylist.vala:40
-msgid "History"
-msgstr "Žurnalas"
-
-#: ../src/LocalBackend/LocalLibrary.vala:182
-msgid "Importing music from %s…"
-msgstr "Importuojama muzika iš %s…"
-
-#: ../src/LocalBackend/LocalLibrary.vala:210
-msgid "Adding files to library…"
-msgstr "Pridedami failai į biblioteką…"
-
-#: ../src/LocalBackend/LocalLibrary.vala:225
-msgid "<b>Importing</b> music to library…"
-msgstr "<b>Importuojama</b> muzika į biblioteką…"
-
-#: ../src/LocalBackend/LocalLibrary.vala:249
-msgid "All music files are already in your library"
-msgstr "Visi muzikiniai failai jau yra jūsų bibliotekoje"
-
-#: ../src/LocalBackend/LocalLibrary.vala:249
-msgid "No files were imported."
-msgstr "Nebuvo importuoti jokie failai."
-
-#: ../src/LocalBackend/LocalLibrary.vala:254
-msgid "Rescanning music for changes. This may take a while…"
-msgstr "Peržvelgiami muzikos pakeitimai. Tai gali šiek tiek užtrukti…"
-
-#: ../src/LocalBackend/LocalLibrary.vala:328
-msgid "Added to your queue:"
-msgstr "Pridėta į jūsų eilę:"
-
-#: ../src/LocalBackend/LocalLibrary.vala:339
-msgid "%d Track"
-msgid_plural "%d Tracks"
-msgstr[0] "%d takelis"
-msgstr[1] "%d takeliai"
-msgstr[2] "%d takelių"
-
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:218
-msgid "Favorite Songs"
-msgstr "Mėgstamos dainos"
-
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:226
-msgid "Recently Added"
-msgstr "Neseniai pridėtos"
-
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:234
-msgid "Recent Favorites"
-msgstr "Neseniai pamėgtos"
-
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:242
-msgid "Never Played"
-msgstr "Niekada negrotos"
-
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:250
-msgid "Over Played"
-msgstr "Per daug grotos"
-
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:258
-msgid "Not Recently Played"
-msgstr "Paskutiniu metu negrotos"
-
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:140
-#: ../plugins/Devices/iPod/iPodLibrary.vala:151
-msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr "Į $DEVICE pridedama <b>$NAME</b>, kurią atlieka <b>$ARTIST</b>"
-
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:164
-#: ../plugins/Devices/iPod/iPodLibrary.vala:199
-msgid "Syncing <b>%s</b>…"
-msgstr "Sinchronizuojama <b>%s</b>…"
-
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:269
-#: ../plugins/Devices/iPod/iPodLibrary.vala:533
-msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr "Iš $DEVICE šalinama <b>$NAME</b>, kurią atlieką <b>$ARTIST</b>"
-
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:300
-#: ../plugins/Devices/iPod/iPodLibrary.vala:340
-msgid "Removing from <b>%s</b>…"
-msgstr "Šalinama iš <b>%s</b>…"
-
-#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:99
-#: ../plugins/Devices/iPod/iPodDevice.vala:59
-msgid "Empty device!"
-msgstr "Įrenginys tuščias!"
-
-#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:103
-#: ../plugins/Devices/iPod/iPodDevice.vala:63
-msgid "This device does not contain any music."
-msgstr "Šiame įrenginyje nėra jokios muzikos."
-
-#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:147
-msgid "Android Phone"
-msgstr "Android telefonas"
-
-#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:149
-msgid "Audio Player"
-msgstr "Garso grotuvas"
-
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:85
-msgid "Audio CD Invalid"
-msgstr "Garso CD neteisingas"
-
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:89
-msgid "Impossible to read the contents of this Audio CD"
-msgstr "Neįmanoma perskaityti šio Garso CD turinio"
-
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:241
-msgid "Could not find Music Folder"
-msgstr "Nepavyko rasti muzikos aplanko"
-
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:241
-msgid ""
-"Please make sure that your music folder is accessible and mounted before "
-"importing the CD."
-msgstr ""
-"Prieš importuodami CD diską, įsitikinkite, kad jūsų muzikos aplankas yra "
-"prijungtas ir prieinamas."
-
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:247
-msgid ""
-"The Application could not find any songs on the CD. No songs can be imported"
-msgstr "Programa CD diske nerado jokių dainų. Dainos negali būti importuotos"
-
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:348
-msgid "Importation of a song from Audio CD finished."
-msgstr "Dainos importavimas iš Garso CD užbaigtas."
-
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:348
-msgid "Importation of %i songs from Audio CD finished."
-msgstr "%i dainų importavimas iš Garso CD užbaigtas."
-
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:353
-msgid "Importing track %u: %s"
-msgstr "Importuojamas takelis %u: %s"
-
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:358
-msgid "CD import will be <b>cancelled</b> after current import."
-msgstr "Po esamo importavimo, CD disko importavimas bus <b>atšauktas</b>."
-
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:377
-msgid "An error occured during the Import of this CD"
-msgstr "Šio CD disko importavimo metu įvyko klaida"
-
-#: ../plugins/Devices/CDRom/CDViewWrapper.vala:32
-msgid "An Error Occured"
-msgstr "Įvyko klaida"
-
-#: ../plugins/Devices/CDRom/CDViewWrapper.vala:33
-msgid "There was an error while loading this Audio CD."
-msgstr "Įkeliant šį garso CD, įvyko klaida."
-
-#: ../plugins/Devices/iPod/iPodLibrary.vala:221
-#: ../plugins/Devices/iPod/iPodLibrary.vala:377
-msgid "Finishing sync process…"
-msgstr "Užbaigiamas sinchronizavimo procesas…"
-
-#: ../plugins/Devices/iPod/iPodLibrary.vala:233
-#: ../plugins/Devices/iPod/iPodLibrary.vala:389
-msgid "Cancelling Sync…"
-msgstr "Atšaukiamas sinchronizavimas…"
-
-#: ../plugins/LastFM/SimilarMediaView.vala:41
-msgid "media"
-msgstr "medija"
-
-#: ../plugins/LastFM/SimilarMediaView.vala:47
-msgid "Similar Media"
-msgstr "Panaši medija"
-
-#: ../plugins/LastFM/SimilarMedia.vala:37
-msgid "Similar"
-msgstr "Panaši"
-
-#: ../plugins/LastFM/LastFM.vala:101
-msgid "No similar songs found"
-msgstr "Panašių dainų nerasta"
-
-#: ../plugins/LastFM/LastFM.vala:101
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"Nėra į jūsų bibliotekoje esamą dainą panašių dainų. Įsitikinkite, kad visa "
-"informacija apie dainą yra teisinga ir, kad esate prisijungę prie interneto. "
-"Kai kurios dainos gali neturėti atitikimų."
+#: src/Views/Wrappers/ViewWrapper.vala:418
+msgid "No media"
+msgstr "Nėra medijos"
+
+#: src/Widgets/AlbumListGrid.vala:64
+msgid "Set new album cover"
+msgstr "Nustatyti naują albumo viršelį"
+
+#: src/Widgets/AlbumListGrid.vala:239
+msgid "Image files"
+msgstr "Paveikslų failai"
+
+#: src/Widgets/AlbumListGrid.vala:244
+msgid "_Cancel"
+msgstr "_Atsisakyti"
+
+#: src/Widgets/AlbumListGrid.vala:245
+msgid "_Open"
+msgstr "At_verti"
+
+#: src/Widgets/EqualizerPopover.vala:165
+msgid "Save preset"
+msgstr "Įrašyti išankstinę parinktį"
+
+#: src/Widgets/EqualizerPopover.vala:330
+msgid "Off"
+msgstr "Išjungta"
+
+#: src/Widgets/EqualizerPopover.vala:418
+#, c-format
+msgid "%s (Custom)"
+msgstr "%s (Tinkinta)"
+
+#: src/Widgets/EqualizerPopover.vala:420
+#, c-format
+msgid "%s (Custom %i)"
+msgstr "%s (Tinkinta %i)"
+
+#: src/Widgets/EqualizerPopover.vala:423
+msgid "Custom Preset"
+msgstr "Tinkinta išankstinė parinktis"
+
+#: src/Widgets/EqualizerPopover.vala:425
+#, c-format
+msgid "Custom Preset %i"
+msgstr "Tinkinta išankstinė parinktis %i"
+
+#: src/Widgets/PresetList.vala:53
+msgid "Delete Current"
+msgstr "Ištrinti esamą"
+
+#: src/Widgets/SourceListView.vala:68 src/Widgets/SourceListView.vala:81
+msgid "Rename"
+msgstr "Pervadinti"
+
+#: src/Widgets/SourceListView.vala:70 src/Widgets/SourceListView.vala:84
+#: src/Widgets/SourceListView.vala:99
+msgid "Export…"
+msgstr "Eksportuoti…"
+
+#: src/Widgets/SourceListView.vala:82
+msgid "Edit…"
+msgstr "Taisyti…"
+
+#: src/Widgets/SourceListView.vala:97
+msgid "Save as Playlist"
+msgstr "Įrašyti kaip grojaraštį"
+
+#: src/Widgets/SourceListView.vala:165
+msgid "Eject"
+msgstr "Išstumti"
+
+#: src/Widgets/SourceListView.vala:170 src/Widgets/SourceListView.vala:210
+msgid "New Playlist"
+msgstr "Naujas grojaraštis"
+
+#: src/Widgets/SourceListView.vala:175 src/Widgets/SourceListView.vala:211
+msgid "New Smart Playlist"
+msgstr "Naujas išmanusis grojaraštis"
+
+#: src/Widgets/SourceListView.vala:212
+msgid "Import Playlists"
+msgstr "Importuoti grojaraščius"
+
+#: src/Widgets/SourceListView.vala:322
+msgid "Library"
+msgstr "Biblioteka"
+
+#: src/Widgets/SourceListView.vala:323
+msgid "Devices"
+msgstr "Įrenginiai"
+
+#: src/Widgets/SourceListView.vala:324
+msgid "Network"
+msgstr "Tinklas"
+
+#: src/Widgets/StatusBar.vala:39 src/Widgets/StatusBar.vala:50
+msgid "Add Playlist"
+msgstr "Pridėti grojaraštį"
+
+#: src/Widgets/StatusBar.vala:40
+msgid "Add Smart Playlist"
+msgstr "Pridėti išmanųjį grojaraštį"
+
+#: src/Widgets/StatusBar.vala:80
+#, c-format
+msgid "Equalizer: %s"
+msgstr "Glodintuvas: %s"
+
+#: src/Widgets/TopDisplay.vala:139
+msgid "Enable Repeat"
+msgstr "Įjungti kartojimą"
+
+#: src/Widgets/TopDisplay.vala:140
+msgid "Repeat Song"
+msgstr "Kartoti dainą"
+
+#: src/Widgets/TopDisplay.vala:141
+msgid "Disable Repeat"
+msgstr "Išjungti kartojimą"
+
+#: src/Widgets/TopDisplay.vala:160
+msgid "Enable Shuffle"
+msgstr "Įjungti maišymą"
+
+#: src/Widgets/TopDisplay.vala:161
+msgid "Disable Shuffle"
+msgstr "Išjungti maišymą"
+
+#: src/Widgets/ViewSelector.vala:74
+msgid "View as Albums"
+msgstr "Rodyti kaip albumus"
+
+#: src/Widgets/ViewSelector.vala:77
+msgid "View as List"
+msgstr "Rodyti kaip sąrašą"
+
+#: src/Widgets/ViewSelector.vala:80
+msgid "View in Columns"
+msgstr "Rodyti stulpeliuose"
+
+#~ msgid "%u second"
+#~ msgid_plural "%u seconds"
+#~ msgstr[0] "%u sekundė"
+#~ msgstr[1] "%u sekundės"
+#~ msgstr[2] "%u sekundžių"
+
+#~ msgid "%u minute"
+#~ msgid_plural "%u minutes"
+#~ msgstr[0] "%u minutė"
+#~ msgstr[1] "%u minutės"
+#~ msgstr[2] "%u minučių"
+
+#~ msgctxt "minutes and seconds"
+#~ msgid "%s and %s"
+#~ msgstr "%s ir %s"
+
+#~ msgid "%u day"
+#~ msgid_plural "%u days"
+#~ msgstr[0] "%u diena"
+#~ msgstr[1] "%u dienos"
+#~ msgstr[2] "%u dienų"
+
+#~ msgid "%u hour"
+#~ msgid_plural "%u hours"
+#~ msgstr[0] "%u valanda"
+#~ msgstr[1] "%u valandos"
+#~ msgstr[2] "%u valandų"
+
+#~ msgctxt "days, hours and minutes"
+#~ msgid "%s, %s and %s"
+#~ msgstr "%s, %s ir %s"
+
+#~ msgctxt "days and hours"
+#~ msgid "%s and %s"
+#~ msgstr "%s ir %s"
+
+#~ msgctxt "days and minutes"
+#~ msgid "%s and %s"
+#~ msgstr "%s ir %s"
+
+#~ msgctxt "hours and minutes"
+#~ msgid "%s and %s"
+#~ msgstr "%s ir %s"
+
+#~ msgid "Song"
+#~ msgstr "Daina"
+
+#~ msgid "Repeat Album"
+#~ msgstr "Kartoti albumą"
+
+#~ msgid "Repeat Artist"
+#~ msgstr "Kartoti atlikėją"
+
+#~ msgid "All"
+#~ msgstr "Visi"
+
+#~ msgid "Hide"
+#~ msgstr "Slėpti"
+
+#~ msgid "Show Info Panel"
+#~ msgstr "Rodyti informacijos skydelį"
+
+#~ msgid "Show"
+#~ msgstr "Rodyti"
+
+#~ msgid "Hide Info Panel"
+#~ msgstr "Slėpti informacijos skydelį"
+
+#~ msgid "Free"
+#~ msgstr "Laisva"
+
+#~ msgid "Using %s of %s (%.2f%)"
+#~ msgstr "Naudojama %s iš %s (%.2f%)"
+
+#~ msgctxt "Name of the playlist"
+#~ msgid "Queue"
+#~ msgstr "Eilė"
+
+#~ msgid "General"
+#~ msgstr "Bendra"
+
+#~ msgid "Import from Device"
+#~ msgstr "Importuoti iš įrenginio"
+
+#~ msgid "Import media from %s"
+#~ msgstr "Importuoti mediją iš %s"
+
+#~ msgid ""
+#~ "The following files were found on %s, but are not in your library. Check "
+#~ "all the files you would like to import."
+#~ msgstr ""
+#~ "Šie failai buvo rasti %s įrenginyje, tačiau jų nėra jūsų bibliotekoje. "
+#~ "Pažymėkite visus failus, kuriuos norėtumėte importuoti."
+
+#~ msgid "Import all media"
+#~ msgstr "Importuoti visą mediją"
+
+#~ msgid "Don't Import"
+#~ msgstr "Neimportuoti"
+
+#~ msgid "Import %i items from %s"
+#~ msgstr "Importuoti %i elementus iš %s"
+
+#~ msgid "Import %s from %s"
+#~ msgstr "Importuoti %s iš %s"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Select individual media to import:"
+#~ msgstr "Pasirinkite atskirą mediją, kurią importuoti:"
+
+#~ msgid "Check Item"
+#~ msgstr "Pažymėti elementą"
+
+#~ msgid "Check Album"
+#~ msgstr "Pažymėti albumą"
+
+#~ msgid "Check Artist"
+#~ msgstr "Pažymėti atlikėją"
+
+#~ msgid "Cannot Import"
+#~ msgstr "Nepavyksta importuoti"
+
+#~ msgid ""
+#~ "Noise is already doing file operations. Please wait until those finish to "
+#~ "import from %s"
+#~ msgstr ""
+#~ "Noise jau atlieka failų operacijas. Palaukite, kol jos užsibaigs, kad "
+#~ "importuotumėte iš %s"
+
+#~ msgid "Import media to Library"
+#~ msgstr "Importuoti mediją į biblioteką"
+
+#~ msgid "Stop Syncing"
+#~ msgstr "Stabdyti sinchronizavimą"
+
+#~ msgid "Sync will remove 1 item from %s"
+#~ msgstr "Sinchronizavimas pašalins 1 elementą iš %s"
+
+#~ msgid "%u album"
+#~ msgid_plural "%u albums"
+#~ msgstr[0] "%u albumas"
+#~ msgstr[1] "%u albumai"
+#~ msgstr[2] "%u albumų"
+
+#~ msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
+#~ msgid "%s by %s"
+#~ msgstr "%s pagal %s"
+
+#~ msgctxt ""
+#~ "Format used on statusbar: $description, $total_duration, $total_file_size"
+#~ msgid "%s, %s, %s"
+#~ msgstr "%s, %s, %s"
+
+#~ msgid "OK"
+#~ msgstr "Gerai"
+
+#~ msgid "No External Songs"
+#~ msgstr "Išorinių dainų nėra"
+
+#~ msgid ""
+#~ "There were no songs found on this device that are not in your library."
+#~ msgstr ""
+#~ "Šiame įrenginyje nebuvo rasta jokių dainų, kurių dar nebūtų jūsų "
+#~ "bibliotekoje."
+
+#~ msgctxt "Action item (verb)"
+#~ msgid "Queue"
+#~ msgstr "Į eilę"
+
+#~ msgctxt "List column title"
+#~ msgid "#"
+#~ msgstr "Nr."
+
+#~ msgctxt "List column title"
+#~ msgid "Track"
+#~ msgstr "Takelis"
+
+#~ msgctxt "List column title"
+#~ msgid "Title"
+#~ msgstr "Pavadinimas"
+
+#~ msgctxt "List column title"
+#~ msgid "Length"
+#~ msgstr "Trukmė"
+
+#~ msgctxt "List column title"
+#~ msgid "Artist"
+#~ msgstr "Atlikėjas"
+
+#~ msgctxt "List column title"
+#~ msgid "Album"
+#~ msgstr "Albumas"
+
+#~ msgctxt "List column title"
+#~ msgid "Album Artist"
+#~ msgstr "Albumo atlikėjas"
+
+#~ msgctxt "List column title"
+#~ msgid "Composer"
+#~ msgstr "Kompozitorius"
+
+#~ msgctxt "List column title"
+#~ msgid "Genre"
+#~ msgstr "Žanras"
+
+#~ msgctxt "List column title"
+#~ msgid "Year"
+#~ msgstr "Metai"
+
+#~ msgctxt "List column title"
+#~ msgid "Grouping"
+#~ msgstr "Grupavimas"
+
+#~ msgctxt "List column title"
+#~ msgid "Bitrate"
+#~ msgstr "Pralaidumas"
+
+#~ msgctxt "List column title"
+#~ msgid "Rating"
+#~ msgstr "Vertinimas"
+
+#~ msgctxt "List column title"
+#~ msgid "Plays"
+#~ msgstr "Grojimų"
+
+#~ msgctxt "List column title"
+#~ msgid "Skips"
+#~ msgstr "Praleidimų"
+
+#~ msgctxt "List column title"
+#~ msgid "Date Added"
+#~ msgstr "Pridėjimo data"
+
+#~ msgctxt "List column title"
+#~ msgid "Last Played"
+#~ msgstr "Vėliausiai grota"
+
+#~ msgctxt "List column title (beats per minute)"
+#~ msgid "BPM"
+#~ msgstr "BPM"
+
+#~ msgctxt "List column title (file location)"
+#~ msgid "Location"
+#~ msgstr "Vieta"
+
+#~ msgctxt "List column title"
+#~ msgid "File Size"
+#~ msgstr "Failo dydis"
+
+#~ msgid "%i track"
+#~ msgid_plural "%i tracks"
+#~ msgstr[0] "%i takelis"
+#~ msgstr[1] "%i takeliai"
+#~ msgstr[2] "%i takelių"
+
+#~ msgid "%u song"
+#~ msgid_plural "%u songs"
+#~ msgstr[0] "%u daina"
+#~ msgstr[1] "%u dainos"
+#~ msgstr[2] "%u dainų"
+
+#~ msgctxt "Format used on statusbar: $description, $total_duration"
+#~ msgid "%s, %s"
+#~ msgstr "%s, %s"
+
+#~ msgid "Other Files"
+#~ msgstr "Kiti failai"
+
+#~ msgid "translator-credits"
+#~ msgstr ""
+#~ "Launchpad Contributions:\n"
+#~ "  Daniel Fore https://launchpad.net/~danrabbit\n"
+#~ "  Moo https://launchpad.net/~mooo\n"
+#~ "  Simonas Gudjonis https://launchpad.net/~simonas-8"
+
+#~ msgid "Lyrics fetched from www.lyricsmania.com"
+#~ msgstr "Dainos žodžiai gauti iš www.lyricsmania.com"
 
 #~ msgid "%d second"
 #~ msgid_plural "%d seconds"

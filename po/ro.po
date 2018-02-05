@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-18 14:43+0100\n"
+"POT-Creation-Date: 2018-02-05 11:30-0800\n"
 "PO-Revision-Date: 2017-01-24 10:18+0000\n"
 "Last-Translator: Marius Albina <marius.albina@gmail.com>\n"
 "Language-Team: Romanian <ro@li.org>\n"
@@ -20,712 +20,571 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 "X-Generator: Launchpad (build 18330)\n"
 
-#: ../core/LibrariesManager.vala:143
+#: core/LibrariesManager.vala:147
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 msgstr "Import <b>$NAME</b> de <b>$ARTIST</b> în bibliotecă…"
 
-#: ../core/Utils/TimeUtils.vala:51 ../core/Utils/TimeUtils.vala:60
-msgid "%u second"
-msgid_plural "%u seconds"
-msgstr[0] "%u secundă"
-msgstr[1] "%u secunde"
-msgstr[2] "%u secunde"
-
-#: ../core/Utils/TimeUtils.vala:57 ../core/Utils/TimeUtils.vala:75
-msgid "%u minute"
-msgid_plural "%u minutes"
-msgstr[0] "%u minut"
-msgstr[1] "%u minute"
-msgstr[2] "%u minute"
-
-#. / Minutes and seconds
-#: ../core/Utils/TimeUtils.vala:62
-msgctxt "minutes and seconds"
-msgid "%s and %s"
-msgstr "%s și %s"
-
-#: ../core/Utils/TimeUtils.vala:69
-msgid "%u day"
-msgid_plural "%u days"
-msgstr[0] ""
-msgstr[1] "%u zile"
-msgstr[2] "%u zile"
-
-#: ../core/Utils/TimeUtils.vala:72
-msgid "%u hour"
-msgid_plural "%u hours"
-msgstr[0] "%u oră"
-msgstr[1] "%u ore"
-msgstr[2] "%u ore"
-
-#. / days, hours and minutes
-#: ../core/Utils/TimeUtils.vala:83
-msgctxt "days, hours and minutes"
-msgid "%s, %s and %s"
-msgstr "%s, %s și %s"
-
-#. / days and hours
-#: ../core/Utils/TimeUtils.vala:86
-msgctxt "days and hours"
-msgid "%s and %s"
-msgstr "%s și %s"
-
-#. / days and minutes
-#: ../core/Utils/TimeUtils.vala:91
-msgctxt "days and minutes"
-msgid "%s and %s"
-msgstr "%s și %s"
-
-#. / hours and minutes
-#: ../core/Utils/TimeUtils.vala:100
-msgctxt "hours and minutes"
-msgid "%s and %s"
-msgstr "%s și %s"
-
-#. / Format of date strings. See reference documentation of g_date_time_format()
-#. / for more details.
-#: ../core/Utils/TimeUtils.vala:159
-msgid "%m/%e/%Y %l:%M %p"
-msgstr "%m/%e/%Y %l:%M %p"
-
-#: ../core/Utils/PlaylistsUtils.vala:96
-msgid "%s (%d)"
-msgstr "%s (%d)"
-
-#: ../core/Utils/PlaylistsUtils.vala:236
-msgid "New playlist"
-msgstr "Listă de redare nouă"
-
-#: ../core/Utils/PlaylistsUtils.vala:247
-msgid "%s (%i)"
-msgstr "%s (%i)"
-
-#: ../core/Utils/PlaylistsUtils.vala:274
-msgid "Export Playlist"
-msgstr "Exportă listă de redare"
-
-#: ../core/Utils/PlaylistsUtils.vala:276 ../core/Utils/PlaylistsUtils.vala:370
-#: ../src/Widgets/TopDisplay.vala:90
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:63
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:61
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:109
-#: ../src/Dialogs/FileNotFoundDialog.vala:87
-#: ../src/Dialogs/FileNotFoundDialog.vala:126
-#: ../src/Dialogs/RemoveFilesDialog.vala:52
-#: ../src/Dialogs/SmartPlaylistEditor.vala:118 ../src/LibraryWindow.vala:1066
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:131
-msgid "Cancel"
-msgstr "Anulează"
-
-#: ../core/Utils/PlaylistsUtils.vala:277 ../src/Dialogs/MediaEditor.vala:151
-#: ../src/Dialogs/SmartPlaylistEditor.vala:116
-msgid "Save"
-msgstr "Salveaza"
-
-#: ../core/Utils/PlaylistsUtils.vala:282 ../core/Utils/PlaylistsUtils.vala:377
-msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr "MPEG versiunea 3.0 Extended (*. m3u)"
-
-#: ../core/Utils/PlaylistsUtils.vala:287 ../core/Utils/PlaylistsUtils.vala:382
-msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr "Listă de redare Shoutcast versiunea 2.0 (*.pls)"
-
-#: ../core/Utils/PlaylistsUtils.vala:362
-msgid "Playlist"
-msgstr "Listă de redare"
-
-#: ../core/Utils/PlaylistsUtils.vala:368
-msgid "Import %s"
-msgstr "Importă %s"
-
-#: ../core/Utils/PlaylistsUtils.vala:371
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:110
-#: ../src/Dialogs/FileNotFoundDialog.vala:127 ../src/LibraryWindow.vala:1067
-#: ../src/Views/GridView/PopupListView.vala:255
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:133
-msgid "Open"
-msgstr "Deschideţi"
-
-#: ../core/Utils/PlaylistsUtils.vala:402
-msgid "Unrecognized playlist file. Import failed."
-msgstr "Listă de redare nerecunoscută. Importare eșuată."
-
-#: ../core/Utils/FileUtils.vala:294
-msgid " (%d)"
-msgstr " (%d)"
-
-#. / Used for unknown titles, artists, or album names.
-#: ../core/Media.vala:34
+#: core/Media.vala:32
 msgid "Unknown"
 msgstr "Necunoscut"
 
-#. / Please keep $NAME and $ALBUM, they will be replaced by their values
-#: ../core/Media.vala:180
+#: core/Media.vala:179
 msgid "$NAME on $ALBUM"
 msgstr "$NAME din $ALBUM"
 
-#. / Please keep $NAME and $ARTIST, they will be replaced by their values
-#: ../core/Media.vala:183
+#: core/Media.vala:182
 msgid "$NAME by $ARTIST"
 msgstr "$NAME de $ARTIST"
 
-#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
-#: ../core/Media.vala:189
+#: core/Media.vala:188
 msgid "$NAME by $ARTIST on $ALBUM"
 msgstr "$NAME de $ARTIST din $ALBUM"
 
-#: ../core/GStreamer/Equalizer.vala:72
+#: core/GStreamer/Equalizer.vala:71
 msgid "Flat"
 msgstr "Plat"
 
-#: ../core/GStreamer/Equalizer.vala:73
+#: core/GStreamer/Equalizer.vala:72
 msgid "Classical"
 msgstr "Clasic"
 
-#: ../core/GStreamer/Equalizer.vala:74
+#: core/GStreamer/Equalizer.vala:73
 msgid "Club"
 msgstr "Club"
 
-#: ../core/GStreamer/Equalizer.vala:75
+#: core/GStreamer/Equalizer.vala:74
 msgid "Dance"
 msgstr "Dance"
 
-#: ../core/GStreamer/Equalizer.vala:76
+#: core/GStreamer/Equalizer.vala:75
 msgid "Full Bass"
 msgstr "Bas complet"
 
-#: ../core/GStreamer/Equalizer.vala:77
+#: core/GStreamer/Equalizer.vala:76
 msgid "Full Treble"
 msgstr "Note înalte complete"
 
-#: ../core/GStreamer/Equalizer.vala:78
+#: core/GStreamer/Equalizer.vala:77
 msgid "Full Bass + Treble"
 msgstr "Bas și înalte la maxim"
 
-#: ../core/GStreamer/Equalizer.vala:79
+#: core/GStreamer/Equalizer.vala:78
 msgid "Headphones"
 msgstr "Căști"
 
-#: ../core/GStreamer/Equalizer.vala:80
+#: core/GStreamer/Equalizer.vala:79
 msgid "Large Hall"
 msgstr "Sală mare"
 
-#: ../core/GStreamer/Equalizer.vala:81
+#: core/GStreamer/Equalizer.vala:80
 msgid "Live"
 msgstr "Live"
 
-#: ../core/GStreamer/Equalizer.vala:82
+#: core/GStreamer/Equalizer.vala:81
 msgid "Party"
 msgstr "Petrecere"
 
-#: ../core/GStreamer/Equalizer.vala:83
+#: core/GStreamer/Equalizer.vala:82
 msgid "Pop"
 msgstr "Pop"
 
-#: ../core/GStreamer/Equalizer.vala:84
+#: core/GStreamer/Equalizer.vala:83
 msgid "Reggae"
 msgstr "Reggae"
 
-#: ../core/GStreamer/Equalizer.vala:85
+#: core/GStreamer/Equalizer.vala:84
 msgid "Rock"
 msgstr "Rock"
 
-#: ../core/GStreamer/Equalizer.vala:86
+#: core/GStreamer/Equalizer.vala:85
 msgid "Soft"
 msgstr "Soft"
 
-#: ../core/GStreamer/Equalizer.vala:87
+#: core/GStreamer/Equalizer.vala:86
 msgid "Ska"
 msgstr "Ska"
 
-#: ../core/GStreamer/Equalizer.vala:88
+#: core/GStreamer/Equalizer.vala:87
 msgid "Soft Rock"
 msgstr "Rock liniștit"
 
-#: ../core/GStreamer/Equalizer.vala:89
+#: core/GStreamer/Equalizer.vala:88
 msgid "Techno"
 msgstr "Techno"
 
-#: ../src/Widgets/PresetList.vala:46 ../src/Widgets/EqualizerPopover.vala:335
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:147
-msgid "Automatic"
-msgstr "Automat"
+#: core/Utils/FileUtils.vala:182
+#, c-format
+msgid " (%d)"
+msgstr " (%d)"
 
-#: ../src/Widgets/PresetList.vala:47
-msgid "Delete Current"
-msgstr "Șterge fila redată curent"
+#: core/Utils/PlaylistsUtils.vala:95
+#, c-format
+msgid "%s (%d)"
+msgstr "%s (%d)"
 
-#: ../src/Widgets/SourceListView.vala:59 ../src/Widgets/SourceListView.vala:72
-msgid "Rename"
-msgstr "Redenumește"
-
-#: ../src/Widgets/SourceListView.vala:60 ../src/Widgets/SourceListView.vala:74
-#: ../src/Dialogs/SmartPlaylistEditor.vala:260
-msgid "Remove"
-msgstr "Elimină"
-
-#: ../src/Widgets/SourceListView.vala:61 ../src/Widgets/SourceListView.vala:75
-#: ../src/Widgets/SourceListView.vala:90
-msgid "Export…"
-msgstr "Exportă..."
-
-#: ../src/Widgets/SourceListView.vala:73
-msgid "Edit…"
-msgstr "Editează..."
-
-#: ../src/Widgets/SourceListView.vala:88
-msgid "Save as Playlist"
-msgstr "Salvează lista de redare ca"
-
-#: ../src/Widgets/SourceListView.vala:148
-#: ../src/Views/ListView/Lists/MusicListView.vala:124
-msgid "Import to Library"
-msgstr "Importă în bibliotecă"
-
-#: ../src/Widgets/SourceListView.vala:156
-msgid "Eject"
-msgstr "Scoate"
-
-#: ../src/Widgets/SourceListView.vala:161
-#: ../src/Widgets/SourceListView.vala:201
-msgid "New Playlist"
+#: core/Utils/PlaylistsUtils.vala:235
+msgid "New playlist"
 msgstr "Listă de redare nouă"
 
-#: ../src/Widgets/SourceListView.vala:166
-#: ../src/Widgets/SourceListView.vala:202
-msgid "New Smart Playlist"
-msgstr "Listă de redare inteligentă nouă"
+#: core/Utils/PlaylistsUtils.vala:246
+#, c-format
+msgid "%s (%i)"
+msgstr "%s (%i)"
 
-#: ../src/Widgets/SourceListView.vala:171 ../src/Widgets/SpaceWidget.vala:237
-msgid "Sync"
-msgstr "Sincronizează"
+#: core/Utils/PlaylistsUtils.vala:273
+msgid "Export Playlist"
+msgstr "Exportă listă de redare"
 
-#: ../src/Widgets/SourceListView.vala:203
-msgid "Import Playlists"
-msgstr "Importă listă de redare"
+#: core/Utils/PlaylistsUtils.vala:275 core/Utils/PlaylistsUtils.vala:369
+#: src/LibraryWindow.vala:1002 src/Dialogs/FileNotFoundDialog.vala:84
+#: src/Dialogs/FileNotFoundDialog.vala:123
+#: src/Dialogs/InstallGstreamerPluginsDialog.vala:50
+#: src/Dialogs/RemoveFilesDialog.vala:58
+#: src/Dialogs/SetMusicFolderConfirmation.vala:67
+#: src/Dialogs/SetMusicFolderConfirmation.vala:115
+#: src/Dialogs/SmartPlaylistEditor.vala:111
+#: src/Dialogs/SyncWarningDialog.vala:60
+#: src/Views/Wrappers/MusicViewWrapper.vala:137 src/Widgets/TopDisplay.vala:64
+msgid "Cancel"
+msgstr "Anulează"
 
-#: ../src/Widgets/SourceListView.vala:313
-msgid "Library"
-msgstr "Bibliotecă"
+#: core/Utils/PlaylistsUtils.vala:276 src/Dialogs/MediaEditor.vala:138
+#: src/Dialogs/SmartPlaylistEditor.vala:107
+msgid "Save"
+msgstr "Salveaza"
 
-#: ../src/Widgets/SourceListView.vala:314
-msgid "Devices"
-msgstr "Dispozitive"
+#: core/Utils/PlaylistsUtils.vala:281 core/Utils/PlaylistsUtils.vala:376
+msgid "MPEG Version 3.0 Extended (*.m3u)"
+msgstr "MPEG versiunea 3.0 Extended (*. m3u)"
 
-#: ../src/Widgets/SourceListView.vala:315
-msgid "Network"
-msgstr "Rețea"
+#: core/Utils/PlaylistsUtils.vala:286 core/Utils/PlaylistsUtils.vala:381
+msgid "Shoutcast Playlist Version 2.0 (*.pls)"
+msgstr "Listă de redare Shoutcast versiunea 2.0 (*.pls)"
 
-#: ../src/Widgets/SourceListView.vala:316 ../plugins/MPRIS/MPRIS.vala:639
-msgid "Playlists"
-msgstr "Liste de redare"
+#: core/Utils/PlaylistsUtils.vala:361
+msgid "Playlist"
+msgstr "Listă de redare"
 
-#: ../src/Widgets/StatusBar.vala:64 ../src/Widgets/StatusBar.vala:94
-#: ../src/Widgets/EqualizerPopover.vala:339
-msgid "Off"
-msgstr "Dezactivat"
+#: core/Utils/PlaylistsUtils.vala:367
+#, c-format
+msgid "Import %s"
+msgstr "Importă %s"
 
-#: ../src/Widgets/StatusBar.vala:64
-msgid "Enable Repeat"
-msgstr "Acitvează Repetarea"
+#: core/Utils/PlaylistsUtils.vala:370 src/LibraryWindow.vala:1003
+#: src/Dialogs/FileNotFoundDialog.vala:124
+#: src/Dialogs/SetMusicFolderConfirmation.vala:116
+#: src/Views/Wrappers/MusicViewWrapper.vala:139
+#: src/Widgets/AlbumListGrid.vala:243
+msgid "Open"
+msgstr "Deschideţi"
 
-#: ../src/Widgets/StatusBar.vala:65
-msgid "Song"
-msgstr "Melodie"
+#: core/Utils/PlaylistsUtils.vala:401
+msgid "Unrecognized playlist file. Import failed."
+msgstr "Listă de redare nerecunoscută. Importare eșuată."
 
-#: ../src/Widgets/StatusBar.vala:65
-msgid "Repeat Song"
-msgstr "Redă Piesa"
+#: core/Utils/TimeUtils.vala:47
+msgid "%m/%e/%Y %l:%M %p"
+msgstr "%m/%e/%Y %l:%M %p"
 
-#: ../src/Widgets/StatusBar.vala:66
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:121
-#: ../src/Dialogs/SmartPlaylistEditor.vala:263
-msgid "Album"
-msgstr "Album"
+#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:105
+#: plugins/Devices/iPod/iPodDevice.vala:65
+msgid "Empty device!"
+msgstr "Dispozitiv gol!"
 
-#: ../src/Widgets/StatusBar.vala:66
-msgid "Repeat Album"
-msgstr "Repetă albumul"
+#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:109
+#: plugins/Devices/iPod/iPodDevice.vala:69
+msgid "This device does not contain any music."
+msgstr "Acest dispozitiv nu conţine muzică."
 
-#: ../src/Widgets/StatusBar.vala:67
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:120
-#: ../src/Dialogs/SmartPlaylistEditor.vala:264
-msgid "Artist"
-msgstr "Artist"
+#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:153
+msgid "Android Phone"
+msgstr "Telefon Android"
 
-#: ../src/Widgets/StatusBar.vala:67
-msgid "Repeat Artist"
-msgstr "Repetă  Artistul"
+#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:155
+msgid "Audio Player"
+msgstr "Player audio"
 
-#: ../src/Widgets/StatusBar.vala:68 ../src/Widgets/StatusBar.vala:95
-msgid "All"
-msgstr "Toate"
+#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:137
+#: plugins/Devices/iPod/iPodLibrary.vala:148
+msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
+msgstr "Adăugare <b>$NAME</b> de <b>$ARTIST</b> pe  $DEVICE"
 
-#: ../src/Widgets/StatusBar.vala:68
-msgid "Disable Repeat"
-msgstr "Dezactivare repetare"
+#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:161
+#: plugins/Devices/iPod/iPodLibrary.vala:196
+#, c-format
+msgid "Syncing <b>%s</b>…"
+msgstr "Sincronizare <b>%s</b>..."
 
-#: ../src/Widgets/StatusBar.vala:94
-msgid "Enable Shuffle"
-msgstr "Activează Redarea Aleatorie"
+#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:266
+#: plugins/Devices/iPod/iPodLibrary.vala:530
+msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
+msgstr "Scoate <b>$NAME</b> - <b>$ARTIST</b> de la $DEVICE"
 
-#: ../src/Widgets/StatusBar.vala:95
-msgid "Disable Shuffle"
-msgstr "Dezactivează Redarea Aleatorie"
+#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:297
+#: plugins/Devices/iPod/iPodLibrary.vala:337
+#, c-format
+msgid "Removing from <b>%s</b>…"
+msgstr "Scoate de la <b>%s</b>..."
 
-#: ../src/Widgets/StatusBar.vala:128 ../src/Widgets/StatusBar.vala:139
-msgid "Add Playlist"
-msgstr "Adaugă listă de redare"
+#: plugins/Devices/CDRom/CDRomDevice.vala:91
+msgid "Audio CD Invalid"
+msgstr "CD audio invalid"
 
-#: ../src/Widgets/StatusBar.vala:140
-msgid "Add Smart Playlist"
-msgstr "Adaugă listă de redare inteligentă"
+#: plugins/Devices/CDRom/CDRomDevice.vala:95
+msgid "Impossible to read the contents of this Audio CD"
+msgstr "Conţinutul acestui CD audio este imposibil de citit"
 
-#. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
-#: ../src/Widgets/StatusBar.vala:189
-msgid "Equalizer: %s"
-msgstr "Egalizator: %s"
+#: plugins/Devices/CDRom/CDRomDevice.vala:247
+msgid "Could not find Music Folder"
+msgstr "Nu s-a găsit Dosarul cu Muzică"
 
-#: ../src/Widgets/StatusBar.vala:199
-msgid "Hide"
-msgstr "Ascunde"
+#: plugins/Devices/CDRom/CDRomDevice.vala:247
+msgid ""
+"Please make sure that your music folder is accessible and mounted before "
+"importing the CD."
+msgstr ""
+"Asigură-te că folderul tău cu muzică este accesibil și montat înainte de-a "
+"importa acest CD."
 
-#: ../src/Widgets/StatusBar.vala:199
-msgid "Show Info Panel"
-msgstr "Arată Panoul cu Informații"
+#: plugins/Devices/CDRom/CDRomDevice.vala:253
+msgid ""
+"The Application could not find any songs on the CD. No songs can be imported"
+msgstr ""
+"Aplicaţia nu a putut găsi melodii pe CD. Nici o melodie nu poate fi importată"
 
-#: ../src/Widgets/StatusBar.vala:200
-msgid "Show"
-msgstr "Arată"
+#: plugins/Devices/CDRom/CDRomDevice.vala:354
+msgid "Importation of a song from Audio CD finished."
+msgstr "S-a terminat importarea unei melodii de pe CD-ul Audio."
 
-#: ../src/Widgets/StatusBar.vala:200
-msgid "Hide Info Panel"
-msgstr "Ascunde Panoul cu Informații"
+#: plugins/Devices/CDRom/CDRomDevice.vala:354
+#, c-format
+msgid "Importation of %i songs from Audio CD finished."
+msgstr "S-a terminat importarea a %i melodii de pe CD-ul Audio."
 
-#: ../src/Widgets/EqualizerPopover.vala:163
-msgid "Save preset"
-msgstr "Salvează Configurație Egalizor"
+#: plugins/Devices/CDRom/CDRomDevice.vala:359
+#, c-format
+msgid "Importing track %u: %s"
+msgstr ""
 
-#: ../src/Widgets/EqualizerPopover.vala:426
-msgid "%s (Custom)"
-msgstr "%s (Personalizare)"
+#: plugins/Devices/CDRom/CDRomDevice.vala:364
+msgid "CD import will be <b>cancelled</b> after current import."
+msgstr "Importare CD va fi <b>anulat</b> după importarea curentă."
 
-#: ../src/Widgets/EqualizerPopover.vala:428
-msgid "%s (Custom %i)"
-msgstr "%s (Personalizare %i)"
+#: plugins/Devices/CDRom/CDRomDevice.vala:383
+msgid "An error occured during the Import of this CD"
+msgstr "A avut loc o eroare în timpul importării acestui CD"
 
-#: ../src/Widgets/EqualizerPopover.vala:431
-msgid "Custom Preset"
-msgstr "Personalizează Configurație Egalizor"
+#: plugins/Devices/CDRom/CDView.vala:94 src/Dialogs/SyncWarningDialog.vala:62
+msgid "Import"
+msgstr "Importă"
 
-#: ../src/Widgets/EqualizerPopover.vala:433
-msgid "Custom Preset %i"
-msgstr "Personalizează Configurație Egalizor %i"
+#: plugins/Devices/CDRom/CDViewWrapper.vala:37
+msgid "An Error Occured"
+msgstr "A avut loc o eroare"
 
-#: ../src/Widgets/ViewSelector.vala:68
-msgid "View as Albums"
-msgstr "Arată ca albume"
+#: plugins/Devices/CDRom/CDViewWrapper.vala:38
+msgid "There was an error while loading this Audio CD."
+msgstr "A avut loc o eroare la incărcarea acestui CD audio."
 
-#: ../src/Widgets/ViewSelector.vala:72
-msgid "View as List"
-msgstr "Arată ca listă"
+#: plugins/Devices/iPod/iPodLibrary.vala:218
+#: plugins/Devices/iPod/iPodLibrary.vala:374
+msgid "Finishing sync process…"
+msgstr "Terminare proces de sincronizare..."
 
-#: ../src/Widgets/ViewSelector.vala:76
-msgid "View in Columns"
-msgstr "Afișează în coloane"
+#: plugins/Devices/iPod/iPodLibrary.vala:230
+#: plugins/Devices/iPod/iPodLibrary.vala:386
+msgid "Cancelling Sync…"
+msgstr "Anulând sincronizarea..."
 
-#: ../src/Widgets/SpaceWidget.vala:266
-msgid "Free"
-msgstr "Gratuit/Liber"
+#: plugins/LastFM/LastFM.vala:97
+msgid "No similar songs found"
+msgstr "Nu s-au găsit melodii similare"
 
-#: ../src/Widgets/SpaceWidget.vala:383
-msgid "Using %s of %s (%.2f%)"
-msgstr "Utilizează %s din %s  (%.2f%)"
+#: plugins/LastFM/LastFM.vala:97
+msgid ""
+"There are no songs similar to the current song in your library. Make sure "
+"all song info is correct and you are connected to the Internet. Some songs "
+"may not have matches."
+msgstr ""
+"Nu exista melodii similare melodiei curente in biblioteca ta. Asigură-te că "
+"toată informaţia melodiei este corectă şi ca eşti conectat la internet. "
+"Unele melodii s-ar putea să nu aibe perechi."
 
-#: ../src/PlaybackManager.vala:96
-msgctxt "Name of the playlist"
-msgid "Queue"
-msgstr "Coadă"
+#: plugins/LastFM/SimilarMedia.vala:44
+msgid "Similar"
+msgstr "Similar"
 
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:44
-msgid "Would you like to install the %s plugin?\n"
+#: plugins/LastFM/SimilarMediaView.vala:48
+msgid "media"
+msgstr "media"
+
+#: plugins/LastFM/SimilarMediaView.vala:54
+msgid "Similar Media"
+msgstr "Multimedia Similare"
+
+#: src/FileOperator.vala:305
+msgid "Import Complete"
+msgstr "Import complet"
+
+#: src/FileOperator.vala:305
+#, c-format
+msgid "%s has imported your library."
+msgstr "%s a importat biblioteca ta."
+
+#: src/FileOperator.vala:315
+msgid "<b>Copying</b> files to <b>Music Folder</b>…"
+msgstr "<b>Copiind</b> fișiere către <b>directorul de muzică</b>..."
+
+#: src/LibraryWindow.vala:215
+msgid "Import to Library…"
+msgstr "Importă în Bibliotecă..."
+
+#: src/LibraryWindow.vala:218 src/Dialogs/PreferencesWindow.vala:40
+msgid "Preferences"
+msgstr "Preferințe"
+
+#: src/LibraryWindow.vala:233
+msgid "Previous"
+msgstr "Precedent"
+
+#: src/LibraryWindow.vala:237 src/LibraryWindow.vala:292
+msgid "Play"
+msgstr "Redare"
+
+#: src/LibraryWindow.vala:241
+msgid "Next"
+msgstr "Urmatorul"
+
+#: src/LibraryWindow.vala:245
+msgid "Search Music"
+msgstr "Căutare Piese"
+
+#: src/LibraryWindow.vala:295
+msgid "Pause"
+msgstr "Pauza"
+
+#: src/LibraryWindow.vala:612 src/LibraryWindow.vala:718
+msgid "Music"
+msgstr "Muzică"
+
+#: src/LibraryWindow.vala:787
+msgid "No songs in Queue"
+msgstr "Nu există piese în secvență"
+
+#: src/LibraryWindow.vala:787
+msgid ""
+"To add songs to the queue, use the <b>secondary click</b> on an item and "
+"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
+"first before the next song in the currently playing list."
+msgstr ""
+"Pentru a adăuga piese la coadă,  folosește <b>clic dreapta</b>  pe un "
+"articol și alege <>Coadă</b>. Când o piesă se termină, se redă piesele de la "
+"coadă înaintea celor din lista curentă de redare."
+
+#: src/LibraryWindow.vala:790
+msgid "No songs in History"
+msgstr "Nu există piese în istoric"
+
+#: src/LibraryWindow.vala:790
+msgid ""
+"After a part of a song has been played, it is added to the history list.\n"
+"You can use this list to see all the songs you have played during the "
+"current session."
+msgstr ""
+"După redarea parțială a piesei, este adaugată în lista cu istoric.\n"
+"Poți să folosești această listă pentru a vizualiza toate piesele redate în "
+"sesiunea curentă."
+
+#: src/LibraryWindow.vala:1000 src/Views/Wrappers/MusicViewWrapper.vala:60
+msgid "Import Music"
+msgstr "Importă muzică"
+
+#: src/Dialogs/FileNotFoundDialog.vala:51
+msgid "File not found"
+msgstr "Fișier negăsit"
+
+#: src/Dialogs/FileNotFoundDialog.vala:57
+#, c-format
+msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
+msgstr "Fişierul de muzică pentru <b>%s</b> - <b>%s</b> nu a putut fi găsit."
+
+#: src/Dialogs/FileNotFoundDialog.vala:60
+#, c-format
+msgid "%i music files could not be found?"
+msgstr "%i fişiere de muzică nu au putut fi gasite?"
+
+#: src/Dialogs/FileNotFoundDialog.vala:82
+msgid "Rescan Library"
+msgstr "Rescanarea biblioteci"
+
+#: src/Dialogs/FileNotFoundDialog.vala:83
+#: src/Views/ListView/Lists/MusicListView.vala:100
+msgid "Remove Song"
+msgstr "Șterge Piesa"
+
+#: src/Dialogs/FileNotFoundDialog.vala:85
+msgid "Find Song"
+msgstr "Găseşte melodia"
+
+#: src/Dialogs/FileNotFoundDialog.vala:121
+#: src/Dialogs/SetMusicFolderConfirmation.vala:113
+msgid "Choose Music Folder"
+msgstr "Alege dosarul de muzică"
+
+#: src/Dialogs/InstallGstreamerPluginsDialog.vala:38
+#, fuzzy, c-format
+msgid "Would you like to install the %s plugin?"
 msgstr "Vrei să instalezi plugin-ul %s?\n"
 
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:45
-msgid ""
-"\n"
-"This song cannot be played. The %s plugin is required to play the song."
+#: src/Dialogs/InstallGstreamerPluginsDialog.vala:39
+#, fuzzy, c-format
+msgid "This song cannot be played. The %s plugin is required to play the song."
 msgstr ""
 "\n"
 "Această melodie nu poate fi redată. Plugin-ul %s este necesar pentru redarea "
 "acestei melodii."
 
-#: ../src/Dialogs/InstallGstreamerPluginsDialog.vala:64
+#: src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid "Install Plugin"
 msgstr "Instalează extensii"
 
-#: ../src/Dialogs/MediaEditor.vala:72
+#: src/Dialogs/MediaEditor.vala:103
 msgid "Title:"
 msgstr "Titlul:"
 
-#: ../src/Dialogs/MediaEditor.vala:74
+#: src/Dialogs/MediaEditor.vala:105
 msgid "Artist:"
 msgstr "Artist:"
 
-#: ../src/Dialogs/MediaEditor.vala:76
-msgid "Album Artist:"
-msgstr "Albumele artistului:"
-
-#: ../src/Dialogs/MediaEditor.vala:78
+#: src/Dialogs/MediaEditor.vala:107
 msgid "Album:"
 msgstr "Album:"
 
-#: ../src/Dialogs/MediaEditor.vala:80
-msgid "Genre:"
-msgstr "Gen:"
+#: src/Dialogs/MediaEditor.vala:109
+msgid "Album Artist:"
+msgstr "Albumele artistului:"
 
-#: ../src/Dialogs/MediaEditor.vala:82
+#: src/Dialogs/MediaEditor.vala:111
 msgid "Composer:"
 msgstr "Compozitor:"
 
-#: ../src/Dialogs/MediaEditor.vala:84
+#: src/Dialogs/MediaEditor.vala:113
 msgid "Grouping:"
 msgstr "Grupare:"
 
-#: ../src/Dialogs/MediaEditor.vala:86
-msgid "Comment:"
-msgstr "Comentariu:"
+#: src/Dialogs/MediaEditor.vala:115
+msgid "Genre:"
+msgstr "Gen:"
 
-#: ../src/Dialogs/MediaEditor.vala:88
-msgid "Track:"
-msgstr "Pistă:"
-
-#: ../src/Dialogs/MediaEditor.vala:90
-msgid "Disk:"
-msgstr "Disc:"
-
-#: ../src/Dialogs/MediaEditor.vala:92
+#: src/Dialogs/MediaEditor.vala:117
 msgid "Year:"
 msgstr "An:"
 
-#: ../src/Dialogs/MediaEditor.vala:94
+#: src/Dialogs/MediaEditor.vala:119
+msgid "Track:"
+msgstr "Pistă:"
+
+#: src/Dialogs/MediaEditor.vala:121
+msgid "Disk:"
+msgstr "Disc:"
+
+#: src/Dialogs/MediaEditor.vala:123
 msgid "Rating:"
 msgstr "Cotare"
 
-#: ../src/Dialogs/MediaEditor.vala:153 ../src/Dialogs/PreferencesWindow.vala:99
+#: src/Dialogs/MediaEditor.vala:125
+msgid "Comment:"
+msgstr "Comentariu:"
+
+#: src/Dialogs/MediaEditor.vala:140 src/Dialogs/PreferencesWindow.vala:96
+#: src/Views/DeviceView.vala:45
 msgid "Close"
 msgstr "Închide"
 
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:59
-msgid "Export Playlists"
-msgstr "Exportă liste de redare"
-
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:60
-msgid "Set Music Folder"
-msgstr "Setează dosarul cu muzică"
-
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:67
-msgid "Set Music Folder?"
-msgstr "Setez dosarul cu muzică?"
-
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:70
-msgid ""
-"Are you sure you want to set the music folder to %s? This will reset your "
-"library and remove your playlists."
-msgstr ""
-"Ești sigur că dorești să setezi folderul cu muzică la %s? Acest proces va "
-"reseta biblioteca ta și va elimina lista de redare."
-
-#: ../src/Dialogs/SetMusicFolderConfirmation.vala:107
-#: ../src/Dialogs/FileNotFoundDialog.vala:124
-msgid "Choose Music Folder"
-msgstr "Alege dosarul de muzică"
-
-#: ../src/Dialogs/NotImportedWindow.vala:52
-#: ../src/Dialogs/NotImportedWindow.vala:55
+#: src/Dialogs/NotImportedWindow.vala:51
+#, c-format
 msgid "Unable to import %d items from %s"
 msgstr "Importare eșuată a %d articole de la %s"
 
-#: ../src/Dialogs/NotImportedWindow.vala:56
+#: src/Dialogs/NotImportedWindow.vala:56
+#, c-format
 msgid "%s was unable to import %d items. The files may be damaged."
 msgstr "%s nu a importat %d articole.Fișierele pot fi corupte."
 
-#: ../src/Dialogs/NotImportedWindow.vala:59
+#: src/Dialogs/NotImportedWindow.vala:60
 msgid "Move all corrupted files to trash"
 msgstr "Elimină toate fișierele corupte"
 
-#: ../src/Dialogs/NotImportedWindow.vala:64
-#: ../src/Dialogs/RemoveFilesDialog.vala:50
-msgid "Move to Trash"
-msgstr "Mută la coșul de gunoi"
-
-#: ../src/Dialogs/NotImportedWindow.vala:66
-msgid "Ignore"
-msgstr "Ignoră"
-
-#: ../src/Dialogs/NotImportedWindow.vala:81
+#: src/Dialogs/NotImportedWindow.vala:67
 msgid "del"
 msgstr "Șterge"
 
-#: ../src/Dialogs/NotImportedWindow.vala:86
+#: src/Dialogs/NotImportedWindow.vala:76
 msgid "File Location"
 msgstr "Informațiile fișierului"
 
-#: ../src/Dialogs/NotImportedWindow.vala:101
+#: src/Dialogs/NotImportedWindow.vala:92
 msgid "Select individual files to move to trash:"
 msgstr ""
 "Selectarea individuală a fișierelor pentru a le trimite la coșul de gunoi."
 
-#: ../src/Dialogs/PreferencesWindow.vala:46
+#: src/Dialogs/NotImportedWindow.vala:96 src/Dialogs/RemoveFilesDialog.vala:56
+msgid "Move to Trash"
+msgstr "Mută la coșul de gunoi"
+
+#: src/Dialogs/NotImportedWindow.vala:99
+msgid "Ignore"
+msgstr "Ignoră"
+
+#: src/Dialogs/PreferencesWindow.vala:48
 msgid "Select Music Folder…"
 msgstr "Selectaţi Dosarul Muzica:"
 
-#: ../src/Dialogs/PreferencesWindow.vala:86 ../src/LibraryWindow.vala:272
-msgid "Preferences"
-msgstr "Preferințe"
-
-#: ../src/Dialogs/PreferencesWindow.vala:131
-msgid "General"
-msgstr "General"
-
-#: ../src/Dialogs/PreferencesWindow.vala:137
+#: src/Dialogs/PreferencesWindow.vala:77
 msgid "Music Folder Location"
 msgstr "Locația dosarului cu muzică"
 
-#: ../src/Dialogs/PreferencesWindow.vala:145
+#: src/Dialogs/PreferencesWindow.vala:79
 msgid "Library Management"
 msgstr "Administrare Bibliotecă"
 
-#: ../src/Dialogs/PreferencesWindow.vala:152
+#: src/Dialogs/PreferencesWindow.vala:80
 msgid "Keep Music folder organized:"
 msgstr "Păstrează dosarul Muzica organizat:"
 
-#: ../src/Dialogs/PreferencesWindow.vala:156
+#: src/Dialogs/PreferencesWindow.vala:82
 msgid "Write metadata to file:"
 msgstr "Scrie metadata in fişier:"
 
-#: ../src/Dialogs/PreferencesWindow.vala:160
+#: src/Dialogs/PreferencesWindow.vala:84
 msgid "Copy imported files to Library:"
 msgstr "Copiază fişierele importate în bibliotecă:"
 
-#: ../src/Dialogs/PreferencesWindow.vala:162
+#: src/Dialogs/PreferencesWindow.vala:86
 msgid "Desktop Integration"
 msgstr "Integrare desktop"
 
-#: ../src/Dialogs/PreferencesWindow.vala:167
+#: src/Dialogs/PreferencesWindow.vala:87
 msgid "Continue playback when closed:"
 msgstr "Continuă rularea după închidere:"
 
-#: ../src/Dialogs/FileNotFoundDialog.vala:53
-msgid "File not found"
-msgstr "Fișier negăsit"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:59
-msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
-msgstr "Fişierul de muzică pentru <b>%s</b> - <b>%s</b> nu a putut fi găsit."
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:62
-msgid "%i music files could not be found?"
-msgstr "%i fişiere de muzică nu au putut fi gasite?"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:85
-msgid "Rescan Library"
-msgstr "Rescanarea biblioteci"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:86
-#: ../src/Views/ListView/Lists/MusicListView.vala:123
-msgid "Remove Song"
-msgstr "Șterge Piesa"
-
-#: ../src/Dialogs/FileNotFoundDialog.vala:88
-msgid "Find Song"
-msgstr "Găseşte melodia"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:53
-msgid "Import from Device"
-msgstr "Importă de la dispozitiv"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:70
-msgid "Import media from %s"
-msgstr "Importă multimedia de la %s"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:71
-msgid ""
-"The following files were found on %s, but are not in your library. Check all "
-"the files you would like to import."
-msgstr ""
-"Următoarele fișiere au fost găsite în %s, dar nu sunt în bibliotecă.Verifică "
-"toate fișierele pe care dorești ca să le imporți."
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:72
-msgid "Import all media"
-msgstr "Importă toată multimedia"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:77
-#: ../plugins/Devices/CDRom/CDView.vala:88
-msgid "Import"
-msgstr "Importă"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:78
-msgid "Don't Import"
-msgstr "Nu importa"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:86
-msgid "Import %i items from %s"
-msgstr "Importă %i articole din %s"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:90
-msgid "Import %s from %s"
-msgstr "Importă %s din %s"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:118
-msgid "ID"
-msgstr "Identitate"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:119
-#: ../src/Dialogs/SmartPlaylistEditor.vala:276
-msgid "Title"
-msgstr "Titlu"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:170
-msgid "Select individual media to import:"
-msgstr "Selectează multimedia individual pentru import:"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:188
-msgid "Check Item"
-msgstr "Verifică elementul"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:189
-msgid "Check Album"
-msgstr "Verifică Albumul"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:190
-msgid "Check Artist"
-msgstr "Verifică Artistul"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:287
-msgid "Cannot Import"
-msgstr "Nu se poate importa"
-
-#: ../src/Dialogs/TransferFromDeviceDialog.vala:287
-msgid ""
-"Noise is already doing file operations. Please wait until those finish to "
-"import from %s"
-msgstr ""
-
-#: ../src/Dialogs/RemoveFilesDialog.vala:51
+#: src/Dialogs/RemoveFilesDialog.vala:57
+#, c-format
 msgid "Remove from %s"
 msgstr "Eliminat din %s"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:61
+#: src/Dialogs/RemoveFilesDialog.vala:67
+#, c-format
 msgid "Remove %d Songs From %s?"
 msgstr "Scoateţi %d melodii din %s?"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:64
+#: src/Dialogs/RemoveFilesDialog.vala:70
+#, c-format
 msgid "Remove \"%s\" From %s?"
 msgstr "Elimin \"%s\" din %s?"
 
-#: ../src/Dialogs/RemoveFilesDialog.vala:73
+#: src/Dialogs/RemoveFilesDialog.vala:79
+#, c-format
 msgid ""
 "This will remove the song from your library and from any device that "
 "automatically syncs with %s."
@@ -739,19 +598,200 @@ msgstr[1] ""
 "Aceasta va elimina melodiile din biblioteca ta şi din orice dispozitiv care "
 "se sincronizează automat cu %s."
 
-#: ../src/Dialogs/SyncWarningDialog.vala:57
-msgid "Import media to Library"
-msgstr "Importă multimedia în bibliotecă"
+#: src/Dialogs/SetMusicFolderConfirmation.vala:65
+msgid "Export Playlists"
+msgstr "Exportă liste de redare"
 
-#: ../src/Dialogs/SyncWarningDialog.vala:58
-msgid "Continue Syncing"
-msgstr "Continuă sincronizarea"
+#: src/Dialogs/SetMusicFolderConfirmation.vala:66
+msgid "Set Music Folder"
+msgstr "Setează dosarul cu muzică"
 
-#: ../src/Dialogs/SyncWarningDialog.vala:59
-msgid "Stop Syncing"
-msgstr "Oprește sincronizarea"
+#: src/Dialogs/SetMusicFolderConfirmation.vala:73
+msgid "Set Music Folder?"
+msgstr "Setez dosarul cu muzică?"
 
-#: ../src/Dialogs/SyncWarningDialog.vala:66
+#: src/Dialogs/SetMusicFolderConfirmation.vala:76
+#, c-format
+msgid ""
+"Are you sure you want to set the music folder to %s? This will reset your "
+"library and remove your playlists."
+msgstr ""
+"Ești sigur că dorești să setezi folderul cu muzică la %s? Acest proces va "
+"reseta biblioteca ta și va elimina lista de redare."
+
+#: src/Dialogs/SmartPlaylistEditor.vala:46
+msgid "Smart Playlist Editor"
+msgstr "Editare listă de redare inteligență"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:59
+msgid "Playlist Title"
+msgstr "Titlul listei de redare"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:64
+msgid "any"
+msgstr "oricare"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:65
+msgid "all"
+msgstr "toate"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:73
+msgid "Match"
+msgstr "Potrivire"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:75
+msgid "of the following:"
+msgstr "din următoarele:"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:84
+msgid "Add"
+msgstr "Adaugă"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:89
+msgid "Limit to"
+msgstr "Limitează la"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:105
+msgid "items"
+msgstr "elemente"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:125
+msgid "Name of Playlist"
+msgstr "Numele listei de redare"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:127
+msgid "Rules"
+msgstr "Reguli"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:130
+msgid "Options"
+msgstr "Opţiuni"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:254 src/Widgets/SourceListView.vala:69
+#: src/Widgets/SourceListView.vala:83
+msgid "Remove"
+msgstr "Elimină"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:257
+msgid "Album"
+msgstr "Album"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:258
+msgid "Artist"
+msgstr "Artist"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:259
+msgid "Bitrate"
+msgstr "Rată biți"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:260
+msgid "Comment"
+msgstr "Comentariu"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:261
+msgid "Composer"
+msgstr "Compozitor"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:262
+msgid "Date Added"
+msgstr "Data adăugării"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:263
+msgid "Genre"
+msgstr "Gen"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:264
+msgid "Grouping"
+msgstr "Grupare"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:265
+msgid "Last Played"
+msgstr "Ultima redată"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:266
+#: src/Dialogs/SmartPlaylistEditor.vala:410
+msgid "Length"
+msgstr "Durată"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:267
+msgid "Playcount"
+msgstr "Număr redări"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:268
+msgid "Rating"
+msgstr "Evaluare"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:269
+msgid "Skipcount"
+msgstr "Sari peste numărătoare"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:270
+msgid "Title"
+msgstr "Titlu"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:271
+msgid "Year"
+msgstr "An"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:272
+msgid "URI"
+msgstr ""
+
+#: src/Dialogs/SmartPlaylistEditor.vala:345
+msgid "is"
+msgstr "este"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:346
+msgid "contains"
+msgstr "conține"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:347
+msgid "does not contain"
+msgstr "nu conține"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:373
+#: src/Dialogs/SmartPlaylistEditor.vala:387
+msgid "is exactly"
+msgstr "este exact"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:374
+msgid "is at most"
+msgstr "este cel mult"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:375
+msgid "is at least"
+msgstr "este cel puțin"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:388
+msgid "is within"
+msgstr "este între intervalul"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:389
+msgid "is before"
+msgstr "este înainte de"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:411
+msgid "seconds"
+msgstr "secunde"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:414
+msgid "days ago"
+msgstr "zile în urmă"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:417
+msgid "kbps"
+msgstr "kbps"
+
+#: src/Dialogs/SyncWarningDialog.vala:52
+#, fuzzy, c-format
+msgid "Sync will remove %i item from %s"
+msgid_plural "Sync will remove %i items from %s"
+msgstr[0] "Sincronizarea va elimina %i articole de la %s"
+msgstr[1] "Sincronizarea va elimina %i articole de la %s"
+msgstr[2] "Sincronizarea va elimina %i articole de la %s"
+
+#: src/Dialogs/SyncWarningDialog.vala:55
+#, c-format
 msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
@@ -760,280 +800,407 @@ msgstr ""
 "se află în lista de sincronizare. Dorești să imporți acestea în bibliotecă "
 "prima dată?"
 
-#: ../src/Dialogs/SyncWarningDialog.vala:72
-msgid "Sync will remove %i items from %s"
-msgstr "Sincronizarea va elimina %i articole de la %s"
+#: src/Dialogs/SyncWarningDialog.vala:57
+msgid "Continue Syncing"
+msgstr "Continuă sincronizarea"
 
-#: ../src/Dialogs/SyncWarningDialog.vala:75
-msgid "Sync will remove 1 item from %s"
-msgstr "Sincronizarea va elimina 1 articol de la %s"
+#: src/LocalBackend/LocalLibrary.vala:189
+#, c-format
+msgid "Importing music from %s…"
+msgstr "Importare melodii din %s..."
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:36
-msgid "Smart Playlist Editor"
-msgstr "Editare listă de redare inteligență"
+#: src/LocalBackend/LocalLibrary.vala:213
+msgid "Adding files to library…"
+msgstr "Adăugând fişiere in bibliotecă"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:48
-#: ../src/Dialogs/SmartPlaylistEditor.vala:56
-msgid "Name of Playlist"
-msgstr "Numele listei de redare"
+#: src/LocalBackend/LocalLibrary.vala:226
+msgid "<b>Importing</b> music to library…"
+msgstr "<b>Se importă</b> muzica în librărie..."
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:49
-#: ../src/Dialogs/SmartPlaylistEditor.vala:57
-msgid "Rules"
-msgstr "Reguli"
+#: src/LocalBackend/LocalLibrary.vala:248
+msgid "All music files are already in your library"
+msgstr "Toate fişierele de muzică sunt deja în bibliotecă"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:50
-#: ../src/Dialogs/SmartPlaylistEditor.vala:58
-msgid "Options"
-msgstr "Opţiuni"
+#: src/LocalBackend/LocalLibrary.vala:248
+msgid "No files were imported."
+msgstr "Nu au fost importate fişiere."
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:62
-msgid "Playlist Title"
-msgstr "Titlul listei de redare"
+#: src/LocalBackend/LocalLibrary.vala:253
+msgid "Rescanning music for changes. This may take a while…"
+msgstr "Rescanând muzica pentru schimbări. Asta s-ar putea să dureze un timp."
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:68
-msgid "Match"
-msgstr "Potrivire"
+#: src/LocalBackend/LocalLibrary.vala:354
+msgid "Added to your queue:"
+msgstr "Adăugat la coadă:"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:70
-msgid "any"
-msgstr "oricare"
+#: src/LocalBackend/LocalLibrary.vala:365
+#, c-format
+msgid "%d Track"
+msgid_plural "%d Tracks"
+msgstr[0] "Pista %d"
+msgstr[1] "Piste %d"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:71
-msgid "all"
-msgstr "toate"
+#: src/LocalBackend/LocalSmartPlaylist.vala:217
+msgid "Favorite Songs"
+msgstr "Piese Favorite"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:77
-msgid "of the following:"
-msgstr "din următoarele:"
+#: src/LocalBackend/LocalSmartPlaylist.vala:225
+msgid "Recently Added"
+msgstr "Adăugate recent"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:89
-msgid "Add"
-msgstr "Adaugă"
+#: src/LocalBackend/LocalSmartPlaylist.vala:233
+msgid "Recent Favorites"
+msgstr "Favorite recente"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:94
-msgid "Limit to"
-msgstr "Limitează la"
+#: src/LocalBackend/LocalSmartPlaylist.vala:241
+msgid "Never Played"
+msgstr "Niciodată redat"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:96
-msgid "items"
-msgstr "elemente"
+#: src/LocalBackend/LocalSmartPlaylist.vala:249
+msgid "Over Played"
+msgstr "Redat în exces"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:265
-msgid "Bitrate"
-msgstr "Rată biți"
+#: src/LocalBackend/LocalSmartPlaylist.vala:257
+msgid "Not Recently Played"
+msgstr "Ne-redate recent"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:266
-msgid "Comment"
-msgstr "Comentariu"
+#: src/Objects/HistoryPlaylist.vala:38
+msgid "History"
+msgstr "Istoric"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:267
-msgid "Composer"
-msgstr "Compozitor"
+#: src/Objects/MPRIS.vala:618 src/Widgets/SourceListView.vala:325
+msgid "Playlists"
+msgstr "Liste de redare"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:268
-msgid "Date Added"
-msgstr "Data adăugării"
+#: src/Views/DeviceSummaryWidget.vala:60
+msgid "Device Name:"
+msgstr "Nume dispozitiv:"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:269
-msgid "Genre"
-msgstr "Gen"
+#: src/Views/DeviceSummaryWidget.vala:64
+msgid "Device Name"
+msgstr "Nume dispozitiv"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:270
-msgid "Grouping"
-msgstr "Grupare"
+#: src/Views/DeviceSummaryWidget.vala:66
+msgid "Automatically sync when plugged in:"
+msgstr "Sincronizare automată la conectare:"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:271
-msgid "Last Played"
-msgstr "Ultima redată"
+#: src/Views/DeviceSummaryWidget.vala:72
+msgid "Sync:"
+msgstr "Sincronizează:"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:272
-#: ../src/Dialogs/SmartPlaylistEditor.vala:406
-msgid "Length"
-msgstr "Durată"
+#: src/Views/DeviceSummaryWidget.vala:85 src/Widgets/SourceListView.vala:180
+msgid "Sync"
+msgstr "Sincronizează"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:273
-msgid "Playcount"
-msgstr "Număr redări"
+#: src/Views/DeviceSummaryWidget.vala:245
+msgid "All Music"
+msgstr "Toată muzica"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:274
-msgid "Rating"
-msgstr "Evaluare"
+#: src/Views/DeviceSummaryWidget.vala:300
+msgid "Sync Failed"
+msgstr "Sincronizare eșuată"
 
-#: ../src/Dialogs/SmartPlaylistEditor.vala:275
-msgid "Skipcount"
-msgstr "Sari peste numărătoare"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:277
-msgid "Year"
-msgstr "An"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:341
-msgid "is"
-msgstr "este"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:342
-msgid "contains"
-msgstr "conține"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:343
-msgid "does not contain"
-msgstr "nu conține"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:369
-#: ../src/Dialogs/SmartPlaylistEditor.vala:383
-msgid "is exactly"
-msgstr "este exact"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:370
-msgid "is at most"
-msgstr "este cel mult"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:371
-msgid "is at least"
-msgstr "este cel puțin"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:384
-msgid "is within"
-msgstr "este între intervalul"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:385
-msgid "is before"
-msgstr "este înainte de"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:407
-msgid "seconds"
-msgstr "secunde"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:410
-msgid "days ago"
-msgstr "zile în urmă"
-
-#: ../src/Dialogs/SmartPlaylistEditor.vala:413
-msgid "kbps"
-msgstr "kbps"
-
-#: ../src/LibraryWindow.vala:269
-msgid "Import to Library…"
-msgstr "Importă în Bibliotecă..."
-
-#: ../src/LibraryWindow.vala:289
-msgid "Previous"
-msgstr "Precedent"
-
-#: ../src/LibraryWindow.vala:291 ../src/LibraryWindow.vala:991
-msgid "Play"
-msgstr "Redare"
-
-#: ../src/LibraryWindow.vala:293
-msgid "Next"
-msgstr "Urmatorul"
-
-#: ../src/LibraryWindow.vala:297
-msgid "Search Music"
-msgstr "Căutare Piese"
-
-#: ../src/LibraryWindow.vala:659 ../src/LibraryWindow.vala:763
-#: ../src/Views/DeviceSummaryWidget.vala:99
-msgid "Music"
-msgstr "Muzică"
-
-#: ../src/LibraryWindow.vala:831
-msgid "No songs in Queue"
-msgstr "Nu există piese în secvență"
-
-#: ../src/LibraryWindow.vala:831
+#: src/Views/DeviceSummaryWidget.vala:300
+#, c-format
 msgid ""
-"To add songs to the queue, use the <b>secondary click</b> on an item and "
-"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
-"first before the next song in the currently playing list."
+"The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
-"Pentru a adăuga piese la coadă,  folosește <b>clic dreapta</b>  pe un "
-"articol și alege <>Coadă</b>. Când o piesă se termină, se redă piesele de la "
-"coadă înaintea celor din lista curentă de redare."
+"Lista de redare cu numele %s este folosit pentru sincronizarea "
+"dispozitivului %s, dar nu a fost găsit."
 
-#: ../src/LibraryWindow.vala:834
-msgid "No songs in History"
-msgstr "Nu există piese în istoric"
+#: src/Views/DeviceSummaryWidget.vala:312
+#: src/Views/DeviceSummaryWidget.vala:314
+msgid "Cannot Sync"
+msgstr "Sincronizare imposibilă"
 
-#: ../src/LibraryWindow.vala:834
+#: src/Views/DeviceSummaryWidget.vala:312
 msgid ""
-"After a part of a song has been played, it is added to the history list.\n"
-"You can use this list to see all the songs you have played during the "
-"current session."
+"Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
-"După redarea parțială a piesei, este adaugată în lista cu istoric.\n"
-"Poți să folosești această listă pentru a vizualiza toate piesele redate în "
-"sesiunea curentă."
+"Sicronizarea dispozitivului eșuată cu setările curente la sincronizare. "
+"Spațiu insuficient pe disc"
 
-#: ../src/LibraryWindow.vala:985
-msgid "Pause"
-msgstr "Pauza"
+#: src/Views/DeviceSummaryWidget.vala:314
+msgid "Device is already doing an operation."
+msgstr "Dizpozitivul face deja o operație."
 
-#: ../src/LibraryWindow.vala:1064
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:54
-msgid "Import Music"
-msgstr "Importă muzică"
+#: src/Views/DeviceView.vala:66
+msgid "Cancelling…"
+msgstr "Se renunță…"
 
-#: ../src/FileOperator.vala:307
-msgid "Import Complete"
-msgstr "Import complet"
+#: src/Views/DeviceView.vala:66
+msgid "Device operation has been cancelled and will stop after this media."
+msgstr ""
+"Operațiile cu acest dispozitiv au fost anulate și o să se oprească după "
+"acest media..."
 
-#: ../src/FileOperator.vala:307
-msgid "%s has imported your library."
-msgstr "%s a importat biblioteca ta."
-
-#: ../src/FileOperator.vala:317
-msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr "<b>Copiind</b> fișiere către <b>directorul de muzică</b>..."
-
-#: ../src/Views/GridView/GridView.vala:44
+#: src/Views/GridView.vala:69
 msgid "No Albums Found."
 msgstr "Nici un album găsit."
 
-#: ../src/Views/GridView/GridView.vala:141
-msgid "%u album"
-msgid_plural "%u albums"
-msgstr[0] "%u album"
-msgstr[1] "%u albume"
-msgstr[2] "%u albume"
+#: src/Views/ListView/ListView.vala:99
+msgid "No Songs Found."
+msgstr "Nu a fost găsită nici o melodie."
 
-#: ../src/Views/GridView/PopupListView.vala:59
-msgid "Set new album cover"
-msgstr "Setează ca şi copertă nouă a albumului"
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
+msgid "Genres"
+msgstr "Gen"
 
-#: ../src/Views/GridView/PopupListView.vala:156
-msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
-msgid "%s by %s"
-msgstr "%s de %s"
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:60
+msgid "Artists"
+msgstr "Artişti"
 
-#: ../src/Views/GridView/PopupListView.vala:256
-msgid "_Cancel"
-msgstr "_Anulează"
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:62
+msgid "Albums"
+msgstr "Albume"
 
-#: ../src/Views/GridView/PopupListView.vala:256
-msgid "_Open"
-msgstr "_Deschide"
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:64
+msgid "Years"
+msgstr "Ani"
 
-#: ../src/Views/GridView/PopupListView.vala:259
-msgid "Image files"
-msgstr "Fișiere imagine"
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:66
+msgid "Ratings"
+msgstr "Evaluare"
 
-#: ../src/Views/Wrappers/ViewWrapper.vala:442
-msgid "No media"
-msgstr "Niciun suport"
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:68
+msgid "Composers"
+msgstr "Compozitori"
 
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:46
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:50
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:66
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:70
+msgid "Groupings"
+msgstr "Grupări"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:218
+msgid "All Genres"
+msgstr "Toate Genurile"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:220
+#, c-format
+msgid "All %i Genres"
+msgstr "Toate %i Genuri"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:222
+msgid "No Genres"
+msgstr "Fără Gen"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:227
+msgid "All Artists"
+msgstr "Toți Artiștii"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:229
+#, c-format
+msgid "All %i Artists"
+msgstr "Toți %i Artiști"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:231
+msgid "No Artists"
+msgstr "Artiști Necunoscuți"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:236
+msgid "All Albums"
+msgstr "Toate albumele"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:238
+#, c-format
+msgid "All %i Albums"
+msgstr "Toate %i Albume"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:240
+msgid "No Albums"
+msgstr "Fără Album"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:245
+msgid "All Years"
+msgstr "Toți Anii"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:247
+#, c-format
+msgid "All %i Years"
+msgstr "Toți %i ani"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:249
+msgid "No Years"
+msgstr "Fără An"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:254
+msgid "All Ratings"
+msgstr "Toate Evaluările"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:256
+msgid "No Ratings"
+msgstr "Fără Evaluare"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:261
+msgid "All Groupings"
+msgstr "Toate grupările"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:263
+#, c-format
+msgid "All %i Groupings"
+msgstr "Toate grupările %i"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:265
+msgid "No Groupings"
+msgstr "Fără grupări"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:270
+msgid "All Composers"
+msgstr "Toți compozitorii"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:272
+#, c-format
+msgid "All %i Composers"
+msgstr "Toți compozitorii %i"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:274
+msgid "No Composers"
+msgstr "Fără compozitori"
+
+#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:157
+#: src/Widgets/EqualizerPopover.vala:326 src/Widgets/PresetList.vala:52
+msgid "Automatic"
+msgstr "Automat"
+
+#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:159
+msgid "On Left"
+msgstr "În partea stângă"
+
+#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:161
+msgid "On Top"
+msgstr "În partea de sus"
+
+#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:410
+msgid "Unrated"
+msgstr "Neevaluat"
+
+#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:412
+#, c-format
+msgid "%u Star"
+msgid_plural "%u Stars"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Views/ListView/Lists/CellDataFunctionHelper.vala:134
+#, c-format
+msgid "%u kbps"
+msgstr ""
+
+#: src/Views/ListView/Lists/CellDataFunctionHelper.vala:159
+#: src/Views/ListView/Lists/MusicListView.vala:628
+msgid "Never"
+msgstr "Niciodată"
+
+#: src/Views/ListView/Lists/GenericList.vala:124
+msgid "Autosize Columns"
+msgstr "Autodimensionare a coloanelor"
+
+#: src/Views/ListView/Lists/MusicListView.vala:83
+msgid "Scroll to Current Song"
+msgstr "Selectează piesa curentă"
+
+#: src/Views/ListView/Lists/MusicListView.vala:87
+msgid "Edit Song Info"
+msgstr "Editare Informații piesă"
+
+#: src/Views/ListView/Lists/MusicListView.vala:90
+msgid "Show in File Browser"
+msgstr "Explorează"
+
+#: src/Views/ListView/Lists/MusicListView.vala:93
+msgid "Other actions"
+msgstr "Alte acțiuni"
+
+#: src/Views/ListView/Lists/MusicListView.vala:98
+msgid "Add to Playlist"
+msgstr "Adaugă în lista de redare"
+
+#: src/Views/ListView/Lists/MusicListView.vala:103
+#: src/Widgets/SourceListView.vala:157
+msgid "Import to Library"
+msgstr "Importă în bibliotecă"
+
+#: src/Views/ListView/Lists/MusicListView.vala:157
+msgid "Remove from Library"
+msgstr "Înlătură din Bibliotecă"
+
+#: src/Views/ListView/Lists/MusicListView.vala:166
+msgid "Remove from Queue"
+msgstr "Șterge din secvență"
+
+#: src/Views/ListView/Lists/MusicListView.vala:174
+msgid "Remove from Device"
+msgstr "Elimină din Dispozitiv"
+
+#: src/Views/ListView/Lists/MusicListView.vala:187
+msgid "New Playlist…"
+msgstr "Listă de redare nouă..."
+
+#: src/Views/ListView/Lists/MusicListView.vala:228
+#, c-format
+msgid "Import %i of %i selected songs"
+msgstr "Importat %i din %i piese selectate"
+
+#: src/Views/ListView/Lists/MusicListView.vala:230
+#, c-format
+msgid "Import %i song"
+msgid_plural "Import %i songs"
+msgstr[0] "Importă %i cântec"
+msgstr[1] "Importă %i cântece"
+
+#: src/Views/ListView/Lists/MusicListView.vala:613
+msgid "1234 kbps"
+msgstr "1234 kbps"
+
+#: src/Views/ListView/Lists/MusicListView.vala:684
+msgid "Sample List String"
+msgstr "Sample List String"
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:57
+msgid "Get Some Tunes"
+msgstr "Obțineți unele piese"
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:58
+msgid "Add music to your library."
+msgstr "Adauga melodii în biblioteca ta."
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:61
+msgid "Import music from a source into your library."
+msgstr "Importă muzică dintr-o sursă in biblioteca ta."
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:63
+msgid "Change Music Folder"
+msgstr "Schimbă Dosarul cu Muzică"
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:64
+msgid "Load music from a folder, a network or an external disk."
+msgstr "Încarcă muzică dintr-un dosar, o reţea sau un disc extern."
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:109
+#: src/Views/Wrappers/MusicViewWrapper.vala:125
+msgid "Import your Music"
+msgstr "Importă muzica ta"
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:109
+#: src/Views/Wrappers/MusicViewWrapper.vala:125
+#, c-format
+msgid "Import all your Music from %s into your library."
+msgstr "Importă toată muzica din %s in biblioteca ta."
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:135
+msgid "Select Music Folder"
+msgstr "Alege dosarul cu muzică"
+
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:50
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:54
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:64
 msgid "No Songs"
 msgstr "Nici o piesă"
 
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:47
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:51
 msgid "Updating playlist. Please wait."
 msgstr "Actualizez lista de rulare. Aşteaptă te rog."
 
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:51
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:55
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
@@ -1041,11 +1208,11 @@ msgstr ""
 "Pentru a adăuga piese  în această listă de redare,  folosește <b>click "
 "dreapta</b>  pe un articol și alege <b>Adaugă  în Lista de redare</b>."
 
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:55
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:58
 msgid "Edit Smart Playlist"
 msgstr "Editează listă  de redare inteligentă"
 
-#: ../src/Views/Wrappers/PlaylistViewWrapper.vala:67
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:65
 msgid ""
 "This playlist will be automatically populated with songs that match its "
 "rules. To modify these rules, use the <b>secondary click</b> on it in the "
@@ -1057,661 +1224,425 @@ msgstr ""
 "el în bara laterală și faceți clic pe <b>Editare</b>.Opțional, aveți "
 "posibilitatea să faceți clic pe butonul de mai jos."
 
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:51
-msgid "Get Some Tunes"
-msgstr "Obțineți unele piese"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:52
-msgid "Add music to your library."
-msgstr "Adauga melodii în biblioteca ta."
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:55
-msgid "Import music from a source into your library."
-msgstr "Importă muzică dintr-o sursă in biblioteca ta."
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:57
-msgid "Change Music Folder"
-msgstr "Schimbă Dosarul cu Muzică"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:58
-msgid "Load music from a folder, a network or an external disk."
-msgstr "Încarcă muzică dintr-un dosar, o reţea sau un disc extern."
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:103
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:119
-msgid "Import your Music"
-msgstr "Importă muzica ta"
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:103
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:119
-msgid "Import all your Music from %s into your library."
-msgstr "Importă toată muzica din %s in biblioteca ta."
-
-#: ../src/Views/Wrappers/MusicViewWrapper.vala:129
-msgid "Select Music Folder"
-msgstr "Alege dosarul cu muzică"
-
-#: ../src/Views/ContentView.vala:21
-msgctxt ""
-"Format used on statusbar: $description, $total_duration, $total_file_size"
-msgid "%s, %s, %s"
-msgstr "%s, %s, %s"
-
-#: ../src/Views/DeviceView.vala:38
-msgid "Cancelling…"
-msgstr "Se renunță…"
-
-#: ../src/Views/DeviceView.vala:38
-msgid "Device operation has been cancelled and will stop after this media."
-msgstr ""
-"Operațiile cu acest dispozitiv au fost anulate și o să se oprească după "
-"acest media..."
-
-#: ../src/Views/DeviceView.vala:59
-msgid "OK"
-msgstr "OK"
-
-#: ../src/Views/DeviceView.vala:100
-msgid "No External Songs"
-msgstr "Nu există Piese Externe"
-
-#: ../src/Views/DeviceView.vala:100
-msgid "There were no songs found on this device that are not in your library."
-msgstr ""
-"Nu au fost găsite piese pe acest dispozitiv care să nu fie în biblioteca ta."
-
-#: ../src/Views/ListView/Lists/GenericList.vala:118
-msgid "Autosize Columns"
-msgstr "Autodimensionare a coloanelor"
-
-#: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:124
-msgid "%u kbps"
-msgstr ""
-
-#: ../src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
-#: ../src/Views/ListView/Lists/MusicListView.vala:615
-msgid "Never"
-msgstr "Niciodată"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:84
-msgid "Remove from Library"
-msgstr "Înlătură din Bibliotecă"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:91
-msgid "Remove from Queue"
-msgstr "Șterge din secvență"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:101
-msgid "Remove from Device"
-msgstr "Elimină din Dispozitiv"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:114
-msgid "Scroll to Current Song"
-msgstr "Selectează piesa curentă"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:118
-msgid "Edit Song Info"
-msgstr "Editare Informații piesă"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:119
-msgid "Show in File Browser"
-msgstr "Explorează"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:120
-msgid "Other actions"
-msgstr "Alte acțiuni"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:121
-msgctxt "Action item (verb)"
-msgid "Queue"
-msgstr "Așează la coadă"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:122
-msgid "Add to Playlist"
-msgstr "Adaugă în lista de redare"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:187
-msgid "New Playlist…"
-msgstr "Listă de redare nouă..."
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:227
-msgid "Import %i of %i selected songs"
-msgstr "Importat %i din %i piese selectate"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:229
-msgid "Import %i song"
-msgid_plural "Import %i songs"
-msgstr[0] "Importă %i cântec"
-msgstr[1] "Importă %i cântece"
-
-#: ../src/Views/ListView/Lists/MusicListView.vala:600
-msgid "1234 kbps"
-msgstr "1234 kbps"
-
-#. / Sample string used to measure the ideal size of the Title, Artist,
-#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
-#. / list view. It's *never* displayed in the user interface. The translated
-#. / string should have a reasonable length, similar to the average length
-#. / of a song title or artist name in your language. The automatic column
-#. / width will depend on the length of this string and the space needed
-#. / by the column's title header.
-#: ../src/Views/ListView/Lists/MusicListView.vala:671
-msgid "Sample List String"
-msgstr "Sample List String"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:59
-msgctxt "List column title"
-msgid "#"
-msgstr "#"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:62
-msgctxt "List column title"
-msgid "Track"
-msgstr "Piesă"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:65
-msgctxt "List column title"
-msgid "Title"
-msgstr "Titlu"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:68
-msgctxt "List column title"
-msgid "Length"
-msgstr "Durată"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:71
-msgctxt "List column title"
-msgid "Artist"
-msgstr "Artist"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:74
-msgctxt "List column title"
-msgid "Album"
-msgstr "Album"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:77
-msgctxt "List column title"
-msgid "Album Artist"
-msgstr "Interpret album"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:80
-msgctxt "List column title"
-msgid "Composer"
-msgstr "Compozitor"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:83
-msgctxt "List column title"
-msgid "Genre"
-msgstr "Gen"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:86
-msgctxt "List column title"
-msgid "Year"
-msgstr "Anul"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:89
-msgctxt "List column title"
-msgid "Grouping"
-msgstr "Grupare"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:92
-msgctxt "List column title"
-msgid "Bitrate"
-msgstr "Rată de Biți"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:95
-msgctxt "List column title"
-msgid "Rating"
-msgstr "Evaluare"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:98
-msgctxt "List column title"
-msgid "Plays"
-msgstr "Redări"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:101
-msgctxt "List column title"
-msgid "Skips"
-msgstr "Omiteri"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:104
-msgctxt "List column title"
-msgid "Date Added"
-msgstr "Data adăugării"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:107
-msgctxt "List column title"
-msgid "Last Played"
-msgstr "Redat ultima dată"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:110
-msgctxt "List column title (beats per minute)"
-msgid "BPM"
-msgstr "BPM"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:113
-msgctxt "List column title (file location)"
-msgid "Location"
-msgstr "Locație"
-
-#: ../src/Views/ListView/Lists/ListColumn.vala:116
-msgctxt "List column title"
-msgid "File Size"
-msgstr "Mărimea Fișierului"
-
-#: ../src/Views/ListView/ListView.vala:86
-msgid "No Songs Found."
-msgstr "Nu a fost găsită nici o melodie."
-
-#: ../src/Views/ListView/ListView.vala:357
-msgid "%i track"
-msgid_plural "%i tracks"
-msgstr[0] "pista %i"
-msgstr[1] "pistele %i"
-
-#: ../src/Views/ListView/ListView.vala:359
-msgid "%u song"
-msgid_plural "%u songs"
-msgstr[0] "%u piesă"
-msgstr[1] "%u piese"
-msgstr[2] "%u piese"
-
-#: ../src/Views/ListView/ListView.vala:367
-msgctxt "Format used on statusbar: $description, $total_duration"
-msgid "%s, %s"
-msgstr "%s, %s"
-
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:149
-msgid "On Left"
-msgstr "În partea stângă"
-
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:151
-msgid "On Top"
-msgstr "În partea de sus"
-
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:400
-msgid "Unrated"
-msgstr "Neevaluat"
-
-#: ../src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:402
-msgid "%u Star"
-msgid_plural "%u Stars"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:210
-msgid "All Genres"
-msgstr "Toate Genurile"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:212
-msgid "All %i Genres"
-msgstr "Toate %i Genuri"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:214
-msgid "No Genres"
-msgstr "Fără Gen"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
-msgid "All Artists"
-msgstr "Toți Artiștii"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
-msgid "All %i Artists"
-msgstr "Toți %i Artiști"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
-msgid "No Artists"
-msgstr "Artiști Necunoscuți"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
-msgid "All Albums"
-msgstr "Toate albumele"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
-msgid "All %i Albums"
-msgstr "Toate %i Albume"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
-msgid "No Albums"
-msgstr "Fără Album"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
-msgid "All Years"
-msgstr "Toți Anii"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
-msgid "All %i Years"
-msgstr "Toți %i ani"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
-msgid "No Years"
-msgstr "Fără An"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
-msgid "All Ratings"
-msgstr "Toate Evaluările"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
-msgid "No Ratings"
-msgstr "Fără Evaluare"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:253
-msgid "All Groupings"
-msgstr "Toate grupările"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
-msgid "All %i Groupings"
-msgstr "Toate grupările %i"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
-msgid "No Groupings"
-msgstr "Fără grupări"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
-msgid "All Composers"
-msgstr "Toți compozitorii"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
-msgid "All %i Composers"
-msgstr "Toți compozitorii %i"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
-msgid "No Composers"
-msgstr "Fără compozitori"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:53
-msgid "Genres"
-msgstr "Gen"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:55
-msgid "Artists"
-msgstr "Artişti"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:57
-msgid "Albums"
-msgstr "Albume"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:59
-msgid "Years"
-msgstr "Ani"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:61
-msgid "Ratings"
-msgstr "Evaluare"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:63
-msgid "Composers"
-msgstr "Compozitori"
-
-#: ../src/Views/ListView/ColumnBrowser/BrowserColumn.vala:65
-msgid "Groupings"
-msgstr "Grupări"
-
-#: ../src/Views/DeviceSummaryWidget.vala:73
-msgid "Device Name:"
-msgstr "Nume dispozitiv:"
-
-#: ../src/Views/DeviceSummaryWidget.vala:77
-msgid "Device Name"
-msgstr "Nume dispozitiv"
-
-#: ../src/Views/DeviceSummaryWidget.vala:79
-msgid "Automatically sync when plugged in:"
-msgstr "Sincronizare automată la conectare:"
-
-#: ../src/Views/DeviceSummaryWidget.vala:86
-msgid "Sync:"
-msgstr "Sincronizează:"
-
-#: ../src/Views/DeviceSummaryWidget.vala:98
-msgid "Other Files"
-msgstr "Alte fișiere"
-
-#: ../src/Views/DeviceSummaryWidget.vala:253
-msgid "All Music"
-msgstr "Toată muzica"
-
-#: ../src/Views/DeviceSummaryWidget.vala:308
-msgid "Sync Failed"
-msgstr "Sincronizare eșuată"
-
-#: ../src/Views/DeviceSummaryWidget.vala:308
-msgid ""
-"The playlist named %s is used to sync device %s, but could not be found."
-msgstr ""
-"Lista de redare cu numele %s este folosit pentru sincronizarea "
-"dispozitivului %s, dar nu a fost găsit."
-
-#: ../src/Views/DeviceSummaryWidget.vala:320
-#: ../src/Views/DeviceSummaryWidget.vala:322
-msgid "Cannot Sync"
-msgstr "Sincronizare imposibilă"
-
-#: ../src/Views/DeviceSummaryWidget.vala:320
-msgid ""
-"Cannot sync device with selected sync settings. Not enough space on disk"
-msgstr ""
-"Sicronizarea dispozitivului eșuată cu setările curente la sincronizare. "
-"Spațiu insuficient pe disc"
-
-#: ../src/Views/DeviceSummaryWidget.vala:322
-msgid "Device is already doing an operation."
-msgstr "Dizpozitivul face deja o operație."
-
-#: ../src/Noise.vala:65
-msgid "translator-credits"
-msgstr ""
-"Launchpad Contributions:\n"
-"  AbsoluteVasilii https://launchpad.net/~basil-russu\n"
-"  Alexandru Musina https://launchpad.net/~alex-musina\n"
-"  Bogdan https://launchpad.net/~boghison\n"
-"  Ciprian https://launchpad.net/~ciprian420\n"
-"  Codrin Mihai Enea https://launchpad.net/~codrin-enea\n"
-"  Daniel Fore https://launchpad.net/~danrabbit\n"
-"  Dobrescu Cristian https://launchpad.net/~dobrescu-cristian87\n"
-"  Florin https://launchpad.net/~nfcristea\n"
-"  Marius Albina https://launchpad.net/~marius-albina\n"
-"  Marza George https://launchpad.net/~gsmarza2000\n"
-"  Octi https://launchpad.net/~octavianiolu\n"
-"  Radu Adam https://launchpad.net/~raisedfist\n"
-"  Richard B. https://launchpad.net/~dx-richard\n"
-"  Rus F Adrian https://launchpad.net/~tue-deactivatedaccount\n"
-"  Stanciu Gabriel-Ciprian https://launchpad.net/~stanciu-gabriel-ciprian\n"
-"  Ungurianu Alexandru https://launchpad.net/~alexandru-ungurianu"
-
-#: ../src/Objects/LyricFetcher.vala:141
-msgid "Lyrics fetched from www.lyricsmania.com"
-msgstr "Versuri preluate de la www.lyricsmania.com"
-
-#: ../src/Objects/HistoryPlaylist.vala:40
-msgid "History"
-msgstr "Istoric"
-
-#: ../src/LocalBackend/LocalLibrary.vala:182
-msgid "Importing music from %s…"
-msgstr "Importare melodii din %s..."
-
-#: ../src/LocalBackend/LocalLibrary.vala:210
-msgid "Adding files to library…"
-msgstr "Adăugând fişiere in bibliotecă"
-
-#: ../src/LocalBackend/LocalLibrary.vala:225
-msgid "<b>Importing</b> music to library…"
-msgstr "<b>Se importă</b> muzica în librărie..."
-
-#: ../src/LocalBackend/LocalLibrary.vala:249
-msgid "All music files are already in your library"
-msgstr "Toate fişierele de muzică sunt deja în bibliotecă"
-
-#: ../src/LocalBackend/LocalLibrary.vala:249
-msgid "No files were imported."
-msgstr "Nu au fost importate fişiere."
-
-#: ../src/LocalBackend/LocalLibrary.vala:254
-msgid "Rescanning music for changes. This may take a while…"
-msgstr "Rescanând muzica pentru schimbări. Asta s-ar putea să dureze un timp."
-
-#: ../src/LocalBackend/LocalLibrary.vala:328
-msgid "Added to your queue:"
-msgstr "Adăugat la coadă:"
-
-#: ../src/LocalBackend/LocalLibrary.vala:339
-msgid "%d Track"
-msgid_plural "%d Tracks"
-msgstr[0] "Pista %d"
-msgstr[1] "Piste %d"
-
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:218
-msgid "Favorite Songs"
-msgstr "Piese Favorite"
-
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:226
-msgid "Recently Added"
-msgstr "Adăugate recent"
-
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:234
-msgid "Recent Favorites"
-msgstr "Favorite recente"
-
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:242
-msgid "Never Played"
-msgstr "Niciodată redat"
-
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:250
-msgid "Over Played"
-msgstr "Redat în exces"
-
-#: ../src/LocalBackend/LocalSmartPlaylist.vala:258
-msgid "Not Recently Played"
-msgstr "Ne-redate recent"
-
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:140
-#: ../plugins/Devices/iPod/iPodLibrary.vala:151
-msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr "Adăugare <b>$NAME</b> de <b>$ARTIST</b> pe  $DEVICE"
-
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:164
-#: ../plugins/Devices/iPod/iPodLibrary.vala:199
-msgid "Syncing <b>%s</b>…"
-msgstr "Sincronizare <b>%s</b>..."
-
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:269
-#: ../plugins/Devices/iPod/iPodLibrary.vala:533
-msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr "Scoate <b>$NAME</b> - <b>$ARTIST</b> de la $DEVICE"
-
-#: ../plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:300
-#: ../plugins/Devices/iPod/iPodLibrary.vala:340
-msgid "Removing from <b>%s</b>…"
-msgstr "Scoate de la <b>%s</b>..."
-
-#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:99
-#: ../plugins/Devices/iPod/iPodDevice.vala:59
-msgid "Empty device!"
-msgstr "Dispozitiv gol!"
-
-#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:103
-#: ../plugins/Devices/iPod/iPodDevice.vala:63
-msgid "This device does not contain any music."
-msgstr "Acest dispozitiv nu conţine muzică."
-
-#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:147
-msgid "Android Phone"
-msgstr "Telefon Android"
-
-#: ../plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:149
-msgid "Audio Player"
-msgstr "Player audio"
-
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:85
-msgid "Audio CD Invalid"
-msgstr "CD audio invalid"
-
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:89
-msgid "Impossible to read the contents of this Audio CD"
-msgstr "Conţinutul acestui CD audio este imposibil de citit"
-
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:241
-msgid "Could not find Music Folder"
-msgstr "Nu s-a găsit Dosarul cu Muzică"
-
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:241
-msgid ""
-"Please make sure that your music folder is accessible and mounted before "
-"importing the CD."
-msgstr ""
-"Asigură-te că folderul tău cu muzică este accesibil și montat înainte de-a "
-"importa acest CD."
-
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:247
-msgid ""
-"The Application could not find any songs on the CD. No songs can be imported"
-msgstr ""
-"Aplicaţia nu a putut găsi melodii pe CD. Nici o melodie nu poate fi importată"
-
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:348
-msgid "Importation of a song from Audio CD finished."
-msgstr "S-a terminat importarea unei melodii de pe CD-ul Audio."
-
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:348
-msgid "Importation of %i songs from Audio CD finished."
-msgstr "S-a terminat importarea a %i melodii de pe CD-ul Audio."
-
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:353
-msgid "Importing track %u: %s"
-msgstr ""
-
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:358
-msgid "CD import will be <b>cancelled</b> after current import."
-msgstr "Importare CD va fi <b>anulat</b> după importarea curentă."
-
-#: ../plugins/Devices/CDRom/CDRomDevice.vala:377
-msgid "An error occured during the Import of this CD"
-msgstr "A avut loc o eroare în timpul importării acestui CD"
-
-#: ../plugins/Devices/CDRom/CDViewWrapper.vala:32
-msgid "An Error Occured"
-msgstr "A avut loc o eroare"
-
-#: ../plugins/Devices/CDRom/CDViewWrapper.vala:33
-msgid "There was an error while loading this Audio CD."
-msgstr "A avut loc o eroare la incărcarea acestui CD audio."
-
-#: ../plugins/Devices/iPod/iPodLibrary.vala:221
-#: ../plugins/Devices/iPod/iPodLibrary.vala:377
-msgid "Finishing sync process…"
-msgstr "Terminare proces de sincronizare..."
-
-#: ../plugins/Devices/iPod/iPodLibrary.vala:233
-#: ../plugins/Devices/iPod/iPodLibrary.vala:389
-msgid "Cancelling Sync…"
-msgstr "Anulând sincronizarea..."
-
-#: ../plugins/LastFM/SimilarMediaView.vala:41
-msgid "media"
-msgstr "media"
-
-#: ../plugins/LastFM/SimilarMediaView.vala:47
-msgid "Similar Media"
-msgstr "Multimedia Similare"
-
-#: ../plugins/LastFM/SimilarMedia.vala:37
-msgid "Similar"
-msgstr "Similar"
-
-#: ../plugins/LastFM/LastFM.vala:101
-msgid "No similar songs found"
-msgstr "Nu s-au găsit melodii similare"
-
-#: ../plugins/LastFM/LastFM.vala:101
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"Nu exista melodii similare melodiei curente in biblioteca ta. Asigură-te că "
-"toată informaţia melodiei este corectă şi ca eşti conectat la internet. "
-"Unele melodii s-ar putea să nu aibe perechi."
+#: src/Views/Wrappers/ViewWrapper.vala:418
+msgid "No media"
+msgstr "Niciun suport"
+
+#: src/Widgets/AlbumListGrid.vala:64
+msgid "Set new album cover"
+msgstr "Setează ca şi copertă nouă a albumului"
+
+#: src/Widgets/AlbumListGrid.vala:239
+msgid "Image files"
+msgstr "Fișiere imagine"
+
+#: src/Widgets/AlbumListGrid.vala:244
+msgid "_Cancel"
+msgstr "_Anulează"
+
+#: src/Widgets/AlbumListGrid.vala:245
+msgid "_Open"
+msgstr "_Deschide"
+
+#: src/Widgets/EqualizerPopover.vala:165
+msgid "Save preset"
+msgstr "Salvează Configurație Egalizor"
+
+#: src/Widgets/EqualizerPopover.vala:330
+msgid "Off"
+msgstr "Dezactivat"
+
+#: src/Widgets/EqualizerPopover.vala:418
+#, c-format
+msgid "%s (Custom)"
+msgstr "%s (Personalizare)"
+
+#: src/Widgets/EqualizerPopover.vala:420
+#, c-format
+msgid "%s (Custom %i)"
+msgstr "%s (Personalizare %i)"
+
+#: src/Widgets/EqualizerPopover.vala:423
+msgid "Custom Preset"
+msgstr "Personalizează Configurație Egalizor"
+
+#: src/Widgets/EqualizerPopover.vala:425
+#, c-format
+msgid "Custom Preset %i"
+msgstr "Personalizează Configurație Egalizor %i"
+
+#: src/Widgets/PresetList.vala:53
+msgid "Delete Current"
+msgstr "Șterge fila redată curent"
+
+#: src/Widgets/SourceListView.vala:68 src/Widgets/SourceListView.vala:81
+msgid "Rename"
+msgstr "Redenumește"
+
+#: src/Widgets/SourceListView.vala:70 src/Widgets/SourceListView.vala:84
+#: src/Widgets/SourceListView.vala:99
+msgid "Export…"
+msgstr "Exportă..."
+
+#: src/Widgets/SourceListView.vala:82
+msgid "Edit…"
+msgstr "Editează..."
+
+#: src/Widgets/SourceListView.vala:97
+msgid "Save as Playlist"
+msgstr "Salvează lista de redare ca"
+
+#: src/Widgets/SourceListView.vala:165
+msgid "Eject"
+msgstr "Scoate"
+
+#: src/Widgets/SourceListView.vala:170 src/Widgets/SourceListView.vala:210
+msgid "New Playlist"
+msgstr "Listă de redare nouă"
+
+#: src/Widgets/SourceListView.vala:175 src/Widgets/SourceListView.vala:211
+msgid "New Smart Playlist"
+msgstr "Listă de redare inteligentă nouă"
+
+#: src/Widgets/SourceListView.vala:212
+msgid "Import Playlists"
+msgstr "Importă listă de redare"
+
+#: src/Widgets/SourceListView.vala:322
+msgid "Library"
+msgstr "Bibliotecă"
+
+#: src/Widgets/SourceListView.vala:323
+msgid "Devices"
+msgstr "Dispozitive"
+
+#: src/Widgets/SourceListView.vala:324
+msgid "Network"
+msgstr "Rețea"
+
+#: src/Widgets/StatusBar.vala:39 src/Widgets/StatusBar.vala:50
+msgid "Add Playlist"
+msgstr "Adaugă listă de redare"
+
+#: src/Widgets/StatusBar.vala:40
+msgid "Add Smart Playlist"
+msgstr "Adaugă listă de redare inteligentă"
+
+#: src/Widgets/StatusBar.vala:80
+#, c-format
+msgid "Equalizer: %s"
+msgstr "Egalizator: %s"
+
+#: src/Widgets/TopDisplay.vala:139
+msgid "Enable Repeat"
+msgstr "Acitvează Repetarea"
+
+#: src/Widgets/TopDisplay.vala:140
+msgid "Repeat Song"
+msgstr "Redă Piesa"
+
+#: src/Widgets/TopDisplay.vala:141
+msgid "Disable Repeat"
+msgstr "Dezactivare repetare"
+
+#: src/Widgets/TopDisplay.vala:160
+msgid "Enable Shuffle"
+msgstr "Activează Redarea Aleatorie"
+
+#: src/Widgets/TopDisplay.vala:161
+msgid "Disable Shuffle"
+msgstr "Dezactivează Redarea Aleatorie"
+
+#: src/Widgets/ViewSelector.vala:74
+msgid "View as Albums"
+msgstr "Arată ca albume"
+
+#: src/Widgets/ViewSelector.vala:77
+msgid "View as List"
+msgstr "Arată ca listă"
+
+#: src/Widgets/ViewSelector.vala:80
+msgid "View in Columns"
+msgstr "Afișează în coloane"
+
+#~ msgid "%u second"
+#~ msgid_plural "%u seconds"
+#~ msgstr[0] "%u secundă"
+#~ msgstr[1] "%u secunde"
+#~ msgstr[2] "%u secunde"
+
+#~ msgid "%u minute"
+#~ msgid_plural "%u minutes"
+#~ msgstr[0] "%u minut"
+#~ msgstr[1] "%u minute"
+#~ msgstr[2] "%u minute"
+
+#~ msgctxt "minutes and seconds"
+#~ msgid "%s and %s"
+#~ msgstr "%s și %s"
+
+#~ msgid "%u hour"
+#~ msgid_plural "%u hours"
+#~ msgstr[0] "%u oră"
+#~ msgstr[1] "%u ore"
+#~ msgstr[2] "%u ore"
+
+#~ msgctxt "days, hours and minutes"
+#~ msgid "%s, %s and %s"
+#~ msgstr "%s, %s și %s"
+
+#~ msgctxt "days and hours"
+#~ msgid "%s and %s"
+#~ msgstr "%s și %s"
+
+#~ msgctxt "days and minutes"
+#~ msgid "%s and %s"
+#~ msgstr "%s și %s"
+
+#~ msgctxt "hours and minutes"
+#~ msgid "%s and %s"
+#~ msgstr "%s și %s"
+
+#~ msgid "Song"
+#~ msgstr "Melodie"
+
+#~ msgid "Repeat Album"
+#~ msgstr "Repetă albumul"
+
+#~ msgid "Repeat Artist"
+#~ msgstr "Repetă  Artistul"
+
+#~ msgid "All"
+#~ msgstr "Toate"
+
+#~ msgid "Hide"
+#~ msgstr "Ascunde"
+
+#~ msgid "Show Info Panel"
+#~ msgstr "Arată Panoul cu Informații"
+
+#~ msgid "Show"
+#~ msgstr "Arată"
+
+#~ msgid "Hide Info Panel"
+#~ msgstr "Ascunde Panoul cu Informații"
+
+#~ msgid "Free"
+#~ msgstr "Gratuit/Liber"
+
+#~ msgid "Using %s of %s (%.2f%)"
+#~ msgstr "Utilizează %s din %s  (%.2f%)"
+
+#~ msgctxt "Name of the playlist"
+#~ msgid "Queue"
+#~ msgstr "Coadă"
+
+#~ msgid "General"
+#~ msgstr "General"
+
+#~ msgid "Import from Device"
+#~ msgstr "Importă de la dispozitiv"
+
+#~ msgid "Import media from %s"
+#~ msgstr "Importă multimedia de la %s"
+
+#~ msgid ""
+#~ "The following files were found on %s, but are not in your library. Check "
+#~ "all the files you would like to import."
+#~ msgstr ""
+#~ "Următoarele fișiere au fost găsite în %s, dar nu sunt în bibliotecă."
+#~ "Verifică toate fișierele pe care dorești ca să le imporți."
+
+#~ msgid "Import all media"
+#~ msgstr "Importă toată multimedia"
+
+#~ msgid "Don't Import"
+#~ msgstr "Nu importa"
+
+#~ msgid "Import %i items from %s"
+#~ msgstr "Importă %i articole din %s"
+
+#~ msgid "Import %s from %s"
+#~ msgstr "Importă %s din %s"
+
+#~ msgid "ID"
+#~ msgstr "Identitate"
+
+#~ msgid "Select individual media to import:"
+#~ msgstr "Selectează multimedia individual pentru import:"
+
+#~ msgid "Check Item"
+#~ msgstr "Verifică elementul"
+
+#~ msgid "Check Album"
+#~ msgstr "Verifică Albumul"
+
+#~ msgid "Check Artist"
+#~ msgstr "Verifică Artistul"
+
+#~ msgid "Cannot Import"
+#~ msgstr "Nu se poate importa"
+
+#~ msgid "Import media to Library"
+#~ msgstr "Importă multimedia în bibliotecă"
+
+#~ msgid "Stop Syncing"
+#~ msgstr "Oprește sincronizarea"
+
+#~ msgid "Sync will remove 1 item from %s"
+#~ msgstr "Sincronizarea va elimina 1 articol de la %s"
+
+#~ msgid "%u album"
+#~ msgid_plural "%u albums"
+#~ msgstr[0] "%u album"
+#~ msgstr[1] "%u albume"
+#~ msgstr[2] "%u albume"
+
+#~ msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
+#~ msgid "%s by %s"
+#~ msgstr "%s de %s"
+
+#~ msgctxt ""
+#~ "Format used on statusbar: $description, $total_duration, $total_file_size"
+#~ msgid "%s, %s, %s"
+#~ msgstr "%s, %s, %s"
+
+#~ msgid "OK"
+#~ msgstr "OK"
+
+#~ msgid "No External Songs"
+#~ msgstr "Nu există Piese Externe"
+
+#~ msgid ""
+#~ "There were no songs found on this device that are not in your library."
+#~ msgstr ""
+#~ "Nu au fost găsite piese pe acest dispozitiv care să nu fie în biblioteca "
+#~ "ta."
+
+#~ msgctxt "Action item (verb)"
+#~ msgid "Queue"
+#~ msgstr "Așează la coadă"
+
+#~ msgctxt "List column title"
+#~ msgid "#"
+#~ msgstr "#"
+
+#~ msgctxt "List column title"
+#~ msgid "Track"
+#~ msgstr "Piesă"
+
+#~ msgctxt "List column title"
+#~ msgid "Title"
+#~ msgstr "Titlu"
+
+#~ msgctxt "List column title"
+#~ msgid "Length"
+#~ msgstr "Durată"
+
+#~ msgctxt "List column title"
+#~ msgid "Artist"
+#~ msgstr "Artist"
+
+#~ msgctxt "List column title"
+#~ msgid "Album"
+#~ msgstr "Album"
+
+#~ msgctxt "List column title"
+#~ msgid "Album Artist"
+#~ msgstr "Interpret album"
+
+#~ msgctxt "List column title"
+#~ msgid "Composer"
+#~ msgstr "Compozitor"
+
+#~ msgctxt "List column title"
+#~ msgid "Genre"
+#~ msgstr "Gen"
+
+#~ msgctxt "List column title"
+#~ msgid "Year"
+#~ msgstr "Anul"
+
+#~ msgctxt "List column title"
+#~ msgid "Grouping"
+#~ msgstr "Grupare"
+
+#~ msgctxt "List column title"
+#~ msgid "Bitrate"
+#~ msgstr "Rată de Biți"
+
+#~ msgctxt "List column title"
+#~ msgid "Rating"
+#~ msgstr "Evaluare"
+
+#~ msgctxt "List column title"
+#~ msgid "Plays"
+#~ msgstr "Redări"
+
+#~ msgctxt "List column title"
+#~ msgid "Skips"
+#~ msgstr "Omiteri"
+
+#~ msgctxt "List column title"
+#~ msgid "Date Added"
+#~ msgstr "Data adăugării"
+
+#~ msgctxt "List column title"
+#~ msgid "Last Played"
+#~ msgstr "Redat ultima dată"
+
+#~ msgctxt "List column title (beats per minute)"
+#~ msgid "BPM"
+#~ msgstr "BPM"
+
+#~ msgctxt "List column title (file location)"
+#~ msgid "Location"
+#~ msgstr "Locație"
+
+#~ msgctxt "List column title"
+#~ msgid "File Size"
+#~ msgstr "Mărimea Fișierului"
+
+#~ msgid "%i track"
+#~ msgid_plural "%i tracks"
+#~ msgstr[0] "pista %i"
+#~ msgstr[1] "pistele %i"
+
+#~ msgid "%u song"
+#~ msgid_plural "%u songs"
+#~ msgstr[0] "%u piesă"
+#~ msgstr[1] "%u piese"
+#~ msgstr[2] "%u piese"
+
+#~ msgctxt "Format used on statusbar: $description, $total_duration"
+#~ msgid "%s, %s"
+#~ msgstr "%s, %s"
+
+#~ msgid "Other Files"
+#~ msgstr "Alte fișiere"
+
+#~ msgid "translator-credits"
+#~ msgstr ""
+#~ "Launchpad Contributions:\n"
+#~ "  AbsoluteVasilii https://launchpad.net/~basil-russu\n"
+#~ "  Alexandru Musina https://launchpad.net/~alex-musina\n"
+#~ "  Bogdan https://launchpad.net/~boghison\n"
+#~ "  Ciprian https://launchpad.net/~ciprian420\n"
+#~ "  Codrin Mihai Enea https://launchpad.net/~codrin-enea\n"
+#~ "  Daniel Fore https://launchpad.net/~danrabbit\n"
+#~ "  Dobrescu Cristian https://launchpad.net/~dobrescu-cristian87\n"
+#~ "  Florin https://launchpad.net/~nfcristea\n"
+#~ "  Marius Albina https://launchpad.net/~marius-albina\n"
+#~ "  Marza George https://launchpad.net/~gsmarza2000\n"
+#~ "  Octi https://launchpad.net/~octavianiolu\n"
+#~ "  Radu Adam https://launchpad.net/~raisedfist\n"
+#~ "  Richard B. https://launchpad.net/~dx-richard\n"
+#~ "  Rus F Adrian https://launchpad.net/~tue-deactivatedaccount\n"
+#~ "  Stanciu Gabriel-Ciprian https://launchpad.net/~stanciu-gabriel-ciprian\n"
+#~ "  Ungurianu Alexandru https://launchpad.net/~alexandru-ungurianu"
+
+#~ msgid "Lyrics fetched from www.lyricsmania.com"
+#~ msgstr "Versuri preluate de la www.lyricsmania.com"
 
 #~ msgid "Add Podcast"
 #~ msgstr "Adaugă podcast"
