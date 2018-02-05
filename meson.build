@@ -25,7 +25,7 @@ app_deps = core_deps + [
   dependency('taglib_c'),
   dependency('zeitgeist-2.0'),
   meson.get_compiler('vala').find_library('posix'),
-  meson.get_compiler('c').find_library('m', required : false)
+  meson.get_compiler('c').find_library('m')
 ]
 
 app_files = files(
