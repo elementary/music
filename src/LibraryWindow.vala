@@ -368,7 +368,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             show_playlist_view (library_manager.p_music);
         }
 
-        search_entry.activate.connect (search_entry_activate);
         search_entry.search_changed.connect (() => {
             if (search_entry.text_length != 1) {
                 trigger_search ();
@@ -789,14 +788,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             added_to_play_count = true;
             App.player.current_media.play_count++;
             library_manager.update_media (App.player.current_media, false, false);
-        }
-    }
-
-    private void search_entry_activate () {
-        var vw = view_stack.visible_child;
-
-        if (vw != null && vw is ViewWrapper) {
-            (vw as ViewWrapper).play_first_media ();
         }
     }
 

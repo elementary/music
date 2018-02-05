@@ -1,8 +1,8 @@
 [Desktop Entry]
 Type=Application
-_Name=Music
-_GenericName=Music Player
-_Comment=Listen to music
+Name=Music
+GenericName=Music Player
+Comment=Listen to music
 Exec=io.elementary.music %U
 Icon=multimedia-audio-player
 Terminal=false
