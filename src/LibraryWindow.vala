@@ -192,13 +192,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         } else if ((event.state & Gdk.ModifierType.CONTROL_MASK) != 0) {
             switch (event.keyval) {
                 case Gdk.Key.@1:
-                    // change_view (Widgets.ViewSelector.Mode.GRID);
+                    view_selector.mode_button.selected = 1;
                     break;
                 case Gdk.Key.@2:
-                    // change_view (Widgets.ViewSelector.Mode.LIST);
+                    view_selector.mode_button.selected = 2;
                     break;
                 case Gdk.Key.@3:
-                    // change_view (Widgets.ViewSelector.Mode.COLUMN);
+                    view_selector.mode_button.selected = 3;
                     break;
             }
 
