@@ -28,9 +28,11 @@
 
 public class Noise.Plugins.CDRomDeviceManager : GLib.Object {
     Gee.ArrayList<CDRomDevice> devices;
+    Gee.ArrayList<CDView> views;
 
     public CDRomDeviceManager() {
         devices = new Gee.ArrayList<CDRomDevice>();
+        views = new Gee.ArrayList<CDView> ();
 
         var device_manager = DeviceManager.get_default ();
         device_manager.mount_added.connect (mount_added);
@@ -42,7 +44,7 @@ public class Noise.Plugins.CDRomDeviceManager : GLib.Object {
 
     public void remove_all () {
         var device_manager = DeviceManager.get_default ();
-        foreach(var dev in devices) {
+        foreach (var dev in devices) {
             device_manager.device_removed ((Noise.Device)dev);
         }
 
@@ -56,13 +58,19 @@ public class Noise.Plugins.CDRomDeviceManager : GLib.Object {
             }
         }
         if(mount.get_default_location().get_uri().has_prefix("cdda://") && mount.get_volume() != null) {
+            debug ("Adding CD to list");
             var added = new CDRomDevice(mount);
             added.set_mount(mount);
             devices.add(added);
 
             if(added.start_initialization()) {
                 added.finish_initialization();
-                added.initialized.connect((d) => {DeviceManager.get_default ().device_initialized ((Noise.Device)d);});
+                added.initialized.connect((d) => {
+                    App.main_window.view_manager.add_category (new Category (d.get_unique_identifier (), d.getDisplayName ()));
+                    var view = new CDView ((CDRomDevice)d);
+                    App.main_window.view_manager.add (view);
+                    views.add (view);
+                });
             }
             else {
                 mount_removed(added.get_mount());
@@ -86,6 +94,13 @@ public class Noise.Plugins.CDRomDeviceManager : GLib.Object {
         var device_manager = DeviceManager.get_default ();
         foreach(var dev in devices) {
             if(dev.get_uri() == mount.get_default_location().get_uri()) {
+                foreach (var view in views) {
+                    if (view.dev == dev) {
+                        App.main_window.view_manager.remove_view (view);
+                        break;
+                    }
+                }
+
                 device_manager.device_removed ((Noise.Device)dev);
 
                 // Actually remove it

@@ -9,7 +9,7 @@ vala_precompile(CDROM_VALA_C ${TARGET_NAME}
     CDDA.vala
     CDRipper.vala
     CDPlayer.vala
-    CDViewWrapper.vala
+    # CDViewWrapper.vala
     CDView.vala
 PACKAGES
     ${DEPS_PACKAGES}

@@ -26,28 +26,23 @@
  * Authored by: Corentin Noël <corentin@elementary.io>
  */
 
-public class Noise.Plugins.CDViewWrapper : ViewWrapper {
+public class Noise.Plugins.CDView : View {
     public TreeViewSetup tvs;
-    private string message_head;
-    private string message_body;
 
-    public CDViewWrapper (Noise.StaticPlaylist p) {
-        base (ViewWrapper.Hint.READ_ONLY_PLAYLIST, libraries_manager.local_library);
-        tvs = new TreeViewSetup (ViewWrapper.Hint.PLAYLIST);
-        message_head = _("An Error Occured");
-        message_body = _("There was an error while loading this Audio CD.");
+    public StaticPlaylist playlist { get; construct; }
 
-        build_async.begin (p);
-        p.media_added.connect (on_playlist_media_added);
-        p.media_removed.connect (on_playlist_media_removed);
-        p.cleared.connect (on_playlist_cleared);
-        hexpand = true;
-        vexpand = false;
+    public CDViewWrapper (Noise.StaticPlaylist playlist) {
+        Object (playlist: playlist);
     }
 
-    private async void build_async (Noise.StaticPlaylist p) {
-        Idle.add_full (VIEW_CONSTRUCT_PRIORITY, build_async.callback);
-        yield;
+    construct {
+        title = _("Audio CD");
+        id = ;
+        icon = ThemedIcon ("media-optical");
+
+        tvs = new TreeViewSetup.for_cdrom ();
+        message_head = _("An Error Occured");
+        message_body = _("There was an error while loading this Audio CD.");
 
         list_view = new ListView (this, tvs, false);
         embedded_alert = new Granite.Widgets.AlertView ("", "", "");
@@ -58,6 +53,18 @@ public class Noise.Plugins.CDViewWrapper : ViewWrapper {
         // Do initial population. Further additions and removals will be handled
         // by the handlers connected below through connect_data_signals()
         yield set_media_async (p.medias);
+
+        build_async.begin (p);
+        p.media_added.connect (on_playlist_media_added);
+        p.media_removed.connect (on_playlist_media_removed);
+        p.cleared.connect (on_playlist_cleared);
+    }
+
+    private async void build_async (Noise.StaticPlaylist p) {
+        Idle.add_full (VIEW_CONSTRUCT_PRIORITY, build_async.callback);
+        yield;
+
+
 
     }
 
@@ -87,4 +94,3 @@ public class Noise.Plugins.CDViewWrapper : ViewWrapper {
         yield set_media_async (new Gee.LinkedList<Media> ());
     }
 }
-
