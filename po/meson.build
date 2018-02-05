@@ -4,3 +4,4 @@ i18n.gettext(app_name,
     '--from-code=UTF-8'
   ]
 )
+subdir('extra')
