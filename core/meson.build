@@ -1,16 +1,16 @@
 core_name = app_name + '-core'
 
 config = configuration_data()
-config.set('app_name', short_name)
-config.set('datadir', datadir)
-config.set('pkg_datadir', pkg_datadir)
-config.set('gettext_package', app_name)
-config.set('release_name', release_name)
-config.set('version', version)
-config.set('version_info', version_info)
-config.set('icondir', icondir)
-config.set('plugindir', plugindir)
-build_config = configure_file(input : 'Build.vala', output: 'Build.vala', configuration: config)
+config.set('APP_NAME', short_name)
+config.set('DATADIR', datadir)
+config.set('PKG_DATADIR', pkg_datadir)
+config.set('GETTEXT_PACKAGE', app_name)
+config.set('RELEASE_NAME', release_name)
+config.set('VERSION', version)
+config.set('VERSION_INFO', version_info)
+config.set('ICONDIR', icondir)
+config.set('PLUGINDIR', plugindir)
+build_config = configure_file(input : 'Config.vala.in', output: 'Config.vala', configuration: config)
 
 core_files = files(
   'Album.vala',
