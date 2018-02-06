@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box 0.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 11:30-0800\n"
-"PO-Revision-Date: 2018-02-06 20:21+0000\n"
+"PO-Revision-Date: 2018-02-06 20:51+0000\n"
 "Last-Translator: Piotr Strebski <strebski@o2.pl>\n"
 "Language-Team: Polish "
 "<https://weblate.elementary.io/projects/music/music/pl/>\n"
@@ -438,16 +438,15 @@ msgid "Choose Music Folder"
 msgstr "Proszę wskazać katalog z muzyką"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:38
-#, fuzzy, c-format
+#, c-format
 msgid "Would you like to install the %s plugin?"
-msgstr "Czy chciałbyś zainstalować wtyczkę %s?\n"
+msgstr "Czy chciałbyś zainstalować wtyczkę %s?"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:39
-#, fuzzy, c-format
+#, c-format
 msgid "This song cannot be played. The %s plugin is required to play the song."
 msgstr ""
-"\n"
-"Ten utwór nie może zostać odtworzony. Do jego odtworzenia jest potrzebna "
+"Ten utwór nie może zostać odtworzony. Do jego odtworzenia potrzebna jest "
 "wtyczka %s."
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:52
@@ -791,11 +790,11 @@ msgid "kbps"
 msgstr "kb/s"
 
 #: src/Dialogs/SyncWarningDialog.vala:52
-#, fuzzy, c-format
+#, c-format
 msgid "Sync will remove %i item from %s"
 msgid_plural "Sync will remove %i items from %s"
-msgstr[0] "Synchronizacja usunie %i elementów z %s"
-msgstr[1] "Synchronizacja usunie %i elementów z %s"
+msgstr[0] "Synchronizacja usunie %i element z %s"
+msgstr[1] "Synchronizacja usunie %i elementy z %s"
 msgstr[2] "Synchronizacja usunie %i elementów z %s"
 
 #: src/Dialogs/SyncWarningDialog.vala:55
