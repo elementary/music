@@ -884,12 +884,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public void show_smart_playlist_dialog (SmartPlaylist? smartplaylist = null) {
         SmartPlaylistEditor spe = null;
         spe = new SmartPlaylistEditor (smartplaylist, library_manager);
-        spe.window_position = Gtk.WindowPosition.CENTER;
-        spe.type_hint = Gdk.WindowTypeHint.DIALOG;
-        spe.set_transient_for (this);
-        spe.set_modal(true);
-        spe.destroy_with_parent = true;
-        spe.load_smart_playlist ();
         spe.show ();
     }
 
