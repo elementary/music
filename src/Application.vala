@@ -26,7 +26,7 @@
  * Authored by: Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public class Noise.App : Granite.Application {
+public class Noise.App : Gtk.Application {
     public static PlaybackManager player { get; private set; }
     private LocalLibrary library_manager { get; private set; }
     public static LibraryWindow main_window { get; private set; }
@@ -36,17 +36,7 @@ public class Noise.App : Granite.Application {
         flags |= ApplicationFlags.HANDLES_OPEN;
 
         // App info
-        build_data_dir = Build.DATADIR;
-        build_pkg_data_dir = Build.PKG_DATADIR;
-        build_release_name = Build.RELEASE_NAME;
-        build_version = Build.VERSION;
-        build_version_info = Build.VERSION_INFO;
-
-        program_name = _(Build.APP_NAME);
-        exec_name = "io.elementary.music";
-
         application_id = "io.elementary.music";
-        app_launcher = "io.elementary.music.desktop";
 
         weak Gtk.IconTheme default_theme = Gtk.IconTheme.get_default ();
         default_theme.add_resource_path ("/io/elementary/music");

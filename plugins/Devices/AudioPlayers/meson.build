@@ -1,5 +1,3 @@
-audioplayer_dir = join_paths(plugindir, 'AudioPlayer-Device')
-
 audioplayer_files = files(
   'AudioPlayer.vala',
   'AudioPlayerDevice.vala',
@@ -7,12 +5,12 @@ audioplayer_files = files(
   'AudioPlayerLibrary.vala'
 )
 
-library(
+shared_module(
   'audioplayer-device',
   audioplayer_files,
   dependencies: [ app_dep ],
   install: true,
-  install_dir: audioplayer_dir
+  install_dir: plugindir
 )
 
-install_data('audioplayer-device.plugin', install_dir: audioplayer_dir)
+install_data('audioplayer-device.plugin', install_dir: plugindir)
