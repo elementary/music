@@ -108,4 +108,3 @@ if get_option('build-plugins')
 endif
 
 subdir('po')
-subdir('images')
