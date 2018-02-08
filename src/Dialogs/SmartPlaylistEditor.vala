@@ -114,8 +114,8 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
 
         deletable = false;
         destroy_with_parent = true;
-        title = _("Smart Playlist Editor");
         modal = true;
+        title = _("Smart Playlist Editor");
         transient_for = App.main_window;
         window_position = Gtk.WindowPosition.CENTER_ON_PARENT;
         get_content_area ().add (main_grid);
