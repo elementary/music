@@ -49,14 +49,6 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
     }
 
     construct {
-        deletable = false;
-        destroy_with_parent = true;
-        title = _("Smart Playlist Editor");
-        library = library;
-        modal = true;
-        transient_for = App.main_window;
-        window_position = Gtk.WindowPosition.CENTER_ON_PARENT;
-
         name_entry = new Gtk.Entry ();
         name_entry.changed.connect (name_changed);
         name_entry.placeholder_text = _("Playlist Title");
@@ -119,7 +111,14 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
         main_grid.attach (new Granite.HeaderLabel (_("Options")), 0, 5, 3, 1);
         main_grid.attach (limiter_grid, 0, 6, 3, 1);
         main_grid.attach (button_box, 0, 7, 3, 1);
-        ((Gtk.Container) get_content_area ()).add (main_grid);
+
+        deletable = false;
+        destroy_with_parent = true;
+        title = _("Smart Playlist Editor");
+        modal = true;
+        transient_for = App.main_window;
+        window_position = Gtk.WindowPosition.CENTER_ON_PARENT;
+        get_content_area ().add (main_grid);
 
         if (smart_playlist != null) {
             name_entry.text = smart_playlist.name;
