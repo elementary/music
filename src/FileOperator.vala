@@ -302,7 +302,7 @@ public class Noise.FileOperator : Object {
         }
 
         if (all_new_imports.size > 0)
-            App.main_window.show_notification (_("Import Complete"), _("%s has imported your library.").printf (((Noise.App) GLib.Application.get_default ()).program_name));
+            App.main_window.show_notification (_("Import Complete"), _("Your Library Has Been Imported."));
 
         if (import_type == ImportType.PLAYLIST) {
             new_playlist.add_medias (all_new_imports);
