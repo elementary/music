@@ -36,8 +36,6 @@ public class Noise.RemoveFilesDialog : Gtk.Dialog {
     private Gtk.Button cancel_button;
 
     public RemoveFilesDialog (Gee.Collection<Media> to_remove, ViewWrapper.Hint media_type) {
-        var app_name = ((Noise.App) GLib.Application.get_default ()).program_name;
-
         this.set_modal(true);
         this.set_transient_for (App.main_window);
         this.destroy_with_parent = true;
@@ -54,7 +52,7 @@ public class Noise.RemoveFilesDialog : Gtk.Dialog {
         Gtk.Label title = new Gtk.Label ("");
         Gtk.Label info = new Gtk.Label ("");
         trash_button = new Gtk.Button.with_label (_("Move to Trash"));
-        remove_button = new Gtk.Button.with_label (_("Remove from %s").printf (app_name));
+        remove_button = new Gtk.Button.with_label (_("Remove from Library"));
         cancel_button = new Gtk.Button.with_label (_("Cancel"));
 
         bool multiple_media = to_remove.size > 1;
@@ -64,10 +62,10 @@ public class Noise.RemoveFilesDialog : Gtk.Dialog {
         string title_text = "";
 
         if (multiple_media) {
-            title_text = _("Remove %d Songs From %s?").printf (to_remove.size, app_name);
+            title_text = _("Remove %d Songs From Library?").printf (to_remove.size);
         } else {
             Media m = to_remove.to_array ()[0];
-            title_text = _("Remove \"%s\" From %s?").printf (m.get_display_title (), app_name);
+            title_text = _("Remove \"%s\" From Library?").printf (m.get_display_title ());
         }
 
         title.set_markup("<span weight=\"bold\" size=\"larger\">" + Markup.escape_text (title_text) + "</span>");
@@ -76,8 +74,8 @@ public class Noise.RemoveFilesDialog : Gtk.Dialog {
         info.halign = Gtk.Align.START;
         info.set_line_wrap (true);
         int n = to_remove.size;
-        string info_text = ngettext ("This will remove the song from your library and from any device that automatically syncs with %s.",
-                                     "This will remove the songs from your library and from any device that automatically syncs with %s.", n).printf (app_name);
+        string info_text = ngettext ("This will remove the song from your library and from any device synced automatically.",
+                                     "This will remove the songs from your library and from any device synced automatically.", n);
 
         info.set_text (info_text);
 
