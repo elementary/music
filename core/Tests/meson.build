@@ -1,4 +1,4 @@
-tests_name = app_name + '-tests'
+tests_name = meson.project_name() + '-tests'
 
 config = configuration_data()
 config.set('source_dir', meson.source_root())

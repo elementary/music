@@ -1,11 +1,8 @@
 namespace Build {
-    public const string APP_NAME = "@APP_NAME@";
+    public const string APP_ID = "@APP_ID@";
     public const string DATADIR = "@DATADIR@";
-    public const string PKG_DATADIR = "@PKG_DATADIR@";
     public const string PLUGIN_DIR = "@PLUGINDIR@";
     public const string GETTEXT_PACKAGE = "@GETTEXT_PACKAGE@";
-    public const string RELEASE_NAME = "@RELEASE_NAME@";
     public const string VERSION = "@VERSION@";
-    public const string VERSION_INFO = "@VERSION_INFO@";
-    public const string ICON_DIR = "@ICONDIR@";
+    public const string EXEC_NAME = "@EXEC_NAME@";
 }

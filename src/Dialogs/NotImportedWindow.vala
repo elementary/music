@@ -48,12 +48,12 @@ public class Noise.NotImportedWindow : Gtk.Dialog {
 
         var warning = new Gtk.Image.from_icon_name ("dialog-error", Gtk.IconSize.DIALOG);
 
-        var title = new Gtk.Label (_("Unable to import %d items from %s").printf (files.size, music_folder));
+        var title = new Gtk.Label (_("Issues while importing from %s").printf (music_folder));
         title.halign = Gtk.Align.START;
         title.hexpand = true;
         title.get_style_context ().add_class (Granite.STYLE_CLASS_PRIMARY_LABEL);
 
-        var info = new Gtk.Label (_("%s was unable to import %d items. The files may be damaged.").printf (((Noise.App) GLib.Application.get_default ()).program_name, files.size));
+        var info = new Gtk.Label (_("Unable to import %d items. The files may be damaged.").printf (files.size));
         info.halign = Gtk.Align.START;
         info.set_line_wrap (false);
 
