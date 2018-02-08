@@ -265,7 +265,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         headerbar.pack_start (view_selector);
         headerbar.pack_end (menu_button);
         headerbar.pack_end (search_entry);
-        headerbar.set_title (((Noise.App) GLib.Application.get_default ()).program_name);
+        headerbar.set_title (_("Music"));
         headerbar.set_custom_title (top_display);
         headerbar.show_all ();
 
@@ -317,7 +317,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         height_request = 350;
         width_request = 400;
         icon_name = "multimedia-audio-player";
-        title = ((Noise.App) GLib.Application.get_default ()).program_name;
+        title = _("Music");
 
         saved_state_settings = new GLib.Settings ("io.elementary.music.saved-state");
 
@@ -565,6 +565,16 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
     }
 
+    /**
+     * Dialogs from the interface
+     */
+
+    public void show_smart_playlist_dialog (SmartPlaylist? smartplaylist = null) {
+        SmartPlaylistEditor spe = null;
+        spe = new SmartPlaylistEditor (smartplaylist, library_manager);
+        spe.show ();
+    }
+
     /** This should be used whenever a call to play a new media is made
      *
      * XXX: this doesn't belong here, but to the playback manager
@@ -809,7 +819,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public void doAlert(string title, string message) {
         var dialog = new Gtk.MessageDialog (this, Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR, Gtk.ButtonsType.OK, "%s", title);
 
-        dialog.title = ((Noise.App) GLib.Application.get_default ()).program_name;
+        dialog.title = _("Music");
         dialog.secondary_text = message;
         dialog.secondary_use_markup = true;
 

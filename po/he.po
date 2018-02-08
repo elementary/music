@@ -3,15 +3,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 11:30-0800\n"
-"PO-Revision-Date: 2017-05-20 22:45+0000\n"
+"PO-Revision-Date: 2018-02-06 20:21+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
-"Language-Team: Hebrew <https://l10n.elementary.io/projects/music/music/he/>\n"
+"Language-Team: Hebrew "
+"<https://weblate.elementary.io/projects/music/music/he/>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.14\n"
+"X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:52+0000\n"
 
 #: core/LibrariesManager.vala:147
@@ -92,7 +93,7 @@ msgstr "רוק"
 
 #: core/GStreamer/Equalizer.vala:85
 msgid "Soft"
-msgstr "מוסיקה רכה"
+msgstr "מוזיקה רכה"
 
 #: core/GStreamer/Equalizer.vala:86
 msgid "Ska"
@@ -188,7 +189,7 @@ msgstr "התקן ריק!"
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:109
 #: plugins/Devices/iPod/iPodDevice.vala:69
 msgid "This device does not contain any music."
-msgstr "התקן זה אינו מכיל מוסיקה."
+msgstr "התקן זה אינו מכיל מוזיקה."
 
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:153
 msgid "Android Phone"
@@ -230,7 +231,7 @@ msgstr "לא ניתן לקרוא את תוכנו של תקליטור שמע זה
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:247
 msgid "Could not find Music Folder"
-msgstr "Noise לא הצליח למצוא את תיקיית המוסיקה"
+msgstr "לא ניתן למצוא את תיקיית המוזיקה"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:247
 msgid ""
@@ -323,7 +324,7 @@ msgstr "%s מיובא אל הספרייה."
 
 #: src/FileOperator.vala:315
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr "<b>מעתיק</b> קבצים ל <b>תיקיית מוסיקה</b>…"
+msgstr "קבצים <b>מועתקים</b> ל<b>תיקיית המוזיקה</b>…"
 
 #: src/LibraryWindow.vala:215
 msgid "Import to Library…"
@@ -418,19 +419,17 @@ msgstr "חפש שיר"
 #: src/Dialogs/FileNotFoundDialog.vala:121
 #: src/Dialogs/SetMusicFolderConfirmation.vala:113
 msgid "Choose Music Folder"
-msgstr "בחירת תיקיית מוסיקה"
+msgstr "בחירת תיקיית מוזיקה"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:38
-#, fuzzy, c-format
+#, c-format
 msgid "Would you like to install the %s plugin?"
-msgstr "תרצה להתקין את התוסף %s?\n"
+msgstr "להתקין את התוסף %s?"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:39
-#, fuzzy, c-format
+#, c-format
 msgid "This song cannot be played. The %s plugin is required to play the song."
-msgstr ""
-"\n"
-"לא ניתן לנגן את השיר הבא, יש צורך בתוסף %s לטובת ניגון השיר."
+msgstr "לא ניתן לנגן את השיר הבא. יש צורך בתוסף %s לטובת ניגון השיר."
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid "Install Plugin"
@@ -537,7 +536,7 @@ msgstr "ניהול האוסף"
 
 #: src/Dialogs/PreferencesWindow.vala:80
 msgid "Keep Music folder organized:"
-msgstr "שמירת תיקיית המוסיקה מאורגנת:"
+msgstr "שמירה על סדר בתיקיית המוזיקה:"
 
 #: src/Dialogs/PreferencesWindow.vala:82
 msgid "Write metadata to file:"
@@ -589,7 +588,7 @@ msgstr "יצוא רשימות השמעה"
 
 #: src/Dialogs/SetMusicFolderConfirmation.vala:66
 msgid "Set Music Folder"
-msgstr "הגדרת ספריית המוסיקה"
+msgstr "הגדרת ספריית המוזיקה"
 
 #: src/Dialogs/SetMusicFolderConfirmation.vala:73
 msgid "Set Music Folder?"
@@ -601,8 +600,8 @@ msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
 msgstr ""
-"האם ברצונך להגדיר את ספריית המוסיקה ל  %s? הפעולה תאפס את הספרייה שלך ותסיר "
-"את כל רשימות ההשמעה."
+"האם ברצונך להגדיר את ספריית המוזיקה בתור %s? הפעולה תאפס את הספרייה שלך "
+"ותסיר את כל רשימות הנגינה שלך."
 
 #: src/Dialogs/SmartPlaylistEditor.vala:46
 msgid "Smart Playlist Editor"
@@ -720,7 +719,7 @@ msgstr "הוצאה לאור"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:272
 msgid "URI"
-msgstr ""
+msgstr "כתובת"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:345
 msgid "is"
@@ -768,11 +767,11 @@ msgid "kbps"
 msgstr "קסל״ש"
 
 #: src/Dialogs/SyncWarningDialog.vala:52
-#, fuzzy, c-format
+#, c-format
 msgid "Sync will remove %i item from %s"
 msgid_plural "Sync will remove %i items from %s"
-msgstr[0] "הסנכרון ימחק את פריטי   %i מ %s"
-msgstr[1] "הסנכרון ימחק את פריטי   %i מ %s"
+msgstr[0] "הסנכרון ימחק פריט %i מתוך %s"
+msgstr[1] "הסנכרון ימחק %i פריטים מתוך %s"
 
 #: src/Dialogs/SyncWarningDialog.vala:55
 #, c-format
@@ -790,7 +789,7 @@ msgstr "המשך הסנכרון"
 #: src/LocalBackend/LocalLibrary.vala:189
 #, c-format
 msgid "Importing music from %s…"
-msgstr "יבוא מוסיקה מ %s…"
+msgstr "יבוא מוזיקה מ־%s…"
 
 #: src/LocalBackend/LocalLibrary.vala:213
 msgid "Adding files to library…"
@@ -802,7 +801,7 @@ msgstr "<b>מיובאים</b> שירים לספרייה…"
 
 #: src/LocalBackend/LocalLibrary.vala:248
 msgid "All music files are already in your library"
-msgstr "כל קבצי המוסיקה כבר נמצאים בספריה"
+msgstr "כל קובצי המוזיקה כבר נמצאים בספריה שלך"
 
 #: src/LocalBackend/LocalLibrary.vala:248
 msgid "No files were imported."
@@ -810,7 +809,7 @@ msgstr "לא יובאו קבצים."
 
 #: src/LocalBackend/LocalLibrary.vala:253
 msgid "Rescanning music for changes. This may take a while…"
-msgstr "סריקה מחדש של המוסיקה לאיתור שינויים. הפעולה עשויה להמשך זמן מה…"
+msgstr "סריקה מחדש של המוזיקה לאיתור שינויים. הפעולה עשויה להמשך זמן מה…"
 
 #: src/LocalBackend/LocalLibrary.vala:354
 msgid "Added to your queue:"
@@ -1139,7 +1138,7 @@ msgstr "השגת מספר נעימות"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Add music to your library."
-msgstr "הוספת מוסיקה לספרייה שלך."
+msgstr "הוספת מוזיקה לספרייה שלך."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:61
 msgid "Import music from a source into your library."
@@ -1147,26 +1146,26 @@ msgstr "יבוא מוזיקה ממקור לספריה שלך."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:63
 msgid "Change Music Folder"
-msgstr "שינוי תיקיית המוסיקה"
+msgstr "שינוי תיקיית המוזיקה"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:64
 msgid "Load music from a folder, a network or an external disk."
-msgstr "טעינת מוסיקה מספריה, מהרשת או מכונן חיצוני."
+msgstr "טעינת מוזיקה מספריה, מהרשת או מכונן חיצוני."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:109
 #: src/Views/Wrappers/MusicViewWrapper.vala:125
 msgid "Import your Music"
-msgstr "יבוא המוסיקה שלך"
+msgstr "יבוא המוזיקה שלך"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:109
 #: src/Views/Wrappers/MusicViewWrapper.vala:125
 #, c-format
 msgid "Import all your Music from %s into your library."
-msgstr "יבוא כל המוסיקה שלך מ %s אל הספריה שלך."
+msgstr "יבוא כל המוזיקה שלך מ־%s אל הספרייה שלך."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:135
 msgid "Select Music Folder"
-msgstr "בחירת ספריית מוסיקה"
+msgstr "בחירת ספריית מוזיקה"
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:50
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:54

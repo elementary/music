@@ -1,20 +1,11 @@
-project('io.elementary.music', 'vala', 'c')
-
-app_name = meson.project_name()
-short_name = 'music'
-version = '0.4.2'
-version_info = 'Stable release'
-release_name = 'juno'
+project('io.elementary.music', 'vala', 'c', version: '0.4.2')
 
 prefix = get_option('prefix')
 datadir = join_paths(prefix, get_option('datadir'))
-pkg_datadir = join_paths(datadir, short_name)
-plugindir = join_paths(prefix, get_option('libdir'), short_name, 'plugins')
-icondir = join_paths(datadir, short_name, 'icons')
+plugindir = join_paths(prefix, get_option('libdir'), meson.project_name(), 'plugins')
 
 add_project_arguments(['--vapidir', join_paths(meson.current_source_dir(), 'vapi')], language: 'vala')
-add_project_arguments(['--vapidir', join_paths(meson.current_source_dir(), 'plugins', 'Devices', 'iPod', 'vapi')], language: 'vala')
-add_global_arguments('-DGETTEXT_PACKAGE="io.elementary.music"', language:'c')
+add_global_arguments('-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()), language:'c')
 
 subdir('core')
 subdir('data')
@@ -92,7 +83,7 @@ app_files = files(
 )
 
 app = executable (
-    app_name,
+    meson.project_name(),
     [ app_files, icon_res ],
     dependencies: app_deps,
     install: true

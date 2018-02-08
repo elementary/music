@@ -1,5 +1,3 @@
-lastfm_dir = join_paths(plugindir, 'LastFM')
-
 lastfm_deps = [
   app_dep,
   dependency('json-glib-1.0'),
@@ -15,14 +13,14 @@ lastfm_files = files(
   'Tag.vala'
 )
 
-lastfm = library(
+shared_module(
   'lastfm',
   lastfm_files,
   dependencies: lastfm_deps,
   install: true,
-  install_dir: lastfm_dir
+  install_dir: plugindir
 )
 
-install_data('lastfm.plugin', install_dir: lastfm_dir)
+install_data('lastfm.plugin', install_dir: plugindir)
 
 install_data('noise-lastfm.application', install_dir: join_paths(datadir, 'accounts', 'applications'))
