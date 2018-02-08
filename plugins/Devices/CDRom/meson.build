@@ -1,5 +1,3 @@
-cdrom_dir = join_paths(plugindir, 'CDRom-Device')
-
 cdrom_files = files(
   'CDDA.vala',
   'CDPlayer.vala',
@@ -11,12 +9,12 @@ cdrom_files = files(
   'CDViewWrapper.vala'
 )
 
-library(
+shared_module(
   'cdrom-device',
   cdrom_files,
   dependencies: [ app_dep ],
   install: true,
-  install_dir: cdrom_dir
+  install_dir: plugindir
 )
 
-install_data('cdrom-device.plugin', install_dir: cdrom_dir)
+install_data('cdrom-device.plugin', install_dir: plugindir)
