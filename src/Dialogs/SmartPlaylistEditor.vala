@@ -123,17 +123,17 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
         if (smart_playlist != null) {
             name_entry.text = smart_playlist.name;
 
-            match_combobox.set_active (smart_playlist.conditional);
+            match_combobox.active = smart_playlist.conditional;
 
-            limit_check.set_active (smart_playlist.limit);
-            limit_spin.set_value ((double) smart_playlist.limit_amount);
+            limit_check.active = smart_playlist.limit;
+            limit_spin.value = (double) smart_playlist.limit_amount;
         } else {
             smart_playlist = new SmartPlaylist (library);
 
-            match_combobox.set_active (0);
+            match_combobox.active = 0;
 
-            limit_check.set_active (true);
-            limit_spin.set_value (50);
+            limit_check.active = true;
+            limit_spin.value = 50;
         }
 
         show_all ();
