@@ -125,21 +125,4 @@ public class Noise.Plugins.CDView : Gtk.Grid {
             album_image.image.gicon = cover_icon;
         }
     }
-
-    public Gtk.Label create_title_label (string title) {
-        var label = new Gtk.Label (title);
-        label.halign = Gtk.Align.START;
-        label.valign = Gtk.Align.START;
-        label.hexpand = true;
-        label.justify = Gtk.Justification.LEFT;
-
-        return label;
-    }
-
-    public Gtk.Label create_length_label (uint length) {
-        var label = new Gtk.Label (TimeUtils.pretty_length_from_ms (length));
-        label.justify = Gtk.Justification.RIGHT;
-
-        return label;
-    }
 }
