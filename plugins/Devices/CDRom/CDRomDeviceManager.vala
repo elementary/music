@@ -1,6 +1,6 @@
 // -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012-2017 elementary LLC. (https://elementary.io)
+ * Copyright (c) 2012-2018 elementary LLC. (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -62,16 +62,16 @@ public class Noise.Plugins.CDRomDeviceManager : GLib.Object {
             added.set_mount (mount);
             devices.add (added);
 
-            if (added.start_initialization()) {
-                added.finish_initialization();
-                added.initialized.connect((d) => {
-                    DeviceManager.get_default ().device_initialized ((Noise.Device)d);
+            if (added.start_initialization ()) {
+                added.finish_initialization ();
+                added.initialized.connect ((d) => {
+                    DeviceManager.get_default ().device_initialized ((Noise.Device) d);
                 });
             } else {
-                mount_removed(added.get_mount());
+                mount_removed (added.get_mount ());
             }
         } else {
-            debug ("Found device at %s is not an Audio CD. Not using it", mount.get_default_location().get_parse_name());
+            debug ("Found device at %s is not an Audio CD. Not using it", mount.get_default_location ().get_parse_name ());
             return;
         }
     }
@@ -86,12 +86,12 @@ public class Noise.Plugins.CDRomDeviceManager : GLib.Object {
 
     public virtual void mount_removed (Mount mount) {
         var device_manager = DeviceManager.get_default ();
-        foreach(var dev in devices) {
-            if(dev.get_uri() == mount.get_default_location().get_uri()) {
-                device_manager.device_removed ((Noise.Device)dev);
+        foreach (var dev in devices) {
+            if (dev.get_uri () == mount.get_default_location ().get_uri ()) {
+                device_manager.device_removed ((Noise.Device) dev);
 
                 // Actually remove it
-                devices.remove(dev);
+                devices.remove (dev);
 
                 return;
             }
