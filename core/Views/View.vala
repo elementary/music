@@ -76,6 +76,11 @@ public abstract class Noise.View : Gtk.ScrolledWindow {
     public bool accept_data_drop { get; set; default = false; }
 
     /**
+    * The view wants to have it's label in the sidebar in edition mode.
+    */
+    public signal void request_sidebar_editing ();
+
+    /**
     * Called every time this view is shown
     */
     public virtual void shown () {}

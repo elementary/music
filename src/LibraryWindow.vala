@@ -528,19 +528,21 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         var playlist = new StaticPlaylist ();
         playlist.name = PlaylistsUtils.get_new_playlist_name (library_manager.get_playlists ());
         library.add_playlist (playlist);
-        show_playlist_view (playlist);
-        /*Idle.add_full (Priority.LOW, () => {
-            source_list_view.start_editing_item (entry);
+        var view = show_playlist_view (playlist);
+        Idle.add_full (Priority.LOW, () => {
+            view.request_sidebar_editing ();
             return false;
-        });*/
+        });
     }
 
-    private void show_playlist_view (Playlist playlist) {
+    private View? show_playlist_view (Playlist playlist) {
         foreach (var view in view_manager.views) {
             if (view.id == playlist.id) {
                 view_manager.select (view);
+                return view;
             }
         }
+        return null;
     }
 
     /**

@@ -168,6 +168,10 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
             selected = item;
         }
 
+        view.request_sidebar_editing.connect (() => {
+            start_editing_item (item);
+        });
+
         view.destroy.connect (() => {
             categories[view.category].remove (item);
         });
