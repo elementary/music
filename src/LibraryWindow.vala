@@ -94,8 +94,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             }
 
             view_stack.visible_child = view_manager.selected_view;
-            trigger_search ();
+            trigger_search (view_manager.selected_view);
         });
+        view_manager.request_filtering.connect (trigger_search);
 
         library_manager.media_added.connect (update_sensitivities);
         library_manager.media_removed.connect (update_sensitivities);
@@ -370,7 +371,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         search_entry.search_changed.connect (() => {
             if (search_entry.text_length != 1) {
-                trigger_search ();
+                trigger_search (view_manager.selected_view);
             }
         });
         search_entry.text = main_settings.search_string;
@@ -385,13 +386,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         libraries_manager.search_for_string (Settings.Main.get_default ().search_string);
     }
 
-    private void trigger_search () {
-        if (view_manager.filter_view (search_entry.text)) {
-            view_stack.visible_child = view_manager.selected_view;
+    private void trigger_search (View view_to_filter) {
+        if (view_to_filter.filter (search_entry.text)) {
+            view_stack.visible_child = view_to_filter;
         } else {
             view_stack.remove (alert_view);
             alert_view = new Granite.Widgets.AlertView (_("No results"), _("Try another search"), "edit-find-symbolic");
-            view_manager.selected_view.update_alert (alert_view);
+            view_to_filter.update_alert (alert_view);
             alert_view.show_all ();
             view_stack.add_named (alert_view, "alert-view");
             view_stack.visible_child = alert_view;

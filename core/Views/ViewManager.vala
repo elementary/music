@@ -79,6 +79,11 @@ public class Noise.ViewManager : Object {
     */
     public signal void category_removed (Category cat);
 
+    /**
+    * A view wants to be refiltered
+    */
+    public signal void request_filtering (View view);
+
     construct {
         views = new Gee.ArrayList<View> ();
         categories = new Gee.ArrayList<Category> ();
@@ -130,6 +135,11 @@ public class Noise.ViewManager : Object {
                 }
 
                 view_added (view);
+
+                view.request_filtering.connect (() => {
+                    request_filtering (view);
+                });
+
                 view.remove.connect(() => {
                     view_removed (view);
                 });

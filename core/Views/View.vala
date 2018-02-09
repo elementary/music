@@ -81,6 +81,11 @@ public abstract class Noise.View : Gtk.ScrolledWindow {
     public signal void request_sidebar_editing ();
 
     /**
+    * Emitted when the view wants to be filtered again.
+    */
+    public signal void request_filtering ();
+
+    /**
     * Called every time this view is shown
     */
     public virtual void shown () {}
