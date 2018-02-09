@@ -104,15 +104,16 @@ public class Noise.AlbumsView : View {
     }
 
     private void on_item_activated (Gtk.TreePath? path) {
-        if (path == null) {
+        if (path == null)
             item_activated (null);
-        }
 
         var obj = icon_view.get_object_from_index (path.get_indices ()[0]);
         item_activated (obj);
     }
 
     private void on_drag_begin (Gtk.Widget sender, Gdk.DragContext context) {
+        debug ("drag begin");
+
         var selected_items = icon_view.get_selected_items ();
 
         if (selected_items.length () > 0)  {
@@ -218,7 +219,7 @@ public class Noise.AlbumsView : View {
 
         remove_objects (albums_to_remove);
         add_media (medias_to_add);
-        // TODO: refilter
+        request_filtering ();
     }
 
     public void set_media (Gee.Collection<Media> to_add) {
@@ -246,7 +247,7 @@ public class Noise.AlbumsView : View {
 
         // Add new albums
         add_objects (albums_to_append);
-        // TODO: refilter
+        request_filtering ();
     }
 
     /* There is a special case. Let's say that we're removing
@@ -276,7 +277,7 @@ public class Noise.AlbumsView : View {
             return;
 
         remove_objects (albums_to_remove);
-        // TODO: refilter
+        request_filtering ();
     }
 
     public int get_relative_id () {
@@ -301,7 +302,8 @@ public class Noise.AlbumsView : View {
 
     protected GLib.Icon? get_icon (Object o) {
         var album = o as Album;
-        return album == null ? null : album.cover_icon;
+        return_val_if_fail (album != null, null);
+        return album.cover_icon;
     }
 
     protected int compare_func (Object o_a, Object o_b) {

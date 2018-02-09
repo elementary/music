@@ -206,7 +206,6 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
 
         column_chooser_menu.append (column.menu_item);
 
-        column.row_activated.connect (column_row_activated);
         column.header_clicked.connect (column_header_clicked);
         column.visibility_changed.connect (update_column_separators);
 
@@ -227,13 +226,8 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
         changed ();
     }
 
-    private void column_row_activated () {
-        // TODO: view_wrapper.play_first_media ();
-    }
-
     private void column_selection_changed (BrowserColumn.Category category, string val) {
         update_search_results (category);
-        // TODO: view_wrapper.list_view.list_view.research_needed = true;
         populate_columns (category, false);
         changed ();
     }
