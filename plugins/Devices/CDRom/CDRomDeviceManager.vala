@@ -42,7 +42,7 @@ public class Noise.Plugins.CDRomDeviceManager : GLib.Object {
 
     public void remove_all () {
         var device_manager = DeviceManager.get_default ();
-        foreach(var dev in devices) {
+        foreach (var dev in devices) {
             device_manager.device_removed ((Noise.Device)dev);
         }
 
@@ -50,25 +50,27 @@ public class Noise.Plugins.CDRomDeviceManager : GLib.Object {
     }
 
     public virtual void mount_added (Mount mount) {
-        foreach(var dev in devices) {
-            if(dev.get_uri() == mount.get_default_location().get_uri()) {
+        foreach (var dev in devices) {
+            if (dev.get_uri () == mount.get_default_location ().get_uri ()) {
                 return;
             }
         }
-        if(mount.get_default_location().get_uri().has_prefix("cdda://") && mount.get_volume() != null) {
-            var added = new CDRomDevice(mount);
-            added.set_mount(mount);
-            devices.add(added);
 
-            if(added.start_initialization()) {
+        if (mount.get_default_location ().get_uri ().has_prefix ("cdda://") && mount.get_volume () != null) {
+            debug ("Adding CD to list");
+            var added = new CDRomDevice (mount);
+            added.set_mount (mount);
+            devices.add (added);
+
+            if (added.start_initialization()) {
                 added.finish_initialization();
-                added.initialized.connect((d) => {DeviceManager.get_default ().device_initialized ((Noise.Device)d);});
-            }
-            else {
+                added.initialized.connect((d) => {
+                    DeviceManager.get_default ().device_initialized ((Noise.Device)d);
+                });
+            } else {
                 mount_removed(added.get_mount());
             }
-        }
-        else {
+        } else {
             debug ("Found device at %s is not an Audio CD. Not using it", mount.get_default_location().get_parse_name());
             return;
         }
