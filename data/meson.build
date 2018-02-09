@@ -1,6 +1,19 @@
+icon_sizes = ['16', '24', '32', '48', '64', '128']
+
+foreach i : icon_sizes
+    install_data(
+        join_paths('icons', i, 'multimedia-audio-player.svg'),
+        install_dir: join_paths(get_option('datadir'), 'icons', 'hicolor', i + 'x' + i, 'apps')
+    )
+    install_data(
+        join_paths('icons', i, 'multimedia-audio-player.svg'),
+        install_dir: join_paths(get_option('datadir'), 'icons', 'hicolor', i + 'x' + i + '@2', 'apps')
+    )
+endforeach
+
 gnome = import('gnome')
 icon_res = gnome.compile_resources(
-  app_name + '-icon-resources',
+  'music-icon-resources',
   files('icons/icons.gresource.xml'),
   source_dir: [ join_paths(meson.source_root(), 'data', 'icons') ]
 )
@@ -11,7 +24,7 @@ install_data(
 )
 
 i18n = import('i18n')
-i18n.merge_file(
+desktop_file = i18n.merge_file(
     'desktop',
     input: meson.project_name() + '.desktop.in',
     output: meson.project_name() + '.desktop',
@@ -21,7 +34,7 @@ i18n.merge_file(
     type: 'desktop'
 )
 
-i18n.merge_file(
+appdata_file = i18n.merge_file(
     'appdata',
     input: meson.project_name() + '.appdata.xml.in',
     output: meson.project_name() + '.appdata.xml',
@@ -33,11 +46,11 @@ i18n.merge_file(
 test(
     'Validate desktop file',
     find_program('desktop-file-validate'),
-    args: join_paths(meson.current_build_dir(), meson.project_name() + '.desktop')
+    args: desktop_file
 )
 
 test(
     'Validate appdata file',
     find_program('appstreamcli'),
-    args: ['validate', join_paths(meson.current_build_dir(), meson.project_name() + '.appdata.xml')]
+    args: ['validate', appdata_file]
 )

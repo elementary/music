@@ -8,20 +8,21 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 11:30-0800\n"
-"PO-Revision-Date: 2016-12-31 00:19+0000\n"
-"Last-Translator: Pedro Monteiro <Unknown>\n"
-"Language-Team: Portuguese\n"
-"Language: \n"
+"PO-Revision-Date: 2018-02-06 00:10+0000\n"
+"Last-Translator: Pedro Monteiro <pmem@outlook.pt>\n"
+"Language-Team: Portuguese "
+"<https://weblate.elementary.io/projects/music/music/pt/>\n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
-"X-Generator: Launchpad (build 18330)\n"
 
 #: core/LibrariesManager.vala:147
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "A importar <b>$NAME</b> de <b>$ARTIST</b> para a coleção..."
+msgstr "A importar <b>$NAME</b> de <b>$ARTIST</b> para a coleção…"
 
 #: core/Media.vala:32
 msgid "Unknown"
@@ -188,12 +189,12 @@ msgstr "%e/%m/%Y %H:%M"
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:105
 #: plugins/Devices/iPod/iPodDevice.vala:65
 msgid "Empty device!"
-msgstr "Dispositivo vazio"
+msgstr "Dispositivo vazio!"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:109
 #: plugins/Devices/iPod/iPodDevice.vala:69
 msgid "This device does not contain any music."
-msgstr "O dispositivo não possui quaisquer faixas"
+msgstr "O dispositivo não possui nenhuma música."
 
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:153
 msgid "Android Phone"
@@ -206,24 +207,24 @@ msgstr "Reprodutor de áudio"
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:137
 #: plugins/Devices/iPod/iPodLibrary.vala:148
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr "A adicionar <b>$NAME</b> de <b>$ARTIST</b> em $DEVICE..."
+msgstr "A adicionar <b>$NAME</b> de <b>$ARTIST</b> a $DEVICE"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:161
 #: plugins/Devices/iPod/iPodLibrary.vala:196
 #, c-format
 msgid "Syncing <b>%s</b>…"
-msgstr "A sincronizar <b>%s</b>..."
+msgstr "A sincronizar <b>%s</b>…"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:266
 #: plugins/Devices/iPod/iPodLibrary.vala:530
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr "A remover <b>$NAME</b> de <b>$ARTIST</b> em $DEVICE..."
+msgstr "A remover <b>$NAME</b> de <b>$ARTIST</b> do dispositivo $DEVICE"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:297
 #: plugins/Devices/iPod/iPodLibrary.vala:337
 #, c-format
 msgid "Removing from <b>%s</b>…"
-msgstr "A remover de <b>%s</b>..."
+msgstr "A remover de <b>%s</b>…"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:91
 msgid "Audio CD Invalid"
@@ -231,7 +232,7 @@ msgstr "CD áudio inválido"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:95
 msgid "Impossible to read the contents of this Audio CD"
-msgstr "Não foi possível carregar o conteúdo deste CD."
+msgstr "Não foi possível carregar o conteúdo deste CD"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:247
 msgid "Could not find Music Folder"
@@ -249,8 +250,8 @@ msgstr ""
 msgid ""
 "The Application could not find any songs on the CD. No songs can be imported"
 msgstr ""
-"A aplicação não encontrou quaisquer faixas no CD. Não existem dados a "
-"importar."
+"A aplicação não encontrou nenhuma música no CD. Não existem músicas a "
+"importar"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
 msgid "Importation of a song from Audio CD finished."
@@ -289,12 +290,12 @@ msgstr "Ocorreu um erro ao carregar o CD áudio."
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
 msgid "Finishing sync process…"
-msgstr "A terminar sincronização..."
+msgstr "A terminar sincronização…"
 
 #: plugins/Devices/iPod/iPodLibrary.vala:230
 #: plugins/Devices/iPod/iPodLibrary.vala:386
 msgid "Cancelling Sync…"
-msgstr "A cancelar sincronização..."
+msgstr "A cancelar sincronização…"
 
 #: plugins/LastFM/LastFM.vala:97
 msgid "No similar songs found"
@@ -333,11 +334,11 @@ msgstr "%s foi importada para a coleção."
 
 #: src/FileOperator.vala:315
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr "<b>A copiar</b> ficheiros para a <b>pasta de músicas</b>..."
+msgstr "A <b>copiar</b> ficheiros para a <b>pasta de músicas</b>…"
 
 #: src/LibraryWindow.vala:215
 msgid "Import to Library…"
-msgstr "Importar para a coleção..."
+msgstr "Importar para a coleção…"
 
 #: src/LibraryWindow.vala:218 src/Dialogs/PreferencesWindow.vala:40
 msgid "Preferences"
@@ -434,15 +435,14 @@ msgid "Choose Music Folder"
 msgstr "Escolha a pasta de músicas"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:38
-#, fuzzy, c-format
+#, c-format
 msgid "Would you like to install the %s plugin?"
-msgstr "Deseja instalar o plugin %s?\n"
+msgstr "Deseja instalar o plugin %s?"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:39
-#, fuzzy, c-format
+#, c-format
 msgid "This song cannot be played. The %s plugin is required to play the song."
 msgstr ""
-"\n"
 "Esta música não pode ser reproduzida. O plugin %s é necessário para "
 "reproduzir a música."
 
@@ -540,7 +540,7 @@ msgstr "Ignorar"
 
 #: src/Dialogs/PreferencesWindow.vala:48
 msgid "Select Music Folder…"
-msgstr "Escolha a pasta de músicas..."
+msgstr "Escolha a pasta de músicas…"
 
 #: src/Dialogs/PreferencesWindow.vala:77
 msgid "Music Folder Location"
@@ -568,7 +568,7 @@ msgstr "Integração com o ambiente de trabalho"
 
 #: src/Dialogs/PreferencesWindow.vala:87
 msgid "Continue playback when closed:"
-msgstr "Continuar reprodução quando fechado"
+msgstr "Continuar reprodução quando fechado:"
 
 #: src/Dialogs/RemoveFilesDialog.vala:57
 #, c-format
@@ -785,10 +785,10 @@ msgid "kbps"
 msgstr "kbps"
 
 #: src/Dialogs/SyncWarningDialog.vala:52
-#, fuzzy, c-format
+#, c-format
 msgid "Sync will remove %i item from %s"
 msgid_plural "Sync will remove %i items from %s"
-msgstr[0] "A sincronização irá remover %i itens de %s"
+msgstr[0] "A sincronização irá remover %i item de %s"
 msgstr[1] "A sincronização irá remover %i itens de %s"
 
 #: src/Dialogs/SyncWarningDialog.vala:55
@@ -808,15 +808,15 @@ msgstr "Continuar sincronização"
 #: src/LocalBackend/LocalLibrary.vala:189
 #, c-format
 msgid "Importing music from %s…"
-msgstr "A importar faixas de %s..."
+msgstr "A importar músicas de %s…"
 
 #: src/LocalBackend/LocalLibrary.vala:213
 msgid "Adding files to library…"
-msgstr "A adicionar ficheiros à coleção..."
+msgstr "A adicionar ficheiros à coleção…"
 
 #: src/LocalBackend/LocalLibrary.vala:226
 msgid "<b>Importing</b> music to library…"
-msgstr "<b>A importar</b> faixas para a coleção..."
+msgstr "A <b>importar</b> músicas para a coleção…"
 
 #: src/LocalBackend/LocalLibrary.vala:248
 msgid "All music files are already in your library"
@@ -828,7 +828,7 @@ msgstr "Nenhum ficheiro importado."
 
 #: src/LocalBackend/LocalLibrary.vala:253
 msgid "Rescanning music for changes. This may take a while…"
-msgstr "A reanalisar coleção. Pode levar algum tempo..."
+msgstr "A reanalisar coleção. Isto pode levar algum tempo…"
 
 #: src/LocalBackend/LocalLibrary.vala:354
 msgid "Added to your queue:"
@@ -919,7 +919,7 @@ msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
 "Não é possível a sincronização do dispositivo com as definições escolhidas. "
-"Não tem espaço suficiente no disco."
+"Não tem espaço suficiente no disco"
 
 #: src/Views/DeviceSummaryWidget.vala:314
 msgid "Device is already doing an operation."
@@ -935,11 +935,11 @@ msgstr "A operação foi cancelada e irá terminar após este ficheiro."
 
 #: src/Views/GridView.vala:69
 msgid "No Albums Found."
-msgstr "Nenhum álbum encontrado"
+msgstr "Nenhum Álbum Encontrado."
 
 #: src/Views/ListView/ListView.vala:99
 msgid "No Songs Found."
-msgstr "Nenhuma faixa encontrada"
+msgstr "Nenhuma Música Encontrada."
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
 msgid "Genres"
@@ -1132,7 +1132,7 @@ msgstr "Remover do dispositivo"
 
 #: src/Views/ListView/Lists/MusicListView.vala:187
 msgid "New Playlist…"
-msgstr "Nova lista de reprodução"
+msgstr "Nova lista de reprodução…"
 
 #: src/Views/ListView/Lists/MusicListView.vala:228
 #, c-format
@@ -1160,7 +1160,7 @@ msgstr "Obter músicas"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Add music to your library."
-msgstr "Adicionar música à sua biblioteca"
+msgstr "Adicionar música à sua coleção."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:61
 msgid "Import music from a source into your library."
@@ -1204,8 +1204,8 @@ msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
-"Para adicionar as faixas à lista de reprodução, utilize o <b>botão direito "
-"do rato</b> e escolha <b>Adicionar à lista de reprodução</b>"
+"Para adicionar músicas à lista de reprodução, utilize o <b>botão secundário "
+"do rato</b> num item e escolha <b>Adicionar à lista de reprodução</b>."
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:58
 msgid "Edit Smart Playlist"
@@ -1281,7 +1281,7 @@ msgstr "Mudar nome"
 #: src/Widgets/SourceListView.vala:70 src/Widgets/SourceListView.vala:84
 #: src/Widgets/SourceListView.vala:99
 msgid "Export…"
-msgstr "Exportar..."
+msgstr "Exportar…"
 
 #: src/Widgets/SourceListView.vala:82
 msgid "Edit…"

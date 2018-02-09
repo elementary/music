@@ -1,6 +1,6 @@
 // -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012-2017 elementary LLC. (https://elementary.io)
+ * Copyright (c) 2012-2018 elementary LLC. (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -52,32 +52,31 @@ public class Noise.Plugins.CDRomDeviceManager : GLib.Object {
     }
 
     public virtual void mount_added (Mount mount) {
-        foreach(var dev in devices) {
-            if(dev.get_uri() == mount.get_default_location().get_uri()) {
+        foreach (var dev in devices) {
+            if (dev.get_uri () == mount.get_default_location ().get_uri ()) {
                 return;
             }
         }
-        if(mount.get_default_location().get_uri().has_prefix("cdda://") && mount.get_volume() != null) {
-            debug ("Adding CD to list");
-            var added = new CDRomDevice(mount);
-            added.set_mount(mount);
-            devices.add(added);
 
-            if(added.start_initialization()) {
-                added.finish_initialization();
-                added.initialized.connect((d) => {
+        if (mount.get_default_location ().get_uri ().has_prefix ("cdda://") && mount.get_volume () != null) {
+            debug ("Adding CD to list");
+            var added = new CDRomDevice (mount);
+            added.set_mount (mount);
+            devices.add (added);
+
+            if (added.start_initialization ()) {
+                added.finish_initialization ();
+                added.initialized.connect ((d) => {
                     App.main_window.view_manager.add_category (new Category (d.get_unique_identifier (), d.getDisplayName ()));
-                    var view = new CDView ((CDRomDevice)d);
+                    var view = new CDView ((CDRomDevice) d);
                     App.main_window.view_manager.add (view);
                     views.add (view);
                 });
+            } else {
+                mount_removed (added.get_mount ());
             }
-            else {
-                mount_removed(added.get_mount());
-            }
-        }
-        else {
-            debug ("Found device at %s is not an Audio CD. Not using it", mount.get_default_location().get_parse_name());
+        } else {
+            debug ("Found device at %s is not an Audio CD. Not using it", mount.get_default_location ().get_parse_name ());
             return;
         }
     }
@@ -92,8 +91,8 @@ public class Noise.Plugins.CDRomDeviceManager : GLib.Object {
 
     public virtual void mount_removed (Mount mount) {
         var device_manager = DeviceManager.get_default ();
-        foreach(var dev in devices) {
-            if(dev.get_uri() == mount.get_default_location().get_uri()) {
+        foreach (var dev in devices) {
+            if (dev.get_uri () == mount.get_default_location ().get_uri ()) {
                 foreach (var view in views) {
                     if (view.dev == dev) {
                         App.main_window.view_manager.remove_view (view);
@@ -101,14 +100,13 @@ public class Noise.Plugins.CDRomDeviceManager : GLib.Object {
                     }
                 }
 
-                device_manager.device_removed ((Noise.Device)dev);
+                device_manager.device_removed ((Noise.Device) dev);
 
                 // Actually remove it
-                devices.remove(dev);
+                devices.remove (dev);
 
                 return;
             }
         }
     }
-
 }

@@ -1,5 +1,3 @@
-ipod_dir = join_paths(plugindir, 'iPod-Device')
-
 ipod_files = files(
   'iPod.vala',
   'iPodDevice.vala',
@@ -10,15 +8,16 @@ ipod_files = files(
   'iPodStreamer.vala'
 )
 
-library(
+shared_module(
   'ipod-device',
   ipod_files,
+  vala_args: ['--vapidir', join_paths(meson.current_source_dir(), 'vapi')],
   dependencies: [
     app_dep,
     dependency('libgpod-1.0')
   ],
   install: true,
-  install_dir: ipod_dir
+  install_dir: plugindir
 )
 
-install_data('ipod-device.plugin', install_dir: ipod_dir)
+install_data('ipod-device.plugin', install_dir: plugindir)
