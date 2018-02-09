@@ -52,13 +52,13 @@ public class Noise.Plugins.CDView : Gtk.Grid {
 
         title_label = new Gtk.Label ("");
         title_label.justify = Gtk.Justification.CENTER;
-        title_label.valign = Gtk.Align.BOTTOM;
+        title_label.valign = Gtk.Align.END;
         title_label.get_style_context ().add_class (Granite.STYLE_CLASS_H2_LABEL);
 
         author_label = new Gtk.Label ("");
         author_label.justify = Gtk.Justification.CENTER;
         author_label.sensitive = false;
-        author_label.valign = Gtk.Align.BOTTOM;
+        author_label.valign = Gtk.Align.END;
         author_label.get_style_context ().add_class (Granite.STYLE_CLASS_H2_LABEL);
 
         var fake_label_1 = new Gtk.Label ("");
