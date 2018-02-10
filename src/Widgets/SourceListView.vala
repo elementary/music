@@ -47,6 +47,10 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, Granite.Wid
         view.notify["badge"].connect (() => {
             badge = view.badge;
         });
+
+        view.notify["title"].connect (() => {
+            name = view.title;
+        });
     }
 
     public override Gtk.Menu? get_context_menu () {
@@ -70,6 +74,12 @@ public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.Expanda
 
     public SourceListExpandableItem (Category cat) {
         Object (category: cat, name: cat.name);
+    }
+
+    construct {
+        category.notify["name"].connect (() => {
+            name = category.name;
+        });
     }
 
     public override Gtk.Menu? get_context_menu () {
@@ -181,89 +191,5 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
         if (item is SourceListItem) {
             App.main_window.view_manager.select (((SourceListItem)item).view);
         }
-    }
-
-    // removes the device from menu
-    public Gee.Collection<int> remove_device (int page_number) {
-        var pages = new Gee.TreeSet<int>();
-        // foreach (var device in devices_category.children) {
-        //     if (device is SourceListExpandableItem) {
-        //         if (page_number == ((SourceListExpandableItem)device).page_number) {
-        //             enumerate_children_pages((SourceListExpandableItem)device, ref pages);
-        //             devices_category.remove (device);
-        //             return pages;
-        //         }
-        //     }
-        // }
-        return pages;
-    }
-
-    // get the device page_number associated to the view
-    public int get_device_from_item (Noise.SourceListExpandableItem item) {
-        // foreach (var device in devices_category.children) {
-        //     if (item.parent == (Granite.Widgets.SourceList.ExpandableItem)device) {
-        //         if (device is SourceListExpandableItem) {
-        //             return ((SourceListExpandableItem)device).page_number;
-        //         }
-        //     }
-        // }
-        return -1;
-    }
-
-    public void enumerate_children_pages (SourceListExpandableItem exp_item, ref Gee.TreeSet<int> pages) {
-        // foreach (var views in ((SourceListExpandableItem)exp_item).children) {
-        //     if (views is SourceListExpandableItem) {
-        //         pages.add (((SourceListExpandableItem)views).page_number);
-        //         enumerate_children_pages ((SourceListExpandableItem)views, ref pages);
-        //     } else if (views is SourceListItem) {
-        //         pages.add (((SourceListItem)views).page_number);
-        //     }
-        // }
-    }
-
-    public void enumerate_children_items (SourceListExpandableItem exp_item, ref Gee.TreeSet<SourceListItem> pages) {
-        // foreach (var views in ((SourceListExpandableItem)exp_item).children) {
-        //     if (views is SourceListExpandableItem) {
-        //         enumerate_children_items ((SourceListExpandableItem)views, ref pages);
-        //     } else if (views is SourceListItem) {
-        //         pages.add (((SourceListItem)views));
-        //     }
-        // }
-    }
-
-    // change the name shown
-    public void change_playlist_name (int page_number, string new_name) {
-        // foreach (var playlist in playlists_category.children) {
-        //     if (playlist is SourceListItem) {
-        //         if (page_number == ((SourceListItem)playlist).page_number) {
-        //             ((SourceListItem)playlist).name = new_name;
-        //             return;
-        //         }
-        //     }
-        // }
-        // var items = new Gee.TreeSet<SourceListItem> ();
-        // foreach (var device in devices_category.children) {
-        //     if (device is SourceListExpandableItem) {
-        //         enumerate_children_items ((SourceListExpandableItem)device, ref items);
-        //         foreach (var item in items) {
-        //             if (item.page_number == page_number) {
-        //                 ((SourceListItem)item).name = new_name;
-        //                 return;
-        //             }
-        //         }
-        //     }
-        // }
-    }
-
-    // change the name shown
-    public void change_device_name (int page_number, string new_name) {
-        // foreach (var device in devices_category.children) {
-        //     if (device is SourceListItem) {
-        //         if (page_number == ((SourceListItem)device).page_number) {
-        //             ((SourceListItem)device).name = new_name;
-        //             return;
-        //         }
-        //     }
-        // }
     }
 }
