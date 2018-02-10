@@ -10,6 +10,7 @@ lastfm_files = files(
   'Core.vala',
   'LastFM.vala',
   'SimilarMedia.vala',
+  'SimilarMediaView.vala',
   'Tag.vala'
 )
 
