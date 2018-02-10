@@ -335,6 +335,10 @@ public class Noise.AlbumsView : View {
         return album.get_media ();
     }
 
+    public override void update_alert (Granite.Widgets.AlertView alert) {
+        alert.title = _("No Albums Found.");
+    }
+
     public override bool filter (string search) {
         // TODO: maybe handle search here, not in the library manager?
         App.main_window.library_manager.search_medias (search);
