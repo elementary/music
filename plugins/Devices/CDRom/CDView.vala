@@ -159,4 +159,8 @@ public class Noise.Plugins.CDView : View {
             album_image.image.gicon = cover_icon;
         }
     }
+
+    public override bool filter (string search) {
+        return !cd_playlist.is_empty ();
+    }
 }
