@@ -31,11 +31,11 @@ public class Noise.Plugins.CDView : View {
     public TreeViewSetup tvs;
 
     public CDRomDevice dev { get; construct set; }
-    public Gtk.Label author_label { get; private set; }
 
     private Gtk.EventBox main_event_box;
     private Gtk.Grid main_grid;
     private Gtk.Label title_label;
+    private Gtk.Label author_label;
     private Noise.StaticPlaylist cd_playlist;
     private Widgets.AlbumImage album_image;
 
