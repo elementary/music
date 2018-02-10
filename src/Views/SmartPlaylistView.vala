@@ -37,6 +37,7 @@ public class Noise.SmartPlaylistView : PlaylistView {
     construct {
         id = "local/playlist/smart/" + playlist.id;
         priority = 2;
+        list_view.playlist_id = "s%lld".printf (playlist.rowid);
     }
 
     public override Gtk.Menu? get_sidebar_context_menu (Granite.Widgets.SourceList list, Granite.Widgets.SourceList.Item item) {

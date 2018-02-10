@@ -30,7 +30,7 @@
 */
 public class Noise.PlaylistView : View {
     public Playlist playlist { get; construct; }
-    private MusicListView list_view { get; set; }
+    public MusicListView list_view { get; set; }
 
     public TreeViewSetup tvs { get; construct; }
 
