@@ -42,6 +42,8 @@ public class Noise.StaticPlaylistView : PlaylistView {
         priority = 3;
         accept_data_drop = true;
         list_view.playlist_id = ((StaticPlaylist)playlist).read_only ? "" : "p%lld".printf (playlist.rowid);
+
+        list_view.headers_clickable = playlist != App.player.queue_playlist; // You can't reorder the queue
     }
 
     public override Gtk.Menu? get_sidebar_context_menu (Granite.Widgets.SourceList list, Granite.Widgets.SourceList.Item item) {

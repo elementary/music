@@ -144,8 +144,6 @@ public class Noise.MusicListView : GenericList {
             media_scroll_to_current.sensitive = true;
         });
 
-        // TODO: headers_clickable = playlist != App.player.queue_playlist; // You can't reorder the queue
-
         update_sensitivities ();
     }
 
@@ -376,24 +374,6 @@ public class Noise.MusicListView : GenericList {
     protected override void mediaRemoveClicked () {
         var selected_media = get_selected_medias ().read_only_view;
         remove_request (selected_media);
-
-        // switch (hint) {
-        //     case ViewWrapper.Hint.ALBUM_LIST:
-        //     case ViewWrapper.Hint.MUSIC:
-        //         var dialog = new RemoveFilesDialog (selected_media, hint);
-        //         dialog.remove_media.connect ((delete_files) => {
-        //             App.main_window.library_manager.remove_medias (selected_media, delete_files);
-        //         });
-        //         break;
-        //     case ViewWrapper.Hint.PLAYLIST:
-        //         playlist.remove_medias (selected_media);
-        //         break;
-        //     case ViewWrapper.Hint.READ_ONLY_PLAYLIST:
-        //         if (playlist == App.player.queue_playlist) {
-        //             playlist.remove_medias (selected_media);
-        //         }
-        //         break;
-        //   }
     }
 
     void import_to_library_clicked () {
