@@ -150,6 +150,7 @@ public class Noise.AlbumListGrid : Gtk.Grid {
 
         // Set rating
         update_album_rating ();
+        App.main_window.library_manager.media_updated.connect (update_album_rating);
     }
 
     void update_album_cover () {
@@ -196,6 +197,8 @@ public class Noise.AlbumListGrid : Gtk.Grid {
             }
 
         }
+
+        App.main_window.library_manager.update_medias (updated, false, true);
     }
 
     private void view_search_func (string search, Gee.ArrayList<Media> table, Gee.ArrayList<Media> showing) {

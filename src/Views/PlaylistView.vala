@@ -72,11 +72,6 @@ public class Noise.PlaylistView : View {
         playlist.media_added.connect (on_playlist_media_added);
         playlist.media_removed.connect (on_playlist_media_removed);
         playlist.cleared.connect (on_playlist_cleared);
-        // playlist.request_play.connect (() => {
-        //     App.player.clear_queue ();
-        //     play_first_media (true);
-        //     App.player.get_next (true);
-        // });
     }
 
     private void update_badge () {
