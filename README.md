@@ -30,7 +30,7 @@ You'll need the following dependencies:
 
 It's recommended to create a clean build environment. Run `meson` to configure the build environment and then `ninja` to build
 
-    meson build
+    meson build --prefix=/usr
     cd build
     ninja
 
