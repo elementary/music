@@ -1,10 +1,12 @@
 # Music
 [![Translation status](https://l10n.elementary.io/widgets/music/-/svg-badge.svg)](https://l10n.elementary.io/projects/music/?utm_source=widget)
 
+![Screenshot](data/screenshot.png?raw=true)
+
 ## Building, Testing, and Installation
 
 You'll need the following dependencies:
-* cmake
+* meson
 * libaccounts-glib-dev
 * libclutter-gtk-1.0-dev
 * libdbus-glib-1-dev
@@ -26,17 +28,25 @@ You'll need the following dependencies:
 * libzeitgeist-2.0-dev
 * valac
 
-It's recommended to create a clean build environment
+It's recommended to create a clean build environment. Run `meson` to configure the build environment and then `ninja` to build
 
-    mkdir build
-    cd build/
+    meson build --prefix=/usr
+    cd build
+    ninja
 
-Run `cmake` to configure the build environment and then `make` to build
+To install, use `ninja install`, then execute with `io.elementary.music`
 
-    cmake -DCMAKE_INSTALL_PREFIX=/usr ..
-    make
-
-To install, use `make install`, then execute with `io.elementary.music`
-
-    sudo make install
+    sudo ninja install
     io.elementary.music
+
+You can run tests with `ninja test`, and reset the build environment with `ninja clean`.
+
+You can use these options to configure your build:
+* `build-plugins`: `true` to build plugins or `false` to ony compile the core and the application
+* `plugins`: any of `lastfm`, `audio-device`, `cdrom` and `ipod`, separated by commas
+* `prefix`: the installation prefix
+
+To define their values, use `meson configure`
+
+    # For instance, if you want to disable plugins:
+    meson configure -Dbuild-plugins=false

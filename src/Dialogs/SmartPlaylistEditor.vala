@@ -1,6 +1,6 @@
 // -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012-2017 elementary LLC. (https://elementary.io)
+ * Copyright (c) 2012-2018 elementary LLC. (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -28,45 +28,34 @@
  */
 
 public class Noise.SmartPlaylistEditor : Gtk.Dialog {
-    SmartPlaylist sp;
-    private bool is_new = false;
+    public Library library { get; construct; }
+    public SmartPlaylist smart_playlist { get; construct; }
+
     private Gtk.Entry name_entry;
     private Gtk.ComboBoxText match_combobox;
     private Gtk.Button save_button;
-    private Gtk.Grid main_grid;
     private Gtk.Grid queries_grid;
     private Gtk.CheckButton limit_check;
     private Gtk.SpinButton limit_spin;
     private Gtk.Button adding_button;
     private Gee.ArrayList<EditorQuery> queries_list;
     private int row = 0;
-    private Library library;
 
-    public SmartPlaylistEditor (SmartPlaylist? sp = null, Library library) {
-        this.title = _("Smart Playlist Editor");
-        this.library = library;
-        this.deletable = false;
+    public SmartPlaylistEditor (SmartPlaylist? smart_playlist = null, Library library) {
+        Object (
+            library: library,
+            smart_playlist: smart_playlist
+        );
+    }
 
-        if (sp == null) {
-            is_new = true;
-            this.sp = new SmartPlaylist (library);
-        } else {
-            this.sp = sp;
-        }
-
+    construct {
         name_entry = new Gtk.Entry ();
         name_entry.changed.connect (name_changed);
         name_entry.placeholder_text = _("Playlist Title");
-        if (is_new == false)
-            name_entry.text = sp.name;
 
         match_combobox = new Gtk.ComboBoxText ();
         match_combobox.insert_text (0, _("any"));
         match_combobox.insert_text (1, _("all"));
-        if (is_new == false)
-            match_combobox.set_active (sp.conditional);
-        else
-            match_combobox.set_active (0);
 
         var match_grid = new Gtk.Grid ();
         match_grid.column_spacing = 12;
@@ -89,14 +78,6 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
         limit_check = new Gtk.CheckButton.with_label (_("Limit to"));
         limit_spin = new Gtk.SpinButton.with_range (0, 500, 10);
 
-        if (is_new == false) {
-            limit_check.set_active (sp.limit);
-            limit_spin.set_value ((double)sp.limit_amount);
-        } else {
-            limit_check.set_active (true);
-            limit_spin.set_value (50);
-        }
-
         limit_spin.sensitive = limit_check.active;
         limit_check.toggled.connect(() => { limit_spin.sensitive = limit_check.active; });
 
@@ -117,7 +98,7 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
         button_box.pack_end (save_button, false, false, 0);
         button_box.spacing = 6;
 
-        main_grid = new Gtk.Grid ();
+        var main_grid = new Gtk.Grid ();
         main_grid.expand = true;
         main_grid.margin_start = main_grid.margin_end = 12;
         main_grid.column_spacing = 12;
@@ -130,12 +111,34 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
         main_grid.attach (new Granite.HeaderLabel (_("Options")), 0, 5, 3, 1);
         main_grid.attach (limiter_grid, 0, 6, 3, 1);
         main_grid.attach (button_box, 0, 7, 3, 1);
-        ((Gtk.Container) get_content_area ()).add (main_grid);
-    }
 
-    public void load_smart_playlist () {
+        deletable = false;
+        destroy_with_parent = true;
+        modal = true;
+        title = _("Smart Playlist Editor");
+        transient_for = App.main_window;
+        window_position = Gtk.WindowPosition.CENTER_ON_PARENT;
+        get_content_area ().add (main_grid);
+
+        if (smart_playlist != null) {
+            name_entry.text = smart_playlist.name;
+
+            match_combobox.active = smart_playlist.conditional;
+
+            limit_check.active = smart_playlist.limit;
+            limit_spin.value = (double) smart_playlist.limit_amount;
+        } else {
+            smart_playlist = new SmartPlaylist (library);
+
+            match_combobox.active = 0;
+
+            limit_check.active = true;
+            limit_spin.value = 50;
+        }
+
         show_all ();
-        var sp_queries = sp.get_queries ();
+
+        var sp_queries = smart_playlist.get_queries ();
         foreach (SmartQuery q in sp_queries) {
             var editor_query = new EditorQuery (q);
             editor_query.removed.connect (() => {queries_list.remove (editor_query);});
@@ -167,7 +170,7 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
         } else {
             foreach (var p in library.get_smart_playlists ()) {
                 var fixed_name = name_entry.text.strip ();
-                if (sp.rowid != p.rowid && fixed_name == p.name) {
+                if (smart_playlist.rowid != p.rowid && fixed_name == p.name) {
                     save_button.set_sensitive (false);
                     return;
                 }
@@ -200,22 +203,23 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
     }
 
     public virtual void save_click () {
-        sp.clear_queries ();
-        sp.clear ();
+        smart_playlist.clear_queries ();
+        smart_playlist.clear ();
         var queries = new Gee.TreeSet<SmartQuery> ();
         foreach (EditorQuery speq in queries_list) {
             var query = speq.get_query ();
             queries.add (query);
         }
 
-        sp.add_queries (queries);
-        sp.name = name_entry.text.strip ();
-        sp.conditional = (SmartPlaylist.ConditionalType) match_combobox.get_active ();
-        sp.limit = limit_check.get_active ();
-        sp.limit_amount = (int)limit_spin.get_value ();
-        if (is_new) {
+        smart_playlist.add_queries (queries);
+        smart_playlist.name = name_entry.text.strip ();
+        smart_playlist.conditional = (SmartPlaylist.ConditionalType) match_combobox.get_active ();
+        smart_playlist.limit = limit_check.get_active ();
+        smart_playlist.limit_amount = (int)limit_spin.get_value ();
+
+        if (smart_playlist == null) {
             App.main_window.newly_created_playlist = true;
-            library.add_smart_playlist (sp);
+            library.add_smart_playlist (smart_playlist);
         }
 
         this.destroy ();

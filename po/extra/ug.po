@@ -24,8 +24,8 @@ msgstr "مۇزىكا ئاڭلاش"
 
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 msgstr ""
-"ئاۋاز، ئاۋاز ھۆججىتى، قويغۇچ، MP3, iPod, قويۇش، قويۇش تىزىملىكى، مېدىئا، CD, "
-"تېلىفون، ناخشىلار؛"
+"ئاۋاز; ئاۋاز ھۆججىتى; قويغۇچ; MP3; iPod; قويۇش; قويۇش تىزىملىكى; مېدىئا; CD; "
+"تېلىفون; ناخشىلار;"
 
 msgid "About Music"
 msgstr "مۇزىكا ھەققىدە"

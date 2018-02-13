@@ -415,7 +415,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         height_request = 350;
         width_request = 400;
         icon_name = "multimedia-audio-player";
-        title = ((Noise.App) GLib.Application.get_default ()).program_name;
+        title = _("Music");
 
         saved_state_settings = new GLib.Settings ("io.elementary.music.saved-state");
 
@@ -837,12 +837,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public void show_smart_playlist_dialog (SmartPlaylist? smartplaylist = null) {
         SmartPlaylistEditor spe = null;
         spe = new SmartPlaylistEditor (smartplaylist, library_manager);
-        spe.window_position = Gtk.WindowPosition.CENTER;
-        spe.type_hint = Gdk.WindowTypeHint.DIALOG;
-        spe.set_transient_for (this);
-        spe.set_modal(true);
-        spe.destroy_with_parent = true;
-        spe.load_smart_playlist ();
         spe.show ();
     }
 
@@ -1090,7 +1084,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public void doAlert(string title, string message) {
         var dialog = new Gtk.MessageDialog (this, Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR, Gtk.ButtonsType.OK, "%s", title);
 
-        dialog.title = ((Noise.App) GLib.Application.get_default ()).program_name;
+        dialog.title = _("Music");
         dialog.secondary_text = message;
         dialog.secondary_use_markup = true;
 

@@ -61,7 +61,7 @@ public class Noise.HeaderBar : Gtk.HeaderBar {
         menu_button.valign = Gtk.Align.CENTER;
 
         show_close_button = true;
-        title = ((Noise.App) GLib.Application.get_default ()).program_name;
+        title = (_("Music"));
         pack_start (previous_button);
         pack_start (play_button);
         pack_start (next_button);

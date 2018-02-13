@@ -71,13 +71,13 @@ public class MprisRoot : GLib.Object {
     }
     public string desktop_entry {
         owned get {
-            return ((Noise.App) GLib.Application.get_default ()).application_id;
+            return ((Gtk.Application) GLib.Application.get_default ()).application_id;
         }
     }
 
     public string identity {
         owned get {
-            return ((Noise.App) GLib.Application.get_default ()).program_name;
+            return Build.EXEC_NAME;
         }
     }
 
@@ -577,7 +577,6 @@ public class MprisPlaylists : GLib.Object {
             MprisPlaylist to_add = MprisPlaylist ();
             to_add.id = path;
             to_add.name = p.name;
-            to_add.icon = "file://" + Build.ICON_DIR + "/hicolor/16x16/mimetypes/" + p.icon.to_string () + ".svg";
 
             rv.add (to_add);
             debug ("Added playlist %s %s\n", path, p.name);
@@ -623,7 +622,6 @@ public class MprisPlaylists : GLib.Object {
                 MprisPlaylist mpris_p = MprisPlaylist ();
                 mpris_p.id = new ObjectPath (PLAYLIST_ID.printf (p.rowid));
                 mpris_p.name = p.name;
-                mpris_p.icon = "file://" + Build.ICON_DIR + "/hicolor/16x16/mimetypes/" + p.icon.to_string () + ".svg";
                 active_playlist.playlist = mpris_p;
             }
 
