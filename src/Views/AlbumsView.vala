@@ -27,7 +27,7 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public class Noise.GridView : ContentView, ViewTextOverlay {
+public class Noise.AlbumsView : ContentView, ViewTextOverlay {
     private Gtk.Paned hpaned;
     private FastGrid icon_view;
 
@@ -45,7 +45,7 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
 
     public ViewWrapper parent_view_wrapper { get; protected set; }
 
-    public GridView (ViewWrapper view_wrapper) {
+    public AlbumsView (ViewWrapper view_wrapper) {
         Object (parent_view_wrapper: view_wrapper);
 
         icon_view = new FastGrid ();
