@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 11:30-0800\n"
-"PO-Revision-Date: 2017-09-06 14:55+0000\n"
-"Last-Translator: Lloyd Carr <l.carr@gmx.de>\n"
-"Language-Team: German <https://weblate.elementary.io/projects/music/music/de/"
-">\n"
+"PO-Revision-Date: 2018-02-14 23:20+0000\n"
+"Last-Translator: Jörg Habekost <joebeam@t-online.de>\n"
+"Language-Team: German "
+"<https://weblate.elementary.io/projects/music/music/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.16\n"
+"X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-03-09 05:47+0000\n"
 
 #: core/LibrariesManager.vala:147
@@ -265,7 +265,7 @@ msgstr "Import von %i Titeln von einer Audio-CD beendet."
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
 msgid "Importing track %u: %s"
-msgstr "Titel %u importieren: %s"
+msgstr "Titel %u wird importiert: %s"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:364
 msgid "CD import will be <b>cancelled</b> after current import."
@@ -438,15 +438,14 @@ msgid "Choose Music Folder"
 msgstr "Musikordner auswählen"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:38
-#, fuzzy, c-format
+#, c-format
 msgid "Would you like to install the %s plugin?"
-msgstr "Wollen Sie die »%s«-Erweiterung installieren?\n"
+msgstr "Wollen Sie die »%s«-Erweiterung installieren?"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:39
-#, fuzzy, c-format
+#, c-format
 msgid "This song cannot be played. The %s plugin is required to play the song."
 msgstr ""
-"\n"
 "Dieser Titel kann nicht wiedergegeben werden. Das Plugin »%s« ist zur "
 "Wiedergabe des Titels nötig."
 
