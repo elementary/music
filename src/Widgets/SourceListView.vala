@@ -49,10 +49,10 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListE
     //for playlist right click
     private Gtk.Menu playlist_menu;
     private Gtk.MenuItem playlist_rename;
-    private Gtk.MenuItem playlistEdit;
+    private Gtk.MenuItem playlist_edit;
     private Gtk.MenuItem playlist_remove;
     private Gtk.MenuItem playlist_save;
-    private Gtk.MenuItem playlist_Export;
+    private Gtk.MenuItem playlist_export;
 
     public SourceListItem (int page_number, string name, ViewWrapper.Hint hint, GLib.Icon icon, GLib.Icon? activatable_icon = null) {
         Object (
@@ -82,15 +82,15 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListE
                 break;
             case ViewWrapper.Hint.SMART_PLAYLIST:
                 playlist_rename = new Gtk.MenuItem.with_label (_("Rename"));
-                playlistEdit = new Gtk.MenuItem.with_label (_("Edit…"));
+                playlist_edit = new Gtk.MenuItem.with_label (_("Edit…"));
                 playlist_remove = new Gtk.MenuItem.with_label (_("Remove"));
                 playlist_menu.append (playlist_rename);
-                playlist_menu.append (playlistEdit);
+                playlist_menu.append (playlist_edit);
                 playlist_menu.append (playlist_remove);
                 playlist_rename.activate.connect (() => {
                     playlist_rename_clicked (page_number);
                 });
-                playlistEdit.activate.connect (() => {
+                playlist_edit.activate.connect (() => {
                     playlist_edit_clicked (page_number);
                 });
                 playlist_remove.activate.connect (() => {
@@ -106,19 +106,20 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListE
                 break;
         }
 
-        playlist_Export = new Gtk.MenuItem.with_label (_("Export…"));
-        playlist_Export.activate.connect (() => {
+        playlist_export = new Gtk.MenuItem.with_label (_("Export…"));
+        playlist_export.activate.connect (() => {
             playlist_export_clicked (page_number);
         });
 
-        playlist_menu.append (playlist_Export);
+        playlist_menu.append (playlist_export);
         playlist_menu.show_all ();
     }
 
     public override Gtk.Menu? get_context_menu () {
         if (playlist_menu != null) {
-            if (playlist_menu.get_attach_widget () != null)
+            if (playlist_menu.get_attach_widget () != null) {
                 playlist_menu.detach ();
+            }
             return playlist_menu;
         }
         return null;
@@ -202,33 +203,35 @@ public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.Expanda
     }
 }
 
-public class Noise.PlayListCategory : Granite.Widgets.SourceList.ExpandableItem,
-                                      Granite.Widgets.SourceListSortable
-{
+public class Noise.PlayListCategory : Granite.Widgets.SourceList.ExpandableItem, Granite.Widgets.SourceListSortable {
     //for playlist right click
-    Gtk.Menu playlist_menu;
-    Gtk.MenuItem playlistNew;
-    Gtk.MenuItem smartPlaylistNew;
-    Gtk.MenuItem playlistImport;
+    private Gtk.Menu playlist_menu;
     public signal void playlist_import_clicked ();
 
     public PlayListCategory (string name) {
         base (name);
 
-        //playlist right click menu
-        playlist_menu = new Gtk.Menu();
-        playlistNew = new Gtk.MenuItem.with_label(_("New Playlist"));
-        smartPlaylistNew = new Gtk.MenuItem.with_label(_("New Smart Playlist"));
-        playlistImport = new Gtk.MenuItem.with_label(_("Import Playlists"));
+        var playlist_new = new Gtk.MenuItem.with_label (_("New Playlist"));
+        var smart_playlist_new = new Gtk.MenuItem.with_label (_("New Smart Playlist"));
+        var playlist_import = new Gtk.MenuItem.with_label (_("Import Playlists"));
 
-        playlist_menu.append(playlistNew);
-        playlist_menu.append(smartPlaylistNew);
-        playlist_menu.append(playlistImport);
+        playlist_menu = new Gtk.Menu ();
+        playlist_menu.append (playlist_new);
+        playlist_menu.append (smart_playlist_new);
+        playlist_menu.append (playlist_import);
         playlist_menu.show_all ();
 
-        playlistNew.activate.connect(() => {App.main_window.create_new_playlist ();});
-        smartPlaylistNew.activate.connect(() => {App.main_window.show_smart_playlist_dialog ();});
-        playlistImport.activate.connect(() => {playlist_import_clicked ();});
+        playlist_new.activate.connect (() => {
+            App.main_window.create_new_playlist ();
+        });
+
+        smart_playlist_new.activate.connect (() => {
+            App.main_window.show_smart_playlist_dialog ();
+        });
+
+        playlist_import.activate.connect (() => {
+            playlist_import_clicked ();
+        });
     }
 
     public override Gtk.Menu? get_context_menu () {
@@ -283,9 +286,7 @@ public class Noise.PlayListCategory : Granite.Widgets.SourceList.ExpandableItem,
     }
 }
 
-public class Noise.SourceListRoot : Granite.Widgets.SourceList.ExpandableItem,
-                                    Granite.Widgets.SourceListSortable
-{
+public class Noise.SourceListRoot : Granite.Widgets.SourceList.ExpandableItem, Granite.Widgets.SourceListSortable {
     public SourceListRoot () {
         base ("SourceListRoot");
     }
