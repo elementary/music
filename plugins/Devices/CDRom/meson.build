@@ -15,5 +15,3 @@ shared_module(
   install: true,
   install_dir: plugindir
 )
-
-install_data('cdrom-device.plugin', install_dir: plugindir)
