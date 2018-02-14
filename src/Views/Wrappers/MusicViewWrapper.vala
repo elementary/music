@@ -40,7 +40,7 @@ public class Noise.MusicViewWrapper : ViewWrapper {
         Idle.add_full (VIEW_CONSTRUCT_PRIORITY, build_async.callback);
         yield;
         // Add grid view
-        grid_view = new GridView (this);
+        grid_view = new AlbumsView (this);
 
         // Add list view and column browser
         TreeViewSetup music_setup;
