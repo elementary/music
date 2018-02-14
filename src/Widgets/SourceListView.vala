@@ -48,11 +48,6 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListE
 
     //for playlist right click
     private Gtk.Menu playlist_menu;
-    private Gtk.MenuItem playlist_rename;
-    private Gtk.MenuItem playlist_edit;
-    private Gtk.MenuItem playlist_remove;
-    private Gtk.MenuItem playlist_save;
-    private Gtk.MenuItem playlist_export;
 
     public SourceListItem (int page_number, string name, ViewWrapper.Hint hint, GLib.Icon icon, GLib.Icon? activatable_icon = null) {
         Object (
@@ -69,8 +64,8 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListE
 
         switch (hint) {
             case ViewWrapper.Hint.PLAYLIST:
-                playlist_rename = new Gtk.MenuItem.with_label (_("Rename"));
-                playlist_remove = new Gtk.MenuItem.with_label (_("Remove"));
+                var playlist_rename = new Gtk.MenuItem.with_label (_("Rename"));
+                var playlist_remove = new Gtk.MenuItem.with_label (_("Remove"));
                 playlist_menu.append (playlist_rename);
                 playlist_menu.append (playlist_remove);
                 playlist_rename.activate.connect (() => {
@@ -81,9 +76,9 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListE
                 });
                 break;
             case ViewWrapper.Hint.SMART_PLAYLIST:
-                playlist_rename = new Gtk.MenuItem.with_label (_("Rename"));
-                playlist_edit = new Gtk.MenuItem.with_label (_("Edit…"));
-                playlist_remove = new Gtk.MenuItem.with_label (_("Remove"));
+                var playlist_rename = new Gtk.MenuItem.with_label (_("Rename"));
+                var playlist_edit = new Gtk.MenuItem.with_label (_("Edit…"));
+                var playlist_remove = new Gtk.MenuItem.with_label (_("Remove"));
                 playlist_menu.append (playlist_rename);
                 playlist_menu.append (playlist_edit);
                 playlist_menu.append (playlist_remove);
@@ -98,7 +93,7 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListE
                 });
                 break;
             case ViewWrapper.Hint.READ_ONLY_PLAYLIST:
-                playlist_save = new Gtk.MenuItem.with_label (_("Save as Playlist"));
+                var playlist_save = new Gtk.MenuItem.with_label (_("Save as Playlist"));
                 playlist_menu.append (playlist_save);
                 playlist_save.activate.connect (() => {
                     playlist_save_clicked (page_number);
@@ -106,7 +101,7 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListE
                 break;
         }
 
-        playlist_export = new Gtk.MenuItem.with_label (_("Export…"));
+        var playlist_export = new Gtk.MenuItem.with_label (_("Export…"));
         playlist_export.activate.connect (() => {
             playlist_export_clicked (page_number);
         });
