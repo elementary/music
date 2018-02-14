@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 11:30-0800\n"
-"PO-Revision-Date: 2018-02-14 10:50+0000\n"
-"Last-Translator: anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2018-02-14 10:52+0000\n"
+"Last-Translator: BergischNRW <bergischnrw@aol.de>\n"
 "Language-Team: German "
 "<https://weblate.elementary.io/projects/music/music/de/>\n"
 "Language: de\n"
@@ -443,10 +443,9 @@ msgid "Would you like to install the %s plugin?"
 msgstr "Wollen Sie die »%s«-Erweiterung installieren?"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:39
-#, fuzzy, c-format
+#, c-format
 msgid "This song cannot be played. The %s plugin is required to play the song."
 msgstr ""
-"\n"
 "Dieser Titel kann nicht wiedergegeben werden. Das Plugin »%s« ist zur "
 "Wiedergabe des Titels nötig."
 
