@@ -48,7 +48,7 @@ app_files = files(
   'src/Views/ContentView.vala',
   'src/Views/DeviceSummaryWidget.vala',
   'src/Views/DeviceView.vala',
-  'src/Views/GridView.vala',
+  'src/Views/AlbumsView.vala',
   'src/Views/ViewStack.vala',
   'src/Views/ViewTextOverlay.vala',
   'src/Views/ListView/ListView.vala',

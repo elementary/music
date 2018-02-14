@@ -68,7 +68,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
     }
 
     public ListView list_view { get; protected set; }
-    public GridView grid_view { get; protected set; }
+    public AlbumsView grid_view { get; protected set; }
     protected Granite.Widgets.AlertView embedded_alert { get; set; }
     protected Granite.Widgets.Welcome welcome_screen { get; set; }
 
