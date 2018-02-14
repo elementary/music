@@ -1,6 +1,6 @@
 // -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012-2017 elementary LLC. (https://elementary.io)
+ * Copyright (c) 2012-2018 elementary LLC. (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -46,7 +46,6 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListE
     public ViewWrapper.Hint hint { get; construct; }
     public GLib.Icon? activatable_icon { get; construct; }
 
-    //for playlist right click
     private Gtk.Menu playlist_menu;
 
     public SourceListItem (int page_number, string name, ViewWrapper.Hint hint, GLib.Icon icon, GLib.Icon? activatable_icon = null) {
@@ -136,13 +135,7 @@ public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.Expanda
     public int page_number { get; set; default = -1; }
     public ViewWrapper.Hint hint;
 
-    //for device right click
-    Gtk.Menu deviceMenu;
-    Gtk.MenuItem deviceImportToLibrary;
-    Gtk.MenuItem deviceEject;
-    Gtk.MenuItem deviceAddPlaylist;
-    Gtk.MenuItem deviceAddSmartPlaylist;
-    Gtk.MenuItem deviceSync;
+    private Gtk.Menu device_menu;
 
     public signal void device_import_clicked (int page_number);
     public signal void device_eject_clicked (int page_number);
@@ -158,54 +151,71 @@ public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.Expanda
         if (activatable_icon != null)
             this.activatable = activatable_icon;
 
+        device_menu = new Gtk.Menu ();
+
         if (hint == ViewWrapper.Hint.DEVICE_AUDIO) {
-            deviceMenu = new Gtk.Menu();
-            deviceImportToLibrary = new Gtk.MenuItem.with_label(_("Import to Library"));
-            deviceImportToLibrary.activate.connect (() => {device_import_clicked (page_number);});
-            deviceMenu.append (deviceImportToLibrary);
-            deviceMenu.show_all ();
+            var import_menuitem = new Gtk.MenuItem.with_label(_("Import to Library"));
+            import_menuitem.activate.connect (() => {
+                device_import_clicked (page_number);
+            });
+
+            device_menu.append (import_menuitem);
         }
 
         if (hint == ViewWrapper.Hint.DEVICE) {
-            deviceMenu = new Gtk.Menu();
-            deviceEject = new Gtk.MenuItem.with_label (_("Eject"));
-            deviceEject.activate.connect (() => {device_eject_clicked (page_number);});
+            var eject_menuitem = new Gtk.MenuItem.with_label (_("Eject"));
+            eject_menuitem.activate.connect (() => {
+                device_eject_clicked (page_number);
+            });
+
             if (give_more_information is Device) {
-                var device = (Device)give_more_information;
-                if (device.get_library ().support_playlists ()) {
-                    deviceAddPlaylist = new Gtk.MenuItem.with_label (_("New Playlist"));
-                    deviceAddPlaylist.activate.connect (() => {device_new_playlist_clicked (page_number);});
-                    deviceMenu.append (deviceAddPlaylist);
+                var device = (Device) give_more_information;
+                var device_library = device.get_library ();
+
+                if (device_library.support_playlists ()) {
+                    var add_playlist_menuitem = new Gtk.MenuItem.with_label (_("New Playlist"));
+                    add_playlist_menuitem.activate.connect (() => {
+                        device_new_playlist_clicked (page_number);
+                    });
+                    device_menu.append (add_playlist_menuitem);
                 }
-                if (device.get_library ().support_smart_playlists ()) {
-                    deviceAddSmartPlaylist = new Gtk.MenuItem.with_label (_("New Smart Playlist"));
-                    deviceAddSmartPlaylist.activate.connect (() => {device_new_smartplaylist_clicked (page_number);});
-                    deviceMenu.append (deviceAddSmartPlaylist);
+
+                if (device_library.support_smart_playlists ()) {
+                    var add_smart_playlist_menuitem = new Gtk.MenuItem.with_label (_("New Smart Playlist"));
+                    add_smart_playlist_menuitem.activate.connect (() => {
+                        device_new_smartplaylist_clicked (page_number);
+                    });
+                    device_menu.append (add_smart_playlist_menuitem);
                 }
+
                 if (device.read_only() == false) {
-                    deviceSync = new Gtk.MenuItem.with_label (_("Sync"));
-                    deviceSync.activate.connect (() => {device_sync_clicked (page_number);});
-                    deviceMenu.append (deviceSync);
+                    var sync_menuitem = new Gtk.MenuItem.with_label (_("Sync"));
+                    sync_menuitem.activate.connect (() => {
+                        device_sync_clicked (page_number);
+                    });
+                    device_menu.append (sync_menuitem);
                 }
             }
-            deviceMenu.append (deviceEject);
-            deviceMenu.show_all ();
+            device_menu.append (eject_menuitem);
         }
+
+        device_menu.show_all ();
     }
 
     public override Gtk.Menu? get_context_menu () {
-        return deviceMenu;
+        return device_menu;
     }
 }
 
 public class Noise.PlayListCategory : Granite.Widgets.SourceList.ExpandableItem, Granite.Widgets.SourceListSortable {
-    //for playlist right click
     private Gtk.Menu playlist_menu;
     public signal void playlist_import_clicked ();
 
     public PlayListCategory (string name) {
-        base (name);
+        Object (name: name);
+    }
 
+    construct {
         var playlist_new = new Gtk.MenuItem.with_label (_("New Playlist"));
         var smart_playlist_new = new Gtk.MenuItem.with_label (_("New Smart Playlist"));
         var playlist_import = new Gtk.MenuItem.with_label (_("Import Playlists"));
