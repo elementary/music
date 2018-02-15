@@ -19,3 +19,5 @@ shared_module(
   install: true,
   install_dir: plugindir
 )
+
+install_data('ipod-device.plugin', install_dir: plugindir)
