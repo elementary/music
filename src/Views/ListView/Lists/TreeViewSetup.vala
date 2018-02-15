@@ -36,9 +36,9 @@ public class Noise.TreeViewSetup : Object {
 
     public ListColumn sort_column_id { get; set; default = ListColumn.ARTIST; }
     public Gtk.SortType sort_direction { get; set; default = Gtk.SortType.ASCENDING; }
-
     public Gda.Connection? connection { get; construct; default = null; }
     public string? uid { get; construct; default = null; }
+
     private Gee.LinkedList<Gtk.TreeViewColumn> columns = new Gee.LinkedList<Gtk.TreeViewColumn> ();
 
     public TreeViewSetup (bool for_playlist = false, string? uid = null, Gda.Connection? connection = null) {

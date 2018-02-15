@@ -146,11 +146,11 @@ public class Noise.AlbumsView : View {
             selection_data.set_uris (uris);
     }
 
-    public void reset_pixbufs () {
+    private void reset_pixbufs () {
         queue_draw ();
     }
 
-    public void setup_focus () {
+    private void setup_focus () {
         var focus_blacklist = new Gee.LinkedList<Gtk.Widget> ();
         focus_blacklist.add (App.main_window.view_selector);
         focus_blacklist.add (App.main_window.search_entry);
@@ -162,64 +162,8 @@ public class Noise.AlbumsView : View {
         }
     }
 
-    public Gee.Collection<Media> get_visible_media () {
-        var all_visible_media = new Gee.TreeSet<Media> ();
-
-        foreach (var album in get_visible_albums ()) {
-            var album_media = album.get_media ();
-            all_visible_media.add_all (album_media);
-        }
-
-        return all_visible_media;
-    }
-
-    public Gee.Collection<Media> get_media () {
-        var all_media = new Gee.TreeSet<Media> ();
-
-        foreach (var album in get_albums ()) {
-            var album_media = album.get_media ();
-            all_media.add_all (album_media);
-        }
-
-        return all_media;
-    }
-
-    public Gee.Collection<Album> get_visible_albums () {
-        return (Gee.Collection<Album>)get_visible_objects ();
-    }
-
-    public Gee.Collection<Album> get_albums () {
+    private Gee.Collection<Album> get_albums () {
         return (Gee.Collection<Album>)get_objects ();
-    }
-
-    public void update_media (Gee.Collection<Media> media) {
-        var medias_to_update = new Gee.TreeSet<Media> ();
-        medias_to_update.add_all (media);
-        var medias_to_add = new Gee.TreeSet<Media> ();
-        var albums_to_remove = new Gee.TreeSet<Album> ();
-        foreach (var m in medias_to_update) {
-            if (m == null)
-                continue;
-
-            var album = m.album_info;
-            if (album == null)
-                continue;
-
-            if (!album.is_compatible (m)) {
-                medias_to_add.add (m);
-                album.remove_media (m);
-                if (album.is_empty == true) {
-                    album.cover_rendered.disconnect (queue_draw);
-                    album.notify["cover-icon"].disconnect (queue_draw);
-                    albums_to_remove.add (album);
-                }
-
-            }
-        }
-
-        remove_objects (albums_to_remove);
-        add_media (medias_to_add);
-        request_filtering ();
     }
 
     public void set_media (Gee.Collection<Media> to_add) {
@@ -228,7 +172,7 @@ public class Noise.AlbumsView : View {
     }
 
     // Check for already existing albums, only add the missing ones.
-    public void add_media (Gee.Collection<Media> media) {
+    private void add_media (Gee.Collection<Media> media) {
         var medias_to_add = new Gee.TreeSet<Media> ();
         medias_to_add.add_all (media);
         var albums_to_append = new Gee.TreeSet<Album> ();
@@ -248,40 +192,6 @@ public class Noise.AlbumsView : View {
         // Add new albums
         add_objects (albums_to_append);
         request_filtering ();
-    }
-
-    /* There is a special case. Let's say that we're removing
-     * song1, song2 and song5 from Album X, and the album currently
-     * contains song1, song2, song5, and song3. Then we shouldn't remove
-     * the album because it still contains a song (song3).
-     */
-    public void remove_media (Gee.Collection<Media> to_remove) {
-        var albums_to_remove = new Gee.TreeSet<Album> ();
-        foreach (var m in to_remove) {
-            if (m == null)
-                continue;
-
-            var album = m.album_info;
-            if (album == null)
-                continue;
-
-            album.remove_media (m);
-            if (album.is_empty == true) {
-                album.cover_rendered.disconnect (queue_draw);
-                album.notify["cover-icon"].disconnect (queue_draw);
-                albums_to_remove.add (album);
-            }
-        }
-
-        if (albums_to_remove.size <= 0)
-            return;
-
-        remove_objects (albums_to_remove);
-        request_filtering ();
-    }
-
-    public int get_relative_id () {
-        return -1;
     }
 
     protected void item_activated (Object? object) {
