@@ -22,4 +22,5 @@ shared_module(
   install_dir: plugindir
 )
 
+install_data('lastfm.plugin', install_dir: plugindir)
 install_data('noise-lastfm.application', install_dir: join_paths(datadir, 'accounts', 'applications'))
