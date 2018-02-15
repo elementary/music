@@ -119,13 +119,13 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListE
         return null;
     }
 
-    public bool data_drop_possible (Gdk.DragContext context, Gtk.SelectionData data) {
+    private bool data_drop_possible (Gdk.DragContext context, Gtk.SelectionData data) {
         // TODO: need a 'hint' for for QUEUE more specific than READ_ONLY_PLAYLIST
         return hint == ViewWrapper.Hint.PLAYLIST
             && data.get_target () == Gdk.Atom.intern_static_string ("text/uri-list");
     }
 
-    public Gdk.DragAction data_received (Gdk.DragContext context, Gtk.SelectionData data) {
+    private Gdk.DragAction data_received (Gdk.DragContext context, Gtk.SelectionData data) {
         playlist_media_added (page_number, data.get_uris ());
         return Gdk.DragAction.COPY;
     }
@@ -244,11 +244,11 @@ public class Noise.PlayListCategory : Granite.Widgets.SourceList.ExpandableItem,
     }
 
     // implement Sortable interface
-    public bool allow_dnd_sorting () {
+    private bool allow_dnd_sorting () {
         return true;
     }
 
-    public int compare (Granite.Widgets.SourceList.Item a, Granite.Widgets.SourceList.Item b) {
+    private int compare (Granite.Widgets.SourceList.Item a, Granite.Widgets.SourceList.Item b) {
         var item_a = a as SourceListItem;
         var item_b = b as SourceListItem;
 
@@ -296,11 +296,11 @@ public class Noise.SourceListRoot : Granite.Widgets.SourceList.ExpandableItem, G
         base ("SourceListRoot");
     }
 
-    public bool allow_dnd_sorting () {
+    private bool allow_dnd_sorting () {
         return true;
     }
 
-    public int compare (Granite.Widgets.SourceList.Item a, Granite.Widgets.SourceList.Item b) {
+    private int compare (Granite.Widgets.SourceList.Item a, Granite.Widgets.SourceList.Item b) {
         return 0;
     }
 }
@@ -515,7 +515,7 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
     }
 
     // get the device page_number associated to the view
-    public int get_device_from_item (Noise.SourceListExpandableItem item) {
+    private int get_device_from_item (Noise.SourceListExpandableItem item) {
         foreach (var device in devices_category.children) {
             if (item.parent == (Granite.Widgets.SourceList.ExpandableItem)device) {
                 if (device is SourceListExpandableItem) {
@@ -526,7 +526,7 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
         return -1;
     }
 
-    public void enumerate_children_pages (SourceListExpandableItem exp_item, ref Gee.TreeSet<int> pages) {
+    private void enumerate_children_pages (SourceListExpandableItem exp_item, ref Gee.TreeSet<int> pages) {
         foreach (var views in ((SourceListExpandableItem)exp_item).children) {
             if (views is SourceListExpandableItem) {
                 pages.add (((SourceListExpandableItem)views).page_number);
@@ -537,7 +537,7 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
         }
     }
 
-    public void enumerate_children_items (SourceListExpandableItem exp_item, ref Gee.TreeSet<SourceListItem> pages) {
+    private void enumerate_children_items (SourceListExpandableItem exp_item, ref Gee.TreeSet<SourceListItem> pages) {
         foreach (var views in ((SourceListExpandableItem)exp_item).children) {
             if (views is SourceListExpandableItem) {
                 enumerate_children_items ((SourceListExpandableItem)views, ref pages);
