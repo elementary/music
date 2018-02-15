@@ -65,7 +65,8 @@ public class Noise.Widgets.StatusBar : Gtk.ActionBar {
         });
 
         add_spl_menuitem.activate.connect (() => {
-            App.main_window.show_smart_playlist_dialog ();
+            var smart_playlist_editor = new SmartPlaylistEditor (null, App.main_window.library_manager);
+            smart_playlist_editor.show ();
         });
     }
 
