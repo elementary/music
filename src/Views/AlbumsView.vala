@@ -27,12 +27,12 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public class Noise.GridView : ContentView, ViewTextOverlay {
+public class Noise.AlbumsView : ContentView, ViewTextOverlay {
     private Gtk.Paned hpaned;
     private FastGrid icon_view;
 
     private static AlbumListGrid? _popup = null;
-    public AlbumListGrid popup_list_view {
+    private AlbumListGrid popup_list_view {
         get {
             if (_popup == null) {
                 _popup = new AlbumListGrid (parent_view_wrapper);
@@ -45,7 +45,7 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
 
     public ViewWrapper parent_view_wrapper { get; protected set; }
 
-    public GridView (ViewWrapper view_wrapper) {
+    public AlbumsView (ViewWrapper view_wrapper) {
         Object (parent_view_wrapper: view_wrapper);
 
         icon_view = new FastGrid ();
@@ -155,11 +155,11 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
             selection_data.set_uris (uris);
     }
 
-    public void reset_pixbufs () {
+    private void reset_pixbufs () {
         queue_draw ();
     }
 
-    public void setup_focus () {
+    private void setup_focus () {
         var focus_blacklist = new Gee.LinkedList<Gtk.Widget> ();
         focus_blacklist.add (App.main_window.view_selector);
         focus_blacklist.add (App.main_window.search_entry);
@@ -171,11 +171,11 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
         }
     }
 
-    public ViewWrapper.Hint get_hint() {
+    private ViewWrapper.Hint get_hint() {
         return parent_view_wrapper.hint;
     }
 
-    public Gee.Collection<Media> get_visible_media () {
+    private Gee.Collection<Media> get_visible_media () {
         var all_visible_media = new Gee.TreeSet<Media> ();
 
         foreach (var album in get_visible_albums ()) {
@@ -186,7 +186,7 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
         return all_visible_media;
     }
 
-    public Gee.Collection<Media> get_media () {
+    private Gee.Collection<Media> get_media () {
         var all_media = new Gee.TreeSet<Media> ();
 
         foreach (var album in get_albums ()) {
@@ -197,19 +197,19 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
         return all_media;
     }
 
-    public Gee.Collection<Album> get_visible_albums () {
+    private Gee.Collection<Album> get_visible_albums () {
         return (Gee.Collection<Album>)get_visible_objects ();
     }
 
-    public Gee.Collection<Album> get_albums () {
+    private Gee.Collection<Album> get_albums () {
         return (Gee.Collection<Album>)get_objects ();
     }
 
-    public void refilter () {
+    private void refilter () {
         do_search ();
     }
 
-    public void update_media (Gee.Collection<Media> media) {
+    private void update_media (Gee.Collection<Media> media) {
         var medias_to_update = new Gee.TreeSet<Media> ();
         medias_to_update.add_all (media);
         var medias_to_add = new Gee.TreeSet<Media> ();
@@ -239,13 +239,13 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
         set_research_needed (true);
     }
 
-    public void set_media (Gee.Collection<Media> to_add) {
+    private void set_media (Gee.Collection<Media> to_add) {
         clear_objects ();
         add_media (to_add);
     }
 
     // Check for already existing albums, only add the missing ones.
-    public void add_media (Gee.Collection<Media> media) {
+    private void add_media (Gee.Collection<Media> media) {
         var medias_to_add = new Gee.TreeSet<Media> ();
         medias_to_add.add_all (media);
         var albums_to_append = new Gee.TreeSet<Album> ();
@@ -272,7 +272,7 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
      * contains song1, song2, song5, and song3. Then we shouldn't remove
      * the album because it still contains a song (song3).
      */
-    public void remove_media (Gee.Collection<Media> to_remove) {
+    private void remove_media (Gee.Collection<Media> to_remove) {
         var albums_to_remove = new Gee.TreeSet<Album> ();
         foreach (var m in to_remove) {
             if (m == null)
@@ -295,10 +295,6 @@ public class Noise.GridView : ContentView, ViewTextOverlay {
 
         remove_objects (albums_to_remove);
         set_research_needed (true);
-    }
-
-    public int get_relative_id () {
-        return -1;
     }
 
     protected void item_activated (Object? object) {

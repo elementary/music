@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 11:30-0800\n"
-"PO-Revision-Date: 2018-02-06 20:21+0000\n"
+"PO-Revision-Date: 2018-02-14 23:20+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock@gmail.com>\n"
 "Language-Team: Japanese "
 "<https://weblate.elementary.io/projects/music/music/ja/>\n"
@@ -899,13 +899,12 @@ msgstr ""
 #: src/Views/DeviceSummaryWidget.vala:312
 #: src/Views/DeviceSummaryWidget.vala:314
 msgid "Cannot Sync"
-msgstr "同期出来ません"
+msgstr "同期できません"
 
 #: src/Views/DeviceSummaryWidget.vala:312
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
-msgstr ""
-"ディスク容量が不足しているため、選択された設定ではデバイスと同期出来ません"
+msgstr "ディスク容量が不足しているため、選択された設定ではデバイスと同期できません"
 
 #: src/Views/DeviceSummaryWidget.vala:314
 msgid "Device is already doing an operation."
@@ -1088,7 +1087,7 @@ msgstr "曲情報を編集"
 
 #: src/Views/ListView/Lists/MusicListView.vala:90
 msgid "Show in File Browser"
-msgstr "ファイルブラウザで表示"
+msgstr "ファイルブラウザーで表示"
 
 #: src/Views/ListView/Lists/MusicListView.vala:93
 msgid "Other actions"

@@ -37,15 +37,20 @@ public class Noise.TreeViewSetup : Object {
     public ListColumn sort_column_id { get; set; default = ListColumn.ARTIST; }
     public Gtk.SortType sort_direction { get; set; default = Gtk.SortType.ASCENDING; }
     public ViewWrapper.Hint hint { get; set; }
+    public Gda.Connection? connection { get; construct; default = null; }
+    public string? uid { get; construct; default = null; }
 
-    private Gda.Connection? connection = null;
-    private string? uid = null;
     private Gee.LinkedList<Gtk.TreeViewColumn> columns = new Gee.LinkedList<Gtk.TreeViewColumn> ();
 
     public TreeViewSetup (ViewWrapper.Hint hint, string? uid = null, Gda.Connection? connection = null) {
-        this.hint = hint;
-        this.uid = uid;
-        this.connection = connection;
+        Object (
+            connection: connection,
+            hint: hint,
+            uid: uid
+        );
+    }
+
+    construct {
         switch (hint) {
             case ViewWrapper.Hint.PLAYLIST:
             case ViewWrapper.Hint.READ_ONLY_PLAYLIST:
@@ -176,6 +181,7 @@ public class Noise.TreeViewSetup : Object {
         set_column_type (column, type);
         column.title = type.to_string ();
         column.visible = visible;
+
         if (type == sort_column_id) {
             column.set_sort_order (sort_direction);
         }
