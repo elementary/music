@@ -70,14 +70,15 @@ public class Noise.FastGrid : Widgets.TileView {
         return showing.get (index);
     }
 
-    public void set_table (Gee.HashMap<int, GLib.Object> table, bool do_resort) {
-        this.table.clear ();
-        this.table.set_all (table);
+    public void set_table (Gee.HashMap<int, GLib.Object> new_table, bool do_resort) {
+        table.clear ();
+        table.set_all (new_table);
 
-        if (do_resort)
+        if (do_resort) {
             resort (); // this also calls search
-        else
+        } else {
             do_search ();
+        }
     }
 
     // If a GLib.Object is in objects but not in table, will just ignore
