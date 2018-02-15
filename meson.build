@@ -84,12 +84,24 @@ app_files = files(
 
 app = executable (
     meson.project_name(),
-    [ app_files, icon_res ],
+    app_files,
+    icon_res,
     dependencies: app_deps,
     install: true
 )
 
-app_dep = declare_dependency(dependencies: app_deps, include_directories: include_directories('.'), sources: app_files)
+# FIXME: make the plugins independant from the app
+app_shared_lib = static_library(
+    'music-lib',
+    app_files,
+    dependencies: app_deps
+)
+
+app_dep = declare_dependency(
+    dependencies: app_deps,
+    include_directories: include_directories('.'),
+    link_with: app_shared_lib
+)
 
 meson.add_install_script('meson/post_install.py')
 
