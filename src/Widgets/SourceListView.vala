@@ -57,11 +57,11 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, Granite.Wid
         return view.get_sidebar_context_menu (source_list, this);
     }
 
-    public bool data_drop_possible (Gdk.DragContext context, Gtk.SelectionData data) {
+    private bool data_drop_possible (Gdk.DragContext context, Gtk.SelectionData data) {
         return view.accept_data_drop && data.get_target () == Gdk.Atom.intern_static_string ("text/uri-list");
     }
 
-    public Gdk.DragAction data_received (Gdk.DragContext context, Gtk.SelectionData data) {
+    private Gdk.DragAction data_received (Gdk.DragContext context, Gtk.SelectionData data) {
         view.data_drop (data);
         return Gdk.DragAction.COPY;
     }
@@ -86,11 +86,11 @@ public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.Expanda
         return menu;
     }
 
-    public bool allow_dnd_sorting () {
+    private bool allow_dnd_sorting () {
         return allow_user_sorting;
     }
 
-    public int compare (Granite.Widgets.SourceList.Item a, Granite.Widgets.SourceList.Item b) {
+    private int compare (Granite.Widgets.SourceList.Item a, Granite.Widgets.SourceList.Item b) {
         var item_a = a as SourceListItem;
         var item_b = b as SourceListItem;
 
@@ -111,11 +111,11 @@ public class Noise.SourceListRoot : Granite.Widgets.SourceList.ExpandableItem, G
         base ("SourceListRoot");
     }
 
-    public bool allow_dnd_sorting () {
+    private bool allow_dnd_sorting () {
         return true;
     }
 
-    public int compare (Granite.Widgets.SourceList.Item a, Granite.Widgets.SourceList.Item b) {
+    private int compare (Granite.Widgets.SourceList.Item a, Granite.Widgets.SourceList.Item b) {
         return 0;
     }
 }

@@ -29,8 +29,9 @@
 
 public class Noise.SmartPlaylistEditor : Gtk.Dialog {
     public Library library { get; construct; }
-    public SmartPlaylist smart_playlist { get; construct; }
+    public SmartPlaylist? smart_playlist { get; construct set; }
 
+    private bool is_new = false;
     private Gtk.Entry name_entry;
     private Gtk.ComboBoxText match_combobox;
     private Gtk.Button save_button;
@@ -120,20 +121,21 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
         window_position = Gtk.WindowPosition.CENTER_ON_PARENT;
         get_content_area ().add (main_grid);
 
-        if (smart_playlist != null) {
-            name_entry.text = smart_playlist.name;
-
-            match_combobox.active = smart_playlist.conditional;
-
-            limit_check.active = smart_playlist.limit;
-            limit_spin.value = (double) smart_playlist.limit_amount;
-        } else {
+        if (smart_playlist == null) {
+            is_new = true;
             smart_playlist = new SmartPlaylist (library);
 
             match_combobox.active = 0;
 
             limit_check.active = true;
             limit_spin.value = 50;
+        } else {
+            name_entry.text = smart_playlist.name;
+
+            match_combobox.active = smart_playlist.conditional;
+
+            limit_check.active = smart_playlist.limit;
+            limit_spin.value = (double) smart_playlist.limit_amount;
         }
 
         show_all ();
@@ -217,7 +219,7 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
         smart_playlist.limit = limit_check.get_active ();
         smart_playlist.limit_amount = (int)limit_spin.get_value ();
 
-        if (smart_playlist == null) {
+        if (is_new) {
             App.main_window.newly_created_playlist = true;
             library.add_smart_playlist (smart_playlist);
         }
