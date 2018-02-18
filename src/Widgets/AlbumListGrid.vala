@@ -30,7 +30,7 @@
 public class Noise.AlbumListGrid : Gtk.Grid {
     private Album album;
     private Widgets.AlbumImage album_cover;
-    private Gee.TreeSet<Media> media_list = new Gee.TreeSet<Media> ();
+    private Gee.ArrayList<Media> media_list = new Gee.ArrayList<Media> ();
     private GenericList list_view;
     private Gtk.Label album_label;
     private Gtk.Label artist_label;
@@ -142,7 +142,7 @@ public class Noise.AlbumListGrid : Gtk.Grid {
                 media_list.add (m);
             }
 
-            list_view.set_media (media_list);
+            list_view.set_visible_media (media_list);
         }
 
         if (list_view.get_realized ())
