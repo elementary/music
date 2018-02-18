@@ -229,7 +229,7 @@ public class Noise.AlbumListGrid : Gtk.Grid {
         image_filter.add_mime_type ("image/*");
 
         var file = new Gtk.FileChooserDialog (
-            _("Open"), (Gtk.Window) get_parent_window (), Gtk.FileChooserAction.OPEN,
+            _("Open"), App.main_window, Gtk.FileChooserAction.OPEN,
             _("_Cancel"), Gtk.ResponseType.CANCEL,
             _("_Open"), Gtk.ResponseType.ACCEPT
         );
