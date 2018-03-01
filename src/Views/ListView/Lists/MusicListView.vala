@@ -142,7 +142,6 @@ public class Noise.MusicListView : GenericList {
             media_scroll_to_current.sensitive = true;
         });
 
-        headers_visible = hint != ViewWrapper.Hint.ALBUM_LIST;
         headers_clickable = playlist != App.player.queue_playlist; // You can't reorder the queue
 
         update_sensitivities ();
