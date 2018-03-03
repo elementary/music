@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 11:30-0800\n"
-"PO-Revision-Date: 2018-02-06 00:10+0000\n"
-"Last-Translator: Pedro Monteiro <pmem@outlook.pt>\n"
+"PO-Revision-Date: 2018-02-28 10:52+0000\n"
+"Last-Translator: Luís Lima <geral@liqensoft.com>\n"
 "Language-Team: Portuguese "
 "<https://weblate.elementary.io/projects/music/music/pt/>\n"
 "Language: pt\n"
@@ -737,7 +737,7 @@ msgstr "Ano"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:272
 msgid "URI"
-msgstr ""
+msgstr "URI"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:345
 msgid "is"

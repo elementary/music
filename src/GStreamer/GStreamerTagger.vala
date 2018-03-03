@@ -86,7 +86,7 @@ public class Noise.GStreamerTagger : Object {
         });
     }
 
-    private void import_media (Gst.PbUtils.DiscovererInfo info, Error err) {
+    private void import_media (Gst.PbUtils.DiscovererInfo info, Error? err) {
         if (cancellable.is_cancelled ()) {
             d.stop ();
             lock (uri_queue) {

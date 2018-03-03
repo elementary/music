@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 11:30-0800\n"
-"PO-Revision-Date: 2018-02-14 23:20+0000\n"
-"Last-Translator: Jörg Habekost <joebeam@t-online.de>\n"
+"PO-Revision-Date: 2018-02-26 00:08+0000\n"
+"Last-Translator: Floris Remmert <fadenfisch95@gmail.com>\n"
 "Language-Team: German "
 "<https://weblate.elementary.io/projects/music/music/de/>\n"
 "Language: de\n"
@@ -744,7 +744,7 @@ msgstr "Jahr"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:272
 msgid "URI"
-msgstr ""
+msgstr "URI"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:345
 msgid "is"
@@ -792,11 +792,11 @@ msgid "kbps"
 msgstr "kbit/s"
 
 #: src/Dialogs/SyncWarningDialog.vala:52
-#, fuzzy, c-format
+#, c-format
 msgid "Sync will remove %i item from %s"
 msgid_plural "Sync will remove %i items from %s"
-msgstr[0] "Die Synchronisation wird %i Elemente von %s entfernen"
-msgstr[1] "Die Synchronisation wird %i Elemente von %s entfernen"
+msgstr[0] "Die Synchronisation wird eins von %s Elementen entfernen"
+msgstr[1] "Die Synchronisation wird %i von %s Elementen entfernen"
 
 #: src/Dialogs/SyncWarningDialog.vala:55
 #, c-format

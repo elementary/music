@@ -77,7 +77,11 @@ public class Noise.MusicListView : GenericList {
     Gtk.MenuItem media_scroll_to_current;
 
     public MusicListView (TreeViewSetup tvs, bool read_only = false, bool can_scroll_to_current = true) {
-        Object (tvs: tvs, read_only: read_only, can_scroll_to_current: can_scroll_to_current);
+        Object (
+            can_scroll_to_current: can_scroll_to_current,
+            read_only: read_only,
+            tvs: tvs
+        );
     }
 
     construct {
@@ -115,10 +119,12 @@ public class Noise.MusicListView : GenericList {
 
         media_action_menu = new Gtk.Menu ();
         media_action_menu.attach_to_widget (this, null);
+
         if (can_scroll_to_current) {
             media_action_menu.append (media_scroll_to_current);
             media_action_menu.append (new Gtk.SeparatorMenuItem ());
         }
+
         if (read_only == false) {
             media_action_menu.append (media_edit_media);
         }
