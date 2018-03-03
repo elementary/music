@@ -49,7 +49,7 @@ public abstract class Noise.GenericList : FastView {
         get {
             return _parent_wrapper;
         }
-        construct set {
+        set {
             _parent_wrapper = value;
             playlist = value.playlist;
         }
@@ -62,8 +62,8 @@ public abstract class Noise.GenericList : FastView {
 
     protected CellDataFunctionHelper cell_data_helper;
 
-    public GenericList (ViewWrapper view_wrapper, TreeViewSetup tvs) {
-        Object (parent_wrapper: view_wrapper, tvs: tvs);
+    public GenericList (TreeViewSetup tvs) {
+        Object (tvs: tvs);
     }
 
     construct {
@@ -103,7 +103,7 @@ public abstract class Noise.GenericList : FastView {
         drag_data_get.connect (on_drag_data_get);
         drag_end.connect (on_drag_end);
 
-        parent_wrapper.library.media_updated.connect (media_updated);
+        App.main_window.library_manager.media_updated.connect (media_updated);
 
         App.player.queue_cleared.connect (current_cleared);
         App.player.media_played.connect (media_played);
@@ -230,7 +230,7 @@ public abstract class Noise.GenericList : FastView {
 
         var to_update = new Gee.TreeSet<Media> ();
         to_update.add (m);
-        parent_wrapper.library.update_medias (to_update, true, true);
+        App.main_window.library_manager.update_medias (to_update, true, true);
     }
 
     protected bool view_header_click (Gdk.EventButton e, bool is_selector_col) {
@@ -286,7 +286,7 @@ public abstract class Noise.GenericList : FastView {
         var main_settings = Settings.Main.get_default ();
 
         if (!main_settings.privacy_mode_enabled ()) {
-            if (playlist == null || playlist == ((Noise.LocalLibrary)libraries_manager.local_library).p_music || parent_wrapper.library != libraries_manager.local_library) {
+            if (playlist == null || playlist == ((Noise.LocalLibrary)libraries_manager.local_library).p_music || App.main_window.library_manager != libraries_manager.local_library) {
                 main_settings.last_playlist_playing = "";
             } else if (playlist is SmartPlaylist) {
                 main_settings.last_playlist_playing = "s%lld".printf (playlist.rowid);
