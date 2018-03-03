@@ -58,7 +58,7 @@ public abstract class Noise.GenericList : FastView {
         enable_search = false; // we don't want the built-in search
 
         set_headers_clickable (true);
-        set_headers_visible (true);
+        headers_visible = true;
         set_fixed_height_mode (true);
         set_reorderable (false);
 

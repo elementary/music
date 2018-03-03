@@ -72,6 +72,7 @@ public class Noise.AlbumListGrid : Gtk.Grid {
         list_view = new MusicListView (tvs, false, false);
         list_view.headers_visible = false;
         list_view.expand = true;
+        list_view.headers_visible = false;
         list_view.set_search_func (view_search_func);
         list_view.get_style_context ().remove_class (Gtk.STYLE_CLASS_VIEW);
         list_view.remove_request.connect ((media) => {
