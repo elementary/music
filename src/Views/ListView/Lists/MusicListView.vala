@@ -57,6 +57,8 @@ public class Noise.ContractMenuItem : Gtk.MenuItem {
 }
 
 public class Noise.MusicListView : GenericList {
+    public bool can_scroll_to_current { get; construct; }
+
     //for media list right click
     Gtk.Menu media_action_menu;
     Gtk.MenuItem media_edit_media;
@@ -69,8 +71,12 @@ public class Noise.MusicListView : GenericList {
     Gtk.MenuItem import_to_library;
     Gtk.MenuItem media_scroll_to_current;
 
-    public MusicListView (ViewWrapper view_wrapper, TreeViewSetup tvs) {
-        Object (parent_wrapper: view_wrapper, tvs: tvs);
+    public MusicListView (ViewWrapper view_wrapper, TreeViewSetup tvs, bool can_scroll_to_current = true) {
+        Object (
+            can_scroll_to_current: can_scroll_to_current,
+            parent_wrapper: view_wrapper,
+            tvs: tvs
+        );
     }
 
     construct {
@@ -108,10 +114,12 @@ public class Noise.MusicListView : GenericList {
 
         media_action_menu = new Gtk.Menu ();
         media_action_menu.attach_to_widget (this, null);
-        if(hint != ViewWrapper.Hint.ALBUM_LIST) {
+
+        if (can_scroll_to_current) {
             media_action_menu.append (media_scroll_to_current);
             media_action_menu.append (new Gtk.SeparatorMenuItem ());
         }
+
         var read_only = hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST;
         if (read_only == false) {
             media_action_menu.append (media_edit_media);
@@ -127,7 +135,6 @@ public class Noise.MusicListView : GenericList {
             media_action_menu.append (media_menu_add_to_playlist);
         }
         if (hint != ViewWrapper.Hint.SMART_PLAYLIST &&
-            hint != ViewWrapper.Hint.ALBUM_LIST &&
             hint != ViewWrapper.Hint.READ_ONLY_PLAYLIST) {
                 media_action_menu.append (new Gtk.SeparatorMenuItem ());
         }
