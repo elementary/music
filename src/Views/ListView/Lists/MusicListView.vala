@@ -135,7 +135,6 @@ public class Noise.MusicListView : GenericList {
             media_action_menu.append (media_menu_add_to_playlist);
         }
         if (hint != ViewWrapper.Hint.SMART_PLAYLIST &&
-            hint != ViewWrapper.Hint.ALBUM_LIST &&
             hint != ViewWrapper.Hint.READ_ONLY_PLAYLIST) {
                 media_action_menu.append (new Gtk.SeparatorMenuItem ());
         }
