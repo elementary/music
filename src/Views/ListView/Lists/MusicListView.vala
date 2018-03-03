@@ -178,7 +178,7 @@ public class Noise.MusicListView : GenericList {
             case ViewWrapper.Hint.DEVICE_AUDIO:
                 media_edit_media.visible = false;
                 media_remove.label = _("Remove from Device");
-                if (parent_wrapper.library.support_playlists () == false) {
+                if (App.main_window.library_manager.support_playlists () == false) {
                     media_menu_add_to_playlist.visible = false;
                 }
                 break;
@@ -195,10 +195,10 @@ public class Noise.MusicListView : GenericList {
 
         var add_to_playlist_menu = new Gtk.Menu ();
         add_to_playlist_menu.append (media_menu_new_playlist);
-        if (parent_wrapper.library.support_playlists () == false) {
+        if (App.main_window.library_manager.support_playlists () == false) {
             media_menu_new_playlist.visible = false;
         }
-        foreach (var playlist in parent_wrapper.library.get_playlists ()) {
+        foreach (var playlist in App.main_window.library_manager.get_playlists ()) {
             // Don't include this playlist in the list of available options
             if (playlist == this.playlist)
                 continue;
@@ -398,8 +398,8 @@ public class Noise.MusicListView : GenericList {
     protected virtual void media_menu_new_playlist_clicked () {
         var p = new StaticPlaylist ();
         p.add_medias (get_selected_medias ().read_only_view);
-        p.name = PlaylistsUtils.get_new_playlist_name (parent_wrapper.library.get_playlists ());
-        parent_wrapper.library.add_playlist (p);
+        p.name = PlaylistsUtils.get_new_playlist_name (App.main_window.library_manager.get_playlists ());
+        App.main_window.library_manager.add_playlist (p);
     }
 
     protected void media_rate_media_clicked () {
@@ -408,7 +408,7 @@ public class Noise.MusicListView : GenericList {
         foreach (Media m in selected) {
             m.rating = new_rating;
         }
-        parent_wrapper.library.update_medias (selected, false, true);
+        App.main_window.library_manager.update_medias (selected, false, true);
     }
 
     protected override void mediaRemoveClicked () {
@@ -419,7 +419,7 @@ public class Noise.MusicListView : GenericList {
             case ViewWrapper.Hint.MUSIC:
                 var dialog = new RemoveFilesDialog (selected_media, hint);
                 dialog.remove_media.connect ((delete_files) => {
-                    parent_wrapper.library.remove_medias (selected_media, delete_files);
+                    App.main_window.library_manager.remove_medias (selected_media, delete_files);
                 });
                 break;
             case ViewWrapper.Hint.DEVICE_AUDIO:
