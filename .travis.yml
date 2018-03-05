@@ -15,7 +15,7 @@ addons:
     sources:
       - ubuntu-toolchain-r-test
     packages:
-      - libstdc++-4.9-dev
+      - libstdc++-5-dev
 
 cache:
   directories:
@@ -26,7 +26,7 @@ matrix:
     - env: DIST=juno
 
 before_install:
-  - docker pull ubuntu:18.04
+  - docker pull ubuntu:16.04
 
 install:
   - npm install @elementaryos/houston
