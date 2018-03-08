@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 11:30-0800\n"
-"PO-Revision-Date: 2016-03-20 18:10+0000\n"
-"Last-Translator: Daniel Fore <Unknown>\n"
-"Language-Team: English (Canada) <en_CA@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2018-03-08 16:33+0000\n"
+"Last-Translator: Shawn <syst3mfailur3@gmail.com>\n"
+"Language-Team: English (Canada) "
+"<https://weblate.elementary.io/projects/music/music/en_CA/>\n"
+"Language: en_CA\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
-"X-Generator: Launchpad (build 18330)\n"
 
 #: core/LibrariesManager.vala:147
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -263,7 +264,7 @@ msgstr "Importation of %i songs from Audio CD finished."
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
 msgid "Importing track %u: %s"
-msgstr ""
+msgstr "Importing track %u: %s"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:364
 msgid "CD import will be <b>cancelled</b> after current import."
@@ -431,16 +432,14 @@ msgid "Choose Music Folder"
 msgstr "Choose Music Folder"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:38
-#, fuzzy, c-format
+#, c-format
 msgid "Would you like to install the %s plugin?"
-msgstr "Would you like to install the %s plugin?\n"
+msgstr "Would you like to install the %s plugin?"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:39
-#, fuzzy, c-format
+#, c-format
 msgid "This song cannot be played. The %s plugin is required to play the song."
-msgstr ""
-"\n"
-"This song cannot be played. The %s plugin is required to play the song."
+msgstr "This song cannot be played. The %s plugin is required to play the song."
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid "Install Plugin"
@@ -448,51 +447,51 @@ msgstr "Install Plugin"
 
 #: src/Dialogs/MediaEditor.vala:103
 msgid "Title:"
-msgstr ""
+msgstr "Title:"
 
 #: src/Dialogs/MediaEditor.vala:105
 msgid "Artist:"
-msgstr ""
+msgstr "Artist:"
 
 #: src/Dialogs/MediaEditor.vala:107
 msgid "Album:"
-msgstr ""
+msgstr "Album:"
 
 #: src/Dialogs/MediaEditor.vala:109
 msgid "Album Artist:"
-msgstr ""
+msgstr "Album Artist:"
 
 #: src/Dialogs/MediaEditor.vala:111
 msgid "Composer:"
-msgstr ""
+msgstr "Composer:"
 
 #: src/Dialogs/MediaEditor.vala:113
 msgid "Grouping:"
-msgstr ""
+msgstr "Grouping:"
 
 #: src/Dialogs/MediaEditor.vala:115
 msgid "Genre:"
-msgstr ""
+msgstr "Genre:"
 
 #: src/Dialogs/MediaEditor.vala:117
 msgid "Year:"
-msgstr ""
+msgstr "Year:"
 
 #: src/Dialogs/MediaEditor.vala:119
 msgid "Track:"
-msgstr ""
+msgstr "Track:"
 
 #: src/Dialogs/MediaEditor.vala:121
 msgid "Disk:"
-msgstr ""
+msgstr "Disk:"
 
 #: src/Dialogs/MediaEditor.vala:123
 msgid "Rating:"
-msgstr ""
+msgstr "Rating:"
 
 #: src/Dialogs/MediaEditor.vala:125
 msgid "Comment:"
-msgstr ""
+msgstr "Comment:"
 
 #: src/Dialogs/MediaEditor.vala:140 src/Dialogs/PreferencesWindow.vala:96
 #: src/Views/DeviceView.vala:45
@@ -732,7 +731,7 @@ msgstr "Year"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:272
 msgid "URI"
-msgstr ""
+msgstr "URI"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:345
 msgid "is"
@@ -780,10 +779,10 @@ msgid "kbps"
 msgstr "kbps"
 
 #: src/Dialogs/SyncWarningDialog.vala:52
-#, fuzzy, c-format
+#, c-format
 msgid "Sync will remove %i item from %s"
 msgid_plural "Sync will remove %i items from %s"
-msgstr[0] "Sync will remove %i items from %s"
+msgstr[0] "Sync will remove %i item from %s"
 msgstr[1] "Sync will remove %i items from %s"
 
 #: src/Dialogs/SyncWarningDialog.vala:55
@@ -1068,13 +1067,13 @@ msgstr "Unrated"
 #, c-format
 msgid "%u Star"
 msgid_plural "%u Stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u Star"
+msgstr[1] "%u Stars"
 
 #: src/Views/ListView/Lists/CellDataFunctionHelper.vala:134
 #, c-format
 msgid "%u kbps"
-msgstr ""
+msgstr "%u kbps"
 
 #: src/Views/ListView/Lists/CellDataFunctionHelper.vala:159
 #: src/Views/ListView/Lists/MusicListView.vala:628
