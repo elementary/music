@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 11:30-0800\n"
-"PO-Revision-Date: 2018-02-22 00:08+0000\n"
+"PO-Revision-Date: 2018-03-08 16:34+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
 "Language-Team: Catalan "
 "<https://weblate.elementary.io/projects/music/music/ca/>\n"
@@ -255,12 +255,12 @@ msgstr "L'aplicació no pot trobar cançons al CD. No es pot importar cap canç�
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
 msgid "Importation of a song from Audio CD finished."
-msgstr "Ha finalitzat la importació d'una cançó del CD d'àudio."
+msgstr "Ha acabat la importació d'una cançó del CD d'àudio."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
 #, c-format
 msgid "Importation of %i songs from Audio CD finished."
-msgstr "Ha finalitzat la importació de %i cançons del CD d'àudio."
+msgstr "Ha acabat la importació de %i cançons del CD d'àudio."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
@@ -291,7 +291,7 @@ msgstr "S'ha produït un error en carregar aquest CD d'àudio."
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
 msgid "Finishing sync process…"
-msgstr "S'està finalitzant el procés de sincronització…"
+msgstr "S'està acabant el procés de sincronització…"
 
 #: plugins/Devices/iPod/iPodLibrary.vala:230
 #: plugins/Devices/iPod/iPodLibrary.vala:386
