@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 11:30-0800\n"
-"PO-Revision-Date: 2018-03-01 00:03+0000\n"
-"Last-Translator: felipe andres gomez villar <felipe.gomez.villar@gmail.com>\n"
+"PO-Revision-Date: 2018-03-10 00:04+0000\n"
+"Last-Translator: haggen svastian <h2gn@openmailbox.org>\n"
 "Language-Team: Spanish "
 "<https://weblate.elementary.io/projects/music/music/es/>\n"
 "Language: es\n"
@@ -436,15 +436,14 @@ msgid "Choose Music Folder"
 msgstr "Elija la carpeta de música"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:38
-#, fuzzy, c-format
+#, c-format
 msgid "Would you like to install the %s plugin?"
-msgstr "¿Quiere instalar el complemento %s?\n"
+msgstr "¿Quiere instalar el complemento %s?"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:39
-#, fuzzy, c-format
+#, c-format
 msgid "This song cannot be played. The %s plugin is required to play the song."
 msgstr ""
-"\n"
 "Esta canción no se puede reproducir. Para ello se necesita el conector %s."
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:52
@@ -786,7 +785,7 @@ msgid "kbps"
 msgstr "Kbps"
 
 #: src/Dialogs/SyncWarningDialog.vala:52
-#, fuzzy, c-format
+#, c-format
 msgid "Sync will remove %i item from %s"
 msgid_plural "Sync will remove %i items from %s"
 msgstr[0] "La sincronización eliminará %i elementos de %s"

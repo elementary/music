@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 11:30-0800\n"
-"PO-Revision-Date: 2018-02-14 23:20+0000\n"
+"PO-Revision-Date: 2018-03-07 00:09+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock@gmail.com>\n"
 "Language-Team: Japanese "
 "<https://weblate.elementary.io/projects/music/music/ja/>\n"
@@ -333,7 +333,7 @@ msgstr "%s がライブラリに取り込まれました。"
 
 #: src/FileOperator.vala:315
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr "ファイルを<b>ミュージックフォルダー</b>に<b>コピー</b>しています…"
+msgstr "ファイルを<b>ミュージックフォルダ</b>に<b>コピー</b>しています…"
 
 #: src/LibraryWindow.vala:215
 msgid "Import to Library…"
