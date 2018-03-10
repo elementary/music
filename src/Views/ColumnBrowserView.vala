@@ -52,6 +52,13 @@ public class Noise.ColumnBrowserView : View {
         column_browser = new MusicColumnBrowser ();
         column_browser.set_media (playlist.medias);
         column_browser.changed.connect (filter_changed);
+        column_browser.row_activated.connect (() => {
+            App.player.clear_queue ();
+            var media = list_view.get_visible_table ();
+            App.player.queue_medias (media);
+            App.player.play_media (media.first ());
+            App.player.start_playback ();
+        });
 
         list_view = new MusicListView (tvs);
         list_view.set_media (playlist.medias);

@@ -31,6 +31,7 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
 
     public signal void changed ();
     public signal void position_changed (Position p);
+    public signal void row_activated ();
 
     public enum Position {
         AUTOMATIC,
@@ -205,6 +206,10 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
         attach (column, (int)type, 0, 1, 1);
 
         column_chooser_menu.append (column.menu_item);
+
+        column.row_activated.connect (() => {
+            row_activated ();
+        });
 
         column.header_clicked.connect (column_header_clicked);
         column.visibility_changed.connect (update_column_separators);
