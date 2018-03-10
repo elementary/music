@@ -28,6 +28,17 @@
  */
 
 public class Noise.TreeViewSetup : Object {
+
+    /**
+     * To know which column to show by default
+     */
+    public enum SetupType {
+        DEFAULT,
+        PLAYLIST,
+        CD_ROM,
+        MINIMAL
+    }
+
     private const string ASCENDING_STRING = "ASCENDING";
     private const string DESCENDING_STRING = "DESCENDING";
     private const string COLUMN_SEP_STRING = "<c_sep>";
@@ -38,50 +49,20 @@ public class Noise.TreeViewSetup : Object {
     public Gtk.SortType sort_direction { get; set; default = Gtk.SortType.ASCENDING; }
     public Gda.Connection? connection { get; construct; default = null; }
     public string? uid { get; construct; default = null; }
+    public SetupType setup_type { get; construct; }
 
     private Gee.LinkedList<Gtk.TreeViewColumn> columns = new Gee.LinkedList<Gtk.TreeViewColumn> ();
 
     public TreeViewSetup (bool for_playlist = false, string? uid = null, Gda.Connection? connection = null) {
-        Object (uid: uid, connection: connection);
-        append_new_column (ListColumn.ICON);
-        append_new_column (ListColumn.NUMBER, for_playlist);
-        append_new_column (ListColumn.TRACK, false);
-        append_new_column (ListColumn.TITLE);
-        append_new_column (ListColumn.LENGTH);
-        append_new_column (ListColumn.ARTIST);
-        append_new_column (ListColumn.ALBUM);
-        append_new_column (ListColumn.ALBUM_ARTIST, false);
-        append_new_column (ListColumn.COMPOSER, false);
-        append_new_column (ListColumn.GENRE);
-        append_new_column (ListColumn.YEAR, false);
-        append_new_column (ListColumn.GROUPING, false);
-        append_new_column (ListColumn.BITRATE, false);
-        append_new_column (ListColumn.RATING, false);
-        append_new_column (ListColumn.PLAY_COUNT, false);
-        append_new_column (ListColumn.SKIP_COUNT, false);
-        append_new_column (ListColumn.DATE_ADDED, false);
-        append_new_column (ListColumn.LAST_PLAYED, false);
-        append_new_column (ListColumn.BPM, false);
-        append_new_column (ListColumn.FILE_LOCATION, false);
-        append_new_column (ListColumn.FILE_SIZE, false);
+        Object (uid: uid, connection: connection, setup_type: for_playlist ? SetupType.PLAYLIST : SetupType.DEFAULT);
     }
 
     public TreeViewSetup.for_cdrom (string? uid = null, Gda.Connection? conn = null) {
-        Object (uid: uid, connection: conn);
-        append_new_column (ListColumn.ICON);
-        append_new_column (ListColumn.NUMBER, false);
-        append_new_column (ListColumn.TRACK);
-        append_new_column (ListColumn.TITLE);
-        append_new_column (ListColumn.LENGTH);
-        append_new_column (ListColumn.ARTIST, false);
-        append_new_column (ListColumn.ALBUM, false);
-        append_new_column (ListColumn.GENRE, false);
+        Object (uid: uid, connection: conn, setup_type: SetupType.CD_ROM);
     }
 
     public TreeViewSetup.minimal () {
-        append_new_column (ListColumn.ICON);
-        append_new_column (ListColumn.TITLE);
-        append_new_column (ListColumn.LENGTH);
+        Object (uid: null, connection: null, setup_type: SetupType.MINIMAL);
     }
 
     construct {
@@ -119,6 +100,55 @@ public class Noise.TreeViewSetup : Object {
             notify["sort-column-id"].connect (() => {
                 set_field ("sort_column_id", (int) sort_column_id);
             });
+        }
+
+        populate_columns ();
+    }
+
+    private void populate_columns () {
+        switch (setup_type) {
+            case SetupType.DEFAULT:
+            case SetupType.PLAYLIST:
+                append_new_column (ListColumn.ICON);
+                append_new_column (ListColumn.NUMBER, setup_type == SetupType.PLAYLIST);
+                append_new_column (ListColumn.TRACK, false);
+                append_new_column (ListColumn.TITLE);
+                append_new_column (ListColumn.LENGTH);
+                append_new_column (ListColumn.ARTIST);
+                append_new_column (ListColumn.ALBUM);
+                append_new_column (ListColumn.ALBUM_ARTIST, false);
+                append_new_column (ListColumn.COMPOSER, false);
+                append_new_column (ListColumn.GENRE);
+                append_new_column (ListColumn.YEAR, false);
+                append_new_column (ListColumn.GROUPING, false);
+                append_new_column (ListColumn.BITRATE, false);
+                append_new_column (ListColumn.RATING, false);
+                append_new_column (ListColumn.PLAY_COUNT, false);
+                append_new_column (ListColumn.SKIP_COUNT, false);
+                append_new_column (ListColumn.DATE_ADDED, false);
+                append_new_column (ListColumn.LAST_PLAYED, false);
+                append_new_column (ListColumn.BPM, false);
+                append_new_column (ListColumn.FILE_LOCATION, false);
+                append_new_column (ListColumn.FILE_SIZE, false);
+                break;
+            case SetupType.CD_ROM:
+                append_new_column (ListColumn.ICON);
+                append_new_column (ListColumn.NUMBER, false);
+                append_new_column (ListColumn.TRACK);
+                append_new_column (ListColumn.TITLE);
+                append_new_column (ListColumn.LENGTH);
+                append_new_column (ListColumn.ARTIST, false);
+                append_new_column (ListColumn.ALBUM, false);
+                append_new_column (ListColumn.GENRE, false);
+                break;
+            case SetupType.MINIMAL:
+                append_new_column (ListColumn.ICON);
+                append_new_column (ListColumn.TITLE);
+                append_new_column (ListColumn.LENGTH);
+                break;
+            default:
+                assert_not_reached ();
+                break;
         }
     }
 
