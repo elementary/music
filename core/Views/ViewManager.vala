@@ -164,7 +164,7 @@ public class Noise.ViewManager : Object {
     * @return The requested view if found
     * @throw Throws an error if the view couldn't be found
     */
-    public new View get (string id) throws ViewError {
+    public View get_view (string id) throws ViewError {
         foreach (var view in views) {
             if (view.id == id) {
                 return view;
