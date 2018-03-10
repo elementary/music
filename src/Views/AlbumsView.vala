@@ -22,7 +22,9 @@
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
  *
- * Authored by: Baptiste Gelez <baptiste@gelez.xyz>
+ * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
+ *              Victor Eduardo <victoreduardm@gmail.com>
+ *              Baptiste Gelez <baptiste@gelez.xyz>
  */
 
 public class Noise.AlbumsView : View {
