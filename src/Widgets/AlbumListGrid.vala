@@ -37,6 +37,8 @@ public class Noise.AlbumListGrid : Gtk.Grid {
     private Gtk.Menu cover_action_menu;
     private Granite.Widgets.Rating rating;
 
+    public Library library { get; construct; default = App.main_window.library_manager; }
+
     construct {
         album_cover = new Widgets.AlbumImage ();
         album_cover.width_request = 184;
@@ -69,7 +71,7 @@ public class Noise.AlbumListGrid : Gtk.Grid {
         artist_label.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
 
         var tvs = new TreeViewSetup.minimal ();
-        list_view = new MusicListView (tvs, false, false);
+        list_view = new MusicListView (tvs, library, false, false);
         list_view.headers_visible = false;
         list_view.expand = true;
         list_view.headers_visible = false;
@@ -78,7 +80,7 @@ public class Noise.AlbumListGrid : Gtk.Grid {
         list_view.remove_request.connect ((media) => {
             var dialog = new RemoveFilesDialog (media);
             dialog.remove_media.connect ((delete_files) => {
-                App.main_window.library_manager.remove_medias (media, delete_files);
+                library.remove_medias (media, delete_files);
             });
         });
 
@@ -151,7 +153,7 @@ public class Noise.AlbumListGrid : Gtk.Grid {
 
         // Set rating
         update_album_rating ();
-        App.main_window.library_manager.media_updated.connect (update_album_rating);
+        library.media_updated.connect (update_album_rating);
     }
 
     void update_album_cover () {
@@ -199,7 +201,7 @@ public class Noise.AlbumListGrid : Gtk.Grid {
 
         }
 
-        App.main_window.library_manager.update_medias (updated, false, true);
+        library.update_medias (updated, false, true);
     }
 
     private void view_search_func (string search, Gee.ArrayList<Media> table, Gee.ArrayList<Media> showing) {

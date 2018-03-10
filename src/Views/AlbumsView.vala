@@ -46,6 +46,7 @@ public class Noise.AlbumsView : View {
     }
 
     public Gee.Collection<Media> media_coll { get; construct set; }
+    public Library library { get; construct; default = App.main_window.library_manager; }
 
     public AlbumsView (Gee.Collection<Media> media) {
         Object (media_coll: media);
@@ -253,8 +254,8 @@ public class Noise.AlbumsView : View {
 
     public override bool filter (string search) {
         // TODO: maybe handle search here, not in the library manager?
-        App.main_window.library_manager.search_medias (search);
-        var result = App.main_window.library_manager.get_search_result ();
+        library.search_medias (search);
+        var result = library.get_search_result ();
         var albums = new Gee.TreeSet<Album> ();
         foreach (var m in result) {
             albums.add (m.album_info);

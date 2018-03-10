@@ -39,6 +39,8 @@ public class Noise.ColumnBrowserView : View {
 
     public TreeViewSetup tvs { get; construct; }
 
+    public Library library { get; construct; default = App.main_window.library_manager; }
+
     public ColumnBrowserView (Playlist playlist, TreeViewSetup tvs) {
         Object (playlist: playlist, tvs: tvs);
     }
@@ -65,7 +67,7 @@ public class Noise.ColumnBrowserView : View {
         list_view.remove_request.connect ((media) => {
             var dialog = new RemoveFilesDialog (media);
             dialog.remove_media.connect ((delete_files) => {
-                App.main_window.library_manager.remove_medias (media, delete_files);
+                library.remove_medias (media, delete_files);
             });
         });
         var scroll = new Gtk.ScrolledWindow (null, null);
@@ -96,8 +98,8 @@ public class Noise.ColumnBrowserView : View {
     }
 
     public override bool filter (string search) {
-        App.main_window.library_manager.search_medias (search);
-        var result = App.main_window.library_manager.get_search_result ();
+        library.search_medias (search);
+        var result = library.get_search_result ();
 
         media.clear ();
         foreach (var m in playlist.medias) {

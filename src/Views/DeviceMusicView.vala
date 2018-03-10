@@ -46,7 +46,7 @@ public class Noise.DeviceMusicView : View {
         icon = new ThemedIcon ("library-music");
         priority = 1;
 
-        list_view = new MusicListView (tvs, device.read_only ());
+        list_view = new MusicListView (tvs, library, device.read_only ());
         list_view.import_requested.connect (import_request);
 
         library.media_added.connect ((media) => {

@@ -78,7 +78,7 @@ public class Noise.Plugins.CDView : View {
 
         cd_playlist = new Noise.StaticPlaylist ();
         tvs = new TreeViewSetup.for_cdrom ();
-        list_view = new MusicListView (tvs, true, false);
+        list_view = new MusicListView (tvs, libraries_manager.local_library, true, false);
 
         // Do initial population. Further additions and removals will be handled
         // by the handlers connected below through connect_data_signals()

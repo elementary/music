@@ -76,11 +76,12 @@ public class Noise.MusicListView : GenericList {
     Gtk.MenuItem import_to_library;
     Gtk.MenuItem media_scroll_to_current;
 
-    public MusicListView (TreeViewSetup tvs, bool read_only = false, bool can_scroll_to_current = true) {
+    public MusicListView (TreeViewSetup tvs, Library lib = App.main_window.library_manager, bool read_only = false, bool can_scroll_to_current = true) {
         Object (
             can_scroll_to_current: can_scroll_to_current,
             read_only: read_only,
-            tvs: tvs
+            tvs: tvs,
+            library: lib
         );
     }
 
@@ -163,10 +164,10 @@ public class Noise.MusicListView : GenericList {
 
         var add_to_playlist_menu = new Gtk.Menu ();
         add_to_playlist_menu.append (media_menu_new_playlist);
-        if (App.main_window.library_manager.support_playlists () == false) {
+        if (library.support_playlists () == false) {
             media_menu_new_playlist.visible = false;
         }
-        foreach (var playlist in App.main_window.library_manager.get_playlists ()) {
+        foreach (var playlist in library.get_playlists ()) {
             if (show_in_playlist_menu (playlist)) {
                 if (playlist.read_only == true)
                     continue;
@@ -364,8 +365,8 @@ public class Noise.MusicListView : GenericList {
     protected virtual void media_menu_new_playlist_clicked () {
         var p = new StaticPlaylist ();
         p.add_medias (get_selected_medias ().read_only_view);
-        p.name = PlaylistsUtils.get_new_playlist_name (App.main_window.library_manager.get_playlists ());
-        App.main_window.library_manager.add_playlist (p);
+        p.name = PlaylistsUtils.get_new_playlist_name (library.get_playlists ());
+        library.add_playlist (p);
     }
 
     protected void media_rate_media_clicked () {
@@ -374,7 +375,7 @@ public class Noise.MusicListView : GenericList {
         foreach (Media m in selected) {
             m.rating = new_rating;
         }
-        App.main_window.library_manager.update_medias (selected, false, true);
+        library.update_medias (selected, false, true);
     }
 
     protected override void mediaRemoveClicked () {

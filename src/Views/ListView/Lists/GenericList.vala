@@ -45,6 +45,8 @@ public abstract class Noise.GenericList : FastView {
 
     public TreeViewSetup tvs { get; construct; }
 
+    public Library library { get; construct; }
+
     public GenericList (TreeViewSetup tvs) {
         Object (tvs: tvs);
     }
@@ -86,7 +88,7 @@ public abstract class Noise.GenericList : FastView {
         drag_data_get.connect (on_drag_data_get);
         drag_end.connect (on_drag_end);
 
-        App.main_window.library_manager.media_updated.connect (media_updated);
+        library.media_updated.connect (media_updated);
 
         App.player.queue_cleared.connect (current_cleared);
         App.player.media_played.connect (media_played);
@@ -211,7 +213,7 @@ public abstract class Noise.GenericList : FastView {
 
         var to_update = new Gee.TreeSet<Media> ();
         to_update.add (m);
-        App.main_window.library_manager.update_medias (to_update, true, true);
+        library.update_medias (to_update, true, true);
     }
 
     protected bool view_header_click (Gdk.EventButton e, bool is_selector_col) {

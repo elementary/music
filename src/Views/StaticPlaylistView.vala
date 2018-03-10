@@ -60,7 +60,7 @@ public class Noise.StaticPlaylistView : PlaylistView {
 
         var remove = new Gtk.MenuItem.with_label(_("Remove"));
         remove.activate.connect (() => {
-            App.main_window.library_manager.remove_playlist (playlist.rowid);
+            library.remove_playlist (playlist.rowid);
         });
 
         var export = new Gtk.MenuItem.with_label(_("Export…"));
@@ -71,9 +71,9 @@ public class Noise.StaticPlaylistView : PlaylistView {
         var save = new Gtk.MenuItem.with_label(_("Save as Playlist"));
         save.activate.connect(() => {
             var new_playlist = new StaticPlaylist ();
-            new_playlist.name = PlaylistsUtils.get_new_playlist_name (App.main_window.library_manager.get_playlists (), playlist.name);
+            new_playlist.name = PlaylistsUtils.get_new_playlist_name (library.get_playlists (), playlist.name);
             new_playlist.add_medias (playlist.medias);
-            App.main_window.library_manager.add_playlist (new_playlist);
+            library.add_playlist (new_playlist);
         });
 
         if (((StaticPlaylist)playlist).read_only) {
@@ -109,7 +109,7 @@ public class Noise.StaticPlaylistView : PlaylistView {
             uri_set.add (uri);
         }
 
-        var media_list = App.main_window.library_manager.medias_from_uris (uri_set);
+        var media_list = library.medias_from_uris (uri_set);
         playlist.add_medias (media_list);
     }
 }

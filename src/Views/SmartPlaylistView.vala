@@ -57,7 +57,7 @@ public class Noise.SmartPlaylistView : PlaylistView {
 
         var remove = new Gtk.MenuItem.with_label(_("Remove"));
         remove.activate.connect (() => {
-            App.main_window.library_manager.remove_smart_playlist (playlist.rowid);
+            library.remove_smart_playlist (playlist.rowid);
         });
 
         var export = new Gtk.MenuItem.with_label(_("Export…"));
@@ -84,7 +84,7 @@ public class Noise.SmartPlaylistView : PlaylistView {
     }
 
     public void show_edit_dialog () {
-        var spe = new SmartPlaylistEditor ((SmartPlaylist)playlist, App.main_window.library_manager);
+        var spe = new SmartPlaylistEditor ((SmartPlaylist)playlist, library);
         spe.show ();
     }
 }

@@ -34,6 +34,8 @@ public class Noise.PlaylistView : View {
 
     public TreeViewSetup tvs { get; construct; }
 
+    public Library library { get; construct; default = App.main_window.library_manager; }
+
     public PlaylistView (Playlist playlist, TreeViewSetup tvs) {
         Object (playlist: playlist, tvs: tvs);
     }
@@ -46,7 +48,7 @@ public class Noise.PlaylistView : View {
         priority = 1;
 
         bool read_only = (playlist is StaticPlaylist) && (((StaticPlaylist)playlist).read_only);
-        list_view = new MusicListView (tvs, read_only);
+        list_view = new MusicListView (tvs, library, read_only);
         list_view.set_compare_func (compare_func);
         list_view.set_search_func ((search, table, showing) => {
             showing.add_all (table);
@@ -104,8 +106,8 @@ public class Noise.PlaylistView : View {
     }
 
     public override bool filter (string search) {
-        App.main_window.library_manager.search_medias (search);
-        var result = App.main_window.library_manager.get_search_result ();
+        library.search_medias (search);
+        var result = library.get_search_result ();
 
         var showing = new Gee.ArrayList<Media> ();
         foreach (var m in playlist.medias) {
