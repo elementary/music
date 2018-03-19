@@ -46,7 +46,7 @@ public class Noise.AlbumsView : View {
     }
 
     public Gee.Collection<Media> media_coll { get; construct set; }
-    public Library library { get; construct; default = App.main_window.library_manager; }
+    public Library library { get; set; default = App.main_window.library_manager; }
 
     public AlbumsView (Gee.Collection<Media> media) {
         Object (media_coll: media);

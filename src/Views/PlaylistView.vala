@@ -34,7 +34,7 @@ public class Noise.PlaylistView : View {
 
     public TreeViewSetup tvs { get; construct; }
 
-    public Library library { get; construct; default = App.main_window.library_manager; }
+    public Library library { get; set; default = App.main_window.library_manager; }
 
     public PlaylistView (Playlist playlist, TreeViewSetup tvs) {
         Object (playlist: playlist, tvs: tvs);

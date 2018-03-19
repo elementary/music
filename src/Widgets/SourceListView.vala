@@ -68,7 +68,7 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, Granite.Wid
 }
 
 public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.ExpandableItem, Granite.Widgets.SourceListSortable {
-    public Category category { get; set; }
+    public Category category { get; construct set; }
     public Gtk.Menu? menu { get; set; default = null; }
     public bool allow_user_sorting { get; set; default = false; }
 
