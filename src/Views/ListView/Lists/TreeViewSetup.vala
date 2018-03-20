@@ -66,6 +66,8 @@ public class Noise.TreeViewSetup : Object {
     }
 
     construct {
+        populate_columns ();
+
         if (uid != null) {
             if (exists () == false) {
                 try {
@@ -101,11 +103,10 @@ public class Noise.TreeViewSetup : Object {
                 set_field ("sort_column_id", (int) sort_column_id);
             });
         }
-
-        populate_columns ();
     }
 
     private void populate_columns () {
+        columns.clear ();
         switch (setup_type) {
             case SetupType.DEFAULT:
             case SetupType.PLAYLIST:
