@@ -417,7 +417,7 @@ public class Noise.MusicListView : GenericList {
         switch (hint) {
             case ViewWrapper.Hint.ALBUM_LIST:
             case ViewWrapper.Hint.MUSIC:
-                var dialog = new RemoveFilesDialog (selected_media, hint);
+                var dialog = new RemoveFilesDialog (selected_media);
                 dialog.remove_media.connect ((delete_files) => {
                     parent_wrapper.library.remove_medias (selected_media, delete_files);
                 });
