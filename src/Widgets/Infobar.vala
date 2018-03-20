@@ -26,7 +26,7 @@
  * Authored by: Nine Hall <nine.gentooman@gmail.com>
  */
 
-class Noise.InfoBar : Gtk.InfoBar {
+class Noise.Infobar : Gtk.InfoBar {
     private Gtk.ProgressBar progress_bar;
     
     construct {
