@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 11:30-0800\n"
-"PO-Revision-Date: 2018-03-22 17:27+0000\n"
+"PO-Revision-Date: 2018-03-22 19:08+0000\n"
 "Last-Translator: anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish "
 "<https://weblate.elementary.io/projects/music/music/es/>\n"
@@ -276,7 +276,7 @@ msgstr ""
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:383
 msgid "An error occured during the Import of this CD"
-msgstr "Ocurrió un error durante la importación del CD"
+msgstr "Ha ocurrido un error durante la importación este CD"
 
 #: plugins/Devices/CDRom/CDView.vala:94 src/Dialogs/SyncWarningDialog.vala:62
 msgid "Import"
@@ -506,7 +506,7 @@ msgstr "Cerrar"
 #: src/Dialogs/NotImportedWindow.vala:51
 #, c-format
 msgid "Unable to import %d items from %s"
-msgstr "No se pudo importar %d elementos desde %s"
+msgstr "Imposible importar %d elementos desde %s"
 
 #: src/Dialogs/NotImportedWindow.vala:56
 #, c-format
