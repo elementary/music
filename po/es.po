@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 11:30-0800\n"
-"PO-Revision-Date: 2018-03-22 19:08+0000\n"
+"PO-Revision-Date: 2018-03-23 00:05+0000\n"
 "Last-Translator: anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish "
 "<https://weblate.elementary.io/projects/music/music/es/>\n"
@@ -847,7 +847,7 @@ msgstr "Canciones favoritas"
 
 #: src/LocalBackend/LocalSmartPlaylist.vala:225
 msgid "Recently Added"
-msgstr "Añadidas recientemente"
+msgstr "Agregadas recientemente"
 
 #: src/LocalBackend/LocalSmartPlaylist.vala:233
 msgid "Recent Favorites"
