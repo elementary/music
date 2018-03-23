@@ -50,7 +50,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     private Gtk.Paned main_hpaned;
     private Cancellable notification_cancellable;
-    private PreferencesWindow? preferences = null;
     private Settings.Main main_settings;
     private GLib.Settings saved_state_settings;
     private TopDisplay top_display;
@@ -212,34 +211,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     private inline void build_main_widgets () {
-        var import_menuitem = new Gtk.MenuItem.with_label (_("Import to Library…"));
-        import_menuitem.action_name = ACTION_PREFIX + ACTION_IMPORT;
-
-        var preferences_menuitem = new Gtk.MenuItem.with_label (_("Preferences"));
-        preferences_menuitem.activate.connect (editPreferencesClick);
-
-        var menu = new Gtk.Menu ();
-        menu.append (import_menuitem);
-        menu.append (new Gtk.SeparatorMenuItem ());
-        menu.append (preferences_menuitem);
-        menu.show_all ();
-
-        var menu_button = new Gtk.MenuButton ();
-        menu_button.image = new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR);
-        menu_button.popup = menu;
-
-        var previous_button = new Gtk.Button.from_icon_name ("media-skip-backward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-        previous_button.action_name = ACTION_PREFIX + ACTION_PLAY_PREVIOUS;
-        previous_button.tooltip_text = _("Previous");
-
-        var play_button = new Gtk.Button.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-        play_button.action_name = ACTION_PREFIX + ACTION_PLAY;
-        play_button.tooltip_text = _("Play");
-
-        var next_button = new Gtk.Button.from_icon_name ("media-skip-forward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-        next_button.action_name = ACTION_PREFIX + ACTION_PLAY_NEXT;
-        next_button.tooltip_text = _("Next");
-
         search_entry = new Gtk.SearchEntry ();
         search_entry.valign = Gtk.Align.CENTER;
         search_entry.placeholder_text = _("Search Music");
@@ -253,15 +224,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         top_display.margin_start = 30;
         top_display.margin_end = 30;
 
-        var headerbar = new Gtk.HeaderBar ();
-        headerbar.show_close_button = true;
-        headerbar.pack_start (previous_button);
-        headerbar.pack_start (play_button);
-        headerbar.pack_start (next_button);
+        var headerbar = new Noise.HeaderBar ();
         headerbar.pack_start (view_selector);
-        headerbar.pack_end (menu_button);
         headerbar.pack_end (search_entry);
-        headerbar.set_title (_("Music"));
         headerbar.set_custom_title (top_display);
         headerbar.show_all ();
 
@@ -284,18 +249,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         add (main_hpaned);
         set_titlebar (headerbar);
-
-        actions.action_state_changed.connect ((name, new_state) => {
-            if (name == ACTION_PLAY) {
-                if (new_state.get_boolean () == false) {
-                    play_button.image = new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-                    play_button.tooltip_text = _("Play");
-                } else {
-                    play_button.image = new Gtk.Image.from_icon_name ("media-playback-pause-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-                    play_button.tooltip_text = _("Pause");
-                }
-            }
-        });
 
         connect_to_sourcelist_signals ();
     }
@@ -1028,14 +981,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     private void action_play_previous () {
         play_previous_media ();
-    }
-
-    private void editPreferencesClick () {
-        if (preferences == null)
-            preferences = new PreferencesWindow ();
-        preferences.show_all ();
-        preferences.run ();
-        preferences = null;
     }
 
     public void setMusicFolder(string folder) {
