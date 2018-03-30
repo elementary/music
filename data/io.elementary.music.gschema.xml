@@ -25,12 +25,12 @@
       <description>Used to attempt to automount the music folder when noise starts if it already isn't.</description>
     </key>
     <key type="b" name="update-folder-hierarchy">
-      <default>false</default>
+      <default>true</default>
       <summary>Whether or not to auto-organize folders and rename files</summary>
       <description>Whether or not to auto-organize folders and rename files</description>
     </key>
     <key type="b" name="write-metadata-to-file">
-      <default>false</default>
+      <default>true</default>
       <summary>Whether or not to write metadata to file</summary>
       <description>Whether or not to write metadata to file</description>
     </key>
