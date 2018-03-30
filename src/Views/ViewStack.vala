@@ -45,12 +45,12 @@ public class Noise.ViewStack : Gtk.Stack {
      * Appends a widget to the main views.
      * @return the index of the view in the view container
      */
-    public int add_view (Gtk.Widget view) {
+    public void add_view (Gtk.Widget view) {
         view.expand = true;
         view.visible = true;
         add_named (view, nextview_number.to_string ());
 
-        return nextview_number++;
+        nextview_number++;
     }
 
     /**
