@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 11:30-0800\n"
-"PO-Revision-Date: 2018-03-10 00:04+0000\n"
-"Last-Translator: haggen svastian <h2gn@openmailbox.org>\n"
+"PO-Revision-Date: 2018-03-23 00:05+0000\n"
+"Last-Translator: anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish "
 "<https://weblate.elementary.io/projects/music/music/es/>\n"
 "Language: es\n"
@@ -276,7 +276,7 @@ msgstr ""
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:383
 msgid "An error occured during the Import of this CD"
-msgstr "Ocurrió un error durante la importación del CD"
+msgstr "Ha ocurrido un error durante la importación este CD"
 
 #: plugins/Devices/CDRom/CDView.vala:94 src/Dialogs/SyncWarningDialog.vala:62
 msgid "Import"
@@ -448,7 +448,7 @@ msgstr ""
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid "Install Plugin"
-msgstr "Instalar complemento"
+msgstr "Instalar Plugin"
 
 #: src/Dialogs/MediaEditor.vala:103
 msgid "Title:"
@@ -506,7 +506,7 @@ msgstr "Cerrar"
 #: src/Dialogs/NotImportedWindow.vala:51
 #, c-format
 msgid "Unable to import %d items from %s"
-msgstr "No se pudo importar %d elementos desde %s"
+msgstr "Imposible importar %d elementos desde %s"
 
 #: src/Dialogs/NotImportedWindow.vala:56
 #, c-format
@@ -847,7 +847,7 @@ msgstr "Canciones favoritas"
 
 #: src/LocalBackend/LocalSmartPlaylist.vala:225
 msgid "Recently Added"
-msgstr "Añadidas recientemente"
+msgstr "Agregadas recientemente"
 
 #: src/LocalBackend/LocalSmartPlaylist.vala:233
 msgid "Recent Favorites"
