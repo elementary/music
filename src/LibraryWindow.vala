@@ -232,6 +232,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         var menu_button = new Gtk.MenuButton ();
         menu_button.image = new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR);
         menu_button.popup = menu;
+        menu_button.valign = Gtk.Align.CENTER;
 
         var previous_button = new Gtk.Button.from_icon_name ("media-skip-backward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
         previous_button.action_name = ACTION_PREFIX + ACTION_PLAY_PREVIOUS;
