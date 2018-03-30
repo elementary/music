@@ -50,7 +50,6 @@ app_files = files(
   'src/Views/DeviceView.vala',
   'src/Views/AlbumsView.vala',
   'src/Views/ViewStack.vala',
-  'src/Views/ViewTextOverlay.vala',
   'src/Views/ListView/ListView.vala',
   'src/Views/ListView/ColumnBrowser/BrowserColumn.vala',
   'src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala',

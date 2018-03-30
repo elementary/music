@@ -44,7 +44,6 @@ public class Noise.ListView : ContentView, Gtk.Box {
     private int browser_vpane_position = -1;
 
     public ViewWrapper view_wrapper { get; construct set; }
-    private ViewTextOverlay list_text_overlay;
 
     private bool obey_column_browser = false;
 
@@ -94,10 +93,6 @@ public class Noise.ListView : ContentView, Gtk.Box {
         list_scrolled.add (list_view);
         list_scrolled.expand = true;
 
-        list_text_overlay = new ViewTextOverlay ();
-        list_text_overlay.add (list_scrolled);
-        list_text_overlay.message = Markup.escape_text (_("No Songs Found."));
-
         list_view.rows_reordered.connect (() => {
             reordered ();
         });
@@ -111,7 +106,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
 
         if (has_column_browser) {
             browser_vpane = new Gtk.Paned (Gtk.Orientation.VERTICAL);
-            browser_vpane.pack2 (list_text_overlay, true, false);
+            browser_vpane.pack2 (list_scrolled, true, false);
 
             browser_hpane = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
             browser_hpane.expand = true;
@@ -131,7 +126,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
             // Connect data signals
             column_browser.changed.connect (column_browser_changed);
         } else {
-            add (list_text_overlay);
+            add (list_scrolled);
         }
     }
 
@@ -344,7 +339,6 @@ public class Noise.ListView : ContentView, Gtk.Box {
     }
 
     private void view_search_func (string search, Gee.ArrayList<Media> table, Gee.ArrayList<Media> showing) {
-        list_text_overlay.message_visible = false;
         var result = view_wrapper.library.get_search_result ();
 
         // If an external refiltering is going on, we cannot obey the column browser filter
@@ -374,7 +368,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
 
         // If nothing will be shown, display the "no media found" message.
         if (showing.size < 1) {
-            list_text_overlay.message_visible = true;
+            App.main_window.view_stack.show_alert ();
         }
     }
 }

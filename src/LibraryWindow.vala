@@ -514,6 +514,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         search_entry.activate.connect (search_entry_activate);
         search_entry.search_changed.connect (() => {
+            view_stack.hide_alert ();
             if (search_entry.text_length != 1) {
                 libraries_manager.search_for_string (search_entry.text);
             }

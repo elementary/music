@@ -27,8 +27,7 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public class Noise.AlbumsView : ContentView, ViewTextOverlay {
-    private Gtk.Paned hpaned;
+public class Noise.AlbumsView : Gtk.Paned, ContentView {
     private FastGrid icon_view;
 
     private static AlbumListGrid? _popup = null;
@@ -36,7 +35,7 @@ public class Noise.AlbumsView : ContentView, ViewTextOverlay {
         get {
             if (_popup == null) {
                 _popup = new AlbumListGrid (parent_view_wrapper);
-                hpaned.pack2 (_popup, false, false);
+                pack2 (_popup, false, false);
             }
 
             return _popup;
@@ -46,7 +45,7 @@ public class Noise.AlbumsView : ContentView, ViewTextOverlay {
     public ViewWrapper parent_view_wrapper { get; protected set; }
 
     public AlbumsView (ViewWrapper view_wrapper) {
-        Object (parent_view_wrapper: view_wrapper);
+        Object (parent_view_wrapper: view_wrapper, orientation: Gtk.Orientation.HORIZONTAL);
 
         icon_view = new FastGrid ();
         icon_view.set_compare_func (compare_func);
@@ -60,13 +59,9 @@ public class Noise.AlbumsView : ContentView, ViewTextOverlay {
         scroll.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
         scroll.add (icon_view);
 
-        hpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
-        hpaned.pack1 (scroll, true, false);
+        pack1 (scroll, true, false);
 
-        add (hpaned);
         show_all ();
-
-        message = Markup.escape_text (_("No Albums Found."));
 
         clear_objects ();
         reset_pixbufs ();
@@ -343,7 +338,6 @@ public class Noise.AlbumsView : ContentView, ViewTextOverlay {
     }
 
     protected void search_func (Gee.HashMap<int, Object> showing) {
-        message_visible = false;
         var result = parent_view_wrapper.library.get_search_result ();
         var albums = new Gee.TreeSet<Album> ();
         foreach (var m in result) {
@@ -356,7 +350,7 @@ public class Noise.AlbumsView : ContentView, ViewTextOverlay {
 
         // If nothing will be shown, display the "no albums found" message.
         if (showing.size < 1) {
-            message_visible = true;
+            App.main_window.view_stack.show_alert ();
         }
     }
 
