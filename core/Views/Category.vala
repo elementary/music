@@ -1,6 +1,5 @@
-// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012-2018 elementary LLC. (https://elementary.io)
+ * Copyright (c) 2012-2017 elementary LLC. (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,34 +22,43 @@
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
  *
- * Authored by: Victor Eduardo <victoreduardm@gmail.com>
+ * Authored by: Baptiste Gelez <baptiste@gelez.xyz>
  */
 
-public class Noise.ViewStack : Gtk.Stack {
-    private int nextview_number { get; set; default = 0; }
+/**
+* A category, grouping multiples views together
+*/
+public class Noise.Category : Object {
 
-    construct {
-        expand = true;
+    /**
+    * The name of this category
+    */
+    public string name { get; construct set; }
+
+    /**
+    * The ID of this category.
+    */
+    public string id { get; construct set; }
+
+    /**
+    * Creates a new category. Register it with {@link Noise.ViewManager.add_manager}
+    */
+    public Category (string id, string name) {
+        Object (id: id, name: name);
     }
 
     /**
-     * Appends a widget to the main views.
-     * @return the index of the view in the view container
-     */
-    public int add_view (Gtk.Widget view) {
-        view.expand = true;
-        view.visible = true;
-        add_named (view, nextview_number.to_string ());
-
-        return nextview_number++;
-    }
+    * Emitted when this category is removed
+    */
+    public signal void remove ();
 
     /**
-     * Removes a widget from the main views.
-     * @return the index of the view in the view container
-     */
-    public void remove_view (Gtk.Widget view) {
-        remove (view);
-        view.destroy ();
-    }
+    * Emitted when this category is hidden
+    */
+    public signal void hide ();
+
+    /**
+    * Emitted when this category gets displayed
+    */
+    public signal void show ();
 }

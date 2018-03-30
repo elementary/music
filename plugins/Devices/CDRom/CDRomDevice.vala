@@ -294,11 +294,12 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
             if (media_being_ripped != s || media_being_ripped == null)
                 return false;
 
-            var wrapper = App.main_window.view_stack.visible_child as DeviceViewWrapper;
+            var view = App.main_window.view_stack.visible_child as CDView;
 
-            if (wrapper != null) {
-                if (wrapper.d == this)
-                    wrapper.list_view.queue_draw ();
+            if (view != null) {
+                if (view.dev == this) {
+                    view.list_view.queue_draw ();
+                }
             }
 
             return true;

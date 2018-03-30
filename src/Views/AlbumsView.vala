@@ -1,4 +1,3 @@
-// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
  * Copyright (c) 2012-2017 elementary LLC. (https://elementary.io)
  *
@@ -25,36 +24,43 @@
  *
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
  *              Victor Eduardo <victoreduardm@gmail.com>
+ *              Baptiste Gelez <baptiste@gelez.xyz>
  */
 
-public class Noise.AlbumsView : ContentView, ViewTextOverlay {
+public class Noise.AlbumsView : View {
     private Gtk.Paned hpaned;
     private FastGrid icon_view;
 
-    private static AlbumListGrid? _popup = null;
+    private AlbumListGrid? _popup = null;
     private AlbumListGrid popup_list_view {
         get {
             if (_popup == null) {
-                _popup = new AlbumListGrid (parent_view_wrapper);
+                _popup = new AlbumListGrid ();
                 hpaned.pack2 (_popup, false, false);
             }
-
             return _popup;
+        }
+        set {
+            _popup = value;
         }
     }
 
-    public ViewWrapper parent_view_wrapper { get; protected set; }
+    public Gee.Collection<Media> media_coll { get; construct set; }
+    public Library library { get; set; default = App.main_window.library_manager; }
 
-    public AlbumsView (ViewWrapper view_wrapper) {
-        Object (parent_view_wrapper: view_wrapper);
+    public AlbumsView (Gee.Collection<Media> media) {
+        Object (media_coll: media);
+    }
 
+    construct {
         icon_view = new FastGrid ();
         icon_view.set_compare_func (compare_func);
         icon_view.set_columns (-1);
         icon_view.drag_begin.connect_after (on_drag_begin);
         icon_view.drag_data_get.connect (on_drag_data_get);
         icon_view.item_activated.connect (on_item_activated);
-        icon_view.set_search_func (search_func);
+
+        set_media (media_coll);
 
         var scroll = new Gtk.ScrolledWindow (null, null);
         scroll.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
@@ -66,8 +72,6 @@ public class Noise.AlbumsView : ContentView, ViewTextOverlay {
         add (hpaned);
         show_all ();
 
-        message = Markup.escape_text (_("No Albums Found."));
-
         clear_objects ();
         reset_pixbufs ();
 
@@ -78,22 +82,12 @@ public class Noise.AlbumsView : ContentView, ViewTextOverlay {
 
         setup_focus ();
 
-        parent_view_wrapper.library.search_finished.connect (() => {this.icon_view.research_needed = true;});
-
         Gtk.TargetEntry te = { "text/uri-list", Gtk.TargetFlags.SAME_APP, 0 };
         Gtk.drag_source_set (icon_view, Gdk.ModifierType.BUTTON1_MASK, { te }, Gdk.DragAction.COPY);
     }
 
-    protected void set_research_needed (bool value) {
-        this.icon_view.research_needed = value;
-    }
-
     protected void add_objects (Gee.Collection<Object> objects) {
         icon_view.add_objects (objects);
-    }
-
-    protected void do_search () {
-        icon_view.do_search ();
     }
 
     protected void remove_objects (Gee.Collection<Object> objects) {
@@ -171,75 +165,11 @@ public class Noise.AlbumsView : ContentView, ViewTextOverlay {
         }
     }
 
-    private ViewWrapper.Hint get_hint() {
-        return parent_view_wrapper.hint;
-    }
-
-    private Gee.Collection<Media> get_visible_media () {
-        var all_visible_media = new Gee.TreeSet<Media> ();
-
-        foreach (var album in get_visible_albums ()) {
-            var album_media = album.get_media ();
-            all_visible_media.add_all (album_media);
-        }
-
-        return all_visible_media;
-    }
-
-    private Gee.Collection<Media> get_media () {
-        var all_media = new Gee.TreeSet<Media> ();
-
-        foreach (var album in get_albums ()) {
-            var album_media = album.get_media ();
-            all_media.add_all (album_media);
-        }
-
-        return all_media;
-    }
-
-    private Gee.Collection<Album> get_visible_albums () {
-        return (Gee.Collection<Album>)get_visible_objects ();
-    }
-
     private Gee.Collection<Album> get_albums () {
         return (Gee.Collection<Album>)get_objects ();
     }
 
-    private void refilter () {
-        do_search ();
-    }
-
-    private void update_media (Gee.Collection<Media> media) {
-        var medias_to_update = new Gee.TreeSet<Media> ();
-        medias_to_update.add_all (media);
-        var medias_to_add = new Gee.TreeSet<Media> ();
-        var albums_to_remove = new Gee.TreeSet<Album> ();
-        foreach (var m in medias_to_update) {
-            if (m == null)
-                continue;
-
-            var album = m.album_info;
-            if (album == null)
-                continue;
-
-            if (!album.is_compatible (m)) {
-                medias_to_add.add (m);
-                album.remove_media (m);
-                if (album.is_empty == true) {
-                    album.cover_rendered.disconnect (queue_draw);
-                    album.notify["cover-icon"].disconnect (queue_draw);
-                    albums_to_remove.add (album);
-                }
-
-            }
-        }
-
-        remove_objects (albums_to_remove);
-        add_media (medias_to_add);
-        set_research_needed (true);
-    }
-
-    private void set_media (Gee.Collection<Media> to_add) {
+    public void set_media (Gee.Collection<Media> to_add) {
         clear_objects ();
         add_media (to_add);
     }
@@ -264,37 +194,7 @@ public class Noise.AlbumsView : ContentView, ViewTextOverlay {
 
         // Add new albums
         add_objects (albums_to_append);
-        set_research_needed (true);
-    }
-
-    /* There is a special case. Let's say that we're removing
-     * song1, song2 and song5 from Album X, and the album currently
-     * contains song1, song2, song5, and song3. Then we shouldn't remove
-     * the album because it still contains a song (song3).
-     */
-    private void remove_media (Gee.Collection<Media> to_remove) {
-        var albums_to_remove = new Gee.TreeSet<Album> ();
-        foreach (var m in to_remove) {
-            if (m == null)
-                continue;
-
-            var album = m.album_info;
-            if (album == null)
-                continue;
-
-            album.remove_media (m);
-            if (album.is_empty == true) {
-                album.cover_rendered.disconnect (queue_draw);
-                album.notify["cover-icon"].disconnect (queue_draw);
-                albums_to_remove.add (album);
-            }
-        }
-
-        if (albums_to_remove.size <= 0)
-            return;
-
-        remove_objects (albums_to_remove);
-        set_research_needed (true);
+        request_filtering ();
     }
 
     protected void item_activated (Object? object) {
@@ -309,7 +209,6 @@ public class Noise.AlbumsView : ContentView, ViewTextOverlay {
         var album = object as Album;
         return_if_fail (album != null);
 
-        popup_list_view.view_wrapper = parent_view_wrapper;
         popup_list_view.set_album (album);
         popup_list_view.show_all ();
     }
@@ -342,28 +241,32 @@ public class Noise.AlbumsView : ContentView, ViewTextOverlay {
         return order;
     }
 
-    protected void search_func (Gee.HashMap<int, Object> showing) {
-        message_visible = false;
-        var result = parent_view_wrapper.library.get_search_result ();
-        var albums = new Gee.TreeSet<Album> ();
-        foreach (var m in result) {
-            albums.add (m.album_info);
-        }
-
-        foreach (var album in albums) {
-            showing.set (showing.size, album);
-        }
-
-        // If nothing will be shown, display the "no albums found" message.
-        if (showing.size < 1) {
-            message_visible = true;
-        }
-    }
-
     protected Gee.Collection<Media> get_selected_media (Object obj) {
         var album = obj as Album;
         return_val_if_fail (album != null, null);
 
         return album.get_media ();
+    }
+
+    public override void update_alert (Granite.Widgets.AlertView alert) {
+        alert.title = _("No Albums Found.");
+    }
+
+    public override bool filter (string search) {
+        // TODO: maybe handle search here, not in the library manager?
+        library.search_medias (search);
+        var result = library.get_search_result ();
+        var albums = new Gee.TreeSet<Album> ();
+        foreach (var m in result) {
+            albums.add (m.album_info);
+        }
+
+        var showing = new Gee.HashMap<int, Album> ();
+        foreach (var album in albums) {
+            showing[showing.size] = album;
+        }
+        icon_view.set_visible_albums (showing);
+
+        return result.size > 0;
     }
 }

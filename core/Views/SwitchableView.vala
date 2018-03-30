@@ -1,6 +1,5 @@
-// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012-2018 elementary LLC. (https://elementary.io)
+ * Copyright (c) 2012-2017 elementary LLC. (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -23,34 +22,37 @@
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
  *
- * Authored by: Victor Eduardo <victoreduardm@gmail.com>
+ * Authored by: Baptiste Gelez <baptiste@gelez.xyz>
  */
 
-public class Noise.ViewStack : Gtk.Stack {
-    private int nextview_number { get; set; default = 0; }
+/**
+* A view which itself contains multiples views.
+*
+* It is controlled by the view selector in the header bar.
+*
+* Its children don't need to define a category, only an ID, icon and title.
+*/
+public class Noise.SwitchableView : View {
+    public Gtk.Stack stack { get; private set; }
+
+    public Gee.ArrayList<View> children { get; set; }
 
     construct {
-        expand = true;
+        children = new Gee.ArrayList<View> ();
+
+        stack = new Gtk.Stack ();
+        add (stack);
     }
 
     /**
-     * Appends a widget to the main views.
-     * @return the index of the view in the view container
-     */
-    public int add_view (Gtk.Widget view) {
-        view.expand = true;
-        view.visible = true;
-        add_named (view, nextview_number.to_string ());
-
-        return nextview_number++;
+    * Add a child view
+    */
+    public void add_view (View view) {
+        children.add (view);
+        stack.add_titled (view, view.id, view.title);
     }
 
-    /**
-     * Removes a widget from the main views.
-     * @return the index of the view in the view container
-     */
-    public void remove_view (Gtk.Widget view) {
-        remove (view);
-        view.destroy ();
+    public override bool filter (string search) {
+        return ((View)stack.visible_child).filter (search);
     }
 }

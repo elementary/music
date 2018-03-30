@@ -25,90 +25,40 @@
  */
 
 public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
-    public signal void mode_changed (Mode new_mode);
-    public signal void column_browser_toggled (bool new_value);
+    public Granite.Widgets.ModeButton mode_button { get; private set; }
 
-    public enum Mode {
-        GRID = 0,
-        LIST = 1,
-        COLUMN = 2;
-    }
-
-    // The COLUMN mode is still not considered as a single mode, and thus it's
-    // never returned by @selected. See complementary API below
-    public Mode selected {
-        get {
-            return (mode != Mode.COLUMN) ? mode : Mode.LIST;
-        }
-        set {
-            if (mode == value) {
-                return;
-            }
-
-            mode = value;
-            mode_button.selected = (int) value;
-
-            bool is_column_mode = value == Mode.COLUMN;
-            column_browser_toggled (is_column_mode);
-            mode_changed (is_column_mode ? Mode.LIST : value);
-        }
-    }
-
-    // De-select items when the widget is made insensitive, for appearance reasons
-    public new bool sensitive {
-        get {
-            return mode_button.sensitive;
-        }
-        set {
-            // select fourth invisible mode to appear as de-selected
-            mode_button.sensitive = value;
-            mode_button.set_active (value ? (int) mode : -1);
-        }
-    }
-
-    private Granite.Widgets.ModeButton mode_button;
-    private Mode mode;
-
-    public ViewSelector () {
-        var image = new Gtk.Image.from_icon_name ("view-grid-symbolic", Gtk.IconSize.MENU);
-        image.tooltip_text = _("View as Albums");
-
-        var list = new Gtk.Image.from_icon_name ("view-list-symbolic", Gtk.IconSize.MENU);
-        list.tooltip_text = _("View as List");
-
-        var column = new Gtk.Image.from_icon_name ("view-column-symbolic", Gtk.IconSize.MENU);
-        column.tooltip_text = _("View in Columns");
-
+    construct {
         mode_button = new Granite.Widgets.ModeButton ();
-        mode_button.append (image);
-        mode_button.append (list);
-        mode_button.append (column);
-
         add (mode_button);
 
-        mode_button.mode_changed.connect (() => {
-            int new_mode = mode_button.selected;
-            if (new_mode <= 2) { // only consider first 3 items
-                selected = (Mode) new_mode;
-            } else if (mode_button.sensitive) {
-                selected = mode; // restore last valid mode
+        App.main_window.view_manager.notify["selected-view"].connect (update);
+        update ();
+    }
+
+    public void update () {
+        var selected_view = App.main_window.view_manager.selected_view;
+        if (selected_view is SwitchableView) {
+            mode_button.clear_children ();
+
+            var view = (SwitchableView)selected_view;
+            foreach (var subview in view.children) {
+                var image = new Gtk.Image.from_gicon (subview.icon, Gtk.IconSize.MENU);
+                image.tooltip_text = subview.title;
+                var index = mode_button.append (image);
+                mode_button.mode_changed.connect ((widget) => {
+                    if (widget == image) {
+                        view.stack.visible_child = subview;
+                    }
+                });
+
+                if (subview == view.stack.visible_child) {
+                    mode_button.selected = index;
+                }
             }
-        });
-    }
 
-    // CRAPPY API
-    // XXX ugly workaround to avoid dealing with API breaks, since there's no time
-    // to come up with a fancy solution. Needs rewrite
-
-    public bool get_column_browser_toggle_active () {
-        return mode == Mode.COLUMN;
-    }
-
-    public void set_column_browser_toggle_active (bool active) {
-        if (active) {
-            selected = Mode.COLUMN;
-        } else if (get_column_browser_toggle_active ()) {
-            selected = Mode.LIST;
+            visible = true;
+        } else {
+            visible = false;
         }
     }
 }

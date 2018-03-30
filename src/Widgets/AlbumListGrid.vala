@@ -28,29 +28,16 @@
  */
 
 public class Noise.AlbumListGrid : Gtk.Grid {
-    private ViewWrapper _view_wrapper;
-    public ViewWrapper view_wrapper {
-        get {
-            return _view_wrapper;
-        }
-        construct set {
-            list_view.parent_wrapper = value;
-            _view_wrapper = value;
-        }
-    }
-
     private Album album;
     private Widgets.AlbumImage album_cover;
-    private Gee.TreeSet<Media> media_list = new Gee.TreeSet<Media> ();
+    private Gee.ArrayList<Media> media_list = new Gee.ArrayList<Media> ();
     private GenericList list_view;
     private Gtk.Label album_label;
     private Gtk.Label artist_label;
     private Gtk.Menu cover_action_menu;
     private Granite.Widgets.Rating rating;
 
-    public AlbumListGrid (ViewWrapper view_wrapper) {
-        Object (view_wrapper: view_wrapper);
-    }
+    public Library library { get; construct; default = App.main_window.library_manager; }
 
     construct {
         album_cover = new Widgets.AlbumImage ();
@@ -83,12 +70,19 @@ public class Noise.AlbumListGrid : Gtk.Grid {
         artist_label.xalign = 0;
         artist_label.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
 
-        var tvs = new TreeViewSetup (ViewWrapper.Hint.ALBUM_LIST);
-        list_view = new MusicListView (view_wrapper, tvs, false);
+        var tvs = new TreeViewSetup.minimal ();
+        list_view = new MusicListView (tvs, library, false, false);
+        list_view.headers_visible = false;
         list_view.expand = true;
         list_view.headers_visible = false;
         list_view.set_search_func (view_search_func);
         list_view.get_style_context ().remove_class (Gtk.STYLE_CLASS_VIEW);
+        list_view.remove_request.connect ((media) => {
+            var dialog = new RemoveFilesDialog (media);
+            dialog.remove_media.connect ((delete_files) => {
+                library.remove_medias (media, delete_files);
+            });
+        });
 
         var list_view_scrolled = new Gtk.ScrolledWindow (null, null);
         list_view_scrolled.margin_top = 18;
@@ -151,10 +145,7 @@ public class Noise.AlbumListGrid : Gtk.Grid {
                 media_list.add (m);
             }
 
-            list_view.set_media (media_list);
-
-            // Search again to match the view wrapper's search
-            list_view.do_search (App.main_window.search_entry.text);
+            list_view.set_visible_media (media_list);
         }
 
         if (list_view.get_realized ())
@@ -162,7 +153,7 @@ public class Noise.AlbumListGrid : Gtk.Grid {
 
         // Set rating
         update_album_rating ();
-        view_wrapper.library.media_updated.connect (update_album_rating);
+        library.media_updated.connect (update_album_rating);
     }
 
     void update_album_cover () {
@@ -210,7 +201,7 @@ public class Noise.AlbumListGrid : Gtk.Grid {
 
         }
 
-        view_wrapper.library.update_medias (updated, false, true);
+        library.update_medias (updated, false, true);
     }
 
     private void view_search_func (string search, Gee.ArrayList<Media> table, Gee.ArrayList<Media> showing) {

@@ -84,7 +84,9 @@ public class Noise.Plugins.AudioPlayerDeviceManager : GLib.Object {
     public virtual void mount_removed (Mount mount) {
         foreach(var dev in devices) {
             if(dev.get_uri() == mount.get_default_location().get_uri()) {
-                DeviceManager.get_default ().device_removed ((Noise.Device)dev);
+                App.main_window.view_manager.remove_view (dev.music_view);
+                App.main_window.view_manager.remove_view (dev.summary_view);
+                // App.main_window.view_manager.remove_category (dev.view_category);
 
                 // Actually remove it
                 devices.remove(dev);

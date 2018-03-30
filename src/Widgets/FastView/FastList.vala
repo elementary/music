@@ -59,10 +59,6 @@ public class Noise.FastView : Gtk.TreeView {
 
     public signal void rows_reordered ();
 
-    public FastView (Gee.List<Type> types) {
-        Object (columns: types);
-    }
-
     construct {
         columns = new Gee.ArrayList<Type> ();
         foreach (var type in ListColumn.get_all ()) {
@@ -101,57 +97,57 @@ public class Noise.FastView : Gtk.TreeView {
         fm.set_value_func (func);
     }
 
-    public void set_table (Gee.ArrayList<Media> table, bool do_resort) {
-        this.table = table;
+    public void set_table (Gee.ArrayList<Media> new_table, bool do_resort) {
+        table.clear ();
+        table.add_all (new_table);
+
+        if (showing.size == 0) { // first population
+            set_model (null);
+            fm.set_table (new_table);
+            set_model (fm);
+
+            showing.add_all (new_table);
+        }
 
         if (do_resort) {
-            resort (); // this also calls search
-        } else {
-            do_search (null);
+            resort ();
         }
     }
 
-    public void set_search_func (ViewSearchFunc func) {
-        search_func = func;
-    }
-
-    public void do_search (string? search = null) {
-        if (search_func == null || research_needed == false) {
-            return;
-        }
-
-        research_needed = false;
-        var old_size = showing.size;
-
-        showing.clear ();
-        search_func (search ?? "", table, showing);
-
-        if (showing.size == old_size) {
-            fm.set_table (showing);
+    public void set_visible_media (Gee.ArrayList<Media> media) {
+        if (media.size == showing.size) {
+            fm.set_table (media);
             queue_draw ();
-        } else if (old_size == 0) { // if first population, just do normal
+        } else if (showing.size == 0) { // if first population, just do normal
             set_model (null);
-            fm.set_table (showing);
+            fm.set_table (media);
             set_model (fm);
-        } else if (old_size > showing.size) { // removing
-            while (fm.iter_n_children (null) > showing.size) {
+        } else if (showing.size > media.size) { // removing
+            while (fm.iter_n_children (null) > media.size) {
                 Gtk.TreeIter iter;
                 fm.iter_nth_child (out iter, null, fm.iter_n_children (null) - 1);
                 fm.remove (iter);
             }
 
-            fm.set_table (showing);
+            fm.set_table (media);
             queue_draw ();
-        } else if (showing.size > old_size) { // adding
+        } else if (media.size > showing.size) { // adding
             Gtk.TreeIter iter;
 
-            while (fm.iter_n_children (null) < showing.size) {
+            while (fm.iter_n_children (null) < media.size) {
                 fm.append (out iter);
             }
 
-            fm.set_table (showing);
+            fm.set_table (media);
             queue_draw ();
         }
+
+        showing.clear ();
+        showing.add_all (media);
+    }
+
+    public void set_search_func (ViewSearchFunc func) {
+        search_func = func;
     }
 
     public void redraw_row (int row_index) {
@@ -181,7 +177,6 @@ public class Noise.FastView : Gtk.TreeView {
 
         quicksort (0, table.size - 1);
         research_needed = true;
-        do_search (null);
 
         // Let it be known the row order changed
         rows_reordered ();
@@ -191,7 +186,6 @@ public class Noise.FastView : Gtk.TreeView {
         quicksort (0, table.size - 1);
 
         research_needed = true;
-        do_search (null);
     }
 
     public void set_compare_func (SortCompareFunc func) {

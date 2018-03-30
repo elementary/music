@@ -28,42 +28,27 @@
  */
 
 public abstract class Noise.GenericList : FastView {
+    public signal void remove_request (Gee.Collection<Media> to_remove);
     public signal void import_requested (Gee.Collection<Media> to_import);
-
-    public Playlist? playlist { get; set; default = null; }
-    public ViewWrapper.Hint hint {
-        get {
-            return tvs.hint;
-        }
-        set {
-            tvs.hint = value;
-        }
-    }
 
     //for header column chooser
     protected Gtk.Menu column_chooser_menu;
     private Gtk.MenuItem autosize_menu_item;
 
-    private ViewWrapper _parent_wrapper;
-    public ViewWrapper parent_wrapper {
-        get {
-            return _parent_wrapper;
-        }
-        construct set {
-            _parent_wrapper = value;
-            playlist = value.playlist;
-        }
-    }
-
-    public TreeViewSetup tvs { get; construct set; }
     protected bool is_current_list;
 
     protected bool dragging;
 
     protected CellDataFunctionHelper cell_data_helper;
 
-    public GenericList (ViewWrapper view_wrapper, TreeViewSetup tvs) {
-        Object (parent_wrapper: view_wrapper, tvs: tvs);
+    public string playlist_id = "";
+
+    public TreeViewSetup tvs { get; construct; }
+
+    public Library library { get; construct; }
+
+    public GenericList (TreeViewSetup tvs) {
+        Object (tvs: tvs);
     }
 
     construct {
@@ -103,7 +88,7 @@ public abstract class Noise.GenericList : FastView {
         drag_data_get.connect (on_drag_data_get);
         drag_end.connect (on_drag_end);
 
-        parent_wrapper.library.media_updated.connect (media_updated);
+        library.media_updated.connect (media_updated);
 
         App.player.queue_cleared.connect (current_cleared);
         App.player.media_played.connect (media_played);
@@ -113,9 +98,6 @@ public abstract class Noise.GenericList : FastView {
 
     protected void add_column_chooser_menu_item (Gtk.TreeViewColumn tvc, ListColumn type) {
         if (type == ListColumn.TITLE || type == ListColumn.ICON)
-            return;
-
-        if (hint == ViewWrapper.Hint.MUSIC && type == ListColumn.NUMBER)
             return;
 
         if (column_chooser_menu == null) {
@@ -174,6 +156,7 @@ public abstract class Noise.GenericList : FastView {
 
         // resort the new songs in. this will also call do_search
         resort ();
+        queue_draw ();
     }
 
     public abstract void update_sensitivities ();
@@ -230,7 +213,7 @@ public abstract class Noise.GenericList : FastView {
 
         var to_update = new Gee.TreeSet<Media> ();
         to_update.add (m);
-        parent_wrapper.library.update_medias (to_update, true, true);
+        library.update_medias (to_update, true, true);
     }
 
     protected bool view_header_click (Gdk.EventButton e, bool is_selector_col) {
@@ -279,24 +262,17 @@ public abstract class Noise.GenericList : FastView {
         is_current_list = false;
     }
 
+    public signal void queued (Media first_media);
+
     public void set_as_current_list (Media? m = null) {
         Media to_set = m == null ? App.player.current_media : m;
+        queued (to_set);
 
         is_current_list = true;
         var main_settings = Settings.Main.get_default ();
 
         if (!main_settings.privacy_mode_enabled ()) {
-            if (playlist == null || playlist == ((Noise.LocalLibrary)libraries_manager.local_library).p_music || parent_wrapper.library != libraries_manager.local_library) {
-                main_settings.last_playlist_playing = "";
-            } else if (playlist is SmartPlaylist) {
-                main_settings.last_playlist_playing = "s%lld".printf (playlist.rowid);
-            } else {
-                if (((StaticPlaylist)playlist).read_only == false) {
-                    main_settings.last_playlist_playing = "p%lld".printf (playlist.rowid);
-                } else {
-                    main_settings.last_playlist_playing = "";
-                }
-            }
+            main_settings.last_playlist_playing = playlist_id;
         }
 
         var queue = start_at (to_set, get_visible_table ());
@@ -308,10 +284,12 @@ public abstract class Noise.GenericList : FastView {
         App.player.current_index = 0;
 
         // order the queue like this list
-        var queue_view_id = App.main_window.match_playlists[App.player.queue_playlist];
-        var view = (ViewWrapper) App.main_window.view_stack.get_child_by_name (queue_view_id.to_string ());
-        view.list_view.list_view.set_sort_column_id (tvs.sort_column_id, tvs.sort_direction);
-
+        foreach (var view in App.main_window.view_manager.views) {
+            if (view is PlaylistView && ((PlaylistView)view).playlist == App.player.queue_playlist) {
+                ((PlaylistView)view).list_view.set_sort_column_id (tvs.sort_column_id, tvs.sort_direction);
+                break;
+            }
+        }
         media_played.begin (App.player.current_media);
     }
 

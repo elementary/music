@@ -31,6 +31,7 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
 
     public signal void changed ();
     public signal void position_changed (Position p);
+    public signal void row_activated ();
 
     public enum Position {
         AUTOMATIC,
@@ -65,8 +66,6 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
     }
 
     public Position actual_position { get; set; default = Position.LEFT; }
-
-    public ViewWrapper view_wrapper { get; private set; }
 
     /**
      * Whether the columns are filtered or not based on the current selection.
@@ -138,9 +137,8 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
     private Gtk.RadioMenuItem left_menu_item;
     private Gtk.RadioMenuItem automatic_menu_item;
 
-    public ColumnBrowser (ViewWrapper view_wrapper, BrowserColumn.Category[] categories) {
+    public ColumnBrowser (BrowserColumn.Category[] categories) {
         this.orientation = Gtk.Orientation.HORIZONTAL;
-        this.view_wrapper = view_wrapper;
         columns = new Gee.TreeSet<BrowserColumn> ();
         column_chooser_menu = new Gtk.Menu ();
 
@@ -209,7 +207,10 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
 
         column_chooser_menu.append (column.menu_item);
 
-        column.row_activated.connect (column_row_activated);
+        column.row_activated.connect (() => {
+            row_activated ();
+        });
+
         column.header_clicked.connect (column_header_clicked);
         column.visibility_changed.connect (update_column_separators);
 
@@ -230,13 +231,8 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
         changed ();
     }
 
-    private void column_row_activated () {
-        view_wrapper.play_first_media ();
-    }
-
     private void column_selection_changed (BrowserColumn.Category category, string val) {
         update_search_results (category);
-        view_wrapper.list_view.list_view.research_needed = true;
         populate_columns (category, false);
         changed ();
     }

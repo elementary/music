@@ -24,12 +24,12 @@
  * statement from your version.
  */
 
-namespace Noise.Plugins {
+namespace LastFM {
 
-    public class LastFMPlugin : Peas.ExtensionBase, Peas.Activatable {
+    public class Plugin : Peas.ExtensionBase, Peas.Activatable {
         public GLib.Object object { owned get; construct; }
 
-        private Interface plugins;
+        private Noise.Plugins.Interface plugins;
 
         private Ag.Manager manager;
         private bool added_view = false;
@@ -40,7 +40,7 @@ namespace Noise.Plugins {
             plugins = (Noise.Plugins.Interface)value.get_object();
 
             message ("Activating Last.fm plugin");
-            plugins.register_function (Interface.Hook.WINDOW, load_plugin);
+            plugins.register_function (Noise.Plugins.Interface.Hook.WINDOW, load_plugin);
         }
 
         private void load_plugin () {
@@ -82,8 +82,8 @@ namespace Noise.Plugins {
                     var client_secret = login_parameters.lookup_value ("ClientSecret", new VariantType ("s")).get_string ();
                     var core = LastFM.Core.get_default ();
                     core.initialize (client_id, client_secret, token);
-                    App.main_window.source_list_added.connect (source_list_added);
-                    libraries_manager.add_headless_playlist (core.get_similar_playlist ());
+                    var similar_media_view = new SimilarMediaView (core.get_similar_playlist (), new Noise.TreeViewSetup (true));
+                    Noise.App.main_window.view_manager.add (similar_media_view);
                     added_view = true;
                 } catch (Error e) {
                     critical (e.message);
@@ -91,17 +91,10 @@ namespace Noise.Plugins {
             }
         }
 
-        private void source_list_added (GLib.Object o, int view_number) {
-            if (o == LastFM.Core.get_default ().get_similar_playlist ()) {
-                var view = (Noise.PlaylistViewWrapper) App.main_window.view_stack.get_child_by_name (view_number.to_string ());
-                view.set_no_media_alert_message (_("No similar songs found"), _("There are no songs similar to the current song in your library. Make sure all song info is correct and you are connected to the Internet. Some songs may not have matches."));
-            }
-        }
-
         public void deactivate () {
             if (added_view) {
                 added_view = false;
-                libraries_manager.local_library.remove_playlist (LastFM.Core.get_default ().get_similar_playlist ().rowid);
+                Noise.libraries_manager.local_library.remove_playlist (LastFM.Core.get_default ().get_similar_playlist ().rowid);
             }
         }
 
@@ -115,5 +108,5 @@ namespace Noise.Plugins {
 public void peas_register_types (GLib.TypeModule module) {
     var objmodule = module as Peas.ObjectModule;
     objmodule.register_extension_type (typeof (Peas.Activatable),
-                                     typeof (Noise.Plugins.LastFMPlugin));
+                                     typeof (LastFM.Plugin));
 }
