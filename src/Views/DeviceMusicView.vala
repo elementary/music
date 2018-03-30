@@ -36,10 +36,12 @@ public class Noise.DeviceMusicView : View {
     private MusicListView list_view { get; set; }
 
     public DeviceMusicView (TreeViewSetup tvs, Device d, Library library) {
+        print ("constructor device music view\n\n");        
         Object (device: d, tvs: tvs, library: library);
     }
 
     construct {
+        print ("construct device music view\n\n");
         title = _("Music");
         id = device.get_unique_identifier () + "/music";
         category = device.get_unique_identifier ();
@@ -58,6 +60,7 @@ public class Noise.DeviceMusicView : View {
 
         library.file_operations_done.connect (sync_finished);
         list_view.set_media (library.get_medias ());
+        print ("%d media on device\n\n", library.get_medias ().size);
 
         add (list_view);
         show_all ();

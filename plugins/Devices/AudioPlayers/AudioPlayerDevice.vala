@@ -32,8 +32,12 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
     GLib.Icon icon;
     bool is_androphone = false;
     Gee.LinkedList<string> music_folders;
+    Category view_category;
 
     private AudioPlayerLibrary library;
+
+    public DeviceMusicView music_view { get; set; }
+    public DeviceSummaryView summary_view { get; set; }
 
     public AudioPlayerDevice(Mount mount, bool is_androphone) {
         this.mount = mount;
@@ -42,6 +46,16 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
         library = new AudioPlayerLibrary (this);
         libraries_manager.add_library (library);
         icon = new GLib.ThemedIcon (is_androphone ? "phone" : "music-player");
+
+        print ("Mounted %s\n\n", getDisplayName ());
+
+        view_category = new Category (get_unique_identifier (), getDisplayName ());
+        App.main_window.view_manager.add_category (view_category);
+
+        summary_view = new DeviceSummaryView (this, App.main_window.library_manager.get_preferences_for_device (this));
+        App.main_window.view_manager.add (summary_view);
+        music_view = new DeviceMusicView (new TreeViewSetup (), this, this.library);
+        App.main_window.view_manager.add (music_view);
     }
 
     public void finish_initialization() {
@@ -86,7 +100,7 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
             items += FileUtils.count_music_files (music_folder_file, files);
         }
 
-        debug ("found %d items to import\n", items);
+        print ("found %d items to import\n", items);
         library.tagger.discoverer_import_media (files);
         if (files.size == 0)
             library.queue_finished ();
