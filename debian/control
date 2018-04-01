@@ -1,9 +1,9 @@
 Source: noise
 Section: sound
 Priority: optional
-Maintainer: Sergey "Shnatsel" Davidoff <sergey@elementaryos.org>
+Maintainer: elementary LLC <builds@elementary.io>
 Build-Depends: appstream,
-               debhelper (>= 9),
+               debhelper (>= 10.5.1),
                desktop-file-utils,
                gettext,
                libaccounts-glib-dev,
@@ -26,10 +26,9 @@ Build-Depends: appstream,
                libtagc0-dev (>= 1.6.3),
                libzeitgeist-2.0-dev,
                meson,
-               quilt,
                valac (>= 0.26)
-Standards-Version: 3.9.5
-Homepage: https://launchpad.net/noise
+Standards-Version: 4.1.1
+Homepage: https://github.com/elementary/music
 
 Package: noise
 Architecture: any
@@ -44,24 +43,6 @@ Description: Simple, fast, and elegant music player
  artwork, information, and scrobble your music, playlists and smart playlists,
  find music similar to the currently playing song, simple UI, fast searching
  for music, queue system, mass song editing and more...
-
-Package: noise-dbg
-Architecture: any
-Section: debug
-Priority: extra
-Depends: noise (= ${binary:Version}), ${misc:Depends}
-Pre-Depends: dpkg (>= 1.15.6)
-Enhances: noise
-Description: Simple, fast, and elegant music player (debugging symbols)
- Noise is an easy to use, stable, fast and good looking music library
- organizer written in vala.
- .
- It has many modern features including Last.FM integration to download
- artwork, information, and scrobble your music, playlists and smart playlists,
- find music similar to the currently playing song, simple UI, fast searching
- for music, queue system, mass song editing and more...
- .
- This package contains debugging symbols for Noise.
 
 Package: libnoise-core0
 Architecture: any
@@ -80,24 +61,6 @@ Description: Simple, fast, and good looking music player (core library)
  for music, queue system, mass song editing and more...
  .
  This package contains the shared library.
-
-Package: libnoise-core0-dbg
-Architecture: any
-Section: debug
-Priority: extra
-Depends: libnoise-core0 (= ${binary:Version}), ${misc:Depends}
-Pre-Depends: dpkg (>= 1.15.6)
-Recommends: noise-dbg
-Description: Simple, fast, and good looking music player (-dbg for core library)
- Noise is an easy to use, stable, fast and good looking music library
- organizer written in vala.
- .
- It has many modern features including Last.FM integration to download
- artwork, information, and scrobble your music, playlists and smart playlists,
- find music similar to the currently playing song, simple UI, fast searching
- for music, queue system, mass song editing and more...
- .
- This package contains debugging symbols for the shared library.
 
 Package: libnoise-core-dev
 Section: libdevel

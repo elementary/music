@@ -14,6 +14,7 @@ override_dh_install:
 	dh_install --fail-missing
 
 override_dh_strip:
-	dh_strip -p libnoise-core0 --dbg-package=libnoise-core0-dbg
-	dh_strip -p noise --dbg-package=noise-dbg
+	dh_strip -p libnoise-core0 --dbgsym-migration='libnoise-core0-dbg (<< 0.4.2)'
+	dh_strip -p noise --dbgsym-migration='noise-dbg (<< 0.4.2)'
+
 
