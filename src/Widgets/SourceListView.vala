@@ -35,26 +35,26 @@ public interface Noise.SourceListEntry : Granite.Widgets.SourceList.Item {
  * SourceList item. It stores the number of the corresponding page in the notebook widget.
  */
 public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListEntry, Granite.Widgets.SourceListDragDest {
-    public signal void playlist_rename_clicked (int page_number);
-    public signal void playlist_edit_clicked (int page_number);
-    public signal void playlist_remove_clicked (int page_number);
-    public signal void playlist_save_clicked (int page_number);
-    public signal void playlist_export_clicked (int page_number);
-    public signal void playlist_media_added (int page_number, string[] media);
+    public signal void playlist_rename_clicked (Gtk.Grid view);
+    public signal void playlist_edit_clicked (Gtk.Grid view);
+    public signal void playlist_remove_clicked (Gtk.Grid view);
+    public signal void playlist_save_clicked (Gtk.Grid view);
+    public signal void playlist_export_clicked (Gtk.Grid view);
+    public signal void playlist_media_added (Gtk.Grid view, string[] media);
 
-    public int page_number { get; set; default = -1; }
+    public Gtk.Grid view { get; construct; }
     public ViewWrapper.Hint hint { get; construct; }
     public GLib.Icon? activatable_icon { get; construct; }
 
     private Gtk.Menu playlist_menu;
 
-    public SourceListItem (int page_number, string name, ViewWrapper.Hint hint, GLib.Icon icon, GLib.Icon? activatable_icon = null) {
+    public SourceListItem (Gtk.Grid view, string name, ViewWrapper.Hint hint, GLib.Icon icon, GLib.Icon? activatable_icon = null) {
         Object (
             activatable_icon: activatable_icon,
             hint: hint,
             icon: icon,
             name: name,
-            page_number: page_number
+            view: view
         );
     }
 
@@ -68,10 +68,10 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListE
                 playlist_menu.append (playlist_rename);
                 playlist_menu.append (playlist_remove);
                 playlist_rename.activate.connect (() => {
-                    playlist_rename_clicked (page_number);
+                    playlist_rename_clicked (view);
                 });
                 playlist_remove.activate.connect (() => {
-                    playlist_remove_clicked (page_number);
+                    playlist_remove_clicked (view);
                 });
                 break;
             case ViewWrapper.Hint.SMART_PLAYLIST:
@@ -82,27 +82,27 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListE
                 playlist_menu.append (playlist_edit);
                 playlist_menu.append (playlist_remove);
                 playlist_rename.activate.connect (() => {
-                    playlist_rename_clicked (page_number);
+                    playlist_rename_clicked (view);
                 });
                 playlist_edit.activate.connect (() => {
-                    playlist_edit_clicked (page_number);
+                    playlist_edit_clicked (view);
                 });
                 playlist_remove.activate.connect (() => {
-                    playlist_remove_clicked (page_number);
+                    playlist_remove_clicked (view);
                 });
                 break;
             case ViewWrapper.Hint.READ_ONLY_PLAYLIST:
                 var playlist_save = new Gtk.MenuItem.with_label (_("Save as Playlist"));
                 playlist_menu.append (playlist_save);
                 playlist_save.activate.connect (() => {
-                    playlist_save_clicked (page_number);
+                    playlist_save_clicked (view);
                 });
                 break;
         }
 
         var playlist_export = new Gtk.MenuItem.with_label (_("Export…"));
         playlist_export.activate.connect (() => {
-            playlist_export_clicked (page_number);
+            playlist_export_clicked (view);
         });
 
         playlist_menu.append (playlist_export);
@@ -126,26 +126,26 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListE
     }
 
     private Gdk.DragAction data_received (Gdk.DragContext context, Gtk.SelectionData data) {
-        playlist_media_added (page_number, data.get_uris ());
+        playlist_media_added (view, data.get_uris ());
         return Gdk.DragAction.COPY;
     }
 }
 
 public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.ExpandableItem, SourceListEntry {
-    public int page_number { get; set; default = -1; }
+    public Gtk.Grid view { get; set; }
     public ViewWrapper.Hint hint;
 
     private Gtk.Menu device_menu;
 
-    public signal void device_import_clicked (int page_number);
-    public signal void device_eject_clicked (int page_number);
-    public signal void device_sync_clicked (int page_number);
-    public signal void device_new_playlist_clicked (int page_number);
-    public signal void device_new_smartplaylist_clicked (int page_number);
+    public signal void device_import_clicked (Gtk.Grid view);
+    public signal void device_eject_clicked (Gtk.Grid view);
+    public signal void device_sync_clicked (Gtk.Grid view);
+    public signal void device_new_playlist_clicked (Gtk.Grid view);
+    public signal void device_new_smartplaylist_clicked (Gtk.Grid view);
 
-    public SourceListExpandableItem (int page_number, string name, ViewWrapper.Hint hint, GLib.Icon icon, GLib.Icon? activatable_icon = null, Object? give_more_information = null) {
+    public SourceListExpandableItem (Gtk.Grid view, string name, ViewWrapper.Hint hint, GLib.Icon icon, GLib.Icon? activatable_icon = null, Object? give_more_information = null) {
         base (name);
-        this.page_number = page_number;
+        this.view = view;
         this.icon = icon;
         this.hint = hint;
         if (activatable_icon != null)
@@ -156,7 +156,7 @@ public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.Expanda
         if (hint == ViewWrapper.Hint.DEVICE_AUDIO) {
             var import_menuitem = new Gtk.MenuItem.with_label(_("Import to Library"));
             import_menuitem.activate.connect (() => {
-                device_import_clicked (page_number);
+                device_import_clicked (view);
             });
 
             device_menu.append (import_menuitem);
@@ -165,7 +165,7 @@ public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.Expanda
         if (hint == ViewWrapper.Hint.DEVICE) {
             var eject_menuitem = new Gtk.MenuItem.with_label (_("Eject"));
             eject_menuitem.activate.connect (() => {
-                device_eject_clicked (page_number);
+                device_eject_clicked (view);
             });
 
             if (give_more_information is Device) {
@@ -175,7 +175,7 @@ public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.Expanda
                 if (device_library.support_playlists ()) {
                     var add_playlist_menuitem = new Gtk.MenuItem.with_label (_("New Playlist"));
                     add_playlist_menuitem.activate.connect (() => {
-                        device_new_playlist_clicked (page_number);
+                        device_new_playlist_clicked (view);
                     });
                     device_menu.append (add_playlist_menuitem);
                 }
@@ -183,7 +183,7 @@ public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.Expanda
                 if (device_library.support_smart_playlists ()) {
                     var add_smart_playlist_menuitem = new Gtk.MenuItem.with_label (_("New Smart Playlist"));
                     add_smart_playlist_menuitem.activate.connect (() => {
-                        device_new_smartplaylist_clicked (page_number);
+                        device_new_smartplaylist_clicked (view);
                     });
                     device_menu.append (add_smart_playlist_menuitem);
                 }
@@ -191,7 +191,7 @@ public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.Expanda
                 if (device.read_only() == false) {
                     var sync_menuitem = new Gtk.MenuItem.with_label (_("Sync"));
                     sync_menuitem.activate.connect (() => {
-                        device_sync_clicked (page_number);
+                        device_sync_clicked (view);
                     });
                     device_menu.append (sync_menuitem);
                 }
@@ -312,24 +312,24 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
     Granite.Widgets.SourceList.ExpandableItem network_category;
     PlayListCategory playlists_category;
 
-    public signal void edited (int page_number, string new_name);
-    public signal void item_action_activated (int page_number);
-    public signal void selection_changed (int page_number);
+    public signal void edited (Gtk.Grid view, string new_name);
+    public signal void item_action_activated (Gtk.Grid view);
+    public signal void selection_changed (Gtk.Grid view);
     public signal void activated ();
 
-    public signal void playlist_rename_clicked (int page_number);
-    public signal void playlist_edit_clicked (int page_number);
-    public signal void playlist_remove_clicked (int page_number);
-    public signal void playlist_save_clicked (int page_number);
-    public signal void playlist_export_clicked (int page_number);
+    public signal void playlist_rename_clicked (Gtk.Grid view);
+    public signal void playlist_edit_clicked (Gtk.Grid view);
+    public signal void playlist_remove_clicked (Gtk.Grid view);
+    public signal void playlist_save_clicked (Gtk.Grid view);
+    public signal void playlist_export_clicked (Gtk.Grid view);
     public signal void playlist_import_clicked ();
-    public signal void playlist_media_added (int page_number, string[] uris);
+    public signal void playlist_media_added (Gtk.Grid view, string[] uris);
 
-    public signal void device_import_clicked (int page_number);
-    public signal void device_eject_clicked (int page_number);
-    public signal void device_sync_clicked (int page_number);
-    public signal void device_new_playlist_clicked (int page_number);
-    public signal void device_new_smartplaylist_clicked (int page_number);
+    public signal void device_import_clicked (Gtk.Grid view);
+    public signal void device_eject_clicked (Gtk.Grid view);
+    public signal void device_sync_clicked (Gtk.Grid view);
+    public signal void device_new_playlist_clicked (Gtk.Grid view);
+    public signal void device_new_smartplaylist_clicked (Gtk.Grid view);
 
     public SourceListView () {
         base (new SourceListRoot ());
@@ -364,7 +364,7 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
      *
      * TODO: Change ViewWrapper.Hint to core values.
      */
-    public SourceListEntry add_item (int page_number,
+    public SourceListEntry add_item (Gtk.Grid view,
                         string name,
                         ViewWrapper.Hint hint,
                         GLib.Icon icon,
@@ -372,8 +372,8 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
                         SourceListExpandableItem? into_expandable = null, Object? give_more_information = null) {
 
         // Initialize all widgets
-        var sourcelist_item = new SourceListItem (page_number, name, hint, icon, activatable_icon);
-        var expandable_item = new SourceListExpandableItem (page_number, name, hint, icon, activatable_icon, give_more_information);
+        var sourcelist_item = new SourceListItem (view, name, hint, icon, activatable_icon);
+        var expandable_item = new SourceListExpandableItem (view, name, hint, icon, activatable_icon, give_more_information);
 
         if (hint == ViewWrapper.Hint.DEVICE) {
             expandable_item.collapsible = false;
@@ -384,20 +384,20 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
 
         // Connect to signals
         sourcelist_item.activated.connect (() => {activated ();});
-        sourcelist_item.edited.connect ((new_name) => {this.edited (sourcelist_item.page_number, new_name);});
-        expandable_item.action_activated.connect ((sl) => {this.item_action_activated (sourcelist_item.page_number);});
-        sourcelist_item.playlist_rename_clicked.connect ((pn) => {playlist_rename_clicked (pn);});
-        sourcelist_item.playlist_edit_clicked.connect ((pn) => {playlist_edit_clicked (pn);});
-        sourcelist_item.playlist_remove_clicked.connect ((pn) => {playlist_remove_clicked (pn);});
-        sourcelist_item.playlist_save_clicked.connect ((pn) => {playlist_save_clicked (pn);});
-        sourcelist_item.playlist_export_clicked.connect ((pn) => {playlist_export_clicked (pn);});
-        sourcelist_item.playlist_media_added.connect ((pn, uris) => {playlist_media_added (pn, uris);});
+        sourcelist_item.edited.connect ((new_name) => {this.edited (sourcelist_item.view, new_name);});
+        expandable_item.action_activated.connect ((sl) => {this.item_action_activated (sourcelist_item.view);});
+        sourcelist_item.playlist_rename_clicked.connect ((view) => {playlist_rename_clicked (view);});
+        sourcelist_item.playlist_edit_clicked.connect ((view) => {playlist_edit_clicked (view);});
+        sourcelist_item.playlist_remove_clicked.connect ((view) => {playlist_remove_clicked (view);});
+        sourcelist_item.playlist_save_clicked.connect ((view) => {playlist_save_clicked (view);});
+        sourcelist_item.playlist_export_clicked.connect ((view) => {playlist_export_clicked (view);});
+        sourcelist_item.playlist_media_added.connect ((view, uris) => {playlist_media_added (view, uris);});
 
-        expandable_item.device_import_clicked.connect ((pn) => {device_import_clicked (get_device_from_item(expandable_item));});
-        expandable_item.device_eject_clicked.connect ((pn) => {device_eject_clicked (pn);});
-        expandable_item.device_sync_clicked.connect ((pn) => {device_sync_clicked (pn);});
-        expandable_item.device_new_playlist_clicked.connect ((pn) => {device_new_playlist_clicked (pn);});
-        expandable_item.device_new_smartplaylist_clicked.connect ((pn) => {device_new_smartplaylist_clicked (pn);});
+        expandable_item.device_import_clicked.connect ((view) => {device_import_clicked (get_device_from_item(expandable_item));});
+        expandable_item.device_eject_clicked.connect ((view) => {device_eject_clicked (view);});
+        expandable_item.device_sync_clicked.connect ((view) => {device_sync_clicked (view);});
+        expandable_item.device_new_playlist_clicked.connect ((view) => {device_new_playlist_clicked (view);});
+        expandable_item.device_new_smartplaylist_clicked.connect ((view) => {device_new_smartplaylist_clicked (view);});
 
         switch (hint) {
             case ViewWrapper.Hint.MUSIC:
@@ -468,18 +468,18 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
     public override void item_selected (Granite.Widgets.SourceList.Item? item) {
         if (item is Noise.SourceListItem) {
             var sidebar_item = item as SourceListItem;
-            selection_changed (sidebar_item.page_number);
+            selection_changed (sidebar_item.view);
         } else if (item is Noise.SourceListExpandableItem) {
             var sidebar_item = item as SourceListExpandableItem;
-            selection_changed (sidebar_item.page_number);
+            selection_changed (sidebar_item.view);
         }
     }
 
     // removes the playlist from menu
-    public void remove_playlist (int page_number) {
+    public void remove_playlist (ViewWrapper view) {
         foreach (var playlist in playlists_category.children) {
             if (playlist is SourceListItem) {
-                if (page_number == ((SourceListItem)playlist).page_number) {
+                if (view == ((SourceListItem)playlist).view) {
                     playlists_category.remove (playlist);
                     return;
                 }
@@ -490,7 +490,7 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
             if (device is SourceListExpandableItem) {
                 enumerate_children_items ((SourceListExpandableItem)device, ref items);
                 foreach (var item in items) {
-                    if (item.page_number == page_number) {
+                    if (item.view == view) {
                         item.parent.remove (item);
                         return;
                     }
@@ -500,11 +500,11 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
     }
 
     // removes the device from menu
-    public Gee.Collection<int> remove_device (int page_number) {
-        var pages = new Gee.TreeSet<int>();
+    public Gee.Collection<Gtk.Grid> remove_device (DeviceView view) {
+        var pages = new Gee.TreeSet<Gtk.Grid>();
         foreach (var device in devices_category.children) {
             if (device is SourceListExpandableItem) {
-                if (page_number == ((SourceListExpandableItem)device).page_number) {
+                if (view == ((SourceListExpandableItem)device).view) {
                     enumerate_children_pages((SourceListExpandableItem)device, ref pages);
                     devices_category.remove (device);
                     return pages;
@@ -515,24 +515,24 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
     }
 
     // get the device page_number associated to the view
-    private int get_device_from_item (Noise.SourceListExpandableItem item) {
+    private Gtk.Grid? get_device_from_item (Noise.SourceListExpandableItem item) {
         foreach (var device in devices_category.children) {
             if (item.parent == (Granite.Widgets.SourceList.ExpandableItem)device) {
                 if (device is SourceListExpandableItem) {
-                    return ((SourceListExpandableItem)device).page_number;
+                    return ((SourceListExpandableItem)device).view;
                 }
             }
         }
-        return -1;
+        return null;
     }
 
-    private void enumerate_children_pages (SourceListExpandableItem exp_item, ref Gee.TreeSet<int> pages) {
+    private void enumerate_children_pages (SourceListExpandableItem exp_item, ref Gee.TreeSet<Gtk.Grid> pages) {
         foreach (var views in ((SourceListExpandableItem)exp_item).children) {
             if (views is SourceListExpandableItem) {
-                pages.add (((SourceListExpandableItem)views).page_number);
+                pages.add (((SourceListExpandableItem)views).view);
                 enumerate_children_pages ((SourceListExpandableItem)views, ref pages);
             } else if (views is SourceListItem) {
-                pages.add (((SourceListItem)views).page_number);
+                pages.add (((SourceListItem)views).view);
             }
         }
     }
@@ -548,10 +548,10 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
     }
 
     // change the name shown
-    public void change_playlist_name (int page_number, string new_name) {
+    public void change_playlist_name (ViewWrapper view, string new_name) {
         foreach (var playlist in playlists_category.children) {
             if (playlist is SourceListItem) {
-                if (page_number == ((SourceListItem)playlist).page_number) {
+                if (view == ((SourceListItem)playlist).view) {
                     ((SourceListItem)playlist).name = new_name;
                     return;
                 }
@@ -562,7 +562,7 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
             if (device is SourceListExpandableItem) {
                 enumerate_children_items ((SourceListExpandableItem)device, ref items);
                 foreach (var item in items) {
-                    if (item.page_number == page_number) {
+                    if (item.view == view) {
                         ((SourceListItem)item).name = new_name;
                         return;
                     }
@@ -572,10 +572,10 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
     }
 
     // change the name shown
-    public void change_device_name (int page_number, string new_name) {
+    public void change_device_name (DeviceView view, string new_name) {
         foreach (var device in devices_category.children) {
             if (device is SourceListItem) {
-                if (page_number == ((SourceListItem)device).page_number) {
+                if (view == ((SourceListItem)device).view) {
                     ((SourceListItem)device).name = new_name;
                     return;
                 }
