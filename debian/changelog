@@ -1,8 +1,8 @@
-noise (0.4.2.1) UNRELEASED; urgency=medium
+noise (0.4.3) UNRELEASED; urgency=medium
 
   * Pre-release version bump.
 
- -- Cody Garver <cody@elementary.io>  Wed, 21 Mar 2018 02:45:33 -0500
+ -- Daniel Foré <daniel@elementary.io>  Sun, 01 Apr 2018 11:06:19 -0700
 
 noise (0.4.2) xenial; urgency=medium
 
