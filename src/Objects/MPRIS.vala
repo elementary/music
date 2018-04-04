@@ -93,11 +93,11 @@ public class MprisRoot : GLib.Object {
         }
     }
 
-    public void quit () {
+    public void quit () throws GLib.Error {
         Noise.App.main_window.destroy ();
     }
 
-    public void raise () {
+    public void raise () throws GLib.Error {
         Noise.App.main_window.present ();
     }
 }
@@ -397,42 +397,42 @@ public class MprisPlayer : GLib.Object {
 
     public signal void seeked (int64 Position);
 
-    public void next () {
+    public void next () throws GLib.Error {
         // inhibit notifications
         Noise.App.main_window.play_next_media (true);
     }
 
-    public void previous () {
+    public void previous () throws GLib.Error {
         // inhibit notifications
         Noise.App.main_window.play_previous_media (true);
     }
 
-    public void pause () {
+    public void pause () throws GLib.Error {
         // inhibit notifications
         if (Noise.App.player.playing) {
             Noise.App.player.pause_playback ();
         }
     }
 
-    public void play_pause () {
+    public void play_pause () throws GLib.Error {
         // inhibit notifications
         Noise.App.main_window.play_media (true);
     }
 
-    public void stop () {
+    public void stop () throws GLib.Error {
         if (Noise.App.player.playing) {
             Noise.App.player.stop_playback ();
         }
     }
 
-    public void play () {
+    public void play () throws GLib.Error {
         // inhibit notifications
         if (!Noise.App.player.playing) {
             Noise.App.player.start_playback ();
         }
     }
 
-    public void seek (int64 offset) {
+    public void seek (int64 offset) throws GLib.Error {
         int64 position = this.position + offset;
         if (position < 0) {
             position = 0;
@@ -446,11 +446,11 @@ public class MprisPlayer : GLib.Object {
         }
     }
 
-    public void set_position (string dobj, int64 Position) {
+    public void set_position (string dobj, int64 Position) throws GLib.Error {
         Noise.App.player.player.set_position (Position * (int64)Noise.TimeUtils.MILI_INV);
     }
 
-    public void open_uri (string Uri) {
+    public void open_uri (string Uri) throws GLib.Error {
         // TODO
     }
 }
@@ -546,7 +546,7 @@ public class MprisPlaylists : GLib.Object {
         return false;
     }
 
-    public void activate_playlist (ObjectPath path) {
+    public void activate_playlist (ObjectPath path) throws GLib.Error {
         string playlist_id = path.replace ("/io/elementary/music/Playlists/", "");
 
         Noise.Playlist p = Noise.libraries_manager.local_library.playlist_from_id (int.parse (playlist_id));
@@ -557,7 +557,7 @@ public class MprisPlaylists : GLib.Object {
         p.request_play ();
     }
 
-    public MprisPlaylist?[] get_playlists (uint index, uint maxcount, string playlist_ordering, bool reversed) {
+    public MprisPlaylist?[] get_playlists (uint index, uint maxcount, string playlist_ordering, bool reversed) throws GLib.Error {
         debug ("Get Playlist called with index %u and maxcount %u\n", index, maxcount);
         var playlists = new Gee.LinkedList<Noise.Playlist>();
 
