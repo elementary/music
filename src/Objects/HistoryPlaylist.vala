@@ -152,9 +152,9 @@ namespace SecurityPrivacy {
         public signal void template_removed (string blacklist_id, [DBus (signature = "(asaasay)")] Variant blacklist_template);
 
         [DBus (signature = "a{s(asaasay)}")]
-        public abstract Variant get_templates () throws IOError;
-        public abstract void add_template (string blacklist_id, [DBus (signature = "(asaasay)")] Variant blacklist_template) throws IOError;
-        public abstract void remove_template (string blacklist_id) throws IOError;
+        public abstract Variant get_templates () throws GLib.Error;
+        public abstract void add_template (string blacklist_id, [DBus (signature = "(asaasay)")] Variant blacklist_template) throws GLib.Error;
+        public abstract void remove_template (string blacklist_id) throws GLib.Error;
     }
 
     public class Blacklist {
