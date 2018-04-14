@@ -42,7 +42,7 @@ public class Noise.ViewStack : Gtk.Stack {
             }
         });
 
-        var alert_view = new Granite.Widgets.AlertView ("No results", "Try another search", "edit-find-symbolic");
+        var alert_view = new Granite.Widgets.AlertView (_("No Results"), _("Try another search"), "edit-find-symbolic");
         add_named (alert_view, "alert");
     }
 
