@@ -28,8 +28,8 @@
 
 [DBus (name = "org.gnome.SettingsDaemon.MediaKeys")]
 public interface GnomeMediaKeys : Object {
-    public abstract void GrabMediaPlayerKeys (string application, uint32 time) throws IOError;
-    public abstract void ReleaseMediaPlayerKeys (string application) throws IOError;
+    public abstract void GrabMediaPlayerKeys (string application, uint32 time) throws GLib.Error;
+    public abstract void ReleaseMediaPlayerKeys (string application) throws GLib.Error;
     public signal void MediaPlayerKeyPressed (string application, string key);
 }
 
@@ -52,7 +52,7 @@ public class Noise.MediaKeyListener : Object {
 
         try {
             media_object = Bus.get_proxy_sync (BusType.SESSION, "org.gnome.SettingsDaemon", "/org/gnome/SettingsDaemon/MediaKeys");
-        } catch (IOError e) {
+        } catch (Error e) {
             warning ("Mediakeys error: %s", e.message);
         }
 
@@ -60,7 +60,7 @@ public class Noise.MediaKeyListener : Object {
             media_object.MediaPlayerKeyPressed.connect (media_key_pressed);
             try {
                 media_object.GrabMediaPlayerKeys (Build.EXEC_NAME, (uint32)0);
-            } catch (IOError err) {
+            } catch (Error err) {
                 warning ("Could not grab media player keys: %s", err.message);
             }
         }
@@ -69,7 +69,7 @@ public class Noise.MediaKeyListener : Object {
     public void release_media_keys () {
         try {
             media_object.ReleaseMediaPlayerKeys (Build.EXEC_NAME);
-        } catch (IOError err) {
+        } catch (Error err) {
             warning ("Could not release media player keys: %s", err.message);
         }
     }
