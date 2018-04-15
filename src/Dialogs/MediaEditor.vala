@@ -69,7 +69,7 @@ public class Noise.MediaEditor : Gtk.Dialog {
 
     construct {
         media_list = new Gee.TreeSet<Media> ();
-        temp_list = new Gee.HashMap<int64?, Media> ((Gee.HashDataFunc<int64?>)GLib.int64_hash, (Gee.EqualDataFunc<int64?>)GLib.int64_equal, null);
+        temp_list = new Gee.HashMap<int64?, Media> ((x) => { return GLib.int64_hash (x); }, (a, b) => { GLib.int64_equal (a, b); });
 
         var grid = new Gtk.Grid ();
         grid.expand = true;
