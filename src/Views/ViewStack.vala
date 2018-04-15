@@ -81,11 +81,11 @@ public class Noise.ViewStack : Gtk.Stack {
         }
     }
 
-    public void show_alert () {        
+    public void show_alert () {
         visible_child_name = "alert";
     }
 
-    public void hide_alert () {             
+    public void hide_alert () {
         visible_child_name = current_view;
     }
 }

@@ -298,6 +298,19 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             }
         });
 
+        library_manager.search_finished.connect (() => {
+            print ("search endedn\n");
+            view_stack.hide_alert ();
+        });
+
+        libraries_manager.library_added.connect ((lib) => {
+            print ("added lib\n");
+            lib.search_finished.connect (() => {
+                print ("search endedn\n");
+                view_stack.hide_alert ();
+            });
+        });
+
         connect_to_sourcelist_signals ();
     }
 
@@ -513,7 +526,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         search_entry.activate.connect (search_entry_activate);
         search_entry.search_changed.connect (() => {
-            view_stack.hide_alert ();
             if (search_entry.text_length != 1) {
                 libraries_manager.search_for_string (search_entry.text);
             }
