@@ -29,6 +29,8 @@
 public class Noise.ViewStack : Gtk.Stack {
     private int nextview_number { get; set; default = 0; }
 
+    private string current_view { get; set; }
+
     construct {
         expand = true;
 
@@ -39,6 +41,9 @@ public class Noise.ViewStack : Gtk.Stack {
                 update_visible ();
             }
         });
+
+        var alert_view = new Granite.Widgets.AlertView (_("No Results"), _("Try another search"), "edit-find-symbolic");
+        add_named (alert_view, "alert");
     }
 
     /**
@@ -63,12 +68,24 @@ public class Noise.ViewStack : Gtk.Stack {
     }
 
     private void update_visible () {
+        if (visible_child_name != "alert") {
+            current_view = visible_child_name;
+        }
+
         if (visible_child is ViewWrapper) {
             ((ViewWrapper) visible_child).set_as_current_view ();
-        } else if (visible_child is Gtk.Grid) {
+        } else if (visible_child is Gtk.Grid && visible_child_name != "alert") {
             App.main_window.view_selector.selected = Noise.Widgets.ViewSelector.Mode.LIST;
             App.main_window.view_selector.set_sensitive (false);
             App.main_window.search_entry.set_sensitive (false);
         }
+    }
+
+    public void show_alert () {
+        visible_child_name = "alert";
+    }
+
+    public void hide_alert () {
+        visible_child_name = current_view;
     }
 }
