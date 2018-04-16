@@ -299,14 +299,11 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         });
 
         library_manager.search_finished.connect (() => {
-            print ("search endedn\n");
             view_stack.hide_alert ();
         });
 
         libraries_manager.library_added.connect ((lib) => {
-            print ("added lib\n");
             lib.search_finished.connect (() => {
-                print ("search endedn\n");
                 view_stack.hide_alert ();
             });
         });
