@@ -137,7 +137,7 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
         string current_operation = _("Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE");
         current_operation = current_operation.replace ("$NAME", m.title ?? "");
         current_operation = current_operation.replace ("$ARTIST", m.artist ?? "");
-        libraries_manager.current_operation = current_operation.replace ("$DEVICE", device.getDisplayName() ?? "");
+        libraries_manager.current_operation = current_operation.replace ("$DEVICE", device.get_display_name () ?? "");
         debug ("Adding media %s by %s\n", m.title, m.artist);
 
         var file = File.new_for_uri (m.uri);
@@ -158,7 +158,7 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
             return;
         }
 
-        libraries_manager.current_operation = _("Syncing <b>%s</b>…").printf (device.getDisplayName ());
+        libraries_manager.current_operation = _("Syncing <b>%s</b>…").printf (device.get_display_name ());
 
         is_doing_file_operations = true;
         Timeout.add(500, libraries_manager.do_progress_notification_with_timeout);
@@ -266,7 +266,7 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
         string current_operation = _("Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE");
         current_operation = current_operation.replace ("$NAME", m.title ?? "");
         current_operation = current_operation.replace ("$ARTIST", m.artist ?? "");
-        libraries_manager.current_operation = current_operation.replace ("$DEVICE", device.getDisplayName() ?? "");
+        libraries_manager.current_operation = current_operation.replace ("$DEVICE", device.get_display_name () ?? "");
         /* first check if the file exists disk */
         if(m.uri != null) {
             var file = File.new_for_uri(m.uri);
@@ -294,7 +294,7 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
             return;
         }
 
-        libraries_manager.current_operation = _("Removing from <b>%s</b>…").printf (device.getDisplayName ());
+        libraries_manager.current_operation = _("Removing from <b>%s</b>…").printf (device.get_display_name ());
 
         int total = list.size;
         Timeout.add(500, libraries_manager.do_progress_notification_with_timeout);

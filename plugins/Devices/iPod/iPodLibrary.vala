@@ -148,7 +148,7 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
         string current_operation = _("Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE");
         current_operation = current_operation.replace ("$NAME", t.title ?? "");
         current_operation = current_operation.replace ("$ARTIST", t.artist ?? "");
-        libraries_manager.current_operation = current_operation.replace ("$DEVICE", device.getDisplayName() ?? "");
+        libraries_manager.current_operation = current_operation.replace ("$DEVICE", device.get_display_name () ?? "");
         debug ("Adding media %s by %s\n", t.title, t.artist);
         db.track_add((owned)t, -1);
         unowned GPod.Track added = db.tracks.nth_data(db.tracks.length() - 1);
@@ -193,7 +193,7 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
             return;
         }
 
-        libraries_manager.current_operation = _("Syncing <b>%s</b>…").printf (device.getDisplayName ());
+        libraries_manager.current_operation = _("Syncing <b>%s</b>…").printf (device.get_display_name ());
         is_doing_file_operations = true;
         Timeout.add(500, libraries_manager.do_progress_notification_with_timeout);
         add_medias_async.begin (list);
@@ -334,7 +334,7 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
             return;
         }
 
-        libraries_manager.current_operation = _("Removing from <b>%s</b>…").printf (device.getDisplayName ());
+        libraries_manager.current_operation = _("Removing from <b>%s</b>…").printf (device.get_display_name ());
         is_doing_file_operations = true;
         Timeout.add (500, libraries_manager.do_progress_notification_with_timeout);
         remove_medias_async.begin (toRemove);
@@ -530,7 +530,7 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
         string current_operation = _("Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE");
         current_operation = current_operation.replace ("$NAME", t.title ?? "");
         current_operation = current_operation.replace ("$ARTIST", t.artist ?? "");
-        libraries_manager.current_operation = current_operation.replace ("$DEVICE", device.getDisplayName() ?? "");
+        libraries_manager.current_operation = current_operation.replace ("$DEVICE", device.get_display_name () ?? "");
         /* first check if the file exists disk */
         if (t.ipod_path != null) {
             var uri = device.get_uri () + GPod.iTunesDB.filename_ipod2fs(t.ipod_path);

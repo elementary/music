@@ -27,28 +27,28 @@
  */
 
 public interface Noise.NetworkDevice : GLib.Object {
-    public signal void initialized();
-    public signal void device_unmounted();
-    public signal void progress_notification(string? message, double progress);
-    public signal void sync_finished(bool success);
+    public signal void initialized ();
+    public signal void device_unmounted ();
+    public signal void progress_notification (string? message, double progress);
+    public signal void sync_finished (bool success);
 
-    public abstract bool start_initialization();
-    public abstract void finish_initialization();
-    public abstract string getContentType();
-    public abstract string getDisplayName();
-    public abstract void setDisplayName(string name);
-    public abstract string get_fancy_description();
-    public abstract string get_path();
-    public abstract void set_icon(Gdk.Pixbuf icon);
-    public abstract Gdk.Pixbuf get_icon();
-    public abstract void unmount();
-    public abstract void get_device_type();
-    public abstract bool supports_podcasts();
-    public abstract bool supports_audiobooks();
-    public abstract Gee.Collection<Media> get_medias();
-    public abstract Gee.Collection<Media> get_songs();
-    public abstract Gee.Collection<Media> get_podcasts();
-    public abstract Gee.Collection<Media> get_audiobooks();
-    public abstract Gee.Collection<Playlist> get_playlists();
-    public abstract Gee.Collection<SmartPlaylist> get_smart_playlists();
+    public abstract bool start_initialization ();
+    public abstract void finish_initialization ();
+    public abstract string get_content_type ();
+    public abstract string get_display_name ();
+    public abstract void set_display_name (string name);
+    public abstract string get_fancy_description ();
+    public abstract string get_path ();
+    public abstract void set_icon (Gdk.Pixbuf icon);
+    public abstract Gdk.Pixbuf get_icon ();
+    public abstract void unmount ();
+    public abstract void get_device_type ();
+    public abstract bool supports_podcasts ();
+    public abstract bool supports_audiobooks ();
+    public abstract Gee.Collection<Media> get_medias ();
+    public abstract Gee.Collection<Media> get_songs ();
+    public abstract Gee.Collection<Media> get_podcasts ();
+    public abstract Gee.Collection<Media> get_audiobooks ();
+    public abstract Gee.Collection<Playlist> get_playlists ();
+    public abstract Gee.Collection<SmartPlaylist> get_smart_playlists ();
 }
