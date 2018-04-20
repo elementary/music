@@ -1,6 +1,6 @@
 // -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012-2017 elementary LLC. (https://elementary.io)
+ * Copyright (c) 2012-2018 elementary LLC. (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -101,22 +101,22 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
         return library;
     }
 
-    public string getEmptyDeviceTitle() {
+    public string get_empty_device_title () {
         return _("Empty device!");
     }
 
-    public string getEmptyDeviceDescription() {
+    public string get_empty_device_description () {
         return _("This device does not contain any music.");
     }
 
-    public string getContentType() {
+    public string get_content_type () {
         if (is_androphone) {
             return "android";
         } else {
             return "audioplayer";
         }
     }
-    public string getDisplayName() {
+    public string get_display_name () {
         if (is_androphone) {
             return mount.get_name();
         } else {
@@ -144,7 +144,7 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
         }
     }
 
-    public void setDisplayName(string name) {
+    public void set_display_name (string name) {
 
     }
 

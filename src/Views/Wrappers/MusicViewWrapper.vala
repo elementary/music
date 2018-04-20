@@ -1,6 +1,6 @@
 // -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012-2017 elementary LLC. (https://elementary.io)
+ * Copyright (c) 2012-2018 elementary LLC. (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -106,7 +106,7 @@ public class Noise.MusicViewWrapper : ViewWrapper {
     }
 
     private void on_device_added (Device d) {
-        int id = welcome_screen.append (d.get_icon().to_string (), _("Import your Music"), _("Import all your Music from %s into your library.").printf(d.getDisplayName()));
+        int id = welcome_screen.append (d.get_icon().to_string (), _("Import your Music"), _("Import all your Music from %s into your library.").printf(d.get_display_name ()));
         _devices.set (d, id);
         welcome_screen.show_all ();
     }
@@ -122,7 +122,7 @@ public class Noise.MusicViewWrapper : ViewWrapper {
     private void on_device_name_changed (Device d) {
         welcome_screen.remove_item (_devices.get (d));
         _devices.unset (d, null);
-        int id = welcome_screen.append (d.get_icon().to_string (), _("Import your Music"), _("Import all your Music from %s into your library.").printf(d.getDisplayName()));
+        int id = welcome_screen.append (d.get_icon().to_string (), _("Import your Music"), _("Import all your Music from %s into your library.").printf(d.get_display_name ()));
         _devices.set (d, id);
         welcome_screen.show_all ();
     }

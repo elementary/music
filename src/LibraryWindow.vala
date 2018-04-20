@@ -1,6 +1,6 @@
 // -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012-2017 elementary LLC. (https://elementary.io)
+ * Copyright (c) 2012-2018 elementary LLC. (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -689,7 +689,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
      */
     private void change_device_name (Device device) {
         var view = match_devices.get (device.get_unique_identifier ());
-        source_list_view.change_device_name (view, device.getDisplayName ());
+        source_list_view.change_device_name (view, device.get_display_name ());
     }
 
     private void remove_device (Device device) {
@@ -717,14 +717,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             if (d.only_use_custom_view ()) {
                 message("new custom device (probably a CD) added with %d songs.\n", d.get_library ().get_medias ().size);
 
-                entry = source_list_view.add_item (dv, d.getDisplayName (), ViewWrapper.Hint.DEVICE, d.get_icon (), new ThemedIcon ("media-eject-symbolic"), null, d);
+                entry = source_list_view.add_item (dv, d.get_display_name (), ViewWrapper.Hint.DEVICE, d.get_icon (), new ThemedIcon ("media-eject-symbolic"), null, d);
             } else {
                 debug ("adding device view with %d\n", d.get_library ().get_medias ().size);
                 var tvs = new TreeViewSetup (ViewWrapper.Hint.DEVICE_AUDIO);
                 var music_view_wrapper = new DeviceViewWrapper(tvs, d, d.get_library ());
 
                 view_stack.add_view (music_view_wrapper);
-                entry = source_list_view.add_item  (dv, d.getDisplayName (), ViewWrapper.Hint.DEVICE, d.get_icon (), new ThemedIcon ("media-eject-symbolic"), null, d);
+                entry = source_list_view.add_item  (dv, d.get_display_name (), ViewWrapper.Hint.DEVICE, d.get_icon (), new ThemedIcon ("media-eject-symbolic"), null, d);
                 source_list_view.add_item (music_view_wrapper, _("Music"), ViewWrapper.Hint.DEVICE_AUDIO, new ThemedIcon ("library-music"), null, entry as SourceListExpandableItem, d);
                 if (d.get_library ().support_playlists () == true) {
                     foreach (var p in d.get_library ().get_playlists ()) {

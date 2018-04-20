@@ -1,6 +1,6 @@
 // -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012-2017 elementary LLC. (https://elementary.io)
+ * Copyright (c) 2012-2018 elementary LLC. (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -50,9 +50,9 @@ public class Noise.SyncWarningDialog : Granite.MessageDialog {
 
         // be a bit explicit to make translations better
         primary_text = ngettext ("Sync will remove %i item from %s", "Sync will remove %i items from %s", to_remove.size)
-                                .printf (to_remove.size, device.getDisplayName ());
+                                .printf (to_remove.size, device.get_display_name ());
 
-        secondary_text = _("If you continue to sync, media will be removed from %s since they are not on the sync list. Would you like to import them to your library first?").printf ("<b>" + Markup.escape_text (device.getDisplayName ()) + "</b>");
+        secondary_text = _("If you continue to sync, media will be removed from %s since they are not on the sync list. Would you like to import them to your library first?").printf ("<b>" + Markup.escape_text (device.get_display_name ()) + "</b>");
 
         continue_button = add_button (_("Continue Syncing"), ResponseId.CONTINUE);
         continue_button.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);

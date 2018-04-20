@@ -1,6 +1,6 @@
 // -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012-2017 elementary LLC. (https://elementary.io)
+ * Copyright (c) 2012-2018 elementary LLC. (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -35,11 +35,11 @@ public interface Noise.Device : GLib.Object {
 
     public abstract bool start_initialization ();
     public abstract void finish_initialization ();
-    public abstract string getContentType ();
-    public abstract string getDisplayName ();
-    public abstract string getEmptyDeviceTitle ();
-    public abstract string getEmptyDeviceDescription ();
-    public abstract void setDisplayName (string name);
+    public abstract string get_content_type ();
+    public abstract string get_display_name ();
+    public abstract string get_empty_device_title ();
+    public abstract string get_empty_device_description ();
+    public abstract void set_display_name (string name);
     public abstract string get_fancy_description ();
     public abstract void set_mount (Mount mount);
     public abstract Mount? get_mount ();

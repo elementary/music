@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 11:30-0800\n"
-"PO-Revision-Date: 2017-07-22 23:20+0000\n"
-"Last-Translator: Jan Marek <janmarek28@gmail.com>\n"
-"Language-Team: Czech <https://weblate.elementary.io/projects/music/music/cs/"
-">\n"
+"PO-Revision-Date: 2018-04-20 00:11+0000\n"
+"Last-Translator: Libor Gabrhel <gabrhel.libor@gmail.com>\n"
+"Language-Team: Czech <https://weblate.elementary.io/projects/music/music/cs/>"
+"\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 2.15\n"
+"X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:52+0000\n"
 
 #: core/LibrariesManager.vala:147
@@ -264,7 +264,7 @@ msgstr "Import %i skladeb ze Zvukového CD byl dokončen."
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
 msgid "Importing track %u: %s"
-msgstr ""
+msgstr "Importování stopy %u: %s"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:364
 msgid "CD import will be <b>cancelled</b> after current import."
@@ -465,7 +465,7 @@ msgstr "Umělec alba:"
 
 #: src/Dialogs/MediaEditor.vala:111
 msgid "Composer:"
-msgstr ""
+msgstr "Skladatel:"
 
 #: src/Dialogs/MediaEditor.vala:113
 msgid "Grouping:"
@@ -481,7 +481,7 @@ msgstr "Rok:"
 
 #: src/Dialogs/MediaEditor.vala:119
 msgid "Track:"
-msgstr "Sledování:"
+msgstr "Stopa:"
 
 #: src/Dialogs/MediaEditor.vala:121
 msgid "Disk:"
@@ -489,7 +489,7 @@ msgstr "Disk:"
 
 #: src/Dialogs/MediaEditor.vala:123
 msgid "Rating:"
-msgstr ""
+msgstr "Hodnocení:"
 
 #: src/Dialogs/MediaEditor.vala:125
 msgid "Comment:"
@@ -1080,7 +1080,7 @@ msgstr[1] ""
 #: src/Views/ListView/Lists/CellDataFunctionHelper.vala:134
 #, c-format
 msgid "%u kbps"
-msgstr ""
+msgstr "%u kbps"
 
 #: src/Views/ListView/Lists/CellDataFunctionHelper.vala:159
 #: src/Views/ListView/Lists/MusicListView.vala:628

@@ -1,6 +1,6 @@
 // -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012-2017 elementary LLC. (https://elementary.io)
+ * Copyright (c) 2012-2018 elementary LLC. (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -47,8 +47,8 @@ public class Noise.DeviceViewWrapper : ViewWrapper {
 
     protected override void set_no_media_alert () {
         embedded_alert.icon_name = "dialog-error";
-        embedded_alert.title = d.getEmptyDeviceTitle ();
-        embedded_alert.description = d.getEmptyDeviceDescription ();
+        embedded_alert.title = d.get_empty_device_title ();
+        embedded_alert.description = d.get_empty_device_description ();
     }
 
     public virtual void set_device (Device device) {
