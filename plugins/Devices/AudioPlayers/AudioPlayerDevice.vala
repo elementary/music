@@ -101,22 +101,22 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
         return library;
     }
 
-    public string getEmptyDeviceTitle() {
+    public string get_empty_device_title () {
         return _("Empty device!");
     }
 
-    public string getEmptyDeviceDescription() {
+    public string get_empty_device_description () {
         return _("This device does not contain any music.");
     }
 
-    public string getContentType() {
+    public string get_content_type () {
         if (is_androphone) {
             return "android";
         } else {
             return "audioplayer";
         }
     }
-    public string getDisplayName() {
+    public string get_display_name () {
         if (is_androphone) {
             return mount.get_name();
         } else {
@@ -144,7 +144,7 @@ public class Noise.Plugins.AudioPlayerDevice : GLib.Object, Noise.Device {
         }
     }
 
-    public void setDisplayName(string name) {
+    public void set_display_name (string name) {
 
     }
 

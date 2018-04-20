@@ -78,7 +78,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
     async void finish_initialization_async () {
         medias = CDDA.getMediaList (mount.get_default_location ());
         if(medias.size > 0) {
-            setDisplayName(medias.get(0).album);
+            set_display_name (medias.get(0).album);
         }
 
         Idle.add (() => {
@@ -87,26 +87,26 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         });
     }
 
-    public string getEmptyDeviceTitle() {
+    public string get_empty_device_title () {
         return _("Audio CD Invalid");
     }
 
-    public string getEmptyDeviceDescription() {
+    public string get_empty_device_description () {
         return _("Impossible to read the contents of this Audio CD");
     }
 
-    public string getContentType() {
+    public string get_content_type () {
         return "cdrom";
     }
 
-    public string getDisplayName() {
+    public string get_display_name () {
         if (display_name == "" || display_name == null)
             return mount.get_name ();
         else
             return display_name;
     }
 
-    public void setDisplayName(string name) {
+    public void set_display_name (string name) {
         display_name = name;
     }
 

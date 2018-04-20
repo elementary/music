@@ -47,7 +47,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
     construct {
         get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
 
-        var device_name_title_label = new Gtk.Label (device.getDisplayName () ?? "");
+        var device_name_title_label = new Gtk.Label (device.get_display_name () ?? "");
         device_name_title_label.halign = Gtk.Align.END;
         device_name_title_label.margin = 20;
         device_name_title_label.margin_end = 0;
@@ -129,8 +129,8 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
 
         add (main_grid);
 
-        if (device.getDisplayName () != "")
-            device_name_entry.text = device.getDisplayName ();
+        if (device.get_display_name () != "")
+            device_name_entry.text = device.get_display_name ();
 
         refresh_lists();
 
@@ -155,7 +155,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         sync_music_combobox.changed.connect (save_preferences);
 
         device_name_entry.changed.connect (() => {
-            device.setDisplayName (device_name_entry.text);
+            device.set_display_name (device_name_entry.text);
         });
 
         sync_button.clicked.connect (sync_clicked);
@@ -297,7 +297,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
                             list.add (m);
                     }
                 } else {
-                    NotificationManager.get_default ().show_alert (_("Sync Failed"), _("The playlist named %s is used to sync device %s, but could not be found.").printf("<b>" + preferences.music_playlist.name + "</b>", "<b>" + device.getDisplayName() + "</b>"));
+                    NotificationManager.get_default ().show_alert (_("Sync Failed"), _("The playlist named %s is used to sync device %s, but could not be found.").printf("<b>" + preferences.music_playlist.name + "</b>", "<b>" + device.get_display_name() + "</b>"));
 
                     preferences.music_playlist = null;
                     preferences.sync_all_music = true;
