@@ -61,26 +61,26 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         library.finish_initialization_async.begin ();
     }
 
-    public string getEmptyDeviceTitle () {
+    public string get_empty_device_title () {
         return _("Empty device!");
     }
 
-    public string getEmptyDeviceDescription () {
+    public string get_empty_device_description () {
         return _("This device does not contain any music.");
     }
 
-    public string getContentType () {
+    public string get_content_type () {
         if (is_new)
             return "ipod-new";
         else
             return "ipod-old";
     }
 
-    public string getDisplayName () {
+    public string get_display_name () {
         return db.playlist_mpl ().name;
     }
 
-    public void setDisplayName (string name) {
+    public void set_display_name (string name) {
         db.playlist_mpl ().name = name;
         try {
             mount.get_default_location ().set_display_name (name);
