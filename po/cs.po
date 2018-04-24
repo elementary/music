@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 11:30-0800\n"
-"PO-Revision-Date: 2018-04-20 00:11+0000\n"
-"Last-Translator: Libor Gabrhel <gabrhel.libor@gmail.com>\n"
+"PO-Revision-Date: 2018-04-25 00:03+0000\n"
+"Last-Translator: Jan Marek <janmarek28@gmail.com>\n"
 "Language-Team: Czech <https://weblate.elementary.io/projects/music/music/cs/>"
 "\n"
 "Language: cs\n"
@@ -213,7 +213,7 @@ msgstr "Přidávání <b>$NAME</b> od <b>$ARTIST</b> na $DEVICE"
 #: plugins/Devices/iPod/iPodLibrary.vala:196
 #, c-format
 msgid "Syncing <b>%s</b>…"
-msgstr "Synchronizace <b>% s </ b>…"
+msgstr "Synchronizuji <b>%s</b>…"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:266
 #: plugins/Devices/iPod/iPodLibrary.vala:530
@@ -224,7 +224,7 @@ msgstr "Odstraňování <b>$NAME</b> od <b>$ARTIST</b> z $DEVICE"
 #: plugins/Devices/iPod/iPodLibrary.vala:337
 #, c-format
 msgid "Removing from <b>%s</b>…"
-msgstr "Odstraňování z <b>%s </ b>…"
+msgstr "Odstraňuji z <b>%s</b>…"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:91
 msgid "Audio CD Invalid"
@@ -432,16 +432,14 @@ msgid "Choose Music Folder"
 msgstr "Vybrat složku s hudbou"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:38
-#, fuzzy, c-format
+#, c-format
 msgid "Would you like to install the %s plugin?"
-msgstr "Přejete si nainstalovat plugin %s?\n"
+msgstr "Přejete si nainstalovat plugin %s?"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:39
-#, fuzzy, c-format
+#, c-format
 msgid "This song cannot be played. The %s plugin is required to play the song."
-msgstr ""
-"\n"
-"Tuto skladbu nelze přehrát. Pro přehrání je vyžadován plugin %s."
+msgstr "Tuto skladbu nelze přehrát. Pro přehrání je vyžadován plugin %s."
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid "Install Plugin"
@@ -449,7 +447,7 @@ msgstr "Nainstalovat plugin"
 
 #: src/Dialogs/MediaEditor.vala:103
 msgid "Title:"
-msgstr ""
+msgstr "Titulek:"
 
 #: src/Dialogs/MediaEditor.vala:105
 msgid "Artist:"
@@ -560,7 +558,7 @@ msgstr "Kopírovat importované soubory do knihovny:"
 
 #: src/Dialogs/PreferencesWindow.vala:86
 msgid "Desktop Integration"
-msgstr ""
+msgstr "Integrace do pracovní plochy"
 
 #: src/Dialogs/PreferencesWindow.vala:87
 msgid "Continue playback when closed:"
@@ -736,7 +734,7 @@ msgstr "Rok"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:272
 msgid "URI"
-msgstr ""
+msgstr "URI"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:345
 msgid "is"
@@ -784,7 +782,7 @@ msgid "kbps"
 msgstr "kb/s"
 
 #: src/Dialogs/SyncWarningDialog.vala:52
-#, fuzzy, c-format
+#, c-format
 msgid "Sync will remove %i item from %s"
 msgid_plural "Sync will remove %i items from %s"
 msgstr[0] "Synchronizace smaže %i položek z %s"
@@ -837,8 +835,9 @@ msgstr "Přidáno do fronty:"
 #, c-format
 msgid "%d Track"
 msgid_plural "%d Tracks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d stopa"
+msgstr[1] "%d stopy"
+msgstr[2] "%d stop"
 
 #: src/LocalBackend/LocalSmartPlaylist.vala:217
 msgid "Favorite Songs"
@@ -1074,8 +1073,9 @@ msgstr "Nehodnoceno"
 #, c-format
 msgid "%u Star"
 msgid_plural "%u Stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u hvězdička"
+msgstr[1] "%u hvězdičky"
+msgstr[2] "%u hvězdiček"
 
 #: src/Views/ListView/Lists/CellDataFunctionHelper.vala:134
 #, c-format
