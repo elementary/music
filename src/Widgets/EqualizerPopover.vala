@@ -151,6 +151,7 @@ public class Noise.EqualizerPopover : Gtk.Popover {
         }
 
         eq_switch = new Gtk.Switch ();
+        eq_switch.valign = Gtk.Align.CENTER;
         eq_switch.set_active (equalizer_settings.equalizer_enabled);
 
         preset_combo = new PresetList ();
