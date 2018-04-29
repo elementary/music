@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 11:30-0800\n"
-"PO-Revision-Date: 2018-03-07 00:09+0000\n"
+"PO-Revision-Date: 2018-04-29 17:03+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock@gmail.com>\n"
 "Language-Team: Japanese "
 "<https://weblate.elementary.io/projects/music/music/ja/>\n"
@@ -634,7 +634,7 @@ msgstr "次の"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:75
 msgid "of the following:"
-msgstr "一致："
+msgstr "一致:"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:84
 msgid "Add"
@@ -912,7 +912,7 @@ msgstr "デバイスはすでに操作を行っています。"
 
 #: src/Views/DeviceView.vala:66
 msgid "Cancelling…"
-msgstr "キャンセル中…"
+msgstr "キャンセルしています…"
 
 #: src/Views/DeviceView.vala:66
 msgid "Device operation has been cancelled and will stop after this media."
