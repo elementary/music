@@ -357,7 +357,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
                 }
             }
         } else {
-            foreach (var m in table) {
+            foreach (var m in result) {
                 if (obey_column_browser && !column_browser.match_media (m)) {
                     continue;
                 }
