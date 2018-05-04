@@ -367,7 +367,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
         }
 
         // If nothing will be shown, display the "no media found" message.
-        if (showing.size < 1) {
+        if (showing.size < 1 && search != "") {
             App.main_window.view_stack.show_alert ();
         }
     }
