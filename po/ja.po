@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 11:30-0800\n"
-"PO-Revision-Date: 2018-05-05 00:10+0000\n"
+"PO-Revision-Date: 2018-05-13 00:11+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock@gmail.com>\n"
 "Language-Team: Japanese "
 "<https://weblate.elementary.io/projects/music/music/ja/>\n"
@@ -567,7 +567,7 @@ msgstr "%s から削除"
 #: src/Dialogs/RemoveFilesDialog.vala:67
 #, c-format
 msgid "Remove %d Songs From %s?"
-msgstr "%s から %d 曲を削除しますか？"
+msgstr "%d 曲を %s から削除しますか？"
 
 #: src/Dialogs/RemoveFilesDialog.vala:70
 #, c-format
@@ -770,7 +770,7 @@ msgstr "kbps"
 #, c-format
 msgid "Sync will remove %i item from %s"
 msgid_plural "Sync will remove %i items from %s"
-msgstr[0] "同期によって %s から %i 項目が削除されます"
+msgstr[0] "同期によって %i 項目が %s から削除されます"
 
 #: src/Dialogs/SyncWarningDialog.vala:55
 #, c-format
