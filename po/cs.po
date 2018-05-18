@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 11:30-0800\n"
-"PO-Revision-Date: 2018-04-25 00:03+0000\n"
+"PO-Revision-Date: 2018-05-19 00:10+0000\n"
 "Last-Translator: Jan Marek <janmarek28@gmail.com>\n"
 "Language-Team: Czech <https://weblate.elementary.io/projects/music/music/cs/>"
 "\n"
@@ -34,7 +34,7 @@ msgstr "$NAME z alba $ALBUM"
 
 #: core/Media.vala:182
 msgid "$NAME by $ARTIST"
-msgstr "$NAME od hudebníka $ARTIST"
+msgstr "$NAME od $ARTIST"
 
 #: core/Media.vala:188
 msgid "$NAME by $ARTIST on $ALBUM"
@@ -124,7 +124,7 @@ msgstr "%s (%d)"
 
 #: core/Utils/PlaylistsUtils.vala:235
 msgid "New playlist"
-msgstr "Nový seznam skladeb"
+msgstr "Nový playlist"
 
 #: core/Utils/PlaylistsUtils.vala:246
 #, c-format
@@ -133,7 +133,7 @@ msgstr "%s (%i)"
 
 #: core/Utils/PlaylistsUtils.vala:273
 msgid "Export Playlist"
-msgstr "Exportovat seznam skladeb"
+msgstr "Exportovat playlist"
 
 #: core/Utils/PlaylistsUtils.vala:275 core/Utils/PlaylistsUtils.vala:369
 #: src/LibraryWindow.vala:1002 src/Dialogs/FileNotFoundDialog.vala:84
@@ -163,7 +163,7 @@ msgstr "Seznam skladeb Shoutcast verze 2.0 (*.pls)"
 
 #: core/Utils/PlaylistsUtils.vala:361
 msgid "Playlist"
-msgstr "Seznam skladeb"
+msgstr "Playlist"
 
 #: core/Utils/PlaylistsUtils.vala:367
 #, c-format
@@ -228,11 +228,11 @@ msgstr "Odstraňuji z <b>%s</b>…"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:91
 msgid "Audio CD Invalid"
-msgstr "Neplatné CD"
+msgstr "Neplatné audio CD"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:95
 msgid "Impossible to read the contents of this Audio CD"
-msgstr "Obsah tohoto Zvukového CD nelze přečíst"
+msgstr "Obsah tohoto audio CD nelze přečíst"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:247
 msgid "Could not find Music Folder"
@@ -250,16 +250,16 @@ msgstr ""
 msgid ""
 "The Application could not find any songs on the CD. No songs can be imported"
 msgstr ""
-"Aplikace na CD nenalezla žádné skladby. Žádné skladby nemohly být importovány"
+"Aplikace na CD nenalezla žádné skladby. Žádné skladby nemohou být importovány"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
 msgid "Importation of a song from Audio CD finished."
-msgstr "Import skladby ze Zvukového CD byl dokončen."
+msgstr "Import skladby z audio CD byl dokončen."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
 #, c-format
 msgid "Importation of %i songs from Audio CD finished."
-msgstr "Import %i skladeb ze Zvukového CD byl dokončen."
+msgstr "Import %i skladeb z audio CD byl dokončen."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
@@ -272,7 +272,7 @@ msgstr "CD importování bude <b>ukončen</b> po probíhajícím importování."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:383
 msgid "An error occured during the Import of this CD"
-msgstr "Během importování na CD se vyskytla chyba"
+msgstr "Během importování tohoto CD se vyskytla chyba"
 
 #: plugins/Devices/CDRom/CDView.vala:94 src/Dialogs/SyncWarningDialog.vala:62
 msgid "Import"
@@ -284,7 +284,7 @@ msgstr "Vyskytla se chyba"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:38
 msgid "There was an error while loading this Audio CD."
-msgstr "Při načítání Zvukového CD se vyskytla chyba."
+msgstr "Při načítání tohoto audio CD se vyskytla chyba."
 
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
@@ -298,7 +298,7 @@ msgstr "Ruším synchronizaci…"
 
 #: plugins/LastFM/LastFM.vala:97
 msgid "No similar songs found"
-msgstr "Nebyly nalezeny podobné skladby"
+msgstr "Žádná podobná píseň nenalezena"
 
 #: plugins/LastFM/LastFM.vala:97
 msgid ""
@@ -333,7 +333,7 @@ msgstr "%s bylo importováno do vaší knihovny."
 
 #: src/FileOperator.vala:315
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr "<b>Kopírování</b> souborů do <b>adresáře s hudbou</b>…"
+msgstr "<b>Kopírování</b> souborů do <b>složky s hudbou</b>…"
 
 #: src/LibraryWindow.vala:215
 msgid "Import to Library…"
@@ -383,7 +383,7 @@ msgstr ""
 
 #: src/LibraryWindow.vala:790
 msgid "No songs in History"
-msgstr "V historii nejsou žádné skladby"
+msgstr "Žádné písně v historii"
 
 #: src/LibraryWindow.vala:790
 msgid ""
@@ -392,8 +392,8 @@ msgid ""
 "current session."
 msgstr ""
 "Píseň bude po přehrání její části přidána do seznamu historie.\n"
-"Tento seznam můžete použít jako přehled všech písní, které jste přehráli "
-"během aktuálního spuštění."
+"Tento seznam můžete použít pro zobrazení všech písní přehraných během "
+"aktuálního spuštění."
 
 #: src/LibraryWindow.vala:1000 src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import Music"
@@ -401,7 +401,7 @@ msgstr "Importovat hudbu"
 
 #: src/Dialogs/FileNotFoundDialog.vala:51
 msgid "File not found"
-msgstr "Soubor nebyl nalezen"
+msgstr "Soubor nenalezen"
 
 #: src/Dialogs/FileNotFoundDialog.vala:57
 #, c-format
@@ -411,7 +411,7 @@ msgstr "Soubor skladby  <b>%s</b> od <b>%s</b> nebyl nalezen."
 #: src/Dialogs/FileNotFoundDialog.vala:60
 #, c-format
 msgid "%i music files could not be found?"
-msgstr "%i souborů skladeb nebylo nalezeno?"
+msgstr "%i hudebních souborů nebylo nalezeno?"
 
 #: src/Dialogs/FileNotFoundDialog.vala:82
 msgid "Rescan Library"
@@ -420,11 +420,11 @@ msgstr "Aktualizovat knihovnu"
 #: src/Dialogs/FileNotFoundDialog.vala:83
 #: src/Views/ListView/Lists/MusicListView.vala:100
 msgid "Remove Song"
-msgstr "Odstranit skladbu"
+msgstr "Odstranit píseň"
 
 #: src/Dialogs/FileNotFoundDialog.vala:85
 msgid "Find Song"
-msgstr "Vyhledat skladbu"
+msgstr "Najít píseň"
 
 #: src/Dialogs/FileNotFoundDialog.vala:121
 #: src/Dialogs/SetMusicFolderConfirmation.vala:113
@@ -451,7 +451,7 @@ msgstr "Titulek:"
 
 #: src/Dialogs/MediaEditor.vala:105
 msgid "Artist:"
-msgstr "Umělec:"
+msgstr "Interpret:"
 
 #: src/Dialogs/MediaEditor.vala:107
 msgid "Album:"
@@ -459,7 +459,7 @@ msgstr "Album:"
 
 #: src/Dialogs/MediaEditor.vala:109
 msgid "Album Artist:"
-msgstr "Umělec alba:"
+msgstr "Interpret alba:"
 
 #: src/Dialogs/MediaEditor.vala:111
 msgid "Composer:"
@@ -501,7 +501,7 @@ msgstr "Zavřít"
 #: src/Dialogs/NotImportedWindow.vala:51
 #, c-format
 msgid "Unable to import %d items from %s"
-msgstr "Nemohu importovat %d soubory z %s"
+msgstr "Nelze importovat %d soubory z %s"
 
 #: src/Dialogs/NotImportedWindow.vala:56
 #, c-format
@@ -526,7 +526,7 @@ msgstr "Vybrat jednotlivé soubory k přesunutí do koše:"
 
 #: src/Dialogs/NotImportedWindow.vala:96 src/Dialogs/RemoveFilesDialog.vala:56
 msgid "Move to Trash"
-msgstr "Přesunout soubory do koše"
+msgstr "Přesunout do koše"
 
 #: src/Dialogs/NotImportedWindow.vala:99
 msgid "Ignore"
@@ -767,7 +767,7 @@ msgstr "je nanejvýš"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:389
 msgid "is before"
-msgstr "je nejméně"
+msgstr "je méně než"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:411
 msgid "seconds"
@@ -795,8 +795,8 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
-"Budete-li pokračovat v synchronizaci, smaže média z %s, jelikož chybí na "
-"seznamu synchronizace. Chcete si je nejprve importovat do knihovny?"
+"Budete-li pokračovat v synchronizaci, média z %s budou smazána, jelikož "
+"chybí na seznamu synchronizace. Chcete si je nejprve importovat do knihovny?"
 
 #: src/Dialogs/SyncWarningDialog.vala:57
 msgid "Continue Syncing"
@@ -853,7 +853,7 @@ msgstr "Nedávno oblíbené"
 
 #: src/LocalBackend/LocalSmartPlaylist.vala:241
 msgid "Never Played"
-msgstr "Ještě neposlechnuté"
+msgstr "Nikdy nepřehráné"
 
 #: src/LocalBackend/LocalSmartPlaylist.vala:249
 msgid "Over Played"
@@ -869,7 +869,7 @@ msgstr "Historie"
 
 #: src/Objects/MPRIS.vala:618 src/Widgets/SourceListView.vala:325
 msgid "Playlists"
-msgstr "Seznamy skladeb"
+msgstr "Playlisty"
 
 #: src/Views/DeviceSummaryWidget.vala:60
 msgid "Device Name:"
@@ -952,7 +952,7 @@ msgstr "Alba"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:64
 msgid "Years"
-msgstr "Let"
+msgstr "Roky"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:66
 msgid "Ratings"
@@ -973,7 +973,7 @@ msgstr "Všechny žánry"
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:220
 #, c-format
 msgid "All %i Genres"
-msgstr "Všechny žánry (%i)"
+msgstr "Všechny %i žánry"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:222
 msgid "No Genres"
@@ -981,16 +981,16 @@ msgstr "Žádné žánry"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:227
 msgid "All Artists"
-msgstr "Všichni umělci"
+msgstr "Všichni interpreti"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:229
 #, c-format
 msgid "All %i Artists"
-msgstr "Všichni umělci (%i)"
+msgstr "Všichni %i interpreti"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:231
 msgid "No Artists"
-msgstr "Žádní umělci"
+msgstr "Žádní interpreti"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:236
 msgid "All Albums"
@@ -999,7 +999,7 @@ msgstr "Všechna alba"
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:238
 #, c-format
 msgid "All %i Albums"
-msgstr "Všechna alba (%i)"
+msgstr "Všechna %i alba"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:240
 msgid "No Albums"
@@ -1012,7 +1012,7 @@ msgstr "Všechny roky"
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:247
 #, c-format
 msgid "All %i Years"
-msgstr "Všechny roky (%i)"
+msgstr "Všechny %i roky"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:249
 msgid "No Years"
@@ -1037,7 +1037,7 @@ msgstr "Všech %i seskupení"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:265
 msgid "No Groupings"
-msgstr "Žádné seskupení"
+msgstr "Žádná seskupení"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:270
 msgid "All Composers"
@@ -1093,11 +1093,11 @@ msgstr "Automaticky přizpůsobit sloupce"
 
 #: src/Views/ListView/Lists/MusicListView.vala:83
 msgid "Scroll to Current Song"
-msgstr "Přejít na aktuální skladby"
+msgstr "Přejít na aktuální píseň"
 
 #: src/Views/ListView/Lists/MusicListView.vala:87
 msgid "Edit Song Info"
-msgstr "Upravit informace o skladbě"
+msgstr "Upravit informace písně"
 
 #: src/Views/ListView/Lists/MusicListView.vala:90
 msgid "Show in File Browser"
@@ -1109,7 +1109,7 @@ msgstr "Další akce"
 
 #: src/Views/ListView/Lists/MusicListView.vala:98
 msgid "Add to Playlist"
-msgstr "Přidat do seznamu skladeb"
+msgstr "Přidat do playlistu"
 
 #: src/Views/ListView/Lists/MusicListView.vala:103
 #: src/Widgets/SourceListView.vala:157
@@ -1130,18 +1130,18 @@ msgstr "Odstranit ze zařízení"
 
 #: src/Views/ListView/Lists/MusicListView.vala:187
 msgid "New Playlist…"
-msgstr "Nový seznam skladeb…"
+msgstr "Nový playlist…"
 
 #: src/Views/ListView/Lists/MusicListView.vala:228
 #, c-format
 msgid "Import %i of %i selected songs"
-msgstr "Importovat %i z %i vybraných skladeb"
+msgstr "Importovat %i z %i vybraných písní"
 
 #: src/Views/ListView/Lists/MusicListView.vala:230
 #, c-format
 msgid "Import %i song"
 msgid_plural "Import %i songs"
-msgstr[0] "Importovat %i skladbu"
+msgstr[0] "Importovat %i píseň"
 msgstr[1] "Importovat %i skladby"
 msgstr[2] "Importovat %i skladeb"
 
@@ -1155,7 +1155,7 @@ msgstr "Vzorový textový řetězec"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:57
 msgid "Get Some Tunes"
-msgstr "Zaplňte hudbou"
+msgstr "Získejte nějakou hudbu"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Add music to your library."
@@ -1163,7 +1163,7 @@ msgstr "Přidat hudbu do knihovny."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:61
 msgid "Import music from a source into your library."
-msgstr "Přidat hudbu do knihovny."
+msgstr "Importovat hudbu ze zdroje do vaší knihovny."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:63
 msgid "Change Music Folder"
@@ -1171,7 +1171,7 @@ msgstr "Změnit složku s hudbou"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:64
 msgid "Load music from a folder, a network or an external disk."
-msgstr "Přidat hudbu z adresáře, ze sítě nebo externího disku."
+msgstr "Načíst hudbu z adresáře, ze sítě nebo externího disku."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:109
 #: src/Views/Wrappers/MusicViewWrapper.vala:125
@@ -1182,7 +1182,7 @@ msgstr "Importujte si hudbu"
 #: src/Views/Wrappers/MusicViewWrapper.vala:125
 #, c-format
 msgid "Import all your Music from %s into your library."
-msgstr "Importujte si do knihovny všechnu hudbu z %s."
+msgstr "Importujte svou hudbu z %s do vaší knihovny."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:135
 msgid "Select Music Folder"
@@ -1196,7 +1196,7 @@ msgstr "Žádné skladby"
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:51
 msgid "Updating playlist. Please wait."
-msgstr "Aktualizace seznamu skladeb. Prosím čekejte."
+msgstr "Aktualizuji playlist. Prosím čekejte."
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:55
 msgid ""
@@ -1208,7 +1208,7 @@ msgstr ""
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:58
 msgid "Edit Smart Playlist"
-msgstr "Upravit chytrý seznam skladeb"
+msgstr "Upravit chytrý playlist"
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:65
 msgid ""
@@ -1217,13 +1217,13 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
-"Tento seznam skladeb se automaticky naplní písněmi, které odpovídají jeho "
+"Tento playlist se automaticky naplní písněmi, které odpovídají jeho "
 "pravidlům. Pro změnu těchto pravidel na ně klikněte <b>pravým tlačítkem</b> "
 "a pak na <b>Upravit</b>. Případně můžete kliknout na tlačítko níže."
 
 #: src/Views/Wrappers/ViewWrapper.vala:418
 msgid "No media"
-msgstr "Žádné médium"
+msgstr "Žádná média"
 
 #: src/Widgets/AlbumListGrid.vala:64
 msgid "Set new album cover"
@@ -1287,23 +1287,23 @@ msgstr "Upravit…"
 
 #: src/Widgets/SourceListView.vala:97
 msgid "Save as Playlist"
-msgstr "Uložit jako seznam skladeb"
+msgstr "Uložit jako playlist"
 
 #: src/Widgets/SourceListView.vala:165
 msgid "Eject"
-msgstr "Odpojit"
+msgstr "Vysunout"
 
 #: src/Widgets/SourceListView.vala:170 src/Widgets/SourceListView.vala:210
 msgid "New Playlist"
-msgstr "Nový seznam skladeb"
+msgstr "Nový playlist"
 
 #: src/Widgets/SourceListView.vala:175 src/Widgets/SourceListView.vala:211
 msgid "New Smart Playlist"
-msgstr "Nový chytrý seznam skladeb"
+msgstr "Nový chytrý playlist"
 
 #: src/Widgets/SourceListView.vala:212
 msgid "Import Playlists"
-msgstr "Importovat seznamy skladeb"
+msgstr "Importovat playlisty"
 
 #: src/Widgets/SourceListView.vala:322
 msgid "Library"
@@ -1319,11 +1319,11 @@ msgstr "Síť"
 
 #: src/Widgets/StatusBar.vala:39 src/Widgets/StatusBar.vala:50
 msgid "Add Playlist"
-msgstr "Přidat seznam skladeb"
+msgstr "Přidat playlist"
 
 #: src/Widgets/StatusBar.vala:40
 msgid "Add Smart Playlist"
-msgstr "Přidat chytrý seznam skladeb"
+msgstr "Přidat chytrý playlist"
 
 #: src/Widgets/StatusBar.vala:80
 #, c-format
@@ -1336,7 +1336,7 @@ msgstr "Povolit opakování"
 
 #: src/Widgets/TopDisplay.vala:140
 msgid "Repeat Song"
-msgstr "Opakovat skladbu"
+msgstr "Opakovat píseň"
 
 #: src/Widgets/TopDisplay.vala:141
 msgid "Disable Repeat"
