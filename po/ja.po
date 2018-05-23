@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 11:30-0800\n"
-"PO-Revision-Date: 2018-05-13 00:11+0000\n"
+"PO-Revision-Date: 2018-05-24 00:10+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock@gmail.com>\n"
 "Language-Team: Japanese "
 "<https://weblate.elementary.io/projects/music/music/ja/>\n"
@@ -800,7 +800,7 @@ msgstr "ミュージックをライブラリへ<b>インポートしています
 
 #: src/LocalBackend/LocalLibrary.vala:248
 msgid "All music files are already in your library"
-msgstr "すべてのミュージックが既にライブラリにあります"
+msgstr "すべてのミュージックがすでにライブラリにあります"
 
 #: src/LocalBackend/LocalLibrary.vala:248
 msgid "No files were imported."
