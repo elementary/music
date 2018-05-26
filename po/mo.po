@@ -2,8 +2,16 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 11:30-0800\n"
+"PO-Revision-Date: 2018-05-26 11:00+0000\n"
+"Last-Translator: Romanic Ion Nicușor <contact.romanic@gmail.com>\n"
+"Language-Team: Moldovan "
+"<https://weblate.elementary.io/projects/music/music/mo/>\n"
+"Language: mo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.18\n"
 
 #: core/LibrariesManager.vala:147
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -344,7 +352,7 @@ msgstr ""
 
 #: src/LibraryWindow.vala:612 src/LibraryWindow.vala:718
 msgid "Music"
-msgstr ""
+msgstr "Muzică"
 
 #: src/LibraryWindow.vala:787
 msgid "No songs in Queue"

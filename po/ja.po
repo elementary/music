@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 11:30-0800\n"
-"PO-Revision-Date: 2018-05-24 00:10+0000\n"
+"PO-Revision-Date: 2018-05-26 11:00+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock@gmail.com>\n"
 "Language-Team: Japanese "
 "<https://weblate.elementary.io/projects/music/music/ja/>\n"
@@ -406,7 +406,7 @@ msgstr "曲ファイル <b>%s</b> / <b>%s</b> は見つかりません。"
 #: src/Dialogs/FileNotFoundDialog.vala:60
 #, c-format
 msgid "%i music files could not be found?"
-msgstr "%i の音楽ファイルが見つかりませんか？"
+msgstr "%i のミュージックファイルが見つかりませんでしたか？"
 
 #: src/Dialogs/FileNotFoundDialog.vala:82
 msgid "Rescan Library"
@@ -808,7 +808,7 @@ msgstr "ファイルはインポートされませんでした。"
 
 #: src/LocalBackend/LocalLibrary.vala:253
 msgid "Rescanning music for changes. This may take a while…"
-msgstr "変更があった音楽を再スキャンしています。これには少し時間がかかります…"
+msgstr "変更があったミュージックを再スキャンしています。これには少し時間がかかります…"
 
 #: src/LocalBackend/LocalLibrary.vala:354
 msgid "Added to your queue:"
@@ -874,11 +874,11 @@ msgstr "同期"
 
 #: src/Views/DeviceSummaryWidget.vala:245
 msgid "All Music"
-msgstr "すべての音楽"
+msgstr "すべてのミュージック"
 
 #: src/Views/DeviceSummaryWidget.vala:300
 msgid "Sync Failed"
-msgstr "同期失敗"
+msgstr "同期が失敗しました"
 
 #: src/Views/DeviceSummaryWidget.vala:300
 #, c-format
