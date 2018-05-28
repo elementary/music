@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 11:30-0800\n"
-"PO-Revision-Date: 2018-05-28 10:57+0000\n"
+"PO-Revision-Date: 2018-05-29 00:11+0000\n"
 "Last-Translator: Majer Tamás <mtamas@disroot.org>\n"
 "Language-Team: Hungarian "
 "<https://weblate.elementary.io/projects/music/music/hu/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: core/LibrariesManager.vala:147
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "<b>$ARTIST</b> - <b>$NAME</b> importálása a gyűjteménybe..."
+msgstr "<b>$ARTIST</b> - <b>$NAME</b> importálása a gyűjteménybe…"
 
 #: core/Media.vala:32
 msgid "Unknown"
@@ -54,7 +54,7 @@ msgstr "Club"
 
 #: core/GStreamer/Equalizer.vala:74
 msgid "Dance"
-msgstr "Dance"
+msgstr "Tánczene"
 
 #: core/GStreamer/Equalizer.vala:75
 msgid "Full Bass"
@@ -98,7 +98,7 @@ msgstr "Rock"
 
 #: core/GStreamer/Equalizer.vala:85
 msgid "Soft"
-msgstr "Soft"
+msgstr "Lágy"
 
 #: core/GStreamer/Equalizer.vala:86
 msgid "Ska"
@@ -106,7 +106,7 @@ msgstr "Ska"
 
 #: core/GStreamer/Equalizer.vala:87
 msgid "Soft Rock"
-msgstr "Soft Rock"
+msgstr "Könnyű Rock"
 
 #: core/GStreamer/Equalizer.vala:88
 msgid "Techno"
@@ -250,7 +250,7 @@ msgstr ""
 #: plugins/Devices/CDRom/CDRomDevice.vala:253
 msgid ""
 "The Application could not find any songs on the CD. No songs can be imported"
-msgstr "Az alkalmazás nem talált zenét a CD-n. Nem lehet zenét importálni."
+msgstr "Az alkalmazás nem talált számokat a CD-n. Nem lehet zenét importálni"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
 msgid "Importation of a song from Audio CD finished."
@@ -289,12 +289,12 @@ msgstr "Hiba történt az audio CD betöltésekor."
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
 msgid "Finishing sync process…"
-msgstr "Szinkronizáció befejezése..."
+msgstr "Szinkronizálás befejezése…"
 
 #: plugins/Devices/iPod/iPodLibrary.vala:230
 #: plugins/Devices/iPod/iPodLibrary.vala:386
 msgid "Cancelling Sync…"
-msgstr "Szinkronizáció megszakítása..."
+msgstr "Szinkronizálás megszakítása…"
 
 #: plugins/LastFM/LastFM.vala:97
 msgid "No similar songs found"
@@ -329,7 +329,7 @@ msgstr "Importálás kész"
 #: src/FileOperator.vala:305
 #, c-format
 msgid "%s has imported your library."
-msgstr "%s importálta a gyűjteményét"
+msgstr "%s importálva a gyűjteménybe."
 
 #: src/FileOperator.vala:315
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
@@ -337,7 +337,7 @@ msgstr "Fájlok <b>másolása</b> a <b>zenemappába</b>…"
 
 #: src/LibraryWindow.vala:215
 msgid "Import to Library…"
-msgstr "Importálás a gyűjteménybe..."
+msgstr "Importálás a gyűjteménybe…"
 
 #: src/LibraryWindow.vala:218 src/Dialogs/PreferencesWindow.vala:40
 msgid "Preferences"
@@ -510,8 +510,7 @@ msgstr "Nem lehet %d elemet importálni innen: %s"
 #: src/Dialogs/NotImportedWindow.vala:56
 #, c-format
 msgid "%s was unable to import %d items. The files may be damaged."
-msgstr ""
-"%s képtelen volt %d elemet importálni. Lehetséges, hogy a fájlok sérültek"
+msgstr "%s nem tudott importálni %d elemet. Lehetséges, hogy a fájlok sérültek."
 
 #: src/Dialogs/NotImportedWindow.vala:60
 msgid "Move all corrupted files to trash"
@@ -539,7 +538,7 @@ msgstr "Mellőz"
 
 #: src/Dialogs/PreferencesWindow.vala:48
 msgid "Select Music Folder…"
-msgstr "Zenemappa választása..."
+msgstr "Zene mappa kiválasztása…"
 
 #: src/Dialogs/PreferencesWindow.vala:77
 msgid "Music Folder Location"
@@ -650,7 +649,7 @@ msgstr "Hozzáadás"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:89
 msgid "Limit to"
-msgstr "Korlátozás:"
+msgstr "Határ"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:105
 msgid "items"
@@ -807,15 +806,15 @@ msgstr "Szinkronizálása folytatása"
 #: src/LocalBackend/LocalLibrary.vala:189
 #, c-format
 msgid "Importing music from %s…"
-msgstr "Zene importálása innen: %s..."
+msgstr "Zene importálása innen: %s…"
 
 #: src/LocalBackend/LocalLibrary.vala:213
 msgid "Adding files to library…"
-msgstr "Fájlok hozzáadása a gyűjteményhez..."
+msgstr "Fájlok hozzáadása a gyűjteményhez…"
 
 #: src/LocalBackend/LocalLibrary.vala:226
 msgid "<b>Importing</b> music to library…"
-msgstr "Zene <b>importálása</b> a gyűjteménybe..."
+msgstr "Zene <b>importálása</b> a gyűjteménybe…"
 
 #: src/LocalBackend/LocalLibrary.vala:248
 msgid "All music files are already in your library"
@@ -827,7 +826,7 @@ msgstr "Egy fájl sem került importálásra."
 
 #: src/LocalBackend/LocalLibrary.vala:253
 msgid "Rescanning music for changes. This may take a while…"
-msgstr "Zenék újravizsgálása változások után. Ez eltarthat egy ideig..."
+msgstr "Változások keresése a zenékben. Ez eltarthat egy ideig…"
 
 #: src/LocalBackend/LocalLibrary.vala:354
 msgid "Added to your queue:"
@@ -882,7 +881,7 @@ msgstr "Eszköznév"
 
 #: src/Views/DeviceSummaryWidget.vala:66
 msgid "Automatically sync when plugged in:"
-msgstr "Automatikus szinkronizálás, ha be van dugva"
+msgstr "Automatikus szinkronizálás, mikor csatlakoztatva van:"
 
 #: src/Views/DeviceSummaryWidget.vala:72
 msgid "Sync:"
@@ -917,7 +916,7 @@ msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
 "Nem lehet szinkronizálni az eszközzel a kiválasztott szinkronizálási "
-"beállításokkal. Nincs elég hely a lemezen."
+"beállításokkal. Nincs elég hely a lemezen"
 
 #: src/Views/DeviceSummaryWidget.vala:314
 msgid "Device is already doing an operation."
@@ -1131,7 +1130,7 @@ msgstr "Eltávolítás az eszközről"
 
 #: src/Views/ListView/Lists/MusicListView.vala:187
 msgid "New Playlist…"
-msgstr "Új lejátszási lista..."
+msgstr "Új lejátszási lista…"
 
 #: src/Views/ListView/Lists/MusicListView.vala:228
 #, c-format
@@ -1142,12 +1141,12 @@ msgstr "%i zeneszám importálása ennyiből: %i"
 #, c-format
 msgid "Import %i song"
 msgid_plural "Import %i songs"
-msgstr[0] "%i zeneszám importálása"
-msgstr[1] "%i zeneszám importálása"
+msgstr[0] "%i szám importálása"
+msgstr[1] "%i szám importálása"
 
 #: src/Views/ListView/Lists/MusicListView.vala:613
 msgid "1234 kbps"
-msgstr "1234 kbps"
+msgstr "1234 kbpsx"
 
 #: src/Views/ListView/Lists/MusicListView.vala:684
 msgid "Sample List String"
@@ -1280,11 +1279,11 @@ msgstr "Átnevezés"
 #: src/Widgets/SourceListView.vala:70 src/Widgets/SourceListView.vala:84
 #: src/Widgets/SourceListView.vala:99
 msgid "Export…"
-msgstr "Exportálás..."
+msgstr "Exportálás…"
 
 #: src/Widgets/SourceListView.vala:82
 msgid "Edit…"
-msgstr "Szerkesztés..."
+msgstr "Szerkesztés…"
 
 #: src/Widgets/SourceListView.vala:97
 msgid "Save as Playlist"
