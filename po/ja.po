@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 11:30-0800\n"
-"PO-Revision-Date: 2018-05-26 11:00+0000\n"
+"PO-Revision-Date: 2018-05-28 10:47+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock@gmail.com>\n"
 "Language-Team: Japanese "
 "<https://weblate.elementary.io/projects/music/music/ja/>\n"
@@ -236,7 +236,7 @@ msgstr "このオーディオ CD の内容を読み取ることはできませ�
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:247
 msgid "Could not find Music Folder"
-msgstr "ミュージックフォルダが見つかりません"
+msgstr "ミュージックフォルダが見つかりませんでした"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:247
 msgid ""
@@ -295,7 +295,7 @@ msgstr "同期を取り消しています…"
 
 #: plugins/LastFM/LastFM.vala:97
 msgid "No similar songs found"
-msgstr "同様な楽曲が見つかりません"
+msgstr "同様な楽曲が見つかりませんでした"
 
 #: plugins/LastFM/LastFM.vala:97
 msgid ""
@@ -396,12 +396,12 @@ msgstr "ミュージックをインポート"
 
 #: src/Dialogs/FileNotFoundDialog.vala:51
 msgid "File not found"
-msgstr "ファイルが見つかりません"
+msgstr "ファイルが見つかりませんでした"
 
 #: src/Dialogs/FileNotFoundDialog.vala:57
 #, c-format
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
-msgstr "曲ファイル <b>%s</b> / <b>%s</b> は見つかりません。"
+msgstr "曲ファイル <b>%s</b> / <b>%s</b> は見つかりませんでした。"
 
 #: src/Dialogs/FileNotFoundDialog.vala:60
 #, c-format
@@ -911,11 +911,11 @@ msgstr "デバイスの操作は中止され、このメディア以降は停止
 
 #: src/Views/GridView.vala:69
 msgid "No Albums Found."
-msgstr "アルバムが見つかりません。"
+msgstr "アルバムが見つかりませんでした。"
 
 #: src/Views/ListView/ListView.vala:99
 msgid "No Songs Found."
-msgstr "曲が見つかりません。"
+msgstr "曲が見つかりませんでした。"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
 msgid "Genres"
