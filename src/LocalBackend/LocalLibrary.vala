@@ -61,10 +61,8 @@ public class Noise.LocalLibrary : Library {
         libraries_manager.local_library = this;
         _playlists = new Gee.TreeSet<StaticPlaylist> ();
         _smart_playlists = new Gee.TreeSet<SmartPlaylist> ();
-        _medias = new Gee.HashMap<int64?, Media> ((Gee.HashDataFunc<int64?>)GLib.int64_hash,
-                                                  (Gee.EqualDataFunc<int64?>?)GLib.int64_equal, null);
-        _dont_show_medias = new Gee.HashMap<int64?, Media> ((Gee.HashDataFunc<int64?>)GLib.int64_hash,
-                                                  (Gee.EqualDataFunc<int64?>?)GLib.int64_equal, null);
+        _medias = new Gee.HashMap<int64?, Media> ((x) => { return GLib.int64_hash (x); }, (a, b) => { return GLib.int64_equal (a, b); });
+        _dont_show_medias = new Gee.HashMap<int64?, Media> ((x) => { return GLib.int64_hash (x); }, (a, b) => { return GLib.int64_equal (a, b); });
         _searched_medias = new Gee.TreeSet<Media> ();
         album_info = new Gee.HashMap<uint, Album> ();
         tagger = new GStreamerTagger();
@@ -772,8 +770,7 @@ public class Noise.LocalLibrary : Library {
         var media = new Gee.TreeSet<Media> ();
         media.add_all (new_media);
 
-        var local_media = new Gee.HashMap<int64?, LocalMedia> ((Gee.HashDataFunc<int64?>)GLib.int64_hash,
-        (Gee.EqualDataFunc<int64?>?)GLib.int64_equal, null);
+        var local_media = new Gee.HashMap<int64?, LocalMedia> ((x) => { return GLib.int64_hash (x); }, (a, b) => { return GLib.int64_equal (a, b); });
         foreach (var m in media) {
             LocalMedia local_m;
             // Medias with show tag are already in db and should just be
@@ -913,7 +910,7 @@ public class Noise.LocalLibrary : Library {
         file_operations_done ();
     }
 
-    Gee.HashMap<string, DevicePreferences> preferences = new Gee.HashMap<string, DevicePreferences> ((Gee.HashDataFunc)GLib.str_hash, (Gee.EqualDataFunc)GLib.str_equal);
+    Gee.HashMap<string, DevicePreferences> preferences = new Gee.HashMap<string, DevicePreferences> ();
     public DevicePreferences get_preferences_for_device (Device d) {
         var key = d.get_unique_identifier ();
         if (preferences.has_key (key)) {
