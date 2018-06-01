@@ -357,7 +357,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
                 }
             }
         } else {
-            foreach (var m in table) {
+            foreach (var m in result) {
                 if (obey_column_browser && !column_browser.match_media (m)) {
                     continue;
                 }
@@ -367,7 +367,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
         }
 
         // If nothing will be shown, display the "no media found" message.
-        if (showing.size < 1) {
+        if (showing.size < 1 && search != "") {
             App.main_window.view_stack.show_alert ();
         }
     }

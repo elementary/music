@@ -171,7 +171,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
     protected void set_active_view (ViewType type, out bool successful = null) {
         successful = true;
 
-        if (type == current_view)
+        if (type == current_view || !is_current_wrapper)
             return;
 
         switch (type) {

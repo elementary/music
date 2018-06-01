@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 11:30-0800\n"
-"PO-Revision-Date: 2016-09-27 08:59+0000\n"
-"Last-Translator: Daniel Fore <Unknown>\n"
-"Language-Team: Hindi <hi@li.org>\n"
+"PO-Revision-Date: 2018-05-25 00:08+0000\n"
+"Last-Translator: anonymous <noreply@weblate.org>\n"
+"Language-Team: Hindi <https://weblate.elementary.io/projects/music/music/hi/>"
+"\n"
 "Language: hi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:52+0000\n"
-"X-Generator: Launchpad (build 18330)\n"
 
 #: core/LibrariesManager.vala:147
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -105,7 +106,7 @@ msgstr "स्का"
 
 #: core/GStreamer/Equalizer.vala:87
 msgid "Soft Rock"
-msgstr "सॉफ्ट रोक"
+msgstr "सॉफ्ट रॉक"
 
 #: core/GStreamer/Equalizer.vala:88
 msgid "Techno"

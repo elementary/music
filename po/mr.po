@@ -3,113 +3,114 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 11:30-0800\n"
-"PO-Revision-Date: 2016-01-04 18:34+0000\n"
-"Last-Translator: Launchpad Translations Administrators <Unknown>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2018-05-28 19:52+0000\n"
+"Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
+"Language-Team: Marathi "
+"<https://weblate.elementary.io/projects/music/music/mr/>\n"
+"Language: mr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
-"X-Generator: Launchpad (build 18330)\n"
 
 #: core/LibrariesManager.vala:147
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr ""
+msgstr "<b>$ARTIST</b> यांचे <b>$NAME</b> संग्रहात आणले जात आहे..."
 
 #: core/Media.vala:32
 msgid "Unknown"
-msgstr ""
+msgstr "अनोळखी"
 
 #: core/Media.vala:179
 msgid "$NAME on $ALBUM"
-msgstr ""
+msgstr "$ALBUM मधले $NAME"
 
 #: core/Media.vala:182
 msgid "$NAME by $ARTIST"
-msgstr ""
+msgstr "$ARTIST यांचे  $NAME"
 
 #: core/Media.vala:188
 msgid "$NAME by $ARTIST on $ALBUM"
-msgstr ""
+msgstr "$ARTIST यांचे $ALBUM मधले $NAME"
 
 #: core/GStreamer/Equalizer.vala:71
 msgid "Flat"
-msgstr ""
+msgstr "फ्लॅट"
 
 #: core/GStreamer/Equalizer.vala:72
 msgid "Classical"
-msgstr ""
+msgstr "क्लासिकल"
 
 #: core/GStreamer/Equalizer.vala:73
 msgid "Club"
-msgstr ""
+msgstr "क्लब"
 
 #: core/GStreamer/Equalizer.vala:74
 msgid "Dance"
-msgstr ""
+msgstr "डान्स"
 
 #: core/GStreamer/Equalizer.vala:75
 msgid "Full Bass"
-msgstr ""
+msgstr "फुल बास"
 
 #: core/GStreamer/Equalizer.vala:76
 msgid "Full Treble"
-msgstr ""
+msgstr "फुल ट्रेंबल"
 
 #: core/GStreamer/Equalizer.vala:77
 msgid "Full Bass + Treble"
-msgstr ""
+msgstr "फुल बास+ट्रेंबल"
 
 #: core/GStreamer/Equalizer.vala:78
 msgid "Headphones"
-msgstr ""
+msgstr "हेडफोन"
 
 #: core/GStreamer/Equalizer.vala:79
 msgid "Large Hall"
-msgstr ""
+msgstr "मोठा हॉल"
 
 #: core/GStreamer/Equalizer.vala:80
 msgid "Live"
-msgstr ""
+msgstr "लाईव्ह"
 
 #: core/GStreamer/Equalizer.vala:81
 msgid "Party"
-msgstr ""
+msgstr "पार्टी"
 
 #: core/GStreamer/Equalizer.vala:82
 msgid "Pop"
-msgstr ""
+msgstr "पॉप"
 
 #: core/GStreamer/Equalizer.vala:83
 msgid "Reggae"
-msgstr ""
+msgstr "रेगे"
 
 #: core/GStreamer/Equalizer.vala:84
 msgid "Rock"
-msgstr ""
+msgstr "रॉक"
 
 #: core/GStreamer/Equalizer.vala:85
 msgid "Soft"
-msgstr ""
+msgstr "सॉफ्ट"
 
 #: core/GStreamer/Equalizer.vala:86
 msgid "Ska"
-msgstr ""
+msgstr "स्का"
 
 #: core/GStreamer/Equalizer.vala:87
 msgid "Soft Rock"
-msgstr ""
+msgstr "सॉफ्ट रॉक"
 
 #: core/GStreamer/Equalizer.vala:88
 msgid "Techno"
-msgstr ""
+msgstr "टेक्नो"
 
 #: core/Utils/FileUtils.vala:182
 #, c-format
 msgid " (%d)"
-msgstr ""
+msgstr "(%d)"
 
 #: core/Utils/PlaylistsUtils.vala:95
 #, c-format
@@ -118,7 +119,7 @@ msgstr ""
 
 #: core/Utils/PlaylistsUtils.vala:235
 msgid "New playlist"
-msgstr ""
+msgstr "नवीन यादी"
 
 #: core/Utils/PlaylistsUtils.vala:246
 #, c-format
@@ -127,7 +128,7 @@ msgstr ""
 
 #: core/Utils/PlaylistsUtils.vala:273
 msgid "Export Playlist"
-msgstr ""
+msgstr "यादी एक्स्पोर्ट करा"
 
 #: core/Utils/PlaylistsUtils.vala:275 core/Utils/PlaylistsUtils.vala:369
 #: src/LibraryWindow.vala:1002 src/Dialogs/FileNotFoundDialog.vala:84
@@ -140,29 +141,29 @@ msgstr ""
 #: src/Dialogs/SyncWarningDialog.vala:60
 #: src/Views/Wrappers/MusicViewWrapper.vala:137 src/Widgets/TopDisplay.vala:64
 msgid "Cancel"
-msgstr ""
+msgstr "रद्द करा"
 
 #: core/Utils/PlaylistsUtils.vala:276 src/Dialogs/MediaEditor.vala:138
 #: src/Dialogs/SmartPlaylistEditor.vala:107
 msgid "Save"
-msgstr ""
+msgstr "सेव्ह करा"
 
 #: core/Utils/PlaylistsUtils.vala:281 core/Utils/PlaylistsUtils.vala:376
 msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr ""
+msgstr "MPEG आवृत्ती 3.0 विस्तारित (*.m3u)"
 
 #: core/Utils/PlaylistsUtils.vala:286 core/Utils/PlaylistsUtils.vala:381
 msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr ""
+msgstr "Shoutcast यादी आवृत्ती 2.0 (*.pls)"
 
 #: core/Utils/PlaylistsUtils.vala:361
 msgid "Playlist"
-msgstr ""
+msgstr "यादी"
 
 #: core/Utils/PlaylistsUtils.vala:367
 #, c-format
 msgid "Import %s"
-msgstr ""
+msgstr "%s आणा"
 
 #: core/Utils/PlaylistsUtils.vala:370 src/LibraryWindow.vala:1003
 #: src/Dialogs/FileNotFoundDialog.vala:124
@@ -170,11 +171,11 @@ msgstr ""
 #: src/Views/Wrappers/MusicViewWrapper.vala:139
 #: src/Widgets/AlbumListGrid.vala:243
 msgid "Open"
-msgstr ""
+msgstr "उघडा"
 
 #: core/Utils/PlaylistsUtils.vala:401
 msgid "Unrecognized playlist file. Import failed."
-msgstr ""
+msgstr "अनोळखी यादी फाईल. फाईल आणणे अपयशी."
 
 #: core/Utils/TimeUtils.vala:47
 msgid "%m/%e/%Y %l:%M %p"
@@ -183,69 +184,71 @@ msgstr ""
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:105
 #: plugins/Devices/iPod/iPodDevice.vala:65
 msgid "Empty device!"
-msgstr ""
+msgstr "उपकरण रिकामे आहे!"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:109
 #: plugins/Devices/iPod/iPodDevice.vala:69
 msgid "This device does not contain any music."
-msgstr ""
+msgstr "या उपकरणात कोणतेही संगीत नाही."
 
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:153
 msgid "Android Phone"
-msgstr ""
+msgstr "अँड्रॉइड फोन"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:155
 msgid "Audio Player"
-msgstr ""
+msgstr "ऑडिओ प्लेयर"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:137
 #: plugins/Devices/iPod/iPodLibrary.vala:148
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr ""
+msgstr "$DEVICE मध्ये <b>$ARTIST</b> यांचे <b>$NAME</b> टाकले जात आहे"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:161
 #: plugins/Devices/iPod/iPodLibrary.vala:196
 #, c-format
 msgid "Syncing <b>%s</b>…"
-msgstr ""
+msgstr "<b>%s</b>संक्रमित केले जात आहे…"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:266
 #: plugins/Devices/iPod/iPodLibrary.vala:530
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr ""
+msgstr "$DEVICE मधून <b>$ARTIST</b> यांचे <b>$NAME</b> काढले जात आहे"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:297
 #: plugins/Devices/iPod/iPodLibrary.vala:337
 #, c-format
 msgid "Removing from <b>%s</b>…"
-msgstr ""
+msgstr "<b>%s</b>मधून काढले जात आहे…"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:91
 msgid "Audio CD Invalid"
-msgstr ""
+msgstr "अयोग्य ऑडिओ CD"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:95
 msgid "Impossible to read the contents of this Audio CD"
-msgstr ""
+msgstr "या ऑडिओ CD मधले साहित्य ऐकले जाऊ शकत नाही"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:247
 msgid "Could not find Music Folder"
-msgstr ""
+msgstr "संगीत असलेले फोल्डर सापडले नाही"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:247
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
 msgstr ""
+"कृपया आपले संगीत असलेले फोल्डर सहज वापरता येण्याजोगे आणि माउंट केलेले "
+"असल्याची खात्री करा."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:253
 msgid ""
 "The Application could not find any songs on the CD. No songs can be imported"
-msgstr ""
+msgstr "अप्लिकेशन ला CD वर एकही गाणे सापडले नाही. गाणी आणू शकत नाही"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
 msgid "Importation of a song from Audio CD finished."
-msgstr ""
+msgstr "ऑडिओ CD मधून एक गाणे पूर्णपणे आणले गेले. "
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
 #, c-format
