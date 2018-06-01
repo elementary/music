@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 11:30-0800\n"
-"PO-Revision-Date: 2018-06-01 15:04+0000\n"
+"PO-Revision-Date: 2018-06-02 00:05+0000\n"
 "Last-Translator: Majer Tamás <mtamas@disroot.org>\n"
 "Language-Team: Hungarian "
 "<https://weblate.elementary.io/projects/music/music/hu/>\n"
@@ -1182,7 +1182,7 @@ msgstr "Importálja zenéit"
 #: src/Views/Wrappers/MusicViewWrapper.vala:125
 #, c-format
 msgid "Import all your Music from %s into your library."
-msgstr "Importálja összes zenéjét %s eszközről a gyűjteményébe."
+msgstr "Importálja összes zenéjét a(z) %s eszközről a gyűjteményébe."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:135
 msgid "Select Music Folder"
