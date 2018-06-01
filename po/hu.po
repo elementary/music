@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 11:30-0800\n"
-"PO-Revision-Date: 2018-05-29 00:11+0000\n"
+"PO-Revision-Date: 2018-06-01 15:04+0000\n"
 "Last-Translator: Majer Tamás <mtamas@disroot.org>\n"
 "Language-Team: Hungarian "
 "<https://weblate.elementary.io/projects/music/music/hu/>\n"
@@ -510,7 +510,8 @@ msgstr "Nem lehet %d elemet importálni innen: %s"
 #: src/Dialogs/NotImportedWindow.vala:56
 #, c-format
 msgid "%s was unable to import %d items. The files may be damaged."
-msgstr "%s nem tudott importálni %d elemet. Lehetséges, hogy a fájlok sérültek."
+msgstr ""
+"A(z) %s nem tudott importálni %d elemet. Lehetséges, hogy a fájlok sérültek."
 
 #: src/Dialogs/NotImportedWindow.vala:60
 msgid "Move all corrupted files to trash"
@@ -581,7 +582,7 @@ msgstr "Eltávolítja %d zeneszámokat innen: %s?"
 #: src/Dialogs/RemoveFilesDialog.vala:70
 #, c-format
 msgid "Remove \"%s\" From %s?"
-msgstr "„%s” eltávolítása innen: %s?"
+msgstr "A(z) „%s” eltávolítása innen: %s?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:79
 #, c-format
@@ -795,13 +796,13 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
-"Ha folytatja a szinkronizálást, akkor az adatok le fognak törlődni %s "
+"Ha folytatja a szinkronizálást, akkor az adatok törlődni fognak a(z) %s "
 "eszközről, mivel nincsenek a szinkronizálási listán. Szeretné előbb "
 "beolvasni őket a gyűjteménybe?"
 
 #: src/Dialogs/SyncWarningDialog.vala:57
 msgid "Continue Syncing"
-msgstr "Szinkronizálása folytatása"
+msgstr "Szinkronizálás folytatása"
 
 #: src/LocalBackend/LocalLibrary.vala:189
 #, c-format
@@ -881,7 +882,7 @@ msgstr "Eszköznév"
 
 #: src/Views/DeviceSummaryWidget.vala:66
 msgid "Automatically sync when plugged in:"
-msgstr "Automatikus szinkronizálás, mikor csatlakoztatva van:"
+msgstr "Automatikus szinkronizálás, ha csatlakoztatva van:"
 
 #: src/Views/DeviceSummaryWidget.vala:72
 msgid "Sync:"
@@ -1080,7 +1081,7 @@ msgstr[1] "%u Csillag"
 #: src/Views/ListView/Lists/CellDataFunctionHelper.vala:134
 #, c-format
 msgid "%u kbps"
-msgstr "%u kbps"
+msgstr "%u kb/s"
 
 #: src/Views/ListView/Lists/CellDataFunctionHelper.vala:159
 #: src/Views/ListView/Lists/MusicListView.vala:628
@@ -1146,11 +1147,11 @@ msgstr[1] "%i szám importálása"
 
 #: src/Views/ListView/Lists/MusicListView.vala:613
 msgid "1234 kbps"
-msgstr "1234 kbpsx"
+msgstr "1234 kb/s"
 
 #: src/Views/ListView/Lists/MusicListView.vala:684
 msgid "Sample List String"
-msgstr "Zeneszám címe, előadója, előadó albuma, album előadója, szerző, műfaj"
+msgstr "Minta karakterlánc szám címre"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:57
 msgid "Get Some Tunes"
