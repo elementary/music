@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 11:30-0800\n"
-"PO-Revision-Date: 2018-06-01 00:07+0000\n"
+"PO-Revision-Date: 2018-06-06 00:08+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock@gmail.com>\n"
 "Language-Team: Japanese "
 "<https://weblate.elementary.io/projects/music/music/ja/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: core/LibrariesManager.vala:147
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "<b>$NAME</b> - <b>$ARTIST</b> をライブラリへ取り込み中…"
+msgstr "<b>$NAME</b> - <b>$ARTIST</b> をライブラリへインポートしています…"
 
 #: core/Media.vala:32
 msgid "Unknown"
@@ -168,7 +168,7 @@ msgstr "プレイリスト"
 #: core/Utils/PlaylistsUtils.vala:367
 #, c-format
 msgid "Import %s"
-msgstr "%s の取り込み"
+msgstr "%s のインポート"
 
 #: core/Utils/PlaylistsUtils.vala:370 src/LibraryWindow.vala:1003
 #: src/Dialogs/FileNotFoundDialog.vala:124
@@ -265,7 +265,7 @@ msgstr "トラック %u をインポート中: %s"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:364
 msgid "CD import will be <b>cancelled</b> after current import."
-msgstr "CD の取り込みは現在の取り込みの後に<b>キャンセル</b>されます。"
+msgstr "CD のインポートは現在のインポートの後に<b>キャンセル</b>されます。"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:383
 msgid "An error occured during the Import of this CD"
@@ -320,12 +320,12 @@ msgstr "同様なメディア"
 
 #: src/FileOperator.vala:305
 msgid "Import Complete"
-msgstr "取り込み完了"
+msgstr "インポート完了"
 
 #: src/FileOperator.vala:305
 #, c-format
 msgid "%s has imported your library."
-msgstr "%s がライブラリに取り込まれました。"
+msgstr "%s がライブラリにインポートされました。"
 
 #: src/FileOperator.vala:315
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
@@ -333,7 +333,7 @@ msgstr "ファイルを<b>ミュージックフォルダ</b>に<b>コピー</b>�
 
 #: src/LibraryWindow.vala:215
 msgid "Import to Library…"
-msgstr "ライブラリへ取り込み…"
+msgstr "ライブラリへインポート…"
 
 #: src/LibraryWindow.vala:218 src/Dialogs/PreferencesWindow.vala:40
 msgid "Preferences"
@@ -549,7 +549,7 @@ msgstr "ファイルへメタデータ書込:"
 
 #: src/Dialogs/PreferencesWindow.vala:84
 msgid "Copy imported files to Library:"
-msgstr "取り込みファイルをライブラリへコピー:"
+msgstr "インポートされたファイルをライブラリへコピー:"
 
 #: src/Dialogs/PreferencesWindow.vala:86
 msgid "Desktop Integration"
@@ -1112,7 +1112,7 @@ msgstr "新しいプレイリスト…"
 #: src/Views/ListView/Lists/MusicListView.vala:228
 #, c-format
 msgid "Import %i of %i selected songs"
-msgstr "選択した曲を取り込み %i / %i"
+msgstr "選択した曲をインポート %i / %i"
 
 #: src/Views/ListView/Lists/MusicListView.vala:230
 #, c-format
@@ -1138,7 +1138,7 @@ msgstr "ミュージックをライブラリへ追加してください。"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:61
 msgid "Import music from a source into your library."
-msgstr "ソースからライブラリへミュージックを取り込みます。"
+msgstr "ソースからライブラリへミュージックをインポートします。"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:63
 msgid "Change Music Folder"
@@ -1151,13 +1151,13 @@ msgstr "フォルダ、ネットワークや外部ディスクから読み込み
 #: src/Views/Wrappers/MusicViewWrapper.vala:109
 #: src/Views/Wrappers/MusicViewWrapper.vala:125
 msgid "Import your Music"
-msgstr "ミュージックの取り込み"
+msgstr "ミュージックのインポート"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:109
 #: src/Views/Wrappers/MusicViewWrapper.vala:125
 #, c-format
 msgid "Import all your Music from %s into your library."
-msgstr "%s からすべてのミュージックがライブラリに取り込まれました。"
+msgstr "%s からすべてのミュージックがライブラリにインポートされました。"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:135
 msgid "Select Music Folder"
@@ -1210,11 +1210,11 @@ msgstr "画像ファイル"
 
 #: src/Widgets/AlbumListGrid.vala:244
 msgid "_Cancel"
-msgstr "キャンセル (_C)"
+msgstr "キャンセル(_C)"
 
 #: src/Widgets/AlbumListGrid.vala:245
 msgid "_Open"
-msgstr "開く (_O)"
+msgstr "開く(_O)"
 
 #: src/Widgets/EqualizerPopover.vala:165
 msgid "Save preset"
