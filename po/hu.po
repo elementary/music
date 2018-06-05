@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 11:30-0800\n"
-"PO-Revision-Date: 2018-06-02 00:05+0000\n"
+"PO-Revision-Date: 2018-06-06 00:08+0000\n"
 "Last-Translator: Majer Tamás <mtamas@disroot.org>\n"
 "Language-Team: Hungarian "
 "<https://weblate.elementary.io/projects/music/music/hu/>\n"
@@ -1236,7 +1236,7 @@ msgstr "Képfájlok"
 
 #: src/Widgets/AlbumListGrid.vala:244
 msgid "_Cancel"
-msgstr "Mé_gse"
+msgstr "_Mégsem"
 
 #: src/Widgets/AlbumListGrid.vala:245
 msgid "_Open"
