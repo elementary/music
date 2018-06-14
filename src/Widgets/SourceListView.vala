@@ -35,7 +35,7 @@ public interface Noise.SourceListEntry : Granite.Widgets.SourceList.Item {
  * SourceList item. It stores the number of the corresponding page in the notebook widget.
  */
 public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListEntry, Granite.Widgets.SourceListDragDest {
-    public signal void playlist_rename_clicked (Gtk.Grid view);
+    public signal void playlist_rename_clicked (Gtk.Grid view, SourceListItem item);
     public signal void playlist_edit_clicked (Gtk.Grid view);
     public signal void playlist_remove_clicked (Gtk.Grid view);
     public signal void playlist_save_clicked (Gtk.Grid view);
@@ -68,7 +68,7 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListE
                 playlist_menu.append (playlist_rename);
                 playlist_menu.append (playlist_remove);
                 playlist_rename.activate.connect (() => {
-                    playlist_rename_clicked (view);
+                    playlist_rename_clicked (view, this);
                 });
                 playlist_remove.activate.connect (() => {
                     playlist_remove_clicked (view);
@@ -82,7 +82,7 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListE
                 playlist_menu.append (playlist_edit);
                 playlist_menu.append (playlist_remove);
                 playlist_rename.activate.connect (() => {
-                    playlist_rename_clicked (view);
+                    playlist_rename_clicked (view, this);
                 });
                 playlist_edit.activate.connect (() => {
                     playlist_edit_clicked (view);
@@ -386,7 +386,10 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
         sourcelist_item.activated.connect (() => {activated ();});
         sourcelist_item.edited.connect ((new_name) => {this.edited (sourcelist_item.view, new_name);});
         expandable_item.action_activated.connect ((sl) => {this.item_action_activated (sourcelist_item.view);});
-        sourcelist_item.playlist_rename_clicked.connect ((view) => {playlist_rename_clicked (view);});
+        sourcelist_item.playlist_rename_clicked.connect ((view, item) => {
+            playlist_rename_clicked (view);
+            start_editing_item (item);
+        });
         sourcelist_item.playlist_edit_clicked.connect ((view) => {playlist_edit_clicked (view);});
         sourcelist_item.playlist_remove_clicked.connect ((view) => {playlist_remove_clicked (view);});
         sourcelist_item.playlist_save_clicked.connect ((view) => {playlist_save_clicked (view);});
