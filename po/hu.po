@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 11:30-0800\n"
-"PO-Revision-Date: 2018-06-06 00:08+0000\n"
+"PO-Revision-Date: 2018-06-14 15:34+0000\n"
 "Last-Translator: Majer Tamás <mtamas@disroot.org>\n"
 "Language-Team: Hungarian "
 "<https://weblate.elementary.io/projects/music/music/hu/>\n"
@@ -1271,7 +1271,7 @@ msgstr "Egyéni beállítás %i"
 
 #: src/Widgets/PresetList.vala:53
 msgid "Delete Current"
-msgstr "Jelenlegi törlése"
+msgstr "Aktuális törlése"
 
 #: src/Widgets/SourceListView.vala:68 src/Widgets/SourceListView.vala:81
 msgid "Rename"
