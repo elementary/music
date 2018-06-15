@@ -66,13 +66,24 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public const string ACTION_PLAY = "action_play";
     public const string ACTION_PLAY_NEXT = "action_play_next";
     public const string ACTION_PLAY_PREVIOUS = "action_play_previous";
+    public const string ACTION_QUIT = "action_quit";
+    public const string ACTION_SEARCH = "action_search";
 
     private const ActionEntry[] action_entries = {
         { ACTION_IMPORT, action_import },
         { ACTION_PLAY, action_play, null, "false" },
         { ACTION_PLAY_NEXT, action_play_next },
-        { ACTION_PLAY_PREVIOUS, action_play_previous }
+        { ACTION_PLAY_PREVIOUS, action_play_previous },
+        { ACTION_QUIT, action_quit },
+        { ACTION_SEARCH, action_search }
     };
+
+    public LibraryWindow (Gtk.Application application) {
+        Object (application: application);
+
+        application.set_accels_for_action (ACTION_PREFIX + ACTION_QUIT, {"<Control>q", "<Control>w"});
+        application.set_accels_for_action (ACTION_PREFIX + ACTION_SEARCH, {"<Control>f"});
+    }
 
     construct {
         actions = new SimpleActionGroup ();
@@ -196,15 +207,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                 case Gdk.Key.@3:
                     change_view (Widgets.ViewSelector.Mode.COLUMN);
                     break;
-            }
-
-            uint keycode = event.hardware_keycode;
-            if (match_keycode (Gdk.Key.f, keycode)) {
-                search_entry.grab_focus ();
-                return false;
-            } else if (match_keycode (Gdk.Key.q, keycode) || match_keycode (Gdk.Key.w, keycode)) {
-                destroy ();
-                return true;
             }
         }
 
@@ -1036,6 +1038,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     private void action_play_previous () {
         play_previous_media ();
+    }
+
+    private void action_quit () {
+        destroy ();
+    }
+
+    private void action_search () {
+        search_entry.grab_focus ();
     }
 
     private void editPreferencesClick () {
