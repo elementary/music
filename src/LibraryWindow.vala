@@ -68,6 +68,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public const string ACTION_PLAY_PREVIOUS = "action_play_previous";
     public const string ACTION_QUIT = "action_quit";
     public const string ACTION_SEARCH = "action_search";
+    public const string ACTION_VIEW_ALBUMS = "action_view_albums";
+    public const string ACTION_VIEW_COLUMNS = "action_view_columns";
+    public const string ACTION_VIEW_LIST = "action_view_list";
+
 
     private const ActionEntry[] action_entries = {
         { ACTION_IMPORT, action_import },
@@ -75,7 +79,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         { ACTION_PLAY_NEXT, action_play_next },
         { ACTION_PLAY_PREVIOUS, action_play_previous },
         { ACTION_QUIT, action_quit },
-        { ACTION_SEARCH, action_search }
+        { ACTION_SEARCH, action_search },
+        { ACTION_VIEW_ALBUMS, action_view_albums },
+        { ACTION_VIEW_COLUMNS, action_view_columns },
+        { ACTION_VIEW_LIST, action_view_list }
     };
 
     public LibraryWindow (Gtk.Application application) {
@@ -83,6 +90,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         application.set_accels_for_action (ACTION_PREFIX + ACTION_QUIT, {"<Control>q", "<Control>w"});
         application.set_accels_for_action (ACTION_PREFIX + ACTION_SEARCH, {"<Control>f"});
+        application.set_accels_for_action (ACTION_PREFIX + ACTION_VIEW_ALBUMS, {"<Control>1"});
+        application.set_accels_for_action (ACTION_PREFIX + ACTION_VIEW_LIST, {"<Control>2"});
+        application.set_accels_for_action (ACTION_PREFIX + ACTION_VIEW_COLUMNS, {"<Control>3"});
     }
 
     construct {
@@ -195,18 +205,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
                 if (typed_unichar.isalnum () || typed_unichar in special_chars)
                     search_entry.grab_focus ();
-            }
-        } else if ((event.state & Gdk.ModifierType.CONTROL_MASK) != 0) {
-            switch (event.keyval) {
-                case Gdk.Key.@1:
-                    change_view (Widgets.ViewSelector.Mode.GRID);
-                    break;
-                case Gdk.Key.@2:
-                    change_view (Widgets.ViewSelector.Mode.LIST);
-                    break;
-                case Gdk.Key.@3:
-                    change_view (Widgets.ViewSelector.Mode.COLUMN);
-                    break;
             }
         }
 
@@ -1046,6 +1044,18 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     private void action_search () {
         search_entry.grab_focus ();
+    }
+
+    private void action_view_albums () {
+        change_view (Widgets.ViewSelector.Mode.GRID);
+    }
+
+    private void action_view_columns () {
+        change_view (Widgets.ViewSelector.Mode.COLUMN);
+    }
+
+    private void action_view_list () {
+        change_view (Widgets.ViewSelector.Mode.LIST);
     }
 
     private void editPreferencesClick () {
