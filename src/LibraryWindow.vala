@@ -72,7 +72,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public const string ACTION_VIEW_COLUMNS = "action_view_columns";
     public const string ACTION_VIEW_LIST = "action_view_list";
 
-
     private const ActionEntry[] action_entries = {
         { ACTION_IMPORT, action_import },
         { ACTION_PLAY, action_play, null, "false" },
