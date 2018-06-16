@@ -178,9 +178,7 @@ public abstract class Noise.GenericList : FastView {
 
     public abstract void update_sensitivities ();
 
-    protected void set_fixed_column_width (Gtk.Widget treeview, Gtk.TreeViewColumn column,
-                                          Gtk.CellRendererText renderer, string[] strings, int padding)
-    {
+    protected void set_fixed_column_width (Gtk.Widget treeview, Gtk.TreeViewColumn column, Gtk.CellRendererText renderer, string[] strings, int padding) {
         int max_width = 0;
 
         foreach (unowned string str in strings) {
@@ -287,14 +285,14 @@ public abstract class Noise.GenericList : FastView {
 
         if (!main_settings.privacy_mode_enabled ()) {
             if (playlist == null || playlist == ((Noise.LocalLibrary)libraries_manager.local_library).p_music || parent_wrapper.library != libraries_manager.local_library) {
-                main_settings.last_playlist_playing = "";
+                App.saved_state.set_string ("last-playlist-playing", "");
             } else if (playlist is SmartPlaylist) {
-                main_settings.last_playlist_playing = "s%lld".printf (playlist.rowid);
+                App.saved_state.set_string ("last-playlist-playing", "s%lld".printf (playlist.rowid));
             } else {
                 if (((StaticPlaylist)playlist).read_only == false) {
-                    main_settings.last_playlist_playing = "p%lld".printf (playlist.rowid);
+                    App.saved_state.set_string ("last-playlist-playing", "p%lld".printf (playlist.rowid));
                 } else {
-                    main_settings.last_playlist_playing = "";
+                    App.saved_state.set_string ("last-playlist-playing", "");
                 }
             }
         }

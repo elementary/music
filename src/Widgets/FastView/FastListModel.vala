@@ -56,7 +56,7 @@ public class Noise.FastModel : GLib.Object, Gtk.TreeModel, Gtk.TreeSortable {
         sort_column_id = -2;
         sort_direction = Gtk.SortType.ASCENDING;
 
-        stamp = (int) GLib.Random.next_int();
+        stamp = (int) GLib.Random.next_int ();
     }
 
     public Type get_column_type (int col) {
@@ -68,7 +68,7 @@ public class Noise.FastModel : GLib.Object, Gtk.TreeModel, Gtk.TreeSortable {
     }
 
     public bool get_iter (out Gtk.TreeIter iter, Gtk.TreePath path) {
-        iter = Gtk.TreeIter();
+        iter = Gtk.TreeIter ();
         int path_index = path.get_indices ()[0];
         uint size = rows.size;
 
@@ -86,7 +86,7 @@ public class Noise.FastModel : GLib.Object, Gtk.TreeModel, Gtk.TreeSortable {
     }
 
     public Gtk.TreePath? get_path (Gtk.TreeIter iter) {
-        return new Gtk.TreePath.from_string (((int)iter.user_data).to_string());
+        return new Gtk.TreePath.from_string (((int)iter.user_data).to_string ());
     }
 
     public void get_value (Gtk.TreeIter iter, int column, out Value val) {
@@ -111,7 +111,7 @@ public class Noise.FastModel : GLib.Object, Gtk.TreeModel, Gtk.TreeSortable {
     }
 
     public bool iter_children (out Gtk.TreeIter iter, Gtk.TreeIter? parent) {
-        iter = Gtk.TreeIter();
+        iter = Gtk.TreeIter ();
         return false;
     }
 
@@ -135,7 +135,7 @@ public class Noise.FastModel : GLib.Object, Gtk.TreeModel, Gtk.TreeSortable {
     }
 
     public bool iter_nth_child (out Gtk.TreeIter iter, Gtk.TreeIter? parent, int n) {
-        iter = Gtk.TreeIter();
+        iter = Gtk.TreeIter ();
 
         if (n < 0 || n >= rows.size || parent != null)
             return false;
@@ -147,7 +147,7 @@ public class Noise.FastModel : GLib.Object, Gtk.TreeModel, Gtk.TreeSortable {
     }
 
     public bool iter_parent (out Gtk.TreeIter iter, Gtk.TreeIter child) {
-        iter = Gtk.TreeIter();
+        iter = Gtk.TreeIter ();
 
         return false;
     }
@@ -167,15 +167,16 @@ public class Noise.FastModel : GLib.Object, Gtk.TreeModel, Gtk.TreeSortable {
     }
 
     public void remove (Gtk.TreeIter iter) {
-        if(iter.stamp != stamp)
+        if (iter.stamp != stamp) {
             return;
+        }
 
         int index = (int) iter.user_data;
 
         var path = new Gtk.TreePath.from_indices (index, -1);
         rows.remove_at (index);
 
-        row_deleted(path);
+        row_deleted (path);
 
         // TODO: swap all indices > this iter's index down to maintain that
         // the table has row ids 0..n where n is rows.size (consecutive ids)
@@ -217,12 +218,12 @@ public class Noise.FastModel : GLib.Object, Gtk.TreeModel, Gtk.TreeSortable {
     }
 
     public void update_row (int index) {
-        Gtk.TreePath path = new Gtk.TreePath.from_string(index.to_string());
-        Gtk.TreeIter iter = Gtk.TreeIter();
+        Gtk.TreePath path = new Gtk.TreePath.from_string (index.to_string ());
+        Gtk.TreeIter iter = Gtk.TreeIter ();
         iter.stamp = stamp;
         iter.user_data = (void*)index;
 
-        row_changed(path, iter);
+        row_changed (path, iter);
     }
 
     /** The following functions are for implementing TreeSortable. We pass
@@ -240,8 +241,8 @@ public class Noise.FastModel : GLib.Object, Gtk.TreeModel, Gtk.TreeSortable {
         sort_direction = order;
 
         if (column != -1) {
-            reorder_requested(column, order);
-            sort_column_changed();
+            reorder_requested (column, order);
+            sort_column_changed ();
         }
     }
 

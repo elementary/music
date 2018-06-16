@@ -252,15 +252,16 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
                                      genre, grouping, composer, year, rating, null);
     }
 
-    private void get_filters (BrowserColumn.Category parent_category,
-                              out int rating,
-                              out int year,
-                              out string genre,
-                              out string album_artist,
-                              out string album,
-                              out string grouping,
-                              out string composer)
-    {
+    private void get_filters (
+        BrowserColumn.Category parent_category,
+        out int rating,
+        out int year,
+        out string genre,
+        out string album_artist,
+        out string album,
+        out string grouping,
+        out string composer
+    ) {
         rating = -1; // ~ All
         year   = -1; // ~ All
         genre  = ""; // ~ All

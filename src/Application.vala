@@ -27,9 +27,14 @@
  */
 
 public class Noise.App : Gtk.Application {
+    public static GLib.Settings saved_state;
     public static PlaybackManager player { get; private set; }
     private LocalLibrary library_manager { get; private set; }
     public static LibraryWindow main_window { get; private set; }
+
+    static construct {
+        saved_state = new GLib.Settings ("io.elementary.music.saved-state");
+    }
 
     construct {
         // This allows opening files. See the open() method below.

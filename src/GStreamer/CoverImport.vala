@@ -42,7 +42,7 @@ public class Noise.CoverImport : GLib.Object {
 
     public CoverImport (Album album) {
         this.album = album;
-        new Thread<void*>(null, () => {
+        new Thread<void*> (null, () => {
             lock (this.album) {
                 foreach (var media in album.get_media ()) {
                     try {

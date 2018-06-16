@@ -60,17 +60,17 @@ public class Noise.SetMusicFolderConfirmation : Gtk.Dialog {
 
         // initialize controls
         Gtk.Image warning = new Gtk.Image.from_icon_name ("dialog-warning", Gtk.IconSize.DIALOG);
-        Gtk.Label title = new Gtk.Label("");
-        Gtk.Label info = new Gtk.Label("");
-        savePlaylists = new Gtk.Button.with_label(_("Export Playlists"));
-        ok = new Gtk.Button.with_label(_("Set Music Folder"));
+        Gtk.Label title = new Gtk.Label ("");
+        Gtk.Label info = new Gtk.Label ("");
+        savePlaylists = new Gtk.Button.with_label (_("Export Playlists"));
+        ok = new Gtk.Button.with_label (_("Set Music Folder"));
         cancel = new Gtk.Button.with_label (_("Cancel"));
-        is_finished = new Gtk.Image();
-        is_working = new Gtk.Spinner();
+        is_finished = new Gtk.Image ();
+        is_working = new Gtk.Spinner ();
 
         // pretty up labels
         title.halign = Gtk.Align.START;
-        title.set_markup("<span weight=\"bold\" size=\"larger\">%s</span>".printf(Markup.escape_text (_("Set Music Folder?"))));
+        title.set_markup ("<span weight=\"bold\" size=\"larger\">%s</span>".printf (Markup.escape_text (_("Set Music Folder?"))));
         info.halign = Gtk.Align.START;
         info.set_line_wrap (true);
         info.set_markup (_("Are you sure you want to set the music folder to %s? This will reset your library and remove your playlists.").printf ("<b>" + Markup.escape_text (path) + "</b>"));
@@ -127,8 +127,9 @@ public class Noise.SetMusicFolderConfirmation : Gtk.Dialog {
             // foreach playlist in lm.playlists(), save to (p.name).m3u
             var success = true;
             foreach (var p in libraries_manager.local_library.get_playlists ()) {
-                if (!Noise.PlaylistsUtils.save_playlist_m3u(p, folder, ""))
+                if (!Noise.PlaylistsUtils.save_playlist_m3u (p, folder, "")) {
                     success = false;
+                }
             }
 
             is_working.hide ();
