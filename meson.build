@@ -77,8 +77,7 @@ app_files = files(
   'src/Widgets/FastView/FastGridModel.vala',
   'src/Widgets/FastView/FastList.vala',
   'src/Widgets/FastView/FastListModel.vala',
-  'src/Widgets/FastView/TileView/TileRenderer.vala',
-  'src/Widgets/FastView/TileView/TileView.vala'
+  'src/Widgets/FastView/TileView/TileRenderer.vala'
 )
 
 app = executable (
