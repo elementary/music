@@ -71,12 +71,6 @@ public class Noise.MediaEditor : Gtk.Dialog {
         media_list = new Gee.TreeSet<Media> ();
         temp_list = new Gee.HashMap<int64?, Media> ((x) => { return GLib.int64_hash (x); }, (a, b) => { GLib.int64_equal (a, b); });
 
-        var grid = new Gtk.Grid ();
-        grid.expand = true;
-        grid.margin_start = 12;
-        grid.margin_end = 12;
-        grid.column_spacing = 12;
-
         title_entry = new Gtk.Entry ();
         artist_entry = new Gtk.Entry ();
         album_artist_entry = new Gtk.Entry ();
@@ -100,6 +94,11 @@ public class Noise.MediaEditor : Gtk.Dialog {
         comment_frame.expand = true;
         comment_frame.add (comment_scrolledwindow);
 
+        var grid = new Gtk.Grid ();
+        grid.expand = true;
+        grid.margin_start = 12;
+        grid.margin_end = 12;
+        grid.column_spacing = 12;
         grid.attach (new Granite.HeaderLabel (_("Title:")), 0, 0, 1, 1);
         grid.attach (title_entry, 0, 1, 1, 1);
         grid.attach (new Granite.HeaderLabel (_("Artist:")), 1, 0, 1, 1);
@@ -125,6 +124,9 @@ public class Noise.MediaEditor : Gtk.Dialog {
         grid.attach (new Granite.HeaderLabel (_("Comment:")), 0, 8, 1, 1);
         grid.attach (comment_frame, 0, 9, 1, 5);
 
+        var content = get_content_area () as Gtk.Container;
+        content.add (grid);
+
         previous_button = new Gtk.Button.from_icon_name ("go-previous-symbolic");
         next_button = new Gtk.Button.from_icon_name ("go-next-symbolic");
 
@@ -135,24 +137,17 @@ public class Noise.MediaEditor : Gtk.Dialog {
         arrows_grid.add (previous_button);
         arrows_grid.add (next_button);
 
-        save_button = new Gtk.Button.with_label (_("Save"));
+        close_button = (Gtk.Button) add_button (_("Close"), Gtk.ResponseType.CLOSE);
+
+        save_button = (Gtk.Button) add_button (_("Save"), Gtk.ResponseType.APPLY);
         save_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
-        close_button  = new Gtk.Button.with_label (_("Close"));
 
-        var buttons = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
-        buttons.layout_style = Gtk.ButtonBoxStyle.END;
-        buttons.spacing = 6;
-        buttons.margin_top = 6;
-
-        buttons.pack_start (arrows_grid, false, false, 0);
-        buttons.pack_end (close_button, false, false, 0);
-        buttons.pack_end (save_button, false, false, 0);
-        buttons.set_child_secondary (arrows_grid, true);
-        buttons.set_child_non_homogeneous (arrows_grid, true);
-        grid.attach (buttons, 0, 14, 2, 1);
-
-        var content = get_content_area () as Gtk.Container;
-        content.add (grid);
+        var action_area = (Gtk.ButtonBox) get_action_area ();
+        action_area.margin = 5;
+        action_area.margin_top = 14;
+        action_area.pack_start (arrows_grid, false, false, 0);
+        action_area.set_child_secondary (arrows_grid, true);
+        action_area.set_child_non_homogeneous (arrows_grid, true);
 
         previous_button.clicked.connect (previous_track);
         next_button.clicked.connect (next_track);
