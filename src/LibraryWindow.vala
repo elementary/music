@@ -87,7 +87,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public LibraryWindow (Gtk.Application application) {
         Object (application: application);
 
-        application.set_accels_for_action (ACTION_PREFIX + ACTION_PLAY, {"space"});
         application.set_accels_for_action (ACTION_PREFIX + ACTION_QUIT, {"<Control>q", "<Control>w"});
         application.set_accels_for_action (ACTION_PREFIX + ACTION_SEARCH, {"<Control>f"});
         application.set_accels_for_action (ACTION_PREFIX + ACTION_VIEW_ALBUMS, {"<Control>1"});
@@ -176,6 +175,11 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         bool modifiers_active = (event.state & modifiers) != 0;
 
         if (!modifiers_active && search_field_has_focus) {
+            if (event.keyval == Gdk.Key.space && !search_entry.has_focus && !source_list_view.editing) {
+                play_media (); // toggle play/pause
+                return true;
+            }
+
             var typed_unichar = event.str.get_char ();
             // Redirect valid key presses to the search entry
             if (typed_unichar.validate () && search_entry.sensitive && !search_entry.has_focus) {
