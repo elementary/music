@@ -27,9 +27,9 @@
  */
 
 public class Noise.PresetList : Gtk.ComboBox {
-    public signal void preset_selected(EqualizerPreset p);
-    public signal void automatic_preset_chosen();
-    public signal void delete_preset_chosen();
+    public signal void preset_selected (EqualizerPreset p);
+    public signal void automatic_preset_chosen ();
+    public signal void delete_preset_chosen ();
 
     public bool automatic_chosen {
         get {
@@ -90,46 +90,47 @@ public class Noise.PresetList : Gtk.ComboBox {
 
     public void addSeparator () {
         Gtk.TreeIter iter;
-        store.append(out iter);
-        store.set(iter, 0, null, 1, SEPARATOR_NAME);
+        store.append (out iter);
+        store.set (iter, 0, null, 1, SEPARATOR_NAME);
     }
 
-    public void addPreset(EqualizerPreset ep) {
+    public void addPreset (EqualizerPreset ep) {
         modifying_list = true;
 
-        if(!ep.is_default) {
+        if (!ep.is_default) {
             /* If the number of custom presets is zero, add a separator */
-            if (ncustompresets < 1)
-                addSeparator();
+            if (ncustompresets < 1) {
+                addSeparator ();
+            }
 
             ncustompresets++;
         }
 
         Gtk.TreeIter iter;
-        store.append(out iter);
-        store.set(iter, 0, ep, 1, ep.name);
+        store.append (out iter);
+        store.set (iter, 0, ep, 1, ep.name);
 
         modifying_list = false;
         automatic_selected = false;
 
-        set_active_iter(iter);
+        set_active_iter (iter);
     }
 
-    public void removeCurrentPreset() {
+    public void removeCurrentPreset () {
         modifying_list = true;
 
         Gtk.TreeIter iter;
-        for(int i = 0; store.get_iter_from_string(out iter, i.to_string()); ++i) {
+        for (int i = 0; store.get_iter_from_string (out iter, i.to_string ()); ++i) {
             GLib.Object o;
-            store.get(iter, 0, out o);
+            store.get (iter, 0, out o);
 
-            if(o != null && o is EqualizerPreset && ((EqualizerPreset)o) == last_selected_preset) {
+            if (o != null && o is EqualizerPreset && ((EqualizerPreset)o) == last_selected_preset) {
                 if (!((EqualizerPreset)o).is_default) {
                     ncustompresets--;
 #if VALA_0_36
-                    store.remove(ref iter);
+                    store.remove (ref iter);
 #else
-                    store.remove(iter);
+                    store.remove (iter);
 #endif
                     break;
                 }
@@ -137,17 +138,19 @@ public class Noise.PresetList : Gtk.ComboBox {
         }
 
         /* If there are no custom presets, remove the separator */
-        if (ncustompresets < 1)
+        if (ncustompresets < 1) {
             remove_separator_item (-1);
+        }
 
         modifying_list = false;
 
-        selectAutomaticPreset();
+        selectAutomaticPreset ();
     }
 
-    public virtual void listSelectionChange() {
-        if (modifying_list)
+    public virtual void listSelectionChange () {
+        if (modifying_list) {
             return;
+        }
 
         Gtk.TreeIter it;
         get_active_iter (out it);
@@ -158,13 +161,14 @@ public class Noise.PresetList : Gtk.ComboBox {
         if (o != null && o is EqualizerPreset) {
             last_selected_preset = o as EqualizerPreset;
 
-            if (!(o as EqualizerPreset).is_default)
-                add_delete_preset_option();
-            else
-                remove_delete_option();
+            if (!(o as EqualizerPreset).is_default) {
+                add_delete_preset_option ();
+            } else {
+                remove_delete_option ();
+            }
 
             automatic_selected = false;
-            preset_selected(o as EqualizerPreset);
+            preset_selected (o as EqualizerPreset);
             return;
         }
 
@@ -173,31 +177,31 @@ public class Noise.PresetList : Gtk.ComboBox {
 
         if (option == AUTOMATIC_MODE) {
             automatic_selected = true;
-            remove_delete_option();
-            automatic_preset_chosen();
+            remove_delete_option ();
+            automatic_preset_chosen ();
         } else if (option == DELETE_PRESET) {
             delete_preset_chosen ();
         }
     }
 
-    public void selectAutomaticPreset() {
+    public void selectAutomaticPreset () {
         automatic_selected = true;
         automatic_preset_chosen ();
-        set_active(0);
+        set_active (0);
     }
 
-    public void selectPreset(string? preset_name) {
+    public void selectPreset (string? preset_name) {
 
         if (!(preset_name == null || preset_name.length < 1)) {
             Gtk.TreeIter iter;
-            for(int i = 0; store.get_iter_from_string(out iter, i.to_string()); ++i) {
+            for (int i = 0; store.get_iter_from_string (out iter, i.to_string ()); ++i) {
                 GLib.Object o;
-                store.get(iter, 0, out o);
+                store.get (iter, 0, out o);
 
-                if(o != null && o is EqualizerPreset && (o as EqualizerPreset).name == preset_name) {
-                    set_active_iter(iter);
+                if (o != null && o is EqualizerPreset && (o as EqualizerPreset).name == preset_name) {
+                    set_active_iter (iter);
                     automatic_selected = false;
-                    preset_selected(o as EqualizerPreset);
+                    preset_selected (o as EqualizerPreset);
                     return;
                 }
             }
@@ -206,30 +210,32 @@ public class Noise.PresetList : Gtk.ComboBox {
         selectAutomaticPreset ();
     }
 
-    public EqualizerPreset? getSelectedPreset() {
+    public EqualizerPreset? getSelectedPreset () {
         Gtk.TreeIter it;
-        get_active_iter(out it);
+        get_active_iter (out it);
 
         GLib.Object o;
-        store.get(it, 0, out o);
+        store.get (it, 0, out o);
 
-        if(o != null && o is EqualizerPreset)
+        if (o != null && o is EqualizerPreset) {
             return o as EqualizerPreset;
-        else
+        } else {
             return null;
+        }
     }
 
-    public Gee.Collection<EqualizerPreset> getPresets() {
+    public Gee.Collection<EqualizerPreset> getPresets () {
 
-        var rv = new Gee.LinkedList<EqualizerPreset>();
+        var rv = new Gee.LinkedList<EqualizerPreset> ();
 
         Gtk.TreeIter iter;
-        for(int i = 0; store.get_iter_from_string(out iter, i.to_string()); ++i) {
+        for (int i = 0; store.get_iter_from_string (out iter, i.to_string ()); ++i) {
             GLib.Object o;
-            store.get(iter, 0, out o);
+            store.get (iter, 0, out o);
 
-            if(o != null && o is EqualizerPreset)
-                rv.add(o as EqualizerPreset);
+            if (o != null && o is EqualizerPreset) {
+                rv.add (o as EqualizerPreset);
+            }
         }
 
         return rv;
@@ -237,36 +243,36 @@ public class Noise.PresetList : Gtk.ComboBox {
 
     private void remove_delete_option () {
         Gtk.TreeIter iter;
-        for(int i = 0; store.get_iter_from_string(out iter, i.to_string()); ++i) {
+        for (int i = 0; store.get_iter_from_string (out iter, i.to_string ()); ++i) {
             string text;
-            store.get(iter, 1, out text);
+            store.get (iter, 1, out text);
 
-            if(text != null && text == DELETE_PRESET) {
+            if (text != null && text == DELETE_PRESET) {
 #if VALA_0_36
-                store.remove(ref iter);
+                store.remove (ref iter);
 #else
-                store.remove(iter);
+                store.remove (iter);
 #endif
                 // Also remove the separator ...
-                remove_separator_item(1);
+                remove_separator_item (1);
             }
         }
     }
 
     private void remove_separator_item (int index) {
-        int count = 0, nitems = store.iter_n_children(null);
+        int count = 0, nitems = store.iter_n_children (null);
         Gtk.TreeIter iter;
 
-        for(int i = nitems - 1; store.get_iter_from_string(out iter, i.to_string()); --i) {
+        for (int i = nitems - 1; store.get_iter_from_string (out iter, i.to_string ()); --i) {
             count++;
             string text;
-            store.get(iter, 1, out text);
+            store.get (iter, 1, out text);
 
-            if((nitems - index == count || index == -1) && text != null && text == SEPARATOR_NAME) {
+            if ((nitems - index == count || index == -1) && text != null && text == SEPARATOR_NAME) {
 #if VALA_0_36
-                store.remove(ref iter);
+                store.remove (ref iter);
 #else
-                store.remove(iter);
+                store.remove (iter);
 #endif
                 break;
             }
@@ -277,15 +283,15 @@ public class Noise.PresetList : Gtk.ComboBox {
         bool already_added = false;
         Gtk.TreeIter last_iter, new_iter;
 
-        for(int i = 0; store.get_iter_from_string(out last_iter, i.to_string()); ++i) {
+        for (int i = 0; store.get_iter_from_string (out last_iter, i.to_string ()); ++i) {
             string text;
-            store.get(last_iter, 1, out text);
+            store.get (last_iter, 1, out text);
 
-            if(text != null && text == SEPARATOR_NAME) {
+            if (text != null && text == SEPARATOR_NAME) {
                 new_iter = last_iter;
 
-                if (store.iter_next(ref new_iter)) {
-                    store.get(new_iter, 1, out text);
+                if (store.iter_next (ref new_iter)) {
+                    store.get (new_iter, 1, out text);
                     already_added = (text == DELETE_PRESET);
                 }
 
@@ -293,18 +299,19 @@ public class Noise.PresetList : Gtk.ComboBox {
             }
         }
 
-        if (already_added)
+        if (already_added) {
             return;
+        }
 
         // Add option
-        store.insert_after(out new_iter, last_iter);
-        store.set(new_iter, 0, null, 1, DELETE_PRESET);
+        store.insert_after (out new_iter, last_iter);
+        store.set (new_iter, 0, null, 1, DELETE_PRESET);
 
         last_iter = new_iter;
 
         // Add separator
-        store.insert_after(out new_iter, last_iter);
-        store.set(new_iter, 0, null, 1, SEPARATOR_NAME);
+        store.insert_after (out new_iter, last_iter);
+        store.set (new_iter, 0, null, 1, SEPARATOR_NAME);
     }
 }
 

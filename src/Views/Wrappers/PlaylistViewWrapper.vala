@@ -90,7 +90,7 @@ public class Noise.PlaylistViewWrapper : ViewWrapper {
                     p.request_play.connect (() => {
                         App.player.clear_queue ();
                         play_first_media (true);
-                        App.player.get_next(true);
+                        App.player.get_next (true);
                     });
                 }
                 break;

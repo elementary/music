@@ -128,7 +128,7 @@ public class Noise.FileNotFoundDialog : Gtk.Dialog {
         var music_folder = Settings.Main.get_default ().music_folder;
 
         if (invalid_file.get_parent ().query_exists ()) {
-            file_chooser.set_current_folder (invalid_file.get_parent().get_path ());
+            file_chooser.set_current_folder (invalid_file.get_parent ().get_path ());
         } else if (invalid_file.get_parent ().get_parent ().query_exists () &&
                    invalid_file.get_parent ().get_parent ().get_path ().contains (music_folder)) {
 

@@ -154,7 +154,7 @@ public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.Expanda
         device_menu = new Gtk.Menu ();
 
         if (hint == ViewWrapper.Hint.DEVICE_AUDIO) {
-            var import_menuitem = new Gtk.MenuItem.with_label(_("Import to Library"));
+            var import_menuitem = new Gtk.MenuItem.with_label (_("Import to Library"));
             import_menuitem.activate.connect (() => {
                 device_import_clicked (view);
             });
@@ -188,7 +188,7 @@ public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.Expanda
                     device_menu.append (add_smart_playlist_menuitem);
                 }
 
-                if (device.read_only() == false) {
+                if (device.read_only () == false) {
                     var sync_menuitem = new Gtk.MenuItem.with_label (_("Sync"));
                     sync_menuitem.activate.connect (() => {
                         device_sync_clicked (view);
@@ -396,7 +396,7 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
         sourcelist_item.playlist_export_clicked.connect ((view) => {playlist_export_clicked (view);});
         sourcelist_item.playlist_media_added.connect ((view, uris) => {playlist_media_added (view, uris);});
 
-        expandable_item.device_import_clicked.connect ((view) => {device_import_clicked (get_device_from_item(expandable_item));});
+        expandable_item.device_import_clicked.connect ((view) => {device_import_clicked (get_device_from_item (expandable_item));});
         expandable_item.device_eject_clicked.connect ((view) => {device_eject_clicked (view);});
         expandable_item.device_sync_clicked.connect ((view) => {device_sync_clicked (view);});
         expandable_item.device_new_playlist_clicked.connect ((view) => {device_new_playlist_clicked (view);});
@@ -504,11 +504,11 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
 
     // removes the device from menu
     public Gee.Collection<Gtk.Grid> remove_device (DeviceView view) {
-        var pages = new Gee.TreeSet<Gtk.Grid>();
+        var pages = new Gee.TreeSet<Gtk.Grid> ();
         foreach (var device in devices_category.children) {
             if (device is SourceListExpandableItem) {
                 if (view == ((SourceListExpandableItem)device).view) {
-                    enumerate_children_pages((SourceListExpandableItem)device, ref pages);
+                    enumerate_children_pages ((SourceListExpandableItem)device, ref pages);
                     devices_category.remove (device);
                     return pages;
                 }

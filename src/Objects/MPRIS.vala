@@ -255,7 +255,7 @@ public class MprisPlayer : GLib.Object {
         // putting the properties into a hashtable works as akind of event compression
 
         if (changed_properties == null) {
-            changed_properties = new HashTable<string, Variant>(str_hash, str_equal);
+            changed_properties = new HashTable<string, Variant> (str_hash, str_equal);
         }
 
         changed_properties.insert (property, val);
@@ -498,7 +498,7 @@ public class MprisPlaylists : GLib.Object {
     private void queue_property_for_notification (string property, Variant val) {
         // putting the properties into a hashtable works as akind of event compression
         if (changed_properties == null) {
-            changed_properties = new HashTable<string,Variant>(str_hash, str_equal);
+            changed_properties = new HashTable<string,Variant> (str_hash, str_equal);
         }
 
         changed_properties.insert (property, val);
@@ -559,7 +559,7 @@ public class MprisPlaylists : GLib.Object {
 
     public MprisPlaylist?[] get_playlists (uint index, uint maxcount, string playlist_ordering, bool reversed) {
         debug ("Get Playlist called with index %u and maxcount %u\n", index, maxcount);
-        var playlists = new Gee.LinkedList<Noise.Playlist>();
+        var playlists = new Gee.LinkedList<Noise.Playlist> ();
 
         foreach (var p in Noise.libraries_manager.local_library.get_playlists ()) {
             if (reversed) {

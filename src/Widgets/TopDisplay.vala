@@ -188,9 +188,9 @@ public class Noise.TopDisplay : Gtk.Stack {
     }
 
     public virtual bool change_value (Gtk.ScrollType scroll, double val) {
-        App.player.player.current_position_update.disconnect(player_position_update);
+        App.player.player.current_position_update.disconnect (player_position_update);
 
-        scale_value_changed(scroll, val);
+        scale_value_changed (scroll, val);
 
         if (change_timeout_id > 0) {
             Source.remove (change_timeout_id);
@@ -198,8 +198,8 @@ public class Noise.TopDisplay : Gtk.Stack {
 
         change_timeout_id = Timeout.add (300, () => {
             if (!seek_bar.is_grabbing) {
-                App.player.player.set_position((int64) TimeUtils.seconds_to_nanoseconds ((uint) (val * seek_bar.playback_duration)));
-                App.player.player.current_position_update.connect(player_position_update);
+                App.player.player.set_position ((int64) TimeUtils.seconds_to_nanoseconds ((uint) (val * seek_bar.playback_duration)));
+                App.player.player.current_position_update.connect (player_position_update);
             }
 
             change_timeout_id = 0;
