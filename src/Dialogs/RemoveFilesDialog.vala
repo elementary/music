@@ -63,11 +63,9 @@ public class Noise.RemoveFilesDialog : Granite.MessageDialog {
 
         bool need_trash = false;
         foreach (var m in to_remove) {
-            if (m.uri.has_prefix ("file:/")) {
-                if (m.file_exists == true) {
-                    need_trash = true;
-                    break;
-                }
+            if (m.uri.has_prefix ("file:/") && m.file_exists == true) {
+                need_trash = true;
+                break;
             }
         }
 
