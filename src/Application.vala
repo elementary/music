@@ -27,7 +27,7 @@
  */
 
 public class Noise.App : Gtk.Application {
-    public static GLib.Settings saved_state;
+    public static GLib.Settings saved_state { get; private set; }
     public static PlaybackManager player { get; private set; }
     private LocalLibrary library_manager { get; private set; }
     public static LibraryWindow main_window { get; private set; }
