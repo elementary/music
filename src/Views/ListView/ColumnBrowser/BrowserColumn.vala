@@ -205,11 +205,12 @@ public class Noise.BrowserColumn : Gtk.Grid {
         if (model == null)
             return;
 
-        if (!first_item_selected)
+        if (!first_item_selected) {
             set_selected (null, true); // always notify
-        else if (model.n_items + 1 >= 1 && this.visible && App.main_window.initialization_finished) // FIXME: Use this.get_realized ()
+        } else if (model.n_items + 1 >= 1 && this.visible && App.main_window.initialization_finished) { // FIXME: Use this.get_realized ()
             //...just scroll to the cell
-            view.scroll_to_cell (new Gtk.TreePath.first(), null, false, 0.0f, 0.0f);
+            view.scroll_to_cell (new Gtk.TreePath.first (), null, false, 0.0f, 0.0f);
+        }
     }
 
     /**

@@ -167,7 +167,7 @@ public class Noise.LocalSmartPlaylist : SmartPlaylist {
     }
 
     public void queries_from_string (string q) {
-        string[] queries_in_string = q.split(QUERY_SEPARATOR, 0);
+        string[] queries_in_string = q.split (QUERY_SEPARATOR, 0);
         var new_queries = new Gee.TreeSet<SmartQuery> ();
         foreach (var query_string in queries_in_string) {
             if (query_string == "")
@@ -176,7 +176,7 @@ public class Noise.LocalSmartPlaylist : SmartPlaylist {
             string[] pieces_of_query = query_string.split (VALUE_SEPARATOR, 3);
             pieces_of_query.resize (3);
 
-            SmartQuery sq = new SmartQuery();
+            SmartQuery sq = new SmartQuery ();
             sq.field = (SmartQuery.FieldType)int.parse (pieces_of_query[0]);
             sq.comparator = (SmartQuery.ComparatorType)int.parse (pieces_of_query[1]);
             switch (sq.field) {

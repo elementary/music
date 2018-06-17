@@ -53,7 +53,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
 
     // UI Properties
 
-    public bool has_column_browser  { get { return column_browser != null; } }
+    public bool has_column_browser { get { return column_browser != null; } }
 
     public bool column_browser_enabled {
         get {
@@ -286,7 +286,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
         list_view.set_as_current_list (view_wrapper.library.media_from_id (media_id));
     }
 
-    public bool get_is_current_list ()  {
+    public bool get_is_current_list () {
         return list_view.get_is_current_list ();
     }
 

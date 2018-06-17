@@ -41,7 +41,7 @@ public class Noise.Streamer : Noise.Playback, GLib.Object {
     public signal void error_occured (); */
 
     public Streamer () {
-        pipe = new Noise.Pipeline();
+        pipe = new Noise.Pipeline ();
 
         pipe.bus.add_watch (GLib.Priority.DEFAULT, bus_callback);
         //pipe.playbin.about_to_finish.connect(about_to_finish);
@@ -59,12 +59,11 @@ public class Noise.Streamer : Noise.Playback, GLib.Object {
     }
 
     public bool update_position () {
-        if(set_resume_pos || (App.player.current_media != null && get_position() >= (int64)(App.player.current_media.resume_pos - 1) * 1000000000)) {
+        if (set_resume_pos || (App.player.current_media != null && get_position () >= (int64)(App.player.current_media.resume_pos - 1) * 1000000000)) {
             set_resume_pos = true;
-            current_position_update(get_position());
-        }
-        else if (App.player.current_media != null) {
-            pipe.playbin.seek_simple(Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)App.player.current_media.resume_pos * 1000000000);
+            current_position_update (get_position ());
+        } else if (App.player.current_media != null) {
+            pipe.playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)App.player.current_media.resume_pos * 1000000000);
         }
 
         return true;
@@ -87,7 +86,7 @@ public class Noise.Streamer : Noise.Playback, GLib.Object {
         set_state (Gst.State.READY);
         debug ("set uri to %s\n", media.uri);
         //pipe.playbin.uri = uri.replace("#", "%23");
-        pipe.playbin.set_property ("uri", media.uri.replace("#", "%23"));
+        pipe.playbin.set_property ("uri", media.uri.replace ("#", "%23"));
 
         set_state (Gst.State.PLAYING);
 
@@ -127,7 +126,7 @@ public class Noise.Streamer : Noise.Playback, GLib.Object {
     }
 
     public double get_volume () {
-        var val = GLib.Value (typeof(double));
+        var val = GLib.Value (typeof (double));
         pipe.playbin.get_property ("volume", ref val);
         return (double)val;
     }
@@ -137,7 +136,7 @@ public class Noise.Streamer : Noise.Playback, GLib.Object {
         pipe.enableEqualizer ();
     }
 
-    public void disable_equalizer() {
+    public void disable_equalizer () {
         pipe.disableEqualizer ();
     }
 
@@ -153,11 +152,11 @@ public class Noise.Streamer : Noise.Playback, GLib.Object {
             string debug;
             message.parse_error (out err, out debug);
             warning ("Error: %s\n", err.message);
-            error_occured();
+            error_occured ();
             break;
         case Gst.MessageType.ELEMENT:
-            if(message.get_structure() != null && Gst.PbUtils.is_missing_plugin_message(message) && (dialog == null || !dialog.visible)) {
-                dialog = new InstallGstreamerPluginsDialog(message);
+            if (message.get_structure () != null && Gst.PbUtils.is_missing_plugin_message (message) && (dialog == null || !dialog.visible)) {
+                dialog = new InstallGstreamerPluginsDialog (message);
             }
             break;
         case Gst.MessageType.EOS:
@@ -167,10 +166,9 @@ public class Noise.Streamer : Noise.Playback, GLib.Object {
             Gst.State oldstate;
             Gst.State newstate;
             Gst.State pending;
-            message.parse_state_changed (out oldstate, out newstate,
-                                         out pending);
+            message.parse_state_changed (out oldstate, out newstate, out pending);
 
-            if(newstate != Gst.State.PLAYING) {
+            if (newstate != Gst.State.PLAYING) {
                 break;
             }
 

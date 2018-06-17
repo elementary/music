@@ -101,7 +101,7 @@ public class Noise.HistoryPlaylist : StaticPlaylist {
 
         event_templates.add (z_event);
         var added_media = new Gee.LinkedList<Media> ();
-        var new_medias = new Gee.ArrayQueue<Media>();
+        var new_medias = new Gee.ArrayQueue<Media> ();
 
         try {
             var events = yield log.find_events (timerange, event_templates, Zeitgeist.StorageState.ANY, 0, Zeitgeist.ResultType.MOST_RECENT_EVENTS, null);
@@ -193,7 +193,7 @@ namespace SecurityPrivacy {
 
         public void add_template (string blacklist_id, Zeitgeist.Event blacklist_template) {
             try {
-                blacklist.add_template (blacklist_id, blacklist_template.to_variant());
+                blacklist.add_template (blacklist_id, blacklist_template.to_variant ());
             } catch (Error e) {
                 critical (e.message);
             }
@@ -346,7 +346,7 @@ namespace SecurityPrivacy {
         }
 
         public void unblock (string interpretation) {
-            blacklist_interface.remove_template (this.get_name(interpretation));
+            blacklist_interface.remove_template (this.get_name (interpretation));
         }
 
         private void on_blacklist_added (string blacklist_id, Zeitgeist.Event ev) {
@@ -394,11 +394,12 @@ namespace SecurityPrivacy {
 
         private void get_blocked_folder () {
             all_blocked_folder = new Gee.HashSet<string> ();
-            foreach (string key in blacklist_interface.all_templates.get_keys()) {
+            foreach (string key in blacklist_interface.all_templates.get_keys ()) {
                 if (key.has_prefix (folder_prefix) == true) {
                     string folder = get_folder (blacklist_interface.all_templates.get (key));
-                    if (folder != null)
+                    if (folder != null) {
                         all_blocked_folder.add (folder);
+                    }
                 }
             }
         }
@@ -426,7 +427,7 @@ namespace SecurityPrivacy {
         }
 
         private string? get_folder (Zeitgeist.Event ev) {
-            Zeitgeist.Subject sub = ev.get_subject(0);
+            Zeitgeist.Subject sub = ev.get_subject (0);
             string uri = sub.uri.replace (suffix, "");
             var blocked_uri = File.new_for_uri (uri);
             if (blocked_uri.query_exists (null) == true)
@@ -471,7 +472,7 @@ namespace SecurityPrivacy {
             this.blacklist_interface = blacklist;
             this.blacklist_interface.template_added.connect (on_blacklist_added);
             this.blacklist_interface.template_removed.connect (on_blacklist_removed);
-            this.get_blocked_apps();
+            this.get_blocked_apps ();
         }
 
         public Gee.HashSet<string> all_apps {
@@ -481,12 +482,12 @@ namespace SecurityPrivacy {
         }
 
         public void get_count_for_app (string id, Gtk.TreeIter iter, Gtk.ListStore store) {
-            this.blacklist_interface.get_count_for_app(id, iter, store);
+            this.blacklist_interface.get_count_for_app (id, iter, store);
         }
 
         private Gee.HashSet<string> get_blocked_apps () {
-            all_blocked_apps = new Gee.HashSet<string>();
-            foreach (string key in blacklist_interface.all_templates.get_keys()) {
+            all_blocked_apps = new Gee.HashSet<string> ();
+            foreach (string key in blacklist_interface.all_templates.get_keys ()) {
                 if (key.has_prefix (interpretation_prefix) == true) {
                     var app = key.substring (4);
                     all_blocked_apps.add (app);
@@ -500,8 +501,9 @@ namespace SecurityPrivacy {
             if (blacklist_id.has_prefix (interpretation_prefix) == true) {
                 string app = blacklist_id.substring (4);
                 application_added (app, ev);
-                if (all_apps.contains(app) == false)
-                    all_apps.add(app);
+                if (all_apps.contains (app) == false) {
+                    all_apps.add (app);
+                }
             }
         }
 
@@ -509,7 +511,7 @@ namespace SecurityPrivacy {
             if (blacklist_id.has_prefix (interpretation_prefix) == true) {
                 string app = blacklist_id.substring (4);
                 application_removed (app, ev);
-                if (all_apps.contains(app) == true)
+                if (all_apps.contains (app) == true)
                     all_apps.remove (app);
             }
         }

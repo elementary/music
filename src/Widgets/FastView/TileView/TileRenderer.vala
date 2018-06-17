@@ -40,10 +40,7 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
         });
     }
 
-    public override void get_size (Gtk.Widget widget, Gdk.Rectangle? cell_area,
-                                   out int x_offset, out int y_offset,
-                                   out int width, out int height)
-    {
+    public override void get_size (Gtk.Widget widget, Gdk.Rectangle? cell_area, out int x_offset, out int y_offset, out int width, out int height) {
         x_offset = y_offset = width = height = 0;
     }
 
@@ -51,10 +48,7 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
         return Gtk.SizeRequestMode.HEIGHT_FOR_WIDTH;
     }
 
-    public override void get_preferred_width (Gtk.Widget widget,
-                                              out int minimum_size,
-                                              out int natural_size)
-    {
+    public override void get_preferred_width (Gtk.Widget widget, out int minimum_size, out int natural_size) {
         update_layout_properties (widget);
 
         int x_padding;
@@ -69,10 +63,7 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
         minimum_size = natural_size = width;
     }
 
-    public override void get_preferred_height_for_width (Gtk.Widget widget, int width,
-                                                         out int minimum_height,
-                                                         out int natural_height)
-    {
+    public override void get_preferred_height_for_width (Gtk.Widget widget, int width, out int minimum_height, out int natural_height) {
         update_layout_properties (widget);
 
         int y_padding;
@@ -92,9 +83,7 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
         minimum_height = natural_height = height;
     }
 
-    public override void render (Cairo.Context cr, Gtk.Widget widget, Gdk.Rectangle bg_area,
-                                 Gdk.Rectangle cell_area, Gtk.CellRendererState flags)
-    {
+    public override void render (Cairo.Context cr, Gtk.Widget widget, Gdk.Rectangle bg_area, Gdk.Rectangle cell_area, Gtk.CellRendererState flags) {
         update_layout_properties (widget);
 
         Gdk.Rectangle aligned_area = get_aligned_area (widget, flags, cell_area);
@@ -118,9 +107,7 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
         render_subtitle (ctx, cr, x, y, width);
     }
 
-    private void render_image (Gtk.StyleContext ctx, Cairo.Context cr, ref int x,
-                               ref int y, int width, Gtk.CellRendererState flags)
-    {
+    private void render_image (Gtk.StyleContext ctx, Cairo.Context cr, ref int x, ref int y, int width, Gtk.CellRendererState flags) {
         int image_width = compute_total_image_width ();
         int image_height = compute_total_image_height ();
 
@@ -145,9 +132,7 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
         x += (image_width - 128) / 2 - margin.left;
     }
 
-    private void render_title (Gtk.StyleContext ctx, Cairo.Context cr, int x,
-                               ref int y, int width)
-    {
+    private void render_title (Gtk.StyleContext ctx, Cairo.Context cr, int x, ref int y, int width) {
         ctx.save ();
         ctx.add_class ("h4");
         ctx.render_layout (cr, x, y, title_text_layout);
@@ -159,9 +144,7 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
         y += title_height;
     }
 
-    private void render_subtitle (Gtk.StyleContext ctx, Cairo.Context cr, int x,
-                                  int y, int width)
-    {
+    private void render_subtitle (Gtk.StyleContext ctx, Cairo.Context cr, int x, int y, int width) {
         ctx.render_layout (cr, x, y, subtitle_text_layout);
     }
 

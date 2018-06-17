@@ -65,7 +65,7 @@ public class Noise.LocalLibrary : Library {
         _dont_show_medias = new Gee.HashMap<int64?, Media> ((x) => { return GLib.int64_hash (x); }, (a, b) => { return GLib.int64_equal (a, b); });
         _searched_medias = new Gee.TreeSet<Media> ();
         album_info = new Gee.HashMap<uint, Album> ();
-        tagger = new GStreamerTagger();
+        tagger = new GStreamerTagger ();
         open_media_list = new Gee.TreeSet<Media> ();
         p_music = new StaticPlaylist ();
         p_music.name = MUSIC_PLAYLIST;

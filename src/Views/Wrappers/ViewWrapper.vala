@@ -74,8 +74,8 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
 
     public bool has_grid_view { get { return grid_view != null; } }
     public bool has_list_view { get { return list_view != null;  } }
-    public bool has_embedded_alert  { get { return embedded_alert != null; } }
-    public bool has_welcome_screen  { get { return welcome_screen != null; } }
+    public bool has_embedded_alert { get { return embedded_alert != null; } }
+    public bool has_welcome_screen { get { return welcome_screen != null; } }
 
     protected ViewType current_view {
         get {
@@ -204,7 +204,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
 
         // We're not switching (officially) to the new view if it's not available
         if (!successful) {
-            debug ("%s : VIEW %s was not available", hint.to_string(), type.to_string ());
+            debug ("%s : VIEW %s was not available", hint.to_string (), type.to_string ());
             return;
         }
 
@@ -223,7 +223,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         if (!is_current_wrapper || !has_list_view || !App.main_window.initialization_finished)
             return;
 
-        debug ("update_library_window_widgets [%s]", hint.to_string());
+        debug ("update_library_window_widgets [%s]", hint.to_string ());
 
         // Search field
         // Insensitive if there's no media to search (applies to ALERT/WELCOME views)
@@ -260,7 +260,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         current_view == ViewType.WELCOME)
             return;
 
-        debug ("view_selector_changed [%s]", hint.to_string());
+        debug ("view_selector_changed [%s]", hint.to_string ());
 
         var selected_view = (ViewType) App.main_window.view_selector.selected;
 
@@ -274,7 +274,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         if (!has_list_view)
             return;
 
-        debug ("play_first_media [%s]", hint.to_string());
+        debug ("play_first_media [%s]", hint.to_string ());
 
         list_view.set_as_current_list (1);
         var m = App.player.media_from_current_index (0);
@@ -444,7 +444,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
     }
 
     private void set_media (Gee.Collection<Media> new_media) {
-        debug ("SETTING MEDIA [%s]", hint.to_string());
+        debug ("SETTING MEDIA [%s]", hint.to_string ());
 
         if (has_list_view) {
             lock (list_view) {
