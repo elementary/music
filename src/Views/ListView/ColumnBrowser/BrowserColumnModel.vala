@@ -99,8 +99,9 @@ public class Noise.BrowserColumnModel : Object, Gtk.TreeModel, Gtk.TreeSortable 
         if (iter.stamp != this.stamp || column < 0 || column >= 1)
             return;
 
-        if (! ( (SequenceIter<string>) iter.user_data).is_end ())
-            val =((SequenceIter<string>) iter.user_data).get ();
+        if (!((SequenceIter<string>) iter.user_data).is_end ()) {
+            val = ((SequenceIter<string>) iter.user_data).get ();
+        }
     }
 
     /** Sets iter to point to the first child of parent. **/
