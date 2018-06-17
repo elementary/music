@@ -27,8 +27,6 @@
  */
 
 public class Noise.MusicColumnBrowser : Noise.ColumnBrowser {
-    private GLib.Settings saved_state_settings;
-
     public MusicColumnBrowser (ViewWrapper view_wrapper) {
         var columns = new BrowserColumn.Category [0];
         columns += BrowserColumn.Category.RATING;
@@ -41,16 +39,14 @@ public class Noise.MusicColumnBrowser : Noise.ColumnBrowser {
 
         base (view_wrapper, columns);
 
-        saved_state_settings = new GLib.Settings ("io.elementary.music.saved-state");
-
         var visible_categories = new Gee.TreeSet<BrowserColumn.Category> ();
 
-        foreach (var col_n in saved_state_settings.get_strv ("column-browser-visible-columns")) {
+        foreach (var col_n in App.saved_state.get_strv ("column-browser-visible-columns")) {
             visible_categories.add ((BrowserColumn.Category)int.parse (col_n));
         }
 
         visible_columns = visible_categories;
-        position = (ColumnBrowser.Position) saved_state_settings.get_int ("column-browser-position");
+        position = (ColumnBrowser.Position) App.saved_state.get_int ("column-browser-position");
 
         destroy.connect (save_current_state);
     }
@@ -62,7 +58,7 @@ public class Noise.MusicColumnBrowser : Noise.ColumnBrowser {
            visible_categories += ((int)col_cat).to_string ();
         }
 
-        saved_state_settings.set_strv ("column-browser-visible-columns", visible_categories);
-        saved_state_settings.set_int ("column-browser-position", (int) position);
+        App.saved_state.set_strv ("column-browser-visible-columns", visible_categories);
+        App.saved_state.set_int ("column-browser-position", (int) position);
     }
 }
