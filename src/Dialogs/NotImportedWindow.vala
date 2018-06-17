@@ -68,12 +68,12 @@ public class Noise.NotImportedWindow : Gtk.Dialog {
         column.pack_start (toggle, false);
         column.add_attribute (toggle, "active", 0);
 
-        filesModel = new Gtk.ListStore (2, typeof(bool), typeof(string));
+        filesModel = new Gtk.ListStore (2, typeof (bool), typeof (string));
 
         var filesView = new Gtk.TreeView ();
         filesView.set_model (filesModel);
         filesView.append_column (column);
-        filesView.insert_column_with_attributes (-1, _("File Location"), new Gtk.CellRendererText(), "text", 1, null);
+        filesView.insert_column_with_attributes (-1, _("File Location"), new Gtk.CellRendererText (), "text", 1, null);
         filesView.headers_visible = false;
 
         /* fill the treeview */
@@ -157,38 +157,38 @@ public class Noise.NotImportedWindow : Gtk.Dialog {
         show_all ();
     }
 
-    public bool updateMoveToTrashSensetivity(Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter) {
+    public bool updateMoveToTrashSensetivity (Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter) {
         bool sel = false;
-        model.get(iter, 0, out sel);
+        model.get (iter, 0, out sel);
 
-        if(sel) {
-            moveToTrash.set_sensitive(true);
+        if (sel) {
+            moveToTrash.set_sensitive (true);
             return true;
         }
 
         return false;
     }
 
-    public bool selectAll(Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter) {
-        filesModel.set(iter, 0, true);
+    public bool selectAll (Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter) {
+        filesModel.set (iter, 0, true);
         return false;
     }
 
-    public bool unselectAll(Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter) {
-        filesModel.set(iter, 0, false);
+    public bool unselectAll (Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter) {
+        filesModel.set (iter, 0, false);
         return false;
     }
 
-    public bool deleteSelectedItems(Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter) {
+    public bool deleteSelectedItems (Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter) {
         bool selected;
         string location;
-        filesModel.get(iter, 0, out selected);
-        filesModel.get(iter, 1, out location);
+        filesModel.get (iter, 0, out selected);
+        filesModel.get (iter, 1, out location);
 
         if (selected) {
             try {
-                var file = File.new_for_path(music_folder + location);
-                file.trash();
+                var file = File.new_for_path (music_folder + location);
+                file.trash ();
             } catch (GLib.Error err) {
                 warning ("Could not move file %s to recycle: %s\n", location, err.message);
             }
@@ -197,12 +197,12 @@ public class Noise.NotImportedWindow : Gtk.Dialog {
         return false;
     }
 
-    public virtual void moveToTrashClick() {
-        filesModel.foreach(deleteSelectedItems);
-        this.destroy();
+    public virtual void moveToTrashClick () {
+        filesModel.foreach (deleteSelectedItems);
+        this.destroy ();
     }
 
-    public virtual void ignoreClick() {
-        this.destroy();
+    public virtual void ignoreClick () {
+        this.destroy ();
     }
 }

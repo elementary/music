@@ -128,7 +128,7 @@ public class Noise.CellDataFunctionHelper {
     // for Bitrate. Append 'kbps'
     public static inline void bitrate_func (Gtk.CellLayout layout, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
         Value val;
-        tree_model.get_value(iter, ListColumn.BITRATE, out val);
+        tree_model.get_value (iter, ListColumn.BITRATE, out val);
         var text_cell = cell as CellRendererText;
         uint n = val.get_uint ();
         text_cell.text = n <= 0 ? NOT_AVAILABLE : _("%u kbps").printf (n);
@@ -137,7 +137,7 @@ public class Noise.CellDataFunctionHelper {
     // turns int of seconds into pretty length mm:ss format
     public static inline void length_func (Gtk.CellLayout layout, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
         Value val;
-        tree_model.get_value(iter, ListColumn.LENGTH, out val);
+        tree_model.get_value (iter, ListColumn.LENGTH, out val);
         uint ms = val.get_uint ();
         var text_cell = cell as CellRendererText;
         text_cell.text = (ms <= 0) ? NOT_AVAILABLE : TimeUtils.pretty_length_from_ms (ms);
@@ -150,7 +150,7 @@ public class Noise.CellDataFunctionHelper {
     // turns seconds since Jan 1, 1970 into date format
     public static inline void date_func (Gtk.CellLayout layout, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
         Value val;
-        tree_model.get_value(iter, ListColumn.DATE_ADDED, out val);
+        tree_model.get_value (iter, ListColumn.DATE_ADDED, out val);
         var text_cell = cell as CellRendererText;
         text_cell.text = get_date_string (val.get_uint ());
     }
@@ -161,7 +161,7 @@ public class Noise.CellDataFunctionHelper {
 
     public static inline void rating_func (Gtk.CellLayout layout, CellRenderer cell, TreeModel tree_model, TreeIter iter) {
         Value val;
-        tree_model.get_value(iter, ListColumn.RATING, out val);
+        tree_model.get_value (iter, ListColumn.RATING, out val);
         var rating_cell = cell as Granite.Widgets.CellRendererRating;
         rating_cell.rating = val.get_uint ();
     }

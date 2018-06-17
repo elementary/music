@@ -74,7 +74,7 @@ public class Noise.MusicViewWrapper : ViewWrapper {
         welcome_screen.drag_data_received.connect ( (ctx, x, y, sel, info, time) => {
             var files = new Gee.TreeSet<string> ();
             for (var i=0; i < sel.get_uris ().length; i++) {
-                File f = File.new_for_uri (sel.get_uris()[i]);
+                File f = File.new_for_uri (sel.get_uris ()[i]);
                 string path = f.get_uri ();
                 files.add (path);
             }
@@ -106,7 +106,11 @@ public class Noise.MusicViewWrapper : ViewWrapper {
     }
 
     private void on_device_added (Device d) {
-        int id = welcome_screen.append (d.get_icon().to_string (), _("Import your Music"), _("Import all your Music from %s into your library.").printf(d.get_display_name ()));
+        int id = welcome_screen.append (
+            d.get_icon ().to_string (),
+            _("Import your Music"),
+            _("Import all your Music from %s into your library.").printf (d.get_display_name ())
+        );
         _devices.set (d, id);
         welcome_screen.show_all ();
     }
@@ -122,7 +126,11 @@ public class Noise.MusicViewWrapper : ViewWrapper {
     private void on_device_name_changed (Device d) {
         welcome_screen.remove_item (_devices.get (d));
         _devices.unset (d, null);
-        int id = welcome_screen.append (d.get_icon().to_string (), _("Import your Music"), _("Import all your Music from %s into your library.").printf(d.get_display_name ()));
+        int id = welcome_screen.append (
+            d.get_icon ().to_string (),
+            _("Import your Music"),
+            _("Import all your Music from %s into your library.").printf (d.get_display_name ())
+        );
         _devices.set (d, id);
         welcome_screen.show_all ();
     }
