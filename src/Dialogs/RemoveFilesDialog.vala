@@ -46,7 +46,7 @@ public class Noise.RemoveFilesDialog : Granite.MessageDialog {
 
         if (to_remove_size > 1) {
             primary_text = ngettext (
-                "Remove %d Songs From Library?",
+                "Remove %d Song From Library?",
                 "Remove %d Songs From Library?",
                 to_remove_size
             ).printf (to_remove_size);
