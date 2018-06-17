@@ -54,8 +54,8 @@ namespace Noise.Settings {
 
         public bool privacy_mode_enabled () {
             var privacy_settings = new GLib.Settings ("org.gnome.desktop.privacy");
-            return privacy_settings.get_boolean ("remember-app-usage") ||
-                   privacy_settings.get_boolean ("remember-recent-files");
+            return !(privacy_settings.get_boolean ("remember-app-usage") ||
+                   privacy_settings.get_boolean ("remember-recent-files"));
         }
 
         private Main ()  {
