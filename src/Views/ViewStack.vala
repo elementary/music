@@ -76,7 +76,7 @@ public class Noise.ViewStack : Gtk.Stack {
             ((ViewWrapper) visible_child).set_as_current_view ();
         } else if (visible_child is Gtk.Grid && visible_child_name != "alert") {
             App.main_window.view_selector.selected = Noise.Widgets.ViewSelector.Mode.LIST;
-            App.main_window.view_selector.set_sensitive (false);
+            App.main_window.view_selector.sensitive = false;
             App.main_window.search_entry.set_sensitive (false);
         }
     }
