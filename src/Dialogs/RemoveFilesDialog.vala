@@ -27,7 +27,7 @@
  */
 
 public class Noise.RemoveFilesDialog : Gtk.Dialog {
-    public signal void remove_media(bool response);
+    public signal void remove_media (bool response);
 
     private Gtk.Box content;
 
@@ -36,7 +36,7 @@ public class Noise.RemoveFilesDialog : Gtk.Dialog {
     private Gtk.Button cancel_button;
 
     public RemoveFilesDialog (Gee.Collection<Media> to_remove) {
-        this.set_modal(true);
+        this.set_modal (true);
         this.set_transient_for (App.main_window);
         this.destroy_with_parent = true;
         resizable = false;
@@ -68,7 +68,7 @@ public class Noise.RemoveFilesDialog : Gtk.Dialog {
             title_text = _("Remove \"%s\" From Library?").printf (m.get_display_title ());
         }
 
-        title.set_markup("<span weight=\"bold\" size=\"larger\">" + Markup.escape_text (title_text) + "</span>");
+        title.set_markup ("<span weight=\"bold\" size=\"larger\">" + Markup.escape_text (title_text) + "</span>");
 
         // set info text
         info.halign = Gtk.Align.START;
@@ -127,6 +127,6 @@ public class Noise.RemoveFilesDialog : Gtk.Dialog {
         set_default (cancel_button);
         cancel_button.grab_focus ();
 
-        show_all();
+        show_all ();
     }
 }

@@ -120,7 +120,7 @@ public class Noise.AlbumsView : Gtk.Paned, ContentView {
 
         var selected_items = icon_view.get_selected_items ();
 
-        if (selected_items.length () > 0)  {
+        if (selected_items.length () > 0) {
             var path = selected_items.nth_data (0);
             var obj = icon_view.get_object_from_index (path.get_indices ()[0]);
             var drag_icon = get_icon (obj);
@@ -166,7 +166,7 @@ public class Noise.AlbumsView : Gtk.Paned, ContentView {
         }
     }
 
-    private ViewWrapper.Hint get_hint() {
+    private ViewWrapper.Hint get_hint () {
         return parent_view_wrapper.hint;
     }
 
