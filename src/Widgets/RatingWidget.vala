@@ -372,8 +372,9 @@ namespace Granite.Widgets {
             this.state_flags_changed.connect ( () => {
                 // Suppress SELECTED and PRELIGHT states, since these are usually obtrusive
                 var selected_flags = Gtk.StateFlags.SELECTED | Gtk.StateFlags.PRELIGHT;
-                if ((get_state_flags() & selected_flags) != 0)
+                if ((get_state_flags () & selected_flags) != 0) {
                     unset_state_flags (selected_flags);
+                }
             });
         }
 
@@ -453,10 +454,7 @@ namespace Granite.Widgets {
             this.set_fixed_size (this.pixbuf.width, this.pixbuf.height);
         }
 
-        public override void render (Cairo.Context ctx, Gtk.Widget widget,
-                                     Gdk.Rectangle background_area, Gdk.Rectangle cell_area,
-                                     Gtk.CellRendererState flags)
-        {
+        public override void render (Cairo.Context ctx, Gtk.Widget widget, Gdk.Rectangle background_area, Gdk.Rectangle cell_area, Gtk.CellRendererState flags) {
             var style_context = widget.get_style_context ();
             var state = style_context.get_state ();
             int old_n_stars = n_stars;
@@ -467,7 +465,7 @@ namespace Granite.Widgets {
             }
 
             // Only show the filled stars if the row is neither selected nor mouseovered
-            if(0 < _rating && ((state & Gtk.StateFlags.SELECTED) != state) && ((state & Gtk.StateFlags.PRELIGHT) != state)) {
+            if (0 < _rating && ((state & Gtk.StateFlags.SELECTED) != state) && ((state & Gtk.StateFlags.PRELIGHT) != state)) {
                 n_stars = (int)rating;
             }
 
@@ -478,10 +476,7 @@ namespace Granite.Widgets {
             n_stars = old_n_stars;
         }
 
-        public override bool activate (Gdk.Event event, Gtk.Widget widget, string path,
-                                       Gdk.Rectangle background_area, Gdk.Rectangle cell_area,
-                                       Gtk.CellRendererState flags)
-        {
+        public override bool activate (Gdk.Event event, Gtk.Widget widget, string path, Gdk.Rectangle background_area, Gdk.Rectangle cell_area, Gtk.CellRendererState flags) {
             int old_rating = (int) rating;
             int new_rating = renderer.get_new_rating (event.button.x - cell_area.x);
 

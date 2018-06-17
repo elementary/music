@@ -59,7 +59,7 @@ public class Noise.DeviceViewWrapper : ViewWrapper {
     }
 
     private void import_request (Gee.Collection<Media> to_import) {
-        if (!library.doing_file_operations()) {
+        if (!library.doing_file_operations ()) {
             libraries_manager.transfer_to_local_library (to_import);
         }
     }

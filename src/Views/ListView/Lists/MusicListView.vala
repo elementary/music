@@ -43,7 +43,7 @@ public class Noise.ContractMenuItem : Gtk.MenuItem {
         File[] files = {};
         foreach (Media m in medias) {
             files += m.file;
-            debug("Added file to pass to Contractor: %s", m.uri);
+            debug ("Added file to pass to Contractor: %s", m.uri);
         }
 
         try {
@@ -312,9 +312,7 @@ public class Noise.MusicListView : GenericList {
      * @return //true// if the event should be passed to the default handler; false otherwise.
      */
     private bool check_selection_event (Gdk.EventButton event) requires (event.window == get_bin_window ()) {
-        if ((event.state & Gdk.ModifierType.CONTROL_MASK) == event.state
-         || (event.state & Gdk.ModifierType.SHIFT_MASK) == event.state)
-        {
+        if ((event.state & Gdk.ModifierType.CONTROL_MASK) == event.state || (event.state & Gdk.ModifierType.SHIFT_MASK) == event.state) {
             return true;
         }
 
@@ -353,8 +351,8 @@ public class Noise.MusicListView : GenericList {
 
             if (!(get_path_at_pos (x, y, out path, out tvc, out cell_x, out cell_y)))
                 return false;
-            get_selection().unselect_all();
-            get_selection().select_path(path);
+            get_selection ().unselect_all ();
+            get_selection ().select_path (path);
             return false;
         }
     }
@@ -384,7 +382,7 @@ public class Noise.MusicListView : GenericList {
             try {
                 Gtk.show_uri (null, m.file.get_parent ().get_uri (), Gdk.CURRENT_TIME);
             } catch (Error err) {
-                debug("Could not browse media %s: %s\n", m.uri, err.message);
+                debug ("Could not browse media %s: %s\n", m.uri, err.message);
             }
 
             return;
