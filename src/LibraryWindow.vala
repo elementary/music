@@ -64,13 +64,33 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public const string ACTION_PLAY = "action_play";
     public const string ACTION_PLAY_NEXT = "action_play_next";
     public const string ACTION_PLAY_PREVIOUS = "action_play_previous";
+    public const string ACTION_QUIT = "action_quit";
+    public const string ACTION_SEARCH = "action_search";
+    public const string ACTION_VIEW_ALBUMS = "action_view_albums";
+    public const string ACTION_VIEW_COLUMNS = "action_view_columns";
+    public const string ACTION_VIEW_LIST = "action_view_list";
 
     private const ActionEntry[] action_entries = {
         { ACTION_IMPORT, action_import },
         { ACTION_PLAY, action_play, null, "false" },
         { ACTION_PLAY_NEXT, action_play_next },
-        { ACTION_PLAY_PREVIOUS, action_play_previous }
+        { ACTION_PLAY_PREVIOUS, action_play_previous },
+        { ACTION_QUIT, action_quit },
+        { ACTION_SEARCH, action_search },
+        { ACTION_VIEW_ALBUMS, action_view_albums },
+        { ACTION_VIEW_COLUMNS, action_view_columns },
+        { ACTION_VIEW_LIST, action_view_list }
     };
+
+    public LibraryWindow (Gtk.Application application) {
+        Object (application: application);
+
+        application.set_accels_for_action (ACTION_PREFIX + ACTION_QUIT, {"<Control>q", "<Control>w"});
+        application.set_accels_for_action (ACTION_PREFIX + ACTION_SEARCH, {"<Control>f"});
+        application.set_accels_for_action (ACTION_PREFIX + ACTION_VIEW_ALBUMS, {"<Control>1"});
+        application.set_accels_for_action (ACTION_PREFIX + ACTION_VIEW_LIST, {"<Control>2"});
+        application.set_accels_for_action (ACTION_PREFIX + ACTION_VIEW_COLUMNS, {"<Control>3"});
+    }
 
     construct {
         actions = new SimpleActionGroup ();
@@ -143,21 +163,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
     }
 
-    /** Returns true if the code parameter matches the keycode of the keyval parameter for
-    * any keyboard group or level (in order to allow for non-QWERTY keyboards) **/
-    protected bool match_keycode (int keyval, uint code) {
-        Gdk.KeymapKey [] keys;
-        Gdk.Keymap keymap = Gdk.Keymap.get_default ();
-        if (keymap.get_entries_for_keyval (keyval, out keys)) {
-            foreach (var key in keys) {
-                if (code == key.keycode)
-                    return true;
-                }
-            }
-
-        return false;
-    }
-
     public override bool key_press_event (Gdk.EventKey event) {
         // when typing in an editable widget, such as Gtk.Entry, don't block the event
         var focus_widget = get_focus ();
@@ -180,29 +185,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
                                            '#', '+', '<', '>', ';', ':', '¿', '?', '¡',
                                            '_', '¨', '*', '$', '"', '[', ']', '!', '~'};
 
-                if (typed_unichar.isalnum () || typed_unichar in special_chars)
-                    search_entry.grab_focus ();
-            }
-        } else if ((event.state & Gdk.ModifierType.CONTROL_MASK) != 0) {
-            switch (event.keyval) {
-                case Gdk.Key.@1:
-                    change_view (Widgets.ViewSelector.Mode.GRID);
-                    break;
-                case Gdk.Key.@2:
-                    change_view (Widgets.ViewSelector.Mode.LIST);
-                    break;
-                case Gdk.Key.@3:
-                    change_view (Widgets.ViewSelector.Mode.COLUMN);
-                    break;
-            }
-
-            uint keycode = event.hardware_keycode;
-            if (match_keycode (Gdk.Key.f, keycode)) {
-                search_entry.grab_focus ();
-                return false;
-            } else if (match_keycode (Gdk.Key.q, keycode) || match_keycode (Gdk.Key.w, keycode)) {
-                destroy ();
-                return true;
+                if (typed_unichar.isalnum () || typed_unichar in special_chars) {
+                    action_search ();
+                }
             }
         }
 
@@ -1034,6 +1019,26 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     private void action_play_previous () {
         play_previous_media ();
+    }
+
+    private void action_quit () {
+        destroy ();
+    }
+
+    private void action_search () {
+        search_entry.grab_focus ();
+    }
+
+    private void action_view_albums () {
+        change_view (Widgets.ViewSelector.Mode.GRID);
+    }
+
+    private void action_view_columns () {
+        change_view (Widgets.ViewSelector.Mode.COLUMN);
+    }
+
+    private void action_view_list () {
+        change_view (Widgets.ViewSelector.Mode.LIST);
     }
 
     private void editPreferencesClick () {

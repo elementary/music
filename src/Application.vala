@@ -72,9 +72,8 @@ public class Noise.App : Gtk.Application {
             player = new PlaybackManager ();
             library_manager.initialize_library ();
             libraries_manager.add_library (library_manager);
-            main_window = new LibraryWindow ();
+            main_window = new LibraryWindow (this);
             main_window.build_ui ();
-            main_window.set_application (this);
 
             MediaKeyListener.instance.init ();
 
