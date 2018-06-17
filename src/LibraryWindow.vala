@@ -50,7 +50,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private Cancellable notification_cancellable;
     private PreferencesWindow? preferences = null;
     private Settings.Main main_settings;
-    private GLib.Settings saved_state_settings;
     private TopDisplay top_display;
 
     internal Gee.HashMap<unowned Playlist, ViewWrapper> match_playlists;
@@ -264,7 +263,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         main_hpaned.pack2 (view_stack, true, false);
         main_hpaned.show_all ();
 
-        saved_state_settings.bind ("sidebar-width", main_hpaned, "position", GLib.SettingsBindFlags.DEFAULT);
+        App.saved_state.bind ("sidebar-width", main_hpaned, "position", GLib.SettingsBindFlags.DEFAULT);
 
         add (main_hpaned);
         set_titlebar (headerbar);
@@ -456,16 +455,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         icon_name = "multimedia-audio-player";
         title = _("Music");
 
-        saved_state_settings = new GLib.Settings ("io.elementary.music.saved-state");
-
-        set_default_size (saved_state_settings.get_int ("window-width"), saved_state_settings.get_int ("window-height"));
-        var window_x = saved_state_settings.get_int ("window-x");
-        var window_y = saved_state_settings.get_int ("window-y");
+        set_default_size (App.saved_state.get_int ("window-width"), App.saved_state.get_int ("window-height"));
+        var window_x = App.saved_state.get_int ("window-x");
+        var window_y = App.saved_state.get_int ("window-y");
         if (window_x != -1 ||  window_y != -1) {
             move (window_x, window_y);
         }
 
-        if (saved_state_settings.get_enum ("window-state") == 1) {
+        if (App.saved_state.get_enum ("window-state") == 1) {
             maximize ();
         }
 
@@ -478,7 +475,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         load_playlists ();
         update_sensitivities_sync (); // we need to do this synchronously to avoid weird initial states
 
-        view_selector.selected = (Widgets.ViewSelector.Mode) saved_state_settings.get_int ("view-mode");
+        view_selector.selected = (Widgets.ViewSelector.Mode) App.saved_state.get_int ("view-mode");
 
         library_manager.rescan_music_folder ();
         initialization_finished = true;
@@ -1172,12 +1169,12 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             main_settings.search_string = search_entry.text;
         }
 
-        saved_state_settings.set_int ("view-mode", view_selector.selected);
+        App.saved_state.set_int ("view-mode", view_selector.selected);
 
         if (is_maximized) {
-            saved_state_settings.set_enum ("window-state", 1);
+            App.saved_state.set_enum ("window-state", 1);
         } else {
-            saved_state_settings.set_enum ("window-state", 0);
+            App.saved_state.set_enum ("window-state", 0);
         }
     }
 
@@ -1205,10 +1202,10 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             int window_width, window_height, window_x, window_y;
             get_size (out window_width, out window_height);
             get_position (out window_x, out window_y);
-            saved_state_settings.set_int ("window-height", window_height);
-            saved_state_settings.set_int ("window-width", window_width);
-            saved_state_settings.set_int ("window-x" , window_x);
-            saved_state_settings.set_int ("window-y" , window_y);
+            App.saved_state.set_int ("window-height", window_height);
+            App.saved_state.set_int ("window-width", window_width);
+            App.saved_state.set_int ("window-x" , window_x);
+            App.saved_state.set_int ("window-y" , window_y);
         }
 
         return base.configure_event (event);
