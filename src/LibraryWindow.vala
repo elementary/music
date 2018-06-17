@@ -29,9 +29,7 @@
 
 public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public signal void play_pause_changed ();
-    public signal void close_subwindows ();
 
-    public bool dragging_from_music { get; set; default = false; }
     public bool initialization_finished { get; private set; default = false; }
     public bool newly_created_playlist { get; set; default = false; }
 
@@ -1130,9 +1128,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     public virtual void dragReceived (Gdk.DragContext context, int x, int y, Gtk.SelectionData data, uint info, uint timestamp) {
-        if (dragging_from_music)
-            return;
-
         var files_dragged = new Gee.TreeSet<string> ();
 
         debug("dragged\n");
@@ -1192,7 +1187,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         // if playing a song, don't allow closing
         if (!main_settings.close_while_playing && playing) {
-            close_subwindows ();
             hide ();
 
             return true;
