@@ -26,60 +26,41 @@
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-public class Noise.RemoveFilesDialog : Gtk.Dialog {
+public class Noise.RemoveFilesDialog : Granite.MessageDialog {
     public signal void remove_media (bool response);
 
-    private Gtk.Box content;
-
-    private Gtk.Button remove_button;
-    private Gtk.Button trash_button;
-    private Gtk.Button cancel_button;
-
     public RemoveFilesDialog (Gee.Collection<Media> to_remove) {
-        this.set_modal (true);
-        this.set_transient_for (App.main_window);
-        this.destroy_with_parent = true;
-        resizable = false;
-        deletable = false;
+        Object (
+            destroy_with_parent: true,
+            image_icon: new ThemedIcon ("dialog-warning"),
+            modal: true,
+            primary_text: "",
+            secondary_text: "",
+            transient_for: App.main_window
+        );
 
-        content = new Gtk.Box (Gtk.Orientation.VERTICAL, 10);
+        primary_label.max_width_chars = 65;
+        secondary_label.max_width_chars = 65;
 
-        Gtk.Box padding = get_content_area () as Gtk.Box;
-        padding.set_orientation (Gtk.Orientation.HORIZONTAL);
+        var to_remove_size = to_remove.size;
 
-        // initialize controls
-        Gtk.Image warning = new Gtk.Image.from_icon_name ("dialog-warning", Gtk.IconSize.DIALOG);
-        Gtk.Label title = new Gtk.Label ("");
-        Gtk.Label info = new Gtk.Label ("");
-        trash_button = new Gtk.Button.with_label (_("Move to Trash"));
-        remove_button = new Gtk.Button.with_label (_("Remove from Library"));
-        cancel_button = new Gtk.Button.with_label (_("Cancel"));
-
-        bool multiple_media = to_remove.size > 1;
-
-        // set title text
-        title.halign = Gtk.Align.START;
-        string title_text = "";
-
-        if (multiple_media) {
-            title_text = _("Remove %d Songs From Library?").printf (to_remove.size);
+        if (to_remove_size > 1) {
+            primary_text = ngettext (
+                "Remove %d Songs From Library?",
+                "Remove %d Songs From Library?",
+                to_remove_size
+            ).printf (to_remove_size);
         } else {
-            Media m = to_remove.to_array ()[0];
-            title_text = _("Remove \"%s\" From Library?").printf (m.get_display_title ());
+            var media = to_remove.to_array ()[0];
+            primary_text = _("Remove \"%s\" From Library?").printf (media.get_display_title ());
         }
 
-        title.set_markup ("<span weight=\"bold\" size=\"larger\">" + Markup.escape_text (title_text) + "</span>");
+        secondary_text = ngettext (
+            "This will remove the song from your library and from any device synced automatically.",
+            "This will remove the songs from your library and from any device synced automatically.",
+            to_remove_size
+        );
 
-        // set info text
-        info.halign = Gtk.Align.START;
-        info.set_line_wrap (true);
-        int n = to_remove.size;
-        string info_text = ngettext ("This will remove the song from your library and from any device synced automatically.",
-                                     "This will remove the songs from your library and from any device synced automatically.", n);
-
-        info.set_text (info_text);
-
-        // decide if we need the trash button
         bool need_trash = false;
         foreach (var m in to_remove) {
             if (m.uri.has_prefix ("file:/")) {
@@ -90,30 +71,18 @@ public class Noise.RemoveFilesDialog : Gtk.Dialog {
             }
         }
 
-        /* set up controls layout */
-        var information = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-        var information_text = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-        information.pack_start (warning, false, false, 10);
-        information_text.pack_start (title, false, true, 10);
-        information_text.pack_start (info, false, true, 0);
-        information.pack_start (information_text, true, true, 10);
+        if (need_trash) {
+            var trash_button = (Gtk.Button) add_button (_("Move to Trash"), 0);
+            trash_button.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
 
-        var bottomButtons = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
-        bottomButtons.set_layout (Gtk.ButtonBoxStyle.END);
-        if (need_trash) bottomButtons.pack_end (trash_button, false, false, 0);
-        bottomButtons.pack_end (cancel_button, false, false, 0);
-        bottomButtons.pack_end (remove_button, false, false, 0);
-        bottomButtons.set_spacing (10);
+            trash_button.clicked.connect (() => {
+                remove_media (true);
+                destroy ();
+            });
+        }
 
-        content.pack_start (information, false, true, 0);
-        content.pack_start (bottomButtons, false, true, 10);
-
-        padding.pack_start (content, true, true, 0);
-
-        trash_button.clicked.connect (() => {
-            remove_media (true);
-            destroy ();
-        });
+        var cancel_button = (Gtk.Button) add_button (_("Cancel"), Gtk.ResponseType.CANCEL);
+        var remove_button = (Gtk.Button) add_button (_("Remove from Library"), Gtk.ResponseType.APPLY);
 
         remove_button.clicked.connect (() => {
             remove_media (false);
