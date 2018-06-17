@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-05 11:30-0800\n"
-"PO-Revision-Date: 2018-06-14 15:34+0000\n"
+"PO-Revision-Date: 2018-06-17 14:43+0000\n"
 "Last-Translator: Majer Tamás <mtamas@disroot.org>\n"
 "Language-Team: Hungarian "
 "<https://weblate.elementary.io/projects/music/music/hu/>\n"
@@ -447,7 +447,7 @@ msgstr ""
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid "Install Plugin"
-msgstr "Beépülő telepítése"
+msgstr "Bővítmény telepítése"
 
 #: src/Dialogs/MediaEditor.vala:103
 msgid "Title:"
