@@ -43,7 +43,11 @@ public class Noise.MediaMenu : Gtk.Menu {
     }
 
     construct {
+        var scroll_to_current = new Gtk.MenuItem.with_label (_("Scroll to Current Song"));
+        scroll_to_current.sensitive = false;
+
         var file_browse = new Gtk.MenuItem.with_label (_("Show in File Browser…"));
+        edit_media = new Gtk.MenuItem.with_label (_("Edit Song Info…"));
         contractor_entry = new Gtk.MenuItem.with_label (_("Other Actions"));
         rate_media = new Granite.Widgets.RatingMenuItem ();
         queue_media = new Gtk.MenuItem.with_label (C_("Action item (verb)", "Queue"));
@@ -51,80 +55,85 @@ public class Noise.MediaMenu : Gtk.Menu {
         remove_media = new Gtk.MenuItem.with_label (_("Remove Song…"));
         import_to_library = new Gtk.MenuItem.with_label (_("Import to Library"));
 
-        if (hint != ViewWrapper.Hint.ALBUM_LIST) {
-            var scroll_to_current = new Gtk.MenuItem.with_label (_("Scroll to Current Song"));
-            scroll_to_current.sensitive = false;
-
-            append (scroll_to_current);
-            append (new Gtk.SeparatorMenuItem ());
-
-            scroll_to_current.activate.connect (() => {
-                generic_list.scroll_to_current_media (true);
-            });
-
-            App.player.playback_stopped.connect (() => {
-                scroll_to_current.sensitive = false;
-            });
-
-            App.player.playback_started.connect (() => {
-                scroll_to_current.sensitive = true;
-            });
-        }
-
-        var read_only = hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST;
-        if (read_only == false && hint != ViewWrapper.Hint.DEVICE_AUDIO) {
-            edit_media = new Gtk.MenuItem.with_label (_("Edit Song Info…"));
-            append (edit_media);
-            edit_media.activate.connect (edit_media_clicked);
-        }
-
-        append (file_browse);
-        append (contractor_entry);
-
-        if (read_only == false) {
-            append (rate_media);
-        }
-
-        append (new Gtk.SeparatorMenuItem ());
-
-        if (generic_list.playlist != App.player.queue_playlist) {
-            append (queue_media);
-        }
-
-        if (read_only == false && generic_list.parent_wrapper.library.support_playlists () == true) {
-            append (add_to_playlist);
-        }
-
-        var is_queue = generic_list.playlist == App.player.queue_playlist;
-
-        if (hint != ViewWrapper.Hint.SMART_PLAYLIST && (read_only == false || is_queue)) {
-            if (!is_queue) {
-                append (new Gtk.SeparatorMenuItem ());
-            }
-            append (remove_media);
-        }
-
-        if (hint == ViewWrapper.Hint.DEVICE_AUDIO) {
-            append (import_to_library);
-        }
-
         switch (hint) {
             case ViewWrapper.Hint.ALBUM_LIST:
+            case ViewWrapper.Hint.PLAYLIST:
+                append (edit_media);
+                append (file_browse);
+                append (contractor_entry);
+                append (rate_media);
+                append (new Gtk.SeparatorMenuItem ());
+                append (queue_media);
+                append (add_to_playlist);
+                append (new Gtk.SeparatorMenuItem ());
+                append (remove_media);
+                remove_media.label = _("Remove from Library…");
+                break;
             case ViewWrapper.Hint.MUSIC:
+                append (scroll_to_current);
+                append (new Gtk.SeparatorMenuItem ());
+                append (edit_media);
+                append (file_browse);
+                append (contractor_entry);
+                append (rate_media);
+                append (new Gtk.SeparatorMenuItem ());
+                append (queue_media);
+                append (add_to_playlist);
+                append (new Gtk.SeparatorMenuItem ());
+                append (remove_media);
                 remove_media.label = _("Remove from Library…");
                 break;
             case ViewWrapper.Hint.DEVICE_AUDIO:
+                append (scroll_to_current);
+                append (new Gtk.SeparatorMenuItem ());
+                append (file_browse);
+                append (contractor_entry);
+                append (rate_media);
+                append (new Gtk.SeparatorMenuItem ());
+                append (queue_media);
+                append (new Gtk.SeparatorMenuItem ());
+                append (remove_media);
+                append (import_to_library);
                 remove_media.label = _("Remove from Device");
                 break;
             case ViewWrapper.Hint.READ_ONLY_PLAYLIST:
+                append (scroll_to_current);
+                append (new Gtk.SeparatorMenuItem ());
+                append (file_browse);
+                append (contractor_entry);
                 if (generic_list.playlist == App.player.queue_playlist) {
+                    append (new Gtk.SeparatorMenuItem ());
                     remove_media.label = _("Remove from Queue");
                 }
+                break;
+            case ViewWrapper.Hint.SMART_PLAYLIST:
+                append (scroll_to_current);
+                append (new Gtk.SeparatorMenuItem ());
+                append (edit_media);
+                append (file_browse);
+                append (contractor_entry);
+                append (rate_media);
+                append (new Gtk.SeparatorMenuItem ());
+                append (queue_media);
+                append (add_to_playlist);
                 break;
         }
 
         show_all ();
 
+        scroll_to_current.activate.connect (() => {
+            generic_list.scroll_to_current_media (true);
+        });
+
+        App.player.playback_stopped.connect (() => {
+            scroll_to_current.sensitive = false;
+        });
+
+        App.player.playback_started.connect (() => {
+            scroll_to_current.sensitive = true;
+        });
+
+        edit_media.activate.connect (edit_media_clicked);
         file_browse.activate.connect (file_browse_clicked);
         import_to_library.activate.connect (import_to_library_clicked);
         queue_media.activate.connect (queue_clicked);
