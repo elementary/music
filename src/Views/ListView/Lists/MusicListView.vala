@@ -31,31 +31,6 @@
  *              Sergey Davidoff <shnatsel@gmail.com>
  */
 
-public class Noise.ContractMenuItem : Gtk.MenuItem {
-    public Granite.Services.Contract contract { get; construct set; }
-    public Gee.Collection<Media> medias { get; construct set; }
-
-    public ContractMenuItem (Granite.Services.Contract contract, Gee.Collection<Noise.Media> medias) {
-        Object (contract: contract, medias: medias, label: contract.get_display_name ());
-    }
-
-    public override void activate () {
-        File[] files = {};
-        foreach (Media m in medias) {
-            files += m.file;
-            debug ("Added file to pass to Contractor: %s", m.uri);
-        }
-
-        try {
-            debug ("Executing contract \"%s\"", contract.get_display_name ());
-            contract.execute_with_files (files);
-        } catch (Error err) {
-            warning ("Error executing contract \"%s\": %s",
-                     contract.get_display_name (), err.message);
-        }
-    }
-}
-
 public class Noise.MusicListView : GenericList {
     public bool can_scroll_to_current { get; construct; }
 
