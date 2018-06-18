@@ -129,6 +129,7 @@ public class Noise.MediaMenu : Gtk.Menu {
             contractor_entry.sensitive = false;
         }
 
+        show_all ();
         popup (null, null, null, 3, Gtk.get_current_event_time ());
     }
 
