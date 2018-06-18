@@ -35,6 +35,7 @@ public class Noise.AlbumListRow : Gtk.ListBoxRow {
         var play_icon = new Gtk.Image.from_icon_name ("audio-volume-high-symbolic", Gtk.IconSize.MENU);
 
         play_revealer = new Gtk.Revealer ();
+        play_revealer.transition_type = Gtk.RevealerTransitionType.CROSSFADE;
         play_revealer.add (play_icon);
 
         var title_label = new Gtk.Label (media.get_display_title ());

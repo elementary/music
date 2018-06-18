@@ -77,6 +77,7 @@ public class Noise.AlbumListGrid : Gtk.Grid {
         album_list_view = new Gtk.ListBox ();
         album_list_view.expand = true;
         album_list_view.get_style_context ().add_class (Gtk.STYLE_CLASS_BACKGROUND);
+        album_list_view.set_sort_func ((Gtk.ListBoxSortFunc) compare_rows);
 
         var list_view_scrolled = new Gtk.ScrolledWindow (null, null);
         list_view_scrolled.margin_top = 18;
@@ -235,5 +236,16 @@ public class Noise.AlbumListGrid : Gtk.Grid {
         }
 
         file.destroy ();
+    }
+
+    private static int compare_rows (Gtk.ListBoxRow a, Gtk.ListBoxRow b) {
+        var tracka = (((AlbumListRow)a).media.track);
+        var trackb = (((AlbumListRow)b).media.track);
+
+        if (tracka > trackb) {
+            return 1;
+        } else {
+            return -1;
+        }
     }
 }
