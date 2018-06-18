@@ -65,6 +65,10 @@ public class Noise.AlbumListRow : Gtk.ListBoxRow {
         App.player.playback_paused.connect (()=> {
             update_play_icon ();
         });
+
+        App.player.player_changed.connect (()=> {
+            update_play_icon ();
+        });
     }
 
     private void update_play_icon () {

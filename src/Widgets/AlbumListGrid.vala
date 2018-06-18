@@ -35,7 +35,7 @@ public class Noise.AlbumListGrid : Gtk.Grid {
     private Gee.TreeSet<Media> media_list = new Gee.TreeSet<Media> ();
     private Gtk.Label album_label;
     private Gtk.Label artist_label;
-    private Gtk.ListBox album_list_view;
+    private Gtk.ListBox album_list_box;
     private Gtk.Menu cover_action_menu;
     private Granite.Widgets.Rating rating;
 
@@ -74,14 +74,14 @@ public class Noise.AlbumListGrid : Gtk.Grid {
         artist_label.xalign = 0;
         artist_label.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
 
-        album_list_view = new Gtk.ListBox ();
-        album_list_view.expand = true;
-        album_list_view.get_style_context ().add_class (Gtk.STYLE_CLASS_BACKGROUND);
-        album_list_view.set_sort_func ((Gtk.ListBoxSortFunc) compare_rows);
+        album_list_box = new Gtk.ListBox ();
+        album_list_box.expand = true;
+        album_list_box.get_style_context ().add_class (Gtk.STYLE_CLASS_BACKGROUND);
+        album_list_box.set_sort_func ((Gtk.ListBoxSortFunc) compare_rows);
 
         var list_view_scrolled = new Gtk.ScrolledWindow (null, null);
         list_view_scrolled.margin_top = 18;
-        list_view_scrolled.add (album_list_view);
+        list_view_scrolled.add (album_list_box);
 
         rating = new Granite.Widgets.Rating (true, Gtk.IconSize.MENU, true);
         rating.star_spacing = 12;
@@ -96,6 +96,13 @@ public class Noise.AlbumListGrid : Gtk.Grid {
         cover_event_box.button_press_event.connect (show_cover_context_menu);
         cover_set_new.activate.connect (set_new_cover);
         rating.rating_changed.connect (rating_changed);
+
+        album_list_box.row_activated.connect ((row) => {
+            App.player.clear_queue ();
+            App.player.queue_medias (media_list);
+            App.player.play_media (((AlbumListRow) row).media);
+            App.player.start_playback ();
+        });
     }
 
     /**
@@ -104,8 +111,9 @@ public class Noise.AlbumListGrid : Gtk.Grid {
     public void reset () {
         album_label.set_label ("");
         artist_label.set_label ("");
+        media_list.clear ();
 
-        foreach (Gtk.Widget child in album_list_view.get_children ()) {
+        foreach (Gtk.Widget child in album_list_box.get_children ()) {
             child.destroy ();
         }
 
@@ -137,7 +145,7 @@ public class Noise.AlbumListGrid : Gtk.Grid {
             // removed from the parent wrapper while the window is showing
             foreach (var media in album.get_media ()) {
                 media_list.add (media);
-                album_list_view.add (new AlbumListRow (media));
+                album_list_box.add (new AlbumListRow (media));
             }
 
             // Search again to match the view wrapper's search
