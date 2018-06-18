@@ -119,7 +119,7 @@ public class Noise.PlaybackManager : Object {
 
     public Noise.Streamer file_player;
     public Noise.Playback player;
-    public Noise.Media current_media { private set; get; }
+    public Noise.Media current_media { get; private set; }
 
     construct {
         history_playlist = new HistoryPlaylist ();
