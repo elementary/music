@@ -29,6 +29,7 @@ public class Noise.MediaMenu : Gtk.Menu {
     public GenericList generic_list { get; construct; }
     public Gtk.MenuItem add_to_playlist { get; private set; }
     public Gtk.MenuItem contractor_entry { get; private set; }
+    public Gtk.MenuItem import_to_library;
     public Granite.Widgets.RatingMenuItem rate_media { get; private set; }
 
     private Gtk.MenuItem edit_media;
@@ -50,6 +51,7 @@ public class Noise.MediaMenu : Gtk.Menu {
         queue_media = new Gtk.MenuItem.with_label (C_("Action item (verb)", "Queue"));
         add_to_playlist = new Gtk.MenuItem.with_label (_("Add to Playlist"));
         remove_media = new Gtk.MenuItem.with_label (_("Remove Song…"));
+        import_to_library = new Gtk.MenuItem.with_label (_("Import to Library"));
 
         if (can_scroll_to_current) {
             var scroll_to_current = new Gtk.MenuItem.with_label (_("Scroll to Current Song"));
@@ -97,8 +99,10 @@ public class Noise.MediaMenu : Gtk.Menu {
         }
 
         append (remove_media);
+        append (import_to_library);
 
         file_browse.activate.connect (file_browse_clicked);
+        import_to_library.activate.connect (import_to_library_clicked);
         queue_media.activate.connect (queue_clicked);
         rate_media.activate.connect (rate_media_clicked);
         remove_media.activate.connect (remove_media_clicked);
@@ -136,6 +140,10 @@ public class Noise.MediaMenu : Gtk.Menu {
         }
     }
 
+    private void import_to_library_clicked () {
+        generic_list.import_requested (generic_list.get_selected_medias ().read_only_view);
+    }
+
     private void queue_clicked () {
         App.player.queue_medias (generic_list.get_selected_medias ().read_only_view);
     }
@@ -163,7 +171,6 @@ public class Noise.MediaMenu : Gtk.Menu {
             case ViewWrapper.Hint.DEVICE_AUDIO:
                 var dvw = (DeviceViewWrapper) generic_list.parent_wrapper;
                 dvw.library.remove_medias (selected_media, true);
-                remove_media.label = _("Remove from Device");
                 break;
             case ViewWrapper.Hint.PLAYLIST:
                 generic_list.playlist.remove_medias (selected_media);
@@ -171,13 +178,7 @@ public class Noise.MediaMenu : Gtk.Menu {
             case ViewWrapper.Hint.READ_ONLY_PLAYLIST:
                 if (generic_list.playlist == App.player.queue_playlist) {
                     generic_list.playlist.remove_medias (selected_media);
-                    remove_media.label = _("Remove from Queue");
-                } else {
-                    remove_media.visible = false;
-                }
-                break;
-            default:
-                remove_media.visible = false;
+                } 
                 break;
           }
     }
@@ -186,20 +187,31 @@ public class Noise.MediaMenu : Gtk.Menu {
         switch (hint) {
             case ViewWrapper.Hint.ALBUM_LIST:
             case ViewWrapper.Hint.MUSIC:
+                import_to_library.visible = false;
                 remove_media.label = _("Remove from Library");
                 break;
             case ViewWrapper.Hint.DEVICE_AUDIO:
                 edit_media.visible = false;
+                remove_media.label = _("Remove from Device");
                 if (generic_list.parent_wrapper.library.support_playlists () == false) {
                     add_to_playlist.visible = false;
                 }
                 break;
+            case ViewWrapper.Hint.PLAYLIST:
+                import_to_library.visible = false;
+                break;
             case ViewWrapper.Hint.READ_ONLY_PLAYLIST:
+                import_to_library.visible = false;
                 if (generic_list.playlist == App.player.queue_playlist) {
                     queue_media.visible = false;
+                    remove_media.label = _("Remove from Queue");
+                } else {
+                    remove_media.visible = false;
                 }
                 break;
             default:
+                import_to_library.visible = false;
+                remove_media.visible = false;
                 break;
         }
     }

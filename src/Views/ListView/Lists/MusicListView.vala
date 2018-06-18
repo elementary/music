@@ -34,9 +34,7 @@
 public class Noise.MusicListView : GenericList {
     public bool can_scroll_to_current { get; construct; }
 
-    //for media list right click
     private MediaMenu media_action_menu;
-    Gtk.MenuItem import_to_library;
 
     public MusicListView (ViewWrapper view_wrapper, TreeViewSetup tvs, bool can_scroll_to_current = true) {
         Object (
@@ -53,15 +51,8 @@ public class Noise.MusicListView : GenericList {
 
         button_release_event.connect (view_click_release);
 
-        import_to_library = new Gtk.MenuItem.with_label (_("Import to Library"));
-        import_to_library.activate.connect (import_to_library_clicked);
-
-        var read_only = hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST;
-
         media_action_menu = new MediaMenu (this, can_scroll_to_current, hint);
         media_action_menu.attach_to_widget (this, null);
-
-        media_action_menu.append (import_to_library);
 
         headers_clickable = playlist != App.player.queue_playlist; // You can't reorder the queue
 
@@ -71,22 +62,6 @@ public class Noise.MusicListView : GenericList {
     public override void update_sensitivities () {
         media_action_menu.show_all ();
         media_action_menu.update_sensitivities ();
-
-        switch (hint) {
-            case ViewWrapper.Hint.ALBUM_LIST:
-            case ViewWrapper.Hint.MUSIC:
-                import_to_library.visible = false;
-                break;
-            case ViewWrapper.Hint.PLAYLIST:
-                import_to_library.visible = false;
-                break;
-            case ViewWrapper.Hint.READ_ONLY_PLAYLIST:
-                import_to_library.visible = false;
-                break;
-            default:
-                import_to_library.visible = false;
-                break;
-        }
     }
 
     public void popup_media_menu (Gee.Collection<Media> selection) {
@@ -128,13 +103,13 @@ public class Noise.MusicListView : GenericList {
         }
 
         if (temporary_count < 1) {
-            import_to_library.sensitive = false;
+            media_action_menu.import_to_library.sensitive = false;
         } else {
-            import_to_library.sensitive = true;
+            media_action_menu.import_to_library.sensitive = true;
             if (temporary_count != total_count)
-                import_to_library.label = _("Import %i of %i selected songs").printf ((int)temporary_count, (int)total_count);
+                media_action_menu.import_to_library.label = _("Import %i of %i selected songs").printf ((int)temporary_count, (int)total_count);
             else
-                import_to_library.label = ngettext ("Import %i song", "Import %i songs", temporary_count).printf ((int)temporary_count);
+                media_action_menu.import_to_library.label = ngettext ("Import %i song", "Import %i songs", temporary_count).printf ((int)temporary_count);
         }
 
         int set_rating = -1;
@@ -289,10 +264,6 @@ public class Noise.MusicListView : GenericList {
                 }
                 break;
           }
-    }
-
-    void import_to_library_clicked () {
-        import_requested (get_selected_medias ().read_only_view);
     }
 
     protected virtual void onDragDataGet (Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {
