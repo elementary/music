@@ -27,7 +27,8 @@ public class Noise.MediaMenu : Gtk.Menu {
     public bool can_scroll_to_current { get; construct; }
     public ViewWrapper.Hint hint { get; construct ;}
     public GenericList generic_list { get; construct; }
-    public Gtk.MenuItem contractor_entry;
+    public Gtk.MenuItem contractor_entry { get; private set; }
+    public Granite.Widgets.RatingMenuItem rate_media { get; private set; }
 
     private Gtk.MenuItem edit_media;
     private Gtk.MenuItem queue_media;
@@ -47,6 +48,7 @@ public class Noise.MediaMenu : Gtk.Menu {
         edit_media = new Gtk.MenuItem.with_label (_("Edit Song Info…"));
         var file_browse = new Gtk.MenuItem.with_label (_("Show in File Browser…"));
         contractor_entry = new Gtk.MenuItem.with_label (_("Other Actions"));
+        rate_media = new Granite.Widgets.RatingMenuItem ();
         queue_media = new Gtk.MenuItem.with_label (C_("Action item (verb)", "Queue"));
 
         if (can_scroll_to_current) {
@@ -62,12 +64,17 @@ public class Noise.MediaMenu : Gtk.Menu {
         append (file_browse);
         append (contractor_entry);
 
+        if (read_only == false) {
+            append (rate_media);
+        }
+
         append (new Gtk.SeparatorMenuItem ());
         append (queue_media);
 
         edit_media.activate.connect (edit_media_clicked);
         file_browse.activate.connect (file_browse_clicked);
         queue_media.activate.connect (queue_clicked);
+        rate_media.activate.connect (rate_media_clicked);
 
         scroll_to_current.activate.connect (() => {
             generic_list.scroll_to_current_media (true);
@@ -116,6 +123,15 @@ public class Noise.MediaMenu : Gtk.Menu {
 
     private void queue_clicked () {
         App.player.queue_medias (generic_list.get_selected_medias ().read_only_view);
+    }
+
+    protected void rate_media_clicked () {
+        int new_rating = rate_media.rating_value;
+        var selected = generic_list.get_selected_medias ().read_only_view;
+        foreach (Media media in selected) {
+            media.rating = new_rating;
+        }
+        generic_list.parent_wrapper.library.update_medias (selected, false, true);
     }
 
     public void update_sensitivities () {

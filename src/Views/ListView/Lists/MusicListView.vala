@@ -37,7 +37,6 @@ public class Noise.MusicListView : GenericList {
     //for media list right click
     private MediaMenu media_action_menu;
     Gtk.MenuItem media_menu_add_to_playlist; // make menu on fly
-    Granite.Widgets.RatingMenuItem media_rate_media;
     Gtk.MenuItem media_remove;
     Gtk.MenuItem import_to_library;
 
@@ -64,17 +63,10 @@ public class Noise.MusicListView : GenericList {
         import_to_library = new Gtk.MenuItem.with_label (_("Import to Library"));
         import_to_library.activate.connect (import_to_library_clicked);
 
-        media_rate_media = new Granite.Widgets.RatingMenuItem ();
-        media_rate_media.activate.connect (media_rate_media_clicked);
-
         var read_only = hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST;
 
         media_action_menu = new MediaMenu (this, can_scroll_to_current, hint);
         media_action_menu.attach_to_widget (this, null);
-
-        if (read_only == false) {
-            media_action_menu.append (media_rate_media);
-        }
 
         if (read_only == false) {
             media_action_menu.append (media_menu_add_to_playlist);
@@ -182,7 +174,7 @@ public class Noise.MusicListView : GenericList {
             }
         }
 
-        media_rate_media.rating_value = set_rating;
+        media_action_menu.rate_media.rating_value = set_rating;
 
         //remove the previous "Other Actions" submenu and create a new one
         var contractorSubMenu = new Gtk.Menu ();
@@ -298,15 +290,6 @@ public class Noise.MusicListView : GenericList {
         p.add_medias (get_selected_medias ().read_only_view);
         p.name = PlaylistsUtils.get_new_playlist_name (parent_wrapper.library.get_playlists ());
         parent_wrapper.library.add_playlist (p);
-    }
-
-    protected void media_rate_media_clicked () {
-        int new_rating = media_rate_media.rating_value;
-        var selected = get_selected_medias ().read_only_view;
-        foreach (Media m in selected) {
-            m.rating = new_rating;
-        }
-        parent_wrapper.library.update_medias (selected, false, true);
     }
 
     protected override void mediaRemoveClicked () {
