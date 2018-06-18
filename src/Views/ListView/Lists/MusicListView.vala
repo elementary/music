@@ -35,7 +35,7 @@ public class Noise.MusicListView : GenericList {
     public bool can_scroll_to_current { get; construct; }
 
     //for media list right click
-    Gtk.Menu media_action_menu;
+    private MediaMenu media_action_menu;
     Gtk.MenuItem media_edit_media;
     Gtk.MenuItem media_file_browse;
     Gtk.MenuItem media_menu_contractor_entry; // make menu on fly
@@ -44,7 +44,6 @@ public class Noise.MusicListView : GenericList {
     Granite.Widgets.RatingMenuItem media_rate_media;
     Gtk.MenuItem media_remove;
     Gtk.MenuItem import_to_library;
-    Gtk.MenuItem media_scroll_to_current;
 
     public MusicListView (ViewWrapper view_wrapper, TreeViewSetup tvs, bool can_scroll_to_current = true) {
         Object (
@@ -60,10 +59,6 @@ public class Noise.MusicListView : GenericList {
         set_compare_func (view_compare_func);
 
         button_release_event.connect (view_click_release);
-
-        media_scroll_to_current = new Gtk.MenuItem.with_label (_("Scroll to Current Song"));
-        media_scroll_to_current.activate.connect (media_scroll_to_current_requested);
-        media_scroll_to_current.sensitive = false;
 
         media_edit_media = new Gtk.MenuItem.with_label (_("Edit Song Info"));
         media_edit_media.activate.connect (media_edit_media_clicked);
@@ -87,13 +82,8 @@ public class Noise.MusicListView : GenericList {
         media_rate_media = new Granite.Widgets.RatingMenuItem ();
         media_rate_media.activate.connect (media_rate_media_clicked);
 
-        media_action_menu = new Gtk.Menu ();
+        media_action_menu = new MediaMenu (this, can_scroll_to_current);
         media_action_menu.attach_to_widget (this, null);
-
-        if (can_scroll_to_current) {
-            media_action_menu.append (media_scroll_to_current);
-            media_action_menu.append (new Gtk.SeparatorMenuItem ());
-        }
 
         var read_only = hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST;
         if (read_only == false) {
@@ -115,14 +105,6 @@ public class Noise.MusicListView : GenericList {
         }
         media_action_menu.append (media_remove);
         media_action_menu.append (import_to_library);
-
-        App.player.playback_stopped.connect (() => {
-            media_scroll_to_current.sensitive = false;
-        });
-
-        App.player.playback_started.connect (() => {
-            media_scroll_to_current.sensitive = true;
-        });
 
         headers_clickable = playlist != App.player.queue_playlist; // You can't reorder the queue
 

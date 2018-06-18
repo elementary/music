@@ -343,10 +343,6 @@ public abstract class Noise.GenericList : FastView {
         return rv;
     }
 
-    protected void media_scroll_to_current_requested () {
-        scroll_to_current_media (true);
-    }
-
     public void scroll_to_current_media (bool unfilter_if_not_found) {
         if (App.player.current_media == null)
             return;

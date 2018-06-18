@@ -67,6 +67,7 @@ app_files = files(
   'src/Widgets/AlbumListGrid.vala',
   'src/Widgets/ContractMenuItem.vala',
   'src/Widgets/EqualizerPopover.vala',
+  'src/Widgets/MediaMenu.vala',
   'src/Widgets/PresetList.vala',
   'src/Widgets/RatingWidget.vala',
   'src/Widgets/SimpleOptionChooser.vala',
