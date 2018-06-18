@@ -36,7 +36,6 @@ public class Noise.MusicListView : GenericList {
 
     //for media list right click
     private MediaMenu media_action_menu;
-    Gtk.MenuItem media_menu_queue;
     Gtk.MenuItem media_menu_add_to_playlist; // make menu on fly
     Granite.Widgets.RatingMenuItem media_rate_media;
     Gtk.MenuItem media_remove;
@@ -57,9 +56,6 @@ public class Noise.MusicListView : GenericList {
 
         button_release_event.connect (view_click_release);
 
-        media_menu_queue = new Gtk.MenuItem.with_label (C_("Action item (verb)", "Queue"));
-        media_menu_queue.activate.connect (media_menu_queue_clicked);
-
         media_menu_add_to_playlist = new Gtk.MenuItem.with_label (_("Add to Playlist"));
 
         media_remove = new Gtk.MenuItem.with_label (_("Remove Song"));
@@ -79,8 +75,7 @@ public class Noise.MusicListView : GenericList {
         if (read_only == false) {
             media_action_menu.append (media_rate_media);
         }
-        media_action_menu.append (new Gtk.SeparatorMenuItem ());
-        media_action_menu.append (media_menu_queue);
+
         if (read_only == false) {
             media_action_menu.append (media_menu_add_to_playlist);
         }
@@ -113,7 +108,6 @@ public class Noise.MusicListView : GenericList {
                 import_to_library.visible = false;
                 if (playlist == App.player.queue_playlist) {
                     media_remove.label = _("Remove from Queue");
-                    media_menu_queue.visible = false;
                 } else {
                     media_remove.visible = false;
                 }
@@ -297,10 +291,6 @@ public class Noise.MusicListView : GenericList {
             get_selection ().select_path (path);
             return false;
         }
-    }
-
-    protected virtual void media_menu_queue_clicked () {
-        App.player.queue_medias (get_selected_medias ().read_only_view);
     }
 
     protected virtual void media_menu_new_playlist_clicked () {

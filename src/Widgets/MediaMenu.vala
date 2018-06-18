@@ -30,6 +30,7 @@ public class Noise.MediaMenu : Gtk.Menu {
     public Gtk.MenuItem contractor_entry;
 
     private Gtk.MenuItem edit_media;
+    private Gtk.MenuItem queue_media;
 
     public MediaMenu (GenericList generic_list, bool can_scroll_to_current, ViewWrapper.Hint hint) {
         Object (
@@ -46,6 +47,7 @@ public class Noise.MediaMenu : Gtk.Menu {
         edit_media = new Gtk.MenuItem.with_label (_("Edit Song Info…"));
         var file_browse = new Gtk.MenuItem.with_label (_("Show in File Browser…"));
         contractor_entry = new Gtk.MenuItem.with_label (_("Other Actions"));
+        queue_media = new Gtk.MenuItem.with_label (C_("Action item (verb)", "Queue"));
 
         if (can_scroll_to_current) {
             append (scroll_to_current);
@@ -60,8 +62,12 @@ public class Noise.MediaMenu : Gtk.Menu {
         append (file_browse);
         append (contractor_entry);
 
+        append (new Gtk.SeparatorMenuItem ());
+        append (queue_media);
+
         edit_media.activate.connect (edit_media_clicked);
         file_browse.activate.connect (file_browse_clicked);
+        queue_media.activate.connect (queue_clicked);
 
         scroll_to_current.activate.connect (() => {
             generic_list.scroll_to_current_media (true);
@@ -108,10 +114,19 @@ public class Noise.MediaMenu : Gtk.Menu {
         }
     }
 
+    private void queue_clicked () {
+        App.player.queue_medias (generic_list.get_selected_medias ().read_only_view);
+    }
+
     public void update_sensitivities () {
         switch (hint) {
             case ViewWrapper.Hint.DEVICE_AUDIO:
                 edit_media.visible = false;
+                break;
+            case ViewWrapper.Hint.READ_ONLY_PLAYLIST:
+                if (generic_list.playlist == App.player.queue_playlist) {
+                    queue_media.visible = false;
+                }
                 break;
             default:
                 break;
