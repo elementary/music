@@ -32,13 +32,10 @@
  */
 
 public class Noise.MusicListView : GenericList {
-    public bool can_scroll_to_current { get; construct; }
-
     private MediaMenu media_action_menu;
 
-    public MusicListView (ViewWrapper view_wrapper, TreeViewSetup tvs, bool can_scroll_to_current = true) {
+    public MusicListView (ViewWrapper view_wrapper, TreeViewSetup tvs) {
         Object (
-            can_scroll_to_current: can_scroll_to_current,
             parent_wrapper: view_wrapper,
             tvs: tvs
         );
@@ -51,7 +48,7 @@ public class Noise.MusicListView : GenericList {
 
         button_release_event.connect (view_click_release);
 
-        media_action_menu = new MediaMenu (this, can_scroll_to_current);
+        media_action_menu = new MediaMenu (this);
         media_action_menu.attach_to_widget (this, null);
 
         headers_clickable = playlist != App.player.queue_playlist; // You can't reorder the queue

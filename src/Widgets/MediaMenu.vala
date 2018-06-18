@@ -24,7 +24,6 @@
  */
 
 public class Noise.MediaMenu : Gtk.Menu {
-    public bool can_scroll_to_current { get; construct; }
     public ViewWrapper.Hint hint { get; construct ;}
     public GenericList generic_list { get; construct; }
     public Gtk.MenuItem add_to_playlist { get; private set; }
@@ -36,9 +35,8 @@ public class Noise.MediaMenu : Gtk.Menu {
     private Gtk.MenuItem queue_media;
     private Gtk.MenuItem remove_media;
 
-    public MediaMenu (GenericList generic_list, bool can_scroll_to_current) {
+    public MediaMenu (GenericList generic_list) {
         Object (
-            can_scroll_to_current: can_scroll_to_current,
             generic_list: generic_list,
             hint: generic_list.hint
         );
@@ -53,7 +51,7 @@ public class Noise.MediaMenu : Gtk.Menu {
         remove_media = new Gtk.MenuItem.with_label (_("Remove Song…"));
         import_to_library = new Gtk.MenuItem.with_label (_("Import to Library"));
 
-        if (can_scroll_to_current) {
+        if (hint != ViewWrapper.Hint.ALBUM_LIST) {
             var scroll_to_current = new Gtk.MenuItem.with_label (_("Scroll to Current Song"));
             scroll_to_current.sensitive = false;
 
