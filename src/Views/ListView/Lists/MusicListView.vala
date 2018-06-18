@@ -36,7 +36,6 @@ public class Noise.MusicListView : GenericList {
 
     //for media list right click
     private MediaMenu media_action_menu;
-    Gtk.MenuItem media_menu_add_to_playlist; // make menu on fly
     Gtk.MenuItem media_remove;
     Gtk.MenuItem import_to_library;
 
@@ -55,8 +54,6 @@ public class Noise.MusicListView : GenericList {
 
         button_release_event.connect (view_click_release);
 
-        media_menu_add_to_playlist = new Gtk.MenuItem.with_label (_("Add to Playlist"));
-
         media_remove = new Gtk.MenuItem.with_label (_("Remove Song"));
         media_remove.activate.connect (mediaRemoveClicked);
 
@@ -68,9 +65,6 @@ public class Noise.MusicListView : GenericList {
         media_action_menu = new MediaMenu (this, can_scroll_to_current, hint);
         media_action_menu.attach_to_widget (this, null);
 
-        if (read_only == false) {
-            media_action_menu.append (media_menu_add_to_playlist);
-        }
         if (hint != ViewWrapper.Hint.SMART_PLAYLIST &&
             hint != ViewWrapper.Hint.READ_ONLY_PLAYLIST) {
                 media_action_menu.append (new Gtk.SeparatorMenuItem ());
@@ -106,9 +100,6 @@ public class Noise.MusicListView : GenericList {
                 break;
             case ViewWrapper.Hint.DEVICE_AUDIO:
                 media_remove.label = _("Remove from Device");
-                if (parent_wrapper.library.support_playlists () == false) {
-                    media_menu_add_to_playlist.visible = false;
-                }
                 break;
             default:
                 media_remove.visible = false;
@@ -123,6 +114,7 @@ public class Noise.MusicListView : GenericList {
 
         var add_to_playlist_menu = new Gtk.Menu ();
         add_to_playlist_menu.append (media_menu_new_playlist);
+
         if (parent_wrapper.library.support_playlists () == false) {
             media_menu_new_playlist.visible = false;
         }
@@ -142,7 +134,7 @@ public class Noise.MusicListView : GenericList {
             });
         }
         add_to_playlist_menu.show_all ();
-        media_menu_add_to_playlist.submenu = add_to_playlist_menu;
+        media_action_menu.add_to_playlist.submenu = add_to_playlist_menu;
 
         // if all medias are downloaded already, desensitize.
         // if half and half, change text to 'Download %external of %total'

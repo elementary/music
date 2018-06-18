@@ -27,6 +27,7 @@ public class Noise.MediaMenu : Gtk.Menu {
     public bool can_scroll_to_current { get; construct; }
     public ViewWrapper.Hint hint { get; construct ;}
     public GenericList generic_list { get; construct; }
+    public Gtk.MenuItem add_to_playlist { get; private set; }
     public Gtk.MenuItem contractor_entry { get; private set; }
     public Granite.Widgets.RatingMenuItem rate_media { get; private set; }
 
@@ -42,23 +43,37 @@ public class Noise.MediaMenu : Gtk.Menu {
     }
 
     construct {
-        var scroll_to_current = new Gtk.MenuItem.with_label (_("Scroll to Current Song"));
-        scroll_to_current.sensitive = false;
-
-        edit_media = new Gtk.MenuItem.with_label (_("Edit Song Info…"));
         var file_browse = new Gtk.MenuItem.with_label (_("Show in File Browser…"));
         contractor_entry = new Gtk.MenuItem.with_label (_("Other Actions"));
         rate_media = new Granite.Widgets.RatingMenuItem ();
         queue_media = new Gtk.MenuItem.with_label (C_("Action item (verb)", "Queue"));
+        add_to_playlist = new Gtk.MenuItem.with_label (_("Add to Playlist"));
 
         if (can_scroll_to_current) {
+            var scroll_to_current = new Gtk.MenuItem.with_label (_("Scroll to Current Song"));
+            scroll_to_current.sensitive = false;
+
             append (scroll_to_current);
             append (new Gtk.SeparatorMenuItem ());
+
+            scroll_to_current.activate.connect (() => {
+                generic_list.scroll_to_current_media (true);
+            });
+
+            App.player.playback_stopped.connect (() => {
+                scroll_to_current.sensitive = false;
+            });
+
+            App.player.playback_started.connect (() => {
+                scroll_to_current.sensitive = true;
+            });
         }
 
         var read_only = hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST;
         if (read_only == false) {
+            edit_media = new Gtk.MenuItem.with_label (_("Edit Song Info…"));
             append (edit_media);
+            edit_media.activate.connect (edit_media_clicked);
         }
 
         append (file_browse);
@@ -71,22 +86,13 @@ public class Noise.MediaMenu : Gtk.Menu {
         append (new Gtk.SeparatorMenuItem ());
         append (queue_media);
 
-        edit_media.activate.connect (edit_media_clicked);
+        if (read_only == false) {
+            append (add_to_playlist);
+        }
+
         file_browse.activate.connect (file_browse_clicked);
         queue_media.activate.connect (queue_clicked);
         rate_media.activate.connect (rate_media_clicked);
-
-        scroll_to_current.activate.connect (() => {
-            generic_list.scroll_to_current_media (true);
-        });
-
-        App.player.playback_stopped.connect (() => {
-            scroll_to_current.sensitive = false;
-        });
-
-        App.player.playback_started.connect (() => {
-            scroll_to_current.sensitive = true;
-        });
     }
 
     private void edit_media_clicked () {
@@ -138,6 +144,9 @@ public class Noise.MediaMenu : Gtk.Menu {
         switch (hint) {
             case ViewWrapper.Hint.DEVICE_AUDIO:
                 edit_media.visible = false;
+                if (generic_list.parent_wrapper.library.support_playlists () == false) {
+                    add_to_playlist.visible = false;
+                }
                 break;
             case ViewWrapper.Hint.READ_ONLY_PLAYLIST:
                 if (generic_list.playlist == App.player.queue_playlist) {
