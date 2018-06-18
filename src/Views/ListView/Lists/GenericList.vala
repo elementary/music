@@ -176,8 +176,6 @@ public abstract class Noise.GenericList : FastView {
         resort ();
     }
 
-    public abstract void update_sensitivities ();
-
     protected void set_fixed_column_width (Gtk.Widget treeview, Gtk.TreeViewColumn column, Gtk.CellRendererText renderer, string[] strings, int padding) {
         int max_width = 0;
 

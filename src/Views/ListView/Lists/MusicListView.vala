@@ -55,13 +55,6 @@ public class Noise.MusicListView : GenericList {
         media_action_menu.attach_to_widget (this, null);
 
         headers_clickable = playlist != App.player.queue_playlist; // You can't reorder the queue
-
-        update_sensitivities ();
-    }
-
-    public override void update_sensitivities () {
-        media_action_menu.show_all ();
-        media_action_menu.update_sensitivities ();
     }
 
     public void popup_media_menu (Gee.Collection<Media> selection) {

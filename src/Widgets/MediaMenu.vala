@@ -100,6 +100,38 @@ public class Noise.MediaMenu : Gtk.Menu {
 
         append (remove_media);
         append (import_to_library);
+        show_all ();
+
+        switch (hint) {
+            case ViewWrapper.Hint.ALBUM_LIST:
+            case ViewWrapper.Hint.MUSIC:
+                import_to_library.visible = false;
+                remove_media.label = _("Remove from Library");
+                break;
+            case ViewWrapper.Hint.DEVICE_AUDIO:
+                edit_media.visible = false;
+                remove_media.label = _("Remove from Device");
+                if (generic_list.parent_wrapper.library.support_playlists () == false) {
+                    add_to_playlist.visible = false;
+                }
+                break;
+            case ViewWrapper.Hint.PLAYLIST:
+                import_to_library.visible = false;
+                break;
+            case ViewWrapper.Hint.READ_ONLY_PLAYLIST:
+                import_to_library.visible = false;
+                if (generic_list.playlist == App.player.queue_playlist) {
+                    queue_media.visible = false;
+                    remove_media.label = _("Remove from Queue");
+                } else {
+                    remove_media.visible = false;
+                }
+                break;
+            default:
+                import_to_library.visible = false;
+                remove_media.visible = false;
+                break;
+        }
 
         file_browse.activate.connect (file_browse_clicked);
         import_to_library.activate.connect (import_to_library_clicked);
@@ -181,38 +213,5 @@ public class Noise.MediaMenu : Gtk.Menu {
                 } 
                 break;
           }
-    }
-
-    public void update_sensitivities () {
-        switch (hint) {
-            case ViewWrapper.Hint.ALBUM_LIST:
-            case ViewWrapper.Hint.MUSIC:
-                import_to_library.visible = false;
-                remove_media.label = _("Remove from Library");
-                break;
-            case ViewWrapper.Hint.DEVICE_AUDIO:
-                edit_media.visible = false;
-                remove_media.label = _("Remove from Device");
-                if (generic_list.parent_wrapper.library.support_playlists () == false) {
-                    add_to_playlist.visible = false;
-                }
-                break;
-            case ViewWrapper.Hint.PLAYLIST:
-                import_to_library.visible = false;
-                break;
-            case ViewWrapper.Hint.READ_ONLY_PLAYLIST:
-                import_to_library.visible = false;
-                if (generic_list.playlist == App.player.queue_playlist) {
-                    queue_media.visible = false;
-                    remove_media.label = _("Remove from Queue");
-                } else {
-                    remove_media.visible = false;
-                }
-                break;
-            default:
-                import_to_library.visible = false;
-                remove_media.visible = false;
-                break;
-        }
     }
 }
