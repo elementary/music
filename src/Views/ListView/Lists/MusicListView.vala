@@ -51,7 +51,7 @@ public class Noise.MusicListView : GenericList {
 
         button_release_event.connect (view_click_release);
 
-        media_action_menu = new MediaMenu (this, can_scroll_to_current, hint);
+        media_action_menu = new MediaMenu (this, can_scroll_to_current);
         media_action_menu.attach_to_widget (this, null);
 
         headers_clickable = playlist != App.player.queue_playlist; // You can't reorder the queue

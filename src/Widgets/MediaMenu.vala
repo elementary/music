@@ -36,11 +36,11 @@ public class Noise.MediaMenu : Gtk.Menu {
     private Gtk.MenuItem queue_media;
     private Gtk.MenuItem remove_media;
 
-    public MediaMenu (GenericList generic_list, bool can_scroll_to_current, ViewWrapper.Hint hint) {
+    public MediaMenu (GenericList generic_list, bool can_scroll_to_current) {
         Object (
             can_scroll_to_current: can_scroll_to_current,
             generic_list: generic_list,
-            hint: hint
+            hint: generic_list.hint
         );
     }
 
