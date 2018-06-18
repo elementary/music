@@ -105,6 +105,7 @@ public class Noise.MediaMenu : Gtk.Menu {
                 append (contractor_entry);
                 if (generic_list.playlist == App.player.queue_playlist) {
                     append (new Gtk.SeparatorMenuItem ());
+                    append (remove_media);
                     remove_media.label = _("Remove from Queue");
                 }
                 break;
