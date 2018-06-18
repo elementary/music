@@ -33,6 +33,7 @@ public class Noise.MediaMenu : Gtk.Menu {
 
     private Gtk.MenuItem edit_media;
     private Gtk.MenuItem queue_media;
+    private Gtk.MenuItem remove_media;
 
     public MediaMenu (GenericList generic_list, bool can_scroll_to_current, ViewWrapper.Hint hint) {
         Object (
@@ -48,6 +49,7 @@ public class Noise.MediaMenu : Gtk.Menu {
         rate_media = new Granite.Widgets.RatingMenuItem ();
         queue_media = new Gtk.MenuItem.with_label (C_("Action item (verb)", "Queue"));
         add_to_playlist = new Gtk.MenuItem.with_label (_("Add to Playlist"));
+        remove_media = new Gtk.MenuItem.with_label (_("Remove Song…"));
 
         if (can_scroll_to_current) {
             var scroll_to_current = new Gtk.MenuItem.with_label (_("Scroll to Current Song"));
@@ -90,9 +92,16 @@ public class Noise.MediaMenu : Gtk.Menu {
             append (add_to_playlist);
         }
 
+        if (hint != ViewWrapper.Hint.SMART_PLAYLIST && read_only == false) {
+            append (new Gtk.SeparatorMenuItem ());
+        }
+
+        append (remove_media);
+
         file_browse.activate.connect (file_browse_clicked);
         queue_media.activate.connect (queue_clicked);
         rate_media.activate.connect (rate_media_clicked);
+        remove_media.activate.connect (remove_media_clicked);
     }
 
     private void edit_media_clicked () {
@@ -131,7 +140,7 @@ public class Noise.MediaMenu : Gtk.Menu {
         App.player.queue_medias (generic_list.get_selected_medias ().read_only_view);
     }
 
-    protected void rate_media_clicked () {
+    private void rate_media_clicked () {
         int new_rating = rate_media.rating_value;
         var selected = generic_list.get_selected_medias ().read_only_view;
         foreach (Media media in selected) {
@@ -140,8 +149,45 @@ public class Noise.MediaMenu : Gtk.Menu {
         generic_list.parent_wrapper.library.update_medias (selected, false, true);
     }
 
+    private void remove_media_clicked () {
+        var selected_media = generic_list.get_selected_medias ().read_only_view;
+
+        switch (hint) {
+            case ViewWrapper.Hint.ALBUM_LIST:
+            case ViewWrapper.Hint.MUSIC:
+                var dialog = new RemoveFilesDialog (selected_media);
+                dialog.remove_media.connect ((delete_files) => {
+                    generic_list.parent_wrapper.library.remove_medias (selected_media, delete_files);
+                });
+                break;
+            case ViewWrapper.Hint.DEVICE_AUDIO:
+                var dvw = (DeviceViewWrapper) generic_list.parent_wrapper;
+                dvw.library.remove_medias (selected_media, true);
+                remove_media.label = _("Remove from Device");
+                break;
+            case ViewWrapper.Hint.PLAYLIST:
+                generic_list.playlist.remove_medias (selected_media);
+                break;
+            case ViewWrapper.Hint.READ_ONLY_PLAYLIST:
+                if (generic_list.playlist == App.player.queue_playlist) {
+                    generic_list.playlist.remove_medias (selected_media);
+                    remove_media.label = _("Remove from Queue");
+                } else {
+                    remove_media.visible = false;
+                }
+                break;
+            default:
+                remove_media.visible = false;
+                break;
+          }
+    }
+
     public void update_sensitivities () {
         switch (hint) {
+            case ViewWrapper.Hint.ALBUM_LIST:
+            case ViewWrapper.Hint.MUSIC:
+                remove_media.label = _("Remove from Library");
+                break;
             case ViewWrapper.Hint.DEVICE_AUDIO:
                 edit_media.visible = false;
                 if (generic_list.parent_wrapper.library.support_playlists () == false) {

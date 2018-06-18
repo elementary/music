@@ -36,7 +36,6 @@ public class Noise.MusicListView : GenericList {
 
     //for media list right click
     private MediaMenu media_action_menu;
-    Gtk.MenuItem media_remove;
     Gtk.MenuItem import_to_library;
 
     public MusicListView (ViewWrapper view_wrapper, TreeViewSetup tvs, bool can_scroll_to_current = true) {
@@ -54,9 +53,6 @@ public class Noise.MusicListView : GenericList {
 
         button_release_event.connect (view_click_release);
 
-        media_remove = new Gtk.MenuItem.with_label (_("Remove Song"));
-        media_remove.activate.connect (mediaRemoveClicked);
-
         import_to_library = new Gtk.MenuItem.with_label (_("Import to Library"));
         import_to_library.activate.connect (import_to_library_clicked);
 
@@ -65,11 +61,6 @@ public class Noise.MusicListView : GenericList {
         media_action_menu = new MediaMenu (this, can_scroll_to_current, hint);
         media_action_menu.attach_to_widget (this, null);
 
-        if (hint != ViewWrapper.Hint.SMART_PLAYLIST &&
-            hint != ViewWrapper.Hint.READ_ONLY_PLAYLIST) {
-                media_action_menu.append (new Gtk.SeparatorMenuItem ());
-        }
-        media_action_menu.append (media_remove);
         media_action_menu.append (import_to_library);
 
         headers_clickable = playlist != App.player.queue_playlist; // You can't reorder the queue
@@ -84,7 +75,6 @@ public class Noise.MusicListView : GenericList {
         switch (hint) {
             case ViewWrapper.Hint.ALBUM_LIST:
             case ViewWrapper.Hint.MUSIC:
-                media_remove.label = _("Remove from Library");
                 import_to_library.visible = false;
                 break;
             case ViewWrapper.Hint.PLAYLIST:
@@ -92,17 +82,8 @@ public class Noise.MusicListView : GenericList {
                 break;
             case ViewWrapper.Hint.READ_ONLY_PLAYLIST:
                 import_to_library.visible = false;
-                if (playlist == App.player.queue_playlist) {
-                    media_remove.label = _("Remove from Queue");
-                } else {
-                    media_remove.visible = false;
-                }
-                break;
-            case ViewWrapper.Hint.DEVICE_AUDIO:
-                media_remove.label = _("Remove from Device");
                 break;
             default:
-                media_remove.visible = false;
                 import_to_library.visible = false;
                 break;
         }
