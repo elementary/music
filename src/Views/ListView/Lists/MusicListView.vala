@@ -36,7 +36,6 @@ public class Noise.MusicListView : GenericList {
 
     //for media list right click
     private MediaMenu media_action_menu;
-    Gtk.MenuItem media_edit_media;
     Gtk.MenuItem media_file_browse;
     Gtk.MenuItem media_menu_contractor_entry; // make menu on fly
     Gtk.MenuItem media_menu_queue;
@@ -60,9 +59,6 @@ public class Noise.MusicListView : GenericList {
 
         button_release_event.connect (view_click_release);
 
-        media_edit_media = new Gtk.MenuItem.with_label (_("Edit Song Info"));
-        media_edit_media.activate.connect (media_edit_media_clicked);
-
         media_file_browse = new Gtk.MenuItem.with_label (_("Show in File Browser"));
         media_file_browse.activate.connect (media_file_browse_clicked);
 
@@ -82,13 +78,11 @@ public class Noise.MusicListView : GenericList {
         media_rate_media = new Granite.Widgets.RatingMenuItem ();
         media_rate_media.activate.connect (media_rate_media_clicked);
 
-        media_action_menu = new MediaMenu (this, can_scroll_to_current);
+        var read_only = hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST;
+
+        media_action_menu = new MediaMenu (this, can_scroll_to_current, hint);
         media_action_menu.attach_to_widget (this, null);
 
-        var read_only = hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST;
-        if (read_only == false) {
-            media_action_menu.append (media_edit_media);
-        }
         media_action_menu.append (media_file_browse);
         media_action_menu.append (media_menu_contractor_entry);
         if (read_only == false) {
@@ -113,6 +107,7 @@ public class Noise.MusicListView : GenericList {
 
     public override void update_sensitivities () {
         media_action_menu.show_all ();
+        media_action_menu.update_sensitivities ();
 
         switch (hint) {
             case ViewWrapper.Hint.ALBUM_LIST:
@@ -133,7 +128,6 @@ public class Noise.MusicListView : GenericList {
                 }
                 break;
             case ViewWrapper.Hint.DEVICE_AUDIO:
-                media_edit_media.visible = false;
                 media_remove.label = _("Remove from Device");
                 if (parent_wrapper.library.support_playlists () == false) {
                     media_menu_add_to_playlist.visible = false;
@@ -311,26 +305,6 @@ public class Noise.MusicListView : GenericList {
             get_selection ().unselect_all ();
             get_selection ().select_path (path);
             return false;
-        }
-    }
-
-    /** media menu popup clicks **/
-    void media_edit_media_clicked () {
-        var to_edit_med = new Gee.TreeSet<Media> ();
-        to_edit_med.add_all (get_selected_medias ());
-
-        if (to_edit_med.is_empty)
-            return;
-
-        Media first_media = to_edit_med.first ();
-        string music_folder_uri = File.new_for_path (Settings.Main.get_default ().music_folder).get_uri ();
-        if (to_edit_med.size == 1 && !first_media.file.query_exists () && first_media.uri.has_prefix (music_folder_uri)) {
-            first_media.unique_status_image = new ThemedIcon ("process-error-symbolic");
-            var fnfd = new FileNotFoundDialog (to_edit_med);
-            fnfd.present ();
-        } else {
-            var se = new MediaEditor (to_edit_med);
-            se.show_all ();
         }
     }
 

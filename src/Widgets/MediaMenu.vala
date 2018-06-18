@@ -25,12 +25,16 @@
 
 public class Noise.MediaMenu : Gtk.Menu {
     public bool can_scroll_to_current { get; construct; }
+    public ViewWrapper.Hint hint { get; construct ;}
     public GenericList generic_list { get; construct; }
 
-    public MediaMenu (GenericList generic_list, bool can_scroll_to_current) {
+    private Gtk.MenuItem edit_media;
+
+    public MediaMenu (GenericList generic_list, bool can_scroll_to_current, ViewWrapper.Hint hint) {
         Object (
             can_scroll_to_current: can_scroll_to_current,
-            generic_list: generic_list
+            generic_list: generic_list,
+            hint: hint
         );
     }
 
@@ -38,10 +42,19 @@ public class Noise.MediaMenu : Gtk.Menu {
         var scroll_to_current = new Gtk.MenuItem.with_label (_("Scroll to Current Song"));
         scroll_to_current.sensitive = false;
 
+        edit_media = new Gtk.MenuItem.with_label (_("Edit Song Info…"));
+
         if (can_scroll_to_current) {
             append (scroll_to_current);
             append (new Gtk.SeparatorMenuItem ());
         }
+
+        var read_only = hint == ViewWrapper.Hint.READ_ONLY_PLAYLIST;
+        if (read_only == false) {
+            append (edit_media);
+        }
+
+        edit_media.activate.connect (edit_media_clicked);
 
         scroll_to_current.activate.connect (() => {
             generic_list.scroll_to_current_media (true);
@@ -54,5 +67,35 @@ public class Noise.MediaMenu : Gtk.Menu {
         App.player.playback_started.connect (() => {
             scroll_to_current.sensitive = true;
         });
+    }
+
+    private void edit_media_clicked () {
+        var to_edit_med = new Gee.TreeSet<Media> ();
+        to_edit_med.add_all (generic_list.get_selected_medias ());
+
+        if (to_edit_med.is_empty) {
+            return;
+        }
+
+        var first_media = to_edit_med.first ();
+        string music_folder_uri = File.new_for_path (Settings.Main.get_default ().music_folder).get_uri ();
+        if (to_edit_med.size == 1 && !first_media.file.query_exists () && first_media.uri.has_prefix (music_folder_uri)) {
+            first_media.unique_status_image = new ThemedIcon ("process-error-symbolic");
+            var fnfd = new FileNotFoundDialog (to_edit_med);
+            fnfd.present ();
+        } else {
+            var media_editor = new MediaEditor (to_edit_med);
+            media_editor.show_all ();
+        }
+    }
+
+    public void update_sensitivities () {
+        switch (hint) {
+            case ViewWrapper.Hint.DEVICE_AUDIO:
+                edit_media.visible = false;
+                break;
+            default:
+                break;
+        }
     }
 }

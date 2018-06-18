@@ -331,7 +331,7 @@ public abstract class Noise.GenericList : FastView {
         return res;
     }
 
-    protected Gee.Collection<Media> get_selected_medias () {
+    public Gee.Collection<Media> get_selected_medias () {
         var rv = new Gee.ArrayQueue<Media> ();
         Gtk.TreeModel temp;
 
