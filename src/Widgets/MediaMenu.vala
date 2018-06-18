@@ -27,6 +27,7 @@ public class Noise.MediaMenu : Gtk.Menu {
     public bool can_scroll_to_current { get; construct; }
     public ViewWrapper.Hint hint { get; construct ;}
     public GenericList generic_list { get; construct; }
+    public Gtk.MenuItem contractor_entry;
 
     private Gtk.MenuItem edit_media;
 
@@ -43,8 +44,8 @@ public class Noise.MediaMenu : Gtk.Menu {
         scroll_to_current.sensitive = false;
 
         edit_media = new Gtk.MenuItem.with_label (_("Edit Song Info…"));
-
         var file_browse = new Gtk.MenuItem.with_label (_("Show in File Browser…"));
+        contractor_entry = new Gtk.MenuItem.with_label (_("Other Actions"));
 
         if (can_scroll_to_current) {
             append (scroll_to_current);
@@ -57,6 +58,7 @@ public class Noise.MediaMenu : Gtk.Menu {
         }
 
         append (file_browse);
+        append (contractor_entry);
 
         edit_media.activate.connect (edit_media_clicked);
         file_browse.activate.connect (file_browse_clicked);

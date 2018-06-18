@@ -36,7 +36,6 @@ public class Noise.MusicListView : GenericList {
 
     //for media list right click
     private MediaMenu media_action_menu;
-    Gtk.MenuItem media_menu_contractor_entry; // make menu on fly
     Gtk.MenuItem media_menu_queue;
     Gtk.MenuItem media_menu_add_to_playlist; // make menu on fly
     Granite.Widgets.RatingMenuItem media_rate_media;
@@ -58,8 +57,6 @@ public class Noise.MusicListView : GenericList {
 
         button_release_event.connect (view_click_release);
 
-        media_menu_contractor_entry = new Gtk.MenuItem.with_label (_("Other actions"));
-
         media_menu_queue = new Gtk.MenuItem.with_label (C_("Action item (verb)", "Queue"));
         media_menu_queue.activate.connect (media_menu_queue_clicked);
 
@@ -79,7 +76,6 @@ public class Noise.MusicListView : GenericList {
         media_action_menu = new MediaMenu (this, can_scroll_to_current, hint);
         media_action_menu.attach_to_widget (this, null);
 
-        media_action_menu.append (media_menu_contractor_entry);
         if (read_only == false) {
             media_action_menu.append (media_rate_media);
         }
@@ -196,7 +192,7 @@ public class Noise.MusicListView : GenericList {
 
         //remove the previous "Other Actions" submenu and create a new one
         var contractorSubMenu = new Gtk.Menu ();
-        media_menu_contractor_entry.submenu = contractorSubMenu;
+        media_action_menu.contractor_entry.submenu = contractorSubMenu;
 
         try {
             var files = new Gee.HashSet<File> (); //for automatic deduplication
@@ -223,11 +219,11 @@ public class Noise.MusicListView : GenericList {
                 contractorSubMenu.append (menu_item);
             }
 
-            media_menu_contractor_entry.sensitive = contractorSubMenu.get_children ().length () > 0;
+            media_action_menu.contractor_entry.sensitive = contractorSubMenu.get_children ().length () > 0;
             contractorSubMenu.show_all ();
         } catch (Error err) {
             warning ("Failed to obtain Contractor actions: %s", err.message);
-            media_menu_contractor_entry.sensitive = false;
+            media_action_menu.contractor_entry.sensitive = false;
         }
 
         media_action_menu.popup (null, null, null, 3, Gtk.get_current_event_time ());
