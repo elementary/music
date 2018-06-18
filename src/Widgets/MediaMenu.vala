@@ -81,7 +81,9 @@ public class Noise.MediaMenu : Gtk.Menu {
                 append (add_to_playlist);
                 append (new Gtk.SeparatorMenuItem ());
                 append (remove_media);
-                remove_media.label = _("Remove from Library…");
+                if (hint == ViewWrapper.Hint.MUSIC) {
+                    remove_media.label = _("Remove from Library…");
+                }
                 break;
             case ViewWrapper.Hint.DEVICE_AUDIO:
                 append (scroll_to_current);
