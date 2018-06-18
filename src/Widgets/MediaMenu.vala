@@ -44,6 +44,8 @@ public class Noise.MediaMenu : Gtk.Menu {
 
         edit_media = new Gtk.MenuItem.with_label (_("Edit Song Info…"));
 
+        var file_browse = new Gtk.MenuItem.with_label (_("Show in File Browser…"));
+
         if (can_scroll_to_current) {
             append (scroll_to_current);
             append (new Gtk.SeparatorMenuItem ());
@@ -54,7 +56,10 @@ public class Noise.MediaMenu : Gtk.Menu {
             append (edit_media);
         }
 
+        append (file_browse);
+
         edit_media.activate.connect (edit_media_clicked);
+        file_browse.activate.connect (file_browse_clicked);
 
         scroll_to_current.activate.connect (() => {
             generic_list.scroll_to_current_media (true);
@@ -86,6 +91,18 @@ public class Noise.MediaMenu : Gtk.Menu {
         } else {
             var media_editor = new MediaEditor (to_edit_med);
             media_editor.show_all ();
+        }
+    }
+
+    private void file_browse_clicked () {
+        foreach (Media media in generic_list.get_selected_medias ()) {
+            try {
+                Gtk.show_uri (null, media.file.get_parent ().get_uri (), Gdk.CURRENT_TIME);
+            } catch (Error err) {
+                debug ("Could not browse media %s: %s\n", media.uri, err.message);
+            }
+
+            return;
         }
     }
 

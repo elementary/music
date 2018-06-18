@@ -36,7 +36,6 @@ public class Noise.MusicListView : GenericList {
 
     //for media list right click
     private MediaMenu media_action_menu;
-    Gtk.MenuItem media_file_browse;
     Gtk.MenuItem media_menu_contractor_entry; // make menu on fly
     Gtk.MenuItem media_menu_queue;
     Gtk.MenuItem media_menu_add_to_playlist; // make menu on fly
@@ -59,9 +58,6 @@ public class Noise.MusicListView : GenericList {
 
         button_release_event.connect (view_click_release);
 
-        media_file_browse = new Gtk.MenuItem.with_label (_("Show in File Browser"));
-        media_file_browse.activate.connect (media_file_browse_clicked);
-
         media_menu_contractor_entry = new Gtk.MenuItem.with_label (_("Other actions"));
 
         media_menu_queue = new Gtk.MenuItem.with_label (C_("Action item (verb)", "Queue"));
@@ -83,7 +79,6 @@ public class Noise.MusicListView : GenericList {
         media_action_menu = new MediaMenu (this, can_scroll_to_current, hint);
         media_action_menu.attach_to_widget (this, null);
 
-        media_action_menu.append (media_file_browse);
         media_action_menu.append (media_menu_contractor_entry);
         if (read_only == false) {
             media_action_menu.append (media_rate_media);
@@ -305,18 +300,6 @@ public class Noise.MusicListView : GenericList {
             get_selection ().unselect_all ();
             get_selection ().select_path (path);
             return false;
-        }
-    }
-
-    protected void media_file_browse_clicked () {
-        foreach (Media m in get_selected_medias ()) {
-            try {
-                Gtk.show_uri (null, m.file.get_parent ().get_uri (), Gdk.CURRENT_TIME);
-            } catch (Error err) {
-                debug ("Could not browse media %s: %s\n", m.uri, err.message);
-            }
-
-            return;
         }
     }
 
