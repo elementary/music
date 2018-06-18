@@ -32,7 +32,7 @@
  */
 
 public class Noise.MusicListView : GenericList {
-    private MediaMenu media_action_menu;
+    public MediaMenu media_action_menu { get; private set; }
 
     public MusicListView (ViewWrapper view_wrapper, TreeViewSetup tvs) {
         Object (
@@ -54,105 +54,6 @@ public class Noise.MusicListView : GenericList {
         headers_clickable = playlist != App.player.queue_playlist; // You can't reorder the queue
     }
 
-    public void popup_media_menu (Gee.Collection<Media> selection) {
-        var media_menu_new_playlist = new Gtk.MenuItem.with_label (_("New Playlist…"));
-        media_menu_new_playlist.activate.connect (media_menu_new_playlist_clicked);
-
-        var add_to_playlist_menu = new Gtk.Menu ();
-        add_to_playlist_menu.append (media_menu_new_playlist);
-
-        if (parent_wrapper.library.support_playlists () == false) {
-            media_menu_new_playlist.visible = false;
-        }
-        foreach (var playlist in parent_wrapper.library.get_playlists ()) {
-            // Don't include this playlist in the list of available options
-            if (playlist == this.playlist)
-                continue;
-
-            if (playlist.read_only == true)
-                continue;
-
-            var playlist_item = new Gtk.MenuItem.with_label (playlist.name);
-            add_to_playlist_menu.append (playlist_item);
-
-            playlist_item.activate.connect (() => {
-                playlist.add_medias (selection.read_only_view);
-            });
-        }
-        add_to_playlist_menu.show_all ();
-        media_action_menu.add_to_playlist.submenu = add_to_playlist_menu;
-
-        // if all medias are downloaded already, desensitize.
-        // if half and half, change text to 'Download %external of %total'
-        int temporary_count = 0;
-        int total_count = 0;
-        foreach (var m in selection) {
-            if (m.isTemporary)
-                temporary_count++;
-            total_count++;
-        }
-
-        if (temporary_count < 1) {
-            media_action_menu.import_to_library.sensitive = false;
-        } else {
-            media_action_menu.import_to_library.sensitive = true;
-            if (temporary_count != total_count)
-                media_action_menu.import_to_library.label = _("Import %i of %i selected songs").printf ((int)temporary_count, (int)total_count);
-            else
-                media_action_menu.import_to_library.label = ngettext ("Import %i song", "Import %i songs", temporary_count).printf ((int)temporary_count);
-        }
-
-        int set_rating = -1;
-        foreach (Media m in selection) {
-            if (set_rating == -1) {
-                set_rating = (int) m.rating;
-            } else if (set_rating != m.rating) {
-                set_rating = 0;
-                break;
-            }
-        }
-
-        media_action_menu.rate_media.rating_value = set_rating;
-
-        //remove the previous "Other Actions" submenu and create a new one
-        var contractorSubMenu = new Gtk.Menu ();
-        media_action_menu.contractor_entry.submenu = contractorSubMenu;
-
-        try {
-            var files = new Gee.HashSet<File> (); //for automatic deduplication
-            debug ("Number of selected medias obtained by MusicListView class: %u\n", selection.size);
-            foreach (var media in selection) {
-                if (media.file.query_exists ()) {
-                    files.add (media.file);
-                    //if the file was marked nonexistent, update its status
-                    if (media.location_unknown && media.unique_status_image != null) {
-                        media.unique_status_image = null;
-                        media.location_unknown = false;
-                    }
-                } else {
-                    warning ("File %s does not exist, ignoring it", media.uri);
-                    //indicate that the file doesn't exist in the UI
-                    media.unique_status_image = new ThemedIcon ("process-error-symbolic");
-                    media.location_unknown = true;
-                }
-            }
-
-            var contracts = Granite.Services.ContractorProxy.get_contracts_for_files (files.to_array ());
-            foreach (var contract in contracts) {
-                var menu_item = new ContractMenuItem (contract, selection);
-                contractorSubMenu.append (menu_item);
-            }
-
-            media_action_menu.contractor_entry.sensitive = contractorSubMenu.get_children ().length () > 0;
-            contractorSubMenu.show_all ();
-        } catch (Error err) {
-            warning ("Failed to obtain Contractor actions: %s", err.message);
-            media_action_menu.contractor_entry.sensitive = false;
-        }
-
-        media_action_menu.popup (null, null, null, 3, Gtk.get_current_event_time ());
-    }
-
     public override bool button_press_event (Gdk.EventButton event) {
         if (event.window != get_bin_window ())
             return base.button_press_event (event);
@@ -162,7 +63,7 @@ public class Noise.MusicListView : GenericList {
             base.button_press_event (event);
 
         if (event.button == Gdk.BUTTON_SECONDARY) {
-            popup_media_menu (get_selected_medias ());
+            media_action_menu.popup_media_menu (get_selected_medias ());
             return true;
         }
 
@@ -221,13 +122,6 @@ public class Noise.MusicListView : GenericList {
             get_selection ().select_path (path);
             return false;
         }
-    }
-
-    protected virtual void media_menu_new_playlist_clicked () {
-        var p = new StaticPlaylist ();
-        p.add_medias (get_selected_medias ().read_only_view);
-        p.name = PlaylistsUtils.get_new_playlist_name (parent_wrapper.library.get_playlists ());
-        parent_wrapper.library.add_playlist (p);
     }
 
     protected override void mediaRemoveClicked () {

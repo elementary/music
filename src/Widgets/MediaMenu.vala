@@ -26,13 +26,13 @@
 public class Noise.MediaMenu : Gtk.Menu {
     public ViewWrapper.Hint hint { get; construct ;}
     public GenericList generic_list { get; construct; }
-    public Gtk.MenuItem add_to_playlist { get; private set; }
-    public Gtk.MenuItem contractor_entry { get; private set; }
-    public Gtk.MenuItem import_to_library;
-    public Granite.Widgets.RatingMenuItem rate_media { get; private set; }
 
+    private Gtk.MenuItem add_to_playlist;
+    private Gtk.MenuItem contractor_entry;
     private Gtk.MenuItem edit_media;
+    private Gtk.MenuItem import_to_library;
     private Gtk.MenuItem queue_media;
+    private Granite.Widgets.RatingMenuItem rate_media;
     private Gtk.MenuItem remove_media;
 
     public MediaMenu (GenericList generic_list) {
@@ -57,7 +57,6 @@ public class Noise.MediaMenu : Gtk.Menu {
 
         switch (hint) {
             case ViewWrapper.Hint.ALBUM_LIST:
-            case ViewWrapper.Hint.PLAYLIST:
                 append (edit_media);
                 append (file_browse);
                 append (contractor_entry);
@@ -70,6 +69,7 @@ public class Noise.MediaMenu : Gtk.Menu {
                 remove_media.label = _("Remove from Library…");
                 break;
             case ViewWrapper.Hint.MUSIC:
+            case ViewWrapper.Hint.PLAYLIST:
                 append (scroll_to_current);
                 append (new Gtk.SeparatorMenuItem ());
                 append (edit_media);
@@ -141,6 +141,105 @@ public class Noise.MediaMenu : Gtk.Menu {
         remove_media.activate.connect (remove_media_clicked);
     }
 
+    public void popup_media_menu (Gee.Collection<Media> selection) {
+        var media_menu_new_playlist = new Gtk.MenuItem.with_label (_("New Playlist…"));
+        media_menu_new_playlist.activate.connect (media_menu_new_playlist_clicked);
+
+        var add_to_playlist_menu = new Gtk.Menu ();
+        add_to_playlist_menu.append (media_menu_new_playlist);
+
+        if (generic_list.parent_wrapper.library.support_playlists () == false) {
+            media_menu_new_playlist.visible = false;
+        }
+        foreach (var playlist in generic_list.parent_wrapper.library.get_playlists ()) {
+            // Don't include this playlist in the list of available options
+            if (playlist == generic_list.playlist)
+                continue;
+
+            if (playlist.read_only == true)
+                continue;
+
+            var playlist_item = new Gtk.MenuItem.with_label (playlist.name);
+            add_to_playlist_menu.append (playlist_item);
+
+            playlist_item.activate.connect (() => {
+                playlist.add_medias (selection.read_only_view);
+            });
+        }
+        add_to_playlist_menu.show_all ();
+        add_to_playlist.submenu = add_to_playlist_menu;
+
+        // if all medias are downloaded already, desensitize.
+        // if half and half, change text to 'Download %external of %total'
+        int temporary_count = 0;
+        int total_count = 0;
+        foreach (var m in selection) {
+            if (m.isTemporary)
+                temporary_count++;
+            total_count++;
+        }
+
+        if (temporary_count < 1) {
+            import_to_library.sensitive = false;
+        } else {
+            import_to_library.sensitive = true;
+            if (temporary_count != total_count)
+                import_to_library.label = _("Import %i of %i selected songs").printf ((int)temporary_count, (int)total_count);
+            else
+                import_to_library.label = ngettext ("Import %i song", "Import %i songs", temporary_count).printf ((int)temporary_count);
+        }
+
+        int set_rating = -1;
+        foreach (Media m in selection) {
+            if (set_rating == -1) {
+                set_rating = (int) m.rating;
+            } else if (set_rating != m.rating) {
+                set_rating = 0;
+                break;
+            }
+        }
+
+        rate_media.rating_value = set_rating;
+
+        //remove the previous "Other Actions" submenu and create a new one
+        var contractorSubMenu = new Gtk.Menu ();
+        contractor_entry.submenu = contractorSubMenu;
+
+        try {
+            var files = new Gee.HashSet<File> (); //for automatic deduplication
+            debug ("Number of selected medias obtained by MusicListView class: %u\n", selection.size);
+            foreach (var media in selection) {
+                if (media.file.query_exists ()) {
+                    files.add (media.file);
+                    //if the file was marked nonexistent, update its status
+                    if (media.location_unknown && media.unique_status_image != null) {
+                        media.unique_status_image = null;
+                        media.location_unknown = false;
+                    }
+                } else {
+                    warning ("File %s does not exist, ignoring it", media.uri);
+                    //indicate that the file doesn't exist in the UI
+                    media.unique_status_image = new ThemedIcon ("process-error-symbolic");
+                    media.location_unknown = true;
+                }
+            }
+
+            var contracts = Granite.Services.ContractorProxy.get_contracts_for_files (files.to_array ());
+            foreach (var contract in contracts) {
+                var menu_item = new ContractMenuItem (contract, selection);
+                contractorSubMenu.append (menu_item);
+            }
+
+            contractor_entry.sensitive = contractorSubMenu.get_children ().length () > 0;
+            contractorSubMenu.show_all ();
+        } catch (Error err) {
+            warning ("Failed to obtain Contractor actions: %s", err.message);
+            contractor_entry.sensitive = false;
+        }
+
+        popup (null, null, null, 3, Gtk.get_current_event_time ());
+    }
+
     private void edit_media_clicked () {
         var to_edit_med = new Gee.TreeSet<Media> ();
         to_edit_med.add_all (generic_list.get_selected_medias ());
@@ -175,6 +274,13 @@ public class Noise.MediaMenu : Gtk.Menu {
 
     private void import_to_library_clicked () {
         generic_list.import_requested (generic_list.get_selected_medias ().read_only_view);
+    }
+
+    private void media_menu_new_playlist_clicked () {
+        var p = new StaticPlaylist ();
+        p.add_medias (generic_list.get_selected_medias ().read_only_view);
+        p.name = PlaylistsUtils.get_new_playlist_name (generic_list.parent_wrapper.library.get_playlists ());
+        generic_list.parent_wrapper.library.add_playlist (p);
     }
 
     private void queue_clicked () {
