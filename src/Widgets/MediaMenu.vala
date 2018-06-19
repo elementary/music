@@ -98,12 +98,6 @@ public class Noise.MediaMenu : Gtk.Menu {
                 append (import_to_library);
                 remove_media.label = _("Remove from Device");
                 break;
-            case ViewWrapper.Hint.READ_ONLY_PLAYLIST:
-                append (scroll_to_current);
-                append (new Gtk.SeparatorMenuItem ());
-                append (file_browse);
-                append (contractor_entry);
-                break;
             case ViewWrapper.Hint.SMART_PLAYLIST:
                 append (scroll_to_current);
                 append (new Gtk.SeparatorMenuItem ());
@@ -123,6 +117,12 @@ public class Noise.MediaMenu : Gtk.Menu {
                 append (new Gtk.SeparatorMenuItem ());
                 append (remove_media);
                 remove_media.label = _("Remove from Queue");
+            case ViewWrapper.Hint.READ_ONLY_PLAYLIST:
+            default:
+                append (scroll_to_current);
+                append (new Gtk.SeparatorMenuItem ());
+                append (file_browse);
+                append (contractor_entry);
                 break;
         }
 
