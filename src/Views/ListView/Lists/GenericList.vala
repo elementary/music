@@ -176,8 +176,6 @@ public abstract class Noise.GenericList : FastView {
         resort ();
     }
 
-    public abstract void update_sensitivities ();
-
     protected void set_fixed_column_width (Gtk.Widget treeview, Gtk.TreeViewColumn column, Gtk.CellRendererText renderer, string[] strings, int padding) {
         int max_width = 0;
 
@@ -331,7 +329,7 @@ public abstract class Noise.GenericList : FastView {
         return res;
     }
 
-    protected Gee.Collection<Media> get_selected_medias () {
+    public Gee.Collection<Media> get_selected_medias () {
         var rv = new Gee.ArrayQueue<Media> ();
         Gtk.TreeModel temp;
 
@@ -341,10 +339,6 @@ public abstract class Noise.GenericList : FastView {
         }
 
         return rv;
-    }
-
-    protected void media_scroll_to_current_requested () {
-        scroll_to_current_media (true);
     }
 
     public void scroll_to_current_media (bool unfilter_if_not_found) {

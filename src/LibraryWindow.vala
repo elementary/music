@@ -158,12 +158,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
     }
 
-    private void change_view (Widgets.ViewSelector.Mode mode) {
-        if (view_selector.get_sensitive ()) {
-            view_selector.selected = mode;
-        }
-    }
-
     public override bool key_press_event (Gdk.EventKey event) {
         // when typing in an editable widget, such as Gtk.Entry, don't block the event
         var focus_widget = get_focus ();
@@ -1033,15 +1027,15 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     private void action_view_albums () {
-        change_view (Widgets.ViewSelector.Mode.GRID);
+        view_selector.selected = Widgets.ViewSelector.Mode.GRID;
     }
 
     private void action_view_columns () {
-        change_view (Widgets.ViewSelector.Mode.COLUMN);
+        view_selector.selected = Widgets.ViewSelector.Mode.COLUMN;
     }
 
     private void action_view_list () {
-        change_view (Widgets.ViewSelector.Mode.LIST);
+        view_selector.selected = Widgets.ViewSelector.Mode.LIST;
     }
 
     private void editPreferencesClick () {

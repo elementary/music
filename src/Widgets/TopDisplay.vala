@@ -87,7 +87,7 @@ public class Noise.TopDisplay : Gtk.Stack {
                 if (App.player.current_media != null) {
                     current.add (App.player.current_media);
                 }
-                list_view.popup_media_menu (current);
+                list_view.media_action_menu.popup_media_menu (current);
                 return true;
             }
 
