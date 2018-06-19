@@ -62,21 +62,21 @@ public class Noise.MusicListView : GenericList {
     }
 
     private void add_column_chooser_menu_item (Gtk.TreeViewColumn tvc, ListColumn type) {
-        if (type == ListColumn.TITLE || type == ListColumn.ICON)
+        if (type == ListColumn.TITLE || type == ListColumn.ICON) {
             return;
+        }
 
-        if (hint == ViewWrapper.Hint.MUSIC && type == ListColumn.NUMBER)
+        if (hint == ViewWrapper.Hint.MUSIC && type == ListColumn.NUMBER) {
             return;
+        }
 
         if (column_chooser_menu == null) {
-            column_chooser_menu = new Gtk.Menu ();
-
             autosize_menu_item = new Gtk.MenuItem.with_label (_("Autosize Columns"));
             autosize_menu_item.activate.connect (columns_autosize);
 
+            column_chooser_menu = new Gtk.Menu ();
             column_chooser_menu.append (autosize_menu_item);
             column_chooser_menu.append (new Gtk.SeparatorMenuItem ());
-
             column_chooser_menu.show_all ();
         }
 
@@ -218,8 +218,9 @@ public class Noise.MusicListView : GenericList {
 
     private void reset_column_widths () {
         foreach (var column in get_columns ()) {
-            if (column.min_width > 0)
+            if (column.min_width > 0) {
                 column.fixed_width = column.min_width;
+            }
         }
     }
 
