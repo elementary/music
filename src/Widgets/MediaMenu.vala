@@ -151,16 +151,13 @@ public class Noise.MediaMenu : Gtk.Menu {
         var add_to_playlist_menu = new Gtk.Menu ();
         add_to_playlist_menu.append (media_menu_new_playlist);
 
-        if (generic_list.parent_wrapper.library.support_playlists () == false) {
-            media_menu_new_playlist.visible = false;
-        }
+        media_menu_new_playlist.visible = generic_list.parent_wrapper.library.support_playlists ();
+
         foreach (var playlist in generic_list.parent_wrapper.library.get_playlists ()) {
             // Don't include this playlist in the list of available options
-            if (playlist == generic_list.playlist)
+            if (playlist == generic_list.playlist || playlist.read_only == true) {
                 continue;
-
-            if (playlist.read_only == true)
-                continue;
+            }
 
             var playlist_item = new Gtk.MenuItem.with_label (playlist.name);
             add_to_playlist_menu.append (playlist_item);
@@ -177,8 +174,9 @@ public class Noise.MediaMenu : Gtk.Menu {
         int temporary_count = 0;
         int total_count = 0;
         foreach (var m in selection) {
-            if (m.isTemporary)
+            if (m.isTemporary) {
                 temporary_count++;
+            }
             total_count++;
         }
 
@@ -186,10 +184,11 @@ public class Noise.MediaMenu : Gtk.Menu {
             import_to_library.sensitive = false;
         } else {
             import_to_library.sensitive = true;
-            if (temporary_count != total_count)
+            if (temporary_count != total_count) {
                 import_to_library.label = _("Import %i of %i selected songs").printf ((int)temporary_count, (int)total_count);
-            else
+            } else {
                 import_to_library.label = ngettext ("Import %i song", "Import %i songs", temporary_count).printf ((int)temporary_count);
+            }
         }
 
         int set_rating = -1;
@@ -205,8 +204,8 @@ public class Noise.MediaMenu : Gtk.Menu {
         rate_media.rating_value = set_rating;
 
         //remove the previous "Other Actions" submenu and create a new one
-        var contractorSubMenu = new Gtk.Menu ();
-        contractor_entry.submenu = contractorSubMenu;
+        var contractor_sub_menu = new Gtk.Menu ();
+        contractor_entry.submenu = contractor_sub_menu;
 
         try {
             var files = new Gee.HashSet<File> (); //for automatic deduplication
@@ -230,11 +229,11 @@ public class Noise.MediaMenu : Gtk.Menu {
             var contracts = Granite.Services.ContractorProxy.get_contracts_for_files (files.to_array ());
             foreach (var contract in contracts) {
                 var menu_item = new ContractMenuItem (contract, selection);
-                contractorSubMenu.append (menu_item);
+                contractor_sub_menu.append (menu_item);
             }
 
-            contractor_entry.sensitive = contractorSubMenu.get_children ().length () > 0;
-            contractorSubMenu.show_all ();
+            contractor_entry.sensitive = contractor_sub_menu.get_children ().length () > 0;
+            contractor_sub_menu.show_all ();
         } catch (Error err) {
             warning ("Failed to obtain Contractor actions: %s", err.message);
             contractor_entry.sensitive = false;
