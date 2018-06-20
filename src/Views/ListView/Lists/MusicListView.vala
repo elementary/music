@@ -34,6 +34,10 @@
 public class Noise.MusicListView : GenericList {
     public MediaMenu media_action_menu { get; private set; }
 
+    //for header column chooser
+    protected Gtk.Menu column_chooser_menu;
+    private Gtk.MenuItem autosize_menu_item;
+
     public MusicListView (ViewWrapper view_wrapper, TreeViewSetup tvs) {
         Object (
             parent_wrapper: view_wrapper,
@@ -42,6 +46,9 @@ public class Noise.MusicListView : GenericList {
     }
 
     construct {
+        set_headers_clickable (true);
+        headers_visible = true;
+
         // This is vital
         set_value_func (view_value_func);
         set_compare_func (view_compare_func);
@@ -52,6 +59,39 @@ public class Noise.MusicListView : GenericList {
         media_action_menu.attach_to_widget (this, null);
 
         headers_clickable = playlist != App.player.queue_playlist; // You can't reorder the queue
+    }
+
+    private void add_column_chooser_menu_item (Gtk.TreeViewColumn tvc, ListColumn type) {
+        if (type == ListColumn.TITLE || type == ListColumn.ICON) {
+            return;
+        }
+
+        if (hint == ViewWrapper.Hint.MUSIC && type == ListColumn.NUMBER) {
+            return;
+        }
+
+        if (column_chooser_menu == null) {
+            autosize_menu_item = new Gtk.MenuItem.with_label (_("Autosize Columns"));
+            autosize_menu_item.activate.connect (columns_autosize);
+
+            column_chooser_menu = new Gtk.Menu ();
+            column_chooser_menu.append (autosize_menu_item);
+            column_chooser_menu.append (new Gtk.SeparatorMenuItem ());
+            column_chooser_menu.show_all ();
+        }
+
+        var menu_item = new Gtk.CheckMenuItem.with_label (tvc.title);
+        menu_item.active = tvc.visible;
+
+        column_chooser_menu.append (menu_item);
+        column_chooser_menu.show_all ();
+
+        // Show/hide the current column
+        menu_item.toggled.connect (() => {
+            tvc.visible = menu_item.active;
+
+            columns_autosize ();
+        });
     }
 
     public override bool button_press_event (Gdk.EventButton event) {
@@ -100,6 +140,11 @@ public class Noise.MusicListView : GenericList {
         return true;
     }
 
+    private new void columns_autosize () {
+        reset_column_widths ();
+        base.columns_autosize ();
+    }
+
     /* button_release_event */
     private bool view_click_release (Gtk.Widget sender, Gdk.EventButton event) {
         /* if we were dragging, then set dragging to false */
@@ -122,6 +167,15 @@ public class Noise.MusicListView : GenericList {
             get_selection ().select_path (path);
             return false;
         }
+    }
+
+    private bool view_header_click (Gdk.EventButton e, bool is_selector_col) {
+        if (e.button == Gdk.BUTTON_SECONDARY || is_selector_col) {
+            column_chooser_menu.popup (null, null, null, Gdk.BUTTON_SECONDARY, e.time);
+            return true;
+        }
+
+        return false;
     }
 
     protected override void mediaRemoveClicked () {
@@ -158,6 +212,14 @@ public class Noise.MusicListView : GenericList {
 
         if (uris != null)
             selection_data.set_uris (uris);
+    }
+
+    private void reset_column_widths () {
+        foreach (var column in get_columns ()) {
+            if (column.min_width > 0) {
+                column.fixed_width = column.min_width;
+            }
+        }
     }
 
     /**
