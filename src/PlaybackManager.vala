@@ -77,17 +77,6 @@ public class Noise.PlaybackManager : Object {
         }
     }
 
-    private bool is_shuffled {
-        get {
-            return Settings.Main.get_default ().shuffle_mode == Noise.Settings.Shuffle.ALL;
-        }
-        set {
-            Settings.Main.get_default ().shuffle_mode = value
-                ? Noise.Settings.Shuffle.ALL
-                : Noise.Settings.Shuffle.OFF;
-        }
-    }
-
     public HistoryPlaylist history_playlist;
 
     // TODO: REWRITE IT USING THE LIBRARY
@@ -201,7 +190,7 @@ public class Noise.PlaybackManager : Object {
     private void reshuffle () {
         debug ("Reshuffling");
         queue_playlist.clear ();
-        if (is_shuffled) {
+        if (Settings.Main.get_default ().shuffle_mode == Noise.Settings.Shuffle.ALL) {
             debug ("Shuffled");
             queue_playlist.medias.add_all (ordered_queue.medias);
 
