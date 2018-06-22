@@ -449,7 +449,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         icon_name = "multimedia-audio-player";
         title = _("Music");
 
-        set_default_size (App.saved_state.get_int ("window-width"), App.saved_state.get_int ("window-height"));
+        var window_height = App.saved_state.get_int ("window-height");
+        var window_width = App.saved_state.get_int ("window-width");
+        var rect = Gtk.Allocation ();
+        rect.height = window_height;
+        rect.width = window_width;
+        set_allocation (rect);
+
         var window_x = App.saved_state.get_int ("window-x");
         var window_y = App.saved_state.get_int ("window-y");
         if (window_x != -1 ||  window_y != -1) {
@@ -1164,12 +1170,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
 
         App.saved_state.set_int ("view-mode", view_selector.selected);
-
-        if (is_maximized) {
-            App.saved_state.set_enum ("window-state", 1);
-        } else {
-            App.saved_state.set_enum ("window-state", 0);
-        }
     }
 
     /**
@@ -1192,12 +1192,18 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     public override bool configure_event (Gdk.EventConfigure event) {
-        if (is_maximized == false) {
-            int window_width, window_height, window_x, window_y;
-            get_size (out window_width, out window_height);
+        if (is_maximized) {
+            App.saved_state.set_enum ("window-state", 1);
+        } else {
+            App.saved_state.set_enum ("window-state", 0);
+
+            Gtk.Allocation rect;
+            get_allocation (out rect);
+            App.saved_state.set_int ("window-height", rect.height);
+            App.saved_state.set_int ("window-width", rect.width);
+
+            int window_x, window_y;
             get_position (out window_x, out window_y);
-            App.saved_state.set_int ("window-height", window_height);
-            App.saved_state.set_int ("window-width", window_width);
             App.saved_state.set_int ("window-x" , window_x);
             App.saved_state.set_int ("window-y" , window_y);
         }
