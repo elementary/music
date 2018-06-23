@@ -44,7 +44,7 @@ public class Noise.FileOperator : Object {
     Gee.TreeSet<string> import_errors;
     Gee.HashMap<string, GLib.FileMonitor> monitors;
 
-    public enum ImportType  {
+    public enum ImportType {
         SET,
         RESCAN,
         PLAYLIST,
@@ -77,7 +77,7 @@ public class Noise.FileOperator : Object {
                 monitors.set (dir, file_monitor);
                 file_monitor.changed.connect (file_monitored_changed);
             } catch (Error e) {
-                warning("file %s: %s", dir, e.message);
+                warning ("file %s: %s", dir, e.message);
             }
         }
     }
@@ -86,17 +86,17 @@ public class Noise.FileOperator : Object {
         FileInfo file_info = null;
         int index = 0;
         try {
-            var enumerator = music_folder.enumerate_children(FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_TYPE + "," + FileAttribute.STANDARD_CONTENT_TYPE, 0);
+            var enumerator = music_folder.enumerate_children (FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_TYPE + "," + FileAttribute.STANDARD_CONTENT_TYPE, 0);
             while ((file_info = enumerator.next_file ()) != null) {
                 var file = music_folder.get_child (file_info.get_name ());
 
-                if(file_info.get_file_type() == FileType.DIRECTORY) {
+                if (file_info.get_file_type () == FileType.DIRECTORY) {
                     dirs.add (file.get_uri ());
                     list_recursive_directory (file, ref dirs);
                 }
             }
         } catch (Error err) {
-            warning("Could not pre-scan music folder. Progress percentage may be off: %s\n", err.message);
+            warning ("Could not pre-scan music folder. Progress percentage may be off: %s\n", err.message);
         }
 
         return index;
@@ -158,7 +158,7 @@ public class Noise.FileOperator : Object {
                 debug ("Copying %s to %s", s.uri, dest.get_uri ());
                 success = original.copy (dest, FileCopyFlags.NONE, null, null);
             } else {
-                debug("Moving %s to %s", s.uri, dest.get_uri ());
+                debug ("Moving %s to %s", s.uri, dest.get_uri ());
                 success = original.move (dest, FileCopyFlags.NONE, null, null);
             }
 
@@ -172,7 +172,7 @@ public class Noise.FileOperator : Object {
                     });
                 }
             } else {
-                warning("Failure: Could not copy imported media %s to media folder %s", s.uri, dest.get_path());
+                warning ("Failure: Could not copy imported media %s to media folder %s", s.uri, dest.get_path ());
                 return false;
             }
 
@@ -204,11 +204,11 @@ public class Noise.FileOperator : Object {
                 var old_folder_items = FileUtils.count_music_files (file.get_parent (), dummy_list);
                 //TODO: COPY ALBUM AND IMAGE ARTWORK
                 if (old_folder_items == 0) {
-                    debug("going to delete %s because no files are in it\n", file.get_parent ().get_path ());
+                    debug ("going to delete %s because no files are in it\n", file.get_parent ().get_path ());
                     //original.get_parent ().delete ();
                     var old_folder_parent_items = FileUtils.count_music_files (file.get_parent ().get_parent (), dummy_list);
-                    if(old_folder_parent_items == 0) {
-                        debug("going to delete %s because no files are in it\n", file.get_parent ().get_parent ().get_path ());
+                    if (old_folder_parent_items == 0) {
+                        debug ("going to delete %s because no files are in it\n", file.get_parent ().get_parent ().get_path ());
                     }
                 }
             } catch (GLib.Error err) {

@@ -33,13 +33,14 @@ public class LastFM.Tag : Object {
     public string tag { get; set; default=""; }
     public string url { get; set; default=""; }
 
-    public Tag.with_string(string tag) {
-        this.tag = tag;
+    public Tag.with_string (string tag) {
+        Object (tag: tag);
     }
 
-    public Tag.with_string_and_url(string tag, string url) {
-        this.tag = tag;
-        this.url = url;
+    public Tag.with_string_and_url (string tag, string url) {
+        Object (
+            tag: tag,
+            url: url
+        );
     }
-
 }

@@ -60,7 +60,7 @@ public class LastFM.Core : Object {
         Noise.App.main_window.update_media_info.connect ((media) => {postNowPlaying (media);});
         Noise.App.main_window.media_half_played.connect ((media) => {postScrobbleTrack (media);});
         Noise.libraries_manager.local_library.media_added.connect ((medias) => {fetch_albums_slowly.begin (medias);});
-        similarMedias.similar_retrieved.connect(similar_retrieved_signal);
+        similarMedias.similar_retrieved.connect (similar_retrieved_signal);
     }
 
     public void initialize (string api_key, string api_secret, string session_key) {
@@ -84,16 +84,17 @@ public class LastFM.Core : Object {
                                    "artist", artist,
                                    "track", title,
                                    "sk", session_key,
-                                   "api_sig", generate_tracklove_signature(artist, title));
+                                   "api_sig", generate_tracklove_signature (artist, title));
 
         var session = new Soup.Session ();
         Soup.Message message = new Soup.Message.from_uri ("POST", uri);
 
         /* send the HTTP request */
-        session.send_message(message);
+        session.send_message (message);
 
-        if (message.status_code == Soup.Status.OK)
+        if (message.status_code == Soup.Status.OK) {
             loved (title, artist);
+        }
     }
 
     public void banTrack (string title, string artist) {
@@ -106,13 +107,13 @@ public class LastFM.Core : Object {
                                    "artist", artist,
                                    "track", title,
                                    "sk", session_key,
-                                   "api_sig", generate_trackban_signature(artist, title));
+                                   "api_sig", generate_trackban_signature (artist, title));
 
         var session = new Soup.Session ();
         Soup.Message message = new Soup.Message.from_uri ("POST", uri);
 
         /* send the HTTP request */
-        session.send_message(message);
+        session.send_message (message);
 
         if (message.status_code == Soup.Status.OK)
             baned (title, artist);
@@ -159,13 +160,13 @@ public class LastFM.Core : Object {
             return;
 
         debug ("Sound Scrobbled");
-        var timestamp = (int)time_t();
+        var timestamp = (int)time_t ();
         var uri = new Soup.URI (API_URL);
         uri.set_query_from_fields ("method", "track.scrobble",
                                    "api_key", api_key,
                                    "artist", m.artist,
                                    "track", m.title,
-                                   "timestamp", timestamp.to_string(),
+                                   "timestamp", timestamp.to_string (),
                                    "sk", session_key,
                                    "api_sig", generate_trackscrobble_signature (m.artist, m.title, timestamp));
 
@@ -305,16 +306,16 @@ public class LastFM.Core : Object {
         return generate_md5 ("api_key" + api_key + "artist" + artist + "methodtrack.lovesk" + session_key + "track" + track + api_secret);
     }
 
-    public string generate_trackban_signature(string artist, string track) {
+    public string generate_trackban_signature (string artist, string track) {
         return generate_md5 ("api_key" + api_key + "artist" + artist + "methodtrack.bansk" + session_key + "track" + track + api_secret);
     }
 
     public string generate_trackscrobble_signature (string artist, string track, int timestamp) {
-        return generate_md5 ("api_key" + api_key + "artist" + artist + "methodtrack.scrobblesk" + session_key + "timestamp" + timestamp.to_string() + "track" + track + api_secret);
+        return generate_md5 ("api_key" + api_key + "artist" + artist + "methodtrack.scrobblesk" + session_key + "timestamp" + timestamp.to_string () + "track" + track + api_secret);
     }
 
     public string generate_trackscrobble_signature2 (string artist, string track, string album, int timestamp) {
-        return generate_md5 ("album" + album + "api_key" + api_key + "artist" + artist + "methodtrack.scrobblesk" + session_key + "timestamp" + timestamp.to_string() + "track" + track + api_secret);
+        return generate_md5 ("album" + album + "api_key" + api_key + "artist" + artist + "methodtrack.scrobblesk" + session_key + "timestamp" + timestamp.to_string () + "track" + track + api_secret);
     }
 
     public string generate_trackupdatenowplaying_signature (string artist, string track) {
