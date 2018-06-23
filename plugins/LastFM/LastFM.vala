@@ -35,9 +35,9 @@ namespace Noise.Plugins {
         private bool added_view = false;
 
         public void activate () {
-            Value value = Value(typeof(GLib.Object));
-            get_property("object", ref value);
-            plugins = (Noise.Plugins.Interface)value.get_object();
+            Value value = Value (typeof (GLib.Object));
+            get_property ("object", ref value);
+            plugins = (Noise.Plugins.Interface)value.get_object ();
 
             message ("Activating Last.fm plugin");
             plugins.register_function (Interface.Hook.WINDOW, load_plugin);
@@ -56,8 +56,9 @@ namespace Noise.Plugins {
         }
 
         private async void parse_account (uint uid) {
-            if (LastFM.Core.get_default ().is_initialized)
+            if (LastFM.Core.get_default ().is_initialized) {
                 return;
+            }
 
             var account = manager.get_account (uid);
             if (account.get_provider_name () != "lastfm")
