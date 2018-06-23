@@ -284,7 +284,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
     }
 
     public bool get_is_current_list () {
-        return list_view.get_is_current_list ();
+        return list_view.is_current_list;
     }
 
     public void add_media (Gee.Collection<Media> to_add) {
