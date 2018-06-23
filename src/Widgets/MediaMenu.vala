@@ -320,7 +320,7 @@ public class Noise.MediaMenu : Gtk.Menu {
             case ViewWrapper.Hint.READ_ONLY_PLAYLIST:
                 if (generic_list.playlist == App.player.queue_playlist) {
                     generic_list.playlist.remove_medias (selected_media);
-                } 
+                }
                 break;
           }
     }

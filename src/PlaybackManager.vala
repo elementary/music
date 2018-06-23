@@ -214,7 +214,7 @@ public class Noise.PlaybackManager : Object {
                 } else {
                     queue_playlist[i] = temp[random];
                 }
-                temp.remove(temp[random]);
+                temp.remove (temp[random]);
             }
 
             queue_playlist.media_added (queue_playlist.medias);
@@ -442,16 +442,16 @@ public class Noise.PlaybackManager : Object {
             string selected_preset = equalizer_settings.selected_preset;
 
             foreach (var p in equalizer_settings.get_presets ()) {
-                if (p != null && current_media != null)  {
+                if (p != null && current_media != null) {
                     var preset_name = p.name.down ();
-                    var media_genre = current_media.genre.down();
+                    var media_genre = current_media.genre.down ();
 
                     bool match_genre = (preset_name in media_genre) || (media_genre in preset_name);
 
                     if ((automatic_enabled && match_genre) ||
                         (!automatic_enabled && p.name == selected_preset)) {
                         for (int i = 0; i < 10; i++) {
-                            player.set_equalizer_gain(i, p.get_gain (i));
+                            player.set_equalizer_gain (i, p.get_gain (i));
                         }
 
                         return;
@@ -460,16 +460,16 @@ public class Noise.PlaybackManager : Object {
             }
 
             foreach (var p in Equalizer.get_default_presets ()) {
-                if (p != null && current_media != null)  {
+                if (p != null && current_media != null) {
                     var preset_name = p.name.down ();
-                    var media_genre = current_media.genre.down();
+                    var media_genre = current_media.genre.down ();
 
                     bool match_genre = (preset_name in media_genre) || (media_genre in preset_name);
 
                     if ((automatic_enabled && match_genre) ||
                         (!automatic_enabled && p.name == selected_preset)) {
                         for (int i = 0; i < 10; i++) {
-                            player.set_equalizer_gain (i, p.get_gain(i));
+                            player.set_equalizer_gain (i, p.get_gain (i));
                         }
 
                         return;
