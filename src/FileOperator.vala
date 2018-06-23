@@ -44,7 +44,7 @@ public class Noise.FileOperator : Object {
     Gee.TreeSet<string> import_errors;
     Gee.HashMap<string, GLib.FileMonitor> monitors;
 
-    public enum ImportType  {
+    public enum ImportType {
         SET,
         RESCAN,
         PLAYLIST,
@@ -77,7 +77,7 @@ public class Noise.FileOperator : Object {
                 monitors.set (dir, file_monitor);
                 file_monitor.changed.connect (file_monitored_changed);
             } catch (Error e) {
-                warning("file %s: %s", dir, e.message);
+                warning ("file %s: %s", dir, e.message);
             }
         }
     }
@@ -86,17 +86,17 @@ public class Noise.FileOperator : Object {
         FileInfo file_info = null;
         int index = 0;
         try {
-            var enumerator = music_folder.enumerate_children(FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_TYPE + "," + FileAttribute.STANDARD_CONTENT_TYPE, 0);
+            var enumerator = music_folder.enumerate_children (FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_TYPE + "," + FileAttribute.STANDARD_CONTENT_TYPE, 0);
             while ((file_info = enumerator.next_file ()) != null) {
                 var file = music_folder.get_child (file_info.get_name ());
 
-                if(file_info.get_file_type() == FileType.DIRECTORY) {
+                if (file_info.get_file_type () == FileType.DIRECTORY) {
                     dirs.add (file.get_uri ());
                     list_recursive_directory (file, ref dirs);
                 }
             }
         } catch (Error err) {
-            warning("Could not pre-scan music folder. Progress percentage may be off: %s\n", err.message);
+            warning ("Could not pre-scan music folder. Progress percentage may be off: %s\n", err.message);
         }
 
         return index;
