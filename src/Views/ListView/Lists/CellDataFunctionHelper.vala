@@ -138,7 +138,7 @@ public class Noise.CellDataFunctionHelper {
         tree_model.get_value (iter, ListColumn.LENGTH, out val);
         uint ms = val.get_uint ();
         var text_cell = cell as Gtk.CellRendererText;
-        text_cell.text = (ms <= 0) ? NOT_AVAILABLE : TimeUtils.pretty_length_from_ms (ms);
+        text_cell.text = (ms <= 0) ? NOT_AVAILABLE : Granite.DateTime.seconds_to_time ((int)(ms / Noise.TimeUtils.MILI_INV));
     }
 
     public static inline string get_date_func_sample_string () {
