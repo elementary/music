@@ -111,7 +111,7 @@ public class Noise.TreeViewSetup : Object {
      * Each column must have been created using create_column(), or bad things
      * will happen. E.g. columns_to_string() will not work.
      */
-    public void set_columns (Gee.Collection<Gtk.TreeViewColumn> cols) {
+    private void set_columns (Gee.Collection<Gtk.TreeViewColumn> cols) {
         columns.clear ();
         columns.add_all (cols);
     }
@@ -126,7 +126,7 @@ public class Noise.TreeViewSetup : Object {
      * @param cols string representation of columns created by columns_to_string().
      * @return Whether the string was succesfully parsed and imported.
      */
-    public bool import_columns (string cols) {
+    private bool import_columns (string cols) {
         string[] col_strings = cols.split (COLUMN_SEP_STRING, 0);
         var new_columns = new Gee.TreeSet<Gtk.TreeViewColumn> (column_compare_func);
 
@@ -147,7 +147,7 @@ public class Noise.TreeViewSetup : Object {
         return true;
     }
 
-    public string columns_to_string () {
+    private string columns_to_string () {
         var columns_string = new StringBuilder ();
 
         var columns = get_columns ();
@@ -176,7 +176,7 @@ public class Noise.TreeViewSetup : Object {
      * Every column that goes into a list *must* be created by this method. Otherwise,
      * columns_to_string() won't work and bad things could happen.
      */
-    public Gtk.TreeViewColumn create_column (ListColumn type, bool visible = true) {
+    private Gtk.TreeViewColumn create_column (ListColumn type, bool visible = true) {
         var column = new Gtk.TreeViewColumn ();
         set_column_type (column, type);
         column.title = type.to_string ();
