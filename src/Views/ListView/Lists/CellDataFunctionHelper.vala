@@ -77,10 +77,6 @@ public class Noise.CellDataFunctionHelper {
         (cell as Gtk.CellRendererText).text = n > 0 ? format_size (n) : NOT_AVAILABLE;
     }
 
-    public static inline string get_file_size_sample () {
-        return format_size (1024 * 1024 * 932); // 932 MB. We want a long string
-    }
-
     // For numbers. Needed because the column is not sortable and intelligent_func
     // requires the column to be sortable to work properly.
     public static inline void number_func (Gtk.CellLayout layout, Gtk.CellRenderer cell, Gtk.TreeModel tree_model, Gtk.TreeIter iter) {
@@ -138,11 +134,7 @@ public class Noise.CellDataFunctionHelper {
         tree_model.get_value (iter, ListColumn.LENGTH, out val);
         uint ms = val.get_uint ();
         var text_cell = cell as Gtk.CellRendererText;
-        text_cell.text = (ms <= 0) ? NOT_AVAILABLE : TimeUtils.pretty_length_from_ms (ms);
-    }
-
-    public static inline string get_date_func_sample_string () {
-        return get_date_string (1324512000);
+        text_cell.text = (ms <= 0) ? NOT_AVAILABLE : Granite.DateTime.seconds_to_time ((int)(ms / Noise.TimeUtils.MILI_INV));
     }
 
     // turns seconds since Jan 1, 1970 into date format
@@ -153,7 +145,7 @@ public class Noise.CellDataFunctionHelper {
         text_cell.text = get_date_string (val.get_uint ());
     }
 
-    private static inline string get_date_string (uint n) {
+    public static inline string get_date_string (uint n) {
         return n == 0 ? _("Never") : TimeUtils.pretty_timestamp_from_time (Time.local (n));
     }
 
