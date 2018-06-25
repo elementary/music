@@ -27,7 +27,7 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public class Noise.AlbumsView : Gtk.Paned, ContentView {
+public class Noise.AlbumsView : Gtk.Paned, ViewInterface {
     private FastGrid icon_view;
 
     private static AlbumListGrid? _popup = null;
