@@ -387,7 +387,7 @@ public class Noise.MusicListView : GenericList {
                 renderer = new Gtk.CellRendererText ();
                 tvc.set_cell_data_func (renderer, CellDataFunctionHelper.bitrate_func);
                 column_resizable = false;
-                test_strings += _ ("1234 kbps");
+                test_strings += _("1234 kbps");
             break;
 
             case ListColumn.LENGTH:
@@ -401,8 +401,8 @@ public class Noise.MusicListView : GenericList {
             case ListColumn.LAST_PLAYED:
                 renderer = new Gtk.CellRendererText ();
                 tvc.set_cell_data_func (renderer, CellDataFunctionHelper.date_func);
-                test_strings += CellDataFunctionHelper.get_date_func_sample_string ();
-                test_strings += _ ("Never");
+                test_strings += CellDataFunctionHelper.get_date_string (1324512000);
+                test_strings += _("Never");
             break;
 
             case ListColumn.RATING:
@@ -458,7 +458,7 @@ public class Noise.MusicListView : GenericList {
                 /// of a song title or artist name in your language. The automatic column
                 /// width will depend on the length of this string and the space needed
                 /// by the column's title header.
-                test_strings += _ ("Sample List String");
+                test_strings += _("Sample List String");
             break;
 
             case ListColumn.BPM:
@@ -471,7 +471,7 @@ public class Noise.MusicListView : GenericList {
             case ListColumn.FILE_SIZE:
                 renderer = new Gtk.CellRendererText ();
                 tvc.set_cell_data_func (renderer, CellDataFunctionHelper.file_size_func);
-                test_strings += CellDataFunctionHelper.get_file_size_sample ();
+                test_strings += format_size (1024 * 1024 * 932); // 932 MB. We want a long string
             break;
 
             default:
