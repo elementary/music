@@ -40,10 +40,6 @@ public abstract class Noise.GenericList : FastView {
         }
     }
 
-    //for header column chooser
-    protected Gtk.Menu column_chooser_menu;
-    private Gtk.MenuItem autosize_menu_item;
-
     private ViewWrapper _parent_wrapper;
     public ViewWrapper parent_wrapper {
         get {
@@ -74,8 +70,6 @@ public abstract class Noise.GenericList : FastView {
 
         enable_search = false; // we don't want the built-in search
 
-        set_headers_clickable (true);
-        headers_visible = true;
         set_fixed_height_mode (true);
         set_reorderable (false);
 
@@ -96,53 +90,18 @@ public abstract class Noise.GenericList : FastView {
         // drag source
         Gtk.TargetEntry te = { "text/uri-list", Gtk.TargetFlags.SAME_APP, 0};
         Gtk.drag_source_set (this, Gdk.ModifierType.BUTTON1_MASK, { te }, Gdk.DragAction.COPY);
-        //enable_model_drag_source (Gdk.ModifierType.BUTTON1_MASK, {te}, Gdk.DragAction.COPY);
 
-        //vadjustment.value_changed.connect (view_scroll);
         drag_begin.connect (on_drag_begin);
         drag_data_get.connect (on_drag_data_get);
         drag_end.connect (on_drag_end);
 
-        parent_wrapper.library.media_updated.connect (media_updated);
+        parent_wrapper.library.media_updated.connect (queue_draw);
 
         App.player.queue_cleared.connect (current_cleared);
         App.player.media_played.connect (media_played);
     }
 
     protected abstract void mediaRemoveClicked ();
-
-    protected void add_column_chooser_menu_item (Gtk.TreeViewColumn tvc, ListColumn type) {
-        if (type == ListColumn.TITLE || type == ListColumn.ICON)
-            return;
-
-        if (hint == ViewWrapper.Hint.MUSIC && type == ListColumn.NUMBER)
-            return;
-
-        if (column_chooser_menu == null) {
-            column_chooser_menu = new Gtk.Menu ();
-
-            autosize_menu_item = new Gtk.MenuItem.with_label (_("Autosize Columns"));
-            autosize_menu_item.activate.connect (columns_autosize);
-
-            column_chooser_menu.append (autosize_menu_item);
-            column_chooser_menu.append (new Gtk.SeparatorMenuItem ());
-
-            column_chooser_menu.show_all ();
-        }
-
-        var menu_item = new Gtk.CheckMenuItem.with_label (tvc.title);
-        menu_item.active = tvc.visible;
-
-        column_chooser_menu.append (menu_item);
-        column_chooser_menu.show_all ();
-
-        // Show/hide the current column
-        menu_item.toggled.connect (() => {
-            tvc.visible = menu_item.active;
-
-            columns_autosize ();
-        });
-    }
 
     public void set_media (Gee.Collection<Media> to_add) {
         var new_table = new Gee.ArrayList<Media> ();
@@ -192,18 +151,6 @@ public abstract class Noise.GenericList : FastView {
         column.fixed_width = max_width + padding;
     }
 
-    private void reset_column_widths () {
-        foreach (var column in get_columns ()) {
-            if (column.min_width > 0)
-                column.fixed_width = column.min_width;
-        }
-    }
-
-    public new void columns_autosize () {
-        reset_column_widths ();
-        base.columns_autosize ();
-    }
-
     protected abstract void add_column (Gtk.TreeViewColumn column, ListColumn type);
 
     protected void add_columns () {
@@ -211,7 +158,7 @@ public abstract class Noise.GenericList : FastView {
             add_column (tvc, TreeViewSetup.get_column_type (tvc));
     }
 
-    public Media? get_media_from_index (int index) {
+    private Media? get_media_from_index (int index) {
         return get_object_from_index (index);
     }
 
@@ -229,16 +176,7 @@ public abstract class Noise.GenericList : FastView {
         parent_wrapper.library.update_medias (to_update, true, true);
     }
 
-    protected bool view_header_click (Gdk.EventButton e, bool is_selector_col) {
-        if (e.button == Gdk.BUTTON_SECONDARY || is_selector_col) {
-            column_chooser_menu.popup (null, null, null, Gdk.BUTTON_SECONDARY, e.time);
-            return true;
-        }
-
-        return false;
-    }
-
-    public void on_rows_reordered () {
+    private void on_rows_reordered () {
         scroll_to_current_media (false);
         if (is_current_list)
             set_as_current_list ();
@@ -265,10 +203,6 @@ public abstract class Noise.GenericList : FastView {
         yield;
 
         scroll_to_current_media (false);
-    }
-
-    public void media_updated (Gee.Collection<int> ids) {
-        queue_draw ();
     }
 
     void current_cleared () {
