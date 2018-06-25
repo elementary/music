@@ -54,7 +54,6 @@ app_files = files(
   'src/Views/ListView/ColumnBrowser/BrowserColumn.vala',
   'src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala',
   'src/Views/ListView/ColumnBrowser/ColumnBrowser.vala',
-  'src/Views/ListView/ColumnBrowser/MusicColumnBrowser.vala',
   'src/Views/ListView/Lists/CellDataFunctionHelper.vala',
   'src/Views/ListView/Lists/GenericList.vala',
   'src/Views/ListView/Lists/ListColumn.vala',
