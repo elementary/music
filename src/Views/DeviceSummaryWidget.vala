@@ -73,10 +73,25 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         sync_options_label.halign = Gtk.Align.END;
 
         sync_music_check = new Gtk.CheckButton ();
-        sync_music_combobox = new Gtk.ComboBox ();
+
         music_list = new Gtk.ListStore (3, typeof (GLib.Object), typeof (string), typeof (GLib.Icon));
 
-        setup_lists ();
+        var music_cell = new Gtk.CellRendererPixbuf ();
+        music_cell.stock_size = Gtk.IconSize.MENU;
+
+        var cell = new Gtk.CellRendererText ();
+        cell.ellipsize = Pango.EllipsizeMode.END;
+
+        sync_music_combobox = new Gtk.ComboBox ();
+        sync_music_combobox.set_model (music_list);
+        sync_music_combobox.set_id_column (1);
+        sync_music_combobox.set_row_separator_func (rowSeparatorFunc);
+        sync_music_combobox.pack_start (music_cell, false);
+        sync_music_combobox.add_attribute (music_cell, "gicon", 2);
+        sync_music_combobox.pack_start (cell, true);
+        sync_music_combobox.add_attribute (cell, "text", 1);
+        sync_music_combobox.popup.connect (refresh_lists);
+        sync_music_combobox.set_button_sensitivity (Gtk.SensitivityType.ON);
 
         storagebar = new Granite.Widgets.StorageBar (device.get_capacity ());
         storagebar.update_block_size (Granite.Widgets.StorageBar.ItemDescription.OTHER, 0);
@@ -160,7 +175,12 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         });
 
         sync_button.clicked.connect (sync_clicked);
-        device.get_library ().file_operations_done.connect (sync_finished);
+
+        device.get_library ().file_operations_done.connect (() => {
+            refresh_space_widget ();
+            sync_button.sensitive = true;
+        });
+
         libraries_manager.local_library.playlist_added.connect (() => {refresh_lists ();});
         libraries_manager.local_library.playlist_name_updated.connect (() => {refresh_lists ();});
         libraries_manager.local_library.playlist_removed.connect (() => {refresh_lists ();});
@@ -174,32 +194,14 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         uint64 other_files_size = 0;
         uint64 music_size = 0;
         foreach (var m in device.get_library ().get_medias ()) {
-            if (m != null)
+            if (m != null) {
                 music_size += m.file_size;
+            }
         }
         other_files_size = device.get_used_space () - music_size;
 
         storagebar.update_block_size (Granite.Widgets.StorageBar.ItemDescription.OTHER, other_files_size);
         storagebar.update_block_size (Granite.Widgets.StorageBar.ItemDescription.AUDIO, music_size);
-    }
-
-    private void setup_lists () {
-        sync_music_combobox.set_model (music_list);
-        sync_music_combobox.set_id_column (1);
-        sync_music_combobox.set_row_separator_func (rowSeparatorFunc);
-
-        var music_cell = new Gtk.CellRendererPixbuf ();
-        music_cell.stock_size = Gtk.IconSize.MENU;
-        sync_music_combobox.pack_start (music_cell, false);
-        sync_music_combobox.add_attribute (music_cell, "gicon", 2);
-
-
-        var cell = new Gtk.CellRendererText ();
-        cell.ellipsize = Pango.EllipsizeMode.END;
-        sync_music_combobox.pack_start (cell, true);
-        sync_music_combobox.add_attribute (cell, "text", 1);
-        sync_music_combobox.popup.connect (refresh_lists);
-        sync_music_combobox.set_button_sensitivity (Gtk.SensitivityType.ON);
     }
 
     private bool rowSeparatorFunc (Gtk.TreeModel model, Gtk.TreeIter iter) {
@@ -213,7 +215,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         preferences.sync_music = sync_music_check.active;
         preferences.sync_all_music = sync_music_combobox.get_active () == 0;
         Gtk.TreeIter iter;
-        if (sync_music_combobox.get_active ()-2 >= 0) {
+        if (sync_music_combobox.get_active () - 2 >= 0) {
             sync_music_combobox.get_active_iter (out iter);
             GLib.Value value;
             music_list.get_value (iter, 0, out value);
@@ -223,11 +225,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         sync_music_combobox.sensitive = sync_music_check.active;
     }
 
-    public bool all_medias_selected () {
-        return false;
-    }
-
-    public void refresh_lists () {
+    private void refresh_lists () {
         message ("refreshing lists\n");
 
         Gtk.TreeIter iter;
@@ -276,11 +274,6 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         sync_music_combobox.sensitive = preferences.sync_music;
     }
 
-    private void sync_finished () {
-        refresh_space_widget ();
-        sync_button.sensitive = true;
-    }
-
     public void sync_clicked () {
         var list = new Gee.TreeSet<Media> ();
 
@@ -303,7 +296,10 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
                 } else {
                     NotificationManager.get_default ().show_alert (
                         _("Sync Failed"),
-                        _("The playlist named %s is used to sync device %s, but could not be found.").printf ("<b>" + preferences.music_playlist.name + "</b>", "<b>" + device.get_display_name () + "</b>")
+                        _("The playlist named %s is used to sync device %s, but could not be found.").printf (
+                            "<b>" + preferences.music_playlist.name + "</b>",
+                            "<b>" + device.get_display_name () + "</b>"
+                        )
                     );
 
                     preferences.music_playlist = null;
@@ -316,9 +312,15 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
 
         bool fits = device.will_fit (list);
         if (!fits) {
-            NotificationManager.get_default ().show_alert (_("Cannot Sync"), _("Cannot sync device with selected sync settings. Not enough space on disk"));
+            NotificationManager.get_default ().show_alert (
+                _("Cannot Sync"),
+                _("Cannot sync device with selected sync settings. Not enough space on disk")
+            );
         } else if (device.get_library ().doing_file_operations ()) {
-            NotificationManager.get_default ().show_alert (_("Cannot Sync"), _("Device is already doing an operation."));
+            NotificationManager.get_default ().show_alert (
+                _("Cannot Sync"),
+                _("Device is already doing an operation.")
+            );
         } else {
             var found = new Gee.TreeSet<int> ();
             var not_found = new Gee.TreeSet<Media> ();
