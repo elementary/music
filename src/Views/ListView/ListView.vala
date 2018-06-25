@@ -29,7 +29,7 @@
 /**
  * Contains the column browser and list view.
  */
-public class Noise.ListView : ContentView, Gtk.Box {
+public class Noise.ListView : Gtk.Box, ViewInterface {
     public signal void reordered ();
 
     // Wrapper for the list view and miller columns
