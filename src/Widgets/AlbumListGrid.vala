@@ -46,7 +46,7 @@ public class Noise.AlbumListGrid : Gtk.Grid {
     private Gtk.Label album_label;
     private Gtk.Label artist_label;
     private Gtk.Menu cover_action_menu;
-    private Granite.Widgets.Rating rating;
+    private Music.RatingWidget rating;
 
     public AlbumListGrid (ViewWrapper view_wrapper) {
         Object (view_wrapper: view_wrapper);
@@ -94,7 +94,7 @@ public class Noise.AlbumListGrid : Gtk.Grid {
         list_view_scrolled.margin_top = 18;
         list_view_scrolled.add (list_view);
 
-        rating = new Granite.Widgets.Rating (true, Gtk.IconSize.MENU, true);
+        rating = new Music.RatingWidget (true, Gtk.IconSize.MENU, true);
         rating.star_spacing = 12;
         rating.margin_bottom = rating.margin_top = 12;
 

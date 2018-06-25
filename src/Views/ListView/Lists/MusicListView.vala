@@ -404,7 +404,7 @@ public class Noise.MusicListView : GenericList {
             break;
 
             case ListColumn.RATING:
-                var rating_renderer = new Granite.Widgets.CellRendererRating ();
+                var rating_renderer = new Music.RatingCellRenderer ();
                 rating_renderer.rating_changed.connect (on_rating_cell_changed);
 
                 renderer = rating_renderer;
