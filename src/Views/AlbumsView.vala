@@ -64,35 +64,29 @@ public class Noise.AlbumsView : Gtk.Paned, ViewInterface {
         show_all ();
 
         clear_objects ();
-        reset_pixbufs ();
+        queue_draw ();
 
         notify["scale-factor"].connect (() => {
-            reset_pixbufs ();
+            queue_draw ();
             queue_resize ();
         });
 
-        setup_focus ();
+        var focus_blacklist = new Gee.LinkedList<Gtk.Widget> ();
+        focus_blacklist.add (App.main_window.view_selector);
+        focus_blacklist.add (App.main_window.search_entry);
+        focus_blacklist.add (App.main_window.source_list_view);
+        focus_blacklist.add (App.main_window.statusbar);
 
-        parent_view_wrapper.library.search_finished.connect (() => {this.icon_view.research_needed = true;});
+        foreach (var w in focus_blacklist) {
+            w.add_events (Gdk.EventMask.BUTTON_PRESS_MASK);
+        }
+
+        parent_view_wrapper.library.search_finished.connect (() => {
+            icon_view.research_needed = true;
+        });
 
         Gtk.TargetEntry te = { "text/uri-list", Gtk.TargetFlags.SAME_APP, 0 };
         Gtk.drag_source_set (icon_view, Gdk.ModifierType.BUTTON1_MASK, { te }, Gdk.DragAction.COPY);
-    }
-
-    protected void set_research_needed (bool value) {
-        this.icon_view.research_needed = value;
-    }
-
-    protected void add_objects (Gee.Collection<Object> objects) {
-        icon_view.add_objects (objects);
-    }
-
-    protected void do_search () {
-        icon_view.do_search ();
-    }
-
-    protected void remove_objects (Gee.Collection<Object> objects) {
-        icon_view.remove_objects (objects);
     }
 
     protected void clear_objects () {
@@ -108,8 +102,9 @@ public class Noise.AlbumsView : Gtk.Paned, ViewInterface {
     }
 
     private void on_item_activated (Gtk.TreePath? path) {
-        if (path == null)
+        if (path == null) {
             item_activated (null);
+        }
 
         var obj = icon_view.get_object_from_index (path.get_indices ()[0]);
         item_activated (obj);
@@ -123,7 +118,8 @@ public class Noise.AlbumsView : Gtk.Paned, ViewInterface {
         if (selected_items.length () > 0) {
             var path = selected_items.nth_data (0);
             var obj = icon_view.get_object_from_index (path.get_indices ()[0]);
-            var drag_icon = get_icon (obj);
+            var drag_icon = ((Album) obj).cover_icon;
+
             Gtk.drag_set_icon_gicon (context, drag_icon, 0, 0);
         }
     }
@@ -148,22 +144,6 @@ public class Noise.AlbumsView : Gtk.Paned, ViewInterface {
 
         if (uris != null)
             selection_data.set_uris (uris);
-    }
-
-    private void reset_pixbufs () {
-        queue_draw ();
-    }
-
-    private void setup_focus () {
-        var focus_blacklist = new Gee.LinkedList<Gtk.Widget> ();
-        focus_blacklist.add (App.main_window.view_selector);
-        focus_blacklist.add (App.main_window.search_entry);
-        focus_blacklist.add (App.main_window.source_list_view);
-        focus_blacklist.add (App.main_window.statusbar);
-
-        foreach (var w in focus_blacklist) {
-            w.add_events (Gdk.EventMask.BUTTON_PRESS_MASK);
-        }
     }
 
     private ViewWrapper.Hint get_hint () {
@@ -201,7 +181,7 @@ public class Noise.AlbumsView : Gtk.Paned, ViewInterface {
     }
 
     private void refilter () {
-        do_search ();
+        icon_view.do_search ();
     }
 
     private void update_media (Gee.Collection<Media> media) {
@@ -229,9 +209,9 @@ public class Noise.AlbumsView : Gtk.Paned, ViewInterface {
             }
         }
 
-        remove_objects (albums_to_remove);
+        icon_view.remove_objects (albums_to_remove);
         add_media (medias_to_add);
-        set_research_needed (true);
+        icon_view.research_needed = true;
     }
 
     private void set_media (Gee.Collection<Media> to_add) {
@@ -258,8 +238,8 @@ public class Noise.AlbumsView : Gtk.Paned, ViewInterface {
             return;
 
         // Add new albums
-        add_objects (albums_to_append);
-        set_research_needed (true);
+        icon_view.add_objects (albums_to_append);
+        icon_view.research_needed = true;
     }
 
     /* There is a special case. Let's say that we're removing
@@ -288,8 +268,8 @@ public class Noise.AlbumsView : Gtk.Paned, ViewInterface {
         if (albums_to_remove.size <= 0)
             return;
 
-        remove_objects (albums_to_remove);
-        set_research_needed (true);
+        icon_view.remove_objects (albums_to_remove);
+        icon_view.research_needed = true;
     }
 
     protected void item_activated (Object? object) {
@@ -307,12 +287,6 @@ public class Noise.AlbumsView : Gtk.Paned, ViewInterface {
         popup_list_view.view_wrapper = parent_view_wrapper;
         popup_list_view.set_album (album);
         popup_list_view.show_all ();
-    }
-
-    protected GLib.Icon? get_icon (Object o) {
-        var album = o as Album;
-        return_val_if_fail (album != null, null);
-        return album.cover_icon;
     }
 
     protected int compare_func (Object o_a, Object o_b) {
