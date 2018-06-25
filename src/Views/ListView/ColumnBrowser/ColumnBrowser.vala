@@ -27,8 +27,7 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public abstract class Noise.ColumnBrowser : Gtk.Grid {
-
+public class Noise.ColumnBrowser : Gtk.Grid {
     public signal void changed ();
     public signal void position_changed (Position p);
 
@@ -66,7 +65,7 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
 
     public Position actual_position { get; set; default = Position.LEFT; }
 
-    public ViewWrapper view_wrapper { get; private set; }
+    public ViewWrapper view_wrapper { get; construct; }
 
     /**
      * Whether the columns are filtered or not based on the current selection.
@@ -138,42 +137,39 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
     private Gtk.RadioMenuItem left_menu_item;
     private Gtk.RadioMenuItem automatic_menu_item;
 
-    public ColumnBrowser (ViewWrapper view_wrapper, BrowserColumn.Category[] categories) {
-        this.orientation = Gtk.Orientation.HORIZONTAL;
-        this.view_wrapper = view_wrapper;
-        columns = new Gee.TreeSet<BrowserColumn> ();
+    public ColumnBrowser (ViewWrapper view_wrapper) {
+        Object (view_wrapper: view_wrapper);
+    }
+
+    construct {
+        automatic_menu_item = new Gtk.RadioMenuItem.with_label (new SList<Gtk.RadioMenuItem> (), _("Automatic"));
+        left_menu_item = new Gtk.RadioMenuItem.with_label (automatic_menu_item.get_group (), _("On Left"));
+        top_menu_item = new Gtk.RadioMenuItem.with_label (left_menu_item.get_group (), _("On Top"));
+
         column_chooser_menu = new Gtk.Menu ();
 
-        // Inserting columns
+        var categories = new BrowserColumn.Category [0];
+        categories += BrowserColumn.Category.RATING;
+        categories += BrowserColumn.Category.GROUPING;
+        categories += BrowserColumn.Category.YEAR;
+        categories += BrowserColumn.Category.GENRE;
+        categories += BrowserColumn.Category.COMPOSER;
+        categories += BrowserColumn.Category.ARTIST;
+        categories += BrowserColumn.Category.ALBUM;
+
+        columns = new Gee.TreeSet<BrowserColumn> ();
+
         foreach (var category in categories) {
             add_column (category);
         }
 
-        create_column_selector_menu ();
-    }
+        var visible_categories = new Gee.TreeSet<BrowserColumn.Category> ();
 
-    private void create_column_selector_menu () {
-        automatic_menu_item =
-            new Gtk.RadioMenuItem.with_label (new SList<Gtk.RadioMenuItem> (), _("Automatic"));
-        left_menu_item =
-            new Gtk.RadioMenuItem.with_label (automatic_menu_item.get_group (), _("On Left"));
-        top_menu_item =
-            new Gtk.RadioMenuItem.with_label (left_menu_item.get_group (), _("On Top"));
+        foreach (var col_n in App.saved_state.get_strv ("column-browser-visible-columns")) {
+            visible_categories.add ((BrowserColumn.Category)int.parse (col_n));
+        }
 
-        automatic_menu_item.toggled.connect ( () => {
-            if (automatic_menu_item.active)
-                position = Position.AUTOMATIC;
-        });
-
-        left_menu_item.toggled.connect ( () => {
-            if (left_menu_item.active)
-                position = Position.LEFT;
-        });
-
-        top_menu_item.toggled.connect ( () => {
-            if (top_menu_item.active)
-                position = Position.TOP;
-        });
+        visible_columns = visible_categories;
 
         column_chooser_menu.append (new Gtk.SeparatorMenuItem ());
         column_chooser_menu.append (automatic_menu_item);
@@ -181,7 +177,28 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
         column_chooser_menu.append (left_menu_item);
         column_chooser_menu.show_all ();
 
-        position = Position.AUTOMATIC;
+        orientation = Gtk.Orientation.HORIZONTAL;
+        position = (Position) App.saved_state.get_int ("column-browser-position");
+
+        automatic_menu_item.toggled.connect (() => {
+            if (automatic_menu_item.active) {
+                position = Position.AUTOMATIC;
+            }
+        });
+
+        left_menu_item.toggled.connect (() => {
+            if (left_menu_item.active) {
+                position = Position.LEFT;
+            }
+        });
+
+        top_menu_item.toggled.connect (() => {
+            if (top_menu_item.active) {
+                position = Position.TOP;
+            }
+        });
+
+        destroy.connect (save_current_state);
     }
 
     public void reset_filters () {
@@ -465,5 +482,16 @@ public abstract class Noise.ColumnBrowser : Gtk.Grid {
         if (e.button == Gdk.BUTTON_SECONDARY) { // secondary button
             this.column_chooser_menu.popup (null, null, null, 3, Gtk.get_current_event_time ());
         }
+    }
+
+    private void save_current_state () {
+        var visible_categories = new string[0];
+
+        foreach (var col_cat in visible_columns) {
+           visible_categories += ((int)col_cat).to_string ();
+        }
+
+        App.saved_state.set_strv ("column-browser-visible-columns", visible_categories);
+        App.saved_state.set_int ("column-browser-position", (int) position);
     }
 }

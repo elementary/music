@@ -32,7 +32,7 @@ public class Noise.MediaMenu : Gtk.Menu {
     private Gtk.MenuItem edit_media;
     private Gtk.MenuItem import_to_library;
     private Gtk.MenuItem queue_media;
-    private Granite.Widgets.RatingMenuItem rate_media;
+    private Music.RatingMenuItem rate_media;
     private Gtk.MenuItem remove_media;
 
     public MediaMenu (GenericList generic_list) {
@@ -49,7 +49,7 @@ public class Noise.MediaMenu : Gtk.Menu {
         var file_browse = new Gtk.MenuItem.with_label (_("Show in File Browser…"));
         edit_media = new Gtk.MenuItem.with_label (_("Edit Song Info…"));
         contractor_entry = new Gtk.MenuItem.with_label (_("Other Actions"));
-        rate_media = new Granite.Widgets.RatingMenuItem ();
+        rate_media = new Music.RatingMenuItem ();
         queue_media = new Gtk.MenuItem.with_label (C_("Action item (verb)", "Queue"));
         add_to_playlist = new Gtk.MenuItem.with_label (_("Add to Playlist"));
         remove_media = new Gtk.MenuItem.with_label (_("Remove Song…"));

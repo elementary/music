@@ -233,7 +233,7 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
         public Gtk.Grid grid;
         private Gtk.ComboBoxText field_combobox;
         private Gtk.ComboBoxText comparator_combobox;
-        private Granite.Widgets.Rating _valueRating;
+        private Music.RatingWidget _valueRating;
         private Gtk.SpinButton _valueNumerical;
         private Gtk.ComboBoxText _valueOption;
         private Gtk.Label _units;
@@ -256,7 +256,7 @@ public class Noise.SmartPlaylistEditor : Gtk.Dialog {
             value_entry.changed.connect (() => {changed ();});
             _valueNumerical = new Gtk.SpinButton.with_range (0, 9999, 1);
             _valueOption = new Gtk.ComboBoxText ();
-            _valueRating = new Granite.Widgets.Rating (true, Gtk.IconSize.MENU, true);
+            _valueRating = new Music.RatingWidget (true, Gtk.IconSize.MENU, true);
             remove_button = new Gtk.Button.with_label (_("Remove"));
             remove_button.halign = Gtk.Align.END;
 
