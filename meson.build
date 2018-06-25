@@ -69,7 +69,6 @@ app_files = files(
   'src/Widgets/EqualizerPopover.vala',
   'src/Widgets/MediaMenu.vala',
   'src/Widgets/PresetList.vala',
-  'src/Widgets/RatingWidget.vala',
   'src/Widgets/SimpleOptionChooser.vala',
   'src/Widgets/SourceListView.vala',
   'src/Widgets/StatusBar.vala',
@@ -79,7 +78,10 @@ app_files = files(
   'src/Widgets/FastView/FastGridModel.vala',
   'src/Widgets/FastView/FastList.vala',
   'src/Widgets/FastView/FastListModel.vala',
-  'src/Widgets/FastView/TileView/TileRenderer.vala'
+  'src/Widgets/FastView/TileView/TileRenderer.vala',
+  'src/Widgets/Rating/RatingCellRenderer.vala',
+  'src/Widgets/Rating/RatingMenuItem.vala',
+  'src/Widgets/Rating/RatingWidget.vala'
 )
 
 app = executable (
