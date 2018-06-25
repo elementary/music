@@ -27,7 +27,7 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public interface Noise.ContentView : Gtk.Widget {
+public interface Noise.ViewInterface : Gtk.Widget {
     /**
      * Used for device syncing.
      */
