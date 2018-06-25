@@ -18,6 +18,7 @@ core_files = files(
   'LibraryWindowInterface.vala',
   'Media.vala',
   'NotificationManager.vala',
+  'PluginInterface.vala',
   'PluginManager.vala',
   'Resources.vala',
   'Settings.vala',
