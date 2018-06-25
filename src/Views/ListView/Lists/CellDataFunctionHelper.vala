@@ -152,7 +152,7 @@ public class Noise.CellDataFunctionHelper {
     public static inline void rating_func (Gtk.CellLayout layout, Gtk.CellRenderer cell, Gtk.TreeModel tree_model, Gtk.TreeIter iter) {
         Value val;
         tree_model.get_value (iter, ListColumn.RATING, out val);
-        var rating_cell = cell as Granite.Widgets.CellRendererRating;
+        var rating_cell = cell as Music.RatingCellRenderer;
         rating_cell.rating = val.get_uint ();
     }
 }
