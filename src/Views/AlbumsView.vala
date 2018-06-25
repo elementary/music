@@ -42,11 +42,13 @@ public class Noise.AlbumsView : Gtk.Paned, ViewInterface {
         }
     }
 
-    public ViewWrapper parent_view_wrapper { get; protected set; }
+    public ViewWrapper parent_view_wrapper { get; construct; }
 
     public AlbumsView (ViewWrapper view_wrapper) {
-        Object (parent_view_wrapper: view_wrapper, orientation: Gtk.Orientation.HORIZONTAL);
+        Object (parent_view_wrapper: view_wrapper);
+    }
 
+    construct {
         icon_view = new FastGrid ();
         icon_view.compare_func = compare_func;
         icon_view.search_func = search_func;
@@ -59,6 +61,7 @@ public class Noise.AlbumsView : Gtk.Paned, ViewInterface {
         scroll.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
         scroll.add (icon_view);
 
+        orientation = Gtk.Orientation.HORIZONTAL;
         pack1 (scroll, true, false);
 
         show_all ();
