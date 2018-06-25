@@ -32,13 +32,6 @@ namespace Noise.TimeUtils {
     private const uint64 SEC_INV = 1;
 
     /**
-     * Receives the number of miliseconds and returns a string with format MM:SS
-     */
-    public inline string pretty_length_from_ms (uint64 mseconds) {
-        return Granite.DateTime.seconds_to_time ((int)(mseconds / MILI_INV));
-    }
-
-    /**
      * Returns a formatted date and time string.
      */
     public inline string pretty_timestamp_from_time (Time dt) {
