@@ -40,7 +40,7 @@ public class Noise.CellDataFunctionHelper {
      * For unique icon on each row
      */
     public void icon_func (Gtk.CellLayout layout, Gtk.CellRenderer renderer, Gtk.TreeModel model, Gtk.TreeIter iter) {
-        var m = view.get_object_from_index (FastView.get_index_from_iter (iter)) as Media;
+        var m = view.get_object_from_index (GenericList.get_index_from_iter (iter)) as Media;
         if (m == null)
             return;
 
@@ -57,7 +57,7 @@ public class Noise.CellDataFunctionHelper {
     }
 
     public void spinner_func (Gtk.CellLayout layout, Gtk.CellRenderer renderer, Gtk.TreeModel model, Gtk.TreeIter iter) {
-        var m = view.get_object_from_index (FastView.get_index_from_iter (iter)) as Media;
+        var m = view.get_object_from_index (GenericList.get_index_from_iter (iter)) as Media;
         if (m == null)
             return;
 
