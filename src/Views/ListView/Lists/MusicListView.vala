@@ -218,10 +218,8 @@ public class Noise.MusicListView : GenericList {
             case ViewWrapper.Hint.PLAYLIST:
                 playlist.remove_medias (selected_media);
                 break;
-            case ViewWrapper.Hint.READ_ONLY_PLAYLIST:
-                if (playlist == App.player.queue_playlist) {
-                    playlist.remove_medias (selected_media);
-                }
+            case ViewWrapper.Hint.QUEUE:
+                playlist.remove_medias (selected_media);
                 break;
           }
     }
