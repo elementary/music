@@ -94,6 +94,28 @@ public class Noise.MusicListView : GenericList {
         });
     }
 
+    public void add_media (Gee.Collection<Media> to_add) {
+        // skip calling set_table and just do it ourselves (faster)
+        table.add_all (to_add);
+
+        // resort the new songs in. this will also call do_search
+        resort ();
+    }
+
+    /* If a Media is in to_remove but not in table, will just ignore */
+    public void remove_media (Gee.Collection<Media> to_remove) {
+        var new_table = new Gee.ArrayList<Media> ();
+
+        foreach (Media m in table) {
+            if (!(m in to_remove)) {
+                new_table.add (m);
+            }
+        }
+
+        // no need to resort, just removing
+        set_table (new_table, false);
+    }
+
     public override bool button_press_event (Gdk.EventButton event) {
         if (event.window != get_bin_window ())
             return base.button_press_event (event);
