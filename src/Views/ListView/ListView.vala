@@ -29,18 +29,14 @@
 /**
  * Contains the column browser and list view.
  */
-public class Noise.ListView : ContentView, Gtk.Box {
+public class Noise.ListView : Gtk.Box, ViewInterface {
     public signal void reordered ();
 
     // Wrapper for the list view and miller columns
-    private Gtk.Paned browser_hpane; // for left mode
-    private Gtk.Paned browser_vpane; // for top mode
+    private Gtk.Paned browser_pane; // for left mode
 
     public ColumnBrowser column_browser { get; construct set; }
     public MusicListView list_view { get; construct set; }
-
-    private int browser_hpane_position = -1;
-    private int browser_vpane_position = -1;
 
     public ViewWrapper view_wrapper { get; construct set; }
 
@@ -82,7 +78,7 @@ public class Noise.ListView : ContentView, Gtk.Box {
     public ListView (ViewWrapper view_wrapper, TreeViewSetup tvs, bool add_browser = false) {
         Object (view_wrapper: view_wrapper,
                 list_view: new MusicListView (view_wrapper, tvs),
-                column_browser: add_browser ? new MusicColumnBrowser (view_wrapper) : null);
+                column_browser: add_browser ? new ColumnBrowser (view_wrapper) : null);
     }
 
     construct {
@@ -102,15 +98,12 @@ public class Noise.ListView : ContentView, Gtk.Box {
         view_wrapper.library.search_finished.connect (() => { list_view.research_needed = true; });
 
         if (has_column_browser) {
-            browser_vpane = new Gtk.Paned (Gtk.Orientation.VERTICAL);
-            browser_vpane.pack2 (list_scrolled, true, false);
+            browser_pane = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
+            browser_pane.expand = true;
+            browser_pane.pack1 (column_browser, false, false);
+            browser_pane.pack2 (list_scrolled, true, false);
 
-            browser_hpane = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
-            browser_hpane.expand = true;
-            browser_hpane.pack1 (column_browser, false, false);
-            browser_hpane.pack2 (browser_vpane, true, false);
-
-            add (browser_hpane);
+            add (browser_pane);
 
             set_column_browser_position (column_browser.position);
 
@@ -128,9 +121,6 @@ public class Noise.ListView : ContentView, Gtk.Box {
     }
 
     private void set_column_browser_position (ColumnBrowser.Position position) {
-        if (!has_column_browser)
-            return;
-
         ColumnBrowser.Position actual_position = position; //position that will be actually applied
 
         if (actual_position == ColumnBrowser.Position.AUTOMATIC) {
@@ -166,19 +156,13 @@ public class Noise.ListView : ContentView, Gtk.Box {
         column_browser.actual_position = actual_position;
 
         if (actual_position == ColumnBrowser.Position.LEFT) {
-            if (browser_hpane.get_child1 () == null && browser_vpane.get_child1 () == column_browser) {
-                browser_vpane.remove (column_browser);
-
-                browser_hpane.pack1 (column_browser, false, false);
-                browser_hpane.position = browser_hpane_position;
-            }
+            App.saved_state.unbind (browser_pane, "position");
+            browser_pane.orientation = Gtk.Orientation.HORIZONTAL;
+            App.saved_state.bind ("column-browser-width", browser_pane, "position", GLib.SettingsBindFlags.DEFAULT);
         } else if (actual_position == ColumnBrowser.Position.TOP) {
-            if (browser_vpane.get_child1 () == null && browser_hpane.get_child1 () == column_browser) {
-                browser_hpane.remove (column_browser);
-
-                browser_vpane.pack1 (column_browser, false, false);
-                browser_vpane.set_position (browser_vpane_position);
-            }
+            App.saved_state.unbind (browser_pane, "position");
+            browser_pane.orientation = Gtk.Orientation.VERTICAL;
+            App.saved_state.bind ("column-browser-height", browser_pane, "position", GLib.SettingsBindFlags.DEFAULT);
         }
     }
 
@@ -202,16 +186,6 @@ public class Noise.ListView : ContentView, Gtk.Box {
             if (!App.main_window.initialization_finished || !column_browser_enabled) {
                 return;
             }
-
-            if (column_browser.actual_position == ColumnBrowser.Position.LEFT) {
-                if (browser_hpane.position > 0) {
-                    browser_hpane_position = browser_hpane.position;
-                }
-            } else if (column_browser.actual_position == ColumnBrowser.Position.TOP) {
-                if (browser_vpane.position > 0) {
-                    browser_vpane_position = browser_vpane.position;
-                }
-            }
         });
 
         App.main_window.view_selector.column_browser_toggled.connect ((enabled) => {
@@ -222,13 +196,6 @@ public class Noise.ListView : ContentView, Gtk.Box {
 
         column_browser.position_changed.connect (set_column_browser_position);
 
-        // Read Paned position from settings
-        browser_hpane_position = App.saved_state.get_int ("column-browser-width");
-        browser_vpane_position = App.saved_state.get_int ("column-browser-height");
-
-        browser_hpane.position = browser_hpane_position;
-        browser_vpane.position = browser_vpane_position;
-
         // We only save the settings when this view wrapper is being destroyed. This avoids unnecessary
         // disk access to write settings.
         destroy.connect (save_column_browser_settings);
@@ -237,13 +204,6 @@ public class Noise.ListView : ContentView, Gtk.Box {
     private void save_column_browser_settings () {
         // Need to add a proper fix later ... Something similar to TreeViewSetup
         if (has_column_browser) {
-            if (column_browser.visible) {
-                if (column_browser.actual_position == ColumnBrowser.Position.LEFT) {
-                    App.saved_state.set_int ("column-browser-width", browser_hpane_position);
-                } else if (column_browser.actual_position == ColumnBrowser.Position.TOP) {
-                    App.saved_state.set_int ("column-browser-height", browser_vpane_position);
-                }
-            }
             App.saved_state.set_boolean ("column-browser-enabled", column_browser_enabled);
         }
     }

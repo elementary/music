@@ -37,6 +37,7 @@ app_files = files(
   'src/GStreamer/CoverImport.vala',
   'src/GStreamer/GStreamerTagger.vala',
   'src/GStreamer/Streamer.vala',
+  'src/Interfaces/ViewInterface.vala',
   'src/LocalBackend/DevicePreferences.vala',
   'src/LocalBackend/LocalLibrary.vala',
   'src/LocalBackend/LocalMedia.vala',
@@ -45,7 +46,6 @@ app_files = files(
   'src/Objects/HistoryPlaylist.vala',
   'src/Objects/MediaKeyListener.vala',
   'src/Objects/MPRIS.vala',
-  'src/Views/ContentView.vala',
   'src/Views/DeviceSummaryWidget.vala',
   'src/Views/DeviceView.vala',
   'src/Views/AlbumsView.vala',
@@ -54,7 +54,6 @@ app_files = files(
   'src/Views/ListView/ColumnBrowser/BrowserColumn.vala',
   'src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala',
   'src/Views/ListView/ColumnBrowser/ColumnBrowser.vala',
-  'src/Views/ListView/ColumnBrowser/MusicColumnBrowser.vala',
   'src/Views/ListView/Lists/CellDataFunctionHelper.vala',
   'src/Views/ListView/Lists/GenericList.vala',
   'src/Views/ListView/Lists/ListColumn.vala',
@@ -70,7 +69,6 @@ app_files = files(
   'src/Widgets/EqualizerPopover.vala',
   'src/Widgets/MediaMenu.vala',
   'src/Widgets/PresetList.vala',
-  'src/Widgets/RatingWidget.vala',
   'src/Widgets/SimpleOptionChooser.vala',
   'src/Widgets/SourceListView.vala',
   'src/Widgets/StatusBar.vala',
@@ -80,7 +78,10 @@ app_files = files(
   'src/Widgets/FastView/FastGridModel.vala',
   'src/Widgets/FastView/FastList.vala',
   'src/Widgets/FastView/FastListModel.vala',
-  'src/Widgets/FastView/TileView/TileRenderer.vala'
+  'src/Widgets/FastView/TileView/TileRenderer.vala',
+  'src/Widgets/Rating/RatingCellRenderer.vala',
+  'src/Widgets/Rating/RatingMenuItem.vala',
+  'src/Widgets/Rating/RatingWidget.vala'
 )
 
 app = executable (

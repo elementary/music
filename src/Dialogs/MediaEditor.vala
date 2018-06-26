@@ -42,7 +42,7 @@ public class Noise.MediaEditor : Gtk.Dialog {
     private Gtk.SpinButton track_spinbutton;
     private Gtk.SpinButton disk_spinbutton;
     private Gtk.SpinButton year_spinbutton;
-    private Granite.Widgets.Rating rating_widget;
+    private Music.RatingWidget rating_widget;
 
     private Gtk.Button previous_button;
     private Gtk.Button next_button;
@@ -87,7 +87,7 @@ public class Noise.MediaEditor : Gtk.Dialog {
         disk_spinbutton = new Gtk.SpinButton.with_range (0, 500, 1);
         var local_time = new DateTime.now_local ();
         year_spinbutton = new Gtk.SpinButton.with_range (0, local_time.get_year (), 1);
-        rating_widget = new Granite.Widgets.Rating (false, Gtk.IconSize.MENU);
+        rating_widget = new Music.RatingWidget (false, Gtk.IconSize.MENU);
         rating_widget.hexpand = true;
 
         var comment_frame = new Gtk.Frame (null);
