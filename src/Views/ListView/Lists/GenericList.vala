@@ -30,7 +30,13 @@
 public abstract class Noise.GenericList : FastView {
     public signal void import_requested (Gee.Collection<Media> to_import);
 
+    protected bool dragging;
+    protected CellDataFunctionHelper cell_data_helper;
+
+    public bool is_current_list { get; private set; }
     public Playlist? playlist { get; set; default = null; }
+    public TreeViewSetup tvs { get; construct set; }
+
     public ViewWrapper.Hint hint {
         get {
             return tvs.hint;
@@ -51,13 +57,6 @@ public abstract class Noise.GenericList : FastView {
         }
     }
 
-    public TreeViewSetup tvs { get; construct set; }
-    protected bool is_current_list;
-
-    protected bool dragging;
-
-    protected CellDataFunctionHelper cell_data_helper;
-
     public GenericList (ViewWrapper view_wrapper, TreeViewSetup tvs) {
         Object (parent_wrapper: view_wrapper, tvs: tvs);
     }
@@ -73,7 +72,9 @@ public abstract class Noise.GenericList : FastView {
         set_fixed_height_mode (true);
         set_reorderable (false);
 
-        add_columns ();
+        foreach (Gtk.TreeViewColumn tvc in tvs.get_columns ()) {
+            add_column (tvc, TreeViewSetup.get_column_type (tvc));
+        }
 
         // allow selecting multiple rows
         get_selection ().set_mode (Gtk.SelectionMode.MULTIPLE);
@@ -81,10 +82,11 @@ public abstract class Noise.GenericList : FastView {
         rows_reordered.connect (on_rows_reordered);
 
         key_press_event.connect ((event) => {
-                if (event.keyval == Gdk.Key.Delete)
-                    mediaRemoveClicked ();
+            if (event.keyval == Gdk.Key.Delete) {
+                mediaRemoveClicked ();
+            }
 
-                return false;
+            return false;
         });
 
         // drag source
@@ -97,10 +99,14 @@ public abstract class Noise.GenericList : FastView {
 
         parent_wrapper.library.media_updated.connect (queue_draw);
 
-        App.player.queue_cleared.connect (current_cleared);
+        App.player.queue_cleared.connect (() => {
+            is_current_list = false;
+        });
+
         App.player.media_played.connect (media_played);
     }
 
+    protected abstract void add_column (Gtk.TreeViewColumn column, ListColumn type);
     protected abstract void mediaRemoveClicked ();
 
     public void set_media (Gee.Collection<Media> to_add) {
@@ -111,28 +117,6 @@ public abstract class Noise.GenericList : FastView {
         set_table (new_table, true);
 
         scroll_to_current_media (false);
-    }
-
-    /* If a Media is in to_remove but not in table, will just ignore */
-    public void remove_media (Gee.Collection<Media> to_remove) {
-        var new_table = new Gee.ArrayList<Media> ();
-
-        foreach (Media m in table) {
-            if (!(m in to_remove)) {
-                new_table.add (m);
-            }
-        }
-
-        // no need to resort, just removing
-        set_table (new_table, false);
-    }
-
-    public void add_media (Gee.Collection<Media> to_add) {
-        // skip calling set_table and just do it ourselves (faster)
-        table.add_all (to_add);
-
-        // resort the new songs in. this will also call do_search
-        resort ();
     }
 
     protected void set_fixed_column_width (Gtk.Widget treeview, Gtk.TreeViewColumn column, Gtk.CellRendererText renderer, string[] strings, int padding) {
@@ -149,13 +133,6 @@ public abstract class Noise.GenericList : FastView {
         }
 
         column.fixed_width = max_width + padding;
-    }
-
-    protected abstract void add_column (Gtk.TreeViewColumn column, ListColumn type);
-
-    protected void add_columns () {
-        foreach (Gtk.TreeViewColumn tvc in tvs.get_columns ())
-            add_column (tvc, TreeViewSetup.get_column_type (tvc));
     }
 
     private Media? get_media_from_index (int index) {
@@ -203,10 +180,6 @@ public abstract class Noise.GenericList : FastView {
         yield;
 
         scroll_to_current_media (false);
-    }
-
-    void current_cleared () {
-        is_current_list = false;
     }
 
     public void set_as_current_list (Media? m = null) {
@@ -315,20 +288,12 @@ public abstract class Noise.GenericList : FastView {
         }
     }
 
-    /***************************************
-     * Simple setters and getters
-     * *************************************/
-
-    public bool get_is_current_list () {
-        return is_current_list;
-    }
-
     /** **********************************************************
      * Drag and drop support. GenericList is a source for media and can
      * be dragged to a playlist in the sidebar. No support for reordering
      * is implemented yet.
     ***************************************************************/
-    void on_drag_begin (Gtk.Widget sender, Gdk.DragContext context) {
+    private void on_drag_begin (Gtk.Widget sender, Gdk.DragContext context) {
         dragging = true;
         debug ("drag begin");
 
@@ -340,7 +305,7 @@ public abstract class Noise.GenericList : FastView {
             Gtk.drag_source_set_icon_name (this, "audio-x-generic");
     }
 
-    void on_drag_data_get (Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {
+    private void on_drag_data_get (Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {
         string[] uris = null;
 
         foreach (Media m in get_selected_medias ())
@@ -350,7 +315,7 @@ public abstract class Noise.GenericList : FastView {
             selection_data.set_uris (uris);
     }
 
-    void on_drag_end (Gtk.Widget sender, Gdk.DragContext context) {
+    private void on_drag_end (Gtk.Widget sender, Gdk.DragContext context) {
         dragging = false;
 
         debug ("drag end\n");

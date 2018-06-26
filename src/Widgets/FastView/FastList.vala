@@ -30,9 +30,13 @@
 * A widget display a list of medias.
 */
 public class Noise.FastView : Gtk.TreeView {
-    public const int OPTIMAL_COLUMN = -2;
-    protected FastModel fm;
+    public signal void rows_reordered ();
+
     public Gee.List<Type> columns { get; construct set; }
+    public bool research_needed { get; set; default = false; }
+
+    private const int OPTIMAL_COLUMN = -2;
+    protected FastModel fm;
 
     /**
     * A list of all the medias to display
@@ -45,19 +49,22 @@ public class Noise.FastView : Gtk.TreeView {
     protected Gee.ArrayList<Media> showing = new Gee.ArrayList<Media> (); // should never point to table.
 
     /* sortable stuff */
-    public delegate int SortCompareFunc (int sort_column_id, Gtk.SortType sort_direction, Media a, Media b,
-                                         int index_a, int index_b); // position of items in the view's @table
+    public delegate int SortCompareFunc (
+        int sort_column_id,
+        Gtk.SortType sort_direction,
+        Media a,
+        Media b,
+        int index_a, // position of items in the view's @table
+        int index_b
+    );
 
     protected int sort_column_id;
     protected Gtk.SortType sort_direction;
-    public bool research_needed { get; set; default = false; }
     private unowned SortCompareFunc compare_func;
 
     // search stuff
     public delegate void ViewSearchFunc (string search, Gee.ArrayList<Media> table, Gee.ArrayList<Media> showing);
     private unowned ViewSearchFunc search_func;
-
-    public signal void rows_reordered ();
 
     public FastView (Gee.List<Type> types) {
         Object (columns: types);
@@ -154,10 +161,6 @@ public class Noise.FastView : Gtk.TreeView {
         }
     }
 
-    public void redraw_row (int row_index) {
-        fm.update_row (row_index);
-    }
-
     /** Sorting is done in the treeview, not the model. That way the whole
      * table is sorted and ready to go and we do not need to resort every
      * time we repopulate/search the model
@@ -166,12 +169,7 @@ public class Noise.FastView : Gtk.TreeView {
         fm.set_sort_column_id (sort_column_id, order); // The model will then go back to us at reorder_requested
     }
 
-    public void get_sort_column_id (out int sort_column, out Gtk.SortType order) {
-        sort_column = sort_column_id;
-        order = sort_direction;
-    }
-
-    void reorder_requested (int column, Gtk.SortType direction) {
+    private void reorder_requested (int column, Gtk.SortType direction) {
         if (column == sort_column_id && direction == sort_direction) {
             return;
         }
@@ -198,13 +196,13 @@ public class Noise.FastView : Gtk.TreeView {
         compare_func = func;
     }
 
-    void swap (int a, int b) {
+    private void swap (int a, int b) {
         var temp = table[a];
         table[a] = table[b];
         table[b] = temp;
     }
 
-    public void quicksort (int start, int end) {
+    private void quicksort (int start, int end) {
         if (table.size == 0) {
             return;
         }

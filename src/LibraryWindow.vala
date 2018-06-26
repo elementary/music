@@ -759,7 +759,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         if (p is LocalStaticPlaylist) {
             tvs = new TreeViewSetup (hint, "library:p%lld".printf (p.rowid), library_manager.connection);
         } else if (p == App.player.queue_playlist) {
-            tvs = new TreeViewSetup (hint, "library:queue", library_manager.connection);
+            tvs = new TreeViewSetup (ViewWrapper.Hint.QUEUE, "library:queue", library_manager.connection);
         } else if (p == App.player.history_playlist) {
             tvs = new TreeViewSetup (hint, "library:history", library_manager.connection);
         } else {
