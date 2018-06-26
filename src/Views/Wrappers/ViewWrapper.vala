@@ -51,7 +51,8 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         DEVICE_PODCAST,
         DEVICE_AUDIOBOOK,
         NETWORK_DEVICE,
-        ALBUM_LIST;
+        ALBUM_LIST,
+        QUEUE;
     }
 
     /**
