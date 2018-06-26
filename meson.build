@@ -75,7 +75,6 @@ app_files = files(
   'src/Widgets/ViewSelector.vala',
   'src/Widgets/FastView/FastGrid.vala',
   'src/Widgets/FastView/FastGridModel.vala',
-  'src/Widgets/FastView/FastList.vala',
   'src/Widgets/FastView/FastListModel.vala',
   'src/Widgets/FastView/TileView/TileRenderer.vala',
   'src/Widgets/Rating/RatingCellRenderer.vala',
