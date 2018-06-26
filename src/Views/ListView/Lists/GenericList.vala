@@ -27,12 +27,12 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public abstract class Noise.GenericList : FastView {
+public abstract class Noise.GenericList : Gtk.TreeView {
     public signal void import_requested (Gee.Collection<Media> to_import);
+    public signal void rows_reordered ();
 
-    protected bool dragging;
-    protected CellDataFunctionHelper cell_data_helper;
-
+    public Gee.List<Type> columns { get; construct set; }
+    public bool research_needed { get; set; default = false; }
     public bool is_current_list { get; private set; }
     public Playlist? playlist { get; set; default = null; }
     public TreeViewSetup tvs { get; construct set; }
@@ -57,11 +57,59 @@ public abstract class Noise.GenericList : FastView {
         }
     }
 
+    private const int OPTIMAL_COLUMN = -2;
+    protected FastModel fm;
+
+    /**
+    * A list of all the medias to display
+    */
+    protected Gee.ArrayList<Media> table = new Gee.ArrayList<Media> (); // is not the same object as showing.
+
+    /**
+    * The media that are presently shown (some of them can be absent because of search)
+    */
+    protected Gee.ArrayList<Media> showing = new Gee.ArrayList<Media> (); // should never point to table.
+
+    /* sortable stuff */
+    public delegate int SortCompareFunc (
+        int sort_column_id,
+        Gtk.SortType sort_direction,
+        Media a,
+        Media b,
+        int index_a, // position of items in the view's @table
+        int index_b
+    );
+
+    protected int sort_column_id;
+    protected Gtk.SortType sort_direction;
+    private unowned SortCompareFunc compare_func;
+
+    // search stuff
+    public delegate void ViewSearchFunc (string search, Gee.ArrayList<Media> table, Gee.ArrayList<Media> showing);
+    private unowned ViewSearchFunc search_func;
+
+    protected bool dragging;
+    protected CellDataFunctionHelper cell_data_helper;
+
     public GenericList (ViewWrapper view_wrapper, TreeViewSetup tvs) {
         Object (parent_wrapper: view_wrapper, tvs: tvs);
     }
 
     construct {
+        columns = new Gee.ArrayList<Type> ();
+        foreach (var type in ListColumn.get_all ()) {
+            columns.add (type.get_data_type ());
+        }
+
+        fm = new FastModel (columns);
+        sort_column_id = OPTIMAL_COLUMN;
+        sort_direction = Gtk.SortType.ASCENDING;
+
+        fm.reorder_requested.connect (reorder_requested);
+
+        set_table (table, true);
+        set_model (fm);
+
         cell_data_helper = new CellDataFunctionHelper (this);
 
         // Set sort data from saved session
@@ -285,6 +333,149 @@ public abstract class Noise.GenericList : FastView {
 
                 break;
             }
+        }
+    }
+
+    /** Should not be manipulated by client */
+    public Gee.BidirList<Media> get_table () {
+        return table.read_only_view;
+    }
+
+    /** Should not be manipulated by client */
+    public Gee.BidirList<Media> get_visible_table () {
+        return showing.read_only_view;
+    }
+
+    public static int get_index_from_iter (Gtk.TreeIter iter) {
+        return (int) iter.user_data;
+    }
+
+    public Media? get_object_from_index (int index) {
+        return index < showing.size ? showing[index] : null;
+    }
+
+    public void set_value_func (FastModel.ValueReturnFunc func) {
+        fm.set_value_func (func);
+    }
+
+    public void set_table (Gee.ArrayList<Media> table, bool do_resort) {
+        this.table = table;
+
+        if (do_resort) {
+            resort (); // this also calls search
+        } else {
+            do_search (null);
+        }
+    }
+
+    public void set_search_func (ViewSearchFunc func) {
+        search_func = func;
+    }
+
+    public void do_search (string? search = null) {
+        if (search_func == null || research_needed == false) {
+            return;
+        }
+
+        research_needed = false;
+        var old_size = showing.size;
+
+        showing.clear ();
+        search_func (search ?? "", table, showing);
+
+        if (showing.size == old_size) {
+            fm.set_table (showing);
+            queue_draw ();
+        } else if (old_size == 0) { // if first population, just do normal
+            set_model (null);
+            fm.set_table (showing);
+            set_model (fm);
+        } else if (old_size > showing.size) { // removing
+            while (fm.iter_n_children (null) > showing.size) {
+                Gtk.TreeIter iter;
+                fm.iter_nth_child (out iter, null, fm.iter_n_children (null) - 1);
+                fm.remove (iter);
+            }
+
+            fm.set_table (showing);
+            queue_draw ();
+        } else if (showing.size > old_size) { // adding
+            Gtk.TreeIter iter;
+
+            while (fm.iter_n_children (null) < showing.size) {
+                fm.append (out iter);
+            }
+
+            fm.set_table (showing);
+            queue_draw ();
+        }
+    }
+
+    /** Sorting is done in the treeview, not the model. That way the whole
+     * table is sorted and ready to go and we do not need to resort every
+     * time we repopulate/search the model
+    **/
+    public void set_sort_column_id (int sort_column_id, Gtk.SortType order) {
+        fm.set_sort_column_id (sort_column_id, order); // The model will then go back to us at reorder_requested
+    }
+
+    private void reorder_requested (int column, Gtk.SortType direction) {
+        if (column == sort_column_id && direction == sort_direction) {
+            return;
+        }
+
+        sort_column_id = column;
+        sort_direction = direction;
+
+        quicksort (0, table.size - 1);
+        research_needed = true;
+        do_search (null);
+
+        // Let it be known the row order changed
+        rows_reordered ();
+    }
+
+    public void resort () {
+        quicksort (0, table.size - 1);
+
+        research_needed = true;
+        do_search (null);
+    }
+
+    public void set_compare_func (SortCompareFunc func) {
+        compare_func = func;
+    }
+
+    private void swap (int a, int b) {
+        var temp = table[a];
+        table[a] = table[b];
+        table[b] = temp;
+    }
+
+    private void quicksort (int start, int end) {
+        if (table.size == 0) {
+            return;
+        }
+
+        int pivot_index = (start + end) / 2;
+        var pivot = table[pivot_index];
+        int i = start;
+        int j = end;
+
+        while (i <= j) {
+            while (i < end && compare_func (sort_column_id, sort_direction, table[i], pivot, i, pivot_index) < 0) ++i;
+            while (j > start && compare_func (sort_column_id, sort_direction, table[j], pivot, j, pivot_index) > 0) --j;
+            if (i <= j) {
+                swap (i, j);
+                ++i; --j;
+            }
+        }
+
+        if (start < j) {
+            quicksort (start, j);
+        }
+        if (i < end) {
+            quicksort (i, end);
         }
     }
 
