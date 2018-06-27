@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-27 08:19-0700\n"
-"PO-Revision-Date: 2018-06-08 00:11+0000\n"
-"Last-Translator: Ryo Nakano <ryonakaknock@gmail.com>\n"
+"PO-Revision-Date: 2018-06-27 15:28+0000\n"
+"Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://weblate.elementary.io/projects/music/music/"
 "ja/>\n"
 "Language: ja\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:53+0000\n"
 
 #: core/LibrariesManager.vala:147
@@ -328,7 +328,7 @@ msgstr "インポート完了"
 
 #: src/FileOperator.vala:305
 msgid "Your Library Has Been Imported."
-msgstr ""
+msgstr "ライブラリにインポートされました。"
 
 #: src/FileOperator.vala:315
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
@@ -498,16 +498,14 @@ msgid "Close"
 msgstr "閉じる"
 
 #: src/Dialogs/NotImportedWindow.vala:51
-#, fuzzy, c-format
+#, c-format
 msgid "Issues while importing from %s"
-msgstr "%s からミュージックをインポートしています…"
+msgstr "%s からのインポート中に問題が発生しました"
 
 #: src/Dialogs/NotImportedWindow.vala:56
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to import %d items. The files may be damaged."
-msgstr ""
-"%s は %d 個の項目をインポートすることができませんでした。ファイルが壊れている"
-"可能性があります。"
+msgstr "%d 個の項目をインポートすることができませんでした。ファイルが壊れている可能性があります。"
 
 #: src/Dialogs/NotImportedWindow.vala:60
 msgid "Move all corrupted files to trash"
@@ -566,26 +564,24 @@ msgid "Continue playback when closed:"
 msgstr "閉じたときに再生を続ける:"
 
 #: src/Dialogs/RemoveFilesDialog.vala:49
-#, fuzzy, c-format
+#, c-format
 msgid "Remove %d Song From Library?"
 msgid_plural "Remove %d Songs From Library?"
-msgstr[0] "%d 曲を %s から削除しますか？"
+msgstr[0] "ライブラリから %d 曲を削除しますか？"
 
 #: src/Dialogs/RemoveFilesDialog.vala:55
-#, fuzzy, c-format
+#, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr "ライブラリから削除"
+msgstr "ライブラリから \"%s\" を削除しますか？"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
-#, fuzzy
 msgid ""
 "This will remove the song from your library and from any device synced "
 "automatically."
 msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
-msgstr[0] ""
-"この操作はライブラリと %s と自動的に同期されたデバイスから曲を削除します。"
+msgstr[0] "この操作はライブラリと自動的に同期されたすべてのデバイスから曲を削除します。"
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
@@ -921,13 +917,12 @@ msgid "Device operation has been cancelled and will stop after this media."
 msgstr "デバイスの操作は中止され、このメディア以降は停止されます。"
 
 #: src/Views/ViewStack.vala:45
-#, fuzzy
 msgid "No Results"
-msgstr "評価なし"
+msgstr "検索結果がありません"
 
 #: src/Views/ViewStack.vala:45
 msgid "Try another search"
-msgstr ""
+msgstr "他の検索用語を試してみてください"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
 msgid "Genres"
@@ -1208,17 +1203,14 @@ msgid "Scroll to Current Song"
 msgstr "現在の曲へスクロール"
 
 #: src/Widgets/MediaMenu.vala:49
-#, fuzzy
 msgid "Show in File Browser…"
-msgstr "ファイルブラウザーで表示"
+msgstr "ファイルブラウザーで表示…"
 
 #: src/Widgets/MediaMenu.vala:50
-#, fuzzy
 msgid "Edit Song Info…"
-msgstr "曲情報を編集"
+msgstr "曲情報を編集…"
 
 #: src/Widgets/MediaMenu.vala:51
-#, fuzzy
 msgid "Other Actions"
 msgstr "その他の操作"
 
@@ -1227,18 +1219,16 @@ msgid "Add to Playlist"
 msgstr "プレイリストに追加"
 
 #: src/Widgets/MediaMenu.vala:55
-#, fuzzy
 msgid "Remove Song…"
-msgstr "曲を削除"
+msgstr "曲を削除…"
 
 #: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
 msgid "Import to Library"
 msgstr "ライブラリにインポート"
 
 #: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
-#, fuzzy
 msgid "Remove from Library…"
-msgstr "ライブラリから削除"
+msgstr "ライブラリから削除…"
 
 #: src/Widgets/MediaMenu.vala:99
 msgid "Remove from Device"
