@@ -7,49 +7,64 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-18 14:43+0100\n"
+"POT-Creation-Date: 2018-06-27 08:21-0700\n"
 "PO-Revision-Date: 2017-07-01 13:13+0000\n"
 "Last-Translator: Jernej Virag <jernej@virag.si>\n"
-"Language-Team: Slovenian "
-"<https://l10n.elementary.io/projects/music/extra/sl/>\n"
+"Language-Team: Slovenian <https://l10n.elementary.io/projects/music/extra/sl/"
+">\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
-"n%100==4 ? 2 : 3;\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3;\n"
 "X-Generator: Weblate 2.14\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
+#: data/io.elementary.music.appdata.xml.in:8
+#: data/io.elementary.music.desktop.in:4
 msgid "Music"
 msgstr "Glasba"
 
-msgid "Music Player"
-msgstr "Predvajalnik glasbe"
-
-msgid "Listen to music"
-msgstr "Poslušajte glasbo"
-
-msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-msgstr ""
-"Noise;Audio;Predvajalnik;Glasba;MP3;iPod;Igraj;Media;CD;Play;Phone;Songs;"
-"Pesmi;"
-
-msgid "About Music"
-msgstr "O Music"
-
-msgid "Noise"
-msgstr "Noise"
-
-msgid "About Noise"
-msgstr "O Noise"
-
+#: data/io.elementary.music.appdata.xml.in:9
 msgid "The official elementary music player"
 msgstr "Uraden predvajalnik glasbe v elementary"
 
+#: data/io.elementary.music.appdata.xml.in:11
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices, CDs, and album art."
 msgstr ""
 "Glasba je hiter in lep predvajalnik glasbe. Omogoča urejanje vaše glasbene "
 "knjižnice in podpira zunanje naprave, CDje in slike albumov."
+
+#: data/io.elementary.music.appdata.xml.in:100
+msgid "elementary LLC."
+msgstr ""
+
+#: data/io.elementary.music.desktop.in:5
+msgid "Music Player"
+msgstr "Predvajalnik glasbe"
+
+#: data/io.elementary.music.desktop.in:6
+msgid "Listen to music"
+msgstr "Poslušajte glasbo"
+
+#: data/io.elementary.music.desktop.in:8
+msgid "multimedia-audio-player"
+msgstr ""
+
+#: data/io.elementary.music.desktop.in:13
+msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+msgstr ""
+"Noise;Audio;Predvajalnik;Glasba;MP3;iPod;Igraj;Media;CD;Play;Phone;Songs;"
+"Pesmi;"
+
+#~ msgid "About Music"
+#~ msgstr "O Music"
+
+#~ msgid "Noise"
+#~ msgstr "Noise"
+
+#~ msgid "About Noise"
+#~ msgstr "O Noise"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-18 14:43+0100\n"
+"POT-Creation-Date: 2018-06-27 08:21-0700\n"
 "PO-Revision-Date: 2016-12-10 02:01+0000\n"
 "Last-Translator: ablimet <Unknown>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,32 +13,16 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 "X-Generator: Launchpad (build 18330)\n"
 
+#: data/io.elementary.music.appdata.xml.in:8
+#: data/io.elementary.music.desktop.in:4
 msgid "Music"
 msgstr "مۇزىكا"
 
-msgid "Music Player"
-msgstr "مۇزىكا قويغۇچ"
-
-msgid "Listen to music"
-msgstr "مۇزىكا ئاڭلاش"
-
-msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-msgstr ""
-"ئاۋاز; ئاۋاز ھۆججىتى; قويغۇچ; MP3; iPod; قويۇش; قويۇش تىزىملىكى; مېدىئا; CD; "
-"تېلىفون; ناخشىلار;"
-
-msgid "About Music"
-msgstr "مۇزىكا ھەققىدە"
-
-msgid "Noise"
-msgstr ""
-
-msgid "About Noise"
-msgstr ""
-
+#: data/io.elementary.music.appdata.xml.in:9
 msgid "The official elementary music player"
 msgstr "سېستىمىنىڭ مۇزىكا قويغۇچىسى"
 
+#: data/io.elementary.music.appdata.xml.in:11
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices, CDs, and album art."
@@ -46,3 +30,28 @@ msgstr ""
 "سېستىمىنىڭ مۇزىكا قويغۇچىسى مۇزىكىنى چىقىش نۇقتىسى قىلغان ۋە نۇرغۇن "
 "ئامبارلارنى ئۆزئىچىگە ئالغان  تىز ۋە چىرايلىق مۇزىكا قويغۇچ بولۇپ سىرتقى "
 "ئۈسكۈنىلەردىكى، CD دىكى، ۋە پىلاستىنكىلاردىكى مۇزىكىلارنى قويالايدۇ."
+
+#: data/io.elementary.music.appdata.xml.in:100
+msgid "elementary LLC."
+msgstr ""
+
+#: data/io.elementary.music.desktop.in:5
+msgid "Music Player"
+msgstr "مۇزىكا قويغۇچ"
+
+#: data/io.elementary.music.desktop.in:6
+msgid "Listen to music"
+msgstr "مۇزىكا ئاڭلاش"
+
+#: data/io.elementary.music.desktop.in:8
+msgid "multimedia-audio-player"
+msgstr ""
+
+#: data/io.elementary.music.desktop.in:13
+msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+msgstr ""
+"ئاۋاز; ئاۋاز ھۆججىتى; قويغۇچ; MP3; iPod; قويۇش; قويۇش تىزىملىكى; مېدىئا; CD; "
+"تېلىفون; ناخشىلار;"
+
+#~ msgid "About Music"
+#~ msgstr "مۇزىكا ھەققىدە"

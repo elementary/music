@@ -2,11 +2,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-18 14:43+0100\n"
+"POT-Creation-Date: 2018-06-27 08:21-0700\n"
 "PO-Revision-Date: 2018-01-21 00:04+0000\n"
 "Last-Translator: Laurence Bahiirwa <laurence@mediauganda.com>\n"
-"Language-Team: Ganda <https://weblate.elementary.io/projects/music/extra/lg/>"
-"\n"
+"Language-Team: Ganda <https://weblate.elementary.io/projects/music/extra/lg/"
+">\n"
 "Language: lg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,32 +15,16 @@ msgstr ""
 "X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
+#: data/io.elementary.music.appdata.xml.in:8
+#: data/io.elementary.music.desktop.in:4
 msgid "Music"
 msgstr "Ennyimba"
 
-msgid "Music Player"
-msgstr "Sofutiware w'ennyimba"
-
-msgid "Listen to music"
-msgstr "Wuliriza ennyimba"
-
-msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-msgstr ""
-"Kelere;Ebyogera;Sofutiware;MP3;iPod;Zannya;Olukalala;Failo;CD;Esiimu;Ennyimba"
-";"
-
-msgid "About Music"
-msgstr "Abikwata ku Sofutiweya wa Music"
-
-msgid "Noise"
-msgstr "Noise"
-
-msgid "About Noise"
-msgstr "Abikwata ku Noise"
-
+#: data/io.elementary.music.appdata.xml.in:9
 msgid "The official elementary music player"
 msgstr "Sofutiweya w'ennyimba owa elementary"
 
+#: data/io.elementary.music.appdata.xml.in:11
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices, CDs, and album art."
@@ -48,3 +32,34 @@ msgstr ""
 "Music sofutiweya ayanguwa era mulungi mu ndabika nga asinzira ku nnyimba ne "
 "materekero gazo. Ezannya n'amateerekero agebweeru wa kompyuta, CDs n'okulaga "
 "ebifananyi bya alubamu."
+
+#: data/io.elementary.music.appdata.xml.in:100
+msgid "elementary LLC."
+msgstr ""
+
+#: data/io.elementary.music.desktop.in:5
+msgid "Music Player"
+msgstr "Sofutiware w'ennyimba"
+
+#: data/io.elementary.music.desktop.in:6
+msgid "Listen to music"
+msgstr "Wuliriza ennyimba"
+
+#: data/io.elementary.music.desktop.in:8
+msgid "multimedia-audio-player"
+msgstr ""
+
+#: data/io.elementary.music.desktop.in:13
+msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+msgstr ""
+"Kelere;Ebyogera;Sofutiware;MP3;iPod;Zannya;Olukalala;Failo;CD;Esiimu;"
+"Ennyimba;"
+
+#~ msgid "About Music"
+#~ msgstr "Abikwata ku Sofutiweya wa Music"
+
+#~ msgid "Noise"
+#~ msgstr "Noise"
+
+#~ msgid "About Noise"
+#~ msgstr "Abikwata ku Noise"

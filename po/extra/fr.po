@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beatbox 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-18 14:43+0100\n"
+"POT-Creation-Date: 2018-06-27 08:21-0700\n"
 "PO-Revision-Date: 2016-12-19 12:36+0000\n"
 "Last-Translator: Corentin Noël <corentin@elementaryos.org>\n"
 "Language-Team: Fr <LL@li.org>\n"
@@ -18,32 +18,16 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 "X-Generator: Launchpad (build 18330)\n"
 
+#: data/io.elementary.music.appdata.xml.in:8
+#: data/io.elementary.music.desktop.in:4
 msgid "Music"
 msgstr "Musique"
 
-msgid "Music Player"
-msgstr "Lecteur audio"
-
-msgid "Listen to music"
-msgstr "Écouter de la musique"
-
-msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-msgstr ""
-"Noise;Audio;Lecteur;MP3;iPod;Lire;Playlist;Liste de lecture;Média;CD;"
-"Téléphone;Musique;Chanson;"
-
-msgid "About Music"
-msgstr "À propos de Musique"
-
-msgid "Noise"
-msgstr "Noise"
-
-msgid "About Noise"
-msgstr "À propos de Noise"
-
+#: data/io.elementary.music.appdata.xml.in:9
 msgid "The official elementary music player"
 msgstr "Le lecteur audio officiel d'elementary"
 
+#: data/io.elementary.music.appdata.xml.in:11
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices, CDs, and album art."
@@ -51,3 +35,34 @@ msgstr ""
 "Musique est un lecteur audio rapide et beau permettant de rester concentré "
 "sur la musique et votre bibliothèque. Il gère les périphériques externes, "
 "les CD et les couvertures d'albums."
+
+#: data/io.elementary.music.appdata.xml.in:100
+msgid "elementary LLC."
+msgstr ""
+
+#: data/io.elementary.music.desktop.in:5
+msgid "Music Player"
+msgstr "Lecteur audio"
+
+#: data/io.elementary.music.desktop.in:6
+msgid "Listen to music"
+msgstr "Écouter de la musique"
+
+#: data/io.elementary.music.desktop.in:8
+msgid "multimedia-audio-player"
+msgstr ""
+
+#: data/io.elementary.music.desktop.in:13
+msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+msgstr ""
+"Noise;Audio;Lecteur;MP3;iPod;Lire;Playlist;Liste de lecture;Média;CD;"
+"Téléphone;Musique;Chanson;"
+
+#~ msgid "About Music"
+#~ msgstr "À propos de Musique"
+
+#~ msgid "Noise"
+#~ msgstr "Noise"
+
+#~ msgid "About Noise"
+#~ msgstr "À propos de Noise"

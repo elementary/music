@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-18 14:43+0100\n"
+"POT-Creation-Date: 2018-06-27 08:21-0700\n"
 "PO-Revision-Date: 2016-12-19 16:16+0000\n"
 "Last-Translator: Carlos Agusto <carlos_198@outlook.com>\n"
 "Language-Team: Catalan <ca@li.org>\n"
@@ -18,35 +18,50 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 "X-Generator: Launchpad (build 18330)\n"
 
+#: data/io.elementary.music.appdata.xml.in:8
+#: data/io.elementary.music.desktop.in:4
 msgid "Music"
 msgstr "Música"
 
-msgid "Music Player"
-msgstr "Reproductor de música"
-
-msgid "Listen to music"
-msgstr "Escolteu música"
-
-msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-msgstr ""
-"Noise;Àudio;Reproductor;MP3;iPod;Play;Reproduir;Llista de reproducció;"
-"Multimèdia;Media;CD;Telèfon;Cançons;"
-
-msgid "About Music"
-msgstr "Quant al Música"
-
-msgid "Noise"
-msgstr "Noise"
-
-msgid "About Noise"
-msgstr "Quant al Noise"
-
+#: data/io.elementary.music.appdata.xml.in:9
 msgid "The official elementary music player"
 msgstr "El reproductor de música oficial de l'Elementary"
 
+#: data/io.elementary.music.appdata.xml.in:11
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices, CDs, and album art."
 msgstr ""
 "És un reproductor d'àudio ràpid i bonic focalitzat en la música i les "
 "biblioteques. Admet dispositius externs, CD i art d'àlbums."
+
+#: data/io.elementary.music.appdata.xml.in:100
+msgid "elementary LLC."
+msgstr ""
+
+#: data/io.elementary.music.desktop.in:5
+msgid "Music Player"
+msgstr "Reproductor de música"
+
+#: data/io.elementary.music.desktop.in:6
+msgid "Listen to music"
+msgstr "Escolteu música"
+
+#: data/io.elementary.music.desktop.in:8
+msgid "multimedia-audio-player"
+msgstr ""
+
+#: data/io.elementary.music.desktop.in:13
+msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+msgstr ""
+"Noise;Àudio;Reproductor;MP3;iPod;Play;Reproduir;Llista de reproducció;"
+"Multimèdia;Media;CD;Telèfon;Cançons;"
+
+#~ msgid "About Music"
+#~ msgstr "Quant al Música"
+
+#~ msgid "Noise"
+#~ msgstr "Noise"
+
+#~ msgid "About Noise"
+#~ msgstr "Quant al Noise"
