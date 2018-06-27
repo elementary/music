@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-18 14:43+0100\n"
+"POT-Creation-Date: 2018-06-27 08:21-0700\n"
 "PO-Revision-Date: 2016-12-19 21:06+0000\n"
 "Last-Translator: Maxim Taranov <png2378@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -18,33 +18,48 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 "X-Generator: Launchpad (build 18330)\n"
 
+#: data/io.elementary.music.appdata.xml.in:8
+#: data/io.elementary.music.desktop.in:4
 msgid "Music"
 msgstr "Музыка"
 
-msgid "Music Player"
-msgstr "Музыкальный проигрыватель"
-
-msgid "Listen to music"
-msgstr "Слушайте музыку"
-
-msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-msgstr "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-
-msgid "About Music"
-msgstr "О программе"
-
-msgid "Noise"
-msgstr "Noise"
-
-msgid "About Noise"
-msgstr "О программе"
-
+#: data/io.elementary.music.appdata.xml.in:9
 msgid "The official elementary music player"
 msgstr "Официальный музыкальный проигрыватель elementary"
 
+#: data/io.elementary.music.appdata.xml.in:11
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices, CDs, and album art."
 msgstr ""
 "Быстрый и красивый аудио-плеер с акцентом на музыку и библиотеки.  "
 "Поддерживает внешние устройства, компакт-диски и обложки альбомов."
+
+#: data/io.elementary.music.appdata.xml.in:100
+msgid "elementary LLC."
+msgstr ""
+
+#: data/io.elementary.music.desktop.in:5
+msgid "Music Player"
+msgstr "Музыкальный проигрыватель"
+
+#: data/io.elementary.music.desktop.in:6
+msgid "Listen to music"
+msgstr "Слушайте музыку"
+
+#: data/io.elementary.music.desktop.in:8
+msgid "multimedia-audio-player"
+msgstr ""
+
+#: data/io.elementary.music.desktop.in:13
+msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+msgstr "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+
+#~ msgid "About Music"
+#~ msgstr "О программе"
+
+#~ msgid "Noise"
+#~ msgstr "Noise"
+
+#~ msgid "About Noise"
+#~ msgstr "О программе"

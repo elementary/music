@@ -2,11 +2,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-18 14:43+0100\n"
+"POT-Creation-Date: 2018-06-27 08:21-0700\n"
 "PO-Revision-Date: 2018-02-05 00:11+0000\n"
 "Last-Translator: Rokar <mail@rokar.de>\n"
-"Language-Team: Kurdish "
-"<https://weblate.elementary.io/projects/music/extra/ku/>\n"
+"Language-Team: Kurdish <https://weblate.elementary.io/projects/music/extra/"
+"ku/>\n"
 "Language: ku\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,32 +15,47 @@ msgstr ""
 "X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
+#: data/io.elementary.music.appdata.xml.in:8
+#: data/io.elementary.music.desktop.in:4
 msgid "Music"
 msgstr "Mûzîk"
 
-msgid "Music Player"
-msgstr "Lêderê Mûzîkê"
-
-msgid "Listen to music"
-msgstr "Muzîk le bihîstin"
-
-msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-msgstr ""
-"Noise;deng;Lêder;MP3;iPod;lîstik;Pirrjimara lîstik;Media;CD;telefon;stiran;"
-
-msgid "About Music"
-msgstr "ser Muzîkê"
-
-msgid "Noise"
-msgstr "Mûzîk"
-
-msgid "About Noise"
-msgstr "ser Noise"
-
+#: data/io.elementary.music.appdata.xml.in:9
 msgid "The official elementary music player"
 msgstr "Lêderê Mûzîkê fermî li elementary"
 
+#: data/io.elementary.music.appdata.xml.in:11
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices, CDs, and album art."
 msgstr ""
+
+#: data/io.elementary.music.appdata.xml.in:100
+msgid "elementary LLC."
+msgstr ""
+
+#: data/io.elementary.music.desktop.in:5
+msgid "Music Player"
+msgstr "Lêderê Mûzîkê"
+
+#: data/io.elementary.music.desktop.in:6
+msgid "Listen to music"
+msgstr "Muzîk le bihîstin"
+
+#: data/io.elementary.music.desktop.in:8
+msgid "multimedia-audio-player"
+msgstr ""
+
+#: data/io.elementary.music.desktop.in:13
+msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+msgstr ""
+"Noise;deng;Lêder;MP3;iPod;lîstik;Pirrjimara lîstik;Media;CD;telefon;stiran;"
+
+#~ msgid "About Music"
+#~ msgstr "ser Muzîkê"
+
+#~ msgid "Noise"
+#~ msgstr "Mûzîk"
+
+#~ msgid "About Noise"
+#~ msgstr "ser Noise"

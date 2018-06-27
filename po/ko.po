@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-05 11:30-0800\n"
+"POT-Creation-Date: 2018-06-27 08:19-0700\n"
 "PO-Revision-Date: 2018-02-08 15:45+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
-"Language-Team: Korean "
-"<https://weblate.elementary.io/projects/music/music/ko/>\n"
+"Language-Team: Korean <https://weblate.elementary.io/projects/music/music/ko/"
+">\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -136,20 +136,20 @@ msgid "Export Playlist"
 msgstr "재생목록 내보내기"
 
 #: core/Utils/PlaylistsUtils.vala:275 core/Utils/PlaylistsUtils.vala:369
-#: src/LibraryWindow.vala:1002 src/Dialogs/FileNotFoundDialog.vala:84
+#: src/LibraryWindow.vala:980 src/Dialogs/FileNotFoundDialog.vala:84
 #: src/Dialogs/FileNotFoundDialog.vala:123
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:50
-#: src/Dialogs/RemoveFilesDialog.vala:58
+#: src/Dialogs/RemoveFilesDialog.vala:82
 #: src/Dialogs/SetMusicFolderConfirmation.vala:67
 #: src/Dialogs/SetMusicFolderConfirmation.vala:115
-#: src/Dialogs/SmartPlaylistEditor.vala:111
+#: src/Dialogs/SmartPlaylistEditor.vala:93
 #: src/Dialogs/SyncWarningDialog.vala:60
-#: src/Views/Wrappers/MusicViewWrapper.vala:137 src/Widgets/TopDisplay.vala:64
+#: src/Views/Wrappers/MusicViewWrapper.vala:145 src/Widgets/TopDisplay.vala:64
 msgid "Cancel"
 msgstr "취소"
 
-#: core/Utils/PlaylistsUtils.vala:276 src/Dialogs/MediaEditor.vala:138
-#: src/Dialogs/SmartPlaylistEditor.vala:107
+#: core/Utils/PlaylistsUtils.vala:276 src/Dialogs/MediaEditor.vala:142
+#: src/Dialogs/SmartPlaylistEditor.vala:89
 msgid "Save"
 msgstr "저장"
 
@@ -170,11 +170,11 @@ msgstr "재생목록"
 msgid "Import %s"
 msgstr "%s에서 가져오기"
 
-#: core/Utils/PlaylistsUtils.vala:370 src/LibraryWindow.vala:1003
+#: core/Utils/PlaylistsUtils.vala:370 src/LibraryWindow.vala:981
 #: src/Dialogs/FileNotFoundDialog.vala:124
 #: src/Dialogs/SetMusicFolderConfirmation.vala:116
-#: src/Views/Wrappers/MusicViewWrapper.vala:139
-#: src/Widgets/AlbumListGrid.vala:243
+#: src/Views/Wrappers/MusicViewWrapper.vala:147
+#: src/Widgets/AlbumListGrid.vala:244
 msgid "Open"
 msgstr "열기"
 
@@ -182,7 +182,7 @@ msgstr "열기"
 msgid "Unrecognized playlist file. Import failed."
 msgstr "알 수 없는 재생목록 파일입니다. 가져오는데 실패하였습니다."
 
-#: core/Utils/TimeUtils.vala:47
+#: core/Utils/TimeUtils.vala:40
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%Y/%m/%e일 %p %-l:%M"
 
@@ -273,7 +273,7 @@ msgstr "CD 불러오기가 현재 불러오기 후 <b>취소</b>될 것입니다
 msgid "An error occured during the Import of this CD"
 msgstr "CD를 가져오는 도중 오류가 발생했습니다"
 
-#: plugins/Devices/CDRom/CDView.vala:94 src/Dialogs/SyncWarningDialog.vala:62
+#: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
 msgid "Import"
 msgstr "불러들이기"
 
@@ -295,11 +295,11 @@ msgstr "동기화를 마무리하고 있습니다…"
 msgid "Cancelling Sync…"
 msgstr "동기화 취소 중…"
 
-#: plugins/LastFM/LastFM.vala:97
+#: plugins/LastFM/LastFM.vala:98
 msgid "No similar songs found"
 msgstr "유사한 곡들을 찾지 못 하였습니다"
 
-#: plugins/LastFM/LastFM.vala:97
+#: plugins/LastFM/LastFM.vala:98
 msgid ""
 "There are no songs similar to the current song in your library. Make sure "
 "all song info is correct and you are connected to the Internet. Some songs "
@@ -326,51 +326,52 @@ msgid "Import Complete"
 msgstr "가져오기 완료"
 
 #: src/FileOperator.vala:305
-#, c-format
-msgid "%s has imported your library."
-msgstr "%s이 라이브러리에 추가되었습니다."
+msgid "Your Library Has Been Imported."
+msgstr ""
 
 #: src/FileOperator.vala:315
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr "<b>음악 폴더</b>에 파일 <b>복사 중</b>…"
 
-#: src/LibraryWindow.vala:215
+#: src/LibraryWindow.vala:192
 msgid "Import to Library…"
 msgstr "라이브러리로 가져오기…"
 
-#: src/LibraryWindow.vala:218 src/Dialogs/PreferencesWindow.vala:40
+#: src/LibraryWindow.vala:195 src/Dialogs/PreferencesWindow.vala:40
 msgid "Preferences"
 msgstr "환경설정"
 
-#: src/LibraryWindow.vala:233
+#: src/LibraryWindow.vala:211
 msgid "Previous"
 msgstr "이전"
 
-#: src/LibraryWindow.vala:237 src/LibraryWindow.vala:292
+#: src/LibraryWindow.vala:215 src/LibraryWindow.vala:270
 msgid "Play"
 msgstr "재생"
 
-#: src/LibraryWindow.vala:241
+#: src/LibraryWindow.vala:219
 msgid "Next"
 msgstr "다음"
 
-#: src/LibraryWindow.vala:245
+#: src/LibraryWindow.vala:223
 msgid "Search Music"
 msgstr "음악 검색"
 
-#: src/LibraryWindow.vala:295
-msgid "Pause"
-msgstr "일시 정지"
-
-#: src/LibraryWindow.vala:612 src/LibraryWindow.vala:718
+#: src/LibraryWindow.vala:242 src/LibraryWindow.vala:451
+#: src/LibraryWindow.vala:596 src/LibraryWindow.vala:702
+#: src/LibraryWindow.vala:1144
 msgid "Music"
 msgstr "음악"
 
-#: src/LibraryWindow.vala:787
+#: src/LibraryWindow.vala:273
+msgid "Pause"
+msgstr "일시 정지"
+
+#: src/LibraryWindow.vala:771
 msgid "No songs in Queue"
 msgstr "대기열에 아무 곡도 없습니다"
 
-#: src/LibraryWindow.vala:787
+#: src/LibraryWindow.vala:771
 msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
@@ -380,11 +381,11 @@ msgstr ""
 "고 <b>재생 목록으로</b>를 선택하세요. 음악이 끝날 때, 재생 목록에 추가된 음악"
 "들이 현재 재생 중인 목록의 다음 음악보다 먼저 재생될 것입니다."
 
-#: src/LibraryWindow.vala:790
+#: src/LibraryWindow.vala:774
 msgid "No songs in History"
 msgstr "재생 기록에 아무 곡도 없습니다"
 
-#: src/LibraryWindow.vala:790
+#: src/LibraryWindow.vala:774
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
@@ -394,7 +395,7 @@ msgstr ""
 "이 리스트를 사용하여 현재 세션에서 당신이 재생했던 모든 음악들을 볼 수 있습니"
 "다."
 
-#: src/LibraryWindow.vala:1000 src/Views/Wrappers/MusicViewWrapper.vala:60
+#: src/LibraryWindow.vala:978 src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import Music"
 msgstr "음악 가져오기"
 
@@ -417,7 +418,6 @@ msgid "Rescan Library"
 msgstr "라이브러리 다시 검색"
 
 #: src/Dialogs/FileNotFoundDialog.vala:83
-#: src/Views/ListView/Lists/MusicListView.vala:100
 msgid "Remove Song"
 msgstr "노래 지우기"
 
@@ -438,57 +438,58 @@ msgstr "%s 플러그인을 설치할까요?"
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:39
 #, c-format
 msgid "This song cannot be played. The %s plugin is required to play the song."
-msgstr "이 노래를 재생할 수 없습니다. 노래를 재생하려면 %s 플러그인이 필요합니다."
+msgstr ""
+"이 노래를 재생할 수 없습니다. 노래를 재생하려면 %s 플러그인이 필요합니다."
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid "Install Plugin"
 msgstr "플러그인 설치"
 
-#: src/Dialogs/MediaEditor.vala:103
+#: src/Dialogs/MediaEditor.vala:102
 msgid "Title:"
 msgstr "제목:"
 
-#: src/Dialogs/MediaEditor.vala:105
+#: src/Dialogs/MediaEditor.vala:104
 msgid "Artist:"
 msgstr "아티스트:"
 
-#: src/Dialogs/MediaEditor.vala:107
+#: src/Dialogs/MediaEditor.vala:106
 msgid "Album:"
 msgstr "앨범:"
 
-#: src/Dialogs/MediaEditor.vala:109
+#: src/Dialogs/MediaEditor.vala:108
 msgid "Album Artist:"
 msgstr "앨범 아티스트:"
 
-#: src/Dialogs/MediaEditor.vala:111
+#: src/Dialogs/MediaEditor.vala:110
 msgid "Composer:"
 msgstr "작곡:"
 
-#: src/Dialogs/MediaEditor.vala:113
+#: src/Dialogs/MediaEditor.vala:112
 msgid "Grouping:"
 msgstr "묶기:"
 
-#: src/Dialogs/MediaEditor.vala:115
+#: src/Dialogs/MediaEditor.vala:114
 msgid "Genre:"
 msgstr "장르:"
 
-#: src/Dialogs/MediaEditor.vala:117
+#: src/Dialogs/MediaEditor.vala:116
 msgid "Year:"
 msgstr "연도:"
 
-#: src/Dialogs/MediaEditor.vala:119
+#: src/Dialogs/MediaEditor.vala:118
 msgid "Track:"
 msgstr "트랙:"
 
-#: src/Dialogs/MediaEditor.vala:121
+#: src/Dialogs/MediaEditor.vala:120
 msgid "Disk:"
 msgstr "디스크:"
 
-#: src/Dialogs/MediaEditor.vala:123
+#: src/Dialogs/MediaEditor.vala:122
 msgid "Rating:"
 msgstr "평점:"
 
-#: src/Dialogs/MediaEditor.vala:125
+#: src/Dialogs/MediaEditor.vala:124
 msgid "Comment:"
 msgstr "설명:"
 
@@ -498,13 +499,13 @@ msgid "Close"
 msgstr "닫기"
 
 #: src/Dialogs/NotImportedWindow.vala:51
-#, c-format
-msgid "Unable to import %d items from %s"
-msgstr "%d개 항목을 %s에서 불러올 수 없음"
+#, fuzzy, c-format
+msgid "Issues while importing from %s"
+msgstr "%s에서 음악을 가져오고 있습니다…"
 
 #: src/Dialogs/NotImportedWindow.vala:56
-#, c-format
-msgid "%s was unable to import %d items. The files may be damaged."
+#, fuzzy, c-format
+msgid "Unable to import %d items. The files may be damaged."
 msgstr "%s가 %d개의 항목을 가져오지 못했습니다. 파일이 손상되었을 수 있습니다."
 
 #: src/Dialogs/NotImportedWindow.vala:60
@@ -523,7 +524,7 @@ msgstr "파일 위치"
 msgid "Select individual files to move to trash:"
 msgstr "휴지통으로 옮길 파일을 선택하세요:"
 
-#: src/Dialogs/NotImportedWindow.vala:96 src/Dialogs/RemoveFilesDialog.vala:56
+#: src/Dialogs/NotImportedWindow.vala:96 src/Dialogs/RemoveFilesDialog.vala:73
 msgid "Move to Trash"
 msgstr "휴지통으로 이동"
 
@@ -563,32 +564,32 @@ msgstr "데스크톱 통합"
 msgid "Continue playback when closed:"
 msgstr "닫아도 계속 재생하기:"
 
-#: src/Dialogs/RemoveFilesDialog.vala:57
-#, c-format
-msgid "Remove from %s"
-msgstr "%s에서 제거"
+#: src/Dialogs/RemoveFilesDialog.vala:49
+#, fuzzy, c-format
+msgid "Remove %d Song From Library?"
+msgid_plural "Remove %d Songs From Library?"
+msgstr[0] "%d개 항목을 %s에서 제거할까요?"
 
-#: src/Dialogs/RemoveFilesDialog.vala:67
-#, c-format
-msgid "Remove %d Songs From %s?"
-msgstr "%d개 항목을 %s에서 제거할까요?"
+#: src/Dialogs/RemoveFilesDialog.vala:55
+#, fuzzy, c-format
+msgid "Remove \"%s\" From Library?"
+msgstr "라이브러리에서 제거"
 
-#: src/Dialogs/RemoveFilesDialog.vala:70
-#, c-format
-msgid "Remove \"%s\" From %s?"
-msgstr "%s에서 \"%s\"를 제거합니까?"
-
-#: src/Dialogs/RemoveFilesDialog.vala:79
-#, c-format
+#: src/Dialogs/RemoveFilesDialog.vala:59
+#, fuzzy
 msgid ""
-"This will remove the song from your library and from any device that "
-"automatically syncs with %s."
+"This will remove the song from your library and from any device synced "
+"automatically."
 msgid_plural ""
-"This will remove the songs from your library and from any device that "
-"automatically syncs with %s."
+"This will remove the songs from your library and from any device synced "
+"automatically."
 msgstr[0] ""
 "이 작업은 라이브러리와 %s에 자동으로 동기화되는 장비의 모든 곡들을 제거하게 "
 "됩니다."
+
+#: src/Dialogs/RemoveFilesDialog.vala:83
+msgid "Remove from Library"
+msgstr "라이브러리에서 제거"
 
 #: src/Dialogs/SetMusicFolderConfirmation.vala:65
 msgid "Export Playlists"
@@ -611,166 +612,166 @@ msgstr ""
 "정말로 음악 폴더를 %s로 이동시키시겠습니까? 계속하면 라이브러리를 재설정하"
 "고, 재생목록을 제거할 것입니다."
 
-#: src/Dialogs/SmartPlaylistEditor.vala:46
-msgid "Smart Playlist Editor"
-msgstr "스마트 재생목록 편집기"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:59
+#: src/Dialogs/SmartPlaylistEditor.vala:55
 msgid "Playlist Title"
 msgstr "재생목록 제목"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:64
+#: src/Dialogs/SmartPlaylistEditor.vala:58
 msgid "any"
 msgstr "임의"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:65
+#: src/Dialogs/SmartPlaylistEditor.vala:59
 msgid "all"
 msgstr "전체"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:73
+#: src/Dialogs/SmartPlaylistEditor.vala:63
 msgid "Match"
 msgstr "일치"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:75
+#: src/Dialogs/SmartPlaylistEditor.vala:65
 msgid "of the following:"
 msgstr "다음 중에서:"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:84
+#: src/Dialogs/SmartPlaylistEditor.vala:74
 msgid "Add"
 msgstr "추가"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:89
+#: src/Dialogs/SmartPlaylistEditor.vala:79
 msgid "Limit to"
 msgstr "다음으로 제한"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:105
+#: src/Dialogs/SmartPlaylistEditor.vala:87
 msgid "items"
 msgstr "항목"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:125
+#: src/Dialogs/SmartPlaylistEditor.vala:107
 msgid "Name of Playlist"
 msgstr "재생목록 이름"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:127
+#: src/Dialogs/SmartPlaylistEditor.vala:109
 msgid "Rules"
 msgstr "규칙"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:130
+#: src/Dialogs/SmartPlaylistEditor.vala:112
 msgid "Options"
 msgstr "옵션"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:254 src/Widgets/SourceListView.vala:69
-#: src/Widgets/SourceListView.vala:83
+#: src/Dialogs/SmartPlaylistEditor.vala:119
+msgid "Smart Playlist Editor"
+msgstr "스마트 재생목록 편집기"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:260 src/Widgets/SourceListView.vala:67
+#: src/Widgets/SourceListView.vala:80
 msgid "Remove"
 msgstr "제거"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:257
+#: src/Dialogs/SmartPlaylistEditor.vala:263
 msgid "Album"
 msgstr "앨범"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:258
+#: src/Dialogs/SmartPlaylistEditor.vala:264
 msgid "Artist"
 msgstr "음악가"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:259
+#: src/Dialogs/SmartPlaylistEditor.vala:265
 msgid "Bitrate"
 msgstr "비트레이트"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:260
+#: src/Dialogs/SmartPlaylistEditor.vala:266
 msgid "Comment"
 msgstr "코멘트"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:261
+#: src/Dialogs/SmartPlaylistEditor.vala:267
 msgid "Composer"
 msgstr "작곡가"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:262
+#: src/Dialogs/SmartPlaylistEditor.vala:268
 msgid "Date Added"
 msgstr "추가된 날짜"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:263
+#: src/Dialogs/SmartPlaylistEditor.vala:269
 msgid "Genre"
 msgstr "장르"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:264
+#: src/Dialogs/SmartPlaylistEditor.vala:270
 msgid "Grouping"
 msgstr "그룹"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:265
+#: src/Dialogs/SmartPlaylistEditor.vala:271
 msgid "Last Played"
 msgstr "마지막으로 재생된 날짜"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:266
-#: src/Dialogs/SmartPlaylistEditor.vala:410
+#: src/Dialogs/SmartPlaylistEditor.vala:272
+#: src/Dialogs/SmartPlaylistEditor.vala:417
 msgid "Length"
 msgstr "재생시간"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:267
+#: src/Dialogs/SmartPlaylistEditor.vala:273
 msgid "Playcount"
 msgstr "재생횟수"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:268
+#: src/Dialogs/SmartPlaylistEditor.vala:274
 msgid "Rating"
 msgstr "선호도"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:269
+#: src/Dialogs/SmartPlaylistEditor.vala:275
 msgid "Skipcount"
 msgstr "스킵한 횟수"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:270
+#: src/Dialogs/SmartPlaylistEditor.vala:276
 msgid "Title"
 msgstr "곡명"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:271
+#: src/Dialogs/SmartPlaylistEditor.vala:277
 msgid "Year"
 msgstr "년도"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:272
+#: src/Dialogs/SmartPlaylistEditor.vala:278
 msgid "URI"
 msgstr "URI"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:345
+#: src/Dialogs/SmartPlaylistEditor.vala:351
 msgid "is"
 msgstr "다음과 같음"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:346
+#: src/Dialogs/SmartPlaylistEditor.vala:352
 msgid "contains"
 msgstr "다음을 포함"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:347
+#: src/Dialogs/SmartPlaylistEditor.vala:353
 msgid "does not contain"
 msgstr "다음을 포함하지 않음"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:373
-#: src/Dialogs/SmartPlaylistEditor.vala:387
+#: src/Dialogs/SmartPlaylistEditor.vala:379
+#: src/Dialogs/SmartPlaylistEditor.vala:394
 msgid "is exactly"
 msgstr "다음과 일치"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:374
+#: src/Dialogs/SmartPlaylistEditor.vala:380
 msgid "is at most"
 msgstr "다음보다 작게"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:375
+#: src/Dialogs/SmartPlaylistEditor.vala:381
 msgid "is at least"
 msgstr "다음보다 크게"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:388
+#: src/Dialogs/SmartPlaylistEditor.vala:395
 msgid "is within"
 msgstr "다음 범위 내"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:389
+#: src/Dialogs/SmartPlaylistEditor.vala:396
 msgid "is before"
 msgstr "다음 이전에"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:411
+#: src/Dialogs/SmartPlaylistEditor.vala:418
 msgid "seconds"
 msgstr "초"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:414
+#: src/Dialogs/SmartPlaylistEditor.vala:421
 msgid "days ago"
 msgstr "일 전"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:417
+#: src/Dialogs/SmartPlaylistEditor.vala:424
 msgid "kbps"
 msgstr "kbps"
 
@@ -793,36 +794,36 @@ msgstr ""
 msgid "Continue Syncing"
 msgstr "동기화 진행"
 
-#: src/LocalBackend/LocalLibrary.vala:189
+#: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
 msgid "Importing music from %s…"
 msgstr "%s에서 음악을 가져오고 있습니다…"
 
-#: src/LocalBackend/LocalLibrary.vala:213
+#: src/LocalBackend/LocalLibrary.vala:212
 msgid "Adding files to library…"
 msgstr "라이브러리에 파일을 추가하고 있습니다…"
 
-#: src/LocalBackend/LocalLibrary.vala:226
+#: src/LocalBackend/LocalLibrary.vala:225
 msgid "<b>Importing</b> music to library…"
 msgstr "음악을 라이브러리에 <b>불러오는 중</b>…"
 
-#: src/LocalBackend/LocalLibrary.vala:248
+#: src/LocalBackend/LocalLibrary.vala:247
 msgid "All music files are already in your library"
 msgstr "모든 음악 파일들이 사용자 라이브러리에 있음"
 
-#: src/LocalBackend/LocalLibrary.vala:248
+#: src/LocalBackend/LocalLibrary.vala:247
 msgid "No files were imported."
 msgstr "아무 파일도 불러오지 않았습니다."
 
-#: src/LocalBackend/LocalLibrary.vala:253
+#: src/LocalBackend/LocalLibrary.vala:252
 msgid "Rescanning music for changes. This may take a while…"
 msgstr "바뀐 음악을 확인하고 있습니다. 잠시만 기다려주세요…"
 
-#: src/LocalBackend/LocalLibrary.vala:354
+#: src/LocalBackend/LocalLibrary.vala:353
 msgid "Added to your queue:"
 msgstr "대기열에 추가되었습니다:"
 
-#: src/LocalBackend/LocalLibrary.vala:365
+#: src/LocalBackend/LocalLibrary.vala:364
 #, c-format
 msgid "%d Track"
 msgid_plural "%d Tracks"
@@ -856,7 +857,7 @@ msgstr "최근 재생하지 않은 항목"
 msgid "History"
 msgstr "재생 기록"
 
-#: src/Objects/MPRIS.vala:618 src/Widgets/SourceListView.vala:325
+#: src/Objects/MPRIS.vala:617 src/Widgets/SourceListView.vala:341
 msgid "Playlists"
 msgstr "재생목록"
 
@@ -876,36 +877,36 @@ msgstr "장치가 연결되면 자동으로 동기화:"
 msgid "Sync:"
 msgstr "동기화:"
 
-#: src/Views/DeviceSummaryWidget.vala:85 src/Widgets/SourceListView.vala:180
+#: src/Views/DeviceSummaryWidget.vala:100 src/Widgets/SourceListView.vala:192
 msgid "Sync"
 msgstr "동기화"
 
-#: src/Views/DeviceSummaryWidget.vala:245
+#: src/Views/DeviceSummaryWidget.vala:244
 msgid "All Music"
 msgstr "모든 음악"
 
-#: src/Views/DeviceSummaryWidget.vala:300
+#: src/Views/DeviceSummaryWidget.vala:298
 msgid "Sync Failed"
 msgstr "동기화 실패"
 
-#: src/Views/DeviceSummaryWidget.vala:300
+#: src/Views/DeviceSummaryWidget.vala:299
 #, c-format
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
 "재생목록 '%s'가 장치 %s를 동기화하기 위해 사용되지만, 찾을 수 없습니다."
 
-#: src/Views/DeviceSummaryWidget.vala:312
-#: src/Views/DeviceSummaryWidget.vala:314
+#: src/Views/DeviceSummaryWidget.vala:316
+#: src/Views/DeviceSummaryWidget.vala:321
 msgid "Cannot Sync"
 msgstr "동기화할 수 없음"
 
-#: src/Views/DeviceSummaryWidget.vala:312
+#: src/Views/DeviceSummaryWidget.vala:317
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr "현재 설정으로 동기화를 진행할 수 없습니다. 디스크에 용량이 부족합니다"
 
-#: src/Views/DeviceSummaryWidget.vala:314
+#: src/Views/DeviceSummaryWidget.vala:322
 msgid "Device is already doing an operation."
 msgstr "장치가 이미 작업 중에 있습니다."
 
@@ -917,13 +918,14 @@ msgstr "취소하고 있습니다…"
 msgid "Device operation has been cancelled and will stop after this media."
 msgstr "장치 운영이 취소되어 이 미디어 후에 중단될 것입니다."
 
-#: src/Views/GridView.vala:69
-msgid "No Albums Found."
-msgstr "앨범을 찾을 수 없습니다."
+#: src/Views/ViewStack.vala:45
+#, fuzzy
+msgid "No Results"
+msgstr "등급 없음"
 
-#: src/Views/ListView/ListView.vala:99
-msgid "No Songs Found."
-msgstr "아무 곡도 찾지 못 하였습니다."
+#: src/Views/ViewStack.vala:45
+msgid "Try another search"
+msgstr ""
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
 msgid "Genres"
@@ -953,186 +955,134 @@ msgstr "작곡가"
 msgid "Groupings"
 msgstr "그룹"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:218
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
 msgid "All Genres"
 msgstr "모든 장르"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:220
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
 #, c-format
 msgid "All %i Genres"
 msgstr "모든 %i 장르"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:222
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
 msgid "No Genres"
 msgstr "장르 없음"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:227
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
 msgid "All Artists"
 msgstr "모든 아티스트"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:229
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
 #, c-format
 msgid "All %i Artists"
 msgstr "모든 %i 아티스트"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:231
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
 msgid "No Artists"
 msgstr "아티스트 없음"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:236
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
 msgid "All Albums"
 msgstr "모든 앨범"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:238
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
 #, c-format
 msgid "All %i Albums"
 msgstr "모든 %i 앨범"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:240
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
 msgid "No Albums"
 msgstr "앨범 없음"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:245
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
 msgid "All Years"
 msgstr "모든 연도"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:247
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
 #, c-format
 msgid "All %i Years"
 msgstr "모든 %i 년도"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:249
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:250
 msgid "No Years"
 msgstr "연도 없음"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:254
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
 msgid "All Ratings"
 msgstr "모든 등급"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:256
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
 msgid "No Ratings"
 msgstr "등급 없음"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:261
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
 msgid "All Groupings"
 msgstr "모든 그룹"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:263
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
 #, c-format
 msgid "All %i Groupings"
 msgstr "모든 %i 그룹"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:265
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
 msgid "No Groupings"
 msgstr "그룹 없음"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:270
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:271
 msgid "All Composers"
 msgstr "모든 작곡가"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:272
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:273
 #, c-format
 msgid "All %i Composers"
 msgstr "모든 %i 작곡가"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:274
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:275
 msgid "No Composers"
 msgstr "작곡가 없음"
 
-#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:157
-#: src/Widgets/EqualizerPopover.vala:326 src/Widgets/PresetList.vala:52
+#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
+#: src/Widgets/EqualizerPopover.vala:327 src/Widgets/PresetList.vala:52
 msgid "Automatic"
 msgstr "자동"
 
-#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:159
+#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:146
 msgid "On Left"
 msgstr "왼쪽에"
 
-#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:161
+#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:147
 msgid "On Top"
 msgstr "상단에"
 
-#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:410
+#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:428
 msgid "Unrated"
 msgstr "등급 지정 안 됨"
 
-#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:412
+#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:430
 #, c-format
 msgid "%u Star"
 msgid_plural "%u Stars"
 msgstr[0] "별 %u"
 
-#: src/Views/ListView/Lists/CellDataFunctionHelper.vala:134
+#: src/Views/ListView/Lists/CellDataFunctionHelper.vala:128
 #, c-format
 msgid "%u kbps"
 msgstr "%u kbps"
 
-#: src/Views/ListView/Lists/CellDataFunctionHelper.vala:159
-#: src/Views/ListView/Lists/MusicListView.vala:628
+#: src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
+#: src/Views/ListView/Lists/MusicListView.vala:425
 msgid "Never"
 msgstr "사용 안 함"
 
-#: src/Views/ListView/Lists/GenericList.vala:124
+#: src/Views/ListView/Lists/MusicListView.vala:74
 msgid "Autosize Columns"
 msgstr "행 크기 자동 조절"
 
-#: src/Views/ListView/Lists/MusicListView.vala:83
-msgid "Scroll to Current Song"
-msgstr "현재 곡으로 스크롤"
-
-#: src/Views/ListView/Lists/MusicListView.vala:87
-msgid "Edit Song Info"
-msgstr "음악 정보 편집"
-
-#: src/Views/ListView/Lists/MusicListView.vala:90
-msgid "Show in File Browser"
-msgstr "파일 탐색기에서 보기"
-
-#: src/Views/ListView/Lists/MusicListView.vala:93
-msgid "Other actions"
-msgstr "다른 동작"
-
-#: src/Views/ListView/Lists/MusicListView.vala:98
-msgid "Add to Playlist"
-msgstr "재생목록에 추가"
-
-#: src/Views/ListView/Lists/MusicListView.vala:103
-#: src/Widgets/SourceListView.vala:157
-msgid "Import to Library"
-msgstr "라이브러리로 가져오기"
-
-#: src/Views/ListView/Lists/MusicListView.vala:157
-msgid "Remove from Library"
-msgstr "라이브러리에서 제거"
-
-#: src/Views/ListView/Lists/MusicListView.vala:166
-msgid "Remove from Queue"
-msgstr "대기열에서 제거"
-
-#: src/Views/ListView/Lists/MusicListView.vala:174
-msgid "Remove from Device"
-msgstr "장치에서 제거"
-
-#: src/Views/ListView/Lists/MusicListView.vala:187
-msgid "New Playlist…"
-msgstr "새로운 재생목록…"
-
-#: src/Views/ListView/Lists/MusicListView.vala:228
-#, c-format
-msgid "Import %i of %i selected songs"
-msgstr "%i (%i개 중) 개의 선택된 곡을 가져옵니다"
-
-#: src/Views/ListView/Lists/MusicListView.vala:230
-#, c-format
-msgid "Import %i song"
-msgid_plural "Import %i songs"
-msgstr[0] "%i 개의 곡들 불러오는 중"
-
-#: src/Views/ListView/Lists/MusicListView.vala:613
+#: src/Views/ListView/Lists/MusicListView.vala:410
 msgid "1234 kbps"
 msgstr "1234 kbps"
 
-#: src/Views/ListView/Lists/MusicListView.vala:684
+#: src/Views/ListView/Lists/MusicListView.vala:481
 msgid "Sample List String"
 msgstr "샘플 목록 문자열"
 
@@ -1156,18 +1106,18 @@ msgstr "음악 폴더 변경"
 msgid "Load music from a folder, a network or an external disk."
 msgstr "음악을 폴더, 네트워크, 혹은 외장 장치에서 가져옵니다."
 
-#: src/Views/Wrappers/MusicViewWrapper.vala:109
-#: src/Views/Wrappers/MusicViewWrapper.vala:125
+#: src/Views/Wrappers/MusicViewWrapper.vala:111
+#: src/Views/Wrappers/MusicViewWrapper.vala:131
 msgid "Import your Music"
 msgstr "음악을 가져오세요"
 
-#: src/Views/Wrappers/MusicViewWrapper.vala:109
-#: src/Views/Wrappers/MusicViewWrapper.vala:125
+#: src/Views/Wrappers/MusicViewWrapper.vala:112
+#: src/Views/Wrappers/MusicViewWrapper.vala:132
 #, c-format
 msgid "Import all your Music from %s into your library."
 msgstr "%s의 모든 음악을 여러분의 라이브러리로 불러옵니다."
 
-#: src/Views/Wrappers/MusicViewWrapper.vala:135
+#: src/Views/Wrappers/MusicViewWrapper.vala:143
 msgid "Select Music Folder"
 msgstr "음악 폴더 선택"
 
@@ -1204,7 +1154,7 @@ msgstr ""
 "수정하기 위해서, <b>오른쪽 클릭</b> 을 사이드바 위에서 누른 후, <b>수정</b>"
 "을 누르십시오. 다른 방법으로는, 아래에 있는 버튼을 클릭할 수 있습니다."
 
-#: src/Views/Wrappers/ViewWrapper.vala:418
+#: src/Views/Wrappers/ViewWrapper.vala:419
 msgid "No media"
 msgstr "미디어 없음"
 
@@ -1212,103 +1162,162 @@ msgstr "미디어 없음"
 msgid "Set new album cover"
 msgstr "새로 앨범 표지 설정"
 
-#: src/Widgets/AlbumListGrid.vala:239
+#: src/Widgets/AlbumListGrid.vala:240
 msgid "Image files"
 msgstr "이미지 파일"
 
-#: src/Widgets/AlbumListGrid.vala:244
+#: src/Widgets/AlbumListGrid.vala:245
 msgid "_Cancel"
 msgstr "취소(_C)"
 
-#: src/Widgets/AlbumListGrid.vala:245
+#: src/Widgets/AlbumListGrid.vala:246
 msgid "_Open"
 msgstr "열기(_O)"
 
-#: src/Widgets/EqualizerPopover.vala:165
+#: src/Widgets/EqualizerPopover.vala:166
 msgid "Save preset"
 msgstr "설정값 저장"
 
-#: src/Widgets/EqualizerPopover.vala:330
+#: src/Widgets/EqualizerPopover.vala:331
 msgid "Off"
 msgstr "끄기"
 
-#: src/Widgets/EqualizerPopover.vala:418
+#: src/Widgets/EqualizerPopover.vala:419
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s (사용자 지정)"
 
-#: src/Widgets/EqualizerPopover.vala:420
+#: src/Widgets/EqualizerPopover.vala:421
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s (사용자 지정 %i)"
 
-#: src/Widgets/EqualizerPopover.vala:423
+#: src/Widgets/EqualizerPopover.vala:424
 msgid "Custom Preset"
 msgstr "사용자 지정 설정값"
 
-#: src/Widgets/EqualizerPopover.vala:425
+#: src/Widgets/EqualizerPopover.vala:426
 #, c-format
 msgid "Custom Preset %i"
 msgstr "사용자 지정 설정값 %i"
+
+#: src/Widgets/MediaMenu.vala:46
+msgid "Scroll to Current Song"
+msgstr "현재 곡으로 스크롤"
+
+#: src/Widgets/MediaMenu.vala:49
+#, fuzzy
+msgid "Show in File Browser…"
+msgstr "파일 탐색기에서 보기"
+
+#: src/Widgets/MediaMenu.vala:50
+#, fuzzy
+msgid "Edit Song Info…"
+msgstr "음악 정보 편집"
+
+#: src/Widgets/MediaMenu.vala:51
+#, fuzzy
+msgid "Other Actions"
+msgstr "다른 동작"
+
+#: src/Widgets/MediaMenu.vala:54
+msgid "Add to Playlist"
+msgstr "재생목록에 추가"
+
+#: src/Widgets/MediaMenu.vala:55
+#, fuzzy
+msgid "Remove Song…"
+msgstr "노래 지우기"
+
+#: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
+msgid "Import to Library"
+msgstr "라이브러리로 가져오기"
+
+#: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
+#, fuzzy
+msgid "Remove from Library…"
+msgstr "라이브러리에서 제거"
+
+#: src/Widgets/MediaMenu.vala:99
+msgid "Remove from Device"
+msgstr "장치에서 제거"
+
+#: src/Widgets/MediaMenu.vala:119
+msgid "Remove from Queue"
+msgstr "대기열에서 제거"
+
+#: src/Widgets/MediaMenu.vala:152
+msgid "New Playlist…"
+msgstr "새로운 재생목록…"
+
+#: src/Widgets/MediaMenu.vala:192
+#, c-format
+msgid "Import %i of %i selected songs"
+msgstr "%i (%i개 중) 개의 선택된 곡을 가져옵니다"
+
+#: src/Widgets/MediaMenu.vala:194
+#, c-format
+msgid "Import %i song"
+msgid_plural "Import %i songs"
+msgstr[0] "%i 개의 곡들 불러오는 중"
 
 #: src/Widgets/PresetList.vala:53
 msgid "Delete Current"
 msgstr "현재 항목 삭제"
 
-#: src/Widgets/SourceListView.vala:68 src/Widgets/SourceListView.vala:81
+#: src/Widgets/SourceListView.vala:66 src/Widgets/SourceListView.vala:78
 msgid "Rename"
 msgstr "이름 바꾸기"
 
-#: src/Widgets/SourceListView.vala:70 src/Widgets/SourceListView.vala:84
-#: src/Widgets/SourceListView.vala:99
-msgid "Export…"
-msgstr "내보내기…"
-
-#: src/Widgets/SourceListView.vala:82
+#: src/Widgets/SourceListView.vala:79
 msgid "Edit…"
 msgstr "편집…"
 
-#: src/Widgets/SourceListView.vala:97
+#: src/Widgets/SourceListView.vala:95
 msgid "Save as Playlist"
 msgstr "재생목록으로 저장하기"
 
-#: src/Widgets/SourceListView.vala:165
+#: src/Widgets/SourceListView.vala:103
+msgid "Export…"
+msgstr "내보내기…"
+
+#: src/Widgets/SourceListView.vala:166
 msgid "Eject"
 msgstr "꺼내기"
 
-#: src/Widgets/SourceListView.vala:170 src/Widgets/SourceListView.vala:210
+#: src/Widgets/SourceListView.vala:176 src/Widgets/SourceListView.vala:219
 msgid "New Playlist"
 msgstr "새 재생목록"
 
-#: src/Widgets/SourceListView.vala:175 src/Widgets/SourceListView.vala:211
+#: src/Widgets/SourceListView.vala:184 src/Widgets/SourceListView.vala:220
 msgid "New Smart Playlist"
 msgstr "새 스마트 재생목록"
 
-#: src/Widgets/SourceListView.vala:212
+#: src/Widgets/SourceListView.vala:221
 msgid "Import Playlists"
 msgstr "재생목록 가져오기"
 
-#: src/Widgets/SourceListView.vala:322
+#: src/Widgets/SourceListView.vala:338
 msgid "Library"
 msgstr "라이브러리"
 
-#: src/Widgets/SourceListView.vala:323
+#: src/Widgets/SourceListView.vala:339
 msgid "Devices"
 msgstr "장치"
 
-#: src/Widgets/SourceListView.vala:324
+#: src/Widgets/SourceListView.vala:340
 msgid "Network"
 msgstr "네트워크"
 
-#: src/Widgets/StatusBar.vala:39 src/Widgets/StatusBar.vala:50
+#: src/Widgets/StatusBar.vala:36 src/Widgets/StatusBar.vala:47
 msgid "Add Playlist"
 msgstr "재생목록 추가"
 
-#: src/Widgets/StatusBar.vala:40
+#: src/Widgets/StatusBar.vala:37
 msgid "Add Smart Playlist"
 msgstr "스마트 재생목록 추가"
 
-#: src/Widgets/StatusBar.vala:80
+#: src/Widgets/StatusBar.vala:75
 #, c-format
 msgid "Equalizer: %s"
 msgstr "이퀄라이저: %s"
@@ -1333,17 +1342,35 @@ msgstr "셔플 사용하기"
 msgid "Disable Shuffle"
 msgstr "셔플 해제하기"
 
-#: src/Widgets/ViewSelector.vala:74
+#: src/Widgets/ViewSelector.vala:77
 msgid "View as Albums"
 msgstr "앨범으로 보기"
 
-#: src/Widgets/ViewSelector.vala:77
+#: src/Widgets/ViewSelector.vala:80
 msgid "View as List"
 msgstr "목록으로 보기"
 
-#: src/Widgets/ViewSelector.vala:80
+#: src/Widgets/ViewSelector.vala:83
 msgid "View in Columns"
 msgstr "구역으로 보기"
+
+#~ msgid "%s has imported your library."
+#~ msgstr "%s이 라이브러리에 추가되었습니다."
+
+#~ msgid "Unable to import %d items from %s"
+#~ msgstr "%d개 항목을 %s에서 불러올 수 없음"
+
+#~ msgid "Remove from %s"
+#~ msgstr "%s에서 제거"
+
+#~ msgid "Remove \"%s\" From %s?"
+#~ msgstr "%s에서 \"%s\"를 제거합니까?"
+
+#~ msgid "No Albums Found."
+#~ msgstr "앨범을 찾을 수 없습니다."
+
+#~ msgid "No Songs Found."
+#~ msgstr "아무 곡도 찾지 못 하였습니다."
 
 #~ msgid "%u second"
 #~ msgid_plural "%u seconds"
