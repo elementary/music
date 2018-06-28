@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box 0.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-27 08:19-0700\n"
-"PO-Revision-Date: 2018-06-28 01:05+0000\n"
+"PO-Revision-Date: 2018-06-28 01:22+0000\n"
 "Last-Translator: Piotr Strebski <strebski@gmail.com>\n"
 "Language-Team: Polish <https://weblate.elementary.io/projects/music/music/pl/"
 ">\n"
@@ -55,7 +55,7 @@ msgstr "Klubowa"
 
 #: core/GStreamer/Equalizer.vala:74
 msgid "Dance"
-msgstr "Dance"
+msgstr "Muzyka taneczna"
 
 #: core/GStreamer/Equalizer.vala:75
 msgid "Full Bass"
