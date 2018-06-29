@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-27 08:19-0700\n"
-"PO-Revision-Date: 2018-05-19 00:10+0000\n"
+"PO-Revision-Date: 2018-06-29 18:59+0000\n"
 "Last-Translator: Jan Marek <janmarek28@gmail.com>\n"
-"Language-Team: Czech <https://weblate.elementary.io/projects/music/music/cs/"
-">\n"
+"Language-Team: Czech <https://weblate.elementary.io/projects/music/music/cs/>"
+"\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:52+0000\n"
 
 #: core/LibrariesManager.vala:147
@@ -328,7 +328,7 @@ msgstr "Import dokončen"
 
 #: src/FileOperator.vala:305
 msgid "Your Library Has Been Imported."
-msgstr ""
+msgstr "Vaše knihovna byla naimportována."
 
 #: src/FileOperator.vala:315
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
@@ -499,14 +499,14 @@ msgid "Close"
 msgstr "Zavřít"
 
 #: src/Dialogs/NotImportedWindow.vala:51
-#, fuzzy, c-format
+#, c-format
 msgid "Issues while importing from %s"
-msgstr "Přidávání hudby z %s…"
+msgstr "Problémy s přidáváním hudby z %s"
 
 #: src/Dialogs/NotImportedWindow.vala:56
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to import %d items. The files may be damaged."
-msgstr "%s nelze importovat %d soubory. Soubory jsou možná poškozeny."
+msgstr "Nelze naimportovat %d položky. Soubory jsou možná poškozeny."
 
 #: src/Dialogs/NotImportedWindow.vala:60
 msgid "Move all corrupted files to trash"
@@ -565,20 +565,19 @@ msgid "Continue playback when closed:"
 msgstr "Pokračovat v přehrávání při zavření:"
 
 #: src/Dialogs/RemoveFilesDialog.vala:49
-#, fuzzy, c-format
+#, c-format
 msgid "Remove %d Song From Library?"
 msgid_plural "Remove %d Songs From Library?"
-msgstr[0] "Odebrat %d písní z %s?"
-msgstr[1] "Odebrat %d písní z %s?"
-msgstr[2] "Odebrat %d písní z %s?"
+msgstr[0] "Odebrat %d píseň z knihovny?"
+msgstr[1] "Odebrat %d písně z knihovny?"
+msgstr[2] "Odebrat %d písní z knihovny?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:55
-#, fuzzy, c-format
+#, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr "Odstranit z knihovny"
+msgstr "Odstranit \"%s\" z knihovny?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
-#, fuzzy
 msgid ""
 "This will remove the song from your library and from any device synced "
 "automatically."
@@ -586,14 +585,14 @@ msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
 msgstr[0] ""
-"Tím odeberete skladbu z knihovny a ze všech zařízení, které se automaticky "
-"synchronizují s %s."
+"Tím odeberete píseň z knihovny a ze všech automaticky synchronizovaných "
+"zařízení."
 msgstr[1] ""
-"Tím odeberete skladby z knihovny a ze všech zařízení, které se automaticky "
-"synchronizují s %s."
+"Tím odeberete písně z knihovny a ze všech automaticky synchronizovaných "
+"zařízení."
 msgstr[2] ""
-"Tím odeberete skladby z knihovny a ze všech zařízení, které se automaticky "
-"synchronizují s %s."
+"Tím odeberete písně z knihovny a ze všech automaticky synchronizovaných "
+"zařízení."
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
@@ -933,13 +932,12 @@ msgid "Device operation has been cancelled and will stop after this media."
 msgstr "Operace v zařízení byla zrušena a bude ukončena po tomto médiu."
 
 #: src/Views/ViewStack.vala:45
-#, fuzzy
 msgid "No Results"
-msgstr "Žádná hodnocení"
+msgstr "Žádné výsledky"
 
 #: src/Views/ViewStack.vala:45
 msgid "Try another search"
-msgstr ""
+msgstr "Zkuste hledat něco jiného"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
 msgid "Genres"
@@ -1222,17 +1220,14 @@ msgid "Scroll to Current Song"
 msgstr "Přejít na aktuální píseň"
 
 #: src/Widgets/MediaMenu.vala:49
-#, fuzzy
 msgid "Show in File Browser…"
-msgstr "Zobrazit ve správci souborů"
+msgstr "Zobrazit ve správci souborů…"
 
 #: src/Widgets/MediaMenu.vala:50
-#, fuzzy
 msgid "Edit Song Info…"
-msgstr "Upravit informace písně"
+msgstr "Upravit informace písně…"
 
 #: src/Widgets/MediaMenu.vala:51
-#, fuzzy
 msgid "Other Actions"
 msgstr "Další akce"
 
@@ -1241,18 +1236,16 @@ msgid "Add to Playlist"
 msgstr "Přidat do playlistu"
 
 #: src/Widgets/MediaMenu.vala:55
-#, fuzzy
 msgid "Remove Song…"
-msgstr "Odstranit píseň"
+msgstr "Odstranit píseň…"
 
 #: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
 msgid "Import to Library"
 msgstr "Importovat do knihovny"
 
 #: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
-#, fuzzy
 msgid "Remove from Library…"
-msgstr "Odstranit z knihovny"
+msgstr "Odstranit z knihovny…"
 
 #: src/Widgets/MediaMenu.vala:99
 msgid "Remove from Device"
