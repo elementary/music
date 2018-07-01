@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-27 08:19-0700\n"
-"PO-Revision-Date: 2018-03-08 16:34+0000\n"
+"PO-Revision-Date: 2018-07-02 00:06+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
 "Language-Team: Catalan <https://weblate.elementary.io/projects/music/music/"
 "ca/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:51+0000\n"
 
 #: core/LibrariesManager.vala:147
@@ -330,7 +330,7 @@ msgstr "S'ha completat la importació"
 
 #: src/FileOperator.vala:305
 msgid "Your Library Has Been Imported."
-msgstr ""
+msgstr "S'ha importat la biblioteca."
 
 #: src/FileOperator.vala:315
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
@@ -501,9 +501,9 @@ msgid "Close"
 msgstr "Tanca"
 
 #: src/Dialogs/NotImportedWindow.vala:51
-#, fuzzy, c-format
+#, c-format
 msgid "Issues while importing from %s"
-msgstr "S'està important música des de %s…"
+msgstr "Hi ha hagut problemes important des de %s"
 
 #: src/Dialogs/NotImportedWindow.vala:56
 #, fuzzy, c-format
