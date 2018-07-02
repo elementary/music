@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-27 08:19-0700\n"
-"PO-Revision-Date: 2018-07-02 15:48+0000\n"
+"PO-Revision-Date: 2018-07-03 00:06+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
 "Language-Team: Catalan <https://weblate.elementary.io/projects/music/music/"
 "ca/>\n"
@@ -784,8 +784,8 @@ msgstr "kbps"
 #, c-format
 msgid "Sync will remove %i item from %s"
 msgid_plural "Sync will remove %i items from %s"
-msgstr[0] "La sincronització eliminarà %i element de %s."
-msgstr[1] "La sincronització eliminarà %i elements de %s."
+msgstr[0] "La sincronització suprimirà %i element de %s."
+msgstr[1] "La sincronització suprimirà %i elements de %s."
 
 #: src/Dialogs/SyncWarningDialog.vala:55
 #, c-format
