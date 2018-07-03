@@ -28,7 +28,7 @@
 
 namespace Noise.Search {
 
-    /**
+    /*
      * Linear exact-string-matching search method.
      *
      * To mean "ALL", pass an empty string (i.e.: "") for string parameters; and
@@ -65,7 +65,7 @@ namespace Noise.Search {
         }
     }
 
-    /**
+    /*
      * Used by the column browser. Fields compared must match those *displayed* by the browser.
      *
      * /!\ Modify carefully.
@@ -92,7 +92,7 @@ namespace Noise.Search {
         return String.canonicalize_for_search (s);
     }
 
-    /**
+    /*
      * Parses a rating from stars. e.g. "***" => 3
      * Returns -1 if rating_string doesn't represent a valid rating.
      *
