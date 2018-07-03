@@ -5,3 +5,4 @@ option(
   choices: [ 'lastfm', 'audioplayer', 'cdrom', 'ipod' ],
   value: [ 'lastfm', 'audioplayer', 'cdrom', 'ipod' ]
 )
+option ('documentation', type : 'boolean', value : false)

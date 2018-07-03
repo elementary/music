@@ -111,3 +111,7 @@ if get_option('build-plugins')
 endif
 
 subdir('po')
+
+if get_option('documentation')
+    subdir('docs')
+endif
