@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-27 08:19-0700\n"
-"PO-Revision-Date: 2018-02-25 00:09+0000\n"
+"PO-Revision-Date: 2018-07-05 00:07+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://weblate.elementary.io/projects/music/music/"
 "fi/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-19 06:29+0000\n"
 
 #: core/LibrariesManager.vala:147
@@ -329,7 +329,7 @@ msgstr "Tuonti on valmis"
 
 #: src/FileOperator.vala:305
 msgid "Your Library Has Been Imported."
-msgstr ""
+msgstr "Kirjastosi on tuotu."
 
 #: src/FileOperator.vala:315
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
@@ -576,9 +576,9 @@ msgstr[0] "Poistetaanko %d kappaleet kohteesta %s?"
 msgstr[1] "Poistetaanko %d kappaleet kohteesta %s?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:55
-#, fuzzy, c-format
+#, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr "Poista kirjastosta"
+msgstr "Poistetaanko \"%s\" kirjastosta?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
 #, fuzzy
@@ -930,13 +930,12 @@ msgid "Device operation has been cancelled and will stop after this media."
 msgstr ""
 
 #: src/Views/ViewStack.vala:45
-#, fuzzy
 msgid "No Results"
-msgstr "Ei arvosteluja"
+msgstr "Ei tuloksia"
 
 #: src/Views/ViewStack.vala:45
 msgid "Try another search"
-msgstr ""
+msgstr "Kokeile muita hakuehtoja"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
 msgid "Genres"
@@ -1221,17 +1220,14 @@ msgid "Scroll to Current Song"
 msgstr "Vieritä nykyiseen kappaleeseen"
 
 #: src/Widgets/MediaMenu.vala:49
-#, fuzzy
 msgid "Show in File Browser…"
-msgstr "Näytä tiedostonhallinnassa"
+msgstr "Näytä tiedostonhallinnassa…"
 
 #: src/Widgets/MediaMenu.vala:50
-#, fuzzy
 msgid "Edit Song Info…"
-msgstr "Muokkaa kappaleen tietoja"
+msgstr "Muokkaa kappaleen tietoja…"
 
 #: src/Widgets/MediaMenu.vala:51
-#, fuzzy
 msgid "Other Actions"
 msgstr "Muut toiminnot"
 
@@ -1240,18 +1236,16 @@ msgid "Add to Playlist"
 msgstr "Lisää soittolistaan"
 
 #: src/Widgets/MediaMenu.vala:55
-#, fuzzy
 msgid "Remove Song…"
-msgstr "Poista kappale"
+msgstr "Poista kappale…"
 
 #: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
 msgid "Import to Library"
 msgstr "Tuo kirjastoon"
 
 #: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
-#, fuzzy
 msgid "Remove from Library…"
-msgstr "Poista kirjastosta"
+msgstr "Poista kirjastosta…"
 
 #: src/Widgets/MediaMenu.vala:99
 msgid "Remove from Device"
