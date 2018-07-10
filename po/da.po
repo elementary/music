@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-27 08:19-0700\n"
-"PO-Revision-Date: 2018-03-24 21:07+0000\n"
+"PO-Revision-Date: 2018-06-27 22:02+0000\n"
 "Last-Translator: Kaj Printz Madsen <kajprintz@gmail.com>\n"
 "Language-Team: Danish <https://weblate.elementary.io/projects/music/music/da/"
 ">\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-22 06:52+0000\n"
 
 #: core/LibrariesManager.vala:147
@@ -330,7 +330,7 @@ msgstr "Importering færdig"
 
 #: src/FileOperator.vala:305
 msgid "Your Library Has Been Imported."
-msgstr ""
+msgstr "Dit Bibliotek Er Blevet Importeret."
 
 #: src/FileOperator.vala:315
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
@@ -504,14 +504,14 @@ msgid "Close"
 msgstr "Luk"
 
 #: src/Dialogs/NotImportedWindow.vala:51
-#, fuzzy, c-format
+#, c-format
 msgid "Issues while importing from %s"
-msgstr "Importerer musik fra %s…"
+msgstr "Der opstod problemer, mens importering fra %s"
 
 #: src/Dialogs/NotImportedWindow.vala:56
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to import %d items. The files may be damaged."
-msgstr "%s kunne ikke importere %d elementer. Filerne kan være beskadiget."
+msgstr "Kunne ikke importere %d elementer. Filerne kan være beskadiget."
 
 #: src/Dialogs/NotImportedWindow.vala:60
 msgid "Move all corrupted files to trash"
@@ -570,19 +570,18 @@ msgid "Continue playback when closed:"
 msgstr "Fortsæt afspilning når vinduet lukkes:"
 
 #: src/Dialogs/RemoveFilesDialog.vala:49
-#, fuzzy, c-format
+#, c-format
 msgid "Remove %d Song From Library?"
 msgid_plural "Remove %d Songs From Library?"
-msgstr[0] "Fjern %d sange fra %s?"
-msgstr[1] "Fjern %d sange fra %s?"
+msgstr[0] "Fjern %d Sang Fra Biblioteket?"
+msgstr[1] "Fjern %d Sange Fra Biblioteket?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:55
-#, fuzzy, c-format
+#, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr "Fjern fra biblioteket"
+msgstr "Fjern \"%s\" Fra Biblioteket?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
-#, fuzzy
 msgid ""
 "This will remove the song from your library and from any device synced "
 "automatically."
@@ -591,10 +590,10 @@ msgid_plural ""
 "automatically."
 msgstr[0] ""
 "Dette vil fjerne sangen fra dit bibliotek og fra alle enheder som automatisk "
-"synkroniserer med %s."
+"synkroniserer."
 msgstr[1] ""
 "Dette vil fjerne sangene fra dit bibliotek og fra alle enheder som "
-"automatisk synkroniserer med %s."
+"automatisk synkroniserer."
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
@@ -935,13 +934,12 @@ msgstr ""
 "Enhedsoperationen er blevet annulleret og vil stoppe efter dette medie."
 
 #: src/Views/ViewStack.vala:45
-#, fuzzy
 msgid "No Results"
-msgstr "Ingen bedømmelser"
+msgstr "Ingen Resultater"
 
 #: src/Views/ViewStack.vala:45
 msgid "Try another search"
-msgstr ""
+msgstr "Prøv en anden søgning"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
 msgid "Genres"
@@ -1234,37 +1232,32 @@ msgid "Scroll to Current Song"
 msgstr "Rul til nuværende sang"
 
 #: src/Widgets/MediaMenu.vala:49
-#, fuzzy
 msgid "Show in File Browser…"
-msgstr "Vis i filbrowser"
+msgstr "Vis i filbrowser…"
 
 #: src/Widgets/MediaMenu.vala:50
-#, fuzzy
 msgid "Edit Song Info…"
-msgstr "Redigér sang info"
+msgstr "Redigér Sang Info…"
 
 #: src/Widgets/MediaMenu.vala:51
-#, fuzzy
 msgid "Other Actions"
-msgstr "Andre handlinger"
+msgstr "Andre Handlinger"
 
 #: src/Widgets/MediaMenu.vala:54
 msgid "Add to Playlist"
 msgstr "Tilføj til afspilningsliste"
 
 #: src/Widgets/MediaMenu.vala:55
-#, fuzzy
 msgid "Remove Song…"
-msgstr "Fjern sang"
+msgstr "Fjern Sang…"
 
 #: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
 msgid "Import to Library"
 msgstr "Importér til bibliotek"
 
 #: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
-#, fuzzy
 msgid "Remove from Library…"
-msgstr "Fjern fra biblioteket"
+msgstr "Fjern Fra Biblioteket…"
 
 #: src/Widgets/MediaMenu.vala:99
 msgid "Remove from Device"

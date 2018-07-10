@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beat-box 0.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-27 08:19-0700\n"
-"PO-Revision-Date: 2018-02-06 20:51+0000\n"
-"Last-Translator: Piotr Strebski <strebski@o2.pl>\n"
+"PO-Revision-Date: 2018-06-28 01:22+0000\n"
+"Last-Translator: Piotr Strebski <strebski@gmail.com>\n"
 "Language-Team: Polish <https://weblate.elementary.io/projects/music/music/pl/"
 ">\n"
 "Language: pl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 
 #: core/LibrariesManager.vala:147
@@ -55,7 +55,7 @@ msgstr "Klubowa"
 
 #: core/GStreamer/Equalizer.vala:74
 msgid "Dance"
-msgstr "Dance"
+msgstr "Muzyka taneczna"
 
 #: core/GStreamer/Equalizer.vala:75
 msgid "Full Bass"
@@ -332,7 +332,7 @@ msgstr "Zakończono importowanie"
 
 #: src/FileOperator.vala:305
 msgid "Your Library Has Been Imported."
-msgstr ""
+msgstr "Twoja biblioteka została zaimportowana."
 
 #: src/FileOperator.vala:315
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
@@ -507,14 +507,14 @@ msgid "Close"
 msgstr "Zamknij"
 
 #: src/Dialogs/NotImportedWindow.vala:51
-#, fuzzy, c-format
+#, c-format
 msgid "Issues while importing from %s"
-msgstr "Importowanie muzyki z %s…"
+msgstr "Problemy, które wystąpiły podczas importowania z %s"
 
 #: src/Dialogs/NotImportedWindow.vala:56
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to import %d items. The files may be damaged."
-msgstr "%s nie może zaimportować %d elementów. Pliki mogą być uszkodzone."
+msgstr "Nie może zaimportować %d elementów. Pliki mogą być uszkodzone."
 
 #: src/Dialogs/NotImportedWindow.vala:60
 msgid "Move all corrupted files to trash"
@@ -573,20 +573,19 @@ msgid "Continue playback when closed:"
 msgstr "Kontynuuj odtwarzanie po zamknięciu:"
 
 #: src/Dialogs/RemoveFilesDialog.vala:49
-#, fuzzy, c-format
+#, c-format
 msgid "Remove %d Song From Library?"
 msgid_plural "Remove %d Songs From Library?"
-msgstr[0] "Usunąć %d piosenki z %s?"
-msgstr[1] "Usunąć %d piosenki z %s?"
-msgstr[2] "Usunąć %d piosenki z %s?"
+msgstr[0] "Usunąć %d piosenkę z biblioteki?"
+msgstr[1] "Usunąć %d piosenki z biblioteki?"
+msgstr[2] "Usunąć %d piosenek z biblioteki?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:55
-#, fuzzy, c-format
+#, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr "Usuń z kolekcji"
+msgstr "Usunąć \"%s\" z biblioteki?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
-#, fuzzy
 msgid ""
 "This will remove the song from your library and from any device synced "
 "automatically."
@@ -594,14 +593,14 @@ msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
 msgstr[0] ""
-"Wykonanie tej czynności spowoduje usunięcie piosenki z Twojej kolekcji i "
-"każdego urządzenia, które synchronizuje się automatycznie z %s."
+"Wykonanie tej czynności spowoduje usunięcie piosenki z Twojej biblioteki i z "
+"każdego urządzenia, które synchronizuje się z nią automatycznie."
 msgstr[1] ""
-"Wykonanie tej czynności spowoduje usunięcie piosenek z Twojej kolekcji i "
-"każdego urządzenia, które synchronizuje się automatycznie z %s."
+"Wykonanie tej czynności spowoduje usunięcie piosenek z Twojej biblioteki i z "
+"każdego urządzenia, które synchronizuje się z nią automatycznie."
 msgstr[2] ""
-"Wykonanie tej czynności spowoduje usunięcie piosenek z Twojej kolekcji i "
-"każdego urządzenia, które synchronizuje się automatycznie z %s."
+"Wykonanie tej czynności spowoduje usunięcie piosenek z Twojej biblioteki i z "
+"każdego urządzenia, które synchronizuje się z nią automatycznie."
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
@@ -944,13 +943,12 @@ msgstr ""
 "Anulowano wykonywanie operacji. Zostanie ona przerwana po bieżącym pliku."
 
 #: src/Views/ViewStack.vala:45
-#, fuzzy
 msgid "No Results"
-msgstr "Brak ocen"
+msgstr "Brak wyników"
 
 #: src/Views/ViewStack.vala:45
 msgid "Try another search"
-msgstr ""
+msgstr "Spróbuj innego wyszukiwania"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
 msgid "Genres"
@@ -1235,17 +1233,14 @@ msgid "Scroll to Current Song"
 msgstr "Przejdź do bieżącego nagrania"
 
 #: src/Widgets/MediaMenu.vala:49
-#, fuzzy
 msgid "Show in File Browser…"
-msgstr "Wyświetl w przeglądarce plików"
+msgstr "Wyświetl w przeglądarce plików…"
 
 #: src/Widgets/MediaMenu.vala:50
-#, fuzzy
 msgid "Edit Song Info…"
-msgstr "Zmodyfikuj informacje o utworze"
+msgstr "Modyfikuj informacje o piosence…"
 
 #: src/Widgets/MediaMenu.vala:51
-#, fuzzy
 msgid "Other Actions"
 msgstr "Inne działania"
 
@@ -1254,18 +1249,16 @@ msgid "Add to Playlist"
 msgstr "Dodaj do listy odtwarzania"
 
 #: src/Widgets/MediaMenu.vala:55
-#, fuzzy
 msgid "Remove Song…"
-msgstr "Usuń nagranie"
+msgstr "Usuń piosenkę…"
 
 #: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
 msgid "Import to Library"
 msgstr "Zaimportuj"
 
 #: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
-#, fuzzy
 msgid "Remove from Library…"
-msgstr "Usuń z kolekcji"
+msgstr "Usuń z biblioteki…"
 
 #: src/Widgets/MediaMenu.vala:99
 msgid "Remove from Device"
