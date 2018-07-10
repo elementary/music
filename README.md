@@ -50,3 +50,12 @@ To define their values, use `meson configure`
 
     # For instance, if you want to disable plugins:
     meson configure -Dbuild-plugins=false
+
+## Developer Docs
+
+Music includes valadoc documentation for developers, to autogenerate them from git master enable valadoc:
+
+    meson configure -Ddocumentation=true
+
+The compiled documentation in html format will appear in build/docs when you run ninja. Be aware that creating docs is very slow and it's a good idea to disable building them when you're not using them.
+

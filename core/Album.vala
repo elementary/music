@@ -26,7 +26,7 @@
  * Authored by: Victor Eduardo <victoreduardm@gmail.com>
  */
 
-/**
+/*
  * An object representing an album.
  *
  * Currently only used by the album grid view to keep an internal cache.
