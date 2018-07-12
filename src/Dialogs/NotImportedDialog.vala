@@ -29,14 +29,14 @@
 /* Merely a place holder for multiple pieces of information regarding
  * the current media playing. Mostly here because of dependence. */
 
-public class Noise.NotImportedWindow : Gtk.Dialog {
+public class Noise.NotImportedDialog : Gtk.Dialog {
     Gee.LinkedList<string> _files;
     string music_folder;
 
     Gtk.ListStore filesModel;
     Gtk.Button moveToTrash;
 
-    public NotImportedWindow (Gee.Collection<string> files, string music) {
+    public NotImportedDialog (Gee.Collection<string> files, string music) {
         _files = new Gee.LinkedList<string> ();
         _files.add_all (files);
         this.music_folder = music;
