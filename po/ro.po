@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 08:19-0700\n"
+"POT-Creation-Date: 2018-07-12 15:56-0700\n"
 "PO-Revision-Date: 2017-01-24 10:18+0000\n"
 "Last-Translator: Marius Albina <marius.albina@gmail.com>\n"
 "Language-Team: Romanian <ro@li.org>\n"
@@ -506,33 +506,36 @@ msgstr "Închide"
 msgid "Issues while importing from %s"
 msgstr "Importare melodii din %s..."
 
-#: src/Dialogs/NotImportedWindow.vala:56
+#: src/Dialogs/NotImportedWindow.vala:57
 #, fuzzy, c-format
-msgid "Unable to import %d items. The files may be damaged."
-msgstr "%s nu a importat %d articole.Fișierele pot fi corupte."
+msgid "Unable to import %d item. The file may be damaged."
+msgid_plural "Unable to import %d items. The files may be damaged."
+msgstr[0] "%s nu a importat %d articole.Fișierele pot fi corupte."
+msgstr[1] "%s nu a importat %d articole.Fișierele pot fi corupte."
+msgstr[2] "%s nu a importat %d articole.Fișierele pot fi corupte."
 
-#: src/Dialogs/NotImportedWindow.vala:60
+#: src/Dialogs/NotImportedWindow.vala:65
 msgid "Move all corrupted files to trash"
 msgstr "Elimină toate fișierele corupte"
 
-#: src/Dialogs/NotImportedWindow.vala:67
+#: src/Dialogs/NotImportedWindow.vala:72
 msgid "del"
 msgstr "Șterge"
 
-#: src/Dialogs/NotImportedWindow.vala:76
+#: src/Dialogs/NotImportedWindow.vala:81
 msgid "File Location"
 msgstr "Informațiile fișierului"
 
-#: src/Dialogs/NotImportedWindow.vala:92
+#: src/Dialogs/NotImportedWindow.vala:97
 msgid "Select individual files to move to trash:"
 msgstr ""
 "Selectarea individuală a fișierelor pentru a le trimite la coșul de gunoi."
 
-#: src/Dialogs/NotImportedWindow.vala:96 src/Dialogs/RemoveFilesDialog.vala:73
+#: src/Dialogs/NotImportedWindow.vala:101 src/Dialogs/RemoveFilesDialog.vala:73
 msgid "Move to Trash"
 msgstr "Mută la coșul de gunoi"
 
-#: src/Dialogs/NotImportedWindow.vala:99
+#: src/Dialogs/NotImportedWindow.vala:104
 msgid "Ignore"
 msgstr "Ignoră"
 

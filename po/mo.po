@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 08:19-0700\n"
+"POT-Creation-Date: 2018-07-12 15:56-0700\n"
 "PO-Revision-Date: 2018-05-27 08:51+0000\n"
 "Last-Translator: Romanic Ion Nicușor <contact.romanic@gmail.com>\n"
 "Language-Team: Moldovan <https://weblate.elementary.io/projects/music/music/"
@@ -500,34 +500,38 @@ msgstr "Închide"
 msgid "Issues while importing from %s"
 msgstr "Importarea muzicii din %s 1 …"
 
-#: src/Dialogs/NotImportedWindow.vala:56
+#: src/Dialogs/NotImportedWindow.vala:57
 #, fuzzy, c-format
-msgid "Unable to import %d items. The files may be damaged."
-msgstr ""
+msgid "Unable to import %d item. The file may be damaged."
+msgid_plural "Unable to import %d items. The files may be damaged."
+msgstr[0] ""
+"%s 1 nu a putut importa %d 2 articole. Este posibil ca fișierele să fie "
+"deteriorate."
+msgstr[1] ""
 "%s 1 nu a putut importa %d 2 articole. Este posibil ca fișierele să fie "
 "deteriorate."
 
-#: src/Dialogs/NotImportedWindow.vala:60
+#: src/Dialogs/NotImportedWindow.vala:65
 msgid "Move all corrupted files to trash"
 msgstr "Mutați toate fișierele corupte în coșul de gunoi"
 
-#: src/Dialogs/NotImportedWindow.vala:67
+#: src/Dialogs/NotImportedWindow.vala:72
 msgid "del"
 msgstr "del"
 
-#: src/Dialogs/NotImportedWindow.vala:76
+#: src/Dialogs/NotImportedWindow.vala:81
 msgid "File Location"
 msgstr "Locația fișierelor"
 
-#: src/Dialogs/NotImportedWindow.vala:92
+#: src/Dialogs/NotImportedWindow.vala:97
 msgid "Select individual files to move to trash:"
 msgstr "Selectați fișiere individuale pentru a deplasa în coșul de gunoi:"
 
-#: src/Dialogs/NotImportedWindow.vala:96 src/Dialogs/RemoveFilesDialog.vala:73
+#: src/Dialogs/NotImportedWindow.vala:101 src/Dialogs/RemoveFilesDialog.vala:73
 msgid "Move to Trash"
 msgstr "Aruncă la gunoi"
 
-#: src/Dialogs/NotImportedWindow.vala:99
+#: src/Dialogs/NotImportedWindow.vala:104
 msgid "Ignore"
 msgstr "Omite"
 

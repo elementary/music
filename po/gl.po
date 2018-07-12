@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 08:19-0700\n"
+"POT-Creation-Date: 2018-07-12 15:56-0700\n"
 "PO-Revision-Date: 2015-12-21 13:45+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Galician <gl@li.org>\n"
@@ -507,34 +507,38 @@ msgstr "Pechar"
 msgid "Issues while importing from %s"
 msgstr "Importando máusica desde %s…"
 
-#: src/Dialogs/NotImportedWindow.vala:56
+#: src/Dialogs/NotImportedWindow.vala:57
 #, fuzzy, c-format
-msgid "Unable to import %d items. The files may be damaged."
-msgstr ""
+msgid "Unable to import %d item. The file may be damaged."
+msgid_plural "Unable to import %d items. The files may be damaged."
+msgstr[0] ""
+"%s non pode importar %d elementos. É probábel que os ficheiros estean "
+"estragados."
+msgstr[1] ""
 "%s non pode importar %d elementos. É probábel que os ficheiros estean "
 "estragados."
 
-#: src/Dialogs/NotImportedWindow.vala:60
+#: src/Dialogs/NotImportedWindow.vala:65
 msgid "Move all corrupted files to trash"
 msgstr "Mover todo os ficheiros estragados ao lixo"
 
-#: src/Dialogs/NotImportedWindow.vala:67
+#: src/Dialogs/NotImportedWindow.vala:72
 msgid "del"
 msgstr "eliminar"
 
-#: src/Dialogs/NotImportedWindow.vala:76
+#: src/Dialogs/NotImportedWindow.vala:81
 msgid "File Location"
 msgstr "Localización do ficheiro"
 
-#: src/Dialogs/NotImportedWindow.vala:92
+#: src/Dialogs/NotImportedWindow.vala:97
 msgid "Select individual files to move to trash:"
 msgstr "Seleccione os ficheiros para mover ao lixo:"
 
-#: src/Dialogs/NotImportedWindow.vala:96 src/Dialogs/RemoveFilesDialog.vala:73
+#: src/Dialogs/NotImportedWindow.vala:101 src/Dialogs/RemoveFilesDialog.vala:73
 msgid "Move to Trash"
 msgstr "Mover ao lixo"
 
-#: src/Dialogs/NotImportedWindow.vala:99
+#: src/Dialogs/NotImportedWindow.vala:104
 msgid "Ignore"
 msgstr "Ingnorar"
 
