@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-27 08:19-0700\n"
-"PO-Revision-Date: 2018-06-27 15:28+0000\n"
+"PO-Revision-Date: 2018-07-12 22:44+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://weblate.elementary.io/projects/music/music/"
 "ja/>\n"
@@ -509,7 +509,7 @@ msgstr "%d 個の項目をインポートすることができませんでした
 
 #: src/Dialogs/NotImportedWindow.vala:60
 msgid "Move all corrupted files to trash"
-msgstr "すべての破損したファイルをゴミ箱に移動する"
+msgstr "すべての破損したファイルをゴミ箱に移動"
 
 #: src/Dialogs/NotImportedWindow.vala:67
 msgid "del"
@@ -521,15 +521,15 @@ msgstr "ファイルの場所"
 
 #: src/Dialogs/NotImportedWindow.vala:92
 msgid "Select individual files to move to trash:"
-msgstr "ゴミ箱に移動するファイルを個別に選択する:"
+msgstr "ゴミ箱に移動するファイルを個別に選択:"
 
 #: src/Dialogs/NotImportedWindow.vala:96 src/Dialogs/RemoveFilesDialog.vala:73
 msgid "Move to Trash"
-msgstr "ゴミ箱へ移動"
+msgstr "ゴミ箱に移動"
 
 #: src/Dialogs/NotImportedWindow.vala:99
 msgid "Ignore"
-msgstr "無視する"
+msgstr "無視"
 
 #: src/Dialogs/PreferencesWindow.vala:48
 msgid "Select Music Folder…"
@@ -545,19 +545,19 @@ msgstr "ライブラリの管理"
 
 #: src/Dialogs/PreferencesWindow.vala:80
 msgid "Keep Music folder organized:"
-msgstr "ミュージックフォルダーを整理する:"
+msgstr "ミュージックフォルダーを整理しておく:"
 
 #: src/Dialogs/PreferencesWindow.vala:82
 msgid "Write metadata to file:"
-msgstr "ファイルへメタデータを書き込む:"
+msgstr "ファイルにメタデータを書き込む:"
 
 #: src/Dialogs/PreferencesWindow.vala:84
 msgid "Copy imported files to Library:"
-msgstr "インポートされたファイルをライブラリへコピー:"
+msgstr "インポートされたファイルをライブラリにコピー:"
 
 #: src/Dialogs/PreferencesWindow.vala:86
 msgid "Desktop Integration"
-msgstr "デスクトップの統合"
+msgstr "デスクトップとの統合"
 
 #: src/Dialogs/PreferencesWindow.vala:87
 msgid "Continue playback when closed:"
@@ -1073,7 +1073,7 @@ msgstr "なし"
 
 #: src/Views/ListView/Lists/MusicListView.vala:74
 msgid "Autosize Columns"
-msgstr "カラムを自動調整する"
+msgstr "カラムを自動調整"
 
 #: src/Views/ListView/Lists/MusicListView.vala:410
 msgid "1234 kbps"
@@ -1147,13 +1147,12 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
-"このプレイリストは法則に合致する場所に自動的に移動させられます。これらの法則"
-"を修正するには、サイドバー上で<b>右クリック</b>をして、<b>編集</b>をクリック"
-"します。必要に応じて、以下のボタンをクリックできます。"
+"このプレイリストは規則に合致する場所に自動的に移動させられます。これらの規則を修正するには、サイドバー上で<b>右クリック</b>をして、<b>編集</b"
+">をクリックします。必要に応じて、以下のボタンをクリックすることができます。"
 
 #: src/Views/Wrappers/ViewWrapper.vala:419
 msgid "No media"
-msgstr "メディアなし"
+msgstr "メディアがありません"
 
 #: src/Widgets/AlbumListGrid.vala:64
 msgid "Set new album cover"
