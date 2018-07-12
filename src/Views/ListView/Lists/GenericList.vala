@@ -408,10 +408,10 @@ public abstract class Noise.GenericList : Gtk.TreeView {
         }
     }
 
-    /** Sorting is done in the treeview, not the model. That way the whole
+    /* Sorting is done in the treeview, not the model. That way the whole
      * table is sorted and ready to go and we do not need to resort every
      * time we repopulate/search the model
-    **/
+     */
     public void set_sort_column_id (int sort_column_id, Gtk.SortType order) {
         fm.set_sort_column_id (sort_column_id, order); // The model will then go back to us at reorder_requested
     }

@@ -26,10 +26,10 @@
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-/** Since this class is not publicly facing (the FastView is public part),
+/* Since this class is not publicly facing (the FastView is public part),
  * this model is low level and optimized. We are not worried about stupid
  * users here.
-**/
+ */
 
 public class Noise.FastModel : GLib.Object, Gtk.TreeModel, Gtk.TreeSortable {
     private int stamp; // all iters must match this
@@ -190,7 +190,7 @@ public class Noise.FastModel : GLib.Object, Gtk.TreeModel, Gtk.TreeSortable {
     public void ref_node (Gtk.TreeIter iter) {}
     public void unref_node (Gtk.TreeIter iter) {}
 
-    /** The beauty of this custom model. This tree model is simply a visual
+    /* The beauty of this custom model. This tree model is simply a visual
      * representation of a HashTable of objects. Before calling this
      * method, the user should set tree_view.set_model(null). After
      * calling this, set the tree_view.set_model(fast_model). By doing this
@@ -199,7 +199,7 @@ public class Noise.FastModel : GLib.Object, Gtk.TreeModel, Gtk.TreeSortable {
      *
      * @objects Must be a consecutive ordered hash table with indexes
      * 0-n where n is size of the hashtable (no gaps).
-    **/
+     */
     public void set_table (Gee.ArrayList<Object> table) {
         rows.clear ();
         rows.add_all (table);
@@ -210,7 +210,7 @@ public class Noise.FastModel : GLib.Object, Gtk.TreeModel, Gtk.TreeSortable {
         }
     }
 
-    /** Crucial. Must be set by user. Allows for this model to be abstract
+    /* Crucial. Must be set by user. Allows for this model to be abstract
      * by allowing the user to specify the function that returns values
      * based on the object (row) and column. **/
     public void set_value_func (ValueReturnFunc func) {
@@ -226,9 +226,9 @@ public class Noise.FastModel : GLib.Object, Gtk.TreeModel, Gtk.TreeSortable {
         row_changed (path, iter);
     }
 
-    /** The following functions are for implementing TreeSortable. We pass
+    /* The following functions are for implementing TreeSortable. We pass
      * off responsibility to sort things to the view.
-    **/
+     */
     public bool get_sort_column_id (out int column_id, out Gtk.SortType order) {
         column_id = sort_column_id;
         order = sort_direction;
