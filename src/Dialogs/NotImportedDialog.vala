@@ -53,9 +53,14 @@ public class Noise.NotImportedDialog : Gtk.Dialog {
         title.hexpand = true;
         title.get_style_context ().add_class (Granite.STYLE_CLASS_PRIMARY_LABEL);
 
-        var info = new Gtk.Label (_("Unable to import %d items. The files may be damaged.").printf (files.size));
+        string secondary_text = ngettext (
+            "Unable to import %d item. The file may be damaged.",
+            "Unable to import %d items. The files may be damaged.",
+            files.size
+        ).printf (files.size);
+
+        var info = new Gtk.Label (secondary_text);
         info.halign = Gtk.Align.START;
-        info.set_line_wrap (false);
 
         var trashAll = new Gtk.CheckButton.with_label (_("Move all corrupted files to trash"));
         trashAll.valign = Gtk.Align.CENTER;
