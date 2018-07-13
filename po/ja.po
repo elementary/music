@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-12 15:56-0700\n"
-"PO-Revision-Date: 2018-07-12 22:44+0000\n"
+"PO-Revision-Date: 2018-07-13 01:43+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://weblate.elementary.io/projects/music/music/"
 "ja/>\n"
@@ -503,12 +503,10 @@ msgid "Issues while importing from %s"
 msgstr "%s からのインポート中に問題が発生しました"
 
 #: src/Dialogs/NotImportedWindow.vala:57
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] ""
-"%d 個の項目をインポートすることができませんでした。ファイルが壊れている可能性"
-"があります。"
+msgstr[0] "%d 個のアイテムをインポートすることができませんでした。ファイルが壊れている可能性があります。"
 
 #: src/Dialogs/NotImportedWindow.vala:65
 msgid "Move all corrupted files to trash"
