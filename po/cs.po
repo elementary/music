@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-12 15:56-0700\n"
+"POT-Creation-Date: 2018-07-13 13:30-0700\n"
 "PO-Revision-Date: 2018-06-29 20:47+0000\n"
 "Last-Translator: Jan Marek <janmarek28@gmail.com>\n"
 "Language-Team: Czech <https://weblate.elementary.io/projects/music/music/cs/"
@@ -498,12 +498,12 @@ msgstr "Komentář:"
 msgid "Close"
 msgstr "Zavřít"
 
-#: src/Dialogs/NotImportedWindow.vala:51
+#: src/Dialogs/NotImportedDialog.vala:51
 #, c-format
 msgid "Issues while importing from %s"
 msgstr "Problémy s přidáváním hudby z %s"
 
-#: src/Dialogs/NotImportedWindow.vala:57
+#: src/Dialogs/NotImportedDialog.vala:57
 #, fuzzy, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
@@ -511,27 +511,27 @@ msgstr[0] "Nelze naimportovat %d položky. Soubory jsou možná poškozeny."
 msgstr[1] "Nelze naimportovat %d položky. Soubory jsou možná poškozeny."
 msgstr[2] "Nelze naimportovat %d položky. Soubory jsou možná poškozeny."
 
-#: src/Dialogs/NotImportedWindow.vala:65
+#: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
 msgstr "Přesunout všechny poškozené soubory do koše"
 
-#: src/Dialogs/NotImportedWindow.vala:72
+#: src/Dialogs/NotImportedDialog.vala:72
 msgid "del"
 msgstr "smazat"
 
-#: src/Dialogs/NotImportedWindow.vala:81
+#: src/Dialogs/NotImportedDialog.vala:81
 msgid "File Location"
 msgstr "Umístění souboru"
 
-#: src/Dialogs/NotImportedWindow.vala:97
+#: src/Dialogs/NotImportedDialog.vala:97
 msgid "Select individual files to move to trash:"
 msgstr "Vybrat jednotlivé soubory k přesunutí do koše:"
 
-#: src/Dialogs/NotImportedWindow.vala:101 src/Dialogs/RemoveFilesDialog.vala:73
+#: src/Dialogs/NotImportedDialog.vala:101 src/Dialogs/RemoveFilesDialog.vala:73
 msgid "Move to Trash"
 msgstr "Přesunout do koše"
 
-#: src/Dialogs/NotImportedWindow.vala:104
+#: src/Dialogs/NotImportedDialog.vala:104
 msgid "Ignore"
 msgstr "Ignorovat"
 

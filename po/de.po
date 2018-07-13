@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-12 15:56-0700\n"
+"POT-Creation-Date: 2018-07-13 13:30-0700\n"
 "PO-Revision-Date: 2018-02-26 00:08+0000\n"
 "Last-Translator: Floris Remmert <fadenfisch95@gmail.com>\n"
 "Language-Team: German <https://weblate.elementary.io/projects/music/music/de/"
@@ -506,12 +506,12 @@ msgstr "Kommentar:"
 msgid "Close"
 msgstr "Schließen"
 
-#: src/Dialogs/NotImportedWindow.vala:51
+#: src/Dialogs/NotImportedDialog.vala:51
 #, fuzzy, c-format
 msgid "Issues while importing from %s"
 msgstr "Musik wird aus %s importiert …"
 
-#: src/Dialogs/NotImportedWindow.vala:57
+#: src/Dialogs/NotImportedDialog.vala:57
 #, fuzzy, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
@@ -520,29 +520,29 @@ msgstr[0] ""
 msgstr[1] ""
 "%s konnte %d Einträge nicht importieren. Die Dateien könnten beschädigt sein."
 
-#: src/Dialogs/NotImportedWindow.vala:65
+#: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
 msgstr "Alle beschädigten Datein in den Papierkorb verschieben"
 
-#: src/Dialogs/NotImportedWindow.vala:72
+#: src/Dialogs/NotImportedDialog.vala:72
 msgid "del"
 msgstr "löschen"
 
-#: src/Dialogs/NotImportedWindow.vala:81
+#: src/Dialogs/NotImportedDialog.vala:81
 msgid "File Location"
 msgstr "Speicherort"
 
-#: src/Dialogs/NotImportedWindow.vala:97
+#: src/Dialogs/NotImportedDialog.vala:97
 msgid "Select individual files to move to trash:"
 msgstr ""
 "Wählen Sie einzelne Dateien aus, die in den Papierkorb verschoben werden "
 "sollen:"
 
-#: src/Dialogs/NotImportedWindow.vala:101 src/Dialogs/RemoveFilesDialog.vala:73
+#: src/Dialogs/NotImportedDialog.vala:101 src/Dialogs/RemoveFilesDialog.vala:73
 msgid "Move to Trash"
 msgstr "In den Papierkorb verschieben"
 
-#: src/Dialogs/NotImportedWindow.vala:104
+#: src/Dialogs/NotImportedDialog.vala:104
 msgid "Ignore"
 msgstr "Ignorieren"
 

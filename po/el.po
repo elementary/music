@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-12 15:56-0700\n"
+"POT-Creation-Date: 2018-07-13 13:30-0700\n"
 "PO-Revision-Date: 2018-03-01 00:03+0000\n"
 "Last-Translator: lambolighting <ggfirefrog@hotmail.com>\n"
 "Language-Team: Greek <https://weblate.elementary.io/projects/music/music/el/"
@@ -505,12 +505,12 @@ msgstr "Σχόλιο"
 msgid "Close"
 msgstr "Κλείσιμο"
 
-#: src/Dialogs/NotImportedWindow.vala:51
+#: src/Dialogs/NotImportedDialog.vala:51
 #, fuzzy, c-format
 msgid "Issues while importing from %s"
 msgstr "Εισαγωγή μουσικής από %s..."
 
-#: src/Dialogs/NotImportedWindow.vala:57
+#: src/Dialogs/NotImportedDialog.vala:57
 #, fuzzy, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
@@ -519,27 +519,27 @@ msgstr[0] ""
 msgstr[1] ""
 "%s Αδύνατη η φόρτωση %d στοιχείων. Τα αρχεία μπορεί να είναι φθαρμένα."
 
-#: src/Dialogs/NotImportedWindow.vala:65
+#: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
 msgstr "Μετακίνιση των κατεστραμένων αρχείων στα απορρίματα"
 
-#: src/Dialogs/NotImportedWindow.vala:72
+#: src/Dialogs/NotImportedDialog.vala:72
 msgid "del"
 msgstr "διαγρ."
 
-#: src/Dialogs/NotImportedWindow.vala:81
+#: src/Dialogs/NotImportedDialog.vala:81
 msgid "File Location"
 msgstr "Τοποθεσία Αρχείου"
 
-#: src/Dialogs/NotImportedWindow.vala:97
+#: src/Dialogs/NotImportedDialog.vala:97
 msgid "Select individual files to move to trash:"
 msgstr "Επιλέξτε μεμονωμένα αρχεία για μετακίνηση στον κάδο:"
 
-#: src/Dialogs/NotImportedWindow.vala:101 src/Dialogs/RemoveFilesDialog.vala:73
+#: src/Dialogs/NotImportedDialog.vala:101 src/Dialogs/RemoveFilesDialog.vala:73
 msgid "Move to Trash"
 msgstr "Μετακίνηση στον Κάδο Απορριμμάτων"
 
-#: src/Dialogs/NotImportedWindow.vala:104
+#: src/Dialogs/NotImportedDialog.vala:104
 msgid "Ignore"
 msgstr "Αγνόηση"
 

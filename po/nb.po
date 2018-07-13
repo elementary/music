@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-12 15:56-0700\n"
+"POT-Creation-Date: 2018-07-13 13:30-0700\n"
 "PO-Revision-Date: 2018-03-16 00:03+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://weblate.elementary.io/projects/"
@@ -499,12 +499,12 @@ msgstr "Kommentar:"
 msgid "Close"
 msgstr "Lukk"
 
-#: src/Dialogs/NotImportedWindow.vala:51
+#: src/Dialogs/NotImportedDialog.vala:51
 #, fuzzy, c-format
 msgid "Issues while importing from %s"
 msgstr "Importerer musikk fra %s…"
 
-#: src/Dialogs/NotImportedWindow.vala:57
+#: src/Dialogs/NotImportedDialog.vala:57
 #, fuzzy, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
@@ -513,27 +513,27 @@ msgstr[0] ""
 msgstr[1] ""
 "%s var ute av stand til å importere %d elementer. Filene kan være skadet."
 
-#: src/Dialogs/NotImportedWindow.vala:65
+#: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
 msgstr "Flytt alle korrupte filer til papirkurv"
 
-#: src/Dialogs/NotImportedWindow.vala:72
+#: src/Dialogs/NotImportedDialog.vala:72
 msgid "del"
 msgstr "Slett"
 
-#: src/Dialogs/NotImportedWindow.vala:81
+#: src/Dialogs/NotImportedDialog.vala:81
 msgid "File Location"
 msgstr "Filplassering"
 
-#: src/Dialogs/NotImportedWindow.vala:97
+#: src/Dialogs/NotImportedDialog.vala:97
 msgid "Select individual files to move to trash:"
 msgstr "Velg individuelle filer for flytting til papirkurv"
 
-#: src/Dialogs/NotImportedWindow.vala:101 src/Dialogs/RemoveFilesDialog.vala:73
+#: src/Dialogs/NotImportedDialog.vala:101 src/Dialogs/RemoveFilesDialog.vala:73
 msgid "Move to Trash"
 msgstr "Flytt til papirkurv"
 
-#: src/Dialogs/NotImportedWindow.vala:104
+#: src/Dialogs/NotImportedDialog.vala:104
 msgid "Ignore"
 msgstr "Ignorer"
 
