@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box 0.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-12 15:56-0700\n"
-"PO-Revision-Date: 2018-06-28 01:22+0000\n"
+"PO-Revision-Date: 2018-07-13 06:56+0000\n"
 "Last-Translator: Piotr Strebski <strebski@gmail.com>\n"
 "Language-Team: Polish <https://weblate.elementary.io/projects/music/music/pl/"
 ">\n"
@@ -512,12 +512,12 @@ msgid "Issues while importing from %s"
 msgstr "Problemy, które wystąpiły podczas importowania z %s"
 
 #: src/Dialogs/NotImportedWindow.vala:57
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] "Nie może zaimportować %d elementów. Pliki mogą być uszkodzone."
-msgstr[1] "Nie może zaimportować %d elementów. Pliki mogą być uszkodzone."
-msgstr[2] "Nie może zaimportować %d elementów. Pliki mogą być uszkodzone."
+msgstr[0] "Nie można zaimportować %d elementu. Plik może być uszkodzony."
+msgstr[1] "Nie można zaimportować %d elementów. Pliki mogą być uszkodzone."
+msgstr[2] "Nie można zaimportować %d elementów. Pliki mogą być uszkodzone."
 
 #: src/Dialogs/NotImportedWindow.vala:65
 msgid "Move all corrupted files to trash"
