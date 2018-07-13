@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-12 15:56-0700\n"
-"PO-Revision-Date: 2018-07-13 01:43+0000\n"
+"PO-Revision-Date: 2018-07-13 20:29+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://weblate.elementary.io/projects/music/music/"
 "ja/>\n"
@@ -777,7 +777,7 @@ msgstr "kbps"
 #, c-format
 msgid "Sync will remove %i item from %s"
 msgid_plural "Sync will remove %i items from %s"
-msgstr[0] "同期によって %i 項目が %s から削除されます"
+msgstr[0] "同期によって %i 個のアイテムが %s から削除されます"
 
 #: src/Dialogs/SyncWarningDialog.vala:55
 #, c-format
