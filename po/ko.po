@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 08:19-0700\n"
+"POT-Creation-Date: 2018-07-13 13:30-0700\n"
 "PO-Revision-Date: 2018-06-27 22:19+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://weblate.elementary.io/projects/music/music/ko/"
@@ -498,37 +498,38 @@ msgstr "설명:"
 msgid "Close"
 msgstr "닫기"
 
-#: src/Dialogs/NotImportedWindow.vala:51
+#: src/Dialogs/NotImportedDialog.vala:51
 #, c-format
 msgid "Issues while importing from %s"
 msgstr "%s에서 가져오는 동안 생기는 문제입니다"
 
-#: src/Dialogs/NotImportedWindow.vala:56
-#, c-format
-msgid "Unable to import %d items. The files may be damaged."
-msgstr "%d개의 항목을 가져오지 못했습니다. 파일이 손상되었을 수 있습니다."
+#: src/Dialogs/NotImportedDialog.vala:57
+#, fuzzy, c-format
+msgid "Unable to import %d item. The file may be damaged."
+msgid_plural "Unable to import %d items. The files may be damaged."
+msgstr[0] "%d개의 항목을 가져오지 못했습니다. 파일이 손상되었을 수 있습니다."
 
-#: src/Dialogs/NotImportedWindow.vala:60
+#: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
 msgstr "모든 손상된 파일을 휴지통으로 옮깁니다"
 
-#: src/Dialogs/NotImportedWindow.vala:67
+#: src/Dialogs/NotImportedDialog.vala:72
 msgid "del"
 msgstr "삭제"
 
-#: src/Dialogs/NotImportedWindow.vala:76
+#: src/Dialogs/NotImportedDialog.vala:81
 msgid "File Location"
 msgstr "파일 위치"
 
-#: src/Dialogs/NotImportedWindow.vala:92
+#: src/Dialogs/NotImportedDialog.vala:97
 msgid "Select individual files to move to trash:"
 msgstr "휴지통으로 옮길 파일을 선택하세요:"
 
-#: src/Dialogs/NotImportedWindow.vala:96 src/Dialogs/RemoveFilesDialog.vala:73
+#: src/Dialogs/NotImportedDialog.vala:101 src/Dialogs/RemoveFilesDialog.vala:73
 msgid "Move to Trash"
 msgstr "휴지통으로 이동"
 
-#: src/Dialogs/NotImportedWindow.vala:99
+#: src/Dialogs/NotImportedDialog.vala:104
 msgid "Ignore"
 msgstr "무시"
 
@@ -582,7 +583,8 @@ msgid ""
 msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
-msgstr[0] "이 작업은 라이브러리 및 자동으로 동기화된 장비의 모든 곡들을 제거하게 됩니다."
+msgstr[0] ""
+"이 작업은 라이브러리 및 자동으로 동기화된 장비의 모든 곡들을 제거하게 됩니다."
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
