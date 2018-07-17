@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-07-13 20:29+0000\n"
+"POT-Creation-Date: 2018-07-13 13:30-0700\n"
+"PO-Revision-Date: 2018-07-17 15:24+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://weblate.elementary.io/projects/music/music/"
 "ja/>\n"
@@ -1253,7 +1253,7 @@ msgstr "ミュージックフォルダーを選択"
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:54
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:64
 msgid "No Songs"
-msgstr "曲なし"
+msgstr "曲がありません"
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:51
 msgid "Updating playlist. Please wait."
@@ -1308,7 +1308,7 @@ msgstr "プリセットの保存"
 
 #: src/Widgets/EqualizerPopover.vala:331
 msgid "Off"
-msgstr "なし"
+msgstr "オフ"
 
 #: src/Widgets/EqualizerPopover.vala:419
 #, c-format
