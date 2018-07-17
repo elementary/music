@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-13 13:30-0700\n"
+"POT-Creation-Date: 2018-07-17 08:23-0700\n"
 "PO-Revision-Date: 2015-12-21 13:46+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Azerbaijani <az@li.org>\n"
@@ -23,18 +23,22 @@ msgstr ""
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 msgstr ""
 
+#. / Used for unknown titles, artists, or album names.
 #: core/Media.vala:32
 msgid "Unknown"
 msgstr "Naməlum"
 
+#. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: core/Media.vala:179
 msgid "$NAME on $ALBUM"
 msgstr ""
 
+#. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: core/Media.vala:182
 msgid "$NAME by $ARTIST"
 msgstr ""
 
+#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
 #: core/Media.vala:188
 msgid "$NAME by $ARTIST on $ALBUM"
 msgstr ""
@@ -125,6 +129,7 @@ msgstr "%s (%d)"
 msgid "New playlist"
 msgstr "Yeni playlist"
 
+#. Translators: used for new playlists ex: "New playlist (1)"
 #: core/Utils/PlaylistsUtils.vala:246
 #, c-format
 msgid "%s (%i)"
@@ -181,6 +186,8 @@ msgstr ""
 msgid "Unrecognized playlist file. Import failed."
 msgstr "Tanınmamış playlist faylı. İdxal alınmadı"
 
+#. / Format of date strings. See reference documentation of g_date_time_format()
+#. / for more details.
 #: core/Utils/TimeUtils.vala:40
 msgid "%m/%e/%Y %l:%M %p"
 msgstr ""
@@ -233,6 +240,7 @@ msgstr ""
 msgid "Impossible to read the contents of this Audio CD"
 msgstr ""
 
+#. do checks to make sure we can go on
 #: plugins/Devices/CDRom/CDRomDevice.vala:247
 msgid "Could not find Music Folder"
 msgstr "Musiqi Qovluğu tapılmır"
@@ -323,6 +331,7 @@ msgstr "İdxal Tamamlandı"
 msgid "Your Library Has Been Imported."
 msgstr ""
 
+#. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:315
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr ""
@@ -386,6 +395,11 @@ msgstr ""
 #: src/LibraryWindow.vala:978 src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import Music"
 msgstr "Musiqi idxal et"
+
+#: src/PlaybackManager.vala:117
+msgctxt "Name of the playlist"
+msgid "Queue"
+msgstr "Növbə"
 
 #: src/Dialogs/FileNotFoundDialog.vala:51
 msgid "File not found"
@@ -480,6 +494,7 @@ msgstr ""
 msgid "Comment:"
 msgstr ""
 
+#. FIXME: don't know if I can delete this
 #: src/Dialogs/MediaEditor.vala:140 src/Dialogs/PreferencesWindow.vala:96
 #: src/Views/DeviceView.vala:45
 msgid "Close"
@@ -587,6 +602,7 @@ msgstr "Playlistləri ixrac et"
 msgid "Set Music Folder"
 msgstr ""
 
+#. pretty up labels
 #: src/Dialogs/SetMusicFolderConfirmation.vala:73
 msgid "Set Music Folder?"
 msgstr ""
@@ -687,6 +703,7 @@ msgstr ""
 msgid "Last Played"
 msgstr ""
 
+#. helper for units
 #: src/Dialogs/SmartPlaylistEditor.vala:272
 #: src/Dialogs/SmartPlaylistEditor.vala:417
 msgid "Length"
@@ -761,6 +778,7 @@ msgstr "gün əvvəl"
 msgid "kbps"
 msgstr "kbps"
 
+#. be a bit explicit to make translations better
 #: src/Dialogs/SyncWarningDialog.vala:52
 #, c-format
 msgid "Sync will remove %i item from %s"
@@ -1026,6 +1044,7 @@ msgstr ""
 msgid "No Composers"
 msgstr "Bəstəkarlar yoxdur"
 
+#. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
 #: src/Widgets/EqualizerPopover.vala:327 src/Widgets/PresetList.vala:52
 msgid "Automatic"
@@ -1060,6 +1079,110 @@ msgstr ""
 msgid "Never"
 msgstr "Heç vaxt"
 
+#: src/Views/ListView/Lists/ListColumn.vala:69
+msgctxt "List column title"
+msgid "#"
+msgstr ""
+
+#: src/Views/ListView/Lists/ListColumn.vala:72
+msgctxt "List column title"
+msgid "Track"
+msgstr "Parça"
+
+#: src/Views/ListView/Lists/ListColumn.vala:75
+#, fuzzy
+msgctxt "List column title"
+msgid "Title"
+msgstr "Başlıq"
+
+#: src/Views/ListView/Lists/ListColumn.vala:78
+msgctxt "List column title"
+msgid "Length"
+msgstr "Uzunluq"
+
+#: src/Views/ListView/Lists/ListColumn.vala:81
+msgctxt "List column title"
+msgid "Artist"
+msgstr "İfaçı"
+
+#: src/Views/ListView/Lists/ListColumn.vala:84
+msgctxt "List column title"
+msgid "Album"
+msgstr "Albom"
+
+#: src/Views/ListView/Lists/ListColumn.vala:87
+#, fuzzy
+msgctxt "List column title"
+msgid "Album Artist"
+msgstr "Albom İfaçısı"
+
+#: src/Views/ListView/Lists/ListColumn.vala:90
+msgctxt "List column title"
+msgid "Composer"
+msgstr "Bəstəkar"
+
+#: src/Views/ListView/Lists/ListColumn.vala:93
+msgctxt "List column title"
+msgid "Genre"
+msgstr "Janr"
+
+#: src/Views/ListView/Lists/ListColumn.vala:96
+msgctxt "List column title"
+msgid "Year"
+msgstr "İl"
+
+#: src/Views/ListView/Lists/ListColumn.vala:99
+msgctxt "List column title"
+msgid "Grouping"
+msgstr ""
+
+#: src/Views/ListView/Lists/ListColumn.vala:102
+msgctxt "List column title"
+msgid "Bitrate"
+msgstr "Keyfiyyət"
+
+#: src/Views/ListView/Lists/ListColumn.vala:105
+msgctxt "List column title"
+msgid "Rating"
+msgstr "Reytinq"
+
+#: src/Views/ListView/Lists/ListColumn.vala:108
+#, fuzzy
+msgctxt "List column title"
+msgid "Plays"
+msgstr "Playlist"
+
+#: src/Views/ListView/Lists/ListColumn.vala:111
+msgctxt "List column title"
+msgid "Skips"
+msgstr ""
+
+#: src/Views/ListView/Lists/ListColumn.vala:114
+msgctxt "List column title"
+msgid "Date Added"
+msgstr ""
+
+#: src/Views/ListView/Lists/ListColumn.vala:117
+msgctxt "List column title"
+msgid "Last Played"
+msgstr ""
+
+#: src/Views/ListView/Lists/ListColumn.vala:120
+msgctxt "List column title (beats per minute)"
+msgid "BPM"
+msgstr "BPM"
+
+#: src/Views/ListView/Lists/ListColumn.vala:123
+#, fuzzy
+msgctxt "List column title (file location)"
+msgid "Location"
+msgstr "Yerini təyin et"
+
+#: src/Views/ListView/Lists/ListColumn.vala:126
+msgctxt "List column title"
+msgid "File Size"
+msgstr "Faylın Həcmi"
+
 #: src/Views/ListView/Lists/MusicListView.vala:74
 msgid "Autosize Columns"
 msgstr ""
@@ -1068,10 +1191,18 @@ msgstr ""
 msgid "1234 kbps"
 msgstr "1234 kbps"
 
+#. / Sample string used to measure the ideal size of the Title, Artist,
+#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
+#. / list view. It's *never* displayed in the user interface. The translated
+#. / string should have a reasonable length, similar to the average length
+#. / of a song title or artist name in your language. The automatic column
+#. / width will depend on the length of this string and the space needed
+#. / by the column's title header.
 #: src/Views/ListView/Lists/MusicListView.vala:481
 msgid "Sample List String"
 msgstr ""
 
+#. Welcome screen
 #: src/Views/Wrappers/MusicViewWrapper.vala:57
 msgid "Get Some Tunes"
 msgstr ""
@@ -1199,6 +1330,11 @@ msgstr ""
 msgid "Other Actions"
 msgstr "Başqa Fayllar"
 
+#: src/Widgets/MediaMenu.vala:53
+msgctxt "Action item (verb)"
+msgid "Queue"
+msgstr "Növbə"
+
 #: src/Widgets/MediaMenu.vala:54
 msgid "Add to Playlist"
 msgstr "Playlistə əlavə et"
@@ -1277,6 +1413,7 @@ msgstr "Yeni Ağıllı Playlist"
 msgid "Import Playlists"
 msgstr "Playlistləri idxal et"
 
+#. Adds the different sidebar categories.
 #: src/Widgets/SourceListView.vala:338
 msgid "Library"
 msgstr "Kolleksiya"
@@ -1297,11 +1434,13 @@ msgstr "Playlisti əlavə et"
 msgid "Add Smart Playlist"
 msgstr "Ağıllı Playlisti əlavə et"
 
+#. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: src/Widgets/StatusBar.vala:75
 #, c-format
 msgid "Equalizer: %s"
 msgstr ""
 
+#. MUST follow the exact same order of Noise.Player.Repeat
 #: src/Widgets/TopDisplay.vala:139
 msgid "Enable Repeat"
 msgstr ""
@@ -1389,10 +1528,6 @@ msgstr ""
 #~ msgid "Repeat Artist"
 #~ msgstr "İfaçını təkrarla"
 
-#~ msgctxt "Name of the playlist"
-#~ msgid "Queue"
-#~ msgstr "Növbə"
-
 #~ msgid "Import from Device"
 #~ msgstr "Cihazdan idxal et"
 
@@ -1408,54 +1543,6 @@ msgstr ""
 #~ msgid "%u album"
 #~ msgid_plural "%u albums"
 #~ msgstr[0] "%u albom"
-
-#~ msgctxt "Action item (verb)"
-#~ msgid "Queue"
-#~ msgstr "Növbə"
-
-#~ msgctxt "List column title"
-#~ msgid "Track"
-#~ msgstr "Parça"
-
-#~ msgctxt "List column title"
-#~ msgid "Length"
-#~ msgstr "Uzunluq"
-
-#~ msgctxt "List column title"
-#~ msgid "Artist"
-#~ msgstr "İfaçı"
-
-#~ msgctxt "List column title"
-#~ msgid "Album"
-#~ msgstr "Albom"
-
-#~ msgctxt "List column title"
-#~ msgid "Composer"
-#~ msgstr "Bəstəkar"
-
-#~ msgctxt "List column title"
-#~ msgid "Genre"
-#~ msgstr "Janr"
-
-#~ msgctxt "List column title"
-#~ msgid "Year"
-#~ msgstr "İl"
-
-#~ msgctxt "List column title"
-#~ msgid "Bitrate"
-#~ msgstr "Keyfiyyət"
-
-#~ msgctxt "List column title"
-#~ msgid "Rating"
-#~ msgstr "Reytinq"
-
-#~ msgctxt "List column title (beats per minute)"
-#~ msgid "BPM"
-#~ msgstr "BPM"
-
-#~ msgctxt "List column title"
-#~ msgid "File Size"
-#~ msgstr "Faylın Həcmi"
 
 #~ msgid "%i track"
 #~ msgid_plural "%i tracks"
@@ -1494,9 +1581,6 @@ msgstr ""
 
 #~ msgid "Change your music folder."
 #~ msgstr "Musiqi qovluğunu dəyişdir"
-
-#~ msgid "Locate"
-#~ msgstr "Yerini təyin et"
 
 #~ msgid "%i kbps"
 #~ msgstr "%i kbps"
@@ -1541,6 +1625,3 @@ msgstr ""
 
 #~ msgid "Last.fm"
 #~ msgstr "Last.fm"
-
-#~ msgid "Album Artist"
-#~ msgstr "Albom İfaçısı"

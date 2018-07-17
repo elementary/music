@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-13 13:30-0700\n"
+"POT-Creation-Date: 2018-07-17 08:23-0700\n"
 "PO-Revision-Date: 2018-03-01 00:03+0000\n"
 "Last-Translator: lambolighting <ggfirefrog@hotmail.com>\n"
 "Language-Team: Greek <https://weblate.elementary.io/projects/music/music/el/"
@@ -24,18 +24,22 @@ msgstr ""
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 msgstr "Εισαγωγή του <b>$NAME</b> από τον/την <b>$ARTIST</b> στη βιβλιοθήκη…"
 
+#. / Used for unknown titles, artists, or album names.
 #: core/Media.vala:32
 msgid "Unknown"
 msgstr "Άγνωστο"
 
+#. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: core/Media.vala:179
 msgid "$NAME on $ALBUM"
 msgstr "$NAME στο $ALBUM"
 
+#. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: core/Media.vala:182
 msgid "$NAME by $ARTIST"
 msgstr "$NAME από τον/την $ARTIST"
 
+#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
 #: core/Media.vala:188
 msgid "$NAME by $ARTIST on $ALBUM"
 msgstr "$NAME από τον/την $ARTIST στο $ALBUM"
@@ -126,6 +130,7 @@ msgstr "%s (%d)"
 msgid "New playlist"
 msgstr "Νέα λίστα αναπαραγωγής"
 
+#. Translators: used for new playlists ex: "New playlist (1)"
 #: core/Utils/PlaylistsUtils.vala:246
 #, c-format
 msgid "%s (%i)"
@@ -182,6 +187,8 @@ msgstr "Άνοιγμα"
 msgid "Unrecognized playlist file. Import failed."
 msgstr "Μη αναγνωρίσιμο αρχείο λίστας αναπαραγωγής. Αποτυχία εισαγωγής."
 
+#. / Format of date strings. See reference documentation of g_date_time_format()
+#. / for more details.
 #: core/Utils/TimeUtils.vala:40
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%m/%e/%Y %l:%M %p"
@@ -234,6 +241,7 @@ msgstr "Άκυρο μουσικό CD"
 msgid "Impossible to read the contents of this Audio CD"
 msgstr "Αδύνατη η ανάγνωση δεδομένων του μουσικού CD"
 
+#. do checks to make sure we can go on
 #: plugins/Devices/CDRom/CDRomDevice.vala:247
 msgid "Could not find Music Folder"
 msgstr "Αδυναμία εύρεσης του φακέλου μουσικής"
@@ -331,6 +339,7 @@ msgstr "Η εισαγωγή ολοκληρώθηκε"
 msgid "Your Library Has Been Imported."
 msgstr ""
 
+#. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:315
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr "<b>Αντιγραφή</b> αρχείων στον <b>Φάκελο μουσικής</b>..."
@@ -403,6 +412,11 @@ msgstr ""
 #: src/LibraryWindow.vala:978 src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import Music"
 msgstr "Εισαγωγή μουσικής"
+
+#: src/PlaybackManager.vala:117
+msgctxt "Name of the playlist"
+msgid "Queue"
+msgstr "Σειρά αναμονής"
 
 #: src/Dialogs/FileNotFoundDialog.vala:51
 msgid "File not found"
@@ -500,6 +514,7 @@ msgstr "Αξιολόγηση:"
 msgid "Comment:"
 msgstr "Σχόλιο"
 
+#. FIXME: don't know if I can delete this
 #: src/Dialogs/MediaEditor.vala:140 src/Dialogs/PreferencesWindow.vala:96
 #: src/Views/DeviceView.vala:45
 msgid "Close"
@@ -614,6 +629,7 @@ msgstr "Εξαγωγή Λιστών Αναπαραγωγής"
 msgid "Set Music Folder"
 msgstr "Ορισμός Φακέλου Μουσικής"
 
+#. pretty up labels
 #: src/Dialogs/SetMusicFolderConfirmation.vala:73
 msgid "Set Music Folder?"
 msgstr "Ορισμός Φάκελου Μουσικής;"
@@ -716,6 +732,7 @@ msgstr "Ομαδοποίηση"
 msgid "Last Played"
 msgstr "Τελευταία Αναπαραγωγή"
 
+#. helper for units
 #: src/Dialogs/SmartPlaylistEditor.vala:272
 #: src/Dialogs/SmartPlaylistEditor.vala:417
 msgid "Length"
@@ -790,6 +807,7 @@ msgstr "ημέρες πριν"
 msgid "kbps"
 msgstr "kbps"
 
+#. be a bit explicit to make translations better
 #: src/Dialogs/SyncWarningDialog.vala:52
 #, c-format
 msgid "Sync will remove %i item from %s"
@@ -1064,6 +1082,7 @@ msgstr "Όλοι οι %i συνθέτες"
 msgid "No Composers"
 msgstr "Κανένας συνθέτης"
 
+#. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
 #: src/Widgets/EqualizerPopover.vala:327 src/Widgets/PresetList.vala:52
 msgid "Automatic"
@@ -1098,6 +1117,106 @@ msgstr "%u kbps"
 msgid "Never"
 msgstr "Ποτέ"
 
+#: src/Views/ListView/Lists/ListColumn.vala:69
+msgctxt "List column title"
+msgid "#"
+msgstr "#"
+
+#: src/Views/ListView/Lists/ListColumn.vala:72
+msgctxt "List column title"
+msgid "Track"
+msgstr "Κομμάτι"
+
+#: src/Views/ListView/Lists/ListColumn.vala:75
+msgctxt "List column title"
+msgid "Title"
+msgstr "Τίτλος"
+
+#: src/Views/ListView/Lists/ListColumn.vala:78
+msgctxt "List column title"
+msgid "Length"
+msgstr "Διάρκεια"
+
+#: src/Views/ListView/Lists/ListColumn.vala:81
+msgctxt "List column title"
+msgid "Artist"
+msgstr "Καλλιτέχνης"
+
+#: src/Views/ListView/Lists/ListColumn.vala:84
+msgctxt "List column title"
+msgid "Album"
+msgstr "Άλμπουμ"
+
+#: src/Views/ListView/Lists/ListColumn.vala:87
+msgctxt "List column title"
+msgid "Album Artist"
+msgstr "Καλλιτέχνης άλμπουμ"
+
+#: src/Views/ListView/Lists/ListColumn.vala:90
+msgctxt "List column title"
+msgid "Composer"
+msgstr "Συνθέτης"
+
+#: src/Views/ListView/Lists/ListColumn.vala:93
+msgctxt "List column title"
+msgid "Genre"
+msgstr "Είδος"
+
+#: src/Views/ListView/Lists/ListColumn.vala:96
+msgctxt "List column title"
+msgid "Year"
+msgstr "Έτος"
+
+#: src/Views/ListView/Lists/ListColumn.vala:99
+msgctxt "List column title"
+msgid "Grouping"
+msgstr "Ομαδοποίηση"
+
+#: src/Views/ListView/Lists/ListColumn.vala:102
+msgctxt "List column title"
+msgid "Bitrate"
+msgstr "Ρυθμός μετάδοσης"
+
+#: src/Views/ListView/Lists/ListColumn.vala:105
+msgctxt "List column title"
+msgid "Rating"
+msgstr "Βαθμολογία"
+
+#: src/Views/ListView/Lists/ListColumn.vala:108
+msgctxt "List column title"
+msgid "Plays"
+msgstr "Αναπαραγωγές"
+
+#: src/Views/ListView/Lists/ListColumn.vala:111
+msgctxt "List column title"
+msgid "Skips"
+msgstr "Παραβλέψεις"
+
+#: src/Views/ListView/Lists/ListColumn.vala:114
+msgctxt "List column title"
+msgid "Date Added"
+msgstr "Ημερομηνία προσθήκης"
+
+#: src/Views/ListView/Lists/ListColumn.vala:117
+msgctxt "List column title"
+msgid "Last Played"
+msgstr "Τελευταία αναπαραγωγή"
+
+#: src/Views/ListView/Lists/ListColumn.vala:120
+msgctxt "List column title (beats per minute)"
+msgid "BPM"
+msgstr "Ρυθμός (BPM)"
+
+#: src/Views/ListView/Lists/ListColumn.vala:123
+msgctxt "List column title (file location)"
+msgid "Location"
+msgstr "Τοποθεσία αρχείου"
+
+#: src/Views/ListView/Lists/ListColumn.vala:126
+msgctxt "List column title"
+msgid "File Size"
+msgstr "Μέγεθος αρχείου"
+
 #: src/Views/ListView/Lists/MusicListView.vala:74
 msgid "Autosize Columns"
 msgstr "Αυτόματη προσαρμογή μεγέθους των στηλών"
@@ -1106,10 +1225,18 @@ msgstr "Αυτόματη προσαρμογή μεγέθους των στηλώ
 msgid "1234 kbps"
 msgstr "1234 kbps"
 
+#. / Sample string used to measure the ideal size of the Title, Artist,
+#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
+#. / list view. It's *never* displayed in the user interface. The translated
+#. / string should have a reasonable length, similar to the average length
+#. / of a song title or artist name in your language. The automatic column
+#. / width will depend on the length of this string and the space needed
+#. / by the column's title header.
 #: src/Views/ListView/Lists/MusicListView.vala:481
 msgid "Sample List String"
 msgstr "Παράδειγμα μήκους κειμένου"
 
+#. Welcome screen
 #: src/Views/Wrappers/MusicViewWrapper.vala:57
 msgid "Get Some Tunes"
 msgstr "Αποκτήστε μερικά τραγούδια"
@@ -1246,6 +1373,11 @@ msgstr "Επεξεργασία πληροφοριών τραγουδιού"
 msgid "Other Actions"
 msgstr "Άλλες ενέργειες"
 
+#: src/Widgets/MediaMenu.vala:53
+msgctxt "Action item (verb)"
+msgid "Queue"
+msgstr "Σειρά αναμονής"
+
 #: src/Widgets/MediaMenu.vala:54
 msgid "Add to Playlist"
 msgstr "Προσθήκη στη λίστα αναπαραγωγής"
@@ -1324,6 +1456,7 @@ msgstr "Νέα έξυπνη λίστα αναπαραγωγής"
 msgid "Import Playlists"
 msgstr "Εισαγωγή λιστών αναπαραγωγής"
 
+#. Adds the different sidebar categories.
 #: src/Widgets/SourceListView.vala:338
 msgid "Library"
 msgstr "Βιβλιοθήκη"
@@ -1344,11 +1477,13 @@ msgstr "Προσθήκη λίστας αναπαραγωγής"
 msgid "Add Smart Playlist"
 msgstr "Προσθήκη έξυπνης λίστας"
 
+#. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: src/Widgets/StatusBar.vala:75
 #, c-format
 msgid "Equalizer: %s"
 msgstr "Εξισωτής: %s"
 
+#. MUST follow the exact same order of Noise.Player.Repeat
 #: src/Widgets/TopDisplay.vala:139
 msgid "Enable Repeat"
 msgstr "Ενεργοποίηση επανάληψης"
@@ -1469,10 +1604,6 @@ msgstr "Προβολή σε στήλες"
 #~ msgid "Using %s of %s (%.2f%)"
 #~ msgstr "Χρησιμοποιώντας %s από %s (%.2f%)"
 
-#~ msgctxt "Name of the playlist"
-#~ msgid "Queue"
-#~ msgstr "Σειρά αναμονής"
-
 #~ msgid "General"
 #~ msgstr "Γενικά"
 
@@ -1548,90 +1679,6 @@ msgstr "Προβολή σε στήλες"
 #~ msgid ""
 #~ "There were no songs found on this device that are not in your library."
 #~ msgstr "Όλα τα τραγούδια της συσκευής περιλαμβάνονται στη βιβλιοθήκη."
-
-#~ msgctxt "Action item (verb)"
-#~ msgid "Queue"
-#~ msgstr "Σειρά αναμονής"
-
-#~ msgctxt "List column title"
-#~ msgid "#"
-#~ msgstr "#"
-
-#~ msgctxt "List column title"
-#~ msgid "Track"
-#~ msgstr "Κομμάτι"
-
-#~ msgctxt "List column title"
-#~ msgid "Title"
-#~ msgstr "Τίτλος"
-
-#~ msgctxt "List column title"
-#~ msgid "Length"
-#~ msgstr "Διάρκεια"
-
-#~ msgctxt "List column title"
-#~ msgid "Artist"
-#~ msgstr "Καλλιτέχνης"
-
-#~ msgctxt "List column title"
-#~ msgid "Album"
-#~ msgstr "Άλμπουμ"
-
-#~ msgctxt "List column title"
-#~ msgid "Album Artist"
-#~ msgstr "Καλλιτέχνης άλμπουμ"
-
-#~ msgctxt "List column title"
-#~ msgid "Composer"
-#~ msgstr "Συνθέτης"
-
-#~ msgctxt "List column title"
-#~ msgid "Genre"
-#~ msgstr "Είδος"
-
-#~ msgctxt "List column title"
-#~ msgid "Year"
-#~ msgstr "Έτος"
-
-#~ msgctxt "List column title"
-#~ msgid "Grouping"
-#~ msgstr "Ομαδοποίηση"
-
-#~ msgctxt "List column title"
-#~ msgid "Bitrate"
-#~ msgstr "Ρυθμός μετάδοσης"
-
-#~ msgctxt "List column title"
-#~ msgid "Rating"
-#~ msgstr "Βαθμολογία"
-
-#~ msgctxt "List column title"
-#~ msgid "Plays"
-#~ msgstr "Αναπαραγωγές"
-
-#~ msgctxt "List column title"
-#~ msgid "Skips"
-#~ msgstr "Παραβλέψεις"
-
-#~ msgctxt "List column title"
-#~ msgid "Date Added"
-#~ msgstr "Ημερομηνία προσθήκης"
-
-#~ msgctxt "List column title"
-#~ msgid "Last Played"
-#~ msgstr "Τελευταία αναπαραγωγή"
-
-#~ msgctxt "List column title (beats per minute)"
-#~ msgid "BPM"
-#~ msgstr "Ρυθμός (BPM)"
-
-#~ msgctxt "List column title (file location)"
-#~ msgid "Location"
-#~ msgstr "Τοποθεσία αρχείου"
-
-#~ msgctxt "List column title"
-#~ msgid "File Size"
-#~ msgstr "Μέγεθος αρχείου"
 
 #~ msgid "%i track"
 #~ msgid_plural "%i tracks"
