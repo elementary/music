@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 08:19-0700\n"
-"PO-Revision-Date: 2018-03-16 00:03+0000\n"
+"POT-Creation-Date: 2018-07-17 08:23-0700\n"
+"PO-Revision-Date: 2018-07-18 00:05+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://weblate.elementary.io/projects/"
 "music/music/nb/>\n"
@@ -17,25 +17,29 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-04-14 05:41+0000\n"
 
 #: core/LibrariesManager.vala:147
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 msgstr "Importerer <b>$NAME</b> av <b>$ARTIST</b> til biblioteket ..."
 
+#. / Used for unknown titles, artists, or album names.
 #: core/Media.vala:32
 msgid "Unknown"
 msgstr "Ukjente"
 
+#. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: core/Media.vala:179
 msgid "$NAME on $ALBUM"
 msgstr "$NAME på $ALBUM"
 
+#. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: core/Media.vala:182
 msgid "$NAME by $ARTIST"
 msgstr "$NAME av $ARTIST"
 
+#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
 #: core/Media.vala:188
 msgid "$NAME by $ARTIST on $ALBUM"
 msgstr "$NAME av $ARTIST på $ALBUM"
@@ -126,6 +130,7 @@ msgstr "%s (%d)"
 msgid "New playlist"
 msgstr "Ny spilleliste"
 
+#. Translators: used for new playlists ex: "New playlist (1)"
 #: core/Utils/PlaylistsUtils.vala:246
 #, c-format
 msgid "%s (%i)"
@@ -182,6 +187,8 @@ msgstr "Åpne"
 msgid "Unrecognized playlist file. Import failed."
 msgstr "Ukjent spilleliste fil. Importering feilet."
 
+#. / Format of date strings. See reference documentation of g_date_time_format()
+#. / for more details.
 #: core/Utils/TimeUtils.vala:40
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%m/%e/%Y %l:%M %p"
@@ -234,6 +241,7 @@ msgstr "Lyd CD ugyldig"
 msgid "Impossible to read the contents of this Audio CD"
 msgstr "Umulig å lese innholdet i denne lyd-CDen"
 
+#. do checks to make sure we can go on
 #: plugins/Devices/CDRom/CDRomDevice.vala:247
 msgid "Could not find Music Folder"
 msgstr "Fant ikke musikkmappen"
@@ -329,8 +337,9 @@ msgstr "Importering fullført"
 
 #: src/FileOperator.vala:305
 msgid "Your Library Has Been Imported."
-msgstr ""
+msgstr "Biblioteket ditt har blitt importert."
 
+#. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:315
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr "<b>Kopierer</b> filer til <b>Musikkmappe</b>…"
@@ -400,6 +409,11 @@ msgstr ""
 #: src/LibraryWindow.vala:978 src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import Music"
 msgstr "Importer musikk"
+
+#: src/PlaybackManager.vala:117
+msgctxt "Name of the playlist"
+msgid "Queue"
+msgstr "Legg til i kø"
 
 #: src/Dialogs/FileNotFoundDialog.vala:51
 msgid "File not found"
@@ -494,43 +508,47 @@ msgstr "Vurdering:"
 msgid "Comment:"
 msgstr "Kommentar:"
 
+#. FIXME: don't know if I can delete this
 #: src/Dialogs/MediaEditor.vala:140 src/Dialogs/PreferencesWindow.vala:96
 #: src/Views/DeviceView.vala:45
 msgid "Close"
 msgstr "Lukk"
 
-#: src/Dialogs/NotImportedWindow.vala:51
+#: src/Dialogs/NotImportedDialog.vala:51
 #, fuzzy, c-format
 msgid "Issues while importing from %s"
 msgstr "Importerer musikk fra %s…"
 
-#: src/Dialogs/NotImportedWindow.vala:56
+#: src/Dialogs/NotImportedDialog.vala:57
 #, fuzzy, c-format
-msgid "Unable to import %d items. The files may be damaged."
-msgstr ""
+msgid "Unable to import %d item. The file may be damaged."
+msgid_plural "Unable to import %d items. The files may be damaged."
+msgstr[0] ""
+"%s var ute av stand til å importere %d elementer. Filene kan være skadet."
+msgstr[1] ""
 "%s var ute av stand til å importere %d elementer. Filene kan være skadet."
 
-#: src/Dialogs/NotImportedWindow.vala:60
+#: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
 msgstr "Flytt alle korrupte filer til papirkurv"
 
-#: src/Dialogs/NotImportedWindow.vala:67
+#: src/Dialogs/NotImportedDialog.vala:72
 msgid "del"
 msgstr "Slett"
 
-#: src/Dialogs/NotImportedWindow.vala:76
+#: src/Dialogs/NotImportedDialog.vala:81
 msgid "File Location"
 msgstr "Filplassering"
 
-#: src/Dialogs/NotImportedWindow.vala:92
+#: src/Dialogs/NotImportedDialog.vala:97
 msgid "Select individual files to move to trash:"
 msgstr "Velg individuelle filer for flytting til papirkurv"
 
-#: src/Dialogs/NotImportedWindow.vala:96 src/Dialogs/RemoveFilesDialog.vala:73
+#: src/Dialogs/NotImportedDialog.vala:101 src/Dialogs/RemoveFilesDialog.vala:73
 msgid "Move to Trash"
 msgstr "Flytt til papirkurv"
 
-#: src/Dialogs/NotImportedWindow.vala:99
+#: src/Dialogs/NotImportedDialog.vala:104
 msgid "Ignore"
 msgstr "Ignorer"
 
@@ -605,6 +623,7 @@ msgstr "Eksporter spillelister"
 msgid "Set Music Folder"
 msgstr "Angi musikkmappe"
 
+#. pretty up labels
 #: src/Dialogs/SetMusicFolderConfirmation.vala:73
 msgid "Set Music Folder?"
 msgstr "Angi musikkmappe?"
@@ -707,6 +726,7 @@ msgstr "Gruppering"
 msgid "Last Played"
 msgstr "Sist spilt"
 
+#. helper for units
 #: src/Dialogs/SmartPlaylistEditor.vala:272
 #: src/Dialogs/SmartPlaylistEditor.vala:417
 msgid "Length"
@@ -781,6 +801,7 @@ msgstr "dager siden"
 msgid "kbps"
 msgstr "kbps"
 
+#. be a bit explicit to make translations better
 #: src/Dialogs/SyncWarningDialog.vala:52
 #, c-format
 msgid "Sync will remove %i item from %s"
@@ -934,7 +955,7 @@ msgstr "Ingen Vurderinger"
 
 #: src/Views/ViewStack.vala:45
 msgid "Try another search"
-msgstr ""
+msgstr "Prøv et søk til"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
 msgid "Genres"
@@ -1050,6 +1071,7 @@ msgstr "Alle %i Komponister"
 msgid "No Composers"
 msgstr "Ingen Komponister"
 
+#. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
 #: src/Widgets/EqualizerPopover.vala:327 src/Widgets/PresetList.vala:52
 msgid "Automatic"
@@ -1084,6 +1106,106 @@ msgstr "%u kbps"
 msgid "Never"
 msgstr "Aldri"
 
+#: src/Views/ListView/Lists/ListColumn.vala:69
+msgctxt "List column title"
+msgid "#"
+msgstr "#"
+
+#: src/Views/ListView/Lists/ListColumn.vala:72
+msgctxt "List column title"
+msgid "Track"
+msgstr "Spor"
+
+#: src/Views/ListView/Lists/ListColumn.vala:75
+msgctxt "List column title"
+msgid "Title"
+msgstr "Tittel"
+
+#: src/Views/ListView/Lists/ListColumn.vala:78
+msgctxt "List column title"
+msgid "Length"
+msgstr "Lengde"
+
+#: src/Views/ListView/Lists/ListColumn.vala:81
+msgctxt "List column title"
+msgid "Artist"
+msgstr "Artist"
+
+#: src/Views/ListView/Lists/ListColumn.vala:84
+msgctxt "List column title"
+msgid "Album"
+msgstr "Album"
+
+#: src/Views/ListView/Lists/ListColumn.vala:87
+msgctxt "List column title"
+msgid "Album Artist"
+msgstr "Album artist"
+
+#: src/Views/ListView/Lists/ListColumn.vala:90
+msgctxt "List column title"
+msgid "Composer"
+msgstr "Komponist"
+
+#: src/Views/ListView/Lists/ListColumn.vala:93
+msgctxt "List column title"
+msgid "Genre"
+msgstr "Sjanger"
+
+#: src/Views/ListView/Lists/ListColumn.vala:96
+msgctxt "List column title"
+msgid "Year"
+msgstr "År"
+
+#: src/Views/ListView/Lists/ListColumn.vala:99
+msgctxt "List column title"
+msgid "Grouping"
+msgstr "Gruppering"
+
+#: src/Views/ListView/Lists/ListColumn.vala:102
+msgctxt "List column title"
+msgid "Bitrate"
+msgstr "Bithastighet"
+
+#: src/Views/ListView/Lists/ListColumn.vala:105
+msgctxt "List column title"
+msgid "Rating"
+msgstr "Vurdering"
+
+#: src/Views/ListView/Lists/ListColumn.vala:108
+msgctxt "List column title"
+msgid "Plays"
+msgstr "Spiller"
+
+#: src/Views/ListView/Lists/ListColumn.vala:111
+msgctxt "List column title"
+msgid "Skips"
+msgstr "Hopper over"
+
+#: src/Views/ListView/Lists/ListColumn.vala:114
+msgctxt "List column title"
+msgid "Date Added"
+msgstr "Dato lagt til"
+
+#: src/Views/ListView/Lists/ListColumn.vala:117
+msgctxt "List column title"
+msgid "Last Played"
+msgstr "Sist Spilt"
+
+#: src/Views/ListView/Lists/ListColumn.vala:120
+msgctxt "List column title (beats per minute)"
+msgid "BPM"
+msgstr "BPM"
+
+#: src/Views/ListView/Lists/ListColumn.vala:123
+msgctxt "List column title (file location)"
+msgid "Location"
+msgstr "Plassering"
+
+#: src/Views/ListView/Lists/ListColumn.vala:126
+msgctxt "List column title"
+msgid "File Size"
+msgstr "Filstørrelse"
+
 #: src/Views/ListView/Lists/MusicListView.vala:74
 msgid "Autosize Columns"
 msgstr "Automatisk kolonnejustering"
@@ -1092,10 +1214,18 @@ msgstr "Automatisk kolonnejustering"
 msgid "1234 kbps"
 msgstr "1234 kbps"
 
+#. / Sample string used to measure the ideal size of the Title, Artist,
+#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
+#. / list view. It's *never* displayed in the user interface. The translated
+#. / string should have a reasonable length, similar to the average length
+#. / of a song title or artist name in your language. The automatic column
+#. / width will depend on the length of this string and the space needed
+#. / by the column's title header.
 #: src/Views/ListView/Lists/MusicListView.vala:481
 msgid "Sample List String"
 msgstr "Eksempel på listelengde"
 
+#. Welcome screen
 #: src/Views/Wrappers/MusicViewWrapper.vala:57
 msgid "Get Some Tunes"
 msgstr "Få tak i musikk"
@@ -1231,6 +1361,11 @@ msgstr "Endre sanginformasjon"
 msgid "Other Actions"
 msgstr "Andre handlinger"
 
+#: src/Widgets/MediaMenu.vala:53
+msgctxt "Action item (verb)"
+msgid "Queue"
+msgstr "Legg til i kø"
+
 #: src/Widgets/MediaMenu.vala:54
 msgid "Add to Playlist"
 msgstr "Legg til i spilleliste"
@@ -1309,6 +1444,7 @@ msgstr "Ny smart spilleliste"
 msgid "Import Playlists"
 msgstr "Importer spillelister"
 
+#. Adds the different sidebar categories.
 #: src/Widgets/SourceListView.vala:338
 msgid "Library"
 msgstr "Bibliotek"
@@ -1329,11 +1465,13 @@ msgstr "Legg til spilleliste"
 msgid "Add Smart Playlist"
 msgstr "Ny smart spilleliste"
 
+#. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: src/Widgets/StatusBar.vala:75
 #, c-format
 msgid "Equalizer: %s"
 msgstr "Tonekontroll (EQ): %s"
 
+#. MUST follow the exact same order of Noise.Player.Repeat
 #: src/Widgets/TopDisplay.vala:139
 msgid "Enable Repeat"
 msgstr "Slå på gjentaking"
@@ -1454,10 +1592,6 @@ msgstr "Kolonneoversikt"
 #~ msgid "Using %s of %s (%.2f%)"
 #~ msgstr "Bruker %s av %s (%.2f%)"
 
-#~ msgctxt "Name of the playlist"
-#~ msgid "Queue"
-#~ msgstr "Legg til i kø"
-
 #~ msgid "General"
 #~ msgstr "Generelt"
 
@@ -1543,90 +1677,6 @@ msgstr "Kolonneoversikt"
 #~ msgid ""
 #~ "There were no songs found on this device that are not in your library."
 #~ msgstr "Fant ingen sanger på enheten som ikke var i biblioteket ditt."
-
-#~ msgctxt "Action item (verb)"
-#~ msgid "Queue"
-#~ msgstr "Legg til i kø"
-
-#~ msgctxt "List column title"
-#~ msgid "#"
-#~ msgstr "#"
-
-#~ msgctxt "List column title"
-#~ msgid "Track"
-#~ msgstr "Spor"
-
-#~ msgctxt "List column title"
-#~ msgid "Title"
-#~ msgstr "Tittel"
-
-#~ msgctxt "List column title"
-#~ msgid "Length"
-#~ msgstr "Lengde"
-
-#~ msgctxt "List column title"
-#~ msgid "Artist"
-#~ msgstr "Artist"
-
-#~ msgctxt "List column title"
-#~ msgid "Album"
-#~ msgstr "Album"
-
-#~ msgctxt "List column title"
-#~ msgid "Album Artist"
-#~ msgstr "Album artist"
-
-#~ msgctxt "List column title"
-#~ msgid "Composer"
-#~ msgstr "Komponist"
-
-#~ msgctxt "List column title"
-#~ msgid "Genre"
-#~ msgstr "Sjanger"
-
-#~ msgctxt "List column title"
-#~ msgid "Year"
-#~ msgstr "År"
-
-#~ msgctxt "List column title"
-#~ msgid "Grouping"
-#~ msgstr "Gruppering"
-
-#~ msgctxt "List column title"
-#~ msgid "Bitrate"
-#~ msgstr "Bithastighet"
-
-#~ msgctxt "List column title"
-#~ msgid "Rating"
-#~ msgstr "Vurdering"
-
-#~ msgctxt "List column title"
-#~ msgid "Plays"
-#~ msgstr "Spiller"
-
-#~ msgctxt "List column title"
-#~ msgid "Skips"
-#~ msgstr "Hopper over"
-
-#~ msgctxt "List column title"
-#~ msgid "Date Added"
-#~ msgstr "Dato lagt til"
-
-#~ msgctxt "List column title"
-#~ msgid "Last Played"
-#~ msgstr "Sist Spilt"
-
-#~ msgctxt "List column title (beats per minute)"
-#~ msgid "BPM"
-#~ msgstr "BPM"
-
-#~ msgctxt "List column title (file location)"
-#~ msgid "Location"
-#~ msgstr "Plassering"
-
-#~ msgctxt "List column title"
-#~ msgid "File Size"
-#~ msgstr "Filstørrelse"
 
 #~ msgid "%i track"
 #~ msgid_plural "%i tracks"

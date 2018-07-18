@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 08:19-0700\n"
+"POT-Creation-Date: 2018-07-17 08:23-0700\n"
 "PO-Revision-Date: 2018-07-09 00:10+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://weblate.elementary.io/projects/music/music/"
@@ -24,18 +24,22 @@ msgstr ""
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 msgstr "Tuodaan <b>$NAME</b> esittäjältä <b>$ARTIST</b> kirjastoon…"
 
+#. / Used for unknown titles, artists, or album names.
 #: core/Media.vala:32
 msgid "Unknown"
 msgstr "Tuntematon"
 
+#. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: core/Media.vala:179
 msgid "$NAME on $ALBUM"
 msgstr "$NAME albumilla $ALBUM"
 
+#. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: core/Media.vala:182
 msgid "$NAME by $ARTIST"
 msgstr "$NAME, esittäjä $ARTIST"
 
+#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
 #: core/Media.vala:188
 msgid "$NAME by $ARTIST on $ALBUM"
 msgstr "$NAME, esittäjä $ARTIST albumilla $ALBUM"
@@ -126,6 +130,7 @@ msgstr "%s (%d)"
 msgid "New playlist"
 msgstr "Uusi soittolista"
 
+#. Translators: used for new playlists ex: "New playlist (1)"
 #: core/Utils/PlaylistsUtils.vala:246
 #, c-format
 msgid "%s (%i)"
@@ -182,6 +187,8 @@ msgstr "Avaa"
 msgid "Unrecognized playlist file. Import failed."
 msgstr "Tunnistamaton soittolistatiedosto. Tuonti epäonnistui."
 
+#. / Format of date strings. See reference documentation of g_date_time_format()
+#. / for more details.
 #: core/Utils/TimeUtils.vala:40
 msgid "%m/%e/%Y %l:%M %p"
 msgstr ""
@@ -236,6 +243,7 @@ msgstr "Audio CD kelvoton"
 msgid "Impossible to read the contents of this Audio CD"
 msgstr "Ääni-CD:n sisällön lukeminen ei onnistu"
 
+#. do checks to make sure we can go on
 #: plugins/Devices/CDRom/CDRomDevice.vala:247
 msgid "Could not find Music Folder"
 msgstr "Musiikkikansiota ei löydetty"
@@ -331,6 +339,7 @@ msgstr "Tuonti on valmis"
 msgid "Your Library Has Been Imported."
 msgstr "Kirjastosi on tuotu."
 
+#. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:315
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr "<b>Kopioidaan</b> tiedostoja <b>musiikkikansioon</b>…"
@@ -402,6 +411,11 @@ msgstr ""
 #: src/LibraryWindow.vala:978 src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import Music"
 msgstr "Tuo musiikkia"
+
+#: src/PlaybackManager.vala:117
+msgctxt "Name of the playlist"
+msgid "Queue"
+msgstr "Jono"
 
 #: src/Dialogs/FileNotFoundDialog.vala:51
 msgid "File not found"
@@ -496,43 +510,47 @@ msgstr "Arvostelu:"
 msgid "Comment:"
 msgstr "Kommentti:"
 
+#. FIXME: don't know if I can delete this
 #: src/Dialogs/MediaEditor.vala:140 src/Dialogs/PreferencesWindow.vala:96
 #: src/Views/DeviceView.vala:45
 msgid "Close"
 msgstr "Sulje"
 
-#: src/Dialogs/NotImportedWindow.vala:51
+#: src/Dialogs/NotImportedDialog.vala:51
 #, fuzzy, c-format
 msgid "Issues while importing from %s"
 msgstr "Tuodaan musiikkia kohteesta %s..."
 
-#: src/Dialogs/NotImportedWindow.vala:56
+#: src/Dialogs/NotImportedDialog.vala:57
 #, fuzzy, c-format
-msgid "Unable to import %d items. The files may be damaged."
-msgstr ""
+msgid "Unable to import %d item. The file may be damaged."
+msgid_plural "Unable to import %d items. The files may be damaged."
+msgstr[0] ""
+"%s ei voinut tuoda %d kohdetta. Tiedostot saattavat olla vahingoittuneet."
+msgstr[1] ""
 "%s ei voinut tuoda %d kohdetta. Tiedostot saattavat olla vahingoittuneet."
 
-#: src/Dialogs/NotImportedWindow.vala:60
+#: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
 msgstr "Siirrä kaikki korruptoituneet tiedostot roskakoriin"
 
-#: src/Dialogs/NotImportedWindow.vala:67
+#: src/Dialogs/NotImportedDialog.vala:72
 msgid "del"
 msgstr "poista"
 
-#: src/Dialogs/NotImportedWindow.vala:76
+#: src/Dialogs/NotImportedDialog.vala:81
 msgid "File Location"
 msgstr "Tiedoston sijainti"
 
-#: src/Dialogs/NotImportedWindow.vala:92
+#: src/Dialogs/NotImportedDialog.vala:97
 msgid "Select individual files to move to trash:"
 msgstr "Valitse yksittäiset roskakoriin siirrettävät tiedostot:"
 
-#: src/Dialogs/NotImportedWindow.vala:96 src/Dialogs/RemoveFilesDialog.vala:73
+#: src/Dialogs/NotImportedDialog.vala:101 src/Dialogs/RemoveFilesDialog.vala:73
 msgid "Move to Trash"
 msgstr "Siirrä roskakoriin"
 
-#: src/Dialogs/NotImportedWindow.vala:99
+#: src/Dialogs/NotImportedDialog.vala:104
 msgid "Ignore"
 msgstr "Ohita"
 
@@ -607,6 +625,7 @@ msgstr "Vie soittolistoja"
 msgid "Set Music Folder"
 msgstr "Aseta musiikkikansio"
 
+#. pretty up labels
 #: src/Dialogs/SetMusicFolderConfirmation.vala:73
 msgid "Set Music Folder?"
 msgstr "Aseta musiikkikansio?"
@@ -709,6 +728,7 @@ msgstr "Ryhmittely"
 msgid "Last Played"
 msgstr "Viimeksi soitettu"
 
+#. helper for units
 #: src/Dialogs/SmartPlaylistEditor.vala:272
 #: src/Dialogs/SmartPlaylistEditor.vala:417
 msgid "Length"
@@ -783,6 +803,7 @@ msgstr "päivää sitten"
 msgid "kbps"
 msgstr "kb/s"
 
+#. be a bit explicit to make translations better
 #: src/Dialogs/SyncWarningDialog.vala:52
 #, fuzzy, c-format
 msgid "Sync will remove %i item from %s"
@@ -1051,6 +1072,7 @@ msgstr "Kaikki %i säveltäjää"
 msgid "No Composers"
 msgstr "Ei säveltäjiä"
 
+#. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
 #: src/Widgets/EqualizerPopover.vala:327 src/Widgets/PresetList.vala:52
 msgid "Automatic"
@@ -1085,6 +1107,106 @@ msgstr "%u kbps"
 msgid "Never"
 msgstr "Ei koskaan"
 
+#: src/Views/ListView/Lists/ListColumn.vala:69
+msgctxt "List column title"
+msgid "#"
+msgstr "#"
+
+#: src/Views/ListView/Lists/ListColumn.vala:72
+msgctxt "List column title"
+msgid "Track"
+msgstr "Kappale"
+
+#: src/Views/ListView/Lists/ListColumn.vala:75
+msgctxt "List column title"
+msgid "Title"
+msgstr "Nimi"
+
+#: src/Views/ListView/Lists/ListColumn.vala:78
+msgctxt "List column title"
+msgid "Length"
+msgstr "Kesto"
+
+#: src/Views/ListView/Lists/ListColumn.vala:81
+msgctxt "List column title"
+msgid "Artist"
+msgstr "Esittäjä"
+
+#: src/Views/ListView/Lists/ListColumn.vala:84
+msgctxt "List column title"
+msgid "Album"
+msgstr "Albumi"
+
+#: src/Views/ListView/Lists/ListColumn.vala:87
+msgctxt "List column title"
+msgid "Album Artist"
+msgstr "Levyn esittäjä"
+
+#: src/Views/ListView/Lists/ListColumn.vala:90
+msgctxt "List column title"
+msgid "Composer"
+msgstr "Säveltäjä"
+
+#: src/Views/ListView/Lists/ListColumn.vala:93
+msgctxt "List column title"
+msgid "Genre"
+msgstr "Tyylilaji"
+
+#: src/Views/ListView/Lists/ListColumn.vala:96
+msgctxt "List column title"
+msgid "Year"
+msgstr "Vuosi"
+
+#: src/Views/ListView/Lists/ListColumn.vala:99
+msgctxt "List column title"
+msgid "Grouping"
+msgstr "Ryhmittely"
+
+#: src/Views/ListView/Lists/ListColumn.vala:102
+msgctxt "List column title"
+msgid "Bitrate"
+msgstr "Bittinopeus"
+
+#: src/Views/ListView/Lists/ListColumn.vala:105
+msgctxt "List column title"
+msgid "Rating"
+msgstr "Arvostelu"
+
+#: src/Views/ListView/Lists/ListColumn.vala:108
+msgctxt "List column title"
+msgid "Plays"
+msgstr "Soittokerrat"
+
+#: src/Views/ListView/Lists/ListColumn.vala:111
+msgctxt "List column title"
+msgid "Skips"
+msgstr "Ohituskerrat"
+
+#: src/Views/ListView/Lists/ListColumn.vala:114
+msgctxt "List column title"
+msgid "Date Added"
+msgstr "Lisäyspäivä"
+
+#: src/Views/ListView/Lists/ListColumn.vala:117
+msgctxt "List column title"
+msgid "Last Played"
+msgstr "Viimeksi soitettu"
+
+#: src/Views/ListView/Lists/ListColumn.vala:120
+msgctxt "List column title (beats per minute)"
+msgid "BPM"
+msgstr "BPM"
+
+#: src/Views/ListView/Lists/ListColumn.vala:123
+msgctxt "List column title (file location)"
+msgid "Location"
+msgstr "Sijainti"
+
+#: src/Views/ListView/Lists/ListColumn.vala:126
+msgctxt "List column title"
+msgid "File Size"
+msgstr "Tiedoston koko"
+
 #: src/Views/ListView/Lists/MusicListView.vala:74
 msgid "Autosize Columns"
 msgstr "Aseta sarakkeiden koko automaattisesti"
@@ -1093,10 +1215,18 @@ msgstr "Aseta sarakkeiden koko automaattisesti"
 msgid "1234 kbps"
 msgstr "1234 kbps"
 
+#. / Sample string used to measure the ideal size of the Title, Artist,
+#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
+#. / list view. It's *never* displayed in the user interface. The translated
+#. / string should have a reasonable length, similar to the average length
+#. / of a song title or artist name in your language. The automatic column
+#. / width will depend on the length of this string and the space needed
+#. / by the column's title header.
 #: src/Views/ListView/Lists/MusicListView.vala:481
 msgid "Sample List String"
 msgstr "Sample List String"
 
+#. Welcome screen
 #: src/Views/Wrappers/MusicViewWrapper.vala:57
 msgid "Get Some Tunes"
 msgstr "Hanki kappaleita"
@@ -1231,6 +1361,11 @@ msgstr "Muokkaa kappaleen tietoja…"
 msgid "Other Actions"
 msgstr "Muut toiminnot"
 
+#: src/Widgets/MediaMenu.vala:53
+msgctxt "Action item (verb)"
+msgid "Queue"
+msgstr "Lisää jonoon"
+
 #: src/Widgets/MediaMenu.vala:54
 msgid "Add to Playlist"
 msgstr "Lisää soittolistaan"
@@ -1307,6 +1442,7 @@ msgstr "Uusi älykäs soittolista"
 msgid "Import Playlists"
 msgstr "Tuo soittolistoja"
 
+#. Adds the different sidebar categories.
 #: src/Widgets/SourceListView.vala:338
 msgid "Library"
 msgstr "Kirjasto"
@@ -1327,11 +1463,13 @@ msgstr "Lisää soittolista"
 msgid "Add Smart Playlist"
 msgstr "Lisää älykäs soittolista"
 
+#. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: src/Widgets/StatusBar.vala:75
 #, c-format
 msgid "Equalizer: %s"
 msgstr "Taajuuskorjain: %s"
 
+#. MUST follow the exact same order of Noise.Player.Repeat
 #: src/Widgets/TopDisplay.vala:139
 msgid "Enable Repeat"
 msgstr "Ota toisto käyttöön"
@@ -1452,10 +1590,6 @@ msgstr "Näytä sarakkeina"
 #~ msgid "Using %s of %s (%.2f%)"
 #~ msgstr "Käytössä %s/%s (%.2f%)"
 
-#~ msgctxt "Name of the playlist"
-#~ msgid "Queue"
-#~ msgstr "Jono"
-
 #~ msgid "General"
 #~ msgstr "Yleiset"
 
@@ -1533,90 +1667,6 @@ msgstr "Näytä sarakkeina"
 #~ msgstr ""
 #~ "Tältä laitteelta ei löytynyt kappaleita, jotka eivät ole myös "
 #~ "kirjastossasi."
-
-#~ msgctxt "Action item (verb)"
-#~ msgid "Queue"
-#~ msgstr "Lisää jonoon"
-
-#~ msgctxt "List column title"
-#~ msgid "#"
-#~ msgstr "#"
-
-#~ msgctxt "List column title"
-#~ msgid "Track"
-#~ msgstr "Kappale"
-
-#~ msgctxt "List column title"
-#~ msgid "Title"
-#~ msgstr "Nimi"
-
-#~ msgctxt "List column title"
-#~ msgid "Length"
-#~ msgstr "Kesto"
-
-#~ msgctxt "List column title"
-#~ msgid "Artist"
-#~ msgstr "Esittäjä"
-
-#~ msgctxt "List column title"
-#~ msgid "Album"
-#~ msgstr "Albumi"
-
-#~ msgctxt "List column title"
-#~ msgid "Album Artist"
-#~ msgstr "Levyn esittäjä"
-
-#~ msgctxt "List column title"
-#~ msgid "Composer"
-#~ msgstr "Säveltäjä"
-
-#~ msgctxt "List column title"
-#~ msgid "Genre"
-#~ msgstr "Tyylilaji"
-
-#~ msgctxt "List column title"
-#~ msgid "Year"
-#~ msgstr "Vuosi"
-
-#~ msgctxt "List column title"
-#~ msgid "Grouping"
-#~ msgstr "Ryhmittely"
-
-#~ msgctxt "List column title"
-#~ msgid "Bitrate"
-#~ msgstr "Bittinopeus"
-
-#~ msgctxt "List column title"
-#~ msgid "Rating"
-#~ msgstr "Arvostelu"
-
-#~ msgctxt "List column title"
-#~ msgid "Plays"
-#~ msgstr "Soittokerrat"
-
-#~ msgctxt "List column title"
-#~ msgid "Skips"
-#~ msgstr "Ohituskerrat"
-
-#~ msgctxt "List column title"
-#~ msgid "Date Added"
-#~ msgstr "Lisäyspäivä"
-
-#~ msgctxt "List column title"
-#~ msgid "Last Played"
-#~ msgstr "Viimeksi soitettu"
-
-#~ msgctxt "List column title (beats per minute)"
-#~ msgid "BPM"
-#~ msgstr "BPM"
-
-#~ msgctxt "List column title (file location)"
-#~ msgid "Location"
-#~ msgstr "Sijainti"
-
-#~ msgctxt "List column title"
-#~ msgid "File Size"
-#~ msgstr "Tiedoston koko"
 
 #~ msgid "%i track"
 #~ msgid_plural "%i tracks"

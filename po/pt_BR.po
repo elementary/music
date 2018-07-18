@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 08:19-0700\n"
+"POT-Creation-Date: 2018-07-17 08:23-0700\n"
 "PO-Revision-Date: 2017-02-13 09:27+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
@@ -23,18 +23,22 @@ msgstr ""
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 msgstr "Importando <b>$NAME</b> de <b>$ARTIST</b> para a biblioteca..."
 
+#. / Used for unknown titles, artists, or album names.
 #: core/Media.vala:32
 msgid "Unknown"
 msgstr "Desconhecido"
 
+#. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: core/Media.vala:179
 msgid "$NAME on $ALBUM"
 msgstr "$NAME em $ALBUM"
 
+#. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: core/Media.vala:182
 msgid "$NAME by $ARTIST"
 msgstr "$NAME por $ARTIST"
 
+#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
 #: core/Media.vala:188
 msgid "$NAME by $ARTIST on $ALBUM"
 msgstr "$NAME por $ARTIST em $ALBUM"
@@ -125,6 +129,7 @@ msgstr "%s (%d)"
 msgid "New playlist"
 msgstr "Nova lista de reprodução"
 
+#. Translators: used for new playlists ex: "New playlist (1)"
 #: core/Utils/PlaylistsUtils.vala:246
 #, c-format
 msgid "%s (%i)"
@@ -181,6 +186,8 @@ msgstr "Abrir"
 msgid "Unrecognized playlist file. Import failed."
 msgstr "Arquivo de lista de reprodução desconhecido. Falha na importação."
 
+#. / Format of date strings. See reference documentation of g_date_time_format()
+#. / for more details.
 #: core/Utils/TimeUtils.vala:40
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%e/%m/%Y %k:%M"
@@ -233,6 +240,7 @@ msgstr "CD de Áudio Invalido"
 msgid "Impossible to read the contents of this Audio CD"
 msgstr "Impossível ler o conteúdo deste CD de Áudio"
 
+#. do checks to make sure we can go on
 #: plugins/Devices/CDRom/CDRomDevice.vala:247
 msgid "Could not find Music Folder"
 msgstr "Não foi possível encontrar a Pasta de Músicas"
@@ -330,6 +338,7 @@ msgstr "Importação Concluída"
 msgid "Your Library Has Been Imported."
 msgstr ""
 
+#. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:315
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr "<b>Copiando</b> arquivos para a <b>pasta de música</b>…"
@@ -401,6 +410,11 @@ msgstr ""
 #: src/LibraryWindow.vala:978 src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import Music"
 msgstr "Importar músicas"
+
+#: src/PlaybackManager.vala:117
+msgctxt "Name of the playlist"
+msgid "Queue"
+msgstr "Fila"
 
 #: src/Dialogs/FileNotFoundDialog.vala:51
 msgid "File not found"
@@ -499,43 +513,47 @@ msgstr "Avaliação:"
 msgid "Comment:"
 msgstr "Comentário:"
 
+#. FIXME: don't know if I can delete this
 #: src/Dialogs/MediaEditor.vala:140 src/Dialogs/PreferencesWindow.vala:96
 #: src/Views/DeviceView.vala:45
 msgid "Close"
 msgstr "Fechar"
 
-#: src/Dialogs/NotImportedWindow.vala:51
+#: src/Dialogs/NotImportedDialog.vala:51
 #, fuzzy, c-format
 msgid "Issues while importing from %s"
 msgstr "Importando música de %s…"
 
-#: src/Dialogs/NotImportedWindow.vala:56
+#: src/Dialogs/NotImportedDialog.vala:57
 #, fuzzy, c-format
-msgid "Unable to import %d items. The files may be damaged."
-msgstr ""
+msgid "Unable to import %d item. The file may be damaged."
+msgid_plural "Unable to import %d items. The files may be damaged."
+msgstr[0] ""
+"%s não foi possível importar %d items. Os arquivos podem estar danificados."
+msgstr[1] ""
 "%s não foi possível importar %d items. Os arquivos podem estar danificados."
 
-#: src/Dialogs/NotImportedWindow.vala:60
+#: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
 msgstr "Mover todos os arquivos corrompidos para o lixo"
 
-#: src/Dialogs/NotImportedWindow.vala:67
+#: src/Dialogs/NotImportedDialog.vala:72
 msgid "del"
 msgstr "del"
 
-#: src/Dialogs/NotImportedWindow.vala:76
+#: src/Dialogs/NotImportedDialog.vala:81
 msgid "File Location"
 msgstr "Local do arquivo"
 
-#: src/Dialogs/NotImportedWindow.vala:92
+#: src/Dialogs/NotImportedDialog.vala:97
 msgid "Select individual files to move to trash:"
 msgstr "Selecione arquivos específicos para exclusão:"
 
-#: src/Dialogs/NotImportedWindow.vala:96 src/Dialogs/RemoveFilesDialog.vala:73
+#: src/Dialogs/NotImportedDialog.vala:101 src/Dialogs/RemoveFilesDialog.vala:73
 msgid "Move to Trash"
 msgstr "Mover para o lixo"
 
-#: src/Dialogs/NotImportedWindow.vala:99
+#: src/Dialogs/NotImportedDialog.vala:104
 msgid "Ignore"
 msgstr "Ignorar"
 
@@ -610,6 +628,7 @@ msgstr "Exportar listas de reprodução"
 msgid "Set Music Folder"
 msgstr "Selecionar pasta de música"
 
+#. pretty up labels
 #: src/Dialogs/SetMusicFolderConfirmation.vala:73
 msgid "Set Music Folder?"
 msgstr "Selecionar pasta de música?"
@@ -712,6 +731,7 @@ msgstr "Agrupamento"
 msgid "Last Played"
 msgstr "Última reprodução"
 
+#. helper for units
 #: src/Dialogs/SmartPlaylistEditor.vala:272
 #: src/Dialogs/SmartPlaylistEditor.vala:417
 msgid "Length"
@@ -786,6 +806,7 @@ msgstr "dias atrás"
 msgid "kbps"
 msgstr "kbps"
 
+#. be a bit explicit to make translations better
 #: src/Dialogs/SyncWarningDialog.vala:52
 #, fuzzy, c-format
 msgid "Sync will remove %i item from %s"
@@ -1060,6 +1081,7 @@ msgstr "Todos %i compositores"
 msgid "No Composers"
 msgstr "Sem compositores"
 
+#. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
 #: src/Widgets/EqualizerPopover.vala:327 src/Widgets/PresetList.vala:52
 msgid "Automatic"
@@ -1094,6 +1116,106 @@ msgstr "%u kbps"
 msgid "Never"
 msgstr "Nunca"
 
+#: src/Views/ListView/Lists/ListColumn.vala:69
+msgctxt "List column title"
+msgid "#"
+msgstr "Nº"
+
+#: src/Views/ListView/Lists/ListColumn.vala:72
+msgctxt "List column title"
+msgid "Track"
+msgstr "Faixa"
+
+#: src/Views/ListView/Lists/ListColumn.vala:75
+msgctxt "List column title"
+msgid "Title"
+msgstr "Título"
+
+#: src/Views/ListView/Lists/ListColumn.vala:78
+msgctxt "List column title"
+msgid "Length"
+msgstr "Duração"
+
+#: src/Views/ListView/Lists/ListColumn.vala:81
+msgctxt "List column title"
+msgid "Artist"
+msgstr "Artista"
+
+#: src/Views/ListView/Lists/ListColumn.vala:84
+msgctxt "List column title"
+msgid "Album"
+msgstr "Álbum"
+
+#: src/Views/ListView/Lists/ListColumn.vala:87
+msgctxt "List column title"
+msgid "Album Artist"
+msgstr "Artista do álbum"
+
+#: src/Views/ListView/Lists/ListColumn.vala:90
+msgctxt "List column title"
+msgid "Composer"
+msgstr "Compositor"
+
+#: src/Views/ListView/Lists/ListColumn.vala:93
+msgctxt "List column title"
+msgid "Genre"
+msgstr "Gênero"
+
+#: src/Views/ListView/Lists/ListColumn.vala:96
+msgctxt "List column title"
+msgid "Year"
+msgstr "Ano"
+
+#: src/Views/ListView/Lists/ListColumn.vala:99
+msgctxt "List column title"
+msgid "Grouping"
+msgstr "Agrupamento"
+
+#: src/Views/ListView/Lists/ListColumn.vala:102
+msgctxt "List column title"
+msgid "Bitrate"
+msgstr "Taxa de bits"
+
+#: src/Views/ListView/Lists/ListColumn.vala:105
+msgctxt "List column title"
+msgid "Rating"
+msgstr "Classificação"
+
+#: src/Views/ListView/Lists/ListColumn.vala:108
+msgctxt "List column title"
+msgid "Plays"
+msgstr "Reproduções"
+
+#: src/Views/ListView/Lists/ListColumn.vala:111
+msgctxt "List column title"
+msgid "Skips"
+msgstr "Pulos"
+
+#: src/Views/ListView/Lists/ListColumn.vala:114
+msgctxt "List column title"
+msgid "Date Added"
+msgstr "Data de adição"
+
+#: src/Views/ListView/Lists/ListColumn.vala:117
+msgctxt "List column title"
+msgid "Last Played"
+msgstr "Última reprodução"
+
+#: src/Views/ListView/Lists/ListColumn.vala:120
+msgctxt "List column title (beats per minute)"
+msgid "BPM"
+msgstr "BPM"
+
+#: src/Views/ListView/Lists/ListColumn.vala:123
+msgctxt "List column title (file location)"
+msgid "Location"
+msgstr "Localização"
+
+#: src/Views/ListView/Lists/ListColumn.vala:126
+msgctxt "List column title"
+msgid "File Size"
+msgstr "Tamanho do arquivo"
+
 #: src/Views/ListView/Lists/MusicListView.vala:74
 msgid "Autosize Columns"
 msgstr "Autodimensionar colunas"
@@ -1102,10 +1224,18 @@ msgstr "Autodimensionar colunas"
 msgid "1234 kbps"
 msgstr "1234 kbps"
 
+#. / Sample string used to measure the ideal size of the Title, Artist,
+#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
+#. / list view. It's *never* displayed in the user interface. The translated
+#. / string should have a reasonable length, similar to the average length
+#. / of a song title or artist name in your language. The automatic column
+#. / width will depend on the length of this string and the space needed
+#. / by the column's title header.
 #: src/Views/ListView/Lists/MusicListView.vala:481
 msgid "Sample List String"
 msgstr "Lista de exemplo"
 
+#. Welcome screen
 #: src/Views/Wrappers/MusicViewWrapper.vala:57
 msgid "Get Some Tunes"
 msgstr "Obter algumas músicas"
@@ -1242,6 +1372,11 @@ msgstr "Editar informações da música"
 msgid "Other Actions"
 msgstr "Outras ações"
 
+#: src/Widgets/MediaMenu.vala:53
+msgctxt "Action item (verb)"
+msgid "Queue"
+msgstr "Adicionar à fila de reprodução"
+
 #: src/Widgets/MediaMenu.vala:54
 msgid "Add to Playlist"
 msgstr "Adicionar à lista de reprodução"
@@ -1320,6 +1455,7 @@ msgstr "Nova lista de reprodução inteligente"
 msgid "Import Playlists"
 msgstr "Importar listas de reprodução"
 
+#. Adds the different sidebar categories.
 #: src/Widgets/SourceListView.vala:338
 msgid "Library"
 msgstr "Biblioteca"
@@ -1340,11 +1476,13 @@ msgstr "Adicionar lista de reprodução"
 msgid "Add Smart Playlist"
 msgstr "Adicionar lista de reprodução inteligente"
 
+#. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: src/Widgets/StatusBar.vala:75
 #, c-format
 msgid "Equalizer: %s"
 msgstr "Equalizador: %s"
 
+#. MUST follow the exact same order of Noise.Player.Repeat
 #: src/Widgets/TopDisplay.vala:139
 msgid "Enable Repeat"
 msgstr "Ligar repetição"
@@ -1465,10 +1603,6 @@ msgstr "Visualizar em colunas"
 #~ msgid "Using %s of %s (%.2f%)"
 #~ msgstr "Usando %s de %s (%2.f%)"
 
-#~ msgctxt "Name of the playlist"
-#~ msgid "Queue"
-#~ msgstr "Fila"
-
 #~ msgid "General"
 #~ msgstr "Geral"
 
@@ -1556,90 +1690,6 @@ msgstr "Visualizar em colunas"
 #~ msgstr ""
 #~ "Não foi encontrado alguma música neste dispositivo que não está em sua "
 #~ "biblioteca."
-
-#~ msgctxt "Action item (verb)"
-#~ msgid "Queue"
-#~ msgstr "Adicionar à fila de reprodução"
-
-#~ msgctxt "List column title"
-#~ msgid "#"
-#~ msgstr "Nº"
-
-#~ msgctxt "List column title"
-#~ msgid "Track"
-#~ msgstr "Faixa"
-
-#~ msgctxt "List column title"
-#~ msgid "Title"
-#~ msgstr "Título"
-
-#~ msgctxt "List column title"
-#~ msgid "Length"
-#~ msgstr "Duração"
-
-#~ msgctxt "List column title"
-#~ msgid "Artist"
-#~ msgstr "Artista"
-
-#~ msgctxt "List column title"
-#~ msgid "Album"
-#~ msgstr "Álbum"
-
-#~ msgctxt "List column title"
-#~ msgid "Album Artist"
-#~ msgstr "Artista do álbum"
-
-#~ msgctxt "List column title"
-#~ msgid "Composer"
-#~ msgstr "Compositor"
-
-#~ msgctxt "List column title"
-#~ msgid "Genre"
-#~ msgstr "Gênero"
-
-#~ msgctxt "List column title"
-#~ msgid "Year"
-#~ msgstr "Ano"
-
-#~ msgctxt "List column title"
-#~ msgid "Grouping"
-#~ msgstr "Agrupamento"
-
-#~ msgctxt "List column title"
-#~ msgid "Bitrate"
-#~ msgstr "Taxa de bits"
-
-#~ msgctxt "List column title"
-#~ msgid "Rating"
-#~ msgstr "Classificação"
-
-#~ msgctxt "List column title"
-#~ msgid "Plays"
-#~ msgstr "Reproduções"
-
-#~ msgctxt "List column title"
-#~ msgid "Skips"
-#~ msgstr "Pulos"
-
-#~ msgctxt "List column title"
-#~ msgid "Date Added"
-#~ msgstr "Data de adição"
-
-#~ msgctxt "List column title"
-#~ msgid "Last Played"
-#~ msgstr "Última reprodução"
-
-#~ msgctxt "List column title (beats per minute)"
-#~ msgid "BPM"
-#~ msgstr "BPM"
-
-#~ msgctxt "List column title (file location)"
-#~ msgid "Location"
-#~ msgstr "Localização"
-
-#~ msgctxt "List column title"
-#~ msgid "File Size"
-#~ msgstr "Tamanho do arquivo"
 
 #~ msgid "%i track"
 #~ msgid_plural "%i tracks"

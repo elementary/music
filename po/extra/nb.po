@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-27 08:21-0700\n"
-"PO-Revision-Date: 2018-06-27 22:02+0000\n"
+"PO-Revision-Date: 2018-07-18 00:05+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://weblate.elementary.io/projects/"
 "music/extra/nb/>\n"
@@ -39,7 +39,7 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:100
 msgid "elementary LLC."
-msgstr ""
+msgstr "elementary LLC. (selskap med begrenset ansvar)"
 
 #: data/io.elementary.music.desktop.in:5
 msgid "Music Player"

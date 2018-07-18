@@ -24,10 +24,10 @@
  * statement from your version.
  */
 
-/** Since this class is not publicly facing (the FastView is public part),
+/* Since this class is not publicly facing (the FastView is public part),
  * this model is low level and optimized. We are not worried about stupid
  * users here.
-**/
+ */
 public class Noise.FastGridModel : GLib.Object, Gtk.TreeModel, Gtk.TreeDragSource {
     int stamp; // all iters must match this
 
@@ -174,7 +174,7 @@ public class Noise.FastGridModel : GLib.Object, Gtk.TreeModel, Gtk.TreeDragSourc
     public void ref_node (Gtk.TreeIter iter) {}
     public void unref_node (Gtk.TreeIter iter) {}
 
-    /** The beauty of this custom model. This tree model is simply a visual
+    /* The beauty of this custom model. This tree model is simply a visual
      * representation of a HashTable of objects. Before calling this
      * method, the user should set tree_view.set_model(null). After
      * calling this, set the tree_view.set_model(fast_model). By doing this
@@ -183,7 +183,7 @@ public class Noise.FastGridModel : GLib.Object, Gtk.TreeModel, Gtk.TreeDragSourc
      *
      * @objects Must be a consecutive ordered hash table with indexes
      * 0-n where n is size of the hashtable (no gaps).
-    **/
+     */
     public void set_table (Gee.HashMap<int, GLib.Object> table) {
         rows.clear ();
         rows.set_all (table);

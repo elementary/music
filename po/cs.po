@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 08:19-0700\n"
-"PO-Revision-Date: 2018-06-29 20:47+0000\n"
+"POT-Creation-Date: 2018-07-17 08:23-0700\n"
+"PO-Revision-Date: 2018-07-16 08:58+0000\n"
 "Last-Translator: Jan Marek <janmarek28@gmail.com>\n"
-"Language-Team: Czech <https://weblate.elementary.io/projects/music/music/cs/>"
-"\n"
+"Language-Team: Czech <https://weblate.elementary.io/projects/music/music/cs/"
+">\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,18 +24,22 @@ msgstr ""
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 msgstr "Importuji <b>$NAME</b> od <b>$ARTIST</b> do knihovny…"
 
+#. / Used for unknown titles, artists, or album names.
 #: core/Media.vala:32
 msgid "Unknown"
 msgstr "Neznámý"
 
+#. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: core/Media.vala:179
 msgid "$NAME on $ALBUM"
 msgstr "$NAME z alba $ALBUM"
 
+#. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: core/Media.vala:182
 msgid "$NAME by $ARTIST"
 msgstr "$NAME od $ARTIST"
 
+#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
 #: core/Media.vala:188
 msgid "$NAME by $ARTIST on $ALBUM"
 msgstr "$NAME od $ARTIST z $ALBUM"
@@ -126,6 +130,7 @@ msgstr "%s (%d)"
 msgid "New playlist"
 msgstr "Nový playlist"
 
+#. Translators: used for new playlists ex: "New playlist (1)"
 #: core/Utils/PlaylistsUtils.vala:246
 #, c-format
 msgid "%s (%i)"
@@ -182,6 +187,8 @@ msgstr "Otevřít"
 msgid "Unrecognized playlist file. Import failed."
 msgstr "Nerozpoznatelný seznam skladeb. Import se nezdařil."
 
+#. / Format of date strings. See reference documentation of g_date_time_format()
+#. / for more details.
 #: core/Utils/TimeUtils.vala:40
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%e.%m.%Y %k:%M"
@@ -234,6 +241,7 @@ msgstr "Neplatné audio CD"
 msgid "Impossible to read the contents of this Audio CD"
 msgstr "Obsah tohoto audio CD nelze přečíst"
 
+#. do checks to make sure we can go on
 #: plugins/Devices/CDRom/CDRomDevice.vala:247
 msgid "Could not find Music Folder"
 msgstr "Složka s hudbou nenalezena"
@@ -330,6 +338,7 @@ msgstr "Import dokončen"
 msgid "Your Library Has Been Imported."
 msgstr "Vaše knihovna byla naimportována."
 
+#. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:315
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr "<b>Kopírování</b> souborů do <b>složky s hudbou</b>…"
@@ -399,6 +408,11 @@ msgstr ""
 #: src/LibraryWindow.vala:978 src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import Music"
 msgstr "Importovat hudbu"
+
+#: src/PlaybackManager.vala:117
+msgctxt "Name of the playlist"
+msgid "Queue"
+msgstr "Fronta"
 
 #: src/Dialogs/FileNotFoundDialog.vala:51
 msgid "File not found"
@@ -493,42 +507,46 @@ msgstr "Hodnocení:"
 msgid "Comment:"
 msgstr "Komentář:"
 
+#. FIXME: don't know if I can delete this
 #: src/Dialogs/MediaEditor.vala:140 src/Dialogs/PreferencesWindow.vala:96
 #: src/Views/DeviceView.vala:45
 msgid "Close"
 msgstr "Zavřít"
 
-#: src/Dialogs/NotImportedWindow.vala:51
+#: src/Dialogs/NotImportedDialog.vala:51
 #, c-format
 msgid "Issues while importing from %s"
 msgstr "Problémy s přidáváním hudby z %s"
 
-#: src/Dialogs/NotImportedWindow.vala:56
+#: src/Dialogs/NotImportedDialog.vala:57
 #, c-format
-msgid "Unable to import %d items. The files may be damaged."
-msgstr "Nelze naimportovat %d položky. Soubory jsou možná poškozeny."
+msgid "Unable to import %d item. The file may be damaged."
+msgid_plural "Unable to import %d items. The files may be damaged."
+msgstr[0] "Nelze naimportovat %d položku. Soubor je možná poškozený."
+msgstr[1] "Nelze naimportovat %d položky. Soubory mohou být poškozené."
+msgstr[2] "Nelze naimportovat %d položek. Soubory mohou být poškozené."
 
-#: src/Dialogs/NotImportedWindow.vala:60
+#: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
 msgstr "Přesunout všechny poškozené soubory do koše"
 
-#: src/Dialogs/NotImportedWindow.vala:67
+#: src/Dialogs/NotImportedDialog.vala:72
 msgid "del"
 msgstr "smazat"
 
-#: src/Dialogs/NotImportedWindow.vala:76
+#: src/Dialogs/NotImportedDialog.vala:81
 msgid "File Location"
 msgstr "Umístění souboru"
 
-#: src/Dialogs/NotImportedWindow.vala:92
+#: src/Dialogs/NotImportedDialog.vala:97
 msgid "Select individual files to move to trash:"
 msgstr "Vybrat jednotlivé soubory k přesunutí do koše:"
 
-#: src/Dialogs/NotImportedWindow.vala:96 src/Dialogs/RemoveFilesDialog.vala:73
+#: src/Dialogs/NotImportedDialog.vala:101 src/Dialogs/RemoveFilesDialog.vala:73
 msgid "Move to Trash"
 msgstr "Přesunout do koše"
 
-#: src/Dialogs/NotImportedWindow.vala:99
+#: src/Dialogs/NotImportedDialog.vala:104
 msgid "Ignore"
 msgstr "Ignorovat"
 
@@ -606,6 +624,7 @@ msgstr "Exportovat seznamy skladeb"
 msgid "Set Music Folder"
 msgstr "Vybrat složku s hudbou"
 
+#. pretty up labels
 #: src/Dialogs/SetMusicFolderConfirmation.vala:73
 msgid "Set Music Folder?"
 msgstr "Nastavit složku s hudbou?"
@@ -708,6 +727,7 @@ msgstr "Seskupení"
 msgid "Last Played"
 msgstr "Naposledy přehráno"
 
+#. helper for units
 #: src/Dialogs/SmartPlaylistEditor.vala:272
 #: src/Dialogs/SmartPlaylistEditor.vala:417
 msgid "Length"
@@ -782,6 +802,7 @@ msgstr "dní zpátky"
 msgid "kbps"
 msgstr "kb/s"
 
+#. be a bit explicit to make translations better
 #: src/Dialogs/SyncWarningDialog.vala:52
 #, c-format
 msgid "Sync will remove %i item from %s"
@@ -1053,6 +1074,7 @@ msgstr "Všech %i skladatelů"
 msgid "No Composers"
 msgstr "Žádní skladatelé"
 
+#. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
 #: src/Widgets/EqualizerPopover.vala:327 src/Widgets/PresetList.vala:52
 msgid "Automatic"
@@ -1088,6 +1110,106 @@ msgstr "%u kbps"
 msgid "Never"
 msgstr "Nikdy"
 
+#: src/Views/ListView/Lists/ListColumn.vala:69
+msgctxt "List column title"
+msgid "#"
+msgstr "č."
+
+#: src/Views/ListView/Lists/ListColumn.vala:72
+msgctxt "List column title"
+msgid "Track"
+msgstr "Stopa"
+
+#: src/Views/ListView/Lists/ListColumn.vala:75
+msgctxt "List column title"
+msgid "Title"
+msgstr "Název"
+
+#: src/Views/ListView/Lists/ListColumn.vala:78
+msgctxt "List column title"
+msgid "Length"
+msgstr "Délka"
+
+#: src/Views/ListView/Lists/ListColumn.vala:81
+msgctxt "List column title"
+msgid "Artist"
+msgstr "Interpret"
+
+#: src/Views/ListView/Lists/ListColumn.vala:84
+msgctxt "List column title"
+msgid "Album"
+msgstr "Album"
+
+#: src/Views/ListView/Lists/ListColumn.vala:87
+msgctxt "List column title"
+msgid "Album Artist"
+msgstr "Interpret alba"
+
+#: src/Views/ListView/Lists/ListColumn.vala:90
+msgctxt "List column title"
+msgid "Composer"
+msgstr "Skladatel"
+
+#: src/Views/ListView/Lists/ListColumn.vala:93
+msgctxt "List column title"
+msgid "Genre"
+msgstr "Žánr"
+
+#: src/Views/ListView/Lists/ListColumn.vala:96
+msgctxt "List column title"
+msgid "Year"
+msgstr "Rok"
+
+#: src/Views/ListView/Lists/ListColumn.vala:99
+msgctxt "List column title"
+msgid "Grouping"
+msgstr "Seskupení"
+
+#: src/Views/ListView/Lists/ListColumn.vala:102
+msgctxt "List column title"
+msgid "Bitrate"
+msgstr "Datový tok"
+
+#: src/Views/ListView/Lists/ListColumn.vala:105
+msgctxt "List column title"
+msgid "Rating"
+msgstr "Hodnocení"
+
+#: src/Views/ListView/Lists/ListColumn.vala:108
+msgctxt "List column title"
+msgid "Plays"
+msgstr "Přehrání"
+
+#: src/Views/ListView/Lists/ListColumn.vala:111
+msgctxt "List column title"
+msgid "Skips"
+msgstr "Přeskočení"
+
+#: src/Views/ListView/Lists/ListColumn.vala:114
+msgctxt "List column title"
+msgid "Date Added"
+msgstr "Datum přidání"
+
+#: src/Views/ListView/Lists/ListColumn.vala:117
+msgctxt "List column title"
+msgid "Last Played"
+msgstr "Naposledy přehráno"
+
+#: src/Views/ListView/Lists/ListColumn.vala:120
+msgctxt "List column title (beats per minute)"
+msgid "BPM"
+msgstr "BPM"
+
+#: src/Views/ListView/Lists/ListColumn.vala:123
+msgctxt "List column title (file location)"
+msgid "Location"
+msgstr "Umístění"
+
+#: src/Views/ListView/Lists/ListColumn.vala:126
+msgctxt "List column title"
+msgid "File Size"
+msgstr "Velikost souboru"
+
 #: src/Views/ListView/Lists/MusicListView.vala:74
 msgid "Autosize Columns"
 msgstr "Automaticky přizpůsobit sloupce"
@@ -1096,10 +1218,18 @@ msgstr "Automaticky přizpůsobit sloupce"
 msgid "1234 kbps"
 msgstr "1234 kbps"
 
+#. / Sample string used to measure the ideal size of the Title, Artist,
+#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
+#. / list view. It's *never* displayed in the user interface. The translated
+#. / string should have a reasonable length, similar to the average length
+#. / of a song title or artist name in your language. The automatic column
+#. / width will depend on the length of this string and the space needed
+#. / by the column's title header.
 #: src/Views/ListView/Lists/MusicListView.vala:481
 msgid "Sample List String"
 msgstr "Vzorový textový řetězec"
 
+#. Welcome screen
 #: src/Views/Wrappers/MusicViewWrapper.vala:57
 msgid "Get Some Tunes"
 msgstr "Získejte nějakou hudbu"
@@ -1231,6 +1361,11 @@ msgstr "Upravit informace písně…"
 msgid "Other Actions"
 msgstr "Další akce"
 
+#: src/Widgets/MediaMenu.vala:53
+msgctxt "Action item (verb)"
+msgid "Queue"
+msgstr "Fronta"
+
 #: src/Widgets/MediaMenu.vala:54
 msgid "Add to Playlist"
 msgstr "Přidat do playlistu"
@@ -1308,6 +1443,7 @@ msgstr "Nový chytrý playlist"
 msgid "Import Playlists"
 msgstr "Importovat playlisty"
 
+#. Adds the different sidebar categories.
 #: src/Widgets/SourceListView.vala:338
 msgid "Library"
 msgstr "Knihovna"
@@ -1328,11 +1464,13 @@ msgstr "Přidat playlist"
 msgid "Add Smart Playlist"
 msgstr "Přidat chytrý playlist"
 
+#. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: src/Widgets/StatusBar.vala:75
 #, c-format
 msgid "Equalizer: %s"
 msgstr "Ekvalizér: %s"
 
+#. MUST follow the exact same order of Noise.Player.Repeat
 #: src/Widgets/TopDisplay.vala:139
 msgid "Enable Repeat"
 msgstr "Povolit opakování"
@@ -1457,10 +1595,6 @@ msgstr "Zobrazit ve sloupcích"
 #~ msgid "Using %s of %s (%.2f%)"
 #~ msgstr "Používá se %s z %s (%.2f%)"
 
-#~ msgctxt "Name of the playlist"
-#~ msgid "Queue"
-#~ msgstr "Fronta"
-
 #~ msgid "General"
 #~ msgstr "Hlavní"
 
@@ -1540,90 +1674,6 @@ msgstr "Zobrazit ve sloupcích"
 #~ msgid ""
 #~ "There were no songs found on this device that are not in your library."
 #~ msgstr "Na zařízení nenalezeny žádné skladby, které by nebyly v knihovně."
-
-#~ msgctxt "Action item (verb)"
-#~ msgid "Queue"
-#~ msgstr "Fronta"
-
-#~ msgctxt "List column title"
-#~ msgid "#"
-#~ msgstr "č."
-
-#~ msgctxt "List column title"
-#~ msgid "Track"
-#~ msgstr "Stopa"
-
-#~ msgctxt "List column title"
-#~ msgid "Title"
-#~ msgstr "Název"
-
-#~ msgctxt "List column title"
-#~ msgid "Length"
-#~ msgstr "Délka"
-
-#~ msgctxt "List column title"
-#~ msgid "Artist"
-#~ msgstr "Interpret"
-
-#~ msgctxt "List column title"
-#~ msgid "Album"
-#~ msgstr "Album"
-
-#~ msgctxt "List column title"
-#~ msgid "Album Artist"
-#~ msgstr "Interpret alba"
-
-#~ msgctxt "List column title"
-#~ msgid "Composer"
-#~ msgstr "Skladatel"
-
-#~ msgctxt "List column title"
-#~ msgid "Genre"
-#~ msgstr "Žánr"
-
-#~ msgctxt "List column title"
-#~ msgid "Year"
-#~ msgstr "Rok"
-
-#~ msgctxt "List column title"
-#~ msgid "Grouping"
-#~ msgstr "Seskupení"
-
-#~ msgctxt "List column title"
-#~ msgid "Bitrate"
-#~ msgstr "Datový tok"
-
-#~ msgctxt "List column title"
-#~ msgid "Rating"
-#~ msgstr "Hodnocení"
-
-#~ msgctxt "List column title"
-#~ msgid "Plays"
-#~ msgstr "Přehrání"
-
-#~ msgctxt "List column title"
-#~ msgid "Skips"
-#~ msgstr "Přeskočení"
-
-#~ msgctxt "List column title"
-#~ msgid "Date Added"
-#~ msgstr "Datum přidání"
-
-#~ msgctxt "List column title"
-#~ msgid "Last Played"
-#~ msgstr "Naposledy přehráno"
-
-#~ msgctxt "List column title (beats per minute)"
-#~ msgid "BPM"
-#~ msgstr "BPM"
-
-#~ msgctxt "List column title (file location)"
-#~ msgid "Location"
-#~ msgstr "Umístění"
-
-#~ msgctxt "List column title"
-#~ msgid "File Size"
-#~ msgstr "Velikost souboru"
 
 #~ msgid "%i track"
 #~ msgid_plural "%i tracks"

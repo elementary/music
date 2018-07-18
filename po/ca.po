@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-27 08:19-0700\n"
-"PO-Revision-Date: 2018-07-03 00:06+0000\n"
+"POT-Creation-Date: 2018-07-17 08:23-0700\n"
+"PO-Revision-Date: 2018-07-13 17:28+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
 "Language-Team: Catalan <https://weblate.elementary.io/projects/music/music/"
 "ca/>\n"
@@ -24,18 +24,22 @@ msgstr ""
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 msgstr "S'està <b>$NAME</b> per <b> $ARTIST</b> a la biblioteca…"
 
+#. / Used for unknown titles, artists, or album names.
 #: core/Media.vala:32
 msgid "Unknown"
 msgstr "Desconegut"
 
+#. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: core/Media.vala:179
 msgid "$NAME on $ALBUM"
 msgstr "$NAME a $ALBUM"
 
+#. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: core/Media.vala:182
 msgid "$NAME by $ARTIST"
 msgstr "$NAME per $ARTIST"
 
+#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
 #: core/Media.vala:188
 msgid "$NAME by $ARTIST on $ALBUM"
 msgstr "$NAME per $ARTIST a $ALBUM"
@@ -126,6 +130,7 @@ msgstr "%s (%d)"
 msgid "New playlist"
 msgstr "Llista de reproducció nova"
 
+#. Translators: used for new playlists ex: "New playlist (1)"
 #: core/Utils/PlaylistsUtils.vala:246
 #, c-format
 msgid "%s (%i)"
@@ -184,6 +189,8 @@ msgstr ""
 "No s'ha pogut reconèixer el fitxer de la llista de reproducció. Ha fallat la "
 "importació."
 
+#. / Format of date strings. See reference documentation of g_date_time_format()
+#. / for more details.
 #: core/Utils/TimeUtils.vala:40
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%e/%m/%Y %H:%M"
@@ -236,6 +243,7 @@ msgstr "El CD d'àudio no és vàlid"
 msgid "Impossible to read the contents of this Audio CD"
 msgstr "No ha estat possible llegir el contingut d'aquest CD d'àudio"
 
+#. do checks to make sure we can go on
 #: plugins/Devices/CDRom/CDRomDevice.vala:247
 msgid "Could not find Music Folder"
 msgstr "No s'ha pogut trobar la carpeta de música"
@@ -332,6 +340,7 @@ msgstr "S'ha completat la importació"
 msgid "Your Library Has Been Imported."
 msgstr "S'ha importat la biblioteca."
 
+#. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:315
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr "S'estan <b>copiant</b> fitxers a la <b>carpeta de música</b>…"
@@ -401,6 +410,11 @@ msgstr ""
 #: src/LibraryWindow.vala:978 src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import Music"
 msgstr "Importa música"
+
+#: src/PlaybackManager.vala:117
+msgctxt "Name of the playlist"
+msgid "Queue"
+msgstr "Cua"
 
 #: src/Dialogs/FileNotFoundDialog.vala:51
 msgid "File not found"
@@ -495,42 +509,46 @@ msgstr "Puntuació:"
 msgid "Comment:"
 msgstr "Comentari:"
 
+#. FIXME: don't know if I can delete this
 #: src/Dialogs/MediaEditor.vala:140 src/Dialogs/PreferencesWindow.vala:96
 #: src/Views/DeviceView.vala:45
 msgid "Close"
 msgstr "Tanca"
 
-#: src/Dialogs/NotImportedWindow.vala:51
+#: src/Dialogs/NotImportedDialog.vala:51
 #, c-format
 msgid "Issues while importing from %s"
 msgstr "Hi ha hagut problemes important des de %s"
 
-#: src/Dialogs/NotImportedWindow.vala:56
+#: src/Dialogs/NotImportedDialog.vala:57
 #, c-format
-msgid "Unable to import %d items. The files may be damaged."
-msgstr "No es poden importar %d elements. Els fitxers podrien estar danyats."
+msgid "Unable to import %d item. The file may be damaged."
+msgid_plural "Unable to import %d items. The files may be damaged."
+msgstr[0] "No es poden importar %d element. El fitxer podria estar danyat."
+msgstr[1] ""
+"No es poden importar %d elements. Els fitxers podrien estar danyats."
 
-#: src/Dialogs/NotImportedWindow.vala:60
+#: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
 msgstr "Mou tots els fitxers corruptes a la paperera"
 
-#: src/Dialogs/NotImportedWindow.vala:67
+#: src/Dialogs/NotImportedDialog.vala:72
 msgid "del"
 msgstr "supr"
 
-#: src/Dialogs/NotImportedWindow.vala:76
+#: src/Dialogs/NotImportedDialog.vala:81
 msgid "File Location"
 msgstr "Ubicació del fitxer"
 
-#: src/Dialogs/NotImportedWindow.vala:92
+#: src/Dialogs/NotImportedDialog.vala:97
 msgid "Select individual files to move to trash:"
 msgstr "Selecciona els fitxers individualment per moure'ls a la paperera:"
 
-#: src/Dialogs/NotImportedWindow.vala:96 src/Dialogs/RemoveFilesDialog.vala:73
+#: src/Dialogs/NotImportedDialog.vala:101 src/Dialogs/RemoveFilesDialog.vala:73
 msgid "Move to Trash"
 msgstr "Mou a la paperera"
 
-#: src/Dialogs/NotImportedWindow.vala:99
+#: src/Dialogs/NotImportedDialog.vala:104
 msgid "Ignore"
 msgstr "Ignora"
 
@@ -604,6 +622,7 @@ msgstr "Exporta les llistes de reproducció"
 msgid "Set Music Folder"
 msgstr "Estableix la carpeta de música"
 
+#. pretty up labels
 #: src/Dialogs/SetMusicFolderConfirmation.vala:73
 msgid "Set Music Folder?"
 msgstr "Voleu establir la carpeta de música?"
@@ -706,6 +725,7 @@ msgstr "Agrupació"
 msgid "Last Played"
 msgstr "Reproduïdes darrerament"
 
+#. helper for units
 #: src/Dialogs/SmartPlaylistEditor.vala:272
 #: src/Dialogs/SmartPlaylistEditor.vala:417
 msgid "Length"
@@ -780,6 +800,7 @@ msgstr "dies enrere"
 msgid "kbps"
 msgstr "kbps"
 
+#. be a bit explicit to make translations better
 #: src/Dialogs/SyncWarningDialog.vala:52
 #, c-format
 msgid "Sync will remove %i item from %s"
@@ -1053,6 +1074,7 @@ msgstr "Tots els compositors (%i)"
 msgid "No Composers"
 msgstr "Sense compositors"
 
+#. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
 #: src/Widgets/EqualizerPopover.vala:327 src/Widgets/PresetList.vala:52
 msgid "Automatic"
@@ -1087,6 +1109,106 @@ msgstr "%u kbps"
 msgid "Never"
 msgstr "Mai"
 
+#: src/Views/ListView/Lists/ListColumn.vala:69
+msgctxt "List column title"
+msgid "#"
+msgstr "Núm."
+
+#: src/Views/ListView/Lists/ListColumn.vala:72
+msgctxt "List column title"
+msgid "Track"
+msgstr "Pista"
+
+#: src/Views/ListView/Lists/ListColumn.vala:75
+msgctxt "List column title"
+msgid "Title"
+msgstr "Tí­tol"
+
+#: src/Views/ListView/Lists/ListColumn.vala:78
+msgctxt "List column title"
+msgid "Length"
+msgstr "Durada"
+
+#: src/Views/ListView/Lists/ListColumn.vala:81
+msgctxt "List column title"
+msgid "Artist"
+msgstr "Artista"
+
+#: src/Views/ListView/Lists/ListColumn.vala:84
+msgctxt "List column title"
+msgid "Album"
+msgstr "Àlbum"
+
+#: src/Views/ListView/Lists/ListColumn.vala:87
+msgctxt "List column title"
+msgid "Album Artist"
+msgstr "Artista de l'àlbum"
+
+#: src/Views/ListView/Lists/ListColumn.vala:90
+msgctxt "List column title"
+msgid "Composer"
+msgstr "Compositor"
+
+#: src/Views/ListView/Lists/ListColumn.vala:93
+msgctxt "List column title"
+msgid "Genre"
+msgstr "Gènere"
+
+#: src/Views/ListView/Lists/ListColumn.vala:96
+msgctxt "List column title"
+msgid "Year"
+msgstr "Any"
+
+#: src/Views/ListView/Lists/ListColumn.vala:99
+msgctxt "List column title"
+msgid "Grouping"
+msgstr "Agrupació"
+
+#: src/Views/ListView/Lists/ListColumn.vala:102
+msgctxt "List column title"
+msgid "Bitrate"
+msgstr "Taxa de bits"
+
+#: src/Views/ListView/Lists/ListColumn.vala:105
+msgctxt "List column title"
+msgid "Rating"
+msgstr "Valoració"
+
+#: src/Views/ListView/Lists/ListColumn.vala:108
+msgctxt "List column title"
+msgid "Plays"
+msgstr "Reproduccions"
+
+#: src/Views/ListView/Lists/ListColumn.vala:111
+msgctxt "List column title"
+msgid "Skips"
+msgstr "Omissions"
+
+#: src/Views/ListView/Lists/ListColumn.vala:114
+msgctxt "List column title"
+msgid "Date Added"
+msgstr "Data d'addició"
+
+#: src/Views/ListView/Lists/ListColumn.vala:117
+msgctxt "List column title"
+msgid "Last Played"
+msgstr "Darrera reproducció"
+
+#: src/Views/ListView/Lists/ListColumn.vala:120
+msgctxt "List column title (beats per minute)"
+msgid "BPM"
+msgstr "PPM"
+
+#: src/Views/ListView/Lists/ListColumn.vala:123
+msgctxt "List column title (file location)"
+msgid "Location"
+msgstr "Ubicació"
+
+#: src/Views/ListView/Lists/ListColumn.vala:126
+msgctxt "List column title"
+msgid "File Size"
+msgstr "Mida del fitxer"
+
 #: src/Views/ListView/Lists/MusicListView.vala:74
 msgid "Autosize Columns"
 msgstr "Mida de les columnes automàtic"
@@ -1095,10 +1217,18 @@ msgstr "Mida de les columnes automàtic"
 msgid "1234 kbps"
 msgstr "1234 kbps"
 
+#. / Sample string used to measure the ideal size of the Title, Artist,
+#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
+#. / list view. It's *never* displayed in the user interface. The translated
+#. / string should have a reasonable length, similar to the average length
+#. / of a song title or artist name in your language. The automatic column
+#. / width will depend on the length of this string and the space needed
+#. / by the column's title header.
 #: src/Views/ListView/Lists/MusicListView.vala:481
 msgid "Sample List String"
 msgstr "Exemple de títol de cançó"
 
+#. Welcome screen
 #: src/Views/Wrappers/MusicViewWrapper.vala:57
 msgid "Get Some Tunes"
 msgstr "Aconseguïu algunes cançons"
@@ -1232,6 +1362,11 @@ msgstr "Edita la informació de la cançó…"
 msgid "Other Actions"
 msgstr "Altres accions"
 
+#: src/Widgets/MediaMenu.vala:53
+msgctxt "Action item (verb)"
+msgid "Queue"
+msgstr "Afegeix a la cua"
+
 #: src/Widgets/MediaMenu.vala:54
 msgid "Add to Playlist"
 msgstr "Afegeix a una llista de reproducció"
@@ -1308,6 +1443,7 @@ msgstr "Llista de reproducció intel·ligent nova"
 msgid "Import Playlists"
 msgstr "Importa les llistes de reproducció"
 
+#. Adds the different sidebar categories.
 #: src/Widgets/SourceListView.vala:338
 msgid "Library"
 msgstr "Biblioteca"
@@ -1328,11 +1464,13 @@ msgstr "Afegeix una llista de reproducció"
 msgid "Add Smart Playlist"
 msgstr "Afegeix una llista de reproducció intel·ligent"
 
+#. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: src/Widgets/StatusBar.vala:75
 #, c-format
 msgid "Equalizer: %s"
 msgstr "Equalitzador: %s"
 
+#. MUST follow the exact same order of Noise.Player.Repeat
 #: src/Widgets/TopDisplay.vala:139
 msgid "Enable Repeat"
 msgstr "Activa la repetició"
@@ -1453,10 +1591,6 @@ msgstr "Visualitza en columnes"
 #~ msgid "Using %s of %s (%.2f%)"
 #~ msgstr "S'estan utilitzant %s de %s (%.2f%)"
 
-#~ msgctxt "Name of the playlist"
-#~ msgid "Queue"
-#~ msgstr "Cua"
-
 #~ msgid "General"
 #~ msgstr "General"
 
@@ -1544,90 +1678,6 @@ msgstr "Visualitza en columnes"
 #~ msgstr ""
 #~ "No s'ha pogut trobar cap cançó al dispositiu que no sigui a la vostra "
 #~ "biblioteca."
-
-#~ msgctxt "Action item (verb)"
-#~ msgid "Queue"
-#~ msgstr "Afegeix a la cua"
-
-#~ msgctxt "List column title"
-#~ msgid "#"
-#~ msgstr "Núm."
-
-#~ msgctxt "List column title"
-#~ msgid "Track"
-#~ msgstr "Pista"
-
-#~ msgctxt "List column title"
-#~ msgid "Title"
-#~ msgstr "Tí­tol"
-
-#~ msgctxt "List column title"
-#~ msgid "Length"
-#~ msgstr "Durada"
-
-#~ msgctxt "List column title"
-#~ msgid "Artist"
-#~ msgstr "Artista"
-
-#~ msgctxt "List column title"
-#~ msgid "Album"
-#~ msgstr "Àlbum"
-
-#~ msgctxt "List column title"
-#~ msgid "Album Artist"
-#~ msgstr "Artista de l'àlbum"
-
-#~ msgctxt "List column title"
-#~ msgid "Composer"
-#~ msgstr "Compositor"
-
-#~ msgctxt "List column title"
-#~ msgid "Genre"
-#~ msgstr "Gènere"
-
-#~ msgctxt "List column title"
-#~ msgid "Year"
-#~ msgstr "Any"
-
-#~ msgctxt "List column title"
-#~ msgid "Grouping"
-#~ msgstr "Agrupació"
-
-#~ msgctxt "List column title"
-#~ msgid "Bitrate"
-#~ msgstr "Taxa de bits"
-
-#~ msgctxt "List column title"
-#~ msgid "Rating"
-#~ msgstr "Valoració"
-
-#~ msgctxt "List column title"
-#~ msgid "Plays"
-#~ msgstr "Reproduccions"
-
-#~ msgctxt "List column title"
-#~ msgid "Skips"
-#~ msgstr "Omissions"
-
-#~ msgctxt "List column title"
-#~ msgid "Date Added"
-#~ msgstr "Data d'addició"
-
-#~ msgctxt "List column title"
-#~ msgid "Last Played"
-#~ msgstr "Darrera reproducció"
-
-#~ msgctxt "List column title (beats per minute)"
-#~ msgid "BPM"
-#~ msgstr "PPM"
-
-#~ msgctxt "List column title (file location)"
-#~ msgid "Location"
-#~ msgstr "Ubicació"
-
-#~ msgctxt "List column title"
-#~ msgid "File Size"
-#~ msgstr "Mida del fitxer"
 
 #~ msgid "%i track"
 #~ msgid_plural "%i tracks"
