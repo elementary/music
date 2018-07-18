@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the extra package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-15 10:27-0600\n"
+"POT-Creation-Date: 2018-06-27 08:21-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,70 +17,37 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: data/io.elementary.music.appdata.xml.in:8
+#: data/io.elementary.music.desktop.in:4
 msgid "Music"
 msgstr ""
 
-msgid "Music Player"
-msgstr ""
-
-msgid "Listen to music"
-msgstr ""
-
-msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-msgstr ""
-
-msgid "Noise"
-msgstr ""
-
+#: data/io.elementary.music.appdata.xml.in:9
 msgid "The official elementary music player"
 msgstr ""
 
+#: data/io.elementary.music.appdata.xml.in:11
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices, CDs, and album art."
 msgstr ""
 
-msgid "Detect library changes at startup."
+#: data/io.elementary.music.appdata.xml.in:100
+msgid "elementary LLC."
 msgstr ""
 
-msgid "Support searching by URI"
+#: data/io.elementary.music.desktop.in:5
+msgid "Music Player"
 msgstr ""
 
-msgid "Change the queue mechanism to make it less confusing."
+#: data/io.elementary.music.desktop.in:6
+msgid "Listen to music"
 msgstr ""
 
-msgid "Improve equalizer style."
+#: data/io.elementary.music.desktop.in:8
+msgid "multimedia-audio-player"
 msgstr ""
 
-msgid "Minor bug fixes."
-msgstr ""
-
-msgid "Add rounded bottom window corner."
-msgstr ""
-
-msgid "Minor bug fixes"
-msgstr ""
-
-msgid "New translations"
-msgstr ""
-
-msgid "Release for Loki."
-msgstr ""
-
-msgid "Add support for Opus Ogg"
-msgstr ""
-
-msgid "Fix Ctrl+Q support for non-Latin keyboard layouts"
-msgstr ""
-
-msgid "Reorganize media edition layout"
-msgstr ""
-
-msgid "Port grid to support HiDPI displays"
-msgstr ""
-
-msgid "Update icons to latest elementary icon release"
-msgstr ""
-
-msgid "Respect privacy mode"
+#: data/io.elementary.music.desktop.in:13
+msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 msgstr ""

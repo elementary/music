@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-18 14:43+0100\n"
+"POT-Creation-Date: 2018-06-27 08:21-0700\n"
 "PO-Revision-Date: 2017-01-06 07:42+0000\n"
 "Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <sr@li.org>\n"
@@ -18,33 +18,48 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 "X-Generator: Launchpad (build 18330)\n"
 
+#: data/io.elementary.music.appdata.xml.in:8
+#: data/io.elementary.music.desktop.in:4
 msgid "Music"
 msgstr "Музика"
 
-msgid "Music Player"
-msgstr "Програм за пуштање музике"
-
-msgid "Listen to music"
-msgstr "Слушајте музику"
-
-msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-msgstr "музика;аудио;пуштач;мп3;иПад;пусти;списак;медиј;ЦД;телефон;песме;"
-
-msgid "About Music"
-msgstr "О Музици"
-
-msgid "Noise"
-msgstr "Бука"
-
-msgid "About Noise"
-msgstr "О Буци"
-
+#: data/io.elementary.music.appdata.xml.in:9
 msgid "The official elementary music player"
 msgstr "Званични пелементаров програм за пуштање музике"
 
+#: data/io.elementary.music.appdata.xml.in:11
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices, CDs, and album art."
 msgstr ""
 "Музика је брз и леп звучни програм са фокусом на музици и библиотекама. Ради "
 "са спољним уређајима, ЦД-има и сликама омота."
+
+#: data/io.elementary.music.appdata.xml.in:100
+msgid "elementary LLC."
+msgstr ""
+
+#: data/io.elementary.music.desktop.in:5
+msgid "Music Player"
+msgstr "Програм за пуштање музике"
+
+#: data/io.elementary.music.desktop.in:6
+msgid "Listen to music"
+msgstr "Слушајте музику"
+
+#: data/io.elementary.music.desktop.in:8
+msgid "multimedia-audio-player"
+msgstr ""
+
+#: data/io.elementary.music.desktop.in:13
+msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+msgstr "музика;аудио;пуштач;мп3;иПад;пусти;списак;медиј;ЦД;телефон;песме;"
+
+#~ msgid "About Music"
+#~ msgstr "О Музици"
+
+#~ msgid "Noise"
+#~ msgstr "Бука"
+
+#~ msgid "About Noise"
+#~ msgstr "О Буци"

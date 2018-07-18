@@ -297,8 +297,8 @@ public class Noise.FileOperator : Object {
     void queue_finished () {
         queue_size = 0;
         if (import_errors.size > 0) {
-            NotImportedWindow nim = new NotImportedWindow (import_errors, Settings.Main.get_default ().music_folder);
-            nim.show ();
+            var not_imported_dialog = new NotImportedDialog (import_errors, Settings.Main.get_default ().music_folder);
+            not_imported_dialog.show ();
         }
 
         if (all_new_imports.size > 0)
