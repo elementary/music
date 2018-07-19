@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-13 13:30-0700\n"
-"PO-Revision-Date: 2018-07-17 15:24+0000\n"
+"PO-Revision-Date: 2018-07-20 00:07+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://weblate.elementary.io/projects/music/music/"
 "ja/>\n"
@@ -393,7 +393,7 @@ msgstr ""
 
 #: src/LibraryWindow.vala:774
 msgid "No songs in History"
-msgstr "履歴に曲はありません"
+msgstr "履歴に曲がありません"
 
 #: src/LibraryWindow.vala:774
 msgid ""
