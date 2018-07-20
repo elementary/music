@@ -238,14 +238,14 @@ public abstract class Noise.GenericList : Gtk.TreeView {
 
         if (!main_settings.privacy_mode_enabled ()) {
             if (playlist == null || playlist == ((Noise.LocalLibrary)libraries_manager.local_library).p_music || parent_wrapper.library != libraries_manager.local_library) {
-                main_settings.last_playlist_playing = "";
+                App.settings.set_string ("last-playlist-playing", "");
             } else if (playlist is SmartPlaylist) {
-                main_settings.last_playlist_playing = "s%lld".printf (playlist.rowid);
+                App.settings.set_string ("last-playlist-playing", "s%lld".printf (playlist.rowid));
             } else {
                 if (((StaticPlaylist)playlist).read_only == false) {
-                    main_settings.last_playlist_playing = "p%lld".printf (playlist.rowid);
+                    App.settings.set_string ("last-playlist-playing", "p%lld".printf (playlist.rowid));
                 } else {
-                    main_settings.last_playlist_playing = "";
+                    App.settings.set_string ("last-playlist-playing", "");
                 }
             }
         }
