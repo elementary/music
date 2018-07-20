@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-27 08:21-0700\n"
-"PO-Revision-Date: 2018-05-13 00:11+0000\n"
-"Last-Translator: Pedro Ferreira <pmaf.ferreira@gmail.com>\n"
+"PO-Revision-Date: 2018-07-20 11:35+0000\n"
+"Last-Translator: Christophe Silva <Christophesilva80@gmail.com>\n"
 "Language-Team: Portuguese <https://weblate.elementary.io/projects/music/"
 "extra/pt/>\n"
 "Language: pt\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
 #: data/io.elementary.music.appdata.xml.in:8
@@ -39,7 +39,7 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:100
 msgid "elementary LLC."
-msgstr ""
+msgstr "elementary LLC."
 
 #: data/io.elementary.music.desktop.in:5
 msgid "Music Player"
@@ -51,7 +51,7 @@ msgstr "Ouvir música"
 
 #: data/io.elementary.music.desktop.in:8
 msgid "multimedia-audio-player"
-msgstr ""
+msgstr "leitor de audio multimédia"
 
 #: data/io.elementary.music.desktop.in:13
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
