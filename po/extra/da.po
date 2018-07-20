@@ -7,45 +7,62 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2017-03-15 08:23+0000\n"
-"Last-Translator: scootergrisen <scootergrisen@gmail.com>\n"
-"Language-Team: Danish <da@li.org>\n"
+"POT-Creation-Date: 2018-06-27 08:21-0700\n"
+"PO-Revision-Date: 2018-06-27 22:06+0000\n"
+"Last-Translator: Kaj Printz Madsen <kajprintz@gmail.com>\n"
+"Language-Team: Danish <https://weblate.elementary.io/projects/music/extra/da/"
+">\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-19 06:29+0000\n"
-"X-Generator: Launchpad (build 18332)\n"
 
+#: data/io.elementary.music.appdata.xml.in:8
+#: data/io.elementary.music.desktop.in:4
 msgid "Music"
 msgstr "Musik"
 
-msgid "Music Player"
-msgstr "Musikafspiller"
-
-msgid "Listen to music"
-msgstr "Lyt til musik"
-
-msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-msgstr ""
-"Noise;Lyd;Afspiller;MP3;iPod;Afspil;Spilleliste;Medie;CD;Telefon;Numre;"
-
-msgid "About Music"
-msgstr "Om Musik"
-
-msgid "Noise"
-msgstr "Støj"
-
-msgid "About Noise"
-msgstr "Om Støj"
-
+#: data/io.elementary.music.appdata.xml.in:9
 msgid "The official elementary music player"
 msgstr "Elementarys officielle musikafspiller"
 
+#: data/io.elementary.music.appdata.xml.in:11
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices, CDs, and album art."
 msgstr ""
 "Musik er en hurtig og smuk lydafspiller med fokus på musik og biblioteker. "
 "Den håndterer eksterne enheder, CD'er og albumbilleder."
+
+#: data/io.elementary.music.appdata.xml.in:100
+msgid "elementary LLC."
+msgstr "elementary ApS."
+
+#: data/io.elementary.music.desktop.in:5
+msgid "Music Player"
+msgstr "Musikafspiller"
+
+#: data/io.elementary.music.desktop.in:6
+msgid "Listen to music"
+msgstr "Lyt til musik"
+
+#: data/io.elementary.music.desktop.in:8
+msgid "multimedia-audio-player"
+msgstr "multimedia-audio-player"
+
+#: data/io.elementary.music.desktop.in:13
+msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+msgstr ""
+"Noise;Lyd;Afspiller;MP3;iPod;Afspil;Spilleliste;Medie;CD;Telefon;Numre;"
+
+#~ msgid "About Music"
+#~ msgstr "Om Musik"
+
+#~ msgid "Noise"
+#~ msgstr "Støj"
+
+#~ msgid "About Noise"
+#~ msgstr "Om Støj"

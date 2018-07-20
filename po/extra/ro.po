@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-18 14:43+0100\n"
+"POT-Creation-Date: 2018-06-27 08:21-0700\n"
 "PO-Revision-Date: 2016-12-13 11:54+0000\n"
 "Last-Translator: Marius Albina <marius.albina@gmail.com>\n"
 "Language-Team: Romanian <ro@li.org>\n"
@@ -18,34 +18,43 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 "X-Generator: Launchpad (build 18330)\n"
 
+#: data/io.elementary.music.appdata.xml.in:8
+#: data/io.elementary.music.desktop.in:4
 msgid "Music"
 msgstr "Muzică"
 
-msgid "Music Player"
-msgstr "Player muzical"
-
-msgid "Listen to music"
-msgstr "Ascultare muzică"
-
-msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-msgstr ""
-"Noise;Audio;Player;MP3;iPod;Redare;Listă de redare;Media;CD;Telefon;Melodii;"
-
-msgid "About Music"
-msgstr "Despre Muzică"
-
-msgid "Noise"
-msgstr ""
-
-msgid "About Noise"
-msgstr ""
-
+#: data/io.elementary.music.appdata.xml.in:9
 msgid "The official elementary music player"
 msgstr "Playerul oficial elementary"
 
+#: data/io.elementary.music.appdata.xml.in:11
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices, CDs, and album art."
 msgstr ""
 "Muzică este un player audio rapid si cu stil concentrat pe muzică şi "
 "librării. Manevrează discuri externe, CD-uri si albume."
+
+#: data/io.elementary.music.appdata.xml.in:100
+msgid "elementary LLC."
+msgstr ""
+
+#: data/io.elementary.music.desktop.in:5
+msgid "Music Player"
+msgstr "Player muzical"
+
+#: data/io.elementary.music.desktop.in:6
+msgid "Listen to music"
+msgstr "Ascultare muzică"
+
+#: data/io.elementary.music.desktop.in:8
+msgid "multimedia-audio-player"
+msgstr ""
+
+#: data/io.elementary.music.desktop.in:13
+msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+msgstr ""
+"Noise;Audio;Player;MP3;iPod;Redare;Listă de redare;Media;CD;Telefon;Melodii;"
+
+#~ msgid "About Music"
+#~ msgstr "Despre Muzică"
