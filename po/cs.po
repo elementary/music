@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-07-16 08:58+0000\n"
+"PO-Revision-Date: 2018-07-24 00:05+0000\n"
 "Last-Translator: Jan Marek <janmarek28@gmail.com>\n"
-"Language-Team: Czech <https://weblate.elementary.io/projects/music/music/cs/"
-">\n"
+"Language-Team: Czech <https://weblate.elementary.io/projects/music/music/cs/>"
+"\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -365,7 +365,7 @@ msgstr "Následující"
 
 #: src/LibraryWindow.vala:223
 msgid "Search Music"
-msgstr "Najít hudbu"
+msgstr "Hledat hudbu"
 
 #: src/LibraryWindow.vala:242 src/LibraryWindow.vala:451
 #: src/LibraryWindow.vala:596 src/LibraryWindow.vala:702
