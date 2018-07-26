@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-07-18 00:05+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2018-07-22 00:03+0000\n"
+"Last-Translator: Nils K <slx@nilsk.net>\n"
 "Language-Team: Norwegian Bokmål <https://weblate.elementary.io/projects/"
 "music/music/nb/>\n"
 "Language: nb\n"
@@ -220,7 +220,7 @@ msgstr "Legg til <b>$NAME</b> av <b>$ARTIST</b> til $DEVICE"
 #: plugins/Devices/iPod/iPodLibrary.vala:196
 #, c-format
 msgid "Syncing <b>%s</b>…"
-msgstr "Synkroniserer <b>% s </ b> ..."
+msgstr "Synkroniserer <b>%s</b>…"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:266
 #: plugins/Devices/iPod/iPodLibrary.vala:530
@@ -447,14 +447,14 @@ msgid "Choose Music Folder"
 msgstr "Velg musikkmappe"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:38
-#, fuzzy, c-format
+#, c-format
 msgid "Would you like to install the %s plugin?"
-msgstr "Vil du installere %s-tillegget?\n"
+msgstr "Vil du installere %s-tillegget?"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:39
-#, fuzzy, c-format
+#, c-format
 msgid "This song cannot be played. The %s plugin is required to play the song."
-msgstr "Denne sangen kan ikke spilles. %s er påkrevd for avspilling."
+msgstr "Denne sangen kan ikke spilles. %s-tillegget er påkrevd for avspilling."
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid "Install Plugin"
@@ -515,9 +515,9 @@ msgid "Close"
 msgstr "Lukk"
 
 #: src/Dialogs/NotImportedDialog.vala:51
-#, fuzzy, c-format
+#, c-format
 msgid "Issues while importing from %s"
-msgstr "Importerer musikk fra %s…"
+msgstr "Feil oppstod ved import fra %s"
 
 #: src/Dialogs/NotImportedDialog.vala:57
 #, fuzzy, c-format
@@ -542,7 +542,7 @@ msgstr "Filplassering"
 
 #: src/Dialogs/NotImportedDialog.vala:97
 msgid "Select individual files to move to trash:"
-msgstr "Velg individuelle filer for flytting til papirkurv"
+msgstr "Velg individuelle filer for flytting til papirkurv:"
 
 #: src/Dialogs/NotImportedDialog.vala:101 src/Dialogs/RemoveFilesDialog.vala:73
 msgid "Move to Trash"
@@ -655,7 +655,7 @@ msgstr "Treff"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:65
 msgid "of the following:"
-msgstr "av følgende"
+msgstr "av følgende:"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:74
 msgid "Add"
