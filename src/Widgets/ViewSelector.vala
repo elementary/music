@@ -63,9 +63,9 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
             // select fourth invisible mode to appear as de-selected
             mode_button.sensitive = value;
             mode_button.set_active (value ? (int) mode : -1);
-            ((SimpleAction) App.main_window.actions.lookup_action (App.main_window.ACTION_VIEW_ALBUMS)).set_enabled (value);
-            ((SimpleAction) App.main_window.actions.lookup_action (App.main_window.ACTION_VIEW_LIST)).set_enabled (value);
-            ((SimpleAction) App.main_window.actions.lookup_action (App.main_window.ACTION_VIEW_COLUMNS)).set_enabled (value);
+            ((SimpleAction) App.main_window.actions.lookup_action (Noise.LibraryWindow.ACTION_VIEW_ALBUMS)).set_enabled (value);
+            ((SimpleAction) App.main_window.actions.lookup_action (Noise.LibraryWindow.ACTION_VIEW_LIST)).set_enabled (value);
+            ((SimpleAction) App.main_window.actions.lookup_action (Noise.LibraryWindow.ACTION_VIEW_COLUMNS)).set_enabled (value);
         }
     }
 
