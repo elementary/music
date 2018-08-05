@@ -27,6 +27,7 @@
  */
 
 public class Noise.App : Gtk.Application {
+    public static GLib.Settings settings { get; private set; }
     public static GLib.Settings saved_state { get; private set; }
     public static PlaybackManager player { get; private set; }
     private LocalLibrary library_manager { get; private set; }
@@ -34,6 +35,7 @@ public class Noise.App : Gtk.Application {
 
     static construct {
         saved_state = new GLib.Settings ("io.elementary.music.saved-state");
+        settings = new GLib.Settings ("io.elementary.music.settings");
     }
 
     construct {

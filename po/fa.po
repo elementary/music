@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-13 13:30-0700\n"
+"POT-Creation-Date: 2018-07-17 08:23-0700\n"
 "PO-Revision-Date: 2015-12-21 13:43+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Persian <fa@li.org>\n"
@@ -23,18 +23,22 @@ msgstr ""
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 msgstr ""
 
+#. / Used for unknown titles, artists, or album names.
 #: core/Media.vala:32
 msgid "Unknown"
 msgstr "ناشناخته"
 
+#. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: core/Media.vala:179
 msgid "$NAME on $ALBUM"
 msgstr "$NAME  از آلبوم $ALBUM"
 
+#. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: core/Media.vala:182
 msgid "$NAME by $ARTIST"
 msgstr "$NAME اثر $ARTIST"
 
+#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
 #: core/Media.vala:188
 msgid "$NAME by $ARTIST on $ALBUM"
 msgstr "$NAME اثر $ARTIST از آلبوم $ALBUM"
@@ -125,6 +129,7 @@ msgstr "%s (%d)"
 msgid "New playlist"
 msgstr "فهرست پخش جدید"
 
+#. Translators: used for new playlists ex: "New playlist (1)"
 #: core/Utils/PlaylistsUtils.vala:246
 #, c-format
 msgid "%s (%i)"
@@ -181,6 +186,8 @@ msgstr ""
 msgid "Unrecognized playlist file. Import failed."
 msgstr "پرونده فهرست پخش ناشناخته. واردات موفقیت‌آمیز نبود."
 
+#. / Format of date strings. See reference documentation of g_date_time_format()
+#. / for more details.
 #: core/Utils/TimeUtils.vala:40
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%Y/%m/%e %l:%M %p"
@@ -233,6 +240,7 @@ msgstr "سی‌دی صوتی نامعتبر"
 msgid "Impossible to read the contents of this Audio CD"
 msgstr ""
 
+#. do checks to make sure we can go on
 #: plugins/Devices/CDRom/CDRomDevice.vala:247
 msgid "Could not find Music Folder"
 msgstr "نمی‌توان پوشه موسیقی را پیدا کرد"
@@ -326,6 +334,7 @@ msgstr "واردات پایان یافت"
 msgid "Your Library Has Been Imported."
 msgstr ""
 
+#. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:315
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr "<b>کپی کردن</b> فایل ها به <b>پوشه موزیک</b>…"
@@ -396,6 +405,11 @@ msgstr ""
 #: src/LibraryWindow.vala:978 src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import Music"
 msgstr "وارد کردن موسیقی"
+
+#: src/PlaybackManager.vala:117
+msgctxt "Name of the playlist"
+msgid "Queue"
+msgstr "صف"
 
 #: src/Dialogs/FileNotFoundDialog.vala:51
 msgid "File not found"
@@ -490,6 +504,7 @@ msgstr ""
 msgid "Comment:"
 msgstr ""
 
+#. FIXME: don't know if I can delete this
 #: src/Dialogs/MediaEditor.vala:140 src/Dialogs/PreferencesWindow.vala:96
 #: src/Views/DeviceView.vala:45
 msgid "Close"
@@ -597,6 +612,7 @@ msgstr "صادرات فهرست پخش"
 msgid "Set Music Folder"
 msgstr "تعیین پوشه موسیقی"
 
+#. pretty up labels
 #: src/Dialogs/SetMusicFolderConfirmation.vala:73
 msgid "Set Music Folder?"
 msgstr "آیا باید پوشه موسیقی تعیین شود؟"
@@ -699,6 +715,7 @@ msgstr "گروه"
 msgid "Last Played"
 msgstr "آخرین پخش"
 
+#. helper for units
 #: src/Dialogs/SmartPlaylistEditor.vala:272
 #: src/Dialogs/SmartPlaylistEditor.vala:417
 msgid "Length"
@@ -773,6 +790,7 @@ msgstr "روز پیش"
 msgid "kbps"
 msgstr "کیلوبیت در ثانیه"
 
+#. be a bit explicit to make translations better
 #: src/Dialogs/SyncWarningDialog.vala:52
 #, fuzzy, c-format
 msgid "Sync will remove %i item from %s"
@@ -1045,6 +1063,7 @@ msgstr "همه %i سراینده"
 msgid "No Composers"
 msgstr "بدون سراینده"
 
+#. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
 #: src/Widgets/EqualizerPopover.vala:327 src/Widgets/PresetList.vala:52
 msgid "Automatic"
@@ -1079,6 +1098,106 @@ msgstr ""
 msgid "Never"
 msgstr "هرگز"
 
+#: src/Views/ListView/Lists/ListColumn.vala:69
+msgctxt "List column title"
+msgid "#"
+msgstr "شماره"
+
+#: src/Views/ListView/Lists/ListColumn.vala:72
+msgctxt "List column title"
+msgid "Track"
+msgstr "ترک"
+
+#: src/Views/ListView/Lists/ListColumn.vala:75
+msgctxt "List column title"
+msgid "Title"
+msgstr "عنوان"
+
+#: src/Views/ListView/Lists/ListColumn.vala:78
+msgctxt "List column title"
+msgid "Length"
+msgstr "طول"
+
+#: src/Views/ListView/Lists/ListColumn.vala:81
+msgctxt "List column title"
+msgid "Artist"
+msgstr "هنرمند"
+
+#: src/Views/ListView/Lists/ListColumn.vala:84
+msgctxt "List column title"
+msgid "Album"
+msgstr "آلبوم"
+
+#: src/Views/ListView/Lists/ListColumn.vala:87
+msgctxt "List column title"
+msgid "Album Artist"
+msgstr "صاحب آلبوم"
+
+#: src/Views/ListView/Lists/ListColumn.vala:90
+msgctxt "List column title"
+msgid "Composer"
+msgstr "سراینده"
+
+#: src/Views/ListView/Lists/ListColumn.vala:93
+msgctxt "List column title"
+msgid "Genre"
+msgstr "موضوع"
+
+#: src/Views/ListView/Lists/ListColumn.vala:96
+msgctxt "List column title"
+msgid "Year"
+msgstr "سال"
+
+#: src/Views/ListView/Lists/ListColumn.vala:99
+msgctxt "List column title"
+msgid "Grouping"
+msgstr "گروه"
+
+#: src/Views/ListView/Lists/ListColumn.vala:102
+msgctxt "List column title"
+msgid "Bitrate"
+msgstr "نرخ بیتی"
+
+#: src/Views/ListView/Lists/ListColumn.vala:105
+msgctxt "List column title"
+msgid "Rating"
+msgstr "امتیاز"
+
+#: src/Views/ListView/Lists/ListColumn.vala:108
+msgctxt "List column title"
+msgid "Plays"
+msgstr "پخش‌ها"
+
+#: src/Views/ListView/Lists/ListColumn.vala:111
+msgctxt "List column title"
+msgid "Skips"
+msgstr "پرش‌ها"
+
+#: src/Views/ListView/Lists/ListColumn.vala:114
+msgctxt "List column title"
+msgid "Date Added"
+msgstr "تاریخ افزودن"
+
+#: src/Views/ListView/Lists/ListColumn.vala:117
+msgctxt "List column title"
+msgid "Last Played"
+msgstr "آخرین پخش"
+
+#: src/Views/ListView/Lists/ListColumn.vala:120
+msgctxt "List column title (beats per minute)"
+msgid "BPM"
+msgstr "BPM"
+
+#: src/Views/ListView/Lists/ListColumn.vala:123
+msgctxt "List column title (file location)"
+msgid "Location"
+msgstr "مکان"
+
+#: src/Views/ListView/Lists/ListColumn.vala:126
+msgctxt "List column title"
+msgid "File Size"
+msgstr "اندازه پرونده"
+
 #: src/Views/ListView/Lists/MusicListView.vala:74
 msgid "Autosize Columns"
 msgstr "تطبیق خودکار اندازه ستون‌ها"
@@ -1087,10 +1206,18 @@ msgstr "تطبیق خودکار اندازه ستون‌ها"
 msgid "1234 kbps"
 msgstr "۱۲۳۴ کیلوبیت در ثانیه"
 
+#. / Sample string used to measure the ideal size of the Title, Artist,
+#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
+#. / list view. It's *never* displayed in the user interface. The translated
+#. / string should have a reasonable length, similar to the average length
+#. / of a song title or artist name in your language. The automatic column
+#. / width will depend on the length of this string and the space needed
+#. / by the column's title header.
 #: src/Views/ListView/Lists/MusicListView.vala:481
 msgid "Sample List String"
 msgstr "رشته نمونه فهرست"
 
+#. Welcome screen
 #: src/Views/Wrappers/MusicViewWrapper.vala:57
 msgid "Get Some Tunes"
 msgstr "دریافت آهنگ"
@@ -1226,6 +1353,11 @@ msgstr "ویرایش اطلاعات آهنگ"
 msgid "Other Actions"
 msgstr "دیگر پرونده‌ها"
 
+#: src/Widgets/MediaMenu.vala:53
+msgctxt "Action item (verb)"
+msgid "Queue"
+msgstr "صف"
+
 #: src/Widgets/MediaMenu.vala:54
 msgid "Add to Playlist"
 msgstr "افزودن به فهرست پخش"
@@ -1303,6 +1435,7 @@ msgstr "فهرست پخش هوشمند جدید"
 msgid "Import Playlists"
 msgstr "وارد کردن فهرست‌های پخش"
 
+#. Adds the different sidebar categories.
 #: src/Widgets/SourceListView.vala:338
 msgid "Library"
 msgstr "کتابخانه"
@@ -1323,11 +1456,13 @@ msgstr "افزودن فهرست پخش"
 msgid "Add Smart Playlist"
 msgstr "افزودن فهرست پخش خودکار"
 
+#. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: src/Widgets/StatusBar.vala:75
 #, c-format
 msgid "Equalizer: %s"
 msgstr ""
 
+#. MUST follow the exact same order of Noise.Player.Repeat
 #: src/Widgets/TopDisplay.vala:139
 msgid "Enable Repeat"
 msgstr "فعال کردن بازپخش"
@@ -1444,10 +1579,6 @@ msgstr "نمایش ستونی"
 #~ msgid "Using %s of %s (%.2f%)"
 #~ msgstr "استفاده %s از %s (%.2f%)"
 
-#~ msgctxt "Name of the playlist"
-#~ msgid "Queue"
-#~ msgstr "صف"
-
 #~ msgid "General"
 #~ msgstr "عمومی"
 
@@ -1522,90 +1653,6 @@ msgstr "نمایش ستونی"
 #~ msgid ""
 #~ "There were no songs found on this device that are not in your library."
 #~ msgstr "هیچ آهنگی که در کتابخانه شما نباشد روی این دستگاه پیدا نشد."
-
-#~ msgctxt "Action item (verb)"
-#~ msgid "Queue"
-#~ msgstr "صف"
-
-#~ msgctxt "List column title"
-#~ msgid "#"
-#~ msgstr "شماره"
-
-#~ msgctxt "List column title"
-#~ msgid "Track"
-#~ msgstr "ترک"
-
-#~ msgctxt "List column title"
-#~ msgid "Title"
-#~ msgstr "عنوان"
-
-#~ msgctxt "List column title"
-#~ msgid "Length"
-#~ msgstr "طول"
-
-#~ msgctxt "List column title"
-#~ msgid "Artist"
-#~ msgstr "هنرمند"
-
-#~ msgctxt "List column title"
-#~ msgid "Album"
-#~ msgstr "آلبوم"
-
-#~ msgctxt "List column title"
-#~ msgid "Album Artist"
-#~ msgstr "صاحب آلبوم"
-
-#~ msgctxt "List column title"
-#~ msgid "Composer"
-#~ msgstr "سراینده"
-
-#~ msgctxt "List column title"
-#~ msgid "Genre"
-#~ msgstr "موضوع"
-
-#~ msgctxt "List column title"
-#~ msgid "Year"
-#~ msgstr "سال"
-
-#~ msgctxt "List column title"
-#~ msgid "Grouping"
-#~ msgstr "گروه"
-
-#~ msgctxt "List column title"
-#~ msgid "Bitrate"
-#~ msgstr "نرخ بیتی"
-
-#~ msgctxt "List column title"
-#~ msgid "Rating"
-#~ msgstr "امتیاز"
-
-#~ msgctxt "List column title"
-#~ msgid "Plays"
-#~ msgstr "پخش‌ها"
-
-#~ msgctxt "List column title"
-#~ msgid "Skips"
-#~ msgstr "پرش‌ها"
-
-#~ msgctxt "List column title"
-#~ msgid "Date Added"
-#~ msgstr "تاریخ افزودن"
-
-#~ msgctxt "List column title"
-#~ msgid "Last Played"
-#~ msgstr "آخرین پخش"
-
-#~ msgctxt "List column title (beats per minute)"
-#~ msgid "BPM"
-#~ msgstr "BPM"
-
-#~ msgctxt "List column title (file location)"
-#~ msgid "Location"
-#~ msgstr "مکان"
-
-#~ msgctxt "List column title"
-#~ msgid "File Size"
-#~ msgstr "اندازه پرونده"
 
 #~ msgid "%i track"
 #~ msgid_plural "%i tracks"

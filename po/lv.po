@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-13 13:30-0700\n"
+"POT-Creation-Date: 2018-07-17 08:23-0700\n"
 "PO-Revision-Date: 2015-12-21 13:43+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Latvian <lv@li.org>\n"
@@ -23,18 +23,22 @@ msgstr ""
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 msgstr "Importē <b>$ARTIST</b> - <b>$NAME</b> bibliotekā…"
 
+#. / Used for unknown titles, artists, or album names.
 #: core/Media.vala:32
 msgid "Unknown"
 msgstr "Nezināms izpildītājs/Nosaukums"
 
+#. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: core/Media.vala:179
 msgid "$NAME on $ALBUM"
 msgstr "$NAME - $ALBUM"
 
+#. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: core/Media.vala:182
 msgid "$NAME by $ARTIST"
 msgstr "$NAME no $ARTIST"
 
+#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
 #: core/Media.vala:188
 msgid "$NAME by $ARTIST on $ALBUM"
 msgstr "$NAME no $ARTIST kas atrodas $ALBUM"
@@ -125,6 +129,7 @@ msgstr "%s (%d)"
 msgid "New playlist"
 msgstr "Jauna dziesmu liste"
 
+#. Translators: used for new playlists ex: "New playlist (1)"
 #: core/Utils/PlaylistsUtils.vala:246
 #, c-format
 msgid "%s (%i)"
@@ -181,6 +186,8 @@ msgstr "Atvērt"
 msgid "Unrecognized playlist file. Import failed."
 msgstr "Neatpazīstams fails. Imporēšana neizdevās."
 
+#. / Format of date strings. See reference documentation of g_date_time_format()
+#. / for more details.
 #: core/Utils/TimeUtils.vala:40
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%m/%e/%Y %l:%M %p"
@@ -233,6 +240,7 @@ msgstr ""
 msgid "Impossible to read the contents of this Audio CD"
 msgstr ""
 
+#. do checks to make sure we can go on
 #: plugins/Devices/CDRom/CDRomDevice.vala:247
 msgid "Could not find Music Folder"
 msgstr ""
@@ -323,6 +331,7 @@ msgstr "Importēšana pabeigta"
 msgid "Your Library Has Been Imported."
 msgstr ""
 
+#. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:315
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr "<b>Kopē</b> failus <b>Mūzikas Direktorijā</b>…"
@@ -386,6 +395,11 @@ msgstr ""
 #: src/LibraryWindow.vala:978 src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import Music"
 msgstr "Importēt skaņdarbus"
+
+#: src/PlaybackManager.vala:117
+msgctxt "Name of the playlist"
+msgid "Queue"
+msgstr "Secība"
 
 #: src/Dialogs/FileNotFoundDialog.vala:51
 msgid "File not found"
@@ -482,6 +496,7 @@ msgstr ""
 msgid "Comment:"
 msgstr ""
 
+#. FIXME: don't know if I can delete this
 #: src/Dialogs/MediaEditor.vala:140 src/Dialogs/PreferencesWindow.vala:96
 #: src/Views/DeviceView.vala:45
 msgid "Close"
@@ -592,6 +607,7 @@ msgstr "Eksportēt atskaņošanas sarakstu"
 msgid "Set Music Folder"
 msgstr "Iestatīt mūzikas mapi"
 
+#. pretty up labels
 #: src/Dialogs/SetMusicFolderConfirmation.vala:73
 msgid "Set Music Folder?"
 msgstr "Vai iestatīt mūzikas mapi?"
@@ -694,6 +710,7 @@ msgstr "Grupēšana"
 msgid "Last Played"
 msgstr "Pēdējoreiz atskaņots"
 
+#. helper for units
 #: src/Dialogs/SmartPlaylistEditor.vala:272
 #: src/Dialogs/SmartPlaylistEditor.vala:417
 msgid "Length"
@@ -768,6 +785,7 @@ msgstr "pirms dienām"
 msgid "kbps"
 msgstr "kb/s"
 
+#. be a bit explicit to make translations better
 #: src/Dialogs/SyncWarningDialog.vala:52
 #, fuzzy, c-format
 msgid "Sync will remove %i item from %s"
@@ -1037,6 +1055,7 @@ msgstr "Visi %i komponisti"
 msgid "No Composers"
 msgstr "Nav komponistu"
 
+#. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
 #: src/Widgets/EqualizerPopover.vala:327 src/Widgets/PresetList.vala:52
 msgid "Automatic"
@@ -1071,6 +1090,106 @@ msgstr ""
 msgid "Never"
 msgstr "Nekad"
 
+#: src/Views/ListView/Lists/ListColumn.vala:69
+msgctxt "List column title"
+msgid "#"
+msgstr "#"
+
+#: src/Views/ListView/Lists/ListColumn.vala:72
+msgctxt "List column title"
+msgid "Track"
+msgstr "Skaņdarbs"
+
+#: src/Views/ListView/Lists/ListColumn.vala:75
+msgctxt "List column title"
+msgid "Title"
+msgstr "Nosaukums"
+
+#: src/Views/ListView/Lists/ListColumn.vala:78
+msgctxt "List column title"
+msgid "Length"
+msgstr "Garums"
+
+#: src/Views/ListView/Lists/ListColumn.vala:81
+msgctxt "List column title"
+msgid "Artist"
+msgstr "Izpildītājs"
+
+#: src/Views/ListView/Lists/ListColumn.vala:84
+msgctxt "List column title"
+msgid "Album"
+msgstr "Albums"
+
+#: src/Views/ListView/Lists/ListColumn.vala:87
+msgctxt "List column title"
+msgid "Album Artist"
+msgstr "Albuma izpildītājs"
+
+#: src/Views/ListView/Lists/ListColumn.vala:90
+msgctxt "List column title"
+msgid "Composer"
+msgstr "Komponists"
+
+#: src/Views/ListView/Lists/ListColumn.vala:93
+msgctxt "List column title"
+msgid "Genre"
+msgstr "Žanrs"
+
+#: src/Views/ListView/Lists/ListColumn.vala:96
+msgctxt "List column title"
+msgid "Year"
+msgstr "Gads"
+
+#: src/Views/ListView/Lists/ListColumn.vala:99
+msgctxt "List column title"
+msgid "Grouping"
+msgstr "Grupēšana"
+
+#: src/Views/ListView/Lists/ListColumn.vala:102
+msgctxt "List column title"
+msgid "Bitrate"
+msgstr "Bitrāža"
+
+#: src/Views/ListView/Lists/ListColumn.vala:105
+msgctxt "List column title"
+msgid "Rating"
+msgstr "Vērtējums"
+
+#: src/Views/ListView/Lists/ListColumn.vala:108
+msgctxt "List column title"
+msgid "Plays"
+msgstr "Atskaņo"
+
+#: src/Views/ListView/Lists/ListColumn.vala:111
+msgctxt "List column title"
+msgid "Skips"
+msgstr "Izlaisti"
+
+#: src/Views/ListView/Lists/ListColumn.vala:114
+msgctxt "List column title"
+msgid "Date Added"
+msgstr "Pievienošanas datums"
+
+#: src/Views/ListView/Lists/ListColumn.vala:117
+msgctxt "List column title"
+msgid "Last Played"
+msgstr "Pēdējoreiz atskaņots"
+
+#: src/Views/ListView/Lists/ListColumn.vala:120
+msgctxt "List column title (beats per minute)"
+msgid "BPM"
+msgstr "Sitieni minūtē"
+
+#: src/Views/ListView/Lists/ListColumn.vala:123
+msgctxt "List column title (file location)"
+msgid "Location"
+msgstr "Atrašanās vieta"
+
+#: src/Views/ListView/Lists/ListColumn.vala:126
+msgctxt "List column title"
+msgid "File Size"
+msgstr "Faila izmērs"
+
 #: src/Views/ListView/Lists/MusicListView.vala:74
 msgid "Autosize Columns"
 msgstr "Kolonnu automātiska mērogošana"
@@ -1079,10 +1198,18 @@ msgstr "Kolonnu automātiska mērogošana"
 msgid "1234 kbps"
 msgstr "1234 kbps"
 
+#. / Sample string used to measure the ideal size of the Title, Artist,
+#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
+#. / list view. It's *never* displayed in the user interface. The translated
+#. / string should have a reasonable length, similar to the average length
+#. / of a song title or artist name in your language. The automatic column
+#. / width will depend on the length of this string and the space needed
+#. / by the column's title header.
 #: src/Views/ListView/Lists/MusicListView.vala:481
 msgid "Sample List String"
 msgstr "Tie Your Mother Down"
 
+#. Welcome screen
 #: src/Views/Wrappers/MusicViewWrapper.vala:57
 msgid "Get Some Tunes"
 msgstr "Iegūt kādu skaņdarbu"
@@ -1218,6 +1345,11 @@ msgstr "Labot skaņdarba informāciju"
 msgid "Other Actions"
 msgstr "Citas darbības"
 
+#: src/Widgets/MediaMenu.vala:53
+msgctxt "Action item (verb)"
+msgid "Queue"
+msgstr "Rinda"
+
 #: src/Widgets/MediaMenu.vala:54
 msgid "Add to Playlist"
 msgstr "Pievienot atskaņošanas sarakstam"
@@ -1297,6 +1429,7 @@ msgstr "Jauns gudrais atskaņošanas saraksts"
 msgid "Import Playlists"
 msgstr "Importēt atskaņošanas sarakstu"
 
+#. Adds the different sidebar categories.
 #: src/Widgets/SourceListView.vala:338
 msgid "Library"
 msgstr "Bibliotēka"
@@ -1317,11 +1450,13 @@ msgstr "Pievienot atskaņošanas sarakstu"
 msgid "Add Smart Playlist"
 msgstr "Pievienot gudro atskaņošanas sarakstu"
 
+#. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: src/Widgets/StatusBar.vala:75
 #, c-format
 msgid "Equalizer: %s"
 msgstr ""
 
+#. MUST follow the exact same order of Noise.Player.Repeat
 #: src/Widgets/TopDisplay.vala:139
 msgid "Enable Repeat"
 msgstr "Ieslēgt atkārtošanu"
@@ -1437,10 +1572,6 @@ msgstr "Skatīt kolonnās"
 #~ msgid "Free"
 #~ msgstr "Brīvs"
 
-#~ msgctxt "Name of the playlist"
-#~ msgid "Queue"
-#~ msgstr "Secība"
-
 #~ msgid "General"
 #~ msgstr "Vispārīgi"
 
@@ -1498,90 +1629,6 @@ msgstr "Skatīt kolonnās"
 #~ msgid ""
 #~ "There were no songs found on this device that are not in your library."
 #~ msgstr "Šajā ierīcē atrasti ieraksti kas nav tavā bibliotēkā"
-
-#~ msgctxt "Action item (verb)"
-#~ msgid "Queue"
-#~ msgstr "Rinda"
-
-#~ msgctxt "List column title"
-#~ msgid "#"
-#~ msgstr "#"
-
-#~ msgctxt "List column title"
-#~ msgid "Track"
-#~ msgstr "Skaņdarbs"
-
-#~ msgctxt "List column title"
-#~ msgid "Title"
-#~ msgstr "Nosaukums"
-
-#~ msgctxt "List column title"
-#~ msgid "Length"
-#~ msgstr "Garums"
-
-#~ msgctxt "List column title"
-#~ msgid "Artist"
-#~ msgstr "Izpildītājs"
-
-#~ msgctxt "List column title"
-#~ msgid "Album"
-#~ msgstr "Albums"
-
-#~ msgctxt "List column title"
-#~ msgid "Album Artist"
-#~ msgstr "Albuma izpildītājs"
-
-#~ msgctxt "List column title"
-#~ msgid "Composer"
-#~ msgstr "Komponists"
-
-#~ msgctxt "List column title"
-#~ msgid "Genre"
-#~ msgstr "Žanrs"
-
-#~ msgctxt "List column title"
-#~ msgid "Year"
-#~ msgstr "Gads"
-
-#~ msgctxt "List column title"
-#~ msgid "Grouping"
-#~ msgstr "Grupēšana"
-
-#~ msgctxt "List column title"
-#~ msgid "Bitrate"
-#~ msgstr "Bitrāža"
-
-#~ msgctxt "List column title"
-#~ msgid "Rating"
-#~ msgstr "Vērtējums"
-
-#~ msgctxt "List column title"
-#~ msgid "Plays"
-#~ msgstr "Atskaņo"
-
-#~ msgctxt "List column title"
-#~ msgid "Skips"
-#~ msgstr "Izlaisti"
-
-#~ msgctxt "List column title"
-#~ msgid "Date Added"
-#~ msgstr "Pievienošanas datums"
-
-#~ msgctxt "List column title"
-#~ msgid "Last Played"
-#~ msgstr "Pēdējoreiz atskaņots"
-
-#~ msgctxt "List column title (beats per minute)"
-#~ msgid "BPM"
-#~ msgstr "Sitieni minūtē"
-
-#~ msgctxt "List column title (file location)"
-#~ msgid "Location"
-#~ msgstr "Atrašanās vieta"
-
-#~ msgctxt "List column title"
-#~ msgid "File Size"
-#~ msgstr "Faila izmērs"
 
 #~ msgid "%i track"
 #~ msgid_plural "%i tracks"

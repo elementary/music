@@ -35,12 +35,8 @@ namespace Noise.Settings {
         public bool write_metadata_to_file { get; set; }
         public bool copy_imported_music { get; set; }
         public bool close_while_playing { get; set; }
-        public int64 last_media_playing { get; set; }
-        public string last_playlist_playing { get; set; }
-        public int last_media_position { get; set; }
         public Shuffle shuffle_mode { get; set; }
         public Repeat repeat_mode { get; set; }
-        public string search_string { get; set; }
         public string path_string { get; set; }
         public string[] plugins_disabled { get; set;}
 

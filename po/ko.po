@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-13 13:30-0700\n"
-"PO-Revision-Date: 2018-06-27 22:19+0000\n"
+"POT-Creation-Date: 2018-07-17 08:23-0700\n"
+"PO-Revision-Date: 2018-07-16 18:45+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://weblate.elementary.io/projects/music/music/ko/"
 ">\n"
@@ -24,18 +24,22 @@ msgstr ""
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 msgstr "<b>$NAME</b> (<b>$ARTIST</b>)를 가져오는 중…"
 
+#. / Used for unknown titles, artists, or album names.
 #: core/Media.vala:32
 msgid "Unknown"
 msgstr "알 수 없음"
 
+#. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: core/Media.vala:179
 msgid "$NAME on $ALBUM"
 msgstr "$NAME ($ALBUM)"
 
+#. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: core/Media.vala:182
 msgid "$NAME by $ARTIST"
 msgstr "$NAME ($ARTIST)"
 
+#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
 #: core/Media.vala:188
 msgid "$NAME by $ARTIST on $ALBUM"
 msgstr "$NAME ($ARTIST의 $ALBUM)"
@@ -126,6 +130,7 @@ msgstr "%s (%d)"
 msgid "New playlist"
 msgstr "새 재생목록"
 
+#. Translators: used for new playlists ex: "New playlist (1)"
 #: core/Utils/PlaylistsUtils.vala:246
 #, c-format
 msgid "%s (%i)"
@@ -182,6 +187,8 @@ msgstr "열기"
 msgid "Unrecognized playlist file. Import failed."
 msgstr "알 수 없는 재생목록 파일입니다. 가져오는데 실패하였습니다."
 
+#. / Format of date strings. See reference documentation of g_date_time_format()
+#. / for more details.
 #: core/Utils/TimeUtils.vala:40
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%Y/%m/%e일 %p %-l:%M"
@@ -234,6 +241,7 @@ msgstr "올바르지 않은 CD"
 msgid "Impossible to read the contents of this Audio CD"
 msgstr "CD의 내용을 읽을 수가 없습니다"
 
+#. do checks to make sure we can go on
 #: plugins/Devices/CDRom/CDRomDevice.vala:247
 msgid "Could not find Music Folder"
 msgstr "음악 폴더를 찾을 수 없음"
@@ -329,6 +337,7 @@ msgstr "가져오기 완료"
 msgid "Your Library Has Been Imported."
 msgstr "라이브러리를 가져왔습니다."
 
+#. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:315
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr "<b>음악 폴더</b>에 파일 <b>복사 중</b>…"
@@ -398,6 +407,11 @@ msgstr ""
 #: src/LibraryWindow.vala:978 src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import Music"
 msgstr "음악 가져오기"
+
+#: src/PlaybackManager.vala:117
+msgctxt "Name of the playlist"
+msgid "Queue"
+msgstr "대기열"
 
 #: src/Dialogs/FileNotFoundDialog.vala:51
 msgid "File not found"
@@ -493,6 +507,7 @@ msgstr "평점:"
 msgid "Comment:"
 msgstr "설명:"
 
+#. FIXME: don't know if I can delete this
 #: src/Dialogs/MediaEditor.vala:140 src/Dialogs/PreferencesWindow.vala:96
 #: src/Views/DeviceView.vala:45
 msgid "Close"
@@ -504,7 +519,7 @@ msgid "Issues while importing from %s"
 msgstr "%s에서 가져오는 동안 생기는 문제입니다"
 
 #: src/Dialogs/NotImportedDialog.vala:57
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
 msgstr[0] "%d개의 항목을 가져오지 못했습니다. 파일이 손상되었을 수 있습니다."
@@ -598,6 +613,7 @@ msgstr "파일 목록 내보내기"
 msgid "Set Music Folder"
 msgstr "음악 폴더 설정"
 
+#. pretty up labels
 #: src/Dialogs/SetMusicFolderConfirmation.vala:73
 msgid "Set Music Folder?"
 msgstr "음악 폴더를 설정하시겠습니까?"
@@ -700,6 +716,7 @@ msgstr "그룹"
 msgid "Last Played"
 msgstr "마지막으로 재생된 날짜"
 
+#. helper for units
 #: src/Dialogs/SmartPlaylistEditor.vala:272
 #: src/Dialogs/SmartPlaylistEditor.vala:417
 msgid "Length"
@@ -774,6 +791,7 @@ msgstr "일 전"
 msgid "kbps"
 msgstr "kbps"
 
+#. be a bit explicit to make translations better
 #: src/Dialogs/SyncWarningDialog.vala:52
 #, c-format
 msgid "Sync will remove %i item from %s"
@@ -1039,6 +1057,7 @@ msgstr "모든 %i 작곡가"
 msgid "No Composers"
 msgstr "작곡가 없음"
 
+#. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
 #: src/Widgets/EqualizerPopover.vala:327 src/Widgets/PresetList.vala:52
 msgid "Automatic"
@@ -1072,6 +1091,106 @@ msgstr "%u kbps"
 msgid "Never"
 msgstr "사용 안 함"
 
+#: src/Views/ListView/Lists/ListColumn.vala:69
+msgctxt "List column title"
+msgid "#"
+msgstr "#"
+
+#: src/Views/ListView/Lists/ListColumn.vala:72
+msgctxt "List column title"
+msgid "Track"
+msgstr "트랙"
+
+#: src/Views/ListView/Lists/ListColumn.vala:75
+msgctxt "List column title"
+msgid "Title"
+msgstr "곡명"
+
+#: src/Views/ListView/Lists/ListColumn.vala:78
+msgctxt "List column title"
+msgid "Length"
+msgstr "길이"
+
+#: src/Views/ListView/Lists/ListColumn.vala:81
+msgctxt "List column title"
+msgid "Artist"
+msgstr "아티스트"
+
+#: src/Views/ListView/Lists/ListColumn.vala:84
+msgctxt "List column title"
+msgid "Album"
+msgstr "앨범"
+
+#: src/Views/ListView/Lists/ListColumn.vala:87
+msgctxt "List column title"
+msgid "Album Artist"
+msgstr "앨범 아티스트"
+
+#: src/Views/ListView/Lists/ListColumn.vala:90
+msgctxt "List column title"
+msgid "Composer"
+msgstr "작곡가"
+
+#: src/Views/ListView/Lists/ListColumn.vala:93
+msgctxt "List column title"
+msgid "Genre"
+msgstr "장르"
+
+#: src/Views/ListView/Lists/ListColumn.vala:96
+msgctxt "List column title"
+msgid "Year"
+msgstr "연도"
+
+#: src/Views/ListView/Lists/ListColumn.vala:99
+msgctxt "List column title"
+msgid "Grouping"
+msgstr "그룹"
+
+#: src/Views/ListView/Lists/ListColumn.vala:102
+msgctxt "List column title"
+msgid "Bitrate"
+msgstr "비트레이트"
+
+#: src/Views/ListView/Lists/ListColumn.vala:105
+msgctxt "List column title"
+msgid "Rating"
+msgstr "평점"
+
+#: src/Views/ListView/Lists/ListColumn.vala:108
+msgctxt "List column title"
+msgid "Plays"
+msgstr "재생 음악"
+
+#: src/Views/ListView/Lists/ListColumn.vala:111
+msgctxt "List column title"
+msgid "Skips"
+msgstr "건너뛰기"
+
+#: src/Views/ListView/Lists/ListColumn.vala:114
+msgctxt "List column title"
+msgid "Date Added"
+msgstr "추가된 날짜"
+
+#: src/Views/ListView/Lists/ListColumn.vala:117
+msgctxt "List column title"
+msgid "Last Played"
+msgstr "최근 연주한 항목"
+
+#: src/Views/ListView/Lists/ListColumn.vala:120
+msgctxt "List column title (beats per minute)"
+msgid "BPM"
+msgstr "BPM"
+
+#: src/Views/ListView/Lists/ListColumn.vala:123
+msgctxt "List column title (file location)"
+msgid "Location"
+msgstr "위치"
+
+#: src/Views/ListView/Lists/ListColumn.vala:126
+msgctxt "List column title"
+msgid "File Size"
+msgstr "파일 크기"
+
 #: src/Views/ListView/Lists/MusicListView.vala:74
 msgid "Autosize Columns"
 msgstr "행 크기 자동 조절"
@@ -1080,10 +1199,18 @@ msgstr "행 크기 자동 조절"
 msgid "1234 kbps"
 msgstr "1234 kbps"
 
+#. / Sample string used to measure the ideal size of the Title, Artist,
+#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
+#. / list view. It's *never* displayed in the user interface. The translated
+#. / string should have a reasonable length, similar to the average length
+#. / of a song title or artist name in your language. The automatic column
+#. / width will depend on the length of this string and the space needed
+#. / by the column's title header.
 #: src/Views/ListView/Lists/MusicListView.vala:481
 msgid "Sample List String"
 msgstr "샘플 목록 문자열"
 
+#. Welcome screen
 #: src/Views/Wrappers/MusicViewWrapper.vala:57
 msgid "Get Some Tunes"
 msgstr "음악 가져오기"
@@ -1215,6 +1342,11 @@ msgstr "음악 정보 편집…"
 msgid "Other Actions"
 msgstr "다른 작업"
 
+#: src/Widgets/MediaMenu.vala:53
+msgctxt "Action item (verb)"
+msgid "Queue"
+msgstr "대기열"
+
 #: src/Widgets/MediaMenu.vala:54
 msgid "Add to Playlist"
 msgstr "재생목록에 추가"
@@ -1290,6 +1422,7 @@ msgstr "새 스마트 재생목록"
 msgid "Import Playlists"
 msgstr "재생목록 가져오기"
 
+#. Adds the different sidebar categories.
 #: src/Widgets/SourceListView.vala:338
 msgid "Library"
 msgstr "라이브러리"
@@ -1310,11 +1443,13 @@ msgstr "재생목록 추가"
 msgid "Add Smart Playlist"
 msgstr "스마트 재생목록 추가"
 
+#. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: src/Widgets/StatusBar.vala:75
 #, c-format
 msgid "Equalizer: %s"
 msgstr "이퀄라이저: %s"
 
+#. MUST follow the exact same order of Noise.Player.Repeat
 #: src/Widgets/TopDisplay.vala:139
 msgid "Enable Repeat"
 msgstr "반복 설정"
@@ -1431,10 +1566,6 @@ msgstr "구역으로 보기"
 #~ msgid "Using %s of %s (%.2f%)"
 #~ msgstr "%s를 전체 %s 중에 사용중 (%.2f%)"
 
-#~ msgctxt "Name of the playlist"
-#~ msgid "Queue"
-#~ msgstr "대기열"
-
 #~ msgid "General"
 #~ msgstr "일반"
 
@@ -1520,90 +1651,6 @@ msgstr "구역으로 보기"
 #~ "There were no songs found on this device that are not in your library."
 #~ msgstr ""
 #~ "라이브러리에 추가되어 있지 않은 다른 노래가 장치에서 발견되지 않았습니다."
-
-#~ msgctxt "Action item (verb)"
-#~ msgid "Queue"
-#~ msgstr "대기열"
-
-#~ msgctxt "List column title"
-#~ msgid "#"
-#~ msgstr "#"
-
-#~ msgctxt "List column title"
-#~ msgid "Track"
-#~ msgstr "트랙"
-
-#~ msgctxt "List column title"
-#~ msgid "Title"
-#~ msgstr "곡명"
-
-#~ msgctxt "List column title"
-#~ msgid "Length"
-#~ msgstr "길이"
-
-#~ msgctxt "List column title"
-#~ msgid "Artist"
-#~ msgstr "아티스트"
-
-#~ msgctxt "List column title"
-#~ msgid "Album"
-#~ msgstr "앨범"
-
-#~ msgctxt "List column title"
-#~ msgid "Album Artist"
-#~ msgstr "앨범 아티스트"
-
-#~ msgctxt "List column title"
-#~ msgid "Composer"
-#~ msgstr "작곡가"
-
-#~ msgctxt "List column title"
-#~ msgid "Genre"
-#~ msgstr "장르"
-
-#~ msgctxt "List column title"
-#~ msgid "Year"
-#~ msgstr "연도"
-
-#~ msgctxt "List column title"
-#~ msgid "Grouping"
-#~ msgstr "그룹"
-
-#~ msgctxt "List column title"
-#~ msgid "Bitrate"
-#~ msgstr "비트레이트"
-
-#~ msgctxt "List column title"
-#~ msgid "Rating"
-#~ msgstr "평점"
-
-#~ msgctxt "List column title"
-#~ msgid "Plays"
-#~ msgstr "재생 음악"
-
-#~ msgctxt "List column title"
-#~ msgid "Skips"
-#~ msgstr "건너뛰기"
-
-#~ msgctxt "List column title"
-#~ msgid "Date Added"
-#~ msgstr "추가된 날짜"
-
-#~ msgctxt "List column title"
-#~ msgid "Last Played"
-#~ msgstr "최근 연주한 항목"
-
-#~ msgctxt "List column title (beats per minute)"
-#~ msgid "BPM"
-#~ msgstr "BPM"
-
-#~ msgctxt "List column title (file location)"
-#~ msgid "Location"
-#~ msgstr "위치"
-
-#~ msgctxt "List column title"
-#~ msgid "File Size"
-#~ msgstr "파일 크기"
 
 #~ msgid "%i track"
 #~ msgid_plural "%i tracks"

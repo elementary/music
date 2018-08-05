@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-13 13:30-0700\n"
+"POT-Creation-Date: 2018-07-17 08:23-0700\n"
 "PO-Revision-Date: 2017-05-09 22:27+0000\n"
 "Last-Translator: Martin Tomov <martin.tomov@boomer.digital>\n"
 "Language-Team: Bulgarian <https://l10n.elementary.io/projects/music/music/bg/"
@@ -24,18 +24,22 @@ msgstr ""
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 msgstr "Добавяне <b>$NAME</b> от <b>$ARTIST</b> в библиотеката…"
 
+#. / Used for unknown titles, artists, or album names.
 #: core/Media.vala:32
 msgid "Unknown"
 msgstr "Неизвестен"
 
+#. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: core/Media.vala:179
 msgid "$NAME on $ALBUM"
 msgstr "$NAME от $ALBUM"
 
+#. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: core/Media.vala:182
 msgid "$NAME by $ARTIST"
 msgstr "$NAME от $ARTIST"
 
+#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
 #: core/Media.vala:188
 msgid "$NAME by $ARTIST on $ALBUM"
 msgstr "$NAME на $ARTIST от $ALBUM"
@@ -126,6 +130,7 @@ msgstr "%s (%d)"
 msgid "New playlist"
 msgstr "Нов списък с песни"
 
+#. Translators: used for new playlists ex: "New playlist (1)"
 #: core/Utils/PlaylistsUtils.vala:246
 #, c-format
 msgid "%s (%i)"
@@ -182,6 +187,8 @@ msgstr "Отваряне"
 msgid "Unrecognized playlist file. Import failed."
 msgstr "Непознат файл за изпълнение. Добавянето не е извършено."
 
+#. / Format of date strings. See reference documentation of g_date_time_format()
+#. / for more details.
 #: core/Utils/TimeUtils.vala:40
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%m/%e/%Y %l:%M %p"
@@ -234,6 +241,7 @@ msgstr "Музикалният диск е недействителен"
 msgid "Impossible to read the contents of this Audio CD"
 msgstr "Невъзможно е да се прочете съдържанието на този музикален диск"
 
+#. do checks to make sure we can go on
 #: plugins/Devices/CDRom/CDRomDevice.vala:247
 msgid "Could not find Music Folder"
 msgstr "Папката с музика не можа да бъде открита"
@@ -330,6 +338,7 @@ msgstr "Внасянето завърши"
 msgid "Your Library Has Been Imported."
 msgstr ""
 
+#. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:315
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr "<b>Копиране</b> на файлове в <b>Папката за музика</b>…"
@@ -401,6 +410,11 @@ msgstr ""
 #: src/LibraryWindow.vala:978 src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import Music"
 msgstr "Внасяне на музика"
+
+#: src/PlaybackManager.vala:117
+msgctxt "Name of the playlist"
+msgid "Queue"
+msgstr "Опашка"
 
 #: src/Dialogs/FileNotFoundDialog.vala:51
 msgid "File not found"
@@ -498,6 +512,7 @@ msgstr "Оценка:"
 msgid "Comment:"
 msgstr "Коментар:"
 
+#. FIXME: don't know if I can delete this
 #: src/Dialogs/MediaEditor.vala:140 src/Dialogs/PreferencesWindow.vala:96
 #: src/Views/DeviceView.vala:45
 msgid "Close"
@@ -610,6 +625,7 @@ msgstr "Изнасяне на списъци за изпълнение"
 msgid "Set Music Folder"
 msgstr "Задаване на папка за музика"
 
+#. pretty up labels
 #: src/Dialogs/SetMusicFolderConfirmation.vala:73
 msgid "Set Music Folder?"
 msgstr "Задаване за папка за музика?"
@@ -712,6 +728,7 @@ msgstr "Групиране"
 msgid "Last Played"
 msgstr "Последно слушане"
 
+#. helper for units
 #: src/Dialogs/SmartPlaylistEditor.vala:272
 #: src/Dialogs/SmartPlaylistEditor.vala:417
 msgid "Length"
@@ -786,6 +803,7 @@ msgstr "дни назад"
 msgid "kbps"
 msgstr "кб/сек."
 
+#. be a bit explicit to make translations better
 #: src/Dialogs/SyncWarningDialog.vala:52
 #, fuzzy, c-format
 msgid "Sync will remove %i item from %s"
@@ -1060,6 +1078,7 @@ msgstr "Всички %i Композитори"
 msgid "No Composers"
 msgstr "Без Композитори"
 
+#. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
 #: src/Widgets/EqualizerPopover.vala:327 src/Widgets/PresetList.vala:52
 msgid "Automatic"
@@ -1094,6 +1113,106 @@ msgstr "%u kbps"
 msgid "Never"
 msgstr "Никога"
 
+#: src/Views/ListView/Lists/ListColumn.vala:69
+msgctxt "List column title"
+msgid "#"
+msgstr "#"
+
+#: src/Views/ListView/Lists/ListColumn.vala:72
+msgctxt "List column title"
+msgid "Track"
+msgstr "Песен"
+
+#: src/Views/ListView/Lists/ListColumn.vala:75
+msgctxt "List column title"
+msgid "Title"
+msgstr "Заглавие"
+
+#: src/Views/ListView/Lists/ListColumn.vala:78
+msgctxt "List column title"
+msgid "Length"
+msgstr "Дължина"
+
+#: src/Views/ListView/Lists/ListColumn.vala:81
+msgctxt "List column title"
+msgid "Artist"
+msgstr "Изпълнител"
+
+#: src/Views/ListView/Lists/ListColumn.vala:84
+msgctxt "List column title"
+msgid "Album"
+msgstr "Албум"
+
+#: src/Views/ListView/Lists/ListColumn.vala:87
+msgctxt "List column title"
+msgid "Album Artist"
+msgstr "Изпълнител на албума"
+
+#: src/Views/ListView/Lists/ListColumn.vala:90
+msgctxt "List column title"
+msgid "Composer"
+msgstr "Съчинител"
+
+#: src/Views/ListView/Lists/ListColumn.vala:93
+msgctxt "List column title"
+msgid "Genre"
+msgstr "Жанр"
+
+#: src/Views/ListView/Lists/ListColumn.vala:96
+msgctxt "List column title"
+msgid "Year"
+msgstr "Година"
+
+#: src/Views/ListView/Lists/ListColumn.vala:99
+msgctxt "List column title"
+msgid "Grouping"
+msgstr "Групиране"
+
+#: src/Views/ListView/Lists/ListColumn.vala:102
+msgctxt "List column title"
+msgid "Bitrate"
+msgstr "Скорост на предаване"
+
+#: src/Views/ListView/Lists/ListColumn.vala:105
+msgctxt "List column title"
+msgid "Rating"
+msgstr "Оценка"
+
+#: src/Views/ListView/Lists/ListColumn.vala:108
+msgctxt "List column title"
+msgid "Plays"
+msgstr "Брой слушания"
+
+#: src/Views/ListView/Lists/ListColumn.vala:111
+msgctxt "List column title"
+msgid "Skips"
+msgstr "Брой пропускания"
+
+#: src/Views/ListView/Lists/ListColumn.vala:114
+msgctxt "List column title"
+msgid "Date Added"
+msgstr "Дата на добавяне"
+
+#: src/Views/ListView/Lists/ListColumn.vala:117
+msgctxt "List column title"
+msgid "Last Played"
+msgstr "Последно слушане"
+
+#: src/Views/ListView/Lists/ListColumn.vala:120
+msgctxt "List column title (beats per minute)"
+msgid "BPM"
+msgstr "Уд./мин."
+
+#: src/Views/ListView/Lists/ListColumn.vala:123
+msgctxt "List column title (file location)"
+msgid "Location"
+msgstr "Местоположение"
+
+#: src/Views/ListView/Lists/ListColumn.vala:126
+msgctxt "List column title"
+msgid "File Size"
+msgstr "Големина на файла"
+
 #: src/Views/ListView/Lists/MusicListView.vala:74
 msgid "Autosize Columns"
 msgstr "Автоматично оразмеряване на колоните"
@@ -1102,10 +1221,18 @@ msgstr "Автоматично оразмеряване на колоните"
 msgid "1234 kbps"
 msgstr "1234 кб/с"
 
+#. / Sample string used to measure the ideal size of the Title, Artist,
+#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
+#. / list view. It's *never* displayed in the user interface. The translated
+#. / string should have a reasonable length, similar to the average length
+#. / of a song title or artist name in your language. The automatic column
+#. / width will depend on the length of this string and the space needed
+#. / by the column's title header.
 #: src/Views/ListView/Lists/MusicListView.vala:481
 msgid "Sample List String"
 msgstr "Пробен низ за списък"
 
+#. Welcome screen
 #: src/Views/Wrappers/MusicViewWrapper.vala:57
 msgid "Get Some Tunes"
 msgstr "Сдобийте се с няколко песни"
@@ -1241,6 +1368,11 @@ msgstr "Редактиране на информация за песента"
 msgid "Other Actions"
 msgstr "Други действия"
 
+#: src/Widgets/MediaMenu.vala:53
+msgctxt "Action item (verb)"
+msgid "Queue"
+msgstr "Опашка"
+
 #: src/Widgets/MediaMenu.vala:54
 msgid "Add to Playlist"
 msgstr "Добавяне към списъка за изпълнение"
@@ -1319,6 +1451,7 @@ msgstr "Нов умен списък за изпълнение"
 msgid "Import Playlists"
 msgstr "Внасяне на списъци за изпълнение"
 
+#. Adds the different sidebar categories.
 #: src/Widgets/SourceListView.vala:338
 msgid "Library"
 msgstr "Библиотека"
@@ -1339,11 +1472,13 @@ msgstr "Добавяне на списък за изпълнение"
 msgid "Add Smart Playlist"
 msgstr "Добавяне на умен списък за изпълнение"
 
+#. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: src/Widgets/StatusBar.vala:75
 #, c-format
 msgid "Equalizer: %s"
 msgstr "Уравнител: %s"
 
+#. MUST follow the exact same order of Noise.Player.Repeat
 #: src/Widgets/TopDisplay.vala:139
 msgid "Enable Repeat"
 msgstr "Включване на повтаряне"
@@ -1464,10 +1599,6 @@ msgstr "Изглед като колони"
 #~ msgid "Using %s of %s (%.2f%)"
 #~ msgstr "Използват се %s от %s (%.2f%)"
 
-#~ msgctxt "Name of the playlist"
-#~ msgid "Queue"
-#~ msgstr "Опашка"
-
 #~ msgid "General"
 #~ msgstr "Общи"
 
@@ -1555,90 +1686,6 @@ msgstr "Изглед като колони"
 #~ msgstr ""
 #~ "Не бяха намерени песни на това устройство, които вече не са в "
 #~ "библиотеката ви."
-
-#~ msgctxt "Action item (verb)"
-#~ msgid "Queue"
-#~ msgstr "Опашка"
-
-#~ msgctxt "List column title"
-#~ msgid "#"
-#~ msgstr "#"
-
-#~ msgctxt "List column title"
-#~ msgid "Track"
-#~ msgstr "Песен"
-
-#~ msgctxt "List column title"
-#~ msgid "Title"
-#~ msgstr "Заглавие"
-
-#~ msgctxt "List column title"
-#~ msgid "Length"
-#~ msgstr "Дължина"
-
-#~ msgctxt "List column title"
-#~ msgid "Artist"
-#~ msgstr "Изпълнител"
-
-#~ msgctxt "List column title"
-#~ msgid "Album"
-#~ msgstr "Албум"
-
-#~ msgctxt "List column title"
-#~ msgid "Album Artist"
-#~ msgstr "Изпълнител на албума"
-
-#~ msgctxt "List column title"
-#~ msgid "Composer"
-#~ msgstr "Съчинител"
-
-#~ msgctxt "List column title"
-#~ msgid "Genre"
-#~ msgstr "Жанр"
-
-#~ msgctxt "List column title"
-#~ msgid "Year"
-#~ msgstr "Година"
-
-#~ msgctxt "List column title"
-#~ msgid "Grouping"
-#~ msgstr "Групиране"
-
-#~ msgctxt "List column title"
-#~ msgid "Bitrate"
-#~ msgstr "Скорост на предаване"
-
-#~ msgctxt "List column title"
-#~ msgid "Rating"
-#~ msgstr "Оценка"
-
-#~ msgctxt "List column title"
-#~ msgid "Plays"
-#~ msgstr "Брой слушания"
-
-#~ msgctxt "List column title"
-#~ msgid "Skips"
-#~ msgstr "Брой пропускания"
-
-#~ msgctxt "List column title"
-#~ msgid "Date Added"
-#~ msgstr "Дата на добавяне"
-
-#~ msgctxt "List column title"
-#~ msgid "Last Played"
-#~ msgstr "Последно слушане"
-
-#~ msgctxt "List column title (beats per minute)"
-#~ msgid "BPM"
-#~ msgstr "Уд./мин."
-
-#~ msgctxt "List column title (file location)"
-#~ msgid "Location"
-#~ msgstr "Местоположение"
-
-#~ msgctxt "List column title"
-#~ msgid "File Size"
-#~ msgstr "Големина на файла"
 
 #~ msgid "%i track"
 #~ msgid_plural "%i tracks"
