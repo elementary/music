@@ -64,7 +64,6 @@ namespace Noise.Settings {
     }
 
     public class Equalizer : Granite.Services.Settings {
-
         public bool equalizer_enabled { get; set; }
         public bool auto_switch_preset { get; set; }
         public string selected_preset { get; set; }
