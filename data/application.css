@@ -16,6 +16,15 @@
 * Boston, MA 02110-1301 USA
 */
 
+iconview {
+    border-radius: 0;
+    color: @text_color;
+}
+
+iconview.cell {
+    background-color: transparent;
+}
+
 .album {
     background-image:
         linear-gradient(
