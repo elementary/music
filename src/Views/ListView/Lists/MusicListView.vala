@@ -193,7 +193,7 @@ public class Noise.MusicListView : GenericList {
 
     private bool view_header_click (Gdk.EventButton e, bool is_selector_col) {
         if (e.button == Gdk.BUTTON_SECONDARY || is_selector_col) {
-            column_chooser_menu.popup (null, null, null, Gdk.BUTTON_SECONDARY, e.time);
+            column_chooser_menu.popup_at_pointer (e);
             return true;
         }
 
