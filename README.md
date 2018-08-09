@@ -18,7 +18,7 @@ You'll need the following dependencies:
 * libgsignon-glib-dev
 * libgstreamer1.0-dev
 * libgstreamer-plugins-base1.0-dev
-* libgtk-3-dev
+* libgtk-3-dev >= 3.22
 * libjson-glib-dev
 * libnotify-dev
 * libpeas-dev
