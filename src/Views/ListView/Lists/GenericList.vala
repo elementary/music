@@ -268,19 +268,18 @@ public abstract class Noise.GenericList : Gtk.TreeView {
     /**
     * Shift a list (of media) to make it start at a given element
     */
-    private Gee.ArrayList<Media> start_at (Media start, Gee.List<Media> media) {
-        debug ("TO START: %s (size = %d)", start.title, media.size);
-        var res = new Gee.ArrayList<Media> ();
-        int index = media.index_of (start);
-        for (int _ = 0; _ < media.size; _++) {
-            res.add (media[index]);
-            index++;
+    private Gee.List<Media> start_at (Media start, Gee.List<Media> media) {
+        int index = 0;
+        for ( ; index < media.size && media[index].uri != start.uri; ++index);
+        debug ( @"TO START: '$(start.title)', size = $(media.size), index: $(index)");
 
-            if (index == media.size) {
-                index = 0;
-            }
+        if (index == media.size) {
+            return media; // nothing to shift
         }
 
+        var res = new Gee.ArrayList<Media> ();
+        res.add_all (media[index: media.size]);
+        res.add_all (media[0: index]);
         return res;
     }
 
