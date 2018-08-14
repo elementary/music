@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2017-07-04 08:52+0000\n"
+"PO-Revision-Date: 2018-08-12 13:24+0000\n"
 "Last-Translator: colindemian <colindemian@outlook.com>\n"
-"Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
-"music/music/zh_CN/>\n"
+"Language-Team: Chinese (Simplified) <https://weblate.elementary.io/projects/"
+"music/music/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.14\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
 #: core/LibrariesManager.vala:147
@@ -332,7 +332,7 @@ msgstr "导入完成"
 
 #: src/FileOperator.vala:305
 msgid "Your Library Has Been Imported."
-msgstr ""
+msgstr "您的库已导入成功。"
 
 #. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:315
@@ -738,7 +738,7 @@ msgstr "年代"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:278
 msgid "URI"
-msgstr ""
+msgstr "地址"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:351
 msgid "is"
@@ -935,7 +935,7 @@ msgstr "无评分"
 
 #: src/Views/ViewStack.vala:45
 msgid "Try another search"
-msgstr ""
+msgstr "重新搜索"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
 msgid "Genres"
