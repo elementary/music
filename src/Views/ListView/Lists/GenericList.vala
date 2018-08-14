@@ -270,11 +270,13 @@ public abstract class Noise.GenericList : Gtk.TreeView {
     */
     private Gee.List<Media> start_at (Media start, Gee.List<Media> media) {
         int index = 0;
-        for ( ; index < media.size && media[index].uri != start.uri; ++index) ;
+        for ( ; index < media.size && media[index].uri != start.uri; ++index);
         debug ( @"TO START: '$(start.title)', size = $(media.size), index: $(index)");
+
         if (index == media.size) {
             return media; // nothing to shift
         }
+
         var res = new Gee.ArrayList<Media> ();
         res.add_all (media[index: media.size]);
         res.add_all (media[0: index]);
