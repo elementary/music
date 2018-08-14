@@ -75,7 +75,7 @@ public class Noise.PresetList : Gtk.ComboBox {
         pack_start (cell, true);
         add_attribute (cell, "text", 1);
 
-        changed.connect (listSelectionChange);
+        changed.connect (list_selection_change);
 
         show_all ();
 
@@ -85,22 +85,22 @@ public class Noise.PresetList : Gtk.ComboBox {
         store.append (out iter);
         store.set (iter, 0, null, 1, AUTOMATIC_MODE);
 
-        addSeparator ();
+        add_separator ();
     }
 
-    public void addSeparator () {
+    public void add_separator () {
         Gtk.TreeIter iter;
         store.append (out iter);
         store.set (iter, 0, null, 1, SEPARATOR_NAME);
     }
 
-    public void addPreset (EqualizerPreset ep) {
+    public void add_preset (EqualizerPreset ep) {
         modifying_list = true;
 
         if (!ep.is_default) {
             /* If the number of custom presets is zero, add a separator */
             if (ncustompresets < 1) {
-                addSeparator ();
+                add_separator ();
             }
 
             ncustompresets++;
@@ -116,7 +116,7 @@ public class Noise.PresetList : Gtk.ComboBox {
         set_active_iter (iter);
     }
 
-    public void removeCurrentPreset () {
+    public void remove_current_preset () {
         modifying_list = true;
 
         Gtk.TreeIter iter;
@@ -144,10 +144,10 @@ public class Noise.PresetList : Gtk.ComboBox {
 
         modifying_list = false;
 
-        selectAutomaticPreset ();
+        select_automatic_preset ();
     }
 
-    public virtual void listSelectionChange () {
+    public virtual void list_selection_change () {
         if (modifying_list) {
             return;
         }
@@ -184,13 +184,13 @@ public class Noise.PresetList : Gtk.ComboBox {
         }
     }
 
-    public void selectAutomaticPreset () {
+    public void select_automatic_preset () {
         automatic_selected = true;
         automatic_preset_chosen ();
         set_active (0);
     }
 
-    public void selectPreset (string? preset_name) {
+    public void select_preset (string? preset_name) {
 
         if (!(preset_name == null || preset_name.length < 1)) {
             Gtk.TreeIter iter;
@@ -207,10 +207,10 @@ public class Noise.PresetList : Gtk.ComboBox {
             }
         }
 
-        selectAutomaticPreset ();
+        select_automatic_preset ();
     }
 
-    public EqualizerPreset? getSelectedPreset () {
+    public EqualizerPreset? get_selected_preset () {
         Gtk.TreeIter it;
         get_active_iter (out it);
 
@@ -224,7 +224,7 @@ public class Noise.PresetList : Gtk.ComboBox {
         }
     }
 
-    public Gee.Collection<EqualizerPreset> getPresets () {
+    public Gee.Collection<EqualizerPreset> get_presets () {
 
         var rv = new Gee.LinkedList<EqualizerPreset> ();
 
