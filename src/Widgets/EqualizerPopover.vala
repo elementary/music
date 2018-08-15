@@ -189,8 +189,8 @@ public class Noise.EqualizerPopover : Gtk.Popover {
         add (layout);
 
         equalizer_settings.bind ("equalizer-enabled", eq_switch, "active", GLib.SettingsBindFlags.DEFAULT);
-        equalizer_settings.bind ("equalizer-enabled", preset_combo, "sensitive", GLib.SettingsBindFlags.DEFAULT);
-        equalizer_settings.bind ("equalizer-enabled", scale_container, "sensitive", GLib.SettingsBindFlags.DEFAULT);
+        equalizer_settings.bind ("equalizer-enabled", preset_combo, "sensitive", GLib.SettingsBindFlags.GET);
+        equalizer_settings.bind ("equalizer-enabled", scale_container, "sensitive", GLib.SettingsBindFlags.GET);
 
         eq_switch.notify["active"].connect (on_eq_switch_toggled);
         preset_combo.automatic_preset_chosen.connect (on_automatic_chosen);
