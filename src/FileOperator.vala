@@ -122,7 +122,7 @@ public class Noise.FileOperator : Object {
             if (s.isTemporary || s.isPreview || File.new_for_uri (s.uri).get_path ().has_prefix (main_settings.music_folder) == false)
                 continue;
 
-            if (main_settings.write_metadata_to_file) {
+            if (App.settings.get_boolean ("write-metadata-to-file")) {
                 TagLib.File tag_file;
                 tag_file = new TagLib.File (File.new_for_uri (s.uri).get_path ());
 
@@ -140,8 +140,9 @@ public class Noise.FileOperator : Object {
                 }
             }
 
-            if (main_settings.update_folder_hierarchy)
+            if (App.settings.get_boolean ("update-folder-hierarchy")) {
                 update_file_hierarchy (s, true, false);
+            }
         }
     }
 
@@ -311,7 +312,7 @@ public class Noise.FileOperator : Object {
         }
 
         // if doing import and copy to music folder is enabled, do copy here
-        if ((import_type == ImportType.IMPORT || import_type == ImportType.PLAYLIST) && Settings.Main.get_default ().copy_imported_music) {
+        if ((import_type == ImportType.IMPORT || import_type == ImportType.PLAYLIST) && App.settings.get_boolean ("copy-imported-music")) {
             NotificationManager.get_default ().update_progress (_("<b>Copying</b> files to <b>Music Folder</b>…"), 0.0);
             copy_imports_async.begin ();
         } else {
