@@ -54,7 +54,7 @@ core_deps = [
   dependency('gstreamer-1.0'),
   dependency('gstreamer-pbutils-1.0'),
   dependency('gstreamer-tag-1.0'),
-  dependency('gtk+-3.0', version: '>=3.11.6')
+  dependency('gtk+-3.0', version: '>=3.22')
 ]
 
 core_lib = shared_library(

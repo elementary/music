@@ -1189,7 +1189,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         bool playing = App.player.current_media != null && App.player.playing;
 
         // if playing a song, don't allow closing
-        if (!main_settings.close_while_playing && playing) {
+        if (!App.settings.get_boolean ("close-while-playing") && playing) {
             hide ();
 
             return true;
