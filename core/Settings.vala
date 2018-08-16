@@ -28,13 +28,8 @@
 
 namespace Noise.Settings {
     public class Main : Granite.Services.Settings {
-
         public string music_mount_name { get; set; }
         public string music_folder { get; set; }
-        public bool update_folder_hierarchy { get; set; }
-        public bool write_metadata_to_file { get; set; }
-        public bool copy_imported_music { get; set; }
-        public bool close_while_playing { get; set; }
         public Shuffle shuffle_mode { get; set; }
         public Repeat repeat_mode { get; set; }
         public string path_string { get; set; }

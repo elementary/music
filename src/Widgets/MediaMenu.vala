@@ -243,7 +243,7 @@ public class Noise.MediaMenu : Gtk.Menu {
             contractor_entry.sensitive = false;
         }
 
-        popup (null, null, null, 3, Gtk.get_current_event_time ());
+        popup_at_pointer (null);
     }
 
     private void edit_media_clicked () {
