@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2018-06-01 00:07+0000\n"
+"POT-Creation-Date: 2018-06-27 08:21-0700\n"
+"PO-Revision-Date: 2018-06-30 00:03+0000\n"
 "Last-Translator: Jan Marek <janmarek28@gmail.com>\n"
 "Language-Team: Czech <https://weblate.elementary.io/projects/music/extra/cs/>"
 "\n"
@@ -17,37 +17,53 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
+#: data/io.elementary.music.appdata.xml.in:8
+#: data/io.elementary.music.desktop.in:4
 msgid "Music"
 msgstr "Hudba"
 
-msgid "Music Player"
-msgstr "Hudební přehrávač"
-
-msgid "Listen to music"
-msgstr "Poslouchejte hudbu"
-
-msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-msgstr ""
-"Noise;Audio;Přehrávač;MP3;iPod;Přehrát;Seznam skladeb;Média;CD;Phone;Skladby;"
-
-msgid "About Music"
-msgstr "O programu Hudba"
-
-msgid "Noise"
-msgstr "Noise"
-
-msgid "About Noise"
-msgstr "O aplikaci Noise"
-
+#: data/io.elementary.music.appdata.xml.in:9
 msgid "The official elementary music player"
 msgstr "Oficiální přehrávač hudby pro elementary"
 
+#: data/io.elementary.music.appdata.xml.in:11
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices, CDs, and album art."
 msgstr ""
 "Hudba je rychlý a krásný audio přehrávač se zaměřením na hudbu a knihovny. "
 "Poradí si s externími zařízeními, CD disky a s obrázky alb."
+
+#: data/io.elementary.music.appdata.xml.in:100
+msgid "elementary LLC."
+msgstr "elementary LLC."
+
+#: data/io.elementary.music.desktop.in:5
+msgid "Music Player"
+msgstr "Hudební přehrávač"
+
+#: data/io.elementary.music.desktop.in:6
+msgid "Listen to music"
+msgstr "Poslouchejte hudbu"
+
+#: data/io.elementary.music.desktop.in:8
+msgid "multimedia-audio-player"
+msgstr "multimedia-audio-player"
+
+#: data/io.elementary.music.desktop.in:13
+msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+msgstr ""
+"Noise;Audio;Přehrávač;MP3;iPod;Přehrát;Seznam "
+"skladeb;Média;CD;Phone;Skladby;Music;"
+
+#~ msgid "About Music"
+#~ msgstr "O programu Hudba"
+
+#~ msgid "Noise"
+#~ msgstr "Noise"
+
+#~ msgid "About Noise"
+#~ msgstr "O aplikaci Noise"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-18 14:43+0100\n"
+"POT-Creation-Date: 2018-06-27 08:21-0700\n"
 "PO-Revision-Date: 2016-12-19 22:50+0000\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
@@ -18,35 +18,50 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 "X-Generator: Launchpad (build 18330)\n"
 
+#: data/io.elementary.music.appdata.xml.in:8
+#: data/io.elementary.music.desktop.in:4
 msgid "Music"
 msgstr "Glazba"
 
-msgid "Music Player"
-msgstr "Glazbeni reproduktor"
-
-msgid "Listen to music"
-msgstr "Slušajte glazbu"
-
-msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-msgstr ""
-"Noise;Zvuk;Reproduktor;mp3;iPod;Reproduciraj;Popis izvođenja;Medij;CD;"
-"Telefon;Pjesme;"
-
-msgid "About Music"
-msgstr "O Glazbi"
-
-msgid "Noise"
-msgstr "Noise"
-
-msgid "About Noise"
-msgstr "O Noiseu"
-
+#: data/io.elementary.music.appdata.xml.in:9
 msgid "The official elementary music player"
 msgstr "Službeni elementary OS glazbeni reproduktor"
 
+#: data/io.elementary.music.appdata.xml.in:11
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices, CDs, and album art."
 msgstr ""
 "Glazba je brz i ugodan glazbeni reproduktor s fokusom na glazbu i fonoteke. "
 "Rukuje vanjskim uređajima, CD-ima i omotima albuma."
+
+#: data/io.elementary.music.appdata.xml.in:100
+msgid "elementary LLC."
+msgstr ""
+
+#: data/io.elementary.music.desktop.in:5
+msgid "Music Player"
+msgstr "Glazbeni reproduktor"
+
+#: data/io.elementary.music.desktop.in:6
+msgid "Listen to music"
+msgstr "Slušajte glazbu"
+
+#: data/io.elementary.music.desktop.in:8
+msgid "multimedia-audio-player"
+msgstr ""
+
+#: data/io.elementary.music.desktop.in:13
+msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+msgstr ""
+"Noise;Zvuk;Reproduktor;mp3;iPod;Reproduciraj;Popis izvođenja;Medij;CD;"
+"Telefon;Pjesme;"
+
+#~ msgid "About Music"
+#~ msgstr "O Glazbi"
+
+#~ msgid "Noise"
+#~ msgstr "Noise"
+
+#~ msgid "About Noise"
+#~ msgstr "O Noiseu"

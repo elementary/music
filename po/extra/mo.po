@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-18 14:43+0100\n"
+"POT-Creation-Date: 2018-06-27 08:21-0700\n"
 "PO-Revision-Date: 2018-05-26 11:00+0000\n"
 "Last-Translator: Romanic Ion Nicușor <contact.romanic@gmail.com>\n"
-"Language-Team: Moldovan "
-"<https://weblate.elementary.io/projects/music/extra/mo/>\n"
+"Language-Team: Moldovan <https://weblate.elementary.io/projects/music/extra/"
+"mo/>\n"
 "Language: mo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -13,35 +13,50 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2.18\n"
 
+#: data/io.elementary.music.appdata.xml.in:8
+#: data/io.elementary.music.desktop.in:4
 msgid "Music"
 msgstr "Muzică"
 
-msgid "Music Player"
-msgstr "Reproductor de muzică"
-
-msgid "Listen to music"
-msgstr "Ascultă muzică"
-
-msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-msgstr ""
-"Zgomot, audio, player, MP3, iPod, Redare, listei de redare media, CD-uri, "
-"telefoane; cântece;"
-
-msgid "About Music"
-msgstr "Despre muzică"
-
-msgid "Noise"
-msgstr "Zgomot"
-
-msgid "About Noise"
-msgstr "Despre zgomot"
-
+#: data/io.elementary.music.appdata.xml.in:9
 msgid "The official elementary music player"
 msgstr "Elemente oficiale reproductor muzică"
 
+#: data/io.elementary.music.appdata.xml.in:11
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices, CDs, and album art."
 msgstr ""
 "Muzica este un player audio rapid și frumos, cu accent pe muzică și "
 "biblioteci. Ea gestionează dispozitive externe, CD-uri și arta albumelor."
+
+#: data/io.elementary.music.appdata.xml.in:100
+msgid "elementary LLC."
+msgstr ""
+
+#: data/io.elementary.music.desktop.in:5
+msgid "Music Player"
+msgstr "Reproductor de muzică"
+
+#: data/io.elementary.music.desktop.in:6
+msgid "Listen to music"
+msgstr "Ascultă muzică"
+
+#: data/io.elementary.music.desktop.in:8
+msgid "multimedia-audio-player"
+msgstr ""
+
+#: data/io.elementary.music.desktop.in:13
+msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+msgstr ""
+"Zgomot, audio, player, MP3, iPod, Redare, listei de redare media, CD-uri, "
+"telefoane; cântece;"
+
+#~ msgid "About Music"
+#~ msgstr "Despre muzică"
+
+#~ msgid "Noise"
+#~ msgstr "Zgomot"
+
+#~ msgid "About Noise"
+#~ msgstr "Despre zgomot"

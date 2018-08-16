@@ -7,44 +7,61 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2016-12-30 03:27+0000\n"
+"POT-Creation-Date: 2018-06-27 08:21-0700\n"
+"PO-Revision-Date: 2018-08-12 13:24+0000\n"
 "Last-Translator: colindemian <colindemian@outlook.com>\n"
-"Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
-"Language: \n"
+"Language-Team: Chinese (Simplified) <https://weblate.elementary.io/projects/"
+"music/extra/zh_Hans/>\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
-"X-Generator: Launchpad (build 18330)\n"
 
+#: data/io.elementary.music.appdata.xml.in:8
+#: data/io.elementary.music.desktop.in:4
 msgid "Music"
 msgstr "音乐"
 
-msgid "Music Player"
-msgstr "音乐播放器"
-
-msgid "Listen to music"
-msgstr "聆听音乐"
-
-msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-msgstr "Noise;音频;播放器;MP3;iPod;播放;播放列表;媒体;CD;电话;歌曲;"
-
-msgid "About Music"
-msgstr "关于音乐"
-
-msgid "Noise"
-msgstr "音乐"
-
-msgid "About Noise"
-msgstr "关于音乐"
-
+#: data/io.elementary.music.appdata.xml.in:9
 msgid "The official elementary music player"
 msgstr "elementary OS 专属音乐播放器"
 
+#: data/io.elementary.music.appdata.xml.in:11
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices, CDs, and album art."
 msgstr ""
 "“音乐”是一款快速美观、简洁有序的音乐播放器，集播放外设、播放CD、唱片封面功能"
 "于一身。"
+
+#: data/io.elementary.music.appdata.xml.in:100
+msgid "elementary LLC."
+msgstr "elementary LLC."
+
+#: data/io.elementary.music.desktop.in:5
+msgid "Music Player"
+msgstr "音乐播放器"
+
+#: data/io.elementary.music.desktop.in:6
+msgid "Listen to music"
+msgstr "聆听音乐"
+
+#: data/io.elementary.music.desktop.in:8
+msgid "multimedia-audio-player"
+msgstr "多媒体-音频-播放器"
+
+#: data/io.elementary.music.desktop.in:13
+msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+msgstr "Noise;音频;播放器;MP3;iPod;播放;播放列表;媒体;CD;电话;歌曲;"
+
+#~ msgid "About Music"
+#~ msgstr "关于音乐"
+
+#~ msgid "Noise"
+#~ msgstr "音乐"
+
+#~ msgid "About Noise"
+#~ msgstr "关于音乐"

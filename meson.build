@@ -28,7 +28,7 @@ app_files = files(
   'src/Dialogs/FileNotFoundDialog.vala',
   'src/Dialogs/InstallGstreamerPluginsDialog.vala',
   'src/Dialogs/MediaEditor.vala',
-  'src/Dialogs/NotImportedWindow.vala',
+  'src/Dialogs/NotImportedDialog.vala',
   'src/Dialogs/PreferencesWindow.vala',
   'src/Dialogs/RemoveFilesDialog.vala',
   'src/Dialogs/SetMusicFolderConfirmation.vala',
@@ -111,3 +111,7 @@ if get_option('build-plugins')
 endif
 
 subdir('po')
+
+if get_option('documentation')
+    subdir('docs')
+endif
