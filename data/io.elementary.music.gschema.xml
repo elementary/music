@@ -107,8 +107,8 @@
       <summary>Window y position</summary>
       <description>Window y position</description>
     </key>
-    <key enum="io.elementary.music.windowstate" name="window-state">
-      <default>'normal'</default>
+    <key type="b" name="window-maximized">
+      <default>false</default>
       <summary>The saved state of the window.</summary>
       <description>The saved state of the window.</description>
     </key>
