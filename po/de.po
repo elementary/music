@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-08-18 14:53+0000\n"
-"Last-Translator: Jörg Arnold <j.ar@mailbox.org>\n"
+"PO-Revision-Date: 2018-08-18 14:57+0000\n"
+"Last-Translator: Anonymous <ahadnawaz43@gmail.com>\n"
 "Language-Team: German <https://weblate.elementary.io/projects/music/music/de/"
 ">\n"
 "Language: de\n"
@@ -524,7 +524,7 @@ msgstr "Schließen"
 #: src/Dialogs/NotImportedDialog.vala:51
 #, c-format
 msgid "Issues while importing from %s"
-msgstr "Probleme beim Import aus %s"
+msgstr "Probleme beim importieren vom %s "
 
 #: src/Dialogs/NotImportedDialog.vala:57
 #, c-format
