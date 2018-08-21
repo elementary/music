@@ -459,7 +459,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             move (window_x, window_y);
         }
 
-        if (App.saved_state.get_enum ("window-state") == 1) {
+        if (App.saved_state.get_boolean ("window-maximized")) {
             maximize ();
         }
 
@@ -1171,12 +1171,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         App.player.player.pause ();
 
         App.saved_state.set_int ("view-mode", view_selector.selected);
-
-        if (is_maximized) {
-            App.saved_state.set_enum ("window-state", 1);
-        } else {
-            App.saved_state.set_enum ("window-state", 0);
-        }
+        App.saved_state.set_boolean ("window-maximized", is_maximized);
     }
 
     /**
