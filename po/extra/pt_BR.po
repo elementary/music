@@ -9,7 +9,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-27 08:21-0700\n"
 "PO-Revision-Date: 2018-08-28 21:56+0000\n"
-"Last-Translator: Rodrigo <rod.registro@gmail.com>\n"
+"Last-Translator: Israel Felipe de Lima Araújo S <israelita.felipe@gmail.com>"
+"\n"
 "Language-Team: Portuguese (Brazil) <https://weblate.elementary.io/projects/"
 "music/extra/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -39,7 +40,7 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:100
 msgid "elementary LLC."
-msgstr ""
+msgstr "elementary LLC."
 
 #: data/io.elementary.music.desktop.in:5
 msgid "Music Player"
