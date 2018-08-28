@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-08-28 22:26+0000\n"
+"PO-Revision-Date: 2018-08-29 00:03+0000\n"
 "Last-Translator: Rodrigo Oliveira <rod.oliveira@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://weblate.elementary.io/projects/"
 "music/music/pt_BR/>\n"
@@ -1395,7 +1395,7 @@ msgstr "Remover da fila"
 
 #: src/Widgets/MediaMenu.vala:152
 msgid "New Playlist…"
-msgstr "Nova lista de reprodução..."
+msgstr "Nova lista de reprodução…"
 
 #: src/Widgets/MediaMenu.vala:192
 #, c-format
@@ -1419,7 +1419,7 @@ msgstr "Renomear"
 
 #: src/Widgets/SourceListView.vala:79
 msgid "Edit…"
-msgstr "Editar..."
+msgstr "Editar…"
 
 #: src/Widgets/SourceListView.vala:95
 msgid "Save as Playlist"
@@ -1427,7 +1427,7 @@ msgstr "Salvar como lista de reprodução"
 
 #: src/Widgets/SourceListView.vala:103
 msgid "Export…"
-msgstr "Exportar..."
+msgstr "Exportar…"
 
 #: src/Widgets/SourceListView.vala:166
 msgid "Eject"
