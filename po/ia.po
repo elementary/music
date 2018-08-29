@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2016-02-14 10:45+0000\n"
-"Last-Translator: karm <melo@carmu.com>\n"
-"Language-Team: Interlingua <ia@li.org>\n"
+"PO-Revision-Date: 2018-08-29 19:33+0000\n"
+"Last-Translator: Carmina16 <mistresssilvara@hotmail.com>\n"
+"Language-Team: Interlingua <https://weblate.elementary.io/projects/music/"
+"music/ia/>\n"
 "Language: ia\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:53+0000\n"
-"X-Generator: Launchpad (build 18330)\n"
 
 #: core/LibrariesManager.vala:147
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -707,7 +708,7 @@ msgstr "Ultime reproduction"
 #: src/Dialogs/SmartPlaylistEditor.vala:272
 #: src/Dialogs/SmartPlaylistEditor.vala:417
 msgid "Length"
-msgstr "Longitude:"
+msgstr "Longitude"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:273
 msgid "Playcount"
@@ -867,7 +868,7 @@ msgstr "Listas de reproduction"
 
 #: src/Views/DeviceSummaryWidget.vala:60
 msgid "Device Name:"
-msgstr "Nomine del dispositivo"
+msgstr "Nomine del dispositivo:"
 
 #: src/Views/DeviceSummaryWidget.vala:64
 msgid "Device Name"
@@ -915,7 +916,7 @@ msgstr ""
 
 #: src/Views/DeviceView.vala:66
 msgid "Cancelling…"
-msgstr "Cancellation..."
+msgstr "Cancellation…"
 
 #: src/Views/DeviceView.vala:66
 msgid "Device operation has been cancelled and will stop after this media."
