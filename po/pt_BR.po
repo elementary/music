@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-08-29 00:03+0000\n"
+"PO-Revision-Date: 2018-08-29 19:33+0000\n"
 "Last-Translator: Rodrigo Oliveira <rod.oliveira@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://weblate.elementary.io/projects/"
 "music/music/pt_BR/>\n"
@@ -940,7 +940,7 @@ msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
 "Impossível sincronizar o dispositivo com as configurações escolhidas. Não há "
-"espaço em disco suficiente."
+"espaço em disco suficiente"
 
 #: src/Views/DeviceSummaryWidget.vala:322
 msgid "Device is already doing an operation."
@@ -948,7 +948,7 @@ msgstr "O dispositivo já está realizando uma operação."
 
 #: src/Views/DeviceView.vala:66
 msgid "Cancelling…"
-msgstr "Cancelando..."
+msgstr "Cancelando…"
 
 #: src/Views/DeviceView.vala:66
 msgid "Device operation has been cancelled and will stop after this media."
