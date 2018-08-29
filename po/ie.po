@@ -2,40 +2,48 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
+"PO-Revision-Date: 2018-08-29 19:33+0000\n"
+"Last-Translator: Carmina16 <mistresssilvara@hotmail.com>\n"
+"Language-Team: Occidental <https://weblate.elementary.io/projects/music/"
+"music/ie/>\n"
+"Language: ie\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.0.1\n"
 
 #: core/LibrariesManager.vala:147
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr ""
+msgstr "Importation de <b>$NAME</b> de <b>$ARTIST</b> in li biblioteca…"
 
 #. / Used for unknown titles, artists, or album names.
 #: core/Media.vala:32
 msgid "Unknown"
-msgstr ""
+msgstr "Ínconosset"
 
 #. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: core/Media.vala:179
 msgid "$NAME on $ALBUM"
-msgstr ""
+msgstr "$NAME in $ALBUM"
 
 #. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: core/Media.vala:182
 msgid "$NAME by $ARTIST"
-msgstr ""
+msgstr "$NAME de $ARTIST"
 
 #. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
 #: core/Media.vala:188
 msgid "$NAME by $ARTIST on $ALBUM"
-msgstr ""
+msgstr "$NAME de $ARTIST ex $ALBUM"
 
 #: core/GStreamer/Equalizer.vala:71
 msgid "Flat"
-msgstr ""
+msgstr "Plat"
 
 #: core/GStreamer/Equalizer.vala:72
 msgid "Classical"
-msgstr ""
+msgstr "Classic"
 
 #: core/GStreamer/Equalizer.vala:73
 msgid "Club"
@@ -43,11 +51,11 @@ msgstr ""
 
 #: core/GStreamer/Equalizer.vala:74
 msgid "Dance"
-msgstr ""
+msgstr "Dansa"
 
 #: core/GStreamer/Equalizer.vala:75
 msgid "Full Bass"
-msgstr ""
+msgstr "Ampli basses"
 
 #: core/GStreamer/Equalizer.vala:76
 msgid "Full Treble"
@@ -71,7 +79,7 @@ msgstr ""
 
 #: core/GStreamer/Equalizer.vala:81
 msgid "Party"
-msgstr ""
+msgstr "Festa"
 
 #: core/GStreamer/Equalizer.vala:82
 msgid "Pop"
@@ -104,7 +112,7 @@ msgstr ""
 #: core/Utils/FileUtils.vala:182
 #, c-format
 msgid " (%d)"
-msgstr ""
+msgstr " (%d)"
 
 #: core/Utils/PlaylistsUtils.vala:95
 #, c-format
@@ -113,17 +121,17 @@ msgstr ""
 
 #: core/Utils/PlaylistsUtils.vala:235
 msgid "New playlist"
-msgstr ""
+msgstr "Nov playlist"
 
 #. Translators: used for new playlists ex: "New playlist (1)"
 #: core/Utils/PlaylistsUtils.vala:246
 #, c-format
 msgid "%s (%i)"
-msgstr ""
+msgstr "%s (%i)"
 
 #: core/Utils/PlaylistsUtils.vala:273
 msgid "Export Playlist"
-msgstr ""
+msgstr "Exportar playlist"
 
 #: core/Utils/PlaylistsUtils.vala:275 core/Utils/PlaylistsUtils.vala:369
 #: src/LibraryWindow.vala:980 src/Dialogs/FileNotFoundDialog.vala:84
@@ -136,29 +144,29 @@ msgstr ""
 #: src/Dialogs/SyncWarningDialog.vala:60
 #: src/Views/Wrappers/MusicViewWrapper.vala:145 src/Widgets/TopDisplay.vala:64
 msgid "Cancel"
-msgstr ""
+msgstr "Anullar"
 
 #: core/Utils/PlaylistsUtils.vala:276 src/Dialogs/MediaEditor.vala:142
 #: src/Dialogs/SmartPlaylistEditor.vala:89
 msgid "Save"
-msgstr ""
+msgstr "Gardar"
 
 #: core/Utils/PlaylistsUtils.vala:281 core/Utils/PlaylistsUtils.vala:376
 msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr ""
+msgstr "MPEG Version 3.0 extendet (*.m3u)"
 
 #: core/Utils/PlaylistsUtils.vala:286 core/Utils/PlaylistsUtils.vala:381
 msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr ""
+msgstr "Playlist Shoutcast Version 2.0 (*.pls)"
 
 #: core/Utils/PlaylistsUtils.vala:361
 msgid "Playlist"
-msgstr ""
+msgstr "Playlist"
 
 #: core/Utils/PlaylistsUtils.vala:367
 #, c-format
 msgid "Import %s"
-msgstr ""
+msgstr "Importar %s"
 
 #: core/Utils/PlaylistsUtils.vala:370 src/LibraryWindow.vala:981
 #: src/Dialogs/FileNotFoundDialog.vala:124
@@ -166,61 +174,61 @@ msgstr ""
 #: src/Views/Wrappers/MusicViewWrapper.vala:147
 #: src/Widgets/AlbumListGrid.vala:244
 msgid "Open"
-msgstr ""
+msgstr "Aperter"
 
 #: core/Utils/PlaylistsUtils.vala:401
 msgid "Unrecognized playlist file. Import failed."
-msgstr ""
+msgstr "Ínreconosset file de playlist. Importation ne successat."
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
 #: core/Utils/TimeUtils.vala:40
 msgid "%m/%e/%Y %l:%M %p"
-msgstr ""
+msgstr "%e.%m.%Y %H:%M"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:105
 #: plugins/Devices/iPod/iPodDevice.vala:65
 msgid "Empty device!"
-msgstr ""
+msgstr "Aparate es vacui!"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:109
 #: plugins/Devices/iPod/iPodDevice.vala:69
 msgid "This device does not contain any music."
-msgstr ""
+msgstr "Ti-ci aparate ne contene musica."
 
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:153
 msgid "Android Phone"
-msgstr ""
+msgstr "Telefon Android"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:155
 msgid "Audio Player"
-msgstr ""
+msgstr "Reproductor de audio"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:137
 #: plugins/Devices/iPod/iPodLibrary.vala:148
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr ""
+msgstr "Adjuntente <b>$NAME</b> de <b>$ARTIST</b> a $DEVICE"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:161
 #: plugins/Devices/iPod/iPodLibrary.vala:196
 #, c-format
 msgid "Syncing <b>%s</b>…"
-msgstr ""
+msgstr "Sincronisation de <b>%s</b>…"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:266
 #: plugins/Devices/iPod/iPodLibrary.vala:530
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr ""
+msgstr "Removente <b>$NAME</b> de <b>$ARTIST</b> ex $DEVICE"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:297
 #: plugins/Devices/iPod/iPodLibrary.vala:337
 #, c-format
 msgid "Removing from <b>%s</b>…"
-msgstr ""
+msgstr "Removente ex <b>%s</b>…"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:91
 msgid "Audio CD Invalid"
-msgstr ""
+msgstr "Audio-CD es ínvalid"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:95
 msgid "Impossible to read the contents of this Audio CD"
@@ -229,7 +237,7 @@ msgstr ""
 #. do checks to make sure we can go on
 #: plugins/Devices/CDRom/CDRomDevice.vala:247
 msgid "Could not find Music Folder"
-msgstr ""
+msgstr "Ne successat trovar li fólder de musica"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:247
 msgid ""
@@ -254,7 +262,7 @@ msgstr ""
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
 msgid "Importing track %u: %s"
-msgstr ""
+msgstr "Importante track %u: %s"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:364
 msgid "CD import will be <b>cancelled</b> after current import."
@@ -350,7 +358,7 @@ msgstr ""
 #: src/LibraryWindow.vala:596 src/LibraryWindow.vala:702
 #: src/LibraryWindow.vala:1144
 msgid "Music"
-msgstr ""
+msgstr "Musica"
 
 #: src/LibraryWindow.vala:273
 msgid "Pause"
@@ -427,30 +435,32 @@ msgstr ""
 #, c-format
 msgid "This song cannot be played. The %s plugin is required to play the song."
 msgstr ""
+"Ti-ci canzone ne posset esser reproductet. Li plugin «%s» es besonat por "
+"reproducter it."
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid "Install Plugin"
-msgstr ""
+msgstr "Installar plugin"
 
 #: src/Dialogs/MediaEditor.vala:102
 msgid "Title:"
-msgstr ""
+msgstr "Titul:"
 
 #: src/Dialogs/MediaEditor.vala:104
 msgid "Artist:"
-msgstr ""
+msgstr "Artist:"
 
 #: src/Dialogs/MediaEditor.vala:106
 msgid "Album:"
-msgstr ""
+msgstr "Album:"
 
 #: src/Dialogs/MediaEditor.vala:108
 msgid "Album Artist:"
-msgstr ""
+msgstr "Artist del album:"
 
 #: src/Dialogs/MediaEditor.vala:110
 msgid "Composer:"
-msgstr ""
+msgstr "Compositor:"
 
 #: src/Dialogs/MediaEditor.vala:112
 msgid "Grouping:"
@@ -458,33 +468,33 @@ msgstr ""
 
 #: src/Dialogs/MediaEditor.vala:114
 msgid "Genre:"
-msgstr ""
+msgstr "Genre:"
 
 #: src/Dialogs/MediaEditor.vala:116
 msgid "Year:"
-msgstr ""
+msgstr "Annu:"
 
 #: src/Dialogs/MediaEditor.vala:118
 msgid "Track:"
-msgstr ""
+msgstr "Track:"
 
 #: src/Dialogs/MediaEditor.vala:120
 msgid "Disk:"
-msgstr ""
+msgstr "Disco:"
 
 #: src/Dialogs/MediaEditor.vala:122
 msgid "Rating:"
-msgstr ""
+msgstr "Evaluation:"
 
 #: src/Dialogs/MediaEditor.vala:124
 msgid "Comment:"
-msgstr ""
+msgstr "Comenta:"
 
 #. FIXME: don't know if I can delete this
 #: src/Dialogs/MediaEditor.vala:140 src/Dialogs/PreferencesWindow.vala:96
 #: src/Views/DeviceView.vala:45
 msgid "Close"
-msgstr ""
+msgstr "Cluder"
 
 #: src/Dialogs/NotImportedDialog.vala:51
 #, c-format
@@ -504,11 +514,11 @@ msgstr ""
 
 #: src/Dialogs/NotImportedDialog.vala:72
 msgid "del"
-msgstr ""
+msgstr "Del"
 
 #: src/Dialogs/NotImportedDialog.vala:81
 msgid "File Location"
-msgstr ""
+msgstr "Localisation"
 
 #: src/Dialogs/NotImportedDialog.vala:97
 msgid "Select individual files to move to trash:"
@@ -516,11 +526,11 @@ msgstr ""
 
 #: src/Dialogs/NotImportedDialog.vala:101 src/Dialogs/RemoveFilesDialog.vala:73
 msgid "Move to Trash"
-msgstr ""
+msgstr "Mover al Paper-corb"
 
 #: src/Dialogs/NotImportedDialog.vala:104
 msgid "Ignore"
-msgstr ""
+msgstr "Ignorar"
 
 #: src/Dialogs/PreferencesWindow.vala:48
 msgid "Select Music Folder…"
@@ -540,11 +550,11 @@ msgstr ""
 
 #: src/Dialogs/PreferencesWindow.vala:82
 msgid "Write metadata to file:"
-msgstr ""
+msgstr "Gardar metadata in files:"
 
 #: src/Dialogs/PreferencesWindow.vala:84
 msgid "Copy imported files to Library:"
-msgstr ""
+msgstr "Copiar importat files al biblioteca:"
 
 #: src/Dialogs/PreferencesWindow.vala:86
 msgid "Desktop Integration"
@@ -558,13 +568,13 @@ msgstr ""
 #, c-format
 msgid "Remove %d Song From Library?"
 msgid_plural "Remove %d Songs From Library?"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Remover %d canzone ex li biblioteca?"
+msgstr[1] "Remover %d canzones ex li biblioteca?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:55
 #, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr ""
+msgstr "Remover «%s» ex li biblioteca?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
 msgid ""
@@ -578,11 +588,11 @@ msgstr[1] ""
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
-msgstr ""
+msgstr "Remover ex li biblioteca"
 
 #: src/Dialogs/SetMusicFolderConfirmation.vala:65
 msgid "Export Playlists"
-msgstr ""
+msgstr "Exportar playlistes"
 
 #: src/Dialogs/SetMusicFolderConfirmation.vala:66
 msgid "Set Music Folder"
@@ -602,15 +612,15 @@ msgstr ""
 
 #: src/Dialogs/SmartPlaylistEditor.vala:55
 msgid "Playlist Title"
-msgstr ""
+msgstr "Titul del playlist"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:58
 msgid "any"
-msgstr ""
+msgstr "quelcunc"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:59
 msgid "all"
-msgstr ""
+msgstr "omni"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:63
 msgid "Match"
@@ -618,31 +628,31 @@ msgstr ""
 
 #: src/Dialogs/SmartPlaylistEditor.vala:65
 msgid "of the following:"
-msgstr ""
+msgstr "del sequente:"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:74
 msgid "Add"
-msgstr ""
+msgstr "Adjunter"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:79
 msgid "Limit to"
-msgstr ""
+msgstr "Limitar a"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:87
 msgid "items"
-msgstr ""
+msgstr "elementes"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:107
 msgid "Name of Playlist"
-msgstr ""
+msgstr "Nómine del playlist"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:109
 msgid "Rules"
-msgstr ""
+msgstr "Regules"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:112
 msgid "Options"
-msgstr ""
+msgstr "Optiones"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:119
 msgid "Smart Playlist Editor"
@@ -651,15 +661,15 @@ msgstr ""
 #: src/Dialogs/SmartPlaylistEditor.vala:260 src/Widgets/SourceListView.vala:67
 #: src/Widgets/SourceListView.vala:80
 msgid "Remove"
-msgstr ""
+msgstr "Remover"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:263
 msgid "Album"
-msgstr ""
+msgstr "Album"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:264
 msgid "Artist"
-msgstr ""
+msgstr "Artist"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:265
 msgid "Bitrate"
@@ -667,19 +677,19 @@ msgstr ""
 
 #: src/Dialogs/SmartPlaylistEditor.vala:266
 msgid "Comment"
-msgstr ""
+msgstr "Comenta"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:267
 msgid "Composer"
-msgstr ""
+msgstr "Compositor"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:268
 msgid "Date Added"
-msgstr ""
+msgstr "Adjuntet"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:269
 msgid "Genre"
-msgstr ""
+msgstr "Genre"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:270
 msgid "Grouping"
@@ -687,21 +697,21 @@ msgstr ""
 
 #: src/Dialogs/SmartPlaylistEditor.vala:271
 msgid "Last Played"
-msgstr ""
+msgstr "Reproductet"
 
 #. helper for units
 #: src/Dialogs/SmartPlaylistEditor.vala:272
 #: src/Dialogs/SmartPlaylistEditor.vala:417
 msgid "Length"
-msgstr ""
+msgstr "Duration"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:273
 msgid "Playcount"
-msgstr ""
+msgstr "Reproductet, vezes"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:274
 msgid "Rating"
-msgstr ""
+msgstr "Evaluation"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:275
 msgid "Skipcount"
@@ -709,11 +719,11 @@ msgstr ""
 
 #: src/Dialogs/SmartPlaylistEditor.vala:276
 msgid "Title"
-msgstr ""
+msgstr "Titul"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:277
 msgid "Year"
-msgstr ""
+msgstr "Annu"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:278
 msgid "URI"
@@ -721,44 +731,44 @@ msgstr ""
 
 #: src/Dialogs/SmartPlaylistEditor.vala:351
 msgid "is"
-msgstr ""
+msgstr "es"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:352
 msgid "contains"
-msgstr ""
+msgstr "contene"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:353
 msgid "does not contain"
-msgstr ""
+msgstr "ne contene"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:379
 #: src/Dialogs/SmartPlaylistEditor.vala:394
 msgid "is exactly"
-msgstr ""
+msgstr "es exactmen"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:380
 msgid "is at most"
-msgstr ""
+msgstr "es admaxim"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:381
 msgid "is at least"
-msgstr ""
+msgstr "es adminim"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:395
 msgid "is within"
-msgstr ""
+msgstr "es inter"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:396
 msgid "is before"
-msgstr ""
+msgstr "es ante"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:418
 msgid "seconds"
-msgstr ""
+msgstr "secondes"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:421
 msgid "days ago"
-msgstr ""
+msgstr "dies, ante"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:424
 msgid "kbps"
@@ -769,8 +779,8 @@ msgstr ""
 #, c-format
 msgid "Sync will remove %i item from %s"
 msgid_plural "Sync will remove %i items from %s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Li sincronisation va remover %i element ex %s"
+msgstr[1] "Li sincronisation va remover %i elementes ex %s"
 
 #: src/Dialogs/SyncWarningDialog.vala:55
 #, c-format
@@ -781,20 +791,20 @@ msgstr ""
 
 #: src/Dialogs/SyncWarningDialog.vala:57
 msgid "Continue Syncing"
-msgstr ""
+msgstr "Continuar li sincronisation"
 
 #: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
 msgid "Importing music from %s…"
-msgstr ""
+msgstr "Importante musica ex %s…"
 
 #: src/LocalBackend/LocalLibrary.vala:212
 msgid "Adding files to library…"
-msgstr ""
+msgstr "Adjuntente files al biblioteca…"
 
 #: src/LocalBackend/LocalLibrary.vala:225
 msgid "<b>Importing</b> music to library…"
-msgstr ""
+msgstr "<b>Importante</b> musica in li biblioteca…"
 
 #: src/LocalBackend/LocalLibrary.vala:247
 msgid "All music files are already in your library"
@@ -802,7 +812,7 @@ msgstr ""
 
 #: src/LocalBackend/LocalLibrary.vala:247
 msgid "No files were imported."
-msgstr ""
+msgstr "Null files esset importat."
 
 #: src/LocalBackend/LocalLibrary.vala:252
 msgid "Rescanning music for changes. This may take a while…"
@@ -816,8 +826,8 @@ msgstr ""
 #, c-format
 msgid "%d Track"
 msgid_plural "%d Tracks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d track"
+msgstr[1] "%d tracks"
 
 #: src/LocalBackend/LocalSmartPlaylist.vala:217
 msgid "Favorite Songs"
@@ -825,7 +835,7 @@ msgstr ""
 
 #: src/LocalBackend/LocalSmartPlaylist.vala:225
 msgid "Recently Added"
-msgstr ""
+msgstr "Recentmen adjuntet"
 
 #: src/LocalBackend/LocalSmartPlaylist.vala:233
 msgid "Recent Favorites"
@@ -845,50 +855,51 @@ msgstr ""
 
 #: src/Objects/HistoryPlaylist.vala:38
 msgid "History"
-msgstr ""
+msgstr "Diarium"
 
 #: src/Objects/MPRIS.vala:617 src/Widgets/SourceListView.vala:341
 msgid "Playlists"
-msgstr ""
+msgstr "Playlistes"
 
 #: src/Views/DeviceSummaryWidget.vala:60
 msgid "Device Name:"
-msgstr ""
+msgstr "Nómine del aparate:"
 
 #: src/Views/DeviceSummaryWidget.vala:64
 msgid "Device Name"
-msgstr ""
+msgstr "Nómine del aparate"
 
 #: src/Views/DeviceSummaryWidget.vala:66
 msgid "Automatically sync when plugged in:"
-msgstr ""
+msgstr "Sincronisar automaticmen pos li conexion:"
 
 #: src/Views/DeviceSummaryWidget.vala:72
 msgid "Sync:"
-msgstr ""
+msgstr "Sincronisar:"
 
 #: src/Views/DeviceSummaryWidget.vala:100 src/Widgets/SourceListView.vala:192
 msgid "Sync"
-msgstr ""
+msgstr "Sincronisar"
 
 #: src/Views/DeviceSummaryWidget.vala:244
 msgid "All Music"
-msgstr ""
+msgstr "Li tot musica"
 
 #: src/Views/DeviceSummaryWidget.vala:298
 msgid "Sync Failed"
-msgstr ""
+msgstr "Sincronisation ne successat"
 
 #: src/Views/DeviceSummaryWidget.vala:299
 #, c-format
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
+"Li playlist «%s» es usat por sincronisar li aparate %s, ma it ne es trovat."
 
 #: src/Views/DeviceSummaryWidget.vala:316
 #: src/Views/DeviceSummaryWidget.vala:321
 msgid "Cannot Sync"
-msgstr ""
+msgstr "Sincronisation es ínpossibil"
 
 #: src/Views/DeviceSummaryWidget.vala:317
 msgid ""
@@ -901,7 +912,7 @@ msgstr ""
 
 #: src/Views/DeviceView.vala:66
 msgid "Cancelling…"
-msgstr ""
+msgstr "Anullante…"
 
 #: src/Views/DeviceView.vala:66
 msgid "Device operation has been cancelled and will stop after this media."
@@ -909,7 +920,7 @@ msgstr ""
 
 #: src/Views/ViewStack.vala:45
 msgid "No Results"
-msgstr ""
+msgstr "Null resultas"
 
 #: src/Views/ViewStack.vala:45
 msgid "Try another search"
@@ -917,27 +928,27 @@ msgstr ""
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
 msgid "Genres"
-msgstr ""
+msgstr "Genres"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:60
 msgid "Artists"
-msgstr ""
+msgstr "Artistes"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:62
 msgid "Albums"
-msgstr ""
+msgstr "Albums"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:64
 msgid "Years"
-msgstr ""
+msgstr "Annus"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:66
 msgid "Ratings"
-msgstr ""
+msgstr "Evaluationes"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:68
 msgid "Composers"
-msgstr ""
+msgstr "Compositores"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:70
 msgid "Groupings"
@@ -945,29 +956,29 @@ msgstr ""
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
 msgid "All Genres"
-msgstr ""
+msgstr "Li tot genres"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
 #, c-format
 msgid "All %i Genres"
-msgstr ""
+msgstr "Omni %i genres"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
 msgid "No Genres"
-msgstr ""
+msgstr "Null genres"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
 msgid "All Artists"
-msgstr ""
+msgstr "Li tot artistes"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
 #, c-format
 msgid "All %i Artists"
-msgstr ""
+msgstr "Omni %i artistes"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
 msgid "No Artists"
-msgstr ""
+msgstr "Null artistes"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
 msgid "All Albums"
@@ -1127,12 +1138,12 @@ msgstr ""
 #: src/Views/ListView/Lists/ListColumn.vala:105
 msgctxt "List column title"
 msgid "Rating"
-msgstr ""
+msgstr "Evaluation"
 
 #: src/Views/ListView/Lists/ListColumn.vala:108
 msgctxt "List column title"
 msgid "Plays"
-msgstr ""
+msgstr "Reproductiones"
 
 #: src/Views/ListView/Lists/ListColumn.vala:111
 msgctxt "List column title"
@@ -1142,12 +1153,12 @@ msgstr ""
 #: src/Views/ListView/Lists/ListColumn.vala:114
 msgctxt "List column title"
 msgid "Date Added"
-msgstr ""
+msgstr "Adjuntet"
 
 #: src/Views/ListView/Lists/ListColumn.vala:117
 msgctxt "List column title"
 msgid "Last Played"
-msgstr ""
+msgstr "Reproductet"
 
 #: src/Views/ListView/Lists/ListColumn.vala:120
 msgctxt "List column title (beats per minute)"
@@ -1157,16 +1168,16 @@ msgstr ""
 #: src/Views/ListView/Lists/ListColumn.vala:123
 msgctxt "List column title (file location)"
 msgid "Location"
-msgstr ""
+msgstr "Localisation"
 
 #: src/Views/ListView/Lists/ListColumn.vala:126
 msgctxt "List column title"
 msgid "File Size"
-msgstr ""
+msgstr "Grandore del file"
 
 #: src/Views/ListView/Lists/MusicListView.vala:74
 msgid "Autosize Columns"
-msgstr ""
+msgstr "Autoadjustar columnes"
 
 #: src/Views/ListView/Lists/MusicListView.vala:410
 msgid "1234 kbps"
@@ -1181,7 +1192,7 @@ msgstr ""
 #. / by the column's title header.
 #: src/Views/ListView/Lists/MusicListView.vala:481
 msgid "Sample List String"
-msgstr ""
+msgstr "Alcun canzone exemplari"
 
 #. Welcome screen
 #: src/Views/Wrappers/MusicViewWrapper.vala:57
@@ -1190,7 +1201,7 @@ msgstr ""
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Add music to your library."
-msgstr ""
+msgstr "Adjunter musica a vor biblioteca."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:61
 msgid "Import music from a source into your library."
@@ -1198,7 +1209,7 @@ msgstr ""
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:63
 msgid "Change Music Folder"
-msgstr ""
+msgstr "Changear li fólder de musica"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:64
 msgid "Load music from a folder, a network or an external disk."
@@ -1207,23 +1218,23 @@ msgstr ""
 #: src/Views/Wrappers/MusicViewWrapper.vala:111
 #: src/Views/Wrappers/MusicViewWrapper.vala:131
 msgid "Import your Music"
-msgstr ""
+msgstr "Importar vor musica"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:112
 #: src/Views/Wrappers/MusicViewWrapper.vala:132
 #, c-format
 msgid "Import all your Music from %s into your library."
-msgstr ""
+msgstr "Importar li tot musica ex «%s» al vor biblioteca."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:143
 msgid "Select Music Folder"
-msgstr ""
+msgstr "Selecter li fólder de musica"
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:50
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:54
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:64
 msgid "No Songs"
-msgstr ""
+msgstr "Null canzones"
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:51
 msgid "Updating playlist. Please wait."
@@ -1249,7 +1260,7 @@ msgstr ""
 
 #: src/Views/Wrappers/ViewWrapper.vala:419
 msgid "No media"
-msgstr ""
+msgstr "Null medie"
 
 #: src/Widgets/AlbumListGrid.vala:64
 msgid "Set new album cover"
