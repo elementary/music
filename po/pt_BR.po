@@ -9,7 +9,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
 "PO-Revision-Date: 2018-08-29 19:35+0000\n"
-"Last-Translator: Rodrigo Oliveira <rod.oliveira@gmail.com>\n"
+"Last-Translator: Israel Felipe de Lima Araújo S <israelita.felipe@gmail.com>"
+"\n"
 "Language-Team: Portuguese (Brazil) <https://weblate.elementary.io/projects/"
 "music/music/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -608,10 +609,10 @@ msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
 msgstr[0] ""
-"Isso removerá a música da sua biblioteca e de qualquer dispositivo "
+"Isso irá remover a música de sua biblioteca e de qualquer dispositivo "
 "sincronizado automaticamente."
 msgstr[1] ""
-"Isso removerá as músicas da sua biblioteca e de qualquer dispositivo "
+"Isso irá remover as músicas de sua biblioteca e de qualquer dispositivo "
 "sincronizado automaticamente."
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
@@ -809,8 +810,8 @@ msgstr "kbps"
 #, c-format
 msgid "Sync will remove %i item from %s"
 msgid_plural "Sync will remove %i items from %s"
-msgstr[0] "O sincronização irá remover %i item de %s"
-msgstr[1] "O sincronização irá remover %i items de %s"
+msgstr[0] "A sincronização irá remover %i item de %s"
+msgstr[1] "A sincronização irá remover %i items de %s"
 
 #: src/Dialogs/SyncWarningDialog.vala:55
 #, c-format
@@ -960,7 +961,7 @@ msgstr "Nenhum resultado"
 
 #: src/Views/ViewStack.vala:45
 msgid "Try another search"
-msgstr "Tente outra pesquisa"
+msgstr "Tente outra busca"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
 msgid "Genres"
@@ -1354,7 +1355,7 @@ msgstr "Rolar para a música atual"
 
 #: src/Widgets/MediaMenu.vala:49
 msgid "Show in File Browser…"
-msgstr "Exibir no gerenciador de arquivos…"
+msgstr "Mostrar no navegador de arquivos..."
 
 #: src/Widgets/MediaMenu.vala:50
 msgid "Edit Song Info…"
