@@ -8,9 +8,8 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-08-29 19:37+0000\n"
-"Last-Translator: Israel Felipe de Lima Araújo S <israelita.felipe@gmail.com>"
-"\n"
+"PO-Revision-Date: 2018-08-30 00:07+0000\n"
+"Last-Translator: Rodrigo Oliveira <rod.oliveira@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://weblate.elementary.io/projects/"
 "music/music/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -1384,7 +1383,7 @@ msgstr "Importar para a biblioteca"
 
 #: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
 msgid "Remove from Library…"
-msgstr "Remover da biblioteca..."
+msgstr "Remover da Biblioteca…"
 
 #: src/Widgets/MediaMenu.vala:99
 msgid "Remove from Device"
