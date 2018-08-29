@@ -9,8 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-27 08:21-0700\n"
 "PO-Revision-Date: 2018-08-29 19:33+0000\n"
-"Last-Translator: Israel Felipe de Lima Araújo S <israelita.felipe@gmail.com>"
-"\n"
+"Last-Translator: Rodrigo Oliveira <rod.oliveira@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://weblate.elementary.io/projects/"
 "music/extra/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -52,7 +51,7 @@ msgstr "Ouvir música"
 
 #: data/io.elementary.music.desktop.in:8
 msgid "multimedia-audio-player"
-msgstr "tocador de áudio multimídia"
+msgstr "multimedia-audio-player"
 
 #: data/io.elementary.music.desktop.in:13
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
