@@ -238,8 +238,13 @@ public class Noise.PlaybackManager : Object {
     */
     private Media? get_media_at (int position, out int media_index) {
         int index = current_index + position;
-        media_index = fix_index (index);
-        Media? res = queue_playlist.medias.size > index > 0 ? queue_playlist[index] : null;
+        Media? res = null;
+        if (queue_playlist.medias.size >= index.abs ()) {
+            media_index = fix_index (index);
+            res = queue_playlist[index];
+        } else {
+            media_index = index;
+        }
 
         var main_settings = Settings.Main.get_default ();
         switch (main_settings.repeat_mode) {
@@ -248,7 +253,7 @@ public class Noise.PlaybackManager : Object {
             case Noise.Settings.Repeat.ALL:
 
                 // go back to the beggining, or to the end if needed
-                return res == null ? queue_playlist[fix_index (index)] : res;
+                return res == null ? queue_playlist[media_index] : res;
             case Noise.Settings.Repeat.OFF:
 
                 if (res == null) { // end of the queue
@@ -289,7 +294,11 @@ public class Noise.PlaybackManager : Object {
     * Make sure index of media is never out of the queue.
     */
     private int fix_index (int index) {
-        return (queue_playlist.medias.size + index) % queue_playlist.medias.size;
+        if (queue_playlist.medias.size > 0) {
+            return (queue_playlist.medias.size + index) % queue_playlist.medias.size;
+        } else {
+            return 0;
+        }
     }
 
     public Media? get_next (bool play) {
