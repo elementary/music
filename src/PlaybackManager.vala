@@ -135,7 +135,7 @@ public class Noise.PlaybackManager : Object {
 
     private Media poll_queue () {
         var m = queue_playlist.medias.get (0);
-        queue_playlist.medias.remove (m);
+        queue_playlist.medias.remove_at (0);
         var unqueued = new Gee.LinkedList<Media> ();
         unqueued.add (m);
         queue_playlist.media_removed (unqueued);
