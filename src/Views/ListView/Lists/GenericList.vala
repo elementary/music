@@ -255,7 +255,7 @@ public abstract class Noise.GenericList : Gtk.TreeView {
             debug ("QUEING: %s", q.title);
         }
         App.player.clear_queue ();
-        App.player.queue_medias (queue);
+        App.player.queue_media (queue);
         App.player.current_index = 0;
 
         // order the queue like this list

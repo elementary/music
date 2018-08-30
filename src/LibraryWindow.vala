@@ -775,7 +775,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         if (p == App.player.queue_playlist) {
             view.set_no_media_alert_message (_("No songs in Queue"), _("To add songs to the queue, use the <b>secondary click</b> on an item and choose <b>Queue</b>. When a song finishes, the queued songs will be played first before the next song in the currently playing list."));
-            App.player.queue_medias (p.medias);
+            App.player.queue_media (p.medias);
         } else if (p == App.player.history_playlist) {
             view.set_no_media_alert_message (_("No songs in History"), _("After a part of a song has been played, it is added to the history list.\nYou can use this list to see all the songs you have played during the current session."));
         }

@@ -190,7 +190,7 @@ public class Noise.LocalLibrary : Library {
 
             clear_medias ();
 
-            App.player.unqueue_medias (_medias.values);
+            App.player.unqueue_media (_medias.values);
 
             // FIXME: these are library window's internals. Shouldn't be here
             App.main_window.update_sensitivities.begin ();
@@ -344,7 +344,7 @@ public class Noise.LocalLibrary : Library {
     }
 
     private void media_opened_finished () {
-        App.player.queue_medias (open_media_list);
+        App.player.queue_media (open_media_list);
         if (open_media_list.size > 0) {
             if (!App.player.playing) {
                 App.player.play_media (open_media_list.first ());
