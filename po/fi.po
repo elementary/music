@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-07-09 00:10+0000\n"
-"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
+"PO-Revision-Date: 2018-08-31 12:10+0000\n"
+"Last-Translator: Robin Lahtinen <robin.lahtinen@gmail.com>\n"
 "Language-Team: Finnish <https://weblate.elementary.io/projects/music/music/"
 "fi/>\n"
 "Language: fi\n"
@@ -191,7 +191,7 @@ msgstr "Tunnistamaton soittolistatiedosto. Tuonti epäonnistui."
 #. / for more details.
 #: core/Utils/TimeUtils.vala:40
 msgid "%m/%e/%Y %l:%M %p"
-msgstr ""
+msgstr "%e.%m.%Y %l:%M %p"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:105
 #: plugins/Devices/iPod/iPodDevice.vala:65
@@ -429,7 +429,7 @@ msgstr "Musiikkitiedostoa <b>%s</b>, esittäjä <b>%s</b>, ei löydy."
 #: src/Dialogs/FileNotFoundDialog.vala:60
 #, c-format
 msgid "%i music files could not be found?"
-msgstr ""
+msgstr "%i musiikkitiedostoa ei löytynyt?"
 
 #: src/Dialogs/FileNotFoundDialog.vala:82
 msgid "Rescan Library"
@@ -517,18 +517,16 @@ msgid "Close"
 msgstr "Sulje"
 
 #: src/Dialogs/NotImportedDialog.vala:51
-#, fuzzy, c-format
+#, c-format
 msgid "Issues while importing from %s"
-msgstr "Tuodaan musiikkia kohteesta %s..."
+msgstr "Ongelmia tuodessa musiikkia kohteesta %s"
 
 #: src/Dialogs/NotImportedDialog.vala:57
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] ""
-"%s ei voinut tuoda %d kohdetta. Tiedostot saattavat olla vahingoittuneet."
-msgstr[1] ""
-"%s ei voinut tuoda %d kohdetta. Tiedostot saattavat olla vahingoittuneet."
+msgstr[0] "Ei voitu tuoda %d kohdetta. Tiedosto saattaa olla vahingoittunut."
+msgstr[1] "Ei voitu tuoda %d kohdetta. Tiedostot saattavat olla vahingoittuneita."
 
 #: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
@@ -599,7 +597,6 @@ msgid "Remove \"%s\" From Library?"
 msgstr "Poistetaanko \"%s\" kirjastosta?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
-#, fuzzy
 msgid ""
 "This will remove the song from your library and from any device synced "
 "automatically."
@@ -607,11 +604,11 @@ msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
 msgstr[0] ""
-"Tämä poistaa kappaleen kirjastostasi ja kaikilta laitteilta jotka "
-"automaattisesti synkronoituvat %s kanssa."
+"Tämä poistaa kappaleen kirjastostasi ja kaikilta laitteilta, jotka ovat "
+"automaattisesti synkronoituja."
 msgstr[1] ""
-"Tämä poistaa kappaleet kirjastostasi ja kaikilta laitteilta jotka "
-"automaattisesti synkronoituvat %s kanssa."
+"Tämä poistaa kappaleet kirjastostasi ja kaikilta laitteilta, jotka ovat "
+"automaattisesti synkronoituja."
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
@@ -756,7 +753,7 @@ msgstr "Vuosi"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:278
 msgid "URI"
-msgstr ""
+msgstr "URI"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:351
 msgid "is"
@@ -805,10 +802,10 @@ msgstr "kb/s"
 
 #. be a bit explicit to make translations better
 #: src/Dialogs/SyncWarningDialog.vala:52
-#, fuzzy, c-format
+#, c-format
 msgid "Sync will remove %i item from %s"
 msgid_plural "Sync will remove %i items from %s"
-msgstr[0] "Synkronointi poistaa %i kohdetta kohteesta %s"
+msgstr[0] "Synkronointi poistaa %i kohteen kohteesta %s"
 msgstr[1] "Synkronointi poistaa %i kohdetta kohteesta %s"
 
 #: src/Dialogs/SyncWarningDialog.vala:55
@@ -817,6 +814,8 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
+"Jos jatkat synkronointia, tiedostot poistetaan kohteesta %s, koska ne eivät "
+"ole synkronointi-listassa. Haluatko tuoda tiedostot sinun kirjastoosi ensin?"
 
 #: src/Dialogs/SyncWarningDialog.vala:57
 msgid "Continue Syncing"
@@ -948,7 +947,7 @@ msgstr "Perutaan…"
 
 #: src/Views/DeviceView.vala:66
 msgid "Device operation has been cancelled and will stop after this media."
-msgstr ""
+msgstr "Laite-operaatio on peruutettu ja sammuu tämän tiedoston jälkeen."
 
 #: src/Views/ViewStack.vala:45
 msgid "No Results"
