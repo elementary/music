@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-08-30 00:07+0000\n"
+"PO-Revision-Date: 2018-08-31 05:43+0000\n"
 "Last-Translator: Rodrigo Oliveira <rod.oliveira@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://weblate.elementary.io/projects/"
 "music/music/pt_BR/>\n"
@@ -534,7 +534,7 @@ msgstr[1] ""
 
 #: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
-msgstr "Mover todos os arquivos corrompidos para o lixo"
+msgstr "Mover todos os arquivos corrompidos para a lixeira"
 
 #: src/Dialogs/NotImportedDialog.vala:72
 msgid "del"
@@ -550,7 +550,7 @@ msgstr "Selecione arquivos específicos para exclusão:"
 
 #: src/Dialogs/NotImportedDialog.vala:101 src/Dialogs/RemoveFilesDialog.vala:73
 msgid "Move to Trash"
-msgstr "Mover para o lixo"
+msgstr "Mover para a Lixeira"
 
 #: src/Dialogs/NotImportedDialog.vala:104
 msgid "Ignore"
