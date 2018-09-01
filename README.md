@@ -43,7 +43,7 @@ You can run tests with `ninja test`, and reset the build environment with `ninja
 
 You can use these options to configure your build:
 * `build-plugins`: `true` to build plugins or `false` to ony compile the core and the application
-* `plugins`: any of `lastfm`, `audio-device`, `cdrom` and `ipod`, separated by commas
+* `plugins`: any of `lastfm`, `audioplayer`, `cdrom` and `ipod`, separated by commas
 * `prefix`: the installation prefix
 
 To define their values, use `meson configure`
