@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
 "PO-Revision-Date: 2018-09-05 00:09+0000\n"
-"Last-Translator: Veli-Pekka Samuli Finnilä <vpf@tuta.io>\n"
+"Last-Translator: Cleiton Floss <cleitonfloss@gmail.com>\n"
 "Language-Team: Finnish <https://weblate.elementary.io/projects/music/music/"
 "fi/>\n"
 "Language: fi\n"
@@ -298,12 +298,12 @@ msgstr "Ääni-CD:tä ladatessa tapahtui virhe."
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
 msgid "Finishing sync process…"
-msgstr "Viimeistellään synkronointiprosessia..."
+msgstr "Viimeistellään synkronointiprosessia…"
 
 #: plugins/Devices/iPod/iPodLibrary.vala:230
 #: plugins/Devices/iPod/iPodLibrary.vala:386
 msgid "Cancelling Sync…"
-msgstr "Perutaan synkronointia..."
+msgstr "Perutaan synkronointia…"
 
 #: plugins/LastFM/LastFM.vala:98
 msgid "No similar songs found"
@@ -554,7 +554,7 @@ msgstr "Ohita"
 
 #: src/Dialogs/PreferencesWindow.vala:48
 msgid "Select Music Folder…"
-msgstr "Valitse musiikkikansio..."
+msgstr "Valitse musiikkikansio…"
 
 #: src/Dialogs/PreferencesWindow.vala:77
 msgid "Music Folder Location"
@@ -824,11 +824,11 @@ msgstr "Jatka synkronointia"
 #: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
 msgid "Importing music from %s…"
-msgstr "Tuodaan musiikkia kohteesta %s..."
+msgstr "Tuodaan musiikkia kohteesta %s…"
 
 #: src/LocalBackend/LocalLibrary.vala:212
 msgid "Adding files to library…"
-msgstr "Lisätään tiedostoja kirjastoon..."
+msgstr "Lisätään tiedostoja kirjastoon…"
 
 #: src/LocalBackend/LocalLibrary.vala:225
 msgid "<b>Importing</b> music to library…"
