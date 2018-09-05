@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
 "PO-Revision-Date: 2018-09-05 23:20+0000\n"
-"Last-Translator: strozzascotte <marco.depaolini@gmail.com>\n"
+"Last-Translator: Ivan Bottigelli <testbottyivan@gmail.com>\n"
 "Language-Team: Italian <https://weblate.elementary.io/projects/music/music/"
 "it/>\n"
 "Language: it\n"
@@ -338,7 +338,7 @@ msgstr "Importazione completa"
 
 #: src/FileOperator.vala:305
 msgid "Your Library Has Been Imported."
-msgstr ""
+msgstr "La tua libreria è stata importata"
 
 #. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:315
