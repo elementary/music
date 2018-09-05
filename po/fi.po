@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
 "PO-Revision-Date: 2018-09-06 00:09+0000\n"
-"Last-Translator: Veli-Pekka Samuli Finnilä <vpf@tuta.io>\n"
+"Last-Translator: Cleiton Floss <cleitonfloss@gmail.com>\n"
 "Language-Team: Finnish <https://weblate.elementary.io/projects/music/music/"
 "fi/>\n"
 "Language: fi\n"
@@ -1391,7 +1391,7 @@ msgstr "Poista jonosta"
 
 #: src/Widgets/MediaMenu.vala:152
 msgid "New Playlist…"
-msgstr "Uusi soittolista..."
+msgstr "Uusi soittolista…"
 
 #: src/Widgets/MediaMenu.vala:192
 #, c-format
@@ -1423,7 +1423,7 @@ msgstr "Tallenna soittolistana"
 
 #: src/Widgets/SourceListView.vala:103
 msgid "Export…"
-msgstr "Vie..."
+msgstr "Vie…"
 
 #: src/Widgets/SourceListView.vala:166
 msgid "Eject"
