@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-07-09 00:10+0000\n"
-"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
+"PO-Revision-Date: 2018-09-06 00:09+0000\n"
+"Last-Translator: Cleiton Floss <cleitonfloss@gmail.com>\n"
 "Language-Team: Finnish <https://weblate.elementary.io/projects/music/music/"
 "fi/>\n"
 "Language: fi\n"
@@ -114,7 +114,7 @@ msgstr "Soft Rock"
 
 #: core/GStreamer/Equalizer.vala:88
 msgid "Techno"
-msgstr "Techno"
+msgstr "Tekno"
 
 #: core/Utils/FileUtils.vala:182
 #, c-format
@@ -191,7 +191,7 @@ msgstr "Tunnistamaton soittolistatiedosto. Tuonti epäonnistui."
 #. / for more details.
 #: core/Utils/TimeUtils.vala:40
 msgid "%m/%e/%Y %l:%M %p"
-msgstr ""
+msgstr "%e.%m.%Y %l:%M %p"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:105
 #: plugins/Devices/iPod/iPodDevice.vala:65
@@ -293,17 +293,17 @@ msgstr "Virhetilanne"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:38
 msgid "There was an error while loading this Audio CD."
-msgstr "Ääni-CD:tä ladatessa tapahtui virhe"
+msgstr "Ääni-CD:tä ladatessa tapahtui virhe."
 
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
 msgid "Finishing sync process…"
-msgstr "Viimeistellään synkronointiprosessia..."
+msgstr "Viimeistellään synkronointiprosessia…"
 
 #: plugins/Devices/iPod/iPodLibrary.vala:230
 #: plugins/Devices/iPod/iPodLibrary.vala:386
 msgid "Cancelling Sync…"
-msgstr "Perutaan synkronointia..."
+msgstr "Perutaan synkronointia…"
 
 #: plugins/LastFM/LastFM.vala:98
 msgid "No similar songs found"
@@ -429,7 +429,7 @@ msgstr "Musiikkitiedostoa <b>%s</b>, esittäjä <b>%s</b>, ei löydy."
 #: src/Dialogs/FileNotFoundDialog.vala:60
 #, c-format
 msgid "%i music files could not be found?"
-msgstr ""
+msgstr "%i musiikkitiedostoa ei löytynyt?"
 
 #: src/Dialogs/FileNotFoundDialog.vala:82
 msgid "Rescan Library"
@@ -517,18 +517,16 @@ msgid "Close"
 msgstr "Sulje"
 
 #: src/Dialogs/NotImportedDialog.vala:51
-#, fuzzy, c-format
+#, c-format
 msgid "Issues while importing from %s"
-msgstr "Tuodaan musiikkia kohteesta %s..."
+msgstr "Ongelmia tuodessa musiikkia kohteesta %s"
 
 #: src/Dialogs/NotImportedDialog.vala:57
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] ""
-"%s ei voinut tuoda %d kohdetta. Tiedostot saattavat olla vahingoittuneet."
-msgstr[1] ""
-"%s ei voinut tuoda %d kohdetta. Tiedostot saattavat olla vahingoittuneet."
+msgstr[0] "Ei voitu tuoda %d kohdetta. Tiedosto saattaa olla vahingoittunut."
+msgstr[1] "Ei voitu tuoda %d kohdetta. Tiedostot saattavat olla vahingoittuneita."
 
 #: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
@@ -556,7 +554,7 @@ msgstr "Ohita"
 
 #: src/Dialogs/PreferencesWindow.vala:48
 msgid "Select Music Folder…"
-msgstr "Valitse musiikkikansio..."
+msgstr "Valitse musiikkikansio…"
 
 #: src/Dialogs/PreferencesWindow.vala:77
 msgid "Music Folder Location"
@@ -599,7 +597,6 @@ msgid "Remove \"%s\" From Library?"
 msgstr "Poistetaanko \"%s\" kirjastosta?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
-#, fuzzy
 msgid ""
 "This will remove the song from your library and from any device synced "
 "automatically."
@@ -607,11 +604,11 @@ msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
 msgstr[0] ""
-"Tämä poistaa kappaleen kirjastostasi ja kaikilta laitteilta jotka "
-"automaattisesti synkronoituvat %s kanssa."
+"Tämä poistaa kappaleen kirjastostasi ja kaikilta laitteilta, jotka ovat "
+"automaattisesti synkronoituja."
 msgstr[1] ""
-"Tämä poistaa kappaleet kirjastostasi ja kaikilta laitteilta jotka "
-"automaattisesti synkronoituvat %s kanssa."
+"Tämä poistaa kappaleet kirjastostasi ja kaikilta laitteilta, jotka ovat "
+"automaattisesti synkronoituja."
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
@@ -756,7 +753,7 @@ msgstr "Vuosi"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:278
 msgid "URI"
-msgstr ""
+msgstr "URI"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:351
 msgid "is"
@@ -805,10 +802,10 @@ msgstr "kb/s"
 
 #. be a bit explicit to make translations better
 #: src/Dialogs/SyncWarningDialog.vala:52
-#, fuzzy, c-format
+#, c-format
 msgid "Sync will remove %i item from %s"
 msgid_plural "Sync will remove %i items from %s"
-msgstr[0] "Synkronointi poistaa %i kohdetta kohteesta %s"
+msgstr[0] "Synkronointi poistaa %i kohteen kohteesta %s"
 msgstr[1] "Synkronointi poistaa %i kohdetta kohteesta %s"
 
 #: src/Dialogs/SyncWarningDialog.vala:55
@@ -817,6 +814,8 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
+"Jos jatkat synkronointia, tiedostot poistetaan kohteesta %s, koska ne eivät "
+"ole synkronointi-listassa. Haluatko tuoda tiedostot sinun kirjastoosi ensin?"
 
 #: src/Dialogs/SyncWarningDialog.vala:57
 msgid "Continue Syncing"
@@ -825,11 +824,11 @@ msgstr "Jatka synkronointia"
 #: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
 msgid "Importing music from %s…"
-msgstr "Tuodaan musiikkia kohteesta %s..."
+msgstr "Tuodaan musiikkia kohteesta %s…"
 
 #: src/LocalBackend/LocalLibrary.vala:212
 msgid "Adding files to library…"
-msgstr "Lisätään tiedostoja kirjastoon..."
+msgstr "Lisätään tiedostoja kirjastoon…"
 
 #: src/LocalBackend/LocalLibrary.vala:225
 msgid "<b>Importing</b> music to library…"
@@ -936,7 +935,7 @@ msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
 "Laitetta ei voi synkronoida valituilla synkronointiasetuksilla. Levyllä ei "
-"ole tarpeeksi tilaa."
+"ole tarpeeksi tilaa"
 
 #: src/Views/DeviceSummaryWidget.vala:322
 msgid "Device is already doing an operation."
@@ -948,7 +947,7 @@ msgstr "Perutaan…"
 
 #: src/Views/DeviceView.vala:66
 msgid "Device operation has been cancelled and will stop after this media."
-msgstr ""
+msgstr "Laite-operaatio on peruutettu ja sammuu tämän tiedoston jälkeen."
 
 #: src/Views/ViewStack.vala:45
 msgid "No Results"
@@ -1100,7 +1099,7 @@ msgstr[1] "%u tähteä"
 #: src/Views/ListView/Lists/CellDataFunctionHelper.vala:128
 #, c-format
 msgid "%u kbps"
-msgstr "%u kbps"
+msgstr "%u kb/s"
 
 #: src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #: src/Views/ListView/Lists/MusicListView.vala:425
@@ -1213,7 +1212,7 @@ msgstr "Aseta sarakkeiden koko automaattisesti"
 
 #: src/Views/ListView/Lists/MusicListView.vala:410
 msgid "1234 kbps"
-msgstr "1234 kbps"
+msgstr "1234 kb/s"
 
 #. / Sample string used to measure the ideal size of the Title, Artist,
 #. / Album, Album Artist, Composer, Genre, and Grouping columns in the
@@ -1224,7 +1223,7 @@ msgstr "1234 kbps"
 #. / by the column's title header.
 #: src/Views/ListView/Lists/MusicListView.vala:481
 msgid "Sample List String"
-msgstr "Sample List String"
+msgstr "Esimerkki listoille"
 
 #. Welcome screen
 #: src/Views/Wrappers/MusicViewWrapper.vala:57
@@ -1392,7 +1391,7 @@ msgstr "Poista jonosta"
 
 #: src/Widgets/MediaMenu.vala:152
 msgid "New Playlist…"
-msgstr "Uusi soittolista..."
+msgstr "Uusi soittolista…"
 
 #: src/Widgets/MediaMenu.vala:192
 #, c-format
@@ -1424,7 +1423,7 @@ msgstr "Tallenna soittolistana"
 
 #: src/Widgets/SourceListView.vala:103
 msgid "Export…"
-msgstr "Vie..."
+msgstr "Vie…"
 
 #: src/Widgets/SourceListView.vala:166
 msgid "Eject"

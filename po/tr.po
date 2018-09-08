@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-05-26 11:00+0000\n"
+"PO-Revision-Date: 2018-08-31 00:04+0000\n"
 "Last-Translator: İbrahim Ethem Göl <ethem578@gmail.com>\n"
 "Language-Team: Turkish <https://weblate.elementary.io/projects/music/music/"
 "tr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:55+0000\n"
 
 #: core/LibrariesManager.vala:147
@@ -338,7 +338,7 @@ msgstr "İçe Aktarma Tamamlandı"
 
 #: src/FileOperator.vala:305
 msgid "Your Library Has Been Imported."
-msgstr ""
+msgstr "Kitaplığınız İçe Aktarıldı."
 
 #. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:315
@@ -517,16 +517,16 @@ msgid "Close"
 msgstr "Çıkış"
 
 #: src/Dialogs/NotImportedDialog.vala:51
-#, fuzzy, c-format
+#, c-format
 msgid "Issues while importing from %s"
-msgstr "%s kaynağından müzik içe aktarılıyor…"
+msgstr "%s kaynağından içe aktarırken karşılaşılan sorunlar"
 
 #: src/Dialogs/NotImportedDialog.vala:57
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] "%s %d öğelerini içe aktaramıyor.Dosyalar bozuk olabilir."
-msgstr[1] "%s %d öğelerini içe aktaramıyor.Dosyalar bozuk olabilir."
+msgstr[0] "%d öğesi içe aktarılamıyor. Dosya bozuk olabilir."
+msgstr[1] "%d öğeleri içe aktarılamıyor. Dosyalar bozuk olabilir."
 
 #: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
@@ -585,16 +585,16 @@ msgid "Continue playback when closed:"
 msgstr "Kapatıldığında oynatmaya devam et:"
 
 #: src/Dialogs/RemoveFilesDialog.vala:49
-#, fuzzy, c-format
+#, c-format
 msgid "Remove %d Song From Library?"
 msgid_plural "Remove %d Songs From Library?"
-msgstr[0] "%d Şarkı %s konumundan kaldırılsın mı?"
-msgstr[1] "%d Şarkı %s konumundan kaldırılsın mı?"
+msgstr[0] "%d Şarkısı Kitaplıktan Kaldırılsın Mı?"
+msgstr[1] "%d Şarkıları Kitaplıktan Kaldırılsın Mı?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:55
-#, fuzzy, c-format
+#, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr "Kütüphaneden kaldır"
+msgstr "\"%s\" Kütüphaneden Kaldırılsın Mı?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
 #, fuzzy
