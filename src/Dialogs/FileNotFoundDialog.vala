@@ -28,17 +28,18 @@
  */
 
 public class Noise.FileNotFoundDialog : Granite.MessageDialog {
-    private Gee.LinkedList<Media> media_list = new Gee.LinkedList<Media> ();
+    private Gee.LinkedList<Media> media_list;
 
     public FileNotFoundDialog (Gee.Collection<Media> _media_list) {
         Object (
+            destroy_with_parent: true,
             image_icon: new ThemedIcon ("dialog-warning"),
             primary_text: _("File not found"),
             transient_for: App.main_window
         );
 
+        media_list = new Gee.LinkedList<Media> ();
         media_list.add_all (_media_list);
-        this.destroy_with_parent = true;
 
         if (media_list.size == 1) {
             var s = media_list.get (0);
