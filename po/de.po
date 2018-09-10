@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-02-26 00:08+0000\n"
-"Last-Translator: Floris Remmert <fadenfisch95@gmail.com>\n"
+"PO-Revision-Date: 2018-08-19 00:09+0000\n"
+"Last-Translator: Jörg Arnold <j.ar@mailbox.org>\n"
 "Language-Team: German <https://weblate.elementary.io/projects/music/music/de/"
 ">\n"
 "Language: de\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-09 05:47+0000\n"
 
 #: core/LibrariesManager.vala:147
@@ -339,7 +339,7 @@ msgstr "Import abgeschlossen"
 
 #: src/FileOperator.vala:305
 msgid "Your Library Has Been Imported."
-msgstr ""
+msgstr "Ihre Bibliothek wurde importiert."
 
 #. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:315
@@ -522,18 +522,19 @@ msgid "Close"
 msgstr "Schließen"
 
 #: src/Dialogs/NotImportedDialog.vala:51
-#, fuzzy, c-format
+#, c-format
 msgid "Issues while importing from %s"
-msgstr "Musik wird aus %s importiert …"
+msgstr "Probleme beim Import aus %s"
 
 #: src/Dialogs/NotImportedDialog.vala:57
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
 msgstr[0] ""
-"%s konnte %d Einträge nicht importieren. Die Dateien könnten beschädigt sein."
+"Der Import von %d Stück ist nicht möglich. Die Datei könnte beschädigt sein."
 msgstr[1] ""
-"%s konnte %d Einträge nicht importieren. Die Dateien könnten beschädigt sein."
+"Der Import von %d Stücke ist nicht möglich. Die Dateien könnten beschädigt "
+"sein."
 
 #: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
@@ -594,19 +595,18 @@ msgid "Continue playback when closed:"
 msgstr "Wiedergabe beim Schließen fortsetzen:"
 
 #: src/Dialogs/RemoveFilesDialog.vala:49
-#, fuzzy, c-format
+#, c-format
 msgid "Remove %d Song From Library?"
 msgid_plural "Remove %d Songs From Library?"
-msgstr[0] "%d Titel von %s entfernen?"
-msgstr[1] "%d Titel von %s entfernen?"
+msgstr[0] "%d Titel aus der Bibliothek entfernen?"
+msgstr[1] "%d Titel aus der Bibliothek entfernen?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:55
-#, fuzzy, c-format
+#, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr "Aus Medienbibliothek entfernen"
+msgstr "\"%s\" aus der Bibliothek entfernen?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
-#, fuzzy
 msgid ""
 "This will remove the song from your library and from any device synced "
 "automatically."
@@ -964,13 +964,12 @@ msgstr ""
 "Die Geräteoperation wurde abgebrochen und werden nach diesem Titel stoppen."
 
 #: src/Views/ViewStack.vala:45
-#, fuzzy
 msgid "No Results"
-msgstr "Keine Bewertungen"
+msgstr "Keine Ergebnisse"
 
 #: src/Views/ViewStack.vala:45
 msgid "Try another search"
-msgstr ""
+msgstr "Versuche eine neue Suche"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
 msgid "Genres"
@@ -1365,17 +1364,14 @@ msgid "Scroll to Current Song"
 msgstr "Zum aktuellen Titel scrollen"
 
 #: src/Widgets/MediaMenu.vala:49
-#, fuzzy
 msgid "Show in File Browser…"
-msgstr "Im Dateimanager anzeigen"
+msgstr "Im Dateimanager anzeigen…"
 
 #: src/Widgets/MediaMenu.vala:50
-#, fuzzy
 msgid "Edit Song Info…"
-msgstr "Titelinformation bearbeiten"
+msgstr "Titelinformation bearbeiten…"
 
 #: src/Widgets/MediaMenu.vala:51
-#, fuzzy
 msgid "Other Actions"
 msgstr "Weitere Aktionen"
 
@@ -1389,18 +1385,16 @@ msgid "Add to Playlist"
 msgstr "Zur Wiedergabeliste hinzufügen"
 
 #: src/Widgets/MediaMenu.vala:55
-#, fuzzy
 msgid "Remove Song…"
-msgstr "Titel entfernen"
+msgstr "Titel entfernen…"
 
 #: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
 msgid "Import to Library"
 msgstr "In Bibliothek importieren"
 
 #: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
-#, fuzzy
 msgid "Remove from Library…"
-msgstr "Aus Medienbibliothek entfernen"
+msgstr "Aus Bibliothek entfernen…"
 
 #: src/Widgets/MediaMenu.vala:99
 msgid "Remove from Device"

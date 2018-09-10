@@ -107,10 +107,10 @@
       <summary>Window y position</summary>
       <description>Window y position</description>
     </key>
-    <key enum="io.elementary.music.windowstate" name="window-state">
-      <default>'normal'</default>
-      <summary>The saved state of the window.</summary>
-      <description>The saved state of the window.</description>
+    <key type="b" name="window-maximized">
+      <default>false</default>
+      <summary>Open window maximized.</summary>
+      <description>Whether the main window of the application should open maximized or not.</description>
     </key>
     <key type="i" name="sidebar-width">
       <default>200</default>
