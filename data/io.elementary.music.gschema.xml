@@ -5,10 +5,6 @@
     <value value="1" nick="media"/>
     <value value="2" nick="all"/>
   </enum>
-  <enum id="io.elementary.music.shuffle">
-    <value value="0" nick="off"/>
-    <value value="1" nick="all"/>
-  </enum>
   <enum id="io.elementary.music.windowstate">
     <value value="0" nick="normal"/>
     <value value="1" nick="maximized"/>
@@ -59,8 +55,8 @@
       <summary>Position, in seconds, of media</summary>
       <description>Position, in seconds, of media when noise last closed</description>
     </key>
-    <key enum="io.elementary.music.shuffle" name="shuffle-mode">
-      <default>'off'</default>
+    <key type="b" name="shuffle-mode">
+      <default>false</default>
       <summary>An index representing the shuffle mode</summary>
       <description>An index representing the shuffle mode</description>
     </key>

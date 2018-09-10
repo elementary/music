@@ -163,7 +163,7 @@ public class Noise.TopDisplay : Gtk.Stack {
             update_mode ();
 
             option_changed.connect (() => {
-                App.player.set_shuffle_mode ((Noise.Settings.Shuffle) current_option);
+                App.player.set_shuffle_mode (current_option != 0);
             });
 
             App.player.notify["shuffle"].connect (update_mode);

@@ -323,15 +323,10 @@ public class MprisPlayer : GLib.Object {
 
     public bool shuffle {
         get {
-            return Noise.Settings.Main.get_default ().shuffle_mode == Noise.Settings.Shuffle.ALL;
+            return Noise.Settings.Main.get_default ().shuffle_mode;
         }
         set {
-            if (value) {
-                Noise.App.player.set_shuffle_mode (Noise.Settings.Shuffle.ALL);
-            } else {
-                Noise.App.player.set_shuffle_mode (Noise.Settings.Shuffle.OFF);
-            }
-
+            Noise.App.player.set_shuffle_mode (value);
             Variant variant = value;
             queue_property_for_notification ("Shuffle", variant);
         }
