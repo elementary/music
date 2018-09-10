@@ -514,7 +514,7 @@ public class Noise.PlaybackManager : Object {
 
         //update settings
         if (m.rowid >= 0 && !Settings.Main.get_default ().privacy_mode_enabled ()) {
-            App.settings.set_int64 ("last-media-playing", m.rowid);
+            App.saved_state.set_int64 ("last-media-playing", m.rowid);
         }
 
         if (m != null) {
@@ -598,7 +598,7 @@ public class Noise.PlaybackManager : Object {
         }
 
         if (!Settings.Main.get_default ().privacy_mode_enabled ()) {
-            App.settings.set_int64 ("last-media-playing", 0);
+            App.saved_state.set_int64 ("last-media-playing", 0);
         }
         current_media = null;
 

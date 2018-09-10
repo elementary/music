@@ -142,7 +142,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         if (library_manager.get_medias ().size > 0) {
             App.player.clear_queue ();
 
-            var last_media_position = App.settings.get_int ("last-media-position");
+            var last_media_position = App.saved_state.get_int ("last-media-position");
 
             // make sure we don't re-count stats
             if (last_media_position > 5) {
@@ -477,7 +477,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         library_manager.rescan_music_folder ();
         initialization_finished = true;
 
-        var last_playlist_playing = App.settings.get_string ("last-playlist-playing");
+        var last_playlist_playing = App.saved_state.get_string ("last-playlist-playing");
 
         // Set the focus on the current view
         if (last_playlist_playing != "") {
@@ -499,7 +499,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             show_playlist_view (library_manager.p_music);
         }
 
-        var search_string = App.settings.get_string ("search-string");
+        var search_string = App.saved_state.get_string ("search-string");
 
         search_entry.activate.connect (search_entry_activate);
         search_entry.search_changed.connect (() => {
@@ -509,7 +509,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         });
         search_entry.text = search_string;
 
-        int64 last_playing_id = App.settings.get_int64 ("last-media-playing");;
+        int64 last_playing_id = App.saved_state.get_int64 ("last-media-playing");
         if (last_playing_id >= 0) {
             var last_playing_media = library_manager.media_from_id (last_playing_id);
             if (last_playing_media != null && last_playing_media.file.query_exists ()) {
@@ -1158,16 +1158,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private void on_quit () {
         if (!main_settings.privacy_mode_enabled ()) {
             // Save media position and info
-            App.settings.set_int ("last-media-position", (int)((double)App.player.player.get_position()/TimeUtils.NANO_INV));
-
+            App.saved_state.set_int ("last-media-position", (int)((double)App.player.player.get_position()/TimeUtils.NANO_INV));
             if (App.player.current_media != null) {
                 App.player.current_media.resume_pos = (int)((double)App.player.player.get_position ()/TimeUtils.NANO_INV);
                 library_manager.update_media (App.player.current_media, false, false);
             }
 
-            App.settings.set_string ("search-string", search_entry.text);
+            App.saved_state.set_string ("search-string", search_entry.text);
         }
-
         App.player.player.pause ();
 
         App.saved_state.set_int ("view-mode", view_selector.selected);
