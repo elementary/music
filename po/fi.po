@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-08-31 12:10+0000\n"
-"Last-Translator: Robin Lahtinen <robin.lahtinen@gmail.com>\n"
+"PO-Revision-Date: 2018-09-06 00:09+0000\n"
+"Last-Translator: Cleiton Floss <cleitonfloss@gmail.com>\n"
 "Language-Team: Finnish <https://weblate.elementary.io/projects/music/music/"
 "fi/>\n"
 "Language: fi\n"
@@ -114,7 +114,7 @@ msgstr "Soft Rock"
 
 #: core/GStreamer/Equalizer.vala:88
 msgid "Techno"
-msgstr "Techno"
+msgstr "Tekno"
 
 #: core/Utils/FileUtils.vala:182
 #, c-format
@@ -293,17 +293,17 @@ msgstr "Virhetilanne"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:38
 msgid "There was an error while loading this Audio CD."
-msgstr "Ääni-CD:tä ladatessa tapahtui virhe"
+msgstr "Ääni-CD:tä ladatessa tapahtui virhe."
 
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
 msgid "Finishing sync process…"
-msgstr "Viimeistellään synkronointiprosessia..."
+msgstr "Viimeistellään synkronointiprosessia…"
 
 #: plugins/Devices/iPod/iPodLibrary.vala:230
 #: plugins/Devices/iPod/iPodLibrary.vala:386
 msgid "Cancelling Sync…"
-msgstr "Perutaan synkronointia..."
+msgstr "Perutaan synkronointia…"
 
 #: plugins/LastFM/LastFM.vala:98
 msgid "No similar songs found"
@@ -554,7 +554,7 @@ msgstr "Ohita"
 
 #: src/Dialogs/PreferencesWindow.vala:48
 msgid "Select Music Folder…"
-msgstr "Valitse musiikkikansio..."
+msgstr "Valitse musiikkikansio…"
 
 #: src/Dialogs/PreferencesWindow.vala:77
 msgid "Music Folder Location"
@@ -824,11 +824,11 @@ msgstr "Jatka synkronointia"
 #: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
 msgid "Importing music from %s…"
-msgstr "Tuodaan musiikkia kohteesta %s..."
+msgstr "Tuodaan musiikkia kohteesta %s…"
 
 #: src/LocalBackend/LocalLibrary.vala:212
 msgid "Adding files to library…"
-msgstr "Lisätään tiedostoja kirjastoon..."
+msgstr "Lisätään tiedostoja kirjastoon…"
 
 #: src/LocalBackend/LocalLibrary.vala:225
 msgid "<b>Importing</b> music to library…"
@@ -935,7 +935,7 @@ msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
 "Laitetta ei voi synkronoida valituilla synkronointiasetuksilla. Levyllä ei "
-"ole tarpeeksi tilaa."
+"ole tarpeeksi tilaa"
 
 #: src/Views/DeviceSummaryWidget.vala:322
 msgid "Device is already doing an operation."
@@ -1099,7 +1099,7 @@ msgstr[1] "%u tähteä"
 #: src/Views/ListView/Lists/CellDataFunctionHelper.vala:128
 #, c-format
 msgid "%u kbps"
-msgstr "%u kbps"
+msgstr "%u kb/s"
 
 #: src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #: src/Views/ListView/Lists/MusicListView.vala:425
@@ -1212,7 +1212,7 @@ msgstr "Aseta sarakkeiden koko automaattisesti"
 
 #: src/Views/ListView/Lists/MusicListView.vala:410
 msgid "1234 kbps"
-msgstr "1234 kbps"
+msgstr "1234 kb/s"
 
 #. / Sample string used to measure the ideal size of the Title, Artist,
 #. / Album, Album Artist, Composer, Genre, and Grouping columns in the
@@ -1223,7 +1223,7 @@ msgstr "1234 kbps"
 #. / by the column's title header.
 #: src/Views/ListView/Lists/MusicListView.vala:481
 msgid "Sample List String"
-msgstr "Sample List String"
+msgstr "Esimerkki listoille"
 
 #. Welcome screen
 #: src/Views/Wrappers/MusicViewWrapper.vala:57
@@ -1391,7 +1391,7 @@ msgstr "Poista jonosta"
 
 #: src/Widgets/MediaMenu.vala:152
 msgid "New Playlist…"
-msgstr "Uusi soittolista..."
+msgstr "Uusi soittolista…"
 
 #: src/Widgets/MediaMenu.vala:192
 #, c-format
@@ -1423,7 +1423,7 @@ msgstr "Tallenna soittolistana"
 
 #: src/Widgets/SourceListView.vala:103
 msgid "Export…"
-msgstr "Vie..."
+msgstr "Vie…"
 
 #: src/Widgets/SourceListView.vala:166
 msgid "Eject"
