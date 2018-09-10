@@ -44,6 +44,29 @@
       <summary>Whether to close the player's window instead of hiding/minimizing it when a song is still playing. The window can be brought back by activating its desktop file.</summary>
       <description>When enabled, the window will be closed even if a song is still being played (i.e. close = quit). Otherwise, if a song is being played, the application will not be closed, but minimized/hidden. The player is minimized or hidden depending on the values of the minimize-while-playing-shells key.</description>
     </key>
+    <key enum="io.elementary.music.shuffle" name="shuffle-mode">
+      <default>'off'</default>
+      <summary>An index representing the shuffle mode</summary>
+      <description>An index representing the shuffle mode</description>
+    </key>
+    <key enum="io.elementary.music.repeat" name="repeat-mode">
+      <default>'off'</default>
+      <summary>An index representing the repeat mode</summary>
+      <description>An index representing the repeat mode</description>
+    </key>
+    <key type="s" name="path-string">
+      <default>'$ALBUM_ARTIST/$ALBUM/$TRACK - $TITLE'</default>
+      <summary>String of the destination path to save files</summary>
+      <description>String of the destination path to save files</description>
+    </key>
+    <key type="as" name="plugins-disabled">
+      <default>[]</default>
+      <summary>List of disabled plugins</summary>
+      <description>Plugin modules to not load during startup</description>
+    </key>
+  </schema>
+
+  <schema path="/io/elementary/music/saved-state/" id="io.elementary.music.saved-state">
     <key type="s" name="last-playlist-playing">
       <default>''</default>
       <summary>'s' for smart playlist or 'p' for static playlist + ID of last playlist playing</summary>
@@ -59,34 +82,11 @@
       <summary>Position, in seconds, of media</summary>
       <description>Position, in seconds, of media when noise last closed</description>
     </key>
-    <key enum="io.elementary.music.shuffle" name="shuffle-mode">
-      <default>'off'</default>
-      <summary>An index representing the shuffle mode</summary>
-      <description>An index representing the shuffle mode</description>
-    </key>
-    <key enum="io.elementary.music.repeat" name="repeat-mode">
-      <default>'off'</default>
-      <summary>An index representing the repeat mode</summary>
-      <description>An index representing the repeat mode</description>
-    </key>
     <key type="s" name="search-string">
       <default>''</default>
       <summary>String of last search</summary>
       <description>String of last search</description>
     </key>
-    <key type="s" name="path-string">
-      <default>'$ALBUM_ARTIST/$ALBUM/$TRACK - $TITLE'</default>
-      <summary>String of the destination path to save files</summary>
-      <description>String of the destination path to save files</description>
-    </key>
-    <key type="as" name="plugins-disabled">
-      <default>[]</default>
-      <summary>List of disabled plugins</summary>
-      <description>Plugin modules to not load during startup</description>
-    </key>
-  </schema>
-
-  <schema path="/io/elementary/music/saved-state/" id="io.elementary.music.saved-state">
     <key type="i" name="window-width">
       <default>1100</default>
       <summary>Window width</summary>
