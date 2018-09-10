@@ -1168,8 +1168,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
         App.player.player.pause ();
 
-        App.player.player.pause ();
-
         App.saved_state.set_int ("view-mode", view_selector.selected);
         App.saved_state.set_boolean ("window-maximized", is_maximized);
     }
