@@ -93,7 +93,8 @@ public class Noise.AlbumListGrid : Gtk.Grid {
         attach (list_view_scrolled, 0, 3, 1, 1);
         attach (rating, 0, 4, 1, 1);
 
-        var media_menu = new Noise.MediaMenu ();
+        // FIXME: media menu currently needs a generic list
+        //var media_menu = new Noise.MediaMenu ();
 
         cover_event_box.button_press_event.connect (show_cover_context_menu);
         cover_set_new.activate.connect (set_new_cover);
@@ -108,9 +109,10 @@ public class Noise.AlbumListGrid : Gtk.Grid {
 
         album_list_box.button_release_event.connect ((event) => {
             if (event.button == Gdk.BUTTON_SECONDARY) {
-                media_menu.popup_media_menu (media_list);
+                //media_menu.popup_media_menu (media_list);
                 return true;
             }
+            return false;
         });
     }
 
