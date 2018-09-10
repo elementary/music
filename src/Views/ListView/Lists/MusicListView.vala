@@ -94,6 +94,28 @@ public class Noise.MusicListView : GenericList {
         });
     }
 
+    public void add_media (Gee.Collection<Media> to_add) {
+        // skip calling set_table and just do it ourselves (faster)
+        table.add_all (to_add);
+
+        // resort the new songs in. this will also call do_search
+        resort ();
+    }
+
+    /* If a Media is in to_remove but not in table, will just ignore */
+    public void remove_media (Gee.Collection<Media> to_remove) {
+        var new_table = new Gee.ArrayList<Media> ();
+
+        foreach (Media m in table) {
+            if (!(m in to_remove)) {
+                new_table.add (m);
+            }
+        }
+
+        // no need to resort, just removing
+        set_table (new_table, false);
+    }
+
     public override bool button_press_event (Gdk.EventButton event) {
         if (event.window != get_bin_window ())
             return base.button_press_event (event);
@@ -171,7 +193,7 @@ public class Noise.MusicListView : GenericList {
 
     private bool view_header_click (Gdk.EventButton e, bool is_selector_col) {
         if (e.button == Gdk.BUTTON_SECONDARY || is_selector_col) {
-            column_chooser_menu.popup (null, null, null, Gdk.BUTTON_SECONDARY, e.time);
+            column_chooser_menu.popup_at_pointer (e);
             return true;
         }
 
@@ -196,10 +218,8 @@ public class Noise.MusicListView : GenericList {
             case ViewWrapper.Hint.PLAYLIST:
                 playlist.remove_medias (selected_media);
                 break;
-            case ViewWrapper.Hint.READ_ONLY_PLAYLIST:
-                if (playlist == App.player.queue_playlist) {
-                    playlist.remove_medias (selected_media);
-                }
+            case ViewWrapper.Hint.QUEUE:
+                playlist.remove_medias (selected_media);
                 break;
           }
     }

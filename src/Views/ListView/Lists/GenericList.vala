@@ -27,10 +27,16 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public abstract class Noise.GenericList : FastView {
+public abstract class Noise.GenericList : Gtk.TreeView {
     public signal void import_requested (Gee.Collection<Media> to_import);
+    public signal void rows_reordered ();
 
+    public Gee.List<Type> columns { get; construct set; }
+    public bool research_needed { get; set; default = false; }
+    public bool is_current_list { get; private set; }
     public Playlist? playlist { get; set; default = null; }
+    public TreeViewSetup tvs { get; construct set; }
+
     public ViewWrapper.Hint hint {
         get {
             return tvs.hint;
@@ -51,11 +57,38 @@ public abstract class Noise.GenericList : FastView {
         }
     }
 
-    public TreeViewSetup tvs { get; construct set; }
-    protected bool is_current_list;
+    private const int OPTIMAL_COLUMN = -2;
+    protected FastModel fm;
+
+    /**
+    * A list of all the medias to display
+    */
+    protected Gee.ArrayList<Media> table = new Gee.ArrayList<Media> (); // is not the same object as showing.
+
+    /**
+    * The media that are presently shown (some of them can be absent because of search)
+    */
+    protected Gee.ArrayList<Media> showing = new Gee.ArrayList<Media> (); // should never point to table.
+
+    /* sortable stuff */
+    public delegate int SortCompareFunc (
+        int sort_column_id,
+        Gtk.SortType sort_direction,
+        Media a,
+        Media b,
+        int index_a, // position of items in the view's @table
+        int index_b
+    );
+
+    protected int sort_column_id;
+    protected Gtk.SortType sort_direction;
+    private unowned SortCompareFunc compare_func;
+
+    // search stuff
+    public delegate void ViewSearchFunc (string search, Gee.ArrayList<Media> table, Gee.ArrayList<Media> showing);
+    private unowned ViewSearchFunc search_func;
 
     protected bool dragging;
-
     protected CellDataFunctionHelper cell_data_helper;
 
     public GenericList (ViewWrapper view_wrapper, TreeViewSetup tvs) {
@@ -63,6 +96,20 @@ public abstract class Noise.GenericList : FastView {
     }
 
     construct {
+        columns = new Gee.ArrayList<Type> ();
+        foreach (var type in ListColumn.get_all ()) {
+            columns.add (type.get_data_type ());
+        }
+
+        fm = new FastModel (columns);
+        sort_column_id = OPTIMAL_COLUMN;
+        sort_direction = Gtk.SortType.ASCENDING;
+
+        fm.reorder_requested.connect (reorder_requested);
+
+        set_table (table, true);
+        set_model (fm);
+
         cell_data_helper = new CellDataFunctionHelper (this);
 
         // Set sort data from saved session
@@ -73,7 +120,9 @@ public abstract class Noise.GenericList : FastView {
         set_fixed_height_mode (true);
         set_reorderable (false);
 
-        add_columns ();
+        foreach (Gtk.TreeViewColumn tvc in tvs.get_columns ()) {
+            add_column (tvc, TreeViewSetup.get_column_type (tvc));
+        }
 
         // allow selecting multiple rows
         get_selection ().set_mode (Gtk.SelectionMode.MULTIPLE);
@@ -81,10 +130,11 @@ public abstract class Noise.GenericList : FastView {
         rows_reordered.connect (on_rows_reordered);
 
         key_press_event.connect ((event) => {
-                if (event.keyval == Gdk.Key.Delete)
-                    mediaRemoveClicked ();
+            if (event.keyval == Gdk.Key.Delete) {
+                mediaRemoveClicked ();
+            }
 
-                return false;
+            return false;
         });
 
         // drag source
@@ -97,10 +147,14 @@ public abstract class Noise.GenericList : FastView {
 
         parent_wrapper.library.media_updated.connect (queue_draw);
 
-        App.player.queue_cleared.connect (current_cleared);
+        App.player.queue_cleared.connect (() => {
+            is_current_list = false;
+        });
+
         App.player.media_played.connect (media_played);
     }
 
+    protected abstract void add_column (Gtk.TreeViewColumn column, ListColumn type);
     protected abstract void mediaRemoveClicked ();
 
     public void set_media (Gee.Collection<Media> to_add) {
@@ -111,28 +165,6 @@ public abstract class Noise.GenericList : FastView {
         set_table (new_table, true);
 
         scroll_to_current_media (false);
-    }
-
-    /* If a Media is in to_remove but not in table, will just ignore */
-    public void remove_media (Gee.Collection<Media> to_remove) {
-        var new_table = new Gee.ArrayList<Media> ();
-
-        foreach (Media m in table) {
-            if (!(m in to_remove)) {
-                new_table.add (m);
-            }
-        }
-
-        // no need to resort, just removing
-        set_table (new_table, false);
-    }
-
-    public void add_media (Gee.Collection<Media> to_add) {
-        // skip calling set_table and just do it ourselves (faster)
-        table.add_all (to_add);
-
-        // resort the new songs in. this will also call do_search
-        resort ();
     }
 
     protected void set_fixed_column_width (Gtk.Widget treeview, Gtk.TreeViewColumn column, Gtk.CellRendererText renderer, string[] strings, int padding) {
@@ -149,13 +181,6 @@ public abstract class Noise.GenericList : FastView {
         }
 
         column.fixed_width = max_width + padding;
-    }
-
-    protected abstract void add_column (Gtk.TreeViewColumn column, ListColumn type);
-
-    protected void add_columns () {
-        foreach (Gtk.TreeViewColumn tvc in tvs.get_columns ())
-            add_column (tvc, TreeViewSetup.get_column_type (tvc));
     }
 
     private Media? get_media_from_index (int index) {
@@ -205,10 +230,6 @@ public abstract class Noise.GenericList : FastView {
         scroll_to_current_media (false);
     }
 
-    void current_cleared () {
-        is_current_list = false;
-    }
-
     public void set_as_current_list (Media? m = null) {
         Media to_set = m == null ? App.player.current_media : m;
 
@@ -217,14 +238,14 @@ public abstract class Noise.GenericList : FastView {
 
         if (!main_settings.privacy_mode_enabled ()) {
             if (playlist == null || playlist == ((Noise.LocalLibrary)libraries_manager.local_library).p_music || parent_wrapper.library != libraries_manager.local_library) {
-                main_settings.last_playlist_playing = "";
+                App.saved_state.set_string ("last-playlist-playing", "");
             } else if (playlist is SmartPlaylist) {
-                main_settings.last_playlist_playing = "s%lld".printf (playlist.rowid);
+                App.saved_state.set_string ("last-playlist-playing", "s%lld".printf (playlist.rowid));
             } else {
                 if (((StaticPlaylist)playlist).read_only == false) {
-                    main_settings.last_playlist_playing = "p%lld".printf (playlist.rowid);
+                    App.saved_state.set_string ("last-playlist-playing", "p%lld".printf (playlist.rowid));
                 } else {
-                    main_settings.last_playlist_playing = "";
+                    App.saved_state.set_string ("last-playlist-playing", "");
                 }
             }
         }
@@ -247,19 +268,18 @@ public abstract class Noise.GenericList : FastView {
     /**
     * Shift a list (of media) to make it start at a given element
     */
-    private Gee.ArrayList<Media> start_at (Media start, Gee.List<Media> media) {
-        debug ("TO START: %s (size = %d)", start.title, media.size);
-        var res = new Gee.ArrayList<Media> ();
-        int index = media.index_of (start);
-        for (int _ = 0; _ < media.size; _++) {
-            res.add (media[index]);
-            index++;
+    private Gee.List<Media> start_at (Media start, Gee.List<Media> media) {
+        int index = 0;
+        for ( ; index < media.size && media[index].uri != start.uri; ++index);
+        debug ( @"TO START: '$(start.title)', size = $(media.size), index: $(index)");
 
-            if (index == media.size) {
-                index = 0;
-            }
+        if (index == media.size) {
+            return media; // nothing to shift
         }
 
+        var res = new Gee.ArrayList<Media> ();
+        res.add_all (media[index: media.size]);
+        res.add_all (media[0: index]);
         return res;
     }
 
@@ -315,12 +335,147 @@ public abstract class Noise.GenericList : FastView {
         }
     }
 
-    /***************************************
-     * Simple setters and getters
-     * *************************************/
+    /** Should not be manipulated by client */
+    public Gee.BidirList<Media> get_table () {
+        return table.read_only_view;
+    }
 
-    public bool get_is_current_list () {
-        return is_current_list;
+    /** Should not be manipulated by client */
+    public Gee.BidirList<Media> get_visible_table () {
+        return showing.read_only_view;
+    }
+
+    public static int get_index_from_iter (Gtk.TreeIter iter) {
+        return (int) iter.user_data;
+    }
+
+    public Media? get_object_from_index (int index) {
+        return index < showing.size ? showing[index] : null;
+    }
+
+    public void set_value_func (FastModel.ValueReturnFunc func) {
+        fm.set_value_func (func);
+    }
+
+    public void set_table (Gee.ArrayList<Media> table, bool do_resort) {
+        this.table = table;
+
+        if (do_resort) {
+            resort (); // this also calls search
+        } else {
+            do_search (null);
+        }
+    }
+
+    public void set_search_func (ViewSearchFunc func) {
+        search_func = func;
+    }
+
+    public void do_search (string? search = null) {
+        if (search_func == null || research_needed == false) {
+            return;
+        }
+
+        research_needed = false;
+        var old_size = showing.size;
+
+        showing.clear ();
+        search_func (search ?? "", table, showing);
+
+        if (showing.size == old_size) {
+            fm.set_table (showing);
+            queue_draw ();
+        } else if (old_size == 0) { // if first population, just do normal
+            set_model (null);
+            fm.set_table (showing);
+            set_model (fm);
+        } else if (old_size > showing.size) { // removing
+            while (fm.iter_n_children (null) > showing.size) {
+                Gtk.TreeIter iter;
+                fm.iter_nth_child (out iter, null, fm.iter_n_children (null) - 1);
+                fm.remove (iter);
+            }
+
+            fm.set_table (showing);
+            queue_draw ();
+        } else if (showing.size > old_size) { // adding
+            Gtk.TreeIter iter;
+
+            while (fm.iter_n_children (null) < showing.size) {
+                fm.append (out iter);
+            }
+
+            fm.set_table (showing);
+            queue_draw ();
+        }
+    }
+
+    /* Sorting is done in the treeview, not the model. That way the whole
+     * table is sorted and ready to go and we do not need to resort every
+     * time we repopulate/search the model
+     */
+    public void set_sort_column_id (int sort_column_id, Gtk.SortType order) {
+        fm.set_sort_column_id (sort_column_id, order); // The model will then go back to us at reorder_requested
+    }
+
+    private void reorder_requested (int column, Gtk.SortType direction) {
+        if (column == sort_column_id && direction == sort_direction) {
+            return;
+        }
+
+        sort_column_id = column;
+        sort_direction = direction;
+
+        quicksort (0, table.size - 1);
+        research_needed = true;
+        do_search (null);
+
+        // Let it be known the row order changed
+        rows_reordered ();
+    }
+
+    public void resort () {
+        quicksort (0, table.size - 1);
+
+        research_needed = true;
+        do_search (null);
+    }
+
+    public void set_compare_func (SortCompareFunc func) {
+        compare_func = func;
+    }
+
+    private void swap (int a, int b) {
+        var temp = table[a];
+        table[a] = table[b];
+        table[b] = temp;
+    }
+
+    private void quicksort (int start, int end) {
+        if (table.size == 0) {
+            return;
+        }
+
+        int pivot_index = (start + end) / 2;
+        var pivot = table[pivot_index];
+        int i = start;
+        int j = end;
+
+        while (i <= j) {
+            while (i < end && compare_func (sort_column_id, sort_direction, table[i], pivot, i, pivot_index) < 0) ++i;
+            while (j > start && compare_func (sort_column_id, sort_direction, table[j], pivot, j, pivot_index) > 0) --j;
+            if (i <= j) {
+                swap (i, j);
+                ++i; --j;
+            }
+        }
+
+        if (start < j) {
+            quicksort (start, j);
+        }
+        if (i < end) {
+            quicksort (i, end);
+        }
     }
 
     /** **********************************************************
@@ -328,7 +483,7 @@ public abstract class Noise.GenericList : FastView {
      * be dragged to a playlist in the sidebar. No support for reordering
      * is implemented yet.
     ***************************************************************/
-    void on_drag_begin (Gtk.Widget sender, Gdk.DragContext context) {
+    private void on_drag_begin (Gtk.Widget sender, Gdk.DragContext context) {
         dragging = true;
         debug ("drag begin");
 
@@ -340,7 +495,7 @@ public abstract class Noise.GenericList : FastView {
             Gtk.drag_source_set_icon_name (this, "audio-x-generic");
     }
 
-    void on_drag_data_get (Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {
+    private void on_drag_data_get (Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {
         string[] uris = null;
 
         foreach (Media m in get_selected_medias ())
@@ -350,7 +505,7 @@ public abstract class Noise.GenericList : FastView {
             selection_data.set_uris (uris);
     }
 
-    void on_drag_end (Gtk.Widget sender, Gdk.DragContext context) {
+    private void on_drag_end (Gtk.Widget sender, Gdk.DragContext context) {
         dragging = false;
 
         debug ("drag end\n");

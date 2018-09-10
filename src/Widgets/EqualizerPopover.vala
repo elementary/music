@@ -29,6 +29,8 @@
 public class Noise.EqualizerPopover : Gtk.Popover {
     public signal void preset_changed (string preset_name);
 
+    private Settings.Equalizer core_eq_settings;
+    private GLib.Settings equalizer_settings;
     private Gtk.Switch eq_switch;
     private Gtk.Entry new_preset_entry;
     private Gtk.Grid side_list;
@@ -36,7 +38,6 @@ public class Noise.EqualizerPopover : Gtk.Popover {
     private PresetList preset_combo;
     private Gee.List<Gtk.Scale> scales;
     private Gee.List<int> target_levels;
-    private Settings.Equalizer equalizer_settings;
     private string new_preset_name;
     private bool apply_changes = false;
     private bool initialized = false;
@@ -51,6 +52,9 @@ public class Noise.EqualizerPopover : Gtk.Popover {
     };
 
     construct {
+        core_eq_settings = Settings.Equalizer.get_default ();
+        equalizer_settings = new GLib.Settings ("io.elementary.music.equalizer");
+
         scales = new Gee.ArrayList<Gtk.Scale> ();
         target_levels = new Gee.ArrayList<int> ();
     }
@@ -58,19 +62,17 @@ public class Noise.EqualizerPopover : Gtk.Popover {
     public void init () {
         assert (!initialized);
 
-        equalizer_settings = Settings.Equalizer.get_default ();
-
         build_ui ();
         load_presets ();
 
         initialized = true;
 
-        if (equalizer_settings.auto_switch_preset) {
-            preset_combo.selectAutomaticPreset ();
+        if (equalizer_settings.get_boolean ("auto-switch-preset")) {
+            preset_combo.select_automatic_preset ();
         } else {
-            var preset = equalizer_settings.selected_preset;
+            var preset = equalizer_settings.get_string ("selected-preset");
             if (preset != null)
-                preset_combo.selectPreset (preset);
+                preset_combo.select_preset (preset);
         }
 
         on_eq_switch_toggled ();
@@ -87,9 +89,9 @@ public class Noise.EqualizerPopover : Gtk.Popover {
 
         save_presets ();
 
-        var selected_preset = preset_combo.getSelectedPreset ();
-        equalizer_settings.selected_preset = selected_preset != null ? selected_preset.name : "";
-        equalizer_settings.auto_switch_preset = preset_combo.automatic_chosen;
+        var selected_preset = preset_combo.get_selected_preset ();
+        equalizer_settings.set_string ("selected-preset", selected_preset != null ? selected_preset.name : "");
+        equalizer_settings.set_boolean ("auto-switch-preset", preset_combo.automatic_chosen);
 
         closing = false;
     }
@@ -98,7 +100,7 @@ public class Noise.EqualizerPopover : Gtk.Popover {
         if (preset_name == null || String.is_white_space (preset_name))
             return false;
 
-        foreach (var preset in preset_combo.getPresets ()) {
+        foreach (var preset in preset_combo.get_presets ()) {
             if (preset_name == preset.name)
                 return false;
         }
@@ -139,7 +141,7 @@ public class Noise.EqualizerPopover : Gtk.Popover {
                     App.player.player.set_equalizer_gain (index, val);
 
                     if (!in_transition) {
-                        var selected_preset = preset_combo.getSelectedPreset ();
+                        var selected_preset = preset_combo.get_selected_preset ();
 
                         if (selected_preset.is_default)
                             on_default_preset_modified ();
@@ -152,7 +154,6 @@ public class Noise.EqualizerPopover : Gtk.Popover {
 
         eq_switch = new Gtk.Switch ();
         eq_switch.valign = Gtk.Align.CENTER;
-        eq_switch.set_active (equalizer_settings.equalizer_enabled);
 
         preset_combo = new PresetList ();
         preset_combo.hexpand = true;
@@ -187,6 +188,10 @@ public class Noise.EqualizerPopover : Gtk.Popover {
 
         add (layout);
 
+        equalizer_settings.bind ("equalizer-enabled", eq_switch, "active", GLib.SettingsBindFlags.DEFAULT);
+        equalizer_settings.bind ("equalizer-enabled", preset_combo, "sensitive", GLib.SettingsBindFlags.GET);
+        equalizer_settings.bind ("equalizer-enabled", scale_container, "sensitive", GLib.SettingsBindFlags.GET);
+
         eq_switch.notify["active"].connect (on_eq_switch_toggled);
         preset_combo.automatic_preset_chosen.connect (on_automatic_chosen);
         preset_combo.delete_preset_chosen.connect (remove_preset_clicked);
@@ -209,16 +214,11 @@ public class Noise.EqualizerPopover : Gtk.Popover {
 
         in_transition = false;
 
-        bool eq_active = eq_switch.active;
-        preset_combo.sensitive = eq_active;
-        scale_container.sensitive = eq_active;
-        equalizer_settings.equalizer_enabled = eq_active;
-
-        if (eq_active) {
+        if (equalizer_settings.get_boolean ("equalizer-enabled")) {
             if (preset_combo.automatic_chosen) {
-                preset_combo.selectAutomaticPreset ();
+                preset_combo.select_automatic_preset ();
             } else {
-                var selected_preset = preset_combo.getSelectedPreset ();
+                var selected_preset = preset_combo.get_selected_preset ();
 
                 if (selected_preset != null) {
                     for (int i = 0; i < scales.size; ++i)
@@ -237,22 +237,23 @@ public class Noise.EqualizerPopover : Gtk.Popover {
     private void load_presets () {
         foreach (var preset in Equalizer.get_default_presets ()) {
             preset.is_default = true;
-            preset_combo.addPreset (preset);
+            preset_combo.add_preset (preset);
         }
 
-        foreach (var preset in equalizer_settings.get_presets ())
-            preset_combo.addPreset (preset);
+        foreach (var preset in core_eq_settings.get_presets ()) {
+            preset_combo.add_preset (preset);
+        }
     }
 
     private void save_presets () {
         var val = new string[0];
 
-        foreach (var preset in preset_combo.getPresets ()) {
+        foreach (var preset in preset_combo.get_presets ()) {
             if (!preset.is_default)
                 val += preset.to_string ();
         }
 
-        equalizer_settings.custom_presets = val;
+        equalizer_settings.set_strv ("custom-presets", val);
     }
 
     private void preset_selected (EqualizerPreset p) {
@@ -322,18 +323,18 @@ public class Noise.EqualizerPopover : Gtk.Popover {
     }
 
     private void notify_current_preset () {
-        if (equalizer_settings.equalizer_enabled) {
+        if (equalizer_settings.get_boolean ("equalizer-enabled")) {
             if (preset_combo.automatic_chosen)
                 preset_changed (_("Automatic"));
             else
-                preset_changed (preset_combo.getSelectedPreset ().name);
+                preset_changed (preset_combo.get_selected_preset ().name);
         } else {
             preset_changed (_("Off"));
         }
     }
 
     private void on_automatic_chosen () {
-        equalizer_settings.auto_switch_preset = preset_combo.automatic_chosen;
+        equalizer_settings.set_boolean ("auto-switch-preset", preset_combo.automatic_chosen);
 
         target_levels.clear ();
 
@@ -392,7 +393,7 @@ public class Noise.EqualizerPopover : Gtk.Popover {
             gains[i] = (int) scales.get (i).get_value ();
 
         var new_preset = new EqualizerPreset.with_gains (new_preset_name, gains);
-        preset_combo.addPreset (new_preset);
+        preset_combo.add_preset (new_preset);
 
         side_list.add (preset_combo);
         side_list.set_focus_child (preset_combo);
@@ -404,7 +405,7 @@ public class Noise.EqualizerPopover : Gtk.Popover {
     }
 
     private string create_new_preset_name (bool from_current) {
-        string current_preset_name = from_current ? preset_combo.getSelectedPreset ().name : "";
+        string current_preset_name = from_current ? preset_combo.get_selected_preset ().name : "";
         string preset_name = "";
 
         bool is_valid = false;
@@ -434,6 +435,6 @@ public class Noise.EqualizerPopover : Gtk.Popover {
     }
 
     private void remove_preset_clicked () {
-        preset_combo.removeCurrentPreset ();
+        preset_combo.remove_current_preset ();
     }
 }

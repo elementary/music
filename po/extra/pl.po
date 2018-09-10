@@ -7,44 +7,64 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2017-01-10 13:02+0000\n"
-"Last-Translator: Damian Woźniak <fiszet@gmail.com>\n"
-"Language-Team: polski <>\n"
-"Language: \n"
+"POT-Creation-Date: 2018-06-27 08:21-0700\n"
+"PO-Revision-Date: 2018-08-08 00:01+0000\n"
+"Last-Translator: Kuba Kowalczyk <kuba.bruno.kowalczyk@gmail.com>\n"
+"Language-Team: Polish <https://weblate.elementary.io/projects/music/extra/pl/"
+">\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
-"X-Generator: Launchpad (build 18330)\n"
 
+#: data/io.elementary.music.appdata.xml.in:8
+#: data/io.elementary.music.desktop.in:4
 msgid "Music"
 msgstr "Muzyka"
 
-msgid "Music Player"
-msgstr "Odtwarzacz muzyki"
-
-msgid "Listen to music"
-msgstr "Umożliwia słuchanie muzyki"
-
-msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-msgstr "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-
-msgid "About Music"
-msgstr "O odtwarzaczu muzyki"
-
-msgid "Noise"
-msgstr "Noise"
-
-msgid "About Noise"
-msgstr "O Noise"
-
+#: data/io.elementary.music.appdata.xml.in:9
 msgid "The official elementary music player"
 msgstr "Oficjalny odtwarzacz muzyki elementary"
 
+#: data/io.elementary.music.appdata.xml.in:11
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices, CDs, and album art."
 msgstr ""
-"Noise to szybki i piękny odtwarzacz dźwięku z naciskiem na muzykę i "
+"Muzyka to szybki i piękny odtwarzacz dźwięku z naciskiem na muzykę i "
 "biblioteki. Obsługuje zewnętrzne urządzenia, CD oraz okładki płyt."
+
+#: data/io.elementary.music.appdata.xml.in:100
+msgid "elementary LLC."
+msgstr "elementary LLC."
+
+#: data/io.elementary.music.desktop.in:5
+msgid "Music Player"
+msgstr "Odtwarzacz muzyki"
+
+#: data/io.elementary.music.desktop.in:6
+msgid "Listen to music"
+msgstr "Umożliwia słuchanie muzyki"
+
+#: data/io.elementary.music.desktop.in:8
+msgid "multimedia-audio-player"
+msgstr "multimedia-audio-player"
+
+#: data/io.elementary.music.desktop.in:13
+msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+msgstr ""
+"Noise;Audio;Odtwarzacz;MP3;iPod;Odtwarzaj;Lista "
+"Odtwarzania;Media;CD;Teleon;Piosenki;"
+
+#~ msgid "About Music"
+#~ msgstr "O odtwarzaczu muzyki"
+
+#~ msgid "Noise"
+#~ msgstr "Noise"
+
+#~ msgid "About Noise"
+#~ msgstr "O Noise"

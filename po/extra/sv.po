@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-18 14:43+0100\n"
+"POT-Creation-Date: 2018-06-27 08:21-0700\n"
 "PO-Revision-Date: 2016-12-20 23:00+0000\n"
 "Last-Translator: Joachim Johansson <Unknown>\n"
 "Language-Team: Swedish\n"
@@ -19,33 +19,48 @@ msgstr ""
 "X-Generator: Launchpad (build 18330)\n"
 "X-Poedit-Language: Swedish\n"
 
+#: data/io.elementary.music.appdata.xml.in:8
+#: data/io.elementary.music.desktop.in:4
 msgid "Music"
 msgstr "Musik"
 
-msgid "Music Player"
-msgstr "Musikspelare"
-
-msgid "Listen to music"
-msgstr "Lyssna på musik"
-
-msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-msgstr "Noise;Ljud;Spelare;MP3;iPod;Spela;Spellista;Media;CD;Telefon;Låtar;"
-
-msgid "About Music"
-msgstr "Om Musik"
-
-msgid "Noise"
-msgstr "Noise"
-
-msgid "About Noise"
-msgstr "Om Noise"
-
+#: data/io.elementary.music.appdata.xml.in:9
 msgid "The official elementary music player"
 msgstr "Den officiella musikspelaren i elementary"
 
+#: data/io.elementary.music.appdata.xml.in:11
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices, CDs, and album art."
 msgstr ""
 "Musik är en snabb och snygg musikspelare, med fokus på musik och samlingar. "
 "Programmet hanterar externa enheter, cd-skivor och omslagsbilder."
+
+#: data/io.elementary.music.appdata.xml.in:100
+msgid "elementary LLC."
+msgstr ""
+
+#: data/io.elementary.music.desktop.in:5
+msgid "Music Player"
+msgstr "Musikspelare"
+
+#: data/io.elementary.music.desktop.in:6
+msgid "Listen to music"
+msgstr "Lyssna på musik"
+
+#: data/io.elementary.music.desktop.in:8
+msgid "multimedia-audio-player"
+msgstr ""
+
+#: data/io.elementary.music.desktop.in:13
+msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+msgstr "Noise;Ljud;Spelare;MP3;iPod;Spela;Spellista;Media;CD;Telefon;Låtar;"
+
+#~ msgid "About Music"
+#~ msgstr "Om Musik"
+
+#~ msgid "Noise"
+#~ msgstr "Noise"
+
+#~ msgid "About Noise"
+#~ msgstr "Om Noise"

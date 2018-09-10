@@ -27,7 +27,7 @@
  *              Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-/**
+/*
  * Container and controller of the list and grid views, and info widgets
  * (welcome screen and embedded alert).
  *
@@ -51,7 +51,8 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         DEVICE_PODCAST,
         DEVICE_AUDIOBOOK,
         NETWORK_DEVICE,
-        ALBUM_LIST;
+        ALBUM_LIST,
+        QUEUE;
     }
 
     /**
@@ -312,7 +313,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
         update_visible_media ();
     }
 
-    /**
+    /*
      * Thhis method tells the parent class whether the search field, media control buttons,
      * and other external widgets should be sensitive or not (among other things), so that
      * the abstract parent class can take care of all these automated/repetitive tasks.

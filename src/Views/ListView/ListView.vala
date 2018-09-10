@@ -156,11 +156,11 @@ public class Noise.ListView : Gtk.Box, ViewInterface {
         column_browser.actual_position = actual_position;
 
         if (actual_position == ColumnBrowser.Position.LEFT) {
-            App.saved_state.unbind (browser_pane, "position");
+            GLib.Settings.unbind (browser_pane, "position");
             browser_pane.orientation = Gtk.Orientation.HORIZONTAL;
             App.saved_state.bind ("column-browser-width", browser_pane, "position", GLib.SettingsBindFlags.DEFAULT);
         } else if (actual_position == ColumnBrowser.Position.TOP) {
-            App.saved_state.unbind (browser_pane, "position");
+            GLib.Settings.unbind (browser_pane, "position");
             browser_pane.orientation = Gtk.Orientation.VERTICAL;
             App.saved_state.bind ("column-browser-height", browser_pane, "position", GLib.SettingsBindFlags.DEFAULT);
         }
@@ -244,7 +244,7 @@ public class Noise.ListView : Gtk.Box, ViewInterface {
     }
 
     public bool get_is_current_list () {
-        return list_view.get_is_current_list ();
+        return list_view.is_current_list;
     }
 
     public void add_media (Gee.Collection<Media> to_add) {

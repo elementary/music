@@ -109,17 +109,20 @@ public class Noise.MediaMenu : Gtk.Menu {
                 append (queue_media);
                 append (add_to_playlist);
                 break;
+            case ViewWrapper.Hint.QUEUE:
+                append (scroll_to_current);
+                append (new Gtk.SeparatorMenuItem ());
+                append (file_browse);
+                append (contractor_entry);
+                append (new Gtk.SeparatorMenuItem ());
+                append (remove_media);
+                remove_media.label = _("Remove from Queue");
             case ViewWrapper.Hint.READ_ONLY_PLAYLIST:
             default:
                 append (scroll_to_current);
                 append (new Gtk.SeparatorMenuItem ());
                 append (file_browse);
                 append (contractor_entry);
-                if (generic_list.playlist == App.player.queue_playlist) {
-                    append (new Gtk.SeparatorMenuItem ());
-                    append (remove_media);
-                    remove_media.label = _("Remove from Queue");
-                }
                 break;
         }
 
@@ -240,7 +243,7 @@ public class Noise.MediaMenu : Gtk.Menu {
             contractor_entry.sensitive = false;
         }
 
-        popup (null, null, null, 3, Gtk.get_current_event_time ());
+        popup_at_pointer (null);
     }
 
     private void edit_media_clicked () {
@@ -317,10 +320,8 @@ public class Noise.MediaMenu : Gtk.Menu {
             case ViewWrapper.Hint.PLAYLIST:
                 generic_list.playlist.remove_medias (selected_media);
                 break;
-            case ViewWrapper.Hint.READ_ONLY_PLAYLIST:
-                if (generic_list.playlist == App.player.queue_playlist) {
-                    generic_list.playlist.remove_medias (selected_media);
-                }
+            case ViewWrapper.Hint.QUEUE:
+                generic_list.playlist.remove_medias (selected_media);
                 break;
           }
     }

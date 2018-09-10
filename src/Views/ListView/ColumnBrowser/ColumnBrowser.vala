@@ -480,7 +480,7 @@ public class Noise.ColumnBrowser : Gtk.Grid {
 
     private void column_header_clicked (Gdk.EventButton e) {
         if (e.button == Gdk.BUTTON_SECONDARY) { // secondary button
-            this.column_chooser_menu.popup (null, null, null, 3, Gtk.get_current_event_time ());
+            column_chooser_menu.popup_at_pointer (e);
         }
     }
 

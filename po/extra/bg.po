@@ -7,44 +7,58 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2017-04-05 20:09+0000\n"
-"Last-Translator: Borislav Asenov Krumov <Unknown>\n"
-"Language-Team: Bulgarian <bg@li.org>\n"
+"POT-Creation-Date: 2018-06-27 08:21-0700\n"
+"PO-Revision-Date: 2018-08-22 16:31+0000\n"
+"Last-Translator: Daniel Foré <daniel@elementary.io>\n"
+"Language-Team: Bulgarian <https://weblate.elementary.io/projects/music/extra/"
+"bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-04-07 06:22+0000\n"
-"X-Generator: Launchpad (build 18343)\n"
 
+#: data/io.elementary.music.appdata.xml.in:8
+#: data/io.elementary.music.desktop.in:4
 msgid "Music"
 msgstr "Музика"
 
-msgid "Music Player"
-msgstr "Музикален свирач"
-
-msgid "Listen to music"
-msgstr "Слушане на музика"
-
-msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-msgstr "Шум;Музика;Плеър;МП3;айПод;Пусни;Музикален списък;Диск;Телефон;Песни;"
-
-msgid "About Music"
-msgstr "Относно песента"
-
-msgid "Noise"
-msgstr "Ноиз"
-
-msgid "About Noise"
-msgstr ""
-
+#: data/io.elementary.music.appdata.xml.in:9
 msgid "The official elementary music player"
 msgstr "Официалният музикален плеър на операционната система"
 
+#: data/io.elementary.music.appdata.xml.in:11
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices, CDs, and album art."
 msgstr ""
 "Бърз и красив музикален плеър насочен към музиката и музикалните библиотеки. "
 "Поддържа външни устройствата, СД-та, и албуми с корици."
+
+#: data/io.elementary.music.appdata.xml.in:100
+msgid "elementary LLC."
+msgstr "elementary LLC."
+
+#: data/io.elementary.music.desktop.in:5
+msgid "Music Player"
+msgstr "Музикален свирач"
+
+#: data/io.elementary.music.desktop.in:6
+msgid "Listen to music"
+msgstr "Слушане на музика"
+
+#: data/io.elementary.music.desktop.in:8
+msgid "multimedia-audio-player"
+msgstr "multimedia-audio-player"
+
+#: data/io.elementary.music.desktop.in:13
+msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+msgstr "Шум;Музика;Плеър;МП3;айПод;Пусни;Музикален списък;Диск;Телефон;Песни;"
+
+#~ msgid "About Music"
+#~ msgstr "Относно песента"
+
+#~ msgid "Noise"
+#~ msgstr "Ноиз"

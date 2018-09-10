@@ -28,7 +28,7 @@ app_files = files(
   'src/Dialogs/FileNotFoundDialog.vala',
   'src/Dialogs/InstallGstreamerPluginsDialog.vala',
   'src/Dialogs/MediaEditor.vala',
-  'src/Dialogs/NotImportedWindow.vala',
+  'src/Dialogs/NotImportedDialog.vala',
   'src/Dialogs/PreferencesWindow.vala',
   'src/Dialogs/RemoveFilesDialog.vala',
   'src/Dialogs/SetMusicFolderConfirmation.vala',
@@ -76,7 +76,6 @@ app_files = files(
   'src/Widgets/ViewSelector.vala',
   'src/Widgets/FastView/FastGrid.vala',
   'src/Widgets/FastView/FastGridModel.vala',
-  'src/Widgets/FastView/FastList.vala',
   'src/Widgets/FastView/FastListModel.vala',
   'src/Widgets/FastView/TileView/TileRenderer.vala',
   'src/Widgets/Rating/RatingCellRenderer.vala',
@@ -113,3 +112,7 @@ if get_option('build-plugins')
 endif
 
 subdir('po')
+
+if get_option('documentation')
+    subdir('docs')
+endif

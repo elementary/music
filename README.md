@@ -18,7 +18,7 @@ You'll need the following dependencies:
 * libgsignon-glib-dev
 * libgstreamer1.0-dev
 * libgstreamer-plugins-base1.0-dev
-* libgtk-3-dev
+* libgtk-3-dev >= 3.22
 * libjson-glib-dev
 * libnotify-dev
 * libpeas-dev
@@ -43,10 +43,19 @@ You can run tests with `ninja test`, and reset the build environment with `ninja
 
 You can use these options to configure your build:
 * `build-plugins`: `true` to build plugins or `false` to ony compile the core and the application
-* `plugins`: any of `lastfm`, `audio-device`, `cdrom` and `ipod`, separated by commas
+* `plugins`: any of `lastfm`, `audioplayer`, `cdrom` and `ipod`, separated by commas
 * `prefix`: the installation prefix
 
 To define their values, use `meson configure`
 
     # For instance, if you want to disable plugins:
     meson configure -Dbuild-plugins=false
+
+## Developer Docs
+
+Music includes valadoc documentation for developers, to autogenerate them from git master enable valadoc:
+
+    meson configure -Ddocumentation=true
+
+The compiled documentation in html format will appear in build/docs when you run ninja. Be aware that creating docs is very slow and it's a good idea to disable building them when you're not using them.
+

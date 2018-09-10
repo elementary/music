@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-18 14:43+0100\n"
-"PO-Revision-Date: 2017-08-05 16:12+0000\n"
-"Last-Translator: Dieter Debast <dieter_debast@hotmail.com>\n"
+"POT-Creation-Date: 2018-06-27 08:21-0700\n"
+"PO-Revision-Date: 2018-08-22 16:23+0000\n"
+"Last-Translator: Daniel Foré <daniel@elementary.io>\n"
 "Language-Team: Dutch <https://weblate.elementary.io/projects/music/extra/nl/>"
 "\n"
 "Language: nl\n"
@@ -17,38 +17,53 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.15\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
+#: data/io.elementary.music.appdata.xml.in:8
+#: data/io.elementary.music.desktop.in:4
 msgid "Music"
 msgstr "Muziek"
 
-msgid "Music Player"
-msgstr "Muziekspeler"
-
-msgid "Listen to music"
-msgstr "Luister naar muziek"
-
-msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-msgstr ""
-"Noise;Muziek;Speler;Audio;MP3;iPod;Afspeellijst;Speel;Media;CD;Telefoon;"
-"Liedjes;"
-
-msgid "About Music"
-msgstr "Over Muziek"
-
-msgid "Noise"
-msgstr "Noise"
-
-msgid "About Noise"
-msgstr "Over Noise"
-
+#: data/io.elementary.music.appdata.xml.in:9
 msgid "The official elementary music player"
 msgstr "De officiële elementary muziekspeler"
 
+#: data/io.elementary.music.appdata.xml.in:11
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices, CDs, and album art."
 msgstr ""
 "Muziek is een snelle en mooie audiospeler met een focus op muziek en "
 "bibliotheken. Het ondersteunt externe toestellen, CD's en albumhoezen."
+
+#: data/io.elementary.music.appdata.xml.in:100
+msgid "elementary LLC."
+msgstr "elementary LLC."
+
+#: data/io.elementary.music.desktop.in:5
+msgid "Music Player"
+msgstr "Muziekspeler"
+
+#: data/io.elementary.music.desktop.in:6
+msgid "Listen to music"
+msgstr "Luister naar muziek"
+
+#: data/io.elementary.music.desktop.in:8
+msgid "multimedia-audio-player"
+msgstr "multimedia-audio-player"
+
+#: data/io.elementary.music.desktop.in:13
+msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+msgstr ""
+"Noise;Muziek;Speler;Audio;MP3;iPod;Afspeellijst;Speel;Media;CD;Telefoon;"
+"Liedjes;"
+
+#~ msgid "About Music"
+#~ msgstr "Over Muziek"
+
+#~ msgid "Noise"
+#~ msgstr "Noise"
+
+#~ msgid "About Noise"
+#~ msgstr "Over Noise"
