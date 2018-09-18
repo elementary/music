@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
 "PO-Revision-Date: 2018-09-18 22:43+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"Last-Translator: Cleiton Floss <cleitonfloss@gmail.com>\n"
 "Language-Team: Norwegian Bokmål <https://weblate.elementary.io/projects/"
 "music/music/nb/>\n"
 "Language: nb\n"
@@ -1426,7 +1426,7 @@ msgstr "Lagre som spilleliste"
 
 #: src/Widgets/SourceListView.vala:103
 msgid "Export…"
-msgstr "Exporter..."
+msgstr "Exporter…"
 
 #: src/Widgets/SourceListView.vala:166
 msgid "Eject"
