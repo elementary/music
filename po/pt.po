@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-02-28 10:52+0000\n"
-"Last-Translator: Luís Lima <geral@liqensoft.com>\n"
+"PO-Revision-Date: 2018-09-17 15:14+0000\n"
+"Last-Translator: Nuno Alexandre MS ribeiro <nuno.anarresti@gmail.com>\n"
 "Language-Team: Portuguese <https://weblate.elementary.io/projects/music/"
 "music/pt/>\n"
 "Language: pt\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 
 #: core/LibrariesManager.vala:147
@@ -337,7 +337,7 @@ msgstr "Importação terminada"
 
 #: src/FileOperator.vala:305
 msgid "Your Library Has Been Imported."
-msgstr ""
+msgstr "A sua biblioteca foi importada."
 
 #. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:315
@@ -519,18 +519,17 @@ msgid "Close"
 msgstr "Fechar"
 
 #: src/Dialogs/NotImportedDialog.vala:51
-#, fuzzy, c-format
+#, c-format
 msgid "Issues while importing from %s"
-msgstr "A importar músicas de %s…"
+msgstr "Problemas ao importar músicas de %s"
 
 #: src/Dialogs/NotImportedDialog.vala:57
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] ""
-"O %s não conseguiu importar %d itens. Os ficheiros podem estar danificados."
+msgstr[0] "Não foi possível importar o item %d. O ficheiros pode estar danificado."
 msgstr[1] ""
-"O %s não conseguiu importar %d itens. Os ficheiros podem estar danificados."
+"Não foi possível importar os itens %d. Os ficheiross podem estar danificados."
 
 #: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
@@ -589,19 +588,18 @@ msgid "Continue playback when closed:"
 msgstr "Continuar reprodução quando fechado:"
 
 #: src/Dialogs/RemoveFilesDialog.vala:49
-#, fuzzy, c-format
+#, c-format
 msgid "Remove %d Song From Library?"
 msgid_plural "Remove %d Songs From Library?"
-msgstr[0] "Remover %d faixas de %s?"
-msgstr[1] "Remover %d faixas de %s?"
+msgstr[0] "Remover %d faixa da Biblioteca?"
+msgstr[1] "Remover %d faixas da Biblioteca?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:55
-#, fuzzy, c-format
+#, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr "Remover da coleção"
+msgstr "Remover \"%s\" da Biblioteca?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
-#, fuzzy
 msgid ""
 "This will remove the song from your library and from any device synced "
 "automatically."
@@ -609,11 +607,11 @@ msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
 msgstr[0] ""
-"Vai remover a faixa da coleção e de todos os dispositivos que estejam "
-"sincronizados com %s."
+"Vai remover a faixa da Biblioteca e de todos os dispositivos que estejam "
+"sincronizados automaticamente."
 msgstr[1] ""
-"Vai remover as faixas da coleção e de todos os dispositivos que estejam "
-"sincronizados com %s."
+"Vai remover as faixas da Biblioteca e de todos os dispositivos que estejam "
+"sincronizados automaticamente."
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
@@ -956,13 +954,12 @@ msgid "Device operation has been cancelled and will stop after this media."
 msgstr "A operação foi cancelada e irá terminar após este ficheiro."
 
 #: src/Views/ViewStack.vala:45
-#, fuzzy
 msgid "No Results"
-msgstr "Sem avaliações"
+msgstr "Sem resultados"
 
 #: src/Views/ViewStack.vala:45
 msgid "Try another search"
-msgstr ""
+msgstr "Tente outra pesquisa"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
 msgid "Genres"
@@ -1354,19 +1351,16 @@ msgid "Scroll to Current Song"
 msgstr "Ir para a faixa em reprodução"
 
 #: src/Widgets/MediaMenu.vala:49
-#, fuzzy
 msgid "Show in File Browser…"
-msgstr "Mostrar no gestor de ficheiros"
+msgstr "Mostrar no explorador de ficheiros…"
 
 #: src/Widgets/MediaMenu.vala:50
-#, fuzzy
 msgid "Edit Song Info…"
-msgstr "Editar informações da faixa"
+msgstr "Editar informações da faixa…"
 
 #: src/Widgets/MediaMenu.vala:51
-#, fuzzy
 msgid "Other Actions"
-msgstr "Outras ações"
+msgstr "Outras Ações"
 
 #: src/Widgets/MediaMenu.vala:53
 msgctxt "Action item (verb)"
@@ -1378,18 +1372,16 @@ msgid "Add to Playlist"
 msgstr "Adicionar à lista de reprodução"
 
 #: src/Widgets/MediaMenu.vala:55
-#, fuzzy
 msgid "Remove Song…"
-msgstr "Remover faixa"
+msgstr "Remover faixa…"
 
 #: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
 msgid "Import to Library"
 msgstr "Importar para a coleção"
 
 #: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
-#, fuzzy
 msgid "Remove from Library…"
-msgstr "Remover da coleção"
+msgstr "Remover da Biblioteca…"
 
 #: src/Widgets/MediaMenu.vala:99
 msgid "Remove from Device"
