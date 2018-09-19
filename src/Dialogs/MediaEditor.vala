@@ -1,6 +1,6 @@
 // -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012-2018 elementary LLC. (https://elementary.io)
+ * Copyright (c) 2012-2018 elementary, Inc. (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -30,13 +30,13 @@ public class Noise.MediaEditor : Gtk.Dialog {
     public const int MIN_WIDTH = 600;
     public const int MIN_HEIGHT = 400;
 
-    private Gtk.Entry title_entry;
-    private Gtk.Entry artist_entry;
-    private Gtk.Entry album_artist_entry;
-    private Gtk.Entry album_entry;
-    private Gtk.Entry genre_entry;
-    private Gtk.Entry composer_entry;
-    private Gtk.Entry grouping_entry;
+    private ActivatesDefaultEntry title_entry;
+    private ActivatesDefaultEntry artist_entry;
+    private ActivatesDefaultEntry album_artist_entry;
+    private ActivatesDefaultEntry album_entry;
+    private ActivatesDefaultEntry genre_entry;
+    private ActivatesDefaultEntry composer_entry;
+    private ActivatesDefaultEntry grouping_entry;
     private Gtk.TextView comment_textview;
     private Gtk.ScrolledWindow comment_scrolledwindow;
     private Gtk.SpinButton track_spinbutton;
@@ -46,8 +46,6 @@ public class Noise.MediaEditor : Gtk.Dialog {
 
     private Gtk.Button previous_button;
     private Gtk.Button next_button;
-    private Gtk.Button save_button;
-    private Gtk.Button close_button;
 
     private Gee.TreeSet<Media> media_list;
     private Gee.HashMap<int64?, Media> temp_list;
@@ -71,13 +69,13 @@ public class Noise.MediaEditor : Gtk.Dialog {
         media_list = new Gee.TreeSet<Media> ();
         temp_list = new Gee.HashMap<int64?, Media> ((x) => { return GLib.int64_hash (x); }, (a, b) => { GLib.int64_equal (a, b); });
 
-        title_entry = new Gtk.Entry ();
-        artist_entry = new Gtk.Entry ();
-        album_artist_entry = new Gtk.Entry ();
-        album_entry = new Gtk.Entry ();
-        genre_entry = new Gtk.Entry ();
-        composer_entry = new Gtk.Entry ();
-        grouping_entry = new Gtk.Entry ();
+        title_entry = new ActivatesDefaultEntry ();
+        artist_entry = new ActivatesDefaultEntry ();
+        album_artist_entry = new ActivatesDefaultEntry ();
+        album_entry = new ActivatesDefaultEntry ();
+        genre_entry = new ActivatesDefaultEntry ();
+        composer_entry = new ActivatesDefaultEntry ();
+        grouping_entry = new ActivatesDefaultEntry ();
         comment_textview = new Gtk.TextView ();
         comment_textview.set_wrap_mode (Gtk.WrapMode.WORD_CHAR);
         comment_scrolledwindow = new Gtk.ScrolledWindow (null, null);
@@ -124,22 +122,20 @@ public class Noise.MediaEditor : Gtk.Dialog {
         grid.attach (new Granite.HeaderLabel (_("Comment:")), 0, 8, 1, 1);
         grid.attach (comment_frame, 0, 9, 1, 5);
 
-        var content = get_content_area () as Gtk.Container;
-        content.add (grid);
+        get_content_area ().add (grid);
 
         previous_button = new Gtk.Button.from_icon_name ("go-previous-symbolic");
         next_button = new Gtk.Button.from_icon_name ("go-next-symbolic");
 
         var arrows_grid = new Gtk.Grid ();
-        arrows_grid.orientation = Gtk.Orientation.HORIZONTAL;
-        arrows_grid.column_homogeneous = true;
         arrows_grid.get_style_context ().add_class (Gtk.STYLE_CLASS_LINKED);
         arrows_grid.add (previous_button);
         arrows_grid.add (next_button);
 
-        close_button = (Gtk.Button) add_button (_("Close"), Gtk.ResponseType.CLOSE);
+        add_button (_("Close"), Gtk.ResponseType.CLOSE);
 
-        save_button = (Gtk.Button) add_button (_("Save"), Gtk.ResponseType.APPLY);
+        var save_button = (Gtk.Button) add_button (_("Save"), Gtk.ResponseType.APPLY);
+        save_button.has_default = true;
         save_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
 
         var action_area = (Gtk.ButtonBox) get_action_area ();
@@ -151,8 +147,13 @@ public class Noise.MediaEditor : Gtk.Dialog {
 
         previous_button.clicked.connect (previous_track);
         next_button.clicked.connect (next_track);
-        close_button.clicked.connect (() => destroy ());
-        save_button.clicked.connect (save_and_exit);
+
+        response.connect ((response_id) => {
+            if (response_id == Gtk.ResponseType.APPLY) {
+                save_and_exit ();
+            }
+            destroy ();
+        });
     }
 
     private void previous_track () {
@@ -218,7 +219,6 @@ public class Noise.MediaEditor : Gtk.Dialog {
         media_list.clear ();
         current_media = null;
         temp_list.clear ();
-        destroy ();
     }
 
     private void set_media (Media m) {
@@ -243,5 +243,11 @@ public class Noise.MediaEditor : Gtk.Dialog {
         var iterator = (Gee.BidirIterator<Media>) media_list.iterator_at (current_media);
         previous_button.sensitive = iterator.has_previous ();
         next_button.sensitive = iterator.has_next ();
+    }
+
+    private class ActivatesDefaultEntry : Gtk.Entry {
+        construct {
+            activates_default = true;
+        }
     }
 }
