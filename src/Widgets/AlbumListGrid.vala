@@ -126,7 +126,7 @@ public class Noise.AlbumListGrid : Gtk.Grid {
 
         album_list_box.child_activated.connect ((row) => {
             App.player.clear_queue ();
-            App.player.queue_medias (media_list);
+            App.player.queue_media (media_list);
             App.player.play_media (((AlbumListRow) row).media);
             App.player.start_playback ();
         });
