@@ -290,7 +290,7 @@ public class Noise.MediaMenu : Gtk.Menu {
     }
 
     private void queue_clicked () {
-        App.player.queue_medias (generic_list.get_selected_medias ().read_only_view);
+        App.player.queue_media (generic_list.get_selected_medias ().read_only_view);
     }
 
     private void rate_media_clicked () {

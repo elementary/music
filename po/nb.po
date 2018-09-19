@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-07-22 00:03+0000\n"
-"Last-Translator: Nils K <slx@nilsk.net>\n"
+"PO-Revision-Date: 2018-09-19 00:08+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://weblate.elementary.io/projects/"
 "music/music/nb/>\n"
 "Language: nb\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: core/LibrariesManager.vala:147
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "Importerer <b>$NAME</b> av <b>$ARTIST</b> til biblioteket ..."
+msgstr "Importerer <b>$NAME</b> av <b>$ARTIST</b> til biblioteket…"
 
 #. / Used for unknown titles, artists, or album names.
 #: core/Media.vala:32
@@ -298,12 +298,12 @@ msgstr "Det oppstod en feil under lasting av lyd-CD."
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
 msgid "Finishing sync process…"
-msgstr "Ferdiggjør synkronisering prosessen..."
+msgstr "Fullfører synkroniseringsprosessen…"
 
 #: plugins/Devices/iPod/iPodLibrary.vala:230
 #: plugins/Devices/iPod/iPodLibrary.vala:386
 msgid "Cancelling Sync…"
-msgstr "Avbryter Synkronisering..."
+msgstr "Avbryter synkronisering…"
 
 #: plugins/LastFM/LastFM.vala:98
 msgid "No similar songs found"
@@ -346,7 +346,7 @@ msgstr "<b>Kopierer</b> filer til <b>Musikkmappe</b>…"
 
 #: src/LibraryWindow.vala:192
 msgid "Import to Library…"
-msgstr "Importer til bibliotek..."
+msgstr "Importer til bibliotek…"
 
 #: src/LibraryWindow.vala:195 src/Dialogs/PreferencesWindow.vala:40
 msgid "Preferences"
@@ -554,7 +554,7 @@ msgstr "Ignorer"
 
 #: src/Dialogs/PreferencesWindow.vala:48
 msgid "Select Music Folder…"
-msgstr "Velg Musikk Mappe..."
+msgstr "Velg musikkmappe…"
 
 #: src/Dialogs/PreferencesWindow.vala:77
 msgid "Music Folder Location"
@@ -845,7 +845,7 @@ msgstr "Ingen filer ble importert."
 
 #: src/LocalBackend/LocalLibrary.vala:252
 msgid "Rescanning music for changes. This may take a while…"
-msgstr "Søker på nytt etter musikk for endringer. Dette kan ta en stund ..."
+msgstr "Søker etter musikkendringer på nytt. Dette kan ta en stund…"
 
 #: src/LocalBackend/LocalLibrary.vala:353
 msgid "Added to your queue:"
@@ -1394,7 +1394,7 @@ msgstr "Fjern fra køen"
 
 #: src/Widgets/MediaMenu.vala:152
 msgid "New Playlist…"
-msgstr "Ny Spilleliste..."
+msgstr "Ny spilleliste…"
 
 #: src/Widgets/MediaMenu.vala:192
 #, c-format
@@ -1418,7 +1418,7 @@ msgstr "Endre navn"
 
 #: src/Widgets/SourceListView.vala:79
 msgid "Edit…"
-msgstr "Rediger..."
+msgstr "Rediger…"
 
 #: src/Widgets/SourceListView.vala:95
 msgid "Save as Playlist"
@@ -1426,7 +1426,7 @@ msgstr "Lagre som spilleliste"
 
 #: src/Widgets/SourceListView.vala:103
 msgid "Export…"
-msgstr "Exporter..."
+msgstr "Eksporter…"
 
 #: src/Widgets/SourceListView.vala:166
 msgid "Eject"
