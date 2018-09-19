@@ -35,7 +35,7 @@ public class Noise.AlbumListGrid : Gtk.Grid {
     private Gee.TreeSet<Media> media_list = new Gee.TreeSet<Media> ();
     private Gtk.Label album_label;
     private Gtk.Label artist_label;
-    private Gtk.ListBox album_list_box;
+    private Gtk.FlowBox album_list_box;
     private Gtk.Menu cover_action_menu;
     private Music.RatingWidget rating;
 
@@ -46,11 +46,14 @@ public class Noise.AlbumListGrid : Gtk.Grid {
     construct {
         album_cover = new Widgets.AlbumImage ();
         album_cover.width_request = 184;
-        album_cover.margin = 28;
-        album_cover.margin_bottom = 12;
+        album_cover.margin_top = 31;
 
         var cover_event_box = new Gtk.EventBox ();
         cover_event_box.add (album_cover);
+
+        var cover_box_child = new Gtk.FlowBoxChild ();
+        cover_box_child.can_focus = false;
+        cover_box_child.add (cover_event_box);
 
         var cover_set_new = new Gtk.MenuItem.with_label (_("Set new album cover"));
 
@@ -60,7 +63,7 @@ public class Noise.AlbumListGrid : Gtk.Grid {
 
         album_label = new Gtk.Label ("");
         album_label.halign = Gtk.Align.START;
-        album_label.margin_start = album_label.margin_end = 28;
+        album_label.margin_start = album_label.margin_end = 12;
         album_label.max_width_chars = 30;
         album_label.wrap = true;
         album_label.xalign = 0;
@@ -68,16 +71,39 @@ public class Noise.AlbumListGrid : Gtk.Grid {
 
         artist_label = new Gtk.Label ("");
         artist_label.halign = Gtk.Align.START;
-        artist_label.margin_start = artist_label.margin_end = 28;
+        artist_label.margin_start = artist_label.margin_end = 12;
         artist_label.max_width_chars = 30;
         artist_label.wrap = true;
         artist_label.xalign = 0;
         artist_label.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
 
-        album_list_box = new Gtk.ListBox ();
+        var title_grid = new Gtk.Grid ();
+        title_grid.halign = Gtk.Align.CENTER;
+        title_grid.valign = Gtk.Align.CENTER;
+        title_grid.attach (album_label, 0, 0);
+        title_grid.attach (artist_label, 0, 1);
+
+        var title_grid_child = new Gtk.FlowBoxChild ();
+        title_grid_child.can_focus = false;
+        title_grid_child.add (title_grid);
+
+        var title_flow_box = new Gtk.FlowBox ();
+        title_flow_box.margin_start = title_flow_box.margin_end = 19;
+        title_flow_box.max_children_per_line = 2;
+        title_flow_box.row_spacing = 12;
+        title_flow_box.add (cover_box_child);
+        title_flow_box.add (title_grid_child);
+
+        var title_size_group = new Gtk.SizeGroup (Gtk.SizeGroupMode.HORIZONTAL);
+        title_size_group.add_widget (cover_event_box);
+        title_size_group.add_widget (title_grid);
+
+        album_list_box = new Gtk.FlowBox ();
+        album_list_box.homogeneous = true;
+        album_list_box.valign = Gtk.Align.START;
         album_list_box.expand = true;
         album_list_box.get_style_context ().add_class (Gtk.STYLE_CLASS_BACKGROUND);
-        album_list_box.set_sort_func ((Gtk.ListBoxSortFunc) compare_rows);
+        album_list_box.set_sort_func ((Gtk.FlowBoxSortFunc) compare_rows);
 
         var list_view_scrolled = new Gtk.ScrolledWindow (null, null);
         list_view_scrolled.margin_top = 18;
@@ -87,11 +113,9 @@ public class Noise.AlbumListGrid : Gtk.Grid {
         rating.star_spacing = 12;
         rating.margin_bottom = rating.margin_top = 12;
 
-        attach (cover_event_box, 0, 0, 1, 1);
-        attach (album_label, 0, 1, 1, 1);
-        attach (artist_label, 0, 2, 1, 1);
-        attach (list_view_scrolled, 0, 3, 1, 1);
-        attach (rating, 0, 4, 1, 1);
+        attach (title_flow_box, 0, 0);
+        attach (list_view_scrolled, 0, 1);
+        attach (rating, 0, 2);
 
         // FIXME: media menu currently needs a generic list
         //var media_menu = new Noise.MediaMenu ();
@@ -100,7 +124,7 @@ public class Noise.AlbumListGrid : Gtk.Grid {
         cover_set_new.activate.connect (set_new_cover);
         rating.rating_changed.connect (rating_changed);
 
-        album_list_box.row_activated.connect ((row) => {
+        album_list_box.child_activated.connect ((row) => {
             App.player.clear_queue ();
             App.player.queue_medias (media_list);
             App.player.play_media (((AlbumListRow) row).media);
@@ -257,7 +281,7 @@ public class Noise.AlbumListGrid : Gtk.Grid {
         file.destroy ();
     }
 
-    private static int compare_rows (Gtk.ListBoxRow a, Gtk.ListBoxRow b) {
+    private static int compare_rows (Gtk.FlowBoxChild a, Gtk.FlowBoxChild b) {
         var tracka = (((AlbumListRow)a).media.track);
         var trackb = (((AlbumListRow)b).media.track);
 

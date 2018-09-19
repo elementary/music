@@ -23,7 +23,7 @@
  * statement from your version.
  */
 
-public class Noise.AlbumListRow : Gtk.ListBoxRow {
+public class Noise.AlbumListRow : Gtk.FlowBoxChild {
     public Media media { get; construct; }
     private Gtk.Revealer play_revealer;
 
@@ -54,6 +54,7 @@ public class Noise.AlbumListRow : Gtk.ListBoxRow {
         grid.add (title_label);
         grid.add (time_label);
 
+        margin_start = margin_end = 3;
         add (grid);
 
         update_play_icon ();
