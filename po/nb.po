@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-09-19 00:08+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2018-09-27 00:10+0000\n"
+"Last-Translator: Nils K <slx@nilsk.net>\n"
 "Language-Team: Norwegian Bokmål <https://weblate.elementary.io/projects/"
 "music/music/nb/>\n"
 "Language: nb\n"
@@ -520,13 +520,11 @@ msgid "Issues while importing from %s"
 msgstr "Feil oppstod ved import fra %s"
 
 #: src/Dialogs/NotImportedDialog.vala:57
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] ""
-"%s var ute av stand til å importere %d elementer. Filene kan være skadet."
-msgstr[1] ""
-"%s var ute av stand til å importere %d elementer. Filene kan være skadet."
+msgstr[0] "Kan ikke importere %d elementet. Filen kan være skadet."
+msgstr[1] "Kan ikke importere %d elementene. Filene kan være skadet."
 
 #: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
@@ -585,16 +583,16 @@ msgid "Continue playback when closed:"
 msgstr "Fortsett avspilling når lukket:"
 
 #: src/Dialogs/RemoveFilesDialog.vala:49
-#, fuzzy, c-format
+#, c-format
 msgid "Remove %d Song From Library?"
 msgid_plural "Remove %d Songs From Library?"
-msgstr[0] "Fjern %d sanger fra %s?"
-msgstr[1] "Fjern %d sanger fra %s?"
+msgstr[0] "Fjern %d sang fra biblioteket?"
+msgstr[1] "Fjern %d sanger fra biblioteket?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:55
-#, fuzzy, c-format
+#, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr "Fjern fra bibliotek"
+msgstr "Fjern \"%s\" fra biblioteket?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
 #, fuzzy
