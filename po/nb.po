@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-09-27 00:10+0000\n"
-"Last-Translator: Nils K <slx@nilsk.net>\n"
+"PO-Revision-Date: 2018-09-28 00:07+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://weblate.elementary.io/projects/"
 "music/music/nb/>\n"
 "Language: nb\n"
@@ -523,8 +523,8 @@ msgstr "Feil oppstod ved import fra %s"
 #, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] "Kan ikke importere %d elementet. Filen kan være skadet."
-msgstr[1] "Kan ikke importere %d elementene. Filene kan være skadet."
+msgstr[0] "Kunne ikke importere %d element. Filen kan være skadet."
+msgstr[1] "Kunne ikke importere %d elementer. Filene kan være skadet."
 
 #: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
@@ -1230,7 +1230,7 @@ msgstr "Få tak i musikk"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Add music to your library."
-msgstr "Legg til musikk i din ansamling"
+msgstr "Legg til musikk i ditt bibliotek."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:61
 msgid "Import music from a source into your library."
@@ -1242,7 +1242,7 @@ msgstr "Bytt musikkmappe"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:64
 msgid "Load music from a folder, a network or an external disk."
-msgstr "Last musikk fra mappe"
+msgstr "Last musikk fra mappe, nettverks- eller ekstern disk."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:111
 #: src/Views/Wrappers/MusicViewWrapper.vala:131
@@ -1274,8 +1274,8 @@ msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
-"For å legge til sanger til denne spillelisten, bruk <b>høyreklikk</b> på et "
-"element og velg <b>legg til spilleliste</b>"
+"For å legge til sanger i denne spillelisten, bruk <b>høyreklikk</b> på et "
+"element og velg <b>Legg til i spilleliste</b>."
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:58
 msgid "Edit Smart Playlist"
