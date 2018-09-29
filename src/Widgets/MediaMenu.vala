@@ -117,6 +117,7 @@ public class Noise.MediaMenu : Gtk.Menu {
                 append (new Gtk.SeparatorMenuItem ());
                 append (remove_media);
                 remove_media.label = _("Remove from Queue");
+                break;
             case ViewWrapper.Hint.READ_ONLY_PLAYLIST:
             default:
                 append (scroll_to_current);
