@@ -767,36 +767,11 @@ public class Noise.LocalLibrary : Library {
 
         // make a copy of the media list so that it doesn't get modified before
         // the async code (e.g. updating the smart playlists) is done with it
-        var media = new Gee.TreeSet<Media> ();
-        media.add_all (new_media);
+        var medias = new Gee.TreeSet<Media> ();
+        medias.add_all (new_media);
 
-        var local_media = new Gee.HashMap<int64?, LocalMedia> ((x) => { return GLib.int64_hash (x); }, (a, b) => { return GLib.int64_equal (a, b); });
-        foreach (var m in media) {
-            LocalMedia local_m;
-            // Medias with show tag are already in db and should just be
-            // added back to album when imported.
-            if (!m.show) {
-                local_m = new LocalMedia (m.rowid, connection);
-                local_m.show = true;
-            } else {
-                local_m = new LocalMedia.from_media (connection, m);
-            }
-            local_media[local_m.rowid] = local_m;
-            // Append the media into an album.
-            if (local_m.get_album_hashkey () in album_info.keys) {
-                var album = album_info[local_m.get_album_hashkey ()];
-                album.add_media (local_m);
-            }
-
-            if (local_m.album_info == null) {
-                var album = new Album.from_media (local_m);
-                album.add_media (local_m);
-                album_info[album.get_hashkey ()] = album;
-                if (album.cover_icon == null) {
-                    new CoverImport (album);
-                }
-            }
-        }
+        //  Create or get medias on database
+        var local_media = get_local_medias (medias);
         _medias.set_all (local_media);
 
         // Update search results
@@ -920,6 +895,49 @@ public class Noise.LocalLibrary : Library {
             preferences.set (key, pref);
             return pref;
         }
+    }
+
+    /**
+     * create or load on database and append to or create album and return in-database Media
+     * @param Gee.TreeSet<Media> set of Media
+     * @return Gee.HashMap<int64?, LocalMedia> a map of medias in database
+     */
+    private Gee.HashMap<int64?, LocalMedia> get_local_medias (Gee.TreeSet<Media> medias) {
+        var local_medias = new Gee.HashMap<int64?, LocalMedia> ((x) => { return GLib.int64_hash (x); }, (a, b) => { return GLib.int64_equal (a, b); });
+
+        foreach (var media in medias) {
+            try {
+                LocalMedia local_m;
+                // Medias with show tag are already in db and should just be
+                // added back to album when imported.
+                if (!media.show) {
+                    local_m = new LocalMedia (media.rowid, connection);
+                    local_m.show = true;
+                } else {
+                    local_m = new LocalMedia.from_media (connection, media);
+                }
+
+                local_medias[local_m.rowid] = local_m;
+                // Append the media into an album.
+                if (local_m.get_album_hashkey () in album_info.keys) {
+                    var album = album_info[local_m.get_album_hashkey ()];
+                    album.add_media (local_m);
+                }
+
+                if (local_m.album_info == null) {
+                    var album = new Album.from_media (local_m);
+                    album.add_media (local_m);
+                    album_info[album.get_hashkey ()] = album;
+                    if (album.cover_icon == null) {
+                        new CoverImport (album);
+                    }
+                }
+            } catch (Error e) {
+                warning (e.message);
+            }
+        }
+
+        return local_medias;
     }
 
     private Gee.Collection<int64?> get_rowids_from_table (string table_name) {
