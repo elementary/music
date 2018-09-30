@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-05-04 20:37+0000\n"
-"Last-Translator: anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2018-09-30 20:53+0000\n"
+"Last-Translator: Pablo Solís La Beira <pabsol1977@gmail.com>\n"
 "Language-Team: Spanish <https://weblate.elementary.io/projects/music/music/"
 "es/>\n"
 "Language: es\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:55+0000\n"
 
 #: core/LibrariesManager.vala:147
@@ -46,31 +46,31 @@ msgstr "$NAME por $ARTIST en $ALBUM"
 
 #: core/GStreamer/Equalizer.vala:71
 msgid "Flat"
-msgstr "EQ Plana"
+msgstr "Plana"
 
 #: core/GStreamer/Equalizer.vala:72
 msgid "Classical"
-msgstr "EQ Clásica"
+msgstr "Clásica"
 
 #: core/GStreamer/Equalizer.vala:73
 msgid "Club"
-msgstr "EQ Club"
+msgstr "Club"
 
 #: core/GStreamer/Equalizer.vala:74
 msgid "Dance"
-msgstr "EQ Dance"
+msgstr "Dance"
 
 #: core/GStreamer/Equalizer.vala:75
 msgid "Full Bass"
-msgstr "EQ graves al máximo"
+msgstr "Graves al máximo"
 
 #: core/GStreamer/Equalizer.vala:76
 msgid "Full Treble"
-msgstr "EQ Agudos al máximo"
+msgstr "Agudos al máximo"
 
 #: core/GStreamer/Equalizer.vala:77
 msgid "Full Bass + Treble"
-msgstr "EQ Bajos y agudos al máximo"
+msgstr "Graves y agudos al máximo"
 
 #: core/GStreamer/Equalizer.vala:78
 msgid "Headphones"
@@ -78,43 +78,43 @@ msgstr "Auriculares"
 
 #: core/GStreamer/Equalizer.vala:79
 msgid "Large Hall"
-msgstr "EQ Salón de conciertos"
+msgstr "Sala amplia"
 
 #: core/GStreamer/Equalizer.vala:80
 msgid "Live"
-msgstr "EQ En vivo"
+msgstr "En vivo"
 
 #: core/GStreamer/Equalizer.vala:81
 msgid "Party"
-msgstr "EQ Fiesta"
+msgstr "Fiesta"
 
 #: core/GStreamer/Equalizer.vala:82
 msgid "Pop"
-msgstr "EQ Pop"
+msgstr "Pop"
 
 #: core/GStreamer/Equalizer.vala:83
 msgid "Reggae"
-msgstr "EQ Reggae"
+msgstr "Reggae"
 
 #: core/GStreamer/Equalizer.vala:84
 msgid "Rock"
-msgstr "EQ Rock"
+msgstr "Rock"
 
 #: core/GStreamer/Equalizer.vala:85
 msgid "Soft"
-msgstr "EQ Suave"
+msgstr "Suave"
 
 #: core/GStreamer/Equalizer.vala:86
 msgid "Ska"
-msgstr "EQ Ska"
+msgstr "Ska"
 
 #: core/GStreamer/Equalizer.vala:87
 msgid "Soft Rock"
-msgstr "EQ Rock suave"
+msgstr "Rock suave"
 
 #: core/GStreamer/Equalizer.vala:88
 msgid "Techno"
-msgstr "EQ Tecno"
+msgstr "Tecno"
 
 #: core/Utils/FileUtils.vala:182
 #, c-format
@@ -128,7 +128,7 @@ msgstr "%s (%d)"
 
 #: core/Utils/PlaylistsUtils.vala:235
 msgid "New playlist"
-msgstr "Lista de reproducción nueva"
+msgstr "Nueva lista de reproducción"
 
 #. Translators: used for new playlists ex: "New playlist (1)"
 #: core/Utils/PlaylistsUtils.vala:246
@@ -186,7 +186,7 @@ msgstr "Abrir"
 #: core/Utils/PlaylistsUtils.vala:401
 msgid "Unrecognized playlist file. Import failed."
 msgstr ""
-"No se reconoció el archivo de lista de reproducción. importación fallida."
+"No se reconoció el archivo de lista de reproducción. Importación fallida."
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
@@ -206,7 +206,7 @@ msgstr "Este dispositivo no contiene archivos de música."
 
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:153
 msgid "Android Phone"
-msgstr "Teléfono con Android"
+msgstr "Teléfono Android"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:155
 msgid "Audio Player"
@@ -215,7 +215,7 @@ msgstr "Reproductor de audio"
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:137
 #: plugins/Devices/iPod/iPodLibrary.vala:148
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr "Agregando <b>$NAME</b> de <b>$ARTIST</b> hacia $DEVICE"
+msgstr "Agregando <b>$NAME</b> de <b>$ARTIST</b> a $DEVICE"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:161
 #: plugins/Devices/iPod/iPodLibrary.vala:196
@@ -226,7 +226,7 @@ msgstr "Sincronizando <b>%s</b>…"
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:266
 #: plugins/Devices/iPod/iPodLibrary.vala:530
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr "Eliminando <b>$NAME</b> de <b>$ARTIST</b> en $DEVICE"
+msgstr "Eliminando <b>$NAME</b> de <b>$ARTIST</b> de $DEVICE"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:297
 #: plugins/Devices/iPod/iPodLibrary.vala:337
