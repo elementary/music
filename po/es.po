@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-09-30 20:53+0000\n"
-"Last-Translator: haggen svastian <h2gn@openmailbox.org>\n"
+"PO-Revision-Date: 2018-10-01 00:08+0000\n"
+"Last-Translator: Pablo Solís La Beira <pabsol1977@gmail.com>\n"
 "Language-Team: Spanish <https://weblate.elementary.io/projects/music/music/"
 "es/>\n"
 "Language: es\n"
@@ -340,7 +340,7 @@ msgstr "Importación completa"
 
 #: src/FileOperator.vala:305
 msgid "Your Library Has Been Imported."
-msgstr "Su librería ha sido importada."
+msgstr "La librería ha sido importada."
 
 #. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:315
@@ -428,7 +428,7 @@ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr "No se pudo encontrar el archivo de audio <b>%s</b> por <b>%s</b>."
 
 #: src/Dialogs/FileNotFoundDialog.vala:60
-#, c-format
+#, c-format, fuzzy
 msgid "%i music files could not be found?"
 msgstr "¿No se pudieron encontrar %i los archivos de música?"
 
@@ -455,14 +455,14 @@ msgid "Would you like to install the %s plugin?"
 msgstr "¿Quiere instalar el complemento %s?"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:39
-#, c-format
+#, c-format, fuzzy
 msgid "This song cannot be played. The %s plugin is required to play the song."
 msgstr ""
-"Esta canción no se puede reproducir. Para ello se necesita el conector %s."
+"Esta canción no se puede reproducir. Para ello se necesita el complemento %s."
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid "Install Plugin"
-msgstr "Instalar Plugin"
+msgstr "Instalar complemento"
 
 #: src/Dialogs/MediaEditor.vala:102
 msgid "Title:"
@@ -521,20 +521,19 @@ msgstr "Cerrar"
 #: src/Dialogs/NotImportedDialog.vala:51
 #, fuzzy, c-format
 msgid "Issues while importing from %s"
-msgstr "Importando música desde %s…"
+msgstr "Hubo un problema al importar música desde %s"
 
 #: src/Dialogs/NotImportedDialog.vala:57
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] ""
-"%s no pudo importar %d elementos. Los archivos pueden estar dañados."
+msgstr[0] "No se pudo importar el elemento %d. El archivo puede estar dañado."
 msgstr[1] ""
-"%s no pudo importar %d elementos. Los archivos pueden estar dañados."
+"No se pudo importar los elementos %d. Los archivos pueden estar dañados."
 
 #: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
-msgstr "Mover todos los archivos dañados a la papelera"
+msgstr "Trasladar todos los archivos dañados a la papelera"
 
 #: src/Dialogs/NotImportedDialog.vala:72
 msgid "del"
@@ -546,7 +545,7 @@ msgstr "Ubicación del archivo"
 
 #: src/Dialogs/NotImportedDialog.vala:97
 msgid "Select individual files to move to trash:"
-msgstr "Seleccione los archivos a mover a la papelera:"
+msgstr "Seleccione los archivos que desea mover a la papelera:"
 
 #: src/Dialogs/NotImportedDialog.vala:101 src/Dialogs/RemoveFilesDialog.vala:73
 msgid "Move to Trash"
@@ -596,12 +595,11 @@ msgstr[0] "¿Desea eliminar %d canciones de %s?"
 msgstr[1] "¿Desea eliminar %d canciones de %s?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:55
-#, fuzzy, c-format
+#, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr "Eliminar de la biblioteca"
+msgstr "¿Eliminar \"%s\" de la biblioteca?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
-#, fuzzy
 msgid ""
 "This will remove the song from your library and from any device synced "
 "automatically."
@@ -609,11 +607,11 @@ msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
 msgstr[0] ""
-"Esto eliminará la canción de su biblioteca y de cualquier dispositivo que se "
-"sincronice automáticamente con %s."
+"Esto eliminará la canción de su biblioteca y de cualquier dispositivo "
+"sincronizado."
 msgstr[1] ""
-"Esto eliminará las canciones de su biblioteca y de cualquier dispositivo que "
-"se sincronice automáticamente con %s."
+"Esto eliminará las canciones de su biblioteca y de cualquier dispositivo "
+"sincronizado."
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
@@ -638,8 +636,8 @@ msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
 msgstr ""
-"¿Está seguro de que desea establecer %s como su nuevo directorio de música? "
-"Esto reiniciará su biblioteca actual y borrará las listas de reproducción "
+"¿Está seguro de que desea establecer %s como su nueva carpeta de música? "
+"Esto reiniciará su biblioteca y borrará las listas de reproducción "
 "personalizadas."
 
 #: src/Dialogs/SmartPlaylistEditor.vala:55
@@ -716,6 +714,7 @@ msgid "Composer"
 msgstr "Compositor"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:268
+#, fuzzy
 msgid "Date Added"
 msgstr "Fecha de adición"
 
@@ -724,6 +723,7 @@ msgid "Genre"
 msgstr "Género"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:270
+#, fuzzy
 msgid "Grouping"
 msgstr "Agrupamiento"
 
@@ -739,7 +739,7 @@ msgstr "Duración"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:273
 msgid "Playcount"
-msgstr "Cuenta de reproducciones"
+msgstr "Número de reproducciones"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:274
 msgid "Rating"
