@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-10-01 00:08+0000\n"
+"PO-Revision-Date: 2018-10-02 00:04+0000\n"
 "Last-Translator: Pablo Solís La Beira <pabsol1977@gmail.com>\n"
 "Language-Team: Spanish <https://weblate.elementary.io/projects/music/music/"
 "es/>\n"
@@ -804,7 +804,7 @@ msgstr "dias atrás"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:424
 msgid "kbps"
-msgstr "Kbps"
+msgstr "kbps"
 
 #. be a bit explicit to make translations better
 #: src/Dialogs/SyncWarningDialog.vala:52
