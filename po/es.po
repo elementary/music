@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-10-02 13:14+0000\n"
-"Last-Translator: Matias Marambio <marambioh@outlook.com>\n"
+"PO-Revision-Date: 2018-10-03 00:10+0000\n"
+"Last-Translator: Pablo Solís La Beira <pabsol1977@gmail.com>\n"
 "Language-Team: Spanish <https://weblate.elementary.io/projects/music/music/"
 "es/>\n"
 "Language: es\n"
@@ -591,8 +591,8 @@ msgstr "Continuar reproduciendo al cerrar:"
 #, c-format
 msgid "Remove %d Song From Library?"
 msgid_plural "Remove %d Songs From Library?"
-msgstr[0] "¿Desea eliminar %d cancion de %s?"
-msgstr[1] "¿Desea eliminar %d canciones de %s?"
+msgstr[0] "¿Desea eliminar %d canción de la biblioteca?"
+msgstr[1] "¿Desea eliminar %d canciones de la biblioteca?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:55
 #, c-format
