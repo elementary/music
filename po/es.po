@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-10-02 00:04+0000\n"
+"PO-Revision-Date: 2018-10-02 12:45+0000\n"
 "Last-Translator: Pablo Solís La Beira <pabsol1977@gmail.com>\n"
 "Language-Team: Spanish <https://weblate.elementary.io/projects/music/music/"
 "es/>\n"
@@ -375,7 +375,7 @@ msgstr "Buscar música"
 #: src/LibraryWindow.vala:596 src/LibraryWindow.vala:702
 #: src/LibraryWindow.vala:1144
 msgid "Music"
-msgstr "Reproductor de música"
+msgstr "Música"
 
 #: src/LibraryWindow.vala:273
 msgid "Pause"
@@ -428,7 +428,7 @@ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr "No se pudo encontrar el archivo de audio <b>%s</b> por <b>%s</b>."
 
 #: src/Dialogs/FileNotFoundDialog.vala:60
-#, c-format, fuzzy
+#, c-format
 msgid "%i music files could not be found?"
 msgstr "¿No se pudieron encontrar %i los archivos de música?"
 
@@ -455,7 +455,7 @@ msgid "Would you like to install the %s plugin?"
 msgstr "¿Quiere instalar el complemento %s?"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:39
-#, c-format, fuzzy
+#, c-format
 msgid "This song cannot be played. The %s plugin is required to play the song."
 msgstr ""
 "Esta canción no se puede reproducir. Para ello se necesita el complemento %s."
@@ -519,7 +519,7 @@ msgid "Close"
 msgstr "Cerrar"
 
 #: src/Dialogs/NotImportedDialog.vala:51
-#, fuzzy, c-format
+#, c-format
 msgid "Issues while importing from %s"
 msgstr "Hubo un problema al importar música desde %s"
 
@@ -588,11 +588,11 @@ msgid "Continue playback when closed:"
 msgstr "Continuar reproduciendo al cerrar:"
 
 #: src/Dialogs/RemoveFilesDialog.vala:49
-#, fuzzy, c-format
+#, c-format
 msgid "Remove %d Song From Library?"
 msgid_plural "Remove %d Songs From Library?"
-msgstr[0] "¿Desea eliminar %d canciones de %s?"
-msgstr[1] "¿Desea eliminar %d canciones de %s?"
+msgstr[0] "¿Desea eliminar %d cancion de la biblioteca?"
+msgstr[1] "¿Desea eliminar %d canciones de la biblioteca?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:55
 #, c-format
@@ -714,7 +714,6 @@ msgid "Composer"
 msgstr "Compositor"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:268
-#, fuzzy
 msgid "Date Added"
 msgstr "Fecha de adición"
 
@@ -723,7 +722,6 @@ msgid "Genre"
 msgstr "Género"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:270
-#, fuzzy
 msgid "Grouping"
 msgstr "Agrupamiento"
 
@@ -811,7 +809,7 @@ msgstr "kbps"
 #, c-format
 msgid "Sync will remove %i item from %s"
 msgid_plural "Sync will remove %i items from %s"
-msgstr[0] "La sincronización eliminará %i elementos de %s"
+msgstr[0] "La sincronización eliminará %i elemento de %s"
 msgstr[1] "La sincronización eliminará %i elementos de %s"
 
 #: src/Dialogs/SyncWarningDialog.vala:55
@@ -820,8 +818,8 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
-"Si continua la sincronización, los archivos multimedia serán removidos de %s "
-"porque no están en la lista de sincronización. ¿Le gustaría primero "
+"Si continua la sincronización, los archivos multimedia serán eliminados de %"
+"s porque no están en la lista de sincronización. ¿Le gustaría primero "
 "importarlos a la biblioteca?"
 
 #: src/Dialogs/SyncWarningDialog.vala:57
@@ -843,7 +841,7 @@ msgstr "<b>Importando</b> música a la biblioteca…"
 
 #: src/LocalBackend/LocalLibrary.vala:247
 msgid "All music files are already in your library"
-msgstr "Todos los archivos de música ya están en la colección"
+msgstr "Todos los archivos de música ya están en la biblioteca"
 
 #: src/LocalBackend/LocalLibrary.vala:247
 msgid "No files were imported."
@@ -851,11 +849,11 @@ msgstr "No se importó ningún archivo."
 
 #: src/LocalBackend/LocalLibrary.vala:252
 msgid "Rescanning music for changes. This may take a while…"
-msgstr "Analizando cambios. Esto puede tomar un tiempo…"
+msgstr "Analizando cambios. Esto puede tardar un poco…"
 
 #: src/LocalBackend/LocalLibrary.vala:353
 msgid "Added to your queue:"
-msgstr "Añadido a tu cola de reproducción:"
+msgstr "Añadido a la cola de reproducción:"
 
 #: src/LocalBackend/LocalLibrary.vala:364
 #, c-format
@@ -959,13 +957,12 @@ msgstr ""
 "archivo."
 
 #: src/Views/ViewStack.vala:45
-#, fuzzy
 msgid "No Results"
-msgstr "Sin valoraciones"
+msgstr "Sin resultados"
 
 #: src/Views/ViewStack.vala:45
 msgid "Try another search"
-msgstr ""
+msgstr "Buscar de nuevo"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
 msgid "Genres"
@@ -1357,17 +1354,14 @@ msgid "Scroll to Current Song"
 msgstr "Saltar hacia la canción actual"
 
 #: src/Widgets/MediaMenu.vala:49
-#, fuzzy
 msgid "Show in File Browser…"
-msgstr "Mostrar en el explorador de archivos"
+msgstr "Mostrar en el explorador de archivos…"
 
 #: src/Widgets/MediaMenu.vala:50
-#, fuzzy
 msgid "Edit Song Info…"
-msgstr "Editar Información de la canción"
+msgstr "Editar Información de la canción…"
 
 #: src/Widgets/MediaMenu.vala:51
-#, fuzzy
 msgid "Other Actions"
 msgstr "Otras acciones"
 
@@ -1381,18 +1375,16 @@ msgid "Add to Playlist"
 msgstr "Añadir a la lista de reproducción"
 
 #: src/Widgets/MediaMenu.vala:55
-#, fuzzy
 msgid "Remove Song…"
-msgstr "Eliminar canción"
+msgstr "Eliminar canción…"
 
 #: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
 msgid "Import to Library"
 msgstr "Importar a la biblioteca"
 
 #: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
-#, fuzzy
 msgid "Remove from Library…"
-msgstr "Eliminar de la biblioteca"
+msgstr "Eliminar de la biblioteca…"
 
 #: src/Widgets/MediaMenu.vala:99
 msgid "Remove from Device"
