@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-10-02 12:45+0000\n"
+"PO-Revision-Date: 2018-10-02 13:14+0000\n"
 "Last-Translator: Pablo Solís La Beira <pabsol1977@gmail.com>\n"
 "Language-Team: Spanish <https://weblate.elementary.io/projects/music/music/"
 "es/>\n"
@@ -50,7 +50,7 @@ msgstr "Plana"
 
 #: core/GStreamer/Equalizer.vala:72
 msgid "Classical"
-msgstr "Clásica"
+msgstr "Música clásica"
 
 #: core/GStreamer/Equalizer.vala:73
 msgid "Club"
@@ -191,6 +191,7 @@ msgstr ""
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
 #: core/Utils/TimeUtils.vala:40
+#, fuzzy
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%e/%m/%Y %H:%M"
 
@@ -328,15 +329,15 @@ msgstr "Similares"
 
 #: plugins/LastFM/SimilarMediaView.vala:48
 msgid "media"
-msgstr "archivos multimedia"
+msgstr "media"
 
 #: plugins/LastFM/SimilarMediaView.vala:54
 msgid "Similar Media"
-msgstr "Medios similares"
+msgstr "Archivos multimedia similares"
 
 #: src/FileOperator.vala:305
 msgid "Import Complete"
-msgstr "Importación completa"
+msgstr "Importación completada"
 
 #: src/FileOperator.vala:305
 msgid "Your Library Has Been Imported."
@@ -430,7 +431,7 @@ msgstr "No se pudo encontrar el archivo de audio <b>%s</b> por <b>%s</b>."
 #: src/Dialogs/FileNotFoundDialog.vala:60
 #, c-format
 msgid "%i music files could not be found?"
-msgstr "¿No se pudieron encontrar %i los archivos de música?"
+msgstr "¿No se pudieron encontrar %i archivos de música?"
 
 #: src/Dialogs/FileNotFoundDialog.vala:82
 msgid "Rescan Library"
@@ -457,8 +458,7 @@ msgstr "¿Quiere instalar el complemento %s?"
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:39
 #, c-format
 msgid "This song cannot be played. The %s plugin is required to play the song."
-msgstr ""
-"Esta canción no se puede reproducir. Para ello se necesita el complemento %s."
+msgstr "Esta canción no se puede reproducir. Se necesita el complemento %s."
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid "Install Plugin"
@@ -778,7 +778,7 @@ msgstr "es exactamente"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:380
 msgid "is at most"
-msgstr "es a lo más"
+msgstr "es como mucho"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:381
 msgid "is at least"
@@ -786,7 +786,7 @@ msgstr "es al menos"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:395
 msgid "is within"
-msgstr "está dentro"
+msgstr "está dentro de"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:396
 msgid "is before"
@@ -1239,7 +1239,7 @@ msgstr "Obtener algunas canciones"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Add music to your library."
-msgstr "Añada música a su biblioteca."
+msgstr "Añadir música a la biblioteca."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:61
 msgid "Import music from a source into your library."
@@ -1304,11 +1304,11 @@ msgstr ""
 
 #: src/Views/Wrappers/ViewWrapper.vala:419
 msgid "No media"
-msgstr "No hay medios"
+msgstr "No hay archivos multimedia"
 
 #: src/Widgets/AlbumListGrid.vala:64
 msgid "Set new album cover"
-msgstr "Establecer carátula de álbum nueva"
+msgstr "Establecer carátula de álbum"
 
 #: src/Widgets/AlbumListGrid.vala:240
 msgid "Image files"
@@ -1396,7 +1396,7 @@ msgstr "Eliminar de la cola de reproducción"
 
 #: src/Widgets/MediaMenu.vala:152
 msgid "New Playlist…"
-msgstr "Lista de reproducción nueva…"
+msgstr "Nueva lista de reproducción…"
 
 #: src/Widgets/MediaMenu.vala:192
 #, c-format
@@ -1436,11 +1436,11 @@ msgstr "Extraer"
 
 #: src/Widgets/SourceListView.vala:176 src/Widgets/SourceListView.vala:219
 msgid "New Playlist"
-msgstr "Lista de reproducción nueva"
+msgstr "Nueva lista de reproducción"
 
 #: src/Widgets/SourceListView.vala:184 src/Widgets/SourceListView.vala:220
 msgid "New Smart Playlist"
-msgstr "Lista de reproducción inteligente nueva"
+msgstr "Nueva lista de reproducción inteligente"
 
 #: src/Widgets/SourceListView.vala:221
 msgid "Import Playlists"
