@@ -152,6 +152,7 @@ public class Noise.MediaEditor : Gtk.Dialog {
             if (response_id == Gtk.ResponseType.APPLY) {
                 save_and_exit ();
             }
+
             destroy ();
         });
     }
