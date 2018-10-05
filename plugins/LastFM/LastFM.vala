@@ -77,7 +77,7 @@ namespace Noise.Plugins {
                     var identity = new Signon.Identity.from_db (credentials_id);
                     var session = identity.create_session (ag_auth_data.get_method ());
                     var login_parameters = ag_auth_data.get_login_parameters (null);
-                    GLib.Variant session_data = yield session.process_async (login_parameters, ag_auth_data.get_mechanism (), null);
+                    GLib.Variant session_data = yield session.process (login_parameters, ag_auth_data.get_mechanism (), null);
                     var token = session_data.lookup_value ("Secret", new VariantType ("s")).get_string ();
                     var client_id = login_parameters.lookup_value ("ClientId", new VariantType ("s")).get_string ();
                     var client_secret = login_parameters.lookup_value ("ClientSecret", new VariantType ("s")).get_string ();

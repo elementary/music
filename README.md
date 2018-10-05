@@ -15,7 +15,7 @@ You'll need the following dependencies:
 * libglib2.0-dev
 * libgpod-dev
 * libgranite-dev
-* libgsignon-glib-dev
+* libsignon-glib-dev >= 2.0
 * libgstreamer1.0-dev
 * libgstreamer-plugins-base1.0-dev
 * libgtk-3-dev >= 3.22
