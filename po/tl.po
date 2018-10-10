@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-09-30 00:09+0000\n"
+"PO-Revision-Date: 2018-10-08 00:04+0000\n"
 "Last-Translator: Axel Philip Advento <badwolf.bloodseeker.rev@gmail.com>\n"
 "Language-Team: Tagalog <https://weblate.elementary.io/projects/music/music/"
 "tl/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 #: core/LibrariesManager.vala:147
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr ""
+msgstr "Ini-import ang <b>$NAME</b> ni <b>$ARTIST</b> sa library…"
 
 #. / Used for unknown titles, artists, or album names.
 #: core/Media.vala:32
@@ -27,7 +27,7 @@ msgstr "Hindi Kilala"
 #. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: core/Media.vala:179
 msgid "$NAME on $ALBUM"
-msgstr "$NAME sa $ALBUM"
+msgstr "$NAME mula sa $ALBUM"
 
 #. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: core/Media.vala:182
@@ -420,7 +420,7 @@ msgstr ""
 
 #: src/Dialogs/FileNotFoundDialog.vala:82
 msgid "Rescan Library"
-msgstr "Iscan Muli ang Aklatan"
+msgstr "Iscan Muli ang Library"
 
 #: src/Dialogs/FileNotFoundDialog.vala:83
 msgid "Remove Song"
@@ -487,7 +487,7 @@ msgstr ""
 
 #: src/Dialogs/MediaEditor.vala:120
 msgid "Disk:"
-msgstr ""
+msgstr "Disk:"
 
 #: src/Dialogs/MediaEditor.vala:122
 msgid "Rating:"
@@ -517,11 +517,11 @@ msgstr[1] ""
 
 #: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
-msgstr ""
+msgstr "Ilipat lahat ng sirang mga file sa basura"
 
 #: src/Dialogs/NotImportedDialog.vala:72
 msgid "del"
-msgstr ""
+msgstr "del"
 
 #: src/Dialogs/NotImportedDialog.vala:81
 msgid "File Location"
@@ -541,7 +541,7 @@ msgstr ""
 
 #: src/Dialogs/PreferencesWindow.vala:48
 msgid "Select Music Folder…"
-msgstr "Pumili ng Polder ng Music"
+msgstr "Pumili ng Folder ng Musika…"
 
 #: src/Dialogs/PreferencesWindow.vala:77
 msgid "Music Folder Location"
@@ -549,7 +549,7 @@ msgstr ""
 
 #: src/Dialogs/PreferencesWindow.vala:79
 msgid "Library Management"
-msgstr ""
+msgstr "Pamamahala sa Library"
 
 #: src/Dialogs/PreferencesWindow.vala:80
 msgid "Keep Music folder organized:"
@@ -595,7 +595,7 @@ msgstr[1] ""
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
-msgstr "Tanggalin sa Aklatan"
+msgstr "Tanggalin sa Library"
 
 #: src/Dialogs/SetMusicFolderConfirmation.vala:65
 msgid "Export Playlists"
@@ -623,19 +623,19 @@ msgstr ""
 
 #: src/Dialogs/SmartPlaylistEditor.vala:58
 msgid "any"
-msgstr ""
+msgstr "alinman"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:59
 msgid "all"
-msgstr ""
+msgstr "lahat"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:63
 msgid "Match"
-msgstr ""
+msgstr "Itugma sa"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:65
 msgid "of the following:"
-msgstr ""
+msgstr "sa mga sumusunod:"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:74
 msgid "Add"
@@ -659,7 +659,7 @@ msgstr ""
 
 #: src/Dialogs/SmartPlaylistEditor.vala:112
 msgid "Options"
-msgstr "Mga Pagpipilian"
+msgstr "Mga Option"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:119
 msgid "Smart Playlist Editor"
@@ -688,7 +688,7 @@ msgstr "Komento"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:267
 msgid "Composer"
-msgstr "Nag-compose"
+msgstr "Kompositor"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:268
 msgid "Date Added"
@@ -696,7 +696,7 @@ msgstr "Petsa ng Pagdagdag"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:269
 msgid "Genre"
-msgstr "Uri ng awit"
+msgstr "Genre"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:270
 msgid "Grouping"
@@ -714,7 +714,7 @@ msgstr "Haba"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:273
 msgid "Playcount"
-msgstr ""
+msgstr "Bilang ng pagpapatugtog"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:274
 msgid "Rating"
@@ -722,7 +722,7 @@ msgstr "Marka"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:275
 msgid "Skipcount"
-msgstr ""
+msgstr "Bilang ng paglalaktaw"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:276
 msgid "Title"
@@ -734,7 +734,7 @@ msgstr "Taon"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:278
 msgid "URI"
-msgstr ""
+msgstr "URI"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:351
 msgid "is"
@@ -751,15 +751,15 @@ msgstr "ay hindi naglalaman ng"
 #: src/Dialogs/SmartPlaylistEditor.vala:379
 #: src/Dialogs/SmartPlaylistEditor.vala:394
 msgid "is exactly"
-msgstr ""
+msgstr "ay eksaktong"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:380
 msgid "is at most"
-msgstr ""
+msgstr "ay hindi lalagpas sa"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:381
 msgid "is at least"
-msgstr ""
+msgstr "ay hindi bababa sa"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:395
 msgid "is within"
@@ -807,7 +807,7 @@ msgstr ""
 
 #: src/LocalBackend/LocalLibrary.vala:212
 msgid "Adding files to library…"
-msgstr "Nagdadagdag ng mga file papunta sa aklatan..."
+msgstr "Nagdadagdag ng mga file papunta sa library…"
 
 #: src/LocalBackend/LocalLibrary.vala:225
 msgid "<b>Importing</b> music to library…"
@@ -815,7 +815,7 @@ msgstr ""
 
 #: src/LocalBackend/LocalLibrary.vala:247
 msgid "All music files are already in your library"
-msgstr "Lahat ng mga file na pangmusika ay nasa aklatan mo na"
+msgstr "Lahat ng mga file na pangmusika ay nasa library mo na"
 
 #: src/LocalBackend/LocalLibrary.vala:247
 msgid "No files were imported."
@@ -1210,20 +1210,20 @@ msgstr "Kumuha ng mga Tugtugin"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Add music to your library."
-msgstr "Magdagdag ng musika sa aklatan."
+msgstr "Magdagdag ng musika sa iyong library."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:61
 msgid "Import music from a source into your library."
-msgstr ""
+msgstr "Mag-import ng musika mula sa isang pagmumulan papunta sa iyong library."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:63
 msgid "Change Music Folder"
-msgstr "Baguhin ang Polder ng Musika"
+msgstr "Baguhin ang Folder ng Musika"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:64
 msgid "Load music from a folder, a network or an external disk."
 msgstr ""
-"Magbukas ng musika mula sa isang folder, sa network o sa panlabas na disk."
+"Magbukas ng musika mula sa isang folder, sa network o sa external na disk."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:111
 #: src/Views/Wrappers/MusicViewWrapper.vala:131
@@ -1234,11 +1234,11 @@ msgstr "I-import ang iyong Musika"
 #: src/Views/Wrappers/MusicViewWrapper.vala:132
 #, c-format
 msgid "Import all your Music from %s into your library."
-msgstr "I-import ang iyong Musika mula sa %s papunta sa iyong aklatan."
+msgstr "I-import ang iyong Musika mula sa %s papunta sa iyong library."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:143
 msgid "Select Music Folder"
-msgstr "Pumili ng Polder ng Musika"
+msgstr "Pumili ng Folder ng Musika"
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:50
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:54
@@ -1272,7 +1272,7 @@ msgstr ""
 
 #: src/Views/Wrappers/ViewWrapper.vala:419
 msgid "No media"
-msgstr "Walang mga medya"
+msgstr "Walang mga media"
 
 #: src/Widgets/AlbumListGrid.vala:64
 msgid "Set new album cover"
@@ -1284,7 +1284,7 @@ msgstr "Mga lmahen na files"
 
 #: src/Widgets/AlbumListGrid.vala:245
 msgid "_Cancel"
-msgstr "I_kansela"
+msgstr "_Ikansela"
 
 #: src/Widgets/AlbumListGrid.vala:246
 msgid "_Open"
@@ -1296,7 +1296,7 @@ msgstr ""
 
 #: src/Widgets/EqualizerPopover.vala:331
 msgid "Off"
-msgstr ""
+msgstr "Nakapatay"
 
 #: src/Widgets/EqualizerPopover.vala:419
 #, c-format
@@ -1348,7 +1348,7 @@ msgstr "Tanggalin ang Kanta…"
 
 #: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
 msgid "Import to Library"
-msgstr "I-import sa Aklatan"
+msgstr "I-import sa Library"
 
 #: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
 msgid "Remove from Library…"
@@ -1417,11 +1417,11 @@ msgstr ""
 #. Adds the different sidebar categories.
 #: src/Widgets/SourceListView.vala:338
 msgid "Library"
-msgstr "Aklatan"
+msgstr "Library"
 
 #: src/Widgets/SourceListView.vala:339
 msgid "Devices"
-msgstr "Mga Aparato"
+msgstr "Mga Device"
 
 #: src/Widgets/SourceListView.vala:340
 msgid "Network"

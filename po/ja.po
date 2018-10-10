@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-13 13:30-0700\n"
-"PO-Revision-Date: 2018-10-02 00:04+0000\n"
+"PO-Revision-Date: 2018-10-09 00:01+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://weblate.elementary.io/projects/music/music/"
 "ja/>\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: core/LibrariesManager.vala:147
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "<b>$NAME</b> - <b>$ARTIST</b> をライブラリへインポートしています…"
+msgstr "<b>$NAME</b> - <b>$ARTIST</b> をライブラリにインポートしています…"
 
 #. / Used for unknown titles, artists, or album names.
 #: core/Media.vala:32
@@ -201,7 +201,7 @@ msgstr "デバイスが空です！"
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:109
 #: plugins/Devices/iPod/iPodDevice.vala:69
 msgid "This device does not contain any music."
-msgstr "このデバイスにはミュージックがありません。"
+msgstr "このデバイスには曲がありません。"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:153
 msgid "Android Phone"
@@ -314,9 +314,7 @@ msgid ""
 "all song info is correct and you are connected to the Internet. Some songs "
 "may not have matches."
 msgstr ""
-"あなたのライブラリの現在の曲に似た曲はありません。 すべての曲情報が正しいこ"
-"と、インターネットに接続していることを確認してください。 一部の曲は一致しない"
-"場合があります。"
+"ライブラリの現在の曲に似た曲はありません。すべての曲情報が正しいこと、インターネットに接続していることを確認してください。一致する曲がないこともあります。"
 
 #: plugins/LastFM/SimilarMedia.vala:44
 msgid "Similar"
@@ -345,7 +343,7 @@ msgstr "ファイルを<b>ミュージックフォルダー</b>に<b>コピー</
 
 #: src/LibraryWindow.vala:192
 msgid "Import to Library…"
-msgstr "ライブラリへインポート…"
+msgstr "ライブラリにインポート…"
 
 #: src/LibraryWindow.vala:195 src/Dialogs/PreferencesWindow.vala:40
 msgid "Preferences"
@@ -365,7 +363,7 @@ msgstr "次へ"
 
 #: src/LibraryWindow.vala:223
 msgid "Search Music"
-msgstr "ミュージックを検索"
+msgstr "曲を検索"
 
 #: src/LibraryWindow.vala:242 src/LibraryWindow.vala:451
 #: src/LibraryWindow.vala:596 src/LibraryWindow.vala:702
@@ -406,7 +404,7 @@ msgstr ""
 
 #: src/LibraryWindow.vala:978 src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import Music"
-msgstr "ミュージックをインポート"
+msgstr "曲をインポート"
 
 #: src/PlaybackManager.vala:117
 msgctxt "Name of the playlist"
@@ -420,16 +418,16 @@ msgstr "ファイルが見つかりませんでした"
 #: src/Dialogs/FileNotFoundDialog.vala:57
 #, c-format
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
-msgstr "曲ファイル <b>%s</b> / <b>%s</b> は見つかりませんでした。"
+msgstr "音楽ファイル <b>%s</b> / <b>%s</b> は見つかりませんでした。"
 
 #: src/Dialogs/FileNotFoundDialog.vala:60
 #, c-format
 msgid "%i music files could not be found?"
-msgstr "%i のミュージックファイルが見つかりませんでしたか？"
+msgstr "%i の音楽ファイルが見つかりませんでしたか？"
 
 #: src/Dialogs/FileNotFoundDialog.vala:82
 msgid "Rescan Library"
-msgstr "ライブラリの再スキャン"
+msgstr "ライブラリを再スキャン"
 
 #: src/Dialogs/FileNotFoundDialog.vala:83
 msgid "Remove Song"
@@ -456,7 +454,7 @@ msgstr "この曲は再生できません。再生するには %s プラグイ�
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid "Install Plugin"
-msgstr "プラグインのインストール"
+msgstr "プラグインをインストール"
 
 #: src/Dialogs/MediaEditor.vala:102
 msgid "Title:"
@@ -472,15 +470,15 @@ msgstr "アルバム名:"
 
 #: src/Dialogs/MediaEditor.vala:108
 msgid "Album Artist:"
-msgstr "アルバム アーティスト:"
+msgstr "アルバムアーティスト:"
 
 #: src/Dialogs/MediaEditor.vala:110
 msgid "Composer:"
-msgstr "コンポーザー:"
+msgstr "作曲者:"
 
 #: src/Dialogs/MediaEditor.vala:112
 msgid "Grouping:"
-msgstr "グループ化:"
+msgstr "グループ:"
 
 #: src/Dialogs/MediaEditor.vala:114
 msgid "Genre:"
@@ -802,9 +800,7 @@ msgstr[0] "同期によって %i 個のアイテムが %s から削除されま�
 msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
-msgstr ""
-"同期を続行すると、メディアが同期リストにないので %s から削除されます。 ライブ"
-"ラリにまずメディアをインポートしますか？"
+msgstr "同期を続行すると、メディアが同期リストにないので %s から削除されます。ライブラリにまずメディアをインポートしますか？"
 
 #: src/Dialogs/SyncWarningDialog.vala:57
 msgid "Continue Syncing"
@@ -813,7 +809,7 @@ msgstr "同期を続行"
 #: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
 msgid "Importing music from %s…"
-msgstr "%s からミュージックをインポートしています…"
+msgstr "%s から曲をインポートしています…"
 
 #: src/LocalBackend/LocalLibrary.vala:212
 msgid "Adding files to library…"
@@ -821,11 +817,11 @@ msgstr "ファイルをライブラリへ追加しています…"
 
 #: src/LocalBackend/LocalLibrary.vala:225
 msgid "<b>Importing</b> music to library…"
-msgstr "ミュージックをライブラリへ<b>インポートしています</b>…"
+msgstr "曲をライブラリへ<b>インポートしています</b>…"
 
 #: src/LocalBackend/LocalLibrary.vala:247
 msgid "All music files are already in your library"
-msgstr "すべてのミュージックがすでにライブラリにあります"
+msgstr "すべての音楽ファイルがすでにライブラリにあります"
 
 #: src/LocalBackend/LocalLibrary.vala:247
 msgid "No files were imported."
@@ -833,8 +829,7 @@ msgstr "ファイルはインポートされませんでした。"
 
 #: src/LocalBackend/LocalLibrary.vala:252
 msgid "Rescanning music for changes. This may take a while…"
-msgstr ""
-"変更があったミュージックを再スキャンしています。これには少し時間がかかります…"
+msgstr "変更があった曲を再スキャンしています。これには少し時間がかかります…"
 
 #: src/LocalBackend/LocalLibrary.vala:353
 msgid "Added to your queue:"
@@ -900,7 +895,7 @@ msgstr "同期"
 
 #: src/Views/DeviceSummaryWidget.vala:244
 msgid "All Music"
-msgstr "すべてのミュージック"
+msgstr "すべての曲"
 
 #: src/Views/DeviceSummaryWidget.vala:298
 msgid "Sync Failed"
@@ -1213,34 +1208,34 @@ msgstr "Sample List String"
 #. Welcome screen
 #: src/Views/Wrappers/MusicViewWrapper.vala:57
 msgid "Get Some Tunes"
-msgstr "ミュージックを追加しましょう"
+msgstr "曲を追加しましょう"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Add music to your library."
-msgstr "ミュージックをライブラリへ追加してください。"
+msgstr "曲をライブラリに追加してください。"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:61
 msgid "Import music from a source into your library."
-msgstr "ソースからライブラリへミュージックをインポートします。"
+msgstr "曲をソースからライブラリにインポートします。"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:63
 msgid "Change Music Folder"
-msgstr "ミュージックフォルダーの変更"
+msgstr "ミュージックフォルダーを変更"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:64
 msgid "Load music from a folder, a network or an external disk."
-msgstr "フォルダー、ネットワークや外部ディスクから読み込みます。"
+msgstr "フォルダー、ネットワークや外部ディスクから曲を読み込みます。"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:111
 #: src/Views/Wrappers/MusicViewWrapper.vala:131
 msgid "Import your Music"
-msgstr "ミュージックのインポート"
+msgstr "曲をインポート"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:112
 #: src/Views/Wrappers/MusicViewWrapper.vala:132
 #, c-format
 msgid "Import all your Music from %s into your library."
-msgstr "%s からすべてのミュージックがライブラリにインポートされました。"
+msgstr "すべての曲を %s からライブラリにインポートします。"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:143
 msgid "Select Music Folder"
@@ -1378,7 +1373,7 @@ msgstr "新しいプレイリスト…"
 #: src/Widgets/MediaMenu.vala:192
 #, c-format
 msgid "Import %i of %i selected songs"
-msgstr "選択した曲をインポート %i / %i"
+msgstr "選択された %i / %i 曲をインポート"
 
 #: src/Widgets/MediaMenu.vala:194
 #, c-format
