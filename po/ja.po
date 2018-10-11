@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-13 13:30-0700\n"
-"PO-Revision-Date: 2018-10-09 00:01+0000\n"
+"PO-Revision-Date: 2018-10-11 14:02+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://weblate.elementary.io/projects/music/music/"
 "ja/>\n"
@@ -377,7 +377,7 @@ msgstr "一時停止"
 
 #: src/LibraryWindow.vala:771
 msgid "No songs in Queue"
-msgstr "再生リストに曲がありません"
+msgstr "キューに曲がありません"
 
 #: src/LibraryWindow.vala:771
 msgid ""
@@ -385,9 +385,8 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
-"再生リストに曲を追加するには、アイテムの上で<b>右クリック</b>をして<b>再生リ"
-"スト</b>を選択します。曲が終わった時、現在の再生リストにある次の曲の前に再生"
-"リストの曲が先に再生されます。"
+"キューに曲を追加するには、アイテムの上で<b>右クリック</b>をして<b>キュー</b>を選択します。曲が終わると、現在のプレイリストの次の曲の前にキュ"
+"ーの曲が先に再生されます。"
 
 #: src/LibraryWindow.vala:774
 msgid "No songs in History"
@@ -409,7 +408,7 @@ msgstr "曲をインポート"
 #: src/PlaybackManager.vala:117
 msgctxt "Name of the playlist"
 msgid "Queue"
-msgstr "再生リスト"
+msgstr "キュー"
 
 #: src/Dialogs/FileNotFoundDialog.vala:51
 msgid "File not found"
@@ -642,7 +641,7 @@ msgstr "次の"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:65
 msgid "of the following:"
-msgstr "一致:"
+msgstr "が一致:"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:74
 msgid "Add"
@@ -813,11 +812,11 @@ msgstr "%s から曲をインポートしています…"
 
 #: src/LocalBackend/LocalLibrary.vala:212
 msgid "Adding files to library…"
-msgstr "ファイルをライブラリへ追加しています…"
+msgstr "ファイルをライブラリに追加しています…"
 
 #: src/LocalBackend/LocalLibrary.vala:225
 msgid "<b>Importing</b> music to library…"
-msgstr "曲をライブラリへ<b>インポートしています</b>…"
+msgstr "曲をライブラリに<b>インポートしています</b>…"
 
 #: src/LocalBackend/LocalLibrary.vala:247
 msgid "All music files are already in your library"
@@ -833,7 +832,7 @@ msgstr "変更があった曲を再スキャンしています。これには少
 
 #: src/LocalBackend/LocalLibrary.vala:353
 msgid "Added to your queue:"
-msgstr "再生リストへ追加しました:"
+msgstr "キューに追加しました:"
 
 #: src/LocalBackend/LocalLibrary.vala:364
 #, c-format
@@ -1255,13 +1254,11 @@ msgstr "プレイリストを更新しています。お待ちください。"
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
-msgstr ""
-"プレイリストに曲を追加するには、アイテムの上で<b>右クリック</b>をして<b>プレ"
-"イリストに追加</b>を選択します。"
+msgstr "プレイリストに曲を追加するには、アイテム上で<b>右クリック</b>をして<b>プレイリストに追加</b>を選択します。"
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:58
 msgid "Edit Smart Playlist"
-msgstr "スマートプレイリストの編集"
+msgstr "スマートプレイリストを編集"
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:65
 msgid ""
@@ -1270,8 +1267,7 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
-"このプレイリストは規則に合致する場所に自動的に移動させられます。これらの規則"
-"を修正するには、サイドバー上で<b>右クリック</b>をして、<b>編集</b>をクリック"
+"プレイリストの規則に一致する曲が自動的にここに移動されます。規則を変更するには、サイドバー上で<b>右クリック</b>をして、<b>編集</b>をクリック"
 "します。必要に応じて、以下のボタンをクリックすることができます。"
 
 #: src/Views/Wrappers/ViewWrapper.vala:419
@@ -1340,7 +1336,7 @@ msgstr "その他の操作"
 #: src/Widgets/MediaMenu.vala:53
 msgctxt "Action item (verb)"
 msgid "Queue"
-msgstr "再生リスト"
+msgstr "キュー"
 
 #: src/Widgets/MediaMenu.vala:54
 msgid "Add to Playlist"
@@ -1364,7 +1360,7 @@ msgstr "デバイスから削除"
 
 #: src/Widgets/MediaMenu.vala:119
 msgid "Remove from Queue"
-msgstr "再生リストから削除"
+msgstr "キューから削除"
 
 #: src/Widgets/MediaMenu.vala:152
 msgid "New Playlist…"
@@ -1432,11 +1428,11 @@ msgstr "ネットワーク"
 
 #: src/Widgets/StatusBar.vala:36 src/Widgets/StatusBar.vala:47
 msgid "Add Playlist"
-msgstr "プレイリストへ追加"
+msgstr "プレイリストを追加"
 
 #: src/Widgets/StatusBar.vala:37
 msgid "Add Smart Playlist"
-msgstr "スマートプレイリストへ追加"
+msgstr "スマートプレイリストを追加"
 
 #. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: src/Widgets/StatusBar.vala:75
