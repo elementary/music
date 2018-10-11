@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-09-28 00:07+0000\n"
+"PO-Revision-Date: 2018-10-11 05:01+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://weblate.elementary.io/projects/"
 "music/music/nb/>\n"
@@ -82,7 +82,7 @@ msgstr "Storsal"
 
 #: core/GStreamer/Equalizer.vala:80
 msgid "Live"
-msgstr "Live"
+msgstr "Sanntid"
 
 #: core/GStreamer/Equalizer.vala:81
 msgid "Party"
@@ -595,7 +595,6 @@ msgid "Remove \"%s\" From Library?"
 msgstr "Fjern \"%s\" fra biblioteket?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
-#, fuzzy
 msgid ""
 "This will remove the song from your library and from any device synced "
 "automatically."
@@ -603,11 +602,11 @@ msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
 msgstr[0] ""
-"Dette vil fjerne sangen fra ditt bibliotek samt enhver enhet som automatisk "
-"synkroniseres med %s."
+"Dette vil fjerne sangen fra ditt bibliotek samt enhver enhet som "
+"synkroniseres automatisk."
 msgstr[1] ""
-"Dette vil fjerne sangene fra ditt bibliotek samt enhver enhet som automatisk "
-"synkroniseres med %s."
+"Dette vil fjerne sangene fra ditt bibliotek samt enhver enhet som "
+"synkroniseres automatisk."
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
@@ -947,9 +946,8 @@ msgstr ""
 "Drift av enheten har blitt kansellert og vil stoppe etter dette mediet."
 
 #: src/Views/ViewStack.vala:45
-#, fuzzy
 msgid "No Results"
-msgstr "Ingen Vurderinger"
+msgstr "Resultatløst"
 
 #: src/Views/ViewStack.vala:45
 msgid "Try another search"
@@ -1345,17 +1343,14 @@ msgid "Scroll to Current Song"
 msgstr "Bla til gjeldende sang"
 
 #: src/Widgets/MediaMenu.vala:49
-#, fuzzy
 msgid "Show in File Browser…"
-msgstr "Vis i filbehandleren"
+msgstr "Vis i filbehandleren…"
 
 #: src/Widgets/MediaMenu.vala:50
-#, fuzzy
 msgid "Edit Song Info…"
-msgstr "Endre sanginformasjon"
+msgstr "Endre sanginformasjon…"
 
 #: src/Widgets/MediaMenu.vala:51
-#, fuzzy
 msgid "Other Actions"
 msgstr "Andre handlinger"
 
@@ -1369,18 +1364,16 @@ msgid "Add to Playlist"
 msgstr "Legg til i spilleliste"
 
 #: src/Widgets/MediaMenu.vala:55
-#, fuzzy
 msgid "Remove Song…"
-msgstr "Fjern sang"
+msgstr "Fjern sang…"
 
 #: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
 msgid "Import to Library"
 msgstr "Importer til bibliotek"
 
 #: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
-#, fuzzy
 msgid "Remove from Library…"
-msgstr "Fjern fra bibliotek"
+msgstr "Fjern fra bibliotek…"
 
 #: src/Widgets/MediaMenu.vala:99
 msgid "Remove from Device"
