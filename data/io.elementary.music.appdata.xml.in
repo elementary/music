@@ -15,6 +15,15 @@
         </p>
     </description>
     <releases>
+        <release version="5.0" date="2018-10-16" urgency="medium">
+            <description>
+                <p>Various UI changes</p>
+                <p>Shuffle fixes</p>
+                <p>Initial MPRIS support</p>
+                <p>Minor bug fixes</p>
+                <p>Updated translations</p>
+            </description>
+        </release>
         <release version="0.4.2" date="2017-10-27" urgency="medium">
             <description>
                 <p>Detect library changes at startup.</p>
