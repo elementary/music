@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-10-20 08:51+0000\n"
+"PO-Revision-Date: 2018-10-21 09:30+0000\n"
 "Last-Translator: Eri Hidayat <eriwhidayat@gmail.com>\n"
 "Language-Team: Indonesian <https://weblate.elementary.io/projects/music/"
 "music/id/>\n"
@@ -335,7 +335,7 @@ msgstr "Impor Selesai"
 
 #: src/FileOperator.vala:305
 msgid "Your Library Has Been Imported."
-msgstr "Pustaka Anda Telah Diimpor"
+msgstr "Pustaka Anda Telah Diimpor."
 
 #. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:315
