@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
 "PO-Revision-Date: 2018-10-21 09:30+0000\n"
-"Last-Translator: Fredrik B <frbo9002@gmail.com>\n"
+"Last-Translator: Cleiton Floss <cleitonfloss@gmail.com>\n"
 "Language-Team: Swedish <https://weblate.elementary.io/projects/music/music/"
 "sv/>\n"
 "Language: sv\n"
@@ -232,7 +232,7 @@ msgstr "Tar bort <b>$NAME</b> av <b>$ARTIST</b> från $DEVICE"
 #: plugins/Devices/iPod/iPodLibrary.vala:337
 #, c-format
 msgid "Removing from <b>%s</b>…"
-msgstr "Tar bort från <b>%s</b>"
+msgstr "Tar bort från <b>%s</b>…"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:91
 msgid "Audio CD Invalid"
@@ -298,12 +298,12 @@ msgstr "Det uppstod ett fel vid läsningen av denna ljud-CD."
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
 msgid "Finishing sync process…"
-msgstr "Slutför synkroniseringen..."
+msgstr "Slutför synkroniseringen…"
 
 #: plugins/Devices/iPod/iPodLibrary.vala:230
 #: plugins/Devices/iPod/iPodLibrary.vala:386
 msgid "Cancelling Sync…"
-msgstr "Avbryter synkroniseringen..."
+msgstr "Avbryter synkroniseringen…"
 
 #: plugins/LastFM/LastFM.vala:98
 msgid "No similar songs found"
@@ -346,7 +346,7 @@ msgstr "<b>Kopierar</b> filer till <b>musikmappen</b>…"
 
 #: src/LibraryWindow.vala:192
 msgid "Import to Library…"
-msgstr "Importera till bibliotek..."
+msgstr "Importera till bibliotek…"
 
 #: src/LibraryWindow.vala:195 src/Dialogs/PreferencesWindow.vala:40
 msgid "Preferences"
@@ -553,7 +553,7 @@ msgstr "Ignorera"
 
 #: src/Dialogs/PreferencesWindow.vala:48
 msgid "Select Music Folder…"
-msgstr "Välj musikmapp"
+msgstr "Välj musikmapp…"
 
 #: src/Dialogs/PreferencesWindow.vala:77
 msgid "Music Folder Location"
@@ -828,7 +828,7 @@ msgstr "Importerar musik från %s…"
 
 #: src/LocalBackend/LocalLibrary.vala:212
 msgid "Adding files to library…"
-msgstr "Lägger till filer till bibliotek..."
+msgstr "Lägger till filer till bibliotek…"
 
 #: src/LocalBackend/LocalLibrary.vala:225
 msgid "<b>Importing</b> music to library…"
@@ -844,7 +844,7 @@ msgstr "Inga filer blev importerade."
 
 #: src/LocalBackend/LocalLibrary.vala:252
 msgid "Rescanning music for changes. This may take a while…"
-msgstr "Söker efter ändringar i musikmappen. Detta kan ta en stund..."
+msgstr "Söker efter ändringar i musikmappen. Detta kan ta en stund…"
 
 #: src/LocalBackend/LocalLibrary.vala:353
 msgid "Added to your queue:"
