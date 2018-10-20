@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-03-20 00:11+0000\n"
-"Last-Translator: Smalbenet <smalbenet@gmail.com>\n"
+"PO-Revision-Date: 2018-10-20 14:00+0000\n"
+"Last-Translator: Fredrik B <frbo9002@gmail.com>\n"
 "Language-Team: Swedish <https://weblate.elementary.io/projects/music/music/"
 "sv/>\n"
 "Language: sv\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:55+0000\n"
 "X-Poedit-Language: Swedish\n"
 
@@ -337,7 +337,7 @@ msgstr "Importen är färdig"
 
 #: src/FileOperator.vala:305
 msgid "Your Library Has Been Imported."
-msgstr ""
+msgstr "Ditt bibliotek har importerats."
 
 #. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:315
@@ -516,16 +516,16 @@ msgid "Close"
 msgstr "Stäng"
 
 #: src/Dialogs/NotImportedDialog.vala:51
-#, fuzzy, c-format
+#, c-format
 msgid "Issues while importing from %s"
-msgstr "Importerar musik från %s…"
+msgstr "Fel uppstod vid importering från %s"
 
 #: src/Dialogs/NotImportedDialog.vala:57
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] "%s kunde inte importera %d objekt. Filerna kan vara skadade."
-msgstr[1] "%s kunde inte importera %d objekt. Filerna kan vara skadade."
+msgstr[0] "Kunde inte importera %d objekt. Filerna kan vara skadade."
+msgstr[1] "Kunde inte importera %d objekt. Filerna kan vara skadade."
 
 #: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
@@ -584,19 +584,18 @@ msgid "Continue playback when closed:"
 msgstr "Fortsätt spela när stängd:"
 
 #: src/Dialogs/RemoveFilesDialog.vala:49
-#, fuzzy, c-format
+#, c-format
 msgid "Remove %d Song From Library?"
 msgid_plural "Remove %d Songs From Library?"
-msgstr[0] "Ta bort %d låtar från %s?"
-msgstr[1] "Ta bort %d låtar från %s?"
+msgstr[0] "Ta bort %d låt från bibliotek?"
+msgstr[1] "Ta bort %d låtar från bibliotek?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:55
-#, fuzzy, c-format
+#, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr "Ta bort från biblioteket"
+msgstr "Ta bort \"%s\" från bibliotek?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
-#, fuzzy
 msgid ""
 "This will remove the song from your library and from any device synced "
 "automatically."
@@ -605,10 +604,10 @@ msgid_plural ""
 "automatically."
 msgstr[0] ""
 "Detta tar bort låten från ditt bibliotek och från alla enheter som "
-"automatiskt synkroniserar med %s."
+"synkroniseras automatiskt."
 msgstr[1] ""
 "Detta tar bort låtarna från ditt bibliotek och från alla enheter som "
-"automatiskt synkroniserar med %s."
+"synkroniseras automatiskt."
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
@@ -951,13 +950,12 @@ msgstr ""
 "Åtgärden för enheten har avbrutits och kommer att stoppas efter denna fil."
 
 #: src/Views/ViewStack.vala:45
-#, fuzzy
 msgid "No Results"
-msgstr "Inga betyg"
+msgstr "Inga resultat"
 
 #: src/Views/ViewStack.vala:45
 msgid "Try another search"
-msgstr ""
+msgstr "Prova med en annan sökning"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
 msgid "Genres"
@@ -1348,17 +1346,14 @@ msgid "Scroll to Current Song"
 msgstr "Skrolla till aktiv låt"
 
 #: src/Widgets/MediaMenu.vala:49
-#, fuzzy
 msgid "Show in File Browser…"
-msgstr "Visa i filhanterare"
+msgstr "Visa i filhanterare…"
 
 #: src/Widgets/MediaMenu.vala:50
-#, fuzzy
 msgid "Edit Song Info…"
-msgstr "Redigera låtinformation"
+msgstr "Redigera låtinformation…"
 
 #: src/Widgets/MediaMenu.vala:51
-#, fuzzy
 msgid "Other Actions"
 msgstr "Andra åtgärder"
 
@@ -1372,18 +1367,16 @@ msgid "Add to Playlist"
 msgstr "Lägg till i spellista"
 
 #: src/Widgets/MediaMenu.vala:55
-#, fuzzy
 msgid "Remove Song…"
-msgstr "Ta bort låt"
+msgstr "Ta bort låt…"
 
 #: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
 msgid "Import to Library"
 msgstr "Importera till biblioteket"
 
 #: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
-#, fuzzy
 msgid "Remove from Library…"
-msgstr "Ta bort från biblioteket"
+msgstr "Ta bort från biblioteket…"
 
 #: src/Widgets/MediaMenu.vala:99
 msgid "Remove from Device"
