@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-10-20 14:00+0000\n"
+"PO-Revision-Date: 2018-10-21 09:30+0000\n"
 "Last-Translator: Fredrik B <frbo9002@gmail.com>\n"
 "Language-Team: Swedish <https://weblate.elementary.io/projects/music/music/"
 "sv/>\n"
@@ -103,7 +103,7 @@ msgstr "Rock"
 
 #: core/GStreamer/Equalizer.vala:85
 msgid "Soft"
-msgstr "Soft"
+msgstr "Mjukt"
 
 #: core/GStreamer/Equalizer.vala:86
 msgid "Ska"
@@ -221,7 +221,7 @@ msgstr "Lägger till <b>$NAME</b> av <b>$ARTIST</b> till $DEVICE"
 #: plugins/Devices/iPod/iPodLibrary.vala:196
 #, c-format
 msgid "Syncing <b>%s</b>…"
-msgstr "Synkroniserar <b>%s</b>..."
+msgstr "Synkroniserar <b>%s</b>…"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:266
 #: plugins/Devices/iPod/iPodLibrary.vala:530
@@ -259,7 +259,7 @@ msgstr ""
 msgid ""
 "The Application could not find any songs on the CD. No songs can be imported"
 msgstr ""
-"Programmet kunde inte hitta några låtar på skivan. Inga låtar kan importeras."
+"Programmet kunde inte hitta några låtar på skivan. Inga låtar kan importeras"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
 msgid "Importation of a song from Audio CD finished."
@@ -934,7 +934,7 @@ msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
 "Enheten kan inte synkroniseras med valda inställningar. Det finns inte "
-"tillräckligt med utrymme på disken."
+"tillräckligt med utrymme på disken"
 
 #: src/Views/DeviceSummaryWidget.vala:322
 msgid "Device is already doing an operation."
@@ -1232,7 +1232,7 @@ msgstr "Lägg till din musik"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Add music to your library."
-msgstr "Lägg till musik till ditt bibliotek"
+msgstr "Lägg till musik till ditt bibliotek."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:61
 msgid "Import music from a source into your library."
@@ -1291,8 +1291,8 @@ msgid ""
 "below."
 msgstr ""
 "Denna spellista kommer automatiskt att fyllas med låtar som matchar "
-"reglerna. För att redigera reglerna, högerklicka på den i sidofältet och "
-"klicka på <b>Redigera</b>. Alternativt klickar du på knappen nedan."
+"reglerna. För att redigera reglerna, <b>högerklicka</b> på den i sidofältet "
+"och klicka på <b>Redigera</b>. Alternativt klickar du på knappen nedan."
 
 #: src/Views/Wrappers/ViewWrapper.vala:419
 msgid "No media"
