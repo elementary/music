@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-09-19 00:08+0000\n"
+"PO-Revision-Date: 2018-10-11 05:01+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://weblate.elementary.io/projects/"
 "music/music/nb/>\n"
@@ -82,7 +82,7 @@ msgstr "Storsal"
 
 #: core/GStreamer/Equalizer.vala:80
 msgid "Live"
-msgstr "Live"
+msgstr "Sanntid"
 
 #: core/GStreamer/Equalizer.vala:81
 msgid "Party"
@@ -520,13 +520,11 @@ msgid "Issues while importing from %s"
 msgstr "Feil oppstod ved import fra %s"
 
 #: src/Dialogs/NotImportedDialog.vala:57
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] ""
-"%s var ute av stand til å importere %d elementer. Filene kan være skadet."
-msgstr[1] ""
-"%s var ute av stand til å importere %d elementer. Filene kan være skadet."
+msgstr[0] "Kunne ikke importere %d element. Filen kan være skadet."
+msgstr[1] "Kunne ikke importere %d elementer. Filene kan være skadet."
 
 #: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
@@ -585,19 +583,18 @@ msgid "Continue playback when closed:"
 msgstr "Fortsett avspilling når lukket:"
 
 #: src/Dialogs/RemoveFilesDialog.vala:49
-#, fuzzy, c-format
+#, c-format
 msgid "Remove %d Song From Library?"
 msgid_plural "Remove %d Songs From Library?"
-msgstr[0] "Fjern %d sanger fra %s?"
-msgstr[1] "Fjern %d sanger fra %s?"
+msgstr[0] "Fjern %d sang fra biblioteket?"
+msgstr[1] "Fjern %d sanger fra biblioteket?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:55
-#, fuzzy, c-format
+#, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr "Fjern fra bibliotek"
+msgstr "Fjern \"%s\" fra biblioteket?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
-#, fuzzy
 msgid ""
 "This will remove the song from your library and from any device synced "
 "automatically."
@@ -605,11 +602,11 @@ msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
 msgstr[0] ""
-"Dette vil fjerne sangen fra ditt bibliotek samt enhver enhet som automatisk "
-"synkroniseres med %s."
+"Dette vil fjerne sangen fra ditt bibliotek samt enhver enhet som "
+"synkroniseres automatisk."
 msgstr[1] ""
-"Dette vil fjerne sangene fra ditt bibliotek samt enhver enhet som automatisk "
-"synkroniseres med %s."
+"Dette vil fjerne sangene fra ditt bibliotek samt enhver enhet som "
+"synkroniseres automatisk."
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
@@ -949,9 +946,8 @@ msgstr ""
 "Drift av enheten har blitt kansellert og vil stoppe etter dette mediet."
 
 #: src/Views/ViewStack.vala:45
-#, fuzzy
 msgid "No Results"
-msgstr "Ingen Vurderinger"
+msgstr "Resultatløst"
 
 #: src/Views/ViewStack.vala:45
 msgid "Try another search"
@@ -1232,7 +1228,7 @@ msgstr "Få tak i musikk"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Add music to your library."
-msgstr "Legg til musikk i din ansamling"
+msgstr "Legg til musikk i ditt bibliotek."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:61
 msgid "Import music from a source into your library."
@@ -1244,7 +1240,7 @@ msgstr "Bytt musikkmappe"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:64
 msgid "Load music from a folder, a network or an external disk."
-msgstr "Last musikk fra mappe"
+msgstr "Last musikk fra mappe, nettverks- eller ekstern disk."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:111
 #: src/Views/Wrappers/MusicViewWrapper.vala:131
@@ -1276,8 +1272,8 @@ msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
-"For å legge til sanger til denne spillelisten, bruk <b>høyreklikk</b> på et "
-"element og velg <b>legg til spilleliste</b>"
+"For å legge til sanger i denne spillelisten, bruk <b>høyreklikk</b> på et "
+"element og velg <b>Legg til i spilleliste</b>."
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:58
 msgid "Edit Smart Playlist"
@@ -1347,17 +1343,14 @@ msgid "Scroll to Current Song"
 msgstr "Bla til gjeldende sang"
 
 #: src/Widgets/MediaMenu.vala:49
-#, fuzzy
 msgid "Show in File Browser…"
-msgstr "Vis i filbehandleren"
+msgstr "Vis i filbehandleren…"
 
 #: src/Widgets/MediaMenu.vala:50
-#, fuzzy
 msgid "Edit Song Info…"
-msgstr "Endre sanginformasjon"
+msgstr "Endre sanginformasjon…"
 
 #: src/Widgets/MediaMenu.vala:51
-#, fuzzy
 msgid "Other Actions"
 msgstr "Andre handlinger"
 
@@ -1371,18 +1364,16 @@ msgid "Add to Playlist"
 msgstr "Legg til i spilleliste"
 
 #: src/Widgets/MediaMenu.vala:55
-#, fuzzy
 msgid "Remove Song…"
-msgstr "Fjern sang"
+msgstr "Fjern sang…"
 
 #: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
 msgid "Import to Library"
 msgstr "Importer til bibliotek"
 
 #: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
-#, fuzzy
 msgid "Remove from Library…"
-msgstr "Fjern fra bibliotek"
+msgstr "Fjern fra bibliotek…"
 
 #: src/Widgets/MediaMenu.vala:99
 msgid "Remove from Device"

@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-05-04 20:37+0000\n"
-"Last-Translator: anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2018-10-03 00:10+0000\n"
+"Last-Translator: Pablo Solís La Beira <pabsol1977@gmail.com>\n"
 "Language-Team: Spanish <https://weblate.elementary.io/projects/music/music/"
 "es/>\n"
 "Language: es\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:55+0000\n"
 
 #: core/LibrariesManager.vala:147
@@ -46,31 +46,31 @@ msgstr "$NAME por $ARTIST en $ALBUM"
 
 #: core/GStreamer/Equalizer.vala:71
 msgid "Flat"
-msgstr "EQ Plana"
+msgstr "Plana"
 
 #: core/GStreamer/Equalizer.vala:72
 msgid "Classical"
-msgstr "EQ Clásica"
+msgstr "Música clásica"
 
 #: core/GStreamer/Equalizer.vala:73
 msgid "Club"
-msgstr "EQ Club"
+msgstr "Club"
 
 #: core/GStreamer/Equalizer.vala:74
 msgid "Dance"
-msgstr "EQ Dance"
+msgstr "Dance"
 
 #: core/GStreamer/Equalizer.vala:75
 msgid "Full Bass"
-msgstr "EQ graves al máximo"
+msgstr "Graves al máximo"
 
 #: core/GStreamer/Equalizer.vala:76
 msgid "Full Treble"
-msgstr "EQ Agudos al máximo"
+msgstr "Agudos al máximo"
 
 #: core/GStreamer/Equalizer.vala:77
 msgid "Full Bass + Treble"
-msgstr "EQ Bajos y agudos al máximo"
+msgstr "Graves y agudos al máximo"
 
 #: core/GStreamer/Equalizer.vala:78
 msgid "Headphones"
@@ -78,43 +78,43 @@ msgstr "Auriculares"
 
 #: core/GStreamer/Equalizer.vala:79
 msgid "Large Hall"
-msgstr "EQ Salón de conciertos"
+msgstr "Sala amplia"
 
 #: core/GStreamer/Equalizer.vala:80
 msgid "Live"
-msgstr "EQ En vivo"
+msgstr "En vivo"
 
 #: core/GStreamer/Equalizer.vala:81
 msgid "Party"
-msgstr "EQ Fiesta"
+msgstr "Fiesta"
 
 #: core/GStreamer/Equalizer.vala:82
 msgid "Pop"
-msgstr "EQ Pop"
+msgstr "Pop"
 
 #: core/GStreamer/Equalizer.vala:83
 msgid "Reggae"
-msgstr "EQ Reggae"
+msgstr "Reggae"
 
 #: core/GStreamer/Equalizer.vala:84
 msgid "Rock"
-msgstr "EQ Rock"
+msgstr "Rock"
 
 #: core/GStreamer/Equalizer.vala:85
 msgid "Soft"
-msgstr "EQ Suave"
+msgstr "Suave"
 
 #: core/GStreamer/Equalizer.vala:86
 msgid "Ska"
-msgstr "EQ Ska"
+msgstr "Ska"
 
 #: core/GStreamer/Equalizer.vala:87
 msgid "Soft Rock"
-msgstr "EQ Rock suave"
+msgstr "Rock suave"
 
 #: core/GStreamer/Equalizer.vala:88
 msgid "Techno"
-msgstr "EQ Tecno"
+msgstr "Tecno"
 
 #: core/Utils/FileUtils.vala:182
 #, c-format
@@ -128,7 +128,7 @@ msgstr "%s (%d)"
 
 #: core/Utils/PlaylistsUtils.vala:235
 msgid "New playlist"
-msgstr "Lista de reproducción nueva"
+msgstr "Nueva lista de reproducción"
 
 #. Translators: used for new playlists ex: "New playlist (1)"
 #: core/Utils/PlaylistsUtils.vala:246
@@ -186,11 +186,12 @@ msgstr "Abrir"
 #: core/Utils/PlaylistsUtils.vala:401
 msgid "Unrecognized playlist file. Import failed."
 msgstr ""
-"No se reconoció el archivo de lista de reproducción. importación fallida."
+"No se reconoció el archivo de lista de reproducción. Importación fallida."
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
 #: core/Utils/TimeUtils.vala:40
+#, fuzzy
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%e/%m/%Y %H:%M"
 
@@ -206,7 +207,7 @@ msgstr "Este dispositivo no contiene archivos de música."
 
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:153
 msgid "Android Phone"
-msgstr "Teléfono con Android"
+msgstr "Teléfono Android"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:155
 msgid "Audio Player"
@@ -215,7 +216,7 @@ msgstr "Reproductor de audio"
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:137
 #: plugins/Devices/iPod/iPodLibrary.vala:148
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr "Agregando <b>$NAME</b> de <b>$ARTIST</b> hacia $DEVICE"
+msgstr "Agregando <b>$NAME</b> de <b>$ARTIST</b> a $DEVICE"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:161
 #: plugins/Devices/iPod/iPodLibrary.vala:196
@@ -226,7 +227,7 @@ msgstr "Sincronizando <b>%s</b>…"
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:266
 #: plugins/Devices/iPod/iPodLibrary.vala:530
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr "Eliminando <b>$NAME</b> de <b>$ARTIST</b> en $DEVICE"
+msgstr "Eliminando <b>$NAME</b> de <b>$ARTIST</b> de $DEVICE"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:297
 #: plugins/Devices/iPod/iPodLibrary.vala:337
@@ -328,19 +329,19 @@ msgstr "Similares"
 
 #: plugins/LastFM/SimilarMediaView.vala:48
 msgid "media"
-msgstr "archivos multimedia"
+msgstr "media"
 
 #: plugins/LastFM/SimilarMediaView.vala:54
 msgid "Similar Media"
-msgstr "Medios similares"
+msgstr "Archivos multimedia similares"
 
 #: src/FileOperator.vala:305
 msgid "Import Complete"
-msgstr "Importación completa"
+msgstr "Importación completada"
 
 #: src/FileOperator.vala:305
 msgid "Your Library Has Been Imported."
-msgstr ""
+msgstr "La librería ha sido importada."
 
 #. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:315
@@ -375,7 +376,7 @@ msgstr "Buscar música"
 #: src/LibraryWindow.vala:596 src/LibraryWindow.vala:702
 #: src/LibraryWindow.vala:1144
 msgid "Music"
-msgstr "Reproductor de música"
+msgstr "Música"
 
 #: src/LibraryWindow.vala:273
 msgid "Pause"
@@ -430,7 +431,7 @@ msgstr "No se pudo encontrar el archivo de audio <b>%s</b> por <b>%s</b>."
 #: src/Dialogs/FileNotFoundDialog.vala:60
 #, c-format
 msgid "%i music files could not be found?"
-msgstr "¿No se pudieron encontrar %i los archivos de música?"
+msgstr "¿No se pudieron encontrar %i archivos de música?"
 
 #: src/Dialogs/FileNotFoundDialog.vala:82
 msgid "Rescan Library"
@@ -457,12 +458,11 @@ msgstr "¿Quiere instalar el complemento %s?"
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:39
 #, c-format
 msgid "This song cannot be played. The %s plugin is required to play the song."
-msgstr ""
-"Esta canción no se puede reproducir. Para ello se necesita el conector %s."
+msgstr "Esta canción no se puede reproducir. Se necesita el complemento %s."
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid "Install Plugin"
-msgstr "Instalar Plugin"
+msgstr "Instalar complemento"
 
 #: src/Dialogs/MediaEditor.vala:102
 msgid "Title:"
@@ -519,22 +519,21 @@ msgid "Close"
 msgstr "Cerrar"
 
 #: src/Dialogs/NotImportedDialog.vala:51
-#, fuzzy, c-format
+#, c-format
 msgid "Issues while importing from %s"
-msgstr "Importando música desde %s…"
+msgstr "Hubo un problema al importar música desde %s"
 
 #: src/Dialogs/NotImportedDialog.vala:57
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] ""
-"%s no pudo importar %d elementos. Los archivos pueden estar dañados."
+msgstr[0] "No se pudo importar el elemento %d. El archivo puede estar dañado."
 msgstr[1] ""
-"%s no pudo importar %d elementos. Los archivos pueden estar dañados."
+"No se pudo importar los elementos %d. Los archivos pueden estar dañados."
 
 #: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
-msgstr "Mover todos los archivos dañados a la papelera"
+msgstr "Trasladar todos los archivos dañados a la papelera"
 
 #: src/Dialogs/NotImportedDialog.vala:72
 msgid "del"
@@ -546,7 +545,7 @@ msgstr "Ubicación del archivo"
 
 #: src/Dialogs/NotImportedDialog.vala:97
 msgid "Select individual files to move to trash:"
-msgstr "Seleccione los archivos a mover a la papelera:"
+msgstr "Seleccione los archivos que desea mover a la papelera:"
 
 #: src/Dialogs/NotImportedDialog.vala:101 src/Dialogs/RemoveFilesDialog.vala:73
 msgid "Move to Trash"
@@ -589,19 +588,18 @@ msgid "Continue playback when closed:"
 msgstr "Continuar reproduciendo al cerrar:"
 
 #: src/Dialogs/RemoveFilesDialog.vala:49
-#, fuzzy, c-format
+#, c-format
 msgid "Remove %d Song From Library?"
 msgid_plural "Remove %d Songs From Library?"
-msgstr[0] "¿Desea eliminar %d canciones de %s?"
-msgstr[1] "¿Desea eliminar %d canciones de %s?"
+msgstr[0] "¿Desea eliminar %d canción de la biblioteca?"
+msgstr[1] "¿Desea eliminar %d canciones de la biblioteca?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:55
-#, fuzzy, c-format
+#, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr "Eliminar de la biblioteca"
+msgstr "¿Eliminar \"%s\" de la biblioteca?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
-#, fuzzy
 msgid ""
 "This will remove the song from your library and from any device synced "
 "automatically."
@@ -609,11 +607,11 @@ msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
 msgstr[0] ""
-"Esto eliminará la canción de su biblioteca y de cualquier dispositivo que se "
-"sincronice automáticamente con %s."
+"Esto eliminará la canción de su biblioteca y de cualquier dispositivo "
+"sincronizado."
 msgstr[1] ""
-"Esto eliminará las canciones de su biblioteca y de cualquier dispositivo que "
-"se sincronice automáticamente con %s."
+"Esto eliminará las canciones de su biblioteca y de cualquier dispositivo "
+"sincronizado."
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
@@ -638,8 +636,8 @@ msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
 msgstr ""
-"¿Está seguro de que desea establecer %s como su nuevo directorio de música? "
-"Esto reiniciará su biblioteca actual y borrará las listas de reproducción "
+"¿Está seguro de que desea establecer %s como su nueva carpeta de música? "
+"Esto reiniciará su biblioteca y borrará las listas de reproducción "
 "personalizadas."
 
 #: src/Dialogs/SmartPlaylistEditor.vala:55
@@ -739,7 +737,7 @@ msgstr "Duración"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:273
 msgid "Playcount"
-msgstr "Cuenta de reproducciones"
+msgstr "Número de reproducciones"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:274
 msgid "Rating"
@@ -780,7 +778,7 @@ msgstr "es exactamente"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:380
 msgid "is at most"
-msgstr "es a lo más"
+msgstr "es como mucho"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:381
 msgid "is at least"
@@ -788,7 +786,7 @@ msgstr "es al menos"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:395
 msgid "is within"
-msgstr "está dentro"
+msgstr "está dentro de"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:396
 msgid "is before"
@@ -804,14 +802,14 @@ msgstr "dias atrás"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:424
 msgid "kbps"
-msgstr "Kbps"
+msgstr "kbps"
 
 #. be a bit explicit to make translations better
 #: src/Dialogs/SyncWarningDialog.vala:52
 #, c-format
 msgid "Sync will remove %i item from %s"
 msgid_plural "Sync will remove %i items from %s"
-msgstr[0] "La sincronización eliminará %i elementos de %s"
+msgstr[0] "La sincronización eliminará %i elemento de %s"
 msgstr[1] "La sincronización eliminará %i elementos de %s"
 
 #: src/Dialogs/SyncWarningDialog.vala:55
@@ -820,8 +818,8 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
-"Si continua la sincronización, los archivos multimedia serán removidos de %s "
-"porque no están en la lista de sincronización. ¿Le gustaría primero "
+"Si continua la sincronización, los archivos multimedia serán eliminados de %"
+"s porque no están en la lista de sincronización. ¿Le gustaría primero "
 "importarlos a la biblioteca?"
 
 #: src/Dialogs/SyncWarningDialog.vala:57
@@ -843,7 +841,7 @@ msgstr "<b>Importando</b> música a la biblioteca…"
 
 #: src/LocalBackend/LocalLibrary.vala:247
 msgid "All music files are already in your library"
-msgstr "Todos los archivos de música ya están en la colección"
+msgstr "Todos los archivos de música ya están en la biblioteca"
 
 #: src/LocalBackend/LocalLibrary.vala:247
 msgid "No files were imported."
@@ -851,11 +849,11 @@ msgstr "No se importó ningún archivo."
 
 #: src/LocalBackend/LocalLibrary.vala:252
 msgid "Rescanning music for changes. This may take a while…"
-msgstr "Analizando cambios. Esto puede tomar un tiempo…"
+msgstr "Analizando cambios. Esto puede tardar un poco…"
 
 #: src/LocalBackend/LocalLibrary.vala:353
 msgid "Added to your queue:"
-msgstr "Añadido a tu cola de reproducción:"
+msgstr "Añadido a la cola de reproducción:"
 
 #: src/LocalBackend/LocalLibrary.vala:364
 #, c-format
@@ -959,13 +957,12 @@ msgstr ""
 "archivo."
 
 #: src/Views/ViewStack.vala:45
-#, fuzzy
 msgid "No Results"
-msgstr "Sin valoraciones"
+msgstr "Sin resultados"
 
 #: src/Views/ViewStack.vala:45
 msgid "Try another search"
-msgstr ""
+msgstr "Buscar de nuevo"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
 msgid "Genres"
@@ -1242,7 +1239,7 @@ msgstr "Obtener algunas canciones"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Add music to your library."
-msgstr "Añada música a su biblioteca."
+msgstr "Añadir música a la biblioteca."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:61
 msgid "Import music from a source into your library."
@@ -1307,11 +1304,11 @@ msgstr ""
 
 #: src/Views/Wrappers/ViewWrapper.vala:419
 msgid "No media"
-msgstr "No hay medios"
+msgstr "No hay archivos multimedia"
 
 #: src/Widgets/AlbumListGrid.vala:64
 msgid "Set new album cover"
-msgstr "Establecer carátula de álbum nueva"
+msgstr "Establecer carátula de álbum"
 
 #: src/Widgets/AlbumListGrid.vala:240
 msgid "Image files"
@@ -1357,17 +1354,14 @@ msgid "Scroll to Current Song"
 msgstr "Saltar hacia la canción actual"
 
 #: src/Widgets/MediaMenu.vala:49
-#, fuzzy
 msgid "Show in File Browser…"
-msgstr "Mostrar en el explorador de archivos"
+msgstr "Mostrar en el explorador de archivos…"
 
 #: src/Widgets/MediaMenu.vala:50
-#, fuzzy
 msgid "Edit Song Info…"
-msgstr "Editar Información de la canción"
+msgstr "Editar Información de la canción…"
 
 #: src/Widgets/MediaMenu.vala:51
-#, fuzzy
 msgid "Other Actions"
 msgstr "Otras acciones"
 
@@ -1381,18 +1375,16 @@ msgid "Add to Playlist"
 msgstr "Añadir a la lista de reproducción"
 
 #: src/Widgets/MediaMenu.vala:55
-#, fuzzy
 msgid "Remove Song…"
-msgstr "Eliminar canción"
+msgstr "Eliminar canción…"
 
 #: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
 msgid "Import to Library"
 msgstr "Importar a la biblioteca"
 
 #: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
-#, fuzzy
 msgid "Remove from Library…"
-msgstr "Eliminar de la biblioteca"
+msgstr "Eliminar de la biblioteca…"
 
 #: src/Widgets/MediaMenu.vala:99
 msgid "Remove from Device"
@@ -1404,7 +1396,7 @@ msgstr "Eliminar de la cola de reproducción"
 
 #: src/Widgets/MediaMenu.vala:152
 msgid "New Playlist…"
-msgstr "Lista de reproducción nueva…"
+msgstr "Nueva lista de reproducción…"
 
 #: src/Widgets/MediaMenu.vala:192
 #, c-format
@@ -1444,11 +1436,11 @@ msgstr "Extraer"
 
 #: src/Widgets/SourceListView.vala:176 src/Widgets/SourceListView.vala:219
 msgid "New Playlist"
-msgstr "Lista de reproducción nueva"
+msgstr "Nueva lista de reproducción"
 
 #: src/Widgets/SourceListView.vala:184 src/Widgets/SourceListView.vala:220
 msgid "New Smart Playlist"
-msgstr "Lista de reproducción inteligente nueva"
+msgstr "Nueva lista de reproducción inteligente"
 
 #: src/Widgets/SourceListView.vala:221
 msgid "Import Playlists"
