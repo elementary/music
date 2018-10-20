@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-03-08 05:57+0000\n"
-"Last-Translator: Gregi Maulana Mahes <gregim426naxaredix@gmail.com>\n"
+"PO-Revision-Date: 2018-10-20 08:51+0000\n"
+"Last-Translator: Eri Hidayat <eriwhidayat@gmail.com>\n"
 "Language-Team: Indonesian <https://weblate.elementary.io/projects/music/"
 "music/id/>\n"
 "Language: id\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:53+0000\n"
 
 #: core/LibrariesManager.vala:147
@@ -335,7 +335,7 @@ msgstr "Impor Selesai"
 
 #: src/FileOperator.vala:305
 msgid "Your Library Has Been Imported."
-msgstr ""
+msgstr "Pustaka Anda Telah Diimpor"
 
 #. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:315
@@ -512,15 +512,15 @@ msgid "Close"
 msgstr "Tutup"
 
 #: src/Dialogs/NotImportedDialog.vala:51
-#, fuzzy, c-format
+#, c-format
 msgid "Issues while importing from %s"
-msgstr "Mengimpor musik dari %s…"
+msgstr "Masalah saat mengimpor dari %s"
 
 #: src/Dialogs/NotImportedDialog.vala:57
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] "%s tak dapat mengimpor %d item. Mungkin berkas rusak."
+msgstr[0] "Tidak dapat mengimpor  %d item. File tersebut mungkin rusak."
 
 #: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
@@ -579,18 +579,17 @@ msgid "Continue playback when closed:"
 msgstr "Tetap mainkan ketika tertutup:"
 
 #: src/Dialogs/RemoveFilesDialog.vala:49
-#, fuzzy, c-format
+#, c-format
 msgid "Remove %d Song From Library?"
 msgid_plural "Remove %d Songs From Library?"
-msgstr[0] "Menghapus %d Lagu Dari %s?"
+msgstr[0] "Hapus %d Lagu Dari Pustaka?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:55
-#, fuzzy, c-format
+#, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr "Hapus dari Pustaka"
+msgstr "Hapus  \"%s\" Dari Pustaka?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
-#, fuzzy
 msgid ""
 "This will remove the song from your library and from any device synced "
 "automatically."
@@ -598,8 +597,8 @@ msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
 msgstr[0] ""
-"Ini akan menghapus lagu dari pustaka Anda dan dari perangkat lain yang "
-"disinkronisasikan dengan %s."
+"Ini akan menghapus lagu dari pustaka Anda dan dari perangkat apapun yang "
+"tersinkronisasi secara otomatis."
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
@@ -940,13 +939,12 @@ msgid "Device operation has been cancelled and will stop after this media."
 msgstr "Operasi perangkat dibatalkan dan dihentikan setelah media ini."
 
 #: src/Views/ViewStack.vala:45
-#, fuzzy
 msgid "No Results"
-msgstr "Tanpa Peringkat"
+msgstr "Tidak Ada Hasil"
 
 #: src/Views/ViewStack.vala:45
 msgid "Try another search"
-msgstr ""
+msgstr "Coba pencarian lain"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
 msgid "Genres"
@@ -1337,19 +1335,16 @@ msgid "Scroll to Current Song"
 msgstr "Tunjukkan Lagu yang dimainkan"
 
 #: src/Widgets/MediaMenu.vala:49
-#, fuzzy
 msgid "Show in File Browser…"
-msgstr "Buka di Peramban Berkas"
+msgstr "Tampilkan di Peramban Berkas…"
 
 #: src/Widgets/MediaMenu.vala:50
-#, fuzzy
 msgid "Edit Song Info…"
-msgstr "Ubah Info Lagu"
+msgstr "Ubah Info Lagu…"
 
 #: src/Widgets/MediaMenu.vala:51
-#, fuzzy
 msgid "Other Actions"
-msgstr "Tindakan lain"
+msgstr "Tindakan Lain"
 
 #: src/Widgets/MediaMenu.vala:53
 msgctxt "Action item (verb)"
@@ -1361,18 +1356,16 @@ msgid "Add to Playlist"
 msgstr "Tambah ke Daftar Putar"
 
 #: src/Widgets/MediaMenu.vala:55
-#, fuzzy
 msgid "Remove Song…"
-msgstr "Hapus Lagu"
+msgstr "Hapus Lagu…"
 
 #: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
 msgid "Import to Library"
 msgstr "Impor folder ke Pustaka"
 
 #: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
-#, fuzzy
 msgid "Remove from Library…"
-msgstr "Hapus dari Pustaka"
+msgstr "Hapus dari Pustaka…"
 
 #: src/Widgets/MediaMenu.vala:99
 msgid "Remove from Device"
