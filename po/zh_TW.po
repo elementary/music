@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-02-13 09:54+0000\n"
+"PO-Revision-Date: 2018-10-18 11:54+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://weblate.elementary.io/projects/"
-"music/music/zh_TW/>\n"
+"music/music/zh_Hant/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
 #: core/LibrariesManager.vala:147
@@ -332,7 +332,7 @@ msgstr "匯入完成"
 
 #: src/FileOperator.vala:305
 msgid "Your Library Has Been Imported."
-msgstr ""
+msgstr "您的珍藏館已經匯入。"
 
 #. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:315
@@ -508,15 +508,15 @@ msgid "Close"
 msgstr "關閉"
 
 #: src/Dialogs/NotImportedDialog.vala:51
-#, fuzzy, c-format
+#, c-format
 msgid "Issues while importing from %s"
-msgstr "正從 %s 匯入音樂..."
+msgstr "從 %s 匯入時發生問題"
 
 #: src/Dialogs/NotImportedDialog.vala:57
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] "%s 無法匯入 %d 個項目。檔案可能損壞。"
+msgstr[0] "無法匯入 %d 個項目。檔案可能損壞。"
 
 #: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
@@ -575,25 +575,24 @@ msgid "Continue playback when closed:"
 msgstr "當關閉時繼續播放："
 
 #: src/Dialogs/RemoveFilesDialog.vala:49
-#, fuzzy, c-format
+#, c-format
 msgid "Remove %d Song From Library?"
 msgid_plural "Remove %d Songs From Library?"
-msgstr[0] "是否要從 %2$s 移除 %1$d 首歌？"
+msgstr[0] "是否要從珍藏館移除 %d 首歌？"
 
 #: src/Dialogs/RemoveFilesDialog.vala:55
-#, fuzzy, c-format
+#, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr "從珍藏館移除"
+msgstr "是否要從珍藏館移除「%s」？"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
-#, fuzzy
 msgid ""
 "This will remove the song from your library and from any device synced "
 "automatically."
 msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
-msgstr[0] "這會從您的珍藏館與任何和 %s 自動同步的裝置中移除這些歌曲。"
+msgstr[0] "這會從您的珍藏館與任何自動同步的裝置中移除這些歌曲。"
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
@@ -927,13 +926,12 @@ msgid "Device operation has been cancelled and will stop after this media."
 msgstr "裝置作業已取消，將在此媒體操作後停止。"
 
 #: src/Views/ViewStack.vala:45
-#, fuzzy
 msgid "No Results"
-msgstr "無評等"
+msgstr "無結果"
 
 #: src/Views/ViewStack.vala:45
 msgid "Try another search"
-msgstr ""
+msgstr "嘗試其他搜尋"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
 msgid "Genres"
@@ -1267,9 +1265,8 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
-"本播放清單將自動篩選加入符合規則的音樂。若要修改規則，請在側邊欄對該規則點擊"
-"<b>滑鼠第二鍵</b>，並按一下</b>編輯</b>。此外，您也可以點選側邊欄下方的按鈕並"
-"編輯。"
+"本播放清單將自動篩選加入符合規則的音樂。若要修改規則，請在側邊欄對該規則點擊<b>滑鼠第二鍵</b>，並按一下<b>編輯</b>。此外，您也可以點選側邊欄"
+"下方的按鈕並編輯。"
 
 #: src/Views/Wrappers/ViewWrapper.vala:419
 msgid "No media"
@@ -1323,17 +1320,14 @@ msgid "Scroll to Current Song"
 msgstr "捲動至目前歌曲"
 
 #: src/Widgets/MediaMenu.vala:49
-#, fuzzy
 msgid "Show in File Browser…"
-msgstr "在檔案瀏覽器中顯示"
+msgstr "在檔案瀏覽器中顯示…"
 
 #: src/Widgets/MediaMenu.vala:50
-#, fuzzy
 msgid "Edit Song Info…"
-msgstr "編輯歌曲資訊"
+msgstr "編輯歌曲資訊…"
 
 #: src/Widgets/MediaMenu.vala:51
-#, fuzzy
 msgid "Other Actions"
 msgstr "其他動作"
 
@@ -1347,18 +1341,16 @@ msgid "Add to Playlist"
 msgstr "加入至播放清單"
 
 #: src/Widgets/MediaMenu.vala:55
-#, fuzzy
 msgid "Remove Song…"
-msgstr "移除歌曲"
+msgstr "移除歌曲…"
 
 #: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
 msgid "Import to Library"
 msgstr "匯入至珍藏館"
 
 #: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
-#, fuzzy
 msgid "Remove from Library…"
-msgstr "從珍藏館移除"
+msgstr "從珍藏館移除…"
 
 #: src/Widgets/MediaMenu.vala:99
 msgid "Remove from Device"

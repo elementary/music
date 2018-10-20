@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-27 08:21-0700\n"
-"PO-Revision-Date: 2018-08-16 15:05+0000\n"
-"Last-Translator: Rafael Bautista Martínez <iuninefrendor@gmail.com>\n"
+"PO-Revision-Date: 2018-10-02 12:45+0000\n"
+"Last-Translator: Pablo Solís La Beira <pabsol1977@gmail.com>\n"
 "Language-Team: Spanish <https://weblate.elementary.io/projects/music/extra/"
 "es/>\n"
 "Language: es\n"
@@ -23,20 +23,19 @@ msgstr ""
 #: data/io.elementary.music.appdata.xml.in:8
 #: data/io.elementary.music.desktop.in:4
 msgid "Music"
-msgstr "Reproductor de música"
+msgstr "Música"
 
 #: data/io.elementary.music.appdata.xml.in:9
 msgid "The official elementary music player"
-msgstr "El reproductor de música oficial de Elementary OS"
+msgstr "El reproductor de música oficial de elementary OS"
 
 #: data/io.elementary.music.appdata.xml.in:11
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices, CDs, and album art."
 msgstr ""
-"El reproductor de música es elegante y de rápido funcionamiento, está "
-"enfocado en la biblioteca musical. Admite dispositivos externos, CDs y "
-"carátulas."
+"Elegante y de rápido, está enfocado en la biblioteca musical. Admite "
+"dispositivos externos, CDs y carátulas."
 
 #: data/io.elementary.music.appdata.xml.in:100
 msgid "elementary LLC."
@@ -44,7 +43,7 @@ msgstr "elementary LLC."
 
 #: data/io.elementary.music.desktop.in:5
 msgid "Music Player"
-msgstr "Reproductor de música"
+msgstr "Música"
 
 #: data/io.elementary.music.desktop.in:6
 msgid "Listen to music"

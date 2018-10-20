@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2015 elementary, LLC <contact@elementary.io> -->
 <component type="desktop-application">
-    <id>io.elementary.music.desktop</id>
+    <id>io.elementary.music</id>
     <metadata_license>CC0-1.0</metadata_license>
     <project_group>elementary</project_group>
     <project_license>GPL-3.0+</project_license>
@@ -15,6 +15,15 @@
         </p>
     </description>
     <releases>
+        <release version="5.0" date="2018-10-16" urgency="medium">
+            <description>
+                <p>Various UI changes</p>
+                <p>Shuffle fixes</p>
+                <p>Initial MPRIS support</p>
+                <p>Minor bug fixes</p>
+                <p>Updated translations</p>
+            </description>
+        </release>
         <release version="0.4.2" date="2017-10-27" urgency="medium">
             <description>
                 <p>Detect library changes at startup.</p>

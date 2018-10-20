@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-27 08:21-0700\n"
-"PO-Revision-Date: 2018-08-03 00:04+0000\n"
+"PO-Revision-Date: 2018-10-08 00:04+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://weblate.elementary.io/projects/music/extra/"
 "ja/>\n"
@@ -33,9 +33,7 @@ msgstr "elementary の公式ミュージックプレーヤー"
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices, CDs, and album art."
-msgstr ""
-"\"ミュージック\" はミュージックとライブラリに重点を置いた、高速で美しいオー"
-"ディオプレイヤーです。外部デバイス、CD、アルバムアートを扱います。"
+msgstr "\"ミュージック\" は音楽とライブラリに重点を置いた、高速で美しいオーディオプレイヤーです。外部デバイス、CD、アルバムアートを扱います。"
 
 #: data/io.elementary.music.appdata.xml.in:100
 msgid "elementary LLC."
@@ -47,11 +45,11 @@ msgstr "ミュージックプレーヤー"
 
 #: data/io.elementary.music.desktop.in:6
 msgid "Listen to music"
-msgstr "ミュージックを聴きます"
+msgstr "音楽を聴きます"
 
 #: data/io.elementary.music.desktop.in:8
 msgid "multimedia-audio-player"
-msgstr ""
+msgstr "multimedia-audio-player"
 
 #: data/io.elementary.music.desktop.in:13
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"

@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-27 08:21-0700\n"
-"PO-Revision-Date: 2018-08-12 13:24+0000\n"
-"Last-Translator: colindemian <colindemian@outlook.com>\n"
+"PO-Revision-Date: 2018-08-23 00:03+0000\n"
+"Last-Translator: Daniel Foré <daniel@elementary.io>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.elementary.io/projects/"
 "music/extra/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -51,7 +51,7 @@ msgstr "聆听音乐"
 
 #: data/io.elementary.music.desktop.in:8
 msgid "multimedia-audio-player"
-msgstr "多媒体-音频-播放器"
+msgstr "multimedia-audio-player"
 
 #: data/io.elementary.music.desktop.in:13
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"

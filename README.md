@@ -15,7 +15,7 @@ You'll need the following dependencies:
 * libglib2.0-dev
 * libgpod-dev
 * libgranite-dev
-* libgsignon-glib-dev
+* libsignon-glib-dev >= 2.0
 * libgstreamer1.0-dev
 * libgstreamer-plugins-base1.0-dev
 * libgtk-3-dev >= 3.22
@@ -43,7 +43,7 @@ You can run tests with `ninja test`, and reset the build environment with `ninja
 
 You can use these options to configure your build:
 * `build-plugins`: `true` to build plugins or `false` to ony compile the core and the application
-* `plugins`: any of `lastfm`, `audio-device`, `cdrom` and `ipod`, separated by commas
+* `plugins`: any of `lastfm`, `audioplayer`, `cdrom` and `ipod`, separated by commas
 * `prefix`: the installation prefix
 
 To define their values, use `meson configure`

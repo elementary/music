@@ -238,14 +238,14 @@ public abstract class Noise.GenericList : Gtk.TreeView {
 
         if (!main_settings.privacy_mode_enabled ()) {
             if (playlist == null || playlist == ((Noise.LocalLibrary)libraries_manager.local_library).p_music || parent_wrapper.library != libraries_manager.local_library) {
-                App.settings.set_string ("last-playlist-playing", "");
+                App.saved_state.set_string ("last-playlist-playing", "");
             } else if (playlist is SmartPlaylist) {
-                App.settings.set_string ("last-playlist-playing", "s%lld".printf (playlist.rowid));
+                App.saved_state.set_string ("last-playlist-playing", "s%lld".printf (playlist.rowid));
             } else {
                 if (((StaticPlaylist)playlist).read_only == false) {
-                    App.settings.set_string ("last-playlist-playing", "p%lld".printf (playlist.rowid));
+                    App.saved_state.set_string ("last-playlist-playing", "p%lld".printf (playlist.rowid));
                 } else {
-                    App.settings.set_string ("last-playlist-playing", "");
+                    App.saved_state.set_string ("last-playlist-playing", "");
                 }
             }
         }
@@ -255,7 +255,7 @@ public abstract class Noise.GenericList : Gtk.TreeView {
             debug ("QUEING: %s", q.title);
         }
         App.player.clear_queue ();
-        App.player.queue_medias (queue);
+        App.player.queue_media (queue);
         App.player.current_index = 0;
 
         // order the queue like this list

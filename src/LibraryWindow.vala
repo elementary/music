@@ -142,7 +142,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         if (library_manager.get_medias ().size > 0) {
             App.player.clear_queue ();
 
-            var last_media_position = App.settings.get_int ("last-media-position");
+            var last_media_position = App.saved_state.get_int ("last-media-position");
 
             // make sure we don't re-count stats
             if (last_media_position > 5) {
@@ -188,106 +188,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         }
 
         return base.key_press_event (event);
-    }
-
-    private inline void build_main_widgets () {
-        var import_menuitem = new Gtk.MenuItem.with_label (_("Import to Library…"));
-        import_menuitem.action_name = ACTION_PREFIX + ACTION_IMPORT;
-
-        var preferences_menuitem = new Gtk.MenuItem.with_label (_("Preferences"));
-        preferences_menuitem.activate.connect (editPreferencesClick);
-
-        var menu = new Gtk.Menu ();
-        menu.append (import_menuitem);
-        menu.append (new Gtk.SeparatorMenuItem ());
-        menu.append (preferences_menuitem);
-        menu.show_all ();
-
-        var menu_button = new Gtk.MenuButton ();
-        menu_button.image = new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR);
-        menu_button.popup = menu;
-        menu_button.valign = Gtk.Align.CENTER;
-
-        var previous_button = new Gtk.Button.from_icon_name ("media-skip-backward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-        previous_button.action_name = ACTION_PREFIX + ACTION_PLAY_PREVIOUS;
-        previous_button.tooltip_text = _("Previous");
-
-        var play_button = new Gtk.Button.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-        play_button.action_name = ACTION_PREFIX + ACTION_PLAY;
-        play_button.tooltip_text = _("Play");
-
-        var next_button = new Gtk.Button.from_icon_name ("media-skip-forward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-        next_button.action_name = ACTION_PREFIX + ACTION_PLAY_NEXT;
-        next_button.tooltip_text = _("Next");
-
-        search_entry = new Gtk.SearchEntry ();
-        search_entry.valign = Gtk.Align.CENTER;
-        search_entry.placeholder_text = _("Search Music");
-
-        view_selector = new Widgets.ViewSelector ();
-        view_selector.margin_start = 12;
-        view_selector.margin_end = 6;
-        view_selector.valign = Gtk.Align.CENTER;
-
-        top_display = new TopDisplay ();
-        top_display.margin_start = 30;
-        top_display.margin_end = 30;
-
-        var headerbar = new Gtk.HeaderBar ();
-        headerbar.show_close_button = true;
-        headerbar.pack_start (previous_button);
-        headerbar.pack_start (play_button);
-        headerbar.pack_start (next_button);
-        headerbar.pack_start (view_selector);
-        headerbar.pack_end (menu_button);
-        headerbar.pack_end (search_entry);
-        headerbar.set_title (_("Music"));
-        headerbar.set_custom_title (top_display);
-        headerbar.show_all ();
-
-        view_stack = new ViewStack ();
-        source_list_view = new SourceListView ();
-
-        statusbar = new Widgets.StatusBar ();
-
-        var grid = new Gtk.Grid ();
-        grid.orientation = Gtk.Orientation.VERTICAL;
-        grid.add (source_list_view);
-        grid.add (statusbar);
-
-        main_hpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
-        main_hpaned.pack1 (grid, false, false);
-        main_hpaned.pack2 (view_stack, true, false);
-        main_hpaned.show_all ();
-
-        App.saved_state.bind ("sidebar-width", main_hpaned, "position", GLib.SettingsBindFlags.DEFAULT);
-
-        add (main_hpaned);
-        set_titlebar (headerbar);
-
-        actions.action_state_changed.connect ((name, new_state) => {
-            if (name == ACTION_PLAY) {
-                if (new_state.get_boolean () == false) {
-                    play_button.image = new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-                    play_button.tooltip_text = _("Play");
-                } else {
-                    play_button.image = new Gtk.Image.from_icon_name ("media-playback-pause-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-                    play_button.tooltip_text = _("Pause");
-                }
-            }
-        });
-
-        library_manager.search_finished.connect (() => {
-            view_stack.hide_alert ();
-        });
-
-        libraries_manager.library_added.connect ((lib) => {
-            lib.search_finished.connect (() => {
-                view_stack.hide_alert ();
-            });
-        });
-
-        connect_to_sourcelist_signals ();
     }
 
     private void connect_to_sourcelist_signals () {
@@ -459,7 +359,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             move (window_x, window_y);
         }
 
-        if (App.saved_state.get_enum ("window-state") == 1) {
+        if (App.saved_state.get_boolean ("window-maximized")) {
             maximize ();
         }
 
@@ -467,7 +367,103 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         show ();
 
-        build_main_widgets ();
+        var import_menuitem = new Gtk.MenuItem.with_label (_("Import to Library…"));
+        import_menuitem.action_name = ACTION_PREFIX + ACTION_IMPORT;
+
+        var preferences_menuitem = new Gtk.MenuItem.with_label (_("Preferences"));
+        preferences_menuitem.activate.connect (editPreferencesClick);
+
+        var menu = new Gtk.Menu ();
+        menu.append (import_menuitem);
+        menu.append (new Gtk.SeparatorMenuItem ());
+        menu.append (preferences_menuitem);
+        menu.show_all ();
+
+        var menu_button = new Gtk.MenuButton ();
+        menu_button.image = new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR);
+        menu_button.popup = menu;
+        menu_button.valign = Gtk.Align.CENTER;
+
+        var previous_button = new Gtk.Button.from_icon_name ("media-skip-backward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+        previous_button.action_name = ACTION_PREFIX + ACTION_PLAY_PREVIOUS;
+        previous_button.tooltip_text = _("Previous");
+
+        var play_button = new Gtk.Button.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+        play_button.action_name = ACTION_PREFIX + ACTION_PLAY;
+        play_button.tooltip_text = _("Play");
+
+        var next_button = new Gtk.Button.from_icon_name ("media-skip-forward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+        next_button.action_name = ACTION_PREFIX + ACTION_PLAY_NEXT;
+        next_button.tooltip_text = _("Next");
+
+        search_entry = new Gtk.SearchEntry ();
+        search_entry.valign = Gtk.Align.CENTER;
+        search_entry.placeholder_text = _("Search Music");
+
+        view_selector = new Widgets.ViewSelector ();
+        view_selector.margin_start = 12;
+        view_selector.margin_end = 6;
+        view_selector.valign = Gtk.Align.CENTER;
+
+        top_display = new TopDisplay ();
+        top_display.margin_start = 30;
+        top_display.margin_end = 30;
+
+        var headerbar = new Gtk.HeaderBar ();
+        headerbar.show_close_button = true;
+        headerbar.pack_start (previous_button);
+        headerbar.pack_start (play_button);
+        headerbar.pack_start (next_button);
+        headerbar.pack_start (view_selector);
+        headerbar.pack_end (menu_button);
+        headerbar.pack_end (search_entry);
+        headerbar.set_title (_("Music"));
+        headerbar.set_custom_title (top_display);
+        headerbar.show_all ();
+
+        view_stack = new ViewStack ();
+        source_list_view = new SourceListView ();
+
+        statusbar = new Widgets.StatusBar ();
+
+        var grid = new Gtk.Grid ();
+        grid.orientation = Gtk.Orientation.VERTICAL;
+        grid.add (source_list_view);
+        grid.add (statusbar);
+
+        main_hpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
+        main_hpaned.pack1 (grid, false, false);
+        main_hpaned.pack2 (view_stack, true, false);
+        main_hpaned.show_all ();
+
+        App.saved_state.bind ("sidebar-width", main_hpaned, "position", GLib.SettingsBindFlags.DEFAULT);
+
+        add (main_hpaned);
+        set_titlebar (headerbar);
+
+        actions.action_state_changed.connect ((name, new_state) => {
+            if (name == ACTION_PLAY) {
+                if (new_state.get_boolean () == false) {
+                    play_button.image = new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+                    play_button.tooltip_text = _("Play");
+                } else {
+                    play_button.image = new Gtk.Image.from_icon_name ("media-playback-pause-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+                    play_button.tooltip_text = _("Pause");
+                }
+            }
+        });
+
+        library_manager.search_finished.connect (() => {
+            view_stack.hide_alert ();
+        });
+
+        libraries_manager.library_added.connect ((lib) => {
+            lib.search_finished.connect (() => {
+                view_stack.hide_alert ();
+            });
+        });
+
+        connect_to_sourcelist_signals ();
 
         load_playlists ();
         update_sensitivities_sync (); // we need to do this synchronously to avoid weird initial states
@@ -477,7 +473,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         library_manager.rescan_music_folder ();
         initialization_finished = true;
 
-        var last_playlist_playing = App.settings.get_string ("last-playlist-playing");
+        var last_playlist_playing = App.saved_state.get_string ("last-playlist-playing");
 
         // Set the focus on the current view
         if (last_playlist_playing != "") {
@@ -499,7 +495,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             show_playlist_view (library_manager.p_music);
         }
 
-        var search_string = App.settings.get_string ("search-string");
+        var search_string = App.saved_state.get_string ("search-string");
 
         search_entry.activate.connect (search_entry_activate);
         search_entry.search_changed.connect (() => {
@@ -509,7 +505,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         });
         search_entry.text = search_string;
 
-        int64 last_playing_id = App.settings.get_int64 ("last-media-playing");;
+        int64 last_playing_id = App.saved_state.get_int64 ("last-media-playing");
         if (last_playing_id >= 0) {
             var last_playing_media = library_manager.media_from_id (last_playing_id);
             if (last_playing_media != null && last_playing_media.file.query_exists ()) {
@@ -775,7 +771,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         if (p == App.player.queue_playlist) {
             view.set_no_media_alert_message (_("No songs in Queue"), _("To add songs to the queue, use the <b>secondary click</b> on an item and choose <b>Queue</b>. When a song finishes, the queued songs will be played first before the next song in the currently playing list."));
-            App.player.queue_medias (p.medias);
+            App.player.queue_media (p.medias);
         } else if (p == App.player.history_playlist) {
             view.set_no_media_alert_message (_("No songs in History"), _("After a part of a song has been played, it is added to the history list.\nYou can use this list to see all the songs you have played during the current session."));
         }
@@ -1158,25 +1154,18 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private void on_quit () {
         if (!main_settings.privacy_mode_enabled ()) {
             // Save media position and info
-            App.settings.set_int ("last-media-position", (int)((double)App.player.player.get_position()/TimeUtils.NANO_INV));
-
+            App.saved_state.set_int ("last-media-position", (int)((double)App.player.player.get_position()/TimeUtils.NANO_INV));
             if (App.player.current_media != null) {
                 App.player.current_media.resume_pos = (int)((double)App.player.player.get_position ()/TimeUtils.NANO_INV);
                 library_manager.update_media (App.player.current_media, false, false);
             }
 
-            App.settings.set_string ("search-string", search_entry.text);
+            App.saved_state.set_string ("search-string", search_entry.text);
         }
-
         App.player.player.pause ();
 
         App.saved_state.set_int ("view-mode", view_selector.selected);
-
-        if (is_maximized) {
-            App.saved_state.set_enum ("window-state", 1);
-        } else {
-            App.saved_state.set_enum ("window-state", 0);
-        }
+        App.saved_state.set_boolean ("window-maximized", is_maximized);
     }
 
     /**
