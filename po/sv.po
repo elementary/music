@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-10-20 14:00+0000\n"
-"Last-Translator: Fredrik B <frbo9002@gmail.com>\n"
+"PO-Revision-Date: 2018-10-21 09:30+0000\n"
+"Last-Translator: Cleiton Floss <cleitonfloss@gmail.com>\n"
 "Language-Team: Swedish <https://weblate.elementary.io/projects/music/music/"
 "sv/>\n"
 "Language: sv\n"
@@ -103,7 +103,7 @@ msgstr "Rock"
 
 #: core/GStreamer/Equalizer.vala:85
 msgid "Soft"
-msgstr "Soft"
+msgstr "Mjukt"
 
 #: core/GStreamer/Equalizer.vala:86
 msgid "Ska"
@@ -221,7 +221,7 @@ msgstr "Lägger till <b>$NAME</b> av <b>$ARTIST</b> till $DEVICE"
 #: plugins/Devices/iPod/iPodLibrary.vala:196
 #, c-format
 msgid "Syncing <b>%s</b>…"
-msgstr "Synkroniserar <b>%s</b>..."
+msgstr "Synkroniserar <b>%s</b>…"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:266
 #: plugins/Devices/iPod/iPodLibrary.vala:530
@@ -232,7 +232,7 @@ msgstr "Tar bort <b>$NAME</b> av <b>$ARTIST</b> från $DEVICE"
 #: plugins/Devices/iPod/iPodLibrary.vala:337
 #, c-format
 msgid "Removing from <b>%s</b>…"
-msgstr "Tar bort från <b>%s</b>"
+msgstr "Tar bort från <b>%s</b>…"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:91
 msgid "Audio CD Invalid"
@@ -259,7 +259,7 @@ msgstr ""
 msgid ""
 "The Application could not find any songs on the CD. No songs can be imported"
 msgstr ""
-"Programmet kunde inte hitta några låtar på skivan. Inga låtar kan importeras."
+"Programmet kunde inte hitta några låtar på skivan. Inga låtar kan importeras"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
 msgid "Importation of a song from Audio CD finished."
@@ -298,12 +298,12 @@ msgstr "Det uppstod ett fel vid läsningen av denna ljud-CD."
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
 msgid "Finishing sync process…"
-msgstr "Slutför synkroniseringen..."
+msgstr "Slutför synkroniseringen…"
 
 #: plugins/Devices/iPod/iPodLibrary.vala:230
 #: plugins/Devices/iPod/iPodLibrary.vala:386
 msgid "Cancelling Sync…"
-msgstr "Avbryter synkroniseringen..."
+msgstr "Avbryter synkroniseringen…"
 
 #: plugins/LastFM/LastFM.vala:98
 msgid "No similar songs found"
@@ -346,7 +346,7 @@ msgstr "<b>Kopierar</b> filer till <b>musikmappen</b>…"
 
 #: src/LibraryWindow.vala:192
 msgid "Import to Library…"
-msgstr "Importera till bibliotek..."
+msgstr "Importera till bibliotek…"
 
 #: src/LibraryWindow.vala:195 src/Dialogs/PreferencesWindow.vala:40
 msgid "Preferences"
@@ -553,7 +553,7 @@ msgstr "Ignorera"
 
 #: src/Dialogs/PreferencesWindow.vala:48
 msgid "Select Music Folder…"
-msgstr "Välj musikmapp"
+msgstr "Välj musikmapp…"
 
 #: src/Dialogs/PreferencesWindow.vala:77
 msgid "Music Folder Location"
@@ -828,7 +828,7 @@ msgstr "Importerar musik från %s…"
 
 #: src/LocalBackend/LocalLibrary.vala:212
 msgid "Adding files to library…"
-msgstr "Lägger till filer till bibliotek..."
+msgstr "Lägger till filer till bibliotek…"
 
 #: src/LocalBackend/LocalLibrary.vala:225
 msgid "<b>Importing</b> music to library…"
@@ -844,7 +844,7 @@ msgstr "Inga filer blev importerade."
 
 #: src/LocalBackend/LocalLibrary.vala:252
 msgid "Rescanning music for changes. This may take a while…"
-msgstr "Söker efter ändringar i musikmappen. Detta kan ta en stund..."
+msgstr "Söker efter ändringar i musikmappen. Detta kan ta en stund…"
 
 #: src/LocalBackend/LocalLibrary.vala:353
 msgid "Added to your queue:"
@@ -934,7 +934,7 @@ msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
 "Enheten kan inte synkroniseras med valda inställningar. Det finns inte "
-"tillräckligt med utrymme på disken."
+"tillräckligt med utrymme på disken"
 
 #: src/Views/DeviceSummaryWidget.vala:322
 msgid "Device is already doing an operation."
@@ -1232,7 +1232,7 @@ msgstr "Lägg till din musik"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Add music to your library."
-msgstr "Lägg till musik till ditt bibliotek"
+msgstr "Lägg till musik till ditt bibliotek."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:61
 msgid "Import music from a source into your library."
@@ -1291,8 +1291,8 @@ msgid ""
 "below."
 msgstr ""
 "Denna spellista kommer automatiskt att fyllas med låtar som matchar "
-"reglerna. För att redigera reglerna, högerklicka på den i sidofältet och "
-"klicka på <b>Redigera</b>. Alternativt klickar du på knappen nedan."
+"reglerna. För att redigera reglerna, <b>högerklicka</b> på den i sidofältet "
+"och klicka på <b>Redigera</b>. Alternativt klickar du på knappen nedan."
 
 #: src/Views/Wrappers/ViewWrapper.vala:419
 msgid "No media"

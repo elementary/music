@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2015-12-21 13:42+0000\n"
-"Last-Translator: Daniel Fore <Unknown>\n"
-"Language-Team: Esperanto <eo@li.org>\n"
+"PO-Revision-Date: 2018-10-21 09:30+0000\n"
+"Last-Translator: Cleiton Floss <cleitonfloss@gmail.com>\n"
+"Language-Team: Esperanto <https://weblate.elementary.io/projects/music/music/"
+"eo/>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:52+0000\n"
-"X-Generator: Launchpad (build 18330)\n"
 
 #: core/LibrariesManager.vala:147
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -1394,7 +1395,7 @@ msgstr ""
 
 #: src/Widgets/SourceListView.vala:79
 msgid "Edit…"
-msgstr "Redakti..."
+msgstr "Redakti…"
 
 #: src/Widgets/SourceListView.vala:95
 msgid "Save as Playlist"
@@ -1402,7 +1403,7 @@ msgstr "Konservi kiel ludlisto"
 
 #: src/Widgets/SourceListView.vala:103
 msgid "Export…"
-msgstr "Eksporti..."
+msgstr "Eksporti…"
 
 #: src/Widgets/SourceListView.vala:166
 msgid "Eject"
