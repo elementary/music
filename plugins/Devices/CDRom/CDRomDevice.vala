@@ -330,7 +330,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
             }
         }
         else {
-            warning("Just-imported song from CD could not be found at %s\n", lib_copy.uri);
+            warning("Just imported song from CD could not be found at %s\n", lib_copy.uri);
             //s.file_size = 5; // best guess
         }
 
@@ -351,7 +351,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
             _is_transferring = false;
 
             int n_songs = current_list_index + 1;
-            infobar_message (ngettext (_("Importation of a song from Audio CD finished."), _("Importation of %i songs from Audio CD finished.").printf(n_songs), n_songs), Gtk.MessageType.INFO);
+            infobar_message (ngettext (_("Song imported from Audio CD."), _("%i songs imported from Audio CD.").printf(n_songs), n_songs), Gtk.MessageType.INFO);
         }
     }
 
@@ -380,7 +380,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
             cancel_transfer();
             media_being_ripped = null;
             _is_transferring = false;
-            infobar_message (_("An error occured during the Import of this CD"), Gtk.MessageType.ERROR);
+            infobar_message (_("Could not import this CD"), Gtk.MessageType.ERROR);
         }
     }
 }
