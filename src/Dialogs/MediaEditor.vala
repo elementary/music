@@ -115,7 +115,7 @@ public class Noise.MediaEditor : Gtk.Dialog {
         grid.attach (year_spinbutton, 1, 7, 1, 1);
         grid.attach (new Granite.HeaderLabel (_("Track:")), 1, 8, 1, 1);
         grid.attach (track_spinbutton, 1, 9, 1, 1);
-        grid.attach (new Granite.HeaderLabel (_("Disk:")), 1, 10, 1, 1);
+        grid.attach (new Granite.HeaderLabel (_("Disc:")), 1, 10, 1, 1);
         grid.attach (disk_spinbutton, 1, 11, 1, 1);
         grid.attach (new Granite.HeaderLabel (_("Rating:")), 1, 12, 1, 1);
         grid.attach (rating_widget, 1, 13, 1, 1);
