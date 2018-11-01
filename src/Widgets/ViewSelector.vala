@@ -73,14 +73,25 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
     private Mode mode;
 
     public ViewSelector () {
+        var application_instance = ((Gtk.Application) GLib.Application.get_default ());
+
         var image = new Gtk.Image.from_icon_name ("view-grid-symbolic", Gtk.IconSize.MENU);
-        image.tooltip_text = _("View as Albums");
+        image.tooltip_markup = Granite.markup_accel_tooltip (
+            application_instance.get_accels_for_action (LibraryWindow.ACTION_PREFIX + LibraryWindow.ACTION_VIEW_ALBUMS),
+            _("View as Albums")
+        );
 
         var list = new Gtk.Image.from_icon_name ("view-list-symbolic", Gtk.IconSize.MENU);
-        list.tooltip_text = _("View as List");
+        list.tooltip_markup = Granite.markup_accel_tooltip (
+            application_instance.get_accels_for_action (LibraryWindow.ACTION_PREFIX + LibraryWindow.ACTION_VIEW_LIST),
+            _("View as List")
+        );
 
         var column = new Gtk.Image.from_icon_name ("view-column-symbolic", Gtk.IconSize.MENU);
-        column.tooltip_text = _("View in Columns");
+        column.tooltip_markup = Granite.markup_accel_tooltip (
+            application_instance.get_accels_for_action (LibraryWindow.ACTION_PREFIX + LibraryWindow.ACTION_VIEW_COLUMNS),
+            _("View in Columns")
+        );
 
         mode_button = new Granite.Widgets.ModeButton ();
         mode_button.append (image);
