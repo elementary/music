@@ -50,7 +50,7 @@ core_deps = [
   dependency('gobject-2.0'),
   dependency('libpeas-1.0'),
   dependency('libpeas-gtk-1.0'),
-  dependency('granite', version: '>=0.5'),
+  dependency('granite', version: '>=5.2.0'),
   dependency('gstreamer-1.0'),
   dependency('gstreamer-pbutils-1.0'),
   dependency('gstreamer-tag-1.0'),
