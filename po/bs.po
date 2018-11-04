@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
 "PO-Revision-Date: 2018-11-04 19:17+0000\n"
-"Last-Translator: Cleiton Floss <cleitonfloss@gmail.com>\n"
+"Last-Translator: Elvis Mujanović <elvis.mujanovic@gmail.com>\n"
 "Language-Team: Bosnian <https://weblate.elementary.io/projects/music/music/"
 "bs/>\n"
 "Language: bs\n"
@@ -842,7 +842,7 @@ msgstr "Uvoz muzike iz %s…"
 
 #: src/LocalBackend/LocalLibrary.vala:212
 msgid "Adding files to library…"
-msgstr "Dodavanje datoteka u biblioteku…"
+msgstr "Dodavanje datoteka u muzičku zbirku…"
 
 #: src/LocalBackend/LocalLibrary.vala:225
 msgid "<b>Importing</b> music to library…"
