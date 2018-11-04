@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
 "PO-Revision-Date: 2018-11-04 19:19+0000\n"
-"Last-Translator: Elvis Mujanović <elvis.mujanovic@gmail.com>\n"
+"Last-Translator: Cleiton Floss <cleitonfloss@gmail.com>\n"
 "Language-Team: Bosnian <https://weblate.elementary.io/projects/music/music/"
 "bs/>\n"
 "Language: bs\n"
@@ -1434,7 +1434,7 @@ msgstr "Preimenuj"
 
 #: src/Widgets/SourceListView.vala:79
 msgid "Edit…"
-msgstr "Uredi..."
+msgstr "Uredi…"
 
 #: src/Widgets/SourceListView.vala:95
 msgid "Save as Playlist"
