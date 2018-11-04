@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
 "PO-Revision-Date: 2018-11-04 19:18+0000\n"
-"Last-Translator: Elvis Mujanović <elvis.mujanovic@gmail.com>\n"
+"Last-Translator: Cleiton Floss <cleitonfloss@gmail.com>\n"
 "Language-Team: Bosnian <https://weblate.elementary.io/projects/music/music/"
 "bs/>\n"
 "Language: bs\n"
@@ -859,7 +859,7 @@ msgstr "Nema importovanih datoteka"
 #: src/LocalBackend/LocalLibrary.vala:252
 msgid "Rescanning music for changes. This may take a while…"
 msgstr ""
-"Ponavljam skeniranje muzike za promjene. Ovo može da potraje neko vrijeme..."
+"Ponavljam skeniranje muzike za promjene. Ovo može da potraje neko vrijeme…"
 
 #: src/LocalBackend/LocalLibrary.vala:353
 msgid "Added to your queue:"
