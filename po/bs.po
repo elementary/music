@@ -1442,7 +1442,7 @@ msgstr "Sačuvaj kao listu za reprodukciju"
 
 #: src/Widgets/SourceListView.vala:103
 msgid "Export…"
-msgstr "Eksportuj..."
+msgstr "Eksportuj…"
 
 #: src/Widgets/SourceListView.vala:166
 msgid "Eject"
