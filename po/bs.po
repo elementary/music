@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
 "PO-Revision-Date: 2018-11-04 19:13+0000\n"
-"Last-Translator: Elvis Mujanović <elvis.mujanovic@gmail.com>\n"
+"Last-Translator: Cleiton Floss <cleitonfloss@gmail.com>\n"
 "Language-Team: Bosnian <https://weblate.elementary.io/projects/music/music/"
 "bs/>\n"
 "Language: bs\n"
@@ -299,7 +299,7 @@ msgstr "Došlo je do greške prilikom učitavanja ovog Audio CD-a."
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
 msgid "Finishing sync process…"
-msgstr "Završavam proces sinhronizacije..."
+msgstr "Završavam proces sinhronizacije…"
 
 #: plugins/Devices/iPod/iPodLibrary.vala:230
 #: plugins/Devices/iPod/iPodLibrary.vala:386
