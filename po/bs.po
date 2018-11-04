@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
 "PO-Revision-Date: 2018-11-04 19:15+0000\n"
-"Last-Translator: Cleiton Floss <cleitonfloss@gmail.com>\n"
+"Last-Translator: Elvis Mujanović <elvis.mujanovic@gmail.com>\n"
 "Language-Team: Bosnian <https://weblate.elementary.io/projects/music/music/"
 "bs/>\n"
 "Language: bs\n"
@@ -343,7 +343,7 @@ msgstr ""
 #. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:315
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr "<b>Kopiranje</b> datoteka u <b>muzički folder</b>…"
+msgstr "<b>Kopiranje</b> datoteka u <b>muzičku fasciklu</b>…"
 
 #: src/LibraryWindow.vala:192
 msgid "Import to Library…"
