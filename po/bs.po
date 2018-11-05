@@ -8,21 +8,22 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2015-12-21 13:46+0000\n"
-"Last-Translator: Daniel Fore <Unknown>\n"
-"Language-Team: Bosnian <bs@li.org>\n"
+"PO-Revision-Date: 2018-11-04 19:19+0000\n"
+"Last-Translator: Cleiton Floss <cleitonfloss@gmail.com>\n"
+"Language-Team: Bosnian <https://weblate.elementary.io/projects/music/music/"
+"bs/>\n"
 "Language: bs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:51+0000\n"
-"X-Generator: Launchpad (build 18330)\n"
 
 #: core/LibrariesManager.vala:147
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "Importujem <b>$NAME</b> od <b>$ARTIST</b> u biblioteku..."
+msgstr "Uvoz <b>$NAME</b> od <b>$ARTIST</b> u muzičku zbirku…"
 
 #. / Used for unknown titles, artists, or album names.
 #: core/Media.vala:32
@@ -220,7 +221,7 @@ msgstr "Dodajem <b>$NAME</b> od <b>$ARTIST</b> u $DEVICE"
 #: plugins/Devices/iPod/iPodLibrary.vala:196
 #, c-format
 msgid "Syncing <b>%s</b>…"
-msgstr "Sinhronizujem <b>%s</b>..."
+msgstr "Sinhronizacija <b>%s</b>…"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:266
 #: plugins/Devices/iPod/iPodLibrary.vala:530
@@ -231,7 +232,7 @@ msgstr "Uklanjanje <b>$NAME</b> od <b>$ARTIST</b> iz $DEVICE"
 #: plugins/Devices/iPod/iPodLibrary.vala:337
 #, c-format
 msgid "Removing from <b>%s</b>…"
-msgstr "Uklanjam iz <b>%s</b>..."
+msgstr "Uklanjanje iz <b>%s</b>…"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:91
 msgid "Audio CD Invalid"
@@ -273,7 +274,7 @@ msgstr "Unošenje %i pjesama iz Audio CD-a izvršeno."
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
 msgid "Importing track %u: %s"
-msgstr ""
+msgstr "Uvoz naslova %u: %s"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:364
 msgid "CD import will be <b>cancelled</b> after current import."
@@ -298,12 +299,12 @@ msgstr "Došlo je do greške prilikom učitavanja ovog Audio CD-a."
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
 msgid "Finishing sync process…"
-msgstr "Završavam proces sinhronizacije..."
+msgstr "Sinhronizacija se završava…"
 
 #: plugins/Devices/iPod/iPodLibrary.vala:230
 #: plugins/Devices/iPod/iPodLibrary.vala:386
 msgid "Cancelling Sync…"
-msgstr "Otkazujem proces sinhronizacije..."
+msgstr "Sinhronizacija se otkazuje…"
 
 #: plugins/LastFM/LastFM.vala:98
 msgid "No similar songs found"
@@ -342,11 +343,11 @@ msgstr ""
 #. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:315
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr "<b>Kopiranje</b> datoteka u <b>muzički folder</b>..."
+msgstr "<b>Kopiranje</b> datoteka u <b>muzičku fasciklu</b>…"
 
 #: src/LibraryWindow.vala:192
 msgid "Import to Library…"
-msgstr "Unesu u biblioteku..."
+msgstr "Uvezi u muzičku zbirku…"
 
 #: src/LibraryWindow.vala:195 src/Dialogs/PreferencesWindow.vala:40
 msgid "Preferences"
@@ -561,7 +562,7 @@ msgstr "Ignoriši"
 
 #: src/Dialogs/PreferencesWindow.vala:48
 msgid "Select Music Folder…"
-msgstr "Izaberite folder sa muzikom."
+msgstr "Odaberite muzičku fasciklu…"
 
 #: src/Dialogs/PreferencesWindow.vala:77
 msgid "Music Folder Location"
@@ -837,15 +838,15 @@ msgstr "Nastavi sinhronizaciju"
 #: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
 msgid "Importing music from %s…"
-msgstr "Unosim muziku sa %s..."
+msgstr "Uvoz muzike iz %s…"
 
 #: src/LocalBackend/LocalLibrary.vala:212
 msgid "Adding files to library…"
-msgstr "Dodavanje datoteka u biblioteku..."
+msgstr "Dodavanje datoteka u muzičku zbirku…"
 
 #: src/LocalBackend/LocalLibrary.vala:225
 msgid "<b>Importing</b> music to library…"
-msgstr "<b>Uvozim</b> muziku u biblioteku..."
+msgstr "<b>Uvoz</b> muzike u muzičku zbirku…"
 
 #: src/LocalBackend/LocalLibrary.vala:247
 msgid "All music files are already in your library"
@@ -857,8 +858,7 @@ msgstr "Nema importovanih datoteka"
 
 #: src/LocalBackend/LocalLibrary.vala:252
 msgid "Rescanning music for changes. This may take a while…"
-msgstr ""
-"Ponavljam skeniranje muzike za promjene. Ovo može da potraje neko vrijeme..."
+msgstr "Ponovno skeniranje muzike zbog promjena. Ovo može potrajati…"
 
 #: src/LocalBackend/LocalLibrary.vala:353
 msgid "Added to your queue:"
@@ -1409,7 +1409,7 @@ msgstr "Ukloni iz reda za reprodukciju"
 
 #: src/Widgets/MediaMenu.vala:152
 msgid "New Playlist…"
-msgstr "Nova lista za reprodukciju"
+msgstr "Nova lista izvođenja…"
 
 #: src/Widgets/MediaMenu.vala:192
 #, c-format
@@ -1434,7 +1434,7 @@ msgstr "Preimenuj"
 
 #: src/Widgets/SourceListView.vala:79
 msgid "Edit…"
-msgstr "Uredi..."
+msgstr "Uredi…"
 
 #: src/Widgets/SourceListView.vala:95
 msgid "Save as Playlist"
@@ -1442,7 +1442,7 @@ msgstr "Sačuvaj kao listu za reprodukciju"
 
 #: src/Widgets/SourceListView.vala:103
 msgid "Export…"
-msgstr "Eksportuj..."
+msgstr "Eksportuj…"
 
 #: src/Widgets/SourceListView.vala:166
 msgid "Eject"
