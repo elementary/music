@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-17 08:23-0700\n"
+"POT-Creation-Date: 2018-11-05 13:23-0800\n"
 "PO-Revision-Date: 2018-08-12 13:24+0000\n"
 "Last-Translator: colindemian <colindemian@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.elementary.io/projects/"
@@ -141,8 +141,8 @@ msgid "Export Playlist"
 msgstr "导出播放列表"
 
 #: core/Utils/PlaylistsUtils.vala:275 core/Utils/PlaylistsUtils.vala:369
-#: src/LibraryWindow.vala:980 src/Dialogs/FileNotFoundDialog.vala:84
-#: src/Dialogs/FileNotFoundDialog.vala:123
+#: src/LibraryWindow.vala:982 src/Dialogs/FileNotFoundDialog.vala:55
+#: src/Dialogs/FileNotFoundDialog.vala:101
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:50
 #: src/Dialogs/RemoveFilesDialog.vala:82
 #: src/Dialogs/SetMusicFolderConfirmation.vala:67
@@ -153,7 +153,7 @@ msgstr "导出播放列表"
 msgid "Cancel"
 msgstr "取消"
 
-#: core/Utils/PlaylistsUtils.vala:276 src/Dialogs/MediaEditor.vala:142
+#: core/Utils/PlaylistsUtils.vala:276 src/Dialogs/MediaEditor.vala:137
 #: src/Dialogs/SmartPlaylistEditor.vala:89
 msgid "Save"
 msgstr "保存"
@@ -175,8 +175,8 @@ msgstr "播放列表"
 msgid "Import %s"
 msgstr "导入 %s"
 
-#: core/Utils/PlaylistsUtils.vala:370 src/LibraryWindow.vala:981
-#: src/Dialogs/FileNotFoundDialog.vala:124
+#: core/Utils/PlaylistsUtils.vala:370 src/LibraryWindow.vala:983
+#: src/Dialogs/FileNotFoundDialog.vala:102
 #: src/Dialogs/SetMusicFolderConfirmation.vala:116
 #: src/Views/Wrappers/MusicViewWrapper.vala:147
 #: src/Widgets/AlbumListGrid.vala:244
@@ -258,13 +258,14 @@ msgid ""
 msgstr "应用程序找到 CD 上的任何歌曲。无法导入歌曲"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-msgid "Importation of a song from Audio CD finished."
-msgstr "音乐 CD 歌曲导入完毕。"
+#, fuzzy
+msgid "Song imported from Audio CD."
+msgstr "从音频 CD 导入歌曲"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, c-format
-msgid "Importation of %i songs from Audio CD finished."
-msgstr "音乐 CD %i 歌曲导入完毕。"
+#, fuzzy, c-format
+msgid "%i songs imported from Audio CD."
+msgstr "%s 已完成音频 CD 中 1 首歌曲导入。"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
@@ -276,20 +277,22 @@ msgid "CD import will be <b>cancelled</b> after current import."
 msgstr "在当前导入完成后，CD 导入将被<b>取消</b>。"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:383
-msgid "An error occured during the Import of this CD"
-msgstr "该 CD 导入期间发生错误"
+msgid "Could not import this CD"
+msgstr ""
 
 #: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
 msgid "Import"
 msgstr "导入"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:37
-msgid "An Error Occured"
+#, fuzzy
+msgid "An Error Occurred"
 msgstr "发生错误"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:38
-msgid "There was an error while loading this Audio CD."
-msgstr "加载该音频 CD 时发生错误。"
+#, fuzzy
+msgid "Could not load this Audio CD."
+msgstr "%s 无法读取该音频 CD 的内容"
 
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
@@ -326,58 +329,58 @@ msgstr "媒体"
 msgid "Similar Media"
 msgstr "类似媒体"
 
-#: src/FileOperator.vala:305
+#: src/FileOperator.vala:306
 msgid "Import Complete"
 msgstr "导入完成"
 
-#: src/FileOperator.vala:305
+#: src/FileOperator.vala:306
 msgid "Your Library Has Been Imported."
 msgstr "您的库已导入成功。"
 
 #. if doing import and copy to music folder is enabled, do copy here
-#: src/FileOperator.vala:315
+#: src/FileOperator.vala:316
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr "<b>正在复制</b>文件<b>音乐文件夹</b>…"
 
-#: src/LibraryWindow.vala:192
-msgid "Import to Library…"
-msgstr "导入…"
-
-#: src/LibraryWindow.vala:195 src/Dialogs/PreferencesWindow.vala:40
-msgid "Preferences"
-msgstr "首选项"
-
-#: src/LibraryWindow.vala:211
-msgid "Previous"
-msgstr "上一首"
-
-#: src/LibraryWindow.vala:215 src/LibraryWindow.vala:270
-msgid "Play"
-msgstr "播放"
-
-#: src/LibraryWindow.vala:219
-msgid "Next"
-msgstr "下一首"
-
-#: src/LibraryWindow.vala:223
-msgid "Search Music"
-msgstr "搜索音乐"
-
-#: src/LibraryWindow.vala:242 src/LibraryWindow.vala:451
-#: src/LibraryWindow.vala:596 src/LibraryWindow.vala:702
-#: src/LibraryWindow.vala:1144
+#: src/LibraryWindow.vala:353 src/LibraryWindow.vala:420
+#: src/LibraryWindow.vala:598 src/LibraryWindow.vala:704
+#: src/LibraryWindow.vala:1146
 msgid "Music"
 msgstr "音乐"
 
-#: src/LibraryWindow.vala:273
+#: src/LibraryWindow.vala:370
+msgid "Import to Library…"
+msgstr "导入…"
+
+#: src/LibraryWindow.vala:373 src/Dialogs/PreferencesWindow.vala:40
+msgid "Preferences"
+msgstr "首选项"
+
+#: src/LibraryWindow.vala:389
+msgid "Previous"
+msgstr "上一首"
+
+#: src/LibraryWindow.vala:393 src/LibraryWindow.vala:448
+msgid "Play"
+msgstr "播放"
+
+#: src/LibraryWindow.vala:397
+msgid "Next"
+msgstr "下一首"
+
+#: src/LibraryWindow.vala:401
+msgid "Search Music"
+msgstr "搜索音乐"
+
+#: src/LibraryWindow.vala:451
 msgid "Pause"
 msgstr "暂停"
 
-#: src/LibraryWindow.vala:771
+#: src/LibraryWindow.vala:773
 msgid "No songs in Queue"
 msgstr "队列中无歌曲"
 
-#: src/LibraryWindow.vala:771
+#: src/LibraryWindow.vala:773
 msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
@@ -386,11 +389,11 @@ msgstr ""
 "要添加歌曲到队列，使用 <b>右击</b> 条目并选择<b>队列</b>。当歌曲结束时，队列"
 "歌曲将先于当前播放列表中的下一首歌曲播放。"
 
-#: src/LibraryWindow.vala:774
+#: src/LibraryWindow.vala:776
 msgid "No songs in History"
 msgstr "历史中无歌曲"
 
-#: src/LibraryWindow.vala:774
+#: src/LibraryWindow.vala:776
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
@@ -399,42 +402,42 @@ msgstr ""
 "当歌曲播放一定时间后，会被添加到您的历史列表中。\n"
 "您可以使用列表查看在当前会话中已播放的所有歌曲。"
 
-#: src/LibraryWindow.vala:978 src/Views/Wrappers/MusicViewWrapper.vala:60
+#: src/LibraryWindow.vala:980 src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import Music"
 msgstr "导入音乐"
 
-#: src/PlaybackManager.vala:117
+#: src/PlaybackManager.vala:105
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "队列"
 
-#: src/Dialogs/FileNotFoundDialog.vala:51
+#: src/Dialogs/FileNotFoundDialog.vala:37
 msgid "File not found"
 msgstr "找不到文件"
 
-#: src/Dialogs/FileNotFoundDialog.vala:57
+#: src/Dialogs/FileNotFoundDialog.vala:47
 #, c-format
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr "无法找到 <b>%s</b> 艺术家 <b>%s</b> 的音乐文件。"
 
-#: src/Dialogs/FileNotFoundDialog.vala:60
+#: src/Dialogs/FileNotFoundDialog.vala:50
 #, c-format
 msgid "%i music files could not be found?"
 msgstr "%i 音乐文件无法找到？"
 
-#: src/Dialogs/FileNotFoundDialog.vala:82
+#: src/Dialogs/FileNotFoundDialog.vala:53
 msgid "Rescan Library"
 msgstr "重新扫描库"
 
-#: src/Dialogs/FileNotFoundDialog.vala:83
+#: src/Dialogs/FileNotFoundDialog.vala:54
 msgid "Remove Song"
 msgstr "移除歌曲"
 
-#: src/Dialogs/FileNotFoundDialog.vala:85
+#: src/Dialogs/FileNotFoundDialog.vala:56
 msgid "Find Song"
 msgstr "寻找歌曲"
 
-#: src/Dialogs/FileNotFoundDialog.vala:121
+#: src/Dialogs/FileNotFoundDialog.vala:99
 #: src/Dialogs/SetMusicFolderConfirmation.vala:113
 msgid "Choose Music Folder"
 msgstr "选择音乐文件夹"
@@ -455,56 +458,57 @@ msgstr ""
 msgid "Install Plugin"
 msgstr "安装插件"
 
-#: src/Dialogs/MediaEditor.vala:102
+#: src/Dialogs/MediaEditor.vala:100
 msgid "Title:"
 msgstr "标题："
 
-#: src/Dialogs/MediaEditor.vala:104
+#: src/Dialogs/MediaEditor.vala:102
 msgid "Artist:"
 msgstr "艺术家："
 
-#: src/Dialogs/MediaEditor.vala:106
+#: src/Dialogs/MediaEditor.vala:104
 msgid "Album:"
 msgstr "专辑："
 
-#: src/Dialogs/MediaEditor.vala:108
+#: src/Dialogs/MediaEditor.vala:106
 msgid "Album Artist:"
 msgstr "专辑艺术家："
 
-#: src/Dialogs/MediaEditor.vala:110
+#: src/Dialogs/MediaEditor.vala:108
 msgid "Composer:"
 msgstr "作曲家："
 
-#: src/Dialogs/MediaEditor.vala:112
+#: src/Dialogs/MediaEditor.vala:110
 msgid "Grouping:"
 msgstr "分组："
 
-#: src/Dialogs/MediaEditor.vala:114
+#: src/Dialogs/MediaEditor.vala:112
 msgid "Genre:"
 msgstr "流派："
 
-#: src/Dialogs/MediaEditor.vala:116
+#: src/Dialogs/MediaEditor.vala:114
 msgid "Year:"
 msgstr "发行年份："
 
-#: src/Dialogs/MediaEditor.vala:118
+#: src/Dialogs/MediaEditor.vala:116
 msgid "Track:"
 msgstr "音轨编号："
 
-#: src/Dialogs/MediaEditor.vala:120
-msgid "Disk:"
-msgstr "光盘片数："
+#: src/Dialogs/MediaEditor.vala:118
+#, fuzzy
+msgid "Disc:"
+msgstr "光盘"
 
-#: src/Dialogs/MediaEditor.vala:122
+#: src/Dialogs/MediaEditor.vala:120
 msgid "Rating:"
 msgstr "评分："
 
-#: src/Dialogs/MediaEditor.vala:124
+#: src/Dialogs/MediaEditor.vala:122
 msgid "Comment:"
 msgstr "注释："
 
 #. FIXME: don't know if I can delete this
-#: src/Dialogs/MediaEditor.vala:140 src/Dialogs/PreferencesWindow.vala:96
+#: src/Dialogs/MediaEditor.vala:135 src/Dialogs/PreferencesWindow.vala:96
 #: src/Views/DeviceView.vala:45
 msgid "Close"
 msgstr "关闭"
@@ -1053,7 +1057,7 @@ msgstr "无作曲家"
 
 #. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
-#: src/Widgets/EqualizerPopover.vala:327 src/Widgets/PresetList.vala:52
+#: src/Widgets/EqualizerPopover.vala:328 src/Widgets/PresetList.vala:52
 msgid "Automatic"
 msgstr "自动"
 
@@ -1292,29 +1296,29 @@ msgstr "取消(_C)"
 msgid "_Open"
 msgstr "打开(_O)"
 
-#: src/Widgets/EqualizerPopover.vala:166
+#: src/Widgets/EqualizerPopover.vala:167
 msgid "Save preset"
 msgstr "保存预设"
 
-#: src/Widgets/EqualizerPopover.vala:331
+#: src/Widgets/EqualizerPopover.vala:332
 msgid "Off"
 msgstr "关闭"
 
-#: src/Widgets/EqualizerPopover.vala:419
+#: src/Widgets/EqualizerPopover.vala:420
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s (自定义)"
 
-#: src/Widgets/EqualizerPopover.vala:421
+#: src/Widgets/EqualizerPopover.vala:422
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s (自定义 %i)"
 
-#: src/Widgets/EqualizerPopover.vala:424
+#: src/Widgets/EqualizerPopover.vala:425
 msgid "Custom Preset"
 msgstr "自定义预设"
 
-#: src/Widgets/EqualizerPopover.vala:426
+#: src/Widgets/EqualizerPopover.vala:427
 #, c-format
 msgid "Custom Preset %i"
 msgstr "自定义预设 %i"
@@ -1369,16 +1373,16 @@ msgstr "从设备移除"
 msgid "Remove from Queue"
 msgstr "从队列移除"
 
-#: src/Widgets/MediaMenu.vala:152
+#: src/Widgets/MediaMenu.vala:153
 msgid "New Playlist…"
 msgstr "新建播放列表…"
 
-#: src/Widgets/MediaMenu.vala:192
+#: src/Widgets/MediaMenu.vala:193
 #, c-format
 msgid "Import %i of %i selected songs"
 msgstr "导入 %i/%i 首选中歌曲"
 
-#: src/Widgets/MediaMenu.vala:194
+#: src/Widgets/MediaMenu.vala:195
 #, c-format
 msgid "Import %i song"
 msgid_plural "Import %i songs"
@@ -1468,17 +1472,35 @@ msgstr "随机播放"
 msgid "Disable Shuffle"
 msgstr "禁用随机"
 
-#: src/Widgets/ViewSelector.vala:77
-msgid "View as Albums"
+#: src/Widgets/ViewSelector.vala:81
+#, fuzzy
+msgid "View as albums"
 msgstr "专辑视图"
 
-#: src/Widgets/ViewSelector.vala:80
-msgid "View as List"
+#: src/Widgets/ViewSelector.vala:87
+#, fuzzy
+msgid "View as list"
 msgstr "列表视图"
 
-#: src/Widgets/ViewSelector.vala:83
-msgid "View in Columns"
+#: src/Widgets/ViewSelector.vala:93
+#, fuzzy
+msgid "View in columns"
 msgstr "分栏视图"
+
+#~ msgid "Importation of a song from Audio CD finished."
+#~ msgstr "音乐 CD 歌曲导入完毕。"
+
+#~ msgid "Importation of %i songs from Audio CD finished."
+#~ msgstr "音乐 CD %i 歌曲导入完毕。"
+
+#~ msgid "An error occured during the Import of this CD"
+#~ msgstr "该 CD 导入期间发生错误"
+
+#~ msgid "There was an error while loading this Audio CD."
+#~ msgstr "加载该音频 CD 时发生错误。"
+
+#~ msgid "Disk:"
+#~ msgstr "光盘片数："
 
 #~ msgid "%s has imported your library."
 #~ msgstr "%s 已导入您的媒体库中。"
@@ -1761,9 +1783,6 @@ msgstr "分栏视图"
 #~ msgid "Unknown Artist"
 #~ msgstr "未知艺术家"
 
-#~ msgid "Import songs from audio CD"
-#~ msgstr "从音频 CD 导入歌曲"
-
 #~ msgid "Please make sure that your music folder is accessible and mounted."
 #~ msgstr "请确认您的音乐文件夹已被挂载并可访问。"
 
@@ -1792,9 +1811,6 @@ msgstr "分栏视图"
 
 #~ msgid "No songs on CD"
 #~ msgstr "CD 上无歌曲"
-
-#~ msgid "%s has finished importing a song from Audio CD."
-#~ msgstr "%s 已完成音频 CD 中 1 首歌曲导入。"
 
 #~ msgid "Importing track %i"
 #~ msgstr "正在导入音轨 %i"
@@ -1907,9 +1923,6 @@ msgstr "分栏视图"
 #~ msgid "Editing %s"
 #~ msgstr "正在编辑 %s"
 
-#~ msgid "Disc"
-#~ msgstr "光盘"
-
 #~ msgid "Album Artist"
 #~ msgstr "专辑艺术家"
 
@@ -1957,9 +1970,6 @@ msgstr "分栏视图"
 
 #~ msgid "%i days"
 #~ msgstr "%i 天"
-
-#~ msgid "%s could not read the contents of this Audio CD"
-#~ msgstr "%s 无法读取该音频 CD 的内容"
 
 #~ msgid "Importing music from %s..."
 #~ msgstr "正在从 %s... 导入音乐"

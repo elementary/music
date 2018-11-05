@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-17 08:23-0700\n"
+"POT-Creation-Date: 2018-11-05 13:23-0800\n"
 "PO-Revision-Date: 2018-07-05 19:50+0000\n"
 "Last-Translator: Jernej Virag <jernej@virag.si>\n"
 "Language-Team: Slovenian <https://weblate.elementary.io/projects/music/music/"
@@ -142,8 +142,8 @@ msgid "Export Playlist"
 msgstr "Izvoz seznama predvajanja"
 
 #: core/Utils/PlaylistsUtils.vala:275 core/Utils/PlaylistsUtils.vala:369
-#: src/LibraryWindow.vala:980 src/Dialogs/FileNotFoundDialog.vala:84
-#: src/Dialogs/FileNotFoundDialog.vala:123
+#: src/LibraryWindow.vala:982 src/Dialogs/FileNotFoundDialog.vala:55
+#: src/Dialogs/FileNotFoundDialog.vala:101
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:50
 #: src/Dialogs/RemoveFilesDialog.vala:82
 #: src/Dialogs/SetMusicFolderConfirmation.vala:67
@@ -154,7 +154,7 @@ msgstr "Izvoz seznama predvajanja"
 msgid "Cancel"
 msgstr "Prekliči"
 
-#: core/Utils/PlaylistsUtils.vala:276 src/Dialogs/MediaEditor.vala:142
+#: core/Utils/PlaylistsUtils.vala:276 src/Dialogs/MediaEditor.vala:137
 #: src/Dialogs/SmartPlaylistEditor.vala:89
 msgid "Save"
 msgstr "Shrani"
@@ -176,8 +176,8 @@ msgstr "Seznam predvajanja"
 msgid "Import %s"
 msgstr "Uvozi %s"
 
-#: core/Utils/PlaylistsUtils.vala:370 src/LibraryWindow.vala:981
-#: src/Dialogs/FileNotFoundDialog.vala:124
+#: core/Utils/PlaylistsUtils.vala:370 src/LibraryWindow.vala:983
+#: src/Dialogs/FileNotFoundDialog.vala:102
 #: src/Dialogs/SetMusicFolderConfirmation.vala:116
 #: src/Views/Wrappers/MusicViewWrapper.vala:147
 #: src/Widgets/AlbumListGrid.vala:244
@@ -262,13 +262,14 @@ msgstr ""
 "Program ni najdel nobene skladbe na CD-ju. Nobene skladbe ni mogoče uvoziti"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-msgid "Importation of a song from Audio CD finished."
-msgstr "Uvoz skladbe z zvočnega CD-ja je končan."
+#, fuzzy
+msgid "Song imported from Audio CD."
+msgstr "Uvozi pesmi iz zvočnega CD-ja"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, c-format
-msgid "Importation of %i songs from Audio CD finished."
-msgstr "Uvoz %i skladb z zvočnega CD-ja je končan."
+#, fuzzy, c-format
+msgid "%i songs imported from Audio CD."
+msgstr "%s je končal z uvozom skladbe z Audio CD-ja."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
@@ -280,20 +281,22 @@ msgid "CD import will be <b>cancelled</b> after current import."
 msgstr "Uvoz CD-ja bo <b>preklican</b> po trenutnem uvozu."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:383
-msgid "An error occured during the Import of this CD"
-msgstr "Med uvažanjem tega CD-ja se je pojavila napaka"
+msgid "Could not import this CD"
+msgstr ""
 
 #: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
 msgid "Import"
 msgstr "Uvozi"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:37
-msgid "An Error Occured"
+#, fuzzy
+msgid "An Error Occurred"
 msgstr "Prišlo je do napake"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:38
-msgid "There was an error while loading this Audio CD."
-msgstr "Med nalaganjem zvočnega CD-ja je prišlo do napake."
+#, fuzzy
+msgid "Could not load this Audio CD."
+msgstr "%s ne more prebrati vsebine tega zvočnega CD-ja."
 
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
@@ -331,58 +334,58 @@ msgstr "predstavnost"
 msgid "Similar Media"
 msgstr "Podobna predstavnost"
 
-#: src/FileOperator.vala:305
+#: src/FileOperator.vala:306
 msgid "Import Complete"
 msgstr "Uvoz je končan"
 
-#: src/FileOperator.vala:305
+#: src/FileOperator.vala:306
 msgid "Your Library Has Been Imported."
 msgstr "Vaša knjižnica je bila uvožena."
 
 #. if doing import and copy to music folder is enabled, do copy here
-#: src/FileOperator.vala:315
+#: src/FileOperator.vala:316
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr "<b>Kopiranje</b> datotek v <b>mapo Glasba</b>…"
 
-#: src/LibraryWindow.vala:192
-msgid "Import to Library…"
-msgstr "Uvozi v knjižnico…"
-
-#: src/LibraryWindow.vala:195 src/Dialogs/PreferencesWindow.vala:40
-msgid "Preferences"
-msgstr "Možnosti"
-
-#: src/LibraryWindow.vala:211
-msgid "Previous"
-msgstr "Predhodna skladba"
-
-#: src/LibraryWindow.vala:215 src/LibraryWindow.vala:270
-msgid "Play"
-msgstr "Predvajaj"
-
-#: src/LibraryWindow.vala:219
-msgid "Next"
-msgstr "Naslednja skladba"
-
-#: src/LibraryWindow.vala:223
-msgid "Search Music"
-msgstr "Iskanje glasbe"
-
-#: src/LibraryWindow.vala:242 src/LibraryWindow.vala:451
-#: src/LibraryWindow.vala:596 src/LibraryWindow.vala:702
-#: src/LibraryWindow.vala:1144
+#: src/LibraryWindow.vala:353 src/LibraryWindow.vala:420
+#: src/LibraryWindow.vala:598 src/LibraryWindow.vala:704
+#: src/LibraryWindow.vala:1146
 msgid "Music"
 msgstr "Glasba"
 
-#: src/LibraryWindow.vala:273
+#: src/LibraryWindow.vala:370
+msgid "Import to Library…"
+msgstr "Uvozi v knjižnico…"
+
+#: src/LibraryWindow.vala:373 src/Dialogs/PreferencesWindow.vala:40
+msgid "Preferences"
+msgstr "Možnosti"
+
+#: src/LibraryWindow.vala:389
+msgid "Previous"
+msgstr "Predhodna skladba"
+
+#: src/LibraryWindow.vala:393 src/LibraryWindow.vala:448
+msgid "Play"
+msgstr "Predvajaj"
+
+#: src/LibraryWindow.vala:397
+msgid "Next"
+msgstr "Naslednja skladba"
+
+#: src/LibraryWindow.vala:401
+msgid "Search Music"
+msgstr "Iskanje glasbe"
+
+#: src/LibraryWindow.vala:451
 msgid "Pause"
 msgstr "Premor"
 
-#: src/LibraryWindow.vala:771
+#: src/LibraryWindow.vala:773
 msgid "No songs in Queue"
 msgstr "Ni skladb v vrsti"
 
-#: src/LibraryWindow.vala:771
+#: src/LibraryWindow.vala:773
 msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
@@ -392,53 +395,53 @@ msgstr ""
 "in izberite <b>V vrsto</b>. Ko se skladba konča, bodo najprej predvajane "
 "skladbe v vrsti pred naslednjo skladbo na trenutno predvajanem seznamu."
 
-#: src/LibraryWindow.vala:774
+#: src/LibraryWindow.vala:776
 msgid "No songs in History"
 msgstr "Ni skladb v zgodovini"
 
-#: src/LibraryWindow.vala:774
+#: src/LibraryWindow.vala:776
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
 "current session."
 msgstr "Po delnem predvajanju skladbe se le-ta doda v seznam."
 
-#: src/LibraryWindow.vala:978 src/Views/Wrappers/MusicViewWrapper.vala:60
+#: src/LibraryWindow.vala:980 src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import Music"
 msgstr "Uvozi glasbo"
 
-#: src/PlaybackManager.vala:117
+#: src/PlaybackManager.vala:105
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Vrsta"
 
-#: src/Dialogs/FileNotFoundDialog.vala:51
+#: src/Dialogs/FileNotFoundDialog.vala:37
 msgid "File not found"
 msgstr "Datoteke ni mogoče najti"
 
-#: src/Dialogs/FileNotFoundDialog.vala:57
+#: src/Dialogs/FileNotFoundDialog.vala:47
 #, c-format
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr "Glasbena datoteka za <b>%s</b> od <b>%s</b> ni bila najdena."
 
-#: src/Dialogs/FileNotFoundDialog.vala:60
+#: src/Dialogs/FileNotFoundDialog.vala:50
 #, c-format
 msgid "%i music files could not be found?"
 msgstr "%i datotek ni bilo mogoče najti?"
 
-#: src/Dialogs/FileNotFoundDialog.vala:82
+#: src/Dialogs/FileNotFoundDialog.vala:53
 msgid "Rescan Library"
 msgstr "Ponovno preišči knjižnico"
 
-#: src/Dialogs/FileNotFoundDialog.vala:83
+#: src/Dialogs/FileNotFoundDialog.vala:54
 msgid "Remove Song"
 msgstr "Odstrani skladbo"
 
-#: src/Dialogs/FileNotFoundDialog.vala:85
+#: src/Dialogs/FileNotFoundDialog.vala:56
 msgid "Find Song"
 msgstr "Najdi skladbo"
 
-#: src/Dialogs/FileNotFoundDialog.vala:121
+#: src/Dialogs/FileNotFoundDialog.vala:99
 #: src/Dialogs/SetMusicFolderConfirmation.vala:113
 msgid "Choose Music Folder"
 msgstr "Izberite mapo z glasbo"
@@ -457,56 +460,57 @@ msgstr "Te skladbe ni mogoče igrati, potrebujete dodatek %s."
 msgid "Install Plugin"
 msgstr "Namesti vstavek"
 
-#: src/Dialogs/MediaEditor.vala:102
+#: src/Dialogs/MediaEditor.vala:100
 msgid "Title:"
 msgstr "Naslov:"
 
-#: src/Dialogs/MediaEditor.vala:104
+#: src/Dialogs/MediaEditor.vala:102
 msgid "Artist:"
 msgstr "Izvajalec:"
 
-#: src/Dialogs/MediaEditor.vala:106
+#: src/Dialogs/MediaEditor.vala:104
 msgid "Album:"
 msgstr "Album:"
 
-#: src/Dialogs/MediaEditor.vala:108
+#: src/Dialogs/MediaEditor.vala:106
 msgid "Album Artist:"
 msgstr "Izvajalec albuma:"
 
-#: src/Dialogs/MediaEditor.vala:110
+#: src/Dialogs/MediaEditor.vala:108
 msgid "Composer:"
 msgstr "Skladatelj:"
 
-#: src/Dialogs/MediaEditor.vala:112
+#: src/Dialogs/MediaEditor.vala:110
 msgid "Grouping:"
 msgstr "Združevanje:"
 
-#: src/Dialogs/MediaEditor.vala:114
+#: src/Dialogs/MediaEditor.vala:112
 msgid "Genre:"
 msgstr "Zvrst:"
 
-#: src/Dialogs/MediaEditor.vala:116
+#: src/Dialogs/MediaEditor.vala:114
 msgid "Year:"
 msgstr "Leto:"
 
-#: src/Dialogs/MediaEditor.vala:118
+#: src/Dialogs/MediaEditor.vala:116
 msgid "Track:"
 msgstr "Skladba:"
 
-#: src/Dialogs/MediaEditor.vala:120
-msgid "Disk:"
-msgstr "Plošček:"
+#: src/Dialogs/MediaEditor.vala:118
+#, fuzzy
+msgid "Disc:"
+msgstr "Plošča"
 
-#: src/Dialogs/MediaEditor.vala:122
+#: src/Dialogs/MediaEditor.vala:120
 msgid "Rating:"
 msgstr "Ocena:"
 
-#: src/Dialogs/MediaEditor.vala:124
+#: src/Dialogs/MediaEditor.vala:122
 msgid "Comment:"
 msgstr "Opomba:"
 
 #. FIXME: don't know if I can delete this
-#: src/Dialogs/MediaEditor.vala:140 src/Dialogs/PreferencesWindow.vala:96
+#: src/Dialogs/MediaEditor.vala:135 src/Dialogs/PreferencesWindow.vala:96
 #: src/Views/DeviceView.vala:45
 msgid "Close"
 msgstr "Zapri"
@@ -1081,7 +1085,7 @@ msgstr "Ni skladateljev"
 
 #. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
-#: src/Widgets/EqualizerPopover.vala:327 src/Widgets/PresetList.vala:52
+#: src/Widgets/EqualizerPopover.vala:328 src/Widgets/PresetList.vala:52
 msgid "Automatic"
 msgstr "Samodejno"
 
@@ -1325,29 +1329,29 @@ msgstr "_Prekliči"
 msgid "_Open"
 msgstr "_Odpri"
 
-#: src/Widgets/EqualizerPopover.vala:166
+#: src/Widgets/EqualizerPopover.vala:167
 msgid "Save preset"
 msgstr "Shrani prednastavitev"
 
-#: src/Widgets/EqualizerPopover.vala:331
+#: src/Widgets/EqualizerPopover.vala:332
 msgid "Off"
 msgstr "Izključeno"
 
-#: src/Widgets/EqualizerPopover.vala:419
+#: src/Widgets/EqualizerPopover.vala:420
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s (Poljubno)"
 
-#: src/Widgets/EqualizerPopover.vala:421
+#: src/Widgets/EqualizerPopover.vala:422
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s (Poljubno %i)"
 
-#: src/Widgets/EqualizerPopover.vala:424
+#: src/Widgets/EqualizerPopover.vala:425
 msgid "Custom Preset"
 msgstr "Poljubna prednastavitev"
 
-#: src/Widgets/EqualizerPopover.vala:426
+#: src/Widgets/EqualizerPopover.vala:427
 #, c-format
 msgid "Custom Preset %i"
 msgstr "Poljubna prednastavitev %i"
@@ -1397,16 +1401,16 @@ msgstr "Odstrani z naprave"
 msgid "Remove from Queue"
 msgstr "Odstrani z vrste"
 
-#: src/Widgets/MediaMenu.vala:152
+#: src/Widgets/MediaMenu.vala:153
 msgid "New Playlist…"
 msgstr "Nov seznam predvajanja…"
 
-#: src/Widgets/MediaMenu.vala:192
+#: src/Widgets/MediaMenu.vala:193
 #, c-format
 msgid "Import %i of %i selected songs"
 msgstr "Uvoz %i od %i izbranih skladb"
 
-#: src/Widgets/MediaMenu.vala:194
+#: src/Widgets/MediaMenu.vala:195
 #, c-format
 msgid "Import %i song"
 msgid_plural "Import %i songs"
@@ -1499,17 +1503,35 @@ msgstr "Omogoči prerazporeditev"
 msgid "Disable Shuffle"
 msgstr "Onemogoči prerazporeditev"
 
-#: src/Widgets/ViewSelector.vala:77
-msgid "View as Albums"
+#: src/Widgets/ViewSelector.vala:81
+#, fuzzy
+msgid "View as albums"
 msgstr "Pogled albumov"
 
-#: src/Widgets/ViewSelector.vala:80
-msgid "View as List"
+#: src/Widgets/ViewSelector.vala:87
+#, fuzzy
+msgid "View as list"
 msgstr "Pogled seznama"
 
-#: src/Widgets/ViewSelector.vala:83
-msgid "View in Columns"
+#: src/Widgets/ViewSelector.vala:93
+#, fuzzy
+msgid "View in columns"
 msgstr "Pogled v stolpcih"
+
+#~ msgid "Importation of a song from Audio CD finished."
+#~ msgstr "Uvoz skladbe z zvočnega CD-ja je končan."
+
+#~ msgid "Importation of %i songs from Audio CD finished."
+#~ msgstr "Uvoz %i skladb z zvočnega CD-ja je končan."
+
+#~ msgid "An error occured during the Import of this CD"
+#~ msgstr "Med uvažanjem tega CD-ja se je pojavila napaka"
+
+#~ msgid "There was an error while loading this Audio CD."
+#~ msgstr "Med nalaganjem zvočnega CD-ja je prišlo do napake."
+
+#~ msgid "Disk:"
+#~ msgstr "Plošček:"
 
 #~ msgid "%s has imported your library."
 #~ msgstr "%s je uvozil vašo knjižnico."
@@ -1784,9 +1806,6 @@ msgstr "Pogled v stolpcih"
 #~ msgid "Queue"
 #~ msgstr "Vrsta"
 
-#~ msgid "Import songs from audio CD"
-#~ msgstr "Uvozi pesmi iz zvočnega CD-ja"
-
 #~ msgid "%s is already doing an import"
 #~ msgstr "%s že uvaža"
 
@@ -1898,9 +1917,6 @@ msgstr "Pogled v stolpcih"
 #~ msgid "%s seconds"
 #~ msgstr "%s sekund"
 
-#~ msgid "%s could not read the contents of this Audio CD"
-#~ msgstr "%s ne more prebrati vsebine tega zvočnega CD-ja."
-
 #~ msgid "1 track"
 #~ msgstr "1 sled"
 
@@ -1966,9 +1982,6 @@ msgstr "Pogled v stolpcih"
 
 #~ msgid "Music Folder"
 #~ msgstr "Mapa z glasbo"
-
-#~ msgid "Disc"
-#~ msgstr "Plošča"
 
 #~ msgid "Date Released"
 #~ msgstr "Datum izdaje"
@@ -2058,9 +2071,6 @@ msgstr "Pogled v stolpcih"
 #~ msgstr ""
 #~ "Vstavek za predstavno vrsto %s ni nameščen.\n"
 #~ "Kaj želite narediti?"
-
-#~ msgid "%s has finished importing a song from Audio CD."
-#~ msgstr "%s je končal z uvozom skladbe z Audio CD-ja."
 
 #~ msgid "No songs on CD"
 #~ msgstr "Na CD-ju ni skladb"

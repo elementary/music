@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-17 08:23-0700\n"
+"POT-Creation-Date: 2018-11-05 13:23-0800\n"
 "PO-Revision-Date: 2018-09-05 23:28+0000\n"
 "Last-Translator: strozzascotte <marco.depaolini@gmail.com>\n"
 "Language-Team: Italian <https://weblate.elementary.io/projects/music/music/"
@@ -141,8 +141,8 @@ msgid "Export Playlist"
 msgstr "Esporta scaletta"
 
 #: core/Utils/PlaylistsUtils.vala:275 core/Utils/PlaylistsUtils.vala:369
-#: src/LibraryWindow.vala:980 src/Dialogs/FileNotFoundDialog.vala:84
-#: src/Dialogs/FileNotFoundDialog.vala:123
+#: src/LibraryWindow.vala:982 src/Dialogs/FileNotFoundDialog.vala:55
+#: src/Dialogs/FileNotFoundDialog.vala:101
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:50
 #: src/Dialogs/RemoveFilesDialog.vala:82
 #: src/Dialogs/SetMusicFolderConfirmation.vala:67
@@ -153,7 +153,7 @@ msgstr "Esporta scaletta"
 msgid "Cancel"
 msgstr "Annulla"
 
-#: core/Utils/PlaylistsUtils.vala:276 src/Dialogs/MediaEditor.vala:142
+#: core/Utils/PlaylistsUtils.vala:276 src/Dialogs/MediaEditor.vala:137
 #: src/Dialogs/SmartPlaylistEditor.vala:89
 msgid "Save"
 msgstr "Salva"
@@ -175,8 +175,8 @@ msgstr "Scaletta"
 msgid "Import %s"
 msgstr "Importa %s"
 
-#: core/Utils/PlaylistsUtils.vala:370 src/LibraryWindow.vala:981
-#: src/Dialogs/FileNotFoundDialog.vala:124
+#: core/Utils/PlaylistsUtils.vala:370 src/LibraryWindow.vala:983
+#: src/Dialogs/FileNotFoundDialog.vala:102
 #: src/Dialogs/SetMusicFolderConfirmation.vala:116
 #: src/Views/Wrappers/MusicViewWrapper.vala:147
 #: src/Widgets/AlbumListGrid.vala:244
@@ -262,13 +262,14 @@ msgstr ""
 "importato"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-msgid "Importation of a song from Audio CD finished."
-msgstr "Importazione di una canzone dal CD Audio terminata."
+#, fuzzy
+msgid "Song imported from Audio CD."
+msgstr "Importa brani da un CD audio"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, c-format
-msgid "Importation of %i songs from Audio CD finished."
-msgstr "Importazione di %i canzoni dal CD Audio terminata."
+#, fuzzy, c-format
+msgid "%i songs imported from Audio CD."
+msgstr "% s ha terminato l'importazione di un brano dal CD Audio."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
@@ -281,20 +282,22 @@ msgstr ""
 "L'importazione del CD sarà <b>annullata</b> dopo la corrente importazione."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:383
-msgid "An error occured during the Import of this CD"
-msgstr "Si è verificato un errore durante l'importazione di questo CD"
+msgid "Could not import this CD"
+msgstr ""
 
 #: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
 msgid "Import"
 msgstr "Importa"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:37
-msgid "An Error Occured"
+#, fuzzy
+msgid "An Error Occurred"
 msgstr "Si è verificato un errore"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:38
-msgid "There was an error while loading this Audio CD."
-msgstr "Si è verificato un errore durante il caricamento di questo CD Audio."
+#, fuzzy
+msgid "Could not load this Audio CD."
+msgstr "%s non è in grado di leggere il contenuto di questo CD audio"
 
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
@@ -332,58 +335,58 @@ msgstr "contenuto multimediale"
 msgid "Similar Media"
 msgstr "Brani simili"
 
-#: src/FileOperator.vala:305
+#: src/FileOperator.vala:306
 msgid "Import Complete"
 msgstr "Importazione completa"
 
-#: src/FileOperator.vala:305
+#: src/FileOperator.vala:306
 msgid "Your Library Has Been Imported."
 msgstr "La tua libreria è stata importata."
 
 #. if doing import and copy to music folder is enabled, do copy here
-#: src/FileOperator.vala:315
+#: src/FileOperator.vala:316
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr "<b>Copia</b> dei file nella cartella <b>Musica</b>…"
 
-#: src/LibraryWindow.vala:192
-msgid "Import to Library…"
-msgstr "Importa nella libreria…"
-
-#: src/LibraryWindow.vala:195 src/Dialogs/PreferencesWindow.vala:40
-msgid "Preferences"
-msgstr "Preferenze"
-
-#: src/LibraryWindow.vala:211
-msgid "Previous"
-msgstr "Precedente"
-
-#: src/LibraryWindow.vala:215 src/LibraryWindow.vala:270
-msgid "Play"
-msgstr "Riproduci"
-
-#: src/LibraryWindow.vala:219
-msgid "Next"
-msgstr "Successivo"
-
-#: src/LibraryWindow.vala:223
-msgid "Search Music"
-msgstr "Cerca musica"
-
-#: src/LibraryWindow.vala:242 src/LibraryWindow.vala:451
-#: src/LibraryWindow.vala:596 src/LibraryWindow.vala:702
-#: src/LibraryWindow.vala:1144
+#: src/LibraryWindow.vala:353 src/LibraryWindow.vala:420
+#: src/LibraryWindow.vala:598 src/LibraryWindow.vala:704
+#: src/LibraryWindow.vala:1146
 msgid "Music"
 msgstr "Musica"
 
-#: src/LibraryWindow.vala:273
+#: src/LibraryWindow.vala:370
+msgid "Import to Library…"
+msgstr "Importa nella libreria…"
+
+#: src/LibraryWindow.vala:373 src/Dialogs/PreferencesWindow.vala:40
+msgid "Preferences"
+msgstr "Preferenze"
+
+#: src/LibraryWindow.vala:389
+msgid "Previous"
+msgstr "Precedente"
+
+#: src/LibraryWindow.vala:393 src/LibraryWindow.vala:448
+msgid "Play"
+msgstr "Riproduci"
+
+#: src/LibraryWindow.vala:397
+msgid "Next"
+msgstr "Successivo"
+
+#: src/LibraryWindow.vala:401
+msgid "Search Music"
+msgstr "Cerca musica"
+
+#: src/LibraryWindow.vala:451
 msgid "Pause"
 msgstr "Pausa"
 
-#: src/LibraryWindow.vala:771
+#: src/LibraryWindow.vala:773
 msgid "No songs in Queue"
 msgstr "Nessun brano in coda"
 
-#: src/LibraryWindow.vala:771
+#: src/LibraryWindow.vala:773
 msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
@@ -394,11 +397,11 @@ msgstr ""
 "nella coda verranno riprodotti prima del brano successivo nella lista di "
 "riproduzione corrente."
 
-#: src/LibraryWindow.vala:774
+#: src/LibraryWindow.vala:776
 msgid "No songs in History"
 msgstr "Nessun brano nella cronologia"
 
-#: src/LibraryWindow.vala:774
+#: src/LibraryWindow.vala:776
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
@@ -409,42 +412,42 @@ msgstr ""
 "È possibile utilizzare questo elenco per visualizzare tutte le canzoni che "
 "sono state ascoltate durante la sessione corrente."
 
-#: src/LibraryWindow.vala:978 src/Views/Wrappers/MusicViewWrapper.vala:60
+#: src/LibraryWindow.vala:980 src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import Music"
 msgstr "Importa musica"
 
-#: src/PlaybackManager.vala:117
+#: src/PlaybackManager.vala:105
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Coda"
 
-#: src/Dialogs/FileNotFoundDialog.vala:51
+#: src/Dialogs/FileNotFoundDialog.vala:37
 msgid "File not found"
 msgstr "File non trovato"
 
-#: src/Dialogs/FileNotFoundDialog.vala:57
+#: src/Dialogs/FileNotFoundDialog.vala:47
 #, c-format
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr "Il file musicale per <b>%s</b> di <b>%s</b> non è stato trovato."
 
-#: src/Dialogs/FileNotFoundDialog.vala:60
+#: src/Dialogs/FileNotFoundDialog.vala:50
 #, c-format
 msgid "%i music files could not be found?"
 msgstr "%i file musicali non trovati?"
 
-#: src/Dialogs/FileNotFoundDialog.vala:82
+#: src/Dialogs/FileNotFoundDialog.vala:53
 msgid "Rescan Library"
 msgstr "Ricontrolla la libreria"
 
-#: src/Dialogs/FileNotFoundDialog.vala:83
+#: src/Dialogs/FileNotFoundDialog.vala:54
 msgid "Remove Song"
 msgstr "Rimuovi brano"
 
-#: src/Dialogs/FileNotFoundDialog.vala:85
+#: src/Dialogs/FileNotFoundDialog.vala:56
 msgid "Find Song"
 msgstr "Trova canzone"
 
-#: src/Dialogs/FileNotFoundDialog.vala:121
+#: src/Dialogs/FileNotFoundDialog.vala:99
 #: src/Dialogs/SetMusicFolderConfirmation.vala:113
 msgid "Choose Music Folder"
 msgstr "Scegli la cartella della musica"
@@ -465,56 +468,57 @@ msgstr ""
 msgid "Install Plugin"
 msgstr "Installa plugin"
 
-#: src/Dialogs/MediaEditor.vala:102
+#: src/Dialogs/MediaEditor.vala:100
 msgid "Title:"
 msgstr "Titolo:"
 
-#: src/Dialogs/MediaEditor.vala:104
+#: src/Dialogs/MediaEditor.vala:102
 msgid "Artist:"
 msgstr "Artista:"
 
-#: src/Dialogs/MediaEditor.vala:106
+#: src/Dialogs/MediaEditor.vala:104
 msgid "Album:"
 msgstr "Album:"
 
-#: src/Dialogs/MediaEditor.vala:108
+#: src/Dialogs/MediaEditor.vala:106
 msgid "Album Artist:"
 msgstr "Artista dell'album:"
 
-#: src/Dialogs/MediaEditor.vala:110
+#: src/Dialogs/MediaEditor.vala:108
 msgid "Composer:"
 msgstr "Compositore:"
 
-#: src/Dialogs/MediaEditor.vala:112
+#: src/Dialogs/MediaEditor.vala:110
 msgid "Grouping:"
 msgstr "Raggruppamento:"
 
-#: src/Dialogs/MediaEditor.vala:114
+#: src/Dialogs/MediaEditor.vala:112
 msgid "Genre:"
 msgstr "Genere:"
 
-#: src/Dialogs/MediaEditor.vala:116
+#: src/Dialogs/MediaEditor.vala:114
 msgid "Year:"
 msgstr "Anno:"
 
-#: src/Dialogs/MediaEditor.vala:118
+#: src/Dialogs/MediaEditor.vala:116
 msgid "Track:"
 msgstr "Traccia:"
 
-#: src/Dialogs/MediaEditor.vala:120
-msgid "Disk:"
-msgstr "Disco:"
+#: src/Dialogs/MediaEditor.vala:118
+#, fuzzy
+msgid "Disc:"
+msgstr "Disco"
 
-#: src/Dialogs/MediaEditor.vala:122
+#: src/Dialogs/MediaEditor.vala:120
 msgid "Rating:"
 msgstr "Valutazione:"
 
-#: src/Dialogs/MediaEditor.vala:124
+#: src/Dialogs/MediaEditor.vala:122
 msgid "Comment:"
 msgstr "Commento:"
 
 #. FIXME: don't know if I can delete this
-#: src/Dialogs/MediaEditor.vala:140 src/Dialogs/PreferencesWindow.vala:96
+#: src/Dialogs/MediaEditor.vala:135 src/Dialogs/PreferencesWindow.vala:96
 #: src/Views/DeviceView.vala:45
 msgid "Close"
 msgstr "Chiudi"
@@ -528,7 +532,8 @@ msgstr "Si è verificato un problema durante l'importazione da %s"
 #, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] "Impossibile importare %d elemento. Il file potrebbe essere danneggiato."
+msgstr[0] ""
+"Impossibile importare %d elemento. Il file potrebbe essere danneggiato."
 msgstr[1] ""
 "impossibile importare %d elementi. I file potrebbero essere danneggiati."
 
@@ -1082,7 +1087,7 @@ msgstr "Nessun compositore"
 
 #. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
-#: src/Widgets/EqualizerPopover.vala:327 src/Widgets/PresetList.vala:52
+#: src/Widgets/EqualizerPopover.vala:328 src/Widgets/PresetList.vala:52
 msgid "Automatic"
 msgstr "Automatico"
 
@@ -1324,29 +1329,29 @@ msgstr "_Annulla"
 msgid "_Open"
 msgstr "_Apri"
 
-#: src/Widgets/EqualizerPopover.vala:166
+#: src/Widgets/EqualizerPopover.vala:167
 msgid "Save preset"
 msgstr "Salva impostazioni predefinite"
 
-#: src/Widgets/EqualizerPopover.vala:331
+#: src/Widgets/EqualizerPopover.vala:332
 msgid "Off"
 msgstr "Spento"
 
-#: src/Widgets/EqualizerPopover.vala:419
+#: src/Widgets/EqualizerPopover.vala:420
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s (personalizzato)"
 
-#: src/Widgets/EqualizerPopover.vala:421
+#: src/Widgets/EqualizerPopover.vala:422
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s (%i personalizzato)"
 
-#: src/Widgets/EqualizerPopover.vala:424
+#: src/Widgets/EqualizerPopover.vala:425
 msgid "Custom Preset"
 msgstr "Impostazioni personalizzate"
 
-#: src/Widgets/EqualizerPopover.vala:426
+#: src/Widgets/EqualizerPopover.vala:427
 #, c-format
 msgid "Custom Preset %i"
 msgstr "Impostazioni personalizzate %i"
@@ -1396,16 +1401,16 @@ msgstr "Rimuovi dal dispositivo"
 msgid "Remove from Queue"
 msgstr "Rimuovi dalla coda"
 
-#: src/Widgets/MediaMenu.vala:152
+#: src/Widgets/MediaMenu.vala:153
 msgid "New Playlist…"
 msgstr "Nuova scaletta…"
 
-#: src/Widgets/MediaMenu.vala:192
+#: src/Widgets/MediaMenu.vala:193
 #, c-format
 msgid "Import %i of %i selected songs"
 msgstr "Importa %i di %i brani selezionati"
 
-#: src/Widgets/MediaMenu.vala:194
+#: src/Widgets/MediaMenu.vala:195
 #, c-format
 msgid "Import %i song"
 msgid_plural "Import %i songs"
@@ -1496,17 +1501,36 @@ msgstr "Abilita riproduzione casuale"
 msgid "Disable Shuffle"
 msgstr "Disabilita riproduzione casuale"
 
-#: src/Widgets/ViewSelector.vala:77
-msgid "View as Albums"
+#: src/Widgets/ViewSelector.vala:81
+#, fuzzy
+msgid "View as albums"
 msgstr "Visualizza come album"
 
-#: src/Widgets/ViewSelector.vala:80
-msgid "View as List"
+#: src/Widgets/ViewSelector.vala:87
+#, fuzzy
+msgid "View as list"
 msgstr "Visualizza come elenco"
 
-#: src/Widgets/ViewSelector.vala:83
-msgid "View in Columns"
+#: src/Widgets/ViewSelector.vala:93
+#, fuzzy
+msgid "View in columns"
 msgstr "Visualizza in colonne"
+
+#~ msgid "Importation of a song from Audio CD finished."
+#~ msgstr "Importazione di una canzone dal CD Audio terminata."
+
+#~ msgid "Importation of %i songs from Audio CD finished."
+#~ msgstr "Importazione di %i canzoni dal CD Audio terminata."
+
+#~ msgid "An error occured during the Import of this CD"
+#~ msgstr "Si è verificato un errore durante l'importazione di questo CD"
+
+#~ msgid "There was an error while loading this Audio CD."
+#~ msgstr ""
+#~ "Si è verificato un errore durante il caricamento di questo CD Audio."
+
+#~ msgid "Disk:"
+#~ msgstr "Disco:"
 
 #~ msgid "%s has imported your library."
 #~ msgstr "%s ha importato la tua libreria."
@@ -1799,9 +1823,6 @@ msgstr "Visualizza in colonne"
 #~ msgid "#"
 #~ msgstr "#"
 
-#~ msgid "Import songs from audio CD"
-#~ msgstr "Importa brani da un CD audio"
-
 #~ msgid "Unknown Title"
 #~ msgstr "Titolo sconosciuto"
 
@@ -1877,9 +1898,6 @@ msgstr "Visualizza in colonne"
 #~ msgid "Pulser"
 #~ msgstr "Pulser"
 
-#~ msgid "%s has finished importing a song from Audio CD."
-#~ msgstr "% s ha terminato l'importazione di un brano dal CD Audio."
-
 #~ msgid "Equalizer"
 #~ msgstr "Equalizzatore"
 
@@ -1919,9 +1937,6 @@ msgstr "Visualizza in colonne"
 
 #~ msgid "Try again"
 #~ msgstr "Riprovare"
-
-#~ msgid "Disc"
-#~ msgstr "Disco"
 
 #~ msgid "Album Artist"
 #~ msgstr "Artista album"
@@ -2135,9 +2150,6 @@ msgstr "Visualizza in colonne"
 
 #~ msgid "Change your music folder."
 #~ msgstr "Cambia cartella della musica."
-
-#~ msgid "%s could not read the contents of this Audio CD"
-#~ msgstr "%s non è in grado di leggere il contenuto di questo CD audio"
 
 #~ msgid "Display Album Art"
 #~ msgstr "Mostra copertina album"
