@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-13 13:30-0700\n"
-"PO-Revision-Date: 2018-10-15 00:06+0000\n"
+"PO-Revision-Date: 2018-11-05 21:21+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://weblate.elementary.io/projects/music/music/"
 "ja/>\n"
@@ -185,7 +185,7 @@ msgstr "開く"
 
 #: core/Utils/PlaylistsUtils.vala:401
 msgid "Unrecognized playlist file. Import failed."
-msgstr "認識できないプレイリストファイルです。インポートが失敗しました。"
+msgstr "認識できないプレイリストファイルです。インポートに失敗しました。"
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
@@ -898,7 +898,7 @@ msgstr "すべての曲"
 
 #: src/Views/DeviceSummaryWidget.vala:298
 msgid "Sync Failed"
-msgstr "同期が失敗しました"
+msgstr "同期に失敗しました"
 
 #: src/Views/DeviceSummaryWidget.vala:299
 #, c-format

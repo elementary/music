@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-11-04 19:19+0000\n"
-"Last-Translator: Cleiton Floss <cleitonfloss@gmail.com>\n"
+"PO-Revision-Date: 2018-11-05 21:21+0000\n"
+"Last-Translator: Elvis Mujanović <elvis.mujanovic@gmail.com>\n"
 "Language-Team: Bosnian <https://weblate.elementary.io/projects/music/music/"
 "bs/>\n"
 "Language: bs\n"
@@ -381,7 +381,7 @@ msgstr "Pauza"
 
 #: src/LibraryWindow.vala:771
 msgid "No songs in Queue"
-msgstr "Nema pjesama u redu za čekanje."
+msgstr "Nema pjesama na listi"
 
 #: src/LibraryWindow.vala:771
 msgid ""
@@ -395,7 +395,7 @@ msgstr ""
 
 #: src/LibraryWindow.vala:774
 msgid "No songs in History"
-msgstr "Nema pjesama u historiji."
+msgstr "Nema pjesama u historiji"
 
 #: src/LibraryWindow.vala:774
 msgid ""
@@ -448,16 +448,16 @@ msgid "Choose Music Folder"
 msgstr "Izaberite mužički folder"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:38
-#, fuzzy, c-format
+#, c-format
 msgid "Would you like to install the %s plugin?"
-msgstr "Da li želite da instalirate %s plugin?\n"
+msgstr "Želite li instalirati dodatak %s?"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:39
-#, fuzzy, c-format
+#, c-format
 msgid "This song cannot be played. The %s plugin is required to play the song."
 msgstr ""
-"\n"
-"Nije moguće pustiti pjesmu. Da biste je pustili, potreban vam je %s plugin."
+"Ovu pjesmu nije moguće reproducirati. Dodatak %s je potreban za reprodukciju "
+"pjesme."
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid "Install Plugin"
@@ -518,9 +518,9 @@ msgid "Close"
 msgstr "Blizu"
 
 #: src/Dialogs/NotImportedDialog.vala:51
-#, fuzzy, c-format
+#, c-format
 msgid "Issues while importing from %s"
-msgstr "Unosim muziku sa %s..."
+msgstr "Problemi s uvozom muzike iz %s"
 
 #: src/Dialogs/NotImportedDialog.vala:57
 #, fuzzy, c-format
@@ -538,7 +538,7 @@ msgstr[2] ""
 
 #: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
-msgstr "Premjesti sve oštećene datoteke u smeće."
+msgstr "Premjesti sve oštećene datoteke u otpad"
 
 #: src/Dialogs/NotImportedDialog.vala:72
 msgid "del"
@@ -687,7 +687,7 @@ msgstr "Naziv liste za reprodukciju"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:109
 msgid "Rules"
-msgstr "Rules"
+msgstr "Pravila"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:112
 msgid "Options"
@@ -854,7 +854,7 @@ msgstr "Sve muzičke datoteke se već nalaze u vašoj biblioteci"
 
 #: src/LocalBackend/LocalLibrary.vala:247
 msgid "No files were imported."
-msgstr "Nema importovanih datoteka"
+msgstr "Nijedna datoteka nije uvezena."
 
 #: src/LocalBackend/LocalLibrary.vala:252
 msgid "Rescanning music for changes. This may take a while…"
@@ -948,8 +948,8 @@ msgstr "Sinhronizacija nije moguća"
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
-"Nije moguće sinhronizovati uređaj sa izabranim postavkama za sinhronizaciju. "
-"Nema dovoljno prostora na disku."
+"Nemoguće sinhronizirati uređaj prema odabranim podešavanjima sinhronizacije. "
+"Nema dovoljno prostora na disku"
 
 #: src/Views/DeviceSummaryWidget.vala:322
 msgid "Device is already doing an operation."
@@ -1227,7 +1227,7 @@ msgstr "Automatski prilagodi veličitu kolumni"
 
 #: src/Views/ListView/Lists/MusicListView.vala:410
 msgid "1234 kbps"
-msgstr "1234 kbps"
+msgstr "1234 kb/s"
 
 #. / Sample string used to measure the ideal size of the Title, Artist,
 #. / Album, Album Artist, Composer, Genre, and Grouping columns in the
@@ -1247,11 +1247,11 @@ msgstr "Preuzmite nekoliko pjesama"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Add music to your library."
-msgstr "Dodajte muziku u vašu biblioteku"
+msgstr "Dodajte muziku u svoju muzičku zbirku."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:61
 msgid "Import music from a source into your library."
-msgstr "Unesite muziku iz izvora u vašu biblioteku"
+msgstr "Uvezite muziku iz izvora u svoju muzičku zbirku."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:63
 msgid "Change Music Folder"
@@ -1442,7 +1442,7 @@ msgstr "Sačuvaj kao listu za reprodukciju"
 
 #: src/Widgets/SourceListView.vala:103
 msgid "Export…"
-msgstr "Eksportuj…"
+msgstr "Izvezi…"
 
 #: src/Widgets/SourceListView.vala:166
 msgid "Eject"
