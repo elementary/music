@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2018-09-18 17:15+0000\n"
-"Last-Translator: Nuno Alexandre MS ribeiro <nuno.anarresti@gmail.com>\n"
+"PO-Revision-Date: 2018-11-06 16:53+0000\n"
+"Last-Translator: Nuno Alexandre MS Ribeiro <nuno.anarresti@gmail.com>\n"
 "Language-Team: Portuguese <https://weblate.elementary.io/projects/music/"
 "music/pt/>\n"
 "Language: pt\n"
@@ -262,14 +262,13 @@ msgstr ""
 "importar"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, fuzzy
 msgid "Song imported from Audio CD."
-msgstr "Importar faixas do CD áudio"
+msgstr "Faixa importada do CD áudio."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, fuzzy, c-format
+#, c-format
 msgid "%i songs imported from Audio CD."
-msgstr "O %s importou 1 faixa do CD áudio."
+msgstr "%i faixas importadas do CD áudio."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
@@ -282,21 +281,19 @@ msgstr "A importação do CD será <b>cancelada</b> após a importação atual."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:383
 msgid "Could not import this CD"
-msgstr ""
+msgstr "Não foi possível importar este CD"
 
 #: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
 msgid "Import"
 msgstr "Importar"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:37
-#, fuzzy
 msgid "An Error Occurred"
-msgstr "Ocorreu um erro"
+msgstr "Ocorreu Um Erro"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:38
-#, fuzzy
 msgid "Could not load this Audio CD."
-msgstr "O %s não conseguiu carregar o conteúdo deste CD."
+msgstr "Não foi possível carregar este CD audio."
 
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
@@ -504,9 +501,8 @@ msgid "Track:"
 msgstr "Faixa:"
 
 #: src/Dialogs/MediaEditor.vala:118
-#, fuzzy
 msgid "Disc:"
-msgstr "Disco"
+msgstr "Disco:"
 
 #: src/Dialogs/MediaEditor.vala:120
 msgid "Rating:"
@@ -1497,17 +1493,14 @@ msgid "Disable Shuffle"
 msgstr "Desativar desorganização"
 
 #: src/Widgets/ViewSelector.vala:81
-#, fuzzy
 msgid "View as albums"
 msgstr "Ver como álbuns"
 
 #: src/Widgets/ViewSelector.vala:87
-#, fuzzy
 msgid "View as list"
 msgstr "Ver como lista"
 
 #: src/Widgets/ViewSelector.vala:93
-#, fuzzy
 msgid "View in columns"
 msgstr "Ver em colunas"
 
