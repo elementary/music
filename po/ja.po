@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2018-11-05 21:21+0000\n"
+"PO-Revision-Date: 2018-11-06 02:15+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://weblate.elementary.io/projects/music/music/"
 "ja/>\n"
@@ -261,14 +261,13 @@ msgstr ""
 "CD 上で曲を見つけることができませんでした。曲をインポートすることができません"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, fuzzy
 msgid "Song imported from Audio CD."
-msgstr "オーディオCDから楽曲を取り込む"
+msgstr "オーディオ CD から曲がインポートされました。"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, fuzzy, c-format
+#, c-format
 msgid "%i songs imported from Audio CD."
-msgstr "%s はオーディオCDからの 1 曲 の取り込みを完了しました。"
+msgstr "%i 曲がオーディオ CD からインポートされました。"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
@@ -281,21 +280,19 @@ msgstr "CD のインポートは現在のインポートの後に<b>キャンセ
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:383
 msgid "Could not import this CD"
-msgstr ""
+msgstr "この CD をインポートできませんでした"
 
 #: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
 msgid "Import"
 msgstr "インポート"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:37
-#, fuzzy
 msgid "An Error Occurred"
-msgstr "エラーが発生"
+msgstr "エラーが発生しました"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:38
-#, fuzzy
 msgid "Could not load this Audio CD."
-msgstr "このオーディオ CD の読み込み中にエラーが発生しました。"
+msgstr "このオーディオ CD を読み込むことができませんでした。"
 
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
@@ -498,9 +495,8 @@ msgid "Track:"
 msgstr "トラック:"
 
 #: src/Dialogs/MediaEditor.vala:118
-#, fuzzy
 msgid "Disc:"
-msgstr "ディスク"
+msgstr "ディスク:"
 
 #: src/Dialogs/MediaEditor.vala:120
 msgid "Rating:"
@@ -1478,17 +1474,14 @@ msgid "Disable Shuffle"
 msgstr "シャッフルを無効にする"
 
 #: src/Widgets/ViewSelector.vala:81
-#, fuzzy
 msgid "View as albums"
 msgstr "アルバム表示"
 
 #: src/Widgets/ViewSelector.vala:87
-#, fuzzy
 msgid "View as list"
 msgstr "リスト表示"
 
 #: src/Widgets/ViewSelector.vala:93
-#, fuzzy
 msgid "View in columns"
 msgstr "カラム表示"
 
