@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2018-11-06 20:26+0000\n"
+"PO-Revision-Date: 2018-11-06 20:47+0000\n"
 "Last-Translator: Moo <hazap@hotmail.com>\n"
 "Language-Team: Lithuanian <https://weblate.elementary.io/projects/music/"
 "music/lt/>\n"
@@ -267,7 +267,7 @@ msgstr "Daina importuota iš garso CD."
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
 #, c-format
 msgid "%i songs imported from Audio CD."
-msgstr ""
+msgstr "%i dainų(-os) importuota iš garso CD."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
@@ -280,21 +280,19 @@ msgstr "Po esamo importavimo, CD disko importavimas bus <b>atšauktas</b>."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:383
 msgid "Could not import this CD"
-msgstr ""
+msgstr "Nepavyko importuoti šio CD"
 
 #: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
 msgid "Import"
 msgstr "Importuoti"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:37
-#, fuzzy
 msgid "An Error Occurred"
 msgstr "Įvyko klaida"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:38
-#, fuzzy
 msgid "Could not load this Audio CD."
-msgstr "Įkeliant šį garso CD, įvyko klaida."
+msgstr "Nepavyko įkelti šio garso CD."
 
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
@@ -501,7 +499,7 @@ msgstr "Takelis:"
 
 #: src/Dialogs/MediaEditor.vala:118
 msgid "Disc:"
-msgstr ""
+msgstr "Diskas:"
 
 #: src/Dialogs/MediaEditor.vala:120
 msgid "Rating:"
@@ -1504,17 +1502,14 @@ msgid "Disable Shuffle"
 msgstr "Išjungti maišymą"
 
 #: src/Widgets/ViewSelector.vala:81
-#, fuzzy
 msgid "View as albums"
 msgstr "Rodyti kaip albumus"
 
 #: src/Widgets/ViewSelector.vala:87
-#, fuzzy
 msgid "View as list"
 msgstr "Rodyti kaip sąrašą"
 
 #: src/Widgets/ViewSelector.vala:93
-#, fuzzy
 msgid "View in columns"
 msgstr "Rodyti stulpeliuose"
 
