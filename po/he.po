@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2018-07-13 08:21+0000\n"
+"PO-Revision-Date: 2018-11-06 10:03+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://weblate.elementary.io/projects/music/music/he/"
 ">\n"
@@ -254,12 +254,12 @@ msgstr "היישום לא הצליח למצוא את כל השירים שבתק�
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
 msgid "Song imported from Audio CD."
-msgstr ""
+msgstr "שירים שייובאו מתקליטור שמע."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
 #, c-format
 msgid "%i songs imported from Audio CD."
-msgstr ""
+msgstr "%i ייובאו מתקליטור שמע."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
@@ -272,21 +272,19 @@ msgstr "יבוא תקליטור יהיה <b>מבוטל</b> אחרי היבוא �
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:383
 msgid "Could not import this CD"
-msgstr ""
+msgstr "לא ניתן לייבא את התקליטור הזה"
 
 #: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
 msgid "Import"
 msgstr "יבוא"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:37
-#, fuzzy
 msgid "An Error Occurred"
 msgstr "אירעה שגיאה"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:38
-#, fuzzy
 msgid "Could not load this Audio CD."
-msgstr "אירעה שגיאה בעת טעינת תקליטור שמע זה."
+msgstr "לא ניתן לטעון תקליטור שמע זה."
 
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
@@ -488,9 +486,8 @@ msgid "Track:"
 msgstr "רצועה:"
 
 #: src/Dialogs/MediaEditor.vala:118
-#, fuzzy
 msgid "Disc:"
-msgstr "תקליטור"
+msgstr "תקליטור:"
 
 #: src/Dialogs/MediaEditor.vala:120
 msgid "Rating:"
@@ -1470,19 +1467,16 @@ msgid "Disable Shuffle"
 msgstr "מניעת ערבול צליל"
 
 #: src/Widgets/ViewSelector.vala:81
-#, fuzzy
 msgid "View as albums"
-msgstr "תצוגת אלבומים"
+msgstr "הצגה כאלבומים"
 
 #: src/Widgets/ViewSelector.vala:87
-#, fuzzy
 msgid "View as list"
-msgstr "תצוגת רשימה"
+msgstr "הצגה כרשימה"
 
 #: src/Widgets/ViewSelector.vala:93
-#, fuzzy
 msgid "View in columns"
-msgstr "תצוגת עמודות"
+msgstr "הצגה כעמודות"
 
 #~ msgid "Importation of a song from Audio CD finished."
 #~ msgstr "הסתיים יבוא של שיר מתוך תקליטור שמע."
