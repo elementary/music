@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box 0.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2018-07-13 06:56+0000\n"
+"PO-Revision-Date: 2018-11-06 01:57+0000\n"
 "Last-Translator: Piotr Strebski <strebski@gmail.com>\n"
 "Language-Team: Polish <https://weblate.elementary.io/projects/music/music/pl/"
 ">\n"
@@ -263,14 +263,13 @@ msgstr ""
 "zaimportowania"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, fuzzy
 msgid "Song imported from Audio CD."
-msgstr "Zaimportuj nagrania z płyty Audio CD"
+msgstr "Nagrania zostały zaimportowane z dźwiękowej płyty CD."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, fuzzy, c-format
+#, c-format
 msgid "%i songs imported from Audio CD."
-msgstr "%s zakończył importowanie utworu z nośnika CD."
+msgstr "%i nagrań zostało zaimportowanych z dźwiękowej płyty CD."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
@@ -285,21 +284,19 @@ msgstr ""
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:383
 msgid "Could not import this CD"
-msgstr ""
+msgstr "Nie można zaimportować z tej płyty CD"
 
 #: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
 msgid "Import"
 msgstr "Zaimportuj"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:37
-#, fuzzy
 msgid "An Error Occurred"
 msgstr "Wystąpił błąd"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:38
-#, fuzzy
 msgid "Could not load this Audio CD."
-msgstr "%s nie może odczytać zawartości płyty CD"
+msgstr "Nie można odczytać zawartości tej płyty CD."
 
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
@@ -507,9 +504,8 @@ msgid "Track:"
 msgstr "Utwór:"
 
 #: src/Dialogs/MediaEditor.vala:118
-#, fuzzy
 msgid "Disc:"
-msgstr "Płyta"
+msgstr "Płyta:"
 
 #: src/Dialogs/MediaEditor.vala:120
 msgid "Rating:"
@@ -1509,19 +1505,16 @@ msgid "Disable Shuffle"
 msgstr "Wyłącza losowe wybieranie nagrania"
 
 #: src/Widgets/ViewSelector.vala:81
-#, fuzzy
 msgid "View as albums"
-msgstr "Wyświetl  jako Albumy"
+msgstr "Wyświetl  jako albumy"
 
 #: src/Widgets/ViewSelector.vala:87
-#, fuzzy
 msgid "View as list"
-msgstr "Wyświetl jako Listę"
+msgstr "Wyświetl jako listę"
 
 #: src/Widgets/ViewSelector.vala:93
-#, fuzzy
 msgid "View in columns"
-msgstr "Wyświetl w Kolumnach"
+msgstr "Wyświetl w kolumnach"
 
 #~ msgid "Importation of a song from Audio CD finished."
 #~ msgstr "Zakończono importowanie piosenki z nośnika CD."
