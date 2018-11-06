@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2018-10-29 19:26+0000\n"
-"Last-Translator: Ciaran Ainsworth <ciaranainsworth@outlook.com>\n"
+"PO-Revision-Date: 2018-11-06 13:09+0000\n"
+"Last-Translator: Ciarán Ainsworth <ciaranainsworth@outlook.com>\n"
 "Language-Team: English (United Kingdom) <https://weblate.elementary.io/"
 "projects/music/music/en_GB/>\n"
 "Language: en_GB\n"
@@ -261,14 +261,13 @@ msgstr ""
 "The Application could not find any songs on the CD. No songs can be imported"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, fuzzy
 msgid "Song imported from Audio CD."
-msgstr "Import songs from audio CD"
+msgstr "Song imported from Audio CD."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, fuzzy, c-format
+#, c-format
 msgid "%i songs imported from Audio CD."
-msgstr "%s has finished importing a song from Audio CD."
+msgstr "%i songs imported from Audio CD."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
@@ -281,21 +280,19 @@ msgstr "CD import will be <b>cancelled</b> after current import."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:383
 msgid "Could not import this CD"
-msgstr ""
+msgstr "Could not import this CD"
 
 #: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
 msgid "Import"
 msgstr "Import"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:37
-#, fuzzy
 msgid "An Error Occurred"
 msgstr "An Error Occurred"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:38
-#, fuzzy
 msgid "Could not load this Audio CD."
-msgstr "%s could not read the contents of this Audio CD"
+msgstr "Could not load this Audio CD."
 
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
@@ -500,9 +497,8 @@ msgid "Track:"
 msgstr "Track:"
 
 #: src/Dialogs/MediaEditor.vala:118
-#, fuzzy
 msgid "Disc:"
-msgstr "Disc"
+msgstr "Disc:"
 
 #: src/Dialogs/MediaEditor.vala:120
 msgid "Rating:"
@@ -1488,19 +1484,16 @@ msgid "Disable Shuffle"
 msgstr "Disable Shuffle"
 
 #: src/Widgets/ViewSelector.vala:81
-#, fuzzy
 msgid "View as albums"
-msgstr "View as Albums"
+msgstr "View as albums"
 
 #: src/Widgets/ViewSelector.vala:87
-#, fuzzy
 msgid "View as list"
-msgstr "View as List"
+msgstr "View as list"
 
 #: src/Widgets/ViewSelector.vala:93
-#, fuzzy
 msgid "View in columns"
-msgstr "View in Columns"
+msgstr "View in columns"
 
 #~ msgid "Importation of a song from Audio CD finished."
 #~ msgstr "Importation of a song from Audio CD finished."
