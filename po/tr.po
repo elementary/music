@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2018-10-20 02:10+0000\n"
-"Last-Translator: İbrahim Ethem Göl <ethem578@gmail.com>\n"
+"PO-Revision-Date: 2018-11-06 20:24+0000\n"
+"Last-Translator: Sinan Decron <intenfinitia@gmail.com>\n"
 "Language-Team: Turkish <https://weblate.elementary.io/projects/music/music/"
 "tr/>\n"
 "Language: tr\n"
@@ -261,14 +261,13 @@ msgid ""
 msgstr "Uygulama CD'de şarkı bulamadı.  Şarkı aktarılamıyor"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, fuzzy
 msgid "Song imported from Audio CD."
-msgstr "Müzik CD'sinden şarkıları aktar"
+msgstr "Müzik CD'sinden şarkı aktarıldı."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, fuzzy, c-format
+#, c-format
 msgid "%i songs imported from Audio CD."
-msgstr "%s CD deki bir parçayı içe aktarmayı tamamladı."
+msgstr "%s şarkı Müzik CD'sinden aktarıldı."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
@@ -283,21 +282,19 @@ msgstr ""
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:383
 msgid "Could not import this CD"
-msgstr ""
+msgstr "Bu CD içeri aktarılamadı"
 
 #: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
 msgid "Import"
 msgstr "İçe Aktar"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:37
-#, fuzzy
 msgid "An Error Occurred"
-msgstr "Bir Hata  Oluştu"
+msgstr "Bir Hata Oluştu"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:38
-#, fuzzy
 msgid "Could not load this Audio CD."
-msgstr "%s bu Ses CD'sinin içeriğini okuyamadı"
+msgstr "%s bu Ses CD'si yüklenemedi."
 
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
@@ -502,9 +499,8 @@ msgid "Track:"
 msgstr "Parça Numarası:"
 
 #: src/Dialogs/MediaEditor.vala:118
-#, fuzzy
 msgid "Disc:"
-msgstr "Disk"
+msgstr "Disk:"
 
 #: src/Dialogs/MediaEditor.vala:120
 msgid "Rating:"
@@ -601,7 +597,6 @@ msgid "Remove \"%s\" From Library?"
 msgstr "\"%s\" Kütüphaneden Kaldırılsın Mı?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
-#, fuzzy
 msgid ""
 "This will remove the song from your library and from any device synced "
 "automatically."
@@ -609,11 +604,11 @@ msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
 msgstr[0] ""
-"Bu işlem şarkıyı kütüphanenizden ve %s ile otomatik olarak senkronize edilen "
-"tüm cihazlardan kaldıracaktır."
+"Bu işlem şarkıyı kütüphanenizden ve otomatik olarak senkronize edilen tüm "
+"cihazlardan kaldıracaktır."
 msgstr[1] ""
-"Bu işlem şarkıları kütüphanenizden ve %s ile otomatik olarak senkronize "
-"edilen tüm cihazlardan kaldıracaktır."
+"Bu işlem şarkıları kütüphanenizden ve otomatik olarak senkronize edilen tüm "
+"cihazlardan kaldıracaktır."
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
@@ -1491,17 +1486,14 @@ msgid "Disable Shuffle"
 msgstr "Karışık Çalmayı Kapat"
 
 #: src/Widgets/ViewSelector.vala:81
-#, fuzzy
 msgid "View as albums"
 msgstr "Albüm Görünümü"
 
 #: src/Widgets/ViewSelector.vala:87
-#, fuzzy
 msgid "View as list"
 msgstr "Liste Görünümü"
 
 #: src/Widgets/ViewSelector.vala:93
-#, fuzzy
 msgid "View in columns"
 msgstr "Sütun Görünümü"
 
