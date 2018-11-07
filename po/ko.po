@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2018-07-16 18:45+0000\n"
+"PO-Revision-Date: 2018-11-07 01:40+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://weblate.elementary.io/projects/music/music/ko/"
 ">\n"
@@ -261,12 +261,12 @@ msgstr "CD에서 아무 곡도 찾지 못 하였습니다. 아무 곡도 가져�
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
 msgid "Song imported from Audio CD."
-msgstr ""
+msgstr "오디오 CD에서 가져온 곡."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
 #, c-format
 msgid "%i songs imported from Audio CD."
-msgstr ""
+msgstr "%i 개의 곡을 오디오 CD에서 가져왔습니다."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
@@ -279,21 +279,19 @@ msgstr "CD 불러오기가 현재 불러오기 후 <b>취소</b>될 것입니다
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:383
 msgid "Could not import this CD"
-msgstr ""
+msgstr "이 CD에서는 가져올 수 없었습니다"
 
 #: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
 msgid "Import"
 msgstr "불러들이기"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:37
-#, fuzzy
 msgid "An Error Occurred"
-msgstr "오류가 발생했습니다"
+msgstr "오류가 생겼습니다"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:38
-#, fuzzy
 msgid "Could not load this Audio CD."
-msgstr "CD를 불러오는 도중 오류가 발생했습니다."
+msgstr "이 오디오 CD에서는 불러올 수 없었습니다."
 
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
@@ -498,9 +496,8 @@ msgid "Track:"
 msgstr "트랙:"
 
 #: src/Dialogs/MediaEditor.vala:118
-#, fuzzy
 msgid "Disc:"
-msgstr "디스크"
+msgstr "디스크:"
 
 #: src/Dialogs/MediaEditor.vala:120
 msgid "Rating:"
@@ -1474,19 +1471,16 @@ msgid "Disable Shuffle"
 msgstr "셔플 해제하기"
 
 #: src/Widgets/ViewSelector.vala:81
-#, fuzzy
 msgid "View as albums"
 msgstr "앨범으로 보기"
 
 #: src/Widgets/ViewSelector.vala:87
-#, fuzzy
 msgid "View as list"
 msgstr "목록으로 보기"
 
 #: src/Widgets/ViewSelector.vala:93
-#, fuzzy
 msgid "View in columns"
-msgstr "구역으로 보기"
+msgstr "열로 보기"
 
 #~ msgid "Importation of a song from Audio CD finished."
 #~ msgstr "CD에서 곡을 가져오는 작업을 완료하였습니다."
