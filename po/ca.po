@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2018-10-18 00:10+0000\n"
+"PO-Revision-Date: 2018-11-07 16:38+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
 "Language-Team: Catalan <https://weblate.elementary.io/projects/music/music/"
 "ca/>\n"
@@ -262,14 +262,13 @@ msgid ""
 msgstr "L'aplicació no pot trobar cançons al CD. No es pot importar cap cançó"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, fuzzy
 msgid "Song imported from Audio CD."
-msgstr "Importa cançons des d'un CD d'àudio"
+msgstr "Cançó importada des d'un CD d'àudio."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, fuzzy, c-format
+#, c-format
 msgid "%i songs imported from Audio CD."
-msgstr "El %s ha acabat d'importar una cançó des del CD d'àudio."
+msgstr "%i cançons importades des d'un CD d'àudio."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
@@ -283,21 +282,19 @@ msgstr ""
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:383
 msgid "Could not import this CD"
-msgstr ""
+msgstr "No s'ha pogut importar aquest CD"
 
 #: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
 msgid "Import"
 msgstr "Importa"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:37
-#, fuzzy
 msgid "An Error Occurred"
-msgstr "S'ha produït un error"
+msgstr "S'ha produït un error."
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:38
-#, fuzzy
 msgid "Could not load this Audio CD."
-msgstr "El %s no ha pogut llegir el contingut d'aquest CD d'àudio"
+msgstr "No s'ha pogut carregar aquest CD d'àudio."
 
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
@@ -501,9 +498,8 @@ msgid "Track:"
 msgstr "Pista:"
 
 #: src/Dialogs/MediaEditor.vala:118
-#, fuzzy
 msgid "Disc:"
-msgstr "Disc"
+msgstr "Disc:"
 
 #: src/Dialogs/MediaEditor.vala:120
 msgid "Rating:"
@@ -1496,17 +1492,14 @@ msgid "Disable Shuffle"
 msgstr "Desactiva la reproducció aleatòria"
 
 #: src/Widgets/ViewSelector.vala:81
-#, fuzzy
 msgid "View as albums"
-msgstr "Visualitza els àlbums"
+msgstr "Visualitza com a àlbums"
 
 #: src/Widgets/ViewSelector.vala:87
-#, fuzzy
 msgid "View as list"
 msgstr "Visualitza com a llista"
 
 #: src/Widgets/ViewSelector.vala:93
-#, fuzzy
 msgid "View in columns"
 msgstr "Visualitza en columnes"
 
