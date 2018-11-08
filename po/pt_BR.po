@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2018-08-31 05:43+0000\n"
+"PO-Revision-Date: 2018-11-08 03:16+0000\n"
 "Last-Translator: Rodrigo Oliveira <rod.oliveira@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://weblate.elementary.io/projects/"
 "music/music/pt_BR/>\n"
@@ -262,14 +262,13 @@ msgstr ""
 "importada"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, fuzzy
 msgid "Song imported from Audio CD."
-msgstr "Importe melodias de um CD de áudio"
+msgstr "Música importada do CD de áudio."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, fuzzy, c-format
+#, c-format
 msgid "%i songs imported from Audio CD."
-msgstr "%s terminou de importar"
+msgstr "%s músicas importadas do CD de Áudio."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
@@ -282,21 +281,19 @@ msgstr "A importação do CD irá ser <b>cancelada</b> após a importação atua
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:383
 msgid "Could not import this CD"
-msgstr ""
+msgstr "Não foi possível importar este CD"
 
 #: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
 msgid "Import"
 msgstr "Importar"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:37
-#, fuzzy
 msgid "An Error Occurred"
-msgstr "Ocorreu um Erro"
+msgstr "Ocorreu Um Erro"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:38
-#, fuzzy
 msgid "Could not load this Audio CD."
-msgstr "%s não conseguiu ler o conteúdo deste CD de Áudio"
+msgstr "Não foi possível carregar este CD de Áudio."
 
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
@@ -505,9 +502,8 @@ msgid "Track:"
 msgstr "Faixa:"
 
 #: src/Dialogs/MediaEditor.vala:118
-#, fuzzy
 msgid "Disc:"
-msgstr "Disco"
+msgstr "Disco:"
 
 #: src/Dialogs/MediaEditor.vala:120
 msgid "Rating:"
@@ -1499,19 +1495,16 @@ msgid "Disable Shuffle"
 msgstr "Desligar modo aleatório"
 
 #: src/Widgets/ViewSelector.vala:81
-#, fuzzy
 msgid "View as albums"
-msgstr "Visualizar como álbuns"
+msgstr "Ver como álbuns"
 
 #: src/Widgets/ViewSelector.vala:87
-#, fuzzy
 msgid "View as list"
-msgstr "Visualizar em lista"
+msgstr "Ver como lista"
 
 #: src/Widgets/ViewSelector.vala:93
-#, fuzzy
 msgid "View in columns"
-msgstr "Visualizar em colunas"
+msgstr "Ver em colunas"
 
 #~ msgid "Importation of a song from Audio CD finished."
 #~ msgstr "Importação de uma música do CD de áudio terminada."
