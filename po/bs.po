@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2018-11-09 06:48+0000\n"
+"PO-Revision-Date: 2018-11-09 07:20+0000\n"
 "Last-Translator: Elvis Mujanović <elvis.mujanovic@gmail.com>\n"
 "Language-Team: Bosnian <https://weblate.elementary.io/projects/music/music/"
 "bs/>\n"
@@ -264,12 +264,12 @@ msgstr ""
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
 msgid "Song imported from Audio CD."
-msgstr ""
+msgstr "Pjesma uvezena s audio CD-a."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
 #, c-format
 msgid "%i songs imported from Audio CD."
-msgstr ""
+msgstr "%i pjesama uvezeno s audio CD-a."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
@@ -282,7 +282,7 @@ msgstr "Unošenje sa CD-a će biti <b>prekinuto</b> nakon trenutnog unosa."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:383
 msgid "Could not import this CD"
-msgstr ""
+msgstr "Nije bilo moguće uvesti ovaj CD"
 
 #: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
 msgid "Import"
@@ -338,7 +338,7 @@ msgstr "Uvoz je završen"
 
 #: src/FileOperator.vala:306
 msgid "Your Library Has Been Imported."
-msgstr ""
+msgstr "Vaša muzička zbirka je uvezena."
 
 #. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:316
@@ -465,39 +465,39 @@ msgstr "Instaliraj plugin"
 
 #: src/Dialogs/MediaEditor.vala:100
 msgid "Title:"
-msgstr ""
+msgstr "Naslov:"
 
 #: src/Dialogs/MediaEditor.vala:102
 msgid "Artist:"
-msgstr ""
+msgstr "Izvođač:"
 
 #: src/Dialogs/MediaEditor.vala:104
 msgid "Album:"
-msgstr ""
+msgstr "Album:"
 
 #: src/Dialogs/MediaEditor.vala:106
 msgid "Album Artist:"
-msgstr ""
+msgstr "Izvođač albuma:"
 
 #: src/Dialogs/MediaEditor.vala:108
 msgid "Composer:"
-msgstr ""
+msgstr "Kompozitor:"
 
 #: src/Dialogs/MediaEditor.vala:110
 msgid "Grouping:"
-msgstr ""
+msgstr "Grupiranje:"
 
 #: src/Dialogs/MediaEditor.vala:112
 msgid "Genre:"
-msgstr ""
+msgstr "Žanr:"
 
 #: src/Dialogs/MediaEditor.vala:114
 msgid "Year:"
-msgstr ""
+msgstr "Godina:"
 
 #: src/Dialogs/MediaEditor.vala:116
 msgid "Track:"
-msgstr ""
+msgstr "Numera:"
 
 #: src/Dialogs/MediaEditor.vala:118
 msgid "Disc:"
@@ -505,11 +505,11 @@ msgstr "Disk:"
 
 #: src/Dialogs/MediaEditor.vala:120
 msgid "Rating:"
-msgstr ""
+msgstr "Ocjena:"
 
 #: src/Dialogs/MediaEditor.vala:122
 msgid "Comment:"
-msgstr ""
+msgstr "Komentar:"
 
 #. FIXME: don't know if I can delete this
 #: src/Dialogs/MediaEditor.vala:135 src/Dialogs/PreferencesWindow.vala:96
@@ -560,11 +560,11 @@ msgstr "Odaberite muzičku fasciklu…"
 
 #: src/Dialogs/PreferencesWindow.vala:77
 msgid "Music Folder Location"
-msgstr ""
+msgstr "Lokacija u fascikli muzike"
 
 #: src/Dialogs/PreferencesWindow.vala:79
 msgid "Library Management"
-msgstr ""
+msgstr "Upravljanje muzičkom zbirkom"
 
 #: src/Dialogs/PreferencesWindow.vala:80
 msgid "Keep Music folder organized:"
@@ -580,7 +580,7 @@ msgstr "Kopiraj unešene datoteke u biblioteku:"
 
 #: src/Dialogs/PreferencesWindow.vala:86
 msgid "Desktop Integration"
-msgstr ""
+msgstr "Integracija s radnom površinom"
 
 #: src/Dialogs/PreferencesWindow.vala:87
 msgid "Continue playback when closed:"
@@ -759,7 +759,7 @@ msgstr "Godina"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:278
 msgid "URI"
-msgstr ""
+msgstr "URI"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:351
 msgid "is"
@@ -861,8 +861,9 @@ msgstr "Dodano u vašu listu za reprodukciju:"
 #, c-format
 msgid "%d Track"
 msgid_plural "%d Tracks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d numera"
+msgstr[1] "%d numere"
+msgstr[2] "%d numera"
 
 #: src/LocalBackend/LocalSmartPlaylist.vala:217
 msgid "Favorite Songs"
@@ -962,7 +963,7 @@ msgstr "Nema rezultata"
 
 #: src/Views/ViewStack.vala:45
 msgid "Try another search"
-msgstr ""
+msgstr "Pokušajte s drugom pretragom"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
 msgid "Genres"
@@ -1100,13 +1101,14 @@ msgstr "Neocenjene"
 #, c-format
 msgid "%u Star"
 msgid_plural "%u Stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u zvjezdica"
+msgstr[1] "%u zvjezdice"
+msgstr[2] "%u zvjezdica"
 
 #: src/Views/ListView/Lists/CellDataFunctionHelper.vala:128
 #, c-format
 msgid "%u kbps"
-msgstr ""
+msgstr "%u kb/s"
 
 #: src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #: src/Views/ListView/Lists/MusicListView.vala:425
@@ -1472,7 +1474,7 @@ msgstr "Dodaj pametnu listu za reprodukciju"
 #: src/Widgets/StatusBar.vala:75
 #, c-format
 msgid "Equalizer: %s"
-msgstr ""
+msgstr "Equalizer: %s"
 
 #. MUST follow the exact same order of Noise.Player.Repeat
 #: src/Widgets/TopDisplay.vala:139
