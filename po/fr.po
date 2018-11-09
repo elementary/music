@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
 "PO-Revision-Date: 2018-11-09 16:50+0000\n"
-"Last-Translator: Alexandre LPC <lagalaxiedesgamers@gmail.com>\n"
+"Last-Translator: Corentin Noël <corentin@elementary.io>\n"
 "Language-Team: French <https://weblate.elementary.io/projects/music/music/fr/"
 ">\n"
 "Language: fr\n"
@@ -262,14 +262,13 @@ msgstr ""
 "être importée"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, fuzzy
 msgid "Song imported from Audio CD."
-msgstr "Importer des chansons depuis un CD audio"
+msgstr "Importer des chansons depuis un CD audio."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, fuzzy, c-format
+#, c-format
 msgid "%i songs imported from Audio CD."
-msgstr "%s a fini d'importer une musique depuis le CD audio."
+msgstr "%i chansons importées du CD audio."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
@@ -293,9 +292,8 @@ msgid "An Error Occurred"
 msgstr "Une erreur est survenue"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:38
-#, fuzzy
 msgid "Could not load this Audio CD."
-msgstr "%s ne peut pas lire le contenu de ce CD Audio"
+msgstr "Impossible de lire le contenu de ce CD Audio."
 
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
@@ -503,9 +501,8 @@ msgid "Track:"
 msgstr "Piste :"
 
 #: src/Dialogs/MediaEditor.vala:118
-#, fuzzy
 msgid "Disc:"
-msgstr "Disque"
+msgstr "Disque :"
 
 #: src/Dialogs/MediaEditor.vala:120
 msgid "Rating:"
@@ -1497,17 +1494,14 @@ msgid "Disable Shuffle"
 msgstr "Désactiver la lecture aléatoire"
 
 #: src/Widgets/ViewSelector.vala:81
-#, fuzzy
 msgid "View as albums"
 msgstr "Vue par albums"
 
 #: src/Widgets/ViewSelector.vala:87
-#, fuzzy
 msgid "View as list"
 msgstr "Vue par liste"
 
 #: src/Widgets/ViewSelector.vala:93
-#, fuzzy
 msgid "View in columns"
 msgstr "Vue en colonnes"
 
