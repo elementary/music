@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beatbox 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2018-07-15 20:06+0000\n"
-"Last-Translator: Corentin Noël <corentin@elementary.io>\n"
+"PO-Revision-Date: 2018-11-09 16:50+0000\n"
+"Last-Translator: Alexandre LPC <lagalaxiedesgamers@gmail.com>\n"
 "Language-Team: French <https://weblate.elementary.io/projects/music/music/fr/"
 ">\n"
 "Language: fr\n"
@@ -282,14 +282,13 @@ msgstr "L'importation du CD sera <b>annulée</b> après l'importation en cours."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:383
 msgid "Could not import this CD"
-msgstr ""
+msgstr "Impossible d'importer ce CD"
 
 #: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
 msgid "Import"
 msgstr "Importer"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:37
-#, fuzzy
 msgid "An Error Occurred"
 msgstr "Une erreur est survenue"
 
