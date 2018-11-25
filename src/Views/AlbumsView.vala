@@ -306,7 +306,15 @@ public class Noise.AlbumsView : Gtk.Paned, ViewInterface {
 
     protected void search_func (Gee.HashMap<int, Object> showing) {
         var result = parent_view_wrapper.library.get_search_result ();
-        var albums = new Gee.TreeSet<Album> ();
+        var albums = new Gee.TreeSet<Album> ((a,b) => {
+            if (a == b) {
+                return 0;
+            } else if (a.name < b.name) { 
+                return -1;
+            } else {
+                return 1;
+            }
+        });
         foreach (var m in result) {
             albums.add (m.album_info);
         }
