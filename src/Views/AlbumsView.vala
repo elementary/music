@@ -307,7 +307,17 @@ public class Noise.AlbumsView : Gtk.Paned, ViewInterface {
     protected void search_func (Gee.HashMap<int, Object> showing) {
         var result = parent_view_wrapper.library.get_search_result ();
         var albums = new Gee.TreeSet<Album> ((a,b) => {
-            return String.compare (a.get_display_name (), b.get_display_name ());
+            int order = String.compare (a.get_display_name (), b.get_display_name ());
+            if (order != 0) {
+                return order;
+            }
+
+            order = String.compare (a.get_display_artist (), b.get_display_artist ());
+            if (order != 0) {
+                return order;
+            }
+
+            return (int) a.year - (int) b.year;
         });
         foreach (var m in result) {
             albums.add (m.album_info);
