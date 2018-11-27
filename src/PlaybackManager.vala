@@ -143,7 +143,7 @@ public class Noise.PlaybackManager : Object {
     }
 
     public void clear_queue () {
-        _current.clear();
+        queue_playlist.clear();
         current_index = 0;
 
         reshuffle ();
