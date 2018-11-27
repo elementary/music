@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2018-11-24 12:10+0000\n"
+"PO-Revision-Date: 2018-11-27 12:55+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://weblate.elementary.io/projects/music/music/"
 "ja/>\n"
@@ -257,8 +257,7 @@ msgstr ""
 #: plugins/Devices/CDRom/CDRomDevice.vala:253
 msgid ""
 "The Application could not find any songs on the CD. No songs can be imported"
-msgstr ""
-"CD 上で曲を見つけることができませんでした。曲をインポートすることができません"
+msgstr "CD 上で曲を見つけることができませんでした。曲をインポートできません"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
 msgid "Song imported from Audio CD."
@@ -521,9 +520,7 @@ msgstr "%s からのインポート中に問題が発生しました"
 #, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] ""
-"%d 個のアイテムをインポートすることができませんでした。ファイルが壊れている可"
-"能性があります。"
+msgstr[0] "%d 個のアイテムをインポートできませんでした。ファイルが壊れている可能性があります。"
 
 #: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
