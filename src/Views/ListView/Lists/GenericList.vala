@@ -211,7 +211,9 @@ public abstract class Noise.GenericList : Gtk.TreeView {
         var m = get_media_from_index (int.parse (path.to_string ()));
 
         // Now update current_list and current_index in LM if we aren't in the queue
-        if (hint != ViewWrapper.Hint.QUEUE) {
+        if (hint == ViewWrapper.Hint.QUEUE) {
+            App.player.current_index = int.parse (path.to_string ());
+        } else {
             set_as_current_list (m);
         }
 
