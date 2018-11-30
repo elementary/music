@@ -95,8 +95,8 @@ public class Noise.AlbumsView : Gtk.Paned, ViewInterface {
         return icon_view.get_visible_table ().values;
     }
 
-    private void on_item_selected() {
-        List<Gtk.TreePath> path = icon_view.get_selected_items();
+    private void on_item_selected () {
+        List<Gtk.TreePath> path = icon_view.get_selected_items ();
         if (path == null) {
             item_activated (null);
             return;
