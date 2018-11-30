@@ -56,6 +56,7 @@ public class Noise.AlbumsView : Gtk.Paned, ViewInterface {
         icon_view.drag_begin.connect_after (on_drag_begin);
         icon_view.drag_data_get.connect (on_drag_data_get);
         icon_view.item_activated.connect (on_item_activated);
+        icon_view.selection_changed.connect (on_item_selected);
 
         var scroll = new Gtk.ScrolledWindow (null, null);
         scroll.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
@@ -94,13 +95,19 @@ public class Noise.AlbumsView : Gtk.Paned, ViewInterface {
         return icon_view.get_visible_table ().values;
     }
 
-    private void on_item_activated (Gtk.TreePath? path) {
+    private void on_item_selected () {
+        List<Gtk.TreePath> path = icon_view.get_selected_items ();
         if (path == null) {
             item_activated (null);
+            return;
         }
 
-        var obj = icon_view.get_object_from_index (path.get_indices ()[0]);
+        var obj = icon_view.get_object_from_index (path.data.get_indices ()[0]);
         item_activated (obj);
+    }
+
+    private void on_item_activated (Gtk.TreePath? path) {
+        popup_list_view.play_active_list ();
     }
 
     private void on_drag_begin (Gtk.Widget sender, Gdk.DragContext context) {
