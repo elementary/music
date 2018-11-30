@@ -473,6 +473,25 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         library_manager.rescan_music_folder ();
         initialization_finished = true;
 
+        var search_string = App.saved_state.get_string ("search-string");
+
+        search_entry.activate.connect (search_entry_activate);
+        search_entry.search_changed.connect (() => {
+            if (search_entry.text_length != 1) {
+                libraries_manager.search_for_string (search_entry.text);
+            }
+        });
+        search_entry.text = search_string;
+
+        int64 last_playing_id = App.saved_state.get_int64 ("last-media-playing");
+        if (last_playing_id >= 0) {
+            var last_playing_media = library_manager.media_from_id (last_playing_id);
+            if (last_playing_media != null && last_playing_media.file.query_exists ()) {
+                App.player.play_media (last_playing_media);
+            }
+        }
+        libraries_manager.search_for_string (search_string);
+
         var last_playlist_playing = App.saved_state.get_string ("last-playlist-playing");
 
         // Set the focus on the current view
@@ -495,24 +514,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             show_playlist_view (library_manager.p_music);
         }
 
-        var search_string = App.saved_state.get_string ("search-string");
-
-        search_entry.activate.connect (search_entry_activate);
-        search_entry.search_changed.connect (() => {
-            if (search_entry.text_length != 1) {
-                libraries_manager.search_for_string (search_entry.text);
-            }
-        });
-        search_entry.text = search_string;
-
-        int64 last_playing_id = App.saved_state.get_int64 ("last-media-playing");
-        if (last_playing_id >= 0) {
-            var last_playing_media = library_manager.media_from_id (last_playing_id);
-            if (last_playing_media != null && last_playing_media.file.query_exists ()) {
-                App.player.play_media (last_playing_media);
-            }
-        }
-        libraries_manager.search_for_string (search_string);
     }
 
     /**
@@ -1201,3 +1202,4 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         return base.configure_event (event);
     }
 }
+
