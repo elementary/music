@@ -1,3 +1,9 @@
+noise (5.0.1) bionic; urgency=medium
+
+  * New upstream release.
+
+ -- Cody Garver <cody@elementary.io>  Fri, 30 Nov 2018 04:49:32 -0600
+
 noise (5.0) bionic; urgency=medium
 
   * New upstream release.
