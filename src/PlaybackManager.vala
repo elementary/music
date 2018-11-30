@@ -128,6 +128,7 @@ public class Noise.PlaybackManager : Object {
         }
 
         queue_playlist.add_medias (to_queue);
+        reshuffle ();
     }
 
     public void unqueue_media (Gee.Collection<Media> to_unqueue) {
