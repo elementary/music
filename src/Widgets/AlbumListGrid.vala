@@ -165,8 +165,8 @@ public class Noise.AlbumListGrid : Gtk.Grid {
         view_wrapper.library.media_updated.connect (update_album_rating);
     }
 
-    public void play_active_list (){
-        list_view.row_activated (new Gtk.TreePath.first (), new Gtk.TreeViewColumn());
+    public void play_active_list () {
+        list_view.row_activated (new Gtk.TreePath.first (), new Gtk.TreeViewColumn ());
     }
 
     void update_album_cover () {
