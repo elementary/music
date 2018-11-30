@@ -1,4 +1,4 @@
-project('io.elementary.music', 'vala', 'c', version: '5.0')
+project('io.elementary.music', 'vala', 'c', version: '5.0.1')
 
 prefix = get_option('prefix')
 datadir = join_paths(prefix, get_option('datadir'))
