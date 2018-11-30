@@ -1202,4 +1202,3 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         return base.configure_event (event);
     }
 }
-
