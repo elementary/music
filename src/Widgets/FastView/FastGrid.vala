@@ -50,7 +50,7 @@ public class Noise.FastGrid : Gtk.IconView {
 
         cell_renderer = new Noise.Widgets.TileRenderer ();
         pack_start (cell_renderer, false);
-        activate_on_single_click = true;
+        activate_on_single_click = false;
         add_attribute (cell_renderer, "album", 0);
         tooltip_column = 1;
 
