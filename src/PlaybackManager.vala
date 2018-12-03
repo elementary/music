@@ -252,7 +252,7 @@ public class Noise.PlaybackManager : Object {
         
         var main_settings = Settings.Main.get_default ();
         if (main_settings.shuffle_mode != Noise.Settings.Shuffle.OFF) {
-            debug(_current_shuffled.size.to_string());
+            debug ("Shuffled size: %d", _current_shuffled.size);
             if (_current_shuffled.is_empty) {
                 if (_current.is_empty) {
                     queue_media (library.get_medias ()); // first initialize the current selection the reshuffle it
@@ -340,7 +340,7 @@ public class Noise.PlaybackManager : Object {
                 
                 rv = _current.get (_current_index);
             } else {
-                queue_media (library.get_medias());
+                queue_media (library.get_medias ());
 
                 _current_index = 0;
                 rv = _current.get (0);
