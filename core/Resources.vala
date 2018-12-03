@@ -83,7 +83,8 @@ namespace Noise {
         "application/x-extension-m4a",
         "application/x-extension-mp4",
         "application/x-flac",
-        "application/x-ogg"
+        "application/x-ogg",
+        "audio/x-s3m"
     };
 
     //TODO: Support "audio/x-ms-asx" and "audio/x-ms-wax"
