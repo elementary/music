@@ -257,8 +257,10 @@ public class Noise.PlaybackManager : Object {
                 if (_current.is_empty) {
                     queue_media (library.get_medias ()); // first initialize the current selection the reshuffle it
                 }
+
                 reshuffle ();
             }
+
             _playing_queued_song = false;
 
             if (current_media == null) {
