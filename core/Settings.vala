@@ -104,8 +104,8 @@ namespace Noise.Settings {
     public enum Repeat {
         OFF,
         MEDIA,
+        ALL,
         ALBUM,
-        ARTIST,
-        ALL
+        ARTIST
     }
 }
