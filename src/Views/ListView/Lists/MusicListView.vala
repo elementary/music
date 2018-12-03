@@ -249,7 +249,7 @@ public class Noise.MusicListView : GenericList {
      */
     protected int view_compare_func (int column, Gtk.SortType dir, Media media_a, Media media_b, int a_pos, int b_pos) {
         if (playlist == App.player.queue_playlist) {
-            return 0; // Display the queue in the order it actually is
+            return a_pos - b_pos; // Display the queue in the order it actually is
         }
 
         int order = 0;
