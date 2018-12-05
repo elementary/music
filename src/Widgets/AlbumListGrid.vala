@@ -88,6 +88,7 @@ public class Noise.AlbumListGrid : Gtk.Grid {
         list_view.expand = true;
         list_view.headers_visible = false;
         list_view.set_search_func (view_search_func);
+        list_view.set_sort_column_id (ListColumn.TRACK, Gtk.SortType.ASCENDING);
         list_view.get_style_context ().remove_class (Gtk.STYLE_CLASS_VIEW);
 
         var list_view_scrolled = new Gtk.ScrolledWindow (null, null);
