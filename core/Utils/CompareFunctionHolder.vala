@@ -41,7 +41,12 @@ namespace Noise.Compare {
     }
 
     public inline int artists (Media a, Media b) {
-        int order = String.compare (a.get_display_artist (), b.get_display_artist ());
+        int order;
+        if (a.get_display_album_artist().contains("arious")||b.get_display_album_artist().contains("arious")) {
+            order = String.compare (a.get_display_artist (), b.get_display_artist ());
+        } else {
+            order = String.compare (a.get_display_album_artist (true), b.get_display_album_artist (true));
+        }
         // secondarily compare by year
         if (order == 0)
             order = standard_unsigned (a.year, b.year);
