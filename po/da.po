@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2018-07-13 20:59+0000\n"
+"PO-Revision-Date: 2018-12-08 21:43+0000\n"
 "Last-Translator: Kaj Printz Madsen <kajprintz@gmail.com>\n"
 "Language-Team: Danish <https://weblate.elementary.io/projects/music/music/da/"
 ">\n"
@@ -262,14 +262,13 @@ msgstr ""
 "importeres"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, fuzzy
 msgid "Song imported from Audio CD."
-msgstr "Importér sange fra lyd CD"
+msgstr "Sang importeret fra Lyd-CD."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, fuzzy, c-format
+#, c-format
 msgid "%i songs imported from Audio CD."
-msgstr "%s har færdiggjort importering af en sang fra lyd CD."
+msgstr "%i sange importeret fra Lyd-CD."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
@@ -283,21 +282,19 @@ msgstr ""
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:383
 msgid "Could not import this CD"
-msgstr ""
+msgstr "Kunne ikke importere denne CD"
 
 #: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
 msgid "Import"
 msgstr "Importér"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:37
-#, fuzzy
 msgid "An Error Occurred"
-msgstr "Der opstod en fejl"
+msgstr "Der Opstod En Fejl"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:38
-#, fuzzy
 msgid "Could not load this Audio CD."
-msgstr "%s kunne ikke læse indholdet af denne lyd CD"
+msgstr "Kunne ikke indlæse denne Lyd-CD."
 
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
@@ -504,9 +501,8 @@ msgid "Track:"
 msgstr "Spor:"
 
 #: src/Dialogs/MediaEditor.vala:118
-#, fuzzy
 msgid "Disc:"
-msgstr "Disk"
+msgstr "Disk:"
 
 #: src/Dialogs/MediaEditor.vala:120
 msgid "Rating:"
@@ -1506,19 +1502,16 @@ msgid "Disable Shuffle"
 msgstr "Slå blanding fra"
 
 #: src/Widgets/ViewSelector.vala:81
-#, fuzzy
 msgid "View as albums"
-msgstr "Vis som albummer"
+msgstr "Vis som albums"
 
 #: src/Widgets/ViewSelector.vala:87
-#, fuzzy
 msgid "View as list"
 msgstr "Vis som liste"
 
 #: src/Widgets/ViewSelector.vala:93
-#, fuzzy
 msgid "View in columns"
-msgstr "Vis i Kolonner"
+msgstr "Vis i kolonner"
 
 #~ msgid "Importation of a song from Audio CD finished."
 #~ msgstr "Importering af sang fra CD fuldendt."
