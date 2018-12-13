@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2018-07-24 00:05+0000\n"
-"Last-Translator: Jan Marek <janmarek28@gmail.com>\n"
-"Language-Team: Czech <https://weblate.elementary.io/projects/music/music/cs/"
-">\n"
+"PO-Revision-Date: 2018-12-13 14:37+0000\n"
+"Last-Translator: Daniel Zvir <zvir.daniel@seznam.cz>\n"
+"Language-Team: Czech <https://weblate.elementary.io/projects/music/music/cs/>"
+"\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -261,14 +261,13 @@ msgstr ""
 "Aplikace na CD nenalezla žádné skladby. Žádné skladby nemohou být importovány"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, fuzzy
 msgid "Song imported from Audio CD."
-msgstr "%s dokončilo importování skladby z Audio CD"
+msgstr "%s dokončilo importování skladby z Audio CD."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, fuzzy, c-format
+#, c-format
 msgid "%i songs imported from Audio CD."
-msgstr "%s dokončilo importování skladby z Audio CD"
+msgstr "%s dokončilo importování skladby z Audio CD."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
@@ -281,19 +280,17 @@ msgstr "CD importování bude <b>ukončen</b> po probíhajícím importování."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:383
 msgid "Could not import this CD"
-msgstr ""
+msgstr "Nebylo možné importovat toto CD"
 
 #: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
 msgid "Import"
 msgstr "Importovat"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:37
-#, fuzzy
 msgid "An Error Occurred"
 msgstr "Vyskytla se chyba"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:38
-#, fuzzy
 msgid "Could not load this Audio CD."
 msgstr "%s nemohl načíst obsah tohoto zvukového CD."
 
@@ -499,9 +496,8 @@ msgid "Track:"
 msgstr "Stopa:"
 
 #: src/Dialogs/MediaEditor.vala:118
-#, fuzzy
 msgid "Disc:"
-msgstr "Disk"
+msgstr "Disk:"
 
 #: src/Dialogs/MediaEditor.vala:120
 msgid "Rating:"
@@ -1496,17 +1492,14 @@ msgid "Disable Shuffle"
 msgstr "Vypnout náhodný výběr"
 
 #: src/Widgets/ViewSelector.vala:81
-#, fuzzy
 msgid "View as albums"
 msgstr "Zobrazit jako alba"
 
 #: src/Widgets/ViewSelector.vala:87
-#, fuzzy
 msgid "View as list"
 msgstr "Zobrazit jako seznam"
 
 #: src/Widgets/ViewSelector.vala:93
-#, fuzzy
 msgid "View in columns"
 msgstr "Zobrazit ve sloupcích"
 
