@@ -198,6 +198,8 @@ public class Noise.LocalLibrary : Library {
 
             set_music_folder_thread.begin (folder);
         }
+        
+        Settings.Main.get_default ().music_folder = folder;
     }
 
     private async void set_music_folder_thread (string folder) {
