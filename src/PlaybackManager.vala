@@ -247,6 +247,57 @@ public class Noise.PlaybackManager : Object {
         }
     }
     
+    /**
+    * Gets next media ignoring shuffle and playback settings
+    */
+    public Media? simple_get_next (bool play) {
+        Media? rv = null;
+        var main_settings = Settings.Main.get_default ();
+    
+        if (_current.is_empty) {
+            queue_media (library.get_medias ());
+        }
+        
+        if (main_settings.shuffle_mode != Noise.Settings.Shuffle.OFF) {
+           
+            if (_current_shuffled.is_empty) {
+                reshuffle ();
+            _current_shuffled_index = 0;
+            }
+    
+            if (current_media == null || _current_shuffled_index == (_current_shuffled.size - 1)) {
+            _current_shuffled_index = -1;
+            }
+    
+            _current_shuffled_index++;
+            rv = _current_shuffled.get (_current_shuffled_index);
+     
+        } else {
+            
+            if (current_media == null || _current_index == (_current.size - 1)) {
+            _current_index = -1;
+            }
+         
+            _current_index++;
+            rv = _current.get (_current_index);
+    
+        }
+        
+        if (queue_playlist.medias.contains (rv)) {
+            _playing_queued_song = true;
+        }
+    
+        if (play) {
+            play_media (rv);
+        }	
+    
+        return rv;
+        
+    }
+    
+    /**
+    * Gets next media taking into consideration shuffle and playback settings
+    */
     public Media? get_next (bool play) {
         Media? rv = null;
         
@@ -360,6 +411,61 @@ public class Noise.PlaybackManager : Object {
         return rv;
     }
     
+    
+    /**
+    * Gets previous media ignoring shuffle and playback settings
+    */
+    public Media? simple_get_previous (bool play) {
+        Media? rv = null;
+        var main_settings = Settings.Main.get_default ();
+        _playing_queued_song = false;
+    
+        if (_current.is_empty) {
+            queue_media (library.get_medias ());
+        }
+    
+        
+        if (main_settings.shuffle_mode != Noise.Settings.Shuffle.OFF) {
+        
+           if (_current_shuffled.is_empty) {
+            reshuffle ();
+           }
+           
+    
+           if (current_media == null || _current_shuffled_index == 0) {
+            _current_shuffled_index = _current_shuffled.size;
+           }
+    
+           _current_shuffled_index--;
+           rv = _current_shuffled.get (_current_shuffled_index);
+    
+        } else {
+        
+            if (current_media == null || _current_index == 0) {
+            _current_index = _current.size;
+            }
+        
+            _current_index--;
+            rv = _current.get (_current_index);
+    
+        }
+    
+        if (queue_playlist.medias.contains (rv)) {
+            _playing_queued_song = true;
+        }
+    
+        if (play) {
+            play_media (rv);
+        }
+    
+        return rv;
+
+    }
+    
+    
+    /**
+    * Gets previous media based on shuffle and playback settings (may not be necessary in the future)
+    */
     // TODO: remove code redundancy
     public Media? get_previous (bool play) {
         Media? rv = null;

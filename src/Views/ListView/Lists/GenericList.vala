@@ -254,14 +254,32 @@ public abstract class Noise.GenericList : Gtk.TreeView {
             }
         }
 
-        var queue = start_at (to_set, get_visible_table ());
+        //var queue = start_at (to_set, get_visible_table ());
+        var queue = get_visible_table ();
+        
+        int index = 0;
+        for ( ; index < queue.size && queue[index].uri != to_set.uri; ++index);	
+	
+        if (index == queue.size) {
+            index = 0;
+        }
+        
+        
         foreach (var q in queue) {
             debug ("QUEING: %s", q.title);
         }
         App.player.clear_queue ();
         App.player.queue_media (queue);
-        App.player.current_index = 0;
-
+        //App.player.current_index = 0;
+        
+        //set index at set songs if queue is not supposed to be shuffled
+        if (main_settings.shuffle_mode == Noise.Settings.Shuffle.OFF) {
+            App.player.current_index = index;
+        } else {
+            App.player.current_index = 0;
+        }
+        
+        
         // order the queue like this list
         var view = App.main_window.match_playlists[App.player.queue_playlist];
         view.list_view.list_view.set_sort_column_id (tvs.sort_column_id, tvs.sort_direction);
@@ -270,7 +288,7 @@ public abstract class Noise.GenericList : Gtk.TreeView {
     }
 
     /**
-    * Shift a list (of media) to make it start at a given element
+    * Shift a list (of media) to make it start at a given element (possibly not needed in the future)
     */
     private Gee.List<Media> start_at (Media start, Gee.List<Media> media) {
         int index = 0;
