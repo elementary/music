@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2018-12-23 06:55+0000\n"
+"PO-Revision-Date: 2018-12-24 00:06+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://weblate.elementary.io/projects/music/music/"
 "mr/>\n"
@@ -119,7 +119,7 @@ msgstr " (%d)"
 #: core/Utils/PlaylistsUtils.vala:95
 #, c-format
 msgid "%s (%d)"
-msgstr ""
+msgstr "%s (%d)"
 
 #: core/Utils/PlaylistsUtils.vala:235
 msgid "New playlist"
@@ -129,7 +129,7 @@ msgstr "नवीन यादी"
 #: core/Utils/PlaylistsUtils.vala:246
 #, c-format
 msgid "%s (%i)"
-msgstr ""
+msgstr "%s (%i)"
 
 #: core/Utils/PlaylistsUtils.vala:273
 msgid "Export Playlist"
@@ -396,7 +396,7 @@ msgstr "संगीत आयात करा"
 #: src/PlaybackManager.vala:105
 msgctxt "Name of the playlist"
 msgid "Queue"
-msgstr ""
+msgstr "ओळ"
 
 #: src/Dialogs/FileNotFoundDialog.vala:37
 msgid "File not found"
@@ -501,38 +501,38 @@ msgstr "बंद करा"
 #: src/Dialogs/NotImportedDialog.vala:51
 #, c-format
 msgid "Issues while importing from %s"
-msgstr ""
+msgstr "%s पासून आयात करताना समस्या"
 
 #: src/Dialogs/NotImportedDialog.vala:57
 #, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d आयटम आयात करण्यास अक्षम. फाइल खराब असू शकते."
+msgstr[1] "%d आयटम आयात करण्यास अक्षम. फायली खराब असू  शकतात."
 
 #: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
-msgstr ""
+msgstr "सर्व दूषित फाइल्स कचर्यामध्ये हलवा"
 
 #: src/Dialogs/NotImportedDialog.vala:72
 msgid "del"
-msgstr ""
+msgstr "del"
 
 #: src/Dialogs/NotImportedDialog.vala:81
 msgid "File Location"
-msgstr ""
+msgstr "फाइल स्थान"
 
 #: src/Dialogs/NotImportedDialog.vala:97
 msgid "Select individual files to move to trash:"
-msgstr ""
+msgstr "कचर्यामध्ये हलविण्यासाठी स्वतंत्र फायली निवडा:"
 
 #: src/Dialogs/NotImportedDialog.vala:101 src/Dialogs/RemoveFilesDialog.vala:73
 msgid "Move to Trash"
-msgstr ""
+msgstr "कचर्यामध्ये हलवा"
 
 #: src/Dialogs/NotImportedDialog.vala:104
 msgid "Ignore"
-msgstr ""
+msgstr "दुर्लक्ष करा"
 
 #: src/Dialogs/PreferencesWindow.vala:48
 msgid "Select Music Folder…"
