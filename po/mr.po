@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2018-12-23 06:39+0000\n"
+"PO-Revision-Date: 2018-12-23 06:55+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://weblate.elementary.io/projects/music/music/"
 "mr/>\n"
@@ -410,92 +410,93 @@ msgstr "<b>%s</b> यांची <b>%s</b> साठी संगीत फा�
 #: src/Dialogs/FileNotFoundDialog.vala:50
 #, c-format
 msgid "%i music files could not be found?"
-msgstr ""
+msgstr "%i संगीत फाइल्स सापडली नाहीत?"
 
 #: src/Dialogs/FileNotFoundDialog.vala:53
 msgid "Rescan Library"
-msgstr ""
+msgstr "लायब्ररी पुन्हा स्कॅन करा"
 
 #: src/Dialogs/FileNotFoundDialog.vala:54
 msgid "Remove Song"
-msgstr ""
+msgstr "गाणे काढा"
 
 #: src/Dialogs/FileNotFoundDialog.vala:56
 msgid "Find Song"
-msgstr ""
+msgstr "गाणे शोधा"
 
 #: src/Dialogs/FileNotFoundDialog.vala:99
 #: src/Dialogs/SetMusicFolderConfirmation.vala:113
 msgid "Choose Music Folder"
-msgstr ""
+msgstr "संगीत फोल्डर निवडा"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:38
 #, c-format
 msgid "Would you like to install the %s plugin?"
-msgstr ""
+msgstr "आपण  %s प्लगइन स्थापित करू इच्छिता?"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:39
 #, c-format
 msgid "This song cannot be played. The %s plugin is required to play the song."
 msgstr ""
+"हे गाणे प्ले केले जाऊ शकत नाही. गाणे प्ले करण्यासाठी %s प्लगइन आवश्यक आहे."
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid "Install Plugin"
-msgstr ""
+msgstr "प्लगइन स्थापित करा"
 
 #: src/Dialogs/MediaEditor.vala:100
 msgid "Title:"
-msgstr ""
+msgstr "शीर्षकः"
 
 #: src/Dialogs/MediaEditor.vala:102
 msgid "Artist:"
-msgstr ""
+msgstr "कलावंत:"
 
 #: src/Dialogs/MediaEditor.vala:104
 msgid "Album:"
-msgstr ""
+msgstr "अल्बमः"
 
 #: src/Dialogs/MediaEditor.vala:106
 msgid "Album Artist:"
-msgstr ""
+msgstr "अल्बम कलावंत:"
 
 #: src/Dialogs/MediaEditor.vala:108
 msgid "Composer:"
-msgstr ""
+msgstr "रचनाकार:"
 
 #: src/Dialogs/MediaEditor.vala:110
 msgid "Grouping:"
-msgstr ""
+msgstr "वर्गीकरण:"
 
 #: src/Dialogs/MediaEditor.vala:112
 msgid "Genre:"
-msgstr ""
+msgstr "शैली:"
 
 #: src/Dialogs/MediaEditor.vala:114
 msgid "Year:"
-msgstr ""
+msgstr "वर्ष:"
 
 #: src/Dialogs/MediaEditor.vala:116
 msgid "Track:"
-msgstr ""
+msgstr "ट्रॅक:"
 
 #: src/Dialogs/MediaEditor.vala:118
 msgid "Disc:"
-msgstr ""
+msgstr "डिस्कः"
 
 #: src/Dialogs/MediaEditor.vala:120
 msgid "Rating:"
-msgstr ""
+msgstr "रेटिंगः"
 
 #: src/Dialogs/MediaEditor.vala:122
 msgid "Comment:"
-msgstr ""
+msgstr "टिप्पणी:"
 
 #. FIXME: don't know if I can delete this
 #: src/Dialogs/MediaEditor.vala:135 src/Dialogs/PreferencesWindow.vala:96
 #: src/Views/DeviceView.vala:45
 msgid "Close"
-msgstr ""
+msgstr "बंद करा"
 
 #: src/Dialogs/NotImportedDialog.vala:51
 #, c-format
