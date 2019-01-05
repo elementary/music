@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2015-12-21 13:42+0000\n"
-"Last-Translator: Daniel Fore <Unknown>\n"
-"Language-Team: Norwegian Nynorsk <nn@li.org>\n"
+"PO-Revision-Date: 2019-01-05 03:11+0000\n"
+"Last-Translator: Simon Dagfinrud <semonje@gmail.com>\n"
+"Language-Team: Norwegian Nynorsk <https://weblate.elementary.io/projects/"
+"music/music/nn/>\n"
 "Language: nn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
-"X-Generator: Launchpad (build 18330)\n"
 
 #: core/LibrariesManager.vala:147
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -260,19 +261,18 @@ msgstr ""
 "importeras"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, fuzzy
 msgid "Song imported from Audio CD."
-msgstr "Importer songar frå lyd CD"
+msgstr "Importer songar frå lyd-CD."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, fuzzy, c-format
+#, c-format
 msgid "%i songs imported from Audio CD."
-msgstr "Importer songar frå lyd CD"
+msgstr "%s spor importert frå lyd-CD."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
 msgid "Importing track %u: %s"
-msgstr ""
+msgstr "Importerer spor %u: %s"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:364
 msgid "CD import will be <b>cancelled</b> after current import."
@@ -280,21 +280,19 @@ msgstr "Importering av CD vil bli <b>avslutta</b> etter gjeldande importering."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:383
 msgid "Could not import this CD"
-msgstr ""
+msgstr "Kunne ikkje importere denne CD-en"
 
 #: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
 msgid "Import"
 msgstr "Importer"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:37
-#, fuzzy
 msgid "An Error Occurred"
 msgstr "Det oppstod ein feil"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:38
-#, fuzzy
 msgid "Could not load this Audio CD."
-msgstr "%s fann ikkje innholdet på denne lydplata"
+msgstr "Kunne ikkje laste lyd frå denne CD-en."
 
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
@@ -338,7 +336,7 @@ msgstr "Ferdig å importere"
 
 #: src/FileOperator.vala:306
 msgid "Your Library Has Been Imported."
-msgstr ""
+msgstr "Biblioteket ditt har blitt importert."
 
 #. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:316
@@ -418,17 +416,17 @@ msgstr "Legg i kø"
 
 #: src/Dialogs/FileNotFoundDialog.vala:37
 msgid "File not found"
-msgstr ""
+msgstr "Fann ikkje fil"
 
 #: src/Dialogs/FileNotFoundDialog.vala:47
 #, c-format
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
-msgstr ""
+msgstr "Musikkfila for <b>%s</b> av <b>%s</b> vart ikkje funne."
 
 #: src/Dialogs/FileNotFoundDialog.vala:50
 #, c-format
 msgid "%i music files could not be found?"
-msgstr ""
+msgstr "%i musikkfiler kunne ikkje bli funne?"
 
 #: src/Dialogs/FileNotFoundDialog.vala:53
 msgid "Rescan Library"
@@ -440,7 +438,7 @@ msgstr "Fjern songen"
 
 #: src/Dialogs/FileNotFoundDialog.vala:56
 msgid "Find Song"
-msgstr ""
+msgstr "Finn song"
 
 #: src/Dialogs/FileNotFoundDialog.vala:99
 #: src/Dialogs/SetMusicFolderConfirmation.vala:113
@@ -450,12 +448,12 @@ msgstr "Vel musikkmappe"
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:38
 #, c-format
 msgid "Would you like to install the %s plugin?"
-msgstr ""
+msgstr "Vil du installere %s-tillegget?"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:39
 #, c-format
 msgid "This song cannot be played. The %s plugin is required to play the song."
-msgstr ""
+msgstr "Denne songen kan ikkje spelast av. %s-tillegget er kravd for avspeling."
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid "Install Plugin"
@@ -463,70 +461,69 @@ msgstr "Installer utvidelse"
 
 #: src/Dialogs/MediaEditor.vala:100
 msgid "Title:"
-msgstr ""
+msgstr "Tittel:"
 
 #: src/Dialogs/MediaEditor.vala:102
 msgid "Artist:"
-msgstr ""
+msgstr "Artist:"
 
 #: src/Dialogs/MediaEditor.vala:104
 msgid "Album:"
-msgstr ""
+msgstr "Album:"
 
 #: src/Dialogs/MediaEditor.vala:106
 msgid "Album Artist:"
-msgstr ""
+msgstr "Albumartist:"
 
 #: src/Dialogs/MediaEditor.vala:108
 msgid "Composer:"
-msgstr ""
+msgstr "Komponist:"
 
 #: src/Dialogs/MediaEditor.vala:110
 msgid "Grouping:"
-msgstr ""
+msgstr "Gruppering:"
 
 #: src/Dialogs/MediaEditor.vala:112
 msgid "Genre:"
-msgstr ""
+msgstr "Sjanger:"
 
 #: src/Dialogs/MediaEditor.vala:114
 msgid "Year:"
-msgstr ""
+msgstr "År:"
 
 #: src/Dialogs/MediaEditor.vala:116
 msgid "Track:"
-msgstr ""
+msgstr "Spor:"
 
 #: src/Dialogs/MediaEditor.vala:118
-#, fuzzy
 msgid "Disc:"
-msgstr "Plate"
+msgstr "Plate:"
 
 #: src/Dialogs/MediaEditor.vala:120
 msgid "Rating:"
-msgstr ""
+msgstr "Vurdering:"
 
 #: src/Dialogs/MediaEditor.vala:122
 msgid "Comment:"
-msgstr ""
+msgstr "Kommentar:"
 
 #. FIXME: don't know if I can delete this
 #: src/Dialogs/MediaEditor.vala:135 src/Dialogs/PreferencesWindow.vala:96
 #: src/Views/DeviceView.vala:45
 msgid "Close"
-msgstr ""
+msgstr "Lukk"
 
 #: src/Dialogs/NotImportedDialog.vala:51
-#, fuzzy, c-format
+#, c-format
 msgid "Issues while importing from %s"
-msgstr "Importerar musikk frå %s…"
+msgstr "Feil oppstod under importering frå %s"
 
 #: src/Dialogs/NotImportedDialog.vala:57
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] "%s klarte ikkje å importera %d element. Filane kan vera skada."
-msgstr[1] "%s klarte ikkje å importera %d element. Filane kan vera skada."
+msgstr[0] "Kunne ikkje importere %d element. Fila kan vere skada."
+msgstr[1] "Kunne ikkje importere %d element. Filene kan vere skada."
 
 #: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
@@ -558,11 +555,11 @@ msgstr "Vel Musikk mappe..."
 
 #: src/Dialogs/PreferencesWindow.vala:77
 msgid "Music Folder Location"
-msgstr ""
+msgstr "Musikkmappeplassering"
 
 #: src/Dialogs/PreferencesWindow.vala:79
 msgid "Library Management"
-msgstr ""
+msgstr "Organisering av bibliotek"
 
 #: src/Dialogs/PreferencesWindow.vala:80
 msgid "Keep Music folder organized:"
@@ -578,26 +575,25 @@ msgstr "Kopier dei importerte filene til biblioteket:"
 
 #: src/Dialogs/PreferencesWindow.vala:86
 msgid "Desktop Integration"
-msgstr ""
+msgstr "Skrivebordsintegrasjon"
 
 #: src/Dialogs/PreferencesWindow.vala:87
 msgid "Continue playback when closed:"
-msgstr ""
+msgstr "Hald fram med avspeling i bakgrunnen:"
 
 #: src/Dialogs/RemoveFilesDialog.vala:49
-#, fuzzy, c-format
+#, c-format
 msgid "Remove %d Song From Library?"
 msgid_plural "Remove %d Songs From Library?"
-msgstr[0] "Fjern %d songar frå %s?"
-msgstr[1] "Fjern %d songar frå %s?"
+msgstr[0] "Fjern %d song frå biblioteket?"
+msgstr[1] "Fjern %d songar frå biblioteket?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:55
-#, fuzzy, c-format
+#, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr "Fjern frå biblioteket"
+msgstr "Fjern «%s» frå biblioteket?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
-#, fuzzy
 msgid ""
 "This will remove the song from your library and from any device synced "
 "automatically."
@@ -605,11 +601,11 @@ msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
 msgstr[0] ""
-"Dette vil fjerne songen frå biblioteket ditt, og frå alle enheitar som vert "
-"automatisk synkronisert med %s."
+"Dette vil fjerne songen frå biblioteket ditt, og i tillegg frå ei kvar "
+"eining som vert synkronisert automatisk."
 msgstr[1] ""
-"Dette vil fjerne songane frå biblioteket ditt, og frå alle enheitar som vert "
-"automatisk synkronisert med %s."
+"Dette vil fjerne songane frå biblioteket ditt, og i tillegg frå ei kvar "
+"eining som vert synkronisert automatisk."
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
@@ -754,7 +750,7 @@ msgstr "År"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:278
 msgid "URI"
-msgstr ""
+msgstr "URI"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:351
 msgid "is"
@@ -803,11 +799,11 @@ msgstr "kbps"
 
 #. be a bit explicit to make translations better
 #: src/Dialogs/SyncWarningDialog.vala:52
-#, fuzzy, c-format
+#, c-format
 msgid "Sync will remove %i item from %s"
 msgid_plural "Sync will remove %i items from %s"
-msgstr[0] "Synkroniseringa vill fjerna %i elementar frå %s"
-msgstr[1] "Synkroniseringa vill fjerna %i elementar frå %s"
+msgstr[0] "Synkroniseringa vil fjerne %i element frå %s"
+msgstr[1] "Synkroniseringa vil fjerne %i element frå %s"
 
 #: src/Dialogs/SyncWarningDialog.vala:55
 #, c-format
@@ -947,16 +943,15 @@ msgstr "Stoppar …"
 
 #: src/Views/DeviceView.vala:66
 msgid "Device operation has been cancelled and will stop after this media."
-msgstr ""
+msgstr "Drift av eininga har blitt kansellert og vil stoppe etter dette mediet."
 
 #: src/Views/ViewStack.vala:45
-#, fuzzy
 msgid "No Results"
-msgstr "Ingen vurderingar"
+msgstr "Resultatlaust"
 
 #: src/Views/ViewStack.vala:45
 msgid "Try another search"
-msgstr ""
+msgstr "Prøv eit søk til"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
 msgid "Genres"
@@ -1094,13 +1089,13 @@ msgstr "Ikkje vurdert"
 #, c-format
 msgid "%u Star"
 msgid_plural "%u Stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u Stjerne"
+msgstr[1] "%u Stjerner"
 
 #: src/Views/ListView/Lists/CellDataFunctionHelper.vala:128
 #, c-format
 msgid "%u kbps"
-msgstr ""
+msgstr "%u kbps"
 
 #: src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #: src/Views/ListView/Lists/MusicListView.vala:425
@@ -1237,7 +1232,7 @@ msgstr "Legg til musikk i bibliotek"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:61
 msgid "Import music from a source into your library."
-msgstr ""
+msgstr "Importer musikk frå ei anna kjelde til biblioteket ditt."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:63
 msgid "Change Music Folder"
@@ -1270,7 +1265,7 @@ msgstr "Ingen songar"
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:51
 msgid "Updating playlist. Please wait."
-msgstr ""
+msgstr "Oppdaterer speleliste. Ver venleg og vent."
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:55
 msgid ""
@@ -1301,19 +1296,19 @@ msgstr "Ingen media"
 
 #: src/Widgets/AlbumListGrid.vala:64
 msgid "Set new album cover"
-msgstr ""
+msgstr "Sett nytt albumomslag"
 
 #: src/Widgets/AlbumListGrid.vala:240
 msgid "Image files"
-msgstr ""
+msgstr "Bildefiler"
 
 #: src/Widgets/AlbumListGrid.vala:245
 msgid "_Cancel"
-msgstr ""
+msgstr "_Avbryt"
 
 #: src/Widgets/AlbumListGrid.vala:246
 msgid "_Open"
-msgstr ""
+msgstr "_Opne"
 
 #: src/Widgets/EqualizerPopover.vala:167
 msgid "Save preset"
@@ -1347,19 +1342,16 @@ msgid "Scroll to Current Song"
 msgstr "Bla til gjeldande song"
 
 #: src/Widgets/MediaMenu.vala:49
-#, fuzzy
 msgid "Show in File Browser…"
-msgstr "Vis i filhandsamaren"
+msgstr "_Vis i filbehandlaren…"
 
 #: src/Widgets/MediaMenu.vala:50
-#, fuzzy
 msgid "Edit Song Info…"
-msgstr "Endra song informasjon"
+msgstr "Endre songinformasjon…"
 
 #: src/Widgets/MediaMenu.vala:51
-#, fuzzy
 msgid "Other Actions"
-msgstr "Andre filer"
+msgstr "Andre handlingar"
 
 #: src/Widgets/MediaMenu.vala:53
 msgctxt "Action item (verb)"
@@ -1371,18 +1363,16 @@ msgid "Add to Playlist"
 msgstr "Legg til i speleliste"
 
 #: src/Widgets/MediaMenu.vala:55
-#, fuzzy
 msgid "Remove Song…"
-msgstr "Fjern songen"
+msgstr "Fjern song…"
 
 #: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
 msgid "Import to Library"
 msgstr "Importer til bibliotek"
 
 #: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
-#, fuzzy
 msgid "Remove from Library…"
-msgstr "Fjern frå biblioteket"
+msgstr "Fjern frå biblioteket…"
 
 #: src/Widgets/MediaMenu.vala:99
 msgid "Remove from Device"
@@ -1469,7 +1459,7 @@ msgstr "Legg til ei smartspeleliste"
 #: src/Widgets/StatusBar.vala:75
 #, c-format
 msgid "Equalizer: %s"
-msgstr ""
+msgstr "Tonekontroll (EQ): %s"
 
 #. MUST follow the exact same order of Noise.Player.Repeat
 #: src/Widgets/TopDisplay.vala:139
@@ -1493,19 +1483,16 @@ msgid "Disable Shuffle"
 msgstr "Slå av shuffle"
 
 #: src/Widgets/ViewSelector.vala:81
-#, fuzzy
 msgid "View as albums"
 msgstr "Vis som album"
 
 #: src/Widgets/ViewSelector.vala:87
-#, fuzzy
 msgid "View as list"
 msgstr "Vis som liste"
 
 #: src/Widgets/ViewSelector.vala:93
-#, fuzzy
 msgid "View in columns"
-msgstr "Vis i kolonner"
+msgstr "Vis i kolonnar"
 
 #~ msgid "Importation of a song from Audio CD finished."
 #~ msgstr "Importering av ein song frå lyd-CD ferdig."
