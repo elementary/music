@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2018-12-18 12:07+0000\n"
+"PO-Revision-Date: 2019-01-09 00:06+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://weblate.elementary.io/projects/music/music/"
 "ja/>\n"
@@ -937,7 +937,7 @@ msgstr "デバイスの操作は中止され、このメディア以降は停止
 
 #: src/Views/ViewStack.vala:45
 msgid "No Results"
-msgstr "検索結果がありません"
+msgstr "検索結果はありません"
 
 #: src/Views/ViewStack.vala:45
 msgid "Try another search"
