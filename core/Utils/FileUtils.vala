@@ -90,11 +90,11 @@ namespace Noise.FileUtils {
      */
     public async uint enumerate_files_async (File folder, string[]? types = null,
                                              bool recursive = true,
-                                             out Gee.Collection<File>? files = null,
-                                             Cancellable? cancellable = null) {
+                                             Cancellable? cancellable = null,
+                                             out Gee.Collection<File>? files = null) {
         return_val_if_fail (yield is_directory_async (folder), 0);
         var counter = new FileEnumerator ();
-        return yield counter.enumerate_files_async (folder, types, out files, recursive, cancellable);
+        return yield counter.enumerate_files_async (folder, types, recursive, cancellable, out files);
     }
 
     /**
@@ -209,9 +209,9 @@ namespace Noise.FileUtils {
          * Enumerates the number of files contained by a directory.
          */
         public async uint enumerate_files_async (File folder, string[]? types,
-                                                 out Gee.Collection<File>? files,
                                                  bool recursive = true,
-                                                 Cancellable? cancellable = null)
+                                                 Cancellable? cancellable = null,
+                                                 out Gee.Collection<File>? files)
         {
             assert (file_count == 0);
 
