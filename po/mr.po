@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2018-10-11 14:02+0000\n"
+"PO-Revision-Date: 2018-12-24 00:06+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://weblate.elementary.io/projects/music/music/"
 "mr/>\n"
@@ -119,7 +119,7 @@ msgstr " (%d)"
 #: core/Utils/PlaylistsUtils.vala:95
 #, c-format
 msgid "%s (%d)"
-msgstr ""
+msgstr "%s (%d)"
 
 #: core/Utils/PlaylistsUtils.vala:235
 msgid "New playlist"
@@ -129,7 +129,7 @@ msgstr "नवीन यादी"
 #: core/Utils/PlaylistsUtils.vala:246
 #, c-format
 msgid "%s (%i)"
-msgstr ""
+msgstr "%s (%i)"
 
 #: core/Utils/PlaylistsUtils.vala:273
 msgid "Export Playlist"
@@ -186,7 +186,7 @@ msgstr "अनोळखी यादी फाईल. फाईल आणणे 
 #. / for more details.
 #: core/Utils/TimeUtils.vala:40
 msgid "%m/%e/%Y %l:%M %p"
-msgstr ""
+msgstr "%m/%e/%Y %l:%M %p"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:105
 #: plugins/Devices/iPod/iPodDevice.vala:65
@@ -255,51 +255,51 @@ msgstr "अप्लिकेशन ला CD वर एकही गाणे �
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
 msgid "Song imported from Audio CD."
-msgstr ""
+msgstr "ऑडिओ सीडीमधून आयात केलेले गाणे. "
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
 #, c-format
 msgid "%i songs imported from Audio CD."
-msgstr ""
+msgstr "%i ऑडिओ सीडीमधून आयात केलेली गाणी."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
 msgid "Importing track %u: %s"
-msgstr ""
+msgstr "%u: %s ट्रॅक आयात करीत आहे"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:364
 msgid "CD import will be <b>cancelled</b> after current import."
-msgstr ""
+msgstr "चालू आयातानंतर सीडी आयात <b>रद्द </b>करण्यात येईल."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:383
 msgid "Could not import this CD"
-msgstr ""
+msgstr "ही सीडी आयात करू शकलो नाही"
 
 #: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
 msgid "Import"
-msgstr ""
+msgstr "आयात"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:37
 msgid "An Error Occurred"
-msgstr ""
+msgstr "एक त्रुटी आली"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:38
 msgid "Could not load this Audio CD."
-msgstr ""
+msgstr "ही ऑडिओ सीडी लोड शकली नाही."
 
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
 msgid "Finishing sync process…"
-msgstr ""
+msgstr "समक्रमण प्रक्रिया समाप्त करीत आहे ..."
 
 #: plugins/Devices/iPod/iPodLibrary.vala:230
 #: plugins/Devices/iPod/iPodLibrary.vala:386
 msgid "Cancelling Sync…"
-msgstr ""
+msgstr "समक्रमण रद्द करीत आहे ..."
 
 #: plugins/LastFM/LastFM.vala:98
 msgid "No similar songs found"
-msgstr ""
+msgstr "एकही समान गाणी सापडली नाहीत"
 
 #: plugins/LastFM/LastFM.vala:98
 msgid ""
@@ -310,28 +310,28 @@ msgstr ""
 
 #: plugins/LastFM/SimilarMedia.vala:44
 msgid "Similar"
-msgstr ""
+msgstr "समान"
 
 #: plugins/LastFM/SimilarMediaView.vala:48
 msgid "media"
-msgstr ""
+msgstr "माध्यम"
 
 #: plugins/LastFM/SimilarMediaView.vala:54
 msgid "Similar Media"
-msgstr ""
+msgstr "तत्सम माध्यम"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
-msgstr ""
+msgstr "आयात पूर्ण"
 
 #: src/FileOperator.vala:306
 msgid "Your Library Has Been Imported."
-msgstr ""
+msgstr "आपली लायब्ररी आयात केली गेली आहे."
 
 #. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:316
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr ""
+msgstr "फायली <b>संगीत</b> फोल्डरमध्ये <b>कॉपी</b> करत आहे..."
 
 #: src/LibraryWindow.vala:353 src/LibraryWindow.vala:420
 #: src/LibraryWindow.vala:598 src/LibraryWindow.vala:704
@@ -341,35 +341,35 @@ msgstr "संगीत"
 
 #: src/LibraryWindow.vala:370
 msgid "Import to Library…"
-msgstr ""
+msgstr "लायब्ररीत आयात करा..."
 
 #: src/LibraryWindow.vala:373 src/Dialogs/PreferencesWindow.vala:40
 msgid "Preferences"
-msgstr ""
+msgstr "प्राधान्ये"
 
 #: src/LibraryWindow.vala:389
 msgid "Previous"
-msgstr ""
+msgstr "मागील"
 
 #: src/LibraryWindow.vala:393 src/LibraryWindow.vala:448
 msgid "Play"
-msgstr ""
+msgstr "वाजवा"
 
 #: src/LibraryWindow.vala:397
 msgid "Next"
-msgstr ""
+msgstr "पुढील"
 
 #: src/LibraryWindow.vala:401
 msgid "Search Music"
-msgstr ""
+msgstr "संगीत शोधा"
 
 #: src/LibraryWindow.vala:451
 msgid "Pause"
-msgstr ""
+msgstr "विराम द्या"
 
 #: src/LibraryWindow.vala:773
 msgid "No songs in Queue"
-msgstr ""
+msgstr "रांगेत कोणतीही गाणी नाहीत"
 
 #: src/LibraryWindow.vala:773
 msgid ""
@@ -380,7 +380,7 @@ msgstr ""
 
 #: src/LibraryWindow.vala:776
 msgid "No songs in History"
-msgstr ""
+msgstr "इतिहासात कोणतीही गाणी नाहीत"
 
 #: src/LibraryWindow.vala:776
 msgid ""
@@ -391,147 +391,148 @@ msgstr ""
 
 #: src/LibraryWindow.vala:980 src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import Music"
-msgstr ""
+msgstr "संगीत आयात करा"
 
 #: src/PlaybackManager.vala:105
 msgctxt "Name of the playlist"
 msgid "Queue"
-msgstr ""
+msgstr "ओळ"
 
 #: src/Dialogs/FileNotFoundDialog.vala:37
 msgid "File not found"
-msgstr ""
+msgstr "फाइल सापडली नाही"
 
 #: src/Dialogs/FileNotFoundDialog.vala:47
 #, c-format
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
-msgstr ""
+msgstr "<b>%s</b> यांची <b>%s</b> साठी संगीत फाइल सापडू शकली नाही."
 
 #: src/Dialogs/FileNotFoundDialog.vala:50
 #, c-format
 msgid "%i music files could not be found?"
-msgstr ""
+msgstr "%i संगीत फाइल्स सापडली नाहीत?"
 
 #: src/Dialogs/FileNotFoundDialog.vala:53
 msgid "Rescan Library"
-msgstr ""
+msgstr "लायब्ररी पुन्हा स्कॅन करा"
 
 #: src/Dialogs/FileNotFoundDialog.vala:54
 msgid "Remove Song"
-msgstr ""
+msgstr "गाणे काढा"
 
 #: src/Dialogs/FileNotFoundDialog.vala:56
 msgid "Find Song"
-msgstr ""
+msgstr "गाणे शोधा"
 
 #: src/Dialogs/FileNotFoundDialog.vala:99
 #: src/Dialogs/SetMusicFolderConfirmation.vala:113
 msgid "Choose Music Folder"
-msgstr ""
+msgstr "संगीत फोल्डर निवडा"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:38
 #, c-format
 msgid "Would you like to install the %s plugin?"
-msgstr ""
+msgstr "आपण  %s प्लगइन स्थापित करू इच्छिता?"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:39
 #, c-format
 msgid "This song cannot be played. The %s plugin is required to play the song."
 msgstr ""
+"हे गाणे प्ले केले जाऊ शकत नाही. गाणे प्ले करण्यासाठी %s प्लगइन आवश्यक आहे."
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid "Install Plugin"
-msgstr ""
+msgstr "प्लगइन स्थापित करा"
 
 #: src/Dialogs/MediaEditor.vala:100
 msgid "Title:"
-msgstr ""
+msgstr "शीर्षकः"
 
 #: src/Dialogs/MediaEditor.vala:102
 msgid "Artist:"
-msgstr ""
+msgstr "कलावंत:"
 
 #: src/Dialogs/MediaEditor.vala:104
 msgid "Album:"
-msgstr ""
+msgstr "अल्बमः"
 
 #: src/Dialogs/MediaEditor.vala:106
 msgid "Album Artist:"
-msgstr ""
+msgstr "अल्बम कलावंत:"
 
 #: src/Dialogs/MediaEditor.vala:108
 msgid "Composer:"
-msgstr ""
+msgstr "रचनाकार:"
 
 #: src/Dialogs/MediaEditor.vala:110
 msgid "Grouping:"
-msgstr ""
+msgstr "वर्गीकरण:"
 
 #: src/Dialogs/MediaEditor.vala:112
 msgid "Genre:"
-msgstr ""
+msgstr "शैली:"
 
 #: src/Dialogs/MediaEditor.vala:114
 msgid "Year:"
-msgstr ""
+msgstr "वर्ष:"
 
 #: src/Dialogs/MediaEditor.vala:116
 msgid "Track:"
-msgstr ""
+msgstr "ट्रॅक:"
 
 #: src/Dialogs/MediaEditor.vala:118
 msgid "Disc:"
-msgstr ""
+msgstr "डिस्कः"
 
 #: src/Dialogs/MediaEditor.vala:120
 msgid "Rating:"
-msgstr ""
+msgstr "रेटिंगः"
 
 #: src/Dialogs/MediaEditor.vala:122
 msgid "Comment:"
-msgstr ""
+msgstr "टिप्पणी:"
 
 #. FIXME: don't know if I can delete this
 #: src/Dialogs/MediaEditor.vala:135 src/Dialogs/PreferencesWindow.vala:96
 #: src/Views/DeviceView.vala:45
 msgid "Close"
-msgstr ""
+msgstr "बंद करा"
 
 #: src/Dialogs/NotImportedDialog.vala:51
 #, c-format
 msgid "Issues while importing from %s"
-msgstr ""
+msgstr "%s पासून आयात करताना समस्या"
 
 #: src/Dialogs/NotImportedDialog.vala:57
 #, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d आयटम आयात करण्यास अक्षम. फाइल खराब असू शकते."
+msgstr[1] "%d आयटम आयात करण्यास अक्षम. फायली खराब असू  शकतात."
 
 #: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
-msgstr ""
+msgstr "सर्व दूषित फाइल्स कचर्यामध्ये हलवा"
 
 #: src/Dialogs/NotImportedDialog.vala:72
 msgid "del"
-msgstr ""
+msgstr "del"
 
 #: src/Dialogs/NotImportedDialog.vala:81
 msgid "File Location"
-msgstr ""
+msgstr "फाइल स्थान"
 
 #: src/Dialogs/NotImportedDialog.vala:97
 msgid "Select individual files to move to trash:"
-msgstr ""
+msgstr "कचर्यामध्ये हलविण्यासाठी स्वतंत्र फायली निवडा:"
 
 #: src/Dialogs/NotImportedDialog.vala:101 src/Dialogs/RemoveFilesDialog.vala:73
 msgid "Move to Trash"
-msgstr ""
+msgstr "कचर्यामध्ये हलवा"
 
 #: src/Dialogs/NotImportedDialog.vala:104
 msgid "Ignore"
-msgstr ""
+msgstr "दुर्लक्ष करा"
 
 #: src/Dialogs/PreferencesWindow.vala:48
 msgid "Select Music Folder…"

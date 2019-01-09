@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2018-08-19 00:09+0000\n"
+"PO-Revision-Date: 2019-01-02 19:15+0000\n"
 "Last-Translator: Jörg Arnold <j.ar@mailbox.org>\n"
 "Language-Team: German <https://weblate.elementary.io/projects/music/music/de/"
 ">\n"
@@ -262,14 +262,13 @@ msgstr ""
 "importiert werden."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, fuzzy
 msgid "Song imported from Audio CD."
-msgstr "Titel von einer Audio-CD importieren"
+msgstr "Von der Audio-CD eingelesene Titel."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, fuzzy, c-format
+#, c-format
 msgid "%i songs imported from Audio CD."
-msgstr "%s hat einen Titel von der Audio-CD importiert."
+msgstr "%i Titel, die von der Audio-CD eingelesen wurden."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
@@ -282,21 +281,19 @@ msgstr "Der Import der CD wird nach dem aktuellen Import<b>abgebrochen</b>."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:383
 msgid "Could not import this CD"
-msgstr ""
+msgstr "CD konnte nicht eingelesen werden"
 
 #: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
 msgid "Import"
 msgstr "Importieren"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:37
-#, fuzzy
 msgid "An Error Occurred"
 msgstr "Es ist ein Fehler aufgetreten"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:38
-#, fuzzy
 msgid "Could not load this Audio CD."
-msgstr "%s konnte den Inhalt der Audio-CD nicht lesen."
+msgstr "Audio-CD konnte nicht gelesen werden."
 
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
@@ -507,9 +504,8 @@ msgid "Track:"
 msgstr "Titel:"
 
 #: src/Dialogs/MediaEditor.vala:118
-#, fuzzy
 msgid "Disc:"
-msgstr "CD"
+msgstr "CD:"
 
 #: src/Dialogs/MediaEditor.vala:120
 msgid "Rating:"
@@ -1509,17 +1505,14 @@ msgid "Disable Shuffle"
 msgstr "Zufall deaktivieren"
 
 #: src/Widgets/ViewSelector.vala:81
-#, fuzzy
 msgid "View as albums"
 msgstr "Albenansicht"
 
 #: src/Widgets/ViewSelector.vala:87
-#, fuzzy
 msgid "View as list"
 msgstr "Listenansicht"
 
 #: src/Widgets/ViewSelector.vala:93
-#, fuzzy
 msgid "View in columns"
 msgstr "Spaltenansicht"
 
