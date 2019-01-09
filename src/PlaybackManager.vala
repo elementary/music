@@ -247,61 +247,11 @@ public class Noise.PlaybackManager : Object {
         }
     }
     
-    /**
-    * Gets next media ignoring shuffle and playback settings
-    */
-    public Media? simple_get_next (bool play) {
+    public Media? get_next (bool play, bool consider_playback_options = true) {
         Media? rv = null;
+        _playing_queued_song = false;
         var main_settings = Settings.Main.get_default ();
-    
-        if (_current.is_empty) {
-            queue_media (library.get_medias ());
-        }
         
-        if (main_settings.shuffle_mode != Noise.Settings.Shuffle.OFF) {
-           
-            if (_current_shuffled.is_empty) {
-                reshuffle ();
-            _current_shuffled_index = 0;
-            }
-    
-            if (current_media == null || _current_shuffled_index == (_current_shuffled.size - 1)) {
-            _current_shuffled_index = -1;
-            }
-    
-            _current_shuffled_index++;
-            rv = _current_shuffled.get (_current_shuffled_index);
-     
-        } else {
-            
-            if (current_media == null || _current_index == (_current.size - 1)) {
-            _current_index = -1;
-            }
-         
-            _current_index++;
-            rv = _current.get (_current_index);
-    
-        }
-        
-        if (queue_playlist.medias.contains (rv)) {
-            _playing_queued_song = true;
-        }
-    
-        if (play) {
-            play_media (rv);
-        }	
-    
-        return rv;
-        
-    }
-    
-    /**
-    * Gets next media taking into consideration shuffle and playback settings
-    */
-    public Media? get_next (bool play) {
-        Media? rv = null;
-        
-        var main_settings = Settings.Main.get_default ();
         if (main_settings.shuffle_mode != Noise.Settings.Shuffle.OFF) {
             debug ("Shuffled size: %d", _current_shuffled.size);
             if (_current_shuffled.is_empty) {
@@ -317,6 +267,16 @@ public class Noise.PlaybackManager : Object {
             if (current_media == null) {
                 _current_shuffled_index = 0;
                 rv = _current_shuffled.get (0);
+            } else if (!consider_playback_options) {
+                
+                if (_current_shuffled_index == (_current_shuffled.size - 1)) {
+                    _current_shuffled_index = 0;
+                } else {
+                    _current_shuffled_index++;
+                }
+                
+                rv = _current_shuffled.get (_current_shuffled_index);
+                
             } else if (main_settings.repeat_mode == Noise.Settings.Repeat.MEDIA) {
                 rv = _current_shuffled.get (_current_shuffled_index);
             } else if (_current_shuffled_index == (_current_shuffled.size - 1)) {// consider repeat options
@@ -361,6 +321,16 @@ public class Noise.PlaybackManager : Object {
             if (current_media == null) {
                 _current_index = 0;
                 rv = _current.get (0);
+            } else if (!consider_playback_options) {
+            
+                if (_current_index == (_current.size - 1)) {
+                    _current_index = 0;
+                } else {
+                    _current_index++;
+                }
+                
+                rv = _current.get (_current_index);
+            
             } else if (main_settings.repeat_mode == Noise.Settings.Repeat.MEDIA) {
                 rv = _current.get (_current_index);
             } else if (_current_index == (_current.size - 1)) {// consider repeat options
@@ -411,145 +381,37 @@ public class Noise.PlaybackManager : Object {
         return rv;
     }
     
-    
-    /**
-    * Gets previous media ignoring shuffle and playback settings
-    */
-    public Media? simple_get_previous (bool play) {
+    //We don't need to consider playback options for the previous media
+    public Media? get_previous (bool play) {
         Media? rv = null;
         var main_settings = Settings.Main.get_default ();
         _playing_queued_song = false;
-    
+        
         if (_current.is_empty) {
             queue_media (library.get_medias ());
         }
-    
+        
+        int index = _current_index;
+        var medias = _current;
         
         if (main_settings.shuffle_mode != Noise.Settings.Shuffle.OFF) {
-        
-           if (_current_shuffled.is_empty) {
-            reshuffle ();
-           }
-           
-    
-           if (current_media == null || _current_shuffled_index == 0) {
-            _current_shuffled_index = _current_shuffled.size;
-           }
-    
-           _current_shuffled_index--;
-           rv = _current_shuffled.get (_current_shuffled_index);
-    
-        } else {
-        
-            if (current_media == null || _current_index == 0) {
-            _current_index = _current.size;
-            }
-        
-            _current_index--;
-            rv = _current.get (_current_index);
-    
-        }
-    
-        if (queue_playlist.medias.contains (rv)) {
-            _playing_queued_song = true;
-        }
-    
-        if (play) {
-            play_media (rv);
-        }
-    
-        return rv;
-
-    }
-    
-    
-    /**
-    * Gets previous media based on shuffle and playback settings (may not be necessary in the future)
-    */
-    // TODO: remove code redundancy
-    public Media? get_previous (bool play) {
-        Media? rv = null;
-        
-        var main_settings = Settings.Main.get_default ();
-        if(main_settings.shuffle_mode != Noise.Settings.Shuffle.OFF) {
             if (_current_shuffled.is_empty) {
-                if (_current.is_empty) {
-                    queue_media (library.get_medias ()); // first initialize the current selection the reshuffle it
-                }
-
                 reshuffle ();
             }
-
-            _playing_queued_song = false;
             
-            if(current_media == null) {
-                _current_shuffled_index = _current_shuffled.size - 1;
-                rv = _current_shuffled.get (_current_shuffled_index);
-            } else if(main_settings.repeat_mode == Noise.Settings.Repeat.MEDIA) {
-                rv = _current_shuffled.get(_current_shuffled_index);
-            } else if(_current_shuffled_index == 0) {// consider repeat options
-                if(main_settings.repeat_mode == Noise.Settings.Repeat.ALL)
-                    _current_shuffled_index = _current_shuffled.size - 1;
-                else {
-                    stop_playback ();
-                    return null;
-                }
-                
-                rv = _current_shuffled.get(_current_shuffled_index);
-            } else if(_current_shuffled_index > 0 && _current_shuffled_index < _current_shuffled.size){
-                // make sure we are repeating what we need to be
-                if(main_settings.repeat_mode == Noise.Settings.Repeat.ARTIST && _current_shuffled.get(_current_shuffled_index - 1).artist != _current_shuffled.get(_current_shuffled_index).artist) {
-                    while(_current_shuffled.get(_current_shuffled_index + 1).artist == current_media.artist)
-                        ++_current_shuffled_index;
-                } else if(main_settings.repeat_mode == Noise.Settings.Repeat.ALBUM && _current_shuffled.get(_current_shuffled_index - 1).album != _current_shuffled.get(_current_shuffled_index).album) {
-                    while(_current_shuffled.get(_current_shuffled_index + 1).album == current_media.album)
-                        ++_current_shuffled_index;
-                } else
-                    --_current_shuffled_index;
-                
-                rv = _current_shuffled.get(_current_shuffled_index);
-            } else {
-                _current_shuffled_index = _current_shuffled.size - 1;
-                rv = _current_shuffled.get(_current_shuffled_index);
-            }
-        } else {
-            _playing_queued_song = false;
-            
-            if(current_media == null) {
-                _current_index = _current.size - 1;
-                rv = _current.get(_current_index);
-            } else if(main_settings.repeat_mode == Noise.Settings.Repeat.MEDIA) {
-                rv = _current.get(_current_index);
-            } else if(_current_index == (0)) {// consider repeat options
-                if(main_settings.repeat_mode == Noise.Settings.Repeat.ALL)
-                    _current_index = _current.size - 1;
-                else {
-                    stop_playback ();
-                    return null;
-                }
-                
-                rv = _current.get (_current_index);
-            } else if (_current_index > 0 && _current_index < _current.size) {
-                // make sure we are repeating what we need to be
-                if (main_settings.repeat_mode == Noise.Settings.Repeat.ARTIST && _current.get (_current_index - 1).artist != _current.get (_current_index).artist) {
-                    while (_current.get (_current_index + 1).artist == current_media.artist)
-                        _current_index++;
-                } else if (main_settings.repeat_mode == Noise.Settings.Repeat.ALBUM && _current.get(_current_index - 1).album != _current.get (_current_index).album) {
-                    while (_current.get (_current_index + 1).album == current_media.album)
-                        _current_index++;
-                } else {
-                    _current_index--;
-                }
-
-                rv = _current.get (_current_index);
-            } else {
-                queue_media (library.get_medias ());
-
-                _current_index = _current.size - 1;
-                rv = _current.get (_current_index);
-            }
+            index = _current_shuffled_index;
+            medias = _current_shuffled;
         }
-
+        
+        index = (current_media == null || index == 0) ? medias.size - 1 : index - 1;
+        rv = medias.get (index);
+        
+        if (main_settings.shuffle_mode != Noise.Settings.Shuffle.OFF) {
+            _current_shuffled_index = index;
+        } else {
+            _current_index = index;
+        }
+        
         if (queue_playlist.medias.contains (rv)) {
             _playing_queued_song = true;
         }
@@ -559,6 +421,7 @@ public class Noise.PlaybackManager : Object {
         }
         
         return rv;
+
     }
 
     public void play_media (Media m) {

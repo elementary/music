@@ -62,9 +62,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public const string ACTION_IMPORT = "action_import";
     public const string ACTION_PLAY = "action_play";
     public const string ACTION_PLAY_NEXT = "action_play_next";
-    public const string ACTION_SIMPLE_PLAY_NEXT = "action_simple_play_next";
     public const string ACTION_PLAY_PREVIOUS = "action_play_previous";
-    public const string ACTION_SIMPLE_PLAY_PREVIOUS = "action_simple_play_previous";
     public const string ACTION_QUIT = "action_quit";
     public const string ACTION_SEARCH = "action_search";
     public const string ACTION_VIEW_ALBUMS = "action_view_albums";
@@ -75,9 +73,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         { ACTION_IMPORT, action_import },
         { ACTION_PLAY, action_play, null, "false" },
         { ACTION_PLAY_NEXT, action_play_next },
-        { ACTION_SIMPLE_PLAY_NEXT, action_simple_play_next },
         { ACTION_PLAY_PREVIOUS, action_play_previous },
-        { ACTION_SIMPLE_PLAY_PREVIOUS, action_simple_play_previous },
         { ACTION_QUIT, action_quit },
         { ACTION_SEARCH, action_search },
         { ACTION_VIEW_ALBUMS, action_view_albums },
@@ -389,8 +385,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         menu_button.valign = Gtk.Align.CENTER;
 
         var previous_button = new Gtk.Button.from_icon_name ("media-skip-backward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-        //previous_button.action_name = ACTION_PREFIX + ACTION_PLAY_PREVIOUS;
-        previous_button.action_name = ACTION_PREFIX + ACTION_SIMPLE_PLAY_PREVIOUS;
+        previous_button.action_name = ACTION_PREFIX + ACTION_PLAY_PREVIOUS;
         previous_button.tooltip_text = _("Previous");
 
         var play_button = new Gtk.Button.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
@@ -398,8 +393,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         play_button.tooltip_text = _("Play");
 
         var next_button = new Gtk.Button.from_icon_name ("media-skip-forward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-        //next_button.action_name = ACTION_PREFIX + ACTION_PLAY_NEXT;
-        next_button.action_name = ACTION_PREFIX + ACTION_SIMPLE_PLAY_NEXT;
+        next_button.action_name = ACTION_PREFIX + ACTION_PLAY_NEXT;
         next_button.tooltip_text = _("Next");
 
         search_entry = new Gtk.SearchEntry ();
@@ -653,9 +647,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         ((SimpleAction) actions.lookup_action (ACTION_IMPORT)).set_enabled (!doing_ops && folder_set);
         ((SimpleAction) actions.lookup_action (ACTION_PLAY)).set_enabled (media_active || media_available);
         ((SimpleAction) actions.lookup_action (ACTION_PLAY_NEXT)).set_enabled (media_active || media_available);
-        ((SimpleAction) actions.lookup_action (ACTION_SIMPLE_PLAY_NEXT)).set_enabled (media_active || media_available);
         ((SimpleAction) actions.lookup_action (ACTION_PLAY_PREVIOUS)).set_enabled (media_active || media_available);
-        ((SimpleAction) actions.lookup_action (ACTION_SIMPLE_PLAY_PREVIOUS)).set_enabled (media_active || media_available);
 
         // hide playlists when media list is empty
         source_list_view.change_playlist_category_visibility (have_media);
@@ -944,35 +936,13 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         play_pause_changed ();
     }
 
-    public virtual void play_next_media (bool inhibit_notifications = false) {
+    public virtual void play_next_media (bool inhibit_notifications = false, bool consider_playback_options = true) {
         // if not 90% done, skip it
         if (!added_to_play_count) {
             App.player.current_media.skip_count++;
         }
 
-        Media? m = App.player.get_next (true);
-
-        /* test to stop playback/reached end */
-        if (m == null) {
-            App.player.stop_playback ();
-            update_sensitivities.begin ();
-            return;
-        }
-
-        if (!inhibit_notifications) {
-            notify_current_media_async.begin ();
-        }
-    }
-    
-    //plays next media ignoring shuffle and playback settings
-    public virtual void simple_play_next_media (bool inhibit_notifications = false) {
-	
-        // if not 90% done, skip it
-        if (!added_to_play_count) {
-            App.player.current_media.skip_count++;
-        }
-
-        Media? m = App.player.simple_get_next (true);
+        Media? m = App.player.get_next (true, consider_playback_options);
 
         /* test to stop playback/reached end */
         if (m == null) {
@@ -1003,26 +973,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             top_display.change_value (Gtk.ScrollType.NONE, 0);
         }
     }
-    
-    //plays previous media ignoring shuffle and playback settings
-    public virtual void simple_play_previous_media (bool inhibit_notifications = false) {
-        if (App.player.player.get_position () < 5000000000) {
-            bool play = true;
-            var prev = App.player.simple_get_previous (true);
-           
-            if (prev == null) {
-                App.player.stop_playback ();
-                update_sensitivities.begin ();
-                return;
-            } else if (play && !inhibit_notifications) {
-                notify_current_media_async.begin ();
-            }
-        } else {
-            top_display.change_value (Gtk.ScrollType.NONE, 0);
-        }
-
-    }
-    
 
     public virtual void action_import () {
         if (!library_manager.doing_file_operations ()) {
@@ -1060,19 +1010,11 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     private void action_play_next () {
-        play_next_media ();
-    }
-    
-    private void action_simple_play_next () {
-        simple_play_next_media ();
+        play_next_media (false, false);
     }
 
     private void action_play_previous () {
         play_previous_media ();
-    }
-    
-    private void action_simple_play_previous () {
-        simple_play_previous_media ();
     }
 
     private void action_quit () {
