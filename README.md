@@ -14,7 +14,7 @@ You'll need the following dependencies:
 * libgee-0.8-dev
 * libglib2.0-dev
 * libgpod-dev
-* libgranite-dev
+* libgranite-dev >= 5.2.0
 * libsignon-glib-dev >= 2.0
 * libgstreamer1.0-dev
 * libgstreamer-plugins-base1.0-dev

@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-09-06 00:09+0000\n"
-"Last-Translator: Cleiton Floss <cleitonfloss@gmail.com>\n"
+"POT-Creation-Date: 2018-11-05 13:23-0800\n"
+"PO-Revision-Date: 2018-11-15 18:32+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://weblate.elementary.io/projects/music/music/"
 "fi/>\n"
 "Language: fi\n"
@@ -141,8 +141,8 @@ msgid "Export Playlist"
 msgstr "Vie soittolista"
 
 #: core/Utils/PlaylistsUtils.vala:275 core/Utils/PlaylistsUtils.vala:369
-#: src/LibraryWindow.vala:980 src/Dialogs/FileNotFoundDialog.vala:84
-#: src/Dialogs/FileNotFoundDialog.vala:123
+#: src/LibraryWindow.vala:982 src/Dialogs/FileNotFoundDialog.vala:55
+#: src/Dialogs/FileNotFoundDialog.vala:101
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:50
 #: src/Dialogs/RemoveFilesDialog.vala:82
 #: src/Dialogs/SetMusicFolderConfirmation.vala:67
@@ -153,7 +153,7 @@ msgstr "Vie soittolista"
 msgid "Cancel"
 msgstr "Peru"
 
-#: core/Utils/PlaylistsUtils.vala:276 src/Dialogs/MediaEditor.vala:142
+#: core/Utils/PlaylistsUtils.vala:276 src/Dialogs/MediaEditor.vala:137
 #: src/Dialogs/SmartPlaylistEditor.vala:89
 msgid "Save"
 msgstr "Tallenna"
@@ -175,8 +175,8 @@ msgstr "Soittolista"
 msgid "Import %s"
 msgstr "Tuo %s"
 
-#: core/Utils/PlaylistsUtils.vala:370 src/LibraryWindow.vala:981
-#: src/Dialogs/FileNotFoundDialog.vala:124
+#: core/Utils/PlaylistsUtils.vala:370 src/LibraryWindow.vala:983
+#: src/Dialogs/FileNotFoundDialog.vala:102
 #: src/Dialogs/SetMusicFolderConfirmation.vala:116
 #: src/Views/Wrappers/MusicViewWrapper.vala:147
 #: src/Widgets/AlbumListGrid.vala:244
@@ -262,13 +262,13 @@ msgid ""
 msgstr "CD-levyltä ei löytynyt yhtäkään kappaletta. Kappaleita ei voi tuoda"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-msgid "Importation of a song from Audio CD finished."
-msgstr "Kappaleen tuonti ääni-CD:ltä valmistui."
+msgid "Song imported from Audio CD."
+msgstr "Kappale tuotu ääni-CD:ltä."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
 #, c-format
-msgid "Importation of %i songs from Audio CD finished."
-msgstr "%i kappaleen tuonti ääni-CD:ltä valmistui."
+msgid "%i songs imported from Audio CD."
+msgstr "%s kappaletta tuotu ääni-CD:ltä."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
@@ -280,20 +280,20 @@ msgid "CD import will be <b>cancelled</b> after current import."
 msgstr "CD-tuonti <b>perutaan</b> nykyisen tuonnin jälkeen."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:383
-msgid "An error occured during the Import of this CD"
-msgstr "Tämän CD:n tuonnin aikana tapahtui virhe"
+msgid "Could not import this CD"
+msgstr "Tätä CD:tä ei voitu tuoda"
 
 #: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
 msgid "Import"
 msgstr "Tuo"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:37
-msgid "An Error Occured"
-msgstr "Virhetilanne"
+msgid "An Error Occurred"
+msgstr "Tapahtui virhe"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:38
-msgid "There was an error while loading this Audio CD."
-msgstr "Ääni-CD:tä ladatessa tapahtui virhe."
+msgid "Could not load this Audio CD."
+msgstr "Tätä ääni-CD:tä ei voitu ladata."
 
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
@@ -331,58 +331,58 @@ msgstr "media"
 msgid "Similar Media"
 msgstr "Samankaltainen media"
 
-#: src/FileOperator.vala:305
+#: src/FileOperator.vala:306
 msgid "Import Complete"
 msgstr "Tuonti on valmis"
 
-#: src/FileOperator.vala:305
+#: src/FileOperator.vala:306
 msgid "Your Library Has Been Imported."
 msgstr "Kirjastosi on tuotu."
 
 #. if doing import and copy to music folder is enabled, do copy here
-#: src/FileOperator.vala:315
+#: src/FileOperator.vala:316
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr "<b>Kopioidaan</b> tiedostoja <b>musiikkikansioon</b>…"
 
-#: src/LibraryWindow.vala:192
-msgid "Import to Library…"
-msgstr "Tuo kirjastoon…"
-
-#: src/LibraryWindow.vala:195 src/Dialogs/PreferencesWindow.vala:40
-msgid "Preferences"
-msgstr "Asetukset"
-
-#: src/LibraryWindow.vala:211
-msgid "Previous"
-msgstr "Edellinen"
-
-#: src/LibraryWindow.vala:215 src/LibraryWindow.vala:270
-msgid "Play"
-msgstr "Toista"
-
-#: src/LibraryWindow.vala:219
-msgid "Next"
-msgstr "Seuraava"
-
-#: src/LibraryWindow.vala:223
-msgid "Search Music"
-msgstr "Etsi musiikkia"
-
-#: src/LibraryWindow.vala:242 src/LibraryWindow.vala:451
-#: src/LibraryWindow.vala:596 src/LibraryWindow.vala:702
-#: src/LibraryWindow.vala:1144
+#: src/LibraryWindow.vala:353 src/LibraryWindow.vala:420
+#: src/LibraryWindow.vala:598 src/LibraryWindow.vala:704
+#: src/LibraryWindow.vala:1146
 msgid "Music"
 msgstr "Musiikki"
 
-#: src/LibraryWindow.vala:273
+#: src/LibraryWindow.vala:370
+msgid "Import to Library…"
+msgstr "Tuo kirjastoon…"
+
+#: src/LibraryWindow.vala:373 src/Dialogs/PreferencesWindow.vala:40
+msgid "Preferences"
+msgstr "Asetukset"
+
+#: src/LibraryWindow.vala:389
+msgid "Previous"
+msgstr "Edellinen"
+
+#: src/LibraryWindow.vala:393 src/LibraryWindow.vala:448
+msgid "Play"
+msgstr "Toista"
+
+#: src/LibraryWindow.vala:397
+msgid "Next"
+msgstr "Seuraava"
+
+#: src/LibraryWindow.vala:401
+msgid "Search Music"
+msgstr "Etsi musiikkia"
+
+#: src/LibraryWindow.vala:451
 msgid "Pause"
 msgstr "Keskeytä"
 
-#: src/LibraryWindow.vala:771
+#: src/LibraryWindow.vala:773
 msgid "No songs in Queue"
 msgstr "Jonossa ei ole kappaleita"
 
-#: src/LibraryWindow.vala:771
+#: src/LibraryWindow.vala:773
 msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
@@ -393,11 +393,11 @@ msgstr ""
 "jonoon asetetut kappaleet toistetaan ennen soittolistalla seuraavana olevaa "
 "kappaletta."
 
-#: src/LibraryWindow.vala:774
+#: src/LibraryWindow.vala:776
 msgid "No songs in History"
 msgstr "Historiassa ei ole kappaleita"
 
-#: src/LibraryWindow.vala:774
+#: src/LibraryWindow.vala:776
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
@@ -408,42 +408,42 @@ msgstr ""
 "Näet kaikki tällä kuuntelukerralla kuuntelemasi kappaleet tämän luettelon "
 "avulla."
 
-#: src/LibraryWindow.vala:978 src/Views/Wrappers/MusicViewWrapper.vala:60
+#: src/LibraryWindow.vala:980 src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import Music"
 msgstr "Tuo musiikkia"
 
-#: src/PlaybackManager.vala:117
+#: src/PlaybackManager.vala:105
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Jono"
 
-#: src/Dialogs/FileNotFoundDialog.vala:51
+#: src/Dialogs/FileNotFoundDialog.vala:37
 msgid "File not found"
 msgstr "Tiedostoa ei löydy"
 
-#: src/Dialogs/FileNotFoundDialog.vala:57
+#: src/Dialogs/FileNotFoundDialog.vala:47
 #, c-format
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr "Musiikkitiedostoa <b>%s</b>, esittäjä <b>%s</b>, ei löydy."
 
-#: src/Dialogs/FileNotFoundDialog.vala:60
+#: src/Dialogs/FileNotFoundDialog.vala:50
 #, c-format
 msgid "%i music files could not be found?"
 msgstr "%i musiikkitiedostoa ei löytynyt?"
 
-#: src/Dialogs/FileNotFoundDialog.vala:82
+#: src/Dialogs/FileNotFoundDialog.vala:53
 msgid "Rescan Library"
 msgstr "Selaa kirjasto uudelleen"
 
-#: src/Dialogs/FileNotFoundDialog.vala:83
+#: src/Dialogs/FileNotFoundDialog.vala:54
 msgid "Remove Song"
 msgstr "Poista kappale"
 
-#: src/Dialogs/FileNotFoundDialog.vala:85
+#: src/Dialogs/FileNotFoundDialog.vala:56
 msgid "Find Song"
 msgstr "Etsi kappale"
 
-#: src/Dialogs/FileNotFoundDialog.vala:121
+#: src/Dialogs/FileNotFoundDialog.vala:99
 #: src/Dialogs/SetMusicFolderConfirmation.vala:113
 msgid "Choose Music Folder"
 msgstr "Valitse musiikkikansio"
@@ -462,56 +462,56 @@ msgstr "Tämän kappaleen toistaminen ei onnistu. Liitännäinen %s vaaditaan."
 msgid "Install Plugin"
 msgstr "Asenna liitännäinen"
 
-#: src/Dialogs/MediaEditor.vala:102
+#: src/Dialogs/MediaEditor.vala:100
 msgid "Title:"
 msgstr "Nimi:"
 
-#: src/Dialogs/MediaEditor.vala:104
+#: src/Dialogs/MediaEditor.vala:102
 msgid "Artist:"
 msgstr "Esittäjä:"
 
-#: src/Dialogs/MediaEditor.vala:106
+#: src/Dialogs/MediaEditor.vala:104
 msgid "Album:"
 msgstr "Albumi:"
 
-#: src/Dialogs/MediaEditor.vala:108
+#: src/Dialogs/MediaEditor.vala:106
 msgid "Album Artist:"
 msgstr "Albumin esittäjä:"
 
-#: src/Dialogs/MediaEditor.vala:110
+#: src/Dialogs/MediaEditor.vala:108
 msgid "Composer:"
 msgstr "Säveltäjä:"
 
-#: src/Dialogs/MediaEditor.vala:112
+#: src/Dialogs/MediaEditor.vala:110
 msgid "Grouping:"
 msgstr "Ryhmittely:"
 
-#: src/Dialogs/MediaEditor.vala:114
+#: src/Dialogs/MediaEditor.vala:112
 msgid "Genre:"
 msgstr "Tyylilaji:"
 
-#: src/Dialogs/MediaEditor.vala:116
+#: src/Dialogs/MediaEditor.vala:114
 msgid "Year:"
 msgstr "Vuosi:"
 
-#: src/Dialogs/MediaEditor.vala:118
+#: src/Dialogs/MediaEditor.vala:116
 msgid "Track:"
 msgstr "Kappale:"
 
-#: src/Dialogs/MediaEditor.vala:120
-msgid "Disk:"
+#: src/Dialogs/MediaEditor.vala:118
+msgid "Disc:"
 msgstr "Levy:"
 
-#: src/Dialogs/MediaEditor.vala:122
+#: src/Dialogs/MediaEditor.vala:120
 msgid "Rating:"
 msgstr "Arvostelu:"
 
-#: src/Dialogs/MediaEditor.vala:124
+#: src/Dialogs/MediaEditor.vala:122
 msgid "Comment:"
 msgstr "Kommentti:"
 
 #. FIXME: don't know if I can delete this
-#: src/Dialogs/MediaEditor.vala:140 src/Dialogs/PreferencesWindow.vala:96
+#: src/Dialogs/MediaEditor.vala:135 src/Dialogs/PreferencesWindow.vala:96
 #: src/Views/DeviceView.vala:45
 msgid "Close"
 msgstr "Sulje"
@@ -526,7 +526,8 @@ msgstr "Ongelmia tuodessa musiikkia kohteesta %s"
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
 msgstr[0] "Ei voitu tuoda %d kohdetta. Tiedosto saattaa olla vahingoittunut."
-msgstr[1] "Ei voitu tuoda %d kohdetta. Tiedostot saattavat olla vahingoittuneita."
+msgstr[1] ""
+"Ei voitu tuoda %d kohdetta. Tiedostot saattavat olla vahingoittuneita."
 
 #: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
@@ -1073,7 +1074,7 @@ msgstr "Ei säveltäjiä"
 
 #. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
-#: src/Widgets/EqualizerPopover.vala:327 src/Widgets/PresetList.vala:52
+#: src/Widgets/EqualizerPopover.vala:328 src/Widgets/PresetList.vala:52
 msgid "Automatic"
 msgstr "Automaattinen"
 
@@ -1317,29 +1318,29 @@ msgstr "_Peru"
 msgid "_Open"
 msgstr "_Avaa"
 
-#: src/Widgets/EqualizerPopover.vala:166
+#: src/Widgets/EqualizerPopover.vala:167
 msgid "Save preset"
 msgstr "Tallenna esiasetus"
 
-#: src/Widgets/EqualizerPopover.vala:331
+#: src/Widgets/EqualizerPopover.vala:332
 msgid "Off"
 msgstr "Pois"
 
-#: src/Widgets/EqualizerPopover.vala:419
+#: src/Widgets/EqualizerPopover.vala:420
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s (Mukautettu)"
 
-#: src/Widgets/EqualizerPopover.vala:421
+#: src/Widgets/EqualizerPopover.vala:422
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s (Mukautettu %i)"
 
-#: src/Widgets/EqualizerPopover.vala:424
+#: src/Widgets/EqualizerPopover.vala:425
 msgid "Custom Preset"
 msgstr "Oma esiasetus"
 
-#: src/Widgets/EqualizerPopover.vala:426
+#: src/Widgets/EqualizerPopover.vala:427
 #, c-format
 msgid "Custom Preset %i"
 msgstr "Oma esiasetus %i"
@@ -1389,16 +1390,16 @@ msgstr "Poista laitteelta"
 msgid "Remove from Queue"
 msgstr "Poista jonosta"
 
-#: src/Widgets/MediaMenu.vala:152
+#: src/Widgets/MediaMenu.vala:153
 msgid "New Playlist…"
 msgstr "Uusi soittolista…"
 
-#: src/Widgets/MediaMenu.vala:192
+#: src/Widgets/MediaMenu.vala:193
 #, c-format
 msgid "Import %i of %i selected songs"
 msgstr "Tuo %i/%i valittua kappaletta"
 
-#: src/Widgets/MediaMenu.vala:194
+#: src/Widgets/MediaMenu.vala:195
 #, c-format
 msgid "Import %i song"
 msgid_plural "Import %i songs"
@@ -1489,17 +1490,32 @@ msgstr "Ota sekoitus käyttöön"
 msgid "Disable Shuffle"
 msgstr "Poista sekoitus käytöstä"
 
-#: src/Widgets/ViewSelector.vala:77
-msgid "View as Albums"
+#: src/Widgets/ViewSelector.vala:81
+msgid "View as albums"
 msgstr "Näytä albumeina"
 
-#: src/Widgets/ViewSelector.vala:80
-msgid "View as List"
+#: src/Widgets/ViewSelector.vala:87
+msgid "View as list"
 msgstr "Näytä luettelona"
 
-#: src/Widgets/ViewSelector.vala:83
-msgid "View in Columns"
+#: src/Widgets/ViewSelector.vala:93
+msgid "View in columns"
 msgstr "Näytä sarakkeina"
+
+#~ msgid "Importation of a song from Audio CD finished."
+#~ msgstr "Kappaleen tuonti ääni-CD:ltä valmistui."
+
+#~ msgid "Importation of %i songs from Audio CD finished."
+#~ msgstr "%i kappaleen tuonti ääni-CD:ltä valmistui."
+
+#~ msgid "An error occured during the Import of this CD"
+#~ msgstr "Tämän CD:n tuonnin aikana tapahtui virhe"
+
+#~ msgid "There was an error while loading this Audio CD."
+#~ msgstr "Ääni-CD:tä ladatessa tapahtui virhe."
+
+#~ msgid "Disk:"
+#~ msgstr "Levy:"
 
 #~ msgid "%s has imported your library."
 #~ msgstr "%s on tuonut kirjastosi."
@@ -1761,9 +1777,6 @@ msgstr "Näytä sarakkeina"
 #~ msgid "Please make sure that your music folder is accessible and mounted."
 #~ msgstr "Varmastathan, että musiikkikansiosi on saatavilla ja liitettynä."
 
-#~ msgid "Import songs from audio CD"
-#~ msgstr "Tuo kappaleet audio-CD:ltä"
-
 #~ msgid "Import media from device"
 #~ msgstr "Tuo tiedostot laitteesta"
 
@@ -1808,9 +1821,6 @@ msgstr "Näytä sarakkeina"
 
 #~ msgid "Editing %s"
 #~ msgstr "Muokataan %s"
-
-#~ msgid "Disc"
-#~ msgstr "Levy"
 
 #~ msgid "Music Folder"
 #~ msgstr "Musiikkikansio"
@@ -1904,12 +1914,6 @@ msgstr "Näytä sarakkeina"
 
 #~ msgid "%i tracks"
 #~ msgstr "%i kappaletta"
-
-#~ msgid "%s could not read the contents of this Audio CD"
-#~ msgstr "%s ei pystynyt lukemaan ääni-CD:n sisältöä."
-
-#~ msgid "%s has finished importing a song from Audio CD."
-#~ msgstr "%s on tuonut kappaleen ääni-CD:ltä."
 
 #~ msgid "Required GStreamer plugin not installed"
 #~ msgstr "Vaadittua GStreamer-liitännäistä ei ole asennettu"

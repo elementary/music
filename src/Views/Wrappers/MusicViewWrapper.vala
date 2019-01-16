@@ -64,7 +64,7 @@ public class Noise.MusicViewWrapper : ViewWrapper {
             _("Load music from a folder, a network or an external disk."));
 
         welcome_screen.activated.connect (welcome_screen_activated);
-        _devices = new Gee.HashMap<Device, int> ();
+        _devices = new Gee.HashMap<unowned Device, int> ();
 
         embedded_alert = new Granite.Widgets.AlertView ("", "", "");
 

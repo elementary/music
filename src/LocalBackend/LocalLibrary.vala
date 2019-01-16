@@ -186,6 +186,9 @@ public class Noise.LocalLibrary : Library {
         m_folder = m_folder.replace (GLib.Environment.get_home_dir ()+ "/", "");
 
         if (start_file_operations (_("Importing music from %s…").printf ("<b>" + Markup.escape_text (m_folder) + "</b>"))) {
+
+            Settings.Main.get_default ().music_folder = folder;
+
             remove_all_static_playlists ();
 
             clear_medias ();
