@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2018-08-12 13:24+0000\n"
+"PO-Revision-Date: 2019-01-15 13:09+0000\n"
 "Last-Translator: colindemian <colindemian@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.elementary.io/projects/"
 "music/music/zh_Hans/>\n"
@@ -258,14 +258,13 @@ msgid ""
 msgstr "应用程序找到 CD 上的任何歌曲。无法导入歌曲"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, fuzzy
 msgid "Song imported from Audio CD."
-msgstr "从音频 CD 导入歌曲"
+msgstr "已从音频 CD 导入歌曲。"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, fuzzy, c-format
+#, c-format
 msgid "%i songs imported from Audio CD."
-msgstr "%s 已完成音频 CD 中 1 首歌曲导入。"
+msgstr "已从音频 CD 导入 %s 首歌曲。"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
@@ -278,21 +277,19 @@ msgstr "在当前导入完成后，CD 导入将被<b>取消</b>。"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:383
 msgid "Could not import this CD"
-msgstr ""
+msgstr "无法导入此音乐光盘"
 
 #: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
 msgid "Import"
 msgstr "导入"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:37
-#, fuzzy
 msgid "An Error Occurred"
 msgstr "发生错误"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:38
-#, fuzzy
 msgid "Could not load this Audio CD."
-msgstr "%s 无法读取该音频 CD 的内容"
+msgstr "%s 无法读此音频 CD。"
 
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
@@ -443,16 +440,14 @@ msgid "Choose Music Folder"
 msgstr "选择音乐文件夹"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:38
-#, fuzzy, c-format
+#, c-format
 msgid "Would you like to install the %s plugin?"
-msgstr "您想要安装 %s 插件吗？\n"
+msgstr "您想要安装 %s 插件吗？"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:39
-#, fuzzy, c-format
+#, c-format
 msgid "This song cannot be played. The %s plugin is required to play the song."
-msgstr ""
-"\n"
-"无法播放此歌曲。播放此歌曲需要 %s 插件。"
+msgstr "无法播放此歌曲。播放此歌曲需要 %s 插件。"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid "Install Plugin"
@@ -495,9 +490,8 @@ msgid "Track:"
 msgstr "音轨编号："
 
 #: src/Dialogs/MediaEditor.vala:118
-#, fuzzy
 msgid "Disc:"
-msgstr "光盘"
+msgstr "光盘："
 
 #: src/Dialogs/MediaEditor.vala:120
 msgid "Rating:"
@@ -514,15 +508,15 @@ msgid "Close"
 msgstr "关闭"
 
 #: src/Dialogs/NotImportedDialog.vala:51
-#, fuzzy, c-format
+#, c-format
 msgid "Issues while importing from %s"
-msgstr "正在导入 %s 中的音乐…"
+msgstr "从 %s 导入时出错"
 
 #: src/Dialogs/NotImportedDialog.vala:57
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] "%s 无法导入 %d 项条目。文件可能被破坏。"
+msgstr[0] "无法导入 %d 个项目。文件可能已损坏。"
 
 #: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
@@ -581,25 +575,24 @@ msgid "Continue playback when closed:"
 msgstr "关闭时后台继续播放："
 
 #: src/Dialogs/RemoveFilesDialog.vala:49
-#, fuzzy, c-format
+#, c-format
 msgid "Remove %d Song From Library?"
 msgid_plural "Remove %d Songs From Library?"
-msgstr[0] "要从 %2$s 移除 %1$d 首歌曲吗？"
+msgstr[0] "从库中删除 %d 首歌曲？"
 
 #: src/Dialogs/RemoveFilesDialog.vala:55
-#, fuzzy, c-format
+#, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr "从媒体库移除"
+msgstr "从媒体库移除\"%s\" ？"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
-#, fuzzy
 msgid ""
 "This will remove the song from your library and from any device synced "
 "automatically."
 msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
-msgstr[0] "这将从库和自动同步 %s 的设备中移除歌曲。"
+msgstr[0] "将会从库中和自动同步的设备中移除这些歌曲。"
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
@@ -791,10 +784,10 @@ msgstr "kbps"
 
 #. be a bit explicit to make translations better
 #: src/Dialogs/SyncWarningDialog.vala:52
-#, fuzzy, c-format
+#, c-format
 msgid "Sync will remove %i item from %s"
 msgid_plural "Sync will remove %i items from %s"
-msgstr[0] "同步将从 %2$s 中移除 %1$i 个条目"
+msgstr[0] "自动同步将从 %s 中移除 %i 个项目"
 
 #: src/Dialogs/SyncWarningDialog.vala:55
 #, c-format
@@ -933,9 +926,8 @@ msgid "Device operation has been cancelled and will stop after this media."
 msgstr "设备操作已被取消且会在该媒体完成后停止。"
 
 #: src/Views/ViewStack.vala:45
-#, fuzzy
 msgid "No Results"
-msgstr "无评分"
+msgstr "无结果"
 
 #: src/Views/ViewStack.vala:45
 msgid "Try another search"
@@ -1328,19 +1320,16 @@ msgid "Scroll to Current Song"
 msgstr "跳转到当前歌曲"
 
 #: src/Widgets/MediaMenu.vala:49
-#, fuzzy
 msgid "Show in File Browser…"
-msgstr "在文件浏览器中显示"
+msgstr "在文件浏览器中显示…"
 
 #: src/Widgets/MediaMenu.vala:50
-#, fuzzy
 msgid "Edit Song Info…"
-msgstr "编辑歌曲信息"
+msgstr "编辑歌曲信息…"
 
 #: src/Widgets/MediaMenu.vala:51
-#, fuzzy
 msgid "Other Actions"
-msgstr "其它选项"
+msgstr "其它动作"
 
 #: src/Widgets/MediaMenu.vala:53
 msgctxt "Action item (verb)"
@@ -1352,18 +1341,16 @@ msgid "Add to Playlist"
 msgstr "添加到播放列表"
 
 #: src/Widgets/MediaMenu.vala:55
-#, fuzzy
 msgid "Remove Song…"
-msgstr "移除歌曲"
+msgstr "移除歌曲…"
 
 #: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
 msgid "Import to Library"
 msgstr "导入到媒体库"
 
 #: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
-#, fuzzy
 msgid "Remove from Library…"
-msgstr "从媒体库移除"
+msgstr "从媒体库移除…"
 
 #: src/Widgets/MediaMenu.vala:99
 msgid "Remove from Device"
@@ -1473,17 +1460,14 @@ msgid "Disable Shuffle"
 msgstr "禁用随机"
 
 #: src/Widgets/ViewSelector.vala:81
-#, fuzzy
 msgid "View as albums"
 msgstr "专辑视图"
 
 #: src/Widgets/ViewSelector.vala:87
-#, fuzzy
 msgid "View as list"
 msgstr "列表视图"
 
 #: src/Widgets/ViewSelector.vala:93
-#, fuzzy
 msgid "View in columns"
 msgstr "分栏视图"
 
