@@ -1,7 +1,7 @@
 lastfm_deps = [
   app_dep,
   dependency('json-glib-1.0'),
-  dependency('libaccounts-glib'),
+  dependency('libaccounts-glib', version: '>=1.23'),
   dependency('libsignon-glib', version: '>=2.0'),
   dependency('libsoup-2.4')
 ]
