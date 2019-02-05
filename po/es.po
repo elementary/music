@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2019-02-05 20:16+0000\n"
+"PO-Revision-Date: 2019-02-07 00:06+0000\n"
 "Last-Translator: Alvaro <alvaroaraoz_92@hotmail.com>\n"
 "Language-Team: Spanish <https://weblate.elementary.io/projects/music/music/"
 "es/>\n"
@@ -264,7 +264,7 @@ msgstr ""
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
 msgid "Song imported from Audio CD."
-msgstr "Canción importada desde un CD de audio"
+msgstr "Canción importada desde un CD de audio."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
 #, c-format
