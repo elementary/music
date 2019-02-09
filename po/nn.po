@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2019-01-05 03:11+0000\n"
-"Last-Translator: Simon Dagfinrud <semonje@gmail.com>\n"
+"PO-Revision-Date: 2019-02-12 00:06+0000\n"
+"Last-Translator: Rico Tzschichholz <ricotz@ubuntu.com>\n"
 "Language-Team: Norwegian Nynorsk <https://weblate.elementary.io/projects/"
 "music/music/nn/>\n"
 "Language: nn\n"
@@ -220,7 +220,7 @@ msgstr "Legg til <b>$NAME</b> av <b>$ARTIST</b> til $DEVICE"
 #: plugins/Devices/iPod/iPodLibrary.vala:196
 #, c-format
 msgid "Syncing <b>%s</b>…"
-msgstr "Synkroniserar <b>% s </ b> ..."
+msgstr "Synkroniserar <b>%s</b> …"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:266
 #: plugins/Devices/iPod/iPodLibrary.vala:530
