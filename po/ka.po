@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2015-12-21 13:46+0000\n"
-"Last-Translator: Daniel Fore <Unknown>\n"
-"Language-Team: Georgian <ka@li.org>\n"
+"PO-Revision-Date: 2019-02-12 00:06+0000\n"
+"Last-Translator: Rico Tzschichholz <ricotz@ubuntu.com>\n"
+"Language-Team: Georgian <https://weblate.elementary.io/projects/music/music/"
+"ka/>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:52+0000\n"
-"X-Generator: Launchpad (build 18330)\n"
 
 #: core/LibrariesManager.vala:147
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -336,7 +337,7 @@ msgstr ""
 #. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:316
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr "მიმდინარეობს ფაილების <b>კოპირება</b> <b>მუსიკის საქაღალდეში<b>..."
+msgstr "მიმდინარეობს ფაილების <b>კოპირება</b> <b>მუსიკის საქაღალდეში</b>…"
 
 #: src/LibraryWindow.vala:353 src/LibraryWindow.vala:420
 #: src/LibraryWindow.vala:598 src/LibraryWindow.vala:704
