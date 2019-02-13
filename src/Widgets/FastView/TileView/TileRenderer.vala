@@ -123,10 +123,10 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
             int scale_factor = ctx.get_scale ();
 
             /* Draws the symbol with the specified scaling factor on a surface. */
-            Cairo.Surface surf = Gdk.cairo_surface_create_from_pixbuf(pixbuf, scale_factor, null);
+            var surface = Gdk.cairo_surface_create_from_pixbuf (pixbuf, scale_factor, null);
 
             /* Renders the symbol with the specified x- and y-coordinates on the surface. */
-            ctx.render_icon_surface(cr, surf, x, y);
+            ctx.render_icon_surface (cr, surface, x, y);
         }
 
         cr.fill_preserve ();
