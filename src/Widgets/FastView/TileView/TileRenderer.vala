@@ -119,7 +119,11 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
         ctx.render_background (cr, x, y, 128, 128);
 
         if (pixbuf != null) {
-            ctx.render_icon (cr, pixbuf, x, y);
+            int scale_factor = ctx.get_scale ();
+
+            var surface = Gdk.cairo_surface_create_from_pixbuf (pixbuf, scale_factor, null);
+
+            ctx.render_icon_surface (cr, surface, x, y);
         }
 
         cr.fill_preserve ();
@@ -151,8 +155,9 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
     private void update_layout_properties (Gtk.Widget widget) {
         var ctx = widget.get_style_context ();
         var state = ctx.get_state ();
+        var scale = ctx.get_scale ();
 
-        pixbuf = album.get_cached_cover_pixbuf (1);
+        pixbuf = album.get_cached_cover_pixbuf (scale);
 
         border.left = 12;
         border.right = 12;
