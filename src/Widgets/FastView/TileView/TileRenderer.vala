@@ -119,13 +119,10 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
         ctx.render_background (cr, x, y, 128, 128);
 
         if (pixbuf != null) {
-            /* Scaling factor for the album cover, required for monitors with high resolutions.  */
             int scale_factor = ctx.get_scale ();
 
-            /* Draws the symbol with the specified scaling factor on a surface. */
             var surface = Gdk.cairo_surface_create_from_pixbuf (pixbuf, scale_factor, null);
 
-            /* Renders the symbol with the specified x- and y-coordinates on the surface. */
             ctx.render_icon_surface (cr, surface, x, y);
         }
 
@@ -160,7 +157,6 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
         var state = ctx.get_state ();
         var scale = ctx.get_scale ();
 
-        /* Gets the buffer for the album cover with the specified scaling factor. */
         pixbuf = album.get_cached_cover_pixbuf (scale);
 
         border.left = 12;
