@@ -264,66 +264,68 @@ namespace Noise.PlaylistsUtils {
     }
 
     public void export_playlist (Playlist p) {
-        if(p == null)
+        if (p == null) {
             return;
+        }
 
-        string file = "";
-        string name = "";
-        string extension = "";
-        var file_chooser = new Gtk.FileChooserDialog (_("Export Playlist"), null,
-                                  Gtk.FileChooserAction.SAVE,
-                                  _("Cancel"), Gtk.ResponseType.CANCEL,
-                                  _("Save"), Gtk.ResponseType.ACCEPT);
-
-        // filters for .m3u and .pls
         var m3u_filter = new Gtk.FileFilter();
         m3u_filter.add_pattern("*.m3u");
         m3u_filter.set_filter_name(_("MPEG Version 3.0 Extended (*.m3u)"));
-        file_chooser.add_filter(m3u_filter);
 
         var pls_filter = new Gtk.FileFilter();
         pls_filter.add_pattern("*.pls");
         pls_filter.set_filter_name(_("Shoutcast Playlist Version 2.0 (*.pls)"));
-        file_chooser.add_filter(pls_filter);
 
+        var file_chooser = new Gtk.FileChooserNative (
+            _("Export Playlist"),
+            null,
+            Gtk.FileChooserAction.SAVE,
+            _("Save"),
+            _("Cancel")
+        );
         file_chooser.do_overwrite_confirmation = true;
-        file_chooser.set_current_name(p.name + ".m3u");
+        file_chooser.set_current_name (p.name + ".m3u");
+        file_chooser.add_filter (m3u_filter);
+        file_chooser.add_filter (pls_filter);
 
         // set original folder. if we don't, then file_chooser.get_filename() starts as null, which is bad for signal below.
         var main_settings = Settings.Main.get_default ();
-        if(File.new_for_path(main_settings.music_folder).query_exists())
-            file_chooser.set_current_folder(main_settings.music_folder);
-        else
-            file_chooser.set_current_folder(Environment.get_home_dir());
+        if (File.new_for_path (main_settings.music_folder).query_exists ()) {
+            file_chooser.set_current_folder (main_settings.music_folder);
+        } else {
+            file_chooser.set_current_folder (Environment.get_home_dir ());
+        }
 
 
         // listen for filter change
-        file_chooser.notify["filter"].connect( () => {
-            if(file_chooser.get_filename() == null) // happens when no folder is chosen. need way to get textbox text, rather than filename
+        file_chooser.notify["filter"].connect (() => {
+            if (file_chooser.get_filename () == null) // happens when no folder is chosen. need way to get textbox text, rather than filename
                 return;
 
-            if(file_chooser.filter == m3u_filter) {
+            if (file_chooser.filter == m3u_filter) {
                 message ("changed to m3u\n");
-                var new_file = file_chooser.get_filename().replace(".pls", ".m3u");
+                var new_file = file_chooser.get_filename ().replace (".pls", ".m3u");
 
-                if(new_file.slice(new_file.last_index_of(".", 0), new_file.length).length == 0) {
+                if (new_file.slice (new_file.last_index_of (".", 0), new_file.length).length == 0) {
                     new_file += ".m3u";
                 }
 
-                file_chooser.set_current_name(new_file.slice(new_file.last_index_of("/", 0) + 1, new_file.length));
-            }
-            else {
+                file_chooser.set_current_name (new_file.slice (new_file.last_index_of ("/", 0) + 1, new_file.length));
+            } else {
                 message ("changed to pls\n");
-                var new_file = file_chooser.get_filename().replace(".m3u", ".pls");
+                var new_file = file_chooser.get_filename ().replace(".m3u", ".pls");
 
-                if(new_file.slice(new_file.last_index_of(".", 0), new_file.length).length == 0) {
+                if (new_file.slice(new_file.last_index_of (".", 0), new_file.length).length == 0) {
                     new_file += ".pls";
                 }
 
-                file_chooser.set_current_name(new_file.slice(new_file.last_index_of("/", 0) + 1, new_file.length));
+                file_chooser.set_current_name (new_file.slice (new_file.last_index_of ("/", 0) + 1, new_file.length));
             }
         });
 
+        string file = "";
+        string name = "";
+        string extension = "";
         if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
             file = file_chooser.get_filename();
             extension = file.slice(file.last_index_of(".", 0), file.length);
