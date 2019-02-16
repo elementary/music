@@ -379,27 +379,27 @@ namespace Noise.PlaylistsUtils {
             _("Cancel")
         );
         file_chooser.set_select_multiple (true);
-        file_chooser.add_filter(m3u_filter);
-        file_chooser.add_filter(pls_filter);
+        file_chooser.add_filter (m3u_filter);
+        file_chooser.add_filter (pls_filter);
 
         var files = new SList<string> ();
         if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
-            files = file_chooser.get_filenames();
+            files = file_chooser.get_filenames ();
         }
         file_chooser.destroy ();
 
         var playlists = new Gee.HashMap<string, Gee.LinkedList<string>> ();
         bool success = false;
         foreach (var file in files) {
-            if(file != "") {
+            if (file != "") {
                 var name = GLib.File.new_for_path (file).get_basename ();
                 var paths = new Gee.LinkedList<string> ();
-                if (file.has_suffix(".m3u")) {
+                if (file.has_suffix (".m3u")) {
                     name = name.replace (".m3u", "");
                     success = parse_paths_from_m3u("file://" + file, ref paths);
-                } else if(file.has_suffix(".pls")) {
+                } else if (file.has_suffix (".pls")) {
                     name = name.replace (".pls", "");
-                    success = parse_paths_from_pls("file://" + file, ref paths, ref name);
+                    success = parse_paths_from_pls ("file://" + file, ref paths, ref name);
                 } else {
                     success = false;
                     throw new GLib.Error (GLib.Quark.from_string ("not-recognized"), 1, "%s", _("Unrecognized playlist file. Import failed."));
