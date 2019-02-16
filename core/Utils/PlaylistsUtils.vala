@@ -362,32 +362,34 @@ namespace Noise.PlaylistsUtils {
         if (set_title == null || set_title == "") {
             title = _("Playlist");
         }
-        var files = new SList<string> ();
-        var playlists = new Gee.HashMap<string, Gee.LinkedList<string>> ();
-        bool success = false;
 
-        var file_chooser = new Gtk.FileChooserDialog (_("Import %s").printf (title), null,
-                                  Gtk.FileChooserAction.OPEN,
-                                  _("Cancel"), Gtk.ResponseType.CANCEL,
-                                  _("Open"), Gtk.ResponseType.ACCEPT);
-        file_chooser.set_select_multiple (true);
-
-        // filters for .m3u and .pls
         var m3u_filter = new Gtk.FileFilter();
         m3u_filter.add_pattern("*.m3u");
         m3u_filter.set_filter_name(_("MPEG Version 3.0 Extended (*.m3u)"));
-        file_chooser.add_filter(m3u_filter);
 
         var pls_filter = new Gtk.FileFilter();
         pls_filter.add_pattern("*.pls");
         pls_filter.set_filter_name(_("Shoutcast Playlist Version 2.0 (*.pls)"));
+
+        var file_chooser = new Gtk.FileChooserDialog (
+            _("Import %s").printf (title),
+            null,
+            Gtk.FileChooserAction.OPEN,
+            _("Open"),
+            _("Cancel")
+        );
+        file_chooser.set_select_multiple (true);
+        file_chooser.add_filter(m3u_filter);
         file_chooser.add_filter(pls_filter);
 
+        var files = new SList<string> ();
         if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
             files = file_chooser.get_filenames();
         }
         file_chooser.destroy ();
 
+        var playlists = new Gee.HashMap<string, Gee.LinkedList<string>> ();
+        bool success = false;
         foreach (var file in files) {
             if(file != "") {
                 var name = GLib.File.new_for_path (file).get_basename ();
