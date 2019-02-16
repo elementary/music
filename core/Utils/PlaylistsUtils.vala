@@ -371,7 +371,7 @@ namespace Noise.PlaylistsUtils {
         pls_filter.add_pattern("*.pls");
         pls_filter.set_filter_name(_("Shoutcast Playlist Version 2.0 (*.pls)"));
 
-        var file_chooser = new Gtk.FileChooserDialog (
+        var file_chooser = new Gtk.FileChooserNative (
             _("Import %s").printf (title),
             null,
             Gtk.FileChooserAction.OPEN,
