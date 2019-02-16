@@ -248,8 +248,8 @@ public class Noise.AlbumListGrid : Gtk.Grid {
             _("Open"),
             App.main_window,
             Gtk.FileChooserAction.OPEN,
-            _("_Open")
-            _("_Cancel"),
+            _("_Open"),
+            _("_Cancel")
         );
         file.add_filter (image_filter);
 
