@@ -976,14 +976,17 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     public virtual void action_import () {
         if (!library_manager.doing_file_operations ()) {
-
-            var folders = new Gee.TreeSet<string> ();
-            var file_chooser = new Gtk.FileChooserDialog (_("Import Music"), this,
-                                      Gtk.FileChooserAction.SELECT_FOLDER,
-                                      _("Cancel"), Gtk.ResponseType.CANCEL,
-                                      _("Open"), Gtk.ResponseType.ACCEPT);
+            var file_chooser = new Gtk.FileChooserNative (
+                _("Import Music"),
+                this,
+                Gtk.FileChooserAction.SELECT_FOLDER,
+                _("Open"),
+                _("Cancel")
+            );
             file_chooser.set_select_multiple (true);
             file_chooser.set_local_only (true);
+
+            var folders = new Gee.TreeSet<string> ();
             if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
                 foreach (var folder in file_chooser.get_filenames ()) {
                     folders.add (folder);
