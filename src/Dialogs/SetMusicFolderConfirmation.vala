@@ -78,11 +78,15 @@ public class Noise.SetMusicFolderConfirmation : Granite.MessageDialog {
     }
 
     public void savePlaylistsClicked () {
+        var file_chooser = new Gtk.FileChooserNative (
+            _("Choose Music Folder"),
+            this,
+            Gtk.FileChooserAction.SELECT_FOLDER,
+            _("Open"),
+            _("Cancel")
+        );
+
         string folder = "";
-        var file_chooser = new Gtk.FileChooserDialog (_("Choose Music Folder"), this,
-                                  Gtk.FileChooserAction.SELECT_FOLDER,
-                                  _("Cancel"), Gtk.ResponseType.CANCEL,
-                                  _("Open"), Gtk.ResponseType.ACCEPT);
         if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
             folder = file_chooser.get_filename ();
         }

@@ -95,11 +95,13 @@ public class Noise.FileNotFoundDialog : Granite.MessageDialog {
         Media m = media_list.get (0);
         int64 media_id = m.rowid;
 
-        string file = "";
-        var file_chooser = new Gtk.FileChooserDialog (_("Choose Music Folder"), this,
-                                                      Gtk.FileChooserAction.OPEN,
-                                                      _("Cancel"), Gtk.ResponseType.CANCEL,
-                                                      _("Open"), Gtk.ResponseType.ACCEPT);
+        var file_chooser = new Gtk.FileChooserNative (
+            _("Choose Music Folder"),
+            this,
+            Gtk.FileChooserAction.OPEN,
+            _("Open"),
+            _("Cancel")
+        );
 
         // try and help user by setting a sane default folder
         var invalid_file = File.new_for_uri (libraries_manager.local_library.media_from_id (media_id).uri);
@@ -117,6 +119,7 @@ public class Noise.FileNotFoundDialog : Granite.MessageDialog {
             file_chooser.set_current_folder (Environment.get_home_dir ());
         }
 
+        string file = "";
         if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
             file = file_chooser.get_filename ();
         }
