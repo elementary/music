@@ -88,7 +88,7 @@ public class Noise.SetMusicFolderConfirmation : Granite.MessageDialog {
 
         string folder = "";
         if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
-            folder = file_chooser.get_filename ();
+            folder = file_chooser.get_uri ();
         }
 
         file_chooser.destroy ();
