@@ -49,7 +49,7 @@ public class Noise.PreferencesWindow : Gtk.Dialog {
         library_filechooser.hexpand = true;
         library_filechooser.set_current_folder (Settings.Main.get_default ().music_folder);
         library_filechooser.file_set.connect (() => {
-            string? filename = library_filechooser.get_uri ().replace ("file://", "");
+            string? filename = library_filechooser.get_filename ();
             App.main_window.setMusicFolder (filename);
         });
 
