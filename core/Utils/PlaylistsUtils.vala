@@ -268,13 +268,13 @@ namespace Noise.PlaylistsUtils {
             return;
         }
 
-        var m3u_filter = new Gtk.FileFilter();
-        m3u_filter.add_pattern("*.m3u");
-        m3u_filter.set_filter_name(_("MPEG Version 3.0 Extended (*.m3u)"));
+        var m3u_filter = new Gtk.FileFilter ();
+        m3u_filter.add_pattern ("*.m3u");
+        m3u_filter.set_filter_name (_("MPEG Version 3.0 Extended (*.m3u)"));
 
-        var pls_filter = new Gtk.FileFilter();
-        pls_filter.add_pattern("*.pls");
-        pls_filter.set_filter_name(_("Shoutcast Playlist Version 2.0 (*.pls)"));
+        var pls_filter = new Gtk.FileFilter ();
+        pls_filter.add_pattern ("*.pls");
+        pls_filter.set_filter_name (_("Shoutcast Playlist Version 2.0 (*.pls)"));
 
         var file_chooser = new Gtk.FileChooserNative (
             _("Export Playlist"),
@@ -296,62 +296,36 @@ namespace Noise.PlaylistsUtils {
             file_chooser.set_current_folder (Environment.get_home_dir ());
         }
 
-
-        // listen for filter change
-        file_chooser.notify["filter"].connect (() => {
-            if (file_chooser.get_filename () == null) // happens when no folder is chosen. need way to get textbox text, rather than filename
-                return;
-
-            if (file_chooser.filter == m3u_filter) {
-                message ("changed to m3u\n");
-                var new_file = file_chooser.get_filename ().replace (".pls", ".m3u");
-
-                if (new_file.slice (new_file.last_index_of (".", 0), new_file.length).length == 0) {
-                    new_file += ".m3u";
-                }
-
-                file_chooser.set_current_name (new_file.slice (new_file.last_index_of ("/", 0) + 1, new_file.length));
-            } else {
-                message ("changed to pls\n");
-                var new_file = file_chooser.get_filename ().replace(".m3u", ".pls");
-
-                if (new_file.slice(new_file.last_index_of (".", 0), new_file.length).length == 0) {
-                    new_file += ".pls";
-                }
-
-                file_chooser.set_current_name (new_file.slice (new_file.last_index_of ("/", 0) + 1, new_file.length));
-            }
-        });
-
         string file = "";
         string name = "";
         string extension = "";
         if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
             file = file_chooser.get_filename();
-            extension = file.slice(file.last_index_of(".", 0), file.length);
+            extension = file.slice (file.last_index_of (".", 0), file.length);
 
-            if(extension.length == 0 || extension[0] != '.') {
+            if (extension.length == 0 || extension[0] != '.') {
                 extension = (file_chooser.filter == m3u_filter) ? ".m3u" : ".pls";
                 file += extension;
             }
 
-            name = file.slice(file.last_index_of("/", 0) + 1, file.last_index_of(".", 0));
+            name = file.slice (file.last_index_of ("/", 0) + 1, file.last_index_of (".", 0));
             message ("name is %s extension is %s\n", name, extension);
         }
 
         file_chooser.destroy ();
 
         string original_name = p.name;
-        if(file != "") {
-            var f = File.new_for_path(file);
+        if (file != "") {
+            var f = File.new_for_path (file);
 
-            string folder = f.get_parent().get_uri();
+            string folder = f.get_parent ().get_uri ();
             p.name = name; // temporary to save
 
-            if(file.has_suffix(".m3u"))
-                save_playlist_m3u(p, folder, "");
-            else
-                save_playlist_pls(p, folder);
+            if (file.has_suffix (".m3u")) {
+                save_playlist_m3u (p, folder, "");
+            } else {
+                save_playlist_pls (p, folder);
+            }
         }
 
         p.name = original_name;
