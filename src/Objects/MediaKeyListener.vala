@@ -51,7 +51,7 @@ public class Noise.MediaKeyListener : Object {
         assert (media_object == null);
 
         try {
-            media_object = Bus.get_proxy_sync (BusType.SESSION, "org.gnome.SettingsDaemon", "/org/gnome/SettingsDaemon/MediaKeys");
+            media_object = Bus.get_proxy_sync (BusType.SESSION, "org.gnome.SettingsDaemon.MediaKeys", "/org/gnome/SettingsDaemon/MediaKeys");
         } catch (Error e) {
             warning ("Mediakeys error: %s", e.message);
         }
