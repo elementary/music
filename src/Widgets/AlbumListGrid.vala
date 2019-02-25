@@ -192,6 +192,10 @@ public class Noise.AlbumListGrid : Gtk.Grid {
         view_wrapper.library.media_updated.connect (update_album_rating);
     }
 
+    public void play_active_list () {
+        list_view.row_activated (new Gtk.TreePath.first (), new Gtk.TreeViewColumn ());
+    }
+
     void update_album_cover () {
         if (album.cover_icon != null) {
             album_cover.image.gicon = album.cover_icon;
@@ -267,10 +271,12 @@ public class Noise.AlbumListGrid : Gtk.Grid {
         image_filter.set_filter_name (_("Image files"));
         image_filter.add_mime_type ("image/*");
 
-        var file = new Gtk.FileChooserDialog (
-            _("Open"), App.main_window, Gtk.FileChooserAction.OPEN,
-            _("_Cancel"), Gtk.ResponseType.CANCEL,
-            _("_Open"), Gtk.ResponseType.ACCEPT
+        var file = new Gtk.FileChooserNative (
+            _("Open"),
+            App.main_window,
+            Gtk.FileChooserAction.OPEN,
+            _("_Open"),
+            _("_Cancel")
         );
         file.add_filter (image_filter);
 

@@ -64,7 +64,7 @@ public class Noise.MusicViewWrapper : ViewWrapper {
             _("Load music from a folder, a network or an external disk."));
 
         welcome_screen.activated.connect (welcome_screen_activated);
-        _devices = new Gee.HashMap<Device, int> ();
+        _devices = new Gee.HashMap<unowned Device, int> ();
 
         embedded_alert = new Granite.Widgets.AlertView ("", "", "");
 
@@ -140,13 +140,13 @@ public class Noise.MusicViewWrapper : ViewWrapper {
             App.main_window.action_import ();
         } else if (index == 1) {
             if (!library.doing_file_operations ()) {
-                var file_chooser = new Gtk.FileChooserDialog (_("Select Music Folder"), App.main_window,
-                                                              Gtk.FileChooserAction.SELECT_FOLDER,
-                                                              _("Cancel"),
-                                                              Gtk.ResponseType.CANCEL,
-                                                              _("Open"),
-                                                              Gtk.ResponseType.ACCEPT);
-
+                var file_chooser = new Gtk.FileChooserNative (
+                    _("Select Music Folder"),
+                    App.main_window,
+                    Gtk.FileChooserAction.SELECT_FOLDER,
+                    _("Open"),
+                    _("Cancel")
+                );
                 file_chooser.set_local_only (true);
                 file_chooser.set_select_multiple (false);
                 file_chooser.set_current_folder (Settings.Main.get_default ().music_folder);

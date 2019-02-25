@@ -124,9 +124,11 @@ public class Noise.PlaybackManager : Object {
 
         foreach (var q in to_queue) {
             debug ("QUEUED: %s", q.title);
+            add_to_current (q);
         }
 
         queue_playlist.add_medias (to_queue);
+        reshuffle ();
     }
 
     public void unqueue_media (Gee.Collection<Media> to_unqueue) {
@@ -143,6 +145,7 @@ public class Noise.PlaybackManager : Object {
     }
 
     public void clear_queue () {
+        queue_playlist.clear();
         _current.clear();
         current_index = 0;
 
@@ -208,27 +211,37 @@ public class Noise.PlaybackManager : Object {
         } else if (main_settings.shuffle_mode == Noise.Settings.Shuffle.ALL) {
             //create temp list of all of current's media
             var temp = new Gee.LinkedList<Media> ();
+            bool current_media_found = false;
             foreach (var m in _current.values) {
-                temp.add (m);
+                if (current_media != m){
+                    temp.add (m);
+                } else {
+                    current_media_found = true;
+                }
             }
-            
             //loop through all current media id's and pick a random one remaining
             //and set that int i as one of those this is confusing just a sort
             //_current_shuffled.set(0, current_media.rowid);
-            for (int i = 1; i < _current.size; i++) {
+
+            //Adding the current_media manually avoids a lot of problems in the previous code.
+            //Like adding a list of 1 song and this song is the current_media (we will never enter the loop).
+            if (current_media != null && current_media_found) {
+                _current_shuffled.set (0, current_media);
+            } else if (current_media != null && _current.size != 0) {
+                // If the list dosen't contain the current_media,
+                // then a new list added and we should start from the first (the click song) even when shuffle
+                _current_shuffled.set (0, _current.get(0));
+            }
+            //We don't want to miss one of the songs if current_media == null
+            for (int i = (current_media == null) ? 0 : 1; i < _current.size; i++) {
                 int n_media = temp.size;
                 if (n_media == 0) {
                     break;
                 }
+                // the range for rint_rangeandom [begin..end-1]
+                int random = Random.int_range (0, n_media);
 
-                int random = n_media <= 1 ? 0 : Random.int_range (0, n_media - 1);
-
-                if (current_media != null && temp.get (random) == current_media) {
-                    _current_shuffled.set (0, current_media);
-                    i--;
-                } else {
-                    _current_shuffled.set (i, temp.get (random));
-                }
+                _current_shuffled.set (i, temp.get (random));
                 temp.remove (temp.get (random));
             }
         }
@@ -238,18 +251,18 @@ public class Noise.PlaybackManager : Object {
         Media? rv = null;
         
         var main_settings = Settings.Main.get_default ();
-        // next check if user has queued media
-        if (queue_playlist.medias.size > 0) {
-            rv = poll_queue ();
-            _playing_queued_song = true;
-        } else if (main_settings.shuffle_mode != Noise.Settings.Shuffle.OFF) {
-            if (_current_shuffled.is_empty ) {
-                foreach (Media s in library.get_medias ())
-                    add_to_current (s);    //first initialize the current selection the reshuffle it
+        if (main_settings.shuffle_mode != Noise.Settings.Shuffle.OFF) {
+            debug ("Shuffled size: %d", _current_shuffled.size);
+            if (_current_shuffled.is_empty) {
+                if (_current.is_empty) {
+                    queue_media (library.get_medias ()); // first initialize the current selection the reshuffle it
+                }
+
                 reshuffle ();
             }
+
             _playing_queued_song = false;
-            
+
             if (current_media == null) {
                 _current_shuffled_index = 0;
                 rv = _current_shuffled.get (0);
@@ -259,12 +272,6 @@ public class Noise.PlaybackManager : Object {
                 if (main_settings.repeat_mode == Noise.Settings.Repeat.ALL) {
                     _current_shuffled_index = 0;
                 } else {
-                    /* reset to no media playing */
-                    current_media = null;
-                    _current_shuffled.clear ();
-                    _current.clear ();
-                    _current_shuffled_index = 0;
-                    _current_index = 0;
                     
                     if (play) {
                         stop_playback ();
@@ -335,15 +342,17 @@ public class Noise.PlaybackManager : Object {
                 
                 rv = _current.get (_current_index);
             } else {
-                foreach (Media s in library.get_medias ()) {
-                    add_to_current(s);
-                }
-                
+                queue_media (library.get_medias ());
+
                 _current_index = 0;
                 rv = _current.get (0);
             }
         }
         
+        if (queue_playlist.medias.contains (rv)) {
+            _playing_queued_song = true;
+        }
+
         if (play) {
             play_media (rv);
         }
@@ -358,8 +367,10 @@ public class Noise.PlaybackManager : Object {
         var main_settings = Settings.Main.get_default ();
         if(main_settings.shuffle_mode != Noise.Settings.Shuffle.OFF) {
             if (_current_shuffled.is_empty) {
-                foreach (Media s in library.get_medias ())
-                    add_to_current (s);    //first initialize the current selection the reshuffle it
+                if (_current.is_empty) {
+                    queue_media (library.get_medias ()); // first initialize the current selection the reshuffle it
+                }
+
                 reshuffle ();
             }
 
@@ -426,12 +437,15 @@ public class Noise.PlaybackManager : Object {
 
                 rv = _current.get (_current_index);
             } else {
-                foreach (Media s in library.get_medias ()) {
-                    add_to_current (s);
-                }
+                queue_media (library.get_medias ());
+
                 _current_index = _current.size - 1;
                 rv = _current.get (_current_index);
             }
+        }
+
+        if (queue_playlist.medias.contains (rv)) {
+            _playing_queued_song = true;
         }
         
         if (play) {

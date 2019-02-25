@@ -15,6 +15,26 @@
         </p>
     </description>
     <releases>
+        <release version="5.0.2" date="2018-12-18" urgency="medium">
+            <description>
+                <p>AlbumView: double-click to play album</p>
+                <p>Associate with s3m files</p>
+                <p>Queue fixes</p>
+                <p>Properly restore playlists</p>
+                <p>Always respect custom music folder setting</p>
+                <p>Minor bug fixes</p>
+                <p>Updated translations</p>
+            </description>
+        </release>
+        <release version="5.0.1" date="2018-11-30" urgency="medium">
+            <description>
+                <p>Fix list and column view sorting</p>
+                <p>Add orange accent color</p>
+                <p>Add shortcut accels to tooltips</p>
+                <p>Minor bug fixes</p>
+                <p>Updated translations</p>
+            </description>
+        </release>
         <release version="5.0" date="2018-10-16" urgency="medium">
             <description>
                 <p>Various UI changes</p>

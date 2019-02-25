@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-17 08:23-0700\n"
-"PO-Revision-Date: 2018-03-08 05:57+0000\n"
-"Last-Translator: Gregi Maulana Mahes <gregim426naxaredix@gmail.com>\n"
+"POT-Creation-Date: 2018-11-05 13:23-0800\n"
+"PO-Revision-Date: 2018-10-21 09:30+0000\n"
+"Last-Translator: Eri Hidayat <eriwhidayat@gmail.com>\n"
 "Language-Team: Indonesian <https://weblate.elementary.io/projects/music/"
 "music/id/>\n"
 "Language: id\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:53+0000\n"
 
 #: core/LibrariesManager.vala:147
@@ -140,8 +140,8 @@ msgid "Export Playlist"
 msgstr "Ekspor Daftar Putar"
 
 #: core/Utils/PlaylistsUtils.vala:275 core/Utils/PlaylistsUtils.vala:369
-#: src/LibraryWindow.vala:980 src/Dialogs/FileNotFoundDialog.vala:84
-#: src/Dialogs/FileNotFoundDialog.vala:123
+#: src/LibraryWindow.vala:982 src/Dialogs/FileNotFoundDialog.vala:55
+#: src/Dialogs/FileNotFoundDialog.vala:101
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:50
 #: src/Dialogs/RemoveFilesDialog.vala:82
 #: src/Dialogs/SetMusicFolderConfirmation.vala:67
@@ -152,7 +152,7 @@ msgstr "Ekspor Daftar Putar"
 msgid "Cancel"
 msgstr "Batal"
 
-#: core/Utils/PlaylistsUtils.vala:276 src/Dialogs/MediaEditor.vala:142
+#: core/Utils/PlaylistsUtils.vala:276 src/Dialogs/MediaEditor.vala:137
 #: src/Dialogs/SmartPlaylistEditor.vala:89
 msgid "Save"
 msgstr "Simpan"
@@ -174,8 +174,8 @@ msgstr "Daftar Putar"
 msgid "Import %s"
 msgstr "Impor %s"
 
-#: core/Utils/PlaylistsUtils.vala:370 src/LibraryWindow.vala:981
-#: src/Dialogs/FileNotFoundDialog.vala:124
+#: core/Utils/PlaylistsUtils.vala:370 src/LibraryWindow.vala:983
+#: src/Dialogs/FileNotFoundDialog.vala:102
 #: src/Dialogs/SetMusicFolderConfirmation.vala:116
 #: src/Views/Wrappers/MusicViewWrapper.vala:147
 #: src/Widgets/AlbumListGrid.vala:244
@@ -260,13 +260,14 @@ msgstr ""
 "impor"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-msgid "Importation of a song from Audio CD finished."
-msgstr "Pengimporan sebuah lagu dari Audio CD telah selesai."
+#, fuzzy
+msgid "Song imported from Audio CD."
+msgstr "Impor beberapa lagu dari CD audio"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, c-format
-msgid "Importation of %i songs from Audio CD finished."
-msgstr "Pengimporan %i lagu dari Audio CD telah selesai."
+#, fuzzy, c-format
+msgid "%i songs imported from Audio CD."
+msgstr "%s selesai mengimpor sebuah lagu dari Audio CD."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
@@ -278,20 +279,22 @@ msgid "CD import will be <b>cancelled</b> after current import."
 msgstr "Impor CD akan <b>dibatalkan</b> setelah impor berikut."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:383
-msgid "An error occured during the Import of this CD"
-msgstr "Kesalahan terjadi ketika mengimpor ke CD"
+msgid "Could not import this CD"
+msgstr ""
 
 #: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
 msgid "Import"
 msgstr "Impor"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:37
-msgid "An Error Occured"
+#, fuzzy
+msgid "An Error Occurred"
 msgstr "Kesalahan Terjadi"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:38
-msgid "There was an error while loading this Audio CD."
-msgstr "Ada galat saat memuat CD Audio ini."
+#, fuzzy
+msgid "Could not load this Audio CD."
+msgstr "%s tidak dapat membaca isi CD Suara"
 
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
@@ -329,58 +332,58 @@ msgstr "media"
 msgid "Similar Media"
 msgstr "Lagu yang Mirip"
 
-#: src/FileOperator.vala:305
+#: src/FileOperator.vala:306
 msgid "Import Complete"
 msgstr "Impor Selesai"
 
-#: src/FileOperator.vala:305
+#: src/FileOperator.vala:306
 msgid "Your Library Has Been Imported."
-msgstr ""
+msgstr "Pustaka Anda Telah Diimpor."
 
 #. if doing import and copy to music folder is enabled, do copy here
-#: src/FileOperator.vala:315
+#: src/FileOperator.vala:316
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr "<b>Menyalin</b> berkas ke <b>Folder Musik</b>…"
 
-#: src/LibraryWindow.vala:192
-msgid "Import to Library…"
-msgstr "Impor ke Pustaka…"
-
-#: src/LibraryWindow.vala:195 src/Dialogs/PreferencesWindow.vala:40
-msgid "Preferences"
-msgstr "Pengaturan"
-
-#: src/LibraryWindow.vala:211
-msgid "Previous"
-msgstr "Sebelumnya"
-
-#: src/LibraryWindow.vala:215 src/LibraryWindow.vala:270
-msgid "Play"
-msgstr "Mainkan"
-
-#: src/LibraryWindow.vala:219
-msgid "Next"
-msgstr "Selanjutnya"
-
-#: src/LibraryWindow.vala:223
-msgid "Search Music"
-msgstr "Cari Musik"
-
-#: src/LibraryWindow.vala:242 src/LibraryWindow.vala:451
-#: src/LibraryWindow.vala:596 src/LibraryWindow.vala:702
-#: src/LibraryWindow.vala:1144
+#: src/LibraryWindow.vala:353 src/LibraryWindow.vala:420
+#: src/LibraryWindow.vala:598 src/LibraryWindow.vala:704
+#: src/LibraryWindow.vala:1146
 msgid "Music"
 msgstr "Musik"
 
-#: src/LibraryWindow.vala:273
+#: src/LibraryWindow.vala:370
+msgid "Import to Library…"
+msgstr "Impor ke Pustaka…"
+
+#: src/LibraryWindow.vala:373 src/Dialogs/PreferencesWindow.vala:40
+msgid "Preferences"
+msgstr "Pengaturan"
+
+#: src/LibraryWindow.vala:389
+msgid "Previous"
+msgstr "Sebelumnya"
+
+#: src/LibraryWindow.vala:393 src/LibraryWindow.vala:448
+msgid "Play"
+msgstr "Mainkan"
+
+#: src/LibraryWindow.vala:397
+msgid "Next"
+msgstr "Selanjutnya"
+
+#: src/LibraryWindow.vala:401
+msgid "Search Music"
+msgstr "Cari Musik"
+
+#: src/LibraryWindow.vala:451
 msgid "Pause"
 msgstr "Jeda"
 
-#: src/LibraryWindow.vala:771
+#: src/LibraryWindow.vala:773
 msgid "No songs in Queue"
 msgstr "Tidak ada lagu di antrian"
 
-#: src/LibraryWindow.vala:771
+#: src/LibraryWindow.vala:773
 msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
@@ -390,11 +393,11 @@ msgstr ""
 "diinginkan lalu pilih <b>Antrian</b>. Ketika lagu selesai diputar, lagu "
 "dalam antrian akan diputar dahulu sebelum memutar lagu-lagu di daftar putar."
 
-#: src/LibraryWindow.vala:774
+#: src/LibraryWindow.vala:776
 msgid "No songs in History"
 msgstr "Tidak ada lagu di Riwayat"
 
-#: src/LibraryWindow.vala:774
+#: src/LibraryWindow.vala:776
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
@@ -403,42 +406,42 @@ msgstr ""
 "Lagu yang sudah diputar akan ditambahkan ke riwayat.\n"
 "Anda dapat melihat semua lagu yang telah Anda putar pada sesi ini."
 
-#: src/LibraryWindow.vala:978 src/Views/Wrappers/MusicViewWrapper.vala:60
+#: src/LibraryWindow.vala:980 src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import Music"
 msgstr "Impor Musik"
 
-#: src/PlaybackManager.vala:117
+#: src/PlaybackManager.vala:105
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Antrian"
 
-#: src/Dialogs/FileNotFoundDialog.vala:51
+#: src/Dialogs/FileNotFoundDialog.vala:37
 msgid "File not found"
 msgstr "Berkas tak ditemukan"
 
-#: src/Dialogs/FileNotFoundDialog.vala:57
+#: src/Dialogs/FileNotFoundDialog.vala:47
 #, c-format
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr "Berkas musik untuk <b>%s</b> oleh <b>%s</b> tidak dapat ditemukan."
 
-#: src/Dialogs/FileNotFoundDialog.vala:60
+#: src/Dialogs/FileNotFoundDialog.vala:50
 #, c-format
 msgid "%i music files could not be found?"
 msgstr "%i berkas musik tidak dapat ditemukan?"
 
-#: src/Dialogs/FileNotFoundDialog.vala:82
+#: src/Dialogs/FileNotFoundDialog.vala:53
 msgid "Rescan Library"
 msgstr "Periksa ulang Pustaka"
 
-#: src/Dialogs/FileNotFoundDialog.vala:83
+#: src/Dialogs/FileNotFoundDialog.vala:54
 msgid "Remove Song"
 msgstr "Hapus Lagu"
 
-#: src/Dialogs/FileNotFoundDialog.vala:85
+#: src/Dialogs/FileNotFoundDialog.vala:56
 msgid "Find Song"
 msgstr "Cari Lagu"
 
-#: src/Dialogs/FileNotFoundDialog.vala:121
+#: src/Dialogs/FileNotFoundDialog.vala:99
 #: src/Dialogs/SetMusicFolderConfirmation.vala:113
 msgid "Choose Music Folder"
 msgstr "Pilih Folder Musik"
@@ -457,70 +460,71 @@ msgstr "Lagu ini tidak dapat diputar. Plugin %s dibutuhkan untuk memutar lagu."
 msgid "Install Plugin"
 msgstr "Pasang Pengaya"
 
-#: src/Dialogs/MediaEditor.vala:102
+#: src/Dialogs/MediaEditor.vala:100
 msgid "Title:"
 msgstr "Judul:"
 
-#: src/Dialogs/MediaEditor.vala:104
+#: src/Dialogs/MediaEditor.vala:102
 msgid "Artist:"
 msgstr "Artis:"
 
-#: src/Dialogs/MediaEditor.vala:106
+#: src/Dialogs/MediaEditor.vala:104
 msgid "Album:"
 msgstr "Album:"
 
-#: src/Dialogs/MediaEditor.vala:108
+#: src/Dialogs/MediaEditor.vala:106
 msgid "Album Artist:"
 msgstr "Artis album:"
 
-#: src/Dialogs/MediaEditor.vala:110
+#: src/Dialogs/MediaEditor.vala:108
 msgid "Composer:"
 msgstr "Komposer:"
 
-#: src/Dialogs/MediaEditor.vala:112
+#: src/Dialogs/MediaEditor.vala:110
 msgid "Grouping:"
 msgstr "Pengelompokan:"
 
-#: src/Dialogs/MediaEditor.vala:114
+#: src/Dialogs/MediaEditor.vala:112
 msgid "Genre:"
 msgstr "Aliran:"
 
-#: src/Dialogs/MediaEditor.vala:116
+#: src/Dialogs/MediaEditor.vala:114
 msgid "Year:"
 msgstr "Tahun:"
 
-#: src/Dialogs/MediaEditor.vala:118
+#: src/Dialogs/MediaEditor.vala:116
 msgid "Track:"
 msgstr "Trek:"
 
-#: src/Dialogs/MediaEditor.vala:120
-msgid "Disk:"
-msgstr "Diska:"
+#: src/Dialogs/MediaEditor.vala:118
+#, fuzzy
+msgid "Disc:"
+msgstr "Cakram"
 
-#: src/Dialogs/MediaEditor.vala:122
+#: src/Dialogs/MediaEditor.vala:120
 msgid "Rating:"
 msgstr "Peringkat:"
 
-#: src/Dialogs/MediaEditor.vala:124
+#: src/Dialogs/MediaEditor.vala:122
 msgid "Comment:"
 msgstr "Komentar:"
 
 #. FIXME: don't know if I can delete this
-#: src/Dialogs/MediaEditor.vala:140 src/Dialogs/PreferencesWindow.vala:96
+#: src/Dialogs/MediaEditor.vala:135 src/Dialogs/PreferencesWindow.vala:96
 #: src/Views/DeviceView.vala:45
 msgid "Close"
 msgstr "Tutup"
 
 #: src/Dialogs/NotImportedDialog.vala:51
-#, fuzzy, c-format
+#, c-format
 msgid "Issues while importing from %s"
-msgstr "Mengimpor musik dari %s…"
+msgstr "Masalah saat mengimpor dari %s"
 
 #: src/Dialogs/NotImportedDialog.vala:57
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] "%s tak dapat mengimpor %d item. Mungkin berkas rusak."
+msgstr[0] "Tidak dapat mengimpor  %d item. File tersebut mungkin rusak."
 
 #: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
@@ -579,18 +583,17 @@ msgid "Continue playback when closed:"
 msgstr "Tetap mainkan ketika tertutup:"
 
 #: src/Dialogs/RemoveFilesDialog.vala:49
-#, fuzzy, c-format
+#, c-format
 msgid "Remove %d Song From Library?"
 msgid_plural "Remove %d Songs From Library?"
-msgstr[0] "Menghapus %d Lagu Dari %s?"
+msgstr[0] "Hapus %d Lagu Dari Pustaka?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:55
-#, fuzzy, c-format
+#, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr "Hapus dari Pustaka"
+msgstr "Hapus  \"%s\" Dari Pustaka?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
-#, fuzzy
 msgid ""
 "This will remove the song from your library and from any device synced "
 "automatically."
@@ -598,8 +601,8 @@ msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
 msgstr[0] ""
-"Ini akan menghapus lagu dari pustaka Anda dan dari perangkat lain yang "
-"disinkronisasikan dengan %s."
+"Ini akan menghapus lagu dari pustaka Anda dan dari perangkat apapun yang "
+"tersinkronisasi secara otomatis."
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
@@ -940,13 +943,12 @@ msgid "Device operation has been cancelled and will stop after this media."
 msgstr "Operasi perangkat dibatalkan dan dihentikan setelah media ini."
 
 #: src/Views/ViewStack.vala:45
-#, fuzzy
 msgid "No Results"
-msgstr "Tanpa Peringkat"
+msgstr "Tidak Ada Hasil"
 
 #: src/Views/ViewStack.vala:45
 msgid "Try another search"
-msgstr ""
+msgstr "Coba pencarian lain"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
 msgid "Genres"
@@ -1064,7 +1066,7 @@ msgstr "Tanpa Komposer"
 
 #. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
-#: src/Widgets/EqualizerPopover.vala:327 src/Widgets/PresetList.vala:52
+#: src/Widgets/EqualizerPopover.vala:328 src/Widgets/PresetList.vala:52
 msgid "Automatic"
 msgstr "Otomatis"
 
@@ -1305,29 +1307,29 @@ msgstr "_Batal"
 msgid "_Open"
 msgstr "_Buka"
 
-#: src/Widgets/EqualizerPopover.vala:166
+#: src/Widgets/EqualizerPopover.vala:167
 msgid "Save preset"
 msgstr "Simpan set awal"
 
-#: src/Widgets/EqualizerPopover.vala:331
+#: src/Widgets/EqualizerPopover.vala:332
 msgid "Off"
 msgstr "Padam"
 
-#: src/Widgets/EqualizerPopover.vala:419
+#: src/Widgets/EqualizerPopover.vala:420
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s (Sesuka)"
 
-#: src/Widgets/EqualizerPopover.vala:421
+#: src/Widgets/EqualizerPopover.vala:422
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s (Sesuka %i)"
 
-#: src/Widgets/EqualizerPopover.vala:424
+#: src/Widgets/EqualizerPopover.vala:425
 msgid "Custom Preset"
 msgstr "Set Awal Sesuka"
 
-#: src/Widgets/EqualizerPopover.vala:426
+#: src/Widgets/EqualizerPopover.vala:427
 #, c-format
 msgid "Custom Preset %i"
 msgstr "Set Awal Sesuka %i"
@@ -1337,19 +1339,16 @@ msgid "Scroll to Current Song"
 msgstr "Tunjukkan Lagu yang dimainkan"
 
 #: src/Widgets/MediaMenu.vala:49
-#, fuzzy
 msgid "Show in File Browser…"
-msgstr "Buka di Peramban Berkas"
+msgstr "Tampilkan di Peramban Berkas…"
 
 #: src/Widgets/MediaMenu.vala:50
-#, fuzzy
 msgid "Edit Song Info…"
-msgstr "Ubah Info Lagu"
+msgstr "Ubah Info Lagu…"
 
 #: src/Widgets/MediaMenu.vala:51
-#, fuzzy
 msgid "Other Actions"
-msgstr "Tindakan lain"
+msgstr "Tindakan Lain"
 
 #: src/Widgets/MediaMenu.vala:53
 msgctxt "Action item (verb)"
@@ -1361,18 +1360,16 @@ msgid "Add to Playlist"
 msgstr "Tambah ke Daftar Putar"
 
 #: src/Widgets/MediaMenu.vala:55
-#, fuzzy
 msgid "Remove Song…"
-msgstr "Hapus Lagu"
+msgstr "Hapus Lagu…"
 
 #: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
 msgid "Import to Library"
 msgstr "Impor folder ke Pustaka"
 
 #: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
-#, fuzzy
 msgid "Remove from Library…"
-msgstr "Hapus dari Pustaka"
+msgstr "Hapus dari Pustaka…"
 
 #: src/Widgets/MediaMenu.vala:99
 msgid "Remove from Device"
@@ -1382,16 +1379,16 @@ msgstr "Hapus dari Perangkat"
 msgid "Remove from Queue"
 msgstr "Hapus dari Antrian"
 
-#: src/Widgets/MediaMenu.vala:152
+#: src/Widgets/MediaMenu.vala:153
 msgid "New Playlist…"
 msgstr "Daftarputar baru…"
 
-#: src/Widgets/MediaMenu.vala:192
+#: src/Widgets/MediaMenu.vala:193
 #, c-format
 msgid "Import %i of %i selected songs"
 msgstr "Impor %i dari %i berkas yang dipilih"
 
-#: src/Widgets/MediaMenu.vala:194
+#: src/Widgets/MediaMenu.vala:195
 #, c-format
 msgid "Import %i song"
 msgid_plural "Import %i songs"
@@ -1481,17 +1478,35 @@ msgstr "Hidupkan Putar Acak"
 msgid "Disable Shuffle"
 msgstr "Matikan Putar Acak"
 
-#: src/Widgets/ViewSelector.vala:77
-msgid "View as Albums"
+#: src/Widgets/ViewSelector.vala:81
+#, fuzzy
+msgid "View as albums"
 msgstr "Tampilkan sebagai album"
 
-#: src/Widgets/ViewSelector.vala:80
-msgid "View as List"
+#: src/Widgets/ViewSelector.vala:87
+#, fuzzy
+msgid "View as list"
 msgstr "Tampilkan sebagai daftar"
 
-#: src/Widgets/ViewSelector.vala:83
-msgid "View in Columns"
+#: src/Widgets/ViewSelector.vala:93
+#, fuzzy
+msgid "View in columns"
 msgstr "Tampilkan sebagai kolom"
+
+#~ msgid "Importation of a song from Audio CD finished."
+#~ msgstr "Pengimporan sebuah lagu dari Audio CD telah selesai."
+
+#~ msgid "Importation of %i songs from Audio CD finished."
+#~ msgstr "Pengimporan %i lagu dari Audio CD telah selesai."
+
+#~ msgid "An error occured during the Import of this CD"
+#~ msgstr "Kesalahan terjadi ketika mengimpor ke CD"
+
+#~ msgid "There was an error while loading this Audio CD."
+#~ msgstr "Ada galat saat memuat CD Audio ini."
+
+#~ msgid "Disk:"
+#~ msgstr "Diska:"
 
 #~ msgid "%s has imported your library."
 #~ msgstr "%s telah diimpor ke Pustaka."
@@ -1728,9 +1743,6 @@ msgstr "Tampilkan sebagai kolom"
 #~ msgid "Please make sure that your music folder is accessible and mounted."
 #~ msgstr "Pastikan folder musik Anda dapat diakses dan di-mount"
 
-#~ msgid "Import songs from audio CD"
-#~ msgstr "Impor beberapa lagu dari CD audio"
-
 #~ msgid "<b>Importing</b> music from <b>%s</b> to library."
 #~ msgstr "<b>sedang mengimpor</b> musik dari <b>%s</b> ke pustaka."
 
@@ -1879,9 +1891,6 @@ msgstr "Tampilkan sebagai kolom"
 #~ msgid "Editing %i songs"
 #~ msgstr "Mengubah %i lagu"
 
-#~ msgid "Disc"
-#~ msgstr "Cakram"
-
 #~ msgid "Album Artist"
 #~ msgstr "Artis Album"
 
@@ -1933,9 +1942,6 @@ msgstr "Tampilkan sebagai kolom"
 
 #~ msgid "%s can't seem to find your music."
 #~ msgstr "Nampaknya %s tidak dapat menemukan musik Anda."
-
-#~ msgid "%s could not read the contents of this Audio CD"
-#~ msgstr "%s tidak dapat membaca isi CD Suara"
 
 #~ msgid "1 day"
 #~ msgstr "1 hari"
@@ -2125,9 +2131,6 @@ msgstr "Tampilkan sebagai kolom"
 
 #~ msgid "Rescanning music for changes. This may take a while..."
 #~ msgstr "Memindai ulang perubahan. Mungkin makan waktu..."
-
-#~ msgid "%s has finished importing a song from Audio CD."
-#~ msgstr "%s selesai mengimpor sebuah lagu dari Audio CD."
 
 #~ msgid "Unknown Title"
 #~ msgstr "Judul Tak Diketahui"

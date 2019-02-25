@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-17 08:23-0700\n"
+"POT-Creation-Date: 2018-11-05 13:23-0800\n"
 "PO-Revision-Date: 2017-05-09 22:27+0000\n"
 "Last-Translator: Martin Tomov <martin.tomov@boomer.digital>\n"
 "Language-Team: Bulgarian <https://l10n.elementary.io/projects/music/music/bg/"
@@ -141,8 +141,8 @@ msgid "Export Playlist"
 msgstr "Изнасяне на списъка с песни"
 
 #: core/Utils/PlaylistsUtils.vala:275 core/Utils/PlaylistsUtils.vala:369
-#: src/LibraryWindow.vala:980 src/Dialogs/FileNotFoundDialog.vala:84
-#: src/Dialogs/FileNotFoundDialog.vala:123
+#: src/LibraryWindow.vala:982 src/Dialogs/FileNotFoundDialog.vala:55
+#: src/Dialogs/FileNotFoundDialog.vala:101
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:50
 #: src/Dialogs/RemoveFilesDialog.vala:82
 #: src/Dialogs/SetMusicFolderConfirmation.vala:67
@@ -153,7 +153,7 @@ msgstr "Изнасяне на списъка с песни"
 msgid "Cancel"
 msgstr "Отказ"
 
-#: core/Utils/PlaylistsUtils.vala:276 src/Dialogs/MediaEditor.vala:142
+#: core/Utils/PlaylistsUtils.vala:276 src/Dialogs/MediaEditor.vala:137
 #: src/Dialogs/SmartPlaylistEditor.vala:89
 msgid "Save"
 msgstr "Запазване"
@@ -175,8 +175,8 @@ msgstr "Списък за изпълнение"
 msgid "Import %s"
 msgstr "Внасяне на %s"
 
-#: core/Utils/PlaylistsUtils.vala:370 src/LibraryWindow.vala:981
-#: src/Dialogs/FileNotFoundDialog.vala:124
+#: core/Utils/PlaylistsUtils.vala:370 src/LibraryWindow.vala:983
+#: src/Dialogs/FileNotFoundDialog.vala:102
 #: src/Dialogs/SetMusicFolderConfirmation.vala:116
 #: src/Views/Wrappers/MusicViewWrapper.vala:147
 #: src/Widgets/AlbumListGrid.vala:244
@@ -261,13 +261,14 @@ msgstr ""
 "Приложението не може да намери песни върху диска. Няма да се внесат песни"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-msgid "Importation of a song from Audio CD finished."
-msgstr "Вкарването на песен от Музикален диск завършено."
+#, fuzzy
+msgid "Song imported from Audio CD."
+msgstr "Импортиране на песни от аудио CD"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, c-format
-msgid "Importation of %i songs from Audio CD finished."
-msgstr "Вкарването на %i песени от Музикален диск завършено."
+#, fuzzy, c-format
+msgid "%i songs imported from Audio CD."
+msgstr "%s завърши импортирането на песен от Audio CD."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
@@ -279,20 +280,22 @@ msgid "CD import will be <b>cancelled</b> after current import."
 msgstr "Внасянето от диска ще бъде <b>прекъснато</b> след настоящото."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:383
-msgid "An error occured during the Import of this CD"
-msgstr "Грешка е станала при внасянето на този Диск"
+msgid "Could not import this CD"
+msgstr ""
 
 #: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
 msgid "Import"
 msgstr "Внасяне"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:37
-msgid "An Error Occured"
+#, fuzzy
+msgid "An Error Occurred"
 msgstr "Възникна грешка"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:38
-msgid "There was an error while loading this Audio CD."
-msgstr "Възникна грешка при зареждането на аудио диска."
+#, fuzzy
+msgid "Could not load this Audio CD."
+msgstr "%s не успя да прочете съдържанието на това Аудио CD"
 
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
@@ -330,58 +333,58 @@ msgstr "медия"
 msgid "Similar Media"
 msgstr "Подобна медия"
 
-#: src/FileOperator.vala:305
+#: src/FileOperator.vala:306
 msgid "Import Complete"
 msgstr "Внасянето завърши"
 
-#: src/FileOperator.vala:305
+#: src/FileOperator.vala:306
 msgid "Your Library Has Been Imported."
 msgstr ""
 
 #. if doing import and copy to music folder is enabled, do copy here
-#: src/FileOperator.vala:315
+#: src/FileOperator.vala:316
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr "<b>Копиране</b> на файлове в <b>Папката за музика</b>…"
 
-#: src/LibraryWindow.vala:192
-msgid "Import to Library…"
-msgstr "Внеси в Библиотеката…"
-
-#: src/LibraryWindow.vala:195 src/Dialogs/PreferencesWindow.vala:40
-msgid "Preferences"
-msgstr "Предпочитания"
-
-#: src/LibraryWindow.vala:211
-msgid "Previous"
-msgstr "Предишна"
-
-#: src/LibraryWindow.vala:215 src/LibraryWindow.vala:270
-msgid "Play"
-msgstr "Изпълнение"
-
-#: src/LibraryWindow.vala:219
-msgid "Next"
-msgstr "Следваща"
-
-#: src/LibraryWindow.vala:223
-msgid "Search Music"
-msgstr "Търсене в музика"
-
-#: src/LibraryWindow.vala:242 src/LibraryWindow.vala:451
-#: src/LibraryWindow.vala:596 src/LibraryWindow.vala:702
-#: src/LibraryWindow.vala:1144
+#: src/LibraryWindow.vala:353 src/LibraryWindow.vala:420
+#: src/LibraryWindow.vala:598 src/LibraryWindow.vala:704
+#: src/LibraryWindow.vala:1146
 msgid "Music"
 msgstr "Музика"
 
-#: src/LibraryWindow.vala:273
+#: src/LibraryWindow.vala:370
+msgid "Import to Library…"
+msgstr "Внеси в Библиотеката…"
+
+#: src/LibraryWindow.vala:373 src/Dialogs/PreferencesWindow.vala:40
+msgid "Preferences"
+msgstr "Предпочитания"
+
+#: src/LibraryWindow.vala:389
+msgid "Previous"
+msgstr "Предишна"
+
+#: src/LibraryWindow.vala:393 src/LibraryWindow.vala:448
+msgid "Play"
+msgstr "Изпълнение"
+
+#: src/LibraryWindow.vala:397
+msgid "Next"
+msgstr "Следваща"
+
+#: src/LibraryWindow.vala:401
+msgid "Search Music"
+msgstr "Търсене в музика"
+
+#: src/LibraryWindow.vala:451
 msgid "Pause"
 msgstr "Прекъсване"
 
-#: src/LibraryWindow.vala:771
+#: src/LibraryWindow.vala:773
 msgid "No songs in Queue"
 msgstr "Няма песни в опашката"
 
-#: src/LibraryWindow.vala:771
+#: src/LibraryWindow.vala:773
 msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
@@ -392,11 +395,11 @@ msgstr ""
 "опашката ще бъдат възпроизведени първо, преди следващата песен в настоящо "
 "възпроизвеждащият се списък от песни."
 
-#: src/LibraryWindow.vala:774
+#: src/LibraryWindow.vala:776
 msgid "No songs in History"
 msgstr "Няма песни в История"
 
-#: src/LibraryWindow.vala:774
+#: src/LibraryWindow.vala:776
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
@@ -407,42 +410,42 @@ msgstr ""
 "Може да използвате този списък, за да видите всички песни, които сте слушали "
 "по време на настоящата сесия."
 
-#: src/LibraryWindow.vala:978 src/Views/Wrappers/MusicViewWrapper.vala:60
+#: src/LibraryWindow.vala:980 src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import Music"
 msgstr "Внасяне на музика"
 
-#: src/PlaybackManager.vala:117
+#: src/PlaybackManager.vala:105
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Опашка"
 
-#: src/Dialogs/FileNotFoundDialog.vala:51
+#: src/Dialogs/FileNotFoundDialog.vala:37
 msgid "File not found"
 msgstr "Файлът не е намерен"
 
-#: src/Dialogs/FileNotFoundDialog.vala:57
+#: src/Dialogs/FileNotFoundDialog.vala:47
 #, c-format
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr "Музикалният файл за <b>%s</b> от <b>%s</b> не беше намерен."
 
-#: src/Dialogs/FileNotFoundDialog.vala:60
+#: src/Dialogs/FileNotFoundDialog.vala:50
 #, c-format
 msgid "%i music files could not be found?"
 msgstr "%i музикални файла не бяха намерени?"
 
-#: src/Dialogs/FileNotFoundDialog.vala:82
+#: src/Dialogs/FileNotFoundDialog.vala:53
 msgid "Rescan Library"
 msgstr "Повторно сканиране на фонотеката"
 
-#: src/Dialogs/FileNotFoundDialog.vala:83
+#: src/Dialogs/FileNotFoundDialog.vala:54
 msgid "Remove Song"
 msgstr "Премахване на песен"
 
-#: src/Dialogs/FileNotFoundDialog.vala:85
+#: src/Dialogs/FileNotFoundDialog.vala:56
 msgid "Find Song"
 msgstr "Търсене на песен"
 
-#: src/Dialogs/FileNotFoundDialog.vala:121
+#: src/Dialogs/FileNotFoundDialog.vala:99
 #: src/Dialogs/SetMusicFolderConfirmation.vala:113
 msgid "Choose Music Folder"
 msgstr "Избиране на папка за музика"
@@ -464,56 +467,57 @@ msgstr ""
 msgid "Install Plugin"
 msgstr "Инсталиране на приставка"
 
-#: src/Dialogs/MediaEditor.vala:102
+#: src/Dialogs/MediaEditor.vala:100
 msgid "Title:"
 msgstr "Заглавие:"
 
-#: src/Dialogs/MediaEditor.vala:104
+#: src/Dialogs/MediaEditor.vala:102
 msgid "Artist:"
 msgstr "Изпълнител:"
 
-#: src/Dialogs/MediaEditor.vala:106
+#: src/Dialogs/MediaEditor.vala:104
 msgid "Album:"
 msgstr "Албум:"
 
-#: src/Dialogs/MediaEditor.vala:108
+#: src/Dialogs/MediaEditor.vala:106
 msgid "Album Artist:"
 msgstr "Изпълнител на албума:"
 
-#: src/Dialogs/MediaEditor.vala:110
+#: src/Dialogs/MediaEditor.vala:108
 msgid "Composer:"
 msgstr "Съчинител:"
 
-#: src/Dialogs/MediaEditor.vala:112
+#: src/Dialogs/MediaEditor.vala:110
 msgid "Grouping:"
 msgstr "Групиране:"
 
-#: src/Dialogs/MediaEditor.vala:114
+#: src/Dialogs/MediaEditor.vala:112
 msgid "Genre:"
 msgstr "Жанр:"
 
-#: src/Dialogs/MediaEditor.vala:116
+#: src/Dialogs/MediaEditor.vala:114
 msgid "Year:"
 msgstr "Година:"
 
-#: src/Dialogs/MediaEditor.vala:118
+#: src/Dialogs/MediaEditor.vala:116
 msgid "Track:"
 msgstr "Запис:"
 
-#: src/Dialogs/MediaEditor.vala:120
-msgid "Disk:"
-msgstr "Диск:"
+#: src/Dialogs/MediaEditor.vala:118
+#, fuzzy
+msgid "Disc:"
+msgstr "Диск"
 
-#: src/Dialogs/MediaEditor.vala:122
+#: src/Dialogs/MediaEditor.vala:120
 msgid "Rating:"
 msgstr "Оценка:"
 
-#: src/Dialogs/MediaEditor.vala:124
+#: src/Dialogs/MediaEditor.vala:122
 msgid "Comment:"
 msgstr "Коментар:"
 
 #. FIXME: don't know if I can delete this
-#: src/Dialogs/MediaEditor.vala:140 src/Dialogs/PreferencesWindow.vala:96
+#: src/Dialogs/MediaEditor.vala:135 src/Dialogs/PreferencesWindow.vala:96
 #: src/Views/DeviceView.vala:45
 msgid "Close"
 msgstr "Затваряне"
@@ -1080,7 +1084,7 @@ msgstr "Без Композитори"
 
 #. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
-#: src/Widgets/EqualizerPopover.vala:327 src/Widgets/PresetList.vala:52
+#: src/Widgets/EqualizerPopover.vala:328 src/Widgets/PresetList.vala:52
 msgid "Automatic"
 msgstr "Автоматично"
 
@@ -1322,29 +1326,29 @@ msgstr "_Отказ"
 msgid "_Open"
 msgstr "_Отвори"
 
-#: src/Widgets/EqualizerPopover.vala:166
+#: src/Widgets/EqualizerPopover.vala:167
 msgid "Save preset"
 msgstr "Запазване на фиксирана настройка"
 
-#: src/Widgets/EqualizerPopover.vala:331
+#: src/Widgets/EqualizerPopover.vala:332
 msgid "Off"
 msgstr "Изключено"
 
-#: src/Widgets/EqualizerPopover.vala:419
+#: src/Widgets/EqualizerPopover.vala:420
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s (По избор)"
 
-#: src/Widgets/EqualizerPopover.vala:421
+#: src/Widgets/EqualizerPopover.vala:422
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s (%i по избор)"
 
-#: src/Widgets/EqualizerPopover.vala:424
+#: src/Widgets/EqualizerPopover.vala:425
 msgid "Custom Preset"
 msgstr "Фиксирана настройка по избор"
 
-#: src/Widgets/EqualizerPopover.vala:426
+#: src/Widgets/EqualizerPopover.vala:427
 #, c-format
 msgid "Custom Preset %i"
 msgstr "Фиксирана настройка по избор %i"
@@ -1399,16 +1403,16 @@ msgstr "Премахване от устройство"
 msgid "Remove from Queue"
 msgstr "Премахване от опашката"
 
-#: src/Widgets/MediaMenu.vala:152
+#: src/Widgets/MediaMenu.vala:153
 msgid "New Playlist…"
 msgstr "Нов списък…"
 
-#: src/Widgets/MediaMenu.vala:192
+#: src/Widgets/MediaMenu.vala:193
 #, c-format
 msgid "Import %i of %i selected songs"
 msgstr "Внасяне на %i от %i избрани песни"
 
-#: src/Widgets/MediaMenu.vala:194
+#: src/Widgets/MediaMenu.vala:195
 #, c-format
 msgid "Import %i song"
 msgid_plural "Import %i songs"
@@ -1499,17 +1503,35 @@ msgstr "Включване на разбъркване"
 msgid "Disable Shuffle"
 msgstr "Изключване на разбъркване"
 
-#: src/Widgets/ViewSelector.vala:77
-msgid "View as Albums"
+#: src/Widgets/ViewSelector.vala:81
+#, fuzzy
+msgid "View as albums"
 msgstr "Изглед като албуми"
 
-#: src/Widgets/ViewSelector.vala:80
-msgid "View as List"
+#: src/Widgets/ViewSelector.vala:87
+#, fuzzy
+msgid "View as list"
 msgstr "Изглед като списък"
 
-#: src/Widgets/ViewSelector.vala:83
-msgid "View in Columns"
+#: src/Widgets/ViewSelector.vala:93
+#, fuzzy
+msgid "View in columns"
 msgstr "Изглед като колони"
+
+#~ msgid "Importation of a song from Audio CD finished."
+#~ msgstr "Вкарването на песен от Музикален диск завършено."
+
+#~ msgid "Importation of %i songs from Audio CD finished."
+#~ msgstr "Вкарването на %i песени от Музикален диск завършено."
+
+#~ msgid "An error occured during the Import of this CD"
+#~ msgstr "Грешка е станала при внасянето на този Диск"
+
+#~ msgid "There was an error while loading this Audio CD."
+#~ msgstr "Възникна грешка при зареждането на аудио диска."
+
+#~ msgid "Disk:"
+#~ msgstr "Диск:"
 
 #~ msgid "%s has imported your library."
 #~ msgstr "%s внесе библиотеката ви."
@@ -1743,9 +1765,6 @@ msgstr "Изглед като колони"
 #~ msgid "CD Import Complete"
 #~ msgstr "Импортирането на CD завърши"
 
-#~ msgid "%s has finished importing a song from Audio CD."
-#~ msgstr "%s завърши импортирането на песен от Audio CD."
-
 #~ msgid "Unknown Title"
 #~ msgstr "Неизвестно заглавие"
 
@@ -1818,9 +1837,6 @@ msgstr "Изглед като колони"
 
 #~ msgid "Try again"
 #~ msgstr "Опитайте отново"
-
-#~ msgid "Disc"
-#~ msgstr "Диск"
 
 #~ msgid "Success!"
 #~ msgstr "Успешно!"
@@ -1919,9 +1935,6 @@ msgstr "Изглед като колони"
 #~ msgid "%i items"
 #~ msgstr "%i предмета"
 
-#~ msgid "Import songs from audio CD"
-#~ msgstr "Импортиране на песни от аудио CD"
-
 #~ msgid "%i songs"
 #~ msgstr "%i песни"
 
@@ -1945,9 +1958,6 @@ msgstr "Изглед като колони"
 
 #~ msgid "%i tracks"
 #~ msgstr "%i песни"
-
-#~ msgid "%s could not read the contents of this Audio CD"
-#~ msgstr "%s не успя да прочете съдържанието на това Аудио CD"
 
 #~ msgid "Similar to %s"
 #~ msgstr "Подобни на %s"
