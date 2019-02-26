@@ -1144,7 +1144,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         library_manager.add_files_to_library (files_dragged);
     }
 
-    public void show_alert (string title, string message) {
+    private void show_alert (string title, string message) {
         var dialog = new Granite.MessageDialog (
             title,
             message,
