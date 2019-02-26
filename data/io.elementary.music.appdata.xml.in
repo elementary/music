@@ -15,6 +15,14 @@
         </p>
     </description>
     <releases>
+        <release version="5.0.3" date="2019-02-26" urgency="medium">
+            <description>
+                <p>Scale album art properly at high resolutions</p>
+                <p>Accurately select Music Folder Location for directories with spaces in name</p>
+                <p>New MediaKeyListener path for gnome-settings-daemon</p>
+                <p>Updated translations</p>
+            </description>
+        </release>
         <release version="5.0.2" date="2018-12-18" urgency="medium">
             <description>
                 <p>AlbumView: double-click to play album</p>
