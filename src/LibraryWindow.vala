@@ -128,7 +128,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             App.player.player.error_occured.connect (error_occured);
         });
 
-        NotificationManager.get_default ().show_alert.connect (doAlert);
+        NotificationManager.get_default ().show_alert.connect (show_alert);
 
         match_playlists = new Gee.HashMap<unowned Playlist, ViewWrapper> ();
         match_devices = new Gee.HashMap<string, DeviceView> ();
@@ -1144,12 +1144,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         library_manager.add_files_to_library (files_dragged);
     }
 
-    public void doAlert (string title, string message) {
-        var dialog = new Gtk.MessageDialog (this, Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR, Gtk.ButtonsType.OK, "%s", title);
-
-        dialog.title = _("Music");
-        dialog.secondary_text = message;
-        dialog.secondary_use_markup = true;
+    private void show_alert (string title, string message) {
+        var dialog = new Granite.MessageDialog (
+            title,
+            message,
+            new ThemedIcon ("dialog-warning"),
+            Gtk.ButtonsType.CLOSE
+        );
+        dialog.transient_for = this;
 
         dialog.run ();
         dialog.destroy ();
