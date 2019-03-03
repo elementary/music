@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2019-01-09 00:06+0000\n"
+"PO-Revision-Date: 2019-03-03 08:26+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
-"Language-Team: Japanese <https://weblate.elementary.io/projects/music/music/"
-"ja/>\n"
+"Language-Team: Japanese <https://l10n.elementary.io/projects/music/music/ja/>"
+"\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 3.4\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:53+0000\n"
 
 #: core/LibrariesManager.vala:147
@@ -386,9 +386,8 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
-"キューに曲を追加するには、アイテムの上で<b>右クリック</b>をして<b>キュー</b>"
-"を選択します。曲が終わると、現在のプレイリストの次の曲の前にキューの曲が先に"
-"再生されます。"
+"キューに曲を追加するには、項目上で<b>右クリック</b>をして<b>キュー</b>を選択します。曲が終わると、現在のプレイリストの次の曲の前にキューの曲"
+"が先に再生されます。"
 
 #: src/LibraryWindow.vala:776
 msgid "No songs in History"
@@ -520,7 +519,7 @@ msgstr "%s からのインポート中に問題が発生しました"
 #, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] "%d 個のアイテムをインポートできませんでした。ファイルが壊れている可能性があります。"
+msgstr[0] "%d 個の項目をインポートできませんでした。ファイルが壊れている可能性があります。"
 
 #: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
@@ -655,7 +654,7 @@ msgstr "上限"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:87
 msgid "items"
-msgstr "アイテム"
+msgstr "項目"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:107
 msgid "Name of Playlist"
@@ -794,7 +793,7 @@ msgstr "kbps"
 #, c-format
 msgid "Sync will remove %i item from %s"
 msgid_plural "Sync will remove %i items from %s"
-msgstr[0] "同期によって %i 個のアイテムが %s から削除されます"
+msgstr[0] "同期によって %i 個の項目が %s から削除されます"
 
 #: src/Dialogs/SyncWarningDialog.vala:55
 #, c-format
@@ -1260,9 +1259,7 @@ msgstr "プレイリストを更新しています。お待ちください。"
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
-msgstr ""
-"プレイリストに曲を追加するには、アイテム上で<b>右クリック</b>をして<b>プレイ"
-"リストに追加</b>を選択します。"
+msgstr "プレイリストに曲を追加するには、項目上で<b>右クリック</b>をして<b>プレイリストに追加</b>を選択します。"
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:58
 msgid "Edit Smart Playlist"
