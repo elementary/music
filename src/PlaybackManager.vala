@@ -135,9 +135,9 @@ public class Noise.PlaybackManager : Object {
         queue_playlist.remove_medias (to_unqueue);
 
         if (_current.size - to_unqueue.size > 0){
-            bool currnet_media_changed = false;
+            bool current_media_changed = false;
             while (current_media != null && to_unqueue.contains (current_media)) {
-                currnet_media_changed = true;
+                current_media_changed = true;
                 current_index++;
                 if (current_index >= _current.size) {
                     current_index = 0;
@@ -149,7 +149,7 @@ public class Noise.PlaybackManager : Object {
                 }
             }
 
-            if (currnet_media_changed && current_media != null) {
+            if (current_media_changed && current_media != null) {
                 play_media (current_media);
             }
 
