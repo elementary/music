@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2019-03-29 02:49+0000\n"
+"PO-Revision-Date: 2019-04-07 19:06+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://l10n.elementary.io/projects/music/music/mr/>"
 "\n"
@@ -592,7 +592,11 @@ msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
 msgstr[0] ""
+"हे आपल्या लायब्ररीमधील आणि आपल्या स्वयंचलितपणे समक्रमित केलेल्या सर्व "
+"डिव्हाइसेसवरून गाणे काढेल."
 msgstr[1] ""
+"हे आपल्या लायब्ररीमधील आणि आपल्या स्वयंचलितपणे समक्रमित केलेल्या सर्व "
+"डिव्हाइसेसवरून गाणी काढेल."
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
@@ -617,6 +621,8 @@ msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
 msgstr ""
+"आपणास खात्री आहे की आपण संगीत फोल्डर %s वर सेट करू इच्छिता? हे आपले लायब्ररी "
+"रीसेट करेल आणि आपल्या प्लेलिस्ट हटवेल."
 
 #: src/Dialogs/SmartPlaylistEditor.vala:55
 msgid "Playlist Title"
@@ -787,8 +793,8 @@ msgstr "केबीपीएस"
 #, c-format
 msgid "Sync will remove %i item from %s"
 msgid_plural "Sync will remove %i items from %s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "समक्रमण %i आयटम %s मधून काढेल"
+msgstr[1] "समक्रमण %i आयटम %s मधून काढेल"
 
 #: src/Dialogs/SyncWarningDialog.vala:55
 #, c-format
