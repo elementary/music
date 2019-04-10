@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2019-04-05 21:52+0000\n"
+"PO-Revision-Date: 2019-04-11 22:53+0000\n"
 "Last-Translator: Ozgur Baskin <bebeto_baskin@yahoo.com>\n"
 "Language-Team: Turkish <https://l10n.elementary.io/projects/music/music/tr/>"
 "\n"
@@ -214,33 +214,32 @@ msgstr "Müzik Çalar"
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:137
 #: plugins/Devices/iPod/iPodLibrary.vala:148
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr "<b>$ARTIST</b> tarafından <b>$NAME</b>  $DEVICE 'a Ekleniyor"
+msgstr "<b>$ARTIST</b> - <b>$NAME</b> $DEVICE cihazına ekleniyor"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:161
 #: plugins/Devices/iPod/iPodLibrary.vala:196
 #, c-format
 msgid "Syncing <b>%s</b>…"
-msgstr "Eşitleniyor <b>%s</b>…"
+msgstr "<b>%s</b> Eşitleniyor…"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:266
 #: plugins/Devices/iPod/iPodLibrary.vala:530
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr ""
-"<b>$ARTIST</b> tarafından <b>$NAME</b>, $DEVICE cihazından kaldırılıyor"
+msgstr "<b>$ARTIST</b> - <b>$NAME</b> $DEVICE cihazından kaldırılıyor"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:297
 #: plugins/Devices/iPod/iPodLibrary.vala:337
 #, c-format
 msgid "Removing from <b>%s</b>…"
-msgstr "<b>%s</b>'dan kaldırılıyor…"
+msgstr "<b>%s</b> cihazından kaldırılıyor…"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:91
 msgid "Audio CD Invalid"
-msgstr "Bilinmeyen ses CD'si"
+msgstr "Geçersiz Ses CD'si"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:95
 msgid "Impossible to read the contents of this Audio CD"
-msgstr "Ses CD'sinin içeriği okunamıyor"
+msgstr "Bu Ses CD'sinin içeriği okunamıyor"
 
 #. do checks to make sure we can go on
 #: plugins/Devices/CDRom/CDRomDevice.vala:247
@@ -304,7 +303,7 @@ msgstr "Eşitleme işlemi bitiriliyor…"
 #: plugins/Devices/iPod/iPodLibrary.vala:230
 #: plugins/Devices/iPod/iPodLibrary.vala:386
 msgid "Cancelling Sync…"
-msgstr "Eşitleme iptal ediliyor…"
+msgstr "Eşitleme İptal Ediliyor…"
 
 #: plugins/LastFM/LastFM.vala:98
 msgid "No similar songs found"
@@ -316,7 +315,7 @@ msgid ""
 "all song info is correct and you are connected to the Internet. Some songs "
 "may not have matches."
 msgstr ""
-"Kütüphanenizde bu şarkıya benzer hiçbir şarkı yok. Şarkı bilgilerinin doğru "
+"Kitaplığınızda bu şarkıya benzer hiçbir şarkı yok. Şarkı bilgilerinin doğru "
 "olduğundan ve internete bağlı olduğunuzdan emin olun. Bazı şarkıların eşleri "
 "bulunamayabilir."
 
@@ -326,7 +325,7 @@ msgstr "Benzer"
 
 #: plugins/LastFM/SimilarMediaView.vala:48
 msgid "media"
-msgstr "ortam"
+msgstr "medya"
 
 #: plugins/LastFM/SimilarMediaView.vala:54
 msgid "Similar Media"
@@ -353,7 +352,7 @@ msgstr "Müzik"
 
 #: src/LibraryWindow.vala:370
 msgid "Import to Library…"
-msgstr "Kütüphaneye Ekle…"
+msgstr "Kitaplığa Aktar…"
 
 #: src/LibraryWindow.vala:373 src/Dialogs/PreferencesWindow.vala:40
 msgid "Preferences"
@@ -433,7 +432,7 @@ msgstr "%i müzik dosyası bulunamadı?"
 
 #: src/Dialogs/FileNotFoundDialog.vala:53
 msgid "Rescan Library"
-msgstr "Kütüphaneyi tekrar tara"
+msgstr "Kitaplığı Yeniden Tara"
 
 #: src/Dialogs/FileNotFoundDialog.vala:54
 msgid "Remove Song"
@@ -446,7 +445,7 @@ msgstr "Parçayı Bul"
 #: src/Dialogs/FileNotFoundDialog.vala:99
 #: src/Dialogs/SetMusicFolderConfirmation.vala:113
 msgid "Choose Music Folder"
-msgstr "Müzik Dizini Seç"
+msgstr "Müzik Klasörü Seç"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:38
 #, c-format
@@ -558,11 +557,11 @@ msgstr "Müzik Klasörünü Seç…"
 
 #: src/Dialogs/PreferencesWindow.vala:77
 msgid "Music Folder Location"
-msgstr "Müzik Dizini Konumu"
+msgstr "Müzik Klasörü Konumu"
 
 #: src/Dialogs/PreferencesWindow.vala:79
 msgid "Library Management"
-msgstr "Kütüphane Yönetimi"
+msgstr "Kitaplık Yönetimi"
 
 #: src/Dialogs/PreferencesWindow.vala:80
 msgid "Keep Music folder organized:"
@@ -574,11 +573,11 @@ msgstr "Dosyaya metadata yaz:"
 
 #: src/Dialogs/PreferencesWindow.vala:84
 msgid "Copy imported files to Library:"
-msgstr "İçe aktarılmış dosyaları Kütüphaneye kopyala:"
+msgstr "İçe aktarılmış dosyaları Kitaplığa kopyala:"
 
 #: src/Dialogs/PreferencesWindow.vala:86
 msgid "Desktop Integration"
-msgstr "Masaüstü Entegrasyonu"
+msgstr "Masaüstü Tümleştirme"
 
 #: src/Dialogs/PreferencesWindow.vala:87
 msgid "Continue playback when closed:"
@@ -588,13 +587,13 @@ msgstr "Kapatıldığında oynatmaya devam et:"
 #, c-format
 msgid "Remove %d Song From Library?"
 msgid_plural "Remove %d Songs From Library?"
-msgstr[0] "%d Şarkısı Kitaplıktan Kaldırılsın Mı?"
-msgstr[1] "%d Şarkıları Kitaplıktan Kaldırılsın Mı?"
+msgstr[0] "%d Şarkı Kitaplıktan Kaldırılsın Mı?"
+msgstr[1] "%d Şarkı Kitaplıktan Kaldırılsın Mı?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:55
 #, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr "\"%s\" Kütüphaneden Kaldırılsın Mı?"
+msgstr "\"%s\" Kitaplıktan Kaldırılsın Mı?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
 msgid ""
@@ -604,15 +603,15 @@ msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
 msgstr[0] ""
-"Bu işlem şarkıyı kütüphanenizden ve otomatik olarak senkronize edilen tüm "
+"Bu işlem şarkıyı kitaplığınızdan ve otomatik olarak eşitlenmiş tüm "
 "cihazlardan kaldıracaktır."
 msgstr[1] ""
-"Bu işlem şarkıları kütüphanenizden ve otomatik olarak senkronize edilen tüm "
+"Bu işlem şarkıları kitaplığınızdan ve otomatik olarak eşitlenmiş tüm "
 "cihazlardan kaldıracaktır."
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
-msgstr "Kütüphaneden kaldır"
+msgstr "Kitaplıktan Kaldır"
 
 #: src/Dialogs/SetMusicFolderConfirmation.vala:65
 msgid "Export Playlists"
@@ -620,12 +619,12 @@ msgstr "Çalma listesini dışarı aktar"
 
 #: src/Dialogs/SetMusicFolderConfirmation.vala:66
 msgid "Set Music Folder"
-msgstr "Müzik dizinini belirle"
+msgstr "Müzik Klasörünü Ayarla"
 
 #. pretty up labels
 #: src/Dialogs/SetMusicFolderConfirmation.vala:73
 msgid "Set Music Folder?"
-msgstr "Müzik dizinini belirle?"
+msgstr "Müzik Klasörü Ayarlansın Mı?"
 
 #: src/Dialogs/SetMusicFolderConfirmation.vala:76
 #, c-format
@@ -633,8 +632,8 @@ msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
 msgstr ""
-"Müzik dizinini %s olarak belirlemek istediğine emin misin? Bu işlemden sonra "
-"müzik kütüphaneniz sıfırlanacak ve çalma listeleriniz kaldırılacak."
+"Müzik klasörünü %s olarak belirlemek istediğinize emin misin? Bu işlemden "
+"sonra müzik kitaplığınız sıfırlanacak ve çalma listeleriniz kaldırılacak."
 
 #: src/Dialogs/SmartPlaylistEditor.vala:55
 msgid "Playlist Title"
@@ -805,8 +804,8 @@ msgstr "Kbyte/saniye"
 #, c-format
 msgid "Sync will remove %i item from %s"
 msgid_plural "Sync will remove %i items from %s"
-msgstr[0] "Senkronize etmek %i öğesini %s'den çıkaracak"
-msgstr[1] "Senkronize etmek %i öğelerini %s'den çıkaracak"
+msgstr[0] "Eşitleme %s cihazından %i öğeyi kaldırır"
+msgstr[1] "Eşitleme %s cihazından %i öğeyi kaldırır"
 
 #: src/Dialogs/SyncWarningDialog.vala:55
 #, c-format
@@ -814,12 +813,13 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
-"Senkronize etmeye devam ederseniz, ortam senkronize listesinde olmadığı için "
-"%s'den çıkarılacak. Öncelikle onları kütüphaneye almak ister misiniz?"
+"Eşitlemeye devam ederseniz, medya eşitleme listesinde olmadığı için %s "
+"cihazından kaldırılacak. Öncelikle onları kitaplığınıza aktarmak ister "
+"misiniz?"
 
 #: src/Dialogs/SyncWarningDialog.vala:57
 msgid "Continue Syncing"
-msgstr "Senkronize etmeye devam et"
+msgstr "Eşitlemeye Devam Et"
 
 #: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
@@ -828,19 +828,19 @@ msgstr "%s kaynağından müzik içe aktarılıyor…"
 
 #: src/LocalBackend/LocalLibrary.vala:212
 msgid "Adding files to library…"
-msgstr "Dosyalar kütüphaneye ekleniyor…"
+msgstr "Dosyalar kitaplığa ekleniyor…"
 
 #: src/LocalBackend/LocalLibrary.vala:225
 msgid "<b>Importing</b> music to library…"
-msgstr "Müzik kütüphaneye <b>aktarılıyor</b>…"
+msgstr "Kitaplığa müzik <b>aktarılıyor</b>…"
 
 #: src/LocalBackend/LocalLibrary.vala:247
 msgid "All music files are already in your library"
-msgstr "Tüm müzik dosyaları  zaten kütüphanizde"
+msgstr "Tüm müzik dosyaları zaten kitaplığınızda"
 
 #: src/LocalBackend/LocalLibrary.vala:247
 msgid "No files were imported."
-msgstr "Dosyalar alınamadı."
+msgstr "Dosyalar aktarılamadı."
 
 #: src/LocalBackend/LocalLibrary.vala:252
 msgid "Rescanning music for changes. This may take a while…"
@@ -899,15 +899,15 @@ msgstr "Aygıt Adı"
 
 #: src/Views/DeviceSummaryWidget.vala:66
 msgid "Automatically sync when plugged in:"
-msgstr "Takıldığı zaman otomatik senkronize et:"
+msgstr "Takıldığı zaman otomatik olarak eşitle:"
 
 #: src/Views/DeviceSummaryWidget.vala:72
 msgid "Sync:"
-msgstr "Senkronize et:"
+msgstr "Eşitle:"
 
 #: src/Views/DeviceSummaryWidget.vala:100 src/Widgets/SourceListView.vala:192
 msgid "Sync"
-msgstr "Senkronize et"
+msgstr "Eşitle"
 
 #: src/Views/DeviceSummaryWidget.vala:244
 msgid "All Music"
@@ -915,25 +915,25 @@ msgstr "Tüm Müzikler"
 
 #: src/Views/DeviceSummaryWidget.vala:298
 msgid "Sync Failed"
-msgstr "Senkronizasyon Başarısız"
+msgstr "Eşitleme Başarısız Oldu"
 
 #: src/Views/DeviceSummaryWidget.vala:299
 #, c-format
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
-"%s adlı oynatma listesi %s cihazıyla senkronize edilmek için kullanılıyordu "
-"ama bulunamadı."
+"%s adlı oynatma listesi %s cihazıyla eşitlemek için kullanılıyordu ama "
+"bulunamadı."
 
 #: src/Views/DeviceSummaryWidget.vala:316
 #: src/Views/DeviceSummaryWidget.vala:321
 msgid "Cannot Sync"
-msgstr "Senkronize Edilemez"
+msgstr "Eşitlenemiyor"
 
 #: src/Views/DeviceSummaryWidget.vala:317
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
-msgstr "Seçili ayarlarla aygıt senkronize edilemiyor. Yetersiz disk alanı"
+msgstr "Seçili eşitleme ayarlarıyla cihaz eşitlenemiyor. Yetersiz disk alanı"
 
 #: src/Views/DeviceSummaryWidget.vala:322
 msgid "Device is already doing an operation."
@@ -1230,11 +1230,11 @@ msgstr "Müziklerinizi Bulun"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Add music to your library."
-msgstr "Kütüphanene müzik ekle."
+msgstr "Kitaplığınıza müzik ekleyin."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:61
 msgid "Import music from a source into your library."
-msgstr "Bir kaynaktan kütüphanenize müzik aktarın."
+msgstr "Bir kaynaktan kitaplığınıza müzik aktarın."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:63
 msgid "Change Music Folder"
@@ -1253,17 +1253,17 @@ msgstr "Müziklerinizi içeri aktarın"
 #: src/Views/Wrappers/MusicViewWrapper.vala:132
 #, c-format
 msgid "Import all your Music from %s into your library."
-msgstr "%s üzerinde bulunan tüm Müziğinizi kütüphanenize ekleyin."
+msgstr "%s üzerinde bulunan tüm müziğinizi kitaplığınıza aktarın."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:143
 msgid "Select Music Folder"
-msgstr "Müzik Dizinini Seç"
+msgstr "Müzik Klasörünü Seç"
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:50
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:54
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:64
 msgid "No Songs"
-msgstr "Şarkı yok"
+msgstr "Şarkı Yok"
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:51
 msgid "Updating playlist. Please wait."
@@ -1371,19 +1371,19 @@ msgstr "Şarkıyı Kaldır…"
 
 #: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
 msgid "Import to Library"
-msgstr "Kütüphaneye medya ekle"
+msgstr "Kitaplığa Aktar"
 
 #: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
 msgid "Remove from Library…"
-msgstr "Kütüphaneden Kaldır…"
+msgstr "Kitaplıktan Kaldır…"
 
 #: src/Widgets/MediaMenu.vala:99
 msgid "Remove from Device"
-msgstr "Aygıtdan Sil"
+msgstr "Cihazdan Kaldır"
 
 #: src/Widgets/MediaMenu.vala:119
 msgid "Remove from Queue"
-msgstr "Kuruktan Sil"
+msgstr "Kuyruktan Kaldır"
 
 #: src/Widgets/MediaMenu.vala:153
 msgid "New Playlist…"
@@ -1440,7 +1440,7 @@ msgstr "Parça listesini içe aktar"
 #. Adds the different sidebar categories.
 #: src/Widgets/SourceListView.vala:338
 msgid "Library"
-msgstr "Kütüphane"
+msgstr "Kitaplık"
 
 #: src/Widgets/SourceListView.vala:339
 msgid "Devices"
