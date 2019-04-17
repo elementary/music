@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
 "PO-Revision-Date: 2019-04-17 00:15+0000\n"
-"Last-Translator: nasserbinlaboun <nasser1990com@gmail.com>\n"
+"Last-Translator: karim inabi <karim99tgt@gmail.com>\n"
 "Language-Team: Arabic <https://l10n.elementary.io/projects/music/music/ar/>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
@@ -202,15 +202,15 @@ msgstr "جهاز فارغ!"
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:109
 #: plugins/Devices/iPod/iPodDevice.vala:69
 msgid "This device does not contain any music."
-msgstr ""
+msgstr "هذا الجهاز لا يحتوي على أي موسيقى."
 
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:153
 msgid "Android Phone"
-msgstr ""
+msgstr "هاتف أندرويد"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:155
 msgid "Audio Player"
-msgstr ""
+msgstr "مشغل الصوت"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:137
 #: plugins/Devices/iPod/iPodLibrary.vala:148
@@ -236,11 +236,11 @@ msgstr ""
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:91
 msgid "Audio CD Invalid"
-msgstr ""
+msgstr "قرص صوتي غير صالح"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:95
 msgid "Impossible to read the contents of this Audio CD"
-msgstr ""
+msgstr "من المستحيل قراءة محتويات هذا القرص الصوتي"
 
 #. do checks to make sure we can go on
 #: plugins/Devices/CDRom/CDRomDevice.vala:247
