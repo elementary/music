@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
 "PO-Revision-Date: 2019-04-17 00:15+0000\n"
-"Last-Translator: karim inabi <karim99tgt@gmail.com>\n"
+"Last-Translator: Khalid <kmoj86@gmail.com>\n"
 "Language-Team: Arabic <https://l10n.elementary.io/projects/music/music/ar/>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
@@ -215,24 +215,24 @@ msgstr "مشغل الصوت"
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:137
 #: plugins/Devices/iPod/iPodLibrary.vala:148
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr ""
+msgstr "جار إضافة <b>$NAME</b> من قبل <b>$ARTIST</b> إلى $DEVICE"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:161
 #: plugins/Devices/iPod/iPodLibrary.vala:196
 #, c-format
 msgid "Syncing <b>%s</b>…"
-msgstr ""
+msgstr "جار مزامنة <b>%s</b>..."
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:266
 #: plugins/Devices/iPod/iPodLibrary.vala:530
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr ""
+msgstr "<b>$NAME</b> من قبل <b>$ARTIST</b> قيد الإزالة من $DEVICE"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:297
 #: plugins/Devices/iPod/iPodLibrary.vala:337
 #, c-format
 msgid "Removing from <b>%s</b>…"
-msgstr ""
+msgstr "جار الإزالة من <b>%s</b>..."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:91
 msgid "Audio CD Invalid"
