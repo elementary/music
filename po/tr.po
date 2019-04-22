@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2019-04-21 19:11+0000\n"
+"PO-Revision-Date: 2019-04-23 22:31+0000\n"
 "Last-Translator: Ozgur Baskin <bebeto_baskin@yahoo.com>\n"
 "Language-Team: Turkish <https://l10n.elementary.io/projects/music/music/tr/>"
 "\n"
@@ -32,17 +32,17 @@ msgstr "Bilinmiyor"
 #. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: core/Media.vala:179
 msgid "$NAME on $ALBUM"
-msgstr "$NAME üzerinde $ALBUM"
+msgstr "$NAME <b>-</b> $ALBUM"
 
 #. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: core/Media.vala:182
 msgid "$NAME by $ARTIST"
-msgstr "$ARTIST tarafından $NAME"
+msgstr "$NAME <b>-</b> $ARTIST"
 
 #. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
 #: core/Media.vala:188
 msgid "$NAME by $ARTIST on $ALBUM"
-msgstr "$ALBUM üzerinde $ARTIST tarafından $NAME"
+msgstr "$NAME  <b>($ARTIST: $ALBUM)</b>"
 
 #: core/GStreamer/Equalizer.vala:71
 msgid "Flat"
@@ -380,7 +380,7 @@ msgstr "Duraklat"
 
 #: src/LibraryWindow.vala:773
 msgid "No songs in Queue"
-msgstr "Kurukta Şarkı Yok"
+msgstr "Sırada Şarkı Yok"
 
 #: src/LibraryWindow.vala:773
 msgid ""
@@ -388,10 +388,10 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
-"Kuyruğa şarkı eklemek için,  bir öğe üzerinde <b>ikincil tıklama</b>yı "
-"kullanın ve <b>Kuyruğa ekle</b> yi seçin. Bir şarkı biterken,  halen çalan "
-"listedeki sonraki şarkıdan önce ilk olarak kuyruğa alınmış şarkılar çalınmış "
-"olacak."
+"Çalma sırasına şarkı eklemek için, bir öğe üzerinde <b>ikincil tıklamayı</b> "
+"kullanın ve <b>Sıraya Al</b> seçeneğini seçin. Bir şarkı biterken, halen "
+"çalan listedeki sonraki şarkıdan önce ilk olarak sıraya alınmış şarkılar "
+"çalınmış olacak."
 
 #: src/LibraryWindow.vala:776
 msgid "No songs in History"
@@ -414,7 +414,7 @@ msgstr "Müziği İçe Aktar"
 #: src/PlaybackManager.vala:105
 msgctxt "Name of the playlist"
 msgid "Queue"
-msgstr "Kuyruk"
+msgstr "Çalma Sırası"
 
 #: src/Dialogs/FileNotFoundDialog.vala:37
 msgid "File not found"
@@ -844,11 +844,12 @@ msgstr "Hiçbir dosya içeri aktarılamadı."
 
 #: src/LocalBackend/LocalLibrary.vala:252
 msgid "Rescanning music for changes. This may take a while…"
-msgstr "Müzik değişiklikler için yeniden taranıyor. Bu biraz zaman alabilir…"
+msgstr ""
+"Müzikleriniz değişiklikler için yeniden taranıyor. Bu biraz zaman alabilir…"
 
 #: src/LocalBackend/LocalLibrary.vala:353
 msgid "Added to your queue:"
-msgstr "Kuyruğa eklenenler:"
+msgstr "Çalma sıranıza eklendi:"
 
 #: src/LocalBackend/LocalLibrary.vala:364
 #, c-format
@@ -1359,7 +1360,7 @@ msgstr "Diğer Eylemler"
 #: src/Widgets/MediaMenu.vala:53
 msgctxt "Action item (verb)"
 msgid "Queue"
-msgstr "Kuyruğa ekle"
+msgstr "Sıraya Al"
 
 #: src/Widgets/MediaMenu.vala:54
 msgid "Add to Playlist"
@@ -1383,7 +1384,7 @@ msgstr "Cihazdan Kaldır"
 
 #: src/Widgets/MediaMenu.vala:119
 msgid "Remove from Queue"
-msgstr "Kuyruktan Kaldır"
+msgstr "Sıradan Kaldır"
 
 #: src/Widgets/MediaMenu.vala:153
 msgid "New Playlist…"
