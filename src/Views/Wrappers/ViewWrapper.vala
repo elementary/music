@@ -130,7 +130,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
     // No widget is set as active until this is true!
     private bool data_initialized = false;
 
-    public ViewWrapper (Hint hint, Library library) {
+    protected ViewWrapper (Hint hint, Library library) {
         Object (hint: hint, library: library);
     }
 

@@ -3,16 +3,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2019-02-12 00:06+0000\n"
-"Last-Translator: Rico Tzschichholz <ricotz@ubuntu.com>\n"
-"Language-Team: Marathi <https://weblate.elementary.io/projects/music/music/"
-"mr/>\n"
+"PO-Revision-Date: 2019-04-07 19:06+0000\n"
+"Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
+"Language-Team: Marathi <https://l10n.elementary.io/projects/music/music/mr/>"
+"\n"
 "Language: mr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 3.5.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 
 #: core/LibrariesManager.vala:147
@@ -290,12 +290,12 @@ msgstr "ही ऑडिओ सीडी लोड शकली नाही."
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
 msgid "Finishing sync process…"
-msgstr "समक्रमण प्रक्रिया समाप्त करीत आहे ..."
+msgstr "समक्रमण प्रक्रिया समाप्त करीत आहे…"
 
 #: plugins/Devices/iPod/iPodLibrary.vala:230
 #: plugins/Devices/iPod/iPodLibrary.vala:386
 msgid "Cancelling Sync…"
-msgstr "समक्रमण रद्द करीत आहे ..."
+msgstr "समक्रमण रद्द करीत आहे…"
 
 #: plugins/LastFM/LastFM.vala:98
 msgid "No similar songs found"
@@ -334,7 +334,7 @@ msgstr "आपली लायब्ररी आयात केली गे�
 #. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:316
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr "फायली <b>संगीत</b> फोल्डरमध्ये <b>कॉपी</b> करत आहे..."
+msgstr "फायली <b>संगीत</b> फोल्डरमध्ये <b>कॉपी</b> करत आहे…"
 
 #: src/LibraryWindow.vala:353 src/LibraryWindow.vala:420
 #: src/LibraryWindow.vala:598 src/LibraryWindow.vala:704
@@ -344,7 +344,7 @@ msgstr "संगीत"
 
 #: src/LibraryWindow.vala:370
 msgid "Import to Library…"
-msgstr "लायब्ररीत आयात करा..."
+msgstr "लायब्ररीत आयात करा…"
 
 #: src/LibraryWindow.vala:373 src/Dialogs/PreferencesWindow.vala:40
 msgid "Preferences"
@@ -391,6 +391,9 @@ msgid ""
 "You can use this list to see all the songs you have played during the "
 "current session."
 msgstr ""
+"गाण्याचे काही भाग चालवल्या नंतर ते इतिहासाच्या यादीमध्ये जोडले जाते.\n"
+"आपण वर्तमान सत्रादरम्यान चालवलेले सर्व गाणे पाहण्यासाठी या सूचीचा वापर करू "
+"शकता."
 
 #: src/LibraryWindow.vala:980 src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import Music"
@@ -449,7 +452,7 @@ msgstr "प्लगइन स्थापित करा"
 
 #: src/Dialogs/MediaEditor.vala:100
 msgid "Title:"
-msgstr "शीर्षकः"
+msgstr "शीर्षक:"
 
 #: src/Dialogs/MediaEditor.vala:102
 msgid "Artist:"
@@ -457,7 +460,7 @@ msgstr "कलावंत:"
 
 #: src/Dialogs/MediaEditor.vala:104
 msgid "Album:"
-msgstr "अल्बमः"
+msgstr "अल्बम:"
 
 #: src/Dialogs/MediaEditor.vala:106
 msgid "Album Artist:"
@@ -485,11 +488,11 @@ msgstr "ट्रॅक:"
 
 #: src/Dialogs/MediaEditor.vala:118
 msgid "Disc:"
-msgstr "डिस्कः"
+msgstr "डिस्क:"
 
 #: src/Dialogs/MediaEditor.vala:120
 msgid "Rating:"
-msgstr "रेटिंगः"
+msgstr "रेटिंग:"
 
 #: src/Dialogs/MediaEditor.vala:122
 msgid "Comment:"
@@ -539,7 +542,7 @@ msgstr "दुर्लक्ष करा"
 
 #: src/Dialogs/PreferencesWindow.vala:48
 msgid "Select Music Folder…"
-msgstr "संगीत फोल्डर निवडा ..."
+msgstr "संगीत फोल्डर निवडा…"
 
 #: src/Dialogs/PreferencesWindow.vala:77
 msgid "Music Folder Location"
@@ -559,7 +562,7 @@ msgstr "फाइलमध्ये मेटाडेटा लिहा:"
 
 #: src/Dialogs/PreferencesWindow.vala:84
 msgid "Copy imported files to Library:"
-msgstr "आयात केलेल्या फायली लायब्ररीत कॉपी कराः"
+msgstr "आयात केलेल्या फायली लायब्ररीत कॉपी करा:"
 
 #: src/Dialogs/PreferencesWindow.vala:86
 msgid "Desktop Integration"
@@ -589,7 +592,11 @@ msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
 msgstr[0] ""
+"हे आपल्या लायब्ररीमधील आणि आपल्या स्वयंचलितपणे समक्रमित केलेल्या सर्व "
+"डिव्हाइसेसवरून गाणे काढेल."
 msgstr[1] ""
+"हे आपल्या लायब्ररीमधील आणि आपल्या स्वयंचलितपणे समक्रमित केलेल्या सर्व "
+"डिव्हाइसेसवरून गाणी काढेल."
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
@@ -614,6 +621,8 @@ msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
 msgstr ""
+"आपणास खात्री आहे की आपण संगीत फोल्डर %s वर सेट करू इच्छिता? हे आपले लायब्ररी "
+"रीसेट करेल आणि आपल्या प्लेलिस्ट हटवेल."
 
 #: src/Dialogs/SmartPlaylistEditor.vala:55
 msgid "Playlist Title"
@@ -784,8 +793,8 @@ msgstr "केबीपीएस"
 #, c-format
 msgid "Sync will remove %i item from %s"
 msgid_plural "Sync will remove %i items from %s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "समक्रमण %i आयटम %s मधून काढेल"
+msgstr[1] "समक्रमण %i आयटम %s मधून काढेल"
 
 #: src/Dialogs/SyncWarningDialog.vala:55
 #, c-format
@@ -801,15 +810,15 @@ msgstr ""
 #: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
 msgid "Importing music from %s…"
-msgstr "%s वरुन संगीत आयात करीत आहे..."
+msgstr "%s वरुन संगीत आयात करीत आहे…"
 
 #: src/LocalBackend/LocalLibrary.vala:212
 msgid "Adding files to library…"
-msgstr "लायब्ररीमध्ये फायली जोडत आहे ..."
+msgstr "लायब्ररीमध्ये फायली जोडत आहे…"
 
 #: src/LocalBackend/LocalLibrary.vala:225
 msgid "<b>Importing</b> music to library…"
-msgstr "संगीत लायब्ररीत संगीत <b> आयात करीत आहे </b>..."
+msgstr "संगीत लायब्ररीत संगीत <b> आयात करीत आहे </b>…"
 
 #: src/LocalBackend/LocalLibrary.vala:247
 msgid "All music files are already in your library"
@@ -821,11 +830,11 @@ msgstr "कोणत्याही फायली आयात केल्य
 
 #: src/LocalBackend/LocalLibrary.vala:252
 msgid "Rescanning music for changes. This may take a while…"
-msgstr "बदलांसाठी संगीत पुनर्वितरण. यास काही वेळ लागू शकतो ..."
+msgstr "बदलांसाठी संगीत पुनर्वितरण. यास काही वेळ लागू शकतो…"
 
 #: src/LocalBackend/LocalLibrary.vala:353
 msgid "Added to your queue:"
-msgstr "आपल्या रांगेत जोडले"
+msgstr "आपल्या रांगेत जोडले:"
 
 #: src/LocalBackend/LocalLibrary.vala:364
 #, c-format
@@ -916,7 +925,7 @@ msgstr "डिव्हाइस आधीच ऑपरेशन करत आ�
 
 #: src/Views/DeviceView.vala:66
 msgid "Cancelling…"
-msgstr "रद्द करीत आहे ..."
+msgstr "रद्द करीत आहे…"
 
 #: src/Views/DeviceView.vala:66
 msgid "Device operation has been cancelled and will stop after this media."

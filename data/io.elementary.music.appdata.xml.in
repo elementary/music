@@ -15,6 +15,15 @@
         </p>
     </description>
     <releases>
+        <release version="5.0.4" date="2019-04-17" urgency="medium">
+            <description>
+                <p>Removed old gsignond vapi</p>
+                <p>LibraryWindow: Use Granite.MessageDialog for showing alerts</p>
+                <p>PlaylistsUtils: Use Gtk.FileChooserNative</p>
+                <p>Accurately remember window size</p>
+                <p>Updated translations</p>
+            </description>
+        </release>
         <release version="5.0.3" date="2019-02-26" urgency="medium">
             <description>
                 <p>Scale album art properly at high resolutions</p>

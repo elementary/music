@@ -365,7 +365,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         destroy.connect (on_quit);
 
-        show ();
 
         var import_menuitem = new Gtk.MenuItem.with_label (_("Import to Library…"));
         import_menuitem.action_name = ACTION_PREFIX + ACTION_IMPORT;
@@ -440,6 +439,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         add (main_hpaned);
         set_titlebar (headerbar);
+
+        show ();
 
         actions.action_state_changed.connect ((name, new_state) => {
             if (name == ACTION_PLAY) {

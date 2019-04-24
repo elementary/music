@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2019-03-03 08:26+0000\n"
+"PO-Revision-Date: 2019-03-17 01:27+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/music/music/ja/>"
 "\n"
@@ -86,7 +86,7 @@ msgstr "ライブ"
 
 #: core/GStreamer/Equalizer.vala:81
 msgid "Party"
-msgstr "パーティ"
+msgstr "パーティー"
 
 #: core/GStreamer/Equalizer.vala:82
 msgid "Pop"
