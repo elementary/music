@@ -133,6 +133,38 @@ public class Noise.PlaybackManager : Object {
 
     public void unqueue_media (Gee.Collection<Media> to_unqueue) {
         queue_playlist.remove_medias (to_unqueue);
+
+        if (_current.size - to_unqueue.size > 0){
+            bool current_media_changed = false;
+            while (current_media != null && to_unqueue.contains (current_media)) {
+                current_media_changed = true;
+                current_index++;
+                if (current_index >= _current.size) {
+                    current_index = 0;
+                }
+                if (_current_shuffled.size == 0) {
+                    current_media = _current.get (current_index);
+                } else {
+                    current_media = _current_shuffled.get (current_index);
+                }
+            }
+
+            if (current_media_changed && current_media != null) {
+                play_media (current_media);
+            }
+
+        } else {
+            current_media = null;
+            stop_playback ();
+        }
+
+        _current.clear();
+        foreach (var q in queue_playlist.medias) {
+            debug ("REQUEUED: %s", q.title);
+            add_to_current (q);
+        }
+
+        reshuffle ();
     }
 
     private Media poll_queue () {

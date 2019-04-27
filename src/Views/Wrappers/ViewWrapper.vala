@@ -371,7 +371,6 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
             set_active_view (ViewType.GRID);
         else if (has_list_view) {
             view_stack.visible_child = list_view;
-            list_view.list_view.scroll_to_current_media (true);
         } else if (has_grid_view)
             view_stack.visible_child = grid_view;
     }
