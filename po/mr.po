@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2019-04-07 19:06+0000\n"
+"PO-Revision-Date: 2019-05-15 02:02+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://l10n.elementary.io/projects/music/music/mr/>"
 "\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.5.1\n"
+"X-Generator: Weblate 3.6.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 
 #: core/LibrariesManager.vala:147
@@ -380,6 +380,9 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
+"रांगेत गाणी जोडण्यासाठी, आयटमवरील <b>दुय्यम क्लिक </b>वापरा आणि <b>रांग "
+"</b>निवडा. गाणे समाप्त झाल्यावर, रांगेत असलेल्या गाण्यांना सध्याच्या "
+"प्लेलिस्टमधील पुढील गाण्याच्या आधी प्रथम प्ले केले जाईल."
 
 #: src/LibraryWindow.vala:776
 msgid "No songs in History"
@@ -802,10 +805,12 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
+"आपण समक्रमित करणे सुरू ठेवल्यास, %s वरून सिंक सूचीवर नसल्यामुळे ते मीडिया "
+"काढले जातील. आपण त्यांना प्रथम आपल्या लायब्ररीमध्ये आयात करू इच्छिता?"
 
 #: src/Dialogs/SyncWarningDialog.vala:57
 msgid "Continue Syncing"
-msgstr ""
+msgstr "संकालन सुरू ठेवा"
 
 #: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
@@ -908,6 +913,8 @@ msgstr "सिंक अयशस्वी"
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
+"%s नावाची प्लेलिस्टचा वापर %s संकालन करण्यासाठी केला जातो, परंतु ती आढळू शकली"
+" नाही."
 
 #: src/Views/DeviceSummaryWidget.vala:316
 #: src/Views/DeviceSummaryWidget.vala:321
@@ -918,6 +925,8 @@ msgstr "सिंक करू शकत नाही"
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
+"निवडलेल्या सिंक सेटिंग्जसह डिव्हाइस समक्रमित करू शकत नाही. डिस्कवर पुरेशी "
+"जागा नाही"
 
 #: src/Views/DeviceSummaryWidget.vala:322
 msgid "Device is already doing an operation."
@@ -1154,10 +1163,9 @@ msgid "Rating"
 msgstr "रेटिंग"
 
 #: src/Views/ListView/Lists/ListColumn.vala:108
-#, fuzzy
 msgctxt "List column title"
 msgid "Plays"
-msgstr "यादी"
+msgstr "चालवते"
 
 #: src/Views/ListView/Lists/ListColumn.vala:111
 msgctxt "List column title"
@@ -1259,6 +1267,8 @@ msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
+"या प्लेलिस्टमध्ये गाणी जोडण्यासाठी, आयटमवरील <b> दुय्यम क्लिक </b> वापरा आणि "
+"<b> प्लेलिस्टमध्ये जोडा </b> निवडा."
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:58
 msgid "Edit Smart Playlist"
@@ -1271,6 +1281,10 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
+"ही प्लेलिस्ट स्वयंचलितपणे गाण्यांसह पॉप्युलेट केली जाईल जी त्याच्या नियमांशी "
+"जुळते. या नियमांमध्ये सुधारणा करण्यासाठी, साइडबारमध्ये <b> दुय्यम क्लिक </b> "
+"वापरा आणि <b> संपादित करा </b> वर क्लिक करा. वैकल्पिकरित्या, आपण खालील बटणा"
+"वर क्लिक करू शकता."
 
 #: src/Views/Wrappers/ViewWrapper.vala:419
 msgid "No media"
@@ -1317,166 +1331,164 @@ msgstr "सानुकूल प्रीसेट"
 #: src/Widgets/EqualizerPopover.vala:427
 #, c-format
 msgid "Custom Preset %i"
-msgstr ""
+msgstr "सानुकूल प्रीसेट %i"
 
 #: src/Widgets/MediaMenu.vala:46
 msgid "Scroll to Current Song"
-msgstr ""
+msgstr "वर्तमान गाण्यावर स्क्रोल करा"
 
 #: src/Widgets/MediaMenu.vala:49
 msgid "Show in File Browser…"
-msgstr ""
+msgstr "फाइल ब्राउझरमध्ये दाखवा…"
 
 #: src/Widgets/MediaMenu.vala:50
 msgid "Edit Song Info…"
-msgstr ""
+msgstr "गाण्याची माहिती संपादित करा…"
 
 #: src/Widgets/MediaMenu.vala:51
 msgid "Other Actions"
-msgstr ""
+msgstr "इतर क्रिया"
 
 #: src/Widgets/MediaMenu.vala:53
 msgctxt "Action item (verb)"
 msgid "Queue"
-msgstr ""
+msgstr "रांग"
 
 #: src/Widgets/MediaMenu.vala:54
 msgid "Add to Playlist"
-msgstr ""
+msgstr "प्लेलिस्टमध्ये जोडा"
 
 #: src/Widgets/MediaMenu.vala:55
 msgid "Remove Song…"
-msgstr ""
+msgstr "गाणे काढा…"
 
 #: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
 msgid "Import to Library"
-msgstr ""
+msgstr "लायब्ररीत आयात करा"
 
 #: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
-#, fuzzy
 msgid "Remove from Library…"
-msgstr "<b>%s</b>मधून काढले जात आहे…"
+msgstr "लायब्ररीमधून काढा…"
 
 #: src/Widgets/MediaMenu.vala:99
 msgid "Remove from Device"
-msgstr ""
+msgstr "डिव्हाइसवरून काढा"
 
 #: src/Widgets/MediaMenu.vala:119
 msgid "Remove from Queue"
-msgstr ""
+msgstr "रांगेतून काढा"
 
 #: src/Widgets/MediaMenu.vala:153
 msgid "New Playlist…"
-msgstr ""
+msgstr "नवीन प्लेलिस्ट…"
 
 #: src/Widgets/MediaMenu.vala:193
 #, c-format
 msgid "Import %i of %i selected songs"
-msgstr ""
+msgstr "निवडलेल्या %i गाण्यांपैकी %i आयात करा"
 
 #: src/Widgets/MediaMenu.vala:195
 #, c-format
 msgid "Import %i song"
 msgid_plural "Import %i songs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%i गाणे आयात करा"
+msgstr[1] "%i गाणी आयात करा"
 
 #: src/Widgets/PresetList.vala:53
 msgid "Delete Current"
-msgstr ""
+msgstr "सध्याचे हटवा"
 
 #: src/Widgets/SourceListView.vala:66 src/Widgets/SourceListView.vala:78
 msgid "Rename"
-msgstr ""
+msgstr "पुनर्नामित करा"
 
 #: src/Widgets/SourceListView.vala:79
 msgid "Edit…"
-msgstr ""
+msgstr "संपादित करा…"
 
 #: src/Widgets/SourceListView.vala:95
 msgid "Save as Playlist"
-msgstr ""
+msgstr "प्लेलिस्ट म्हणून जतन करा"
 
 #: src/Widgets/SourceListView.vala:103
 msgid "Export…"
-msgstr ""
+msgstr "निर्यात करा…"
 
 #: src/Widgets/SourceListView.vala:166
 msgid "Eject"
-msgstr ""
+msgstr "बाहेर काढा"
 
 #: src/Widgets/SourceListView.vala:176 src/Widgets/SourceListView.vala:219
 msgid "New Playlist"
-msgstr ""
+msgstr "नवीन प्लेलिस्ट"
 
 #: src/Widgets/SourceListView.vala:184 src/Widgets/SourceListView.vala:220
 msgid "New Smart Playlist"
-msgstr ""
+msgstr "नवीन स्मार्ट प्लेलिस्ट"
 
 #: src/Widgets/SourceListView.vala:221
 msgid "Import Playlists"
-msgstr ""
+msgstr "प्लेलिस्ट आयात करा"
 
 #. Adds the different sidebar categories.
 #: src/Widgets/SourceListView.vala:338
 msgid "Library"
-msgstr ""
+msgstr "लायब्ररी"
 
 #: src/Widgets/SourceListView.vala:339
 msgid "Devices"
-msgstr ""
+msgstr "उपकरणे"
 
 #: src/Widgets/SourceListView.vala:340
 msgid "Network"
-msgstr ""
+msgstr "नेटवर्क"
 
 #: src/Widgets/StatusBar.vala:36 src/Widgets/StatusBar.vala:47
 msgid "Add Playlist"
-msgstr ""
+msgstr "प्लेलिस्ट जोडा"
 
 #: src/Widgets/StatusBar.vala:37
 msgid "Add Smart Playlist"
-msgstr ""
+msgstr "स्मार्ट प्लेलिस्ट जोडा"
 
 #. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: src/Widgets/StatusBar.vala:75
 #, c-format
 msgid "Equalizer: %s"
-msgstr ""
+msgstr "इक्विलायझर: %s"
 
 #. MUST follow the exact same order of Noise.Player.Repeat
 #: src/Widgets/TopDisplay.vala:139
 msgid "Enable Repeat"
-msgstr ""
+msgstr "पुनरावृत्ती सक्षम करा"
 
 #: src/Widgets/TopDisplay.vala:140
 msgid "Repeat Song"
-msgstr ""
+msgstr "गाणे पुन्हा चालवा"
 
 #: src/Widgets/TopDisplay.vala:141
 msgid "Disable Repeat"
-msgstr ""
+msgstr "पुनरावृत्ती अक्षम करा"
 
 #: src/Widgets/TopDisplay.vala:160
 msgid "Enable Shuffle"
-msgstr ""
+msgstr "शफल सक्षम करा"
 
 #: src/Widgets/TopDisplay.vala:161
 msgid "Disable Shuffle"
-msgstr ""
+msgstr "शफल अक्षम करा"
 
 #: src/Widgets/ViewSelector.vala:81
 msgid "View as albums"
-msgstr ""
+msgstr "अल्बम म्हणून पहा"
 
 #: src/Widgets/ViewSelector.vala:87
-#, fuzzy
 msgid "View as list"
-msgstr "नवीन यादी"
+msgstr "यादी म्हणून पहा"
 
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
-msgstr ""
+msgstr "स्तंभांमध्ये पहा"
 
 #~ msgid "Importation of a song from Audio CD finished."
 #~ msgstr "ऑडिओ CD मधून एक गाणे पूर्णपणे आणले गेले."
