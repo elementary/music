@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-05 13:23-0800\n"
+"POT-Creation-Date: 2019-06-26 22:43+0200\n"
 "PO-Revision-Date: 2016-12-12 07:21+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: \n"
@@ -131,54 +131,54 @@ msgstr "يىڭى قويۇش تىزىملىكى"
 msgid "%s (%i)"
 msgstr "%s (%i)"
 
-#: core/Utils/PlaylistsUtils.vala:273
+#: core/Utils/PlaylistsUtils.vala:273 core/Utils/PlaylistsUtils.vala:342
+msgid "MPEG Version 3.0 Extended (*.m3u)"
+msgstr "MPEG قىستۇرمىسى 3.0 نەشىرى (*.m3u)"
+
+#: core/Utils/PlaylistsUtils.vala:277 core/Utils/PlaylistsUtils.vala:346
+msgid "Shoutcast Playlist Version 2.0 (*.pls)"
+msgstr "Shoutcast قويغۇچىسى 2.0 نەشىرى (*.pls)"
+
+#: core/Utils/PlaylistsUtils.vala:280
 msgid "Export Playlist"
 msgstr "قويۇش تىزىملىكىنى چىقىرىش"
 
-#: core/Utils/PlaylistsUtils.vala:275 core/Utils/PlaylistsUtils.vala:369
-#: src/LibraryWindow.vala:982 src/Dialogs/FileNotFoundDialog.vala:55
-#: src/Dialogs/FileNotFoundDialog.vala:101
-#: src/Dialogs/InstallGstreamerPluginsDialog.vala:50
-#: src/Dialogs/RemoveFilesDialog.vala:82
-#: src/Dialogs/SetMusicFolderConfirmation.vala:67
-#: src/Dialogs/SetMusicFolderConfirmation.vala:115
-#: src/Dialogs/SmartPlaylistEditor.vala:93
-#: src/Dialogs/SyncWarningDialog.vala:60
-#: src/Views/Wrappers/MusicViewWrapper.vala:145 src/Widgets/TopDisplay.vala:64
-msgid "Cancel"
-msgstr "ئەمەلدىن قالدۇرۇش"
-
-#: core/Utils/PlaylistsUtils.vala:276 src/Dialogs/MediaEditor.vala:137
+#: core/Utils/PlaylistsUtils.vala:283 src/Dialogs/MediaEditor.vala:137
 #: src/Dialogs/SmartPlaylistEditor.vala:89
 msgid "Save"
 msgstr "ساقلاش"
 
-#: core/Utils/PlaylistsUtils.vala:281 core/Utils/PlaylistsUtils.vala:376
-msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr "MPEG قىستۇرمىسى 3.0 نەشىرى (*.m3u)"
+#: core/Utils/PlaylistsUtils.vala:284 core/Utils/PlaylistsUtils.vala:353
+#: src/LibraryWindow.vala:985 src/Dialogs/FileNotFoundDialog.vala:55
+#: src/Dialogs/FileNotFoundDialog.vala:103
+#: src/Dialogs/InstallGstreamerPluginsDialog.vala:50
+#: src/Dialogs/RemoveFilesDialog.vala:82
+#: src/Dialogs/SetMusicFolderConfirmation.vala:63
+#: src/Dialogs/SetMusicFolderConfirmation.vala:86
+#: src/Dialogs/SmartPlaylistEditor.vala:93
+#: src/Dialogs/SyncWarningDialog.vala:60
+#: src/Views/Wrappers/MusicViewWrapper.vala:148 src/Widgets/TopDisplay.vala:64
+msgid "Cancel"
+msgstr "ئەمەلدىن قالدۇرۇش"
 
-#: core/Utils/PlaylistsUtils.vala:286 core/Utils/PlaylistsUtils.vala:381
-msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr "Shoutcast قويغۇچىسى 2.0 نەشىرى (*.pls)"
-
-#: core/Utils/PlaylistsUtils.vala:361
+#: core/Utils/PlaylistsUtils.vala:337
 msgid "Playlist"
 msgstr "قويۇش تىزىملىكى"
 
-#: core/Utils/PlaylistsUtils.vala:367
+#: core/Utils/PlaylistsUtils.vala:349
 #, c-format
 msgid "Import %s"
 msgstr "%s چىقىرىش"
 
-#: core/Utils/PlaylistsUtils.vala:370 src/LibraryWindow.vala:983
+#: core/Utils/PlaylistsUtils.vala:352 src/LibraryWindow.vala:984
 #: src/Dialogs/FileNotFoundDialog.vala:102
-#: src/Dialogs/SetMusicFolderConfirmation.vala:116
+#: src/Dialogs/SetMusicFolderConfirmation.vala:85
 #: src/Views/Wrappers/MusicViewWrapper.vala:147
-#: src/Widgets/AlbumListGrid.vala:244
+#: src/Widgets/AlbumListGrid.vala:248
 msgid "Open"
 msgstr "ئىچىش"
 
-#: core/Utils/PlaylistsUtils.vala:401
+#: core/Utils/PlaylistsUtils.vala:379
 msgid "Unrecognized playlist file. Import failed."
 msgstr "قويۇش تىزىملىكى ھۆججىتىنى تونۇيالمىدى،كىرگۈزۈش مەغلۇپ بولدى."
 
@@ -342,45 +342,44 @@ msgstr ""
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr "ھۆججەتلەرنى <b>مۇزىكا مۇندەرىجىسى</b>گە <b>كۆچۈرىۋاتىدۇ</b>...."
 
-#: src/LibraryWindow.vala:353 src/LibraryWindow.vala:420
-#: src/LibraryWindow.vala:598 src/LibraryWindow.vala:704
-#: src/LibraryWindow.vala:1146
+#: src/LibraryWindow.vala:353 src/LibraryWindow.vala:419
+#: src/LibraryWindow.vala:600 src/LibraryWindow.vala:706
 msgid "Music"
 msgstr "مۇزىكا"
 
-#: src/LibraryWindow.vala:370
+#: src/LibraryWindow.vala:369
 msgid "Import to Library…"
 msgstr "ئامبارغا كىرگۈزۈۋاتىدۇ...."
 
-#: src/LibraryWindow.vala:373 src/Dialogs/PreferencesWindow.vala:40
+#: src/LibraryWindow.vala:372 src/Dialogs/PreferencesWindow.vala:40
 msgid "Preferences"
 msgstr "مايىللىق"
 
-#: src/LibraryWindow.vala:389
+#: src/LibraryWindow.vala:388
 msgid "Previous"
 msgstr "ئالدىنقىسى"
 
-#: src/LibraryWindow.vala:393 src/LibraryWindow.vala:448
+#: src/LibraryWindow.vala:392 src/LibraryWindow.vala:449
 msgid "Play"
 msgstr "قويۇش"
 
-#: src/LibraryWindow.vala:397
+#: src/LibraryWindow.vala:396
 msgid "Next"
 msgstr "كىيىنكىسى"
 
-#: src/LibraryWindow.vala:401
+#: src/LibraryWindow.vala:400
 msgid "Search Music"
 msgstr "مۇزىكا ئىزدەش"
 
-#: src/LibraryWindow.vala:451
+#: src/LibraryWindow.vala:452
 msgid "Pause"
 msgstr "توختىتىش"
 
-#: src/LibraryWindow.vala:773
+#: src/LibraryWindow.vala:775
 msgid "No songs in Queue"
 msgstr "سەپتە ناخشا يوق"
 
-#: src/LibraryWindow.vala:773
+#: src/LibraryWindow.vala:775
 msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
@@ -390,11 +389,11 @@ msgstr ""
 "چىكىپ <b>سەپكە قىتىش</b>نى تاللاڭ.قويۇلىۋاتقان مۇزىكا ئاخىرلاشقاندىن كىيىن "
 "سەپنىڭ بىشىدىكى مۇزىكىدىن باشلاپ قويىلىدۇ."
 
-#: src/LibraryWindow.vala:776
+#: src/LibraryWindow.vala:778
 msgid "No songs in History"
 msgstr "قويۇش تارىخىدا مۇزىكا يوق"
 
-#: src/LibraryWindow.vala:776
+#: src/LibraryWindow.vala:778
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
@@ -404,7 +403,7 @@ msgstr ""
 "قىتىلىدۇ.\n"
 "قويۇش تارىخى تىزىملىكىدىن ئىلگىرى قويغان بارلىق مۇزىكىلارنى كۆرەلەيسىز."
 
-#: src/LibraryWindow.vala:980 src/Views/Wrappers/MusicViewWrapper.vala:60
+#: src/LibraryWindow.vala:981 src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import Music"
 msgstr "مۇزىكىنى كىرگۈزۈش"
 
@@ -440,7 +439,7 @@ msgid "Find Song"
 msgstr "ناخشا ئىزدەش"
 
 #: src/Dialogs/FileNotFoundDialog.vala:99
-#: src/Dialogs/SetMusicFolderConfirmation.vala:113
+#: src/Dialogs/SetMusicFolderConfirmation.vala:82
 msgid "Choose Music Folder"
 msgstr "مۇزىكا مۇندەرىجىسىنى تاقاش"
 
@@ -510,7 +509,7 @@ msgid "Comment:"
 msgstr "نومۇر："
 
 #. FIXME: don't know if I can delete this
-#: src/Dialogs/MediaEditor.vala:135 src/Dialogs/PreferencesWindow.vala:96
+#: src/Dialogs/MediaEditor.vala:135 src/Dialogs/PreferencesWindow.vala:97
 #: src/Views/DeviceView.vala:45
 msgid "Close"
 msgstr "تاقاش"
@@ -554,31 +553,31 @@ msgstr "نەزەردىن ساقىت قىلىش"
 msgid "Select Music Folder…"
 msgstr "مۇزىكا مۇندەرىجىسىنى تاللاڭ...."
 
-#: src/Dialogs/PreferencesWindow.vala:77
+#: src/Dialogs/PreferencesWindow.vala:78
 msgid "Music Folder Location"
 msgstr "مۇزىكا مۇندەرىجىسىنىڭ ئورنى"
 
-#: src/Dialogs/PreferencesWindow.vala:79
+#: src/Dialogs/PreferencesWindow.vala:80
 msgid "Library Management"
 msgstr "ئامبار باشقۇرۇش"
 
-#: src/Dialogs/PreferencesWindow.vala:80
+#: src/Dialogs/PreferencesWindow.vala:81
 msgid "Keep Music folder organized:"
 msgstr "مۇزىكا مۇندەرىجىسىنىڭ تەرتىپىنى ساقلاش:"
 
-#: src/Dialogs/PreferencesWindow.vala:82
+#: src/Dialogs/PreferencesWindow.vala:83
 msgid "Write metadata to file:"
 msgstr "ئانا ئۇچۇرنى ھۆججەتكە يىزىش:"
 
-#: src/Dialogs/PreferencesWindow.vala:84
+#: src/Dialogs/PreferencesWindow.vala:85
 msgid "Copy imported files to Library:"
 msgstr "كىرگۈزۈلگەن ھۆججەتلەرنى ئامبارغا كۆچۈرۈش："
 
-#: src/Dialogs/PreferencesWindow.vala:86
+#: src/Dialogs/PreferencesWindow.vala:87
 msgid "Desktop Integration"
 msgstr "ئۈستەليۈزىنى توپلاشتۇرۇش"
 
-#: src/Dialogs/PreferencesWindow.vala:87
+#: src/Dialogs/PreferencesWindow.vala:88
 msgid "Continue playback when closed:"
 msgstr "تاقالغاندىن كىيىن ئارقا ئۈستەلدە داۋاملىق قويۇش："
 
@@ -609,20 +608,11 @@ msgstr[0] ""
 msgid "Remove from Library"
 msgstr "ئامباردىن چىقىرىۋىتىش"
 
-#: src/Dialogs/SetMusicFolderConfirmation.vala:65
-msgid "Export Playlists"
-msgstr "قويۇش تىزىملىكلىرىنى چىقىرىش"
-
-#: src/Dialogs/SetMusicFolderConfirmation.vala:66
-msgid "Set Music Folder"
-msgstr "مۇزىكا مۇندەرىجىسىنى تەڭشەش"
-
-#. pretty up labels
-#: src/Dialogs/SetMusicFolderConfirmation.vala:73
+#: src/Dialogs/SetMusicFolderConfirmation.vala:38
 msgid "Set Music Folder?"
 msgstr "مۇزىكا مۇندەرىجىسىنى تەڭشەمسىز؟"
 
-#: src/Dialogs/SetMusicFolderConfirmation.vala:76
+#: src/Dialogs/SetMusicFolderConfirmation.vala:39
 #, c-format
 msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
@@ -630,6 +620,14 @@ msgid ""
 msgstr ""
 "مۇزىكا مۇندەرىجىسىنى راسىتتىنلا %s غا تەڭشەمسىز؟بۇ مەشغۇلات سىزنىڭ "
 "ئامبىرىڭىزنى ئەسلىگە قايتۇرىدۇ ۋە قويۇش تىزىملىكلىرىڭىزنى ئۆچۈرىدۇ."
+
+#: src/Dialogs/SetMusicFolderConfirmation.vala:47
+msgid "Export Playlists"
+msgstr "قويۇش تىزىملىكلىرىنى چىقىرىش"
+
+#: src/Dialogs/SetMusicFolderConfirmation.vala:65
+msgid "Set Music Folder"
+msgstr "مۇزىكا مۇندەرىجىسىنى تەڭشەش"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:55
 msgid "Playlist Title"
@@ -821,32 +819,32 @@ msgstr "ماس قەدەمگە كەلتۈرۈشنى داۋاملاشتۇرۇش"
 msgid "Importing music from %s…"
 msgstr "%s مۇزىكا كىرگۈزۈۋاتىدۇ....."
 
-#: src/LocalBackend/LocalLibrary.vala:212
+#: src/LocalBackend/LocalLibrary.vala:215
 msgid "Adding files to library…"
 msgstr "ئامبارغا مۇزىكا قىتىۋاتىدۇ...."
 
-#: src/LocalBackend/LocalLibrary.vala:225
+#: src/LocalBackend/LocalLibrary.vala:228
 msgid "<b>Importing</b> music to library…"
 msgstr "ئامبارغا مۇزىكا <b>قىتىۋاتىدۇ</b>...."
 
-#: src/LocalBackend/LocalLibrary.vala:247
+#: src/LocalBackend/LocalLibrary.vala:250
 msgid "All music files are already in your library"
 msgstr "ھەممە مۇزىكا ھۆججەتلىرى مۇزىكا ئامبىرىڭىزدا"
 
-#: src/LocalBackend/LocalLibrary.vala:247
+#: src/LocalBackend/LocalLibrary.vala:250
 msgid "No files were imported."
 msgstr "ھىچقانداق ھۆججەت كىرگۈزۈلمىدى."
 
-#: src/LocalBackend/LocalLibrary.vala:252
+#: src/LocalBackend/LocalLibrary.vala:255
 msgid "Rescanning music for changes. This may take a while…"
 msgstr ""
 "مۇزىكا ئۆزگەرتىشلىرىنى قايتا تەكشۈرۈۋاتىدۇ. بۇ ئازراق ۋاقىت ئىلىشى مۇمكىن...."
 
-#: src/LocalBackend/LocalLibrary.vala:353
+#: src/LocalBackend/LocalLibrary.vala:356
 msgid "Added to your queue:"
 msgstr "سەپكە قىتىلغىنى:"
 
-#: src/LocalBackend/LocalLibrary.vala:364
+#: src/LocalBackend/LocalLibrary.vala:367
 #, c-format
 msgid "%d Track"
 msgid_plural "%d Tracks"
@@ -1254,7 +1252,7 @@ msgstr "مۇزىكىڭىزنى كىرگۈزۈڭ"
 msgid "Import all your Music from %s into your library."
 msgstr "%sدىن مۇزىكا ئامبىرىڭىزغا مۇزىكىڭىزنى كىرگۈزۈڭ."
 
-#: src/Views/Wrappers/MusicViewWrapper.vala:143
+#: src/Views/Wrappers/MusicViewWrapper.vala:144
 msgid "Select Music Folder"
 msgstr "مۇزىكا مۇندەرىجىسىنى تاللاڭ"
 
@@ -1292,7 +1290,7 @@ msgstr ""
 "تاللاپ <b>ئوڭنى بىسىپ</b>چىققان كۆزنەكتىن <b>تەھرىرلەش</b>نى بىسىڭ. ياكى "
 "تۆۋەندىكى كۇنۇپكىنى باسسىڭىزمۇ بولىدۇ."
 
-#: src/Views/Wrappers/ViewWrapper.vala:419
+#: src/Views/Wrappers/ViewWrapper.vala:418
 msgid "No media"
 msgstr "مېدىئا يوق"
 
@@ -1300,17 +1298,17 @@ msgstr "مېدىئا يوق"
 msgid "Set new album cover"
 msgstr "يىڭى ئالبوم مۇقاۋىسىنى تەڭشەڭ"
 
-#: src/Widgets/AlbumListGrid.vala:240
+#: src/Widgets/AlbumListGrid.vala:244
 msgid "Image files"
 msgstr "رەسىم ھۆججەتلىرى"
 
-#: src/Widgets/AlbumListGrid.vala:245
-msgid "_Cancel"
-msgstr "ئەمەلدىن قالدۇرۇش(_C)"
-
-#: src/Widgets/AlbumListGrid.vala:246
+#: src/Widgets/AlbumListGrid.vala:251
 msgid "_Open"
 msgstr "ئىچىش(_O)"
+
+#: src/Widgets/AlbumListGrid.vala:252
+msgid "_Cancel"
+msgstr "ئەمەلدىن قالدۇرۇش(_C)"
 
 #: src/Widgets/EqualizerPopover.vala:167
 msgid "Save preset"

@@ -2,11 +2,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-05 13:23-0800\n"
+"POT-Creation-Date: 2019-06-26 22:43+0200\n"
 "PO-Revision-Date: 2019-05-15 02:02+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
-"Language-Team: Marathi <https://l10n.elementary.io/projects/music/music/mr/>"
-"\n"
+"Language-Team: Marathi <https://l10n.elementary.io/projects/music/music/mr/"
+">\n"
 "Language: mr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -131,54 +131,54 @@ msgstr "नवीन यादी"
 msgid "%s (%i)"
 msgstr "%s (%i)"
 
-#: core/Utils/PlaylistsUtils.vala:273
+#: core/Utils/PlaylistsUtils.vala:273 core/Utils/PlaylistsUtils.vala:342
+msgid "MPEG Version 3.0 Extended (*.m3u)"
+msgstr "MPEG आवृत्ती 3.0 विस्तारित (*.m3u)"
+
+#: core/Utils/PlaylistsUtils.vala:277 core/Utils/PlaylistsUtils.vala:346
+msgid "Shoutcast Playlist Version 2.0 (*.pls)"
+msgstr "Shoutcast यादी आवृत्ती 2.0 (*.pls)"
+
+#: core/Utils/PlaylistsUtils.vala:280
 msgid "Export Playlist"
 msgstr "यादी एक्स्पोर्ट करा"
 
-#: core/Utils/PlaylistsUtils.vala:275 core/Utils/PlaylistsUtils.vala:369
-#: src/LibraryWindow.vala:982 src/Dialogs/FileNotFoundDialog.vala:55
-#: src/Dialogs/FileNotFoundDialog.vala:101
-#: src/Dialogs/InstallGstreamerPluginsDialog.vala:50
-#: src/Dialogs/RemoveFilesDialog.vala:82
-#: src/Dialogs/SetMusicFolderConfirmation.vala:67
-#: src/Dialogs/SetMusicFolderConfirmation.vala:115
-#: src/Dialogs/SmartPlaylistEditor.vala:93
-#: src/Dialogs/SyncWarningDialog.vala:60
-#: src/Views/Wrappers/MusicViewWrapper.vala:145 src/Widgets/TopDisplay.vala:64
-msgid "Cancel"
-msgstr "रद्द करा"
-
-#: core/Utils/PlaylistsUtils.vala:276 src/Dialogs/MediaEditor.vala:137
+#: core/Utils/PlaylistsUtils.vala:283 src/Dialogs/MediaEditor.vala:137
 #: src/Dialogs/SmartPlaylistEditor.vala:89
 msgid "Save"
 msgstr "सेव्ह करा"
 
-#: core/Utils/PlaylistsUtils.vala:281 core/Utils/PlaylistsUtils.vala:376
-msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr "MPEG आवृत्ती 3.0 विस्तारित (*.m3u)"
+#: core/Utils/PlaylistsUtils.vala:284 core/Utils/PlaylistsUtils.vala:353
+#: src/LibraryWindow.vala:985 src/Dialogs/FileNotFoundDialog.vala:55
+#: src/Dialogs/FileNotFoundDialog.vala:103
+#: src/Dialogs/InstallGstreamerPluginsDialog.vala:50
+#: src/Dialogs/RemoveFilesDialog.vala:82
+#: src/Dialogs/SetMusicFolderConfirmation.vala:63
+#: src/Dialogs/SetMusicFolderConfirmation.vala:86
+#: src/Dialogs/SmartPlaylistEditor.vala:93
+#: src/Dialogs/SyncWarningDialog.vala:60
+#: src/Views/Wrappers/MusicViewWrapper.vala:148 src/Widgets/TopDisplay.vala:64
+msgid "Cancel"
+msgstr "रद्द करा"
 
-#: core/Utils/PlaylistsUtils.vala:286 core/Utils/PlaylistsUtils.vala:381
-msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr "Shoutcast यादी आवृत्ती 2.0 (*.pls)"
-
-#: core/Utils/PlaylistsUtils.vala:361
+#: core/Utils/PlaylistsUtils.vala:337
 msgid "Playlist"
 msgstr "यादी"
 
-#: core/Utils/PlaylistsUtils.vala:367
+#: core/Utils/PlaylistsUtils.vala:349
 #, c-format
 msgid "Import %s"
 msgstr "%s आणा"
 
-#: core/Utils/PlaylistsUtils.vala:370 src/LibraryWindow.vala:983
+#: core/Utils/PlaylistsUtils.vala:352 src/LibraryWindow.vala:984
 #: src/Dialogs/FileNotFoundDialog.vala:102
-#: src/Dialogs/SetMusicFolderConfirmation.vala:116
+#: src/Dialogs/SetMusicFolderConfirmation.vala:85
 #: src/Views/Wrappers/MusicViewWrapper.vala:147
-#: src/Widgets/AlbumListGrid.vala:244
+#: src/Widgets/AlbumListGrid.vala:248
 msgid "Open"
 msgstr "उघडा"
 
-#: core/Utils/PlaylistsUtils.vala:401
+#: core/Utils/PlaylistsUtils.vala:379
 msgid "Unrecognized playlist file. Import failed."
 msgstr "अनोळखी यादी फाईल. फाईल आणणे अपयशी."
 
@@ -307,9 +307,8 @@ msgid ""
 "all song info is correct and you are connected to the Internet. Some songs "
 "may not have matches."
 msgstr ""
-"आपल्या लायब्ररीमधील वर्तमान गाण्यासारखे कोणतेही गाणे नाहीत. सर्व गाणे माहिती "
-"बरोबर आहे आणि आपण इंटरनेटशी कनेक्ट केलेले आहात याची खात्री करा. काही गाणी जु"
-"ळत नाहीत."
+"आपल्या लायब्ररीमधील वर्तमान गाण्यासारखे कोणतेही गाणे नाहीत. सर्व गाणे माहिती बरोबर आहे "
+"आणि आपण इंटरनेटशी कनेक्ट केलेले आहात याची खात्री करा. काही गाणी जुळत नाहीत."
 
 #: plugins/LastFM/SimilarMedia.vala:44
 msgid "Similar"
@@ -336,69 +335,67 @@ msgstr "आपली लायब्ररी आयात केली गे�
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr "फायली <b>संगीत</b> फोल्डरमध्ये <b>कॉपी</b> करत आहे…"
 
-#: src/LibraryWindow.vala:353 src/LibraryWindow.vala:420
-#: src/LibraryWindow.vala:598 src/LibraryWindow.vala:704
-#: src/LibraryWindow.vala:1146
+#: src/LibraryWindow.vala:353 src/LibraryWindow.vala:419
+#: src/LibraryWindow.vala:600 src/LibraryWindow.vala:706
 msgid "Music"
 msgstr "संगीत"
 
-#: src/LibraryWindow.vala:370
+#: src/LibraryWindow.vala:369
 msgid "Import to Library…"
 msgstr "लायब्ररीत आयात करा…"
 
-#: src/LibraryWindow.vala:373 src/Dialogs/PreferencesWindow.vala:40
+#: src/LibraryWindow.vala:372 src/Dialogs/PreferencesWindow.vala:40
 msgid "Preferences"
 msgstr "प्राधान्ये"
 
-#: src/LibraryWindow.vala:389
+#: src/LibraryWindow.vala:388
 msgid "Previous"
 msgstr "मागील"
 
-#: src/LibraryWindow.vala:393 src/LibraryWindow.vala:448
+#: src/LibraryWindow.vala:392 src/LibraryWindow.vala:449
 msgid "Play"
 msgstr "वाजवा"
 
-#: src/LibraryWindow.vala:397
+#: src/LibraryWindow.vala:396
 msgid "Next"
 msgstr "पुढील"
 
-#: src/LibraryWindow.vala:401
+#: src/LibraryWindow.vala:400
 msgid "Search Music"
 msgstr "संगीत शोधा"
 
-#: src/LibraryWindow.vala:451
+#: src/LibraryWindow.vala:452
 msgid "Pause"
 msgstr "विराम द्या"
 
-#: src/LibraryWindow.vala:773
+#: src/LibraryWindow.vala:775
 msgid "No songs in Queue"
 msgstr "रांगेत कोणतीही गाणी नाहीत"
 
-#: src/LibraryWindow.vala:773
+#: src/LibraryWindow.vala:775
 msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
-"रांगेत गाणी जोडण्यासाठी, आयटमवरील <b>दुय्यम क्लिक </b>वापरा आणि <b>रांग "
-"</b>निवडा. गाणे समाप्त झाल्यावर, रांगेत असलेल्या गाण्यांना सध्याच्या "
-"प्लेलिस्टमधील पुढील गाण्याच्या आधी प्रथम प्ले केले जाईल."
+"रांगेत गाणी जोडण्यासाठी, आयटमवरील <b>दुय्यम क्लिक </b>वापरा आणि <b>रांग </b>निवडा. "
+"गाणे समाप्त झाल्यावर, रांगेत असलेल्या गाण्यांना सध्याच्या प्लेलिस्टमधील पुढील गाण्याच्या आधी "
+"प्रथम प्ले केले जाईल."
 
-#: src/LibraryWindow.vala:776
+#: src/LibraryWindow.vala:778
 msgid "No songs in History"
 msgstr "इतिहासात कोणतीही गाणी नाहीत"
 
-#: src/LibraryWindow.vala:776
+#: src/LibraryWindow.vala:778
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
 "current session."
 msgstr ""
 "गाण्याचे काही भाग चालवल्या नंतर ते इतिहासाच्या यादीमध्ये जोडले जाते.\n"
-"आपण वर्तमान सत्रादरम्यान चालवलेले सर्व गाणे पाहण्यासाठी या सूचीचा वापर करू "
-"शकता."
+"आपण वर्तमान सत्रादरम्यान चालवलेले सर्व गाणे पाहण्यासाठी या सूचीचा वापर करू शकता."
 
-#: src/LibraryWindow.vala:980 src/Views/Wrappers/MusicViewWrapper.vala:60
+#: src/LibraryWindow.vala:981 src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import Music"
 msgstr "संगीत आयात करा"
 
@@ -434,7 +431,7 @@ msgid "Find Song"
 msgstr "गाणे शोधा"
 
 #: src/Dialogs/FileNotFoundDialog.vala:99
-#: src/Dialogs/SetMusicFolderConfirmation.vala:113
+#: src/Dialogs/SetMusicFolderConfirmation.vala:82
 msgid "Choose Music Folder"
 msgstr "संगीत फोल्डर निवडा"
 
@@ -446,8 +443,7 @@ msgstr "आपण  %s प्लगइन स्थापित करू इच�
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:39
 #, c-format
 msgid "This song cannot be played. The %s plugin is required to play the song."
-msgstr ""
-"हे गाणे प्ले केले जाऊ शकत नाही. गाणे प्ले करण्यासाठी %s प्लगइन आवश्यक आहे."
+msgstr "हे गाणे प्ले केले जाऊ शकत नाही. गाणे प्ले करण्यासाठी %s प्लगइन आवश्यक आहे."
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid "Install Plugin"
@@ -502,7 +498,7 @@ msgid "Comment:"
 msgstr "टिप्पणी:"
 
 #. FIXME: don't know if I can delete this
-#: src/Dialogs/MediaEditor.vala:135 src/Dialogs/PreferencesWindow.vala:96
+#: src/Dialogs/MediaEditor.vala:135 src/Dialogs/PreferencesWindow.vala:97
 #: src/Views/DeviceView.vala:45
 msgid "Close"
 msgstr "बंद करा"
@@ -547,31 +543,31 @@ msgstr "दुर्लक्ष करा"
 msgid "Select Music Folder…"
 msgstr "संगीत फोल्डर निवडा…"
 
-#: src/Dialogs/PreferencesWindow.vala:77
+#: src/Dialogs/PreferencesWindow.vala:78
 msgid "Music Folder Location"
 msgstr "संगीत फोल्डर स्थान"
 
-#: src/Dialogs/PreferencesWindow.vala:79
+#: src/Dialogs/PreferencesWindow.vala:80
 msgid "Library Management"
 msgstr "लायब्ररी व्यवस्थापन"
 
-#: src/Dialogs/PreferencesWindow.vala:80
+#: src/Dialogs/PreferencesWindow.vala:81
 msgid "Keep Music folder organized:"
 msgstr "संगीत फोल्डर व्यवस्थापित ठेवा:"
 
-#: src/Dialogs/PreferencesWindow.vala:82
+#: src/Dialogs/PreferencesWindow.vala:83
 msgid "Write metadata to file:"
 msgstr "फाइलमध्ये मेटाडेटा लिहा:"
 
-#: src/Dialogs/PreferencesWindow.vala:84
+#: src/Dialogs/PreferencesWindow.vala:85
 msgid "Copy imported files to Library:"
 msgstr "आयात केलेल्या फायली लायब्ररीत कॉपी करा:"
 
-#: src/Dialogs/PreferencesWindow.vala:86
+#: src/Dialogs/PreferencesWindow.vala:87
 msgid "Desktop Integration"
 msgstr "डेस्कटॉप एकत्रीकरण"
 
-#: src/Dialogs/PreferencesWindow.vala:87
+#: src/Dialogs/PreferencesWindow.vala:88
 msgid "Continue playback when closed:"
 msgstr "बंद असताना प्लेबॅक सुरू ठेवा:"
 
@@ -595,37 +591,36 @@ msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
 msgstr[0] ""
-"हे आपल्या लायब्ररीमधील आणि आपल्या स्वयंचलितपणे समक्रमित केलेल्या सर्व "
-"डिव्हाइसेसवरून गाणे काढेल."
+"हे आपल्या लायब्ररीमधील आणि आपल्या स्वयंचलितपणे समक्रमित केलेल्या सर्व डिव्हाइसेसवरून गाणे "
+"काढेल."
 msgstr[1] ""
-"हे आपल्या लायब्ररीमधील आणि आपल्या स्वयंचलितपणे समक्रमित केलेल्या सर्व "
-"डिव्हाइसेसवरून गाणी काढेल."
+"हे आपल्या लायब्ररीमधील आणि आपल्या स्वयंचलितपणे समक्रमित केलेल्या सर्व डिव्हाइसेसवरून गाणी "
+"काढेल."
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
 msgstr "लायब्ररीमधून काढा"
 
-#: src/Dialogs/SetMusicFolderConfirmation.vala:65
-msgid "Export Playlists"
-msgstr "प्लेलिस्ट निर्यात करा"
-
-#: src/Dialogs/SetMusicFolderConfirmation.vala:66
-msgid "Set Music Folder"
-msgstr "संगीत फोल्डर सेट करा"
-
-#. pretty up labels
-#: src/Dialogs/SetMusicFolderConfirmation.vala:73
+#: src/Dialogs/SetMusicFolderConfirmation.vala:38
 msgid "Set Music Folder?"
 msgstr "संगीत फोल्डर सेट करायचे?"
 
-#: src/Dialogs/SetMusicFolderConfirmation.vala:76
+#: src/Dialogs/SetMusicFolderConfirmation.vala:39
 #, c-format
 msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
 msgstr ""
-"आपणास खात्री आहे की आपण संगीत फोल्डर %s वर सेट करू इच्छिता? हे आपले लायब्ररी "
-"रीसेट करेल आणि आपल्या प्लेलिस्ट हटवेल."
+"आपणास खात्री आहे की आपण संगीत फोल्डर %s वर सेट करू इच्छिता? हे आपले लायब्ररी रीसेट करेल "
+"आणि आपल्या प्लेलिस्ट हटवेल."
+
+#: src/Dialogs/SetMusicFolderConfirmation.vala:47
+msgid "Export Playlists"
+msgstr "प्लेलिस्ट निर्यात करा"
+
+#: src/Dialogs/SetMusicFolderConfirmation.vala:65
+msgid "Set Music Folder"
+msgstr "संगीत फोल्डर सेट करा"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:55
 msgid "Playlist Title"
@@ -805,8 +800,8 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
-"आपण समक्रमित करणे सुरू ठेवल्यास, %s वरून सिंक सूचीवर नसल्यामुळे ते मीडिया "
-"काढले जातील. आपण त्यांना प्रथम आपल्या लायब्ररीमध्ये आयात करू इच्छिता?"
+"आपण समक्रमित करणे सुरू ठेवल्यास, %s वरून सिंक सूचीवर नसल्यामुळे ते मीडिया काढले जातील. आपण "
+"त्यांना प्रथम आपल्या लायब्ररीमध्ये आयात करू इच्छिता?"
 
 #: src/Dialogs/SyncWarningDialog.vala:57
 msgid "Continue Syncing"
@@ -817,31 +812,31 @@ msgstr "संकालन सुरू ठेवा"
 msgid "Importing music from %s…"
 msgstr "%s वरुन संगीत आयात करीत आहे…"
 
-#: src/LocalBackend/LocalLibrary.vala:212
+#: src/LocalBackend/LocalLibrary.vala:215
 msgid "Adding files to library…"
 msgstr "लायब्ररीमध्ये फायली जोडत आहे…"
 
-#: src/LocalBackend/LocalLibrary.vala:225
+#: src/LocalBackend/LocalLibrary.vala:228
 msgid "<b>Importing</b> music to library…"
 msgstr "संगीत लायब्ररीत संगीत <b> आयात करीत आहे </b>…"
 
-#: src/LocalBackend/LocalLibrary.vala:247
+#: src/LocalBackend/LocalLibrary.vala:250
 msgid "All music files are already in your library"
 msgstr "सर्व संगीत फायली आधीपासूनच आपल्या लायब्ररीमध्ये आहेत"
 
-#: src/LocalBackend/LocalLibrary.vala:247
+#: src/LocalBackend/LocalLibrary.vala:250
 msgid "No files were imported."
 msgstr "कोणत्याही फायली आयात केल्या नाहीत."
 
-#: src/LocalBackend/LocalLibrary.vala:252
+#: src/LocalBackend/LocalLibrary.vala:255
 msgid "Rescanning music for changes. This may take a while…"
 msgstr "बदलांसाठी संगीत पुनर्वितरण. यास काही वेळ लागू शकतो…"
 
-#: src/LocalBackend/LocalLibrary.vala:353
+#: src/LocalBackend/LocalLibrary.vala:356
 msgid "Added to your queue:"
 msgstr "आपल्या रांगेत जोडले:"
 
-#: src/LocalBackend/LocalLibrary.vala:364
+#: src/LocalBackend/LocalLibrary.vala:367
 #, c-format
 msgid "%d Track"
 msgid_plural "%d Tracks"
@@ -913,8 +908,7 @@ msgstr "सिंक अयशस्वी"
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
-"%s नावाची प्लेलिस्टचा वापर %s संकालन करण्यासाठी केला जातो, परंतु ती आढळू शकली"
-" नाही."
+"%s नावाची प्लेलिस्टचा वापर %s संकालन करण्यासाठी केला जातो, परंतु ती आढळू शकली नाही."
 
 #: src/Views/DeviceSummaryWidget.vala:316
 #: src/Views/DeviceSummaryWidget.vala:321
@@ -925,8 +919,7 @@ msgstr "सिंक करू शकत नाही"
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
-"निवडलेल्या सिंक सेटिंग्जसह डिव्हाइस समक्रमित करू शकत नाही. डिस्कवर पुरेशी "
-"जागा नाही"
+"निवडलेल्या सिंक सेटिंग्जसह डिव्हाइस समक्रमित करू शकत नाही. डिस्कवर पुरेशी जागा नाही"
 
 #: src/Views/DeviceSummaryWidget.vala:322
 msgid "Device is already doing an operation."
@@ -1248,7 +1241,7 @@ msgstr "आपले संगीत आयात करा"
 msgid "Import all your Music from %s into your library."
 msgstr "आपला सर्व संगीत %s वरून आपल्या लायब्ररीत आयात करा."
 
-#: src/Views/Wrappers/MusicViewWrapper.vala:143
+#: src/Views/Wrappers/MusicViewWrapper.vala:144
 msgid "Select Music Folder"
 msgstr "संगीत फोल्डर निवडा"
 
@@ -1267,8 +1260,8 @@ msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
-"या प्लेलिस्टमध्ये गाणी जोडण्यासाठी, आयटमवरील <b> दुय्यम क्लिक </b> वापरा आणि "
-"<b> प्लेलिस्टमध्ये जोडा </b> निवडा."
+"या प्लेलिस्टमध्ये गाणी जोडण्यासाठी, आयटमवरील <b> दुय्यम क्लिक </b> वापरा आणि <b> "
+"प्लेलिस्टमध्ये जोडा </b> निवडा."
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:58
 msgid "Edit Smart Playlist"
@@ -1281,12 +1274,11 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
-"ही प्लेलिस्ट स्वयंचलितपणे गाण्यांसह पॉप्युलेट केली जाईल जी त्याच्या नियमांशी "
-"जुळते. या नियमांमध्ये सुधारणा करण्यासाठी, साइडबारमध्ये <b> दुय्यम क्लिक </b> "
-"वापरा आणि <b> संपादित करा </b> वर क्लिक करा. वैकल्पिकरित्या, आपण खालील बटणा"
-"वर क्लिक करू शकता."
+"ही प्लेलिस्ट स्वयंचलितपणे गाण्यांसह पॉप्युलेट केली जाईल जी त्याच्या नियमांशी जुळते. या "
+"नियमांमध्ये सुधारणा करण्यासाठी, साइडबारमध्ये <b> दुय्यम क्लिक </b> वापरा आणि <b> "
+"संपादित करा </b> वर क्लिक करा. वैकल्पिकरित्या, आपण खालील बटणावर क्लिक करू शकता."
 
-#: src/Views/Wrappers/ViewWrapper.vala:419
+#: src/Views/Wrappers/ViewWrapper.vala:418
 msgid "No media"
 msgstr "मीडिया नाहीत"
 
@@ -1294,17 +1286,17 @@ msgstr "मीडिया नाहीत"
 msgid "Set new album cover"
 msgstr "नवीन अल्बम कव्हर सेट करा"
 
-#: src/Widgets/AlbumListGrid.vala:240
+#: src/Widgets/AlbumListGrid.vala:244
 msgid "Image files"
 msgstr "प्रतिमा फायली"
 
-#: src/Widgets/AlbumListGrid.vala:245
-msgid "_Cancel"
-msgstr "(_C)रद्द करा"
-
-#: src/Widgets/AlbumListGrid.vala:246
+#: src/Widgets/AlbumListGrid.vala:251
 msgid "_Open"
 msgstr "(_O)उघडा"
+
+#: src/Widgets/AlbumListGrid.vala:252
+msgid "_Cancel"
+msgstr "(_C)रद्द करा"
 
 #: src/Widgets/EqualizerPopover.vala:167
 msgid "Save preset"
