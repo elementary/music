@@ -34,7 +34,7 @@ public class Noise.Plugins.CDViewWrapper : ViewWrapper {
     public CDViewWrapper (Noise.StaticPlaylist p) {
         base (ViewWrapper.Hint.READ_ONLY_PLAYLIST, libraries_manager.local_library);
         tvs = new TreeViewSetup (ViewWrapper.Hint.PLAYLIST);
-        message_head = _("An Error Occurred");
+        message_head = _("Error");
         message_body = _("Could not load this Audio CD.");
 
         build_async.begin (p);
