@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2018-10-21 09:30+0000\n"
-"Last-Translator: Cleiton Floss <cleitonfloss@gmail.com>\n"
-"Language-Team: Esperanto <https://weblate.elementary.io/projects/music/music/"
-"eo/>\n"
+"PO-Revision-Date: 2019-07-03 03:46+0000\n"
+"Last-Translator: Shtonchjo <shtonchjo@gmail.com>\n"
+"Language-Team: Esperanto <https://l10n.elementary.io/projects/music/music/eo/"
+">\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 3.6.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:52+0000\n"
 
 #: core/LibrariesManager.vala:147
@@ -151,7 +151,7 @@ msgstr "Eksporti ludliston"
 #: src/Dialogs/SyncWarningDialog.vala:60
 #: src/Views/Wrappers/MusicViewWrapper.vala:145 src/Widgets/TopDisplay.vala:64
 msgid "Cancel"
-msgstr ""
+msgstr "Rezigni"
 
 #: core/Utils/PlaylistsUtils.vala:276 src/Dialogs/MediaEditor.vala:137
 #: src/Dialogs/SmartPlaylistEditor.vala:89
@@ -273,15 +273,15 @@ msgstr ""
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:364
 msgid "CD import will be <b>cancelled</b> after current import."
-msgstr ""
+msgstr "Lumdiska importo<b>rezigniĝos</b> post aktiva importo."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:383
 msgid "Could not import this CD"
-msgstr ""
+msgstr "Ne eblis importi ĉi lumdiskon"
 
 #: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
 msgid "Import"
-msgstr ""
+msgstr "Importi"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:37
 msgid "An Error Occurred"
@@ -299,7 +299,7 @@ msgstr ""
 #: plugins/Devices/iPod/iPodLibrary.vala:230
 #: plugins/Devices/iPod/iPodLibrary.vala:386
 msgid "Cancelling Sync…"
-msgstr ""
+msgstr "Rezigni sinkronigon…"
 
 #: plugins/LastFM/LastFM.vala:98
 msgid "No similar songs found"
@@ -917,11 +917,11 @@ msgstr ""
 
 #: src/Views/DeviceView.vala:66
 msgid "Cancelling…"
-msgstr ""
+msgstr "Rezignanta…"
 
 #: src/Views/DeviceView.vala:66
 msgid "Device operation has been cancelled and will stop after this media."
-msgstr ""
+msgstr "Aparata operacio estis nuligita, kaj ĉesos post ĉi aŭdovidaĵo."
 
 #: src/Views/ViewStack.vala:45
 msgid "No Results"
@@ -1290,38 +1290,38 @@ msgstr ""
 
 #: src/Widgets/AlbumListGrid.vala:245
 msgid "_Cancel"
-msgstr ""
+msgstr "_Rezigni"
 
 #: src/Widgets/AlbumListGrid.vala:246
 msgid "_Open"
-msgstr ""
+msgstr "_Malfermi"
 
 #: src/Widgets/EqualizerPopover.vala:167
 msgid "Save preset"
-msgstr ""
+msgstr "Konservi agordojn"
 
 #: src/Widgets/EqualizerPopover.vala:332
 msgid "Off"
-msgstr ""
+msgstr "Malŝaltita"
 
 #: src/Widgets/EqualizerPopover.vala:420
 #, c-format
 msgid "%s (Custom)"
-msgstr ""
+msgstr "%s (Tajlorita)"
 
 #: src/Widgets/EqualizerPopover.vala:422
 #, c-format
 msgid "%s (Custom %i)"
-msgstr ""
+msgstr "%s(Tajlorita %i)"
 
 #: src/Widgets/EqualizerPopover.vala:425
 msgid "Custom Preset"
-msgstr ""
+msgstr "Tajloritaj agordoj"
 
 #: src/Widgets/EqualizerPopover.vala:427
 #, c-format
 msgid "Custom Preset %i"
-msgstr ""
+msgstr "Tajloritaj agordoj %i"
 
 #: src/Widgets/MediaMenu.vala:46
 msgid "Scroll to Current Song"
