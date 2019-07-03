@@ -78,26 +78,6 @@ namespace Noise.FileUtils {
     }
 
     /**
-     * Enumerates the files contained by folder.
-     *
-     * @param folder a {@link GLib.File} representing the folder you wish to query
-     * @param types a string array containing the content types to discriminate against [allow-none]
-     * @param recursive whether to query the whole directory tree or only immediate children. [allow-none]
-     * @param files the data container for the files found. This only includes files, not directories [allow-none]
-     * @param cancellable a cancellable object for canceling the operation. [allow-none]
-     *
-     * @return total number of files found (should be the same as files.size)
-     */
-    public async uint enumerate_files_async (File folder, string[]? types = null,
-                                             bool recursive = true,
-                                             Cancellable? cancellable = null,
-                                             out Gee.Collection<File>? files = null) {
-        return_val_if_fail (yield is_directory_async (folder), 0);
-        var counter = new FileEnumerator ();
-        return yield counter.enumerate_files_async (folder, types, recursive, cancellable, out files);
-    }
-
-    /**
      * Queries whether a content type equals or is a subtype of any other type in
      * an array of content types.
      *
@@ -193,93 +173,5 @@ namespace Noise.FileUtils {
         }
 
         return dest;
-    }
-
-    /**
-     * A class for counting the number of files contained by a directory, without
-     * counting folders.
-     */
-    private class FileEnumerator {
-        private uint file_count = 0;
-        private string file_attributes;
-        private string[]? types = null;
-        private Cancellable? cancellable = null;
-
-        /**
-         * Enumerates the number of files contained by a directory.
-         */
-        public async uint enumerate_files_async (File folder, string[]? types,
-                                                 bool recursive = true,
-                                                 Cancellable? cancellable = null,
-                                                 out Gee.Collection<File>? files)
-        {
-            assert (file_count == 0);
-
-            var attrs = new string[0];
-            attrs += FileAttribute.STANDARD_NAME;
-            attrs += FileAttribute.STANDARD_TYPE;
-
-            // No need to query for content type unless we're gonna use it
-            if (types != null) {
-                attrs += FileAttribute.STANDARD_CONTENT_TYPE;
-            }
-
-            file_attributes = string.joinv (",", attrs);
-
-            this.types = types;
-            this.cancellable = cancellable;
-
-            files = new Gee.TreeSet<File> ();
-            yield enumerate_files_internal_async (folder, files, recursive);
-            return file_count;
-        }
-
-        private inline bool is_cancelled () {
-            return cancellable != null && cancellable.is_cancelled ();
-        }
-
-        private async void enumerate_files_internal_async (File folder, Gee.Collection<File>? files,
-                                                           bool recursive)
-        {
-            if (is_cancelled ()) {
-                return;
-            }
-
-            try {
-                var enumerator = yield folder.enumerate_children_async (file_attributes,
-                                                                        FileQueryInfoFlags.NOFOLLOW_SYMLINKS,
-                                                                        Priority.DEFAULT,
-                                                                        cancellable);
-
-                while (!is_cancelled ()) {
-                    var enum_files = yield enumerator.next_files_async (1, Priority.DEFAULT, cancellable);
-                    FileInfo? file_info = enum_files.nth_data (0);
-
-                    if (file_info == null) {
-                        break;
-                    }
-
-                    var file_name = file_info.get_name ();
-                    var file_type = file_info.get_file_type ();
-                    var file = folder.get_child (file_name);
-
-                    if (file_type == FileType.REGULAR) {
-                        if (this.types != null && !is_valid_content_type (file_info.get_content_type (), this.types)) {
-                            continue;
-                        }
-
-                        file_count++;
-
-                        if (files != null) {
-                            files.add (file);
-                        }
-                    } else if (recursive && file_type == FileType.DIRECTORY) {
-                        yield enumerate_files_internal_async (file, files, true);
-                    }
-                }
-            } catch (Error err) {
-                warning ("Could not scan folder: %s", err.message);
-            }
-        }
     }
 }
