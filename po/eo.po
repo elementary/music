@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2019-07-03 03:46+0000\n"
+"PO-Revision-Date: 2019-07-09 20:28+0000\n"
 "Last-Translator: Shtonchjo <shtonchjo@gmail.com>\n"
 "Language-Team: Esperanto <https://l10n.elementary.io/projects/music/music/eo/"
 ">\n"
@@ -484,9 +484,8 @@ msgid "Track:"
 msgstr ""
 
 #: src/Dialogs/MediaEditor.vala:118
-#, fuzzy
 msgid "Disc:"
-msgstr "Disko"
+msgstr "Disko:"
 
 #: src/Dialogs/MediaEditor.vala:120
 msgid "Rating:"
@@ -508,11 +507,11 @@ msgid "Issues while importing from %s"
 msgstr ""
 
 #: src/Dialogs/NotImportedDialog.vala:57
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] "%s maleblis importi %d erojn. La dosieroj povas esti difektitaj."
-msgstr[1] "%s maleblis importi %d erojn. La dosieroj povas esti difektitaj."
+msgstr[0] "Neeblis importi %d elementon. La dosiero povas esti difektita."
+msgstr[1] "Neeblis importi %d elementojn. La dosiero povas esti difektitaj."
 
 #: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
@@ -580,7 +579,7 @@ msgstr[1] ""
 #: src/Dialogs/RemoveFilesDialog.vala:55
 #, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr ""
+msgstr "Ĉu forigi „%s“ el la biblioteko?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
 msgid ""
@@ -782,11 +781,11 @@ msgstr ""
 
 #. be a bit explicit to make translations better
 #: src/Dialogs/SyncWarningDialog.vala:52
-#, fuzzy, c-format
+#, c-format
 msgid "Sync will remove %i item from %s"
 msgid_plural "Sync will remove %i items from %s"
-msgstr[0] "Maleble importi %d erojn de %s"
-msgstr[1] "Maleble importi %d erojn de %s"
+msgstr[0] "Sinkronigo forigos %i elementon el %s"
+msgstr[1] "Sinkronigo forigos %i elementojn el %s"
 
 #: src/Dialogs/SyncWarningDialog.vala:55
 #, c-format
@@ -1081,25 +1080,21 @@ msgid "Never"
 msgstr ""
 
 #: src/Views/ListView/Lists/ListColumn.vala:69
-#, fuzzy
 msgctxt "List column title"
 msgid "#"
-msgstr "#"
+msgstr "N-o"
 
 #: src/Views/ListView/Lists/ListColumn.vala:72
-#, fuzzy
 msgctxt "List column title"
 msgid "Track"
-msgstr "Trako"
+msgstr "Kanto"
 
 #: src/Views/ListView/Lists/ListColumn.vala:75
-#, fuzzy
 msgctxt "List column title"
 msgid "Title"
 msgstr "Titolo"
 
 #: src/Views/ListView/Lists/ListColumn.vala:78
-#, fuzzy
 msgctxt "List column title"
 msgid "Length"
 msgstr "Daŭro"
@@ -1115,10 +1110,9 @@ msgid "Album"
 msgstr "Albumo"
 
 #: src/Views/ListView/Lists/ListColumn.vala:87
-#, fuzzy
 msgctxt "List column title"
 msgid "Album Artist"
-msgstr "Artisto"
+msgstr "Artista albumo"
 
 #: src/Views/ListView/Lists/ListColumn.vala:90
 msgctxt "List column title"
@@ -1126,7 +1120,6 @@ msgid "Composer"
 msgstr "Komponisto"
 
 #: src/Views/ListView/Lists/ListColumn.vala:93
-#, fuzzy
 msgctxt "List column title"
 msgid "Genre"
 msgstr "Ĝenro"
@@ -1142,46 +1135,39 @@ msgid "Grouping"
 msgstr ""
 
 #: src/Views/ListView/Lists/ListColumn.vala:102
-#, fuzzy
 msgctxt "List column title"
 msgid "Bitrate"
 msgstr "Bitrapido"
 
 #: src/Views/ListView/Lists/ListColumn.vala:105
-#, fuzzy
 msgctxt "List column title"
 msgid "Rating"
 msgstr "Pritakso"
 
 #: src/Views/ListView/Lists/ListColumn.vala:108
-#, fuzzy
 msgctxt "List column title"
 msgid "Plays"
-msgstr "Ludas"
+msgstr "Ludota"
 
 #: src/Views/ListView/Lists/ListColumn.vala:111
-#, fuzzy
 msgctxt "List column title"
 msgid "Skips"
-msgstr "Preterpasas"
+msgstr "Preterpasota"
 
 #: src/Views/ListView/Lists/ListColumn.vala:114
-#, fuzzy
 msgctxt "List column title"
 msgid "Date Added"
 msgstr "Aldondato"
 
 #: src/Views/ListView/Lists/ListColumn.vala:117
-#, fuzzy
 msgctxt "List column title"
 msgid "Last Played"
-msgstr "Laste ludita"
+msgstr "Jam ludita"
 
 #: src/Views/ListView/Lists/ListColumn.vala:120
-#, fuzzy
 msgctxt "List column title (beats per minute)"
 msgid "BPM"
-msgstr "Bitoj minute"
+msgstr "Pulsoj en minuto"
 
 #: src/Views/ListView/Lists/ListColumn.vala:123
 msgctxt "List column title (file location)"
@@ -1349,18 +1335,16 @@ msgid "Add to Playlist"
 msgstr ""
 
 #: src/Widgets/MediaMenu.vala:55
-#, fuzzy
 msgid "Remove Song…"
-msgstr "Ripeti kanton"
+msgstr "Forigi kanton…"
 
 #: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
 msgid "Import to Library"
 msgstr "Importi al biblioteko"
 
 #: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
-#, fuzzy
 msgid "Remove from Library…"
-msgstr "Importi al biblioteko"
+msgstr "Forigi el biblioteko…"
 
 #: src/Widgets/MediaMenu.vala:99
 msgid "Remove from Device"
@@ -1475,9 +1459,8 @@ msgid "View as albums"
 msgstr ""
 
 #: src/Widgets/ViewSelector.vala:87
-#, fuzzy
 msgid "View as list"
-msgstr "Nova ludlisto"
+msgstr "Vidi kiel listo"
 
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
