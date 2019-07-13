@@ -2,7 +2,6 @@ usr/bin
 usr/lib/*/io.elementary.music/plugins
 usr/share/applications
 usr/share/glib-2.0
-usr/share/icons
 usr/share/locale
 usr/share/accounts
 usr/share/metainfo
