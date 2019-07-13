@@ -1,5 +1,8 @@
 project('io.elementary.music', 'vala', 'c', version: '5.0.4')
 
+i18n = import('i18n')
+gnome = import('gnome')
+
 prefix = get_option('prefix')
 datadir = join_paths(prefix, get_option('datadir'))
 plugindir = join_paths(prefix, get_option('libdir'), meson.project_name(), 'plugins')
@@ -111,6 +114,7 @@ if get_option('build-plugins')
 endif
 
 subdir('po')
+subdir('data')
 
 if get_option('documentation')
     subdir('docs')

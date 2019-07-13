@@ -11,7 +11,6 @@ foreach i : icon_sizes
     )
 endforeach
 
-gnome = import('gnome')
 icon_res = gnome.compile_resources(
   'music-icon-resources',
   files('icons/icons.gresource.xml'),
@@ -23,8 +22,7 @@ install_data(
     install_dir: join_paths(get_option('datadir'), 'glib-2.0', 'schemas')
 )
 
-i18n = import('i18n')
-desktop_file = i18n.merge_file(
+i18n.merge_file(
     'desktop',
     input: meson.project_name() + '.desktop.in',
     output: meson.project_name() + '.desktop',
@@ -34,7 +32,7 @@ desktop_file = i18n.merge_file(
     type: 'desktop'
 )
 
-appdata_file = i18n.merge_file(
+i18n.merge_file(
     'appdata',
     input: meson.project_name() + '.appdata.xml.in',
     output: meson.project_name() + '.appdata.xml',
