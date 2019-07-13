@@ -14,15 +14,6 @@ subdir('po')
 subdir('core')
 subdir('data')
 
-if get_option('build-plugins')
-  plugins = get_option('plugins')
-  subdir('plugins')
-endif
-
-if get_option('documentation')
-    subdir('docs')
-endif
-
 app_deps = core_deps + [
   core,
   dependency('libgda-5.0'),
@@ -115,5 +106,14 @@ app_dep = declare_dependency(
     include_directories: include_directories('.'),
     link_with: app_shared_lib
 )
+
+if get_option('build-plugins')
+  plugins = get_option('plugins')
+  subdir('plugins')
+endif
+
+if get_option('documentation')
+    subdir('docs')
+endif
 
 meson.add_install_script('meson/post_install.py')
