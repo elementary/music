@@ -10,9 +10,6 @@ plugindir = join_paths(prefix, get_option('libdir'), meson.project_name(), 'plug
 add_project_arguments(['--vapidir', join_paths(meson.current_source_dir(), 'vapi')], language: 'vala')
 add_global_arguments('-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()), language:'c')
 
-subdir('core')
-subdir('data')
-
 app_deps = core_deps + [
   core,
   dependency('libgda-5.0'),
@@ -114,6 +111,7 @@ if get_option('build-plugins')
 endif
 
 subdir('po')
+subdir('core')
 subdir('data')
 
 if get_option('documentation')
