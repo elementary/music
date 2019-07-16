@@ -7,16 +7,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-26 22:43+0200\n"
-"PO-Revision-Date: 2016-01-04 18:49+0000\n"
-"Last-Translator: Corentin Noël <corentin@elementaryos.org>\n"
-"Language-Team: Esperanto <eo@li.org>\n"
+"POT-Creation-Date: 2018-06-27 08:21-0700\n"
+"PO-Revision-Date: 2019-07-13 06:46+0000\n"
+"Last-Translator: Shtonchjo <shtonchjo@gmail.com>\n"
+"Language-Team: Esperanto <https://l10n.elementary.io/projects/music/extra/eo/"
+">\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.6.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
-"X-Generator: Launchpad (build 18330)\n"
 
 #: data/io.elementary.music.appdata.xml.in:8
 #: data/io.elementary.music.desktop.in:4
@@ -25,13 +27,15 @@ msgstr "Muziko"
 
 #: data/io.elementary.music.appdata.xml.in:9
 msgid "The official elementary music player"
-msgstr ""
+msgstr "La oficiala muzikilo de elementary"
 
 #: data/io.elementary.music.appdata.xml.in:11
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices, CDs, and album art."
 msgstr ""
+"Muziko estas rapida kaj bela muzikilo, fokusiĝanta al muziko kaj biblioteko. "
+"Ĝi subtenas memorujojn, lumdiskojn kaj albumajn kovrilojn."
 
 #: data/io.elementary.music.appdata.xml.in:20
 msgid "Removed old gsignond vapi"
@@ -184,20 +188,21 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:146
 msgid "elementary LLC."
-msgstr ""
+msgstr "elementary LLC."
 
 #: data/io.elementary.music.desktop.in:5
 msgid "Music Player"
-msgstr "Muzikludilo"
+msgstr "Muzikilo"
 
 #: data/io.elementary.music.desktop.in:6
 msgid "Listen to music"
-msgstr "Aŭskultu muzikon"
+msgstr "Aŭskulti muzikon"
 
 #: data/io.elementary.music.desktop.in:8
 msgid "multimedia-audio-player"
-msgstr ""
+msgstr "multimedia-audio-player"
 
 #: data/io.elementary.music.desktop.in:13
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 msgstr ""
+"brui;aŭdo;ludilo;MP3;iPod;muziko;kanto;listo;aŭdvido;lumdisko;KD;telefono;"
