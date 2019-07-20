@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2019-07-14 23:28+0000\n"
+"PO-Revision-Date: 2019-07-21 10:24+0000\n"
 "Last-Translator: Shtonchjo <shtonchjo@gmail.com>\n"
 "Language-Team: Esperanto <https://l10n.elementary.io/projects/music/music/eo/"
 ">\n"
@@ -17,12 +17,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 3.7.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:52+0000\n"
 
 #: core/LibrariesManager.vala:147
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "Importanta <b>$NAME</b> de <b>$ARTIST</b> en la bibliotekon…"
+msgstr "Importanta <b>$NAME</b> de <b>$ARTIST</b> en la diskoteko…"
 
 #. / Used for unknown titles, artists, or album names.
 #: core/Media.vala:32
@@ -314,9 +314,9 @@ msgid ""
 "all song info is correct and you are connected to the Internet. Some songs "
 "may not have matches."
 msgstr ""
-"Estas neniu kanto simila al la nuna kanto en via biblioteko. Certiĝu, ke "
-"ĉiuj kantaj informoj estas ĝustaj kaj ke vi konektas al interreto. Iuj "
-"kantoj povas ne kongrui."
+"Estas neniu kanto simila al la nuna kanto en via diskoteko. Certiĝu, ke ĉiuj "
+"kantaj informoj estas ĝustaj kaj ke vi konektas al interreto. Iuj kantoj "
+"povas ne kongrui."
 
 #: plugins/LastFM/SimilarMedia.vala:44
 msgid "Similar"
@@ -336,7 +336,7 @@ msgstr "Finita importo"
 
 #: src/FileOperator.vala:306
 msgid "Your Library Has Been Imported."
-msgstr "Via biblioteko estis importita."
+msgstr "Via diskoteko estis importita."
 
 #. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:316
@@ -350,7 +350,7 @@ msgstr "Muziko"
 
 #: src/LibraryWindow.vala:369
 msgid "Import to Library…"
-msgstr "Importanta al biblioteko…"
+msgstr "Importanta al diskoteko…"
 
 #: src/LibraryWindow.vala:372 src/Dialogs/PreferencesWindow.vala:40
 msgid "Preferences"
@@ -428,7 +428,7 @@ msgstr "Ĉu neeblis trovi %i muzikajn dosierojn?"
 
 #: src/Dialogs/FileNotFoundDialog.vala:53
 msgid "Rescan Library"
-msgstr "Reskani la bibliotekon"
+msgstr "Reskani la diskotekon"
 
 #: src/Dialogs/FileNotFoundDialog.vala:54
 msgid "Remove Song"
@@ -557,7 +557,7 @@ msgstr "Indiko de la dosierujo Muziko"
 
 #: src/Dialogs/PreferencesWindow.vala:80
 msgid "Library Management"
-msgstr "Biblioteka mastrumado"
+msgstr "Diskoteka mastrumado"
 
 #: src/Dialogs/PreferencesWindow.vala:81
 msgid "Keep Music folder organized:"
@@ -569,7 +569,7 @@ msgstr "Skribi metadatumojn en la dosiero:"
 
 #: src/Dialogs/PreferencesWindow.vala:85
 msgid "Copy imported files to Library:"
-msgstr "Kopii importitajn dosierojn en la biblioteko:"
+msgstr "Kopii importitajn dosierojn en la diskoteko:"
 
 #: src/Dialogs/PreferencesWindow.vala:87
 msgid "Desktop Integration"
@@ -583,13 +583,13 @@ msgstr "Daŭrigi ludadon kiam fermita:"
 #, c-format
 msgid "Remove %d Song From Library?"
 msgid_plural "Remove %d Songs From Library?"
-msgstr[0] "Ĉu forigi %d kanto el la biblioteko?"
-msgstr[1] "Ĉu forigi %d kantoj el la biblioteko?"
+msgstr[0] "Ĉu forigi %d kanto el la diskoteko?"
+msgstr[1] "Ĉu forigi %d kantoj el la diskoteko?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:55
 #, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr "Ĉu forigi „%s“ el la biblioteko?"
+msgstr "Ĉu forigi „%s“ el la diskoteko?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
 msgid ""
@@ -599,15 +599,15 @@ msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
 msgstr[0] ""
-"Tio forigos la kanton el via biblioteko kaj el ĉiu aŭtomate sinkronigita "
+"Tio forigos la kanton el via diskoteko kaj el ĉiu aŭtomate sinkronigita "
 "aparato."
 msgstr[1] ""
-"Tio forigos la kantojn el via biblioteko kaj el ĉiu aŭtomate sinkronigita "
+"Tio forigos la kantojn el via diskoteko kaj el ĉiu aŭtomate sinkronigita "
 "aparato."
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
-msgstr "Forigi el biblioteko"
+msgstr "Forigi el diskoteko"
 
 #: src/Dialogs/SetMusicFolderConfirmation.vala:38
 msgid "Set Music Folder?"
@@ -620,7 +620,7 @@ msgid ""
 "library and remove your playlists."
 msgstr ""
 "Ĉu vi certas pri agordi la muzikan dosierujon al %s? Tio restartigos vian "
-"bibliotekon kaj forigos ludlistojn."
+"diskotekon kaj forigos ludlistojn."
 
 #: src/Dialogs/SetMusicFolderConfirmation.vala:47
 msgid "Export Playlists"
@@ -810,7 +810,7 @@ msgid ""
 msgstr ""
 "Se vi daŭrigas sinkronigon, aŭdovidaĵo estos forigita de %s, ĉar ili ne "
 "apartenas la sinkronan liston. Ĉu vi deziras unun importi ilin en la "
-"biblioteko?"
+"diskoteko?"
 
 #: src/Dialogs/SyncWarningDialog.vala:57
 msgid "Continue Syncing"
@@ -823,15 +823,15 @@ msgstr "importi muzikon de %s…"
 
 #: src/LocalBackend/LocalLibrary.vala:215
 msgid "Adding files to library…"
-msgstr "Aldonanta dosierojn en la biblioteko…"
+msgstr "Aldonanta dosierojn en la diskoteko…"
 
 #: src/LocalBackend/LocalLibrary.vala:228
 msgid "<b>Importing</b> music to library…"
-msgstr "<b>Importanta</b> muzikon en la biblioteko…"
+msgstr "<b>Importanta</b> muzikon en la diskoteko…"
 
 #: src/LocalBackend/LocalLibrary.vala:250
 msgid "All music files are already in your library"
-msgstr "Ĉiuj muzikaj dosieroj jam estas en la biblioteko"
+msgstr "Ĉiuj muzikaj dosieroj jam estas en la diskoteko"
 
 #: src/LocalBackend/LocalLibrary.vala:250
 msgid "No files were imported."
@@ -1227,11 +1227,11 @@ msgstr "Akiri iujn kantojn"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Add music to your library."
-msgstr "Aldoni muzikon en la biblioteko."
+msgstr "Aldoni muzikon en la diskoteko."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:61
 msgid "Import music from a source into your library."
-msgstr "Importi muzikon de iu fonto en via biblioteko."
+msgstr "Importi muzikon de iu fonto en via diskoteko."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:63
 msgid "Change Music Folder"
@@ -1250,7 +1250,7 @@ msgstr "Importi vian muzikon"
 #: src/Views/Wrappers/MusicViewWrapper.vala:132
 #, c-format
 msgid "Import all your Music from %s into your library."
-msgstr "Importi ĉiujn viajn muzikojn de %s en la biblioteko."
+msgstr "Importi ĉiujn viajn muzikojn de %s en la diskoteko."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:144
 msgid "Select Music Folder"
@@ -1367,11 +1367,11 @@ msgstr "Forigi kanton…"
 
 #: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
 msgid "Import to Library"
-msgstr "Importi al biblioteko"
+msgstr "Importi al diskoteko"
 
 #: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
 msgid "Remove from Library…"
-msgstr "Forigi el biblioteko…"
+msgstr "Forigi el diskoteko…"
 
 #: src/Widgets/MediaMenu.vala:99
 msgid "Remove from Device"
@@ -1436,7 +1436,7 @@ msgstr "Importi ludlistojn"
 #. Adds the different sidebar categories.
 #: src/Widgets/SourceListView.vala:338
 msgid "Library"
-msgstr "Biblioteko"
+msgstr "Diskoteko"
 
 #: src/Widgets/SourceListView.vala:339
 msgid "Devices"
