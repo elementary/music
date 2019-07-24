@@ -1,158 +1,154 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2015 elementary, LLC <contact@elementary.io> -->
+<!-- Copyright 2015-2019 elementary, Inc. <contact@elementary.io> -->
 <component type="desktop-application">
-    <id>io.elementary.music</id>
-    <metadata_license>CC0-1.0</metadata_license>
-    <project_group>elementary</project_group>
-    <project_license>GPL-3.0+</project_license>
-    <name>Music</name>
-    <summary>The official elementary music player</summary>
-    <description>
-        <p>
-        Music is a fast and beautiful audio player with a focus on
-        music and libraries. It handles external devices, CDs, and
-        album art.
-        </p>
-    </description>
-    <releases>
-        <release version="5.0.4" date="2019-04-17" urgency="medium">
-            <description>
-                <p>Removed old gsignond vapi</p>
-                <p>LibraryWindow: Use Granite.MessageDialog for showing alerts</p>
-                <p>PlaylistsUtils: Use Gtk.FileChooserNative</p>
-                <p>Accurately remember window size</p>
-                <p>Updated translations</p>
-            </description>
-        </release>
-        <release version="5.0.3" date="2019-02-26" urgency="medium">
-            <description>
-                <p>Scale album art properly at high resolutions</p>
-                <p>Accurately select Music Folder Location for directories with spaces in name</p>
-                <p>New MediaKeyListener path for gnome-settings-daemon</p>
-                <p>Updated translations</p>
-            </description>
-        </release>
-        <release version="5.0.2" date="2018-12-18" urgency="medium">
-            <description>
-                <p>AlbumView: double-click to play album</p>
-                <p>Associate with s3m files</p>
-                <p>Queue fixes</p>
-                <p>Properly restore playlists</p>
-                <p>Always respect custom music folder setting</p>
-                <p>Minor bug fixes</p>
-                <p>Updated translations</p>
-            </description>
-        </release>
-        <release version="5.0.1" date="2018-11-30" urgency="medium">
-            <description>
-                <p>Fix list and column view sorting</p>
-                <p>Add orange accent color</p>
-                <p>Add shortcut accels to tooltips</p>
-                <p>Minor bug fixes</p>
-                <p>Updated translations</p>
-            </description>
-        </release>
-        <release version="5.0" date="2018-10-16" urgency="medium">
-            <description>
-                <p>Various UI changes</p>
-                <p>Shuffle fixes</p>
-                <p>Initial MPRIS support</p>
-                <p>Minor bug fixes</p>
-                <p>Updated translations</p>
-            </description>
-        </release>
-        <release version="0.4.2" date="2017-10-27" urgency="medium">
-            <description>
-                <p>Detect library changes at startup.</p>
-                <p>Support searching by URI</p>
-                <p>Change the queue mechanism to make it less confusing.</p>
-                <p>Improve equalizer style.</p>
-                <p>Minor bug fixes.</p>
-            </description>
-        </release>
-        <release version="0.4.1" date="2017-07-27" urgency="medium">
-            <description>
-                <p>Minor bug fixes.</p>
-            </description>
-        </release>
-        <release version="0.4.0.3" date="2017-04-21" urgency="medium">
-            ⁠<description>
-                <p>Minor bug fixes.</p>
-            </description>
-        </release>
-        <release version="0.4.0.2" date="2016-12-01" urgency="medium">
-            ⁠<description>
-                <p>Minor bug fixes.</p>
-            ⁠</description>
-        </release>
-        <release version="0.4.0.1" date="2016-09-20" urgency="medium">
-            ⁠<description>
-                <p>Add rounded bottom window corner.</p>
-                <ul>
-                    <li>Minor bug fixes</li>
-                    <li>New translations</li>
-                </ul>
-            ⁠</description>
-        </release>
-        <release version="0.4.0" date="2016-08-10" urgency="medium">
-            ⁠<description>
-                <p>Release for Loki.</p>
-                <ul>
-                    <li>Add support for Opus Ogg</li>
-                    <li>Fix Ctrl+Q support for non-Latin keyboard layouts</li>
-                    <li>Reorganize media edition layout</li>
-                    <li>Port grid to support HiDPI displays</li>
-                    <li>Update icons to latest elementary icon release</li>
-                    <li>Respect privacy mode</li>
-                    <li>Minor bug fixes</li>
-                    <li>New translations</li>
-                </ul>
-            ⁠</description>
-        </release>
-    </releases>
-    <provides>
-        <binary>io.elementary.music</binary>
-        <library>libio.elementary.music-core.so.0</library>
-    </provides>
-    <content_rating type="oars-1.1">
-        <content_attribute id="violence-cartoon">none</content_attribute>
-        <content_attribute id="violence-fantasy">none</content_attribute>
-        <content_attribute id="violence-realistic">none</content_attribute>
-        <content_attribute id="violence-bloodshed">none</content_attribute>
-        <content_attribute id="violence-sexual">none</content_attribute>
-        <content_attribute id="violence-desecration">none</content_attribute>
-        <content_attribute id="violence-slavery">none</content_attribute>
-        <content_attribute id="violence-worship">none</content_attribute>
-        <content_attribute id="drugs-alcohol">none</content_attribute>
-        <content_attribute id="drugs-narcotics">none</content_attribute>
-        <content_attribute id="drugs-tobacco">none</content_attribute>
-        <content_attribute id="sex-nudity">none</content_attribute>
-        <content_attribute id="sex-themes">none</content_attribute>
-        <content_attribute id="sex-homosexuality">none</content_attribute>
-        <content_attribute id="sex-prostitution">none</content_attribute>
-        <content_attribute id="sex-adultery">none</content_attribute>
-        <content_attribute id="sex-appearance">none</content_attribute>
-        <content_attribute id="language-profanity">none</content_attribute>
-        <content_attribute id="language-humor">none</content_attribute>
-        <content_attribute id="language-discrimination">none</content_attribute>
-        <content_attribute id="social-chat">none</content_attribute>
-        <content_attribute id="social-info">none</content_attribute>
-        <content_attribute id="social-audio">none</content_attribute>
-        <content_attribute id="social-location">none</content_attribute>
-        <content_attribute id="social-contacts">none</content_attribute>
-        <content_attribute id="money-purchasing">none</content_attribute>
-        <content_attribute id="money-gambling">none</content_attribute>
-    </content_rating>
-    <developer_name>elementary LLC.</developer_name>
-    <url type="homepage">https://elementary.io/</url>
-    <url type="bugtracker">https://github.com/elementary/music/issues</url>
-    <url type="donation">https://elementary.io/get-involved#funding</url>
-    <url type="help">https://elementaryos.stackexchange.com/questions/tagged/noise</url>
-    <url type="translate">https://l10n.elementary.io/projects/music</url>
-    <update_contact>contact_at_elementary.io</update_contact>
-    <screenshots>
-        <screenshot type="default">
-        <image>https://raw.githubusercontent.com/elementary/music/master/data/screenshot.png</image>
-        </screenshot>
-    </screenshots>
+  <id>io.elementary.music</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_group>elementary</project_group>
+  <project_license>GPL-3.0+</project_license>
+  <name>Music</name>
+  <summary>The official elementary music player</summary>
+  <description>
+    <p>Music is a fast and beautiful audio player with a focus on music and libraries. It handles external devices, CDs, and album art.</p>
+  </description>
+  <releases>
+    <release version="5.0.4" date="2019-04-17" urgency="medium">
+      <description>
+        <p>Removed old gsignond vapi</p>
+        <p>LibraryWindow: Use Granite.MessageDialog for showing alerts</p>
+        <p>PlaylistsUtils: Use Gtk.FileChooserNative</p>
+        <p>Accurately remember window size</p>
+        <p>Updated translations</p>
+      </description>
+    </release>
+    <release version="5.0.3" date="2019-02-26" urgency="medium">
+      <description>
+        <p>Scale album art properly at high resolutions</p>
+        <p>Accurately select Music Folder Location for directories with spaces in name</p>
+        <p>New MediaKeyListener path for gnome-settings-daemon</p>
+        <p>Updated translations</p>
+      </description>
+    </release>
+    <release version="5.0.2" date="2018-12-18" urgency="medium">
+      <description>
+        <p>AlbumView: double-click to play album</p>
+        <p>Associate with s3m files</p>
+        <p>Queue fixes</p>
+        <p>Properly restore playlists</p>
+        <p>Always respect custom music folder setting</p>
+        <p>Minor bug fixes</p>
+        <p>Updated translations</p>
+      </description>
+    </release>
+    <release version="5.0.1" date="2018-11-30" urgency="medium">
+      <description>
+        <p>Fix list and column view sorting</p>
+        <p>Add orange accent color</p>
+        <p>Add shortcut accels to tooltips</p>
+        <p>Minor bug fixes</p>
+        <p>Updated translations</p>
+      </description>
+    </release>
+    <release version="5.0" date="2018-10-16" urgency="medium">
+      <description>
+        <p>Various UI changes</p>
+        <p>Shuffle fixes</p>
+        <p>Initial MPRIS support</p>
+        <p>Minor bug fixes</p>
+        <p>Updated translations</p>
+      </description>
+    </release>
+    <release version="0.4.2" date="2017-10-27" urgency="medium">
+      <description>
+        <p>Detect library changes at startup.</p>
+        <p>Support searching by URI</p>
+        <p>Change the queue mechanism to make it less confusing.</p>
+        <p>Improve equalizer style.</p>
+        <p>Minor bug fixes.</p>
+      </description>
+    </release>
+    <release version="0.4.1" date="2017-07-27" urgency="medium">
+      <description>
+        <p>Minor bug fixes.</p>
+      </description>
+    </release>
+    <release version="0.4.0.3" date="2017-04-21" urgency="medium">
+      ⁠<description>
+        <p>Minor bug fixes.</p>
+      </description>
+    </release>
+    <release version="0.4.0.2" date="2016-12-01" urgency="medium">
+      ⁠<description>
+        <p>Minor bug fixes.</p>
+      ⁠</description>
+    </release>
+    <release version="0.4.0.1" date="2016-09-20" urgency="medium">
+      ⁠<description>
+        <p>Add rounded bottom window corner.</p>
+        <ul>
+          <li>Minor bug fixes</li>
+          <li>New translations</li>
+        </ul>
+      ⁠</description>
+    </release>
+    <release version="0.4.0" date="2016-08-10" urgency="medium">
+      ⁠<description>
+        <p>Release for Loki.</p>
+        <ul>
+          <li>Add support for Opus Ogg</li>
+          <li>Fix Ctrl+Q support for non-Latin keyboard layouts</li>
+          <li>Reorganize media edition layout</li>
+          <li>Port grid to support HiDPI displays</li>
+          <li>Update icons to latest elementary icon release</li>
+          <li>Respect privacy mode</li>
+          <li>Minor bug fixes</li>
+          <li>New translations</li>
+        </ul>
+      ⁠</description>
+    </release>
+  </releases>
+  <provides>
+    <binary>io.elementary.music</binary>
+    <library>libio.elementary.music-core.so.0</library>
+  </provides>
+  <content_rating type="oars-1.1">
+    <content_attribute id="violence-cartoon">none</content_attribute>
+    <content_attribute id="violence-fantasy">none</content_attribute>
+    <content_attribute id="violence-realistic">none</content_attribute>
+    <content_attribute id="violence-bloodshed">none</content_attribute>
+    <content_attribute id="violence-sexual">none</content_attribute>
+    <content_attribute id="violence-desecration">none</content_attribute>
+    <content_attribute id="violence-slavery">none</content_attribute>
+    <content_attribute id="violence-worship">none</content_attribute>
+    <content_attribute id="drugs-alcohol">none</content_attribute>
+    <content_attribute id="drugs-narcotics">none</content_attribute>
+    <content_attribute id="drugs-tobacco">none</content_attribute>
+    <content_attribute id="sex-nudity">none</content_attribute>
+    <content_attribute id="sex-themes">none</content_attribute>
+    <content_attribute id="sex-homosexuality">none</content_attribute>
+    <content_attribute id="sex-prostitution">none</content_attribute>
+    <content_attribute id="sex-adultery">none</content_attribute>
+    <content_attribute id="sex-appearance">none</content_attribute>
+    <content_attribute id="language-profanity">none</content_attribute>
+    <content_attribute id="language-humor">none</content_attribute>
+    <content_attribute id="language-discrimination">none</content_attribute>
+    <content_attribute id="social-chat">none</content_attribute>
+    <content_attribute id="social-info">none</content_attribute>
+    <content_attribute id="social-audio">none</content_attribute>
+    <content_attribute id="social-location">none</content_attribute>
+    <content_attribute id="social-contacts">none</content_attribute>
+    <content_attribute id="money-purchasing">none</content_attribute>
+    <content_attribute id="money-gambling">none</content_attribute>
+  </content_rating>
+  <developer_name>elementary, Inc.</developer_name>
+  <url type="homepage">https://elementary.io/</url>
+  <url type="bugtracker">https://github.com/elementary/music/issues</url>
+  <url type="donation">https://elementary.io/get-involved#funding</url>
+  <url type="help">https://elementaryos.stackexchange.com/questions/tagged/noise</url>
+  <url type="translate">https://l10n.elementary.io/projects/music</url>
+  <update_contact>contact_at_elementary.io</update_contact>
+  <screenshots>
+    <screenshot type="default">
+    <image>https://raw.githubusercontent.com/elementary/music/master/data/screenshot.png</image>
+    </screenshot>
+  </screenshots>
 </component>
