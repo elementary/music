@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-05 13:23-0800\n"
+"POT-Creation-Date: 2019-06-26 22:43+0200\n"
 "PO-Revision-Date: 2015-12-21 13:43+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Malay <ms@li.org>\n"
@@ -135,54 +135,54 @@ msgstr "Senarai main baru"
 msgid "%s (%i)"
 msgstr "%s (%i)"
 
-#: core/Utils/PlaylistsUtils.vala:273
+#: core/Utils/PlaylistsUtils.vala:273 core/Utils/PlaylistsUtils.vala:342
+msgid "MPEG Version 3.0 Extended (*.m3u)"
+msgstr "Versi MPEG 3.0 Sambungan (*.m3u)"
+
+#: core/Utils/PlaylistsUtils.vala:277 core/Utils/PlaylistsUtils.vala:346
+msgid "Shoutcast Playlist Version 2.0 (*.pls)"
+msgstr "Senarai Main Shoutcast Versi 2.0 (*.pls)"
+
+#: core/Utils/PlaylistsUtils.vala:280
 msgid "Export Playlist"
 msgstr "Eksport Senarai Main"
 
-#: core/Utils/PlaylistsUtils.vala:275 core/Utils/PlaylistsUtils.vala:369
-#: src/LibraryWindow.vala:982 src/Dialogs/FileNotFoundDialog.vala:55
-#: src/Dialogs/FileNotFoundDialog.vala:101
-#: src/Dialogs/InstallGstreamerPluginsDialog.vala:50
-#: src/Dialogs/RemoveFilesDialog.vala:82
-#: src/Dialogs/SetMusicFolderConfirmation.vala:67
-#: src/Dialogs/SetMusicFolderConfirmation.vala:115
-#: src/Dialogs/SmartPlaylistEditor.vala:93
-#: src/Dialogs/SyncWarningDialog.vala:60
-#: src/Views/Wrappers/MusicViewWrapper.vala:145 src/Widgets/TopDisplay.vala:64
-msgid "Cancel"
-msgstr "Batal"
-
-#: core/Utils/PlaylistsUtils.vala:276 src/Dialogs/MediaEditor.vala:137
+#: core/Utils/PlaylistsUtils.vala:283 src/Dialogs/MediaEditor.vala:137
 #: src/Dialogs/SmartPlaylistEditor.vala:89
 msgid "Save"
 msgstr "Simpan"
 
-#: core/Utils/PlaylistsUtils.vala:281 core/Utils/PlaylistsUtils.vala:376
-msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr "Versi MPEG 3.0 Sambungan (*.m3u)"
+#: core/Utils/PlaylistsUtils.vala:284 core/Utils/PlaylistsUtils.vala:353
+#: src/LibraryWindow.vala:985 src/Dialogs/FileNotFoundDialog.vala:55
+#: src/Dialogs/FileNotFoundDialog.vala:103
+#: src/Dialogs/InstallGstreamerPluginsDialog.vala:50
+#: src/Dialogs/RemoveFilesDialog.vala:82
+#: src/Dialogs/SetMusicFolderConfirmation.vala:63
+#: src/Dialogs/SetMusicFolderConfirmation.vala:86
+#: src/Dialogs/SmartPlaylistEditor.vala:93
+#: src/Dialogs/SyncWarningDialog.vala:60
+#: src/Views/Wrappers/MusicViewWrapper.vala:148 src/Widgets/TopDisplay.vala:64
+msgid "Cancel"
+msgstr "Batal"
 
-#: core/Utils/PlaylistsUtils.vala:286 core/Utils/PlaylistsUtils.vala:381
-msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr "Senarai Main Shoutcast Versi 2.0 (*.pls)"
-
-#: core/Utils/PlaylistsUtils.vala:361
+#: core/Utils/PlaylistsUtils.vala:337
 msgid "Playlist"
 msgstr "Senarai main"
 
-#: core/Utils/PlaylistsUtils.vala:367
+#: core/Utils/PlaylistsUtils.vala:349
 #, c-format
 msgid "Import %s"
 msgstr "Import %s"
 
-#: core/Utils/PlaylistsUtils.vala:370 src/LibraryWindow.vala:983
+#: core/Utils/PlaylistsUtils.vala:352 src/LibraryWindow.vala:984
 #: src/Dialogs/FileNotFoundDialog.vala:102
-#: src/Dialogs/SetMusicFolderConfirmation.vala:116
+#: src/Dialogs/SetMusicFolderConfirmation.vala:85
 #: src/Views/Wrappers/MusicViewWrapper.vala:147
-#: src/Widgets/AlbumListGrid.vala:244
+#: src/Widgets/AlbumListGrid.vala:248
 msgid "Open"
 msgstr "Buka"
 
-#: core/Utils/PlaylistsUtils.vala:401
+#: core/Utils/PlaylistsUtils.vala:379
 msgid "Unrecognized playlist file. Import failed."
 msgstr "Fail senarai main tidak dikenali. Import mengalami kegagalan."
 
@@ -346,45 +346,44 @@ msgstr ""
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr "<b>Menyalin</b> fail ke <b>Folder Muzik </b>…"
 
-#: src/LibraryWindow.vala:353 src/LibraryWindow.vala:420
-#: src/LibraryWindow.vala:598 src/LibraryWindow.vala:704
-#: src/LibraryWindow.vala:1146
+#: src/LibraryWindow.vala:353 src/LibraryWindow.vala:419
+#: src/LibraryWindow.vala:600 src/LibraryWindow.vala:706
 msgid "Music"
 msgstr "Muzik"
 
-#: src/LibraryWindow.vala:370
+#: src/LibraryWindow.vala:369
 msgid "Import to Library…"
 msgstr "Import ke Pustaka..."
 
-#: src/LibraryWindow.vala:373 src/Dialogs/PreferencesWindow.vala:40
+#: src/LibraryWindow.vala:372 src/Dialogs/PreferencesWindow.vala:40
 msgid "Preferences"
 msgstr "Keutamaan"
 
-#: src/LibraryWindow.vala:389
+#: src/LibraryWindow.vala:388
 msgid "Previous"
 msgstr "Terdahulu"
 
-#: src/LibraryWindow.vala:393 src/LibraryWindow.vala:448
+#: src/LibraryWindow.vala:392 src/LibraryWindow.vala:449
 msgid "Play"
 msgstr "Main"
 
-#: src/LibraryWindow.vala:397
+#: src/LibraryWindow.vala:396
 msgid "Next"
 msgstr "Berikutnya"
 
-#: src/LibraryWindow.vala:401
+#: src/LibraryWindow.vala:400
 msgid "Search Music"
 msgstr "Gelintar Muzik"
 
-#: src/LibraryWindow.vala:451
+#: src/LibraryWindow.vala:452
 msgid "Pause"
 msgstr "Jeda"
 
-#: src/LibraryWindow.vala:773
+#: src/LibraryWindow.vala:775
 msgid "No songs in Queue"
 msgstr "Tiada lagu dalam Baris Gilir"
 
-#: src/LibraryWindow.vala:773
+#: src/LibraryWindow.vala:775
 msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
@@ -394,11 +393,11 @@ msgstr ""
 "pilih <b>Baris Gilir</b>. Bila lagu selesai dimainkan, lagu dibaris gilir "
 "akan dimainkan dahulu sebelum lagi berikutnya dalam senarai main."
 
-#: src/LibraryWindow.vala:776
+#: src/LibraryWindow.vala:778
 msgid "No songs in History"
 msgstr "Tiada lagu dalam Sejarah"
 
-#: src/LibraryWindow.vala:776
+#: src/LibraryWindow.vala:778
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
@@ -409,7 +408,7 @@ msgstr ""
 "telah\n"
 "main ketika sesi semasa."
 
-#: src/LibraryWindow.vala:980 src/Views/Wrappers/MusicViewWrapper.vala:60
+#: src/LibraryWindow.vala:981 src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import Music"
 msgstr "Import Muzik"
 
@@ -445,7 +444,7 @@ msgid "Find Song"
 msgstr "Cari Lagu"
 
 #: src/Dialogs/FileNotFoundDialog.vala:99
-#: src/Dialogs/SetMusicFolderConfirmation.vala:113
+#: src/Dialogs/SetMusicFolderConfirmation.vala:82
 msgid "Choose Music Folder"
 msgstr "Pilih Folder Muzik"
 
@@ -515,7 +514,7 @@ msgid "Comment:"
 msgstr ""
 
 #. FIXME: don't know if I can delete this
-#: src/Dialogs/MediaEditor.vala:135 src/Dialogs/PreferencesWindow.vala:96
+#: src/Dialogs/MediaEditor.vala:135 src/Dialogs/PreferencesWindow.vala:97
 #: src/Views/DeviceView.vala:45
 msgid "Close"
 msgstr "Tutup"
@@ -560,31 +559,31 @@ msgstr "Abai"
 msgid "Select Music Folder…"
 msgstr "Pilih Folder Muzik..."
 
-#: src/Dialogs/PreferencesWindow.vala:77
+#: src/Dialogs/PreferencesWindow.vala:78
 msgid "Music Folder Location"
 msgstr "Lokasi Folder Muzik"
 
-#: src/Dialogs/PreferencesWindow.vala:79
+#: src/Dialogs/PreferencesWindow.vala:80
 msgid "Library Management"
 msgstr "Pengurusan Pustaka"
 
-#: src/Dialogs/PreferencesWindow.vala:80
+#: src/Dialogs/PreferencesWindow.vala:81
 msgid "Keep Music folder organized:"
 msgstr "Kekalkan folder Muzik terurus:"
 
-#: src/Dialogs/PreferencesWindow.vala:82
+#: src/Dialogs/PreferencesWindow.vala:83
 msgid "Write metadata to file:"
 msgstr "Tulis data meta ke fail:"
 
-#: src/Dialogs/PreferencesWindow.vala:84
+#: src/Dialogs/PreferencesWindow.vala:85
 msgid "Copy imported files to Library:"
 msgstr "Salin fail terimport ke Pustaka:"
 
-#: src/Dialogs/PreferencesWindow.vala:86
+#: src/Dialogs/PreferencesWindow.vala:87
 msgid "Desktop Integration"
 msgstr ""
 
-#: src/Dialogs/PreferencesWindow.vala:87
+#: src/Dialogs/PreferencesWindow.vala:88
 msgid "Continue playback when closed:"
 msgstr "Teruskan main balik bila ditutup:"
 
@@ -619,20 +618,11 @@ msgstr[1] ""
 msgid "Remove from Library"
 msgstr "Buang dari Pustaka"
 
-#: src/Dialogs/SetMusicFolderConfirmation.vala:65
-msgid "Export Playlists"
-msgstr "Eksport Senarai Main"
-
-#: src/Dialogs/SetMusicFolderConfirmation.vala:66
-msgid "Set Music Folder"
-msgstr "Tetapkan Folder Muzik"
-
-#. pretty up labels
-#: src/Dialogs/SetMusicFolderConfirmation.vala:73
+#: src/Dialogs/SetMusicFolderConfirmation.vala:38
 msgid "Set Music Folder?"
 msgstr "Tetapkan Folder Muzik?"
 
-#: src/Dialogs/SetMusicFolderConfirmation.vala:76
+#: src/Dialogs/SetMusicFolderConfirmation.vala:39
 #, c-format
 msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
@@ -640,6 +630,14 @@ msgid ""
 msgstr ""
 "Anda pasti hendak tetapkan folder muzik ke %s? Ia akan tetapkan semula "
 "pustaka dan buang senarai main anda."
+
+#: src/Dialogs/SetMusicFolderConfirmation.vala:47
+msgid "Export Playlists"
+msgstr "Eksport Senarai Main"
+
+#: src/Dialogs/SetMusicFolderConfirmation.vala:65
+msgid "Set Music Folder"
+msgstr "Tetapkan Folder Muzik"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:55
 msgid "Playlist Title"
@@ -831,31 +829,31 @@ msgstr "Terus Menyegerak"
 msgid "Importing music from %s…"
 msgstr "Mengimport muzik dari %s..."
 
-#: src/LocalBackend/LocalLibrary.vala:212
+#: src/LocalBackend/LocalLibrary.vala:215
 msgid "Adding files to library…"
 msgstr "Menambah fail ke pustaka..."
 
-#: src/LocalBackend/LocalLibrary.vala:225
+#: src/LocalBackend/LocalLibrary.vala:228
 msgid "<b>Importing</b> music to library…"
 msgstr "<b>Mengimport</b> muzik ke pustaka…"
 
-#: src/LocalBackend/LocalLibrary.vala:247
+#: src/LocalBackend/LocalLibrary.vala:250
 msgid "All music files are already in your library"
 msgstr "Semua fail muzik sudah ada di dalam pustaka anda"
 
-#: src/LocalBackend/LocalLibrary.vala:247
+#: src/LocalBackend/LocalLibrary.vala:250
 msgid "No files were imported."
 msgstr "Tiada fail diimport."
 
-#: src/LocalBackend/LocalLibrary.vala:252
+#: src/LocalBackend/LocalLibrary.vala:255
 msgid "Rescanning music for changes. This may take a while…"
 msgstr "Mengimbas semula muzik untuk perubahan. Ia mengambil masa..."
 
-#: src/LocalBackend/LocalLibrary.vala:353
+#: src/LocalBackend/LocalLibrary.vala:356
 msgid "Added to your queue:"
 msgstr "Ditambah ke baris gilir anda:"
 
-#: src/LocalBackend/LocalLibrary.vala:364
+#: src/LocalBackend/LocalLibrary.vala:367
 #, c-format
 msgid "%d Track"
 msgid_plural "%d Tracks"
@@ -1263,7 +1261,7 @@ msgstr "Import Muzik anda"
 msgid "Import all your Music from %s into your library."
 msgstr "Import semua muzik anda dari %s ke dalam pustaka anda."
 
-#: src/Views/Wrappers/MusicViewWrapper.vala:143
+#: src/Views/Wrappers/MusicViewWrapper.vala:144
 msgid "Select Music Folder"
 msgstr "Pilih Folder Muzik"
 
@@ -1301,7 +1299,7 @@ msgstr ""
 "b> padanya dalam palang sisi dan klik <b>Sunting</b>. Selain itu, anda boleh "
 "klik pada butang dibawah."
 
-#: src/Views/Wrappers/ViewWrapper.vala:419
+#: src/Views/Wrappers/ViewWrapper.vala:418
 msgid "No media"
 msgstr "Tiada Media"
 
@@ -1309,17 +1307,17 @@ msgstr "Tiada Media"
 msgid "Set new album cover"
 msgstr "Tetapkan kulit album baharu"
 
-#: src/Widgets/AlbumListGrid.vala:240
+#: src/Widgets/AlbumListGrid.vala:244
 msgid "Image files"
 msgstr "Fail imej"
 
-#: src/Widgets/AlbumListGrid.vala:245
-msgid "_Cancel"
-msgstr "_Batal"
-
-#: src/Widgets/AlbumListGrid.vala:246
+#: src/Widgets/AlbumListGrid.vala:251
 msgid "_Open"
 msgstr "B_uka"
+
+#: src/Widgets/AlbumListGrid.vala:252
+msgid "_Cancel"
+msgstr "_Batal"
 
 #: src/Widgets/EqualizerPopover.vala:167
 msgid "Save preset"

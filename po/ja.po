@@ -7,17 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2019-01-09 00:06+0000\n"
+"POT-Creation-Date: 2019-06-26 22:43+0200\n"
+"PO-Revision-Date: 2019-03-17 01:27+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
-"Language-Team: Japanese <https://weblate.elementary.io/projects/music/music/"
-"ja/>\n"
+"Language-Team: Japanese <https://l10n.elementary.io/projects/music/music/ja/"
+">\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 3.4\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:53+0000\n"
 
 #: core/LibrariesManager.vala:147
@@ -86,7 +86,7 @@ msgstr "ライブ"
 
 #: core/GStreamer/Equalizer.vala:81
 msgid "Party"
-msgstr "パーティ"
+msgstr "パーティー"
 
 #: core/GStreamer/Equalizer.vala:82
 msgid "Pop"
@@ -136,54 +136,54 @@ msgstr "新しいプレイリスト"
 msgid "%s (%i)"
 msgstr "%s (%i)"
 
-#: core/Utils/PlaylistsUtils.vala:273
+#: core/Utils/PlaylistsUtils.vala:273 core/Utils/PlaylistsUtils.vala:342
+msgid "MPEG Version 3.0 Extended (*.m3u)"
+msgstr "MPEG バージョン 3.0 拡張 (*.m3u)"
+
+#: core/Utils/PlaylistsUtils.vala:277 core/Utils/PlaylistsUtils.vala:346
+msgid "Shoutcast Playlist Version 2.0 (*.pls)"
+msgstr "Shoutcast プレイリストバージョン 2.0 (*.pls)"
+
+#: core/Utils/PlaylistsUtils.vala:280
 msgid "Export Playlist"
 msgstr "プレイリストのエクスポート"
 
-#: core/Utils/PlaylistsUtils.vala:275 core/Utils/PlaylistsUtils.vala:369
-#: src/LibraryWindow.vala:982 src/Dialogs/FileNotFoundDialog.vala:55
-#: src/Dialogs/FileNotFoundDialog.vala:101
-#: src/Dialogs/InstallGstreamerPluginsDialog.vala:50
-#: src/Dialogs/RemoveFilesDialog.vala:82
-#: src/Dialogs/SetMusicFolderConfirmation.vala:67
-#: src/Dialogs/SetMusicFolderConfirmation.vala:115
-#: src/Dialogs/SmartPlaylistEditor.vala:93
-#: src/Dialogs/SyncWarningDialog.vala:60
-#: src/Views/Wrappers/MusicViewWrapper.vala:145 src/Widgets/TopDisplay.vala:64
-msgid "Cancel"
-msgstr "キャンセル"
-
-#: core/Utils/PlaylistsUtils.vala:276 src/Dialogs/MediaEditor.vala:137
+#: core/Utils/PlaylistsUtils.vala:283 src/Dialogs/MediaEditor.vala:137
 #: src/Dialogs/SmartPlaylistEditor.vala:89
 msgid "Save"
 msgstr "保存"
 
-#: core/Utils/PlaylistsUtils.vala:281 core/Utils/PlaylistsUtils.vala:376
-msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr "MPEG バージョン 3.0 拡張 (*.m3u)"
+#: core/Utils/PlaylistsUtils.vala:284 core/Utils/PlaylistsUtils.vala:353
+#: src/LibraryWindow.vala:985 src/Dialogs/FileNotFoundDialog.vala:55
+#: src/Dialogs/FileNotFoundDialog.vala:103
+#: src/Dialogs/InstallGstreamerPluginsDialog.vala:50
+#: src/Dialogs/RemoveFilesDialog.vala:82
+#: src/Dialogs/SetMusicFolderConfirmation.vala:63
+#: src/Dialogs/SetMusicFolderConfirmation.vala:86
+#: src/Dialogs/SmartPlaylistEditor.vala:93
+#: src/Dialogs/SyncWarningDialog.vala:60
+#: src/Views/Wrappers/MusicViewWrapper.vala:148 src/Widgets/TopDisplay.vala:64
+msgid "Cancel"
+msgstr "キャンセル"
 
-#: core/Utils/PlaylistsUtils.vala:286 core/Utils/PlaylistsUtils.vala:381
-msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr "Shoutcast プレイリストバージョン 2.0 (*.pls)"
-
-#: core/Utils/PlaylistsUtils.vala:361
+#: core/Utils/PlaylistsUtils.vala:337
 msgid "Playlist"
 msgstr "プレイリスト"
 
-#: core/Utils/PlaylistsUtils.vala:367
+#: core/Utils/PlaylistsUtils.vala:349
 #, c-format
 msgid "Import %s"
 msgstr "%s のインポート"
 
-#: core/Utils/PlaylistsUtils.vala:370 src/LibraryWindow.vala:983
+#: core/Utils/PlaylistsUtils.vala:352 src/LibraryWindow.vala:984
 #: src/Dialogs/FileNotFoundDialog.vala:102
-#: src/Dialogs/SetMusicFolderConfirmation.vala:116
+#: src/Dialogs/SetMusicFolderConfirmation.vala:85
 #: src/Views/Wrappers/MusicViewWrapper.vala:147
-#: src/Widgets/AlbumListGrid.vala:244
+#: src/Widgets/AlbumListGrid.vala:248
 msgid "Open"
 msgstr "開く"
 
-#: core/Utils/PlaylistsUtils.vala:401
+#: core/Utils/PlaylistsUtils.vala:379
 msgid "Unrecognized playlist file. Import failed."
 msgstr "認識できないプレイリストファイルです。インポートに失敗しました。"
 
@@ -342,59 +342,58 @@ msgstr "ライブラリにインポートされました。"
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr "ファイルを<b>ミュージックフォルダー</b>に<b>コピー</b>しています…"
 
-#: src/LibraryWindow.vala:353 src/LibraryWindow.vala:420
-#: src/LibraryWindow.vala:598 src/LibraryWindow.vala:704
-#: src/LibraryWindow.vala:1146
+#: src/LibraryWindow.vala:353 src/LibraryWindow.vala:419
+#: src/LibraryWindow.vala:600 src/LibraryWindow.vala:706
 msgid "Music"
 msgstr "ミュージック"
 
-#: src/LibraryWindow.vala:370
+#: src/LibraryWindow.vala:369
 msgid "Import to Library…"
 msgstr "ライブラリにインポート…"
 
-#: src/LibraryWindow.vala:373 src/Dialogs/PreferencesWindow.vala:40
+#: src/LibraryWindow.vala:372 src/Dialogs/PreferencesWindow.vala:40
 msgid "Preferences"
 msgstr "設定"
 
-#: src/LibraryWindow.vala:389
+#: src/LibraryWindow.vala:388
 msgid "Previous"
 msgstr "前へ"
 
-#: src/LibraryWindow.vala:393 src/LibraryWindow.vala:448
+#: src/LibraryWindow.vala:392 src/LibraryWindow.vala:449
 msgid "Play"
 msgstr "再生"
 
-#: src/LibraryWindow.vala:397
+#: src/LibraryWindow.vala:396
 msgid "Next"
 msgstr "次へ"
 
-#: src/LibraryWindow.vala:401
+#: src/LibraryWindow.vala:400
 msgid "Search Music"
 msgstr "曲を検索"
 
-#: src/LibraryWindow.vala:451
+#: src/LibraryWindow.vala:452
 msgid "Pause"
 msgstr "一時停止"
 
-#: src/LibraryWindow.vala:773
+#: src/LibraryWindow.vala:775
 msgid "No songs in Queue"
 msgstr "キューに曲がありません"
 
-#: src/LibraryWindow.vala:773
+#: src/LibraryWindow.vala:775
 msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
-"キューに曲を追加するには、アイテムの上で<b>右クリック</b>をして<b>キュー</b>"
-"を選択します。曲が終わると、現在のプレイリストの次の曲の前にキューの曲が先に"
-"再生されます。"
+"キューに曲を追加するには、項目上で<b>右クリック</b>をして<b>キュー</b>を選択"
+"します。曲が終わると、現在のプレイリストの次の曲の前にキューの曲が先に再生さ"
+"れます。"
 
-#: src/LibraryWindow.vala:776
+#: src/LibraryWindow.vala:778
 msgid "No songs in History"
 msgstr "履歴に曲がありません"
 
-#: src/LibraryWindow.vala:776
+#: src/LibraryWindow.vala:778
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
@@ -403,7 +402,7 @@ msgstr ""
 "曲の一部が再生された後、その曲は履歴リストに追加されます。\n"
 "このリストを使用して、現在のセッションで再生したすべての曲を表示できます。"
 
-#: src/LibraryWindow.vala:980 src/Views/Wrappers/MusicViewWrapper.vala:60
+#: src/LibraryWindow.vala:981 src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import Music"
 msgstr "曲をインポート"
 
@@ -439,7 +438,7 @@ msgid "Find Song"
 msgstr "曲を検索"
 
 #: src/Dialogs/FileNotFoundDialog.vala:99
-#: src/Dialogs/SetMusicFolderConfirmation.vala:113
+#: src/Dialogs/SetMusicFolderConfirmation.vala:82
 msgid "Choose Music Folder"
 msgstr "ミュージックフォルダーを選択"
 
@@ -506,7 +505,7 @@ msgid "Comment:"
 msgstr "コメント:"
 
 #. FIXME: don't know if I can delete this
-#: src/Dialogs/MediaEditor.vala:135 src/Dialogs/PreferencesWindow.vala:96
+#: src/Dialogs/MediaEditor.vala:135 src/Dialogs/PreferencesWindow.vala:97
 #: src/Views/DeviceView.vala:45
 msgid "Close"
 msgstr "閉じる"
@@ -520,7 +519,9 @@ msgstr "%s からのインポート中に問題が発生しました"
 #, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] "%d 個のアイテムをインポートできませんでした。ファイルが壊れている可能性があります。"
+msgstr[0] ""
+"%d 個の項目をインポートできませんでした。ファイルが壊れている可能性がありま"
+"す。"
 
 #: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
@@ -550,31 +551,31 @@ msgstr "無視"
 msgid "Select Music Folder…"
 msgstr "ミュージックフォルダーを選択…"
 
-#: src/Dialogs/PreferencesWindow.vala:77
+#: src/Dialogs/PreferencesWindow.vala:78
 msgid "Music Folder Location"
 msgstr "ミュージックフォルダーの場所"
 
-#: src/Dialogs/PreferencesWindow.vala:79
+#: src/Dialogs/PreferencesWindow.vala:80
 msgid "Library Management"
 msgstr "ライブラリの管理"
 
-#: src/Dialogs/PreferencesWindow.vala:80
+#: src/Dialogs/PreferencesWindow.vala:81
 msgid "Keep Music folder organized:"
 msgstr "ミュージックフォルダーを整理しておく:"
 
-#: src/Dialogs/PreferencesWindow.vala:82
+#: src/Dialogs/PreferencesWindow.vala:83
 msgid "Write metadata to file:"
 msgstr "ファイルにメタデータを書き込む:"
 
-#: src/Dialogs/PreferencesWindow.vala:84
+#: src/Dialogs/PreferencesWindow.vala:85
 msgid "Copy imported files to Library:"
 msgstr "インポートされたファイルをライブラリにコピー:"
 
-#: src/Dialogs/PreferencesWindow.vala:86
+#: src/Dialogs/PreferencesWindow.vala:87
 msgid "Desktop Integration"
 msgstr "デスクトップとの統合"
 
-#: src/Dialogs/PreferencesWindow.vala:87
+#: src/Dialogs/PreferencesWindow.vala:88
 msgid "Continue playback when closed:"
 msgstr "閉じたときに再生を続ける:"
 
@@ -603,20 +604,11 @@ msgstr[0] ""
 msgid "Remove from Library"
 msgstr "ライブラリから削除"
 
-#: src/Dialogs/SetMusicFolderConfirmation.vala:65
-msgid "Export Playlists"
-msgstr "プレイリストをエクスポート"
-
-#: src/Dialogs/SetMusicFolderConfirmation.vala:66
-msgid "Set Music Folder"
-msgstr "ミュージックフォルダーを設定"
-
-#. pretty up labels
-#: src/Dialogs/SetMusicFolderConfirmation.vala:73
+#: src/Dialogs/SetMusicFolderConfirmation.vala:38
 msgid "Set Music Folder?"
 msgstr "ミュージックフォルダーを設定しますか？"
 
-#: src/Dialogs/SetMusicFolderConfirmation.vala:76
+#: src/Dialogs/SetMusicFolderConfirmation.vala:39
 #, c-format
 msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
@@ -624,6 +616,14 @@ msgid ""
 msgstr ""
 "ミュージックフォルダーを %s に設定してもよろしいですか？この操作はライブラリ"
 "を初期化し、プレイリストを削除します。"
+
+#: src/Dialogs/SetMusicFolderConfirmation.vala:47
+msgid "Export Playlists"
+msgstr "プレイリストをエクスポート"
+
+#: src/Dialogs/SetMusicFolderConfirmation.vala:65
+msgid "Set Music Folder"
+msgstr "ミュージックフォルダーを設定"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:55
 msgid "Playlist Title"
@@ -655,7 +655,7 @@ msgstr "上限"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:87
 msgid "items"
-msgstr "アイテム"
+msgstr "項目"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:107
 msgid "Name of Playlist"
@@ -794,7 +794,7 @@ msgstr "kbps"
 #, c-format
 msgid "Sync will remove %i item from %s"
 msgid_plural "Sync will remove %i items from %s"
-msgstr[0] "同期によって %i 個のアイテムが %s から削除されます"
+msgstr[0] "同期によって %i 個の項目が %s から削除されます"
 
 #: src/Dialogs/SyncWarningDialog.vala:55
 #, c-format
@@ -814,31 +814,31 @@ msgstr "同期を続行"
 msgid "Importing music from %s…"
 msgstr "%s から曲をインポートしています…"
 
-#: src/LocalBackend/LocalLibrary.vala:212
+#: src/LocalBackend/LocalLibrary.vala:215
 msgid "Adding files to library…"
 msgstr "ファイルをライブラリに追加しています…"
 
-#: src/LocalBackend/LocalLibrary.vala:225
+#: src/LocalBackend/LocalLibrary.vala:228
 msgid "<b>Importing</b> music to library…"
 msgstr "曲をライブラリに<b>インポートしています</b>…"
 
-#: src/LocalBackend/LocalLibrary.vala:247
+#: src/LocalBackend/LocalLibrary.vala:250
 msgid "All music files are already in your library"
 msgstr "すべての音楽ファイルがすでにライブラリにあります"
 
-#: src/LocalBackend/LocalLibrary.vala:247
+#: src/LocalBackend/LocalLibrary.vala:250
 msgid "No files were imported."
 msgstr "ファイルはインポートされませんでした。"
 
-#: src/LocalBackend/LocalLibrary.vala:252
+#: src/LocalBackend/LocalLibrary.vala:255
 msgid "Rescanning music for changes. This may take a while…"
 msgstr "変更があった曲を再スキャンしています。これには少し時間がかかります…"
 
-#: src/LocalBackend/LocalLibrary.vala:353
+#: src/LocalBackend/LocalLibrary.vala:356
 msgid "Added to your queue:"
 msgstr "キューに追加しました:"
 
-#: src/LocalBackend/LocalLibrary.vala:364
+#: src/LocalBackend/LocalLibrary.vala:367
 #, c-format
 msgid "%d Track"
 msgid_plural "%d Tracks"
@@ -1242,7 +1242,7 @@ msgstr "曲をインポート"
 msgid "Import all your Music from %s into your library."
 msgstr "すべての曲を %s からライブラリにインポートします。"
 
-#: src/Views/Wrappers/MusicViewWrapper.vala:143
+#: src/Views/Wrappers/MusicViewWrapper.vala:144
 msgid "Select Music Folder"
 msgstr "ミュージックフォルダーを選択"
 
@@ -1261,8 +1261,8 @@ msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
-"プレイリストに曲を追加するには、アイテム上で<b>右クリック</b>をして<b>プレイ"
-"リストに追加</b>を選択します。"
+"プレイリストに曲を追加するには、項目上で<b>右クリック</b>をして<b>プレイリス"
+"トに追加</b>を選択します。"
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:58
 msgid "Edit Smart Playlist"
@@ -1279,7 +1279,7 @@ msgstr ""
 "は、サイドバー上で<b>右クリック</b>をして、<b>編集</b>をクリックします。必要"
 "に応じて、以下のボタンをクリックすることができます。"
 
-#: src/Views/Wrappers/ViewWrapper.vala:419
+#: src/Views/Wrappers/ViewWrapper.vala:418
 msgid "No media"
 msgstr "メディアがありません"
 
@@ -1287,17 +1287,17 @@ msgstr "メディアがありません"
 msgid "Set new album cover"
 msgstr "新しいアルバムカバーを設定"
 
-#: src/Widgets/AlbumListGrid.vala:240
+#: src/Widgets/AlbumListGrid.vala:244
 msgid "Image files"
 msgstr "画像ファイル"
 
-#: src/Widgets/AlbumListGrid.vala:245
-msgid "_Cancel"
-msgstr "キャンセル(_C)"
-
-#: src/Widgets/AlbumListGrid.vala:246
+#: src/Widgets/AlbumListGrid.vala:251
 msgid "_Open"
 msgstr "開く(_O)"
+
+#: src/Widgets/AlbumListGrid.vala:252
+msgid "_Cancel"
+msgstr "キャンセル(_C)"
 
 #: src/Widgets/EqualizerPopover.vala:167
 msgid "Save preset"

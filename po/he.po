@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-05 13:23-0800\n"
+"POT-Creation-Date: 2019-06-26 22:43+0200\n"
 "PO-Revision-Date: 2018-11-06 10:03+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://weblate.elementary.io/projects/music/music/he/"
@@ -131,54 +131,54 @@ msgstr "רשימת השמעה חדשה"
 msgid "%s (%i)"
 msgstr "%s (%i)"
 
-#: core/Utils/PlaylistsUtils.vala:273
+#: core/Utils/PlaylistsUtils.vala:273 core/Utils/PlaylistsUtils.vala:342
+msgid "MPEG Version 3.0 Extended (*.m3u)"
+msgstr "MPEG גרסה 3.0 מורחבת (‎*.m3u)"
+
+#: core/Utils/PlaylistsUtils.vala:277 core/Utils/PlaylistsUtils.vala:346
+msgid "Shoutcast Playlist Version 2.0 (*.pls)"
+msgstr "רשימת השמעה מתחנת רדיו רשת Shoutcast גרסה 2.0 (pls.*)"
+
+#: core/Utils/PlaylistsUtils.vala:280
 msgid "Export Playlist"
 msgstr "יצוא רשימת השמעה"
 
-#: core/Utils/PlaylistsUtils.vala:275 core/Utils/PlaylistsUtils.vala:369
-#: src/LibraryWindow.vala:982 src/Dialogs/FileNotFoundDialog.vala:55
-#: src/Dialogs/FileNotFoundDialog.vala:101
-#: src/Dialogs/InstallGstreamerPluginsDialog.vala:50
-#: src/Dialogs/RemoveFilesDialog.vala:82
-#: src/Dialogs/SetMusicFolderConfirmation.vala:67
-#: src/Dialogs/SetMusicFolderConfirmation.vala:115
-#: src/Dialogs/SmartPlaylistEditor.vala:93
-#: src/Dialogs/SyncWarningDialog.vala:60
-#: src/Views/Wrappers/MusicViewWrapper.vala:145 src/Widgets/TopDisplay.vala:64
-msgid "Cancel"
-msgstr "ביטול"
-
-#: core/Utils/PlaylistsUtils.vala:276 src/Dialogs/MediaEditor.vala:137
+#: core/Utils/PlaylistsUtils.vala:283 src/Dialogs/MediaEditor.vala:137
 #: src/Dialogs/SmartPlaylistEditor.vala:89
 msgid "Save"
 msgstr "שמירה"
 
-#: core/Utils/PlaylistsUtils.vala:281 core/Utils/PlaylistsUtils.vala:376
-msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr "MPEG גרסה 3.0 מורחבת (‎*.m3u)"
+#: core/Utils/PlaylistsUtils.vala:284 core/Utils/PlaylistsUtils.vala:353
+#: src/LibraryWindow.vala:985 src/Dialogs/FileNotFoundDialog.vala:55
+#: src/Dialogs/FileNotFoundDialog.vala:103
+#: src/Dialogs/InstallGstreamerPluginsDialog.vala:50
+#: src/Dialogs/RemoveFilesDialog.vala:82
+#: src/Dialogs/SetMusicFolderConfirmation.vala:63
+#: src/Dialogs/SetMusicFolderConfirmation.vala:86
+#: src/Dialogs/SmartPlaylistEditor.vala:93
+#: src/Dialogs/SyncWarningDialog.vala:60
+#: src/Views/Wrappers/MusicViewWrapper.vala:148 src/Widgets/TopDisplay.vala:64
+msgid "Cancel"
+msgstr "ביטול"
 
-#: core/Utils/PlaylistsUtils.vala:286 core/Utils/PlaylistsUtils.vala:381
-msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr "רשימת השמעה מתחנת רדיו רשת Shoutcast גרסה 2.0 (pls.*)"
-
-#: core/Utils/PlaylistsUtils.vala:361
+#: core/Utils/PlaylistsUtils.vala:337
 msgid "Playlist"
 msgstr "רשימת השמעה"
 
-#: core/Utils/PlaylistsUtils.vala:367
+#: core/Utils/PlaylistsUtils.vala:349
 #, c-format
 msgid "Import %s"
 msgstr "יבוא  %s"
 
-#: core/Utils/PlaylistsUtils.vala:370 src/LibraryWindow.vala:983
+#: core/Utils/PlaylistsUtils.vala:352 src/LibraryWindow.vala:984
 #: src/Dialogs/FileNotFoundDialog.vala:102
-#: src/Dialogs/SetMusicFolderConfirmation.vala:116
+#: src/Dialogs/SetMusicFolderConfirmation.vala:85
 #: src/Views/Wrappers/MusicViewWrapper.vala:147
-#: src/Widgets/AlbumListGrid.vala:244
+#: src/Widgets/AlbumListGrid.vala:248
 msgid "Open"
 msgstr "פתיחה"
 
-#: core/Utils/PlaylistsUtils.vala:401
+#: core/Utils/PlaylistsUtils.vala:379
 msgid "Unrecognized playlist file. Import failed."
 msgstr "קובץ רשימת השמעה אינו מוכר. היבוא נכשל."
 
@@ -334,45 +334,44 @@ msgstr "הספרייה שלך יובאה."
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr "קבצים <b>מועתקים</b> ל<b>תיקיית המוזיקה</b>…"
 
-#: src/LibraryWindow.vala:353 src/LibraryWindow.vala:420
-#: src/LibraryWindow.vala:598 src/LibraryWindow.vala:704
-#: src/LibraryWindow.vala:1146
+#: src/LibraryWindow.vala:353 src/LibraryWindow.vala:419
+#: src/LibraryWindow.vala:600 src/LibraryWindow.vala:706
 msgid "Music"
 msgstr "מוזיקה"
 
-#: src/LibraryWindow.vala:370
+#: src/LibraryWindow.vala:369
 msgid "Import to Library…"
 msgstr "יבוא לספרייה…"
 
-#: src/LibraryWindow.vala:373 src/Dialogs/PreferencesWindow.vala:40
+#: src/LibraryWindow.vala:372 src/Dialogs/PreferencesWindow.vala:40
 msgid "Preferences"
 msgstr "העדפות"
 
-#: src/LibraryWindow.vala:389
+#: src/LibraryWindow.vala:388
 msgid "Previous"
 msgstr "הקודם"
 
-#: src/LibraryWindow.vala:393 src/LibraryWindow.vala:448
+#: src/LibraryWindow.vala:392 src/LibraryWindow.vala:449
 msgid "Play"
 msgstr "ניגון"
 
-#: src/LibraryWindow.vala:397
+#: src/LibraryWindow.vala:396
 msgid "Next"
 msgstr "הבא"
 
-#: src/LibraryWindow.vala:401
+#: src/LibraryWindow.vala:400
 msgid "Search Music"
 msgstr "חיפוש מוזיקה"
 
-#: src/LibraryWindow.vala:451
+#: src/LibraryWindow.vala:452
 msgid "Pause"
 msgstr "השהיה"
 
-#: src/LibraryWindow.vala:773
+#: src/LibraryWindow.vala:775
 msgid "No songs in Queue"
 msgstr "אין שירים ממתינים"
 
-#: src/LibraryWindow.vala:773
+#: src/LibraryWindow.vala:775
 msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
@@ -382,11 +381,11 @@ msgstr ""
 "<b>המתנה</b>. בסיום השיר, ינוגנו השירים הממתינים ראשונים לפני השיר הבא "
 "ברשימת ההשמעה הנוכחית."
 
-#: src/LibraryWindow.vala:776
+#: src/LibraryWindow.vala:778
 msgid "No songs in History"
 msgstr "אין שירים בהיסטוריה"
 
-#: src/LibraryWindow.vala:776
+#: src/LibraryWindow.vala:778
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
@@ -395,7 +394,7 @@ msgstr ""
 "לאחר שחלק משיר כבר נוגן, הוא יתווסף לרשימת ההיסטוריה.\n"
 "ניתן להשתמש ברשימה זו כדי לראות את כל השירים שנוגנו במהלך ההפעלה הנוכחית."
 
-#: src/LibraryWindow.vala:980 src/Views/Wrappers/MusicViewWrapper.vala:60
+#: src/LibraryWindow.vala:981 src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import Music"
 msgstr "יבוא מוזיקה"
 
@@ -431,7 +430,7 @@ msgid "Find Song"
 msgstr "חפש שיר"
 
 #: src/Dialogs/FileNotFoundDialog.vala:99
-#: src/Dialogs/SetMusicFolderConfirmation.vala:113
+#: src/Dialogs/SetMusicFolderConfirmation.vala:82
 msgid "Choose Music Folder"
 msgstr "בחירת תיקיית מוזיקה"
 
@@ -498,7 +497,7 @@ msgid "Comment:"
 msgstr "תגובה:"
 
 #. FIXME: don't know if I can delete this
-#: src/Dialogs/MediaEditor.vala:135 src/Dialogs/PreferencesWindow.vala:96
+#: src/Dialogs/MediaEditor.vala:135 src/Dialogs/PreferencesWindow.vala:97
 #: src/Views/DeviceView.vala:45
 msgid "Close"
 msgstr "סגור"
@@ -543,31 +542,31 @@ msgstr "התעלמות"
 msgid "Select Music Folder…"
 msgstr "בחירת תיקיית מוזיקה…"
 
-#: src/Dialogs/PreferencesWindow.vala:77
+#: src/Dialogs/PreferencesWindow.vala:78
 msgid "Music Folder Location"
 msgstr "מיקום תיקיית המוזיקה"
 
-#: src/Dialogs/PreferencesWindow.vala:79
+#: src/Dialogs/PreferencesWindow.vala:80
 msgid "Library Management"
 msgstr "ניהול האוסף"
 
-#: src/Dialogs/PreferencesWindow.vala:80
+#: src/Dialogs/PreferencesWindow.vala:81
 msgid "Keep Music folder organized:"
 msgstr "שמירה על סדר בתיקיית המוזיקה:"
 
-#: src/Dialogs/PreferencesWindow.vala:82
+#: src/Dialogs/PreferencesWindow.vala:83
 msgid "Write metadata to file:"
 msgstr "הוספת נתוני על לקובץ:"
 
-#: src/Dialogs/PreferencesWindow.vala:84
+#: src/Dialogs/PreferencesWindow.vala:85
 msgid "Copy imported files to Library:"
 msgstr "העתקת הקבצים המיובאים אל הספרייה:"
 
-#: src/Dialogs/PreferencesWindow.vala:86
+#: src/Dialogs/PreferencesWindow.vala:87
 msgid "Desktop Integration"
 msgstr "שילוב בשולחן העבודה"
 
-#: src/Dialogs/PreferencesWindow.vala:87
+#: src/Dialogs/PreferencesWindow.vala:88
 msgid "Continue playback when closed:"
 msgstr "להמשיך בנגינה בעת סגירה:"
 
@@ -597,20 +596,11 @@ msgstr[1] "פעולה זו תסיר את השירים מהספרייה שלך ו
 msgid "Remove from Library"
 msgstr "הסרה מהספריה"
 
-#: src/Dialogs/SetMusicFolderConfirmation.vala:65
-msgid "Export Playlists"
-msgstr "יצוא רשימות השמעה"
-
-#: src/Dialogs/SetMusicFolderConfirmation.vala:66
-msgid "Set Music Folder"
-msgstr "הגדרת ספריית המוזיקה"
-
-#. pretty up labels
-#: src/Dialogs/SetMusicFolderConfirmation.vala:73
+#: src/Dialogs/SetMusicFolderConfirmation.vala:38
 msgid "Set Music Folder?"
 msgstr "האם להגדיר את ספריית השירים?"
 
-#: src/Dialogs/SetMusicFolderConfirmation.vala:76
+#: src/Dialogs/SetMusicFolderConfirmation.vala:39
 #, c-format
 msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
@@ -618,6 +608,14 @@ msgid ""
 msgstr ""
 "האם ברצונך להגדיר את ספריית המוזיקה בתור %s? הפעולה תאפס את הספרייה שלך "
 "ותסיר את כל רשימות הנגינה שלך."
+
+#: src/Dialogs/SetMusicFolderConfirmation.vala:47
+msgid "Export Playlists"
+msgstr "יצוא רשימות השמעה"
+
+#: src/Dialogs/SetMusicFolderConfirmation.vala:65
+msgid "Set Music Folder"
+msgstr "הגדרת ספריית המוזיקה"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:55
 msgid "Playlist Title"
@@ -809,31 +807,31 @@ msgstr "המשך הסנכרון"
 msgid "Importing music from %s…"
 msgstr "יבוא מוזיקה מ־%s…"
 
-#: src/LocalBackend/LocalLibrary.vala:212
+#: src/LocalBackend/LocalLibrary.vala:215
 msgid "Adding files to library…"
 msgstr "נוספים קבצים לספריה…"
 
-#: src/LocalBackend/LocalLibrary.vala:225
+#: src/LocalBackend/LocalLibrary.vala:228
 msgid "<b>Importing</b> music to library…"
 msgstr "<b>מיובאים</b> שירים לספרייה…"
 
-#: src/LocalBackend/LocalLibrary.vala:247
+#: src/LocalBackend/LocalLibrary.vala:250
 msgid "All music files are already in your library"
 msgstr "כל קובצי המוזיקה כבר נמצאים בספריה שלך"
 
-#: src/LocalBackend/LocalLibrary.vala:247
+#: src/LocalBackend/LocalLibrary.vala:250
 msgid "No files were imported."
 msgstr "לא יובאו קבצים."
 
-#: src/LocalBackend/LocalLibrary.vala:252
+#: src/LocalBackend/LocalLibrary.vala:255
 msgid "Rescanning music for changes. This may take a while…"
 msgstr "סריקה מחדש של המוזיקה לאיתור שינויים. הפעולה עשויה להמשך זמן מה…"
 
-#: src/LocalBackend/LocalLibrary.vala:353
+#: src/LocalBackend/LocalLibrary.vala:356
 msgid "Added to your queue:"
 msgstr "מצורף לתור:"
 
-#: src/LocalBackend/LocalLibrary.vala:364
+#: src/LocalBackend/LocalLibrary.vala:367
 #, c-format
 msgid "%d Track"
 msgid_plural "%d Tracks"
@@ -1237,7 +1235,7 @@ msgstr "יבוא המוזיקה שלך"
 msgid "Import all your Music from %s into your library."
 msgstr "יבוא כל המוזיקה שלך מ־%s אל הספרייה שלך."
 
-#: src/Views/Wrappers/MusicViewWrapper.vala:143
+#: src/Views/Wrappers/MusicViewWrapper.vala:144
 msgid "Select Music Folder"
 msgstr "בחירת ספריית מוזיקה"
 
@@ -1274,7 +1272,7 @@ msgstr ""
 "הכללים, נא ללחוץ עליו ב<b>לחיצה משנית</b> בסרגל הצד ואז ללחוץ על   <b>עריכה</"
 "b>. לחלופין, ניתן ללחוץ על הכפתור למטה."
 
-#: src/Views/Wrappers/ViewWrapper.vala:419
+#: src/Views/Wrappers/ViewWrapper.vala:418
 msgid "No media"
 msgstr "ללא מדיה"
 
@@ -1282,17 +1280,17 @@ msgstr "ללא מדיה"
 msgid "Set new album cover"
 msgstr "קביעת עטיפת אלבום חדשה"
 
-#: src/Widgets/AlbumListGrid.vala:240
+#: src/Widgets/AlbumListGrid.vala:244
 msgid "Image files"
 msgstr "קובצי תמונה"
 
-#: src/Widgets/AlbumListGrid.vala:245
-msgid "_Cancel"
-msgstr "_ביטול"
-
-#: src/Widgets/AlbumListGrid.vala:246
+#: src/Widgets/AlbumListGrid.vala:251
 msgid "_Open"
 msgstr "_פתיחה"
+
+#: src/Widgets/AlbumListGrid.vala:252
+msgid "_Cancel"
+msgstr "_ביטול"
 
 #: src/Widgets/EqualizerPopover.vala:167
 msgid "Save preset"

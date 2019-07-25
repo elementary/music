@@ -130,7 +130,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
     // No widget is set as active until this is true!
     private bool data_initialized = false;
 
-    public ViewWrapper (Hint hint, Library library) {
+    protected ViewWrapper (Hint hint, Library library) {
         Object (hint: hint, library: library);
     }
 
@@ -371,7 +371,6 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
             set_active_view (ViewType.GRID);
         else if (has_list_view) {
             view_stack.visible_child = list_view;
-            list_view.list_view.scroll_to_current_media (true);
         } else if (has_grid_view)
             view_stack.visible_child = grid_view;
     }

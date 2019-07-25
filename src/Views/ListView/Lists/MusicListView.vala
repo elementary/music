@@ -219,7 +219,7 @@ public class Noise.MusicListView : GenericList {
                 playlist.remove_medias (selected_media);
                 break;
             case ViewWrapper.Hint.QUEUE:
-                playlist.remove_medias (selected_media);
+                App.player.unqueue_media (selected_media);
                 break;
           }
     }
