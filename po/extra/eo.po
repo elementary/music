@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-27 08:21-0700\n"
-"PO-Revision-Date: 2019-07-13 06:46+0000\n"
+"PO-Revision-Date: 2019-08-29 15:22+0000\n"
 "Last-Translator: Shtonchjo <shtonchjo@gmail.com>\n"
 "Language-Team: Esperanto <https://l10n.elementary.io/projects/music/extra/eo/"
 ">\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 3.7.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
 #: data/io.elementary.music.appdata.xml.in:8
@@ -39,19 +39,20 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:20
 msgid "Removed old gsignond vapi"
-msgstr ""
+msgstr "Forigo de la malnova gsignond-vapi-aŭtentigilo"
 
 #: data/io.elementary.music.appdata.xml.in:21
 msgid "LibraryWindow: Use Granite.MessageDialog for showing alerts"
 msgstr ""
+"Fenestro LibraryWindow: uzi la ilon Granite.MessageDialog por montri alarmojn"
 
 #: data/io.elementary.music.appdata.xml.in:22
 msgid "PlaylistsUtils: Use Gtk.FileChooserNative"
-msgstr ""
+msgstr "Ilo PlaylistsUtils: uzi la ilon Gtk.FileChooserNative"
 
 #: data/io.elementary.music.appdata.xml.in:23
 msgid "Accurately remember window size"
-msgstr ""
+msgstr "Precize memori la fenestran amplekson"
 
 #: data/io.elementary.music.appdata.xml.in:24
 #: data/io.elementary.music.appdata.xml.in:32
@@ -59,40 +60,40 @@ msgstr ""
 #: data/io.elementary.music.appdata.xml.in:52
 #: data/io.elementary.music.appdata.xml.in:61
 msgid "Updated translations"
-msgstr ""
+msgstr "Ĝisdatigitaj tradukoj"
 
 #: data/io.elementary.music.appdata.xml.in:29
 msgid "Scale album art properly at high resolutions"
-msgstr ""
+msgstr "Ĝuste skali albumkovrilon ĉe alta distingivo"
 
 #: data/io.elementary.music.appdata.xml.in:30
 msgid ""
 "Accurately select Music Folder Location for directories with spaces in name"
-msgstr ""
+msgstr "Precize elekti la dosierindikon de la dosierujo Muziko malgraŭ spacoj"
 
 #: data/io.elementary.music.appdata.xml.in:31
 msgid "New MediaKeyListener path for gnome-settings-daemon"
-msgstr ""
+msgstr "Nova dosierindiko de MediaKeyListener por la ilo gnome-settings-daemon"
 
 #: data/io.elementary.music.appdata.xml.in:37
 msgid "AlbumView: double-click to play album"
-msgstr ""
+msgstr "Albumvido: duobla klako por ludi albumon"
 
 #: data/io.elementary.music.appdata.xml.in:38
 msgid "Associate with s3m files"
-msgstr ""
+msgstr "Asociigi kun s3m-dosieroj"
 
 #: data/io.elementary.music.appdata.xml.in:39
 msgid "Queue fixes"
-msgstr ""
+msgstr "Vicaj riparoj"
 
 #: data/io.elementary.music.appdata.xml.in:40
 msgid "Properly restore playlists"
-msgstr ""
+msgstr "Ĝuste restaŭri ludlistojn"
 
 #: data/io.elementary.music.appdata.xml.in:41
 msgid "Always respect custom music folder setting"
-msgstr ""
+msgstr "Ĉiam uzi la propran muzikan dosierujon"
 
 #: data/io.elementary.music.appdata.xml.in:42
 #: data/io.elementary.music.appdata.xml.in:51
@@ -100,91 +101,91 @@ msgstr ""
 #: data/io.elementary.music.appdata.xml.in:92
 #: data/io.elementary.music.appdata.xml.in:107
 msgid "Minor bug fixes"
-msgstr ""
+msgstr "Malgravaj sencimigoj"
 
 #: data/io.elementary.music.appdata.xml.in:48
 msgid "Fix list and column view sorting"
-msgstr ""
+msgstr "Ripari ordigon laŭ listo kaj kolumno"
 
 #: data/io.elementary.music.appdata.xml.in:49
 msgid "Add orange accent color"
-msgstr ""
+msgstr "Emfazi oranĝkolore"
 
 #: data/io.elementary.music.appdata.xml.in:50
 msgid "Add shortcut accels to tooltips"
-msgstr ""
+msgstr "Aldoni fulmklavojn en ŝpruchelpoj"
 
 #: data/io.elementary.music.appdata.xml.in:57
 msgid "Various UI changes"
-msgstr ""
+msgstr "Diversaj fasadaj ŝanĝoj"
 
 #: data/io.elementary.music.appdata.xml.in:58
 msgid "Shuffle fixes"
-msgstr ""
+msgstr "Miksi riparojn"
 
 #: data/io.elementary.music.appdata.xml.in:59
 msgid "Initial MPRIS support"
-msgstr ""
+msgstr "Komenca subteno de MPRIS"
 
 #: data/io.elementary.music.appdata.xml.in:66
 msgid "Detect library changes at startup."
-msgstr ""
+msgstr "Detekti diskotekajn ŝanĝojn ĉe starto."
 
 #: data/io.elementary.music.appdata.xml.in:67
 msgid "Support searching by URI"
-msgstr ""
+msgstr "Subteni serĉon per URI-adreso"
 
 #: data/io.elementary.music.appdata.xml.in:68
 msgid "Change the queue mechanism to make it less confusing."
-msgstr ""
+msgstr "Ŝanĝi vicigan funkciadon, por ke ĝi estu malpli konfuza."
 
 #: data/io.elementary.music.appdata.xml.in:69
 msgid "Improve equalizer style."
-msgstr ""
+msgstr "Plibonigi la stilon de la ekvalizilo."
 
 #: data/io.elementary.music.appdata.xml.in:70
 #: data/io.elementary.music.appdata.xml.in:75
 #: data/io.elementary.music.appdata.xml.in:80
 #: data/io.elementary.music.appdata.xml.in:85
 msgid "Minor bug fixes."
-msgstr ""
+msgstr "Malgravaj sencimigoj."
 
 #: data/io.elementary.music.appdata.xml.in:90
 msgid "Add rounded bottom window corner."
-msgstr ""
+msgstr "Rondigi la fenestran malsupron."
 
 #: data/io.elementary.music.appdata.xml.in:93
 #: data/io.elementary.music.appdata.xml.in:108
 msgid "New translations"
-msgstr ""
+msgstr "Novaj tradukoj"
 
 #: data/io.elementary.music.appdata.xml.in:99
 msgid "Release for Loki."
-msgstr ""
+msgstr "Eldono por Loki."
 
 #: data/io.elementary.music.appdata.xml.in:101
 msgid "Add support for Opus Ogg"
-msgstr ""
+msgstr "Aldoni subtenon de Opus-Ogg-kodeko"
 
 #: data/io.elementary.music.appdata.xml.in:102
 msgid "Fix Ctrl+Q support for non-Latin keyboard layouts"
-msgstr ""
+msgstr "Ripari subtenon de Stir.+Q por nelatinaj klavararanĝoj"
 
 #: data/io.elementary.music.appdata.xml.in:103
 msgid "Reorganize media edition layout"
-msgstr ""
+msgstr "Reorganizi la aranĝon de aŭdvidaĵa eldono"
 
 #: data/io.elementary.music.appdata.xml.in:104
 msgid "Port grid to support HiDPI displays"
-msgstr ""
+msgstr "Porti kradon por subteni HiDPI-ekranojn"
 
 #: data/io.elementary.music.appdata.xml.in:105
 msgid "Update icons to latest elementary icon release"
-msgstr ""
+msgstr "Ĝisdatigi al la plej freŝa bildetara eldono de elementary"
 
 #: data/io.elementary.music.appdata.xml.in:106
 msgid "Respect privacy mode"
-msgstr ""
+msgstr "Respekti privatan reĝimon"
 
 #: data/io.elementary.music.appdata.xml.in:146
 msgid "elementary LLC."
