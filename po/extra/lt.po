@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-26 22:43+0200\n"
-"PO-Revision-Date: 2018-06-30 10:03+0000\n"
+"PO-Revision-Date: 2019-08-29 15:22+0000\n"
 "Last-Translator: Moo <hazap@hotmail.com>\n"
-"Language-Team: Lithuanian <https://weblate.elementary.io/projects/music/"
-"extra/lt/>\n"
+"Language-Team: Lithuanian <https://l10n.elementary.io/projects/music/extra/"
+"lt/>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n % 10 == 1 && (n % 100 < 11 || n % 100 > "
 "19)) ? 0 : ((n % 10 >= 2 && n % 10 <= 9 && (n % 100 < 11 || n % 100 > 19)) ? "
 "1 : 2);\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 3.7.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
 #: data/io.elementary.music.appdata.xml.in:8
@@ -42,19 +42,19 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:20
 msgid "Removed old gsignond vapi"
-msgstr ""
+msgstr "Pašalintas senas gsignond vapi"
 
 #: data/io.elementary.music.appdata.xml.in:21
 msgid "LibraryWindow: Use Granite.MessageDialog for showing alerts"
-msgstr ""
+msgstr "LibraryWindow: Įspėjimų rodymui naudoti Granite.MessageDialog"
 
 #: data/io.elementary.music.appdata.xml.in:22
 msgid "PlaylistsUtils: Use Gtk.FileChooserNative"
-msgstr ""
+msgstr "PlaylistsUtils: Naudoti Gtk.FileChooserNative"
 
 #: data/io.elementary.music.appdata.xml.in:23
 msgid "Accurately remember window size"
-msgstr ""
+msgstr "Atidžiai įsiminti lango dydį"
 
 #: data/io.elementary.music.appdata.xml.in:24
 #: data/io.elementary.music.appdata.xml.in:32
@@ -62,40 +62,42 @@ msgstr ""
 #: data/io.elementary.music.appdata.xml.in:52
 #: data/io.elementary.music.appdata.xml.in:61
 msgid "Updated translations"
-msgstr ""
+msgstr "Atnaujinti vertimai"
 
 #: data/io.elementary.music.appdata.xml.in:29
 msgid "Scale album art properly at high resolutions"
-msgstr ""
+msgstr "Didelėse raiškose tinkamai keisti albumo iliustracijos mastelį"
 
 #: data/io.elementary.music.appdata.xml.in:30
 msgid ""
 "Accurately select Music Folder Location for directories with spaces in name"
 msgstr ""
+"Atidžiai pasirinkti muzikos aplanko vietą katalogams, kurių pavadinime yra "
+"tarpai"
 
 #: data/io.elementary.music.appdata.xml.in:31
 msgid "New MediaKeyListener path for gnome-settings-daemon"
-msgstr ""
+msgstr "Naujas MediaKeyListener kelias, skirtas gnome-settings-daemon"
 
 #: data/io.elementary.music.appdata.xml.in:37
 msgid "AlbumView: double-click to play album"
-msgstr ""
+msgstr "Albumo rodinys: spustelėti du kartus, norint atkurti albumą"
 
 #: data/io.elementary.music.appdata.xml.in:38
 msgid "Associate with s3m files"
-msgstr ""
+msgstr "Susieti su s3m failais"
 
 #: data/io.elementary.music.appdata.xml.in:39
 msgid "Queue fixes"
-msgstr ""
+msgstr "Eilės pataisymai"
 
 #: data/io.elementary.music.appdata.xml.in:40
 msgid "Properly restore playlists"
-msgstr ""
+msgstr "Tinkamai atkurti grojaraščius"
 
 #: data/io.elementary.music.appdata.xml.in:41
 msgid "Always respect custom music folder setting"
-msgstr ""
+msgstr "Visada gerbti tinkinto muzikos aplanko nustatymą"
 
 #: data/io.elementary.music.appdata.xml.in:42
 #: data/io.elementary.music.appdata.xml.in:51
@@ -103,91 +105,92 @@ msgstr ""
 #: data/io.elementary.music.appdata.xml.in:92
 #: data/io.elementary.music.appdata.xml.in:107
 msgid "Minor bug fixes"
-msgstr ""
+msgstr "Nežymių klaidų pataisymai"
 
 #: data/io.elementary.music.appdata.xml.in:48
 msgid "Fix list and column view sorting"
-msgstr ""
+msgstr "Pataisytas sąrašo ir stulpelio rodinio rikiavimas"
 
 #: data/io.elementary.music.appdata.xml.in:49
 msgid "Add orange accent color"
-msgstr ""
+msgstr "Pridėti oranžinę akcento spalvą"
 
 #: data/io.elementary.music.appdata.xml.in:50
 msgid "Add shortcut accels to tooltips"
-msgstr ""
+msgstr "Į paaiškinimus pridėti susiejimai"
 
 #: data/io.elementary.music.appdata.xml.in:57
 msgid "Various UI changes"
-msgstr ""
+msgstr "Įvairūs naudotojo sąsajos pakeitimai"
 
 #: data/io.elementary.music.appdata.xml.in:58
 msgid "Shuffle fixes"
-msgstr ""
+msgstr "Maišymo pataisymai"
 
 #: data/io.elementary.music.appdata.xml.in:59
 msgid "Initial MPRIS support"
-msgstr ""
+msgstr "Pradinis MPRIS palaikymas"
 
 #: data/io.elementary.music.appdata.xml.in:66
 msgid "Detect library changes at startup."
-msgstr ""
+msgstr "Aptikti bibliotekos pakeitimus paleidimo metu."
 
 #: data/io.elementary.music.appdata.xml.in:67
 msgid "Support searching by URI"
-msgstr ""
+msgstr "Palaikyti paiešką pagal URI"
 
 #: data/io.elementary.music.appdata.xml.in:68
 msgid "Change the queue mechanism to make it less confusing."
-msgstr ""
+msgstr "Pakeistas eilės mechanizmas, kad būtų mažiau painus."
 
 #: data/io.elementary.music.appdata.xml.in:69
 msgid "Improve equalizer style."
-msgstr ""
+msgstr "Patobulintas glodintuvo stilius."
 
 #: data/io.elementary.music.appdata.xml.in:70
 #: data/io.elementary.music.appdata.xml.in:75
 #: data/io.elementary.music.appdata.xml.in:80
 #: data/io.elementary.music.appdata.xml.in:85
 msgid "Minor bug fixes."
-msgstr ""
+msgstr "Nežymūs klaidų pataisymai."
 
 #: data/io.elementary.music.appdata.xml.in:90
 msgid "Add rounded bottom window corner."
-msgstr ""
+msgstr "Pridėtas apvalusis apatinis lango kampas."
 
 #: data/io.elementary.music.appdata.xml.in:93
 #: data/io.elementary.music.appdata.xml.in:108
 msgid "New translations"
-msgstr ""
+msgstr "Nauji vertimai"
 
 #: data/io.elementary.music.appdata.xml.in:99
 msgid "Release for Loki."
-msgstr ""
+msgstr "Laida, skirta Loki."
 
 #: data/io.elementary.music.appdata.xml.in:101
 msgid "Add support for Opus Ogg"
-msgstr ""
+msgstr "Pridėtas Opus Ogg palaikymas"
 
 #: data/io.elementary.music.appdata.xml.in:102
 msgid "Fix Ctrl+Q support for non-Latin keyboard layouts"
 msgstr ""
+"Pataisytas Vald(Ctrl)+Q palaikymas nelotyniškiems klaviatūros išdėstymams"
 
 #: data/io.elementary.music.appdata.xml.in:103
 msgid "Reorganize media edition layout"
-msgstr ""
+msgstr "Pertvarkytas medijos taisymo išdėstymas"
 
 #: data/io.elementary.music.appdata.xml.in:104
 msgid "Port grid to support HiDPI displays"
-msgstr ""
+msgstr "Perkeltas tinklelis, kad būtų palaikomi HiDPI ekranai"
 
 #: data/io.elementary.music.appdata.xml.in:105
 msgid "Update icons to latest elementary icon release"
-msgstr ""
+msgstr "Atnaujintos piktogramos į naujausią elementary piktogramų laidą"
 
 #: data/io.elementary.music.appdata.xml.in:106
 msgid "Respect privacy mode"
-msgstr ""
+msgstr "Gerbti privatumo veikseną"
 
 #: data/io.elementary.music.appdata.xml.in:146
 msgid "elementary LLC."
@@ -208,8 +211,8 @@ msgstr "multimedia-audio-player"
 #: data/io.elementary.music.desktop.in:13
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 msgstr ""
-"Noise;Garsas;Grotuvas;MP3;iPod;Groti;Grojaraštis;Medija;CD;Telefonas;Dainos;"
-"Giesmės;"
+"Noise;Leistuvė;Garsas;Grotuvas;MP3;iPod;Groti;Grojaraštis;Medija;CD;Telefonas"
+";Dainos;Giesmės;"
 
 #~ msgid "About Music"
 #~ msgstr "Apie Muziką"
