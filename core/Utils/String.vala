@@ -65,7 +65,7 @@ namespace Noise.String {
      * Removes irrelevant and meaningless characters from a string. Useful for search operations.
      * (Taken from gnome-contacts' contacts-utils.vala)
      */
-    public inline string canonicalize_for_search (string str) {
+    private inline string canonicalize_for_search (string str) {
         var buf = new unichar[unichar.MAX_DECOMPOSITION_LENGTH];
         var res = new StringBuilder ();
 
@@ -106,42 +106,12 @@ namespace Noise.String {
     }
 
     /**
-     * Capitalizes the initial letters of a UTF-8 string (Title Case).
-     *
-     * The implementation is guaranteed to be efficient.
-     *
-     * For example:
-     * "This is an input string" => "This Is An Input String"
-     * "example string/text"     => "Example String/Text"
-     */
-    public inline string to_title_case (string text) {
-        bool capitalize_next = true;
-
-        var result = new StringBuilder ();
-        unichar c;
-
-        for (int i = 0; text.get_next_char (ref i, out c);) {
-            if (capitalize_next) {
-                result.append_unichar (c.totitle ());
-                capitalize_next = false;
-            } else {
-                result.append_unichar (c.tolower ());
-
-                // Capitalize letters following a space or control character.
-                capitalize_next = c.isspace () || c.iscntrl ();
-            }
-        }
-
-        return result.str;
-    }
-
-    /**
      * Converts a string encoded in the native operating system encoding to UTF-8.
      *
      * @param string_locale String in locale encoding.
      * @return String encoded in UTF-8, or //null// if the string could not be converted.
      */
-    public string? locale_to_utf8 (string string_locale) {
+    private string? locale_to_utf8 (string string_locale) {
         Error error;
         size_t bytes_read, bytes_written;
         string? string_utf8 = string_locale.locale_to_utf8 (string_locale.length,

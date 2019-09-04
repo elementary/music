@@ -62,12 +62,8 @@ namespace Noise.Compare {
         if (order == 0)
             order = standard_unsigned (a.album_number, b.album_number);
         if (order == 0)
-            order = track_numbers (a, b);
+            order = standard_unsigned (a.track, b.track);
         return order;
-    }
-
-    public inline int track_numbers (Media a, Media b) {
-        return standard_unsigned (a.track, b.track);
     }
 
     public inline int standard (int a, int b) {

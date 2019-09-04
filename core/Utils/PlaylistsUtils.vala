@@ -71,7 +71,7 @@ namespace Noise.PlaylistsUtils {
         return to_save;
     }
 
-    public bool save_playlist_pls(Playlist p, string folder_uri) {
+    private bool save_playlist_pls(Playlist p, string folder_uri) {
         bool rv = false;
         string to_save = "[playlist]\nX-GNOME-Title=%s\nNumberOfEntries=%d\nVersion=2".printf (p.name, p.medias.size);
 
@@ -111,7 +111,7 @@ namespace Noise.PlaylistsUtils {
         return rv;
     }
 
-    public static bool parse_paths_from_m3u(string uri, ref Gee.LinkedList<string> locals) {
+    private static bool parse_paths_from_m3u(string uri, ref Gee.LinkedList<string> locals) {
         // now try and load m3u file
         // if some files are not found by media_from_file(), ask at end if user would like to import the file to library
         // if so, just do import_individual_files
@@ -145,7 +145,7 @@ namespace Noise.PlaylistsUtils {
         return true;
     }
 
-    public static bool parse_paths_from_pls(string uri, ref Gee.LinkedList<string> locals, ref string title) {
+    private static bool parse_paths_from_pls(string uri, ref Gee.LinkedList<string> locals, ref string title) {
         var files = new Gee.HashMap<int, string>();
         var titles = new Gee.HashMap<int, string>();
         var lengths = new Gee.HashMap<int, string>();
@@ -182,7 +182,7 @@ namespace Noise.PlaylistsUtils {
         return true;
     }
 
-    public static void parse_index_and_value(string prefix, string line, ref Gee.HashMap<int, string> map) {
+    private static void parse_index_and_value(string prefix, string line, ref Gee.HashMap<int, string> map) {
         int index;
         string val;
         string[] parts = line.split("=", 2);
@@ -254,13 +254,6 @@ namespace Noise.PlaylistsUtils {
             }
         }
         return new_name;
-    }
-
-    public StaticPlaylist static_playlist_from_smartplaylist (SmartPlaylist sp) {
-        var p = new StaticPlaylist();
-        p.add_medias (sp.medias);
-        p.name = sp.name;
-        return p;
     }
 
     public void export_playlist (Playlist p) {
