@@ -1,6 +1,5 @@
-// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012-2018 elementary LLC. (https://elementary.io)
+ * Copyright (c) 2012-2019 elementary, Inc. (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -31,22 +30,17 @@ public class Noise.LibrariesManager : GLib.Object {
      * Headless playlists are playlists that are not linked to a library.
      */
     public signal void add_headless_playlist (StaticPlaylist playlist);
-
-    public signal void library_removed (Library library);
     public signal void library_added (Library library);
-
-    public signal void cancel_transfer ();
-    public signal void operation_terminated ();
 
     public double progress;
     public string current_operation;
-    private string old_search = null;
-
-    private Gee.HashMap<Library, int> libraries;
-    private int current_index = 0;
     public Library local_library;
 
-    public LibrariesManager () {
+    private string old_search = null;
+    private Gee.HashMap<Library, int> libraries;
+    private int current_index = 0;
+
+    construct {
         libraries = new Gee.HashMap<Library, int> ();
     }
 
@@ -55,22 +49,6 @@ public class Noise.LibrariesManager : GLib.Object {
             libraries.set (library, current_index);
             library_added (library);
         }
-    }
-
-    public void remove_library (Library library) {
-        if (libraries.keys.contains (library)) {
-            library_removed (library);
-            libraries.unset (library);
-        }
-    }
-
-    public Library? get_library_from_index (int index) {
-        foreach (var entry in libraries.entries) {
-            if (entry.value == index) {
-                return entry.key;
-            }
-        }
-        return null;
     }
 
     public void search_for_string (string search) {
@@ -100,7 +78,7 @@ public class Noise.LibrariesManager : GLib.Object {
         return;
     }
 
-    public async void transfer_medias_async (Gee.Collection<Noise.Media> list) {
+    private async void transfer_medias_async (Gee.Collection<Noise.Media> list) {
         if(list == null || list.size == 0) {
             return;
         }
