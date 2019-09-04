@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -26,13 +26,13 @@
  * Authored by: Corentin Noël <corentin@elementary.io>
  */
 
-public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
+public class Music.Plugins.CDRomDevice : GLib.Object, Music.Device {
     Mount mount;
     GLib.Icon icon;
     string display_name = "";
 
     CDRipper ripper;
-    Noise.Media media_being_ripped;
+    Music.Media media_being_ripped;
     int current_list_index;
 
     bool _is_transferring;
@@ -43,8 +43,8 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
     int index;
     int total;
 
-    Gee.LinkedList<Noise.Media> medias;
-    Gee.LinkedList<Noise.Media> list;
+    Gee.LinkedList<Music.Media> medias;
+    Gee.LinkedList<Music.Media> list;
     CDPlayer cdplayer;
 
     CDView cdview;
@@ -57,12 +57,12 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         this.icon = new GLib.ThemedIcon ("media-optical");
         this.display_name = mount.get_name();
 
-        list = new Gee.LinkedList<Noise.Media>();
-        medias = new Gee.LinkedList<Noise.Media>();
+        list = new Gee.LinkedList<Music.Media>();
+        medias = new Gee.LinkedList<Music.Media>();
 
         cdview = new CDView (this);
         cdplayer = new CDPlayer (mount);
-        Noise.App.player.add_playback (cdplayer);
+        Music.App.player.add_playback (cdplayer);
     }
 
     public bool start_initialization() {
@@ -211,15 +211,15 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         return false;
     }
 
-    public Noise.Library get_library () {
+    public Music.Library get_library () {
         return libraries_manager.local_library;
     }
 
-    public Gee.Collection<Noise.Media> get_medias() {
+    public Gee.Collection<Music.Media> get_medias() {
         return medias;
     }
 
-    public bool sync_medias (Gee.Collection<Noise.Media> list) {
+    public bool sync_medias (Gee.Collection<Music.Media> list) {
         message ("Burning not supported on CDRom's.\n");
         return false;
     }
@@ -228,7 +228,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
 
     }
 
-    public bool will_fit(Gee.Collection<Noise.Media> list) {
+    public bool will_fit(Gee.Collection<Music.Media> list) {
         return false;
     }
 
@@ -236,7 +236,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         return transfer_to_library (medias);
     }
 
-    public bool transfer_to_library(Gee.Collection<Noise.Media> trans_list) {
+    public bool transfer_to_library(Gee.Collection<Music.Media> trans_list) {
         this.list.clear ();
         this.list.add_all (trans_list);
         if(list.size == 0)
@@ -262,7 +262,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         current_importation (1);
 
         current_list_index = 0;
-        Noise.Media s = list.get(current_list_index);
+        Music.Media s = list.get(current_list_index);
         media_being_ripped = s;
         s.showIndicator = true;
 
@@ -307,11 +307,11 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         return false;
     }
 
-    public void mediaRipped(Noise.Media s) {
+    public void mediaRipped(Music.Media s) {
         s.showIndicator = false;
 
         // Create a copy and add it to the library
-        Noise.Media lib_copy = s.copy();
+        Music.Media lib_copy = s.copy();
         lib_copy.isTemporary = false;
         lib_copy.unique_status_image = null;
         var copied_list = new Gee.ArrayList<Media> ();
@@ -339,7 +339,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         // do it again on next track
         if (current_list_index < (list.size - 1) && !user_cancelled) {
             ++current_list_index;
-            Noise.Media next = list.get(current_list_index);
+            Music.Media next = list.get(current_list_index);
             current_importation (current_list_index+1);
             media_being_ripped = next;
             ripper.rip_media(next.track, next);
@@ -368,7 +368,7 @@ public class Noise.Plugins.CDRomDevice : GLib.Object, Noise.Device {
         stop_importation ();
         if(err == "missing element") {
             if (message.get_structure () != null && Gst.PbUtils.is_missing_plugin_message (message)) {
-                    Noise.InstallGstreamerPluginsDialog dialog = new Noise.InstallGstreamerPluginsDialog(message);
+                    Music.InstallGstreamerPluginsDialog dialog = new Music.InstallGstreamerPluginsDialog(message);
                     dialog.show();
                 }
         }
