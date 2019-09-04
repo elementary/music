@@ -128,7 +128,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             App.player.player.error_occured.connect (error_occured);
         });
 
-        NotificationManager.get_default ().show_alert.connect (doAlert);
+        NotificationManager.get_default ().show_alert.connect (show_alert);
 
         match_playlists = new Gee.HashMap<unowned Playlist, ViewWrapper> ();
         match_devices = new Gee.HashMap<string, DeviceView> ();
@@ -365,7 +365,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         destroy.connect (on_quit);
 
-        show ();
 
         var import_menuitem = new Gtk.MenuItem.with_label (_("Import to Library…"));
         import_menuitem.action_name = ACTION_PREFIX + ACTION_IMPORT;
@@ -440,6 +439,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         add (main_hpaned);
         set_titlebar (headerbar);
+
+        show ();
 
         actions.action_state_changed.connect ((name, new_state) => {
             if (name == ACTION_PLAY) {
@@ -976,14 +977,17 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     public virtual void action_import () {
         if (!library_manager.doing_file_operations ()) {
-
-            var folders = new Gee.TreeSet<string> ();
-            var file_chooser = new Gtk.FileChooserDialog (_("Import Music"), this,
-                                      Gtk.FileChooserAction.SELECT_FOLDER,
-                                      _("Cancel"), Gtk.ResponseType.CANCEL,
-                                      _("Open"), Gtk.ResponseType.ACCEPT);
+            var file_chooser = new Gtk.FileChooserNative (
+                _("Import Music"),
+                this,
+                Gtk.FileChooserAction.SELECT_FOLDER,
+                _("Open"),
+                _("Cancel")
+            );
             file_chooser.set_select_multiple (true);
             file_chooser.set_local_only (true);
+
+            var folders = new Gee.TreeSet<string> ();
             if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
                 foreach (var folder in file_chooser.get_filenames ()) {
                     folders.add (folder);
@@ -1141,12 +1145,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         library_manager.add_files_to_library (files_dragged);
     }
 
-    public void doAlert (string title, string message) {
-        var dialog = new Gtk.MessageDialog (this, Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR, Gtk.ButtonsType.OK, "%s", title);
-
-        dialog.title = _("Music");
-        dialog.secondary_text = message;
-        dialog.secondary_use_markup = true;
+    private void show_alert (string title, string message) {
+        var dialog = new Granite.MessageDialog (
+            title,
+            message,
+            new ThemedIcon ("dialog-warning"),
+            Gtk.ButtonsType.CLOSE
+        );
+        dialog.transient_for = this;
 
         dialog.run ();
         dialog.destroy ();

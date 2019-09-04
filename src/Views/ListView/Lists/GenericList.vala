@@ -91,7 +91,7 @@ public abstract class Noise.GenericList : Gtk.TreeView {
     protected bool dragging;
     protected CellDataFunctionHelper cell_data_helper;
 
-    public GenericList (ViewWrapper view_wrapper, TreeViewSetup tvs) {
+    protected GenericList (ViewWrapper view_wrapper, TreeViewSetup tvs) {
         Object (parent_wrapper: view_wrapper, tvs: tvs);
     }
 

@@ -322,7 +322,7 @@ public class Noise.MediaMenu : Gtk.Menu {
                 generic_list.playlist.remove_medias (selected_media);
                 break;
             case ViewWrapper.Hint.QUEUE:
-                generic_list.playlist.remove_medias (selected_media);
+                App.player.unqueue_media (selected_media);
                 break;
           }
     }
