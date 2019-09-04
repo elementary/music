@@ -146,10 +146,6 @@ public class Noise.AlbumsView : Gtk.Paned, ViewInterface {
             selection_data.set_uris (uris);
     }
 
-    private ViewWrapper.Hint get_hint () {
-        return parent_view_wrapper.hint;
-    }
-
     private Gee.Collection<Media> get_visible_media () {
         var all_visible_media = new Gee.TreeSet<Media> ();
 
