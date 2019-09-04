@@ -1,6 +1,5 @@
-// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012-2018 elementary LLC. (https://elementary.io)
+ * Copyright (c) 2012-2019 elementary, Inc. (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -29,11 +28,10 @@
 public class Noise.Equalizer : GLib.Object {
     public dynamic Gst.Element element;
 
-    public Equalizer() {
+    construct {
         element = Gst.ElementFactory.make("equalizer-10bands", "equalizer");
 
         int[10] freqs = {60, 170, 310, 600, 1000, 3000, 6000, 12000, 14000, 16000};
-        //int[10] freqs = {32, 64, 125, 250, 500, 1000, 2000, 4000, 8000, 16000};
 
         float last_freq = 0;
         for (int index = 0; index < 10; index++) {
@@ -49,7 +47,7 @@ public class Noise.Equalizer : GLib.Object {
         }
     }
 
-    public void setGain(int index, double gain) {
+    public void set_gain (int index, double gain) {
         GLib.Object? band = ((Gst.ChildProxy)element).get_child_by_index (index);
 
         if (gain < 0) {
@@ -61,10 +59,11 @@ public class Noise.Equalizer : GLib.Object {
         band.set("gain", gain);
     }
 
-    private static Gee.TreeSet<EqualizerPreset> ? default_presets = null;
+    private static Gee.TreeSet<EqualizerPreset>? default_presets = null;
     public static Gee.Collection<EqualizerPreset> get_default_presets () {
-        if (default_presets != null)
+        if (default_presets != null) {
             return default_presets;
+        }
 
         default_presets = new Gee.TreeSet<EqualizerPreset> ();
 
