@@ -42,7 +42,18 @@ public class Music.TrackMenu : Gtk.Menu {
         var contractor_entry = new Gtk.MenuItem.with_label (_("Other Actions"));
         contractor_entry.submenu = contractor_sub_menu;
 
+        int set_rating = -1;
+        foreach (var media in selection) {
+            if (set_rating == -1) {
+                set_rating = (int) media.rating;
+            } else if (set_rating != media.rating) {
+                set_rating = 0;
+                break;
+            }
+        }
+
         rating_menuitem = new Music.RatingMenuItem ();
+        rating_menuitem.rating_value = set_rating;
 
         var queue_menuitem = new Gtk.MenuItem.with_label (C_("Action item (verb)", "Queue"));
 
