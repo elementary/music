@@ -1,6 +1,5 @@
-// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012-2018 elementary LLC. (https://elementary.io)
+ * Copyright (c) 2012-2019 elementary, Inc. (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -196,9 +195,6 @@ public class Music.AlbumListGrid : Gtk.Grid {
                 media_list.add (media);
                 album_list_box.add (new AlbumListRow (media));
             }
-
-            // Search again to match the view wrapper's search
-            //list_view.do_search (App.main_window.search_entry.text);
         }
 
         // Set rating
@@ -207,7 +203,7 @@ public class Music.AlbumListGrid : Gtk.Grid {
     }
 
     public void play_active_list () {
-        // list_view.row_activated (new Gtk.TreePath.first (), new Gtk.TreeViewColumn ());
+        album_list_box.get_child_at_index (0).activate ();
     }
 
     void update_album_cover () {
