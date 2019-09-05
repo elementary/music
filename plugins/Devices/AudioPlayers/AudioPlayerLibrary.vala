@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -26,12 +26,12 @@
  * Authored by: Corentin Noël <corentin@elementary.io>
  */
 
-public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
+public class Music.Plugins.AudioPlayerLibrary : Music.Library {
 
     AudioPlayerDevice device;
-    Gee.LinkedList<Noise.Media> medias;
-    Gee.LinkedList<Noise.Media> searched_medias;
-    Gee.LinkedList<Noise.StaticPlaylist> playlists;
+    Gee.LinkedList<Music.Media> medias;
+    Gee.LinkedList<Music.Media> searched_medias;
+    Gee.LinkedList<Music.StaticPlaylist> playlists;
     bool operation_cancelled = false;
     bool is_doing_file_operations = false;
     bool queue_is_finished = false;
@@ -45,9 +45,9 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
 
     public AudioPlayerLibrary (AudioPlayerDevice device) {
         this.device = device;
-        medias = new Gee.LinkedList<Noise.Media> ();
-        searched_medias = new Gee.LinkedList<Noise.Media> ();
-        playlists = new Gee.LinkedList<Noise.StaticPlaylist> ();
+        medias = new Gee.LinkedList<Music.Media> ();
+        searched_medias = new Gee.LinkedList<Music.Media> ();
+        playlists = new Gee.LinkedList<Music.StaticPlaylist> ();
         imported_files = new Gee.LinkedList<string> ();
 
         tagger = new GStreamerTagger();
@@ -164,7 +164,7 @@ public class Noise.Plugins.AudioPlayerLibrary : Noise.Library {
         Timeout.add(500, libraries_manager.do_progress_notification_with_timeout);
         int sub_index = 0;
 
-        var medias_to_sync = new Gee.LinkedList<Noise.Media> ();
+        var medias_to_sync = new Gee.LinkedList<Music.Media> ();
         medias_to_sync.add_all (device.delete_doubles (list, medias));
         message("Found %d medias to add.", medias_to_sync.size);
         int total_medias = medias_to_sync.size;

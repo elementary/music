@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -27,7 +27,7 @@
  *              Corentin Noël <corentin@elementary.io>
  */
 
-public class Noise.SmartPlaylist : Playlist {
+public class Music.SmartPlaylist : Playlist {
     public enum ConditionalType {
         ALL = true,
         ANY = false
@@ -40,12 +40,12 @@ public class Noise.SmartPlaylist : Playlist {
     public virtual bool limit { get; set; default = false; }
     public virtual uint limit_amount { get; set; default = 50; }
 
-    public Noise.Library library { get; construct set; }
+    public Music.Library library { get; construct set; }
 
     /*
      * A SmartPlaylist should be linked to only one library.
      */
-    public SmartPlaylist (Noise.Library library) {
+    public SmartPlaylist (Music.Library library) {
         Object (library: library);
     }
 
@@ -138,7 +138,7 @@ public class Noise.SmartPlaylist : Playlist {
 
     public static bool media_matches_query (SmartQuery q, Media s) {
         switch (q.field) {
-            case Noise.SmartQuery.FieldType.URI:
+            case Music.SmartQuery.FieldType.URI:
                 if(q.comparator == SmartQuery.ComparatorType.IS)
                     return q.value.get_string ().down() == s.uri.down();
                 else if(q.comparator == SmartQuery.ComparatorType.CONTAINS)
@@ -146,7 +146,7 @@ public class Noise.SmartPlaylist : Playlist {
                 else if(q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
                     return !(q.value.get_string ().down() in s.uri.down());
                 break;
-            case Noise.SmartQuery.FieldType.ALBUM :
+            case Music.SmartQuery.FieldType.ALBUM :
                 if(q.comparator == SmartQuery.ComparatorType.IS)
                     return q.value.get_string ().down () == s.album.down();
                 else if(q.comparator == SmartQuery.ComparatorType.CONTAINS)
@@ -154,7 +154,7 @@ public class Noise.SmartPlaylist : Playlist {
                 else if(q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
                     return !(q.value.get_string ().down() in s.album.down());
                 break;
-            case Noise.SmartQuery.FieldType.ARTIST:
+            case Music.SmartQuery.FieldType.ARTIST:
                 if(q.comparator == SmartQuery.ComparatorType.IS)
                     return q.value.get_string ().down() == s.artist.down();
                 else if(q.comparator == SmartQuery.ComparatorType.CONTAINS)
@@ -162,7 +162,7 @@ public class Noise.SmartPlaylist : Playlist {
                 else if(q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
                     return !(q.value.get_string ().down() in s.artist.down());
                 break;
-            case Noise.SmartQuery.FieldType.COMPOSER:
+            case Music.SmartQuery.FieldType.COMPOSER:
                 if(q.comparator == SmartQuery.ComparatorType.IS)
                     return q.value.get_string ().down() == s.composer.down();
                 else if(q.comparator == SmartQuery.ComparatorType.CONTAINS)
@@ -170,7 +170,7 @@ public class Noise.SmartPlaylist : Playlist {
                 else if(q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
                     return !(q.value.get_string ().down() in s.composer.down());
                 break;
-            case Noise.SmartQuery.FieldType.COMMENT:
+            case Music.SmartQuery.FieldType.COMMENT:
                 if(q.comparator == SmartQuery.ComparatorType.IS)
                     return q.value.get_string ().down() == s.comment.down();
                 else if(q.comparator == SmartQuery.ComparatorType.CONTAINS)
@@ -178,7 +178,7 @@ public class Noise.SmartPlaylist : Playlist {
                 else if(q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
                     return !(q.value.get_string ().down() in s.comment.down());
                 break;
-            case Noise.SmartQuery.FieldType.GENRE:
+            case Music.SmartQuery.FieldType.GENRE:
                 if(q.comparator == SmartQuery.ComparatorType.IS)
                     return q.value.get_string ().down() == s.genre.down();
                 else if(q.comparator == SmartQuery.ComparatorType.CONTAINS)
@@ -186,7 +186,7 @@ public class Noise.SmartPlaylist : Playlist {
                 else if(q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
                     return !(q.value.get_string ().down() in s.genre.down());
                 break;
-            case Noise.SmartQuery.FieldType.GROUPING:
+            case Music.SmartQuery.FieldType.GROUPING:
                 if(q.comparator == SmartQuery.ComparatorType.IS)
                     return q.value.get_string ().down() == s.grouping.down();
                 else if(q.comparator == SmartQuery.ComparatorType.CONTAINS)
@@ -194,7 +194,7 @@ public class Noise.SmartPlaylist : Playlist {
                 else if(q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
                     return !(q.value.get_string ().down() in s.grouping.down());
                 break;
-            case Noise.SmartQuery.FieldType.TITLE:
+            case Music.SmartQuery.FieldType.TITLE:
                 if(q.comparator == SmartQuery.ComparatorType.IS)
                     return q.value.get_string ().down() == s.title.down();
                 else if(q.comparator == SmartQuery.ComparatorType.CONTAINS)
@@ -202,7 +202,7 @@ public class Noise.SmartPlaylist : Playlist {
                 else if(q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
                     return !(q.value.get_string ().down() in s.title.down());
                 break;
-            case Noise.SmartQuery.FieldType.BITRATE:
+            case Music.SmartQuery.FieldType.BITRATE:
                 if(q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
                     return q.value.get_int () == s.bitrate;
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_MOST)
@@ -210,7 +210,7 @@ public class Noise.SmartPlaylist : Playlist {
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST)
                     return (s.bitrate >= q.value.get_int ());
                 break;
-            case Noise.SmartQuery.FieldType.PLAYCOUNT:
+            case Music.SmartQuery.FieldType.PLAYCOUNT:
                 if(q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
                     return q.value.get_int () == s.play_count;
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_MOST)
@@ -218,7 +218,7 @@ public class Noise.SmartPlaylist : Playlist {
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST)
                     return (s.play_count >= q.value.get_int ());
                 break;
-            case Noise.SmartQuery.FieldType.SKIPCOUNT:
+            case Music.SmartQuery.FieldType.SKIPCOUNT:
                 if(q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
                     return q.value.get_int () == s.skip_count;
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_MOST)
@@ -226,7 +226,7 @@ public class Noise.SmartPlaylist : Playlist {
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST)
                     return (s.skip_count >= q.value.get_int ());
                 break;
-            case Noise.SmartQuery.FieldType.YEAR:
+            case Music.SmartQuery.FieldType.YEAR:
                 if(q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
                     return q.value.get_int () == s.year;
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_MOST)
@@ -234,7 +234,7 @@ public class Noise.SmartPlaylist : Playlist {
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST)
                     return (s.year >= q.value.get_int ());
                 break;
-            case Noise.SmartQuery.FieldType.LENGTH:
+            case Music.SmartQuery.FieldType.LENGTH:
                 if(q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
                     return q.value.get_int () == s.length;
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_MOST)
@@ -242,7 +242,7 @@ public class Noise.SmartPlaylist : Playlist {
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST)
                     return (s.length >= q.value.get_int ());
                 break;
-            case Noise.SmartQuery.FieldType.RATING:
+            case Music.SmartQuery.FieldType.RATING:
                 if(q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
                     return q.value.get_int () == s.rating;
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_MOST)
@@ -250,7 +250,7 @@ public class Noise.SmartPlaylist : Playlist {
                 else if(q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST)
                     return (s.rating >= q.value.get_int ());
                 break;
-            case Noise.SmartQuery.FieldType.DATE_ADDED:
+            case Music.SmartQuery.FieldType.DATE_ADDED:
                 var now = new DateTime.now_local ();
                 var played = new DateTime.from_unix_local (s.date_added);
                 played = played.add_days (q.value.get_int ());
@@ -263,7 +263,7 @@ public class Noise.SmartPlaylist : Playlist {
                     return now.compare (played) > 0;
                 }
                 break;
-            case Noise.SmartQuery.FieldType.LAST_PLAYED:
+            case Music.SmartQuery.FieldType.LAST_PLAYED:
                 if(s.last_played == 0)
                     return false;
 
