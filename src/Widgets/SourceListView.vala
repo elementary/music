@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -28,13 +28,13 @@
 
 // Add an interface so that SourceListItem and SourceListExpandableItem still share a common
 // ancestor that is compatible with the SourceList widget.
-public interface Noise.SourceListEntry : Granite.Widgets.SourceList.Item {
+public interface Music.SourceListEntry : Granite.Widgets.SourceList.Item {
 }
 
 /**
  * SourceList item. It stores the number of the corresponding page in the notebook widget.
  */
-public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListEntry, Granite.Widgets.SourceListDragDest {
+public class Music.SourceListItem : Granite.Widgets.SourceList.Item, SourceListEntry, Granite.Widgets.SourceListDragDest {
     public signal void playlist_rename_clicked (Gtk.Grid view, SourceListItem item);
     public signal void playlist_edit_clicked (Gtk.Grid view);
     public signal void playlist_remove_clicked (Gtk.Grid view);
@@ -131,7 +131,7 @@ public class Noise.SourceListItem : Granite.Widgets.SourceList.Item, SourceListE
     }
 }
 
-public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.ExpandableItem, SourceListEntry {
+public class Music.SourceListExpandableItem : Granite.Widgets.SourceList.ExpandableItem, SourceListEntry {
     public Gtk.Grid view { get; set; }
     public ViewWrapper.Hint hint;
 
@@ -207,7 +207,7 @@ public class Noise.SourceListExpandableItem : Granite.Widgets.SourceList.Expanda
     }
 }
 
-public class Noise.PlayListCategory : Granite.Widgets.SourceList.ExpandableItem, Granite.Widgets.SourceListSortable {
+public class Music.PlayListCategory : Granite.Widgets.SourceList.ExpandableItem, Granite.Widgets.SourceListSortable {
     private Gtk.Menu playlist_menu;
     public signal void playlist_import_clicked ();
 
@@ -291,7 +291,7 @@ public class Noise.PlayListCategory : Granite.Widgets.SourceList.ExpandableItem,
     }
 }
 
-public class Noise.SourceListRoot : Granite.Widgets.SourceList.ExpandableItem, Granite.Widgets.SourceListSortable {
+public class Music.SourceListRoot : Granite.Widgets.SourceList.ExpandableItem, Granite.Widgets.SourceListSortable {
     public SourceListRoot () {
         base ("SourceListRoot");
     }
@@ -305,7 +305,7 @@ public class Noise.SourceListRoot : Granite.Widgets.SourceList.ExpandableItem, G
     }
 }
 
-public class Noise.SourceListView : Granite.Widgets.SourceList {
+public class Music.SourceListView : Granite.Widgets.SourceList {
 
     Granite.Widgets.SourceList.ExpandableItem library_category;
     Granite.Widgets.SourceList.ExpandableItem devices_category;
@@ -469,10 +469,10 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
     }
 
     public override void item_selected (Granite.Widgets.SourceList.Item? item) {
-        if (item is Noise.SourceListItem) {
+        if (item is Music.SourceListItem) {
             var sidebar_item = item as SourceListItem;
             selection_changed (sidebar_item.view);
-        } else if (item is Noise.SourceListExpandableItem) {
+        } else if (item is Music.SourceListExpandableItem) {
             var sidebar_item = item as SourceListExpandableItem;
             selection_changed (sidebar_item.view);
         }
@@ -518,7 +518,7 @@ public class Noise.SourceListView : Granite.Widgets.SourceList {
     }
 
     // get the device page_number associated to the view
-    private Gtk.Grid? get_device_from_item (Noise.SourceListExpandableItem item) {
+    private Gtk.Grid? get_device_from_item (Music.SourceListExpandableItem item) {
         foreach (var device in devices_category.children) {
             if (item.parent == (Granite.Widgets.SourceList.ExpandableItem)device) {
                 if (device is SourceListExpandableItem) {

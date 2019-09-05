@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -26,12 +26,12 @@
  * Authored by: Corentin Noël <corentin@elementary.io>
  */
 
-public class Noise.Plugins.iPodLibrary : Noise.Library {
+public class Music.Plugins.iPodLibrary : Music.Library {
     private unowned GPod.iTunesDB db;
-    Gee.HashMap<unowned GPod.Track, Noise.Media> medias;
-    Gee.LinkedList<Noise.Media> searched_medias;
-    Gee.HashMap<unowned GPod.Playlist, Noise.StaticPlaylist> playlists;
-    Gee.HashMap<unowned GPod.Playlist, Noise.SmartPlaylist> smart_playlists;
+    Gee.HashMap<unowned GPod.Track, Music.Media> medias;
+    Gee.LinkedList<Music.Media> searched_medias;
+    Gee.HashMap<unowned GPod.Playlist, Music.StaticPlaylist> playlists;
+    Gee.HashMap<unowned GPod.Playlist, Music.SmartPlaylist> smart_playlists;
     Device device;
     bool operation_cancelled = false;
     bool is_doing_file_operations = false;
@@ -39,10 +39,10 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
     public iPodLibrary (GPod.iTunesDB db, Device device) {
         this.db = db;
         this.device = device;
-        medias = new Gee.HashMap<unowned GPod.Track, Noise.Media>();
-        playlists = new Gee.HashMap<unowned GPod.Playlist, Noise.StaticPlaylist>();
-        smart_playlists = new Gee.HashMap<unowned GPod.Playlist, Noise.SmartPlaylist>();
-        searched_medias = new Gee.LinkedList<Noise.Media>();
+        medias = new Gee.HashMap<unowned GPod.Track, Music.Media>();
+        playlists = new Gee.HashMap<unowned GPod.Playlist, Music.StaticPlaylist>();
+        smart_playlists = new Gee.HashMap<unowned GPod.Playlist, Music.SmartPlaylist>();
+        searched_medias = new Gee.LinkedList<Music.Media>();
         NotificationManager.get_default ().progress_canceled.connect( () => {operation_cancelled = true;});
     }
 
@@ -129,7 +129,7 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
         return smart_playlists.values;
     }
 
-    public override void add_media (Noise.Media s) {
+    public override void add_media (Music.Media s) {
         if (s == null)
             return;
 
@@ -169,7 +169,7 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
         }
 
         if (success) {
-            Noise.Media on_ipod = iPodMediaHelper.media_from_track (device.get_uri(), added);
+            Music.Media on_ipod = iPodMediaHelper.media_from_track (device.get_uri(), added);
             this.medias.set (added, on_ipod);
         } else {
             warning ("Failed to copy track %s to iPod. Removing it from database.\n", added.title);
@@ -177,14 +177,14 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
         }
     }
 
-    public override void add_medias (Gee.Collection<Noise.Media> list) {
+    public override void add_medias (Gee.Collection<Music.Media> list) {
         if (is_doing_file_operations) {
             warning("Tried to add when already syncing\n");
             return;
         }
 
         // Check if all current media + this list will fit.
-        var new_list = new Gee.LinkedList<Noise.Media>();
+        var new_list = new Gee.LinkedList<Music.Media>();
         new_list.add_all(list);
         new_list.add_all(medias.values);
         bool fits = device.will_fit (new_list);
@@ -199,7 +199,7 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
         add_medias_async.begin (list);
     }
 
-    async void add_medias_async (Gee.Collection<Noise.Media> to_add) {
+    async void add_medias_async (Gee.Collection<Music.Media> to_add) {
         bool error_occurred = false;
         db.start_sync ();
         int total = to_add.size;
@@ -341,13 +341,13 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
         return;
     }
 
-    async void remove_medias_async (Gee.Collection<Noise.Media> list) {
+    async void remove_medias_async (Gee.Collection<Music.Media> list) {
         bool error_occurred = false;
         int total = list.size;
         int index = 0;
         db.start_sync ();
 
-        var removed = new Gee.HashMap<unowned GPod.Track, Noise.Media> ();
+        var removed = new Gee.HashMap<unowned GPod.Track, Music.Media> ();
         foreach (var e in medias.entries) {
             foreach (var m in list) {
                 if (!operation_cancelled) {

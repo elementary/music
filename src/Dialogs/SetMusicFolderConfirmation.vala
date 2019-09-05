@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -26,7 +26,7 @@
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-public class Noise.SetMusicFolderConfirmation : Granite.MessageDialog {
+public class Music.SetMusicFolderConfirmation : Granite.MessageDialog {
     public signal void finished (bool response);
 
     private Gtk.Image is_finished;
@@ -100,7 +100,7 @@ public class Noise.SetMusicFolderConfirmation : Granite.MessageDialog {
             // foreach playlist in lm.playlists(), save to (p.name).m3u
             var success = true;
             foreach (var p in libraries_manager.local_library.get_playlists ()) {
-                if (!Noise.PlaylistsUtils.save_playlist_m3u (p, folder, "")) {
+                if (!Music.PlaylistsUtils.save_playlist_m3u (p, folder, "")) {
                     success = false;
                 }
             }
