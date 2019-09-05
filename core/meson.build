@@ -33,7 +33,6 @@ core_files = files(
   'Playlists/StaticPlaylist.vala',
   'Utils/CompareFunctionHolder.vala',
   'Utils/FileUtils.vala',
-  'Utils/Icon.vala',
   'Utils/Search.vala',
   'Utils/String.vala',
   join_paths(meson.build_root(), '@0@'.format(build_config))
