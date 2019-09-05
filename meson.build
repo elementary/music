@@ -35,6 +35,7 @@ app_files = files(
   'src/Dialogs/SmartPlaylistEditor.vala',
   'src/Dialogs/SyncWarningDialog.vala',
   'src/GStreamer/CoverImport.vala',
+  'src/GStreamer/Equalizer.vala',
   'src/GStreamer/GStreamerTagger.vala',
   'src/GStreamer/Pipeline.vala',
   'src/GStreamer/Playback.vala',

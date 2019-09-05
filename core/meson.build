@@ -25,7 +25,6 @@ core_files = files(
   'Devices/Device.vala',
   'Devices/DeviceManager.vala',
   'Devices/NetworkDevice.vala',
-  'GStreamer/Equalizer.vala',
   'Playlists/Playlist.vala',
   'Playlists/SmartPlaylist.vala',
   'Playlists/SmartQuery.vala',
