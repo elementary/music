@@ -64,6 +64,7 @@ app_files = files(
   'src/Views/Wrappers/MusicViewWrapper.vala',
   'src/Views/Wrappers/PlaylistViewWrapper.vala',
   'src/Views/Wrappers/ViewWrapper.vala',
+  'src/Widgets/AlbumImage.vala',
   'src/Widgets/AlbumListGrid.vala',
   'src/Widgets/ContractMenuItem.vala',
   'src/Widgets/EqualizerPopover.vala',
