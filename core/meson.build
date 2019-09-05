@@ -22,7 +22,6 @@ core_files = files(
   'PluginManager.vala',
   'Resources.vala',
   'Settings.vala',
-  'Devices/Device.vala',
   'Playlists/Playlist.vala',
   'Playlists/SmartPlaylist.vala',
   'Playlists/SmartQuery.vala',

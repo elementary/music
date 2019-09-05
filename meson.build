@@ -25,6 +25,7 @@ app_files = files(
   'src/FileOperator.vala',
   'src/LibraryWindow.vala',
   'src/PlaybackManager.vala',
+  'src/Devices/Device.vala',
   'src/Devices/DeviceManager.vala',
   'src/Dialogs/FileNotFoundDialog.vala',
   'src/Dialogs/InstallGstreamerPluginsDialog.vala',
