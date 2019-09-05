@@ -124,7 +124,7 @@ public class  Music.Plugins.iPodStreamer : Music.Playback, GLib.Object {
     }
 
     public void set_equalizer_gain (int index, int val) {
-        pipe.eq.setGain (index, val);
+        pipe.eq.set_gain (index, val);
     }
 
     /* Callbacks */
