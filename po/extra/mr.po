@@ -3,16 +3,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-26 22:43+0200\n"
-"PO-Revision-Date: 2018-10-11 14:02+0000\n"
+"PO-Revision-Date: 2019-08-27 22:22+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
-"Language-Team: Marathi <https://weblate.elementary.io/projects/music/extra/"
-"mr/>\n"
+"Language-Team: Marathi <https://l10n.elementary.io/projects/music/extra/mr/>"
+"\n"
 "Language: mr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 3.7.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
 #: data/io.elementary.music.appdata.xml.in:8
@@ -34,15 +34,15 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:20
 msgid "Removed old gsignond vapi"
-msgstr ""
+msgstr "जुन्या gsignond vapi काढल्या"
 
 #: data/io.elementary.music.appdata.xml.in:21
 msgid "LibraryWindow: Use Granite.MessageDialog for showing alerts"
-msgstr ""
+msgstr "लाइब्ररीविंडो: अ‍ॅलर्ट दर्शविण्यासाठी Granite.MessageDialog वापरा"
 
 #: data/io.elementary.music.appdata.xml.in:22
 msgid "PlaylistsUtils: Use Gtk.FileChooserNative"
-msgstr ""
+msgstr "PlaylistsUtils: Gtk.FileChooserNative वापरा"
 
 #: data/io.elementary.music.appdata.xml.in:23
 msgid "Accurately remember window size"

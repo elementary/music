@@ -23,7 +23,7 @@
  * statement from your version.
  */
 
-public class Noise.AlbumListRow : Gtk.FlowBoxChild {
+public class Music.AlbumListRow : Gtk.FlowBoxChild {
     public Media media { get; construct; }
     private Gtk.Revealer play_revealer;
 

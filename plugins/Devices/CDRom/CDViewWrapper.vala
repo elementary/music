@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -26,12 +26,12 @@
  * Authored by: Corentin Noël <corentin@elementary.io>
  */
 
-public class Noise.Plugins.CDViewWrapper : ViewWrapper {
+public class Music.Plugins.CDViewWrapper : ViewWrapper {
     public TreeViewSetup tvs;
     private string message_head;
     private string message_body;
 
-    public CDViewWrapper (Noise.StaticPlaylist p) {
+    public CDViewWrapper (Music.StaticPlaylist p) {
         base (ViewWrapper.Hint.READ_ONLY_PLAYLIST, libraries_manager.local_library);
         tvs = new TreeViewSetup (ViewWrapper.Hint.PLAYLIST);
         message_head = _("An Error Occurred");
@@ -45,7 +45,7 @@ public class Noise.Plugins.CDViewWrapper : ViewWrapper {
         vexpand = false;
     }
 
-    private async void build_async (Noise.StaticPlaylist p) {
+    private async void build_async (Music.StaticPlaylist p) {
         Idle.add_full (VIEW_CONSTRUCT_PRIORITY, build_async.callback);
         yield;
 

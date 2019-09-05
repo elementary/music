@@ -8,21 +8,21 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-26 22:43+0200\n"
-"PO-Revision-Date: 2019-01-15 00:05+0000\n"
+"PO-Revision-Date: 2019-08-27 22:22+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
-"Language-Team: Catalan <https://weblate.elementary.io/projects/music/music/"
-"ca/>\n"
+"Language-Team: Catalan <https://l10n.elementary.io/projects/music/music/ca/>"
+"\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 3.7.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:51+0000\n"
 
 #: core/LibrariesManager.vala:147
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "S'està <b>$NAME</b> per <b> $ARTIST</b> a la biblioteca…"
+msgstr "S'importa  <b>$NAME</b> fet per <b>$ARTIST</b> a la biblioteca…"
 
 #. / Used for unknown titles, artists, or album names.
 #: core/Media.vala:32
@@ -216,24 +216,24 @@ msgstr "Reproductor d'àudio"
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:137
 #: plugins/Devices/iPod/iPodLibrary.vala:148
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr "S'està afegint <b>$NAME</b> fet per <b>$ARTIST</b> a $DEVICE"
+msgstr "S'afegeix <b>$NAME</b> fet per <b>$ARTIST</b> a $DEVICE"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:161
 #: plugins/Devices/iPod/iPodLibrary.vala:196
 #, c-format
 msgid "Syncing <b>%s</b>…"
-msgstr "S'està sincronitzant <b>%s</b>…"
+msgstr "Se sincronitza <b>%s</b>…"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:266
 #: plugins/Devices/iPod/iPodLibrary.vala:530
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr "S'està suprimint <b>$NAME</b> fet per <b>$ARTIST</b> de $DEVICE"
+msgstr "Se suprimeix <b>$NAME</b> fet per <b>$ARTIST</b> de $DEVICE"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:297
 #: plugins/Devices/iPod/iPodLibrary.vala:337
 #, c-format
 msgid "Removing from <b>%s</b>…"
-msgstr "S'està suprimint de <b>%s</b>…"
+msgstr "Se suprimeix de <b>%s</b>…"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:91
 msgid "Audio CD Invalid"
@@ -299,12 +299,12 @@ msgstr "No s'ha pogut carregar aquest CD d'àudio."
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
 msgid "Finishing sync process…"
-msgstr "S'està acabant el procés de sincronització…"
+msgstr "S'acaba el procés de sincronització…"
 
 #: plugins/Devices/iPod/iPodLibrary.vala:230
 #: plugins/Devices/iPod/iPodLibrary.vala:386
 msgid "Cancelling Sync…"
-msgstr "S'està canel·lant la sincronització…"
+msgstr "Es canel·la la sincronització…"
 
 #: plugins/LastFM/LastFM.vala:98
 msgid "No similar songs found"
@@ -343,7 +343,7 @@ msgstr "S'ha importat la biblioteca."
 #. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:316
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr "S'estan <b>copiant</b> fitxers a la <b>carpeta de música</b>…"
+msgstr "<b>Es copien</b> fitxers a la <b>carpeta de música</b>…"
 
 #: src/LibraryWindow.vala:353 src/LibraryWindow.vala:419
 #: src/LibraryWindow.vala:600 src/LibraryWindow.vala:706
@@ -823,15 +823,15 @@ msgstr "Continua la sincronització"
 #: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
 msgid "Importing music from %s…"
-msgstr "S'està important música des de %s…"
+msgstr "S'importa música des de %s…"
 
 #: src/LocalBackend/LocalLibrary.vala:215
 msgid "Adding files to library…"
-msgstr "S'estan afegint fitxers a la biblioteca…"
+msgstr "S'afegeixen fitxers a la biblioteca…"
 
 #: src/LocalBackend/LocalLibrary.vala:228
 msgid "<b>Importing</b> music to library…"
-msgstr "<b>S'està important</b> música a la biblioteca…"
+msgstr "<b>S'importa</b> música a la biblioteca…"
 
 #: src/LocalBackend/LocalLibrary.vala:250
 msgid "All music files are already in your library"
@@ -843,7 +843,7 @@ msgstr "No s’ha importat cap fitxer."
 
 #: src/LocalBackend/LocalLibrary.vala:255
 msgid "Rescanning music for changes. This may take a while…"
-msgstr "S'estan analitzant els canvis. Això pot trigar una bona estona…"
+msgstr "S'analitzen els canvis. Això pot trigar una bona estona…"
 
 #: src/LocalBackend/LocalLibrary.vala:356
 msgid "Added to your queue:"
@@ -862,7 +862,7 @@ msgstr "Cançons preferides"
 
 #: src/LocalBackend/LocalSmartPlaylist.vala:225
 msgid "Recently Added"
-msgstr "Afegits recents"
+msgstr "Afegit recentment"
 
 #: src/LocalBackend/LocalSmartPlaylist.vala:233
 msgid "Recent Favorites"
@@ -878,7 +878,7 @@ msgstr "Les més reproduïdes"
 
 #: src/LocalBackend/LocalSmartPlaylist.vala:257
 msgid "Not Recently Played"
-msgstr "Reproduccions no recents"
+msgstr "No reproduït recentment"
 
 #: src/Objects/HistoryPlaylist.vala:38
 msgid "History"
@@ -942,12 +942,12 @@ msgstr "El dispositiu ja està fent una operació."
 
 #: src/Views/DeviceView.vala:66
 msgid "Cancelling…"
-msgstr "S'està cancel·lant…"
+msgstr "Es cancel·la…"
 
 #: src/Views/DeviceView.vala:66
 msgid "Device operation has been cancelled and will stop after this media."
 msgstr ""
-"L'operació del dispositiu ha estat cancel·lada i pararà després d'aquest "
+"L'operació del dispositiu s'ha cancel·lat i es pararà després d'aquest "
 "fitxer."
 
 #: src/Views/ViewStack.vala:45
@@ -1270,7 +1270,7 @@ msgstr "No hi ha cap cançó"
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:51
 msgid "Updating playlist. Please wait."
-msgstr "S'està actualitzant la llista de reproducció. Espereu, si us plau."
+msgstr "S'actualitza la llista de reproducció. Espereu, si us plau."
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:55
 msgid ""
