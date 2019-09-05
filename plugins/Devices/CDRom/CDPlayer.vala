@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -26,13 +26,13 @@
  * Authored by: Corentin Noël <corentin@elementary.io>
  */
 
-public class Noise.Plugins.CDPlayer : Noise.Playback, GLib.Object {
+public class Music.Plugins.CDPlayer : Music.Playback, GLib.Object {
 
     InstallGstreamerPluginsDialog dialog;
 
     private string device;
 
-    public Noise.Pipeline pipe;
+    public Music.Pipeline pipe;
     public dynamic unowned Gst.Element playbin2;
     public bool first_start = true;
     private double volume = 1;
@@ -45,7 +45,7 @@ public class Noise.Plugins.CDPlayer : Noise.Playback, GLib.Object {
 
     public bool initialize () {
 
-        pipe = new Noise.Pipeline ();
+        pipe = new Music.Pipeline ();
         // XXX: The playbin2 is a workaround until the bug https://bugzilla.gnome.org/show_bug.cgi?id=690907 get fixed
         playbin2 = pipe.playbin;
         playbin2.source_setup.connect (pipe_source_setup);

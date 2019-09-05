@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -27,7 +27,7 @@
  *              Corentin Noël <corentin@elementary.io>
  */
 
-public class Noise.FileOperator : Object {
+public class Music.FileOperator : Object {
     public signal void import_cancelled ();
     public signal void rescan_cancelled ();
 
@@ -226,7 +226,7 @@ public class Noise.FileOperator : Object {
                     libraries_manager.local_library.remove_media (media, false);
                 var monitor = monitors.get (file.get_uri ());
                 if (monitor != null) {
-                    var medias_to_remove = new Gee.TreeSet<Noise.Media> ();
+                    var medias_to_remove = new Gee.TreeSet<Music.Media> ();
                     foreach (var m in libraries_manager.local_library.get_medias ()) {
                         if (m.uri.has_prefix (file.get_uri ()))
                             medias_to_remove.add (m);
