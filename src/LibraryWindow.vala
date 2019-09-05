@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -27,7 +27,7 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
+public class Music.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public signal void play_pause_changed ();
 
     public bool initialization_finished { get; private set; default = false; }
@@ -38,7 +38,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public Widgets.ViewSelector view_selector { get; private set; }
     public Gtk.SearchEntry search_entry { get; private set; }
     public Widgets.StatusBar statusbar { get; private set; }
-    public Noise.LocalLibrary library_manager { get { return (Noise.LocalLibrary)libraries_manager.local_library; } }
+    public Music.LocalLibrary library_manager { get { return (Music.LocalLibrary)libraries_manager.local_library; } }
 
     private bool media_considered_played { get; set; default = false; } // whether or not we have updated last played and added to already played list
     private bool added_to_play_count { get; set; default = false; } // whether or not we have added one to play count on playing media
@@ -338,7 +338,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         source_list_view.playlist_import_clicked.connect (() => {
             try {
-                PlaylistsUtils.import_from_playlist_file_info (Noise.PlaylistsUtils.get_playlists_to_import (), library_manager);
+                PlaylistsUtils.import_from_playlist_file_info (Music.PlaylistsUtils.get_playlists_to_import (), library_manager);
                 update_sensitivities.begin ();
             } catch (GLib.Error e) {
                 warning (e.message);

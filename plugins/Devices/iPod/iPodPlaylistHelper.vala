@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -27,7 +27,7 @@
  */
 
 /*-
- * Copyright (c) 2012 Noise Developers
+ * Copyright (c) 2012 Music Developers
  *
  * Originally Written by  for BeatBox Music Player
  * BeatBox Music Player: http://www.launchpad.net/beat-box
@@ -48,8 +48,8 @@
  * Boston, MA 02110-1301 USA.
  */
 
-public class Noise.Plugins.iPodPlaylistHelper {
-    public static GPod.Playlist get_gpod_playlist_from_playlist (Noise.Playlist pl, Gee.HashMap<unowned GPod.Track, Noise.Media> library, GPod.iTunesDB db) {
+public class Music.Plugins.iPodPlaylistHelper {
+    public static GPod.Playlist get_gpod_playlist_from_playlist (Music.Playlist pl, Gee.HashMap<unowned GPod.Track, Music.Media> library, GPod.iTunesDB db) {
         var rv = new GPod.Playlist (pl.name, false);
         rv.itdb = db;
         int32 index = 0;
@@ -66,7 +66,7 @@ public class Noise.Plugins.iPodPlaylistHelper {
         return rv;
     }
 
-    public static Gee.Collection<unowned GPod.Track> get_gpod_tracks_from_medias (Gee.Collection<Media> medias, Gee.HashMap<unowned GPod.Track, Noise.Media> library) {
+    public static Gee.Collection<unowned GPod.Track> get_gpod_tracks_from_medias (Gee.Collection<Media> medias, Gee.HashMap<unowned GPod.Track, Music.Media> library) {
         var list = new Gee.LinkedList <unowned GPod.Track> ();
         foreach (var m in medias) {
             foreach (var entry in library.entries) {
@@ -80,7 +80,7 @@ public class Noise.Plugins.iPodPlaylistHelper {
         return list;
     }
 
-    public static Noise.Playlist? get_playlist_from_gpod_playlist (GPod.Playlist pl, Gee.HashMap<unowned GPod.Track, Noise.Media> library) {
+    public static Music.Playlist? get_playlist_from_gpod_playlist (GPod.Playlist pl, Gee.HashMap<unowned GPod.Track, Music.Media> library) {
         if (pl.is_spl) {
 
         } else if (pl.is_podcasts () == false && pl.is_audiobooks () == false && pl.is_mpl() == false) {
@@ -95,14 +95,14 @@ public class Noise.Plugins.iPodPlaylistHelper {
         return null;
     }
 
-    public static GPod.Playlist get_gpod_playlist_from_smart_playlist (Noise.SmartPlaylist pl) {
+    public static GPod.Playlist get_gpod_playlist_from_smart_playlist (Music.SmartPlaylist pl) {
         var rv = new GPod.Playlist (pl.name, false);
         set_properties_from_smart_playlist (rv, pl);
         return rv;
     }
 
     // TODO: FIXME from sort_column to sort_column_id
-    /*private static GPod.PlaylistSortOrder get_gpod_sortorder_from_tvs (Noise.TreeViewSetup tvs) {
+    /*private static GPod.PlaylistSortOrder get_gpod_sortorder_from_tvs (Music.TreeViewSetup tvs) {
         if (tvs.sort_column == "#")
             return GPod.PlaylistSortOrder.MANUAL;
         else if (tvs.sort_column == "Track" || tvs.sort_column == "Episode")
@@ -139,7 +139,7 @@ public class Noise.Plugins.iPodPlaylistHelper {
             return GPod.PlaylistSortOrder.MANUAL;
     }*/
 
-    public static void set_rule_from_smart_query (GPod.SPLRule rule, Noise.SmartQuery q) {
+    public static void set_rule_from_smart_query (GPod.SPLRule rule, Music.SmartQuery q) {
         message("adding rule\n");
         if (q.field == SmartQuery.FieldType.ALBUM) { // strings
             rule.field = GPod.SPLField.ALBUM;
@@ -234,7 +234,7 @@ public class Noise.Plugins.iPodPlaylistHelper {
         }
     }
 
-    public static void set_properties_from_smart_playlist (GPod.Playlist rv, Noise.SmartPlaylist sp) {
+    public static void set_properties_from_smart_playlist (GPod.Playlist rv, Music.SmartPlaylist sp) {
         message ("playlist is %s\n", sp.name);
         foreach (var sq in sp.get_queries ()) {
             rv.splr_add_new(-1);

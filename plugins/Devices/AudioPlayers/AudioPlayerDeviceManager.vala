@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -26,7 +26,7 @@
  * Authored by: Corentin Noël <corentin@elementary.io>
  */
 
-public class Noise.Plugins.AudioPlayerDeviceManager : GLib.Object {
+public class Music.Plugins.AudioPlayerDeviceManager : GLib.Object {
     Gee.ArrayList<AudioPlayerDevice> devices;
 
     public AudioPlayerDeviceManager() {
@@ -42,7 +42,7 @@ public class Noise.Plugins.AudioPlayerDeviceManager : GLib.Object {
 
     public void remove_all () {
         foreach(var dev in devices) {
-            DeviceManager.get_default ().device_removed ((Noise.Device)dev);
+            DeviceManager.get_default ().device_removed ((Music.Device)dev);
         }
 
         devices = new Gee.ArrayList<AudioPlayerDevice>();
@@ -61,7 +61,7 @@ public class Noise.Plugins.AudioPlayerDeviceManager : GLib.Object {
 
             if(added.start_initialization()) {
                 added.finish_initialization();
-                added.initialized.connect((d) => {DeviceManager.get_default ().device_initialized ((Noise.Device)d);});
+                added.initialized.connect((d) => {DeviceManager.get_default ().device_initialized ((Music.Device)d);});
             }
             else {
                 mount_removed(added.get_mount());
@@ -84,7 +84,7 @@ public class Noise.Plugins.AudioPlayerDeviceManager : GLib.Object {
     public virtual void mount_removed (Mount mount) {
         foreach(var dev in devices) {
             if(dev.get_uri() == mount.get_default_location().get_uri()) {
-                DeviceManager.get_default ().device_removed ((Noise.Device)dev);
+                DeviceManager.get_default ().device_removed ((Music.Device)dev);
 
                 // Actually remove it
                 devices.remove(dev);
