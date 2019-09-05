@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -33,7 +33,7 @@
  * from the db, added to the queue, sorted, and more. LibraryWindow is
  * the visual representation of this class
  */
-public class Noise.LocalLibrary : Library {
+public class Music.LocalLibrary : Library {
     private FileOperator fo;
     private GStreamerTagger tagger;
 
@@ -850,8 +850,8 @@ public class Noise.LocalLibrary : Library {
         search_finished ();
     }
 
-    public Gee.TreeSet<Noise.Media> answer_to_device_sync (Device device) {
-        var medias_to_sync = new Gee.TreeSet<Noise.Media> ();
+    public Gee.TreeSet<Music.Media> answer_to_device_sync (Device device) {
+        var medias_to_sync = new Gee.TreeSet<Music.Media> ();
         var prefs = get_preferences_for_device (device);
         if (prefs.sync_music == true) {
             if (prefs.sync_all_music == true) {
