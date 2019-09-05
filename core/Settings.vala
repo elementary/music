@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -26,7 +26,7 @@
  * Authored by: Corentin Noël <corentin@elementary.io>
  */
 
-namespace Noise.Settings {
+namespace Music.Settings {
     public class Main : Granite.Services.Settings {
         public string music_mount_name { get; set; }
         public string music_folder { get; set; }
@@ -77,7 +77,7 @@ namespace Noise.Settings {
             base ("io.elementary.music.equalizer");
         }
 
-        public Gee.Collection<Noise.EqualizerPreset> get_presets () {
+        public Gee.Collection<Music.EqualizerPreset> get_presets () {
             var presets_data = new Gee.TreeSet<string> ();
 
             if (custom_presets != null) {
@@ -86,10 +86,10 @@ namespace Noise.Settings {
                 }
             }
 
-            var rv = new Gee.TreeSet<Noise.EqualizerPreset>();
+            var rv = new Gee.TreeSet<Music.EqualizerPreset>();
 
             foreach (var preset_str in presets_data) {
-                rv.add (new Noise.EqualizerPreset.from_string (preset_str));
+                rv.add (new Music.EqualizerPreset.from_string (preset_str));
             }
 
             return rv.read_only_view;

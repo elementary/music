@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -26,7 +26,7 @@
  * Authored by: Corentin Noël <corentin@elementary.io>
  */
 
-namespace Noise.Plugins {
+namespace Music.Plugins {
     public class iPodPlugin : Peas.ExtensionBase, Peas.Activatable {
 
         Interface plugins;
@@ -38,7 +38,7 @@ namespace Noise.Plugins {
 
             Value value = Value (typeof (GLib.Object));
             get_property ("object", ref value);
-            plugins = (Noise.Plugins.Interface) value.get_object ();
+            plugins = (Music.Plugins.Interface) value.get_object ();
             plugins.register_function(Interface.Hook.WINDOW, () => {
                 ipod_manager = new iPodDeviceManager ();
             });
@@ -59,5 +59,5 @@ namespace Noise.Plugins {
 public void peas_register_types (GLib.TypeModule module) {
     var objmodule = module as Peas.ObjectModule;
     objmodule.register_extension_type (typeof (Peas.Activatable),
-                                     typeof (Noise.Plugins.iPodPlugin));
+                                     typeof (Music.Plugins.iPodPlugin));
 }
