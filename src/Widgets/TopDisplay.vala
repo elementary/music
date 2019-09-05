@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -26,7 +26,7 @@
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-public class Noise.TopDisplay : Gtk.Stack {
+public class Music.TopDisplay : Gtk.Stack {
     public MusicListView list_view { get; set; }
 
     public signal void scale_value_changed (Gtk.ScrollType scroll, double val);
@@ -135,7 +135,7 @@ public class Noise.TopDisplay : Gtk.Stack {
 
     private class RepeatChooser : SimpleOptionChooser {
         public RepeatChooser () {
-            // MUST follow the exact same order of Noise.Player.Repeat
+            // MUST follow the exact same order of Music.Player.Repeat
             append_item ("media-playlist-no-repeat-symbolic", _("Enable Repeat"));
             append_item ("media-playlist-repeat-song-symbolic", _("Repeat Song"));
             append_item ("media-playlist-repeat-symbolic", _("Disable Repeat"));
@@ -143,7 +143,7 @@ public class Noise.TopDisplay : Gtk.Stack {
             update_option ();
 
             option_changed.connect (() => {
-                App.player.set_repeat_mode ((Noise.Settings.Repeat) current_option);
+                App.player.set_repeat_mode ((Music.Settings.Repeat) current_option);
             });
 
             App.player.notify["repeat"].connect (update_option);
@@ -163,7 +163,7 @@ public class Noise.TopDisplay : Gtk.Stack {
             update_mode ();
 
             option_changed.connect (() => {
-                App.player.set_shuffle_mode ((Noise.Settings.Shuffle) current_option);
+                App.player.set_shuffle_mode ((Music.Settings.Shuffle) current_option);
             });
 
             App.player.notify["shuffle"].connect (update_mode);

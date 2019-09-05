@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -26,7 +26,7 @@
  * Authored by: Victor Eduardo <victoreduardm@gmail.com>
  */
 
-namespace Noise.TimeUtils {
+namespace Music.TimeUtils {
     public const uint64 NANO_INV = 1000000000;
     public const uint64 MILI_INV = 1000;
     private const uint64 SEC_INV = 1;
@@ -43,7 +43,7 @@ namespace Noise.TimeUtils {
     /**
      * Convert from nanoseconds (10E-9) to miliseconds (10E-3);
      *
-     * This is used extensively because {@link Noise.Media} stores
+     * This is used extensively because {@link Music.Media} stores
      * miliseconds, while GStreamer uses nanoseconds.
      *
      * The method does its best to avoid losing precision.

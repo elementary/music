@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -26,7 +26,7 @@
  * Authored by: Corentin Noël <corentin@elementary.io>
  */
 
-public class Noise.Plugins.CDView : Gtk.Grid {
+public class Music.Plugins.CDView : Gtk.Grid {
     public CDRomDevice dev { get; construct set; }
     public CDViewWrapper cd_viewwrapper;
 
@@ -34,7 +34,7 @@ public class Noise.Plugins.CDView : Gtk.Grid {
     private Gtk.Grid main_grid;
     private Gtk.Label title_label;
     private Gtk.Label author_label;
-    private Noise.StaticPlaylist cd_playlist;
+    private Music.StaticPlaylist cd_playlist;
     private Widgets.AlbumImage album_image;
 
     public CDView (CDRomDevice device) {
@@ -42,7 +42,7 @@ public class Noise.Plugins.CDView : Gtk.Grid {
     }
 
     construct {
-        cd_playlist = new Noise.StaticPlaylist ();
+        cd_playlist = new Music.StaticPlaylist ();
         cd_viewwrapper = new CDViewWrapper (cd_playlist);
 
         album_image = new Widgets.AlbumImage ();
