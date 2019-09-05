@@ -23,7 +23,6 @@ core_files = files(
   'Resources.vala',
   'Settings.vala',
   'Devices/Device.vala',
-  'Devices/DeviceManager.vala',
   'Playlists/Playlist.vala',
   'Playlists/SmartPlaylist.vala',
   'Playlists/SmartQuery.vala',
