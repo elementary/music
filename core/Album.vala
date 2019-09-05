@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -39,7 +39,7 @@
  * - Save albums to database
  * - Keep albums organized by library manager
  */
-public class Noise.Album : Object {
+public class Music.Album : Object {
     public signal void cover_rendered ();
 
     public string artist { get; construct set; default = ""; }
