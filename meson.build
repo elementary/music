@@ -73,6 +73,7 @@ app_files = files(
   'src/Widgets/SourceListView.vala',
   'src/Widgets/StatusBar.vala',
   'src/Widgets/TopDisplay.vala',
+  'src/Widgets/TrackMenu.vala',
   'src/Widgets/ViewSelector.vala',
   'src/Widgets/FastView/FastGrid.vala',
   'src/Widgets/FastView/FastGridModel.vala',

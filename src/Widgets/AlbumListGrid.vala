@@ -117,9 +117,6 @@ public class Music.AlbumListGrid : Gtk.Grid {
         attach (list_view_scrolled, 0, 1);
         attach (rating, 0, 2);
 
-        // FIXME: media menu currently needs a generic list
-        //var media_menu = new Noise.MediaMenu ();
-
         cover_event_box.button_press_event.connect (show_cover_context_menu);
         cover_set_new.activate.connect (set_new_cover);
         rating.rating_changed.connect (rating_changed);
@@ -133,10 +130,27 @@ public class Music.AlbumListGrid : Gtk.Grid {
 
         album_list_box.button_release_event.connect ((event) => {
             if (event.button == Gdk.BUTTON_SECONDARY) {
-                //media_menu.popup_media_menu (media_list);
-                return true;
+                double x, y;
+                event.get_coords (out x, out y);
+
+                var hovered_child = album_list_box.get_child_at_pos ((int) x, (int) y);
+
+                var selected_children = album_list_box.get_selected_children ();
+                if (selected_children.length () == 0 || selected_children.find (hovered_child) == null) {
+                    album_list_box.select_child (hovered_child);
+                }
+
+                var selection = new Gee.ArrayList<Media> ();
+                foreach (unowned Gtk.FlowBoxChild child in album_list_box.get_selected_children ()) {
+                    selection.add (((Music.AlbumListRow) child).media);
+                }
+
+                var track_menu = new Music.TrackMenu (selection);
+                track_menu.popup_at_pointer (event);
+
+                return Gdk.EVENT_PROPAGATE;
             }
-            return false;
+            return Gdk.EVENT_PROPAGATE;
         });
     }
 
