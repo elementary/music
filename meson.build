@@ -42,6 +42,7 @@ app_files = files(
   'src/GStreamer/Pipeline.vala',
   'src/GStreamer/Playback.vala',
   'src/GStreamer/Streamer.vala',
+  'src/Interfaces/LibraryWindowInterface.vala',
   'src/Interfaces/ViewInterface.vala',
   'src/LocalBackend/DevicePreferences.vala',
   'src/LocalBackend/LocalLibrary.vala',

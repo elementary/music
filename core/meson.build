@@ -15,7 +15,6 @@ core_files = files(
   'EqualizerPreset.vala',
   'LibrariesManager.vala',
   'Library.vala',
-  'LibraryWindowInterface.vala',
   'Media.vala',
   'NotificationManager.vala',
   'PluginInterface.vala',
