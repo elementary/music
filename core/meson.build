@@ -31,7 +31,6 @@ core_files = files(
   'Playlists/SmartPlaylist.vala',
   'Playlists/SmartQuery.vala',
   'Playlists/StaticPlaylist.vala',
-  'Utils/CompareFunctionHolder.vala',
   'Utils/FileUtils.vala',
   'Utils/Search.vala',
   'Utils/String.vala',

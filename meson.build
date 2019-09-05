@@ -47,6 +47,7 @@ app_files = files(
   'src/Objects/HistoryPlaylist.vala',
   'src/Objects/MediaKeyListener.vala',
   'src/Objects/MPRIS.vala',
+  'src/Utils/CompareFunctionHolder.vala',
   'src/Utils/Icon.vala',
   'src/Utils/PlaylistsUtils.vala',
   'src/Utils/TimeUtils.vala',
