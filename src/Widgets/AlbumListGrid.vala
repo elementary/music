@@ -98,7 +98,10 @@ public class Music.AlbumListGrid : Gtk.Grid {
         title_size_group.add_widget (title_grid);
 
         album_list_box = new Gtk.FlowBox ();
+        album_list_box.activate_on_single_click = false;
         album_list_box.homogeneous = true;
+        album_list_box.row_spacing = 2;
+        album_list_box.selection_mode = Gtk.SelectionMode.MULTIPLE;
         album_list_box.valign = Gtk.Align.START;
         album_list_box.expand = true;
         album_list_box.get_style_context ().add_class (Gtk.STYLE_CLASS_BACKGROUND);

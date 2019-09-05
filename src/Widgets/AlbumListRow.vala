@@ -50,6 +50,7 @@ public class Music.AlbumListRow : Gtk.FlowBoxChild {
         var grid = new Gtk.Grid ();
         grid.column_spacing = 6;
         grid.margin = 6;
+        grid.margin_top = grid.margin_bottom = 4;
         grid.add (play_revealer);
         grid.add (title_label);
         grid.add (time_label);
