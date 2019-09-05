@@ -36,6 +36,7 @@ app_files = files(
   'src/Dialogs/SyncWarningDialog.vala',
   'src/GStreamer/CoverImport.vala',
   'src/GStreamer/GStreamerTagger.vala',
+  'src/GStreamer/Pipeline.vala',
   'src/GStreamer/Streamer.vala',
   'src/Interfaces/ViewInterface.vala',
   'src/LocalBackend/DevicePreferences.vala',

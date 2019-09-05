@@ -25,7 +25,6 @@ core_files = files(
   'Devices/Device.vala',
   'Devices/DeviceManager.vala',
   'Devices/NetworkDevice.vala',
-  'GStreamer/Pipeline.vala',
   'GStreamer/Equalizer.vala',
   'GStreamer/Playback.vala',
   'Playlists/Playlist.vala',
