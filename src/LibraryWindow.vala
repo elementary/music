@@ -46,7 +46,6 @@ public class Music.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private bool media_half_played_sended { get; set; default = false; }
     private bool search_field_has_focus { get; set; default = true; }
 
-    private Gtk.Paned main_hpaned;
     private Cancellable notification_cancellable;
     private PreferencesWindow? preferences = null;
     private Settings.Main main_settings;
@@ -430,7 +429,7 @@ public class Music.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         grid.add (source_list_view);
         grid.add (statusbar);
 
-        main_hpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
+        var main_hpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
         main_hpaned.pack1 (grid, false, false);
         main_hpaned.pack2 (view_stack, true, false);
         main_hpaned.show_all ();
