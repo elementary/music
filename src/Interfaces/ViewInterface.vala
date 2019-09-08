@@ -33,8 +33,6 @@ public interface Music.ViewInterface : Gtk.Widget {
      */
     public signal void import_requested (Gee.Collection<Media> to_import);
 
-    public abstract ViewWrapper.Hint get_hint ();
-
     /**
      * For some views, get_media() and get_visible_media() return the same contents, since
      * the view doesn't have any kind of built-in filters. For other views, they don't return
