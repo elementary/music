@@ -212,10 +212,6 @@ public class Music.ListView : Gtk.Box, ViewInterface {
      * ContentView interface methods
      */
 
-    public ViewWrapper.Hint get_hint () {
-        return list_view.hint;
-    }
-
     public Playlist get_playlist () {
         return list_view.playlist;
     }
