@@ -41,7 +41,6 @@ public class Music.PlaybackManager : Object {
     public signal void media_played (Media played_media);
     public signal void playback_stopped (int64 was_playing);
     public signal void playback_started ();
-    public signal void playback_paused ();
     public signal void player_changed ();
     public signal void queue_cleared ();
 
@@ -167,15 +166,6 @@ public class Music.PlaybackManager : Object {
         reshuffle ();
     }
 
-    private Media poll_queue () {
-        var m = queue_playlist.medias.get (0);
-        queue_playlist.medias.remove_at (0);
-        var unqueued = new Gee.LinkedList<Media> ();
-        unqueued.add (m);
-        queue_playlist.media_removed (unqueued);
-        return m;
-    }
-
     public void clear_queue () {
         queue_playlist.clear();
         _current.clear();
@@ -278,10 +268,10 @@ public class Music.PlaybackManager : Object {
             }
         }
     }
-    
+
     public Media? get_next (bool play) {
         Media? rv = null;
-        
+
         var main_settings = Settings.Main.get_default ();
         if (main_settings.shuffle_mode != Music.Settings.Shuffle.OFF) {
             debug ("Shuffled size: %d", _current_shuffled.size);
@@ -391,11 +381,11 @@ public class Music.PlaybackManager : Object {
         
         return rv;
     }
-    
+
     // TODO: remove code redundancy
     public Media? get_previous (bool play) {
         Media? rv = null;
-        
+
         var main_settings = Settings.Main.get_default ();
         if(main_settings.shuffle_mode != Music.Settings.Shuffle.OFF) {
             if (_current_shuffled.is_empty) {
@@ -654,14 +644,13 @@ public class Music.PlaybackManager : Object {
     public void start_playback () {
         player.play ();
         playing = true;
-        ((SimpleAction) App.main_window.actions.lookup_action (LibraryWindow.ACTION_PLAY)).set_state (true);
+        ((SimpleAction) App.main_window.lookup_action (LibraryWindow.ACTION_PLAY)).set_state (true);
         playback_started ();
     }
 
     public void pause_playback () {
         player.pause ();
         playing = false;
-        ((SimpleAction) App.main_window.actions.lookup_action (LibraryWindow.ACTION_PLAY)).set_state (false);
-        playback_paused ();
+        ((SimpleAction) App.main_window.lookup_action (LibraryWindow.ACTION_PLAY)).set_state (false);
     }
 }
