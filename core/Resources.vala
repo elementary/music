@@ -87,12 +87,6 @@ namespace Music {
         "audio/x-s3m"
     };
 
-    //TODO: Support "audio/x-ms-asx" and "audio/x-ms-wax"
-    public const string[] PLAYLISTS_CONTENT_TYPES = {
-        "audio/x-mpegurl",
-        "audio/x-scpls"
-    };
-
     public const string MUSIC_PLAYLIST = "autosaved_music";
 
     public LibrariesManager libraries_manager;

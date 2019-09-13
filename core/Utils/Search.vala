@@ -88,7 +88,7 @@ namespace Music.Search {
             && (String.is_empty (composer, false) || media.get_display_composer () == composer);
     }
 
-    public inline string get_valid_search_string (string s) {
+    private inline string get_valid_search_string (string s) {
         return String.canonicalize_for_search (s);
     }
 
@@ -107,7 +107,7 @@ namespace Music.Search {
      *   "  "
      *   "**a"
      */
-    public inline uint? get_rating_from_string (string rating_string)
+    private inline uint? get_rating_from_string (string rating_string)
         ensures (result != 0)
     {
         int i = 0;
