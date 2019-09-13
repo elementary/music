@@ -36,7 +36,7 @@
  */
 public class Music.Icon : Object {
     private static Gtk.IconTheme? _theme;
-    public static Gtk.IconTheme theme {
+    private static Gtk.IconTheme theme {
         get {
             if (_theme == null) {
                 _theme = Gtk.IconTheme.get_default ();
@@ -60,7 +60,7 @@ public class Music.Icon : Object {
         gicon = new ThemedIcon (this.name);
     }
 
-    public Gtk.IconInfo? get_icon_info (int size) {
+    private Gtk.IconInfo? get_icon_info (int size) {
         return theme.lookup_by_gicon (gicon, size, Gtk.IconLookupFlags.USE_BUILTIN);
     }
 
