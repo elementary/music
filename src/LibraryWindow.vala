@@ -27,7 +27,7 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public class Music.LibraryWindow : LibraryWindowInterface, Gtk.Window {
+public class Music.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWindow {
     public signal void play_pause_changed ();
 
     public bool initialization_finished { get; private set; default = false; }
@@ -56,8 +56,6 @@ public class Music.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     internal Gee.HashMap<unowned Playlist, ViewWrapper> match_playlists;
     private Gee.HashMap<string, DeviceView> match_devices;
     private Gee.HashMap<unowned Playlist, SourceListEntry> match_playlist_entry;
-
-    public SimpleActionGroup actions { get; construct; }
 
     public const string ACTION_PREFIX = "win.";
     public const string ACTION_IMPORT = "action_import";
@@ -93,9 +91,7 @@ public class Music.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     construct {
-        actions = new SimpleActionGroup ();
-        actions.add_action_entries (action_entries, this);
-        insert_action_group ("win", actions);
+        add_action_entries (action_entries, this);
 
         main_settings = Settings.Main.get_default ();
 
@@ -446,7 +442,7 @@ public class Music.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         show ();
 
-        actions.action_state_changed.connect ((name, new_state) => {
+        action_state_changed.connect ((name, new_state) => {
             if (name == ACTION_PLAY) {
                 if (new_state.get_boolean () == false) {
                     play_button.image = new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
@@ -649,19 +645,19 @@ public class Music.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         bool media_active = App.player.current_media != null;
         bool media_available = App.player.get_current_media_list ().size > 0;
 
-        ((SimpleAction) actions.lookup_action (ACTION_IMPORT)).set_enabled (!doing_ops && folder_set);
-        ((SimpleAction) actions.lookup_action (ACTION_PLAY)).set_enabled (media_active || media_available);
-        ((SimpleAction) actions.lookup_action (ACTION_PLAY_NEXT)).set_enabled (media_active || media_available);
-        ((SimpleAction) actions.lookup_action (ACTION_PLAY_PREVIOUS)).set_enabled (media_active || media_available);
+        ((SimpleAction) lookup_action (ACTION_IMPORT)).set_enabled (!doing_ops && folder_set);
+        ((SimpleAction) lookup_action (ACTION_PLAY)).set_enabled (media_active || media_available);
+        ((SimpleAction) lookup_action (ACTION_PLAY_NEXT)).set_enabled (media_active || media_available);
+        ((SimpleAction) lookup_action (ACTION_PLAY_PREVIOUS)).set_enabled (media_active || media_available);
 
         // hide playlists when media list is empty
         source_list_view.change_playlist_category_visibility (have_media);
         statusbar.playlist_menubutton_sensitive = folder_set && have_media;
 
         if (!media_active || have_media && !App.player.playing) {
-            ((SimpleAction) actions.lookup_action (ACTION_PLAY)).set_state (false);
+            ((SimpleAction) lookup_action (ACTION_PLAY)).set_state (false);
         } else {
-            ((SimpleAction) actions.lookup_action (ACTION_PLAY)).set_state (true);
+            ((SimpleAction) lookup_action (ACTION_PLAY)).set_state (true);
         }
 
     }
@@ -909,7 +905,7 @@ public class Music.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 
     public virtual void playback_stopped (int64 was_playing) {
-        ((SimpleAction) actions.lookup_action (ACTION_PLAY)).set_state (false);
+        ((SimpleAction) lookup_action (ACTION_PLAY)).set_state (false);
         //reset some booleans
         media_considered_previewed = false;
         media_considered_played = false;
