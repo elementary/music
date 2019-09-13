@@ -28,8 +28,7 @@
  */
 
 namespace Music.FileUtils {
-
-    public const string APP_NAME = "noise";
+    private const string APP_NAME = "noise";
 
     public File get_data_directory () {
         string data_dir = Environment.get_user_data_dir ();
@@ -37,7 +36,7 @@ namespace Music.FileUtils {
         return File.new_for_path (dir_path);
     }
 
-    public File get_cache_directory () {
+    private File get_cache_directory () {
         string data_dir = Environment.get_user_cache_dir ();
         string dir_path = Path.build_path (Path.DIR_SEPARATOR_S, data_dir, APP_NAME);
         return File.new_for_path (dir_path);
@@ -56,25 +55,6 @@ namespace Music.FileUtils {
         }
 
         return size;
-    }
-
-    /**
-     * Checks whether //dir// is a directory.
-     * Does not follow symbolic links.
-     */
-    public async bool is_directory_async (File dir, Cancellable? cancellable = null) {
-        FileInfo? info = null;
-
-        try {
-            info = yield dir.query_info_async (FileAttribute.STANDARD_TYPE,
-                                               FileQueryInfoFlags.NOFOLLOW_SYMLINKS,
-                                               Priority.DEFAULT,
-                                               cancellable);
-        } catch (Error err) {
-            warning (err.message);
-        }
-
-        return info != null && info.get_file_type () == FileType.DIRECTORY;
     }
 
     /**
