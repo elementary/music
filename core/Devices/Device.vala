@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -28,7 +28,7 @@
  */
 
 
-public interface Noise.Device : GLib.Object {
+public interface Music.Device : GLib.Object {
     public signal void initialized (Device d);
     public signal void device_unmounted ();
     public signal void infobar_message (string label, Gtk.MessageType message_type);
@@ -58,8 +58,8 @@ public interface Noise.Device : GLib.Object {
     public abstract bool read_only ();
     public abstract Library get_library ();
 
-    public Gee.Collection<Noise.Media> delete_doubles (Gee.Collection<Noise.Media> source_list, Gee.Collection<Noise.Media> to_remove) {
-        var new_list = new Gee.LinkedList<Noise.Media> ();
+    public Gee.Collection<Music.Media> delete_doubles (Gee.Collection<Music.Media> source_list, Gee.Collection<Music.Media> to_remove) {
+        var new_list = new Gee.LinkedList<Music.Media> ();
         foreach (var m in source_list) {
             if (m != null) {
                 bool needed = true;
@@ -87,7 +87,7 @@ public interface Noise.Device : GLib.Object {
         return new_list;
     }
 
-    public bool will_fit (Gee.Collection<Noise.Media> list) {
+    public bool will_fit (Gee.Collection<Music.Media> list) {
         uint64 list_size = 0;
         foreach (var m in list) {
             list_size += m.file_size;

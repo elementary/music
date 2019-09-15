@@ -17,10 +17,10 @@
  * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
  * Boston, MA 02110-1301 USA.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -30,7 +30,7 @@
  *              Corentin Noël <corentin@elementary.io>
  */
 
-public class Noise.Plugins.Manager : Object {
+public class Music.Plugins.Manager : Object {
     public signal void hook_main_menu (Gtk.Menu menu);
     public signal void hook_toolbar ();
     public signal void hook_set_arg (string set_name, string? set_arg);
@@ -45,7 +45,7 @@ public class Noise.Plugins.Manager : Object {
 
     public Gtk.Toolbar toolbar { set { plugin_iface.toolbar = value; } }
     public Gtk.Application noise_app { set { plugin_iface.noise_app = value;  }}
-    public Noise.Plugins.Interface plugin_iface { private set; get; }
+    public Music.Plugins.Interface plugin_iface { private set; get; }
 
     private static Manager? plugin_manager = null;
 
@@ -58,7 +58,7 @@ public class Noise.Plugins.Manager : Object {
 
     private Manager () {
 
-        plugin_iface = new Noise.Plugins.Interface (this);
+        plugin_iface = new Music.Plugins.Interface (this);
         plugin_iface.set_name = "noise";
 
         /* Let's init the engine */

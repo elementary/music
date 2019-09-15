@@ -24,7 +24,6 @@ core_files = files(
   'Settings.vala',
   'Devices/Device.vala',
   'Devices/DeviceManager.vala',
-  'Devices/NetworkDevice.vala',
   'GStreamer/Pipeline.vala',
   'GStreamer/Equalizer.vala',
   'GStreamer/Playback.vala',
@@ -46,7 +45,7 @@ core_files = files(
 core_deps = [
   dependency('gee-0.8'),
   dependency('gio-2.0'),
-  dependency('glib-2.0', version: '>=2.39'),
+  dependency('glib-2.0', version: '>=2.40'),
   dependency('gobject-2.0'),
   dependency('libpeas-1.0'),
   dependency('libpeas-gtk-1.0'),

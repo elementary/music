@@ -15,16 +15,16 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
  */
 
-namespace Noise.MPRIS {
+namespace Music.MPRIS {
     public void initialize () {
         var owner_id = Bus.own_name (BusType.SESSION,
                                 "org.mpris.MediaPlayer2.Music",
@@ -89,16 +89,16 @@ public class MprisRoot : GLib.Object {
 
     public string[] supported_mime_types {
         owned get {
-            return Noise.MEDIA_CONTENT_TYPES;
+            return Music.MEDIA_CONTENT_TYPES;
         }
     }
 
     public void quit () throws GLib.Error {
-        Noise.App.main_window.destroy ();
+        Music.App.main_window.destroy ();
     }
 
     public void raise () throws GLib.Error {
-        Noise.App.main_window.present ();
+        Music.App.main_window.present ();
     }
 }
 
@@ -127,13 +127,13 @@ public class MprisPlayer : GLib.Object {
     construct {
         _metadata = new HashTable<string, Variant> (str_hash, str_equal);
 
-        Noise.App.player.media_played.connect_after (on_media_played);
-        Noise.App.player.playback_stopped.connect_after (() => { update_metadata (null); });
+        Music.App.player.media_played.connect_after (on_media_played);
+        Music.App.player.playback_stopped.connect_after (() => { update_metadata (null); });
 
-        Noise.libraries_manager.local_library.media_updated.connect_after (refresh_current_media);
-        Noise.App.main_window.play_pause_changed.connect_after (playing_changed);
+        Music.libraries_manager.local_library.media_updated.connect_after (refresh_current_media);
+        Music.App.main_window.play_pause_changed.connect_after (playing_changed);
 
-        var default_image = new Noise.Icon ("albumart_2").get_file ();
+        var default_image = new Music.Icon ("albumart_2").get_file ();
         default_image_url = default_image != null ? default_image.get_uri () : "";
 
         // initial update
@@ -141,7 +141,7 @@ public class MprisPlayer : GLib.Object {
     }
 
     private void refresh_current_media () {
-        var current_media = Noise.App.player.current_media;
+        var current_media = Music.App.player.current_media;
         if (current_media != null) {
             on_media_played (current_media);
         }
@@ -167,13 +167,13 @@ public class MprisPlayer : GLib.Object {
         });
     }
 
-    private void on_media_played (Noise.Media? s) {
-        if (s == Noise.App.player.current_media) {
+    private void on_media_played (Music.Media? s) {
+        if (s == Music.App.player.current_media) {
             update_metadata (s);
         }
     }
 
-    private void update_metadata (Noise.Media? s) {
+    private void update_metadata (Music.Media? s) {
         if (s == null) {
             _metadata.remove_all ();
         } else {
@@ -183,11 +183,11 @@ public class MprisPlayer : GLib.Object {
         trigger_metadata_update ();
     }
 
-    private void set_media_metadata (Noise.Media s) {
+    private void set_media_metadata (Music.Media s) {
         _metadata = new HashTable<string, Variant> (null, null);
 
         _metadata.insert ("mpris:trackid", get_track_id (s));
-        _metadata.insert ("mpris:length", Noise.App.player.player.get_duration () / Noise.TimeUtils.MILI_INV);
+        _metadata.insert ("mpris:length", Music.App.player.player.get_duration () / Music.TimeUtils.MILI_INV);
 
         var art_file = s.album_info.get_cached_cover_file ();
         _metadata.insert ("mpris:artUrl", art_file != null ? art_file.get_uri () : default_image_url);
@@ -215,7 +215,7 @@ public class MprisPlayer : GLib.Object {
         return array;
     }
 
-    private ObjectPath get_track_id (Noise.Media m) {
+    private ObjectPath get_track_id (Music.Media m) {
         return new ObjectPath ("/io/elementary/music/Track/%lld".printf (m.rowid));
     }
 
@@ -267,11 +267,11 @@ public class MprisPlayer : GLib.Object {
 
     public string playback_status {
         owned get { //TODO signal org.freedesktop.DBus.Properties.PropertiesChanged
-            if (Noise.App.player.playing) {
+            if (Music.App.player.playing) {
                 return "Playing";
-            } else if (!Noise.App.player.playing && Noise.App.player.current_media == null) {
+            } else if (!Music.App.player.playing && Music.App.player.current_media == null) {
                 return "Stopped";
-            } else if (!Noise.App.player.playing) {
+            } else if (!Music.App.player.playing) {
                 return "Paused";
             } else {
                 return "Stopped";
@@ -281,14 +281,14 @@ public class MprisPlayer : GLib.Object {
 
     public string loop_status {
         owned get {
-            switch (Noise.Settings.Main.get_default ().repeat_mode) {
-                case (Noise.Settings.Repeat.OFF):
+            switch (Music.Settings.Main.get_default ().repeat_mode) {
+                case (Music.Settings.Repeat.OFF):
                     return "None";
-                case (Noise.Settings.Repeat.MEDIA):
+                case (Music.Settings.Repeat.MEDIA):
                     return "Track";
-                case (Noise.Settings.Repeat.ALBUM):
-                case (Noise.Settings.Repeat.ARTIST):
-                case (Noise.Settings.Repeat.ALL):
+                case (Music.Settings.Repeat.ALBUM):
+                case (Music.Settings.Repeat.ARTIST):
+                case (Music.Settings.Repeat.ALL):
                 default:
                     return "Playlist";
             }
@@ -296,16 +296,16 @@ public class MprisPlayer : GLib.Object {
         set {
             switch (value) {
                 case ("None"):
-                    Noise.App.player.set_repeat_mode (Noise.Settings.Repeat.OFF);
+                    Music.App.player.set_repeat_mode (Music.Settings.Repeat.OFF);
                     break;
                 case ("Track"):
-                    Noise.App.player.set_repeat_mode (Noise.Settings.Repeat.MEDIA);
+                    Music.App.player.set_repeat_mode (Music.Settings.Repeat.MEDIA);
                     break;
                 case ("Playlist"):
-                    Noise.App.player.set_repeat_mode (Noise.Settings.Repeat.ALL);
+                    Music.App.player.set_repeat_mode (Music.Settings.Repeat.ALL);
                     break;
                 default:
-                    Noise.App.player.set_repeat_mode (Noise.Settings.Repeat.ALL);
+                    Music.App.player.set_repeat_mode (Music.Settings.Repeat.ALL);
                     break;
             }
 
@@ -323,13 +323,13 @@ public class MprisPlayer : GLib.Object {
 
     public bool shuffle {
         get {
-            return Noise.Settings.Main.get_default ().shuffle_mode == Noise.Settings.Shuffle.ALL;
+            return Music.Settings.Main.get_default ().shuffle_mode == Music.Settings.Shuffle.ALL;
         }
         set {
             if (value) {
-                Noise.App.player.set_shuffle_mode (Noise.Settings.Shuffle.ALL);
+                Music.App.player.set_shuffle_mode (Music.Settings.Shuffle.ALL);
             } else {
-                Noise.App.player.set_shuffle_mode (Noise.Settings.Shuffle.OFF);
+                Music.App.player.set_shuffle_mode (Music.Settings.Shuffle.OFF);
             }
 
             Variant variant = value;
@@ -339,23 +339,23 @@ public class MprisPlayer : GLib.Object {
 
     public HashTable<string, Variant>? metadata { //a{sv}
         owned get {
-            update_metadata (Noise.App.player.current_media);
+            update_metadata (Music.App.player.current_media);
             return _metadata;
         }
     }
 
     public double volume {
         get {
-            return Noise.App.player.volume;
+            return Music.App.player.volume;
         }
         set {
-            Noise.App.player.volume = value;
+            Music.App.player.volume = value;
         }
     }
 
     public int64 position {
         get {
-            return (Noise.App.player.player.get_position () / (int64)Noise.TimeUtils.MILI_INV);
+            return (Music.App.player.player.get_position () / (int64)Music.TimeUtils.MILI_INV);
         }
     }
 
@@ -399,36 +399,36 @@ public class MprisPlayer : GLib.Object {
 
     public void next () throws GLib.Error {
         // inhibit notifications
-        Noise.App.main_window.play_next_media (true);
+        Music.App.main_window.play_next_media (true);
     }
 
     public void previous () throws GLib.Error {
         // inhibit notifications
-        Noise.App.main_window.play_previous_media (true);
+        Music.App.main_window.play_previous_media (true);
     }
 
     public void pause () throws GLib.Error {
         // inhibit notifications
-        if (Noise.App.player.playing) {
-            Noise.App.player.pause_playback ();
+        if (Music.App.player.playing) {
+            Music.App.player.pause_playback ();
         }
     }
 
     public void play_pause () throws GLib.Error {
         // inhibit notifications
-        Noise.App.main_window.play_media (true);
+        Music.App.main_window.play_media (true);
     }
 
     public void stop () throws GLib.Error {
-        if (Noise.App.player.playing) {
-            Noise.App.player.stop_playback ();
+        if (Music.App.player.playing) {
+            Music.App.player.stop_playback ();
         }
     }
 
     public void play () throws GLib.Error {
         // inhibit notifications
-        if (!Noise.App.player.playing) {
-            Noise.App.player.start_playback ();
+        if (!Music.App.player.playing) {
+            Music.App.player.start_playback ();
         }
     }
 
@@ -438,7 +438,7 @@ public class MprisPlayer : GLib.Object {
             position = 0;
         }
 
-        if (position < Noise.App.player.player.get_duration () / Noise.TimeUtils.MILI_INV) {
+        if (position < Music.App.player.player.get_duration () / Music.TimeUtils.MILI_INV) {
             set_position ("", position);
             seeked (position);
         } else if (can_go_next) {
@@ -447,7 +447,7 @@ public class MprisPlayer : GLib.Object {
     }
 
     public void set_position (string dobj, int64 Position) throws GLib.Error {
-        Noise.App.player.player.set_position (Position * (int64)Noise.TimeUtils.MILI_INV);
+        Music.App.player.player.set_position (Position * (int64)Music.TimeUtils.MILI_INV);
     }
 
     public void open_uri (string Uri) throws GLib.Error {
@@ -481,16 +481,16 @@ public class MprisPlaylists : GLib.Object {
     }
 
     construct {
-        Noise.libraries_manager.local_library.playlist_added.connect (playlist_added);
-        Noise.libraries_manager.local_library.playlist_removed.connect (playlist_removed);
+        Music.libraries_manager.local_library.playlist_added.connect (playlist_added);
+        Music.libraries_manager.local_library.playlist_removed.connect (playlist_removed);
     }
 
-    void playlist_added (Noise.Playlist p) {
+    void playlist_added (Music.Playlist p) {
         Variant variant = this.playlist_count;
         queue_property_for_notification ("PlaylistCount", variant);
     }
 
-    void playlist_removed (Noise.Playlist p) {
+    void playlist_removed (Music.Playlist p) {
         Variant variant = this.playlist_count;
         queue_property_for_notification ("PlaylistCount", variant);
     }
@@ -549,7 +549,7 @@ public class MprisPlaylists : GLib.Object {
     public void activate_playlist (ObjectPath path) throws GLib.Error {
         string playlist_id = path.replace ("/io/elementary/music/Playlists/", "");
 
-        Noise.Playlist p = Noise.libraries_manager.local_library.playlist_from_id (int.parse (playlist_id));
+        Music.Playlist p = Music.libraries_manager.local_library.playlist_from_id (int.parse (playlist_id));
         if (p == null) {
             warning ("Selected playlist had invalid path %s and could not be found", path);
             return;
@@ -559,9 +559,9 @@ public class MprisPlaylists : GLib.Object {
 
     public MprisPlaylist?[] get_playlists (uint index, uint maxcount, string playlist_ordering, bool reversed) throws GLib.Error {
         debug ("Get Playlist called with index %u and maxcount %u\n", index, maxcount);
-        var playlists = new Gee.LinkedList<Noise.Playlist> ();
+        var playlists = new Gee.LinkedList<Music.Playlist> ();
 
-        foreach (var p in Noise.libraries_manager.local_library.get_playlists ()) {
+        foreach (var p in Music.libraries_manager.local_library.get_playlists ()) {
             if (reversed) {
                 playlists.offer_tail (p);
             } else {
@@ -571,7 +571,7 @@ public class MprisPlaylists : GLib.Object {
 
         int i = 0;
         var rv = new Gee.LinkedList<MprisPlaylist?> ();
-        foreach (Noise.Playlist p in playlists) {
+        foreach (Music.Playlist p in playlists) {
             ObjectPath path = new ObjectPath (PLAYLIST_ID.printf (p.rowid));
 
             MprisPlaylist to_add = MprisPlaylist ();
@@ -593,7 +593,7 @@ public class MprisPlaylists : GLib.Object {
 
     public uint playlist_count {
         get {
-            return (uint)(Noise.libraries_manager.local_library.get_playlists ().size + Noise.libraries_manager.local_library.get_smart_playlists ().size);
+            return (uint)(Music.libraries_manager.local_library.get_playlists ().size + Music.libraries_manager.local_library.get_smart_playlists ().size);
         }
     }
 
@@ -607,7 +607,7 @@ public class MprisPlaylists : GLib.Object {
     public MaybePlaylist active_playlist {
         owned get {
             // FIXME: Should be a real playlist
-            Noise.Playlist p = null;
+            Music.Playlist p = null;
             var active_playlist = MaybePlaylist ();
 
             if (p == null) {

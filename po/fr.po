@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beatbox 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-05 13:23-0800\n"
-"PO-Revision-Date: 2018-11-09 16:50+0000\n"
-"Last-Translator: Corentin Noël <corentin@elementary.io>\n"
+"POT-Creation-Date: 2019-06-26 22:43+0200\n"
+"PO-Revision-Date: 2019-01-14 00:08+0000\n"
+"Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://weblate.elementary.io/projects/music/music/fr/"
 ">\n"
 "Language: fr\n"
@@ -136,54 +136,54 @@ msgstr "Nouvelle liste de lecture"
 msgid "%s (%i)"
 msgstr "%s (%i)"
 
-#: core/Utils/PlaylistsUtils.vala:273
+#: core/Utils/PlaylistsUtils.vala:273 core/Utils/PlaylistsUtils.vala:342
+msgid "MPEG Version 3.0 Extended (*.m3u)"
+msgstr "MPEG Version 3.0 (*.m3u)"
+
+#: core/Utils/PlaylistsUtils.vala:277 core/Utils/PlaylistsUtils.vala:346
+msgid "Shoutcast Playlist Version 2.0 (*.pls)"
+msgstr "Liste de lecture Shoutcast Version 2.0 (*.pls)"
+
+#: core/Utils/PlaylistsUtils.vala:280
 msgid "Export Playlist"
 msgstr "Exporter la liste de lecture"
 
-#: core/Utils/PlaylistsUtils.vala:275 core/Utils/PlaylistsUtils.vala:369
-#: src/LibraryWindow.vala:982 src/Dialogs/FileNotFoundDialog.vala:55
-#: src/Dialogs/FileNotFoundDialog.vala:101
-#: src/Dialogs/InstallGstreamerPluginsDialog.vala:50
-#: src/Dialogs/RemoveFilesDialog.vala:82
-#: src/Dialogs/SetMusicFolderConfirmation.vala:67
-#: src/Dialogs/SetMusicFolderConfirmation.vala:115
-#: src/Dialogs/SmartPlaylistEditor.vala:93
-#: src/Dialogs/SyncWarningDialog.vala:60
-#: src/Views/Wrappers/MusicViewWrapper.vala:145 src/Widgets/TopDisplay.vala:64
-msgid "Cancel"
-msgstr "Annuler"
-
-#: core/Utils/PlaylistsUtils.vala:276 src/Dialogs/MediaEditor.vala:137
+#: core/Utils/PlaylistsUtils.vala:283 src/Dialogs/MediaEditor.vala:137
 #: src/Dialogs/SmartPlaylistEditor.vala:89
 msgid "Save"
 msgstr "Enregistrer"
 
-#: core/Utils/PlaylistsUtils.vala:281 core/Utils/PlaylistsUtils.vala:376
-msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr "MPEG Version 3.0 (*.m3u)"
+#: core/Utils/PlaylistsUtils.vala:284 core/Utils/PlaylistsUtils.vala:353
+#: src/LibraryWindow.vala:985 src/Dialogs/FileNotFoundDialog.vala:55
+#: src/Dialogs/FileNotFoundDialog.vala:103
+#: src/Dialogs/InstallGstreamerPluginsDialog.vala:50
+#: src/Dialogs/RemoveFilesDialog.vala:82
+#: src/Dialogs/SetMusicFolderConfirmation.vala:63
+#: src/Dialogs/SetMusicFolderConfirmation.vala:86
+#: src/Dialogs/SmartPlaylistEditor.vala:93
+#: src/Dialogs/SyncWarningDialog.vala:60
+#: src/Views/Wrappers/MusicViewWrapper.vala:148 src/Widgets/TopDisplay.vala:64
+msgid "Cancel"
+msgstr "Annuler"
 
-#: core/Utils/PlaylistsUtils.vala:286 core/Utils/PlaylistsUtils.vala:381
-msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr "Liste de lecture Shoutcast Version 2.0 (*.pls)"
-
-#: core/Utils/PlaylistsUtils.vala:361
+#: core/Utils/PlaylistsUtils.vala:337
 msgid "Playlist"
 msgstr "Liste de lecture"
 
-#: core/Utils/PlaylistsUtils.vala:367
+#: core/Utils/PlaylistsUtils.vala:349
 #, c-format
 msgid "Import %s"
 msgstr "Importer %s"
 
-#: core/Utils/PlaylistsUtils.vala:370 src/LibraryWindow.vala:983
+#: core/Utils/PlaylistsUtils.vala:352 src/LibraryWindow.vala:984
 #: src/Dialogs/FileNotFoundDialog.vala:102
-#: src/Dialogs/SetMusicFolderConfirmation.vala:116
+#: src/Dialogs/SetMusicFolderConfirmation.vala:85
 #: src/Views/Wrappers/MusicViewWrapper.vala:147
-#: src/Widgets/AlbumListGrid.vala:244
+#: src/Widgets/AlbumListGrid.vala:248
 msgid "Open"
 msgstr "Ouvrir"
 
-#: core/Utils/PlaylistsUtils.vala:401
+#: core/Utils/PlaylistsUtils.vala:379
 msgid "Unrecognized playlist file. Import failed."
 msgstr "Fichier de liste de lecture non-reconnu, l'import à échoué."
 
@@ -209,7 +209,7 @@ msgstr "Téléphone Android"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:155
 msgid "Audio Player"
-msgstr "Lecteur musical"
+msgstr "Lecteur audio"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:137
 #: plugins/Devices/iPod/iPodLibrary.vala:148
@@ -244,7 +244,7 @@ msgstr "Impossible de lire le contenu de ce CD Audio"
 #. do checks to make sure we can go on
 #: plugins/Devices/CDRom/CDRomDevice.vala:247
 msgid "Could not find Music Folder"
-msgstr "Impossible de trouver votre dossier de musiques"
+msgstr "Impossible de trouver le dossier « Musique »"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:247
 msgid ""
@@ -298,7 +298,7 @@ msgstr "Impossible de lire le contenu de ce CD Audio."
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
 msgid "Finishing sync process…"
-msgstr "Fin de la synchronisation…"
+msgstr "Finalisation de la synchronisation…"
 
 #: plugins/Devices/iPod/iPodLibrary.vala:230
 #: plugins/Devices/iPod/iPodLibrary.vala:386
@@ -307,7 +307,7 @@ msgstr "Annulation de la synchronisation…"
 
 #: plugins/LastFM/LastFM.vala:98
 msgid "No similar songs found"
-msgstr "Aucune musique similaire n'a été trouvée"
+msgstr "Aucun titre similaire n'a été trouvé"
 
 #: plugins/LastFM/LastFM.vala:98
 msgid ""
@@ -315,9 +315,10 @@ msgid ""
 "all song info is correct and you are connected to the Internet. Some songs "
 "may not have matches."
 msgstr ""
-"Il n'y a aucune musique similaire à celle en lecture. Vérifiez que toutes "
-"les informations sont correctes et que vous êtes connecté à internet. Malgré "
-"tout, certaines musiques n'obtiennent aucun résultat."
+"Il n'y a pas de titres similaires au titre actuel dans votre bibliothèque. "
+"Assurez-vous que toutes les informations sur le titre sont correctes et que "
+"vous êtes connecté à Internet. Malgré tout, certains titres ne donnent aucun "
+"résultat."
 
 #: plugins/LastFM/SimilarMedia.vala:44
 msgid "Similar"
@@ -342,73 +343,72 @@ msgstr "Votre bibliothèque a été importée."
 #. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:316
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr "<b>Copie</b> des fichiers dans le <b>Dossier Musique</b>…"
+msgstr "<b>Copie</b> des fichiers dans le <b>dossier Musique</b>…"
 
-#: src/LibraryWindow.vala:353 src/LibraryWindow.vala:420
-#: src/LibraryWindow.vala:598 src/LibraryWindow.vala:704
-#: src/LibraryWindow.vala:1146
+#: src/LibraryWindow.vala:353 src/LibraryWindow.vala:419
+#: src/LibraryWindow.vala:600 src/LibraryWindow.vala:706
 msgid "Music"
 msgstr "Musique"
 
-#: src/LibraryWindow.vala:370
+#: src/LibraryWindow.vala:369
 msgid "Import to Library…"
 msgstr "Importer dans la bibliothèque…"
 
-#: src/LibraryWindow.vala:373 src/Dialogs/PreferencesWindow.vala:40
+#: src/LibraryWindow.vala:372 src/Dialogs/PreferencesWindow.vala:40
 msgid "Preferences"
 msgstr "Préférences"
 
-#: src/LibraryWindow.vala:389
+#: src/LibraryWindow.vala:388
 msgid "Previous"
 msgstr "Précédent"
 
-#: src/LibraryWindow.vala:393 src/LibraryWindow.vala:448
+#: src/LibraryWindow.vala:392 src/LibraryWindow.vala:449
 msgid "Play"
 msgstr "Lecture"
 
-#: src/LibraryWindow.vala:397
+#: src/LibraryWindow.vala:396
 msgid "Next"
 msgstr "Suivant"
 
-#: src/LibraryWindow.vala:401
+#: src/LibraryWindow.vala:400
 msgid "Search Music"
 msgstr "Rechercher une musique"
 
-#: src/LibraryWindow.vala:451
+#: src/LibraryWindow.vala:452
 msgid "Pause"
 msgstr "Pause"
 
-#: src/LibraryWindow.vala:773
+#: src/LibraryWindow.vala:775
 msgid "No songs in Queue"
-msgstr "Aucune musique dans la file"
+msgstr "Aucun titre dans la file"
 
-#: src/LibraryWindow.vala:773
+#: src/LibraryWindow.vala:775
 msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
-"Pour ajouter des musiques à la file, utilisez le <b>clic droit</b> sur un "
-"élément et choisissez <b>File d'attente</b>, Lorsqu'une musique se termine, "
-"les musiques de la file seront lues en premier avant la prochaine musique de "
-"la liste de lecture en cours."
+"Pour ajouter des titres à la file, utilisez le <b>clic droit</b> sur un "
+"élément et choisissez <b>File d'attente</b>, Lorsqu'un titre se termine, les "
+"titres de la file seront lus en premier avant le prochain titre de la liste "
+"de lecture en cours."
 
-#: src/LibraryWindow.vala:776
+#: src/LibraryWindow.vala:778
 msgid "No songs in History"
-msgstr "Aucune musique dans l'historique"
+msgstr "Aucun titre dans l'historique"
 
-#: src/LibraryWindow.vala:776
+#: src/LibraryWindow.vala:778
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
 "current session."
 msgstr ""
-"Après la lecture d'une partie d'une musique, celle-ci est ajoutée à "
+"Après la lecture d'une partie d'un titre, celui-ci est ajouté à "
 "l'historique.\n"
-"Vous pouvez utiliser cette liste pour voir toutes les musiques lues durant "
-"la session courante."
+"Vous pouvez utiliser cette liste pour voir tous les titres lus durant la "
+"session courante."
 
-#: src/LibraryWindow.vala:980 src/Views/Wrappers/MusicViewWrapper.vala:60
+#: src/LibraryWindow.vala:981 src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import Music"
 msgstr "Importer de la musique"
 
@@ -437,16 +437,16 @@ msgstr "Rescanner la bibliothèque"
 
 #: src/Dialogs/FileNotFoundDialog.vala:54
 msgid "Remove Song"
-msgstr "Supprimer la musique"
+msgstr "Supprimer le titre"
 
 #: src/Dialogs/FileNotFoundDialog.vala:56
 msgid "Find Song"
-msgstr "Trouver la musique"
+msgstr "Trouver le titre"
 
 #: src/Dialogs/FileNotFoundDialog.vala:99
-#: src/Dialogs/SetMusicFolderConfirmation.vala:113
+#: src/Dialogs/SetMusicFolderConfirmation.vala:82
 msgid "Choose Music Folder"
-msgstr "Choisissez votre dossier de musiques"
+msgstr "Choisir le dossier « Musique »"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:38
 #, c-format
@@ -457,8 +457,7 @@ msgstr "Voulez-vous installer l'extension %s ?"
 #, c-format
 msgid "This song cannot be played. The %s plugin is required to play the song."
 msgstr ""
-"Cette musique ne peut pas être lue. L'extension %s est nécessaire pour la "
-"lire."
+"Ce titre ne peut pas être lu. L'extension %s est nécessaire pour le lire."
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid "Install Plugin"
@@ -513,7 +512,7 @@ msgid "Comment:"
 msgstr "Commentaire :"
 
 #. FIXME: don't know if I can delete this
-#: src/Dialogs/MediaEditor.vala:135 src/Dialogs/PreferencesWindow.vala:96
+#: src/Dialogs/MediaEditor.vala:135 src/Dialogs/PreferencesWindow.vala:97
 #: src/Views/DeviceView.vala:45
 msgid "Close"
 msgstr "Fermer"
@@ -521,7 +520,7 @@ msgstr "Fermer"
 #: src/Dialogs/NotImportedDialog.vala:51
 #, c-format
 msgid "Issues while importing from %s"
-msgstr "Erreurs lors de l'importation de musiques de %s"
+msgstr "Erreurs lors de l'importation depuis %s"
 
 #: src/Dialogs/NotImportedDialog.vala:57
 #, c-format
@@ -560,31 +559,31 @@ msgstr "Ignorer"
 msgid "Select Music Folder…"
 msgstr "Sélectionner le dossier Musique…"
 
-#: src/Dialogs/PreferencesWindow.vala:77
+#: src/Dialogs/PreferencesWindow.vala:78
 msgid "Music Folder Location"
-msgstr "Emplacement du dossier musique"
+msgstr "Emplacement du dossier « Musique »"
 
-#: src/Dialogs/PreferencesWindow.vala:79
+#: src/Dialogs/PreferencesWindow.vala:80
 msgid "Library Management"
 msgstr "Gestion de la bibliothèque"
 
-#: src/Dialogs/PreferencesWindow.vala:80
+#: src/Dialogs/PreferencesWindow.vala:81
 msgid "Keep Music folder organized:"
 msgstr "Réorganiser le dossier Musique :"
 
-#: src/Dialogs/PreferencesWindow.vala:82
+#: src/Dialogs/PreferencesWindow.vala:83
 msgid "Write metadata to file:"
 msgstr "Écrire les méta-données dans le fichier :"
 
-#: src/Dialogs/PreferencesWindow.vala:84
+#: src/Dialogs/PreferencesWindow.vala:85
 msgid "Copy imported files to Library:"
 msgstr "Importer des médias dans la bibliothèque :"
 
-#: src/Dialogs/PreferencesWindow.vala:86
+#: src/Dialogs/PreferencesWindow.vala:87
 msgid "Desktop Integration"
 msgstr "Intégration avec le bureau"
 
-#: src/Dialogs/PreferencesWindow.vala:87
+#: src/Dialogs/PreferencesWindow.vala:88
 msgid "Continue playback when closed:"
 msgstr "Continuer la lecture même fermé :"
 
@@ -608,30 +607,21 @@ msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
 msgstr[0] ""
-"Ceci supprimera la musique de votre bibliothèque et de tout périphérique "
+"Ceci supprimera le titre de votre bibliothèque et de tout périphérique "
 "synchronisé automatiquement."
 msgstr[1] ""
-"Ceci supprimera les musiques de votre bibliothèque et de tout périphérique "
+"Ceci supprimera les titres de votre bibliothèque et de tout périphérique "
 "synchronisé automatiquement."
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
 msgstr "Supprimer de la bibliothèque"
 
-#: src/Dialogs/SetMusicFolderConfirmation.vala:65
-msgid "Export Playlists"
-msgstr "Exporter des listes de lecture"
-
-#: src/Dialogs/SetMusicFolderConfirmation.vala:66
-msgid "Set Music Folder"
-msgstr "Définir le dossier de musiques"
-
-#. pretty up labels
-#: src/Dialogs/SetMusicFolderConfirmation.vala:73
+#: src/Dialogs/SetMusicFolderConfirmation.vala:38
 msgid "Set Music Folder?"
-msgstr "Définir le dossier musique ?"
+msgstr "Définir le dossier « Musique » ?"
 
-#: src/Dialogs/SetMusicFolderConfirmation.vala:76
+#: src/Dialogs/SetMusicFolderConfirmation.vala:39
 #, c-format
 msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
@@ -640,17 +630,25 @@ msgstr ""
 "Voulez-vous vraiment définir le dossier de musique dans %s ? Ceci "
 "réinitialisera votre bibliothèque et supprimera vos listes de lecture."
 
+#: src/Dialogs/SetMusicFolderConfirmation.vala:47
+msgid "Export Playlists"
+msgstr "Exporter des listes de lecture"
+
+#: src/Dialogs/SetMusicFolderConfirmation.vala:65
+msgid "Set Music Folder"
+msgstr "Définir le dossier « Musique »"
+
 #: src/Dialogs/SmartPlaylistEditor.vala:55
 msgid "Playlist Title"
 msgstr "Titre de la liste de lecture"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:58
 msgid "any"
-msgstr "n'importe quelle"
+msgstr "n'importe quel"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:59
 msgid "all"
-msgstr "toutes"
+msgstr "tous"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:63
 msgid "Match"
@@ -658,7 +656,7 @@ msgstr "Correspondance"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:65
 msgid "of the following:"
-msgstr "parmi les suivantes :"
+msgstr "parmi les suivants :"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:74
 msgid "Add"
@@ -686,7 +684,7 @@ msgstr "Paramètres"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:119
 msgid "Smart Playlist Editor"
-msgstr "Éditeur de liste de lectures intelligentes"
+msgstr "Éditeur de liste de lectures intelligent"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:260 src/Widgets/SourceListView.vala:67
 #: src/Widgets/SourceListView.vala:80
@@ -831,40 +829,40 @@ msgstr "Reprendre la synchronisation"
 msgid "Importing music from %s…"
 msgstr "Importation de musiques de %s…"
 
-#: src/LocalBackend/LocalLibrary.vala:212
+#: src/LocalBackend/LocalLibrary.vala:215
 msgid "Adding files to library…"
 msgstr "Ajout de fichiers dans la bibliothèque…"
 
-#: src/LocalBackend/LocalLibrary.vala:225
+#: src/LocalBackend/LocalLibrary.vala:228
 msgid "<b>Importing</b> music to library…"
 msgstr "<b>Importation</b> de musique dans la bibliothèque…"
 
-#: src/LocalBackend/LocalLibrary.vala:247
+#: src/LocalBackend/LocalLibrary.vala:250
 msgid "All music files are already in your library"
 msgstr "Tous les fichiers musicaux sont déjà dans votre bibliothèque"
 
-#: src/LocalBackend/LocalLibrary.vala:247
+#: src/LocalBackend/LocalLibrary.vala:250
 msgid "No files were imported."
 msgstr "Aucun fichier importé."
 
-#: src/LocalBackend/LocalLibrary.vala:252
+#: src/LocalBackend/LocalLibrary.vala:255
 msgid "Rescanning music for changes. This may take a while…"
 msgstr "Recherches des changements. Ceci peut prendre du temps…"
 
-#: src/LocalBackend/LocalLibrary.vala:353
+#: src/LocalBackend/LocalLibrary.vala:356
 msgid "Added to your queue:"
 msgstr "Ajouté à la file d'attente :"
 
-#: src/LocalBackend/LocalLibrary.vala:364
+#: src/LocalBackend/LocalLibrary.vala:367
 #, c-format
 msgid "%d Track"
 msgid_plural "%d Tracks"
-msgstr[0] "%d Chanson"
-msgstr[1] "%d Chansons"
+msgstr[0] "%d Titre"
+msgstr[1] "%d Titres"
 
 #: src/LocalBackend/LocalSmartPlaylist.vala:217
 msgid "Favorite Songs"
-msgstr "Morceaux favoris"
+msgstr "Titres favoris"
 
 #: src/LocalBackend/LocalSmartPlaylist.vala:225
 msgid "Recently Added"
@@ -920,7 +918,7 @@ msgstr "Toute la musique"
 
 #: src/Views/DeviceSummaryWidget.vala:298
 msgid "Sync Failed"
-msgstr "Echec de la synchronisation"
+msgstr "Échec de la synchronisation"
 
 #: src/Views/DeviceSummaryWidget.vala:299
 #, c-format
@@ -1028,7 +1026,7 @@ msgstr "Tous les %i albums"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
 msgid "No Albums"
-msgstr "Sans album"
+msgstr "Sans albums"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
 msgid "All Years"
@@ -1041,7 +1039,7 @@ msgstr "Toutes les %i années"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:250
 msgid "No Years"
-msgstr "Sans année"
+msgstr "Sans années"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
 msgid "All Ratings"
@@ -1075,7 +1073,7 @@ msgstr "Tous les %i compositeurs"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:275
 msgid "No Composers"
-msgstr "Aucun compositeur"
+msgstr "Sans compositeur"
 
 #. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
@@ -1246,7 +1244,7 @@ msgstr "Importer de la musique dans votre bibliothèque depuis une source."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:63
 msgid "Change Music Folder"
-msgstr "Changer de dossier contenant la musique"
+msgstr "Changer de dossier « Musique »"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:64
 msgid "Load music from a folder, a network or an external disk."
@@ -1263,7 +1261,7 @@ msgstr "Importer de la musique"
 msgid "Import all your Music from %s into your library."
 msgstr "Importer toute la musique contenue dans %s vers votre bibliothèque."
 
-#: src/Views/Wrappers/MusicViewWrapper.vala:143
+#: src/Views/Wrappers/MusicViewWrapper.vala:144
 msgid "Select Music Folder"
 msgstr "Sélectionner le dossier Musique"
 
@@ -1282,8 +1280,8 @@ msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
-"Pour ajouter des musiques à cette liste de lecture, utilisez le <b>clic "
-"droit</b> sur un élément et choisissez <b>Ajouter à la liste de lecture</b>."
+"Pour ajouter des titres à cette liste de lecture, utilisez le <b>clic droit</"
+"b> sur un élément et choisissez <b>Ajouter à la liste de lecture</b>."
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:58
 msgid "Edit Smart Playlist"
@@ -1301,7 +1299,7 @@ msgstr ""
 "la liste dans le panneau latéral, puis cliquez sur <b>Modifier…</b> Vous "
 "pouvez aussi cliquer sur le bouton ci-dessous."
 
-#: src/Views/Wrappers/ViewWrapper.vala:419
+#: src/Views/Wrappers/ViewWrapper.vala:418
 msgid "No media"
 msgstr "Aucun média"
 
@@ -1309,17 +1307,17 @@ msgstr "Aucun média"
 msgid "Set new album cover"
 msgstr "Définir une nouvelle pochette de l'album"
 
-#: src/Widgets/AlbumListGrid.vala:240
+#: src/Widgets/AlbumListGrid.vala:244
 msgid "Image files"
-msgstr "Fichiers d'images"
+msgstr "Fichiers d'image"
 
-#: src/Widgets/AlbumListGrid.vala:245
-msgid "_Cancel"
-msgstr "_Annuler"
-
-#: src/Widgets/AlbumListGrid.vala:246
+#: src/Widgets/AlbumListGrid.vala:251
 msgid "_Open"
 msgstr "_Ouvrir"
+
+#: src/Widgets/AlbumListGrid.vala:252
+msgid "_Cancel"
+msgstr "_Annuler"
 
 #: src/Widgets/EqualizerPopover.vala:167
 msgid "Save preset"
@@ -1400,18 +1398,18 @@ msgstr "Nouvelle liste de lecture…"
 #: src/Widgets/MediaMenu.vala:193
 #, c-format
 msgid "Import %i of %i selected songs"
-msgstr "Importation de %i musiques parmi les %i sélectionnés"
+msgstr "Importation de %i titres parmi les %i sélectionnés"
 
 #: src/Widgets/MediaMenu.vala:195
 #, c-format
 msgid "Import %i song"
 msgid_plural "Import %i songs"
-msgstr[0] "Importer %i musique"
-msgstr[1] "Importer %i musiques"
+msgstr[0] "Importer %i titre"
+msgstr[1] "Importer %i titres"
 
 #: src/Widgets/PresetList.vala:53
 msgid "Delete Current"
-msgstr "Supprimer celle en cours"
+msgstr "Supprimer celui en cours"
 
 #: src/Widgets/SourceListView.vala:66 src/Widgets/SourceListView.vala:78
 msgid "Rename"
@@ -1470,7 +1468,7 @@ msgstr "Ajouter une liste de lecture intelligente"
 #: src/Widgets/StatusBar.vala:75
 #, c-format
 msgid "Equalizer: %s"
-msgstr "Égalisateur: %s"
+msgstr "Égaliseur : %s"
 
 #. MUST follow the exact same order of Noise.Player.Repeat
 #: src/Widgets/TopDisplay.vala:139
@@ -1479,7 +1477,7 @@ msgstr "Activer la lecture en boucle"
 
 #: src/Widgets/TopDisplay.vala:140
 msgid "Repeat Song"
-msgstr "Répéter la musique"
+msgstr "Répéter le titre"
 
 #: src/Widgets/TopDisplay.vala:141
 msgid "Disable Repeat"

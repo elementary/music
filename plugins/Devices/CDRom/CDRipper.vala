@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -26,20 +26,20 @@
  * Authored by: Corentin Noël <corentin@elementary.io>
  */
 
-public class Noise.CDRipper : GLib.Object {
+public class Music.CDRipper : GLib.Object {
     public dynamic Gst.Pipeline pipeline;
     public dynamic Gst.Element src;
     public dynamic Gst.Element queue;
     public dynamic Gst.Element filter;
     public dynamic Gst.Element sink;
 
-    Noise.Media current_media; // media currently being processed/ripped
+    Music.Media current_media; // media currently being processed/ripped
     private string _device;
     public int track_count;
     public int track_index;
     private Gst.Format _format;
 
-    public signal void media_ripped (Noise.Media s, bool success);
+    public signal void media_ripped (Music.Media s, bool success);
     public signal void progress_notification (double progress);
     public signal void error (string err, Gst.Message message);
 
@@ -163,7 +163,7 @@ public class Noise.CDRipper : GLib.Object {
         return true;
     }
 
-    public void rip_media (uint track, Noise.Media s) {
+    public void rip_media (uint track, Music.Media s) {
         var f = FileUtils.get_new_destination (s);
 
         sink.set_state (Gst.State.NULL);

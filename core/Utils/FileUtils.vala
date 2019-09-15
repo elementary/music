@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -27,9 +27,8 @@
  *              Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-namespace Noise.FileUtils {
-
-    public const string APP_NAME = "noise";
+namespace Music.FileUtils {
+    private const string APP_NAME = "noise";
 
     public File get_data_directory () {
         string data_dir = Environment.get_user_data_dir ();
@@ -37,7 +36,7 @@ namespace Noise.FileUtils {
         return File.new_for_path (dir_path);
     }
 
-    public File get_cache_directory () {
+    private File get_cache_directory () {
         string data_dir = Environment.get_user_cache_dir ();
         string dir_path = Path.build_path (Path.DIR_SEPARATOR_S, data_dir, APP_NAME);
         return File.new_for_path (dir_path);
@@ -56,45 +55,6 @@ namespace Noise.FileUtils {
         }
 
         return size;
-    }
-
-    /**
-     * Checks whether //dir// is a directory.
-     * Does not follow symbolic links.
-     */
-    public async bool is_directory_async (File dir, Cancellable? cancellable = null) {
-        FileInfo? info = null;
-
-        try {
-            info = yield dir.query_info_async (FileAttribute.STANDARD_TYPE,
-                                               FileQueryInfoFlags.NOFOLLOW_SYMLINKS,
-                                               Priority.DEFAULT,
-                                               cancellable);
-        } catch (Error err) {
-            warning (err.message);
-        }
-
-        return info != null && info.get_file_type () == FileType.DIRECTORY;
-    }
-
-    /**
-     * Enumerates the files contained by folder.
-     *
-     * @param folder a {@link GLib.File} representing the folder you wish to query
-     * @param types a string array containing the content types to discriminate against [allow-none]
-     * @param recursive whether to query the whole directory tree or only immediate children. [allow-none]
-     * @param files the data container for the files found. This only includes files, not directories [allow-none]
-     * @param cancellable a cancellable object for canceling the operation. [allow-none]
-     *
-     * @return total number of files found (should be the same as files.size)
-     */
-    public async uint enumerate_files_async (File folder, string[]? types = null,
-                                             bool recursive = true,
-                                             out Gee.Collection<File>? files = null,
-                                             Cancellable? cancellable = null) {
-        return_val_if_fail (yield is_directory_async (folder), 0);
-        var counter = new FileEnumerator ();
-        return yield counter.enumerate_files_async (folder, types, out files, recursive, cancellable);
     }
 
     /**
@@ -193,93 +153,5 @@ namespace Noise.FileUtils {
         }
 
         return dest;
-    }
-
-    /**
-     * A class for counting the number of files contained by a directory, without
-     * counting folders.
-     */
-    private class FileEnumerator {
-        private uint file_count = 0;
-        private string file_attributes;
-        private string[]? types = null;
-        private Cancellable? cancellable = null;
-
-        /**
-         * Enumerates the number of files contained by a directory.
-         */
-        public async uint enumerate_files_async (File folder, string[]? types,
-                                                 out Gee.Collection<File>? files,
-                                                 bool recursive = true,
-                                                 Cancellable? cancellable = null)
-        {
-            assert (file_count == 0);
-
-            var attrs = new string[0];
-            attrs += FileAttribute.STANDARD_NAME;
-            attrs += FileAttribute.STANDARD_TYPE;
-
-            // No need to query for content type unless we're gonna use it
-            if (types != null) {
-                attrs += FileAttribute.STANDARD_CONTENT_TYPE;
-            }
-
-            file_attributes = string.joinv (",", attrs);
-
-            this.types = types;
-            this.cancellable = cancellable;
-
-            files = new Gee.TreeSet<File> ();
-            yield enumerate_files_internal_async (folder, files, recursive);
-            return file_count;
-        }
-
-        private inline bool is_cancelled () {
-            return cancellable != null && cancellable.is_cancelled ();
-        }
-
-        private async void enumerate_files_internal_async (File folder, Gee.Collection<File>? files,
-                                                           bool recursive)
-        {
-            if (is_cancelled ()) {
-                return;
-            }
-
-            try {
-                var enumerator = yield folder.enumerate_children_async (file_attributes,
-                                                                        FileQueryInfoFlags.NOFOLLOW_SYMLINKS,
-                                                                        Priority.DEFAULT,
-                                                                        cancellable);
-
-                while (!is_cancelled ()) {
-                    var enum_files = yield enumerator.next_files_async (1, Priority.DEFAULT, cancellable);
-                    FileInfo? file_info = enum_files.nth_data (0);
-
-                    if (file_info == null) {
-                        break;
-                    }
-
-                    var file_name = file_info.get_name ();
-                    var file_type = file_info.get_file_type ();
-                    var file = folder.get_child (file_name);
-
-                    if (file_type == FileType.REGULAR) {
-                        if (this.types != null && !is_valid_content_type (file_info.get_content_type (), this.types)) {
-                            continue;
-                        }
-
-                        file_count++;
-
-                        if (files != null) {
-                            files.add (file);
-                        }
-                    } else if (recursive && file_type == FileType.DIRECTORY) {
-                        yield enumerate_files_internal_async (file, files, true);
-                    }
-                }
-            } catch (Error err) {
-                warning ("Could not scan folder: %s", err.message);
-            }
-        }
     }
 }

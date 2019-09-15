@@ -15,16 +15,16 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
  */
 
-public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
+public class Music.Widgets.ViewSelector : Gtk.ToolItem {
     public signal void mode_changed (Mode new_mode);
     public signal void column_browser_toggled (bool new_value);
 
@@ -63,9 +63,9 @@ public class Noise.Widgets.ViewSelector : Gtk.ToolItem {
             // select fourth invisible mode to appear as de-selected
             mode_button.sensitive = value;
             mode_button.set_active (value ? (int) mode : -1);
-            ((SimpleAction) App.main_window.actions.lookup_action (Noise.LibraryWindow.ACTION_VIEW_ALBUMS)).set_enabled (value);
-            ((SimpleAction) App.main_window.actions.lookup_action (Noise.LibraryWindow.ACTION_VIEW_LIST)).set_enabled (value);
-            ((SimpleAction) App.main_window.actions.lookup_action (Noise.LibraryWindow.ACTION_VIEW_COLUMNS)).set_enabled (value);
+            ((SimpleAction) App.main_window.lookup_action (Music.LibraryWindow.ACTION_VIEW_ALBUMS)).set_enabled (value);
+            ((SimpleAction) App.main_window.lookup_action (Music.LibraryWindow.ACTION_VIEW_LIST)).set_enabled (value);
+            ((SimpleAction) App.main_window.lookup_action (Music.LibraryWindow.ACTION_VIEW_COLUMNS)).set_enabled (value);
         }
     }
 

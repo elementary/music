@@ -15,16 +15,16 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
  */
 
-internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
+internal class Music.Widgets.TileRenderer : Gtk.CellRenderer {
     public Album album { get; set; }
 
     private Pango.Layout title_text_layout;
@@ -119,7 +119,11 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
         ctx.render_background (cr, x, y, 128, 128);
 
         if (pixbuf != null) {
-            ctx.render_icon (cr, pixbuf, x, y);
+            int scale_factor = ctx.get_scale ();
+
+            var surface = Gdk.cairo_surface_create_from_pixbuf (pixbuf, scale_factor, null);
+
+            ctx.render_icon_surface (cr, surface, x, y);
         }
 
         cr.fill_preserve ();
@@ -151,8 +155,9 @@ internal class Noise.Widgets.TileRenderer : Gtk.CellRenderer {
     private void update_layout_properties (Gtk.Widget widget) {
         var ctx = widget.get_style_context ();
         var state = ctx.get_state ();
+        var scale = ctx.get_scale ();
 
-        pixbuf = album.get_cached_cover_pixbuf (1);
+        pixbuf = album.get_cached_cover_pixbuf (scale);
 
         border.left = 12;
         border.right = 12;

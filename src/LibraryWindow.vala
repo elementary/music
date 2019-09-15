@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -27,7 +27,7 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
+public class Music.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWindow {
     public signal void play_pause_changed ();
 
     public bool initialization_finished { get; private set; default = false; }
@@ -38,7 +38,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public Widgets.ViewSelector view_selector { get; private set; }
     public Gtk.SearchEntry search_entry { get; private set; }
     public Widgets.StatusBar statusbar { get; private set; }
-    public Noise.LocalLibrary library_manager { get { return (Noise.LocalLibrary)libraries_manager.local_library; } }
+    public Music.LocalLibrary library_manager { get { return (Music.LocalLibrary)libraries_manager.local_library; } }
 
     private bool media_considered_played { get; set; default = false; } // whether or not we have updated last played and added to already played list
     private bool added_to_play_count { get; set; default = false; } // whether or not we have added one to play count on playing media
@@ -46,7 +46,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private bool media_half_played_sended { get; set; default = false; }
     private bool search_field_has_focus { get; set; default = true; }
 
-    private Gtk.Paned main_hpaned;
     private Cancellable notification_cancellable;
     private PreferencesWindow? preferences = null;
     private Settings.Main main_settings;
@@ -55,8 +54,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     internal Gee.HashMap<unowned Playlist, ViewWrapper> match_playlists;
     private Gee.HashMap<string, DeviceView> match_devices;
     private Gee.HashMap<unowned Playlist, SourceListEntry> match_playlist_entry;
-
-    public SimpleActionGroup actions { get; construct; }
 
     public const string ACTION_PREFIX = "win.";
     public const string ACTION_IMPORT = "action_import";
@@ -92,9 +89,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     construct {
-        actions = new SimpleActionGroup ();
-        actions.add_action_entries (action_entries, this);
-        insert_action_group ("win", actions);
+        add_action_entries (action_entries, this);
 
         main_settings = Settings.Main.get_default ();
 
@@ -128,7 +123,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
             App.player.player.error_occured.connect (error_occured);
         });
 
-        NotificationManager.get_default ().show_alert.connect (doAlert);
+        NotificationManager.get_default ().show_alert.connect (show_alert);
 
         match_playlists = new Gee.HashMap<unowned Playlist, ViewWrapper> ();
         match_devices = new Gee.HashMap<string, DeviceView> ();
@@ -338,7 +333,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         source_list_view.playlist_import_clicked.connect (() => {
             try {
-                PlaylistsUtils.import_from_playlist_file_info (Noise.PlaylistsUtils.get_playlists_to_import (), library_manager);
+                PlaylistsUtils.import_from_playlist_file_info (Music.PlaylistsUtils.get_playlists_to_import (), library_manager);
                 update_sensitivities.begin ();
             } catch (GLib.Error e) {
                 warning (e.message);
@@ -365,7 +360,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         destroy.connect (on_quit);
 
-        show ();
 
         var import_menuitem = new Gtk.MenuItem.with_label (_("Import to Library…"));
         import_menuitem.action_name = ACTION_PREFIX + ACTION_IMPORT;
@@ -431,7 +425,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         grid.add (source_list_view);
         grid.add (statusbar);
 
-        main_hpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
+        var main_hpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
         main_hpaned.pack1 (grid, false, false);
         main_hpaned.pack2 (view_stack, true, false);
         main_hpaned.show_all ();
@@ -441,7 +435,9 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         add (main_hpaned);
         set_titlebar (headerbar);
 
-        actions.action_state_changed.connect ((name, new_state) => {
+        show ();
+
+        action_state_changed.connect ((name, new_state) => {
             if (name == ACTION_PLAY) {
                 if (new_state.get_boolean () == false) {
                     play_button.image = new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
@@ -644,19 +640,19 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         bool media_active = App.player.current_media != null;
         bool media_available = App.player.get_current_media_list ().size > 0;
 
-        ((SimpleAction) actions.lookup_action (ACTION_IMPORT)).set_enabled (!doing_ops && folder_set);
-        ((SimpleAction) actions.lookup_action (ACTION_PLAY)).set_enabled (media_active || media_available);
-        ((SimpleAction) actions.lookup_action (ACTION_PLAY_NEXT)).set_enabled (media_active || media_available);
-        ((SimpleAction) actions.lookup_action (ACTION_PLAY_PREVIOUS)).set_enabled (media_active || media_available);
+        ((SimpleAction) lookup_action (ACTION_IMPORT)).set_enabled (!doing_ops && folder_set);
+        ((SimpleAction) lookup_action (ACTION_PLAY)).set_enabled (media_active || media_available);
+        ((SimpleAction) lookup_action (ACTION_PLAY_NEXT)).set_enabled (media_active || media_available);
+        ((SimpleAction) lookup_action (ACTION_PLAY_PREVIOUS)).set_enabled (media_active || media_available);
 
         // hide playlists when media list is empty
         source_list_view.change_playlist_category_visibility (have_media);
         statusbar.playlist_menubutton_sensitive = folder_set && have_media;
 
         if (!media_active || have_media && !App.player.playing) {
-            ((SimpleAction) actions.lookup_action (ACTION_PLAY)).set_state (false);
+            ((SimpleAction) lookup_action (ACTION_PLAY)).set_state (false);
         } else {
-            ((SimpleAction) actions.lookup_action (ACTION_PLAY)).set_state (true);
+            ((SimpleAction) lookup_action (ACTION_PLAY)).set_state (true);
         }
 
     }
@@ -904,7 +900,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 
     public virtual void playback_stopped (int64 was_playing) {
-        ((SimpleAction) actions.lookup_action (ACTION_PLAY)).set_state (false);
+        ((SimpleAction) lookup_action (ACTION_PLAY)).set_state (false);
         //reset some booleans
         media_considered_previewed = false;
         media_considered_played = false;
@@ -976,14 +972,17 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
     public virtual void action_import () {
         if (!library_manager.doing_file_operations ()) {
-
-            var folders = new Gee.TreeSet<string> ();
-            var file_chooser = new Gtk.FileChooserDialog (_("Import Music"), this,
-                                      Gtk.FileChooserAction.SELECT_FOLDER,
-                                      _("Cancel"), Gtk.ResponseType.CANCEL,
-                                      _("Open"), Gtk.ResponseType.ACCEPT);
+            var file_chooser = new Gtk.FileChooserNative (
+                _("Import Music"),
+                this,
+                Gtk.FileChooserAction.SELECT_FOLDER,
+                _("Open"),
+                _("Cancel")
+            );
             file_chooser.set_select_multiple (true);
             file_chooser.set_local_only (true);
+
+            var folders = new Gee.TreeSet<string> ();
             if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
                 foreach (var folder in file_chooser.get_filenames ()) {
                     folders.add (folder);
@@ -1141,12 +1140,14 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         library_manager.add_files_to_library (files_dragged);
     }
 
-    public void doAlert (string title, string message) {
-        var dialog = new Gtk.MessageDialog (this, Gtk.DialogFlags.MODAL, Gtk.MessageType.ERROR, Gtk.ButtonsType.OK, "%s", title);
-
-        dialog.title = _("Music");
-        dialog.secondary_text = message;
-        dialog.secondary_use_markup = true;
+    private void show_alert (string title, string message) {
+        var dialog = new Granite.MessageDialog (
+            title,
+            message,
+            new ThemedIcon ("dialog-warning"),
+            Gtk.ButtonsType.CLOSE
+        );
+        dialog.transient_for = this;
 
         dialog.run ();
         dialog.destroy ();

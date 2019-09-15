@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -34,9 +34,9 @@
  *
  * The icon is searched in the available icon themes.
  */
-public class Noise.Icon : Object {
+public class Music.Icon : Object {
     private static Gtk.IconTheme? _theme;
-    public static Gtk.IconTheme theme {
+    private static Gtk.IconTheme theme {
         get {
             if (_theme == null) {
                 _theme = Gtk.IconTheme.get_default ();
@@ -60,7 +60,7 @@ public class Noise.Icon : Object {
         gicon = new ThemedIcon (this.name);
     }
 
-    public Gtk.IconInfo? get_icon_info (int size) {
+    private Gtk.IconInfo? get_icon_info (int size) {
         return theme.lookup_by_gicon (gicon, size, Gtk.IconLookupFlags.USE_BUILTIN);
     }
 
