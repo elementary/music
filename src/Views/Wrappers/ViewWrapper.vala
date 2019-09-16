@@ -51,7 +51,6 @@ public abstract class Music.ViewWrapper : Gtk.Grid {
         DEVICE_PODCAST,
         DEVICE_AUDIOBOOK,
         NETWORK_DEVICE,
-        ALBUM_LIST,
         QUEUE;
     }
 

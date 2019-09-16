@@ -1,6 +1,5 @@
-// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012-2018 elementary LLC. (https://elementary.io)
+ * Copyright (c) 2012-2019 elementary, Inc. (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -28,23 +27,14 @@
  */
 
 public class Music.AlbumListGrid : Gtk.Grid {
-    private ViewWrapper _view_wrapper;
-    public ViewWrapper view_wrapper {
-        get {
-            return _view_wrapper;
-        }
-        construct set {
-            list_view.parent_wrapper = value;
-            _view_wrapper = value;
-        }
-    }
+    public ViewWrapper view_wrapper { get; construct set; }
 
     private Album album;
     private Widgets.AlbumImage album_cover;
     private Gee.TreeSet<Media> media_list = new Gee.TreeSet<Media> ();
-    private GenericList list_view;
     private Gtk.Label album_label;
     private Gtk.Label artist_label;
+    private Gtk.FlowBox album_list_box;
     private Gtk.Menu cover_action_menu;
     private Music.RatingWidget rating;
 
@@ -55,11 +45,14 @@ public class Music.AlbumListGrid : Gtk.Grid {
     construct {
         album_cover = new Widgets.AlbumImage ();
         album_cover.width_request = 184;
-        album_cover.margin = 28;
-        album_cover.margin_bottom = 12;
+        album_cover.margin_top = 31;
 
         var cover_event_box = new Gtk.EventBox ();
         cover_event_box.add (album_cover);
+
+        var cover_box_child = new Gtk.FlowBoxChild ();
+        cover_box_child.can_focus = false;
+        cover_box_child.add (cover_event_box);
 
         var cover_set_new = new Gtk.MenuItem.with_label (_("Set new album cover"));
 
@@ -69,7 +62,7 @@ public class Music.AlbumListGrid : Gtk.Grid {
 
         album_label = new Gtk.Label ("");
         album_label.halign = Gtk.Align.START;
-        album_label.margin_start = album_label.margin_end = 28;
+        album_label.margin_start = album_label.margin_end = 12;
         album_label.max_width_chars = 30;
         album_label.wrap = true;
         album_label.xalign = 0;
@@ -77,36 +70,90 @@ public class Music.AlbumListGrid : Gtk.Grid {
 
         artist_label = new Gtk.Label ("");
         artist_label.halign = Gtk.Align.START;
-        artist_label.margin_start = artist_label.margin_end = 28;
+        artist_label.margin_start = artist_label.margin_end = 12;
         artist_label.max_width_chars = 30;
         artist_label.wrap = true;
         artist_label.xalign = 0;
         artist_label.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
 
-        var tvs = new TreeViewSetup (ViewWrapper.Hint.ALBUM_LIST);
-        list_view = new MusicListView (view_wrapper, tvs);
-        list_view.expand = true;
-        list_view.headers_visible = false;
-        list_view.set_search_func (view_search_func);
-        list_view.get_style_context ().remove_class (Gtk.STYLE_CLASS_VIEW);
+        var title_grid = new Gtk.Grid ();
+        title_grid.halign = Gtk.Align.CENTER;
+        title_grid.valign = Gtk.Align.CENTER;
+        title_grid.attach (album_label, 0, 0);
+        title_grid.attach (artist_label, 0, 1);
+
+        var title_grid_child = new Gtk.FlowBoxChild ();
+        title_grid_child.can_focus = false;
+        title_grid_child.add (title_grid);
+
+        var title_flow_box = new Gtk.FlowBox ();
+        title_flow_box.margin_start = title_flow_box.margin_end = 19;
+        title_flow_box.max_children_per_line = 2;
+        title_flow_box.row_spacing = 12;
+        title_flow_box.add (cover_box_child);
+        title_flow_box.add (title_grid_child);
+
+        var title_size_group = new Gtk.SizeGroup (Gtk.SizeGroupMode.HORIZONTAL);
+        title_size_group.add_widget (cover_event_box);
+        title_size_group.add_widget (title_grid);
+
+        album_list_box = new Gtk.FlowBox ();
+        album_list_box.activate_on_single_click = false;
+        album_list_box.homogeneous = true;
+        album_list_box.row_spacing = 2;
+        album_list_box.selection_mode = Gtk.SelectionMode.MULTIPLE;
+        album_list_box.valign = Gtk.Align.START;
+        album_list_box.expand = true;
+        album_list_box.get_style_context ().add_class (Gtk.STYLE_CLASS_BACKGROUND);
+        album_list_box.set_sort_func ((Gtk.FlowBoxSortFunc) compare_rows);
 
         var list_view_scrolled = new Gtk.ScrolledWindow (null, null);
         list_view_scrolled.margin_top = 18;
-        list_view_scrolled.add (list_view);
+        list_view_scrolled.add (album_list_box);
 
         rating = new Music.RatingWidget (true, Gtk.IconSize.MENU, true);
         rating.star_spacing = 12;
         rating.margin_bottom = rating.margin_top = 12;
 
-        attach (cover_event_box, 0, 0, 1, 1);
-        attach (album_label, 0, 1, 1, 1);
-        attach (artist_label, 0, 2, 1, 1);
-        attach (list_view_scrolled, 0, 3, 1, 1);
-        attach (rating, 0, 4, 1, 1);
+        attach (title_flow_box, 0, 0);
+        attach (list_view_scrolled, 0, 1);
+        attach (rating, 0, 2);
 
         cover_event_box.button_press_event.connect (show_cover_context_menu);
         cover_set_new.activate.connect (set_new_cover);
         rating.rating_changed.connect (rating_changed);
+
+        album_list_box.child_activated.connect ((row) => {
+            App.player.clear_queue ();
+            App.player.queue_media (media_list);
+            App.player.play_media (((AlbumListRow) row).media);
+            App.player.start_playback ();
+        });
+
+        album_list_box.button_release_event.connect ((event) => {
+            if (event.button == Gdk.BUTTON_SECONDARY) {
+                double x, y;
+                event.get_coords (out x, out y);
+
+                var hovered_child = album_list_box.get_child_at_pos ((int) x, (int) y);
+
+                var selected_children = album_list_box.get_selected_children ();
+                if (selected_children.length () == 0 || selected_children.find (hovered_child) == null) {
+                    album_list_box.select_child (hovered_child);
+                }
+
+                var selection = new Gee.ArrayList<Media> ();
+                foreach (unowned Gtk.FlowBoxChild child in album_list_box.get_selected_children ()) {
+                    selection.add (((Music.AlbumListRow) child).media);
+                }
+
+                var track_menu = new Music.TrackMenu (selection);
+                track_menu.popup_at_pointer (event);
+
+                return Gdk.EVENT_PROPAGATE;
+            }
+            return Gdk.EVENT_PROPAGATE;
+        });
     }
 
     /**
@@ -115,11 +162,11 @@ public class Music.AlbumListGrid : Gtk.Grid {
     public void reset () {
         album_label.set_label ("");
         artist_label.set_label ("");
-
-        // clear treeview and media list
-        list_view.get_selection ().unselect_all (); // Unselect rows
         media_list.clear ();
-        list_view.set_media (media_list);
+
+        foreach (Gtk.Widget child in album_list_box.get_children ()) {
+            child.destroy ();
+        }
 
         if (album != null) {
             album.notify["cover-icon"].disconnect (update_album_cover);
@@ -147,18 +194,11 @@ public class Music.AlbumListGrid : Gtk.Grid {
 
             // Make a copy. Otherwise the list won't work if some elements are
             // removed from the parent wrapper while the window is showing
-            foreach (var m in album.get_media ()) {
-                media_list.add (m);
+            foreach (var media in album.get_media ()) {
+                media_list.add (media);
+                album_list_box.add (new AlbumListRow (media));
             }
-
-            list_view.set_media (media_list);
-
-            // Search again to match the view wrapper's search
-            list_view.do_search (App.main_window.search_entry.text);
         }
-
-        if (list_view.get_realized ())
-            list_view.columns_autosize ();
 
         // Set rating
         update_album_rating ();
@@ -166,7 +206,7 @@ public class Music.AlbumListGrid : Gtk.Grid {
     }
 
     public void play_active_list () {
-        list_view.row_activated (new Gtk.TreePath.first (), new Gtk.TreeViewColumn ());
+        album_list_box.get_child_at_index (0).activate ();
     }
 
     void update_album_cover () {
@@ -258,5 +298,16 @@ public class Music.AlbumListGrid : Gtk.Grid {
         }
 
         file.destroy ();
+    }
+
+    private static int compare_rows (Gtk.FlowBoxChild a, Gtk.FlowBoxChild b) {
+        var tracka = (((AlbumListRow)a).media.track);
+        var trackb = (((AlbumListRow)b).media.track);
+
+        if (tracka > trackb) {
+            return 1;
+        } else {
+            return -1;
+        }
     }
 }

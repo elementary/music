@@ -204,7 +204,6 @@ public class Music.MusicListView : GenericList {
         var selected_media = get_selected_medias ().read_only_view;
 
         switch (hint) {
-            case ViewWrapper.Hint.ALBUM_LIST:
             case ViewWrapper.Hint.MUSIC:
                 var dialog = new RemoveFilesDialog (selected_media);
                 dialog.remove_media.connect ((delete_files) => {

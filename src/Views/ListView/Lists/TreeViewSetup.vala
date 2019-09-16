@@ -219,12 +219,6 @@ public class Music.TreeViewSetup : Object {
         // Initial column state, as added during the first-run / database-reset.
         // Columns are ordered.
         switch (hint) {
-            case ViewWrapper.Hint.ALBUM_LIST: // same as normal music list, but most are hidden
-                append_new_column (ListColumn.ICON);
-                append_new_column (ListColumn.TITLE);
-                append_new_column (ListColumn.LENGTH);
-            break;
-
             case ViewWrapper.Hint.CDROM:
                 append_new_column (ListColumn.ICON);
                 append_new_column (ListColumn.NUMBER, false);

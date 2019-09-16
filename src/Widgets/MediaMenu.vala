@@ -56,18 +56,6 @@ public class Music.MediaMenu : Gtk.Menu {
         import_to_library = new Gtk.MenuItem.with_label (_("Import to Library"));
 
         switch (hint) {
-            case ViewWrapper.Hint.ALBUM_LIST:
-                append (edit_media);
-                append (file_browse);
-                append (contractor_entry);
-                append (rate_media);
-                append (new Gtk.SeparatorMenuItem ());
-                append (queue_media);
-                append (add_to_playlist);
-                append (new Gtk.SeparatorMenuItem ());
-                append (remove_media);
-                remove_media.label = _("Remove from Library…");
-                break;
             case ViewWrapper.Hint.MUSIC:
             case ViewWrapper.Hint.PLAYLIST:
                 append (scroll_to_current);
@@ -307,7 +295,6 @@ public class Music.MediaMenu : Gtk.Menu {
         var selected_media = generic_list.get_selected_medias ().read_only_view;
 
         switch (hint) {
-            case ViewWrapper.Hint.ALBUM_LIST:
             case ViewWrapper.Hint.MUSIC:
                 var dialog = new RemoveFilesDialog (selected_media);
                 dialog.remove_media.connect ((delete_files) => {

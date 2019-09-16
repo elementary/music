@@ -96,7 +96,7 @@ public class Music.PlaybackManager : Object {
 
     public Music.Streamer file_player;
     public Music.Playback player;
-    public Music.Media current_media { private set; get; }
+    public Music.Media current_media { get; private set; }
 
     construct {
         history_playlist = new HistoryPlaylist ();
