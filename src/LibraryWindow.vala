@@ -46,6 +46,8 @@ public class Music.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWindow
     private bool media_half_played_sended { get; set; default = false; }
     private bool search_field_has_focus { get; set; default = true; }
 
+    private uint configure_id;
+
     private Cancellable notification_cancellable;
     private PreferencesWindow? preferences = null;
     private Settings.Main main_settings;
@@ -347,9 +349,12 @@ public class Music.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWindow
         icon_name = "multimedia-audio-player";
         title = _("Music");
 
-        set_default_size (App.saved_state.get_int ("window-width"), App.saved_state.get_int ("window-height"));
-        var window_x = App.saved_state.get_int ("window-x");
-        var window_y = App.saved_state.get_int ("window-y");
+        int window_x, window_y, window_width, window_height;
+        App.saved_state.get ("window-position", "(ii)", out window_x, out window_y);
+        App.saved_state.get ("window-size", "(ii)", out window_width, out window_height);
+
+        set_default_size (window_width, window_height);
+
         if (window_x != -1 ||  window_y != -1) {
             move (window_x, window_y);
         }
@@ -1167,7 +1172,6 @@ public class Music.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWindow
         App.player.player.pause ();
 
         App.saved_state.set_int ("view-mode", view_selector.selected);
-        App.saved_state.set_boolean ("window-maximized", is_maximized);
     }
 
     /**
@@ -1190,14 +1194,24 @@ public class Music.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWindow
     }
 
     public override bool configure_event (Gdk.EventConfigure event) {
-        if (is_maximized == false) {
-            int window_width, window_height, window_x, window_y;
-            get_size (out window_width, out window_height);
-            get_position (out window_x, out window_y);
-            App.saved_state.set_int ("window-height", window_height);
-            App.saved_state.set_int ("window-width", window_width);
-            App.saved_state.set_int ("window-x" , window_x);
-            App.saved_state.set_int ("window-y" , window_y);
+        if (configure_id == 0) {
+            /* Avoid spamming the settings */
+            configure_id = Timeout.add (200, () => {
+                configure_id = 0;
+
+                App.saved_state.set_boolean ("window-maximized", is_maximized);
+
+                if (!is_maximized) {
+                    int width, height, root_x, root_y;
+                    get_position (out root_x, out root_y);
+                    get_size (out width, out height);
+
+                    App.saved_state.set ("window-position", "(ii)", root_x, root_y);
+                    App.saved_state.set ("window-size", "(ii)", width, height);
+                }
+
+                return GLib.Source.REMOVE;
+            });
         }
 
         return base.configure_event (event);
