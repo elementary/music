@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -26,7 +26,7 @@
  * Authored by: Victor Eduardo <victoreduardm@gmail.com>
  */
 
-namespace Noise.Search {
+namespace Music.Search {
 
     /*
      * Linear exact-string-matching search method.
@@ -88,7 +88,7 @@ namespace Noise.Search {
             && (String.is_empty (composer, false) || media.get_display_composer () == composer);
     }
 
-    public inline string get_valid_search_string (string s) {
+    private inline string get_valid_search_string (string s) {
         return String.canonicalize_for_search (s);
     }
 
@@ -107,7 +107,7 @@ namespace Noise.Search {
      *   "  "
      *   "**a"
      */
-    public inline uint? get_rating_from_string (string rating_string)
+    private inline uint? get_rating_from_string (string rating_string)
         ensures (result != 0)
     {
         int i = 0;

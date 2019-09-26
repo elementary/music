@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -27,9 +27,8 @@
  *              Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-namespace Noise.FileUtils {
-
-    public const string APP_NAME = "noise";
+namespace Music.FileUtils {
+    private const string APP_NAME = "noise";
 
     public File get_data_directory () {
         string data_dir = Environment.get_user_data_dir ();
@@ -37,7 +36,7 @@ namespace Noise.FileUtils {
         return File.new_for_path (dir_path);
     }
 
-    public File get_cache_directory () {
+    private File get_cache_directory () {
         string data_dir = Environment.get_user_cache_dir ();
         string dir_path = Path.build_path (Path.DIR_SEPARATOR_S, data_dir, APP_NAME);
         return File.new_for_path (dir_path);
@@ -56,25 +55,6 @@ namespace Noise.FileUtils {
         }
 
         return size;
-    }
-
-    /**
-     * Checks whether //dir// is a directory.
-     * Does not follow symbolic links.
-     */
-    public async bool is_directory_async (File dir, Cancellable? cancellable = null) {
-        FileInfo? info = null;
-
-        try {
-            info = yield dir.query_info_async (FileAttribute.STANDARD_TYPE,
-                                               FileQueryInfoFlags.NOFOLLOW_SYMLINKS,
-                                               Priority.DEFAULT,
-                                               cancellable);
-        } catch (Error err) {
-            warning (err.message);
-        }
-
-        return info != null && info.get_file_type () == FileType.DIRECTORY;
     }
 
     /**

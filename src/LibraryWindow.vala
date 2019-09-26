@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -27,7 +27,7 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
+public class Music.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWindow {
     public signal void play_pause_changed ();
 
     public bool initialization_finished { get; private set; default = false; }
@@ -38,7 +38,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     public Widgets.ViewSelector view_selector { get; private set; }
     public Gtk.SearchEntry search_entry { get; private set; }
     public Widgets.StatusBar statusbar { get; private set; }
-    public Noise.LocalLibrary library_manager { get { return (Noise.LocalLibrary)libraries_manager.local_library; } }
+    public Music.LocalLibrary library_manager { get { return (Music.LocalLibrary)libraries_manager.local_library; } }
 
     private bool media_considered_played { get; set; default = false; } // whether or not we have updated last played and added to already played list
     private bool added_to_play_count { get; set; default = false; } // whether or not we have added one to play count on playing media
@@ -46,7 +46,8 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     private bool media_half_played_sended { get; set; default = false; }
     private bool search_field_has_focus { get; set; default = true; }
 
-    private Gtk.Paned main_hpaned;
+    private uint configure_id;
+
     private Cancellable notification_cancellable;
     private PreferencesWindow? preferences = null;
     private Settings.Main main_settings;
@@ -55,8 +56,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     internal Gee.HashMap<unowned Playlist, ViewWrapper> match_playlists;
     private Gee.HashMap<string, DeviceView> match_devices;
     private Gee.HashMap<unowned Playlist, SourceListEntry> match_playlist_entry;
-
-    public SimpleActionGroup actions { get; construct; }
 
     public const string ACTION_PREFIX = "win.";
     public const string ACTION_IMPORT = "action_import";
@@ -92,9 +91,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     construct {
-        actions = new SimpleActionGroup ();
-        actions.add_action_entries (action_entries, this);
-        insert_action_group ("win", actions);
+        add_action_entries (action_entries, this);
 
         main_settings = Settings.Main.get_default ();
 
@@ -190,7 +187,127 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         return base.key_press_event (event);
     }
 
-    private void connect_to_sourcelist_signals () {
+    public void build_ui () {
+        height_request = 350;
+        width_request = 400;
+        icon_name = "multimedia-audio-player";
+        title = _("Music");
+
+        int window_x, window_y, window_width, window_height;
+        App.saved_state.get ("window-position", "(ii)", out window_x, out window_y);
+        App.saved_state.get ("window-size", "(ii)", out window_width, out window_height);
+
+        set_default_size (window_width, window_height);
+
+        if (window_x != -1 ||  window_y != -1) {
+            move (window_x, window_y);
+        }
+
+        if (App.saved_state.get_boolean ("window-maximized")) {
+            maximize ();
+        }
+
+        destroy.connect (on_quit);
+
+
+        var import_menuitem = new Gtk.MenuItem.with_label (_("Import to Library…"));
+        import_menuitem.action_name = ACTION_PREFIX + ACTION_IMPORT;
+
+        var preferences_menuitem = new Gtk.MenuItem.with_label (_("Preferences"));
+        preferences_menuitem.activate.connect (editPreferencesClick);
+
+        var menu = new Gtk.Menu ();
+        menu.append (import_menuitem);
+        menu.append (new Gtk.SeparatorMenuItem ());
+        menu.append (preferences_menuitem);
+        menu.show_all ();
+
+        var menu_button = new Gtk.MenuButton ();
+        menu_button.image = new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR);
+        menu_button.popup = menu;
+        menu_button.valign = Gtk.Align.CENTER;
+
+        var previous_button = new Gtk.Button.from_icon_name ("media-skip-backward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+        previous_button.action_name = ACTION_PREFIX + ACTION_PLAY_PREVIOUS;
+        previous_button.tooltip_text = _("Previous");
+
+        var play_button = new Gtk.Button.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+        play_button.action_name = ACTION_PREFIX + ACTION_PLAY;
+        play_button.tooltip_text = _("Play");
+
+        var next_button = new Gtk.Button.from_icon_name ("media-skip-forward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+        next_button.action_name = ACTION_PREFIX + ACTION_PLAY_NEXT;
+        next_button.tooltip_text = _("Next");
+
+        search_entry = new Gtk.SearchEntry ();
+        search_entry.valign = Gtk.Align.CENTER;
+        search_entry.placeholder_text = _("Search Music");
+
+        view_selector = new Widgets.ViewSelector ();
+        view_selector.margin_start = 12;
+        view_selector.margin_end = 6;
+        view_selector.valign = Gtk.Align.CENTER;
+
+        top_display = new TopDisplay ();
+        top_display.margin_start = 30;
+        top_display.margin_end = 30;
+
+        var headerbar = new Gtk.HeaderBar ();
+        headerbar.show_close_button = true;
+        headerbar.pack_start (previous_button);
+        headerbar.pack_start (play_button);
+        headerbar.pack_start (next_button);
+        headerbar.pack_start (view_selector);
+        headerbar.pack_end (menu_button);
+        headerbar.pack_end (search_entry);
+        headerbar.set_title (_("Music"));
+        headerbar.set_custom_title (top_display);
+        headerbar.show_all ();
+
+        view_stack = new ViewStack ();
+        source_list_view = new SourceListView ();
+
+        statusbar = new Widgets.StatusBar ();
+
+        var grid = new Gtk.Grid ();
+        grid.orientation = Gtk.Orientation.VERTICAL;
+        grid.add (source_list_view);
+        grid.add (statusbar);
+
+        var main_hpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
+        main_hpaned.pack1 (grid, false, false);
+        main_hpaned.pack2 (view_stack, true, false);
+        main_hpaned.show_all ();
+
+        App.saved_state.bind ("sidebar-width", main_hpaned, "position", GLib.SettingsBindFlags.DEFAULT);
+
+        add (main_hpaned);
+        set_titlebar (headerbar);
+
+        show ();
+
+        action_state_changed.connect ((name, new_state) => {
+            if (name == ACTION_PLAY) {
+                if (new_state.get_boolean () == false) {
+                    play_button.image = new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+                    play_button.tooltip_text = _("Play");
+                } else {
+                    play_button.image = new Gtk.Image.from_icon_name ("media-playback-pause-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+                    play_button.tooltip_text = _("Pause");
+                }
+            }
+        });
+
+        library_manager.search_finished.connect (() => {
+            view_stack.hide_alert ();
+        });
+
+        libraries_manager.library_added.connect ((lib) => {
+            lib.search_finished.connect (() => {
+                view_stack.hide_alert ();
+            });
+        });
+
         source_list_view.selection_changed.connect ((view) => {
             view_stack.visible_child = view;
         });
@@ -338,133 +455,12 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
         source_list_view.playlist_import_clicked.connect (() => {
             try {
-                PlaylistsUtils.import_from_playlist_file_info (Noise.PlaylistsUtils.get_playlists_to_import (), library_manager);
+                PlaylistsUtils.import_from_playlist_file_info (Music.PlaylistsUtils.get_playlists_to_import (), library_manager);
                 update_sensitivities.begin ();
             } catch (GLib.Error e) {
                 warning (e.message);
             }
         });
-    }
-
-    public void build_ui () {
-        height_request = 350;
-        width_request = 400;
-        icon_name = "multimedia-audio-player";
-        title = _("Music");
-
-        set_default_size (App.saved_state.get_int ("window-width"), App.saved_state.get_int ("window-height"));
-        var window_x = App.saved_state.get_int ("window-x");
-        var window_y = App.saved_state.get_int ("window-y");
-        if (window_x != -1 ||  window_y != -1) {
-            move (window_x, window_y);
-        }
-
-        if (App.saved_state.get_boolean ("window-maximized")) {
-            maximize ();
-        }
-
-        destroy.connect (on_quit);
-
-
-        var import_menuitem = new Gtk.MenuItem.with_label (_("Import to Library…"));
-        import_menuitem.action_name = ACTION_PREFIX + ACTION_IMPORT;
-
-        var preferences_menuitem = new Gtk.MenuItem.with_label (_("Preferences"));
-        preferences_menuitem.activate.connect (editPreferencesClick);
-
-        var menu = new Gtk.Menu ();
-        menu.append (import_menuitem);
-        menu.append (new Gtk.SeparatorMenuItem ());
-        menu.append (preferences_menuitem);
-        menu.show_all ();
-
-        var menu_button = new Gtk.MenuButton ();
-        menu_button.image = new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR);
-        menu_button.popup = menu;
-        menu_button.valign = Gtk.Align.CENTER;
-
-        var previous_button = new Gtk.Button.from_icon_name ("media-skip-backward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-        previous_button.action_name = ACTION_PREFIX + ACTION_PLAY_PREVIOUS;
-        previous_button.tooltip_text = _("Previous");
-
-        var play_button = new Gtk.Button.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-        play_button.action_name = ACTION_PREFIX + ACTION_PLAY;
-        play_button.tooltip_text = _("Play");
-
-        var next_button = new Gtk.Button.from_icon_name ("media-skip-forward-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-        next_button.action_name = ACTION_PREFIX + ACTION_PLAY_NEXT;
-        next_button.tooltip_text = _("Next");
-
-        search_entry = new Gtk.SearchEntry ();
-        search_entry.valign = Gtk.Align.CENTER;
-        search_entry.placeholder_text = _("Search Music");
-
-        view_selector = new Widgets.ViewSelector ();
-        view_selector.margin_start = 12;
-        view_selector.margin_end = 6;
-        view_selector.valign = Gtk.Align.CENTER;
-
-        top_display = new TopDisplay ();
-        top_display.margin_start = 30;
-        top_display.margin_end = 30;
-
-        var headerbar = new Gtk.HeaderBar ();
-        headerbar.show_close_button = true;
-        headerbar.pack_start (previous_button);
-        headerbar.pack_start (play_button);
-        headerbar.pack_start (next_button);
-        headerbar.pack_start (view_selector);
-        headerbar.pack_end (menu_button);
-        headerbar.pack_end (search_entry);
-        headerbar.set_title (_("Music"));
-        headerbar.set_custom_title (top_display);
-        headerbar.show_all ();
-
-        view_stack = new ViewStack ();
-        source_list_view = new SourceListView ();
-
-        statusbar = new Widgets.StatusBar ();
-
-        var grid = new Gtk.Grid ();
-        grid.orientation = Gtk.Orientation.VERTICAL;
-        grid.add (source_list_view);
-        grid.add (statusbar);
-
-        main_hpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
-        main_hpaned.pack1 (grid, false, false);
-        main_hpaned.pack2 (view_stack, true, false);
-        main_hpaned.show_all ();
-
-        App.saved_state.bind ("sidebar-width", main_hpaned, "position", GLib.SettingsBindFlags.DEFAULT);
-
-        add (main_hpaned);
-        set_titlebar (headerbar);
-
-        show ();
-
-        actions.action_state_changed.connect ((name, new_state) => {
-            if (name == ACTION_PLAY) {
-                if (new_state.get_boolean () == false) {
-                    play_button.image = new Gtk.Image.from_icon_name ("media-playback-start-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-                    play_button.tooltip_text = _("Play");
-                } else {
-                    play_button.image = new Gtk.Image.from_icon_name ("media-playback-pause-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
-                    play_button.tooltip_text = _("Pause");
-                }
-            }
-        });
-
-        library_manager.search_finished.connect (() => {
-            view_stack.hide_alert ();
-        });
-
-        libraries_manager.library_added.connect ((lib) => {
-            lib.search_finished.connect (() => {
-                view_stack.hide_alert ();
-            });
-        });
-
-        connect_to_sourcelist_signals ();
 
         load_playlists ();
         update_sensitivities_sync (); // we need to do this synchronously to avoid weird initial states
@@ -645,19 +641,19 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         bool media_active = App.player.current_media != null;
         bool media_available = App.player.get_current_media_list ().size > 0;
 
-        ((SimpleAction) actions.lookup_action (ACTION_IMPORT)).set_enabled (!doing_ops && folder_set);
-        ((SimpleAction) actions.lookup_action (ACTION_PLAY)).set_enabled (media_active || media_available);
-        ((SimpleAction) actions.lookup_action (ACTION_PLAY_NEXT)).set_enabled (media_active || media_available);
-        ((SimpleAction) actions.lookup_action (ACTION_PLAY_PREVIOUS)).set_enabled (media_active || media_available);
+        ((SimpleAction) lookup_action (ACTION_IMPORT)).set_enabled (!doing_ops && folder_set);
+        ((SimpleAction) lookup_action (ACTION_PLAY)).set_enabled (media_active || media_available);
+        ((SimpleAction) lookup_action (ACTION_PLAY_NEXT)).set_enabled (media_active || media_available);
+        ((SimpleAction) lookup_action (ACTION_PLAY_PREVIOUS)).set_enabled (media_active || media_available);
 
         // hide playlists when media list is empty
         source_list_view.change_playlist_category_visibility (have_media);
         statusbar.playlist_menubutton_sensitive = folder_set && have_media;
 
         if (!media_active || have_media && !App.player.playing) {
-            ((SimpleAction) actions.lookup_action (ACTION_PLAY)).set_state (false);
+            ((SimpleAction) lookup_action (ACTION_PLAY)).set_state (false);
         } else {
-            ((SimpleAction) actions.lookup_action (ACTION_PLAY)).set_state (true);
+            ((SimpleAction) lookup_action (ACTION_PLAY)).set_state (true);
         }
 
     }
@@ -905,7 +901,7 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
 
 
     public virtual void playback_stopped (int64 was_playing) {
-        ((SimpleAction) actions.lookup_action (ACTION_PLAY)).set_state (false);
+        ((SimpleAction) lookup_action (ACTION_PLAY)).set_state (false);
         //reset some booleans
         media_considered_previewed = false;
         media_considered_played = false;
@@ -1172,7 +1168,6 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
         App.player.player.pause ();
 
         App.saved_state.set_int ("view-mode", view_selector.selected);
-        App.saved_state.set_boolean ("window-maximized", is_maximized);
     }
 
     /**
@@ -1195,14 +1190,24 @@ public class Noise.LibraryWindow : LibraryWindowInterface, Gtk.Window {
     }
 
     public override bool configure_event (Gdk.EventConfigure event) {
-        if (is_maximized == false) {
-            int window_width, window_height, window_x, window_y;
-            get_size (out window_width, out window_height);
-            get_position (out window_x, out window_y);
-            App.saved_state.set_int ("window-height", window_height);
-            App.saved_state.set_int ("window-width", window_width);
-            App.saved_state.set_int ("window-x" , window_x);
-            App.saved_state.set_int ("window-y" , window_y);
+        if (configure_id == 0) {
+            /* Avoid spamming the settings */
+            configure_id = Timeout.add (200, () => {
+                configure_id = 0;
+
+                App.saved_state.set_boolean ("window-maximized", is_maximized);
+
+                if (!is_maximized) {
+                    int width, height, root_x, root_y;
+                    get_position (out root_x, out root_y);
+                    get_size (out width, out height);
+
+                    App.saved_state.set ("window-position", "(ii)", root_x, root_y);
+                    App.saved_state.set ("window-size", "(ii)", width, height);
+                }
+
+                return GLib.Source.REMOVE;
+            });
         }
 
         return base.configure_event (event);

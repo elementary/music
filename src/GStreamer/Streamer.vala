@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -26,8 +26,8 @@
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-public class Noise.Streamer : Noise.Playback, GLib.Object {
-    Noise.Pipeline pipe;
+public class Music.Streamer : Music.Playback, GLib.Object {
+    Music.Pipeline pipe;
 
     InstallGstreamerPluginsDialog dialog;
 
@@ -41,7 +41,7 @@ public class Noise.Streamer : Noise.Playback, GLib.Object {
     public signal void error_occured (); */
 
     public Streamer () {
-        pipe = new Noise.Pipeline ();
+        pipe = new Music.Pipeline ();
 
         pipe.bus.add_watch (GLib.Priority.DEFAULT, bus_callback);
         //pipe.playbin.about_to_finish.connect(about_to_finish);
@@ -141,7 +141,7 @@ public class Noise.Streamer : Noise.Playback, GLib.Object {
     }
 
     public void set_equalizer_gain (int index, int val) {
-        pipe.eq.setGain (index, val);
+        pipe.eq.set_gain (index, val);
     }
 
     /* Callbacks */

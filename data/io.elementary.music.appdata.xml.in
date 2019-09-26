@@ -154,5 +154,11 @@
     <screenshot type="default">
       <image>https://raw.githubusercontent.com/elementary/music/master/data/screenshot.png</image>
     </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/elementary/music/master/data/screenshot-2.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/elementary/music/master/data/screenshot-3.png</image>
+    </screenshot>
   </screenshots>
 </component>
