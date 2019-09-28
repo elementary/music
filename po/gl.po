@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-26 22:43+0200\n"
 "PO-Revision-Date: 2019-09-29 09:23+0000\n"
-"Last-Translator: Cleiton Floss <cleitonfloss@gmail.com>\n"
+"Last-Translator: Daniel R. <riesp@pm.me>\n"
 "Language-Team: Galician <https://l10n.elementary.io/projects/music/music/gl/>"
 "\n"
 "Language: gl\n"
@@ -263,19 +263,18 @@ msgstr ""
 "poidan importar"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, fuzzy
 msgid "Song imported from Audio CD."
-msgstr "%s rematou de importar unha canción desde o CD de son."
+msgstr "Canción importada desde un CD de son."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, fuzzy, c-format
+#, c-format
 msgid "%i songs imported from Audio CD."
-msgstr "%s rematou de importar unha canción desde o CD de son."
+msgstr "%i cancións importadas desde un CD de son."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
 msgid "Importing track %u: %s"
-msgstr ""
+msgstr "Importando pista %u: %s"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:364
 msgid "CD import will be <b>cancelled</b> after current import."
@@ -284,21 +283,19 @@ msgstr ""
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:383
 msgid "Could not import this CD"
-msgstr ""
+msgstr "Non se puido importar este CD"
 
 #: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
 msgid "Import"
 msgstr "Importar"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:37
-#, fuzzy
 msgid "An Error Occurred"
 msgstr "Produciuse un erro"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:38
-#, fuzzy
 msgid "Could not load this Audio CD."
-msgstr "%s non puido ler o contido deste CD de son"
+msgstr "Non se puido cargar este CD de son."
 
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
@@ -342,7 +339,7 @@ msgstr "Reamatada a importación"
 
 #: src/FileOperator.vala:306
 msgid "Your Library Has Been Imported."
-msgstr ""
+msgstr "A fonoteca foi importada."
 
 #. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:316
@@ -426,7 +423,7 @@ msgstr "Non se atopou o ficheiro"
 #: src/Dialogs/FileNotFoundDialog.vala:47
 #, c-format
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
-msgstr "Non se atopou o ficheiro de música <b>%s</b> por <b>%s</b>"
+msgstr "Non se atopou o ficheiro de música <b>%s</b> por <b>%s</b>."
 
 #: src/Dialogs/FileNotFoundDialog.vala:50
 #, c-format
@@ -451,16 +448,14 @@ msgid "Choose Music Folder"
 msgstr "Escolla o cartafol da música"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:38
-#, fuzzy, c-format
+#, c-format
 msgid "Would you like to install the %s plugin?"
-msgstr "Quere instalar o engadido %s?\n"
+msgstr "Quere instalar o complemento %s?"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:39
-#, fuzzy, c-format
+#, c-format
 msgid "This song cannot be played. The %s plugin is required to play the song."
-msgstr ""
-"\n"
-"Non é posíbel reproducir esta canción. Require o engadido %s"
+msgstr "Non é posíbel reproducir esta canción. Require o complemento %s."
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid "Install Plugin"
@@ -468,52 +463,51 @@ msgstr "Instalar engadido"
 
 #: src/Dialogs/MediaEditor.vala:100
 msgid "Title:"
-msgstr ""
+msgstr "Título:"
 
 #: src/Dialogs/MediaEditor.vala:102
 msgid "Artist:"
-msgstr ""
+msgstr "Intérprete:"
 
 #: src/Dialogs/MediaEditor.vala:104
 msgid "Album:"
-msgstr ""
+msgstr "Álbum:"
 
 #: src/Dialogs/MediaEditor.vala:106
 msgid "Album Artist:"
-msgstr ""
+msgstr "Artista do álbum:"
 
 #: src/Dialogs/MediaEditor.vala:108
 msgid "Composer:"
-msgstr ""
+msgstr "Compositor:"
 
 #: src/Dialogs/MediaEditor.vala:110
 msgid "Grouping:"
-msgstr ""
+msgstr "Agrupación:"
 
 #: src/Dialogs/MediaEditor.vala:112
 msgid "Genre:"
-msgstr ""
+msgstr "Xénero:"
 
 #: src/Dialogs/MediaEditor.vala:114
 msgid "Year:"
-msgstr ""
+msgstr "Ano:"
 
 #: src/Dialogs/MediaEditor.vala:116
 msgid "Track:"
-msgstr ""
+msgstr "Pista:"
 
 #: src/Dialogs/MediaEditor.vala:118
-#, fuzzy
 msgid "Disc:"
-msgstr "Disco"
+msgstr "Disco:"
 
 #: src/Dialogs/MediaEditor.vala:120
 msgid "Rating:"
-msgstr ""
+msgstr "Valoración:"
 
 #: src/Dialogs/MediaEditor.vala:122
 msgid "Comment:"
-msgstr ""
+msgstr "Comentario:"
 
 #. FIXME: don't know if I can delete this
 #: src/Dialogs/MediaEditor.vala:135 src/Dialogs/PreferencesWindow.vala:97
@@ -522,20 +516,19 @@ msgid "Close"
 msgstr "Pechar"
 
 #: src/Dialogs/NotImportedDialog.vala:51
-#, fuzzy, c-format
+#, c-format
 msgid "Issues while importing from %s"
-msgstr "Importando máusica desde %s…"
+msgstr "Houbo un problema ao importar música desde %s"
 
 #: src/Dialogs/NotImportedDialog.vala:57
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
 msgstr[0] ""
-"%s non pode importar %d elementos. É probábel que os ficheiros estean "
-"estragados."
+"Non se puido importar o elemento %d. É probábel que o ficheiro estea danado."
 msgstr[1] ""
-"%s non pode importar %d elementos. É probábel que os ficheiros estean "
-"estragados."
+"Non se puido importar os elementos %d. É probábel que os ficheiros estean "
+"danados."
 
 #: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
@@ -563,7 +556,7 @@ msgstr "Ingnorar"
 
 #: src/Dialogs/PreferencesWindow.vala:48
 msgid "Select Music Folder…"
-msgstr "Escolla o cartafol da música"
+msgstr "Escoller o cartafol de música…"
 
 #: src/Dialogs/PreferencesWindow.vala:78
 msgid "Music Folder Location"
@@ -587,26 +580,25 @@ msgstr "Copiar os ficheiros importados na fonoteca:"
 
 #: src/Dialogs/PreferencesWindow.vala:87
 msgid "Desktop Integration"
-msgstr ""
+msgstr "Integración co escritorio"
 
 #: src/Dialogs/PreferencesWindow.vala:88
 msgid "Continue playback when closed:"
 msgstr "Continuar a reprodución tras pechar:"
 
 #: src/Dialogs/RemoveFilesDialog.vala:49
-#, fuzzy, c-format
+#, c-format
 msgid "Remove %d Song From Library?"
 msgid_plural "Remove %d Songs From Library?"
-msgstr[0] "Retirar %d cancións de %s?"
-msgstr[1] "Retirar %d cancións de %s?"
+msgstr[0] "Eliminar a canción %d da fonoteca?"
+msgstr[1] "Eliminar as cancións %d da fonoteca?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:55
-#, fuzzy, c-format
+#, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr "Eliminar da fonoteca"
+msgstr "Eliminar \"%s\" da fonoteca?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
-#, fuzzy
 msgid ""
 "This will remove the song from your library and from any device synced "
 "automatically."
@@ -614,11 +606,9 @@ msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
 msgstr[0] ""
-"Isto retirará a canción da súa fonoteca e de calquera dispositivo que se "
-"sincronice automaticamente con %s."
+"Isto retirará a canción da fonoteca e de calquera dispositivo sincronizado."
 msgstr[1] ""
-"Isto retirará as cancións da súa fonoteca e de calquera dispositivo que se "
-"sincronice automaticamente con %s."
+"Isto retirará as cancións da fonoteca e de calquera dispositivo sincronizado."
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
@@ -763,7 +753,7 @@ msgstr "Ano"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:278
 msgid "URI"
-msgstr ""
+msgstr "URI"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:351
 msgid "is"
@@ -812,11 +802,11 @@ msgstr "kbps"
 
 #. be a bit explicit to make translations better
 #: src/Dialogs/SyncWarningDialog.vala:52
-#, fuzzy, c-format
+#, c-format
 msgid "Sync will remove %i item from %s"
 msgid_plural "Sync will remove %i items from %s"
-msgstr[0] "A sincronización eliminará %i elementos de %s"
-msgstr[1] "A sincronización eliminará %i elementos de %s"
+msgstr[0] "A sincronización eliminará o elemento %i de %s"
+msgstr[1] "A sincronización eliminará os elementos %i de %s"
 
 #: src/Dialogs/SyncWarningDialog.vala:55
 #, c-format
@@ -855,7 +845,7 @@ msgstr "No foi importado ningún ficheiro."
 
 #: src/LocalBackend/LocalLibrary.vala:255
 msgid "Rescanning music for changes. This may take a while…"
-msgstr "Examinando os cambios na música. Isto pode levar bastante tempo..."
+msgstr "Analizando cambios. Isto pode tardar un pouco…"
 
 #: src/LocalBackend/LocalLibrary.vala:356
 msgid "Added to your queue:"
@@ -865,8 +855,8 @@ msgstr "Engadido a súa cola:"
 #, c-format
 msgid "%d Track"
 msgid_plural "%d Tracks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d pista"
+msgstr[1] "%d pistas"
 
 #: src/LocalBackend/LocalSmartPlaylist.vala:217
 msgid "Favorite Songs"
@@ -946,7 +936,7 @@ msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
 "Non é posíbel sincronizar o dispositivo cos axustes indicados. Non hai "
-"espazo abondo no dispositivo."
+"espazo abondo no disco"
 
 #: src/Views/DeviceSummaryWidget.vala:322
 msgid "Device is already doing an operation."
@@ -962,13 +952,12 @@ msgstr ""
 "Foi cancelada a operación do dispositivo e deterase despois deste medio."
 
 #: src/Views/ViewStack.vala:45
-#, fuzzy
 msgid "No Results"
-msgstr "Sen puntuacións"
+msgstr "Sen resultados"
 
 #: src/Views/ViewStack.vala:45
 msgid "Try another search"
-msgstr ""
+msgstr "Procurar de novo"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
 msgid "Genres"
@@ -1106,13 +1095,13 @@ msgstr "Sen puntuar"
 #, c-format
 msgid "%u Star"
 msgid_plural "%u Stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u estrela"
+msgstr[1] "%u estrelas"
 
 #: src/Views/ListView/Lists/CellDataFunctionHelper.vala:128
 #, c-format
 msgid "%u kbps"
-msgstr ""
+msgstr "%u kbps"
 
 #: src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #: src/Views/ListView/Lists/MusicListView.vala:425
@@ -1245,7 +1234,7 @@ msgstr "Obter algunhas cancións"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:58
 msgid "Add music to your library."
-msgstr "Engadir música na súa fonoteca"
+msgstr "Engadir música á fonoteca."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:61
 msgid "Import music from a source into your library."
@@ -1360,17 +1349,14 @@ msgid "Scroll to Current Song"
 msgstr "Desprazarse ata a canción actual"
 
 #: src/Widgets/MediaMenu.vala:49
-#, fuzzy
 msgid "Show in File Browser…"
-msgstr "Amosar no explorador de ficheiros"
+msgstr "Amosar no explorador de ficheiros…"
 
 #: src/Widgets/MediaMenu.vala:50
-#, fuzzy
 msgid "Edit Song Info…"
-msgstr "Editar a información da canción"
+msgstr "Editar información da canción…"
 
 #: src/Widgets/MediaMenu.vala:51
-#, fuzzy
 msgid "Other Actions"
 msgstr "Outras accións"
 
@@ -1384,18 +1370,16 @@ msgid "Add to Playlist"
 msgstr "Engadir á lista de reprodución"
 
 #: src/Widgets/MediaMenu.vala:55
-#, fuzzy
 msgid "Remove Song…"
-msgstr "Retirar a canción"
+msgstr "Retirar canción…"
 
 #: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
 msgid "Import to Library"
 msgstr "Importar para a fonoteca"
 
 #: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
-#, fuzzy
 msgid "Remove from Library…"
-msgstr "Eliminar da fonoteca"
+msgstr "Eliminar da fonoteca…"
 
 #: src/Widgets/MediaMenu.vala:99
 msgid "Remove from Device"
@@ -1482,7 +1466,7 @@ msgstr "Engadir unha lista de reprodución intelixente"
 #: src/Widgets/StatusBar.vala:75
 #, c-format
 msgid "Equalizer: %s"
-msgstr ""
+msgstr "Ecualizador: %s"
 
 #. MUST follow the exact same order of Noise.Player.Repeat
 #: src/Widgets/TopDisplay.vala:139
@@ -1506,17 +1490,14 @@ msgid "Disable Shuffle"
 msgstr "Desactivar a reproducción ao chou"
 
 #: src/Widgets/ViewSelector.vala:81
-#, fuzzy
 msgid "View as albums"
 msgstr "Ver como álbums"
 
 #: src/Widgets/ViewSelector.vala:87
-#, fuzzy
 msgid "View as list"
 msgstr "Ver como lista"
 
 #: src/Widgets/ViewSelector.vala:93
-#, fuzzy
 msgid "View in columns"
 msgstr "Ver en columnas"
 
