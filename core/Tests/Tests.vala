@@ -44,7 +44,7 @@ void add_file_utils_tests () {
         assert (check_list_element_has_suffix (files, "tests/data/count_music_files/file1.wav"));
         assert (files[0].has_prefix ("file:///"));
 
-        files.clear();
+        files.clear ();
 
         assert (Music.FileUtils.count_music_files (File.new_for_path (TEST_DATA_FILE + "/data/count_music_files_subdir/"),
                 files) == 4);

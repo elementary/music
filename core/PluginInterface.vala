@@ -63,22 +63,22 @@ public class Music.Plugins.Interface : Object {
 
     public Interface (Manager manager) {
         this.manager = manager;
-        all_source_view = new List<Gtk.TextView>();
+        all_source_view = new List<Gtk.TextView> ();
 
-        manager.hook_main_menu.connect( (m) => {
+        manager.hook_main_menu.connect ((m) => {
             main_menu = m;
         });
-        manager.hook_addons_menu.connect( (m) => {
+        manager.hook_addons_menu.connect ((m) => {
             addons_menu = m;
         });
-        manager.hook_new_window.connect( (m) => {
+        manager.hook_new_window.connect ((m) => {
             window = m;
         });
-        manager.hook_notebook_bottom.connect( (m) => {
+        manager.hook_notebook_bottom.connect ((m) => {
             bottombar = m;
         });
-        manager.hook_source_view.connect( (m) => {
-            all_source_view.append(m);
+        manager.hook_source_view.connect ((m) => {
+            all_source_view.append (m);
         });
     }
 
@@ -86,14 +86,14 @@ public class Music.Plugins.Interface : Object {
         switch (hook) {
         case Hook.SOURCE_VIEW:
             manager.hook_source_view.connect_after ((m) => {
-                hook_function(m);
+                hook_function (m);
             });
             foreach (var source_view in all_source_view) {
                 hook_function (source_view);
             }
             break;
         case Hook.SETTINGS_WINDOW:
-            manager.hook_preferences_window.connect_after ( (d) => {
+            manager.hook_preferences_window.connect_after ((d) => {
                 hook_function (d);
             });
             break;
@@ -101,12 +101,12 @@ public class Music.Plugins.Interface : Object {
     }
 
     public void register_function_signal (Hook hook, string signal_name, Object obj) {
-        switch(hook) {
+        switch (hook) {
         case Hook.BOTTOMBAR:
             manager.hook_notebook_bottom.connect_after (() => {
                 Signal.emit_by_name (obj, signal_name);
             });
-            if(bottombar != null) {
+            if (bottombar != null) {
                 Signal.emit_by_name (obj, signal_name);
             }
             break;
@@ -114,10 +114,10 @@ public class Music.Plugins.Interface : Object {
     }
 
     public void register_function (Hook hook, HookFunction hook_function) {
-        switch(hook) {
+        switch (hook) {
         case Hook.CONTEXT:
             manager.hook_notebook_context.connect_after (() => {
-                hook_function();
+                hook_function ();
             });
             if (context != null) {
                 hook_function ();
@@ -125,7 +125,7 @@ public class Music.Plugins.Interface : Object {
             break;
         case Hook.SIDEBAR:
             manager.hook_notebook_sidebar.connect_after (() => {
-                hook_function();
+                hook_function ();
             });
             if (sidebar != null) {
                 hook_function ();
@@ -133,7 +133,7 @@ public class Music.Plugins.Interface : Object {
             break;
         case Hook.TOOLBAR:
             manager.hook_toolbar.connect_after (() => {
-                hook_function();
+                hook_function ();
             });
             if (toolbar != null) {
                 hook_function ();
@@ -141,7 +141,7 @@ public class Music.Plugins.Interface : Object {
             break;
         case Hook.BOTTOMBAR:
             manager.hook_notebook_bottom.connect_after (() => {
-                hook_function();
+                hook_function ();
             });
             if (bottombar != null) {
                 hook_function ();
@@ -149,7 +149,7 @@ public class Music.Plugins.Interface : Object {
             break;
         case Hook.MAIN_MENU:
             manager.hook_main_menu.connect_after (() => {
-                hook_function();
+                hook_function ();
             });
             if (main_menu != null) {
                 hook_function ();
@@ -157,7 +157,7 @@ public class Music.Plugins.Interface : Object {
             break;
         case Hook.ADDONS_MENU:
             manager.hook_addons_menu.connect_after (() => {
-                hook_function();
+                hook_function ();
             });
             if (addons_menu != null) {
                 hook_function ();

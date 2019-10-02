@@ -47,10 +47,10 @@ public class Music.PlaybackManager : Object {
     private Gee.TreeSet<unowned Music.Playback> playbacks = new Gee.TreeSet<unowned Music.Playback> ();
 
     // id, media of current media.
-    private Gee.HashMap<int, Media> _current = new Gee.HashMap<int, Media>();
+    private Gee.HashMap<int, Media> _current = new Gee.HashMap<int, Media> ();
 
     //list of id's yet to be played while on shuffle
-    private Gee.HashMap<int, Media> _current_shuffled = new Gee.HashMap<int, Media>();
+    private Gee.HashMap<int, Media> _current_shuffled = new Gee.HashMap<int, Media> ();
 
     public StaticPlaylist queue_playlist;
     public HistoryPlaylist history_playlist;
@@ -133,7 +133,7 @@ public class Music.PlaybackManager : Object {
     public void unqueue_media (Gee.Collection<Media> to_unqueue) {
         queue_playlist.remove_medias (to_unqueue);
 
-        if (_current.size - to_unqueue.size > 0){
+        if (_current.size - to_unqueue.size > 0) {
             bool current_media_changed = false;
             while (current_media != null && to_unqueue.contains (current_media)) {
                 current_media_changed = true;
@@ -157,7 +157,7 @@ public class Music.PlaybackManager : Object {
             stop_playback ();
         }
 
-        _current.clear();
+        _current.clear ();
         foreach (var q in queue_playlist.medias) {
             debug ("REQUEUED: %s", q.title);
             add_to_current (q);
@@ -167,8 +167,8 @@ public class Music.PlaybackManager : Object {
     }
 
     public void clear_queue () {
-        queue_playlist.clear();
-        _current.clear();
+        queue_playlist.clear ();
+        _current.clear ();
         current_index = 0;
 
         reshuffle ();
@@ -235,7 +235,7 @@ public class Music.PlaybackManager : Object {
             var temp = new Gee.LinkedList<Media> ();
             bool current_media_found = false;
             foreach (var m in _current.values) {
-                if (current_media != m){
+                if (current_media != m) {
                     temp.add (m);
                 } else {
                     current_media_found = true;
@@ -252,7 +252,7 @@ public class Music.PlaybackManager : Object {
             } else if (current_media != null && _current.size != 0) {
                 // If the list dosen't contain the current_media,
                 // then a new list added and we should start from the first (the click song) even when shuffle
-                _current_shuffled.set (0, _current.get(0));
+                _current_shuffled.set (0, _current.get (0));
             }
             //We don't want to miss one of the songs if current_media == null
             for (int i = (current_media == null) ? 0 : 1; i < _current.size; i++) {
@@ -294,11 +294,11 @@ public class Music.PlaybackManager : Object {
                 if (main_settings.repeat_mode == Music.Settings.Repeat.ALL) {
                     _current_shuffled_index = 0;
                 } else {
-                    
+
                     if (play) {
                         stop_playback ();
                     }
-                    
+
                     return null;
                 }
 
@@ -307,19 +307,19 @@ public class Music.PlaybackManager : Object {
                 // make sure we are repeating what we need to be
                 var next_current = _current_shuffled.get (_current_shuffled_index + 1);
                 var now_current = _current_shuffled.get (_current_shuffled_index);
-                
+
                 if (main_settings.repeat_mode == Music.Settings.Repeat.ARTIST && next_current.artist != now_current.artist) {
                     while (_current_shuffled.get (_current_shuffled_index - 1).artist == current_media.artist) {
                         _current_shuffled_index --;
                     }
                 } else if (main_settings.repeat_mode == Music.Settings.Repeat.ALBUM && next_current.album != now_current.album) {
-                    while (_current_shuffled.get(_current_shuffled_index - 1).album == current_media.album) {
+                    while (_current_shuffled.get (_current_shuffled_index - 1).album == current_media.album) {
                         _current_shuffled_index--;
                     }
                 } else {
                     _current_shuffled_index++;
                 }
-                
+
                 rv = _current_shuffled.get (_current_shuffled_index);
             } else {
                 _current_shuffled_index = 0;
@@ -328,7 +328,7 @@ public class Music.PlaybackManager : Object {
             }
         } else {
             _playing_queued_song = false;
-            
+
             if (current_media == null) {
                 _current_index = 0;
                 rv = _current.get (0);
@@ -343,15 +343,15 @@ public class Music.PlaybackManager : Object {
                     }
                     return null;
                 }
-                
+
                 rv = _current.get (0);
-            } else if (_current_index >= 0 && _current_index < (_current.size - 1)){
+            } else if (_current_index >= 0 && _current_index < (_current.size - 1)) {
                 // make sure we are repeating what we need to be
                 var next_current = _current.get (_current_index + 1);
                 var now_current = _current.get (_current_index);
-                
+
                 if (main_settings.repeat_mode == Music.Settings.Repeat.ARTIST && next_current.artist != now_current.artist) {
-                    while (_current.get(_current_index - 1).artist == current_media.artist) {
+                    while (_current.get (_current_index - 1).artist == current_media.artist) {
                         _current_index--;
                     }
                 } else if (main_settings.repeat_mode == Music.Settings.Repeat.ALBUM && next_current.album != now_current.album) {
@@ -361,7 +361,7 @@ public class Music.PlaybackManager : Object {
                 } else {
                     _current_index++;
                 }
-                
+
                 rv = _current.get (_current_index);
             } else {
                 queue_media (library.get_medias ());
@@ -370,7 +370,7 @@ public class Music.PlaybackManager : Object {
                 rv = _current.get (0);
             }
         }
-        
+
         if (queue_playlist.medias.contains (rv)) {
             _playing_queued_song = true;
         }
@@ -378,7 +378,7 @@ public class Music.PlaybackManager : Object {
         if (play) {
             play_media (rv);
         }
-        
+
         return rv;
     }
 
@@ -387,7 +387,7 @@ public class Music.PlaybackManager : Object {
         Media? rv = null;
 
         var main_settings = Settings.Main.get_default ();
-        if(main_settings.shuffle_mode != Music.Settings.Shuffle.OFF) {
+        if (main_settings.shuffle_mode != Music.Settings.Shuffle.OFF) {
             if (_current_shuffled.is_empty) {
                 if (_current.is_empty) {
                     queue_media (library.get_medias ()); // first initialize the current selection the reshuffle it
@@ -397,60 +397,60 @@ public class Music.PlaybackManager : Object {
             }
 
             _playing_queued_song = false;
-            
-            if(current_media == null) {
+
+            if (current_media == null) {
                 _current_shuffled_index = _current_shuffled.size - 1;
                 rv = _current_shuffled.get (_current_shuffled_index);
-            } else if(main_settings.repeat_mode == Music.Settings.Repeat.MEDIA) {
-                rv = _current_shuffled.get(_current_shuffled_index);
-            } else if(_current_shuffled_index == 0) {// consider repeat options
-                if(main_settings.repeat_mode == Music.Settings.Repeat.ALL)
+            } else if (main_settings.repeat_mode == Music.Settings.Repeat.MEDIA) {
+                rv = _current_shuffled.get (_current_shuffled_index);
+            } else if (_current_shuffled_index == 0) {// consider repeat options
+                if (main_settings.repeat_mode == Music.Settings.Repeat.ALL)
                     _current_shuffled_index = _current_shuffled.size - 1;
                 else {
                     stop_playback ();
                     return null;
                 }
-                
-                rv = _current_shuffled.get(_current_shuffled_index);
-            } else if(_current_shuffled_index > 0 && _current_shuffled_index < _current_shuffled.size){
+
+                rv = _current_shuffled.get (_current_shuffled_index);
+            } else if (_current_shuffled_index > 0 && _current_shuffled_index < _current_shuffled.size) {
                 // make sure we are repeating what we need to be
-                if(main_settings.repeat_mode == Music.Settings.Repeat.ARTIST && _current_shuffled.get(_current_shuffled_index - 1).artist != _current_shuffled.get(_current_shuffled_index).artist) {
-                    while(_current_shuffled.get(_current_shuffled_index + 1).artist == current_media.artist)
+                if (main_settings.repeat_mode == Music.Settings.Repeat.ARTIST && _current_shuffled.get (_current_shuffled_index - 1).artist != _current_shuffled.get (_current_shuffled_index).artist) {
+                    while (_current_shuffled.get (_current_shuffled_index + 1).artist == current_media.artist)
                         ++_current_shuffled_index;
-                } else if(main_settings.repeat_mode == Music.Settings.Repeat.ALBUM && _current_shuffled.get(_current_shuffled_index - 1).album != _current_shuffled.get(_current_shuffled_index).album) {
-                    while(_current_shuffled.get(_current_shuffled_index + 1).album == current_media.album)
+                } else if (main_settings.repeat_mode == Music.Settings.Repeat.ALBUM && _current_shuffled.get (_current_shuffled_index - 1).album != _current_shuffled.get (_current_shuffled_index).album) {
+                    while (_current_shuffled.get (_current_shuffled_index + 1).album == current_media.album)
                         ++_current_shuffled_index;
                 } else
                     --_current_shuffled_index;
-                
-                rv = _current_shuffled.get(_current_shuffled_index);
+
+                rv = _current_shuffled.get (_current_shuffled_index);
             } else {
                 _current_shuffled_index = _current_shuffled.size - 1;
-                rv = _current_shuffled.get(_current_shuffled_index);
+                rv = _current_shuffled.get (_current_shuffled_index);
             }
         } else {
             _playing_queued_song = false;
-            
-            if(current_media == null) {
+
+            if (current_media == null) {
                 _current_index = _current.size - 1;
-                rv = _current.get(_current_index);
-            } else if(main_settings.repeat_mode == Music.Settings.Repeat.MEDIA) {
-                rv = _current.get(_current_index);
-            } else if(_current_index == (0)) {// consider repeat options
-                if(main_settings.repeat_mode == Music.Settings.Repeat.ALL)
+                rv = _current.get (_current_index);
+            } else if (main_settings.repeat_mode == Music.Settings.Repeat.MEDIA) {
+                rv = _current.get (_current_index);
+            } else if (_current_index == (0)) {// consider repeat options
+                if (main_settings.repeat_mode == Music.Settings.Repeat.ALL)
                     _current_index = _current.size - 1;
                 else {
                     stop_playback ();
                     return null;
                 }
-                
+
                 rv = _current.get (_current_index);
             } else if (_current_index > 0 && _current_index < _current.size) {
                 // make sure we are repeating what we need to be
                 if (main_settings.repeat_mode == Music.Settings.Repeat.ARTIST && _current.get (_current_index - 1).artist != _current.get (_current_index).artist) {
                     while (_current.get (_current_index + 1).artist == current_media.artist)
                         _current_index++;
-                } else if (main_settings.repeat_mode == Music.Settings.Repeat.ALBUM && _current.get(_current_index - 1).album != _current.get (_current_index).album) {
+                } else if (main_settings.repeat_mode == Music.Settings.Repeat.ALBUM && _current.get (_current_index - 1).album != _current.get (_current_index).album) {
                     while (_current.get (_current_index + 1).album == current_media.album)
                         _current_index++;
                 } else {
@@ -469,11 +469,11 @@ public class Music.PlaybackManager : Object {
         if (queue_playlist.medias.contains (rv)) {
             _playing_queued_song = true;
         }
-        
+
         if (play) {
             play_media (rv);
         }
-        
+
         return rv;
     }
 
