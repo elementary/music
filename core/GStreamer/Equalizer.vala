@@ -29,7 +29,7 @@ public class Music.Equalizer : GLib.Object {
     public dynamic Gst.Element element;
 
     construct {
-        element = Gst.ElementFactory.make("equalizer-10bands", "equalizer");
+        element = Gst.ElementFactory.make ("equalizer-10bands", "equalizer");
 
         int[10] freqs = {60, 170, 310, 600, 1000, 3000, 6000, 12000, 14000, 16000};
 
@@ -41,7 +41,7 @@ public class Music.Equalizer : GLib.Object {
             float bandwidth = freq - last_freq;
             last_freq = freq;
 
-            band.set("freq", freq,
+            band.set ("freq", freq,
             "bandwidth", bandwidth,
             "gain", 0.0f);
         }
@@ -56,7 +56,7 @@ public class Music.Equalizer : GLib.Object {
             gain *= 0.12f;
         }
 
-        band.set("gain", gain);
+        band.set ("gain", gain);
     }
 
     private static Gee.TreeSet<EqualizerPreset>? default_presets = null;

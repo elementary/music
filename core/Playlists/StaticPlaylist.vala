@@ -88,7 +88,7 @@ public class Music.StaticPlaylist : Playlist {
         media_removed (removed_media);
     }
 
-    public override void clear() {
+    public override void clear () {
         medias.clear ();
         cleared ();
         updated ();
