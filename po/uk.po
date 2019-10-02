@@ -8,17 +8,18 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-26 22:43+0200\n"
-"PO-Revision-Date: 2016-07-21 06:33+0000\n"
-"Last-Translator: Roman Sytnyk <Unknown>\n"
-"Language-Team: Ukrainian <uk@li.org>\n"
+"PO-Revision-Date: 2019-10-01 20:32+0000\n"
+"Last-Translator: Andrii Priadko <mendeleev.ua@gmail.com>\n"
+"Language-Team: Ukrainian <https://l10n.elementary.io/projects/music/music/uk/"
+">\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.7.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:55+0000\n"
-"X-Generator: Launchpad (build 18330)\n"
 
 #: core/LibrariesManager.vala:147
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
@@ -260,19 +261,18 @@ msgid ""
 msgstr "Програма не може знайти жодної пісні на диску. Нічого імпортувати"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, fuzzy
 msgid "Song imported from Audio CD."
-msgstr "Імпорт музики з аудіо-CD"
+msgstr "Пісню було імпортовано з Аудіо CD."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, fuzzy, c-format
+#, c-format
 msgid "%i songs imported from Audio CD."
-msgstr "%s завершелось імпортування пісень з CD."
+msgstr "%i пісень імпортовано з Аудіо CD."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
 msgid "Importing track %u: %s"
-msgstr ""
+msgstr "Імпортування доріжки %u: %s"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:364
 msgid "CD import will be <b>cancelled</b> after current import."
@@ -280,21 +280,19 @@ msgstr "Імпорт з CD буде <b>скасований</b> після по�
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:383
 msgid "Could not import this CD"
-msgstr ""
+msgstr "Цей CD імпортувати не вийшло"
 
 #: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
 msgid "Import"
 msgstr "Імпортувати"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:37
-#, fuzzy
 msgid "An Error Occurred"
 msgstr "Виникла помилка"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:38
-#, fuzzy
 msgid "Could not load this Audio CD."
-msgstr "%s не вдається прочитати вміст цього CD з музикою"
+msgstr "Не вдається завантажити цей Аудіо CD."
 
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
@@ -338,7 +336,7 @@ msgstr "Імпортування завершено"
 
 #: src/FileOperator.vala:306
 msgid "Your Library Has Been Imported."
-msgstr ""
+msgstr "Вашу бібліотеку імпортовано."
 
 #. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:316
@@ -447,16 +445,14 @@ msgid "Choose Music Folder"
 msgstr "Вибір каталогу з музикою"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:38
-#, fuzzy, c-format
+#, c-format
 msgid "Would you like to install the %s plugin?"
-msgstr "Чи бажаєте ви встановити плагін %s?\n"
+msgstr "Чи бажаєте ви встановити плагін %s?"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:39
-#, fuzzy, c-format
+#, c-format
 msgid "This song cannot be played. The %s plugin is required to play the song."
-msgstr ""
-"\n"
-"Ця пісня не може бути відтворена. Потрібен плагін %s щоб відтворити її."
+msgstr "Пісню відтворити не можливо. Для відтворення потрібен плагін %s."
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:52
 msgid "Install Plugin"
@@ -499,9 +495,8 @@ msgid "Track:"
 msgstr "Доріжка:"
 
 #: src/Dialogs/MediaEditor.vala:118
-#, fuzzy
 msgid "Disc:"
-msgstr "Диск"
+msgstr "Диск:"
 
 #: src/Dialogs/MediaEditor.vala:120
 msgid "Rating:"
@@ -518,17 +513,17 @@ msgid "Close"
 msgstr "Закрити"
 
 #: src/Dialogs/NotImportedDialog.vala:51
-#, fuzzy, c-format
+#, c-format
 msgid "Issues while importing from %s"
-msgstr "Імпорт музики з %s..."
+msgstr "Виникли проблеми при імпортуванні з %s"
 
 #: src/Dialogs/NotImportedDialog.vala:57
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] "%s не може імортувати %d елементи. Файли можуть бути пошкоджені."
-msgstr[1] "%s не може імортувати %d елементи. Файли можуть бути пошкоджені."
-msgstr[2] "%s не може імортувати %d елементи. Файли можуть бути пошкоджені."
+msgstr[0] "Не можливо імпортувати %d елемент . Файл імовірно пошкоджений."
+msgstr[1] "Не можливо імпортувати %d елементи . Файли імовірно пошкоджені."
+msgstr[2] "Не можливо імпортувати %d елементів . Файли імовірно пошкоджені."
 
 #: src/Dialogs/NotImportedDialog.vala:65
 msgid "Move all corrupted files to trash"
@@ -587,20 +582,19 @@ msgid "Continue playback when closed:"
 msgstr "Продовжити програвання  після закриття"
 
 #: src/Dialogs/RemoveFilesDialog.vala:49
-#, fuzzy, c-format
+#, c-format
 msgid "Remove %d Song From Library?"
 msgid_plural "Remove %d Songs From Library?"
-msgstr[0] "Видалено %d пісень з %s?"
-msgstr[1] "Видалено %d пісень з %s?"
-msgstr[2] "Видалено %d пісень з %s?"
+msgstr[0] "Видалити %d пісню із бібліотеки?"
+msgstr[1] "Видалити %d пісні із бібліотеки?"
+msgstr[2] "Видалити %d пісень із бібліотеки?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:55
-#, fuzzy, c-format
+#, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr "Вилучити з бібліотеки"
+msgstr "Видалити \"%s\" із бібліотеки?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
-#, fuzzy
 msgid ""
 "This will remove the song from your library and from any device synced "
 "automatically."
@@ -608,14 +602,14 @@ msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
 msgstr[0] ""
-"Це вилучить пісню з вашої бібліотеки, як і з будь-якого пристрою, що "
-"синхронізується з %s."
+"Це видалить пісню із вашої бібліотеки та будь якого пристрою "
+"синхронізованого автоматично."
 msgstr[1] ""
-"Це вилучить пісні з вашої бібліотеки, як і з будь-якого пристрою, що "
-"синхронізується з %s."
+"Це видалить пісні з вашої бібліотеки та будь якого пристрою синхронізованого "
+"автоматично."
 msgstr[2] ""
-"Це вилучить пісні з вашої бібліотеки, як і з будь-якого пристрою, що "
-"синхронізується з %s."
+"Це видалить пісні із вашої бібліотеки та будь якого пристрою "
+"синхронізованого автоматично."
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
@@ -758,8 +752,9 @@ msgid "Year"
 msgstr "Рік"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:278
+#, fuzzy
 msgid "URI"
-msgstr ""
+msgstr "URI"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:351
 msgid "is"
@@ -808,12 +803,12 @@ msgstr "кбіт/с"
 
 #. be a bit explicit to make translations better
 #: src/Dialogs/SyncWarningDialog.vala:52
-#, fuzzy, c-format
+#, c-format
 msgid "Sync will remove %i item from %s"
 msgid_plural "Sync will remove %i items from %s"
-msgstr[0] "Синхронізація вилучить %i елементів з %s"
-msgstr[1] "Синхронізація вилучить %i елементів з %s"
-msgstr[2] "Синхронізація вилучить %i елементів з %s"
+msgstr[0] "Синхронізація видалить %i елемент із %s"
+msgstr[1] "Синхронізація видалить %i елементи із %s"
+msgstr[2] "Синхронізація видалить %i елементів із %s"
 
 #: src/Dialogs/SyncWarningDialog.vala:55
 #, c-format
@@ -958,13 +953,12 @@ msgid "Device operation has been cancelled and will stop after this media."
 msgstr "Операція з пристроєм відмінена і буде зупиненна після цієї дії."
 
 #: src/Views/ViewStack.vala:45
-#, fuzzy
 msgid "No Results"
-msgstr "Без оцінок"
+msgstr "Немає результатів"
 
 #: src/Views/ViewStack.vala:45
 msgid "Try another search"
-msgstr ""
+msgstr "Спробуйте інший варіант пошуку"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
 msgid "Genres"
@@ -1102,13 +1096,14 @@ msgstr "Без оцінки"
 #, c-format
 msgid "%u Star"
 msgid_plural "%u Stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u зірка"
+msgstr[1] "%u зірки"
+msgstr[2] "%u зірок"
 
 #: src/Views/ListView/Lists/CellDataFunctionHelper.vala:128
 #, c-format
 msgid "%u kbps"
-msgstr ""
+msgstr "%u кбіт/с"
 
 #: src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #: src/Views/ListView/Lists/MusicListView.vala:425
@@ -1356,17 +1351,14 @@ msgid "Scroll to Current Song"
 msgstr "Прокрутити до цієї композиції"
 
 #: src/Widgets/MediaMenu.vala:49
-#, fuzzy
 msgid "Show in File Browser…"
-msgstr "Показати в Теці"
+msgstr "Відкрити у файловому менеджері…"
 
 #: src/Widgets/MediaMenu.vala:50
-#, fuzzy
 msgid "Edit Song Info…"
-msgstr "Редагувати Дані про Композицію"
+msgstr "Редагувати інформацію про пісню…"
 
 #: src/Widgets/MediaMenu.vala:51
-#, fuzzy
 msgid "Other Actions"
 msgstr "Інші дії"
 
@@ -1380,18 +1372,16 @@ msgid "Add to Playlist"
 msgstr "Додати до списку відтворення"
 
 #: src/Widgets/MediaMenu.vala:55
-#, fuzzy
 msgid "Remove Song…"
-msgstr "Вилучити композицію"
+msgstr "Видалити пісню…"
 
 #: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
 msgid "Import to Library"
 msgstr "Імпорт до бібліотеки"
 
 #: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
-#, fuzzy
 msgid "Remove from Library…"
-msgstr "Вилучити з бібліотеки"
+msgstr "Видалити із бібліотеки…"
 
 #: src/Widgets/MediaMenu.vala:99
 msgid "Remove from Device"
@@ -1503,17 +1493,14 @@ msgid "Disable Shuffle"
 msgstr "Вимкнути випадкове відтворення"
 
 #: src/Widgets/ViewSelector.vala:81
-#, fuzzy
 msgid "View as albums"
-msgstr "Перегляд у вигляді обкладинок"
+msgstr "Переглянути у вигляді альбомів"
 
 #: src/Widgets/ViewSelector.vala:87
-#, fuzzy
 msgid "View as list"
-msgstr "Перегляд у вигляді списку"
+msgstr "Переглянути як список"
 
 #: src/Widgets/ViewSelector.vala:93
-#, fuzzy
 msgid "View in columns"
 msgstr "Перегляд у вигляді колонок"
 
