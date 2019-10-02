@@ -133,7 +133,7 @@ public class Music.FileOperator : Object {
                     tag_file.tag.genre = s.genre;
                     tag_file.tag.comment = s.comment;
                     tag_file.tag.year = s.year;
-                    tag_file.tag.track  = s.track;
+                    tag_file.tag.track = s.track;
                     tag_file.save ();
                 } else {
                     debug ("Could not save %s.\n", s.uri);
