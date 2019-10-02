@@ -85,32 +85,32 @@ namespace Music.FileUtils {
         int index = 0;
 
         try {
-            var enumerator = music_folder.enumerate_children(FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_TYPE + "," + FileAttribute.STANDARD_CONTENT_TYPE, 0);
+            var enumerator = music_folder.enumerate_children (FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_TYPE + "," + FileAttribute.STANDARD_CONTENT_TYPE, 0);
             while ((file_info = enumerator.next_file ()) != null) {
                 var file = music_folder.get_child (file_info.get_name ());
 
-                if(file_info.get_file_type() == FileType.REGULAR && is_valid_content_type(file_info.get_content_type ())) {
+                if (file_info.get_file_type () == FileType.REGULAR && is_valid_content_type (file_info.get_content_type ())) {
                     index++;
                     files.add (file.get_uri ());
-                } else if(file_info.get_file_type() == FileType.DIRECTORY) {
+                } else if (file_info.get_file_type () == FileType.DIRECTORY) {
                     index += count_music_files (file, files);
                 }
             }
-        } catch(Error err) {
-            warning("Could not pre-scan music folder. Progress percentage may be off: %s\n", err.message);
+        } catch (Error err) {
+            warning ("Could not pre-scan music folder. Progress percentage may be off: %s\n", err.message);
         }
 
         return index;
     }
 
-    public File? get_new_destination(Media s) {
+    public File? get_new_destination (Media s) {
         File dest;
 
         try {
-            File original = File.new_for_uri(s.uri);
+            File original = File.new_for_uri (s.uri);
 
             var ext = "";
-            if (s.uri.has_prefix("cdda://")) {
+            if (s.uri.has_prefix ("cdda://")) {
                 ext = ".mp3";
             } else {
                 ext = s.uri.slice (s.uri.last_index_of (".", 0), s.uri.length);
@@ -124,32 +124,32 @@ namespace Music.FileUtils {
                 main_settings.path_string = "$ALBUM_ARTIST/$ALBUM/$TRACK - $TITLE";
             }
 
-            path = path.replace ("$ALBUM_ARTIST", s.get_display_album_artist ().replace("/", "_"));
-            path = path.replace ("$ARTIST", s.get_display_artist ().replace("/", "_"));
-            path = path.replace ("$ALBUM", s.get_display_album ().replace("/", "_"));
-            path = path.replace ("$TITLE", s.get_display_title ().replace("/", "_"));
-            path = path.replace ("$TRACK", s.track.to_string());
+            path = path.replace ("$ALBUM_ARTIST", s.get_display_album_artist ().replace ("/", "_"));
+            path = path.replace ("$ARTIST", s.get_display_artist ().replace ("/", "_"));
+            path = path.replace ("$ALBUM", s.get_display_album ().replace ("/", "_"));
+            path = path.replace ("$TITLE", s.get_display_title ().replace ("/", "_"));
+            path = path.replace ("$TRACK", s.track.to_string ());
 
-            dest = File.new_for_path(Path.build_path("/", main_settings.music_folder, path + ext));
+            dest = File.new_for_path (Path.build_path ("/", main_settings.music_folder, path + ext));
 
             if (original.get_path ().contains (dest.get_path ())) {
-                debug("File is already in correct location\n");
+                debug ("File is already in correct location\n");
                 return null;
             }
 
             if (dest.query_exists ()) {
                 int number = 2;
-                while((dest = File.new_for_path(Path.build_path("/", main_settings.music_folder, path + _(" (%d)").printf (number) + ext))).query_exists()) {
+                while ((dest = File.new_for_path (Path.build_path ("/", main_settings.music_folder, path + _(" (%d)").printf (number) + ext))).query_exists ()) {
                     number++;
                 }
             }
 
             /* make sure that the parent folders exist */
-            if(!dest.get_parent().query_exists()) {
-                dest.get_parent().make_directory_with_parents(null);
+            if (!dest.get_parent ().query_exists ()) {
+                dest.get_parent ().make_directory_with_parents (null);
             }
-        } catch(Error err) {
-            debug("Could not find new destination!: %s\n", err.message);
+        } catch (Error err) {
+            debug ("Could not find new destination!: %s\n", err.message);
         }
 
         return dest;
