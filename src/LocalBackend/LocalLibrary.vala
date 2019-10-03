@@ -155,7 +155,7 @@ public class Music.LocalLibrary : Library {
     }
 
     /************ Library/Collection management stuff ************/
-    public bool doProgressNotificationWithTimeout () {
+    public bool progress_notification_with_timeout () {
         if (_doing_file_operations) {
             NotificationManager.get_default ().update_progress (null, (double) fo.index / (double) fo.item_count);
         }
@@ -338,7 +338,7 @@ public class Music.LocalLibrary : Library {
         if (!files.is_empty) {
             debug ("Importing %d new songs", files.size);
             fo.resetProgress (files.size - 1);
-            Timeout.add (100, doProgressNotificationWithTimeout);
+            Timeout.add (100, progress_notification_with_timeout);
             fo.import_files (files, type);
         } else {
             finish_file_operations ();

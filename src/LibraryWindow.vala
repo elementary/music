@@ -1089,7 +1089,7 @@ public class Music.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWindow
         preferences = null;
     }
 
-    public void setMusicFolder (string folder) {
+    public void set_music_folder (string folder) {
         if (library_manager.doing_file_operations ()) {
             return;
         }
@@ -1173,7 +1173,7 @@ public class Music.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWindow
         }
     }
 
-    public virtual void dragReceived (Gdk.DragContext context, int x, int y, Gtk.SelectionData data, uint info, uint timestamp) {
+    public virtual void drag_received (Gdk.DragContext context, int x, int y, Gtk.SelectionData data, uint info, uint timestamp) {
         var files_dragged = new Gee.TreeSet<string> ();
 
         debug ("dragged\n");

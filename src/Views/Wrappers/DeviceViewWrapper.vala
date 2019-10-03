@@ -69,4 +69,3 @@ public class Music.DeviceViewWrapper : ViewWrapper {
             set_media_async.begin (library.get_medias ());
     }
 }
-

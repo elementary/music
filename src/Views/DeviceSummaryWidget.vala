@@ -85,7 +85,7 @@ public class Music.DeviceSummaryWidget : Gtk.EventBox {
         sync_music_combobox = new Gtk.ComboBox ();
         sync_music_combobox.set_model (music_list);
         sync_music_combobox.set_id_column (1);
-        sync_music_combobox.set_row_separator_func (rowSeparatorFunc);
+        sync_music_combobox.set_row_separator_func (row_separator_func);
         sync_music_combobox.pack_start (music_cell, false);
         sync_music_combobox.add_attribute (music_cell, "gicon", 2);
         sync_music_combobox.pack_start (cell, true);
@@ -204,7 +204,7 @@ public class Music.DeviceSummaryWidget : Gtk.EventBox {
         storagebar.update_block_size (Granite.Widgets.StorageBar.ItemDescription.AUDIO, music_size);
     }
 
-    private bool rowSeparatorFunc (Gtk.TreeModel model, Gtk.TreeIter iter) {
+    private bool row_separator_func (Gtk.TreeModel model, Gtk.TreeIter iter) {
         string sep = "";
         model.get (iter, 1, out sep);
         return sep == "<separator_item_unique_name>";
@@ -230,7 +230,7 @@ public class Music.DeviceSummaryWidget : Gtk.EventBox {
 
         Gtk.TreeIter iter;
         Playlist selected_playlist = null;
-        if (sync_music_combobox.get_active ()-2 >= 0) {
+        if (sync_music_combobox.get_active () - 2 >= 0) {
             sync_music_combobox.get_active_iter (out iter);
             GLib.Value value;
             music_list.get_value (iter, 0, out value);

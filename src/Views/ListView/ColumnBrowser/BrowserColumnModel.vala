@@ -334,7 +334,7 @@ public class Music.BrowserColumnModel : Object, Gtk.TreeModel, Gtk.TreeSortable 
 
         if (changed && sort_column_id >= 0) {
             /* do the sort for reals */
-            rows.sort_iter (sequenceIterCompareFunc);
+            rows.sort_iter (sequence_iter_compare_func);
 
             sort_column_changed ();
         }
@@ -346,7 +346,7 @@ public class Music.BrowserColumnModel : Object, Gtk.TreeModel, Gtk.TreeSortable 
 
 
     /** Custom function to use built in sort in Sequence to our advantage **/
-    public int sequenceIterCompareFunc (SequenceIter<string> a, SequenceIter<string> b) {
+    public int sequence_iter_compare_func (SequenceIter<string> a, SequenceIter<string> b) {
         int rv = 1;
 
         if (sort_column_id < 0)
@@ -376,4 +376,3 @@ public class Music.BrowserColumnModel : Object, Gtk.TreeModel, Gtk.TreeSortable 
         return rv;
     }
 }
-
