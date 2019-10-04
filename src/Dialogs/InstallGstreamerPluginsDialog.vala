@@ -76,7 +76,7 @@ public class Music.InstallGstreamerPluginsDialog : Granite.MessageDialog {
         // This callback was called before APT was done, so let's periodically check
         // whether the plugins have actually been installed. We won't update the
         // registry here.
-        Timeout.add_seconds (3, Checker);
+        Timeout.add_seconds (3, checker);
         this.hide ();
     }
 
@@ -86,7 +86,7 @@ public class Music.InstallGstreamerPluginsDialog : Granite.MessageDialog {
 
     private bool installation_done = false;
 
-    private bool Checker () {
+    private bool checker () {
         if (installation_done)
             return false;   // this ends the checking method
 

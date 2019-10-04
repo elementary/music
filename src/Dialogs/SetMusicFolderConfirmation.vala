@@ -44,21 +44,21 @@ public class Music.SetMusicFolderConfirmation : Granite.MessageDialog {
         modal = true;
         transient_for = App.main_window;
 
-        var savePlaylists = new Gtk.Button.with_label (_("Export Playlists"));
+        var save_playlists = new Gtk.Button.with_label (_("Export Playlists"));
         is_finished = new Gtk.Image ();
         is_working = new Gtk.Spinner ();
 
         // save playlist hbox
-        var playlistBox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6);
-        playlistBox.pack_start (savePlaylists, true, true, 0);
-        playlistBox.pack_end (is_finished, false, false, 0);
-        playlistBox.pack_end (is_working, false, false, 0);
+        var playlist_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6);
+        playlist_box.pack_start (save_playlists, true, true, 0);
+        playlist_box.pack_end (is_finished, false, false, 0);
+        playlist_box.pack_end (is_working, false, false, 0);
 
         var action_area = (Gtk.ButtonBox) get_action_area ();
         action_area.margin = 5;
         action_area.margin_top = 14;
-        action_area.add (playlistBox);
-        action_area.set_child_secondary (playlistBox, true);
+        action_area.add (playlist_box);
+        action_area.set_child_secondary (playlist_box, true);
 
         var cancel = (Gtk.Button) add_button (_("Cancel"), Gtk.ResponseType.CLOSE);
 
@@ -66,9 +66,9 @@ public class Music.SetMusicFolderConfirmation : Granite.MessageDialog {
         ok.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
 
         var local_library = libraries_manager.local_library;
-        savePlaylists.set_sensitive (!local_library.get_medias ().is_empty && local_library.playlist_count_without_read_only () > 0);
+        save_playlists.set_sensitive (!local_library.get_medias ().is_empty && local_library.playlist_count_without_read_only () > 0);
 
-        savePlaylists.clicked.connect (savePlaylistsClicked);
+        save_playlists.clicked.connect (save_playlists_clicked);
         cancel.clicked.connect (cancel_clicked);
         ok.clicked.connect (ok_clicked);
 
@@ -77,7 +77,7 @@ public class Music.SetMusicFolderConfirmation : Granite.MessageDialog {
         is_working.hide ();
     }
 
-    public void savePlaylistsClicked () {
+    public void save_playlists_clicked () {
         var file_chooser = new Gtk.FileChooserNative (
             _("Choose Music Folder"),
             this,

@@ -54,4 +54,3 @@ public interface Music.ViewInterface : Gtk.Widget {
     public abstract void remove_media (Gee.Collection<Media> to_remove);
     public abstract void update_media (Gee.Collection<Media> to_update);
 }
-
