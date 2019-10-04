@@ -182,7 +182,7 @@ public class Music.SmartPlaylistEditor : Gtk.Dialog {
         save_button.set_sensitive (true);
     }
 
-    public void add_row () {
+    private void add_row () {
         if (adding_button.parent != null)
             queries_grid.remove (adding_button);
 
@@ -196,15 +196,15 @@ public class Music.SmartPlaylistEditor : Gtk.Dialog {
         editor_query.field_changed (false);
     }
 
-    public virtual void add_button_click () {
+    private void add_button_click () {
         add_row ();
     }
 
-    public virtual void close_click () {
+    private void close_click () {
         this.destroy ();
     }
 
-    public virtual void save_click () {
+    private void save_click () {
         smart_playlist.clear_queries ();
         smart_playlist.clear ();
         var queries = new Gee.TreeSet<SmartQuery> ();
@@ -436,25 +436,25 @@ public class Music.SmartPlaylistEditor : Gtk.Dialog {
             this.grid.hide ();
         }
 
-        public bool needs_value (SmartQuery.FieldType compared) {
+        private bool needs_value (SmartQuery.FieldType compared) {
             return (compared == SmartQuery.FieldType.ALBUM || compared == SmartQuery.FieldType.ARTIST
                     || compared == SmartQuery.FieldType.COMMENT || compared == SmartQuery.FieldType.COMPOSER
                     || compared == SmartQuery.FieldType.GENRE || compared == SmartQuery.FieldType.GROUPING
                     || compared == SmartQuery.FieldType.URI || compared == SmartQuery.FieldType.TITLE);
         }
 
-        public bool needs_value_2 (SmartQuery.FieldType compared) {
+        private bool needs_value_2 (SmartQuery.FieldType compared) {
             return (compared == SmartQuery.FieldType.BITRATE || compared == SmartQuery.FieldType.YEAR
                     || compared == SmartQuery.FieldType.RATING || compared == SmartQuery.FieldType.PLAYCOUNT
                     || compared == SmartQuery.FieldType.SKIPCOUNT || compared == SmartQuery.FieldType.LENGTH
                     || compared == SmartQuery.FieldType.TITLE);
         }
 
-        public bool is_rating (SmartQuery.FieldType compared) {
+        private bool is_rating (SmartQuery.FieldType compared) {
             return compared == SmartQuery.FieldType.RATING;
         }
 
-        public bool is_date (SmartQuery.FieldType compared) {
+        private bool is_date (SmartQuery.FieldType compared) {
             return (compared == SmartQuery.FieldType.LAST_PLAYED || compared == SmartQuery.FieldType.DATE_ADDED);
         }
     }
