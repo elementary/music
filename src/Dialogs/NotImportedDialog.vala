@@ -1,4 +1,3 @@
-// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
  * Copyright (c) 2012-2018 elementary LLC. (https://elementary.io)
  *
@@ -30,11 +29,11 @@
  * the current media playing. Mostly here because of dependence. */
 
 public class Music.NotImportedDialog : Gtk.Dialog {
-    Gee.LinkedList<string> _files;
-    string music_folder;
+    private Gee.LinkedList<string> _files;
+    private string music_folder;
 
-    Gtk.ListStore files_model;
-    Gtk.Button move_to_trash;
+    private Gtk.ListStore files_model;
+    private Gtk.Button move_to_trash;
 
     public NotImportedDialog (Gee.Collection<string> files, string music) {
         _files = new Gee.LinkedList<string> ();
@@ -162,7 +161,7 @@ public class Music.NotImportedDialog : Gtk.Dialog {
         show_all ();
     }
 
-    public bool update_move_to_trash_sensitivity (Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter) {
+    private bool update_move_to_trash_sensitivity (Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter) {
         bool sel = false;
         model.get (iter, 0, out sel);
 
@@ -174,17 +173,17 @@ public class Music.NotImportedDialog : Gtk.Dialog {
         return false;
     }
 
-    public bool select_all (Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter) {
+    private bool select_all (Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter) {
         files_model.set (iter, 0, true);
         return false;
     }
 
-    public bool unselect_all (Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter) {
+    private bool unselect_all (Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter) {
         files_model.set (iter, 0, false);
         return false;
     }
 
-    public bool delete_selected_items (Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter) {
+    private bool delete_selected_items (Gtk.TreeModel model, Gtk.TreePath path, Gtk.TreeIter iter) {
         bool selected;
         string location;
         files_model.get (iter, 0, out selected);
@@ -202,12 +201,8 @@ public class Music.NotImportedDialog : Gtk.Dialog {
         return false;
     }
 
-    public virtual void move_to_trash_click () {
+    private void move_to_trash_click () {
         files_model.foreach (delete_selected_items);
-        this.destroy ();
-    }
-
-    public virtual void ignore_click () {
-        this.destroy ();
+        destroy ();
     }
 }
