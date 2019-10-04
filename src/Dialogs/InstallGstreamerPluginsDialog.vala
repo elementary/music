@@ -1,6 +1,5 @@
-// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012-2018 elementary LLC. (https://elementary.io)
+ * Copyright (c) 2012-2019 elementary, Inc. (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -27,24 +26,24 @@
  */
 
 public class Music.InstallGstreamerPluginsDialog : Granite.MessageDialog {
-    public Gst.Message message;
+    private Gst.Message message;
+    private bool installation_done = false;
 
     public InstallGstreamerPluginsDialog (Gst.Message message) {
         Object ();
 
         this.message = message;
+    }
+
+    construct {
         var detail = Gst.PbUtils.missing_plugin_message_get_description (message);
 
         primary_text = _("Would you like to install the %s plugin?").printf (Markup.escape_text (detail));
         secondary_text = _("This song cannot be played. The %s plugin is required to play the song.").printf ("<b>" + Markup.escape_text (detail) + "</b>");
-    }
 
-    construct {
-        deletable = false;
         destroy_with_parent = true;
         image_icon = new GLib.ThemedIcon ("dialog-question");
         modal = true;
-        resizable = false;
         transient_for = App.main_window;
 
         add_button (_("Cancel"), Gtk.ResponseType.CLOSE);
@@ -66,7 +65,7 @@ public class Music.InstallGstreamerPluginsDialog : Granite.MessageDialog {
         show_all ();
     }
 
-    public void install_plugin_clicked () {
+    private void install_plugin_clicked () {
         var installer = Gst.PbUtils.missing_plugin_message_get_installer_detail (message);
         var context = new Gst.PbUtils.InstallPluginsContext ();
 
@@ -80,11 +79,9 @@ public class Music.InstallGstreamerPluginsDialog : Granite.MessageDialog {
         this.hide ();
     }
 
-    public void install_plugins_finished (Gst.PbUtils.InstallPluginsReturn result) {
+    private void install_plugins_finished (Gst.PbUtils.InstallPluginsReturn result) {
         GLib.message ("Install of plugins finished.. updating registry");
     }
-
-    private bool installation_done = false;
 
     private bool checker () {
         if (installation_done)
