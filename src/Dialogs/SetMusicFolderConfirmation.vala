@@ -77,7 +77,7 @@ public class Music.SetMusicFolderConfirmation : Granite.MessageDialog {
         is_working.hide ();
     }
 
-    public void save_playlists_clicked () {
+    private void save_playlists_clicked () {
         var file_chooser = new Gtk.FileChooserNative (
             _("Choose Music Folder"),
             this,
@@ -111,12 +111,12 @@ public class Music.SetMusicFolderConfirmation : Granite.MessageDialog {
         }
     }
 
-    public void cancel_clicked () {
+    private void cancel_clicked () {
         finished (false);
         this.destroy ();
     }
 
-    public void ok_clicked () {
+    private void ok_clicked () {
         finished (true);
         this.destroy ();
     }
