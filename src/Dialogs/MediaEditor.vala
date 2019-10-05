@@ -1,4 +1,3 @@
-// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
  * Copyright (c) 2012-2018 elementary, Inc. (https://elementary.io)
  *
@@ -27,9 +26,6 @@
  */
 
 public class Music.MediaEditor : Gtk.Dialog {
-    public const int MIN_WIDTH = 600;
-    public const int MIN_HEIGHT = 400;
-
     private ActivatesDefaultEntry title_entry;
     private ActivatesDefaultEntry artist_entry;
     private ActivatesDefaultEntry album_artist_entry;
@@ -55,10 +51,10 @@ public class Music.MediaEditor : Gtk.Dialog {
         Object (
             deletable: false,
             destroy_with_parent: true,
-            height_request: MIN_HEIGHT,
+            height_request: 400,
             resizable: true,
             transient_for: App.main_window,
-            width_request: MIN_WIDTH,
+            width_request: 600,
             window_position: Gtk.WindowPosition.CENTER_ON_PARENT
         );
         media_list.add_all (given_media);
