@@ -280,9 +280,9 @@ public class Music.ColumnBrowser : Gtk.Grid {
         out string composer
     ) {
         rating = -1; // ~ All
-        year   = -1; // ~ All
-        genre  = ""; // ~ All
-        album_artist  = ""; // ~ All
+        year = -1; // ~ All
+        genre = ""; // ~ All
+        album_artist = ""; // ~ All
         album = ""; // ~ All
         grouping = ""; // ~ All
         composer = ""; // ~ All

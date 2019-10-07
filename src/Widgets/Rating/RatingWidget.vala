@@ -133,7 +133,7 @@ public class Music.RatingWidget : Gtk.EventBox {
 
             if (starred_pix != null && not_starred_pix != null) {
                 // Compute size
-                item_width  = int.max (starred_pix.width, not_starred_pix.width);
+                item_width = int.max (starred_pix.width, not_starred_pix.width);
                 item_height = int.max (starred_pix.height, not_starred_pix.height);
 
                 int new_width = (item_width + star_spacing) * n_stars - star_spacing;

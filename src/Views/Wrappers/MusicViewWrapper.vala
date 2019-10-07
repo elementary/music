@@ -28,15 +28,14 @@
  */
 
 public class Music.MusicViewWrapper : ViewWrapper {
-
-    public MusicViewWrapper (TreeViewSetup? tvs = null, Library library, TopDisplay topDisplay) {
+    public MusicViewWrapper (TreeViewSetup? tvs = null, Library library, TopDisplay top_display) {
         base (Hint.MUSIC, library);
-        build_async.begin (tvs, topDisplay);
+        build_async.begin (tvs, top_display);
     }
 
     private Gee.HashMap<unowned Device, int> _devices;
 
-    private async void build_async (TreeViewSetup? tvs = null, TopDisplay topDisplay) {
+    private async void build_async (TreeViewSetup? tvs = null, TopDisplay top_display) {
         Idle.add_full (VIEW_CONSTRUCT_PRIORITY, build_async.callback);
         yield;
         // Add grid view
@@ -51,7 +50,7 @@ public class Music.MusicViewWrapper : ViewWrapper {
         }
 
         list_view = new ListView (this, music_setup, true);
-        topDisplay.list_view = list_view.list_view;
+        top_display.list_view = list_view.list_view;
 
         // Welcome screen
         welcome_screen = new Granite.Widgets.Welcome (_("Get Some Tunes"),
@@ -159,7 +158,7 @@ public class Music.MusicViewWrapper : ViewWrapper {
                 file_chooser.destroy ();
 
                 if (!String.is_empty (folder, true))
-                    App.main_window.setMusicFolder (folder);
+                    App.main_window.set_music_folder (folder);
             }
         } else {
             foreach (var device_entry in _devices.entries) {

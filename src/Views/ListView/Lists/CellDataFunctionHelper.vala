@@ -156,4 +156,3 @@ public class Music.CellDataFunctionHelper {
         rating_cell.rating = val.get_uint ();
     }
 }
-

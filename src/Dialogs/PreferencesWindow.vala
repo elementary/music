@@ -50,7 +50,7 @@ public class Music.PreferencesWindow : Gtk.Dialog {
         library_filechooser.set_current_folder (Settings.Main.get_default ().music_folder);
         library_filechooser.file_set.connect (() => {
             string? filename = library_filechooser.get_filename ();
-            App.main_window.setMusicFolder (filename);
+            App.main_window.set_music_folder (filename);
         });
 
         var main_settings = Settings.Main.get_default ();

@@ -395,7 +395,7 @@ public class MprisPlayer : GLib.Object {
         }
     }
 
-    public signal void seeked (int64 Position);
+    public signal void seeked (int64 position);
 
     public void next () throws GLib.Error {
         // inhibit notifications
@@ -446,11 +446,11 @@ public class MprisPlayer : GLib.Object {
         }
     }
 
-    public void set_position (string dobj, int64 Position) throws GLib.Error {
-        Music.App.player.player.set_position (Position * (int64)Music.TimeUtils.MILI_INV);
+    public void set_position (string dobj, int64 position) throws GLib.Error {
+        Music.App.player.player.set_position (position * (int64)Music.TimeUtils.MILI_INV);
     }
 
-    public void open_uri (string Uri) throws GLib.Error {
+    public void open_uri (string uri) throws GLib.Error {
         // TODO
     }
 }
