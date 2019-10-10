@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-26 22:43+0200\n"
-"PO-Revision-Date: 2019-09-14 12:22+0000\n"
+"PO-Revision-Date: 2019-10-11 15:23+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/music/extra/ja/>"
 "\n"
@@ -68,7 +68,7 @@ msgstr "高解像度においてアルバムアートの大きさを正しく調
 #: data/io.elementary.music.appdata.xml.in:30
 msgid ""
 "Accurately select Music Folder Location for directories with spaces in name"
-msgstr ""
+msgstr "名前に空白が含まれるミュージックフォルダーの場所を正しく選択できるように修正"
 
 #: data/io.elementary.music.appdata.xml.in:31
 msgid "New MediaKeyListener path for gnome-settings-daemon"
@@ -92,7 +92,7 @@ msgstr "プレイリストを正しく復元するように修正"
 
 #: data/io.elementary.music.appdata.xml.in:41
 msgid "Always respect custom music folder setting"
-msgstr "カスタムミュージックフォルダーの設定を常に使用するように修正"
+msgstr "カスタムミュージックフォルダーの設定を常に反映するように修正"
 
 #: data/io.elementary.music.appdata.xml.in:42
 #: data/io.elementary.music.appdata.xml.in:51
@@ -184,7 +184,7 @@ msgstr "最新の elementary アイコンテーマのアイコンに更新"
 
 #: data/io.elementary.music.appdata.xml.in:106
 msgid "Respect privacy mode"
-msgstr ""
+msgstr "プライバシーモードの設定を反映するように修正"
 
 #: data/io.elementary.music.appdata.xml.in:146
 msgid "elementary LLC."
