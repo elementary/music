@@ -108,7 +108,7 @@ public class Music.FileOperator : Object {
         });
     }
 
-    public void resetProgress (int items) {
+    public void reset_progress (int items) {
         index = 0;
         item_count = items;
     }
@@ -133,7 +133,7 @@ public class Music.FileOperator : Object {
                     tag_file.tag.genre = s.genre;
                     tag_file.tag.comment = s.comment;
                     tag_file.tag.year = s.year;
-                    tag_file.tag.track  = s.track;
+                    tag_file.tag.track = s.track;
                     tag_file.save ();
                 } else {
                     debug ("Could not save %s.\n", s.uri);
@@ -196,9 +196,9 @@ public class Music.FileOperator : Object {
         return true;
     }
 
-    public void remove_media (Gee.Collection<Media> toRemove) {
+    public void remove_media (Gee.Collection<Media> to_remove) {
         var dummy_list = new Gee.TreeSet<string> ();
-        foreach (var s in toRemove) {
+        foreach (var s in to_remove) {
             try {
                 var file = File.new_for_uri (s.uri);
                 file.trash ();
@@ -325,7 +325,7 @@ public class Music.FileOperator : Object {
     }
 
     public async void copy_imports_async () {
-        resetProgress (all_new_imports.size);
+        reset_progress (all_new_imports.size);
         foreach (Media s in all_new_imports) {
             if (!cancellable.is_cancelled ()) {
                 update_file_hierarchy (s, false, true);

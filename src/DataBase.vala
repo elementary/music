@@ -223,7 +223,7 @@ namespace Music.Database {
         var id_field = builder.add_id (field);
         var id_value = builder.add_expr_value (null, value);
         if (sq.comparator == SmartQuery.ComparatorType.NOT_CONTAINS) {
-            var cond = builder.add_cond (sql_operator_type, id_field, id_value, 0);;
+            var cond = builder.add_cond (sql_operator_type, id_field, id_value, 0);
             return builder.add_cond (Gda.SqlOperatorType.NOT, cond, 0, 0);
         } else {
             return builder.add_cond (sql_operator_type, id_field, id_value, 0);

@@ -131,7 +131,7 @@ public abstract class Music.GenericList : Gtk.TreeView {
 
         key_press_event.connect ((event) => {
             if (event.keyval == Gdk.Key.Delete) {
-                mediaRemoveClicked ();
+                media_remove_clicked ();
             }
 
             return false;
@@ -155,7 +155,7 @@ public abstract class Music.GenericList : Gtk.TreeView {
     }
 
     protected abstract void add_column (Gtk.TreeViewColumn column, ListColumn type);
-    protected abstract void mediaRemoveClicked ();
+    protected abstract void media_remove_clicked ();
 
     public void set_media (Gee.Collection<Media> to_add) {
         var new_table = new Gee.ArrayList<Media> ();
@@ -515,11 +515,12 @@ public abstract class Music.GenericList : Gtk.TreeView {
         debug ("drag end\n");
 
         //unset_rows_drag_dest ();
-        Gtk.drag_dest_set (this,
-                          Gtk.DestDefaults.ALL,
-                          {},
-                          Gdk.DragAction.COPY|
-                          Gdk.DragAction.MOVE
-                          );
+        Gtk.drag_dest_set (
+            this,
+            Gtk.DestDefaults.ALL,
+            {},
+            Gdk.DragAction.COPY |
+            Gdk.DragAction.MOVE
+        );
     }
 }

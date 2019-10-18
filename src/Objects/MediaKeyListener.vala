@@ -28,9 +28,9 @@
 
 [DBus (name = "org.gnome.SettingsDaemon.MediaKeys")]
 public interface GnomeMediaKeys : Object {
-    public abstract void GrabMediaPlayerKeys (string application, uint32 time) throws GLib.Error;
-    public abstract void ReleaseMediaPlayerKeys (string application) throws GLib.Error;
-    public signal void MediaPlayerKeyPressed (string application, string key);
+    public abstract void grab_media_player_keys (string application, uint32 time) throws GLib.Error;
+    public abstract void release_media_player_keys (string application) throws GLib.Error;
+    public signal void media_player_key_pressed (string application, string key);
 }
 
 public class Music.MediaKeyListener : Object {
@@ -57,9 +57,9 @@ public class Music.MediaKeyListener : Object {
         }
 
         if (media_object != null) {
-            media_object.MediaPlayerKeyPressed.connect (media_key_pressed);
+            media_object.media_player_key_pressed.connect (media_key_pressed);
             try {
-                media_object.GrabMediaPlayerKeys (Build.EXEC_NAME, (uint32)0);
+                media_object.grab_media_player_keys (Build.EXEC_NAME, (uint32)0);
             } catch (Error err) {
                 warning ("Could not grab media player keys: %s", err.message);
             }
@@ -68,7 +68,7 @@ public class Music.MediaKeyListener : Object {
 
     public void release_media_keys () {
         try {
-            media_object.ReleaseMediaPlayerKeys (Build.EXEC_NAME);
+            media_object.release_media_player_keys (Build.EXEC_NAME);
         } catch (Error err) {
             warning ("Could not release media player keys: %s", err.message);
         }
@@ -95,4 +95,3 @@ public class Music.MediaKeyListener : Object {
         }
     }
 }
-

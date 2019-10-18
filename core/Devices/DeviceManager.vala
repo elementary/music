@@ -75,7 +75,7 @@ public class Music.DeviceManager : GLib.Object {
             volumes.add (v);
         }
 
-        Idle.add(() => {
+        Idle.add (() => {
             foreach (var m in mounts) {
                 mounts_availables.add (m);
                 mount_added (m);
@@ -89,8 +89,8 @@ public class Music.DeviceManager : GLib.Object {
         });
     }
 
-    void volume_added(Volume volume) {
-        if(Settings.Main.get_default ().music_mount_name == volume.get_name () && volume.get_mount () == null) {
+    void volume_added (Volume volume) {
+        if (Settings.Main.get_default ().music_mount_name == volume.get_name () && volume.get_mount () == null) {
             debug ("mounting %s because it is believed to be the music folder\n", volume.get_name ());
             volume.mount.begin (MountMountFlags.NONE, null, null);
         }

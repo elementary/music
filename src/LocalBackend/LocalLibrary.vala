@@ -155,7 +155,7 @@ public class Music.LocalLibrary : Library {
     }
 
     /************ Library/Collection management stuff ************/
-    public bool doProgressNotificationWithTimeout () {
+    public bool progress_notification_with_timeout () {
         if (_doing_file_operations) {
             NotificationManager.get_default ().update_progress (null, (double) fo.index / (double) fo.item_count);
         }
@@ -183,7 +183,7 @@ public class Music.LocalLibrary : Library {
     public async void set_music_folder (string folder) {
         string m_folder = folder;
         m_folder = m_folder.replace ("/media", "");
-        m_folder = m_folder.replace (GLib.Environment.get_home_dir ()+ "/", "");
+        m_folder = m_folder.replace (GLib.Environment.get_home_dir () + "/", "");
 
         if (start_file_operations (_("Importing music from %s…").printf ("<b>" + Markup.escape_text (m_folder) + "</b>"))) {
 
@@ -337,8 +337,8 @@ public class Music.LocalLibrary : Library {
 
         if (!files.is_empty) {
             debug ("Importing %d new songs", files.size);
-            fo.resetProgress (files.size - 1);
-            Timeout.add (100, doProgressNotificationWithTimeout);
+            fo.reset_progress (files.size - 1);
+            Timeout.add (100, progress_notification_with_timeout);
             fo.import_files (files, type);
         } else {
             finish_file_operations ();
@@ -599,9 +599,9 @@ public class Music.LocalLibrary : Library {
 
                 foreach (var field in fields) {
                     var id_field = sql.add_id (field);
-                    var id_value = sql.add_expr_value (null, "%"+search+"%");
+                    var id_value = sql.add_expr_value (null, "%" + search + "%");
                     if (field == "uri") {
-                        id_value = sql.add_expr_value (null, "%"+Uri.escape_string (search, "/") + "%");
+                        id_value = sql.add_expr_value (null, "%" + Uri.escape_string (search, "/") + "%");
                     }
 
                     ids += sql.add_cond (Gda.SqlOperatorType.LIKE, id_field, id_value, 0);
@@ -663,13 +663,13 @@ public class Music.LocalLibrary : Library {
         return result;
     }
 
-    public override void update_media (Media s, bool updateMeta, bool record_time) {
+    public override void update_media (Media s, bool update_meta, bool record_time) {
         var one = new Gee.TreeSet<Media> ();
         one.add (s);
-        update_medias (one, updateMeta, record_time);
+        update_medias (one, update_meta, record_time);
     }
 
-    public override void update_medias (Gee.Collection<Media> updates, bool updateMeta, bool record_time) {
+    public override void update_medias (Gee.Collection<Media> updates, bool update_meta, bool record_time) {
         var updated = new Gee.TreeSet<Media> ();
         updated.add_all (updates);
         if (record_time) {
@@ -680,8 +680,8 @@ public class Music.LocalLibrary : Library {
 
         debug ("%d media updated", updated.size);
         media_updated (updated.read_only_view);
-        /* now do background work. even if updateMeta is true, so must user preferences */
-        if (updateMeta)
+        /* now do background work. even if update_meta is true, so must user preferences */
+        if (update_meta)
             fo.save_media.begin (updated);
     }
 
@@ -809,20 +809,23 @@ public class Music.LocalLibrary : Library {
     }
 
     public override void remove_medias (Gee.Collection<Media> to_remove, bool trash) {
-        var toRemove = new Gee.TreeSet<Media> ();
-        toRemove.add_all (to_remove);
-        if (App.player.current_media in toRemove)
-            App.player.stop_playback ();
+        var remove_treeset = new Gee.TreeSet<Media> ();
+        remove_treeset.add_all (to_remove);
 
-        if (trash)
-            fo.remove_media (toRemove);
+        if (App.player.current_media in remove_treeset) {
+            App.player.stop_playback ();
+        }
+
+        if (trash) {
+            fo.remove_media (remove_treeset);
+        }
 
         // Emit signal before actually removing the media because otherwise
         // media_from_id () and media_from_ids () wouldn't work.
-        media_removed (toRemove.read_only_view);
+        media_removed (remove_treeset.read_only_view);
 
         lock (_medias) {
-            foreach (Media s in toRemove) {
+            foreach (Media s in remove_treeset) {
                 _searched_medias.remove (s);
                 _medias.unset (s.rowid);
             }
@@ -830,10 +833,10 @@ public class Music.LocalLibrary : Library {
 
         lock (_playlists) {
             foreach (var p in get_playlists ())
-                p.remove_medias (toRemove);
+                p.remove_medias (remove_treeset);
         }
 
-        foreach (var m in toRemove) {
+        foreach (var m in remove_treeset) {
             try {
                 if (trash) {
                     connection.delete_row_from_table (Database.Media.TABLE_NAME, "rowid", m.rowid);
@@ -883,7 +886,7 @@ public class Music.LocalLibrary : Library {
         _doing_file_operations = false;
         debug ("file operations finished or cancelled");
 
-        fo.index = fo.item_count +1;
+        fo.index = fo.item_count + 1;
         NotificationManager.get_default ().update_progress (null, 1);
         file_operations_done ();
     }

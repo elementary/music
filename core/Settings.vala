@@ -49,7 +49,7 @@ namespace Music.Settings {
                    privacy_settings.get_boolean ("remember-recent-files"));
         }
 
-        private Main ()  {
+        private Main () {
             base ("io.elementary.music.settings");
             if (music_folder == "") {
                 music_folder = GLib.Environment.get_user_special_dir (GLib.UserDirectory.MUSIC);
@@ -86,7 +86,7 @@ namespace Music.Settings {
                 }
             }
 
-            var rv = new Gee.TreeSet<Music.EqualizerPreset>();
+            var rv = new Gee.TreeSet<Music.EqualizerPreset> ();
 
             foreach (var preset_str in presets_data) {
                 rv.add (new Music.EqualizerPreset.from_string (preset_str));

@@ -51,7 +51,7 @@ public class Music.SmartPlaylist : Playlist {
 
     construct {
         icon = new ThemedIcon ("playlist-automatic");
-        queries = new Gee.TreeSet<SmartQuery>();
+        queries = new Gee.TreeSet<SmartQuery> ();
 
         library.media_added.connect ((medias) => {
             analyse_list (medias);
@@ -127,7 +127,7 @@ public class Music.SmartPlaylist : Playlist {
     }
 
     // FIXME: Clearing a Smart Playlist ???
-    public override void clear() {
+    public override void clear () {
         medias.clear ();
         cleared ();
     }
@@ -139,115 +139,115 @@ public class Music.SmartPlaylist : Playlist {
     public static bool media_matches_query (SmartQuery q, Media s) {
         switch (q.field) {
             case Music.SmartQuery.FieldType.URI:
-                if(q.comparator == SmartQuery.ComparatorType.IS)
-                    return q.value.get_string ().down() == s.uri.down();
-                else if(q.comparator == SmartQuery.ComparatorType.CONTAINS)
-                    return (q.value.get_string ().down() in s.uri.down());
-                else if(q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
-                    return !(q.value.get_string ().down() in s.uri.down());
+                if (q.comparator == SmartQuery.ComparatorType.IS)
+                    return q.value.get_string ().down () == s.uri.down ();
+                else if (q.comparator == SmartQuery.ComparatorType.CONTAINS)
+                    return (q.value.get_string ().down () in s.uri.down ());
+                else if (q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
+                    return !(q.value.get_string ().down () in s.uri.down ());
                 break;
             case Music.SmartQuery.FieldType.ALBUM :
-                if(q.comparator == SmartQuery.ComparatorType.IS)
-                    return q.value.get_string ().down () == s.album.down();
-                else if(q.comparator == SmartQuery.ComparatorType.CONTAINS)
-                    return (q.value.get_string ().down() in s.album.down());
-                else if(q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
-                    return !(q.value.get_string ().down() in s.album.down());
+                if (q.comparator == SmartQuery.ComparatorType.IS)
+                    return q.value.get_string ().down () == s.album.down ();
+                else if (q.comparator == SmartQuery.ComparatorType.CONTAINS)
+                    return (q.value.get_string ().down () in s.album.down ());
+                else if (q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
+                    return !(q.value.get_string ().down () in s.album.down ());
                 break;
             case Music.SmartQuery.FieldType.ARTIST:
-                if(q.comparator == SmartQuery.ComparatorType.IS)
-                    return q.value.get_string ().down() == s.artist.down();
-                else if(q.comparator == SmartQuery.ComparatorType.CONTAINS)
-                    return (q.value.get_string ().down() in s.artist.down());
-                else if(q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
-                    return !(q.value.get_string ().down() in s.artist.down());
+                if (q.comparator == SmartQuery.ComparatorType.IS)
+                    return q.value.get_string ().down () == s.artist.down ();
+                else if (q.comparator == SmartQuery.ComparatorType.CONTAINS)
+                    return (q.value.get_string ().down () in s.artist.down ());
+                else if (q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
+                    return !(q.value.get_string ().down () in s.artist.down ());
                 break;
             case Music.SmartQuery.FieldType.COMPOSER:
-                if(q.comparator == SmartQuery.ComparatorType.IS)
-                    return q.value.get_string ().down() == s.composer.down();
-                else if(q.comparator == SmartQuery.ComparatorType.CONTAINS)
-                    return (q.value.get_string ().down() in s.composer.down());
-                else if(q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
-                    return !(q.value.get_string ().down() in s.composer.down());
+                if (q.comparator == SmartQuery.ComparatorType.IS)
+                    return q.value.get_string ().down () == s.composer.down ();
+                else if (q.comparator == SmartQuery.ComparatorType.CONTAINS)
+                    return (q.value.get_string ().down () in s.composer.down ());
+                else if (q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
+                    return !(q.value.get_string ().down () in s.composer.down ());
                 break;
             case Music.SmartQuery.FieldType.COMMENT:
-                if(q.comparator == SmartQuery.ComparatorType.IS)
-                    return q.value.get_string ().down() == s.comment.down();
-                else if(q.comparator == SmartQuery.ComparatorType.CONTAINS)
-                    return (q.value.get_string ().down() in s.comment.down());
-                else if(q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
-                    return !(q.value.get_string ().down() in s.comment.down());
+                if (q.comparator == SmartQuery.ComparatorType.IS)
+                    return q.value.get_string ().down () == s.comment.down ();
+                else if (q.comparator == SmartQuery.ComparatorType.CONTAINS)
+                    return (q.value.get_string ().down () in s.comment.down ());
+                else if (q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
+                    return !(q.value.get_string ().down () in s.comment.down ());
                 break;
             case Music.SmartQuery.FieldType.GENRE:
-                if(q.comparator == SmartQuery.ComparatorType.IS)
-                    return q.value.get_string ().down() == s.genre.down();
-                else if(q.comparator == SmartQuery.ComparatorType.CONTAINS)
-                    return (q.value.get_string ().down() in s.genre.down());
-                else if(q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
-                    return !(q.value.get_string ().down() in s.genre.down());
+                if (q.comparator == SmartQuery.ComparatorType.IS)
+                    return q.value.get_string ().down () == s.genre.down ();
+                else if (q.comparator == SmartQuery.ComparatorType.CONTAINS)
+                    return (q.value.get_string ().down () in s.genre.down ());
+                else if (q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
+                    return !(q.value.get_string ().down () in s.genre.down ());
                 break;
             case Music.SmartQuery.FieldType.GROUPING:
-                if(q.comparator == SmartQuery.ComparatorType.IS)
-                    return q.value.get_string ().down() == s.grouping.down();
-                else if(q.comparator == SmartQuery.ComparatorType.CONTAINS)
-                    return (q.value.get_string ().down() in s.grouping.down());
-                else if(q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
-                    return !(q.value.get_string ().down() in s.grouping.down());
+                if (q.comparator == SmartQuery.ComparatorType.IS)
+                    return q.value.get_string ().down () == s.grouping.down ();
+                else if (q.comparator == SmartQuery.ComparatorType.CONTAINS)
+                    return (q.value.get_string ().down () in s.grouping.down ());
+                else if (q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
+                    return !(q.value.get_string ().down () in s.grouping.down ());
                 break;
             case Music.SmartQuery.FieldType.TITLE:
-                if(q.comparator == SmartQuery.ComparatorType.IS)
-                    return q.value.get_string ().down() == s.title.down();
-                else if(q.comparator == SmartQuery.ComparatorType.CONTAINS)
-                    return (q.value.get_string ().down() in s.title.down());
-                else if(q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
-                    return !(q.value.get_string ().down() in s.title.down());
+                if (q.comparator == SmartQuery.ComparatorType.IS)
+                    return q.value.get_string ().down () == s.title.down ();
+                else if (q.comparator == SmartQuery.ComparatorType.CONTAINS)
+                    return (q.value.get_string ().down () in s.title.down ());
+                else if (q.comparator == SmartQuery.ComparatorType.NOT_CONTAINS)
+                    return !(q.value.get_string ().down () in s.title.down ());
                 break;
             case Music.SmartQuery.FieldType.BITRATE:
-                if(q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
+                if (q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
                     return q.value.get_int () == s.bitrate;
-                else if(q.comparator == SmartQuery.ComparatorType.IS_AT_MOST)
+                else if (q.comparator == SmartQuery.ComparatorType.IS_AT_MOST)
                     return (s.bitrate <= q.value.get_int ());
-                else if(q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST)
+                else if (q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST)
                     return (s.bitrate >= q.value.get_int ());
                 break;
             case Music.SmartQuery.FieldType.PLAYCOUNT:
-                if(q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
+                if (q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
                     return q.value.get_int () == s.play_count;
-                else if(q.comparator == SmartQuery.ComparatorType.IS_AT_MOST)
+                else if (q.comparator == SmartQuery.ComparatorType.IS_AT_MOST)
                     return (s.play_count <= q.value.get_int ());
-                else if(q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST)
+                else if (q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST)
                     return (s.play_count >= q.value.get_int ());
                 break;
             case Music.SmartQuery.FieldType.SKIPCOUNT:
-                if(q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
+                if (q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
                     return q.value.get_int () == s.skip_count;
-                else if(q.comparator == SmartQuery.ComparatorType.IS_AT_MOST)
+                else if (q.comparator == SmartQuery.ComparatorType.IS_AT_MOST)
                     return (s.skip_count <= q.value.get_int ());
-                else if(q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST)
+                else if (q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST)
                     return (s.skip_count >= q.value.get_int ());
                 break;
             case Music.SmartQuery.FieldType.YEAR:
-                if(q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
+                if (q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
                     return q.value.get_int () == s.year;
-                else if(q.comparator == SmartQuery.ComparatorType.IS_AT_MOST)
+                else if (q.comparator == SmartQuery.ComparatorType.IS_AT_MOST)
                     return (s.year <= q.value.get_int ());
-                else if(q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST)
+                else if (q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST)
                     return (s.year >= q.value.get_int ());
                 break;
             case Music.SmartQuery.FieldType.LENGTH:
-                if(q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
+                if (q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
                     return q.value.get_int () == s.length;
-                else if(q.comparator == SmartQuery.ComparatorType.IS_AT_MOST)
+                else if (q.comparator == SmartQuery.ComparatorType.IS_AT_MOST)
                     return (s.length <= q.value.get_int ());
-                else if(q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST)
+                else if (q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST)
                     return (s.length >= q.value.get_int ());
                 break;
             case Music.SmartQuery.FieldType.RATING:
-                if(q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
+                if (q.comparator == SmartQuery.ComparatorType.IS_EXACTLY)
                     return q.value.get_int () == s.rating;
-                else if(q.comparator == SmartQuery.ComparatorType.IS_AT_MOST)
+                else if (q.comparator == SmartQuery.ComparatorType.IS_AT_MOST)
                     return (s.rating <= q.value.get_int ());
-                else if(q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST)
+                else if (q.comparator == SmartQuery.ComparatorType.IS_AT_LEAST)
                     return (s.rating >= q.value.get_int ());
                 break;
             case Music.SmartQuery.FieldType.DATE_ADDED:
@@ -264,10 +264,10 @@ public class Music.SmartPlaylist : Playlist {
                 }
                 break;
             case Music.SmartQuery.FieldType.LAST_PLAYED:
-                if(s.last_played == 0)
+                if (s.last_played == 0)
                     return false;
 
-                var now = new DateTime.now_local();
+                var now = new DateTime.now_local ();
                 var played = new DateTime.from_unix_local (s.last_played);
                 played = played.add_days (q.value.get_int ());
 
@@ -300,7 +300,7 @@ public class Music.SmartPlaylist : Playlist {
                         match_count++;
                 }
 
-                if(((conditional == ConditionalType.ALL && match_count == queries.size) ||
+                if (((conditional == ConditionalType.ALL && match_count == queries.size) ||
                     (conditional == ConditionalType.ANY && match_count >= 1)) && !m.isTemporary) {
                     if (!medias.contains (m)) {
                         added.add (m);
@@ -317,7 +317,7 @@ public class Music.SmartPlaylist : Playlist {
                     break;
             }
 
-            Idle.add( () => {
+            Idle.add (() => {
                 // Emit signal to let views know about the change
                 media_added (added);
                 media_removed (removed);
