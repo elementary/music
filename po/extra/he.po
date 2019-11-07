@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-06 00:51+0000\n"
-"PO-Revision-Date: 2019-10-27 19:23+0000\n"
+"PO-Revision-Date: 2019-11-09 12:24+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/music/extra/he/>\n"
 "Language: he\n"
@@ -182,7 +182,6 @@ msgid "Respect privacy mode"
 msgstr "מצב כיבוד פרטיות"
 
 #: data/io.elementary.music.appdata.xml.in:142
-#, fuzzy
 msgid "elementary, Inc."
 msgstr "elementary בע״מ"
 
