@@ -13,7 +13,7 @@
   <releases>
     <release version="5.0.5" date="2019-11-14" urgency="medium">
       <description>
-        <p>Fix removing items from the Queue</p>
+        <p>Fix removing items from the queue</p>
         <p>Updated translations</p>
         <p>Performance improvements</p>
       </description>
