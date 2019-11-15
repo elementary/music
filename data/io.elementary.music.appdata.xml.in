@@ -15,6 +15,7 @@
       <description>
         <p>Fix removing items from the Queue</p>
         <p>Updated translations</p>
+        <p>Performance improvements</p>
       </description>
     </release>
     <release version="5.0.4" date="2019-04-17" urgency="medium">
