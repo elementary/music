@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-19 16:45+0000\n"
-"PO-Revision-Date: 2019-11-09 12:24+0000\n"
+"PO-Revision-Date: 2019-11-22 08:24+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/music/extra/he/>\n"
 "Language: he\n"
@@ -34,7 +34,7 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:16
 msgid "Fix removing items from the queue"
-msgstr ""
+msgstr "תיקון הסרת פריטים מהתור"
 
 #: data/io.elementary.music.appdata.xml.in:17
 #: data/io.elementary.music.appdata.xml.in:27
@@ -47,7 +47,7 @@ msgstr "התרגומים עודכנו"
 
 #: data/io.elementary.music.appdata.xml.in:18
 msgid "Performance improvements"
-msgstr ""
+msgstr "שיפורי ביצועים"
 
 #: data/io.elementary.music.appdata.xml.in:23
 msgid "Removed old gsignond vapi"
