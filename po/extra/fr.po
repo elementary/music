@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beatbox 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-19 16:45+0000\n"
-"PO-Revision-Date: 2019-11-09 12:24+0000\n"
-"Last-Translator: Corentin Noël <corentin@elementary.io>\n"
+"PO-Revision-Date: 2019-11-22 08:24+0000\n"
+"Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://l10n.elementary.io/projects/music/extra/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:16
 msgid "Fix removing items from the queue"
-msgstr ""
+msgstr "Correction de la suppression d'éléments dans la file d'attente"
 
 #: data/io.elementary.music.appdata.xml.in:17
 #: data/io.elementary.music.appdata.xml.in:27
@@ -52,7 +52,7 @@ msgstr "Mise à jour des traductions"
 
 #: data/io.elementary.music.appdata.xml.in:18
 msgid "Performance improvements"
-msgstr ""
+msgstr "Améliorations des performances"
 
 #: data/io.elementary.music.appdata.xml.in:23
 msgid "Removed old gsignond vapi"
