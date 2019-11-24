@@ -3,10 +3,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-19 16:45+0000\n"
-"PO-Revision-Date: 2019-11-09 12:24+0000\n"
+"PO-Revision-Date: 2019-11-25 09:24+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
-"Language-Team: Marathi <https://l10n.elementary.io/projects/music/extra/mr/"
-">\n"
+"Language-Team: Marathi <https://l10n.elementary.io/projects/music/extra/mr/>"
+"\n"
 "Language: mr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,7 +34,7 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:16
 msgid "Fix removing items from the queue"
-msgstr ""
+msgstr "रांगेतून आयटम काढण्याचे निराकरण करा"
 
 #: data/io.elementary.music.appdata.xml.in:17
 #: data/io.elementary.music.appdata.xml.in:27
@@ -47,7 +47,7 @@ msgstr "अद्ययावत भाषांतर"
 
 #: data/io.elementary.music.appdata.xml.in:18
 msgid "Performance improvements"
-msgstr ""
+msgstr "कामगिरी सुधारणा"
 
 #: data/io.elementary.music.appdata.xml.in:23
 msgid "Removed old gsignond vapi"
