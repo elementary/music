@@ -44,8 +44,10 @@ public class Music.CDDA : Object {
             query_attributes += FILE_ATTRIBUTE_DURATION;
             query_attributes += FileAttribute.STANDARD_NAME;
 
-            var device_info = device_file.query_info (string.joinv (",", query_attributes),
-                                                      FileQueryInfoFlags.NONE);
+            var device_info = device_file.query_info (
+                string.joinv (",", query_attributes),
+                FileQueryInfoFlags.NONE
+            );
 
             if (device_info == null) {
                 warning ("Could not query device attributes");
@@ -65,26 +67,31 @@ public class Music.CDDA : Object {
             bool valid_album_genre = Media.is_valid_string_field (album_genre);
 
             query_attributes += FILE_ATTRIBUTE_DURATION;
-            var enumerator = device_file.enumerate_children (string.joinv (",", query_attributes),
-                                                             FileQueryInfoFlags.NONE);
+            var enumerator = device_file.enumerate_children (
+                string.joinv (",", query_attributes),
+                FileQueryInfoFlags.NONE
+            );
 
             int index = 1;
             FileInfo track_info;
 
             for (track_info = enumerator.next_file (); track_info != null; track_info = enumerator.next_file ()) {
                 // GStreamer's CDDA library handles tracks with URI format: cdda://$TRACK_NUMBER
-                var s = new Media (enumerator.get_container ().get_uri() + track_info.get_name ());
+                var s = new Media (enumerator.get_container ().get_uri () + track_info.get_name ());
 
                 s.is_temporary = true;
 
-                if (valid_album_artist)
+                if (valid_album_artist) {
                     s.album_artist = album_artist;
+                }
 
-                if (valid_album_name)
+                if (valid_album_name) {
                     s.album = album_name;
+                }
 
-                if (valid_album_genre)
+                if (valid_album_genre) {
                     s.genre = album_genre;
+                }
 
                 string? title = track_info.get_attribute_string (FILE_ATTRIBUTE_TITLE);
                 string? artist = track_info.get_attribute_string (FILE_ATTRIBUTE_ARTIST);
