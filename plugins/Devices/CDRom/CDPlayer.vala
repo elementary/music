@@ -75,11 +75,11 @@ public class Music.Plugins.CDPlayer : Music.Playback, GLib.Object {
     }
 
     public bool update_position () {
-        if (first_start || (App.player.current_media != null && get_position() >= (int64)(App.player.current_media.resume_pos - 1) * 1000000000)) {
+        if (first_start || (App.player.current_media != null && get_position () >= (int64)(App.player.current_media.resume_pos - 1) * 1000000000)) {
             first_start = false;
-            current_position_update (get_position());
+            current_position_update (get_position ());
         } else if (App.player.current_media != null) {
-            pipe.playbin.seek_simple(Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)App.player.current_media.resume_pos * 1000000000);
+            pipe.playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)App.player.current_media.resume_pos * 1000000000);
         }
 
         return true;
@@ -101,7 +101,7 @@ public class Music.Plugins.CDPlayer : Music.Playback, GLib.Object {
     public void set_media (Media media) {
         set_state (Gst.State.READY);
         debug ("set track number to %u\n", media.track);
-        pipe.playbin.set ("uri", "cdda://%u".printf(media.track));
+        pipe.playbin.set ("uri", "cdda://%u".printf (media.track));
 
         set_state (Gst.State.PLAYING);
 
@@ -142,7 +142,7 @@ public class Music.Plugins.CDPlayer : Music.Playback, GLib.Object {
     }
 
     public double get_volume () {
-        /*var val = GLib.Value (typeof(double));
+        /*var val = GLib.Value (typeof (double));
         pipe.playbin.get ("volume", ref val);
         return (double)val;*/
         return volume;
@@ -153,7 +153,7 @@ public class Music.Plugins.CDPlayer : Music.Playback, GLib.Object {
         pipe.enable_equalizer ();
     }
 
-    public void disable_equalizer() {
+    public void disable_equalizer () {
         pipe.disable_equalizer ();
     }
 
@@ -169,7 +169,7 @@ public class Music.Plugins.CDPlayer : Music.Playback, GLib.Object {
             string debug;
             message.parse_error (out err, out debug);
             warning ("Error: %s\n", err.message);
-            error_occured();
+            error_occured ();
             break;
         case Gst.MessageType.ELEMENT:
             if (message.get_structure () != null && Gst.PbUtils.is_missing_plugin_message (message) && (dialog == null || !dialog.visible)) {
@@ -186,7 +186,7 @@ public class Music.Plugins.CDPlayer : Music.Playback, GLib.Object {
             message.parse_state_changed (out oldstate, out newstate,
                                          out pending);
 
-            if(newstate != Gst.State.PLAYING)
+            if (newstate != Gst.State.PLAYING)
                 break;
 
             break;
