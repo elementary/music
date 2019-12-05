@@ -27,7 +27,7 @@
  *              Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-public class Music.similar_medias_view : Gtk.TreeView {
+public class Music.similar_medias_view : Gtk.TreeView { // vala-lint=naming-convention
     private new Gtk.ListStore model;
     private Gee.LinkedList<Media> medias;
 
