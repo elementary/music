@@ -27,6 +27,7 @@
  *              Scott Ringwelski <sgringwe@mtu.edu>
  */
 
+// TODO: Fix naming convention
 public class Music.similar_medias_view : Gtk.TreeView { // vala-lint=naming-convention
     private new Gtk.ListStore model;
     private Gee.LinkedList<Media> medias;
