@@ -267,7 +267,7 @@ public class Music.LocalLibrary : Library {
         debug ("Found %d items to import in %s\n", num_items, music_folder_dir);
 
         foreach (var m in get_medias ()) {
-            if (!m.isTemporary && !m.isPreview && m.uri.contains (music_folder_dir)) {
+            if (!m.is_temporary && !m.is_preview && m.uri.contains (music_folder_dir)) {
                 if (!File.new_for_uri (m.uri).query_exists ()) {
                     to_remove.add (m);
                 }
@@ -310,7 +310,7 @@ public class Music.LocalLibrary : Library {
     }
 
     private void media_opened_imported (Media m) {
-        m.isTemporary = true;
+        m.is_temporary = true;
         open_media_list.add (m);
     }
 
@@ -649,7 +649,7 @@ public class Music.LocalLibrary : Library {
         // Dont clear podcasts that link to a url, device media, temporary media, previews, songs
         var unset = new Gee.LinkedList<Media> ();
         foreach (var s in _medias.values) {
-            if (!s.isTemporary && !s.isPreview)
+            if (!s.is_temporary && !s.is_preview)
                 unset.add (s);
         }
 

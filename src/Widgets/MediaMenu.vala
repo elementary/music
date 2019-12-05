@@ -179,7 +179,7 @@ public class Music.MediaMenu : Gtk.Menu {
         int temporary_count = 0;
         int total_count = 0;
         foreach (var m in selection) {
-            if (m.isTemporary) {
+            if (m.is_temporary) {
                 temporary_count++;
             }
             total_count++;

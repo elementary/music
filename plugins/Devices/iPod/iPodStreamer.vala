@@ -26,7 +26,7 @@
  * Authored by: Corentin Noël <corentin@elementary.io>
  */
 
-public class  Music.Plugins.iPodStreamer : Music.Playback, GLib.Object {
+public class  Music.Plugins.iPodStreamer : Music.Playback, GLib.Object { //vala-lint=naming-convention
     public Gst.Element cdda;
     public bool set_resume_pos;
     Music.Pipeline pipe;
@@ -116,11 +116,11 @@ public class  Music.Plugins.iPodStreamer : Music.Playback, GLib.Object {
 
     /* Extra stuff */
     public void enable_equalizer () {
-        pipe.enableEqualizer ();
+        pipe.enable_equalizer ();
     }
 
     public void disable_equalizer () {
-        pipe.disableEqualizer ();
+        pipe.disable_equalizer ();
     }
 
     public void set_equalizer_gain (int index, int val) {

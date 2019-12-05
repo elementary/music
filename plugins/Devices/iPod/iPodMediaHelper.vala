@@ -24,7 +24,7 @@
  * statement from your version.
  */
 
-public class Music.Plugins.iPodMediaHelper {
+public class Music.Plugins.iPodMediaHelper { //vala-lint=naming-convention
     public static Media media_from_track (string uri, GPod.Track track) {
         Media rv = null;
         if (uri.has_suffix ("/")) {
@@ -34,7 +34,7 @@ public class Music.Plugins.iPodMediaHelper {
         if (rv == null)
             rv = new Media (uri + GPod.iTunesDB.filename_ipod2fs (track.ipod_path));
 
-        rv.isTemporary = true;
+        rv.is_temporary = true;
         rv.title = track.title;
         rv.artist = track.artist;
         rv.album_artist = track.albumartist;

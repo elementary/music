@@ -33,7 +33,7 @@ public class Music.CDDA : Object {
     private const string FILE_ATTRIBUTE_GENRE = "xattr::org.gnome.audio.genre";
     private const string FILE_ATTRIBUTE_DURATION = "xattr::org.gnome.audio.duration";
 
-    public static Gee.LinkedList<Media> getMediaList (File device_file) {
+    public static Gee.LinkedList<Media> get_media_list (File device_file) {
         var rv = new Gee.LinkedList<Media> ();
 
         try {
@@ -75,7 +75,7 @@ public class Music.CDDA : Object {
                 // GStreamer's CDDA library handles tracks with URI format: cdda://$TRACK_NUMBER
                 var s = new Media (enumerator.get_container ().get_uri() + track_info.get_name ());
 
-                s.isTemporary = true;
+                s.is_temporary = true;
 
                 if (valid_album_artist)
                     s.album_artist = album_artist;

@@ -76,7 +76,7 @@ public class Music.Plugins.CDRomDevice : GLib.Object, Music.Device {
     }
 
     async void finish_initialization_async () {
-        medias = CDDA.getMediaList (mount.get_default_location ());
+        medias = CDDA.get_media_list (mount.get_default_location ());
         if(medias.size > 0) {
             set_display_name (medias.get(0).album);
         }
@@ -264,7 +264,7 @@ public class Music.Plugins.CDRomDevice : GLib.Object, Music.Device {
         current_list_index = 0;
         Music.Media s = list.get(current_list_index);
         media_being_ripped = s;
-        s.showIndicator = true;
+        s.show_indicator = true;
 
         // initialize gui feedback
         index = 0;
@@ -283,8 +283,8 @@ public class Music.Plugins.CDRomDevice : GLib.Object, Music.Device {
         });
 
         // connect callbacks
-        ripper.media_ripped.connect(mediaRipped);
-        ripper.error.connect(ripperError);
+        ripper.media_ripped.connect(on_media_ripped);
+        ripper.error.connect(on_ripper_error);
 
         // start process
         ripper.rip_media(s.track, s);
@@ -307,12 +307,12 @@ public class Music.Plugins.CDRomDevice : GLib.Object, Music.Device {
         return false;
     }
 
-    public void mediaRipped(Music.Media s) {
-        s.showIndicator = false;
+    public void on_media_ripped(Music.Media s) {
+        s.show_indicator = false;
 
         // Create a copy and add it to the library
         Music.Media lib_copy = s.copy();
-        lib_copy.isTemporary = false;
+        lib_copy.is_temporary = false;
         lib_copy.unique_status_image = null;
         var copied_list = new Gee.ArrayList<Media> ();
         copied_list.add (lib_copy);
@@ -364,7 +364,7 @@ public class Music.Plugins.CDRomDevice : GLib.Object, Music.Device {
         current_operation = _("CD import will be <b>cancelled</b> after current import.");
     }
 
-    public void ripperError(string err, Gst.Message message) {
+    public void on_ripper_error(string err, Gst.Message message) {
         stop_importation ();
         if(err == "missing element") {
             if (message.get_structure () != null && Gst.PbUtils.is_missing_plugin_message (message)) {

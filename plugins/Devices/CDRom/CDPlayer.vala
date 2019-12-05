@@ -150,11 +150,11 @@ public class Music.Plugins.CDPlayer : Music.Playback, GLib.Object {
 
     /* Extra stuff */
     public void enable_equalizer () {
-        pipe.enableEqualizer ();
+        pipe.enable_equalizer ();
     }
 
     public void disable_equalizer() {
-        pipe.disableEqualizer ();
+        pipe.disable_equalizer ();
     }
 
     public void set_equalizer_gain (int index, int val) {

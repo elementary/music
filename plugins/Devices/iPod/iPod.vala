@@ -27,7 +27,7 @@
  */
 
 namespace Music.Plugins {
-    public class iPodPlugin : Peas.ExtensionBase, Peas.Activatable {
+    public class iPodPlugin : Peas.ExtensionBase, Peas.Activatable { //vala-lint=naming-convention
 
         Interface plugins;
         public GLib.Object object { owned get; construct; }

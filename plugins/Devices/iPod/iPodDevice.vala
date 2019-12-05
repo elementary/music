@@ -26,7 +26,7 @@
  * Authored by: Corentin Noël <corentin@elementary.io>
  */
 
-public class Music.Plugins.iPodDevice : GLib.Object, Music.Device {
+public class Music.Plugins.iPodDevice : GLib.Object, Music.Device { //vala-lint=naming-convention
     GPod.iTunesDB db;
     public Mount mount;
     GLib.Icon icon;

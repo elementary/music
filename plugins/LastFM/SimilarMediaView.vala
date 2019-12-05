@@ -27,15 +27,15 @@
  *              Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-public class Music.SimilarMediasView : Gtk.TreeView {
+public class Music.similar_medias_view : Gtk.TreeView {
     private new Gtk.ListStore model;
     private Gee.LinkedList<Media> medias;
 
-    private Gee.LinkedList<string> urlsToOpen;//queue for opening urls
+    private Gee.LinkedList<string> urls_to_open;//queue for opening urls
 
-    public SimilarMediasView () {
+    public similar_medias_view () {
         medias = new Gee.LinkedList<Media> ();
-        urlsToOpen = new Gee.LinkedList<string> ();
+        urls_to_open = new Gee.LinkedList<string> ();
 
         /* id is always first and is stored as an int. Then the rest are (1)
          * strings (for simplicity), and include:
@@ -54,14 +54,14 @@ public class Music.SimilarMediasView : Gtk.TreeView {
         insert_column_with_attributes (-1, _("Similar Media"), text_renderer, "markup", 1, null);
         get_column (1).set_alignment ((float) 0.5);
         set_model (model);
-        row_activated.connect (viewDoubleClick);
+        row_activated.connect (view_double_click);
     }
 
-    public void populateView (Gee.Collection<Media> nMedias) {
+    public void populate_view (Gee.Collection<Media> n_medias) {
         medias.clear ();
         model.clear ();
         int count = 0;
-        foreach (Media s in nMedias) {
+        foreach (Media s in n_medias) {
             medias.add (s);
 
             Gtk.TreeIter iter;
@@ -78,7 +78,7 @@ public class Music.SimilarMediasView : Gtk.TreeView {
         }
     }
 
-    public virtual void viewDoubleClick (Gtk.TreePath path, Gtk.TreeViewColumn column) {
+    public virtual void view_double_click (Gtk.TreePath path, Gtk.TreeViewColumn column) {
         try {
             new Thread<void*>.try (null, take_action);
         } catch (GLib.Error err) {

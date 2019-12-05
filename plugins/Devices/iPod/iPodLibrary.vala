@@ -26,7 +26,7 @@
  * Authored by: Corentin Noël <corentin@elementary.io>
  */
 
-public class Music.Plugins.iPodLibrary : Music.Library {
+public class Music.Plugins.iPodLibrary : Music.Library { //vala-lint=naming-convention
     private unowned GPod.iTunesDB db;
     Gee.HashMap<unowned GPod.Track, Music.Media> medias;
     Gee.LinkedList<Music.Media> searched_medias;
@@ -314,11 +314,11 @@ public class Music.Plugins.iPodLibrary : Music.Library {
         return null;
     }
 
-    public override void update_media (Media s, bool updateMeta, bool record_time) {
+    public override void update_media (Media s, bool update_meta, bool record_time) {
 
     }
 
-    public override void update_medias (Gee.Collection<Media> updates, bool updateMeta, bool record_time) {
+    public override void update_medias (Gee.Collection<Media> updates, bool update_meta, bool record_time) {
 
     }
 
@@ -328,7 +328,7 @@ public class Music.Plugins.iPodLibrary : Music.Library {
         remove_medias (list, trash);
     }
 
-    public override void remove_medias(Gee.Collection<Media> toRemove, bool trash) {
+    public override void remove_medias(Gee.Collection<Media> to_remove, bool trash) {
         if (is_doing_file_operations) {
             warning("Tried to add when already syncing\n");
             return;
@@ -337,7 +337,7 @@ public class Music.Plugins.iPodLibrary : Music.Library {
         libraries_manager.current_operation = _("Removing from <b>%s</b>…").printf (device.get_display_name ());
         is_doing_file_operations = true;
         Timeout.add (500, libraries_manager.do_progress_notification_with_timeout);
-        remove_medias_async.begin (toRemove);
+        remove_medias_async.begin (to_remove);
         return;
     }
 

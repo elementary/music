@@ -59,7 +59,7 @@ public class Music.Plugins.AudioPlayerLibrary : Music.Library {
     }
 
     void media_imported_from_tagger (Media m) {
-        m.isTemporary = true;
+        m.is_temporary = true;
         this.medias.add(m);
         m.rowid = medias_rowid;
         medias_rowid++;
@@ -256,10 +256,10 @@ public class Music.Plugins.AudioPlayerLibrary : Music.Library {
 
         return null;
     }
-    public override void update_media (Media s, bool updateMeta, bool record_time) {
+    public override void update_media (Media s, bool update_meta, bool record_time) {
 
     }
-    public override void update_medias (Gee.Collection<Media> updates, bool updateMeta, bool record_time) {
+    public override void update_medias (Gee.Collection<Media> updates, bool update_meta, bool record_time) {
 
     }
     public override void remove_media (Media m, bool trash) {

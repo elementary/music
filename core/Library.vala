@@ -67,10 +67,10 @@ public abstract class Music.Library : GLib.Object {
     public abstract Media? media_from_id (int64 id);
     public abstract Gee.Collection<Media> medias_from_uris (Gee.Collection<string> uris);
     public abstract Gee.Collection<Media> medias_from_ids (Gee.Collection<int64?> ids);
-    public abstract void update_media (Media s, bool updateMeta, bool record_time);
-    public abstract void update_medias (Gee.Collection<Media> updates, bool updateMeta, bool record_time);
+    public abstract void update_media (Media s, bool update_meta, bool record_time);
+    public abstract void update_medias (Gee.Collection<Media> updates, bool update_meta, bool record_time);
     public abstract void remove_media (Media s, bool trash);
-    public abstract void remove_medias (Gee.Collection<Media> toRemove, bool trash);
+    public abstract void remove_medias (Gee.Collection<Media> to_remove, bool trash);
 
     public abstract bool support_smart_playlists ();
     public abstract void add_smart_playlist (SmartPlaylist p);

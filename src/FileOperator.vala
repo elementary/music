@@ -119,7 +119,7 @@ public class Music.FileOperator : Object {
         copy.add_all (to_save);
         var main_settings = Settings.Main.get_default ();
         foreach (Media s in copy) {
-            if (s.isTemporary || s.isPreview || File.new_for_uri (s.uri).get_path ().has_prefix (main_settings.music_folder) == false)
+            if (s.is_temporary || s.is_preview || File.new_for_uri (s.uri).get_path ().has_prefix (main_settings.music_folder) == false)
                 continue;
 
             if (App.settings.get_boolean ("write-metadata-to-file")) {
