@@ -26,7 +26,7 @@
  * Authored by: Corentin Noël <corentin@elementary.io>
  */
 
-public class  Music.Plugins.iPodStreamer : Music.Playback, GLib.Object { //vala-lint=naming-convention
+public class Music.Plugins.iPodStreamer : Music.Playback, GLib.Object { //vala-lint=naming-convention
     public Gst.Element cdda;
     public bool set_resume_pos;
     Music.Pipeline pipe;
