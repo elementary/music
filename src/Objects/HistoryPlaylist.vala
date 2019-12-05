@@ -144,7 +144,7 @@ public class Music.HistoryPlaylist : StaticPlaylist {
 
 namespace SecurityPrivacy {
     private const string SIG_EVENT = "asaasay";
-    private const string SIG_BLACKLIST = "a{s("+SIG_EVENT+")}";
+    private const string SIG_BLACKLIST = "a{s(" + SIG_EVENT + ")}";
 
     [DBus (name = "org.gnome.zeitgeist.Blacklist")]
     interface BlacklistInterface : Object {
