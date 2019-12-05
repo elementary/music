@@ -87,4 +87,3 @@ public class Music.Plugins.CDViewWrapper : ViewWrapper {
         yield set_media_async (new Gee.LinkedList<Media> ());
     }
 }
-
