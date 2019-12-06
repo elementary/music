@@ -55,7 +55,7 @@ public class Music.Plugins.AudioPlayerDeviceManager : GLib.Object {
             }
         }
         if (
-            File.new_for_uri (mount.get_default_location ().get_uri () + "/Android").query_exists () |
+            File.new_for_uri (mount.get_default_location ().get_uri () + "/Android").query_exists () ||
             File.new_for_uri (mount.get_default_location ().get_uri () + "/.is_audio_player").query_exists ()
         ) {
             var added = new AudioPlayerDevice (
