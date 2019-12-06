@@ -76,8 +76,8 @@ public class Music.Plugins.CDView : Gtk.Grid {
         import_button.halign = Gtk.Align.END;
 
         var import_grid = new Gtk.Grid ();
-        import_grid.attach (fake_label_3,  0, 0, 1, 1);
-        import_grid.attach (import_button, 1, 0, 1, 1);
+        import_grid.attach (fake_label_3, 0, 0);
+        import_grid.attach (import_button, 1, 0);
 
         main_grid = new Gtk.Grid ();
         main_grid.hexpand = true;
@@ -85,11 +85,11 @@ public class Music.Plugins.CDView : Gtk.Grid {
         main_grid.row_spacing = 6;
         main_grid.margin_top = 12;
         main_grid.attach (fake_label_1, 0, 0, 1, 7);
-        main_grid.attach (album_image, 1, 3, 1, 1);
-        main_grid.attach (title_label, 2, 2, 1, 1);
-        main_grid.attach (author_label, 3, 2, 1, 1);
+        main_grid.attach (album_image, 1, 3);
+        main_grid.attach (title_label, 2, 2);
+        main_grid.attach (author_label, 3, 2);
         main_grid.attach (cd_viewwrapper, 2, 3, 2, 1);
-        main_grid.attach (import_grid, 3, 4, 1, 1);
+        main_grid.attach (import_grid, 3, 4);
         main_grid.attach (fake_label_2, 4, 0, 1, 7);
 
         main_event_box = new Gtk.EventBox ();
@@ -109,6 +109,7 @@ public class Music.Plugins.CDView : Gtk.Grid {
 
     public void cd_initialised () {
         cd_playlist.add_medias (dev.get_medias ());
+
         if (cd_playlist.is_empty () == false) {
             var m = cd_playlist[0];
             author_label.set_markup (m.get_display_album_artist (true));
@@ -121,6 +122,7 @@ public class Music.Plugins.CDView : Gtk.Grid {
 
     private void load_cover () {
         var cover_icon = cd_playlist[0].album_info.cover_icon;
+
         if (cover_icon != null) {
             album_image.image.gicon = cover_icon;
         }

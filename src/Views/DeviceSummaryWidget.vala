@@ -280,7 +280,7 @@ public class Music.DeviceSummaryWidget : Gtk.EventBox {
         if (preferences.sync_music) {
             if (preferences.sync_all_music) {
                 foreach (var s in libraries_manager.local_library.get_medias ()) {
-                    if (s.isTemporary == false) {
+                    if (s.is_temporary == false) {
                         list.add (s);
                     }
                 }

@@ -36,17 +36,18 @@ namespace Music.Plugins {
         public void activate () {
             message ("Activating CD-Rom Device plugin");
 
-            Value value = Value(typeof(GLib.Object));
-            get_property("object", ref value);
-            plugins = (Music.Plugins.Interface)value.get_object();
-            plugins.register_function(Interface.Hook.WINDOW, () => {
+            Value value = Value (typeof (GLib.Object));
+            get_property ("object", ref value);
+            plugins = (Music.Plugins.Interface)value.get_object ();
+            plugins.register_function (Interface.Hook.WINDOW, () => {
                 cdrom_manager = new CDRomDeviceManager ();
             });
         }
 
         public void deactivate () {
-            if (cdrom_manager != null)
+            if (cdrom_manager != null) {
                 cdrom_manager.remove_all ();
+            }
         }
 
         public void update_state () {
@@ -65,8 +66,13 @@ namespace Music.Plugins {
 [ModuleInit]
 public void peas_register_types (GLib.TypeModule module) {
     var objmodule = module as Peas.ObjectModule;
-    objmodule.register_extension_type (typeof (Peas.Activatable),
-                                     typeof (Music.Plugins.CDRomPlugin));
-    /*objmodule.register_extension_type (typeof (PeasGtk.Configurable),
-                                     typeof (Music.Plugins.CDRomConfig));*/
+    objmodule.register_extension_type (
+        typeof (Peas.Activatable),
+        typeof (Music.Plugins.CDRomPlugin)
+    );
+
+    /*objmodule.register_extension_type (
+        typeof (PeasGtk.Configurable),
+        typeof (Music.Plugins.CDRomConfig)
+    );*/
 }

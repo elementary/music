@@ -24,17 +24,18 @@
  * statement from your version.
  */
 
-public class Music.Plugins.iPodMediaHelper {
+public class Music.Plugins.iPodMediaHelper { // vala-lint=naming-convention
     public static Media media_from_track (string uri, GPod.Track track) {
         Media rv = null;
+
         if (uri.has_suffix ("/")) {
-            rv = new Media (uri.slice (0, uri.char_count ()-1) + GPod.iTunesDB.filename_ipod2fs (track.ipod_path));
+            rv = new Media (uri.slice (0, uri.char_count () - 1) + GPod.iTunesDB.filename_ipod2fs (track.ipod_path));
         }
 
         if (rv == null)
             rv = new Media (uri + GPod.iTunesDB.filename_ipod2fs (track.ipod_path));
 
-        rv.isTemporary = true;
+        rv.is_temporary = true;
         rv.title = track.title;
         rv.artist = track.artist;
         rv.album_artist = track.albumartist;
@@ -60,16 +61,17 @@ public class Music.Plugins.iPodMediaHelper {
         rv.file_size = track.size;
         rv.resume_pos = (int)track.bookmark_time;
 
-        if(rv.artist == "" && rv.album_artist != "")
+        if (rv.artist == "" && rv.album_artist != "") {
             rv.artist = rv.album_artist;
-        else if(rv.album_artist == "" && rv.artist != "")
+        } else if (rv.album_artist == "" && rv.artist != "") {
             rv.album_artist = rv.artist;
+        }
 
         return rv;
     }
 
     public static void update_track (ref unowned GPod.Track t, Media m) {
-        if(t == null)
+        if (t == null)
             return;
 
         t.title = m.get_display_title ();
@@ -111,7 +113,7 @@ public class Music.Plugins.iPodMediaHelper {
      * caller *must* set ipod_path
      */
     public static GPod.Track track_from_media (Media m) {
-        GPod.Track t = new GPod.Track();
+        GPod.Track t = new GPod.Track ();
         unowned GPod.Track tu = t;
         update_track (ref tu, m);
         return t;

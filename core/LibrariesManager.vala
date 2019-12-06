@@ -131,7 +131,7 @@ public class Music.LibrariesManager : GLib.Object {
                         debug ("success copying file\n");
                         copy.uri = dest.get_uri ();
                         copy.rowid = 0;
-                        copy.isTemporary = false;
+                        copy.is_temporary = false;
                         copy.date_added = (int)time_t ();
                         copied_list.add (copy);
                     } else {

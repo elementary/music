@@ -48,7 +48,7 @@
  * Boston, MA 02110-1301 USA.
  */
 
-public class Music.Plugins.iPodPlaylistHelper {
+public class Music.Plugins.iPodPlaylistHelper { // vala-lint=naming-convention
     public static GPod.Playlist get_gpod_playlist_from_playlist (Music.Playlist pl, Gee.HashMap<unowned GPod.Track, Music.Media> library, GPod.iTunesDB db) {
         var rv = new GPod.Playlist (pl.name, false);
         rv.itdb = db;
@@ -83,7 +83,7 @@ public class Music.Plugins.iPodPlaylistHelper {
     public static Music.Playlist? get_playlist_from_gpod_playlist (GPod.Playlist pl, Gee.HashMap<unowned GPod.Track, Music.Media> library) {
         if (pl.is_spl) {
 
-        } else if (pl.is_podcasts () == false && pl.is_audiobooks () == false && pl.is_mpl() == false) {
+        } else if (pl.is_podcasts () == false && pl.is_audiobooks () == false && pl.is_mpl () == false) {
             var playlist = new StaticPlaylist.with_info (0, pl.name);
             foreach (var track in pl.members) {
                 playlist.add_media (library.get (track));
@@ -140,7 +140,7 @@ public class Music.Plugins.iPodPlaylistHelper {
     }*/
 
     public static void set_rule_from_smart_query (GPod.SPLRule rule, Music.SmartQuery q) {
-        message("adding rule\n");
+        message ("adding rule\n");
         if (q.field == SmartQuery.FieldType.ALBUM) { // strings
             rule.field = GPod.SPLField.ALBUM;
             rule.@string = q.value.get_string ();
@@ -168,7 +168,7 @@ public class Music.Plugins.iPodPlaylistHelper {
             rule.tovalue = (uint64)q.value.get_int ();
         } else if (q.field == SmartQuery.FieldType.PLAYCOUNT) {
             rule.field = GPod.SPLField.PLAYCOUNT;
-            rule.fromvalue =(uint64)q.value.get_int ();
+            rule.fromvalue = (uint64)q.value.get_int ();
             rule.tovalue = (uint64)q.value.get_int ();
         } else if (q.field == SmartQuery.FieldType.SKIPCOUNT) {
             rule.field = GPod.SPLField.SKIPCOUNT;
@@ -237,8 +237,8 @@ public class Music.Plugins.iPodPlaylistHelper {
     public static void set_properties_from_smart_playlist (GPod.Playlist rv, Music.SmartPlaylist sp) {
         message ("playlist is %s\n", sp.name);
         foreach (var sq in sp.get_queries ()) {
-            rv.splr_add_new(-1);
-            unowned GPod.SPLRule? rule = rv.splrules.rules.nth_data(rv.splrules.rules.length() - 1);
+            rv.splr_add_new (-1);
+            unowned GPod.SPLRule? rule = rv.splrules.rules.nth_data (rv.splrules.rules.length () - 1);
             message ("adding rule\n");
             var field = sq.field;
             var value = sq.value;
@@ -307,7 +307,7 @@ public class Music.Plugins.iPodPlaylistHelper {
                 rule.fromunits = 1;
                 break;
             case SmartQuery.FieldType.RATING:
-                message("rating rule is %d\n", value.get_int ());
+                message ("rating rule is %d\n", value.get_int ());
                 rule.field = GPod.SPLField.RATING;
                 rule.fromvalue = (uint64)value.get_int () * 20;
                 rule.tovalue = (uint64)value.get_int () * 20;

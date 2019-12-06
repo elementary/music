@@ -29,8 +29,8 @@
 public class Music.Plugins.CDRomDeviceManager : GLib.Object {
     Gee.ArrayList<CDRomDevice> devices;
 
-    public CDRomDeviceManager() {
-        devices = new Gee.ArrayList<CDRomDevice>();
+    public CDRomDeviceManager () {
+        devices = new Gee.ArrayList<CDRomDevice> ();
 
         var device_manager = DeviceManager.get_default ();
         device_manager.mount_added.connect (mount_added);
@@ -46,7 +46,7 @@ public class Music.Plugins.CDRomDeviceManager : GLib.Object {
             device_manager.device_removed ((Music.Device)dev);
         }
 
-        devices = new Gee.ArrayList<CDRomDevice>();
+        devices = new Gee.ArrayList<CDRomDevice> ();
     }
 
     public virtual void mount_added (Mount mount) {
@@ -56,7 +56,10 @@ public class Music.Plugins.CDRomDeviceManager : GLib.Object {
             }
         }
 
-        if (mount.get_default_location ().get_uri ().has_prefix ("cdda://") && mount.get_volume () != null) {
+        if (
+            mount.get_default_location ().get_uri ().has_prefix ("cdda://") &&
+            mount.get_volume () != null
+        ) {
             debug ("Adding CD to list");
             var added = new CDRomDevice (mount);
             added.set_mount (mount);
@@ -71,17 +74,21 @@ public class Music.Plugins.CDRomDeviceManager : GLib.Object {
                 mount_removed (added.get_mount ());
             }
         } else {
-            debug ("Found device at %s is not an Audio CD. Not using it", mount.get_default_location ().get_parse_name ());
+            debug (
+                "Found device at %s is not an Audio CD. Not using it",
+                mount.get_default_location ().get_parse_name ()
+            );
+
             return;
         }
     }
 
     public virtual void mount_changed (Mount mount) {
-        //stdout.printf("mount_changed:%s\n", mount.get_uuid());
+        //stdout.printf ("mount_changed:%s\n", mount.get_uuid ());
     }
 
     public virtual void mount_pre_unmount (Mount mount) {
-        //stdout.printf("mount_preunmount:%s\n", mount.get_uuid());
+        //stdout.printf ("mount_preunmount:%s\n", mount.get_uuid ());
     }
 
     public virtual void mount_removed (Mount mount) {

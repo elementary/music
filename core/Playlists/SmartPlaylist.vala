@@ -301,7 +301,7 @@ public class Music.SmartPlaylist : Playlist {
                 }
 
                 if (((conditional == ConditionalType.ALL && match_count == queries.size) ||
-                    (conditional == ConditionalType.ANY && match_count >= 1)) && !m.isTemporary) {
+                    (conditional == ConditionalType.ANY && match_count >= 1)) && !m.is_temporary) {
                     if (!medias.contains (m)) {
                         added.add (m);
                         medias.add (m);

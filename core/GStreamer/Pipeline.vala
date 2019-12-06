@@ -84,14 +84,14 @@ public class Music.Pipeline : GLib.Object {
         pad.link (sinkpad);
     }
 
-    public void enableEqualizer () {
+    public void enable_equalizer () {
         if (eq.element != null) {
             audiosinkqueue.unlink (audiosink); // link the queue with the real audio sink
             audiosinkqueue.link_many (eq_audioconvert, preamp, eq.element, eq_audioconvert2, audiosink);
         }
     }
 
-    public void disableEqualizer () {
+    public void disable_equalizer () {
         if (eq.element != null) {
             audiosinkqueue.unlink (eq_audioconvert);
             audiosinkqueue.unlink (preamp);
