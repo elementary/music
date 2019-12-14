@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-19 16:45+0000\n"
-"PO-Revision-Date: 2019-04-18 00:31+0000\n"
+"PO-Revision-Date: 2019-12-15 02:07+0000\n"
 "Last-Translator: nasserbinlaboun <nasser1990com@gmail.com>\n"
 "Language-Team: Arabic <https://l10n.elementary.io/projects/music/music/ar/>\n"
 "Language: ar\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 3.5.1\n"
+"X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:51+0000\n"
 
 #: core/LibrariesManager.vala:146
@@ -197,7 +197,7 @@ msgstr "%m/%e/%Y %l:%M %p"
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:105
 #: plugins/Devices/iPod/iPodDevice.vala:65
 msgid "Empty device!"
-msgstr "جهاز فارغ!"
+msgstr "الجهاز فارغ!"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:109
 #: plugins/Devices/iPod/iPodDevice.vala:69
