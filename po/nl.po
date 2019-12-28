@@ -8,16 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-19 16:45+0000\n"
-"PO-Revision-Date: 2018-07-18 00:05+0000\n"
-"Last-Translator: Dieter Debast <dieter_debast@hotmail.com>\n"
-"Language-Team: Dutch <https://weblate.elementary.io/projects/music/music/nl/"
-">\n"
+"PO-Revision-Date: 2019-12-28 10:11+0000\n"
+"Last-Translator: Jaimie85 <alsemgeest@gmail.com>\n"
+"Language-Team: Dutch <https://l10n.elementary.io/projects/music/music/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:52+0000\n"
 
 #: core/LibrariesManager.vala:146
@@ -262,14 +261,13 @@ msgstr ""
 "geïmporteerd"
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, fuzzy
 msgid "Song imported from Audio CD."
-msgstr "Importeer liedjes van audio CD"
+msgstr "Liedje geïmporteerd van Audio CD."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:354
-#, fuzzy, c-format
+#, c-format
 msgid "%i songs imported from Audio CD."
-msgstr "%s is klaar met importeren van de song van de audio-CD"
+msgstr "%i liedjes geïmporteerd van de Audio CD."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:359
 #, c-format
@@ -282,21 +280,19 @@ msgstr "CD-importeren wordt <b>geannuleerd</b> na de huidig importering."
 
 #: plugins/Devices/CDRom/CDRomDevice.vala:383
 msgid "Could not import this CD"
-msgstr ""
+msgstr "Importeren van de CD mislukt"
 
 #: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
 msgid "Import"
 msgstr "Importeer"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:37
-#, fuzzy
 msgid "An Error Occurred"
 msgstr "Er heeft zich een probleem voorgedaan"
 
 #: plugins/Devices/CDRom/CDViewWrapper.vala:38
-#, fuzzy
 msgid "Could not load this Audio CD."
-msgstr "%s kon de inhoud van de audio CD niet lezen"
+msgstr ""
 
 #: plugins/Devices/iPod/iPodLibrary.vala:218
 #: plugins/Devices/iPod/iPodLibrary.vala:374
@@ -963,7 +959,7 @@ msgstr "Geen resultaten"
 
 #: src/Views/ViewStack.vala:45
 msgid "Try another search"
-msgstr ""
+msgstr "Probeer een andere zoekterm"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
 msgid "Genres"
