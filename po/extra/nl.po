@@ -8,16 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-19 16:45+0000\n"
-"PO-Revision-Date: 2018-08-22 16:23+0000\n"
-"Last-Translator: Daniel Foré <daniel@elementary.io>\n"
-"Language-Team: Dutch <https://weblate.elementary.io/projects/music/extra/nl/"
-">\n"
+"PO-Revision-Date: 2019-12-30 13:14+0000\n"
+"Last-Translator: Jaimie85 <alsemgeest@gmail.com>\n"
+"Language-Team: Dutch <https://l10n.elementary.io/projects/music/extra/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
 #: data/io.elementary.music.appdata.xml.in:8
@@ -39,7 +38,7 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:16
 msgid "Fix removing items from the queue"
-msgstr ""
+msgstr "Een probleem opgelost met het verwijderen van items uit de wachtrij"
 
 #: data/io.elementary.music.appdata.xml.in:17
 #: data/io.elementary.music.appdata.xml.in:27
@@ -48,60 +47,64 @@ msgstr ""
 #: data/io.elementary.music.appdata.xml.in:55
 #: data/io.elementary.music.appdata.xml.in:64
 msgid "Updated translations"
-msgstr ""
+msgstr "Bijgewerkte vertalingen"
 
 #: data/io.elementary.music.appdata.xml.in:18
 msgid "Performance improvements"
-msgstr ""
+msgstr "Prestatieverbeteringen"
 
 #: data/io.elementary.music.appdata.xml.in:23
 msgid "Removed old gsignond vapi"
-msgstr ""
+msgstr "De oude gsignond vapi is verwijderd"
 
 #: data/io.elementary.music.appdata.xml.in:24
 msgid "LibraryWindow: Use Granite.MessageDialog for showing alerts"
 msgstr ""
+"LibraryWindow gebruikt nu Granite.MessageDialog om waarschuwingen te tonen"
 
 #: data/io.elementary.music.appdata.xml.in:25
 msgid "PlaylistsUtils: Use Gtk.FileChooserNative"
-msgstr ""
+msgstr "PlaylistsUtils gebruikt nu Gtk.FileChooserNative"
 
 #: data/io.elementary.music.appdata.xml.in:26
 msgid "Accurately remember window size"
-msgstr ""
+msgstr "De grootte van het venster wordt nu beter onthouden"
 
 #: data/io.elementary.music.appdata.xml.in:32
 msgid "Scale album art properly at high resolutions"
-msgstr ""
+msgstr "Albumhoezen worden op hoge resolutie goed geschaald"
 
 #: data/io.elementary.music.appdata.xml.in:33
 msgid ""
 "Accurately select Music Folder Location for directories with spaces in name"
 msgstr ""
+"Het selecteren van een muziek map is verbeterd bij mappen met een spatie in "
+"de mapnaam"
 
 #: data/io.elementary.music.appdata.xml.in:34
 msgid "New MediaKeyListener path for gnome-settings-daemon"
-msgstr ""
+msgstr "Een nieuwe MediaKeyListener pad voor gnome-settings-daemon"
 
 #: data/io.elementary.music.appdata.xml.in:40
 msgid "AlbumView: double-click to play album"
-msgstr ""
+msgstr "AlbumView: dubbel-klik op een album om dit af te spelen"
 
 #: data/io.elementary.music.appdata.xml.in:41
 msgid "Associate with s3m files"
-msgstr ""
+msgstr "Wordt geassocieerd met s3m bestanden"
 
 #: data/io.elementary.music.appdata.xml.in:42
 msgid "Queue fixes"
-msgstr ""
+msgstr "Problemen met de wachtrij opgelost"
 
 #: data/io.elementary.music.appdata.xml.in:43
 msgid "Properly restore playlists"
-msgstr ""
+msgstr "Afspeellijsten worden op een juiste manier hersteld"
 
 #: data/io.elementary.music.appdata.xml.in:44
 msgid "Always respect custom music folder setting"
 msgstr ""
+"De instelling van een afwijkende muziekmap wordt nu altijd gerespecteerd"
 
 #: data/io.elementary.music.appdata.xml.in:45
 #: data/io.elementary.music.appdata.xml.in:54
@@ -109,15 +112,15 @@ msgstr ""
 #: data/io.elementary.music.appdata.xml.in:95
 #: data/io.elementary.music.appdata.xml.in:110
 msgid "Minor bug fixes"
-msgstr ""
+msgstr "Kleine bugfixes"
 
 #: data/io.elementary.music.appdata.xml.in:51
 msgid "Fix list and column view sorting"
-msgstr ""
+msgstr "Een probleem opgelost met het sorteren van de lijst- en kolomweergave"
 
 #: data/io.elementary.music.appdata.xml.in:52
 msgid "Add orange accent color"
-msgstr ""
+msgstr "Een oranje accent kleur toegevoegd"
 
 #: data/io.elementary.music.appdata.xml.in:53
 msgid "Add shortcut accels to tooltips"
