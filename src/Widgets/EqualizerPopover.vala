@@ -261,7 +261,7 @@ public class Music.EqualizerPopover : Gtk.Popover {
             return;
         }
 
-        scale_container.sensitive = true;
+        scale_container.sensitive = equalizer_settings.get_boolean ("equalizer-enabled");
         target_levels.clear ();
 
         foreach (int i in p.gains)
