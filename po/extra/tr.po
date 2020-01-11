@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-19 16:45+0000\n"
-"PO-Revision-Date: 2019-12-18 20:29+0000\n"
+"PO-Revision-Date: 2020-01-12 15:07+0000\n"
 "Last-Translator: Ozgur Baskin <bebeto_baskin@yahoo.com>\n"
 "Language-Team: Turkish <https://l10n.elementary.io/projects/music/extra/tr/>"
 "\n"
@@ -110,7 +110,7 @@ msgstr ""
 #: data/io.elementary.music.appdata.xml.in:95
 #: data/io.elementary.music.appdata.xml.in:110
 msgid "Minor bug fixes"
-msgstr ""
+msgstr "Küçük hata düzeltmeleri"
 
 #: data/io.elementary.music.appdata.xml.in:51
 msgid "Fix list and column view sorting"
@@ -157,7 +157,7 @@ msgstr ""
 #: data/io.elementary.music.appdata.xml.in:83
 #: data/io.elementary.music.appdata.xml.in:88
 msgid "Minor bug fixes."
-msgstr ""
+msgstr "Küçük hata düzeltmeleri."
 
 #: data/io.elementary.music.appdata.xml.in:93
 msgid "Add rounded bottom window corner."
