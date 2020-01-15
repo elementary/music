@@ -8,17 +8,17 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-19 16:45+0000\n"
-"PO-Revision-Date: 2018-08-23 00:03+0000\n"
-"Last-Translator: Daniel Foré <daniel@elementary.io>\n"
-"Language-Team: Slovenian <https://weblate.elementary.io/projects/music/extra/"
-"sl/>\n"
+"PO-Revision-Date: 2020-01-05 14:18+0000\n"
+"Last-Translator: Marko <marko.dolar@gmail.com>\n"
+"Language-Team: Slovenian <https://l10n.elementary.io/projects/music/extra/sl/"
+">\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
-"%100==4 ? 2 : 3;\n"
-"X-Generator: Weblate 3.0.1\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
 #: data/io.elementary.music.appdata.xml.in:8
@@ -40,7 +40,7 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:16
 msgid "Fix removing items from the queue"
-msgstr ""
+msgstr "Popravljeno odstranjevanje predmetov iz vrste"
 
 #: data/io.elementary.music.appdata.xml.in:17
 #: data/io.elementary.music.appdata.xml.in:27
@@ -49,31 +49,31 @@ msgstr ""
 #: data/io.elementary.music.appdata.xml.in:55
 #: data/io.elementary.music.appdata.xml.in:64
 msgid "Updated translations"
-msgstr ""
+msgstr "Posodobljeni prevodi"
 
 #: data/io.elementary.music.appdata.xml.in:18
 msgid "Performance improvements"
-msgstr ""
+msgstr "Izboljšanje odzivnosti"
 
 #: data/io.elementary.music.appdata.xml.in:23
 msgid "Removed old gsignond vapi"
-msgstr ""
+msgstr "Odstranjen star gsignond vapi"
 
 #: data/io.elementary.music.appdata.xml.in:24
 msgid "LibraryWindow: Use Granite.MessageDialog for showing alerts"
-msgstr ""
+msgstr "LibraryWindow: Uporabi Granite.MessageDialog za prikaz alarmov"
 
 #: data/io.elementary.music.appdata.xml.in:25
 msgid "PlaylistsUtils: Use Gtk.FileChooserNative"
-msgstr ""
+msgstr "PlaylistsUtils: Uporabi Gtk.FileChooserNative"
 
 #: data/io.elementary.music.appdata.xml.in:26
 msgid "Accurately remember window size"
-msgstr ""
+msgstr "Točno si zapomni velikost okna"
 
 #: data/io.elementary.music.appdata.xml.in:32
 msgid "Scale album art properly at high resolutions"
-msgstr ""
+msgstr "Pravilno razširi slike albumov ob velikih resolucijah"
 
 #: data/io.elementary.music.appdata.xml.in:33
 msgid ""
@@ -86,7 +86,7 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:40
 msgid "AlbumView: double-click to play album"
-msgstr ""
+msgstr "AlbumView: dvoklik za predvajanje albuma"
 
 #: data/io.elementary.music.appdata.xml.in:41
 msgid "Associate with s3m files"
@@ -94,11 +94,11 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:42
 msgid "Queue fixes"
-msgstr ""
+msgstr "Popravki za predvajalno vrsto"
 
 #: data/io.elementary.music.appdata.xml.in:43
 msgid "Properly restore playlists"
-msgstr ""
+msgstr "Pravilno povrni sezname predvajanja"
 
 #: data/io.elementary.music.appdata.xml.in:44
 msgid "Always respect custom music folder setting"
@@ -110,7 +110,7 @@ msgstr ""
 #: data/io.elementary.music.appdata.xml.in:95
 #: data/io.elementary.music.appdata.xml.in:110
 msgid "Minor bug fixes"
-msgstr ""
+msgstr "Manjši popravki"
 
 #: data/io.elementary.music.appdata.xml.in:51
 msgid "Fix list and column view sorting"
@@ -157,7 +157,7 @@ msgstr ""
 #: data/io.elementary.music.appdata.xml.in:83
 #: data/io.elementary.music.appdata.xml.in:88
 msgid "Minor bug fixes."
-msgstr ""
+msgstr "Manjši popravki."
 
 #: data/io.elementary.music.appdata.xml.in:93
 msgid "Add rounded bottom window corner."
@@ -166,7 +166,7 @@ msgstr ""
 #: data/io.elementary.music.appdata.xml.in:96
 #: data/io.elementary.music.appdata.xml.in:111
 msgid "New translations"
-msgstr ""
+msgstr "Novi prevodi"
 
 #: data/io.elementary.music.appdata.xml.in:102
 msgid "Release for Loki."
@@ -174,7 +174,7 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:104
 msgid "Add support for Opus Ogg"
-msgstr ""
+msgstr "Dodana podpora za Opus Ogg"
 
 #: data/io.elementary.music.appdata.xml.in:105
 msgid "Fix Ctrl+Q support for non-Latin keyboard layouts"
@@ -199,7 +199,7 @@ msgstr ""
 #: data/io.elementary.music.appdata.xml.in:149
 #, fuzzy
 msgid "elementary, Inc."
-msgstr "elementary LLC."
+msgstr "elementary, Inc."
 
 #: data/io.elementary.music.desktop.in:5
 msgid "Music Player"
