@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-19 16:45+0000\n"
+"POT-Creation-Date: 2020-01-15 21:57+0000\n"
 "PO-Revision-Date: 2018-11-06 01:57+0000\n"
 "Last-Translator: Piotr Strebski <strebski@gmail.com>\n"
 "Language-Team: Polish <https://weblate.elementary.io/projects/music/music/pl/"
@@ -26,22 +26,22 @@ msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 msgstr "Importowanie <b>$NAME</b> w wykonaniu <b>$ARTIST</b> do biblioteki…"
 
 #. / Used for unknown titles, artists, or album names.
-#: core/Media.vala:32
+#: core/Media.vala:33
 msgid "Unknown"
 msgstr "Nieznany"
 
 #. / Please keep $NAME and $ALBUM, they will be replaced by their values
-#: core/Media.vala:179
+#: core/Media.vala:180
 msgid "$NAME on $ALBUM"
 msgstr "$NAME z albumu $ALBUM"
 
 #. / Please keep $NAME and $ARTIST, they will be replaced by their values
-#: core/Media.vala:182
+#: core/Media.vala:183
 msgid "$NAME by $ARTIST"
 msgstr "$NAME w wykonaniu $ARTIST"
 
 #. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
-#: core/Media.vala:188
+#: core/Media.vala:189
 msgid "$NAME by $ARTIST on $ALBUM"
 msgstr "$NAME w wykonaniu $ARTIST z albumu $ALBUM"
 
@@ -194,42 +194,42 @@ msgstr "Nierozpoznany plik listy odtwarzania. Nieudane importowanie."
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%m/%e/%Y %k:%M"
 
-#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:105
-#: plugins/Devices/iPod/iPodDevice.vala:65
+#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:109
+#: plugins/Devices/iPod/iPodDevice.vala:68
 msgid "Empty device!"
 msgstr "Urządzenie puste!"
 
-#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:109
-#: plugins/Devices/iPod/iPodDevice.vala:69
+#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:113
+#: plugins/Devices/iPod/iPodDevice.vala:72
 msgid "This device does not contain any music."
 msgstr "Urządzenie nie zawiera muzyki."
 
-#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:153
+#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:158
 msgid "Android Phone"
 msgstr "Android"
 
-#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:155
+#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:160
 msgid "Audio Player"
 msgstr "Odtwarzacz muzyki"
 
-#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:137
-#: plugins/Devices/iPod/iPodLibrary.vala:148
+#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:146
+#: plugins/Devices/iPod/iPodLibrary.vala:167
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 msgstr "Dodawanie <b>$NAME</b> od <b>$ARTIST</b> do $DEVICE"
 
-#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:161
-#: plugins/Devices/iPod/iPodLibrary.vala:196
+#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:171
+#: plugins/Devices/iPod/iPodLibrary.vala:216
 #, c-format
 msgid "Syncing <b>%s</b>…"
 msgstr "Synchronizowanie <b>%s</b>…"
 
-#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:266
-#: plugins/Devices/iPod/iPodLibrary.vala:530
+#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:283
+#: plugins/Devices/iPod/iPodLibrary.vala:561
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 msgstr "Usuwanie <b>$NAME</b> w wykonaniu <b>$ARTIST</b> z $DEVICE"
 
-#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:297
-#: plugins/Devices/iPod/iPodLibrary.vala:337
+#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:315
+#: plugins/Devices/iPod/iPodLibrary.vala:366
 #, c-format
 msgid "Removing from <b>%s</b>…"
 msgstr "Usuwanie z <b>%s</b>…"
@@ -243,11 +243,11 @@ msgid "Impossible to read the contents of this Audio CD"
 msgstr "Nie można odczytać zawartości tego nośnika Audio CD"
 
 #. do checks to make sure we can go on
-#: plugins/Devices/CDRom/CDRomDevice.vala:247
+#: plugins/Devices/CDRom/CDRomDevice.vala:250
 msgid "Could not find Music Folder"
 msgstr "Nie można odnaleźć katalogu z muzyką"
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:247
+#: plugins/Devices/CDRom/CDRomDevice.vala:250
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
@@ -255,34 +255,34 @@ msgstr ""
 "Przed zaimportowaniem płyty CD, proszę upewnić się, że katalog z muzyką jest "
 "dostępny i zamontowany."
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:253
+#: plugins/Devices/CDRom/CDRomDevice.vala:256
 msgid ""
 "The Application could not find any songs on the CD. No songs can be imported"
 msgstr ""
 "Program nie mógł odnaleźć żadnych piosenek na tym CD. Brak utworów do "
 "zaimportowania"
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:354
+#: plugins/Devices/CDRom/CDRomDevice.vala:361
 msgid "Song imported from Audio CD."
 msgstr "Nagrania zostały zaimportowane z dźwiękowej płyty CD."
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:354
+#: plugins/Devices/CDRom/CDRomDevice.vala:362
 #, c-format
 msgid "%i songs imported from Audio CD."
 msgstr "%i nagrań zostało zaimportowanych z dźwiękowej płyty CD."
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:359
+#: plugins/Devices/CDRom/CDRomDevice.vala:371
 #, c-format
 msgid "Importing track %u: %s"
 msgstr "Importowanie utworu %u: %s"
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:364
+#: plugins/Devices/CDRom/CDRomDevice.vala:376
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr ""
 "Importowanie płyty CD zostanie <b>anulowane</b> zaimportowaniu bieżącego "
 "nagrania."
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:383
+#: plugins/Devices/CDRom/CDRomDevice.vala:395
 msgid "Could not import this CD"
 msgstr "Nie można zaimportować z tej płyty CD"
 
@@ -298,13 +298,13 @@ msgstr "Wystąpił błąd"
 msgid "Could not load this Audio CD."
 msgstr "Nie można odczytać zawartości tej płyty CD."
 
-#: plugins/Devices/iPod/iPodLibrary.vala:218
-#: plugins/Devices/iPod/iPodLibrary.vala:374
+#: plugins/Devices/iPod/iPodLibrary.vala:238
+#: plugins/Devices/iPod/iPodLibrary.vala:404
 msgid "Finishing sync process…"
 msgstr "Kończenie synchronizacji…"
 
-#: plugins/Devices/iPod/iPodLibrary.vala:230
-#: plugins/Devices/iPod/iPodLibrary.vala:386
+#: plugins/Devices/iPod/iPodLibrary.vala:250
+#: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "Przerywanie synchronizacji…"
 
@@ -326,11 +326,11 @@ msgstr ""
 msgid "Similar"
 msgstr "Podobne"
 
-#: plugins/LastFM/SimilarMediaView.vala:48
+#: plugins/LastFM/SimilarMediaView.vala:49
 msgid "media"
 msgstr "nagrań"
 
-#: plugins/LastFM/SimilarMediaView.vala:54
+#: plugins/LastFM/SimilarMediaView.vala:55
 msgid "Similar Media"
 msgstr "Podobne"
 

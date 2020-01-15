@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-19 16:45+0000\n"
+"POT-Creation-Date: 2020-01-15 21:57+0000\n"
 "PO-Revision-Date: 2019-02-12 00:06+0000\n"
 "Last-Translator: Rico Tzschichholz <ricotz@ubuntu.com>\n"
 "Language-Team: Greek <https://weblate.elementary.io/projects/music/music/el/"
@@ -25,22 +25,22 @@ msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 msgstr "Εισαγωγή του <b>$NAME</b> από τον/την <b>$ARTIST</b> στη βιβλιοθήκη…"
 
 #. / Used for unknown titles, artists, or album names.
-#: core/Media.vala:32
+#: core/Media.vala:33
 msgid "Unknown"
 msgstr "Άγνωστο"
 
 #. / Please keep $NAME and $ALBUM, they will be replaced by their values
-#: core/Media.vala:179
+#: core/Media.vala:180
 msgid "$NAME on $ALBUM"
 msgstr "$NAME στο $ALBUM"
 
 #. / Please keep $NAME and $ARTIST, they will be replaced by their values
-#: core/Media.vala:182
+#: core/Media.vala:183
 msgid "$NAME by $ARTIST"
 msgstr "$NAME από τον/την $ARTIST"
 
 #. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
-#: core/Media.vala:188
+#: core/Media.vala:189
 msgid "$NAME by $ARTIST on $ALBUM"
 msgstr "$NAME από τον/την $ARTIST στο $ALBUM"
 
@@ -193,42 +193,42 @@ msgstr "Μη αναγνωρίσιμο αρχείο λίστας αναπαραγ
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%m/%e/%Y %l:%M %p"
 
-#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:105
-#: plugins/Devices/iPod/iPodDevice.vala:65
+#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:109
+#: plugins/Devices/iPod/iPodDevice.vala:68
 msgid "Empty device!"
 msgstr "Άδεια συσκευή!"
 
-#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:109
-#: plugins/Devices/iPod/iPodDevice.vala:69
+#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:113
+#: plugins/Devices/iPod/iPodDevice.vala:72
 msgid "This device does not contain any music."
 msgstr "Αυτή η συσκευή δεν περιέχει μουσική."
 
-#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:153
+#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:158
 msgid "Android Phone"
 msgstr "Android τηλέφωνο"
 
-#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:155
+#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:160
 msgid "Audio Player"
 msgstr "Αναπαραγωγέας ήχου"
 
-#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:137
-#: plugins/Devices/iPod/iPodLibrary.vala:148
+#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:146
+#: plugins/Devices/iPod/iPodLibrary.vala:167
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 msgstr "Προσθήκη του <b>$NAME</b> από τον/την <b>$ARTIST</b> στο $DEVICE"
 
-#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:161
-#: plugins/Devices/iPod/iPodLibrary.vala:196
+#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:171
+#: plugins/Devices/iPod/iPodLibrary.vala:216
 #, c-format
 msgid "Syncing <b>%s</b>…"
 msgstr "Συγχρονισμός <b>%s</b>…"
 
-#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:266
-#: plugins/Devices/iPod/iPodLibrary.vala:530
+#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:283
+#: plugins/Devices/iPod/iPodLibrary.vala:561
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 msgstr "Αφαίρεση του <b>$NAME</b> από τον/την <b>$ARTIST</b> από $DEVICE"
 
-#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:297
-#: plugins/Devices/iPod/iPodLibrary.vala:337
+#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:315
+#: plugins/Devices/iPod/iPodLibrary.vala:366
 #, c-format
 msgid "Removing from <b>%s</b>…"
 msgstr "Αφαίρεση από <b>%s</b>..."
@@ -242,11 +242,11 @@ msgid "Impossible to read the contents of this Audio CD"
 msgstr "Αδύνατη η ανάγνωση δεδομένων του μουσικού CD"
 
 #. do checks to make sure we can go on
-#: plugins/Devices/CDRom/CDRomDevice.vala:247
+#: plugins/Devices/CDRom/CDRomDevice.vala:250
 msgid "Could not find Music Folder"
 msgstr "Αδυναμία εύρεσης του φακέλου μουσικής"
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:247
+#: plugins/Devices/CDRom/CDRomDevice.vala:250
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
@@ -254,32 +254,32 @@ msgstr ""
 "Βεβαιωθείτε ότι ο φάκελος της μουσικής σας είναι προσβάσιμος και "
 "προσαρτημένος πριν εισάγετε το CD."
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:253
+#: plugins/Devices/CDRom/CDRomDevice.vala:256
 msgid ""
 "The Application could not find any songs on the CD. No songs can be imported"
 msgstr ""
 "Η εφαρμογή δεν μπόρεσε να βρει τραγούδια στο CD. Δεν μπορούν να εισαχθούν "
 "τραγούδια"
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:354
+#: plugins/Devices/CDRom/CDRomDevice.vala:361
 msgid "Song imported from Audio CD."
 msgstr ""
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:354
+#: plugins/Devices/CDRom/CDRomDevice.vala:362
 #, c-format
 msgid "%i songs imported from Audio CD."
 msgstr ""
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:359
+#: plugins/Devices/CDRom/CDRomDevice.vala:371
 #, c-format
 msgid "Importing track %u: %s"
 msgstr "Εισαγωγή κομματιού %u: %s"
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:364
+#: plugins/Devices/CDRom/CDRomDevice.vala:376
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr "Η εισαγωγή του CD θα <b>ακυρωθεί</b> μετά την τρέχουσα εισαγωγή."
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:383
+#: plugins/Devices/CDRom/CDRomDevice.vala:395
 msgid "Could not import this CD"
 msgstr ""
 
@@ -297,13 +297,13 @@ msgstr "Προέκυψε ένα σφάλμα"
 msgid "Could not load this Audio CD."
 msgstr "Προέκυψε ένα σφάλμα κατά τη φόρτωση του μουσικού CD"
 
-#: plugins/Devices/iPod/iPodLibrary.vala:218
-#: plugins/Devices/iPod/iPodLibrary.vala:374
+#: plugins/Devices/iPod/iPodLibrary.vala:238
+#: plugins/Devices/iPod/iPodLibrary.vala:404
 msgid "Finishing sync process…"
 msgstr "Η διαδικασία συγχρονισμού τελειώνει..."
 
-#: plugins/Devices/iPod/iPodLibrary.vala:230
-#: plugins/Devices/iPod/iPodLibrary.vala:386
+#: plugins/Devices/iPod/iPodLibrary.vala:250
+#: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "Ακύρωση συγχρονισμού..."
 
@@ -325,11 +325,11 @@ msgstr ""
 msgid "Similar"
 msgstr "Παρόμοιο"
 
-#: plugins/LastFM/SimilarMediaView.vala:48
+#: plugins/LastFM/SimilarMediaView.vala:49
 msgid "media"
 msgstr "πολυμέσα"
 
-#: plugins/LastFM/SimilarMediaView.vala:54
+#: plugins/LastFM/SimilarMediaView.vala:55
 msgid "Similar Media"
 msgstr "Παρόμοια πολυμέσα"
 

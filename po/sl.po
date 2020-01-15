@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-19 16:45+0000\n"
+"POT-Creation-Date: 2020-01-15 21:57+0000\n"
 "PO-Revision-Date: 2020-01-05 14:18+0000\n"
 "Last-Translator: Marko <marko.dolar@gmail.com>\n"
 "Language-Team: Slovenian <https://l10n.elementary.io/projects/music/music/sl/"
@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
-"n%100==4 ? 2 : 3;\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3;\n"
 "X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 
@@ -26,22 +26,22 @@ msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 msgstr "Uvažanje <b>$NAME</b> od izvajalca <b>$ARTIST</b> v knjižnico…"
 
 #. / Used for unknown titles, artists, or album names.
-#: core/Media.vala:32
+#: core/Media.vala:33
 msgid "Unknown"
 msgstr "Neznano"
 
 #. / Please keep $NAME and $ALBUM, they will be replaced by their values
-#: core/Media.vala:179
+#: core/Media.vala:180
 msgid "$NAME on $ALBUM"
 msgstr "$NAME iz $ALBUM"
 
 #. / Please keep $NAME and $ARTIST, they will be replaced by their values
-#: core/Media.vala:182
+#: core/Media.vala:183
 msgid "$NAME by $ARTIST"
 msgstr "$NAME od $ARTIST"
 
 #. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
-#: core/Media.vala:188
+#: core/Media.vala:189
 msgid "$NAME by $ARTIST on $ALBUM"
 msgstr "$NAME od $ARTIST iz $ALBUM"
 
@@ -194,42 +194,42 @@ msgstr "Neprepoznana datoteka seznama predvajanja. Uvoz je spodletel."
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%e. %m. %Y %l:%M"
 
-#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:105
-#: plugins/Devices/iPod/iPodDevice.vala:65
+#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:109
+#: plugins/Devices/iPod/iPodDevice.vala:68
 msgid "Empty device!"
 msgstr "Prazna naprava!"
 
-#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:109
-#: plugins/Devices/iPod/iPodDevice.vala:69
+#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:113
+#: plugins/Devices/iPod/iPodDevice.vala:72
 msgid "This device does not contain any music."
 msgstr "Ta naprava ne vsebuje nobene glasbe."
 
-#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:153
+#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:158
 msgid "Android Phone"
 msgstr "Telefon z Andoidom"
 
-#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:155
+#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:160
 msgid "Audio Player"
 msgstr "Zvočni predvajalnik"
 
-#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:137
-#: plugins/Devices/iPod/iPodLibrary.vala:148
+#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:146
+#: plugins/Devices/iPod/iPodLibrary.vala:167
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 msgstr "Dodajanje <b>$NAME</b> od <b>$ARTIST</b> na $DEVICE"
 
-#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:161
-#: plugins/Devices/iPod/iPodLibrary.vala:196
+#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:171
+#: plugins/Devices/iPod/iPodLibrary.vala:216
 #, c-format
 msgid "Syncing <b>%s</b>…"
 msgstr "Sinhronizacija <b>%s</b> …"
 
-#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:266
-#: plugins/Devices/iPod/iPodLibrary.vala:530
+#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:283
+#: plugins/Devices/iPod/iPodLibrary.vala:561
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 msgstr "Odstranjevanje <b>$NAME</b> od <b>$ARTIST</b> iz $DEVICE"
 
-#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:297
-#: plugins/Devices/iPod/iPodLibrary.vala:337
+#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:315
+#: plugins/Devices/iPod/iPodLibrary.vala:366
 #, c-format
 msgid "Removing from <b>%s</b>…"
 msgstr "Odstranjevanje iz <b>%s</b> …"
@@ -243,11 +243,11 @@ msgid "Impossible to read the contents of this Audio CD"
 msgstr "Ni mogoče prebrati vsebine tega zvočnega CD-ja"
 
 #. do checks to make sure we can go on
-#: plugins/Devices/CDRom/CDRomDevice.vala:247
+#: plugins/Devices/CDRom/CDRomDevice.vala:250
 msgid "Could not find Music Folder"
 msgstr "Ni mogoče najti mape z glasbo"
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:247
+#: plugins/Devices/CDRom/CDRomDevice.vala:250
 msgid ""
 "Please make sure that your music folder is accessible and mounted before "
 "importing the CD."
@@ -255,31 +255,31 @@ msgstr ""
 "Preden začnete z uvozom CD-ja, se prepričajte, da je mapa z glasbo dostopna "
 "in priklopljena."
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:253
+#: plugins/Devices/CDRom/CDRomDevice.vala:256
 msgid ""
 "The Application could not find any songs on the CD. No songs can be imported"
 msgstr ""
 "Program ni najdel nobene skladbe na CD-ju. Nobene skladbe ni mogoče uvoziti"
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:354
+#: plugins/Devices/CDRom/CDRomDevice.vala:361
 msgid "Song imported from Audio CD."
 msgstr "Pesem uvožena iz zvočnega CD-ja."
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:354
+#: plugins/Devices/CDRom/CDRomDevice.vala:362
 #, c-format
 msgid "%i songs imported from Audio CD."
 msgstr "%i pesmi uvoženih iz Audio CD-ja."
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:359
+#: plugins/Devices/CDRom/CDRomDevice.vala:371
 #, c-format
 msgid "Importing track %u: %s"
 msgstr "Uvažam skladbo %u: %s"
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:364
+#: plugins/Devices/CDRom/CDRomDevice.vala:376
 msgid "CD import will be <b>cancelled</b> after current import."
 msgstr "Uvoz CD-ja bo <b>preklican</b> po trenutnem uvozu."
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:383
+#: plugins/Devices/CDRom/CDRomDevice.vala:395
 msgid "Could not import this CD"
 msgstr "Ni mogoče uvoziti tega CD-ja"
 
@@ -295,13 +295,13 @@ msgstr "Prišlo je do napake"
 msgid "Could not load this Audio CD."
 msgstr "Ni mogoče naložiti tega zvočnega CD-ja."
 
-#: plugins/Devices/iPod/iPodLibrary.vala:218
-#: plugins/Devices/iPod/iPodLibrary.vala:374
+#: plugins/Devices/iPod/iPodLibrary.vala:238
+#: plugins/Devices/iPod/iPodLibrary.vala:404
 msgid "Finishing sync process…"
 msgstr "Zaključevanje procesa sinhronizacije…"
 
-#: plugins/Devices/iPod/iPodLibrary.vala:230
-#: plugins/Devices/iPod/iPodLibrary.vala:386
+#: plugins/Devices/iPod/iPodLibrary.vala:250
+#: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "Preklicevanje sinhronizacije…"
 
@@ -323,11 +323,11 @@ msgstr ""
 msgid "Similar"
 msgstr "Podobno"
 
-#: plugins/LastFM/SimilarMediaView.vala:48
+#: plugins/LastFM/SimilarMediaView.vala:49
 msgid "media"
 msgstr "predstavnost"
 
-#: plugins/LastFM/SimilarMediaView.vala:54
+#: plugins/LastFM/SimilarMediaView.vala:55
 msgid "Similar Media"
 msgstr "Podobna predstavnost"
 
