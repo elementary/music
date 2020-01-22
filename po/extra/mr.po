@@ -3,16 +3,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-15 21:57+0000\n"
-"PO-Revision-Date: 2019-11-25 09:24+0000\n"
+"PO-Revision-Date: 2020-01-24 01:08+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
-"Language-Team: Marathi <https://l10n.elementary.io/projects/music/extra/mr/"
-">\n"
+"Language-Team: Marathi <https://l10n.elementary.io/projects/music/extra/mr/>"
+"\n"
 "Language: mr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
 #: data/io.elementary.music.appdata.xml.in:8
@@ -39,6 +39,8 @@ msgstr "रांगेतून आयटम काढण्याचे नि
 #: data/io.elementary.music.appdata.xml.in:17
 msgid "Fix equalizer sliders not properly disabled sometimes"
 msgstr ""
+"बरोबरीच्या स्लाइडर कधीकधी योग्यरित्या अक्षम केल्या जात नाहीत त्याचे निराकरण "
+"करा"
 
 #: data/io.elementary.music.appdata.xml.in:18
 #: data/io.elementary.music.appdata.xml.in:28
