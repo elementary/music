@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-15 21:57+0000\n"
-"PO-Revision-Date: 2019-12-01 10:24+0000\n"
+"PO-Revision-Date: 2020-01-25 15:08+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
-"Language-Team: Japanese <https://l10n.elementary.io/projects/music/music/ja/"
-">\n"
+"Language-Team: Japanese <https://l10n.elementary.io/projects/music/music/ja/>"
+"\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:53+0000\n"
 
 #: core/LibrariesManager.vala:146
@@ -941,7 +941,7 @@ msgstr "検索結果はありません"
 
 #: src/Views/ViewStack.vala:45
 msgid "Try another search"
-msgstr "他の検索用語を試してみてください"
+msgstr "ほかの検索用語を試してみてください"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
 msgid "Genres"
@@ -1340,7 +1340,7 @@ msgstr "曲情報を編集…"
 
 #: src/Widgets/MediaMenu.vala:51
 msgid "Other Actions"
-msgstr "その他の操作"
+msgstr "ほかの操作"
 
 #: src/Widgets/MediaMenu.vala:53
 msgctxt "Action item (verb)"
@@ -1392,7 +1392,7 @@ msgstr "現在の曲を削除"
 
 #: src/Widgets/SourceListView.vala:66 src/Widgets/SourceListView.vala:78
 msgid "Rename"
-msgstr "名前の変更"
+msgstr "名前を変更"
 
 #: src/Widgets/SourceListView.vala:79
 msgid "Edit…"
