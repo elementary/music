@@ -44,7 +44,7 @@ public class Music.CellDataFunctionHelper {
         if (m == null)
             return;
 
-        renderer.visible = !m.showIndicator;
+        renderer.visible = !m.show_indicator;
 
         var image_renderer = renderer as Gtk.CellRendererPixbuf;
         return_if_fail (image_renderer != null);
@@ -61,7 +61,7 @@ public class Music.CellDataFunctionHelper {
         if (m == null)
             return;
 
-        renderer.visible = m.showIndicator;
+        renderer.visible = m.show_indicator;
 
         var spinner_renderer = renderer as Gtk.CellRendererSpinner;
         return_if_fail (spinner_renderer != null);
@@ -156,4 +156,3 @@ public class Music.CellDataFunctionHelper {
         rating_cell.rating = val.get_uint ();
     }
 }
-

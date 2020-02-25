@@ -36,10 +36,10 @@ namespace Music.Plugins {
         public void activate () {
             message ("Activating AudioPlayer Device plugin");
 
-            Value value = Value(typeof(GLib.Object));
-            get_property("object", ref value);
-            plugins = (Music.Plugins.Interface)value.get_object();
-            plugins.register_function(Interface.Hook.WINDOW, () => {
+            Value value = Value (typeof (GLib.Object));
+            get_property ("object", ref value);
+            plugins = (Music.Plugins.Interface)value.get_object ();
+            plugins.register_function (Interface.Hook.WINDOW, () => {
                 audioplayer_manager = new AudioPlayerDeviceManager ();
             });
         }

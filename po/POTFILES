@@ -10,7 +10,6 @@ core/Resources.vala
 core/Settings.vala
 core/Devices/Device.vala
 core/Devices/DeviceManager.vala
-core/Devices/NetworkDevice.vala
 core/GStreamer/Pipeline.vala
 core/GStreamer/Equalizer.vala
 core/GStreamer/Playback.vala

@@ -52,8 +52,7 @@ namespace Music.Search {
                                       string composer = "",
                                       int year = -1,
                                       int rating = -1,
-                                      Cancellable? cancellable = null)
-    {
+                                      Cancellable? cancellable = null) {
         results = new Gee.TreeSet<Media> ();
 
         foreach (var media in to_search) {
@@ -77,8 +76,7 @@ namespace Music.Search {
                                               string grouping = "",
                                               string composer = "",
                                               int year = -1,
-                                              int rating = -1)
-    {
+                                              int rating = -1) {
         return (rating == -1 || media.rating == rating)
             && (year == -1 || media.year == year)
             && (String.is_empty (genre, false) || media.get_display_genre () == genre)
@@ -108,8 +106,7 @@ namespace Music.Search {
      *   "**a"
      */
     private inline uint? get_rating_from_string (string rating_string)
-        ensures (result != 0)
-    {
+        ensures (result != 0) {
         int i = 0;
         unichar c;
         uint rating;

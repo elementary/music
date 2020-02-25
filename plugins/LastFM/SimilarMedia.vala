@@ -33,7 +33,7 @@
 public class LastFM.SimilarMedias : Object {
     public const int MAX_FETCHED = 20;
 
-    public signal void similar_retrieved (Gee.LinkedList<int64?> similarIDs, Gee.LinkedList<Music.Media> similarDont);
+    public signal void similar_retrieved (Gee.LinkedList<int64?> similar_ids, Gee.LinkedList<Music.Media> similar_dont);
 
     public Music.StaticPlaylist similar_playlist;
     private GLib.Cancellable cancellable;
@@ -68,16 +68,16 @@ public class LastFM.SimilarMedias : Object {
         if (cancellable.is_cancelled ())
             return;
 
-        var similarIDs = new Gee.LinkedList<int64?> ();
-        var similarDont = new Gee.LinkedList<Music.Media> ();
-        Music.libraries_manager.local_library.media_from_name (similar_medias, similarIDs, similarDont);
+        var similar_ids = new Gee.LinkedList<int64?> ();
+        var similar_dont = new Gee.LinkedList<Music.Media> ();
+        Music.libraries_manager.local_library.media_from_name (similar_medias, similar_ids, similar_dont);
         if (cancellable.is_cancelled ())
             return;
 
-        similarIDs.offer_head (s.rowid);
-        var found_medias = Music.libraries_manager.local_library.medias_from_ids (similarIDs);
+        similar_ids.offer_head (s.rowid);
+        var found_medias = Music.libraries_manager.local_library.medias_from_ids (similar_ids);
         found_medias.remove (s);
         similar_playlist.add_medias (found_medias);
-        similar_retrieved (similarIDs, similarDont);
+        similar_retrieved (similar_ids, similar_dont);
     }
 }

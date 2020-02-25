@@ -61,11 +61,11 @@ public abstract class Music.ViewWrapper : Gtk.Grid {
      * Values *must* match the index of the respective view in the view selector.
      */
     public enum ViewType {
-        GRID    = 0,   // Matches index 0 of the view in lw.view_selector
-        LIST    = 1,   // Matches index 1 of the view in lw.view_selector
-        ALERT   = 2,   // For embedded alerts
-        WELCOME = 3,   // For welcome screens
-        NONE    = 4    // Nothing showing
+        GRID = 0, // Matches index 0 of the view in lw.view_selector
+        LIST = 1, // Matches index 1 of the view in lw.view_selector
+        ALERT = 2, // For embedded alerts
+        WELCOME = 3, // For welcome screens
+        NONE = 4 // Nothing showing
     }
 
     public ListView list_view { get; protected set; }
@@ -74,7 +74,7 @@ public abstract class Music.ViewWrapper : Gtk.Grid {
     protected Granite.Widgets.Welcome welcome_screen { get; set; }
 
     public bool has_grid_view { get { return grid_view != null; } }
-    public bool has_list_view { get { return list_view != null;  } }
+    public bool has_list_view { get { return list_view != null; } }
     public bool has_embedded_alert { get { return embedded_alert != null; } }
     public bool has_welcome_screen { get { return welcome_screen != null; } }
 

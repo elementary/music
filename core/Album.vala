@@ -139,8 +139,7 @@ public class Music.Album : Object {
      */
     public Gee.Collection<Media> get_media (uint n_disc = 1)
         requires (n_disc > 0)
-        requires (n_disc <= n_discs)
-    {
+        requires (n_disc <= n_discs) {
         return media.read_only_view;
     }
 

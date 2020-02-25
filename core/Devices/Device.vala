@@ -103,7 +103,7 @@ public interface Music.Device : GLib.Object {
             File root = m.get_root ();
             string rv = "";
             debug ("uuid: %s\n", uuid);
-            if (root != null && root.get_uri() != null) {
+            if (root != null && root.get_uri () != null) {
                 rv += root.get_uri ();
             }
             if (uuid != null && uuid != "") {

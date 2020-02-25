@@ -50,29 +50,34 @@ public class Music.Plugins.AudioPlayerLibrary : Music.Library {
         playlists = new Gee.LinkedList<Music.StaticPlaylist> ();
         imported_files = new Gee.LinkedList<string> ();
 
-        tagger = new GStreamerTagger();
+        tagger = new GStreamerTagger ();
 
         tagger.media_imported.connect (media_imported_from_tagger);
         tagger.import_error.connect (import_error);
         tagger.queue_finished.connect (queue_finished);
-        NotificationManager.get_default ().progress_canceled.connect( () => {operation_cancelled = true;});
+        NotificationManager.get_default ().progress_canceled.connect ( () => {
+            operation_cancelled = true;
+        });
     }
 
     void media_imported_from_tagger (Media m) {
-        m.isTemporary = true;
-        this.medias.add(m);
+        m.is_temporary = true;
+        this.medias.add (m);
         m.rowid = medias_rowid;
         medias_rowid++;
-        if (queue_is_finished)
+
+        if (queue_is_finished) {
             file_operations_done ();
+        }
     }
 
-    void import_error(string file) {
+    void import_error (string file) {
     }
 
     public void queue_finished () {
         queue_is_finished = true;
         libraries_manager.progress = 1;
+
         if (is_initialized == false) {
             is_initialized = true;
             device.initialized (device);
@@ -91,9 +96,11 @@ public class Music.Plugins.AudioPlayerLibrary : Music.Library {
     public override Gee.Collection<Media> get_medias () {
         return medias;
     }
+
     public override Gee.Collection<StaticPlaylist> get_playlists () {
         return playlists;
     }
+
     public override Gee.Collection<SmartPlaylist> get_smart_playlists () {
         return new Gee.LinkedList<SmartPlaylist> ();
     }
@@ -101,6 +108,7 @@ public class Music.Plugins.AudioPlayerLibrary : Music.Library {
     public override void search_medias (string search) {
         lock (searched_medias) {
             searched_medias.clear ();
+
             if (search == "" || search == null) {
                 searched_medias.add_all (medias);
                 search_finished ();
@@ -131,8 +139,9 @@ public class Music.Plugins.AudioPlayerLibrary : Music.Library {
     }
 
     public override void add_media (Media m) {
-        if(m == null)
+        if (m == null) {
             return;
+        }
 
         string current_operation = _("Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE");
         current_operation = current_operation.replace ("$NAME", m.title ?? "");
@@ -144,39 +153,42 @@ public class Music.Plugins.AudioPlayerLibrary : Music.Library {
         var destination_file = File.new_for_uri (device.get_music_folder () + file.get_basename ());
 
         try {
-            file.copy (destination_file,GLib.FileCopyFlags.ALL_METADATA);
-        } catch(Error err) {
+            file.copy (destination_file, GLib.FileCopyFlags.ALL_METADATA);
+        } catch (Error err) {
             warning ("Failed to copy track %s : %s\n", m.title, err.message);
             return;
         }
-        imported_files.add (destination_file.get_uri());
+
+        imported_files.add (destination_file.get_uri ());
     }
 
     public override void add_medias (Gee.Collection<Media> list) {
-        if(doing_file_operations ()) {
-            warning("Tried to add when already syncing\n");
+        if (doing_file_operations ()) {
+            warning ("Tried to add when already syncing\n");
             return;
         }
 
         libraries_manager.current_operation = _("Syncing <b>%s</b>…").printf (device.get_display_name ());
 
         is_doing_file_operations = true;
-        Timeout.add(500, libraries_manager.do_progress_notification_with_timeout);
+        Timeout.add (500, libraries_manager.do_progress_notification_with_timeout);
         int sub_index = 0;
 
         var medias_to_sync = new Gee.LinkedList<Music.Media> ();
         medias_to_sync.add_all (device.delete_doubles (list, medias));
-        message("Found %d medias to add.", medias_to_sync.size);
+        message ("Found %d medias to add.", medias_to_sync.size);
         int total_medias = medias_to_sync.size;
 
         if (total_medias > 0) {
-            if (device.will_fit(medias_to_sync)) {
+            if (device.will_fit (medias_to_sync)) {
                 imported_files = new Gee.LinkedList<string> ();
-                foreach(var m in medias_to_sync) {
-                    add_media(m);
+
+                foreach (var m in medias_to_sync) {
+                    add_media (m);
                     ++sub_index;
-                    libraries_manager.progress = (double)(sub_index/total_medias);
+                    libraries_manager.progress = (double)(sub_index / total_medias);
                 }
+
                 tagger.discoverer_import_media (imported_files);
             }
         }
@@ -236,6 +248,7 @@ public class Music.Plugins.AudioPlayerLibrary : Music.Library {
         }
         return found;
     }
+
     public override Media? media_from_file (File file) {
         lock (medias) {
             foreach (var m in medias) {
@@ -246,6 +259,7 @@ public class Music.Plugins.AudioPlayerLibrary : Music.Library {
 
         return null;
     }
+
     public override Media? media_from_uri (string uri) {
         lock (medias) {
             foreach (var m in medias) {
@@ -256,55 +270,60 @@ public class Music.Plugins.AudioPlayerLibrary : Music.Library {
 
         return null;
     }
-    public override void update_media (Media s, bool updateMeta, bool record_time) {
+
+    public override void update_media (Media s, bool update_meta, bool record_time) {
 
     }
-    public override void update_medias (Gee.Collection<Media> updates, bool updateMeta, bool record_time) {
+
+    public override void update_medias (Gee.Collection<Media> updates, bool update_meta, bool record_time) {
 
     }
+
     public override void remove_media (Media m, bool trash) {
         string current_operation = _("Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE");
         current_operation = current_operation.replace ("$NAME", m.title ?? "");
         current_operation = current_operation.replace ("$ARTIST", m.artist ?? "");
         libraries_manager.current_operation = current_operation.replace ("$DEVICE", device.get_display_name () ?? "");
         /* first check if the file exists disk */
-        if(m.uri != null) {
-            var file = File.new_for_uri(m.uri);
+        if (m.uri != null) {
+            var file = File.new_for_uri (m.uri);
 
-            if(file.query_exists()) {
+            if (file.query_exists ()) {
                 var media_list = new Gee.ArrayList<Media> ();
                 media_list.add (m);
                 media_removed (media_list);
                 medias.remove (m);
                 try {
-                    file.delete();
+                    file.delete ();
                 } catch (Error err) {
                     warning ("Could not delete File at %s: %s", m.uri, err.message);
                     return;
                 }
                 debug ("Successfully removed music file %s", m.uri);
             } else {
-                warning("File not found, could not delete File at %s. File may already be deleted", m.uri);
+                warning ("File not found, could not delete File at %s. File may already be deleted", m.uri);
             }
         }
     }
+
     public override void remove_medias (Gee.Collection<Media> list, bool trash) {
-        if(doing_file_operations ()) {
-            warning("Tried to add when already syncing\n");
+        if (doing_file_operations ()) {
+            warning ("Tried to add when already syncing\n");
             return;
         }
 
         libraries_manager.current_operation = _("Removing from <b>%s</b>…").printf (device.get_display_name ());
 
         int total = list.size;
-        Timeout.add(500, libraries_manager.do_progress_notification_with_timeout);
+        Timeout.add (500, libraries_manager.do_progress_notification_with_timeout);
 
         int sub_index = 0;
-        foreach(var m in list) {
+        foreach (var m in list) {
             remove_media (m, true);
             ++sub_index;
-            libraries_manager.progress = (double)(sub_index/total);
+            libraries_manager.progress = (double)(sub_index / total);
         }
+
         libraries_manager.progress = 1;
         file_operations_done ();
     }
@@ -316,12 +335,15 @@ public class Music.Plugins.AudioPlayerLibrary : Music.Library {
     public override void add_smart_playlist (SmartPlaylist p) {
 
     }
+
     public override void remove_smart_playlist (int64 id) {
 
     }
+
     public override SmartPlaylist? smart_playlist_from_id (int64 id) {
         return null;
     }
+
     public override SmartPlaylist? smart_playlist_from_name (string name) {
         return null;
     }
@@ -331,14 +353,14 @@ public class Music.Plugins.AudioPlayerLibrary : Music.Library {
     }
 
     public override void add_playlist (StaticPlaylist p) {
-
         playlists.add (p);
         playlist_added (p);
         keep_playlist_synchronized (p);
-        p.media_added.connect(() => {keep_playlist_synchronized (p);});
-        p.media_removed.connect(() => {keep_playlist_synchronized (p);});
+        p.media_added.connect (() => {keep_playlist_synchronized (p);});
+        p.media_removed.connect (() => {keep_playlist_synchronized (p);});
         p.updated.connect ((old_name) => {remove_playlist_from_name (old_name); keep_playlist_synchronized (p);});
     }
+
     public override void remove_playlist (int64 id) {
         if (id < get_playlists ().size) {
             var array_v = new Gee.ArrayList<StaticPlaylist> ();
@@ -348,6 +370,7 @@ public class Music.Plugins.AudioPlayerLibrary : Music.Library {
                     remove_playlist_from_name (p.name);
                     playlist_removed (p);
                     playlists.remove (p);
+
                     return;
                 }
             }
@@ -355,15 +378,21 @@ public class Music.Plugins.AudioPlayerLibrary : Music.Library {
     }
 
     private void remove_playlist_from_name (string name) {
-        File dest = GLib.File.new_for_uri (Path.build_path("/", device.get_music_folder (), "Playlists", name.replace("/", "_") + ".m3u"));
+        File dest = GLib.File.new_for_uri (
+            Path.build_path (
+                "/", device.get_music_folder (),
+                "Playlists",
+                name.replace ("/", "_") + ".m3u"
+            )
+        );
+
         try {
             // find a file path that doesn't exist
-            if (dest.query_exists()) {
+            if (dest.query_exists ()) {
                 dest.delete ();
             }
-        }
-        catch(Error err) {
-            warning ("Could not remove playlist %s to file %s: %s", name, dest.get_path(), err.message);
+        } catch (Error err) {
+            warning ("Could not remove playlist %s to file %s: %s", name, dest.get_path (), err.message);
         }
     }
 
@@ -371,21 +400,28 @@ public class Music.Plugins.AudioPlayerLibrary : Music.Library {
         string content = PlaylistsUtils.get_playlist_m3u_file (p, device.get_uri ());
         content = content.replace (GLib.File.new_for_uri (device.get_uri ()).get_path (), "");
 
-        File dest = GLib.File.new_for_uri (Path.build_path("/", device.get_music_folder (), "Playlists", p.name.replace("/", "_") + ".m3u"));
+        File dest = GLib.File.new_for_uri (
+            Path.build_path (
+                "/",
+                device.get_music_folder (),
+                "Playlists",
+                p.name.replace ("/", "_") + ".m3u"
+            )
+        );
+
         try {
             // find a file path that doesn't exist
-            if (dest.query_exists()) {
+            if (dest.query_exists ()) {
                 dest.delete ();
             }
 
-            var file_stream = dest.create(FileCreateFlags.NONE);
+            var file_stream = dest.create (FileCreateFlags.NONE);
 
             // Write text data to file
             var data_stream = new DataOutputStream (file_stream);
-            data_stream.put_string(content);
-        }
-        catch(Error err) {
-            warning ("Could not save playlist %s to m3u file %s: %s\n", p.name, dest.get_path(), err.message);
+            data_stream.put_string (content);
+        } catch (Error err) {
+            warning ("Could not save playlist %s to m3u file %s: %s\n", p.name, dest.get_path (), err.message);
         }
     }
 
@@ -393,13 +429,17 @@ public class Music.Plugins.AudioPlayerLibrary : Music.Library {
         if (id < get_playlists ().size) {
             var array = new Gee.ArrayList<StaticPlaylist> ();
             array.add_all (get_playlists ());
+
             foreach (var playlist in array) {
-                if (playlist.rowid == id)
+                if (playlist.rowid == id) {
                     return playlist;
+                }
             }
         }
+
         return null;
     }
+
     public override StaticPlaylist? playlist_from_name (string name) {
         foreach (var playlist in get_playlists ()) {
             if (playlist.name == name) {
@@ -411,14 +451,16 @@ public class Music.Plugins.AudioPlayerLibrary : Music.Library {
 
     public override bool start_file_operations (string? message) {
         if (doing_file_operations ()) {
-
             return true;
-        } else
+        } else {
             return false;
+        }
     }
+
     public override bool doing_file_operations () {
         return is_doing_file_operations;
     }
+
     public override void finish_file_operations () {
 
     }

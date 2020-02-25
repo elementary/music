@@ -52,33 +52,33 @@ public class Music.Plugins.CDRomDevice : GLib.Object, Music.Device {
     public signal void current_importation (int current_list_index);
     public signal void stop_importation ();
 
-    public CDRomDevice(Mount mount) {
+    public CDRomDevice (Mount mount) {
         this.mount = mount;
         this.icon = new GLib.ThemedIcon ("media-optical");
-        this.display_name = mount.get_name();
+        this.display_name = mount.get_name ();
 
-        list = new Gee.LinkedList<Music.Media>();
-        medias = new Gee.LinkedList<Music.Media>();
+        list = new Gee.LinkedList<Music.Media> ();
+        medias = new Gee.LinkedList<Music.Media> ();
 
         cdview = new CDView (this);
         cdplayer = new CDPlayer (mount);
         Music.App.player.add_playback (cdplayer);
     }
 
-    public bool start_initialization() {
+    public bool start_initialization () {
         return true;
     }
 
-    public void finish_initialization() {
-        NotificationManager.get_default ().progress_canceled.connect(cancel_transfer);
+    public void finish_initialization () {
+        NotificationManager.get_default ().progress_canceled.connect (cancel_transfer);
 
         finish_initialization_async.begin ();
     }
 
     async void finish_initialization_async () {
-        medias = CDDA.getMediaList (mount.get_default_location ());
-        if(medias.size > 0) {
-            set_display_name (medias.get(0).album);
+        medias = CDDA.get_media_list (mount.get_default_location ());
+        if (medias.size > 0) {
+            set_display_name (medias.get (0).album);
         }
 
         Idle.add (() => {
@@ -110,56 +110,57 @@ public class Music.Plugins.CDRomDevice : GLib.Object, Music.Device {
         display_name = name;
     }
 
-    public string get_fancy_description() {
+    public string get_fancy_description () {
         return "";
     }
 
-    public void set_mount(Mount mount) {
+    public void set_mount (Mount mount) {
         this.mount = mount;
     }
 
-    public Mount? get_mount() {
+    public Mount? get_mount () {
         return mount;
     }
 
-    public string get_uri() {
-        return mount.get_default_location().get_uri();
+    public string get_uri () {
+        return mount.get_default_location ().get_uri ();
     }
 
-    public void set_icon(GLib.Icon icon) {
+    public void set_icon (GLib.Icon icon) {
         this.icon = icon;
     }
 
-    public GLib.Icon get_icon() {
+    public GLib.Icon get_icon () {
         return icon;
     }
 
-    public uint64 get_capacity() {
+    public uint64 get_capacity () {
         return 0;
     }
 
-    public string get_fancy_capacity() {
+    public string get_fancy_capacity () {
         return "";
     }
 
-    public uint64 get_used_space() {
+    public uint64 get_used_space () {
         return 0;
     }
 
-    public uint64 get_free_space() {
+    public uint64 get_free_space () {
         return 0;
     }
 
     private bool ejecting = false;
     private bool unmounting = false;
 
-    public void unmount() {
+    public void unmount () {
         unmount_async.begin ();
     }
 
     private async void unmount_async () {
-        if (unmounting)
+        if (unmounting) {
             return;
+        }
 
         unmounting = true;
 
@@ -172,13 +173,14 @@ public class Music.Plugins.CDRomDevice : GLib.Object, Music.Device {
         unmounting = false;
     }
 
-    public void eject() {
+    public void eject () {
         eject_async.begin ();
     }
 
     private async void eject_async () {
-        if (ejecting)
+        if (ejecting) {
             return;
+        }
 
         ejecting = true;
 
@@ -195,19 +197,19 @@ public class Music.Plugins.CDRomDevice : GLib.Object, Music.Device {
         return true;
     }
 
-    public Gtk.Widget? get_custom_view() {
+    public Gtk.Widget? get_custom_view () {
         return cdview;
     }
 
-    public bool read_only() {
+    public bool read_only () {
         return true;
     }
 
-    public bool supports_podcasts() {
+    public bool supports_podcasts () {
         return false;
     }
 
-    public bool supports_audiobooks() {
+    public bool supports_audiobooks () {
         return false;
     }
 
@@ -215,7 +217,7 @@ public class Music.Plugins.CDRomDevice : GLib.Object, Music.Device {
         return libraries_manager.local_library;
     }
 
-    public Gee.Collection<Music.Media> get_medias() {
+    public Gee.Collection<Music.Media> get_medias () {
         return medias;
     }
 
@@ -228,43 +230,44 @@ public class Music.Plugins.CDRomDevice : GLib.Object, Music.Device {
 
     }
 
-    public bool will_fit(Gee.Collection<Music.Media> list) {
+    public bool will_fit (Gee.Collection<Music.Media> list) {
         return false;
     }
 
-    public bool transfer_all_to_library() {
+    public bool transfer_all_to_library () {
         return transfer_to_library (medias);
     }
 
-    public bool transfer_to_library(Gee.Collection<Music.Media> trans_list) {
+    public bool transfer_to_library (Gee.Collection<Music.Media> trans_list) {
         this.list.clear ();
         this.list.add_all (trans_list);
-        if(list.size == 0)
+        if (list.size == 0) {
             list = medias;
+        }
 
         // do checks to make sure we can go on
-        if(!GLib.File.new_for_path (Settings.Main.get_default ().music_folder).query_exists ()) {
+        if (!GLib.File.new_for_path (Settings.Main.get_default ().music_folder).query_exists ()) {
             NotificationManager.get_default ().show_alert (_("Could not find Music Folder"), _("Please make sure that your music folder is accessible and mounted before importing the CD."));
             return false;
         }
 
 
-        if(list.size == 0) {
+        if (list.size == 0) {
             infobar_message (_("The Application could not find any songs on the CD. No songs can be imported"), Gtk.MessageType.ERROR);
             return false;
         }
 
-        ripper = new CDRipper(mount, medias.size);
-        if(!ripper.initialize()) {
+        ripper = new CDRipper (mount, medias.size);
+        if (!ripper.initialize ()) {
             warning ("Could not create CD Ripper\n");
             return false;
         }
         current_importation (1);
 
         current_list_index = 0;
-        Music.Media s = list.get(current_list_index);
+        Music.Media s = list.get (current_list_index);
         media_being_ripped = s;
-        s.showIndicator = true;
+        s.show_indicator = true;
 
         // initialize gui feedback
         index = 0;
@@ -277,28 +280,30 @@ public class Music.Plugins.CDRomDevice : GLib.Object, Music.Device {
 
         user_cancelled = false;
 
-        ripper.progress_notification.connect( (progress) => {
+        ripper.progress_notification.connect ( (progress) => {
             current_song_progress = progress;
             libraries_manager.progress = progress;
         });
 
         // connect callbacks
-        ripper.media_ripped.connect(mediaRipped);
-        ripper.error.connect(ripperError);
+        ripper.media_ripped.connect (on_media_ripped);
+        ripper.error.connect (on_ripper_error);
 
         // start process
-        ripper.rip_media(s.track, s);
+        ripper.rip_media (s.track, s);
 
         // this spins the spinner for the current media being imported
         Timeout.add (100, () => {
-            if (media_being_ripped != s || media_being_ripped == null)
+            if (media_being_ripped != s || media_being_ripped == null) {
                 return false;
+            }
 
             var wrapper = App.main_window.view_stack.visible_child as DeviceViewWrapper;
 
             if (wrapper != null) {
-                if (wrapper.d == this)
+                if (wrapper.d == this) {
                     wrapper.list_view.queue_draw ();
+                }
             }
 
             return true;
@@ -307,12 +312,12 @@ public class Music.Plugins.CDRomDevice : GLib.Object, Music.Device {
         return false;
     }
 
-    public void mediaRipped(Music.Media s) {
-        s.showIndicator = false;
+    public void on_media_ripped (Music.Media s) {
+        s.show_indicator = false;
 
         // Create a copy and add it to the library
-        Music.Media lib_copy = s.copy();
-        lib_copy.isTemporary = false;
+        Music.Media lib_copy = s.copy ();
+        lib_copy.is_temporary = false;
         lib_copy.unique_status_image = null;
         var copied_list = new Gee.ArrayList<Media> ();
         copied_list.add (lib_copy);
@@ -320,17 +325,17 @@ public class Music.Plugins.CDRomDevice : GLib.Object, Music.Device {
         // update media in cdrom list to show as completed
         s.unique_status_image = new ThemedIcon ("process-completed-symbolic");
 
-        if(GLib.File.new_for_uri(lib_copy.uri).query_exists()) {
+        if (GLib.File.new_for_uri (lib_copy.uri).query_exists ()) {
             try {
-                lib_copy.file_size = (int)(GLib.File.new_for_uri(lib_copy.uri).query_info("*", FileQueryInfoFlags.NONE).get_size());
+                lib_copy.file_size = (int)(GLib.File.new_for_uri (lib_copy.uri).query_info ("*", FileQueryInfoFlags.NONE).get_size ());
             }
-            catch(Error err) {
+            catch (Error err) {
                 lib_copy.file_size = 5; // best guess
-                warning("Could not get ripped media's file_size: %s\n", err.message);
+                warning ("Could not get ripped media's file_size: %s\n", err.message);
             }
         }
         else {
-            warning("Just imported song from CD could not be found at %s\n", lib_copy.uri);
+            warning ("Just imported song from CD could not be found at %s\n", lib_copy.uri);
             //s.file_size = 5; // best guess
         }
 
@@ -339,10 +344,10 @@ public class Music.Plugins.CDRomDevice : GLib.Object, Music.Device {
         // do it again on next track
         if (current_list_index < (list.size - 1) && !user_cancelled) {
             ++current_list_index;
-            Music.Media next = list.get(current_list_index);
-            current_importation (current_list_index+1);
+            Music.Media next = list.get (current_list_index);
+            current_importation (current_list_index + 1);
             media_being_ripped = next;
-            ripper.rip_media(next.track, next);
+            ripper.rip_media (next.track, next);
             ++index;
             current_operation = get_track_status (next);
         } else {
@@ -351,7 +356,14 @@ public class Music.Plugins.CDRomDevice : GLib.Object, Music.Device {
             _is_transferring = false;
 
             int n_songs = current_list_index + 1;
-            infobar_message (ngettext (_("Song imported from Audio CD."), _("%i songs imported from Audio CD.").printf(n_songs), n_songs), Gtk.MessageType.INFO);
+            infobar_message (
+                ngettext (
+                    _("Song imported from Audio CD."),
+                    _("%i songs imported from Audio CD.").printf (n_songs),
+                    n_songs
+                ),
+                Gtk.MessageType.INFO
+            );
         }
     }
 
@@ -359,25 +371,25 @@ public class Music.Plugins.CDRomDevice : GLib.Object, Music.Device {
         return _("Importing track %u: %s").printf (m.track, m.get_title_markup ());
     }
 
-    public void cancel_transfer() {
+    public void cancel_transfer () {
         user_cancelled = true;
         current_operation = _("CD import will be <b>cancelled</b> after current import.");
     }
 
-    public void ripperError(string err, Gst.Message message) {
+    public void on_ripper_error (string err, Gst.Message message) {
         stop_importation ();
-        if(err == "missing element") {
+        if (err == "missing element") {
             if (message.get_structure () != null && Gst.PbUtils.is_missing_plugin_message (message)) {
-                    Music.InstallGstreamerPluginsDialog dialog = new Music.InstallGstreamerPluginsDialog(message);
-                    dialog.show();
+                    Music.InstallGstreamerPluginsDialog dialog = new Music.InstallGstreamerPluginsDialog (message);
+                    dialog.show ();
                 }
         }
-        if(err == "error") {
+        if (err == "error") {
             GLib.Error error;
             string debug;
             message.parse_error (out error, out debug);
             critical ("Error: %s!:%s\n", error.message, debug);
-            cancel_transfer();
+            cancel_transfer ();
             media_being_ripped = null;
             _is_transferring = false;
             infobar_message (_("Could not import this CD"), Gtk.MessageType.ERROR);

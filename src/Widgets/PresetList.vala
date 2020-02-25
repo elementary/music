@@ -49,8 +49,8 @@ public class Music.PresetList : Gtk.ComboBox {
     private const string SEPARATOR_NAME = "<separator_item_unique_name>";
 
     // We cannot make these constants due to issues with N_()
-    private static string AUTOMATIC_MODE = _("Automatic");
-    private static string DELETE_PRESET = _("Delete Current");
+    private static string automatic_mode = _("Automatic");
+    private static string delete_preset = _("Delete Current");
 
     public PresetList () {
         ncustompresets = 0;
@@ -83,7 +83,7 @@ public class Music.PresetList : Gtk.ComboBox {
 
         Gtk.TreeIter iter;
         store.append (out iter);
-        store.set (iter, 0, null, 1, AUTOMATIC_MODE);
+        store.set (iter, 0, null, 1, automatic_mode);
 
         add_separator ();
     }
@@ -175,11 +175,11 @@ public class Music.PresetList : Gtk.ComboBox {
         string option;
         store.get (it, 1, out option);
 
-        if (option == AUTOMATIC_MODE) {
+        if (option == automatic_mode) {
             automatic_selected = true;
             remove_delete_option ();
             automatic_preset_chosen ();
-        } else if (option == DELETE_PRESET) {
+        } else if (option == delete_preset) {
             delete_preset_chosen ();
         }
     }
@@ -247,7 +247,7 @@ public class Music.PresetList : Gtk.ComboBox {
             string text;
             store.get (iter, 1, out text);
 
-            if (text != null && text == DELETE_PRESET) {
+            if (text != null && text == delete_preset) {
 #if VALA_0_36
                 store.remove (ref iter);
 #else
@@ -292,7 +292,7 @@ public class Music.PresetList : Gtk.ComboBox {
 
                 if (store.iter_next (ref new_iter)) {
                     store.get (new_iter, 1, out text);
-                    already_added = (text == DELETE_PRESET);
+                    already_added = (text == delete_preset);
                 }
 
                 break;
@@ -305,7 +305,7 @@ public class Music.PresetList : Gtk.ComboBox {
 
         // Add option
         store.insert_after (out new_iter, last_iter);
-        store.set (new_iter, 0, null, 1, DELETE_PRESET);
+        store.set (new_iter, 0, null, 1, delete_preset);
 
         last_iter = new_iter;
 
@@ -314,4 +314,3 @@ public class Music.PresetList : Gtk.ComboBox {
         store.set (new_iter, 0, null, 1, SEPARATOR_NAME);
     }
 }
-

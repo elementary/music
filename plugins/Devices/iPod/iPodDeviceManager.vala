@@ -26,12 +26,12 @@
  * Authored by: Corentin Noël <corentin@elementary.io>
  */
 
-public class Music.Plugins.iPodDeviceManager : GLib.Object {
+public class Music.Plugins.iPodDeviceManager : GLib.Object { // vala-lint=naming-convention
     Gee.ArrayList<iPodDevice> devices;
     iPodStreamer streamer;
 
-    public iPodDeviceManager() {
-        devices = new Gee.ArrayList<iPodDevice>();
+    public iPodDeviceManager () {
+        devices = new Gee.ArrayList<iPodDevice> ();
         streamer = new iPodStreamer (this);
         var device_manager = DeviceManager.get_default ();
         device_manager.mount_added.connect (mount_added);
@@ -45,11 +45,11 @@ public class Music.Plugins.iPodDeviceManager : GLib.Object {
 
     public void remove_all () {
         var device_manager = DeviceManager.get_default ();
-        foreach(var dev in devices) {
+        foreach (var dev in devices) {
             device_manager.device_removed ((Music.Device)dev);
         }
 
-        devices = new Gee.ArrayList<iPodDevice>();
+        devices = new Gee.ArrayList<iPodDevice> ();
     }
 
     public virtual void mount_added (Mount mount) {
@@ -59,15 +59,17 @@ public class Music.Plugins.iPodDeviceManager : GLib.Object {
             }
         }
 
-        if(File.new_for_uri (mount.get_default_location ().get_uri () + "/iTunes_Control").query_exists () ||
-                File.new_for_uri (mount.get_default_location ().get_uri () + "/iPod_Control").query_exists () ||
-                File.new_for_uri (mount.get_default_location ().get_uri () + "/iTunes/iTunes_Control").query_exists () ||
-                mount.get_default_location ().get_parse_name ().has_prefix ("afc://")) {
+        if (
+            File.new_for_uri (mount.get_default_location ().get_uri () + "/iTunes_Control").query_exists () ||
+            File.new_for_uri (mount.get_default_location ().get_uri () + "/iPod_Control").query_exists () ||
+            File.new_for_uri (mount.get_default_location ().get_uri () + "/iTunes/iTunes_Control").query_exists () ||
+            mount.get_default_location ().get_parse_name ().has_prefix ("afc://")
+        ) {
             var added = new iPodDevice (mount);
             added.set_mount (mount);
             devices.add (added);
 
-            if(added.start_initialization () == true) {
+            if (added.start_initialization () == true) {
                 added.finish_initialization ();
                 added.initialized.connect ((d) => {
                     if (((iPodDevice)d).is_supported == true) {
@@ -82,19 +84,20 @@ public class Music.Plugins.iPodDeviceManager : GLib.Object {
     }
 
     public virtual void mount_changed (Mount mount) {
-        //stdout.printf("mount_changed:%s\n", mount.get_uuid());
+        //stdout.printf ("mount_changed:%s\n", mount.get_uuid());
     }
 
     public virtual void mount_pre_unmount (Mount mount) {
-        //stdout.printf("mount_preunmount:%s\n", mount.get_uuid());
+        //stdout.printf ("mount_preunmount:%s\n", mount.get_uuid());
     }
 
     public virtual void mount_removed (Mount mount) {
         var device_manager = DeviceManager.get_default ();
-        foreach(var dev in devices) {
-            if(dev.get_uri() == mount.get_default_location().get_uri()) {
+        foreach (var dev in devices) {
+            if (dev.get_uri () == mount.get_default_location ().get_uri ()) {
                 device_manager.device_removed ((Music.Device)dev);
-                devices.remove(dev);
+                devices.remove (dev);
+
                 return;
             }
         }

@@ -31,14 +31,14 @@
  * the current media playing. Mostly here because of dependence. */
 
 public class LastFM.Core : Object {
-    public signal void similar_retrieved (Gee.LinkedList<int> similarIDs, Gee.LinkedList<Music.Media> similarDont);
+    public signal void similar_retrieved (Gee.LinkedList<int> similar_ids, Gee.LinkedList<Music.Media> similar_dont);
     public signal void loved (string title, string artist);
     public signal void baned (string title, string artist);
 
     public bool is_initialized = false;
 
     private const string API_URL = "http://ws.audioscrobbler.com/2.0/";
-    private LastFM.SimilarMedias similarMedias;
+    private LastFM.SimilarMedias similar_medias;
     //TODO: make them private and have all transactions in the Core.
     public string api_key;
     public string api_secret;
@@ -56,11 +56,11 @@ public class LastFM.Core : Object {
 
     private Core () {
         fetch_cancellable = new GLib.Cancellable ();
-        similarMedias = new LastFM.SimilarMedias ();
-        Music.App.main_window.update_media_info.connect ((media) => {postNowPlaying (media);});
-        Music.App.main_window.media_half_played.connect ((media) => {postScrobbleTrack (media);});
+        similar_medias = new LastFM.SimilarMedias ();
+        Music.App.main_window.update_media_info.connect ((media) => {post_now_playing (media);});
+        Music.App.main_window.media_half_played.connect ((media) => {post_scrobble_track (media);});
         Music.libraries_manager.local_library.media_added.connect ((medias) => {fetch_albums_slowly.begin (medias);});
-        similarMedias.similar_retrieved.connect (similar_retrieved_signal);
+        similar_medias.similar_retrieved.connect (similar_retrieved_signal);
     }
 
     public void initialize (string api_key, string api_secret, string session_key) {
@@ -71,10 +71,10 @@ public class LastFM.Core : Object {
     }
 
     public Music.StaticPlaylist get_similar_playlist () {
-        return similarMedias.similar_playlist;
+        return similar_medias.similar_playlist;
     }
 
-    public void loveTrack (string title, string artist) {
+    public void love_track (string title, string artist) {
         if (Music.String.is_empty (title, true) | Music.String.is_empty (artist, true))
             return;
 
@@ -97,7 +97,7 @@ public class LastFM.Core : Object {
         }
     }
 
-    public void banTrack (string title, string artist) {
+    public void ban_track (string title, string artist) {
         if (Music.String.is_empty (title, true) | Music.String.is_empty (artist, true))
             return;
 
@@ -135,7 +135,7 @@ public class LastFM.Core : Object {
     /** Update's the user's currently playing track on last.fm
      *
      */
-    public void postNowPlaying (Music.Media m) {
+    public void post_now_playing (Music.Media m) {
         debug ("Sound send as now_playing");
         var uri = new Soup.URI (API_URL);
         uri.set_query_from_fields ("method", "track.updateNowPlaying",
@@ -155,7 +155,7 @@ public class LastFM.Core : Object {
     /**
      * Scrobbles the currently playing track to last.fm
      */
-    public void postScrobbleTrack (Music.Media m) {
+    public void post_scrobble_track (Music.Media m) {
         if (Music.App.player.current_media == null)
             return;
 
@@ -177,12 +177,12 @@ public class LastFM.Core : Object {
         session.send_message (message);
     }
 
-    public void fetchCurrentSimilarSongs () {
-        similarMedias.query_for_similar (Music.App.player.current_media);
+    public void fetch_current_similar_songs () {
+        similar_medias.query_for_similar (Music.App.player.current_media);
     }
 
-    private void similar_retrieved_signal (Gee.LinkedList<int> similarIDs, Gee.LinkedList<Music.Media> similarDont) {
-        similar_retrieved (similarIDs, similarDont);
+    private void similar_retrieved_signal (Gee.LinkedList<int> similar_ids, Gee.LinkedList<Music.Media> similar_dont) {
+        similar_retrieved (similar_ids, similar_dont);
     }
 
 

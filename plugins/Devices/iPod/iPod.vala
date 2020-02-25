@@ -27,7 +27,7 @@
  */
 
 namespace Music.Plugins {
-    public class iPodPlugin : Peas.ExtensionBase, Peas.Activatable {
+    public class iPodPlugin : Peas.ExtensionBase, Peas.Activatable { // vala-lint=naming-convention
 
         Interface plugins;
         public GLib.Object object { owned get; construct; }
@@ -39,14 +39,15 @@ namespace Music.Plugins {
             Value value = Value (typeof (GLib.Object));
             get_property ("object", ref value);
             plugins = (Music.Plugins.Interface) value.get_object ();
-            plugins.register_function(Interface.Hook.WINDOW, () => {
+            plugins.register_function (Interface.Hook.WINDOW, () => {
                 ipod_manager = new iPodDeviceManager ();
             });
         }
 
         public void deactivate () {
-            if (ipod_manager != null)
+            if (ipod_manager != null) {
                 ipod_manager.remove_all ();
+            }
         }
 
         public void update_state () {
@@ -58,6 +59,8 @@ namespace Music.Plugins {
 [ModuleInit]
 public void peas_register_types (GLib.TypeModule module) {
     var objmodule = module as Peas.ObjectModule;
-    objmodule.register_extension_type (typeof (Peas.Activatable),
-                                     typeof (Music.Plugins.iPodPlugin));
+    objmodule.register_extension_type (
+        typeof (Peas.Activatable),
+        typeof (Music.Plugins.iPodPlugin)
+    );
 }

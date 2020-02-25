@@ -29,8 +29,8 @@
 public class Music.Plugins.AudioPlayerDeviceManager : GLib.Object {
     Gee.ArrayList<AudioPlayerDevice> devices;
 
-    public AudioPlayerDeviceManager() {
-        devices = new Gee.ArrayList<AudioPlayerDevice>();
+    public AudioPlayerDeviceManager () {
+        devices = new Gee.ArrayList<AudioPlayerDevice> ();
 
         var device_manager = DeviceManager.get_default ();
         device_manager.mount_added.connect (mount_added);
@@ -41,53 +41,62 @@ public class Music.Plugins.AudioPlayerDeviceManager : GLib.Object {
     }
 
     public void remove_all () {
-        foreach(var dev in devices) {
+        foreach (var dev in devices) {
             DeviceManager.get_default ().device_removed ((Music.Device)dev);
         }
 
-        devices = new Gee.ArrayList<AudioPlayerDevice>();
+        devices = new Gee.ArrayList<AudioPlayerDevice> ();
     }
 
     public virtual void mount_added (Mount mount) {
-        foreach(var dev in devices) {
-            if(dev.get_uri() == mount.get_default_location().get_uri()) {
+        foreach (var dev in devices) {
+            if (dev.get_uri () == mount.get_default_location ().get_uri ()) {
                 return;
             }
         }
-        if(File.new_for_uri(mount.get_default_location().get_uri() + "/Android").query_exists() | File.new_for_uri(mount.get_default_location().get_uri() + "/.is_audio_player").query_exists()) {
-            var added = new AudioPlayerDevice(mount, File.new_for_uri(mount.get_default_location().get_uri() + "/Android").query_exists());
-            added.set_mount(mount);
-            devices.add(added);
+        if (
+            File.new_for_uri (mount.get_default_location ().get_uri () + "/Android").query_exists () ||
+            File.new_for_uri (mount.get_default_location ().get_uri () + "/.is_audio_player").query_exists ()
+        ) {
+            var added = new AudioPlayerDevice (
+                mount,
+                File.new_for_uri (mount.get_default_location ().get_uri () + "/Android").query_exists ()
+            );
+            added.set_mount (mount);
+            devices.add (added);
 
-            if(added.start_initialization()) {
-                added.finish_initialization();
-                added.initialized.connect((d) => {DeviceManager.get_default ().device_initialized ((Music.Device)d);});
-            }
-            else {
-                mount_removed(added.get_mount());
+            if (added.start_initialization ()) {
+                added.finish_initialization ();
+                added.initialized.connect ((d) => {DeviceManager.get_default ().device_initialized ((Music.Device)d);});
+            } else {
+                mount_removed (added.get_mount ());
             }
         }
         else {
-            debug ("Found device at %s is not an Audio Player or Android Phone. Not using it", mount.get_default_location().get_parse_name());
+            debug (
+                "Found device at %s is not an Audio Player or Android Phone. Not using it",
+                mount.get_default_location ().get_parse_name ()
+            );
+
             return;
         }
     }
 
     public virtual void mount_changed (Mount mount) {
-        //stdout.printf("mount_changed:%s\n", mount.get_uuid());
+        //stdout.printf ("mount_changed:%s\n", mount.get_uuid ());
     }
 
     public virtual void mount_pre_unmount (Mount mount) {
-        //stdout.printf("mount_preunmount:%s\n", mount.get_uuid());
+        //stdout.printf ("mount_preunmount:%s\n", mount.get_uuid ());
     }
 
     public virtual void mount_removed (Mount mount) {
-        foreach(var dev in devices) {
-            if(dev.get_uri() == mount.get_default_location().get_uri()) {
+        foreach (var dev in devices) {
+            if (dev.get_uri () == mount.get_default_location ().get_uri ()) {
                 DeviceManager.get_default ().device_removed ((Music.Device)dev);
 
                 // Actually remove it
-                devices.remove(dev);
+                devices.remove (dev);
 
                 return;
             }
