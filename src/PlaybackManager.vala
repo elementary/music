@@ -329,6 +329,10 @@ public class Music.PlaybackManager : Object {
         } else {
             _playing_queued_song = false;
 
+            if (_current.is_empty) {
+                queue_media (library.get_medias ());
+            }
+
             if (current_media == null) {
                 _current_index = 0;
                 rv = _current.get (0);
@@ -364,8 +368,6 @@ public class Music.PlaybackManager : Object {
 
                 rv = _current.get (_current_index);
             } else {
-                queue_media (library.get_medias ());
-
                 _current_index = 0;
                 rv = _current.get (0);
             }
