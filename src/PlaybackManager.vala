@@ -582,46 +582,19 @@ public class Music.PlaybackManager : Object {
 
     public void change_gains_thread () {
         if (Music.App.equalizer_settings.get_boolean ("equalizer-enabled")) {
-            bool automatic_enabled = Music.App.equalizer_settings.get_boolean ("auto-switch-preset");
-            string selected_preset = Music.App.equalizer_settings.get_string ("selected-preset");
-
             var custom_presets = Music.App.equalizer_settings.get_strv ("custom-presets");
             if (custom_presets != null) {
                 for (int i = 0; i < custom_presets.length; i++) {
                     var preset = new Music.EqualizerPreset.from_string (custom_presets[i]);
-                    if (preset != null && current_media != null) {
-                        var preset_name = preset.name.down ();
-                        var media_genre = current_media.genre.down ();
-
-                        bool match_genre = (preset_name in media_genre) || (media_genre in preset_name);
-
-                        if ((automatic_enabled && match_genre) ||
-                            (!automatic_enabled && preset.name == selected_preset)) {
-                            for (int g = 0; g < 10; g++) {
-                                player.set_equalizer_gain (g, preset.get_gain (g));
-                            }
-
-                            return;
-                        }
+                    if (auto_genre_eq (preset)) {
+                        return;
                     }
                 }
             }
 
-            foreach (var p in Equalizer.get_default_presets ()) {
-                if (p != null && current_media != null) {
-                    var preset_name = p.name.down ();
-                    var media_genre = current_media.genre.down ();
-
-                    bool match_genre = (preset_name in media_genre) || (media_genre in preset_name);
-
-                    if ((automatic_enabled && match_genre) ||
-                        (!automatic_enabled && p.name == selected_preset)) {
-                        for (int i = 0; i < 10; i++) {
-                            player.set_equalizer_gain (i, p.get_gain (i));
-                        }
-
-                        return;
-                    }
+            foreach (var preset in Equalizer.get_default_presets ()) {
+                if (auto_genre_eq (preset)) {
+                    return;
                 }
             }
         }
@@ -629,6 +602,28 @@ public class Music.PlaybackManager : Object {
         for (int i = 0; i < 10; ++i) {
             player.set_equalizer_gain (i, 0);
         }
+    }
+
+    private bool auto_genre_eq (Music.EqualizerPreset preset) {
+        if (preset != null && current_media != null) {
+            var preset_name = preset.name.down ();
+            var media_genre = current_media.genre.down ();
+
+            bool match_genre = (preset_name in media_genre) || (media_genre in preset_name);
+
+            bool automatic_enabled = Music.App.equalizer_settings.get_boolean ("auto-switch-preset");
+            string selected_preset = Music.App.equalizer_settings.get_string ("selected-preset");
+            if ((automatic_enabled && match_genre) ||
+                (!automatic_enabled && preset.name == selected_preset)) {
+                for (int i = 0; i < 10; i++) {
+                    player.set_equalizer_gain (i, preset.get_gain (i));
+                }
+
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public void stop_playback () {
