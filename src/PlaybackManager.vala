@@ -581,11 +581,11 @@ public class Music.PlaybackManager : Object {
     }
 
     public void change_gains_thread () {
-        var equalizer_settings = Settings.Equalizer.get_default ();
-        if (equalizer_settings.equalizer_enabled) {
-            bool automatic_enabled = equalizer_settings.auto_switch_preset;
-            string selected_preset = equalizer_settings.selected_preset;
+        if (Music.App.equalizer_settings.get_boolean ("equalizer_enabled")) {
+            bool automatic_enabled = Music.App.equalizer_settings.get_boolean ("auto-switch-preset");
+            string selected_preset = Music.App.equalizer_settings.get_string ("selected-preset");
 
+            var equalizer_settings = Settings.Equalizer.get_default ();
             foreach (var p in equalizer_settings.get_presets ()) {
                 if (p != null && current_media != null) {
                     var preset_name = p.name.down ();
