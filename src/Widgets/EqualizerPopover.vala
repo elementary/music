@@ -29,7 +29,6 @@
 public class Music.EqualizerPopover : Gtk.Popover {
     public signal void preset_changed (string preset_name);
 
-    private Settings.Equalizer core_eq_settings;
     private Gtk.Switch eq_switch;
     private Gtk.Entry new_preset_entry;
     private Gtk.Grid side_list;
@@ -51,8 +50,6 @@ public class Music.EqualizerPopover : Gtk.Popover {
     };
 
     construct {
-        core_eq_settings = Settings.Equalizer.get_default ();
-
         scales = new Gee.ArrayList<Gtk.Scale> ();
         target_levels = new Gee.ArrayList<int> ();
     }
@@ -238,8 +235,11 @@ public class Music.EqualizerPopover : Gtk.Popover {
             preset_combo.add_preset (preset);
         }
 
-        foreach (var preset in core_eq_settings.get_presets ()) {
-            preset_combo.add_preset (preset);
+        var custom_presets = Music.App.equalizer_settings.get_strv ("custom-presets");
+        if (custom_presets != null) {
+            for (int i = 0; i < custom_presets.length; i++) {
+                preset_combo.add_preset (new Music.EqualizerPreset.from_string (custom_presets[i]));
+            }
         }
     }
 
