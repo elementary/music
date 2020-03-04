@@ -1,3 +1,56 @@
+noise (5.0.5) bionic; urgency=medium
+
+  * Release 5.0.5 (#575)
+  * Fix error on clicking previous button for the first time (#573)
+  * Enable playback buttons on startup if media is available (#571)
+  * Specify ver 10.17.0 for node_js (#572)
+  * Update translation files
+  * Update translation files
+  * Update translation template
+  * Properly disable equalizer levels (#562)
+  * AudioPlayerDeviceManager: Use actual OR operator (#560)
+  * Fix lint errors (#559)
+  * Add Lint to CI (#540)
+  * Update translation template
+  * Appdata: add 5.0.5 release info (#558)
+  * Update translation template
+  * POTFILES: Remove NetworkDevice
+  * Add Release to Actions
+  * Add Gettext Updates to Actions
+  * Travis: Downgrade node to 10
+  * SmartPlaylistEditor: Reduce method scope (#549)
+  * InstallGstreamerPlugingsDialog: misc cleanup (#545)
+  * NotImportedDialog: misc cleanup (#547)
+  * MediaEditor: minor cleanup (#546)
+  * SetMusicFolderConfirmation: Reduce methods scope (#548)
+  * finish linting src files
+  * Fix many code style issues
+  * lint core directory with vala-lint (#542)
+  * lint top level src files with vala-lint (#541)
+  * Delete CODE_OF_CONDUCT.md
+  * LibraryWindow: Remove single-use sourcelist signals method (#539)
+  * LibraryWindow: More effecient saved state (#533)
+  * AlbumListGrid: Remove rating widget (#534)
+  * Update screenshot with creative commons music and newer layout. Add
+    more screenshots to appdata. (#537)
+  * Remove unused Core/Devices/NetworkDevice (#529)
+  * LibraryWindow: Subclass Gtk.ApplicationWindow (#531)
+  * Resources: remove unused PLAYLIST_CONTENT_TYPES (#527)
+  * Utils: Remove unused functions and reduce method scope (#520)
+  * PlaybackManager: Remove unused signal and method (#525)
+  * Playback: Remove unused signal media_not_found (#521)
+  * Application: Remove duplicate l10n support (#518)
+  * LibraryWindow: Reduce scope of main_hpaned (#532)
+  * ViewInterface: Remove unused get_hint (#526)
+  * Equalizer: Code style fixes (#522)
+  * Change Noise namespace to Music (#519)
+  * AppData: two space XML (#513)
+  * Remove dead code (#510)
+  * Add Silesian and update translation template
+  * Fix removing from queue (#492)
+
+ -- elementary LLC <builds@elementary.io>  Wed, 04 Mar 2020 22:51:41 +0000
+
 noise (5.0.4) bionic; urgency=medium
 
   * New upstream release.
