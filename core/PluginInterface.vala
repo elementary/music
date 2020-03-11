@@ -60,7 +60,7 @@ public class Music.Plugins.Interface : Object {
     }
 
     construct {
-        all_source_view = new List<Gtk.TextView>();
+        all_source_view = new List<Gtk.TextView> ();
 
         manager.hook_new_window.connect ((m) => {
             window = m;
