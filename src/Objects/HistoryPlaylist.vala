@@ -144,7 +144,7 @@ public class Music.HistoryPlaylist : StaticPlaylist {
 
 namespace SecurityPrivacy {
     private const string SIG_EVENT = "asaasay";
-    private const string SIG_BLACKLIST = "a{s("+SIG_EVENT+")}";
+    private const string SIG_BLACKLIST = "a{s(" + SIG_EVENT + ")}";
 
     [DBus (name = "org.gnome.zeitgeist.Blacklist")]
     interface BlacklistInterface : Object {
@@ -290,7 +290,7 @@ namespace SecurityPrivacy {
                                                     Zeitgeist.ResultType.MOST_RECENT_EVENTS,
                                                     null);
 
-                var counter = results.length/100;
+                var counter = results.length / 100;
                 store.set_value (iter, 5, counter);
             } catch (Error e) {
                 warning (e.message);
@@ -324,7 +324,7 @@ namespace SecurityPrivacy {
 
         private string get_name (string interpretation) {
             var names = interpretation.split ("#");
-            var name = names[names.length-1].down ();
+            var name = names[names.length - 1].down ();
             return "%s%s".printf (interpretation_prefix, name);
         }
 

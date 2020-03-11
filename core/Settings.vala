@@ -49,51 +49,13 @@ namespace Music.Settings {
                    privacy_settings.get_boolean ("remember-recent-files"));
         }
 
-        private Main ()  {
+        private Main () {
             base ("io.elementary.music.settings");
             if (music_folder == "") {
                 music_folder = GLib.Environment.get_user_special_dir (GLib.UserDirectory.MUSIC);
             }
         }
 
-    }
-
-    public class Equalizer : Granite.Services.Settings {
-
-        public bool equalizer_enabled { get; set; }
-        public bool auto_switch_preset { get; set; }
-        public string selected_preset { get; set; }
-        public string[] custom_presets { get; set;}
-
-        private static Equalizer? equalizer = null;
-
-        public static Equalizer get_default () {
-            if (equalizer == null)
-                equalizer = new Equalizer ();
-            return equalizer;
-        }
-
-        private Equalizer () {
-            base ("io.elementary.music.equalizer");
-        }
-
-        public Gee.Collection<Music.EqualizerPreset> get_presets () {
-            var presets_data = new Gee.TreeSet<string> ();
-
-            if (custom_presets != null) {
-                for (int i = 0; i < custom_presets.length; i++) {
-                    presets_data.add (custom_presets[i]);
-                }
-            }
-
-            var rv = new Gee.TreeSet<Music.EqualizerPreset>();
-
-            foreach (var preset_str in presets_data) {
-                rv.add (new Music.EqualizerPreset.from_string (preset_str));
-            }
-
-            return rv.read_only_view;
-        }
     }
 
     public enum Shuffle {

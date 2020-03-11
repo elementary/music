@@ -309,7 +309,7 @@ public class Music.AlbumsView : Gtk.Paned, ViewInterface {
 
     protected void search_func (Gee.HashMap<int, Object> showing) {
         var result = parent_view_wrapper.library.get_search_result ();
-        var albums = new Gee.TreeSet<Album> ((a,b) => {
+        var albums = new Gee.TreeSet<Album> ((a, b) => {
             int order = String.compare (a.get_display_name (), b.get_display_name ());
             if (order != 0) {
                 return order;

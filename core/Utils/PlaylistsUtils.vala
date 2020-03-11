@@ -32,25 +32,25 @@ namespace Music.PlaylistsUtils {
         bool rv = false;
         string to_save = get_playlist_m3u_file (p, without_path);
 
-        File dest = GLib.File.new_for_uri(folder_uri + "/" + p.name.replace("/", "_") + ".m3u");
+        File dest = GLib.File.new_for_uri (folder_uri + "/" + p.name.replace ("/", "_") + ".m3u");
         try {
             // find a file path that doesn't exist
             if (dest.query_exists ()) {
                 int i = 2;
-                while((dest = GLib.File.new_for_uri (folder_uri + "/" + p.name.replace("/", "_") + "(%d)".printf (i) + ".m3u")).query_exists()) {
+                while ((dest = GLib.File.new_for_uri (folder_uri + "/" + p.name.replace ("/", "_") + "(%d)".printf (i) + ".m3u")).query_exists ()) {
                     i++;
                 }
             }
 
-            var file_stream = dest.create(FileCreateFlags.NONE);
+            var file_stream = dest.create (FileCreateFlags.NONE);
 
             // Write text data to file
             var data_stream = new DataOutputStream (file_stream);
-            data_stream.put_string(to_save);
+            data_stream.put_string (to_save);
             rv = true;
         }
-        catch(Error err) {
-            warning ("Could not save playlist %s to m3u file %s: %s\n", p.name, dest.get_path(), err.message);
+        catch (Error err) {
+            warning ("Could not save playlist %s to m3u file %s: %s\n", p.name, dest.get_path (), err.message);
         }
 
         return rv;
@@ -64,7 +64,7 @@ namespace Music.PlaylistsUtils {
                 continue;
             }
 
-            to_save += "\n\n#EXTINF:" + s.length.to_string() + ", " + s.artist + " - " + s.title + "\n" + File.new_for_uri(s.uri).get_path();
+            to_save += "\n\n#EXTINF:" + s.length.to_string () + ", " + s.artist + " - " + s.title + "\n" + File.new_for_uri (s.uri).get_path ();
             to_save = to_save.replace (without_path, "");
         }
 
@@ -76,7 +76,7 @@ namespace Music.PlaylistsUtils {
         string to_save = "[playlist]\nX-GNOME-Title=%s\nNumberOfEntries=%d\nVersion=2".printf (p.name, p.medias.size);
 
         int index = 1;
-        foreach(var s in p) {
+        foreach (var s in p) {
             if (s == null)
                 continue;
 
@@ -86,26 +86,26 @@ namespace Music.PlaylistsUtils {
             ++index;
         }
 
-        File dest = GLib.File.new_for_uri(folder_uri + "/" + p.name.replace("/", "_") + ".pls");
+        File dest = GLib.File.new_for_uri (folder_uri + "/" + p.name.replace ("/", "_") + ".pls");
         try {
             // find a file path that doesn't exist
             int extra = 2;
-            if (dest.query_exists() == true) {
-                while((dest = GLib.File.new_for_uri(folder_uri + "/" +
-                            _("%s (%d)").printf (p.name.replace("/", "_"), extra) + ".pls")).query_exists()) {
+            if (dest.query_exists () == true) {
+                while ((dest = GLib.File.new_for_uri (folder_uri + "/" +
+                            _("%s (%d)").printf (p.name.replace ("/", "_"), extra) + ".pls")).query_exists ()) {
                     extra++;
                 }
             }
 
-            var file_stream = dest.create(FileCreateFlags.NONE);
+            var file_stream = dest.create (FileCreateFlags.NONE);
 
             // Write text data to file
             var data_stream = new DataOutputStream (file_stream);
-            data_stream.put_string(to_save);
+            data_stream.put_string (to_save);
             rv = true;
         }
-        catch(Error err) {
-            warning ("Could not save playlist %s to pls file %s: %s\n", p.name, dest.get_path(), err.message);
+        catch (Error err) {
+            warning ("Could not save playlist %s to pls file %s: %s\n", p.name, dest.get_path (), err.message);
         }
 
         return rv;
@@ -117,8 +117,8 @@ namespace Music.PlaylistsUtils {
         // if so, just do import_individual_files
         // if not, do nothing and accept that music files are scattered.
 
-        var file = File.new_for_uri(uri);
-        if(!file.query_exists()) {
+        var file = File.new_for_uri (uri);
+        if (!file.query_exists ()) {
             critical ("The imported playlist doesn't exist !");
             return false;
         }
@@ -126,18 +126,18 @@ namespace Music.PlaylistsUtils {
         try {
             string line;
             string previous_line = "";
-            var dis = new DataInputStream(file.read());
+            var dis = new DataInputStream (file.read ());
 
-            while ((line = dis.read_line(null)) != null) {
-                if(line[0] != '#' && line.replace(" ", "").length > 0) {
+            while ((line = dis.read_line (null)) != null) {
+                if (line[0] != '#' && line.replace (" ", "").length > 0) {
                     warning ("file://" + line);
-                    locals.add("file://" + line);
+                    locals.add ("file://" + line);
                 }
 
                 previous_line = line;
             }
         }
-        catch(Error err) {
+        catch (Error err) {
             warning ("Could not load m3u file at %s: %s\n", uri, err.message);
             return false;
         }
@@ -146,37 +146,36 @@ namespace Music.PlaylistsUtils {
     }
 
     private static bool parse_paths_from_pls (string uri, ref Gee.LinkedList<string> locals, ref string title) {
-        var files = new Gee.HashMap<int, string>();
-        var titles = new Gee.HashMap<int, string>();
-        var lengths = new Gee.HashMap<int, string>();
+        var files = new Gee.HashMap<int, string> ();
+        var titles = new Gee.HashMap<int, string> ();
+        var lengths = new Gee.HashMap<int, string> ();
 
-        var file = File.new_for_uri(uri);
-        if(!file.query_exists())
+        var file = File.new_for_uri (uri);
+        if (!file.query_exists ())
             return false;
-
 
         try {
             string line;
-            var dis = new DataInputStream(file.read());
+            var dis = new DataInputStream (file.read ());
 
-            while ((line = dis.read_line(null)) != null) {
-                if(line.has_prefix("File")) {
-                    parse_index_and_value("File", line, ref files);
-                } else if(line.has_prefix("X-GNOME-Title")) {
-                    string[] parts = line.split("=", 2);
+            while ((line = dis.read_line (null)) != null) {
+                if (line.has_prefix ("File")) {
+                    parse_index_and_value ("File", line, ref files);
+                } else if (line.has_prefix ("X-GNOME-Title")) {
+                    string[] parts = line.split ("=", 2);
                     title = parts[1];
-                } else if(line.has_prefix("Title")) {
-                    parse_index_and_value("Title", line, ref titles);
-                } else if(line.has_prefix("Length")) {
-                    parse_index_and_value("Length", line, ref lengths);
+                } else if (line.has_prefix ("Title")) {
+                    parse_index_and_value ("Title", line, ref titles);
+                } else if (line.has_prefix ("Length")) {
+                    parse_index_and_value ("Length", line, ref lengths);
                 }
             }
         }
-        catch(Error err) {
+        catch (Error err) {
             warning ("Could not load m3u file at %s: %s\n", uri, err.message);
             return false;
         }
-        locals.add_all(files.values);
+        locals.add_all (files.values);
 
 
         return true;
@@ -185,12 +184,12 @@ namespace Music.PlaylistsUtils {
     private static void parse_index_and_value (string prefix, string line, ref Gee.HashMap<int, string> map) {
         int index;
         string val;
-        string[] parts = line.split("=", 2);
+        string[] parts = line.split ("=", 2);
 
-        index = int.parse(parts[0].replace(prefix,""));
+        index = int.parse (parts[0].replace (prefix, ""));
         val = parts[1];
 
-        map.set(index, val);
+        map.set (index, val);
     }
 
     private Gee.Collection<string> convert_paths_to_uris (Gee.Collection<string> paths) {
@@ -202,7 +201,7 @@ namespace Music.PlaylistsUtils {
         return uris;
     }
 
-    public void import_from_playlist_file_info(Gee.HashMap<string, Gee.LinkedList<string>> playlists, Library library) {
+    public void import_from_playlist_file_info (Gee.HashMap<string, Gee.LinkedList<string>> playlists, Library library) {
 
         foreach (var values in playlists.values) {
             if (values.size > 0) {
@@ -215,12 +214,12 @@ namespace Music.PlaylistsUtils {
         }
 
         foreach (var playlist in playlists.entries) {
-            var new_playlist = new StaticPlaylist();
+            var new_playlist = new StaticPlaylist ();
             new_playlist.name = playlist.key;
             var medias_to_use = playlist.value;
             var to_add = new Gee.LinkedList<Media> ();
             foreach (var media in library.get_medias ()) {
-                if (medias_to_use.contains (media.file.get_path()) || medias_to_use.contains (media.file.get_uri())) {
+                if (medias_to_use.contains (media.file.get_path ()) || medias_to_use.contains (media.file.get_uri ())) {
                     to_add.add (media);
                 }
             }
@@ -293,7 +292,7 @@ namespace Music.PlaylistsUtils {
         string name = "";
         string extension = "";
         if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
-            file = file_chooser.get_filename();
+            file = file_chooser.get_filename ();
             extension = file.slice (file.last_index_of (".", 0), file.length);
 
             if (extension.length == 0 || extension[0] != '.') {
@@ -330,13 +329,13 @@ namespace Music.PlaylistsUtils {
             title = _("Playlist");
         }
 
-        var m3u_filter = new Gtk.FileFilter();
-        m3u_filter.add_pattern("*.m3u");
-        m3u_filter.set_filter_name(_("MPEG Version 3.0 Extended (*.m3u)"));
+        var m3u_filter = new Gtk.FileFilter ();
+        m3u_filter.add_pattern ("*.m3u");
+        m3u_filter.set_filter_name (_("MPEG Version 3.0 Extended (*.m3u)"));
 
-        var pls_filter = new Gtk.FileFilter();
-        pls_filter.add_pattern("*.pls");
-        pls_filter.set_filter_name(_("Shoutcast Playlist Version 2.0 (*.pls)"));
+        var pls_filter = new Gtk.FileFilter ();
+        pls_filter.add_pattern ("*.pls");
+        pls_filter.set_filter_name (_("Shoutcast Playlist Version 2.0 (*.pls)"));
 
         var file_chooser = new Gtk.FileChooserNative (
             _("Import %s").printf (title),
@@ -363,7 +362,7 @@ namespace Music.PlaylistsUtils {
                 var paths = new Gee.LinkedList<string> ();
                 if (file.has_suffix (".m3u")) {
                     name = name.replace (".m3u", "");
-                    success = parse_paths_from_m3u("file://" + file, ref paths);
+                    success = parse_paths_from_m3u ("file://" + file, ref paths);
                 } else if (file.has_suffix (".pls")) {
                     name = name.replace (".pls", "");
                     success = parse_paths_from_pls ("file://" + file, ref paths, ref name);

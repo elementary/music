@@ -200,7 +200,7 @@ public class Music.MusicListView : GenericList {
         return false;
     }
 
-    protected override void mediaRemoveClicked () {
+    protected override void media_remove_clicked () {
         var selected_media = get_selected_medias ().read_only_view;
 
         switch (hint) {
@@ -224,7 +224,7 @@ public class Music.MusicListView : GenericList {
           }
     }
 
-    protected virtual void onDragDataGet (Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {
+    protected virtual void on_drag_data_get (Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {
         string[] uris = null;
 
         foreach (Media m in get_selected_medias ()) {

@@ -138,8 +138,7 @@ namespace Music.String {
      * search string is stored. Should be passed to the methods in Music.Search.
      */
     public static void base_search_method (string search, out uint parsed_rating,
-                                           out string parsed_search_string)
-    {
+                                           out string parsed_search_string) {
         parsed_rating = 0;
         var result = Search.get_rating_from_string (search.strip ()); // guaranteed > 0 or null
 

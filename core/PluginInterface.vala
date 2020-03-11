@@ -1,5 +1,5 @@
 /*-
- * Copyright (c) 2012-2019 elementary, Inc. (https://elementary.io)
+ * Copyright (c) 2012-2020 elementary, Inc. (https://elementary.io)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -30,7 +30,7 @@
  */
 
 public class Music.Plugins.Interface : Object {
-    public Manager manager { get; construct; }
+    public unowned Manager manager { get; construct; }
 
     public enum Hook {
         CONTEXT,
@@ -75,14 +75,14 @@ public class Music.Plugins.Interface : Object {
         switch (hook) {
         case Hook.SOURCE_VIEW:
             manager.hook_source_view.connect_after ((m) => {
-                hook_function(m);
+                hook_function (m);
             });
             foreach (var source_view in all_source_view) {
                 hook_function (source_view);
             }
             break;
         case Hook.SETTINGS_WINDOW:
-            manager.hook_preferences_window.connect_after ( (d) => {
+            manager.hook_preferences_window.connect_after ((d) => {
                 hook_function (d);
             });
             break;
@@ -90,10 +90,10 @@ public class Music.Plugins.Interface : Object {
     }
 
     public void register_function (Hook hook, HookFunction hook_function) {
-        switch(hook) {
+        switch (hook) {
         case Hook.CONTEXT:
             manager.hook_notebook_context.connect_after (() => {
-                hook_function();
+                hook_function ();
             });
             if (context != null) {
                 hook_function ();
@@ -101,7 +101,7 @@ public class Music.Plugins.Interface : Object {
             break;
         case Hook.SIDEBAR:
             manager.hook_notebook_sidebar.connect_after (() => {
-                hook_function();
+                hook_function ();
             });
             if (sidebar != null) {
                 hook_function ();
@@ -109,7 +109,7 @@ public class Music.Plugins.Interface : Object {
             break;
         case Hook.TOOLBAR:
             manager.hook_toolbar.connect_after (() => {
-                hook_function();
+                hook_function ();
             });
             if (toolbar != null) {
                 hook_function ();

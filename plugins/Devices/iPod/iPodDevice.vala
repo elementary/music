@@ -26,7 +26,7 @@
  * Authored by: Corentin Noël <corentin@elementary.io>
  */
 
-public class Music.Plugins.iPodDevice : GLib.Object, Music.Device {
+public class Music.Plugins.iPodDevice : GLib.Object, Music.Device { //vala-lint=naming-convention
     GPod.iTunesDB db;
     public Mount mount;
     GLib.Icon icon;
@@ -43,7 +43,10 @@ public class Music.Plugins.iPodDevice : GLib.Object, Music.Device {
     public bool start_initialization () {
         try {
             db = GPod.iTunesDB.parse (mount.get_default_location ().get_path ());
-            if (db.device.get_ipod_info ().ipod_model == GPod.iPodModel.INVALID || db.device.get_ipod_info ().ipod_model == GPod.iPodModel.UNKNOWN) {
+            if (
+                db.device.get_ipod_info ().ipod_model == GPod.iPodModel.INVALID ||
+                db.device.get_ipod_info ().ipod_model == GPod.iPodModel.UNKNOWN
+            ) {
                 is_supported = false;
             }
 
@@ -209,7 +212,7 @@ public class Music.Plugins.iPodDevice : GLib.Object, Music.Device {
             var file_info = File.new_for_uri (get_uri ()).query_filesystem_info ("filesystem::*", null);
             rv = file_info.get_attribute_uint64 (GLib.FileAttribute.FILESYSTEM_FREE);
         } catch (Error err) {
-            critical("Error calculating free space on iPod: %s\n", err.message);
+            critical ("Error calculating free space on iPod: %s\n", err.message);
         }
 
         return rv;

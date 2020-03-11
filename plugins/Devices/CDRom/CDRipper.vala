@@ -51,11 +51,13 @@ public class Music.CDRipper : GLib.Object {
     public bool initialize () {
         pipeline = new Gst.Pipeline ("pipeline");
         Gst.Element src = null;
+
         try {
             src = Gst.Element.make_from_uri (Gst.URIType.SRC, "cdda://", null);
         } catch (Error e) {
             warning (e.message);
         }
+
         src.set_property ("device", _device);
         queue = Gst.ElementFactory.make ("queue", "queue");
         filter = Gst.ElementFactory.make ("lamemp3enc", "lamemp3enc");
@@ -81,8 +83,10 @@ public class Music.CDRipper : GLib.Object {
         _format = Gst.Format.get_by_nick ("track");
 
         ((Gst.Bin)pipeline).add_many (src, queue, filter, sink);
-        if(!src.link_many (queue, filter, sink)) {
+
+        if (!src.link_many (queue, filter, sink)) {
             critical ("CD Ripper link_many failed\n");
+
             return false;
         }
 
@@ -98,10 +102,11 @@ public class Music.CDRipper : GLib.Object {
         double track_number = ((double) track_index) / ((double) track_count);
         progress_notification (track_position * track_number);
 
-        if (get_duration () <= 0)
+        if (get_duration () <= 0) {
             return false;
-        else
+        } else {
             return true;
+        }
     }
 
     public int64 get_position () {
@@ -169,8 +174,11 @@ public class Music.CDRipper : GLib.Object {
         sink.set_state (Gst.State.NULL);
         sink.set ("location", f.get_path ());
         src.set ("track", track);
-        if (current_media != null)
+
+        if (current_media != null) {
             current_media.unique_status_image = new ThemedIcon ("process-completed-symbolic");
+        }
+
         track_index++;
         current_media = s;
         current_media.unique_status_image = new ThemedIcon ("view-refresh-symbolic");

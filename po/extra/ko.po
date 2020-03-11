@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-26 22:43+0200\n"
+"POT-Creation-Date: 2020-01-15 21:57+0000\n"
 "PO-Revision-Date: 2018-06-27 22:08+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://weblate.elementary.io/projects/music/extra/ko/"
@@ -37,157 +37,171 @@ msgstr ""
 "음악은 음악과 라이브러리에 중심을 둔 빠르고 아름다운 오디오 플레이어입니다. "
 "외부 연결 장치와, CD, 앨범 아트를 관리합니다."
 
-#: data/io.elementary.music.appdata.xml.in:20
-msgid "Removed old gsignond vapi"
+#: data/io.elementary.music.appdata.xml.in:16
+msgid "Fix removing items from the queue"
 msgstr ""
 
-#: data/io.elementary.music.appdata.xml.in:21
-msgid "LibraryWindow: Use Granite.MessageDialog for showing alerts"
+#: data/io.elementary.music.appdata.xml.in:17
+msgid "Fix equalizer sliders not properly disabled sometimes"
 msgstr ""
 
-#: data/io.elementary.music.appdata.xml.in:22
-msgid "PlaylistsUtils: Use Gtk.FileChooserNative"
-msgstr ""
-
-#: data/io.elementary.music.appdata.xml.in:23
-msgid "Accurately remember window size"
-msgstr ""
-
-#: data/io.elementary.music.appdata.xml.in:24
-#: data/io.elementary.music.appdata.xml.in:32
-#: data/io.elementary.music.appdata.xml.in:43
-#: data/io.elementary.music.appdata.xml.in:52
-#: data/io.elementary.music.appdata.xml.in:61
+#: data/io.elementary.music.appdata.xml.in:18
+#: data/io.elementary.music.appdata.xml.in:28
+#: data/io.elementary.music.appdata.xml.in:36
+#: data/io.elementary.music.appdata.xml.in:47
+#: data/io.elementary.music.appdata.xml.in:56
+#: data/io.elementary.music.appdata.xml.in:65
 msgid "Updated translations"
 msgstr ""
 
-#: data/io.elementary.music.appdata.xml.in:29
+#: data/io.elementary.music.appdata.xml.in:19
+msgid "Performance improvements"
+msgstr ""
+
+#: data/io.elementary.music.appdata.xml.in:24
+msgid "Removed old gsignond vapi"
+msgstr ""
+
+#: data/io.elementary.music.appdata.xml.in:25
+msgid "LibraryWindow: Use Granite.MessageDialog for showing alerts"
+msgstr ""
+
+#: data/io.elementary.music.appdata.xml.in:26
+msgid "PlaylistsUtils: Use Gtk.FileChooserNative"
+msgstr ""
+
+#: data/io.elementary.music.appdata.xml.in:27
+msgid "Accurately remember window size"
+msgstr ""
+
+#: data/io.elementary.music.appdata.xml.in:33
 msgid "Scale album art properly at high resolutions"
 msgstr ""
 
-#: data/io.elementary.music.appdata.xml.in:30
+#: data/io.elementary.music.appdata.xml.in:34
 msgid ""
 "Accurately select Music Folder Location for directories with spaces in name"
 msgstr ""
 
-#: data/io.elementary.music.appdata.xml.in:31
+#: data/io.elementary.music.appdata.xml.in:35
 msgid "New MediaKeyListener path for gnome-settings-daemon"
 msgstr ""
 
-#: data/io.elementary.music.appdata.xml.in:37
+#: data/io.elementary.music.appdata.xml.in:41
 msgid "AlbumView: double-click to play album"
 msgstr ""
 
-#: data/io.elementary.music.appdata.xml.in:38
+#: data/io.elementary.music.appdata.xml.in:42
 msgid "Associate with s3m files"
 msgstr ""
 
-#: data/io.elementary.music.appdata.xml.in:39
+#: data/io.elementary.music.appdata.xml.in:43
 msgid "Queue fixes"
 msgstr ""
 
-#: data/io.elementary.music.appdata.xml.in:40
+#: data/io.elementary.music.appdata.xml.in:44
 msgid "Properly restore playlists"
 msgstr ""
 
-#: data/io.elementary.music.appdata.xml.in:41
+#: data/io.elementary.music.appdata.xml.in:45
 msgid "Always respect custom music folder setting"
 msgstr ""
 
-#: data/io.elementary.music.appdata.xml.in:42
-#: data/io.elementary.music.appdata.xml.in:51
-#: data/io.elementary.music.appdata.xml.in:60
-#: data/io.elementary.music.appdata.xml.in:92
-#: data/io.elementary.music.appdata.xml.in:107
+#: data/io.elementary.music.appdata.xml.in:46
+#: data/io.elementary.music.appdata.xml.in:55
+#: data/io.elementary.music.appdata.xml.in:64
+#: data/io.elementary.music.appdata.xml.in:96
+#: data/io.elementary.music.appdata.xml.in:111
 msgid "Minor bug fixes"
 msgstr ""
 
-#: data/io.elementary.music.appdata.xml.in:48
+#: data/io.elementary.music.appdata.xml.in:52
 msgid "Fix list and column view sorting"
 msgstr ""
 
-#: data/io.elementary.music.appdata.xml.in:49
+#: data/io.elementary.music.appdata.xml.in:53
 msgid "Add orange accent color"
 msgstr ""
 
-#: data/io.elementary.music.appdata.xml.in:50
+#: data/io.elementary.music.appdata.xml.in:54
 msgid "Add shortcut accels to tooltips"
 msgstr ""
 
-#: data/io.elementary.music.appdata.xml.in:57
+#: data/io.elementary.music.appdata.xml.in:61
 msgid "Various UI changes"
 msgstr ""
 
-#: data/io.elementary.music.appdata.xml.in:58
+#: data/io.elementary.music.appdata.xml.in:62
 msgid "Shuffle fixes"
 msgstr ""
 
-#: data/io.elementary.music.appdata.xml.in:59
+#: data/io.elementary.music.appdata.xml.in:63
 msgid "Initial MPRIS support"
 msgstr ""
 
-#: data/io.elementary.music.appdata.xml.in:66
+#: data/io.elementary.music.appdata.xml.in:70
 msgid "Detect library changes at startup."
 msgstr ""
 
-#: data/io.elementary.music.appdata.xml.in:67
+#: data/io.elementary.music.appdata.xml.in:71
 msgid "Support searching by URI"
 msgstr ""
 
-#: data/io.elementary.music.appdata.xml.in:68
+#: data/io.elementary.music.appdata.xml.in:72
 msgid "Change the queue mechanism to make it less confusing."
 msgstr ""
 
-#: data/io.elementary.music.appdata.xml.in:69
+#: data/io.elementary.music.appdata.xml.in:73
 msgid "Improve equalizer style."
 msgstr ""
 
-#: data/io.elementary.music.appdata.xml.in:70
-#: data/io.elementary.music.appdata.xml.in:75
-#: data/io.elementary.music.appdata.xml.in:80
-#: data/io.elementary.music.appdata.xml.in:85
+#: data/io.elementary.music.appdata.xml.in:74
+#: data/io.elementary.music.appdata.xml.in:79
+#: data/io.elementary.music.appdata.xml.in:84
+#: data/io.elementary.music.appdata.xml.in:89
 msgid "Minor bug fixes."
 msgstr ""
 
-#: data/io.elementary.music.appdata.xml.in:90
+#: data/io.elementary.music.appdata.xml.in:94
 msgid "Add rounded bottom window corner."
 msgstr ""
 
-#: data/io.elementary.music.appdata.xml.in:93
-#: data/io.elementary.music.appdata.xml.in:108
+#: data/io.elementary.music.appdata.xml.in:97
+#: data/io.elementary.music.appdata.xml.in:112
 msgid "New translations"
 msgstr ""
 
-#: data/io.elementary.music.appdata.xml.in:99
+#: data/io.elementary.music.appdata.xml.in:103
 msgid "Release for Loki."
 msgstr ""
 
-#: data/io.elementary.music.appdata.xml.in:101
+#: data/io.elementary.music.appdata.xml.in:105
 msgid "Add support for Opus Ogg"
 msgstr ""
 
-#: data/io.elementary.music.appdata.xml.in:102
+#: data/io.elementary.music.appdata.xml.in:106
 msgid "Fix Ctrl+Q support for non-Latin keyboard layouts"
 msgstr ""
 
-#: data/io.elementary.music.appdata.xml.in:103
+#: data/io.elementary.music.appdata.xml.in:107
 msgid "Reorganize media edition layout"
 msgstr ""
 
-#: data/io.elementary.music.appdata.xml.in:104
+#: data/io.elementary.music.appdata.xml.in:108
 msgid "Port grid to support HiDPI displays"
 msgstr ""
 
-#: data/io.elementary.music.appdata.xml.in:105
+#: data/io.elementary.music.appdata.xml.in:109
 msgid "Update icons to latest elementary icon release"
 msgstr ""
 
-#: data/io.elementary.music.appdata.xml.in:106
+#: data/io.elementary.music.appdata.xml.in:110
 msgid "Respect privacy mode"
 msgstr ""
 
-#: data/io.elementary.music.appdata.xml.in:146
-msgid "elementary LLC."
+#: data/io.elementary.music.appdata.xml.in:150
+#, fuzzy
+msgid "elementary, Inc."
 msgstr "elementary LLC."
 
 #: data/io.elementary.music.desktop.in:5

@@ -27,6 +27,7 @@
  */
 
 public class Music.App : Gtk.Application {
+    public static GLib.Settings equalizer_settings { get; private set; }
     public static GLib.Settings settings { get; private set; }
     public static GLib.Settings saved_state { get; private set; }
     public static PlaybackManager player { get; private set; }
@@ -34,6 +35,7 @@ public class Music.App : Gtk.Application {
     public static LibraryWindow main_window { get; private set; }
 
     static construct {
+        equalizer_settings = new GLib.Settings ("io.elementary.music.equalizer");
         saved_state = new GLib.Settings ("io.elementary.music.saved-state");
         settings = new GLib.Settings ("io.elementary.music.settings");
     }

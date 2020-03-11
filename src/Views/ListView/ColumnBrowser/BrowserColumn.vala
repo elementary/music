@@ -279,16 +279,16 @@ public class Music.BrowserColumn : Gtk.Grid {
     }
 
     private void selected_item_changed () {
-        Gtk.TreeModel tempModel;
+        Gtk.TreeModel temp_model;
         Gtk.TreeIter iter;
         string text;
 
-        if (view.get_selection ().get_selected (out tempModel, out iter)) {
+        if (view.get_selection ().get_selected (out temp_model, out iter)) {
             if (((SequenceIter<string>) iter.user_data).get_position () == 0) {
                 // first item selected
                 select_first_item ();
             } else {
-                tempModel.get (iter, 0, out text);
+                temp_model.get (iter, 0, out text);
                 set_selected (text, true);
             }
         }

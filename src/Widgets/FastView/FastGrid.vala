@@ -162,7 +162,7 @@ public class Music.FastGrid : Gtk.IconView {
     }
 
     private void quicksort (int start, int end) {
-        GLib.Object pivot = table.get ( (start+end)/2);
+        GLib.Object pivot = table.get ((start + end) / 2);
         int i = start;
         int j = end;
 
@@ -176,7 +176,7 @@ public class Music.FastGrid : Gtk.IconView {
             }
         }
 
-        if (start < j) { 
+        if (start < j) {
             quicksort (start, j);
         }
         if (i < end) {
