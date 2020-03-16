@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-15 21:57+0000\n"
-"PO-Revision-Date: 2019-11-09 12:24+0000\n"
+"PO-Revision-Date: 2020-03-17 14:09+0000\n"
 "Last-Translator: Shtonchjo <shtonchjo@gmail.com>\n"
 "Language-Team: Esperanto <https://l10n.elementary.io/projects/music/extra/eo/"
 ">\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
 #: data/io.elementary.music.appdata.xml.in:8
@@ -39,11 +39,11 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:16
 msgid "Fix removing items from the queue"
-msgstr ""
+msgstr "Ripari forigon de elementoj el la vico"
 
 #: data/io.elementary.music.appdata.xml.in:17
 msgid "Fix equalizer sliders not properly disabled sometimes"
-msgstr ""
+msgstr "Ripari ekvaliziajn ŝovilojn foje ne ĝuste malebligitaj"
 
 #: data/io.elementary.music.appdata.xml.in:18
 #: data/io.elementary.music.appdata.xml.in:28
@@ -56,7 +56,7 @@ msgstr "Ĝisdatigitaj tradukoj"
 
 #: data/io.elementary.music.appdata.xml.in:19
 msgid "Performance improvements"
-msgstr ""
+msgstr "Rendimentaj plibonigoj"
 
 #: data/io.elementary.music.appdata.xml.in:24
 msgid "Removed old gsignond vapi"
