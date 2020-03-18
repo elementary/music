@@ -281,14 +281,14 @@ public class MprisPlayer : GLib.Object {
 
     public string loop_status {
         owned get {
-            switch (Music.Settings.Main.get_default ().repeat_mode) {
-                case (Music.Settings.Repeat.OFF):
+            switch (Music.App.settings.get_enum ("repeat-mode")) {
+                case (Music.PlaybackManager.RepeatMode.OFF):
                     return "None";
-                case (Music.Settings.Repeat.MEDIA):
+                case (Music.PlaybackManager.RepeatMode.MEDIA):
                     return "Track";
-                case (Music.Settings.Repeat.ALBUM):
-                case (Music.Settings.Repeat.ARTIST):
-                case (Music.Settings.Repeat.ALL):
+                case (Music.PlaybackManager.RepeatMode.ALBUM):
+                case (Music.PlaybackManager.RepeatMode.ARTIST):
+                case (Music.PlaybackManager.RepeatMode.ALL):
                 default:
                     return "Playlist";
             }
@@ -296,16 +296,16 @@ public class MprisPlayer : GLib.Object {
         set {
             switch (value) {
                 case ("None"):
-                    Music.App.player.set_repeat_mode (Music.Settings.Repeat.OFF);
+                    Music.App.player.set_repeat_mode (Music.PlaybackManager.RepeatMode.OFF);
                     break;
                 case ("Track"):
-                    Music.App.player.set_repeat_mode (Music.Settings.Repeat.MEDIA);
+                    Music.App.player.set_repeat_mode (Music.PlaybackManager.RepeatMode.MEDIA);
                     break;
                 case ("Playlist"):
-                    Music.App.player.set_repeat_mode (Music.Settings.Repeat.ALL);
+                    Music.App.player.set_repeat_mode (Music.PlaybackManager.RepeatMode.ALL);
                     break;
                 default:
-                    Music.App.player.set_repeat_mode (Music.Settings.Repeat.ALL);
+                    Music.App.player.set_repeat_mode (Music.PlaybackManager.RepeatMode.ALL);
                     break;
             }
 
@@ -323,13 +323,13 @@ public class MprisPlayer : GLib.Object {
 
     public bool shuffle {
         get {
-            return Music.Settings.Main.get_default ().shuffle_mode == Music.Settings.Shuffle.ALL;
+            return Music.App.settings.get_enum ("shuffle-mode") == Music.PlaybackManager.ShuffleMode.ALL;
         }
         set {
             if (value) {
-                Music.App.player.set_shuffle_mode (Music.Settings.Shuffle.ALL);
+                Music.App.player.set_shuffle_mode (Music.PlaybackManager.ShuffleMode.ALL);
             } else {
-                Music.App.player.set_shuffle_mode (Music.Settings.Shuffle.OFF);
+                Music.App.player.set_shuffle_mode (Music.PlaybackManager.ShuffleMode.OFF);
             }
 
             Variant variant = value;

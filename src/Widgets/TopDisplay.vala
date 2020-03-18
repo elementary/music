@@ -143,14 +143,14 @@ public class Music.TopDisplay : Gtk.Stack {
             update_option ();
 
             option_changed.connect (() => {
-                App.player.set_repeat_mode ((Music.Settings.Repeat) current_option);
+                App.player.set_repeat_mode ((Music.PlaybackManager.RepeatMode) current_option);
             });
 
             App.player.notify["repeat"].connect (update_option);
         }
 
         private void update_option () {
-            set_option ((int) Settings.Main.get_default ().repeat_mode);
+            set_option ((int) Music.App.settings.get_enum ("repeat-mode"));
         }
     }
 
@@ -163,14 +163,14 @@ public class Music.TopDisplay : Gtk.Stack {
             update_mode ();
 
             option_changed.connect (() => {
-                App.player.set_shuffle_mode ((Music.Settings.Shuffle) current_option);
+                App.player.set_shuffle_mode ((Music.PlaybackManager.ShuffleMode) current_option);
             });
 
             App.player.notify["shuffle"].connect (update_mode);
         }
 
         private void update_mode () {
-            set_option ((int) Settings.Main.get_default ().shuffle_mode);
+            set_option ((int) Music.App.settings.get_enum ("shuffle-mode"));
         }
     }
 

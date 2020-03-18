@@ -30,8 +30,6 @@ namespace Music.Settings {
     public class Main : Granite.Services.Settings {
         public string music_mount_name { get; set; }
         public string music_folder { get; set; }
-        public Shuffle shuffle_mode { get; set; }
-        public Repeat repeat_mode { get; set; }
         public string path_string { get; set; }
         public string[] plugins_disabled { get; set;}
 
@@ -56,18 +54,5 @@ namespace Music.Settings {
             }
         }
 
-    }
-
-    public enum Shuffle {
-        OFF,
-        ALL
-    }
-
-    public enum Repeat {
-        OFF,
-        MEDIA,
-        ALL,
-        ALBUM,
-        ARTIST
     }
 }
