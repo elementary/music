@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-15 21:57+0000\n"
-"PO-Revision-Date: 2019-08-27 22:22+0000\n"
+"PO-Revision-Date: 2020-03-19 19:09+0000\n"
 "Last-Translator: Ciarán Ainsworth <ciaranainsworth@posteo.net>\n"
 "Language-Team: English (United Kingdom) <https://l10n.elementary.io/projects/"
 "music/extra/en_GB/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
 #: data/io.elementary.music.appdata.xml.in:8
@@ -39,11 +39,11 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:16
 msgid "Fix removing items from the queue"
-msgstr ""
+msgstr "Fix removing items from the queue"
 
 #: data/io.elementary.music.appdata.xml.in:17
 msgid "Fix equalizer sliders not properly disabled sometimes"
-msgstr ""
+msgstr "Fix equaliser sliders not properly disabled sometimes"
 
 #: data/io.elementary.music.appdata.xml.in:18
 #: data/io.elementary.music.appdata.xml.in:28
@@ -56,7 +56,7 @@ msgstr "Updated translations"
 
 #: data/io.elementary.music.appdata.xml.in:19
 msgid "Performance improvements"
-msgstr ""
+msgstr "Performance improvements"
 
 #: data/io.elementary.music.appdata.xml.in:24
 msgid "Removed old gsignond vapi"
@@ -201,9 +201,8 @@ msgid "Respect privacy mode"
 msgstr "Respect privacy mode"
 
 #: data/io.elementary.music.appdata.xml.in:150
-#, fuzzy
 msgid "elementary, Inc."
-msgstr "elementary LLC."
+msgstr "elementary, Inc."
 
 #: data/io.elementary.music.desktop.in:5
 msgid "Music Player"
