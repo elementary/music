@@ -8,21 +8,21 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-15 21:57+0000\n"
-"PO-Revision-Date: 2019-08-27 22:22+0000\n"
-"Last-Translator: David M <rbndavid@gmail.com>\n"
-"Language-Team: Catalan <https://l10n.elementary.io/projects/music/music/ca/"
-">\n"
+"PO-Revision-Date: 2020-03-24 20:09+0000\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
+"Language-Team: Catalan <https://l10n.elementary.io/projects/music/music/ca/>"
+"\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:51+0000\n"
 
 #: core/LibrariesManager.vala:146
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "S'importa  <b>$NAME</b> fet per <b>$ARTIST</b> a la biblioteca…"
+msgstr "S'importa  <b>$NAME</b> fet per <b>$ARTIST</b> a la col·lecció…"
 
 #. / Used for unknown titles, artists, or album names.
 #: core/Media.vala:33
@@ -316,9 +316,9 @@ msgid ""
 "all song info is correct and you are connected to the Internet. Some songs "
 "may not have matches."
 msgstr ""
-"No hi ha cap cançó similar a la cançó en reproducció a la vostra  "
-"biblioteca. Assegureu-vos que tota la informació de la cançó és correcta i "
-"que esteu connectat a Internet. Algunes cançons poden no tenir coincidències."
+"No hi ha cap cançó similar a la cançó en reproducció a la vostra col·lecció. "
+"Assegureu-vos que tota la informació de la cançó és correcta i que esteu "
+"connectat a Internet. Algunes cançons poden no tenir coincidències."
 
 #: plugins/LastFM/SimilarMedia.vala:44
 msgid "Similar"
@@ -338,7 +338,7 @@ msgstr "S'ha completat la importació"
 
 #: src/FileOperator.vala:306
 msgid "Your Library Has Been Imported."
-msgstr "S'ha importat la biblioteca."
+msgstr "S'ha importat la col·lecció."
 
 #. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:316
@@ -352,7 +352,7 @@ msgstr "Música"
 
 #: src/LibraryWindow.vala:214
 msgid "Import to Library…"
-msgstr "Importa a la biblioteca…"
+msgstr "Importa a la col·lecció…"
 
 #: src/LibraryWindow.vala:217 src/Dialogs/PreferencesWindow.vala:40
 msgid "Preferences"
@@ -431,7 +431,7 @@ msgstr "No s'han pogut trobar %i fitxers de música?"
 
 #: src/Dialogs/FileNotFoundDialog.vala:53
 msgid "Rescan Library"
-msgstr "Torna a examinar la biblioteca"
+msgstr "Torna a examinar la col·lecció"
 
 #: src/Dialogs/FileNotFoundDialog.vala:54
 msgid "Remove Song"
@@ -561,7 +561,7 @@ msgstr "Ubicació de la carpeta de música"
 
 #: src/Dialogs/PreferencesWindow.vala:80
 msgid "Library Management"
-msgstr "Gestió de la biblioteca"
+msgstr "Gestió de la col·lecció"
 
 #: src/Dialogs/PreferencesWindow.vala:81
 msgid "Keep Music folder organized:"
@@ -573,7 +573,7 @@ msgstr "Escriu metadades al fitxer:"
 
 #: src/Dialogs/PreferencesWindow.vala:85
 msgid "Copy imported files to Library:"
-msgstr "Copia els fitxers importats a la biblioteca:"
+msgstr "Copia els fitxers importats a la col·lecció:"
 
 #: src/Dialogs/PreferencesWindow.vala:87
 msgid "Desktop Integration"
@@ -587,13 +587,13 @@ msgstr "Continua la reproducció en tancar:"
 #, c-format
 msgid "Remove %d Song From Library?"
 msgid_plural "Remove %d Songs From Library?"
-msgstr[0] "Voleu suprimir %d cançó de la biblioteca?"
-msgstr[1] "Voleu suprimir %d cançons de la biblioteca?"
+msgstr[0] "Voleu suprimir %d cançó de la col·lecció?"
+msgstr[1] "Voleu suprimir %d cançons de la col·lecció?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:55
 #, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr "Se suprimeix \"%s\" de la biblioteca?"
+msgstr "Se suprimeix «%s» de la col·lecció?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
 msgid ""
@@ -603,15 +603,15 @@ msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
 msgstr[0] ""
-"Això suprimirà la cançó de la vostra biblioteca i de tots els dispositius "
+"Això suprimirà la cançó de la vostra col·lecció i de tots els dispositius "
 "que s'hi sincronitzin automàticament."
 msgstr[1] ""
-"Això suprimirà les cançons de la vostra biblioteca i de tots els dispositius "
+"Això suprimirà les cançons de la vostra col·lecció i de tots els dispositius "
 "que s'hi sincronitzin automàticament."
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
-msgstr "Suprimeix de la biblioteca"
+msgstr "Suprimeix de la col·lecció"
 
 #: src/Dialogs/SetMusicFolderConfirmation.vala:38
 msgid "Set Music Folder?"
@@ -624,7 +624,7 @@ msgid ""
 "library and remove your playlists."
 msgstr ""
 "Esteu segur que voleu que %s sigui la vostra carpeta de música? Això "
-"reiniciarà la biblioteca i suprimirà les llistes de reproducció."
+"reinicialitzarà la col·lecció i suprimirà les llistes de reproducció."
 
 #: src/Dialogs/SetMusicFolderConfirmation.vala:47
 msgid "Export Playlists"
@@ -814,7 +814,7 @@ msgid ""
 msgstr ""
 "Si countinueu amb la sincronització, els elements multimèdia seran suprimits "
 "de %s ja que no són a la llista de sincronització. Voleu importar-los a la "
-"biblioteca abans de procedir?"
+"col·lecció abans de procedir?"
 
 #: src/Dialogs/SyncWarningDialog.vala:57
 msgid "Continue Syncing"
@@ -827,11 +827,11 @@ msgstr "S'importa música des de %s…"
 
 #: src/LocalBackend/LocalLibrary.vala:215
 msgid "Adding files to library…"
-msgstr "S'afegeixen fitxers a la biblioteca…"
+msgstr "S'afegeixen fitxers a la col·lecció…"
 
 #: src/LocalBackend/LocalLibrary.vala:228
 msgid "<b>Importing</b> music to library…"
-msgstr "<b>S'importa</b> música a la biblioteca…"
+msgstr "<b>S'importa</b> música a la col·lecció…"
 
 #: src/LocalBackend/LocalLibrary.vala:250
 msgid "All music files are already in your library"
@@ -1233,7 +1233,7 @@ msgstr "Aconseguïu algunes cançons"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:57
 msgid "Add music to your library."
-msgstr "Afegiu música a la vostra biblioteca."
+msgstr "Afegiu música a la vostra col·lecció."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import music from a source into your library."
@@ -1256,7 +1256,7 @@ msgstr "Importeu la vostra música"
 #: src/Views/Wrappers/MusicViewWrapper.vala:131
 #, c-format
 msgid "Import all your Music from %s into your library."
-msgstr "Importa tota la música des de %s a la biblioteca."
+msgstr "Importa tota la música des de %s a la col·lecció."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:143
 msgid "Select Music Folder"
@@ -1375,11 +1375,11 @@ msgstr "Suprimeix la cançó…"
 
 #: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
 msgid "Import to Library"
-msgstr "Importa a la biblioteca"
+msgstr "Importa a la col·lecció"
 
 #: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
 msgid "Remove from Library…"
-msgstr "Suprimeix de la biblioteca…"
+msgstr "Suprimeix de la col·lecció…"
 
 #: src/Widgets/MediaMenu.vala:99
 msgid "Remove from Device"
@@ -1444,7 +1444,7 @@ msgstr "Importa les llistes de reproducció"
 #. Adds the different sidebar categories.
 #: src/Widgets/SourceListView.vala:338
 msgid "Library"
-msgstr "Biblioteca"
+msgstr "Col·lecció"
 
 #: src/Widgets/SourceListView.vala:339
 msgid "Devices"
