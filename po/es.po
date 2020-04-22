@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-15 21:57+0000\n"
+"POT-Creation-Date: 2020-04-22 17:33+0000\n"
 "PO-Revision-Date: 2020-03-24 20:09+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
-"Language-Team: Spanish <https://l10n.elementary.io/projects/music/music/es/>"
-"\n"
+"Language-Team: Spanish <https://l10n.elementary.io/projects/music/music/es/"
+">\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -233,70 +233,6 @@ msgstr "Eliminando <b>$NAME</b> de <b>$ARTIST</b> de $DEVICE"
 msgid "Removing from <b>%s</b>…"
 msgstr "Eliminando de <b>%s</b>…"
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:91
-msgid "Audio CD Invalid"
-msgstr "CD de audio no válido"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:95
-msgid "Impossible to read the contents of this Audio CD"
-msgstr "No ha sido posible leer el contenido de este CD de audio"
-
-#. do checks to make sure we can go on
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid "Could not find Music Folder"
-msgstr "No se encontró la carpeta de música"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid ""
-"Please make sure that your music folder is accessible and mounted before "
-"importing the CD."
-msgstr ""
-"Asegúrese de que su carpeta de música sea accesible y esté montada antes de "
-"importar el CD."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:256
-msgid ""
-"The Application could not find any songs on the CD. No songs can be imported"
-msgstr ""
-"La aplicación no puede encontrar canciones en el CD. No se puede importar "
-"ninguna canción"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:361
-msgid "Song imported from Audio CD."
-msgstr "Canción importada desde un CD de audio."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:362
-#, c-format
-msgid "%i songs imported from Audio CD."
-msgstr "%s canciones importadas desde un CD de audio."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:371
-#, c-format
-msgid "Importing track %u: %s"
-msgstr "Importando pista %u: %s"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:376
-msgid "CD import will be <b>cancelled</b> after current import."
-msgstr ""
-"La importación del CD se <b>cancelará</b> cuando la operación en curso "
-"finalice."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:395
-msgid "Could not import this CD"
-msgstr "No se pudo importar este CD"
-
-#: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
-msgid "Import"
-msgstr "Importar"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:37
-msgid "An Error Occurred"
-msgstr "Se ha producido un error"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:38
-msgid "Could not load this Audio CD."
-msgstr "No se pudo cargar este CD de audio."
-
 #: plugins/Devices/iPod/iPodLibrary.vala:238
 #: plugins/Devices/iPod/iPodLibrary.vala:404
 msgid "Finishing sync process…"
@@ -411,7 +347,7 @@ msgstr ""
 msgid "Import Music"
 msgstr "Importar música"
 
-#: src/PlaybackManager.vala:104
+#: src/PlaybackManager.vala:117
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Cola"
@@ -813,13 +749,17 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
-"Si continúa con la sincronización, se eliminarán los archivos multimedia de %"
-"s porque no están en la lista de sincronización. ¿Le gustaría primero "
+"Si continúa con la sincronización, se eliminarán los archivos multimedia de "
+"%s porque no están en la lista de sincronización. ¿Le gustaría primero "
 "importarlos a la fonoteca?"
 
 #: src/Dialogs/SyncWarningDialog.vala:57
 msgid "Continue Syncing"
 msgstr "Continuar la sincronización"
+
+#: src/Dialogs/SyncWarningDialog.vala:62
+msgid "Import"
+msgstr "Importar"
 
 #: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
@@ -1075,7 +1015,7 @@ msgstr "Sin compositores"
 
 #. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
-#: src/Widgets/EqualizerPopover.vala:328 src/Widgets/PresetList.vala:52
+#: src/Widgets/EqualizerPopover.vala:326 src/Widgets/PresetList.vala:52
 msgid "Automatic"
 msgstr "Automático"
 
@@ -1317,29 +1257,29 @@ msgstr "_Abrir"
 msgid "_Cancel"
 msgstr "_Cancelar"
 
-#: src/Widgets/EqualizerPopover.vala:167
+#: src/Widgets/EqualizerPopover.vala:162
 msgid "Save preset"
 msgstr "Guardar preajuste"
 
-#: src/Widgets/EqualizerPopover.vala:332
+#: src/Widgets/EqualizerPopover.vala:330
 msgid "Off"
 msgstr "Desactivado"
 
-#: src/Widgets/EqualizerPopover.vala:420
+#: src/Widgets/EqualizerPopover.vala:418
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s (Personalizado)"
 
-#: src/Widgets/EqualizerPopover.vala:422
+#: src/Widgets/EqualizerPopover.vala:420
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s (Personalizado %i)"
 
-#: src/Widgets/EqualizerPopover.vala:425
+#: src/Widgets/EqualizerPopover.vala:423
 msgid "Custom Preset"
 msgstr "Preajuste personalizado"
 
-#: src/Widgets/EqualizerPopover.vala:427
+#: src/Widgets/EqualizerPopover.vala:425
 #, c-format
 msgid "Custom Preset %i"
 msgstr "Preajuste personalizado %i"
@@ -1500,6 +1440,52 @@ msgstr "Ver como lista"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "Ver en columnas"
+
+#~ msgid "Audio CD Invalid"
+#~ msgstr "CD de audio no válido"
+
+#~ msgid "Impossible to read the contents of this Audio CD"
+#~ msgstr "No ha sido posible leer el contenido de este CD de audio"
+
+#~ msgid "Could not find Music Folder"
+#~ msgstr "No se encontró la carpeta de música"
+
+#~ msgid ""
+#~ "Please make sure that your music folder is accessible and mounted before "
+#~ "importing the CD."
+#~ msgstr ""
+#~ "Asegúrese de que su carpeta de música sea accesible y esté montada antes "
+#~ "de importar el CD."
+
+#~ msgid ""
+#~ "The Application could not find any songs on the CD. No songs can be "
+#~ "imported"
+#~ msgstr ""
+#~ "La aplicación no puede encontrar canciones en el CD. No se puede importar "
+#~ "ninguna canción"
+
+#~ msgid "Song imported from Audio CD."
+#~ msgstr "Canción importada desde un CD de audio."
+
+#~ msgid "%i songs imported from Audio CD."
+#~ msgstr "%s canciones importadas desde un CD de audio."
+
+#~ msgid "Importing track %u: %s"
+#~ msgstr "Importando pista %u: %s"
+
+#~ msgid "CD import will be <b>cancelled</b> after current import."
+#~ msgstr ""
+#~ "La importación del CD se <b>cancelará</b> cuando la operación en curso "
+#~ "finalice."
+
+#~ msgid "Could not import this CD"
+#~ msgstr "No se pudo importar este CD"
+
+#~ msgid "An Error Occurred"
+#~ msgstr "Se ha producido un error"
+
+#~ msgid "Could not load this Audio CD."
+#~ msgstr "No se pudo cargar este CD de audio."
 
 #~ msgid "Importation of a song from Audio CD finished."
 #~ msgstr "Ha finalizado la importación de una canción del CD de audio."

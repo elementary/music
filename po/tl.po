@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-15 21:57+0000\n"
+"POT-Creation-Date: 2020-04-22 17:33+0000\n"
 "PO-Revision-Date: 2018-10-08 00:04+0000\n"
 "Last-Translator: Axel Philip Advento <badwolf.bloodseeker.rev@gmail.com>\n"
 "Language-Team: Tagalog <https://weblate.elementary.io/projects/music/music/"
@@ -228,70 +228,6 @@ msgstr "Tinatanggal ang <b>$NAME</b> ni <b>$ARTIST</b> mula sa $DEVICE"
 msgid "Removing from <b>%s</b>…"
 msgstr "Tinatanggal mula sa <b>%s</b>…"
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:91
-msgid "Audio CD Invalid"
-msgstr ""
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:95
-msgid "Impossible to read the contents of this Audio CD"
-msgstr "Imposibleng mabasa ang laman ng Audio CD na ito."
-
-#. do checks to make sure we can go on
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid "Could not find Music Folder"
-msgstr "Hindi makita ang Folder ng Musika"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid ""
-"Please make sure that your music folder is accessible and mounted before "
-"importing the CD."
-msgstr ""
-"Tiyakin na ang iyong music folder ay nababasa at naka-mount bago i-import "
-"ang CD."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:256
-msgid ""
-"The Application could not find any songs on the CD. No songs can be imported"
-msgstr ""
-"Walang makitang mga kanta sa CD ang Application na ito. Walang mga kanta ang "
-"maaaring i-import"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:361
-msgid "Song imported from Audio CD."
-msgstr ""
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:362
-#, c-format
-msgid "%i songs imported from Audio CD."
-msgstr ""
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:371
-#, c-format
-msgid "Importing track %u: %s"
-msgstr "Iniimport ang track %u: %s"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:376
-msgid "CD import will be <b>cancelled</b> after current import."
-msgstr "Ang CD import ay <b>makakansela</b> pagkatapos ng kasalukuyang import."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:395
-msgid "Could not import this CD"
-msgstr ""
-
-#: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
-msgid "Import"
-msgstr "Import"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:37
-#, fuzzy
-msgid "An Error Occurred"
-msgstr "Nagkaroon ng Error"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:38
-#, fuzzy
-msgid "Could not load this Audio CD."
-msgstr "Nagka-error habang niloload ang Audio CD na ito."
-
 #: plugins/Devices/iPod/iPodLibrary.vala:238
 #: plugins/Devices/iPod/iPodLibrary.vala:404
 msgid "Finishing sync process…"
@@ -400,7 +336,7 @@ msgstr ""
 msgid "Import Music"
 msgstr "Mag-import ng musika"
 
-#: src/PlaybackManager.vala:104
+#: src/PlaybackManager.vala:117
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr ""
@@ -800,6 +736,10 @@ msgstr ""
 msgid "Continue Syncing"
 msgstr "ipagpatuloy ang Pagsi-sync"
 
+#: src/Dialogs/SyncWarningDialog.vala:62
+msgid "Import"
+msgstr "Import"
+
 #: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
 msgid "Importing music from %s…"
@@ -1051,7 +991,7 @@ msgstr "Walang mga Nag-kompose"
 
 #. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
-#: src/Widgets/EqualizerPopover.vala:328 src/Widgets/PresetList.vala:52
+#: src/Widgets/EqualizerPopover.vala:326 src/Widgets/PresetList.vala:52
 msgid "Automatic"
 msgstr "Awtomatiko"
 
@@ -1291,29 +1231,29 @@ msgstr "_Buksan"
 msgid "_Cancel"
 msgstr "_Ikansela"
 
-#: src/Widgets/EqualizerPopover.vala:167
+#: src/Widgets/EqualizerPopover.vala:162
 msgid "Save preset"
 msgstr ""
 
-#: src/Widgets/EqualizerPopover.vala:332
+#: src/Widgets/EqualizerPopover.vala:330
 msgid "Off"
 msgstr "Nakapatay"
 
-#: src/Widgets/EqualizerPopover.vala:420
+#: src/Widgets/EqualizerPopover.vala:418
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s (Custom)"
 
-#: src/Widgets/EqualizerPopover.vala:422
+#: src/Widgets/EqualizerPopover.vala:420
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s (Custom %i)"
 
-#: src/Widgets/EqualizerPopover.vala:425
+#: src/Widgets/EqualizerPopover.vala:423
 msgid "Custom Preset"
 msgstr ""
 
-#: src/Widgets/EqualizerPopover.vala:427
+#: src/Widgets/EqualizerPopover.vala:425
 #, c-format
 msgid "Custom Preset %i"
 msgstr ""
@@ -1477,6 +1417,41 @@ msgstr "Tignan bilang Listahan"
 #, fuzzy
 msgid "View in columns"
 msgstr "Ipakita bilang mga Album"
+
+#~ msgid "Impossible to read the contents of this Audio CD"
+#~ msgstr "Imposibleng mabasa ang laman ng Audio CD na ito."
+
+#~ msgid "Could not find Music Folder"
+#~ msgstr "Hindi makita ang Folder ng Musika"
+
+#~ msgid ""
+#~ "Please make sure that your music folder is accessible and mounted before "
+#~ "importing the CD."
+#~ msgstr ""
+#~ "Tiyakin na ang iyong music folder ay nababasa at naka-mount bago i-import "
+#~ "ang CD."
+
+#~ msgid ""
+#~ "The Application could not find any songs on the CD. No songs can be "
+#~ "imported"
+#~ msgstr ""
+#~ "Walang makitang mga kanta sa CD ang Application na ito. Walang mga kanta "
+#~ "ang maaaring i-import"
+
+#~ msgid "Importing track %u: %s"
+#~ msgstr "Iniimport ang track %u: %s"
+
+#~ msgid "CD import will be <b>cancelled</b> after current import."
+#~ msgstr ""
+#~ "Ang CD import ay <b>makakansela</b> pagkatapos ng kasalukuyang import."
+
+#, fuzzy
+#~ msgid "An Error Occurred"
+#~ msgstr "Nagkaroon ng Error"
+
+#, fuzzy
+#~ msgid "Could not load this Audio CD."
+#~ msgstr "Nagka-error habang niloload ang Audio CD na ito."
 
 #~ msgid "Importation of a song from Audio CD finished."
 #~ msgstr "Natapos na ang pag-iimport ng kanta mula sa Audio CD."

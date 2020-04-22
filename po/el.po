@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-15 21:57+0000\n"
+"POT-Creation-Date: 2020-04-22 17:33+0000\n"
 "PO-Revision-Date: 2019-02-12 00:06+0000\n"
 "Last-Translator: Rico Tzschichholz <ricotz@ubuntu.com>\n"
 "Language-Team: Greek <https://weblate.elementary.io/projects/music/music/el/"
@@ -233,70 +233,6 @@ msgstr "Αφαίρεση του <b>$NAME</b> από τον/την <b>$ARTIST</b>
 msgid "Removing from <b>%s</b>…"
 msgstr "Αφαίρεση από <b>%s</b>..."
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:91
-msgid "Audio CD Invalid"
-msgstr "Άκυρο μουσικό CD"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:95
-msgid "Impossible to read the contents of this Audio CD"
-msgstr "Αδύνατη η ανάγνωση δεδομένων του μουσικού CD"
-
-#. do checks to make sure we can go on
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid "Could not find Music Folder"
-msgstr "Αδυναμία εύρεσης του φακέλου μουσικής"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid ""
-"Please make sure that your music folder is accessible and mounted before "
-"importing the CD."
-msgstr ""
-"Βεβαιωθείτε ότι ο φάκελος της μουσικής σας είναι προσβάσιμος και "
-"προσαρτημένος πριν εισάγετε το CD."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:256
-msgid ""
-"The Application could not find any songs on the CD. No songs can be imported"
-msgstr ""
-"Η εφαρμογή δεν μπόρεσε να βρει τραγούδια στο CD. Δεν μπορούν να εισαχθούν "
-"τραγούδια"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:361
-msgid "Song imported from Audio CD."
-msgstr ""
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:362
-#, c-format
-msgid "%i songs imported from Audio CD."
-msgstr ""
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:371
-#, c-format
-msgid "Importing track %u: %s"
-msgstr "Εισαγωγή κομματιού %u: %s"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:376
-msgid "CD import will be <b>cancelled</b> after current import."
-msgstr "Η εισαγωγή του CD θα <b>ακυρωθεί</b> μετά την τρέχουσα εισαγωγή."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:395
-msgid "Could not import this CD"
-msgstr ""
-
-#: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
-msgid "Import"
-msgstr "Εισαγωγή"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:37
-#, fuzzy
-msgid "An Error Occurred"
-msgstr "Προέκυψε ένα σφάλμα"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:38
-#, fuzzy
-msgid "Could not load this Audio CD."
-msgstr "Προέκυψε ένα σφάλμα κατά τη φόρτωση του μουσικού CD"
-
 #: plugins/Devices/iPod/iPodLibrary.vala:238
 #: plugins/Devices/iPod/iPodLibrary.vala:404
 msgid "Finishing sync process…"
@@ -414,7 +350,7 @@ msgstr ""
 msgid "Import Music"
 msgstr "Εισαγωγή μουσικής"
 
-#: src/PlaybackManager.vala:104
+#: src/PlaybackManager.vala:117
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Σειρά αναμονής"
@@ -830,6 +766,10 @@ msgstr ""
 msgid "Continue Syncing"
 msgstr "Συνέχεια Συγχρονισμού"
 
+#: src/Dialogs/SyncWarningDialog.vala:62
+msgid "Import"
+msgstr "Εισαγωγή"
+
 #: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
 msgid "Importing music from %s…"
@@ -1085,7 +1025,7 @@ msgstr "Κανένας συνθέτης"
 
 #. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
-#: src/Widgets/EqualizerPopover.vala:328 src/Widgets/PresetList.vala:52
+#: src/Widgets/EqualizerPopover.vala:326 src/Widgets/PresetList.vala:52
 msgid "Automatic"
 msgstr "Αυτόματα"
 
@@ -1328,29 +1268,29 @@ msgstr "_Άνοιγμα"
 msgid "_Cancel"
 msgstr "_Ακύρωση"
 
-#: src/Widgets/EqualizerPopover.vala:167
+#: src/Widgets/EqualizerPopover.vala:162
 msgid "Save preset"
 msgstr "Αποθήκευση ρύθμισης"
 
-#: src/Widgets/EqualizerPopover.vala:332
+#: src/Widgets/EqualizerPopover.vala:330
 msgid "Off"
 msgstr "Απενεργοποίηση"
 
-#: src/Widgets/EqualizerPopover.vala:420
+#: src/Widgets/EqualizerPopover.vala:418
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s (Προσαρμοσμένο)"
 
-#: src/Widgets/EqualizerPopover.vala:422
+#: src/Widgets/EqualizerPopover.vala:420
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s (Προσαρμοσμένο %i)"
 
-#: src/Widgets/EqualizerPopover.vala:425
+#: src/Widgets/EqualizerPopover.vala:423
 msgid "Custom Preset"
 msgstr "Προσαρμοσμένη προεπιλογή"
 
-#: src/Widgets/EqualizerPopover.vala:427
+#: src/Widgets/EqualizerPopover.vala:425
 #, c-format
 msgid "Custom Preset %i"
 msgstr "Προσαρμοσμένη προεπιλογή %i"
@@ -1519,6 +1459,43 @@ msgstr "Προβολή ως λίστα"
 #, fuzzy
 msgid "View in columns"
 msgstr "Προβολή σε στήλες"
+
+#~ msgid "Audio CD Invalid"
+#~ msgstr "Άκυρο μουσικό CD"
+
+#~ msgid "Impossible to read the contents of this Audio CD"
+#~ msgstr "Αδύνατη η ανάγνωση δεδομένων του μουσικού CD"
+
+#~ msgid "Could not find Music Folder"
+#~ msgstr "Αδυναμία εύρεσης του φακέλου μουσικής"
+
+#~ msgid ""
+#~ "Please make sure that your music folder is accessible and mounted before "
+#~ "importing the CD."
+#~ msgstr ""
+#~ "Βεβαιωθείτε ότι ο φάκελος της μουσικής σας είναι προσβάσιμος και "
+#~ "προσαρτημένος πριν εισάγετε το CD."
+
+#~ msgid ""
+#~ "The Application could not find any songs on the CD. No songs can be "
+#~ "imported"
+#~ msgstr ""
+#~ "Η εφαρμογή δεν μπόρεσε να βρει τραγούδια στο CD. Δεν μπορούν να εισαχθούν "
+#~ "τραγούδια"
+
+#~ msgid "Importing track %u: %s"
+#~ msgstr "Εισαγωγή κομματιού %u: %s"
+
+#~ msgid "CD import will be <b>cancelled</b> after current import."
+#~ msgstr "Η εισαγωγή του CD θα <b>ακυρωθεί</b> μετά την τρέχουσα εισαγωγή."
+
+#, fuzzy
+#~ msgid "An Error Occurred"
+#~ msgstr "Προέκυψε ένα σφάλμα"
+
+#, fuzzy
+#~ msgid "Could not load this Audio CD."
+#~ msgstr "Προέκυψε ένα σφάλμα κατά τη φόρτωση του μουσικού CD"
 
 #~ msgid "Importation of a song from Audio CD finished."
 #~ msgstr "Η εισαγωγή ενός τραγουδιού από το μουσικό CD τελείωσε."

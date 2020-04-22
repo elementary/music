@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-15 21:57+0000\n"
+"POT-Creation-Date: 2020-04-22 17:33+0000\n"
 "PO-Revision-Date: 2019-02-12 00:06+0000\n"
 "Last-Translator: Rico Tzschichholz <ricotz@ubuntu.com>\n"
 "Language-Team: Norwegian Nynorsk <https://weblate.elementary.io/projects/"
@@ -233,67 +233,6 @@ msgstr "Fjerner <b>$NAME</b> av <b>$ARTIST</b> fra $DEVICE"
 msgid "Removing from <b>%s</b>…"
 msgstr "Fjernar frå <b>%s</b>…"
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:91
-msgid "Audio CD Invalid"
-msgstr "Lyd CD ugyldig"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:95
-msgid "Impossible to read the contents of this Audio CD"
-msgstr "Umogleg å lese innhaldet på denne lyd-CDen"
-
-#. do checks to make sure we can go on
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid "Could not find Music Folder"
-msgstr "Fann ikkje musikkmappa"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid ""
-"Please make sure that your music folder is accessible and mounted before "
-"importing the CD."
-msgstr ""
-"Pass på at musikkmappa di er tilgjengelig og montert før du importerar plata."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:256
-msgid ""
-"The Application could not find any songs on the CD. No songs can be imported"
-msgstr ""
-"Applikasjonen kunne ikkje finne nokre songar på CDen. Ingen songar kan "
-"importeras"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:361
-msgid "Song imported from Audio CD."
-msgstr "Importer songar frå lyd-CD."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:362
-#, c-format
-msgid "%i songs imported from Audio CD."
-msgstr "%s spor importert frå lyd-CD."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:371
-#, c-format
-msgid "Importing track %u: %s"
-msgstr "Importerer spor %u: %s"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:376
-msgid "CD import will be <b>cancelled</b> after current import."
-msgstr "Importering av CD vil bli <b>avslutta</b> etter gjeldande importering."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:395
-msgid "Could not import this CD"
-msgstr "Kunne ikkje importere denne CD-en"
-
-#: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
-msgid "Import"
-msgstr "Importer"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:37
-msgid "An Error Occurred"
-msgstr "Det oppstod ein feil"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:38
-msgid "Could not load this Audio CD."
-msgstr "Kunne ikkje laste lyd frå denne CD-en."
-
 #: plugins/Devices/iPod/iPodLibrary.vala:238
 #: plugins/Devices/iPod/iPodLibrary.vala:404
 msgid "Finishing sync process…"
@@ -408,7 +347,7 @@ msgstr ""
 msgid "Import Music"
 msgstr "Importer musikk"
 
-#: src/PlaybackManager.vala:104
+#: src/PlaybackManager.vala:117
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Legg i kø"
@@ -818,6 +757,10 @@ msgstr ""
 msgid "Continue Syncing"
 msgstr "Hald synkroniseringa igang"
 
+#: src/Dialogs/SyncWarningDialog.vala:62
+msgid "Import"
+msgstr "Importer"
+
 #: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
 msgid "Importing music from %s…"
@@ -1069,7 +1012,7 @@ msgstr "Ingen komponistar"
 
 #. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
-#: src/Widgets/EqualizerPopover.vala:328 src/Widgets/PresetList.vala:52
+#: src/Widgets/EqualizerPopover.vala:326 src/Widgets/PresetList.vala:52
 msgid "Automatic"
 msgstr "Automatisk"
 
@@ -1310,29 +1253,29 @@ msgstr "_Opne"
 msgid "_Cancel"
 msgstr "_Avbryt"
 
-#: src/Widgets/EqualizerPopover.vala:167
+#: src/Widgets/EqualizerPopover.vala:162
 msgid "Save preset"
 msgstr "Lagra førehandsval"
 
-#: src/Widgets/EqualizerPopover.vala:332
+#: src/Widgets/EqualizerPopover.vala:330
 msgid "Off"
 msgstr "Av"
 
-#: src/Widgets/EqualizerPopover.vala:420
+#: src/Widgets/EqualizerPopover.vala:418
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s (Egendefinert)"
 
-#: src/Widgets/EqualizerPopover.vala:422
+#: src/Widgets/EqualizerPopover.vala:420
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s (Egendefinert %i)"
 
-#: src/Widgets/EqualizerPopover.vala:425
+#: src/Widgets/EqualizerPopover.vala:423
 msgid "Custom Preset"
 msgstr "Egendefinert førehandsval"
 
-#: src/Widgets/EqualizerPopover.vala:427
+#: src/Widgets/EqualizerPopover.vala:425
 #, c-format
 msgid "Custom Preset %i"
 msgstr "Egendefinert førehandsval %i"
@@ -1493,6 +1436,51 @@ msgstr "Vis som liste"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "Vis i kolonnar"
+
+#~ msgid "Audio CD Invalid"
+#~ msgstr "Lyd CD ugyldig"
+
+#~ msgid "Impossible to read the contents of this Audio CD"
+#~ msgstr "Umogleg å lese innhaldet på denne lyd-CDen"
+
+#~ msgid "Could not find Music Folder"
+#~ msgstr "Fann ikkje musikkmappa"
+
+#~ msgid ""
+#~ "Please make sure that your music folder is accessible and mounted before "
+#~ "importing the CD."
+#~ msgstr ""
+#~ "Pass på at musikkmappa di er tilgjengelig og montert før du importerar "
+#~ "plata."
+
+#~ msgid ""
+#~ "The Application could not find any songs on the CD. No songs can be "
+#~ "imported"
+#~ msgstr ""
+#~ "Applikasjonen kunne ikkje finne nokre songar på CDen. Ingen songar kan "
+#~ "importeras"
+
+#~ msgid "Song imported from Audio CD."
+#~ msgstr "Importer songar frå lyd-CD."
+
+#~ msgid "%i songs imported from Audio CD."
+#~ msgstr "%s spor importert frå lyd-CD."
+
+#~ msgid "Importing track %u: %s"
+#~ msgstr "Importerer spor %u: %s"
+
+#~ msgid "CD import will be <b>cancelled</b> after current import."
+#~ msgstr ""
+#~ "Importering av CD vil bli <b>avslutta</b> etter gjeldande importering."
+
+#~ msgid "Could not import this CD"
+#~ msgstr "Kunne ikkje importere denne CD-en"
+
+#~ msgid "An Error Occurred"
+#~ msgstr "Det oppstod ein feil"
+
+#~ msgid "Could not load this Audio CD."
+#~ msgstr "Kunne ikkje laste lyd frå denne CD-en."
 
 #~ msgid "Importation of a song from Audio CD finished."
 #~ msgstr "Importering av ein song frå lyd-CD ferdig."

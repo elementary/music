@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-15 21:57+0000\n"
+"POT-Creation-Date: 2020-04-22 17:33+0000\n"
 "PO-Revision-Date: 2018-11-08 03:16+0000\n"
 "Last-Translator: Rodrigo Oliveira <rod.oliveira@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://weblate.elementary.io/projects/"
@@ -233,68 +233,6 @@ msgstr "Removendo <b>$NAME</b> de <b>$ARTIST</b> de $DEVICE"
 msgid "Removing from <b>%s</b>…"
 msgstr "Removendo de <b>%s</b>…"
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:91
-msgid "Audio CD Invalid"
-msgstr "CD de Áudio Invalido"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:95
-msgid "Impossible to read the contents of this Audio CD"
-msgstr "Impossível ler o conteúdo deste CD de Áudio"
-
-#. do checks to make sure we can go on
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid "Could not find Music Folder"
-msgstr "Não foi possível encontrar a Pasta de Músicas"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid ""
-"Please make sure that your music folder is accessible and mounted before "
-"importing the CD."
-msgstr ""
-"Por favor, certifique-se que a sua pasta de música é acessível e está "
-"montada antes de importar o CD."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:256
-msgid ""
-"The Application could not find any songs on the CD. No songs can be imported"
-msgstr ""
-"A aplicação não pôde encontrar nenhuma música no CD. Nenhuma música pode ser "
-"importada"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:361
-msgid "Song imported from Audio CD."
-msgstr "Música importada do CD de áudio."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:362
-#, c-format
-msgid "%i songs imported from Audio CD."
-msgstr "%s músicas importadas do CD de Áudio."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:371
-#, c-format
-msgid "Importing track %u: %s"
-msgstr "Importando faixa %u: %s"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:376
-msgid "CD import will be <b>cancelled</b> after current import."
-msgstr "A importação do CD irá ser <b>cancelada</b> após a importação atual."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:395
-msgid "Could not import this CD"
-msgstr "Não foi possível importar este CD"
-
-#: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
-msgid "Import"
-msgstr "Importar"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:37
-msgid "An Error Occurred"
-msgstr "Ocorreu Um Erro"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:38
-msgid "Could not load this Audio CD."
-msgstr "Não foi possível carregar este CD de Áudio."
-
 #: plugins/Devices/iPod/iPodLibrary.vala:238
 #: plugins/Devices/iPod/iPodLibrary.vala:404
 msgid "Finishing sync process…"
@@ -411,7 +349,7 @@ msgstr ""
 msgid "Import Music"
 msgstr "Importar músicas"
 
-#: src/PlaybackManager.vala:104
+#: src/PlaybackManager.vala:117
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Fila"
@@ -825,6 +763,10 @@ msgstr ""
 msgid "Continue Syncing"
 msgstr "Continuar sincronizando"
 
+#: src/Dialogs/SyncWarningDialog.vala:62
+msgid "Import"
+msgstr "Importar"
+
 #: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
 msgid "Importing music from %s…"
@@ -1078,7 +1020,7 @@ msgstr "Sem compositores"
 
 #. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
-#: src/Widgets/EqualizerPopover.vala:328 src/Widgets/PresetList.vala:52
+#: src/Widgets/EqualizerPopover.vala:326 src/Widgets/PresetList.vala:52
 msgid "Automatic"
 msgstr "Automático"
 
@@ -1320,29 +1262,29 @@ msgstr "_Abrir"
 msgid "_Cancel"
 msgstr "_Cancelar"
 
-#: src/Widgets/EqualizerPopover.vala:167
+#: src/Widgets/EqualizerPopover.vala:162
 msgid "Save preset"
 msgstr "Salvar predefinição"
 
-#: src/Widgets/EqualizerPopover.vala:332
+#: src/Widgets/EqualizerPopover.vala:330
 msgid "Off"
 msgstr "Desligado"
 
-#: src/Widgets/EqualizerPopover.vala:420
+#: src/Widgets/EqualizerPopover.vala:418
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s (Personalizado)"
 
-#: src/Widgets/EqualizerPopover.vala:422
+#: src/Widgets/EqualizerPopover.vala:420
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s (Personalizado %i)"
 
-#: src/Widgets/EqualizerPopover.vala:425
+#: src/Widgets/EqualizerPopover.vala:423
 msgid "Custom Preset"
 msgstr "Pré-configuração personalizada"
 
-#: src/Widgets/EqualizerPopover.vala:427
+#: src/Widgets/EqualizerPopover.vala:425
 #, c-format
 msgid "Custom Preset %i"
 msgstr "Pré-configuração personalizada %i"
@@ -1503,6 +1445,51 @@ msgstr "Ver como lista"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "Ver em colunas"
+
+#~ msgid "Audio CD Invalid"
+#~ msgstr "CD de Áudio Invalido"
+
+#~ msgid "Impossible to read the contents of this Audio CD"
+#~ msgstr "Impossível ler o conteúdo deste CD de Áudio"
+
+#~ msgid "Could not find Music Folder"
+#~ msgstr "Não foi possível encontrar a Pasta de Músicas"
+
+#~ msgid ""
+#~ "Please make sure that your music folder is accessible and mounted before "
+#~ "importing the CD."
+#~ msgstr ""
+#~ "Por favor, certifique-se que a sua pasta de música é acessível e está "
+#~ "montada antes de importar o CD."
+
+#~ msgid ""
+#~ "The Application could not find any songs on the CD. No songs can be "
+#~ "imported"
+#~ msgstr ""
+#~ "A aplicação não pôde encontrar nenhuma música no CD. Nenhuma música pode "
+#~ "ser importada"
+
+#~ msgid "Song imported from Audio CD."
+#~ msgstr "Música importada do CD de áudio."
+
+#~ msgid "%i songs imported from Audio CD."
+#~ msgstr "%s músicas importadas do CD de Áudio."
+
+#~ msgid "Importing track %u: %s"
+#~ msgstr "Importando faixa %u: %s"
+
+#~ msgid "CD import will be <b>cancelled</b> after current import."
+#~ msgstr ""
+#~ "A importação do CD irá ser <b>cancelada</b> após a importação atual."
+
+#~ msgid "Could not import this CD"
+#~ msgstr "Não foi possível importar este CD"
+
+#~ msgid "An Error Occurred"
+#~ msgstr "Ocorreu Um Erro"
+
+#~ msgid "Could not load this Audio CD."
+#~ msgstr "Não foi possível carregar este CD de Áudio."
 
 #~ msgid "Importation of a song from Audio CD finished."
 #~ msgstr "Importação de uma música do CD de áudio terminada."

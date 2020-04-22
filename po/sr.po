@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-15 21:57+0000\n"
+"POT-Creation-Date: 2020-04-22 17:33+0000\n"
 "PO-Revision-Date: 2015-12-21 13:46+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Serbian <sr@li.org>\n"
@@ -233,67 +233,6 @@ msgstr "Уклањам <b>$NAME</b> од <b>$ARTIST</b> са $DEVICE"
 msgid "Removing from <b>%s</b>…"
 msgstr "Уклањам са <b>%s</b>…"
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:91
-msgid "Audio CD Invalid"
-msgstr "Звучни ЦД је неисправан"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:95
-msgid "Impossible to read the contents of this Audio CD"
-msgstr "Није могуће да се чита садржај звучног ЦД-а"
-
-#. do checks to make sure we can go on
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid "Could not find Music Folder"
-msgstr "Није могуће пронаћи музичку фасциклу"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid ""
-"Please make sure that your music folder is accessible and mounted before "
-"importing the CD."
-msgstr ""
-"Проверите да ли је фасцикла музике доступна и прикачена пре увоза са ЦД-а."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:256
-msgid ""
-"The Application could not find any songs on the CD. No songs can be imported"
-msgstr "Програм није успео да пронађе песме на ЦД-у. Није могуће увести песме"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:361
-msgid "Song imported from Audio CD."
-msgstr ""
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:362
-#, c-format
-msgid "%i songs imported from Audio CD."
-msgstr ""
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:371
-#, c-format
-msgid "Importing track %u: %s"
-msgstr ""
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:376
-msgid "CD import will be <b>cancelled</b> after current import."
-msgstr ""
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:395
-msgid "Could not import this CD"
-msgstr ""
-
-#: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
-msgid "Import"
-msgstr "Увоз"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:37
-#, fuzzy
-msgid "An Error Occurred"
-msgstr "Десила се грешка"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:38
-#, fuzzy
-msgid "Could not load this Audio CD."
-msgstr "Десила се грешка приликом учитавања звучног ЦД-а."
-
 #: plugins/Devices/iPod/iPodLibrary.vala:238
 #: plugins/Devices/iPod/iPodLibrary.vala:404
 msgid "Finishing sync process…"
@@ -404,7 +343,7 @@ msgstr ""
 msgid "Import Music"
 msgstr "Увоз музике"
 
-#: src/PlaybackManager.vala:104
+#: src/PlaybackManager.vala:117
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Ред"
@@ -818,6 +757,10 @@ msgstr ""
 msgid "Continue Syncing"
 msgstr "Настави усклађивање"
 
+#: src/Dialogs/SyncWarningDialog.vala:62
+msgid "Import"
+msgstr "Увоз"
+
 #: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
 msgid "Importing music from %s…"
@@ -1071,7 +1014,7 @@ msgstr "Нема композитора"
 
 #. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
-#: src/Widgets/EqualizerPopover.vala:328 src/Widgets/PresetList.vala:52
+#: src/Widgets/EqualizerPopover.vala:326 src/Widgets/PresetList.vala:52
 msgid "Automatic"
 msgstr "Аутоматски"
 
@@ -1312,29 +1255,29 @@ msgstr ""
 msgid "_Cancel"
 msgstr ""
 
-#: src/Widgets/EqualizerPopover.vala:167
+#: src/Widgets/EqualizerPopover.vala:162
 msgid "Save preset"
 msgstr "Сaчуваj предподешавања"
 
-#: src/Widgets/EqualizerPopover.vala:332
+#: src/Widgets/EqualizerPopover.vala:330
 msgid "Off"
 msgstr "Искључено"
 
-#: src/Widgets/EqualizerPopover.vala:420
+#: src/Widgets/EqualizerPopover.vala:418
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s (Произвољно)"
 
-#: src/Widgets/EqualizerPopover.vala:422
+#: src/Widgets/EqualizerPopover.vala:420
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s (Произвољно %i)"
 
-#: src/Widgets/EqualizerPopover.vala:425
+#: src/Widgets/EqualizerPopover.vala:423
 msgid "Custom Preset"
 msgstr "Произвољно предподешено"
 
-#: src/Widgets/EqualizerPopover.vala:427
+#: src/Widgets/EqualizerPopover.vala:425
 #, c-format
 msgid "Custom Preset %i"
 msgstr "Произвољна предподешавања %i"
@@ -1504,6 +1447,35 @@ msgstr "Преглед списка"
 #, fuzzy
 msgid "View in columns"
 msgstr "Преглед у ступцима"
+
+#~ msgid "Audio CD Invalid"
+#~ msgstr "Звучни ЦД је неисправан"
+
+#~ msgid "Impossible to read the contents of this Audio CD"
+#~ msgstr "Није могуће да се чита садржај звучног ЦД-а"
+
+#~ msgid "Could not find Music Folder"
+#~ msgstr "Није могуће пронаћи музичку фасциклу"
+
+#~ msgid ""
+#~ "Please make sure that your music folder is accessible and mounted before "
+#~ "importing the CD."
+#~ msgstr ""
+#~ "Проверите да ли је фасцикла музике доступна и прикачена пре увоза са ЦД-а."
+
+#~ msgid ""
+#~ "The Application could not find any songs on the CD. No songs can be "
+#~ "imported"
+#~ msgstr ""
+#~ "Програм није успео да пронађе песме на ЦД-у. Није могуће увести песме"
+
+#, fuzzy
+#~ msgid "An Error Occurred"
+#~ msgstr "Десила се грешка"
+
+#, fuzzy
+#~ msgid "Could not load this Audio CD."
+#~ msgstr "Десила се грешка приликом учитавања звучног ЦД-а."
 
 #~ msgid "Importation of a song from Audio CD finished."
 #~ msgstr "Увоз песама са звучног диска је завршен."

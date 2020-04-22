@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-15 21:57+0000\n"
+"POT-Creation-Date: 2020-04-22 17:33+0000\n"
 "PO-Revision-Date: 2018-11-07 01:40+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://weblate.elementary.io/projects/music/music/ko/"
@@ -233,66 +233,6 @@ msgstr "$DEVICE에서 <b>$ARTIST</b>의 <b>$NAME</b>를 삭제합니다"
 msgid "Removing from <b>%s</b>…"
 msgstr "<b>%s</b>에서 제거 중입니다…"
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:91
-msgid "Audio CD Invalid"
-msgstr "올바르지 않은 CD"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:95
-msgid "Impossible to read the contents of this Audio CD"
-msgstr "CD의 내용을 읽을 수가 없습니다"
-
-#. do checks to make sure we can go on
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid "Could not find Music Folder"
-msgstr "음악 폴더를 찾을 수 없음"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid ""
-"Please make sure that your music folder is accessible and mounted before "
-"importing the CD."
-msgstr ""
-"CD를 가져오기전에 음악 폴더에 접근할 수 있는지와 마운트 했는지를 확인해주십시"
-"오."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:256
-msgid ""
-"The Application could not find any songs on the CD. No songs can be imported"
-msgstr "CD에서 아무 곡도 찾지 못 하였습니다. 아무 곡도 가져오지않습니다"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:361
-msgid "Song imported from Audio CD."
-msgstr "오디오 CD에서 가져온 곡."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:362
-#, c-format
-msgid "%i songs imported from Audio CD."
-msgstr "%i 개의 곡을 오디오 CD에서 가져왔습니다."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:371
-#, c-format
-msgid "Importing track %u: %s"
-msgstr "트랙 불러오기 %u: %s"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:376
-msgid "CD import will be <b>cancelled</b> after current import."
-msgstr "CD 불러오기가 현재 불러오기 후 <b>취소</b>될 것입니다."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:395
-msgid "Could not import this CD"
-msgstr "이 CD에서는 가져올 수 없었습니다"
-
-#: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
-msgid "Import"
-msgstr "불러들이기"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:37
-msgid "An Error Occurred"
-msgstr "오류가 생겼습니다"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:38
-msgid "Could not load this Audio CD."
-msgstr "이 오디오 CD에서는 불러올 수 없었습니다."
-
 #: plugins/Devices/iPod/iPodLibrary.vala:238
 #: plugins/Devices/iPod/iPodLibrary.vala:404
 msgid "Finishing sync process…"
@@ -407,7 +347,7 @@ msgstr ""
 msgid "Import Music"
 msgstr "음악 가져오기"
 
-#: src/PlaybackManager.vala:104
+#: src/PlaybackManager.vala:117
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "대기열"
@@ -809,6 +749,10 @@ msgstr ""
 msgid "Continue Syncing"
 msgstr "동기화 진행"
 
+#: src/Dialogs/SyncWarningDialog.vala:62
+msgid "Import"
+msgstr "불러들이기"
+
 #: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
 msgid "Importing music from %s…"
@@ -1057,7 +1001,7 @@ msgstr "작곡가 없음"
 
 #. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
-#: src/Widgets/EqualizerPopover.vala:328 src/Widgets/PresetList.vala:52
+#: src/Widgets/EqualizerPopover.vala:326 src/Widgets/PresetList.vala:52
 msgid "Automatic"
 msgstr "자동"
 
@@ -1297,29 +1241,29 @@ msgstr "열기(_O)"
 msgid "_Cancel"
 msgstr "취소(_C)"
 
-#: src/Widgets/EqualizerPopover.vala:167
+#: src/Widgets/EqualizerPopover.vala:162
 msgid "Save preset"
 msgstr "설정값 저장"
 
-#: src/Widgets/EqualizerPopover.vala:332
+#: src/Widgets/EqualizerPopover.vala:330
 msgid "Off"
 msgstr "끄기"
 
-#: src/Widgets/EqualizerPopover.vala:420
+#: src/Widgets/EqualizerPopover.vala:418
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s (사용자 지정)"
 
-#: src/Widgets/EqualizerPopover.vala:422
+#: src/Widgets/EqualizerPopover.vala:420
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s (사용자 지정 %i)"
 
-#: src/Widgets/EqualizerPopover.vala:425
+#: src/Widgets/EqualizerPopover.vala:423
 msgid "Custom Preset"
 msgstr "사용자 지정 설정값"
 
-#: src/Widgets/EqualizerPopover.vala:427
+#: src/Widgets/EqualizerPopover.vala:425
 #, c-format
 msgid "Custom Preset %i"
 msgstr "사용자 지정 설정값 %i"
@@ -1479,6 +1423,48 @@ msgstr "목록으로 보기"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "열로 보기"
+
+#~ msgid "Audio CD Invalid"
+#~ msgstr "올바르지 않은 CD"
+
+#~ msgid "Impossible to read the contents of this Audio CD"
+#~ msgstr "CD의 내용을 읽을 수가 없습니다"
+
+#~ msgid "Could not find Music Folder"
+#~ msgstr "음악 폴더를 찾을 수 없음"
+
+#~ msgid ""
+#~ "Please make sure that your music folder is accessible and mounted before "
+#~ "importing the CD."
+#~ msgstr ""
+#~ "CD를 가져오기전에 음악 폴더에 접근할 수 있는지와 마운트 했는지를 확인해주"
+#~ "십시오."
+
+#~ msgid ""
+#~ "The Application could not find any songs on the CD. No songs can be "
+#~ "imported"
+#~ msgstr "CD에서 아무 곡도 찾지 못 하였습니다. 아무 곡도 가져오지않습니다"
+
+#~ msgid "Song imported from Audio CD."
+#~ msgstr "오디오 CD에서 가져온 곡."
+
+#~ msgid "%i songs imported from Audio CD."
+#~ msgstr "%i 개의 곡을 오디오 CD에서 가져왔습니다."
+
+#~ msgid "Importing track %u: %s"
+#~ msgstr "트랙 불러오기 %u: %s"
+
+#~ msgid "CD import will be <b>cancelled</b> after current import."
+#~ msgstr "CD 불러오기가 현재 불러오기 후 <b>취소</b>될 것입니다."
+
+#~ msgid "Could not import this CD"
+#~ msgstr "이 CD에서는 가져올 수 없었습니다"
+
+#~ msgid "An Error Occurred"
+#~ msgstr "오류가 생겼습니다"
+
+#~ msgid "Could not load this Audio CD."
+#~ msgstr "이 오디오 CD에서는 불러올 수 없었습니다."
 
 #~ msgid "Importation of a song from Audio CD finished."
 #~ msgstr "CD에서 곡을 가져오는 작업을 완료하였습니다."

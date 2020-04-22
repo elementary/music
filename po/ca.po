@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-15 21:57+0000\n"
+"POT-Creation-Date: 2020-04-22 17:33+0000\n"
 "PO-Revision-Date: 2020-03-24 20:09+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
-"Language-Team: Catalan <https://l10n.elementary.io/projects/music/music/ca/>"
-"\n"
+"Language-Team: Catalan <https://l10n.elementary.io/projects/music/music/ca/"
+">\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -235,67 +235,6 @@ msgstr "Se suprimeix <b>$NAME</b> fet per <b>$ARTIST</b> de $DEVICE"
 msgid "Removing from <b>%s</b>…"
 msgstr "Se suprimeix de <b>%s</b>…"
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:91
-msgid "Audio CD Invalid"
-msgstr "El CD d'àudio no és vàlid"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:95
-msgid "Impossible to read the contents of this Audio CD"
-msgstr "No ha estat possible llegir el contingut d'aquest CD d'àudio"
-
-#. do checks to make sure we can go on
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid "Could not find Music Folder"
-msgstr "No s'ha pogut trobar la carpeta de música"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid ""
-"Please make sure that your music folder is accessible and mounted before "
-"importing the CD."
-msgstr ""
-"Assegureu-vos que la carpeta de música sigui accessible i muntada abans de "
-"la importació del CD."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:256
-msgid ""
-"The Application could not find any songs on the CD. No songs can be imported"
-msgstr "L'aplicació no pot trobar cançons al CD. No es pot importar cap cançó"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:361
-msgid "Song imported from Audio CD."
-msgstr "Cançó importada des d'un CD d'àudio."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:362
-#, c-format
-msgid "%i songs imported from Audio CD."
-msgstr "%i cançons importades des d'un CD d'àudio."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:371
-#, c-format
-msgid "Importing track %u: %s"
-msgstr "S'importa la pista %u: %s"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:376
-msgid "CD import will be <b>cancelled</b> after current import."
-msgstr ""
-"La importació del CD <b>es cancel·larà</b> després de la importació actual."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:395
-msgid "Could not import this CD"
-msgstr "No s'ha pogut importar aquest CD"
-
-#: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
-msgid "Import"
-msgstr "Importa"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:37
-msgid "An Error Occurred"
-msgstr "S'ha produït un error."
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:38
-msgid "Could not load this Audio CD."
-msgstr "No s'ha pogut carregar aquest CD d'àudio."
-
 #: plugins/Devices/iPod/iPodLibrary.vala:238
 #: plugins/Devices/iPod/iPodLibrary.vala:404
 msgid "Finishing sync process…"
@@ -410,7 +349,7 @@ msgstr ""
 msgid "Import Music"
 msgstr "Importa música"
 
-#: src/PlaybackManager.vala:104
+#: src/PlaybackManager.vala:117
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Cua"
@@ -820,6 +759,10 @@ msgstr ""
 msgid "Continue Syncing"
 msgstr "Continua la sincronització"
 
+#: src/Dialogs/SyncWarningDialog.vala:62
+msgid "Import"
+msgstr "Importa"
+
 #: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
 msgid "Importing music from %s…"
@@ -1074,7 +1017,7 @@ msgstr "Sense compositors"
 
 #. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
-#: src/Widgets/EqualizerPopover.vala:328 src/Widgets/PresetList.vala:52
+#: src/Widgets/EqualizerPopover.vala:326 src/Widgets/PresetList.vala:52
 msgid "Automatic"
 msgstr "Automàtic"
 
@@ -1317,29 +1260,29 @@ msgstr "_Obre"
 msgid "_Cancel"
 msgstr "_Cancel·la"
 
-#: src/Widgets/EqualizerPopover.vala:167
+#: src/Widgets/EqualizerPopover.vala:162
 msgid "Save preset"
 msgstr "Desa els valors predefinits"
 
-#: src/Widgets/EqualizerPopover.vala:332
+#: src/Widgets/EqualizerPopover.vala:330
 msgid "Off"
 msgstr "Inactiu"
 
-#: src/Widgets/EqualizerPopover.vala:420
+#: src/Widgets/EqualizerPopover.vala:418
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s (Personalitzat)"
 
-#: src/Widgets/EqualizerPopover.vala:422
+#: src/Widgets/EqualizerPopover.vala:420
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s (%i personalitzat)"
 
-#: src/Widgets/EqualizerPopover.vala:425
+#: src/Widgets/EqualizerPopover.vala:423
 msgid "Custom Preset"
 msgstr "Valors predefinits personalitzats"
 
-#: src/Widgets/EqualizerPopover.vala:427
+#: src/Widgets/EqualizerPopover.vala:425
 #, c-format
 msgid "Custom Preset %i"
 msgstr "Valors predefinits personalitzats de %i"
@@ -1500,6 +1443,51 @@ msgstr "Visualitza-ho com a llista"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "Visualitza-ho en columnes"
+
+#~ msgid "Audio CD Invalid"
+#~ msgstr "El CD d'àudio no és vàlid"
+
+#~ msgid "Impossible to read the contents of this Audio CD"
+#~ msgstr "No ha estat possible llegir el contingut d'aquest CD d'àudio"
+
+#~ msgid "Could not find Music Folder"
+#~ msgstr "No s'ha pogut trobar la carpeta de música"
+
+#~ msgid ""
+#~ "Please make sure that your music folder is accessible and mounted before "
+#~ "importing the CD."
+#~ msgstr ""
+#~ "Assegureu-vos que la carpeta de música sigui accessible i muntada abans "
+#~ "de la importació del CD."
+
+#~ msgid ""
+#~ "The Application could not find any songs on the CD. No songs can be "
+#~ "imported"
+#~ msgstr ""
+#~ "L'aplicació no pot trobar cançons al CD. No es pot importar cap cançó"
+
+#~ msgid "Song imported from Audio CD."
+#~ msgstr "Cançó importada des d'un CD d'àudio."
+
+#~ msgid "%i songs imported from Audio CD."
+#~ msgstr "%i cançons importades des d'un CD d'àudio."
+
+#~ msgid "Importing track %u: %s"
+#~ msgstr "S'importa la pista %u: %s"
+
+#~ msgid "CD import will be <b>cancelled</b> after current import."
+#~ msgstr ""
+#~ "La importació del CD <b>es cancel·larà</b> després de la importació "
+#~ "actual."
+
+#~ msgid "Could not import this CD"
+#~ msgstr "No s'ha pogut importar aquest CD"
+
+#~ msgid "An Error Occurred"
+#~ msgstr "S'ha produït un error."
+
+#~ msgid "Could not load this Audio CD."
+#~ msgstr "No s'ha pogut carregar aquest CD d'àudio."
 
 #~ msgid "Importation of a song from Audio CD finished."
 #~ msgstr "Ha acabat la importació d'una cançó del CD d'àudio."

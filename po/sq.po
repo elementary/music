@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-15 21:57+0000\n"
+"POT-Creation-Date: 2020-04-22 17:33+0000\n"
 "PO-Revision-Date: 2015-12-21 13:43+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Albanian <sq@li.org>\n"
@@ -232,68 +232,6 @@ msgstr "Duke hequr <b>$NAME</b> e <b>$ARTIST</b> nga $DEVICE"
 msgid "Removing from <b>%s</b>…"
 msgstr "Duke hequr nga <b>%s</b>…"
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:91
-msgid "Audio CD Invalid"
-msgstr "CD Audio i pavlefshëm"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:95
-msgid "Impossible to read the contents of this Audio CD"
-msgstr "E pamundur të lexohet përmbajtja e këtij CD Audio"
-
-#. do checks to make sure we can go on
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid "Could not find Music Folder"
-msgstr "Dosja e muzikës nuk u gjet"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid ""
-"Please make sure that your music folder is accessible and mounted before "
-"importing the CD."
-msgstr ""
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:256
-msgid ""
-"The Application could not find any songs on the CD. No songs can be imported"
-msgstr ""
-"Programi nuk mundi të gjejë ndonjë këngë në CD. Asnjë këngë nuk mund të "
-"importohet"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:361
-msgid "Song imported from Audio CD."
-msgstr ""
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:362
-#, c-format
-msgid "%i songs imported from Audio CD."
-msgstr ""
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:371
-#, c-format
-msgid "Importing track %u: %s"
-msgstr ""
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:376
-msgid "CD import will be <b>cancelled</b> after current import."
-msgstr "Importimi i CD-së do të <b>anulohet</b> mbas importimit aktual"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:395
-msgid "Could not import this CD"
-msgstr ""
-
-#: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
-msgid "Import"
-msgstr "Importo"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:37
-#, fuzzy
-msgid "An Error Occurred"
-msgstr "Ndodhi një gabim"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:38
-#, fuzzy
-msgid "Could not load this Audio CD."
-msgstr "Ndodhi një gabim gjatë ngarkimit të këtij CD Audio."
-
 #: plugins/Devices/iPod/iPodLibrary.vala:238
 #: plugins/Devices/iPod/iPodLibrary.vala:404
 msgid "Finishing sync process…"
@@ -410,7 +348,7 @@ msgstr ""
 msgid "Import Music"
 msgstr "Importo muzikë"
 
-#: src/PlaybackManager.vala:104
+#: src/PlaybackManager.vala:117
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Radha"
@@ -818,6 +756,10 @@ msgstr ""
 msgid "Continue Syncing"
 msgstr "Vazhdo sinkronizimin"
 
+#: src/Dialogs/SyncWarningDialog.vala:62
+msgid "Import"
+msgstr "Importo"
+
 #: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
 msgid "Importing music from %s…"
@@ -1071,7 +1013,7 @@ msgstr "Asnjë kompozitor"
 
 #. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
-#: src/Widgets/EqualizerPopover.vala:328 src/Widgets/PresetList.vala:52
+#: src/Widgets/EqualizerPopover.vala:326 src/Widgets/PresetList.vala:52
 msgid "Automatic"
 msgstr "Automatike"
 
@@ -1314,29 +1256,29 @@ msgstr "_Hap"
 msgid "_Cancel"
 msgstr "_Anulo"
 
-#: src/Widgets/EqualizerPopover.vala:167
+#: src/Widgets/EqualizerPopover.vala:162
 msgid "Save preset"
 msgstr ""
 
-#: src/Widgets/EqualizerPopover.vala:332
+#: src/Widgets/EqualizerPopover.vala:330
 msgid "Off"
 msgstr ""
 
-#: src/Widgets/EqualizerPopover.vala:420
+#: src/Widgets/EqualizerPopover.vala:418
 #, c-format
 msgid "%s (Custom)"
 msgstr ""
 
-#: src/Widgets/EqualizerPopover.vala:422
+#: src/Widgets/EqualizerPopover.vala:420
 #, c-format
 msgid "%s (Custom %i)"
 msgstr ""
 
-#: src/Widgets/EqualizerPopover.vala:425
+#: src/Widgets/EqualizerPopover.vala:423
 msgid "Custom Preset"
 msgstr ""
 
-#: src/Widgets/EqualizerPopover.vala:427
+#: src/Widgets/EqualizerPopover.vala:425
 #, c-format
 msgid "Custom Preset %i"
 msgstr ""
@@ -1505,6 +1447,33 @@ msgstr "Paraqite si Listë"
 #, fuzzy
 msgid "View in columns"
 msgstr "Paraqite në Kolona"
+
+#~ msgid "Audio CD Invalid"
+#~ msgstr "CD Audio i pavlefshëm"
+
+#~ msgid "Impossible to read the contents of this Audio CD"
+#~ msgstr "E pamundur të lexohet përmbajtja e këtij CD Audio"
+
+#~ msgid "Could not find Music Folder"
+#~ msgstr "Dosja e muzikës nuk u gjet"
+
+#~ msgid ""
+#~ "The Application could not find any songs on the CD. No songs can be "
+#~ "imported"
+#~ msgstr ""
+#~ "Programi nuk mundi të gjejë ndonjë këngë në CD. Asnjë këngë nuk mund të "
+#~ "importohet"
+
+#~ msgid "CD import will be <b>cancelled</b> after current import."
+#~ msgstr "Importimi i CD-së do të <b>anulohet</b> mbas importimit aktual"
+
+#, fuzzy
+#~ msgid "An Error Occurred"
+#~ msgstr "Ndodhi një gabim"
+
+#, fuzzy
+#~ msgid "Could not load this Audio CD."
+#~ msgstr "Ndodhi një gabim gjatë ngarkimit të këtij CD Audio."
 
 #~ msgid "Importation of a song from Audio CD finished."
 #~ msgstr "Importimi i një kënge nga CD Audio përfundoi."

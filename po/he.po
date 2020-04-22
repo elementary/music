@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-15 21:57+0000\n"
+"POT-Creation-Date: 2020-04-22 17:33+0000\n"
 "PO-Revision-Date: 2018-11-06 10:03+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://weblate.elementary.io/projects/music/music/he/"
@@ -228,64 +228,6 @@ msgstr "הסרת <b>$NAME</b> של <b>$ARTIST</b> מ $DEVICE"
 msgid "Removing from <b>%s</b>…"
 msgstr "הסרה מ <b>%s</b>…"
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:91
-msgid "Audio CD Invalid"
-msgstr "תקליטור השמע אינו תקין"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:95
-msgid "Impossible to read the contents of this Audio CD"
-msgstr "לא ניתן לקרוא את תוכנו של תקליטור שמע זה"
-
-#. do checks to make sure we can go on
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid "Could not find Music Folder"
-msgstr "לא ניתן למצוא את תיקיית המוזיקה"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid ""
-"Please make sure that your music folder is accessible and mounted before "
-"importing the CD."
-msgstr "נא לוודא שתיקיית המוזיקה שלך נגישה ומעוגנת לפני יבוא התקליטור."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:256
-msgid ""
-"The Application could not find any songs on the CD. No songs can be imported"
-msgstr "היישום לא הצליח למצוא את כל השירים שבתקליטור. לא ניתן לייבא שירים"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:361
-msgid "Song imported from Audio CD."
-msgstr "שירים שייובאו מתקליטור שמע."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:362
-#, c-format
-msgid "%i songs imported from Audio CD."
-msgstr "%i ייובאו מתקליטור שמע."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:371
-#, c-format
-msgid "Importing track %u: %s"
-msgstr "רצועה מיובאת מס׳ %u:‏ %s"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:376
-msgid "CD import will be <b>cancelled</b> after current import."
-msgstr "יבוא תקליטור יהיה <b>מבוטל</b> אחרי היבוא הנוכחי."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:395
-msgid "Could not import this CD"
-msgstr "לא ניתן לייבא את התקליטור הזה"
-
-#: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
-msgid "Import"
-msgstr "יבוא"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:37
-msgid "An Error Occurred"
-msgstr "אירעה שגיאה"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:38
-msgid "Could not load this Audio CD."
-msgstr "לא ניתן לטעון תקליטור שמע זה."
-
 #: plugins/Devices/iPod/iPodLibrary.vala:238
 #: plugins/Devices/iPod/iPodLibrary.vala:404
 msgid "Finishing sync process…"
@@ -398,7 +340,7 @@ msgstr ""
 msgid "Import Music"
 msgstr "יבוא מוזיקה"
 
-#: src/PlaybackManager.vala:104
+#: src/PlaybackManager.vala:117
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "הוספה לרשימת המתנה"
@@ -802,6 +744,10 @@ msgstr ""
 msgid "Continue Syncing"
 msgstr "המשך הסנכרון"
 
+#: src/Dialogs/SyncWarningDialog.vala:62
+msgid "Import"
+msgstr "יבוא"
+
 #: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
 msgid "Importing music from %s…"
@@ -1051,7 +997,7 @@ msgstr "אין מלחינים"
 
 #. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
-#: src/Widgets/EqualizerPopover.vala:328 src/Widgets/PresetList.vala:52
+#: src/Widgets/EqualizerPopover.vala:326 src/Widgets/PresetList.vala:52
 msgid "Automatic"
 msgstr "אוטומטית"
 
@@ -1292,29 +1238,29 @@ msgstr "_פתיחה"
 msgid "_Cancel"
 msgstr "_ביטול"
 
-#: src/Widgets/EqualizerPopover.vala:167
+#: src/Widgets/EqualizerPopover.vala:162
 msgid "Save preset"
 msgstr "שמירת הגדרת הצלילים"
 
-#: src/Widgets/EqualizerPopover.vala:332
+#: src/Widgets/EqualizerPopover.vala:330
 msgid "Off"
 msgstr "כבוי"
 
-#: src/Widgets/EqualizerPopover.vala:420
+#: src/Widgets/EqualizerPopover.vala:418
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s (התאמה אישית)"
 
-#: src/Widgets/EqualizerPopover.vala:422
+#: src/Widgets/EqualizerPopover.vala:420
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s (מותאם אישית %i)"
 
-#: src/Widgets/EqualizerPopover.vala:425
+#: src/Widgets/EqualizerPopover.vala:423
 msgid "Custom Preset"
 msgstr "שמירת הגדרת צלילים מותאמת אישית"
 
-#: src/Widgets/EqualizerPopover.vala:427
+#: src/Widgets/EqualizerPopover.vala:425
 #, c-format
 msgid "Custom Preset %i"
 msgstr "שמירת הגדרת צלילים מותאמת אישית %i"
@@ -1475,6 +1421,46 @@ msgstr "הצגה כרשימה"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "הצגה כעמודות"
+
+#~ msgid "Audio CD Invalid"
+#~ msgstr "תקליטור השמע אינו תקין"
+
+#~ msgid "Impossible to read the contents of this Audio CD"
+#~ msgstr "לא ניתן לקרוא את תוכנו של תקליטור שמע זה"
+
+#~ msgid "Could not find Music Folder"
+#~ msgstr "לא ניתן למצוא את תיקיית המוזיקה"
+
+#~ msgid ""
+#~ "Please make sure that your music folder is accessible and mounted before "
+#~ "importing the CD."
+#~ msgstr "נא לוודא שתיקיית המוזיקה שלך נגישה ומעוגנת לפני יבוא התקליטור."
+
+#~ msgid ""
+#~ "The Application could not find any songs on the CD. No songs can be "
+#~ "imported"
+#~ msgstr "היישום לא הצליח למצוא את כל השירים שבתקליטור. לא ניתן לייבא שירים"
+
+#~ msgid "Song imported from Audio CD."
+#~ msgstr "שירים שייובאו מתקליטור שמע."
+
+#~ msgid "%i songs imported from Audio CD."
+#~ msgstr "%i ייובאו מתקליטור שמע."
+
+#~ msgid "Importing track %u: %s"
+#~ msgstr "רצועה מיובאת מס׳ %u:‏ %s"
+
+#~ msgid "CD import will be <b>cancelled</b> after current import."
+#~ msgstr "יבוא תקליטור יהיה <b>מבוטל</b> אחרי היבוא הנוכחי."
+
+#~ msgid "Could not import this CD"
+#~ msgstr "לא ניתן לייבא את התקליטור הזה"
+
+#~ msgid "An Error Occurred"
+#~ msgstr "אירעה שגיאה"
+
+#~ msgid "Could not load this Audio CD."
+#~ msgstr "לא ניתן לטעון תקליטור שמע זה."
 
 #~ msgid "Importation of a song from Audio CD finished."
 #~ msgstr "הסתיים יבוא של שיר מתוך תקליטור שמע."
