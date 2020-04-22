@@ -11,6 +11,12 @@
     <p>Music is a fast and beautiful audio player with a focus on music and libraries. It handles external devices, CDs, and album art.</p>
   </description>
   <releases>
+    <release version="5.1.0" date="2020-04-2" urgency="medium">
+      <description>
+        <p>Drop support for CD-ROM</p>
+        <p>Updated translations</p>
+      </description>
+    </release>
     <release version="5.0.5" date="2020-03-04" urgency="medium">
       <description>
         <p>Fix removing items from the queue</p>
