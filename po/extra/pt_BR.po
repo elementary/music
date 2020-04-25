@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-22 17:33+0000\n"
-"PO-Revision-Date: 2020-01-24 01:08+0000\n"
+"PO-Revision-Date: 2020-04-26 23:10+0000\n"
 "Last-Translator: Rodrigo Oliveira <rod.oliveira@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.elementary.io/projects/"
 "music/extra/pt_BR/>\n"
@@ -39,7 +39,7 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:16
 msgid "Drop support for CD-ROM"
-msgstr ""
+msgstr "Suporte de queda para CD-ROM"
 
 #: data/io.elementary.music.appdata.xml.in:17
 #: data/io.elementary.music.appdata.xml.in:24
