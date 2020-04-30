@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-22 17:33+0000\n"
-"PO-Revision-Date: 2020-03-01 13:09+0000\n"
+"PO-Revision-Date: 2020-05-01 13:10+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/music/extra/he/>\n"
 "Language: he\n"
@@ -34,7 +34,7 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:16
 msgid "Drop support for CD-ROM"
-msgstr ""
+msgstr "השמטת תמיכה בתקליטורים"
 
 #: data/io.elementary.music.appdata.xml.in:17
 #: data/io.elementary.music.appdata.xml.in:24
