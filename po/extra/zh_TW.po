@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-22 17:33+0000\n"
-"PO-Revision-Date: 2018-08-22 16:30+0000\n"
-"Last-Translator: Daniel Foré <daniel@elementary.io>\n"
-"Language-Team: Chinese (Traditional) <https://weblate.elementary.io/projects/"
+"PO-Revision-Date: 2020-05-04 08:10+0000\n"
+"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
+"Language-Team: Chinese (Traditional) <https://l10n.elementary.io/projects/"
 "music/extra/zh_Hant/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
 #: data/io.elementary.music.appdata.xml.in:8
@@ -39,7 +39,7 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:16
 msgid "Drop support for CD-ROM"
-msgstr ""
+msgstr "放下 CD-ROM 的支援"
 
 #: data/io.elementary.music.appdata.xml.in:17
 #: data/io.elementary.music.appdata.xml.in:24
@@ -49,11 +49,11 @@ msgstr ""
 #: data/io.elementary.music.appdata.xml.in:62
 #: data/io.elementary.music.appdata.xml.in:71
 msgid "Updated translations"
-msgstr ""
+msgstr "更新翻譯"
 
 #: data/io.elementary.music.appdata.xml.in:22
 msgid "Fix removing items from the queue"
-msgstr ""
+msgstr "修正從佇列中移除項目的功能"
 
 #: data/io.elementary.music.appdata.xml.in:23
 msgid "Fix equalizer sliders not properly disabled sometimes"
