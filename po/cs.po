@@ -8,16 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-22 17:33+0000\n"
-"PO-Revision-Date: 2018-12-13 14:37+0000\n"
-"Last-Translator: Daniel Zvir <zvir.daniel@seznam.cz>\n"
-"Language-Team: Czech <https://weblate.elementary.io/projects/music/music/cs/"
-">\n"
+"PO-Revision-Date: 2020-05-11 12:10+0000\n"
+"Last-Translator: p-bo <pavel.borecki@gmail.com>\n"
+"Language-Team: Czech <https://l10n.elementary.io/projects/music/music/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:52+0000\n"
 
 #: core/LibrariesManager.vala:146
@@ -541,13 +540,13 @@ msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
 msgstr[0] ""
-"Tím odeberete píseň z knihovny a ze všech automaticky synchronizovaných "
+"Tím odeberete skladbu z knihovny a ze všech automaticky synchronizovaných "
 "zařízení."
 msgstr[1] ""
-"Tím odeberete písně z knihovny a ze všech automaticky synchronizovaných "
+"Tím odeberete skladby z knihovny a ze všech automaticky synchronizovaných "
 "zařízení."
 msgstr[2] ""
-"Tím odeberete písně z knihovny a ze všech automaticky synchronizovaných "
+"Tím odeberete skladby z knihovny a ze všech automaticky synchronizovaných "
 "zařízení."
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
@@ -1044,7 +1043,7 @@ msgstr[2] "%u hvězdiček"
 #: src/Views/ListView/Lists/CellDataFunctionHelper.vala:128
 #, c-format
 msgid "%u kbps"
-msgstr "%u kbps"
+msgstr "%u kb/s"
 
 #: src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #: src/Views/ListView/Lists/MusicListView.vala:425
@@ -1157,7 +1156,7 @@ msgstr "Automaticky přizpůsobit sloupce"
 
 #: src/Views/ListView/Lists/MusicListView.vala:410
 msgid "1234 kbps"
-msgstr "1234 kbps"
+msgstr "1234 kb/s"
 
 #. / Sample string used to measure the ideal size of the Title, Artist,
 #. / Album, Album Artist, Composer, Genre, and Grouping columns in the
