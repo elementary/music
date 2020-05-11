@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-22 17:33+0000\n"
-"PO-Revision-Date: 2020-05-11 12:10+0000\n"
+"PO-Revision-Date: 2020-05-12 23:10+0000\n"
 "Last-Translator: p-bo <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://l10n.elementary.io/projects/music/extra/cs/>\n"
 "Language: cs\n"
@@ -57,6 +57,7 @@ msgstr "Oprava odebírání položek z fronty"
 #: data/io.elementary.music.appdata.xml.in:23
 msgid "Fix equalizer sliders not properly disabled sometimes"
 msgstr ""
+"Oprava toho, že posuvníky ekvalizéru nebyly někdy správně znepřístupněny"
 
 #: data/io.elementary.music.appdata.xml.in:25
 msgid "Performance improvements"
