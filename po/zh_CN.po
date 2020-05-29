@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-15 21:57+0000\n"
+"POT-Creation-Date: 2020-04-22 17:33+0000\n"
 "PO-Revision-Date: 2019-01-15 13:09+0000\n"
 "Last-Translator: colindemian <colindemian@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://weblate.elementary.io/projects/"
@@ -233,64 +233,6 @@ msgstr "正在移除 $DEVICE 中的 <b>$NAME</b>(艺人 <b>$ARTIST</b>)"
 msgid "Removing from <b>%s</b>…"
 msgstr "正在从 <b>%s</b> 移除…"
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:91
-msgid "Audio CD Invalid"
-msgstr "音频 CD 无效"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:95
-msgid "Impossible to read the contents of this Audio CD"
-msgstr "无法读取该音频 CD 内容"
-
-#. do checks to make sure we can go on
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid "Could not find Music Folder"
-msgstr "找不到音乐文件夹"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid ""
-"Please make sure that your music folder is accessible and mounted before "
-"importing the CD."
-msgstr "请确认您的音乐文件夹可访问并在导入 CD 前已挂载。"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:256
-msgid ""
-"The Application could not find any songs on the CD. No songs can be imported"
-msgstr "应用程序找到 CD 上的任何歌曲。无法导入歌曲"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:361
-msgid "Song imported from Audio CD."
-msgstr "已从音频 CD 导入歌曲。"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:362
-#, c-format
-msgid "%i songs imported from Audio CD."
-msgstr "已从音频 CD 导入 %s 首歌曲。"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:371
-#, c-format
-msgid "Importing track %u: %s"
-msgstr "正在导入曲目 %u: %s"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:376
-msgid "CD import will be <b>cancelled</b> after current import."
-msgstr "在当前导入完成后，CD 导入将被<b>取消</b>。"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:395
-msgid "Could not import this CD"
-msgstr "无法导入此音乐光盘"
-
-#: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
-msgid "Import"
-msgstr "导入"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:37
-msgid "An Error Occurred"
-msgstr "发生错误"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:38
-msgid "Could not load this Audio CD."
-msgstr "%s 无法读此音频 CD。"
-
 #: plugins/Devices/iPod/iPodLibrary.vala:238
 #: plugins/Devices/iPod/iPodLibrary.vala:404
 msgid "Finishing sync process…"
@@ -402,7 +344,7 @@ msgstr ""
 msgid "Import Music"
 msgstr "导入音乐"
 
-#: src/PlaybackManager.vala:104
+#: src/PlaybackManager.vala:117
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "队列"
@@ -800,6 +742,10 @@ msgstr ""
 msgid "Continue Syncing"
 msgstr "继续同步"
 
+#: src/Dialogs/SyncWarningDialog.vala:62
+msgid "Import"
+msgstr "导入"
+
 #: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
 msgid "Importing music from %s…"
@@ -1047,7 +993,7 @@ msgstr "无作曲家"
 
 #. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
-#: src/Widgets/EqualizerPopover.vala:328 src/Widgets/PresetList.vala:52
+#: src/Widgets/EqualizerPopover.vala:326 src/Widgets/PresetList.vala:52
 msgid "Automatic"
 msgstr "自动"
 
@@ -1286,29 +1232,29 @@ msgstr "打开(_O)"
 msgid "_Cancel"
 msgstr "取消(_C)"
 
-#: src/Widgets/EqualizerPopover.vala:167
+#: src/Widgets/EqualizerPopover.vala:162
 msgid "Save preset"
 msgstr "保存预设"
 
-#: src/Widgets/EqualizerPopover.vala:332
+#: src/Widgets/EqualizerPopover.vala:330
 msgid "Off"
 msgstr "关闭"
 
-#: src/Widgets/EqualizerPopover.vala:420
+#: src/Widgets/EqualizerPopover.vala:418
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s (自定义)"
 
-#: src/Widgets/EqualizerPopover.vala:422
+#: src/Widgets/EqualizerPopover.vala:420
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s (自定义 %i)"
 
-#: src/Widgets/EqualizerPopover.vala:425
+#: src/Widgets/EqualizerPopover.vala:423
 msgid "Custom Preset"
 msgstr "自定义预设"
 
-#: src/Widgets/EqualizerPopover.vala:427
+#: src/Widgets/EqualizerPopover.vala:425
 #, c-format
 msgid "Custom Preset %i"
 msgstr "自定义预设 %i"
@@ -1468,6 +1414,46 @@ msgstr "列表视图"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "分栏视图"
+
+#~ msgid "Audio CD Invalid"
+#~ msgstr "音频 CD 无效"
+
+#~ msgid "Impossible to read the contents of this Audio CD"
+#~ msgstr "无法读取该音频 CD 内容"
+
+#~ msgid "Could not find Music Folder"
+#~ msgstr "找不到音乐文件夹"
+
+#~ msgid ""
+#~ "Please make sure that your music folder is accessible and mounted before "
+#~ "importing the CD."
+#~ msgstr "请确认您的音乐文件夹可访问并在导入 CD 前已挂载。"
+
+#~ msgid ""
+#~ "The Application could not find any songs on the CD. No songs can be "
+#~ "imported"
+#~ msgstr "应用程序找到 CD 上的任何歌曲。无法导入歌曲"
+
+#~ msgid "Song imported from Audio CD."
+#~ msgstr "已从音频 CD 导入歌曲。"
+
+#~ msgid "%i songs imported from Audio CD."
+#~ msgstr "已从音频 CD 导入 %s 首歌曲。"
+
+#~ msgid "Importing track %u: %s"
+#~ msgstr "正在导入曲目 %u: %s"
+
+#~ msgid "CD import will be <b>cancelled</b> after current import."
+#~ msgstr "在当前导入完成后，CD 导入将被<b>取消</b>。"
+
+#~ msgid "Could not import this CD"
+#~ msgstr "无法导入此音乐光盘"
+
+#~ msgid "An Error Occurred"
+#~ msgstr "发生错误"
+
+#~ msgid "Could not load this Audio CD."
+#~ msgstr "%s 无法读此音频 CD。"
 
 #~ msgid "Importation of a song from Audio CD finished."
 #~ msgstr "音乐 CD 歌曲导入完毕。"

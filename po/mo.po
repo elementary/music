@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-15 21:57+0000\n"
+"POT-Creation-Date: 2020-04-22 17:33+0000\n"
 "PO-Revision-Date: 2018-05-27 08:51+0000\n"
 "Last-Translator: Romanic Ion Nicușor <contact.romanic@gmail.com>\n"
 "Language-Team: Moldovan <https://weblate.elementary.io/projects/music/music/"
@@ -227,68 +227,6 @@ msgstr "Eliminarea <b>1 $NUME </b>2 de <b>3 $ARTIST </b>4 de la $ DEVICE"
 msgid "Removing from <b>%s</b>…"
 msgstr "Se elimină din <b>1%s 2 </b> 3 …"
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:91
-msgid "Audio CD Invalid"
-msgstr "Cd audio nevalid"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:95
-msgid "Impossible to read the contents of this Audio CD"
-msgstr "Imposibil de citit conținutul acestui CD audio"
-
-#. do checks to make sure we can go on
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid "Could not find Music Folder"
-msgstr "Nu a putut fi găsit Dosarul de muzică"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid ""
-"Please make sure that your music folder is accessible and mounted before "
-"importing the CD."
-msgstr ""
-"Asigurați-vă că folderul de muzică este accesibil și montat înainte de a "
-"importa CD-ul."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:256
-msgid ""
-"The Application could not find any songs on the CD. No songs can be imported"
-msgstr "Aplicația nu a putut găsi melodii pe CD. Nu pot fi importate cântece"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:361
-msgid "Song imported from Audio CD."
-msgstr ""
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:362
-#, c-format
-msgid "%i songs imported from Audio CD."
-msgstr ""
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:371
-#, c-format
-msgid "Importing track %u: %s"
-msgstr "Importarea melodiei %u 1:%s 2"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:376
-msgid "CD import will be <b>cancelled</b> after current import."
-msgstr "Importarea CD-ului va fi <b>1 anulată </b>2 după importarea curentă."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:395
-msgid "Could not import this CD"
-msgstr ""
-
-#: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
-msgid "Import"
-msgstr "Importare"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:37
-#, fuzzy
-msgid "An Error Occurred"
-msgstr "A apărut o eroare"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:38
-#, fuzzy
-msgid "Could not load this Audio CD."
-msgstr "A apărut o eroare la încărcarea acestui CD audio."
-
 #: plugins/Devices/iPod/iPodLibrary.vala:238
 #: plugins/Devices/iPod/iPodLibrary.vala:404
 msgid "Finishing sync process…"
@@ -403,7 +341,7 @@ msgstr ""
 msgid "Import Music"
 msgstr "Importare muzică"
 
-#: src/PlaybackManager.vala:104
+#: src/PlaybackManager.vala:117
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr ""
@@ -821,6 +759,10 @@ msgstr ""
 msgid "Continue Syncing"
 msgstr "Continuați sincronizarea"
 
+#: src/Dialogs/SyncWarningDialog.vala:62
+msgid "Import"
+msgstr "Importare"
+
 #: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
 msgid "Importing music from %s…"
@@ -1075,7 +1017,7 @@ msgstr "Niciun compozitor"
 
 #. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
-#: src/Widgets/EqualizerPopover.vala:328 src/Widgets/PresetList.vala:52
+#: src/Widgets/EqualizerPopover.vala:326 src/Widgets/PresetList.vala:52
 msgid "Automatic"
 msgstr "Automatică"
 
@@ -1334,29 +1276,29 @@ msgstr "_Deschide"
 msgid "_Cancel"
 msgstr "_Anulare"
 
-#: src/Widgets/EqualizerPopover.vala:167
+#: src/Widgets/EqualizerPopover.vala:162
 msgid "Save preset"
 msgstr "Salvați presetarea"
 
-#: src/Widgets/EqualizerPopover.vala:332
+#: src/Widgets/EqualizerPopover.vala:330
 msgid "Off"
 msgstr "de pe"
 
-#: src/Widgets/EqualizerPopover.vala:420
+#: src/Widgets/EqualizerPopover.vala:418
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s 1 (Personalizat)"
 
-#: src/Widgets/EqualizerPopover.vala:422
+#: src/Widgets/EqualizerPopover.vala:420
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s 1 (personalizat %i 2)"
 
-#: src/Widgets/EqualizerPopover.vala:425
+#: src/Widgets/EqualizerPopover.vala:423
 msgid "Custom Preset"
 msgstr "Setare prestabilită"
 
-#: src/Widgets/EqualizerPopover.vala:427
+#: src/Widgets/EqualizerPopover.vala:425
 #, c-format
 msgid "Custom Preset %i"
 msgstr "Setare prestabilită %i 1"
@@ -1525,6 +1467,43 @@ msgstr "Vizualizare ca listă"
 #, fuzzy
 msgid "View in columns"
 msgstr "Vizualizați în coloane"
+
+#~ msgid "Audio CD Invalid"
+#~ msgstr "Cd audio nevalid"
+
+#~ msgid "Impossible to read the contents of this Audio CD"
+#~ msgstr "Imposibil de citit conținutul acestui CD audio"
+
+#~ msgid "Could not find Music Folder"
+#~ msgstr "Nu a putut fi găsit Dosarul de muzică"
+
+#~ msgid ""
+#~ "Please make sure that your music folder is accessible and mounted before "
+#~ "importing the CD."
+#~ msgstr ""
+#~ "Asigurați-vă că folderul de muzică este accesibil și montat înainte de a "
+#~ "importa CD-ul."
+
+#~ msgid ""
+#~ "The Application could not find any songs on the CD. No songs can be "
+#~ "imported"
+#~ msgstr ""
+#~ "Aplicația nu a putut găsi melodii pe CD. Nu pot fi importate cântece"
+
+#~ msgid "Importing track %u: %s"
+#~ msgstr "Importarea melodiei %u 1:%s 2"
+
+#~ msgid "CD import will be <b>cancelled</b> after current import."
+#~ msgstr ""
+#~ "Importarea CD-ului va fi <b>1 anulată </b>2 după importarea curentă."
+
+#, fuzzy
+#~ msgid "An Error Occurred"
+#~ msgstr "A apărut o eroare"
+
+#, fuzzy
+#~ msgid "Could not load this Audio CD."
+#~ msgstr "A apărut o eroare la încărcarea acestui CD audio."
 
 #~ msgid "Importation of a song from Audio CD finished."
 #~ msgstr "Sa terminat importul unei melodii de pe CD-ul Audio."

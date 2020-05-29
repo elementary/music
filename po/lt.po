@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-15 21:57+0000\n"
+"POT-Creation-Date: 2020-04-22 17:33+0000\n"
 "PO-Revision-Date: 2018-11-06 20:47+0000\n"
 "Last-Translator: Moo <hazap@hotmail.com>\n"
 "Language-Team: Lithuanian <https://weblate.elementary.io/projects/music/"
@@ -234,66 +234,6 @@ msgstr "Iš $DEVICE šalinama <b>$NAME</b>, kurią atlieką <b>$ARTIST</b>"
 msgid "Removing from <b>%s</b>…"
 msgstr "Šalinama iš <b>%s</b>…"
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:91
-msgid "Audio CD Invalid"
-msgstr "Garso CD neteisingas"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:95
-msgid "Impossible to read the contents of this Audio CD"
-msgstr "Neįmanoma perskaityti šio Garso CD turinio"
-
-#. do checks to make sure we can go on
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid "Could not find Music Folder"
-msgstr "Nepavyko rasti muzikos aplanko"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid ""
-"Please make sure that your music folder is accessible and mounted before "
-"importing the CD."
-msgstr ""
-"Prieš importuodami CD diską, įsitikinkite, kad jūsų muzikos aplankas yra "
-"prijungtas ir prieinamas."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:256
-msgid ""
-"The Application could not find any songs on the CD. No songs can be imported"
-msgstr "Programa CD diske nerado jokių dainų. Dainos negali būti importuotos"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:361
-msgid "Song imported from Audio CD."
-msgstr "Daina importuota iš garso CD."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:362
-#, c-format
-msgid "%i songs imported from Audio CD."
-msgstr "%i dainų(-os) importuota iš garso CD."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:371
-#, c-format
-msgid "Importing track %u: %s"
-msgstr "Importuojamas takelis %u: %s"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:376
-msgid "CD import will be <b>cancelled</b> after current import."
-msgstr "Po esamo importavimo, CD disko importavimas bus <b>atšauktas</b>."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:395
-msgid "Could not import this CD"
-msgstr "Nepavyko importuoti šio CD"
-
-#: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
-msgid "Import"
-msgstr "Importuoti"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:37
-msgid "An Error Occurred"
-msgstr "Įvyko klaida"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:38
-msgid "Could not load this Audio CD."
-msgstr "Nepavyko įkelti šio garso CD."
-
 #: plugins/Devices/iPod/iPodLibrary.vala:238
 #: plugins/Devices/iPod/iPodLibrary.vala:404
 msgid "Finishing sync process…"
@@ -408,7 +348,7 @@ msgstr ""
 msgid "Import Music"
 msgstr "Importuoti muziką"
 
-#: src/PlaybackManager.vala:104
+#: src/PlaybackManager.vala:117
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Eilė"
@@ -830,6 +770,10 @@ msgstr ""
 msgid "Continue Syncing"
 msgstr "Tęsti sinchronizavimą"
 
+#: src/Dialogs/SyncWarningDialog.vala:62
+msgid "Import"
+msgstr "Importuoti"
+
 #: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
 msgid "Importing music from %s…"
@@ -1083,7 +1027,7 @@ msgstr "Kompozitorių nėra"
 
 #. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
-#: src/Widgets/EqualizerPopover.vala:328 src/Widgets/PresetList.vala:52
+#: src/Widgets/EqualizerPopover.vala:326 src/Widgets/PresetList.vala:52
 msgid "Automatic"
 msgstr "Automatiškai"
 
@@ -1326,29 +1270,29 @@ msgstr "At_verti"
 msgid "_Cancel"
 msgstr "_Atsisakyti"
 
-#: src/Widgets/EqualizerPopover.vala:167
+#: src/Widgets/EqualizerPopover.vala:162
 msgid "Save preset"
 msgstr "Įrašyti išankstinę parinktį"
 
-#: src/Widgets/EqualizerPopover.vala:332
+#: src/Widgets/EqualizerPopover.vala:330
 msgid "Off"
 msgstr "Išjungta"
 
-#: src/Widgets/EqualizerPopover.vala:420
+#: src/Widgets/EqualizerPopover.vala:418
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s (Tinkinta)"
 
-#: src/Widgets/EqualizerPopover.vala:422
+#: src/Widgets/EqualizerPopover.vala:420
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s (Tinkinta %i)"
 
-#: src/Widgets/EqualizerPopover.vala:425
+#: src/Widgets/EqualizerPopover.vala:423
 msgid "Custom Preset"
 msgstr "Tinkinta išankstinė parinktis"
 
-#: src/Widgets/EqualizerPopover.vala:427
+#: src/Widgets/EqualizerPopover.vala:425
 #, c-format
 msgid "Custom Preset %i"
 msgstr "Tinkinta išankstinė parinktis %i"
@@ -1510,6 +1454,49 @@ msgstr "Rodyti kaip sąrašą"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "Rodyti stulpeliuose"
+
+#~ msgid "Audio CD Invalid"
+#~ msgstr "Garso CD neteisingas"
+
+#~ msgid "Impossible to read the contents of this Audio CD"
+#~ msgstr "Neįmanoma perskaityti šio Garso CD turinio"
+
+#~ msgid "Could not find Music Folder"
+#~ msgstr "Nepavyko rasti muzikos aplanko"
+
+#~ msgid ""
+#~ "Please make sure that your music folder is accessible and mounted before "
+#~ "importing the CD."
+#~ msgstr ""
+#~ "Prieš importuodami CD diską, įsitikinkite, kad jūsų muzikos aplankas yra "
+#~ "prijungtas ir prieinamas."
+
+#~ msgid ""
+#~ "The Application could not find any songs on the CD. No songs can be "
+#~ "imported"
+#~ msgstr ""
+#~ "Programa CD diske nerado jokių dainų. Dainos negali būti importuotos"
+
+#~ msgid "Song imported from Audio CD."
+#~ msgstr "Daina importuota iš garso CD."
+
+#~ msgid "%i songs imported from Audio CD."
+#~ msgstr "%i dainų(-os) importuota iš garso CD."
+
+#~ msgid "Importing track %u: %s"
+#~ msgstr "Importuojamas takelis %u: %s"
+
+#~ msgid "CD import will be <b>cancelled</b> after current import."
+#~ msgstr "Po esamo importavimo, CD disko importavimas bus <b>atšauktas</b>."
+
+#~ msgid "Could not import this CD"
+#~ msgstr "Nepavyko importuoti šio CD"
+
+#~ msgid "An Error Occurred"
+#~ msgstr "Įvyko klaida"
+
+#~ msgid "Could not load this Audio CD."
+#~ msgstr "Nepavyko įkelti šio garso CD."
 
 #~ msgid "Importation of a song from Audio CD finished."
 #~ msgstr "Dainos importavimas iš Garso CD užbaigtas."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-15 21:57+0000\n"
+"POT-Creation-Date: 2020-04-22 17:33+0000\n"
 "PO-Revision-Date: 2019-07-21 10:24+0000\n"
 "Last-Translator: Shtonchjo <shtonchjo@gmail.com>\n"
 "Language-Team: Esperanto <https://l10n.elementary.io/projects/music/music/eo/"
@@ -233,67 +233,6 @@ msgstr "Forigi  <b>$NAME</b> de <b>$ARTIST</b> el $DEVICE"
 msgid "Removing from <b>%s</b>…"
 msgstr "Forigo de <b>%s</b>…"
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:91
-msgid "Audio CD Invalid"
-msgstr "Nevalida son-KD"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:95
-msgid "Impossible to read the contents of this Audio CD"
-msgstr "Neeblas legi la enhavon de la aŭda lumdisko"
-
-#. do checks to make sure we can go on
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid "Could not find Music Folder"
-msgstr "Neeblis trovi la dosierujon Muziko"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid ""
-"Please make sure that your music folder is accessible and mounted before "
-"importing the CD."
-msgstr ""
-"Bonvolu certiĝi ke via dosierujo Muziko estas alirebla kaj muntita antaŭ ol "
-"importi la lumdiskon."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:256
-msgid ""
-"The Application could not find any songs on the CD. No songs can be imported"
-msgstr ""
-"La aplikaĵo ne povis trovi kanton sur la lumdisko. Neniu kanto importeblas"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:361
-msgid "Song imported from Audio CD."
-msgstr "Kanto importita de la aŭda lumdisko."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:362
-#, c-format
-msgid "%i songs imported from Audio CD."
-msgstr "%i kantoj importitaj de la aŭda lumdisko."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:371
-#, c-format
-msgid "Importing track %u: %s"
-msgstr "Importanta kanton %u: %s"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:376
-msgid "CD import will be <b>cancelled</b> after current import."
-msgstr "Lumdiska importo<b>rezigniĝos</b> post aktiva importo."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:395
-msgid "Could not import this CD"
-msgstr "Ne eblis importi ĉi lumdiskon"
-
-#: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
-msgid "Import"
-msgstr "Importi"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:37
-msgid "An Error Occurred"
-msgstr "Okazis eraro"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:38
-msgid "Could not load this Audio CD."
-msgstr "Neeblis ŝargi ĉi aŭdan lumdiskon."
-
 #: plugins/Devices/iPod/iPodLibrary.vala:238
 #: plugins/Devices/iPod/iPodLibrary.vala:404
 msgid "Finishing sync process…"
@@ -407,7 +346,7 @@ msgstr ""
 msgid "Import Music"
 msgstr "Importi muzikon"
 
-#: src/PlaybackManager.vala:104
+#: src/PlaybackManager.vala:117
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Vico"
@@ -816,6 +755,10 @@ msgstr ""
 msgid "Continue Syncing"
 msgstr "Daŭrigi sinkronigon"
 
+#: src/Dialogs/SyncWarningDialog.vala:62
+msgid "Import"
+msgstr "Importi"
+
 #: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
 msgid "Importing music from %s…"
@@ -1068,7 +1011,7 @@ msgstr "Neniu komponisto"
 
 #. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
-#: src/Widgets/EqualizerPopover.vala:328 src/Widgets/PresetList.vala:52
+#: src/Widgets/EqualizerPopover.vala:326 src/Widgets/PresetList.vala:52
 msgid "Automatic"
 msgstr "Aŭtomata"
 
@@ -1309,29 +1252,29 @@ msgstr "_Malfermi"
 msgid "_Cancel"
 msgstr "_Rezigni"
 
-#: src/Widgets/EqualizerPopover.vala:167
+#: src/Widgets/EqualizerPopover.vala:162
 msgid "Save preset"
 msgstr "Konservi agordojn"
 
-#: src/Widgets/EqualizerPopover.vala:332
+#: src/Widgets/EqualizerPopover.vala:330
 msgid "Off"
 msgstr "Malŝaltita"
 
-#: src/Widgets/EqualizerPopover.vala:420
+#: src/Widgets/EqualizerPopover.vala:418
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s (Tajlorita)"
 
-#: src/Widgets/EqualizerPopover.vala:422
+#: src/Widgets/EqualizerPopover.vala:420
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s(Tajlorita %i)"
 
-#: src/Widgets/EqualizerPopover.vala:425
+#: src/Widgets/EqualizerPopover.vala:423
 msgid "Custom Preset"
 msgstr "Tajloritaj agordoj"
 
-#: src/Widgets/EqualizerPopover.vala:427
+#: src/Widgets/EqualizerPopover.vala:425
 #, c-format
 msgid "Custom Preset %i"
 msgstr "Tajloritaj agordoj %i"
@@ -1492,6 +1435,49 @@ msgstr "Prezenti laŭ listo"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "Prezenti laŭ kolumnoj"
+
+#~ msgid "Audio CD Invalid"
+#~ msgstr "Nevalida son-KD"
+
+#~ msgid "Impossible to read the contents of this Audio CD"
+#~ msgstr "Neeblas legi la enhavon de la aŭda lumdisko"
+
+#~ msgid "Could not find Music Folder"
+#~ msgstr "Neeblis trovi la dosierujon Muziko"
+
+#~ msgid ""
+#~ "Please make sure that your music folder is accessible and mounted before "
+#~ "importing the CD."
+#~ msgstr ""
+#~ "Bonvolu certiĝi ke via dosierujo Muziko estas alirebla kaj muntita antaŭ "
+#~ "ol importi la lumdiskon."
+
+#~ msgid ""
+#~ "The Application could not find any songs on the CD. No songs can be "
+#~ "imported"
+#~ msgstr ""
+#~ "La aplikaĵo ne povis trovi kanton sur la lumdisko. Neniu kanto importeblas"
+
+#~ msgid "Song imported from Audio CD."
+#~ msgstr "Kanto importita de la aŭda lumdisko."
+
+#~ msgid "%i songs imported from Audio CD."
+#~ msgstr "%i kantoj importitaj de la aŭda lumdisko."
+
+#~ msgid "Importing track %u: %s"
+#~ msgstr "Importanta kanton %u: %s"
+
+#~ msgid "CD import will be <b>cancelled</b> after current import."
+#~ msgstr "Lumdiska importo<b>rezigniĝos</b> post aktiva importo."
+
+#~ msgid "Could not import this CD"
+#~ msgstr "Ne eblis importi ĉi lumdiskon"
+
+#~ msgid "An Error Occurred"
+#~ msgstr "Okazis eraro"
+
+#~ msgid "Could not load this Audio CD."
+#~ msgstr "Neeblis ŝargi ĉi aŭdan lumdiskon."
 
 #~ msgid "Unable to import %d items from %s"
 #~ msgstr "Maleble importi %d erojn de %s"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-15 21:57+0000\n"
+"POT-Creation-Date: 2020-04-22 17:33+0000\n"
 "PO-Revision-Date: 2019-06-10 06:30+0000\n"
 "Last-Translator: Khomyak-sibiryak <owalski@protonmail.com>\n"
 "Language-Team: Russian <https://l10n.elementary.io/projects/music/music/ru/"
@@ -234,69 +234,6 @@ msgstr "Удаление <b>$NAME</b> в исполнении <b>$ARTIST</b> и�
 msgid "Removing from <b>%s</b>…"
 msgstr "Удаление из <b>%s</b>…"
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:91
-msgid "Audio CD Invalid"
-msgstr "Неверный компакт-диск"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:95
-msgid "Impossible to read the contents of this Audio CD"
-msgstr "Невозможно прочитать содержимое этого компакт-диска"
-
-#. do checks to make sure we can go on
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid "Could not find Music Folder"
-msgstr "Не удалось найти папку с музыкой"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid ""
-"Please make sure that your music folder is accessible and mounted before "
-"importing the CD."
-msgstr ""
-"Пожалуйста, убедитесь, что ваша папка с музыкой доступна и подключена перед "
-"импортированием компакт-диска."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:256
-msgid ""
-"The Application could not find any songs on the CD. No songs can be imported"
-msgstr ""
-"Приложение не смогло найти ни одной композиции на компакт-диске. Ничего не "
-"импортировано"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:361
-msgid "Song imported from Audio CD."
-msgstr "Композиция импортирована со звукового компакт-диска."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:362
-#, c-format
-msgid "%i songs imported from Audio CD."
-msgstr "%s композиций импортировано со звукового компакт-диска."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:371
-#, c-format
-msgid "Importing track %u: %s"
-msgstr "Импортирование композиции %u: %s"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:376
-msgid "CD import will be <b>cancelled</b> after current import."
-msgstr ""
-"Импорт с компакт-диска будет <b>отменён</b> после текущего импортирования."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:395
-msgid "Could not import this CD"
-msgstr "Не удалось импортировать этот компакт-диск"
-
-#: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
-msgid "Import"
-msgstr "Импортировать"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:37
-msgid "An Error Occurred"
-msgstr "Произошла ошибка"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:38
-msgid "Could not load this Audio CD."
-msgstr "Не удалось загрузить этот звуковой компакт-диск."
-
 #: plugins/Devices/iPod/iPodLibrary.vala:238
 #: plugins/Devices/iPod/iPodLibrary.vala:404
 msgid "Finishing sync process…"
@@ -412,7 +349,7 @@ msgstr ""
 msgid "Import Music"
 msgstr "Импорт музыки"
 
-#: src/PlaybackManager.vala:104
+#: src/PlaybackManager.vala:117
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Очередь"
@@ -830,6 +767,10 @@ msgstr ""
 msgid "Continue Syncing"
 msgstr "Продолжить синхронизацию"
 
+#: src/Dialogs/SyncWarningDialog.vala:62
+msgid "Import"
+msgstr "Импортировать"
+
 #: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
 msgid "Importing music from %s…"
@@ -1084,7 +1025,7 @@ msgstr "Нет композиторов"
 
 #. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
-#: src/Widgets/EqualizerPopover.vala:328 src/Widgets/PresetList.vala:52
+#: src/Widgets/EqualizerPopover.vala:326 src/Widgets/PresetList.vala:52
 msgid "Automatic"
 msgstr "Автоматически"
 
@@ -1328,29 +1269,29 @@ msgstr "_Открыть"
 msgid "_Cancel"
 msgstr "_Отмена"
 
-#: src/Widgets/EqualizerPopover.vala:167
+#: src/Widgets/EqualizerPopover.vala:162
 msgid "Save preset"
 msgstr "Сохранить профиль"
 
-#: src/Widgets/EqualizerPopover.vala:332
+#: src/Widgets/EqualizerPopover.vala:330
 msgid "Off"
 msgstr "Выкл."
 
-#: src/Widgets/EqualizerPopover.vala:420
+#: src/Widgets/EqualizerPopover.vala:418
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s (Пользовательский)"
 
-#: src/Widgets/EqualizerPopover.vala:422
+#: src/Widgets/EqualizerPopover.vala:420
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s (Пользовательский %i)"
 
-#: src/Widgets/EqualizerPopover.vala:425
+#: src/Widgets/EqualizerPopover.vala:423
 msgid "Custom Preset"
 msgstr "Пользовательский профиль"
 
-#: src/Widgets/EqualizerPopover.vala:427
+#: src/Widgets/EqualizerPopover.vala:425
 #, c-format
 msgid "Custom Preset %i"
 msgstr "Пользовательский профиль %i"
@@ -1512,6 +1453,51 @@ msgstr "Просмотр в виде списка"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "Просмотр в виде колонок"
+
+#~ msgid "Audio CD Invalid"
+#~ msgstr "Неверный компакт-диск"
+
+#~ msgid "Impossible to read the contents of this Audio CD"
+#~ msgstr "Невозможно прочитать содержимое этого компакт-диска"
+
+#~ msgid "Could not find Music Folder"
+#~ msgstr "Не удалось найти папку с музыкой"
+
+#~ msgid ""
+#~ "Please make sure that your music folder is accessible and mounted before "
+#~ "importing the CD."
+#~ msgstr ""
+#~ "Пожалуйста, убедитесь, что ваша папка с музыкой доступна и подключена "
+#~ "перед импортированием компакт-диска."
+
+#~ msgid ""
+#~ "The Application could not find any songs on the CD. No songs can be "
+#~ "imported"
+#~ msgstr ""
+#~ "Приложение не смогло найти ни одной композиции на компакт-диске. Ничего "
+#~ "не импортировано"
+
+#~ msgid "Song imported from Audio CD."
+#~ msgstr "Композиция импортирована со звукового компакт-диска."
+
+#~ msgid "%i songs imported from Audio CD."
+#~ msgstr "%s композиций импортировано со звукового компакт-диска."
+
+#~ msgid "Importing track %u: %s"
+#~ msgstr "Импортирование композиции %u: %s"
+
+#~ msgid "CD import will be <b>cancelled</b> after current import."
+#~ msgstr ""
+#~ "Импорт с компакт-диска будет <b>отменён</b> после текущего импортирования."
+
+#~ msgid "Could not import this CD"
+#~ msgstr "Не удалось импортировать этот компакт-диск"
+
+#~ msgid "An Error Occurred"
+#~ msgstr "Произошла ошибка"
+
+#~ msgid "Could not load this Audio CD."
+#~ msgstr "Не удалось загрузить этот звуковой компакт-диск."
 
 #~ msgid "Importation of a song from Audio CD finished."
 #~ msgstr "Импорт композиций с компакт-диска закончен."

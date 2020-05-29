@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-15 21:57+0000\n"
+"POT-Creation-Date: 2020-04-22 17:33+0000\n"
 "PO-Revision-Date: 2017-05-09 22:27+0000\n"
 "Last-Translator: Martin Tomov <martin.tomov@boomer.digital>\n"
 "Language-Team: Bulgarian <https://l10n.elementary.io/projects/music/music/bg/"
@@ -233,70 +233,6 @@ msgstr "Премахване на <b>$NAME</b> - <b>$ARTIST</b> от $DEVICE"
 msgid "Removing from <b>%s</b>…"
 msgstr "Премахване от <b>%s</b>…"
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:91
-msgid "Audio CD Invalid"
-msgstr "Музикалният диск е недействителен"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:95
-msgid "Impossible to read the contents of this Audio CD"
-msgstr "Невъзможно е да се прочете съдържанието на този музикален диск"
-
-#. do checks to make sure we can go on
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid "Could not find Music Folder"
-msgstr "Папката с музика не можа да бъде открита"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid ""
-"Please make sure that your music folder is accessible and mounted before "
-"importing the CD."
-msgstr ""
-"Моля, уверете се, че папката с музика е достъпна и монтирана, преди да "
-"внесете диска."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:256
-msgid ""
-"The Application could not find any songs on the CD. No songs can be imported"
-msgstr ""
-"Приложението не може да намери песни върху диска. Няма да се внесат песни"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:361
-#, fuzzy
-msgid "Song imported from Audio CD."
-msgstr "Импортиране на песни от аудио CD"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:362
-#, fuzzy, c-format
-msgid "%i songs imported from Audio CD."
-msgstr "%s завърши импортирането на песен от Audio CD."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:371
-#, c-format
-msgid "Importing track %u: %s"
-msgstr "Внасяне на песен %u: %s"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:376
-msgid "CD import will be <b>cancelled</b> after current import."
-msgstr "Внасянето от диска ще бъде <b>прекъснато</b> след настоящото."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:395
-msgid "Could not import this CD"
-msgstr ""
-
-#: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
-msgid "Import"
-msgstr "Внасяне"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:37
-#, fuzzy
-msgid "An Error Occurred"
-msgstr "Възникна грешка"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:38
-#, fuzzy
-msgid "Could not load this Audio CD."
-msgstr "%s не успя да прочете съдържанието на това Аудио CD"
-
 #: plugins/Devices/iPod/iPodLibrary.vala:238
 #: plugins/Devices/iPod/iPodLibrary.vala:404
 msgid "Finishing sync process…"
@@ -413,7 +349,7 @@ msgstr ""
 msgid "Import Music"
 msgstr "Внасяне на музика"
 
-#: src/PlaybackManager.vala:104
+#: src/PlaybackManager.vala:117
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Опашка"
@@ -827,6 +763,10 @@ msgstr ""
 msgid "Continue Syncing"
 msgstr "Продължаване на синхронизацията"
 
+#: src/Dialogs/SyncWarningDialog.vala:62
+msgid "Import"
+msgstr "Внасяне"
+
 #: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
 msgid "Importing music from %s…"
@@ -1082,7 +1022,7 @@ msgstr "Без Композитори"
 
 #. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
-#: src/Widgets/EqualizerPopover.vala:328 src/Widgets/PresetList.vala:52
+#: src/Widgets/EqualizerPopover.vala:326 src/Widgets/PresetList.vala:52
 msgid "Automatic"
 msgstr "Автоматично"
 
@@ -1324,29 +1264,29 @@ msgstr "_Отвори"
 msgid "_Cancel"
 msgstr "_Отказ"
 
-#: src/Widgets/EqualizerPopover.vala:167
+#: src/Widgets/EqualizerPopover.vala:162
 msgid "Save preset"
 msgstr "Запазване на фиксирана настройка"
 
-#: src/Widgets/EqualizerPopover.vala:332
+#: src/Widgets/EqualizerPopover.vala:330
 msgid "Off"
 msgstr "Изключено"
 
-#: src/Widgets/EqualizerPopover.vala:420
+#: src/Widgets/EqualizerPopover.vala:418
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s (По избор)"
 
-#: src/Widgets/EqualizerPopover.vala:422
+#: src/Widgets/EqualizerPopover.vala:420
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s (%i по избор)"
 
-#: src/Widgets/EqualizerPopover.vala:425
+#: src/Widgets/EqualizerPopover.vala:423
 msgid "Custom Preset"
 msgstr "Фиксирана настройка по избор"
 
-#: src/Widgets/EqualizerPopover.vala:427
+#: src/Widgets/EqualizerPopover.vala:425
 #, c-format
 msgid "Custom Preset %i"
 msgstr "Фиксирана настройка по избор %i"
@@ -1515,6 +1455,50 @@ msgstr "Изглед като списък"
 #, fuzzy
 msgid "View in columns"
 msgstr "Изглед като колони"
+
+#~ msgid "Audio CD Invalid"
+#~ msgstr "Музикалният диск е недействителен"
+
+#~ msgid "Impossible to read the contents of this Audio CD"
+#~ msgstr "Невъзможно е да се прочете съдържанието на този музикален диск"
+
+#~ msgid "Could not find Music Folder"
+#~ msgstr "Папката с музика не можа да бъде открита"
+
+#~ msgid ""
+#~ "Please make sure that your music folder is accessible and mounted before "
+#~ "importing the CD."
+#~ msgstr ""
+#~ "Моля, уверете се, че папката с музика е достъпна и монтирана, преди да "
+#~ "внесете диска."
+
+#~ msgid ""
+#~ "The Application could not find any songs on the CD. No songs can be "
+#~ "imported"
+#~ msgstr ""
+#~ "Приложението не може да намери песни върху диска. Няма да се внесат песни"
+
+#, fuzzy
+#~ msgid "Song imported from Audio CD."
+#~ msgstr "Импортиране на песни от аудио CD"
+
+#, fuzzy
+#~ msgid "%i songs imported from Audio CD."
+#~ msgstr "%s завърши импортирането на песен от Audio CD."
+
+#~ msgid "Importing track %u: %s"
+#~ msgstr "Внасяне на песен %u: %s"
+
+#~ msgid "CD import will be <b>cancelled</b> after current import."
+#~ msgstr "Внасянето от диска ще бъде <b>прекъснато</b> след настоящото."
+
+#, fuzzy
+#~ msgid "An Error Occurred"
+#~ msgstr "Възникна грешка"
+
+#, fuzzy
+#~ msgid "Could not load this Audio CD."
+#~ msgstr "%s не успя да прочете съдържанието на това Аудио CD"
 
 #~ msgid "Importation of a song from Audio CD finished."
 #~ msgstr "Вкарването на песен от Музикален диск завършено."

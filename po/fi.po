@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-15 21:57+0000\n"
+"POT-Creation-Date: 2020-04-22 17:33+0000\n"
 "PO-Revision-Date: 2018-11-15 18:32+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://weblate.elementary.io/projects/music/music/"
@@ -235,66 +235,6 @@ msgstr ""
 msgid "Removing from <b>%s</b>…"
 msgstr "Poistetaan laitteelta <b>%s</b>…"
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:91
-msgid "Audio CD Invalid"
-msgstr "Audio CD kelvoton"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:95
-msgid "Impossible to read the contents of this Audio CD"
-msgstr "Ääni-CD:n sisällön lukeminen ei onnistu"
-
-#. do checks to make sure we can go on
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid "Could not find Music Folder"
-msgstr "Musiikkikansiota ei löydetty"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid ""
-"Please make sure that your music folder is accessible and mounted before "
-"importing the CD."
-msgstr ""
-"Varmista ennen CD:n tuontia, että musiikkikansiosi on liitetty ja "
-"käytettävissä."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:256
-msgid ""
-"The Application could not find any songs on the CD. No songs can be imported"
-msgstr "CD-levyltä ei löytynyt yhtäkään kappaletta. Kappaleita ei voi tuoda"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:361
-msgid "Song imported from Audio CD."
-msgstr "Kappale tuotu ääni-CD:ltä."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:362
-#, c-format
-msgid "%i songs imported from Audio CD."
-msgstr "%s kappaletta tuotu ääni-CD:ltä."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:371
-#, c-format
-msgid "Importing track %u: %s"
-msgstr "Tuodaan kappaletta %u: %s"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:376
-msgid "CD import will be <b>cancelled</b> after current import."
-msgstr "CD-tuonti <b>perutaan</b> nykyisen tuonnin jälkeen."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:395
-msgid "Could not import this CD"
-msgstr "Tätä CD:tä ei voitu tuoda"
-
-#: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
-msgid "Import"
-msgstr "Tuo"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:37
-msgid "An Error Occurred"
-msgstr "Tapahtui virhe"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:38
-msgid "Could not load this Audio CD."
-msgstr "Tätä ääni-CD:tä ei voitu ladata."
-
 #: plugins/Devices/iPod/iPodLibrary.vala:238
 #: plugins/Devices/iPod/iPodLibrary.vala:404
 msgid "Finishing sync process…"
@@ -411,7 +351,7 @@ msgstr ""
 msgid "Import Music"
 msgstr "Tuo musiikkia"
 
-#: src/PlaybackManager.vala:104
+#: src/PlaybackManager.vala:117
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Jono"
@@ -820,6 +760,10 @@ msgstr ""
 msgid "Continue Syncing"
 msgstr "Jatka synkronointia"
 
+#: src/Dialogs/SyncWarningDialog.vala:62
+msgid "Import"
+msgstr "Tuo"
+
 #: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
 msgid "Importing music from %s…"
@@ -1072,7 +1016,7 @@ msgstr "Ei säveltäjiä"
 
 #. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
-#: src/Widgets/EqualizerPopover.vala:328 src/Widgets/PresetList.vala:52
+#: src/Widgets/EqualizerPopover.vala:326 src/Widgets/PresetList.vala:52
 msgid "Automatic"
 msgstr "Automaattinen"
 
@@ -1316,29 +1260,29 @@ msgstr "_Avaa"
 msgid "_Cancel"
 msgstr "_Peru"
 
-#: src/Widgets/EqualizerPopover.vala:167
+#: src/Widgets/EqualizerPopover.vala:162
 msgid "Save preset"
 msgstr "Tallenna esiasetus"
 
-#: src/Widgets/EqualizerPopover.vala:332
+#: src/Widgets/EqualizerPopover.vala:330
 msgid "Off"
 msgstr "Pois"
 
-#: src/Widgets/EqualizerPopover.vala:420
+#: src/Widgets/EqualizerPopover.vala:418
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s (Mukautettu)"
 
-#: src/Widgets/EqualizerPopover.vala:422
+#: src/Widgets/EqualizerPopover.vala:420
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s (Mukautettu %i)"
 
-#: src/Widgets/EqualizerPopover.vala:425
+#: src/Widgets/EqualizerPopover.vala:423
 msgid "Custom Preset"
 msgstr "Oma esiasetus"
 
-#: src/Widgets/EqualizerPopover.vala:427
+#: src/Widgets/EqualizerPopover.vala:425
 #, c-format
 msgid "Custom Preset %i"
 msgstr "Oma esiasetus %i"
@@ -1499,6 +1443,48 @@ msgstr "Näytä luettelona"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "Näytä sarakkeina"
+
+#~ msgid "Audio CD Invalid"
+#~ msgstr "Audio CD kelvoton"
+
+#~ msgid "Impossible to read the contents of this Audio CD"
+#~ msgstr "Ääni-CD:n sisällön lukeminen ei onnistu"
+
+#~ msgid "Could not find Music Folder"
+#~ msgstr "Musiikkikansiota ei löydetty"
+
+#~ msgid ""
+#~ "Please make sure that your music folder is accessible and mounted before "
+#~ "importing the CD."
+#~ msgstr ""
+#~ "Varmista ennen CD:n tuontia, että musiikkikansiosi on liitetty ja "
+#~ "käytettävissä."
+
+#~ msgid ""
+#~ "The Application could not find any songs on the CD. No songs can be "
+#~ "imported"
+#~ msgstr "CD-levyltä ei löytynyt yhtäkään kappaletta. Kappaleita ei voi tuoda"
+
+#~ msgid "Song imported from Audio CD."
+#~ msgstr "Kappale tuotu ääni-CD:ltä."
+
+#~ msgid "%i songs imported from Audio CD."
+#~ msgstr "%s kappaletta tuotu ääni-CD:ltä."
+
+#~ msgid "Importing track %u: %s"
+#~ msgstr "Tuodaan kappaletta %u: %s"
+
+#~ msgid "CD import will be <b>cancelled</b> after current import."
+#~ msgstr "CD-tuonti <b>perutaan</b> nykyisen tuonnin jälkeen."
+
+#~ msgid "Could not import this CD"
+#~ msgstr "Tätä CD:tä ei voitu tuoda"
+
+#~ msgid "An Error Occurred"
+#~ msgstr "Tapahtui virhe"
+
+#~ msgid "Could not load this Audio CD."
+#~ msgstr "Tätä ääni-CD:tä ei voitu ladata."
 
 #~ msgid "Importation of a song from Audio CD finished."
 #~ msgstr "Kappaleen tuonti ääni-CD:ltä valmistui."

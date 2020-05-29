@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-15 21:57+0000\n"
+"POT-Creation-Date: 2020-04-22 17:33+0000\n"
 "PO-Revision-Date: 2018-11-09 07:20+0000\n"
 "Last-Translator: Elvis Mujanović <elvis.mujanovic@gmail.com>\n"
 "Language-Team: Bosnian <https://weblate.elementary.io/projects/music/music/"
@@ -234,68 +234,6 @@ msgstr "Uklanjanje <b>$NAME</b> od <b>$ARTIST</b> iz $DEVICE"
 msgid "Removing from <b>%s</b>…"
 msgstr "Uklanjanje iz <b>%s</b>…"
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:91
-msgid "Audio CD Invalid"
-msgstr "Audio CD nevaljan"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:95
-msgid "Impossible to read the contents of this Audio CD"
-msgstr "Nije moguće čitati podatke sa ovog Audio CD-a"
-
-#. do checks to make sure we can go on
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid "Could not find Music Folder"
-msgstr "Nije pronađen muzički folder"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid ""
-"Please make sure that your music folder is accessible and mounted before "
-"importing the CD."
-msgstr ""
-"Molimo provjerite da li je moguće pristupiti muzičkom folderu prije "
-"dodavanja CD-a."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:256
-msgid ""
-"The Application could not find any songs on the CD. No songs can be imported"
-msgstr ""
-"Aplikacija nije uspjela da pronađe nikakve pjesme na CD-u. Nema pjesama za "
-"unošenje"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:361
-msgid "Song imported from Audio CD."
-msgstr "Pjesma uvezena s audio CD-a."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:362
-#, c-format
-msgid "%i songs imported from Audio CD."
-msgstr "%i pjesama uvezeno s audio CD-a."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:371
-#, c-format
-msgid "Importing track %u: %s"
-msgstr "Uvoz naslova %u: %s"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:376
-msgid "CD import will be <b>cancelled</b> after current import."
-msgstr "Unošenje sa CD-a će biti <b>prekinuto</b> nakon trenutnog unosa."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:395
-msgid "Could not import this CD"
-msgstr "Nije bilo moguće uvesti ovaj CD"
-
-#: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
-msgid "Import"
-msgstr "Unesi"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:37
-msgid "An Error Occurred"
-msgstr "Došlo je do greške"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:38
-msgid "Could not load this Audio CD."
-msgstr "Nemoguće očitati ovaj audio CD."
-
 #: plugins/Devices/iPod/iPodLibrary.vala:238
 #: plugins/Devices/iPod/iPodLibrary.vala:404
 msgid "Finishing sync process…"
@@ -410,7 +348,7 @@ msgstr ""
 msgid "Import Music"
 msgstr "Uvezi muziku"
 
-#: src/PlaybackManager.vala:104
+#: src/PlaybackManager.vala:117
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Red čekanja"
@@ -826,6 +764,10 @@ msgstr ""
 msgid "Continue Syncing"
 msgstr "Nastavi sinhronizaciju"
 
+#: src/Dialogs/SyncWarningDialog.vala:62
+msgid "Import"
+msgstr "Unesi"
+
 #: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
 msgid "Importing music from %s…"
@@ -1079,7 +1021,7 @@ msgstr "Nema kompozitora"
 
 #. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
-#: src/Widgets/EqualizerPopover.vala:328 src/Widgets/PresetList.vala:52
+#: src/Widgets/EqualizerPopover.vala:326 src/Widgets/PresetList.vala:52
 msgid "Automatic"
 msgstr "Automatski"
 
@@ -1322,29 +1264,29 @@ msgstr "_Otvori"
 msgid "_Cancel"
 msgstr "_Odustani"
 
-#: src/Widgets/EqualizerPopover.vala:167
+#: src/Widgets/EqualizerPopover.vala:162
 msgid "Save preset"
 msgstr "Sačuvaj postavke"
 
-#: src/Widgets/EqualizerPopover.vala:332
+#: src/Widgets/EqualizerPopover.vala:330
 msgid "Off"
 msgstr "Isključeno"
 
-#: src/Widgets/EqualizerPopover.vala:420
+#: src/Widgets/EqualizerPopover.vala:418
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s (ručno)"
 
-#: src/Widgets/EqualizerPopover.vala:422
+#: src/Widgets/EqualizerPopover.vala:420
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s (ručno %i)"
 
-#: src/Widgets/EqualizerPopover.vala:425
+#: src/Widgets/EqualizerPopover.vala:423
 msgid "Custom Preset"
 msgstr "Ručno napravljeni odabir"
 
-#: src/Widgets/EqualizerPopover.vala:427
+#: src/Widgets/EqualizerPopover.vala:425
 #, c-format
 msgid "Custom Preset %i"
 msgstr "Posebno podešen %i"
@@ -1506,6 +1448,50 @@ msgstr "Prikaži kao listu"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "Prikaži u kolumnama"
+
+#~ msgid "Audio CD Invalid"
+#~ msgstr "Audio CD nevaljan"
+
+#~ msgid "Impossible to read the contents of this Audio CD"
+#~ msgstr "Nije moguće čitati podatke sa ovog Audio CD-a"
+
+#~ msgid "Could not find Music Folder"
+#~ msgstr "Nije pronađen muzički folder"
+
+#~ msgid ""
+#~ "Please make sure that your music folder is accessible and mounted before "
+#~ "importing the CD."
+#~ msgstr ""
+#~ "Molimo provjerite da li je moguće pristupiti muzičkom folderu prije "
+#~ "dodavanja CD-a."
+
+#~ msgid ""
+#~ "The Application could not find any songs on the CD. No songs can be "
+#~ "imported"
+#~ msgstr ""
+#~ "Aplikacija nije uspjela da pronađe nikakve pjesme na CD-u. Nema pjesama "
+#~ "za unošenje"
+
+#~ msgid "Song imported from Audio CD."
+#~ msgstr "Pjesma uvezena s audio CD-a."
+
+#~ msgid "%i songs imported from Audio CD."
+#~ msgstr "%i pjesama uvezeno s audio CD-a."
+
+#~ msgid "Importing track %u: %s"
+#~ msgstr "Uvoz naslova %u: %s"
+
+#~ msgid "CD import will be <b>cancelled</b> after current import."
+#~ msgstr "Unošenje sa CD-a će biti <b>prekinuto</b> nakon trenutnog unosa."
+
+#~ msgid "Could not import this CD"
+#~ msgstr "Nije bilo moguće uvesti ovaj CD"
+
+#~ msgid "An Error Occurred"
+#~ msgstr "Došlo je do greške"
+
+#~ msgid "Could not load this Audio CD."
+#~ msgstr "Nemoguće očitati ovaj audio CD."
 
 #~ msgid "Importation of a song from Audio CD finished."
 #~ msgstr "Unošenje pjesama sa Audio CD-a izvršeno."

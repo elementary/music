@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-15 21:57+0000\n"
+"POT-Creation-Date: 2020-04-22 17:33+0000\n"
 "PO-Revision-Date: 2019-05-15 02:02+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://l10n.elementary.io/projects/music/music/mr/"
@@ -228,65 +228,6 @@ msgstr "$DEVICE मधून <b>$ARTIST</b> यांचे <b>$NAME</b> का�
 msgid "Removing from <b>%s</b>…"
 msgstr "<b>%s</b>मधून काढले जात आहे…"
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:91
-msgid "Audio CD Invalid"
-msgstr "अयोग्य ऑडिओ CD"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:95
-msgid "Impossible to read the contents of this Audio CD"
-msgstr "या ऑडिओ CD मधले साहित्य ऐकले जाऊ शकत नाही"
-
-#. do checks to make sure we can go on
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid "Could not find Music Folder"
-msgstr "संगीत असलेले फोल्डर सापडले नाही"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid ""
-"Please make sure that your music folder is accessible and mounted before "
-"importing the CD."
-msgstr ""
-"कृपया आपले संगीत असलेले फोल्डर सहज वापरता येण्याजोगे आणि माउंट केलेले असल्याची खात्री करा."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:256
-msgid ""
-"The Application could not find any songs on the CD. No songs can be imported"
-msgstr "अप्लिकेशन ला CD वर एकही गाणे सापडले नाही. गाणी आणू शकत नाही"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:361
-msgid "Song imported from Audio CD."
-msgstr "ऑडिओ सीडीमधून आयात केलेले गाणे."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:362
-#, c-format
-msgid "%i songs imported from Audio CD."
-msgstr "%i ऑडिओ सीडीमधून आयात केलेली गाणी."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:371
-#, c-format
-msgid "Importing track %u: %s"
-msgstr "%u: %s ट्रॅक आयात करीत आहे"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:376
-msgid "CD import will be <b>cancelled</b> after current import."
-msgstr "चालू आयातानंतर सीडी आयात <b>रद्द </b>करण्यात येईल."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:395
-msgid "Could not import this CD"
-msgstr "ही सीडी आयात करू शकलो नाही"
-
-#: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
-msgid "Import"
-msgstr "आयात"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:37
-msgid "An Error Occurred"
-msgstr "एक त्रुटी आली"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:38
-msgid "Could not load this Audio CD."
-msgstr "ही ऑडिओ सीडी लोड शकली नाही."
-
 #: plugins/Devices/iPod/iPodLibrary.vala:238
 #: plugins/Devices/iPod/iPodLibrary.vala:404
 msgid "Finishing sync process…"
@@ -399,7 +340,7 @@ msgstr ""
 msgid "Import Music"
 msgstr "संगीत आयात करा"
 
-#: src/PlaybackManager.vala:104
+#: src/PlaybackManager.vala:117
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "ओळ"
@@ -807,6 +748,10 @@ msgstr ""
 msgid "Continue Syncing"
 msgstr "संकालन सुरू ठेवा"
 
+#: src/Dialogs/SyncWarningDialog.vala:62
+msgid "Import"
+msgstr "आयात"
+
 #: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
 msgid "Importing music from %s…"
@@ -1057,7 +1002,7 @@ msgstr "संगीतकार नसलेले"
 
 #. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
-#: src/Widgets/EqualizerPopover.vala:328 src/Widgets/PresetList.vala:52
+#: src/Widgets/EqualizerPopover.vala:326 src/Widgets/PresetList.vala:52
 msgid "Automatic"
 msgstr "स्वयंगतिक"
 
@@ -1298,29 +1243,29 @@ msgstr "(_O)उघडा"
 msgid "_Cancel"
 msgstr "(_C)रद्द करा"
 
-#: src/Widgets/EqualizerPopover.vala:167
+#: src/Widgets/EqualizerPopover.vala:162
 msgid "Save preset"
 msgstr "प्रीसेट जतन करा"
 
-#: src/Widgets/EqualizerPopover.vala:332
+#: src/Widgets/EqualizerPopover.vala:330
 msgid "Off"
 msgstr "बंद"
 
-#: src/Widgets/EqualizerPopover.vala:420
+#: src/Widgets/EqualizerPopover.vala:418
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s (सानुकूल)"
 
-#: src/Widgets/EqualizerPopover.vala:422
+#: src/Widgets/EqualizerPopover.vala:420
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s (सानुकूल %i)"
 
-#: src/Widgets/EqualizerPopover.vala:425
+#: src/Widgets/EqualizerPopover.vala:423
 msgid "Custom Preset"
 msgstr "सानुकूल प्रीसेट"
 
-#: src/Widgets/EqualizerPopover.vala:427
+#: src/Widgets/EqualizerPopover.vala:425
 #, c-format
 msgid "Custom Preset %i"
 msgstr "सानुकूल प्रीसेट %i"
@@ -1481,6 +1426,48 @@ msgstr "यादी म्हणून पहा"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "स्तंभांमध्ये पहा"
+
+#~ msgid "Audio CD Invalid"
+#~ msgstr "अयोग्य ऑडिओ CD"
+
+#~ msgid "Impossible to read the contents of this Audio CD"
+#~ msgstr "या ऑडिओ CD मधले साहित्य ऐकले जाऊ शकत नाही"
+
+#~ msgid "Could not find Music Folder"
+#~ msgstr "संगीत असलेले फोल्डर सापडले नाही"
+
+#~ msgid ""
+#~ "Please make sure that your music folder is accessible and mounted before "
+#~ "importing the CD."
+#~ msgstr ""
+#~ "कृपया आपले संगीत असलेले फोल्डर सहज वापरता येण्याजोगे आणि माउंट केलेले असल्याची खात्री "
+#~ "करा."
+
+#~ msgid ""
+#~ "The Application could not find any songs on the CD. No songs can be "
+#~ "imported"
+#~ msgstr "अप्लिकेशन ला CD वर एकही गाणे सापडले नाही. गाणी आणू शकत नाही"
+
+#~ msgid "Song imported from Audio CD."
+#~ msgstr "ऑडिओ सीडीमधून आयात केलेले गाणे."
+
+#~ msgid "%i songs imported from Audio CD."
+#~ msgstr "%i ऑडिओ सीडीमधून आयात केलेली गाणी."
+
+#~ msgid "Importing track %u: %s"
+#~ msgstr "%u: %s ट्रॅक आयात करीत आहे"
+
+#~ msgid "CD import will be <b>cancelled</b> after current import."
+#~ msgstr "चालू आयातानंतर सीडी आयात <b>रद्द </b>करण्यात येईल."
+
+#~ msgid "Could not import this CD"
+#~ msgstr "ही सीडी आयात करू शकलो नाही"
+
+#~ msgid "An Error Occurred"
+#~ msgstr "एक त्रुटी आली"
+
+#~ msgid "Could not load this Audio CD."
+#~ msgstr "ही ऑडिओ सीडी लोड शकली नाही."
 
 #~ msgid "Importation of a song from Audio CD finished."
 #~ msgstr "ऑडिओ CD मधून एक गाणे पूर्णपणे आणले गेले."

@@ -675,9 +675,9 @@ public class Music.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWindow
         bool media_available = App.player.get_current_media_list ().size > 0;
 
         ((SimpleAction) lookup_action (ACTION_IMPORT)).set_enabled (!doing_ops && folder_set);
-        ((SimpleAction) lookup_action (ACTION_PLAY)).set_enabled (media_active || media_available);
-        ((SimpleAction) lookup_action (ACTION_PLAY_NEXT)).set_enabled (media_active || media_available);
-        ((SimpleAction) lookup_action (ACTION_PLAY_PREVIOUS)).set_enabled (media_active || media_available);
+        ((SimpleAction) lookup_action (ACTION_PLAY)).set_enabled (media_active || media_available || have_media);
+        ((SimpleAction) lookup_action (ACTION_PLAY_NEXT)).set_enabled (media_active || media_available || have_media);
+        ((SimpleAction) lookup_action (ACTION_PLAY_PREVIOUS)).set_enabled (media_active || media_available || have_media);
 
         // hide playlists when media list is empty
         source_list_view.change_playlist_category_visibility (have_media);

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-15 21:57+0000\n"
+"POT-Creation-Date: 2020-04-22 17:33+0000\n"
 "PO-Revision-Date: 2019-02-12 00:06+0000\n"
 "Last-Translator: Rico Tzschichholz <ricotz@ubuntu.com>\n"
 "Language-Team: Slovak <https://weblate.elementary.io/projects/music/music/sk/"
@@ -234,70 +234,6 @@ msgstr "Odstraňovanie <b>$MENO</b> od <b>$UMELEC</b> z $ZARIADENIE"
 msgid "Removing from <b>%s</b>…"
 msgstr "Odstraňovanie z <b>%s</b>..."
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:91
-msgid "Audio CD Invalid"
-msgstr "Neplatné Audio CD"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:95
-msgid "Impossible to read the contents of this Audio CD"
-msgstr "Nemožné prečítať obsah tohoto Audio CD"
-
-#. do checks to make sure we can go on
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid "Could not find Music Folder"
-msgstr "Nedal sa nájsť priečinok s hudbou"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid ""
-"Please make sure that your music folder is accessible and mounted before "
-"importing the CD."
-msgstr ""
-"Prosím uistite sa že hudobný priečinok je prístupný a pripojený pred "
-"importovaním z CD."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:256
-msgid ""
-"The Application could not find any songs on the CD. No songs can be imported"
-msgstr ""
-"Aplikácia nemohla nájsť žiadnu pieseň na tomto CD. žiadne piesne neboli "
-"importované"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:361
-msgid "Song imported from Audio CD."
-msgstr ""
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:362
-#, c-format
-msgid "%i songs imported from Audio CD."
-msgstr ""
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:371
-#, c-format
-msgid "Importing track %u: %s"
-msgstr ""
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:376
-msgid "CD import will be <b>cancelled</b> after current import."
-msgstr "Importovanie CD bude <b>zrušené</b> po súčasnom importe."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:395
-msgid "Could not import this CD"
-msgstr ""
-
-#: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
-msgid "Import"
-msgstr "Importovať"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:37
-#, fuzzy
-msgid "An Error Occurred"
-msgstr "Nastala chyba"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:38
-#, fuzzy
-msgid "Could not load this Audio CD."
-msgstr "Nastala chyba behom čítania z Audio CD."
-
 #: plugins/Devices/iPod/iPodLibrary.vala:238
 #: plugins/Devices/iPod/iPodLibrary.vala:404
 msgid "Finishing sync process…"
@@ -412,7 +348,7 @@ msgstr ""
 msgid "Import Music"
 msgstr "Importovať hudbu"
 
-#: src/PlaybackManager.vala:104
+#: src/PlaybackManager.vala:117
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Poradie"
@@ -833,6 +769,10 @@ msgstr ""
 msgid "Continue Syncing"
 msgstr "Pokračovať v synchronizácii"
 
+#: src/Dialogs/SyncWarningDialog.vala:62
+msgid "Import"
+msgstr "Importovať"
+
 #: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
 msgid "Importing music from %s…"
@@ -1086,7 +1026,7 @@ msgstr "Žiadni skladatelia"
 
 #. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
-#: src/Widgets/EqualizerPopover.vala:328 src/Widgets/PresetList.vala:52
+#: src/Widgets/EqualizerPopover.vala:326 src/Widgets/PresetList.vala:52
 msgid "Automatic"
 msgstr "Automaticky"
 
@@ -1328,29 +1268,29 @@ msgstr "_Otvoriť"
 msgid "_Cancel"
 msgstr "_Zrušiť"
 
-#: src/Widgets/EqualizerPopover.vala:167
+#: src/Widgets/EqualizerPopover.vala:162
 msgid "Save preset"
 msgstr "Uložiť predvoľbu"
 
-#: src/Widgets/EqualizerPopover.vala:332
+#: src/Widgets/EqualizerPopover.vala:330
 msgid "Off"
 msgstr "Vypnúť"
 
-#: src/Widgets/EqualizerPopover.vala:420
+#: src/Widgets/EqualizerPopover.vala:418
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s (Vlastné)"
 
-#: src/Widgets/EqualizerPopover.vala:422
+#: src/Widgets/EqualizerPopover.vala:420
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s (Vlastné %i)"
 
-#: src/Widgets/EqualizerPopover.vala:425
+#: src/Widgets/EqualizerPopover.vala:423
 msgid "Custom Preset"
 msgstr "Vlastné nastavenie"
 
-#: src/Widgets/EqualizerPopover.vala:427
+#: src/Widgets/EqualizerPopover.vala:425
 #, c-format
 msgid "Custom Preset %i"
 msgstr "Vlastné nastavenie %i"
@@ -1520,6 +1460,40 @@ msgstr "Zobraziť ako zoznam"
 #, fuzzy
 msgid "View in columns"
 msgstr "Zobraziť v stĺpcoch"
+
+#~ msgid "Audio CD Invalid"
+#~ msgstr "Neplatné Audio CD"
+
+#~ msgid "Impossible to read the contents of this Audio CD"
+#~ msgstr "Nemožné prečítať obsah tohoto Audio CD"
+
+#~ msgid "Could not find Music Folder"
+#~ msgstr "Nedal sa nájsť priečinok s hudbou"
+
+#~ msgid ""
+#~ "Please make sure that your music folder is accessible and mounted before "
+#~ "importing the CD."
+#~ msgstr ""
+#~ "Prosím uistite sa že hudobný priečinok je prístupný a pripojený pred "
+#~ "importovaním z CD."
+
+#~ msgid ""
+#~ "The Application could not find any songs on the CD. No songs can be "
+#~ "imported"
+#~ msgstr ""
+#~ "Aplikácia nemohla nájsť žiadnu pieseň na tomto CD. žiadne piesne neboli "
+#~ "importované"
+
+#~ msgid "CD import will be <b>cancelled</b> after current import."
+#~ msgstr "Importovanie CD bude <b>zrušené</b> po súčasnom importe."
+
+#, fuzzy
+#~ msgid "An Error Occurred"
+#~ msgstr "Nastala chyba"
+
+#, fuzzy
+#~ msgid "Could not load this Audio CD."
+#~ msgstr "Nastala chyba behom čítania z Audio CD."
 
 #~ msgid "Importation of a song from Audio CD finished."
 #~ msgstr "Importovanie piesní z Audio CD dokončené."

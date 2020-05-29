@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-15 21:57+0000\n"
-"PO-Revision-Date: 2019-08-27 22:22+0000\n"
-"Last-Translator: David M <rbndavid@gmail.com>\n"
+"POT-Creation-Date: 2020-04-22 17:33+0000\n"
+"PO-Revision-Date: 2020-03-24 20:09+0000\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Catalan <https://l10n.elementary.io/projects/music/music/ca/"
 ">\n"
 "Language: ca\n"
@@ -17,12 +17,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:51+0000\n"
 
 #: core/LibrariesManager.vala:146
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "S'importa  <b>$NAME</b> fet per <b>$ARTIST</b> a la biblioteca…"
+msgstr "S'importa  <b>$NAME</b> fet per <b>$ARTIST</b> a la col·lecció…"
 
 #. / Used for unknown titles, artists, or album names.
 #: core/Media.vala:33
@@ -235,67 +235,6 @@ msgstr "Se suprimeix <b>$NAME</b> fet per <b>$ARTIST</b> de $DEVICE"
 msgid "Removing from <b>%s</b>…"
 msgstr "Se suprimeix de <b>%s</b>…"
 
-#: plugins/Devices/CDRom/CDRomDevice.vala:91
-msgid "Audio CD Invalid"
-msgstr "El CD d'àudio no és vàlid"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:95
-msgid "Impossible to read the contents of this Audio CD"
-msgstr "No ha estat possible llegir el contingut d'aquest CD d'àudio"
-
-#. do checks to make sure we can go on
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid "Could not find Music Folder"
-msgstr "No s'ha pogut trobar la carpeta de música"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:250
-msgid ""
-"Please make sure that your music folder is accessible and mounted before "
-"importing the CD."
-msgstr ""
-"Assegureu-vos que la carpeta de música sigui accessible i muntada abans de "
-"la importació del CD."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:256
-msgid ""
-"The Application could not find any songs on the CD. No songs can be imported"
-msgstr "L'aplicació no pot trobar cançons al CD. No es pot importar cap cançó"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:361
-msgid "Song imported from Audio CD."
-msgstr "Cançó importada des d'un CD d'àudio."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:362
-#, c-format
-msgid "%i songs imported from Audio CD."
-msgstr "%i cançons importades des d'un CD d'àudio."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:371
-#, c-format
-msgid "Importing track %u: %s"
-msgstr "S'importa la pista %u: %s"
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:376
-msgid "CD import will be <b>cancelled</b> after current import."
-msgstr ""
-"La importació del CD <b>es cancel·larà</b> després de la importació actual."
-
-#: plugins/Devices/CDRom/CDRomDevice.vala:395
-msgid "Could not import this CD"
-msgstr "No s'ha pogut importar aquest CD"
-
-#: plugins/Devices/CDRom/CDView.vala:75 src/Dialogs/SyncWarningDialog.vala:62
-msgid "Import"
-msgstr "Importa"
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:37
-msgid "An Error Occurred"
-msgstr "S'ha produït un error."
-
-#: plugins/Devices/CDRom/CDViewWrapper.vala:38
-msgid "Could not load this Audio CD."
-msgstr "No s'ha pogut carregar aquest CD d'àudio."
-
 #: plugins/Devices/iPod/iPodLibrary.vala:238
 #: plugins/Devices/iPod/iPodLibrary.vala:404
 msgid "Finishing sync process…"
@@ -316,9 +255,9 @@ msgid ""
 "all song info is correct and you are connected to the Internet. Some songs "
 "may not have matches."
 msgstr ""
-"No hi ha cap cançó similar a la cançó en reproducció a la vostra  "
-"biblioteca. Assegureu-vos que tota la informació de la cançó és correcta i "
-"que esteu connectat a Internet. Algunes cançons poden no tenir coincidències."
+"No hi ha cap cançó similar a la cançó en reproducció a la vostra col·lecció. "
+"Assegureu-vos que tota la informació de la cançó és correcta i que esteu "
+"connectat a Internet. Algunes cançons poden no tenir coincidències."
 
 #: plugins/LastFM/SimilarMedia.vala:44
 msgid "Similar"
@@ -338,7 +277,7 @@ msgstr "S'ha completat la importació"
 
 #: src/FileOperator.vala:306
 msgid "Your Library Has Been Imported."
-msgstr "S'ha importat la biblioteca."
+msgstr "S'ha importat la col·lecció."
 
 #. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:316
@@ -352,7 +291,7 @@ msgstr "Música"
 
 #: src/LibraryWindow.vala:214
 msgid "Import to Library…"
-msgstr "Importa a la biblioteca…"
+msgstr "Importa a la col·lecció…"
 
 #: src/LibraryWindow.vala:217 src/Dialogs/PreferencesWindow.vala:40
 msgid "Preferences"
@@ -410,7 +349,7 @@ msgstr ""
 msgid "Import Music"
 msgstr "Importa música"
 
-#: src/PlaybackManager.vala:104
+#: src/PlaybackManager.vala:117
 msgctxt "Name of the playlist"
 msgid "Queue"
 msgstr "Cua"
@@ -431,7 +370,7 @@ msgstr "No s'han pogut trobar %i fitxers de música?"
 
 #: src/Dialogs/FileNotFoundDialog.vala:53
 msgid "Rescan Library"
-msgstr "Torna a examinar la biblioteca"
+msgstr "Torna a examinar la col·lecció"
 
 #: src/Dialogs/FileNotFoundDialog.vala:54
 msgid "Remove Song"
@@ -561,7 +500,7 @@ msgstr "Ubicació de la carpeta de música"
 
 #: src/Dialogs/PreferencesWindow.vala:80
 msgid "Library Management"
-msgstr "Gestió de la biblioteca"
+msgstr "Gestió de la col·lecció"
 
 #: src/Dialogs/PreferencesWindow.vala:81
 msgid "Keep Music folder organized:"
@@ -573,7 +512,7 @@ msgstr "Escriu metadades al fitxer:"
 
 #: src/Dialogs/PreferencesWindow.vala:85
 msgid "Copy imported files to Library:"
-msgstr "Copia els fitxers importats a la biblioteca:"
+msgstr "Copia els fitxers importats a la col·lecció:"
 
 #: src/Dialogs/PreferencesWindow.vala:87
 msgid "Desktop Integration"
@@ -587,13 +526,13 @@ msgstr "Continua la reproducció en tancar:"
 #, c-format
 msgid "Remove %d Song From Library?"
 msgid_plural "Remove %d Songs From Library?"
-msgstr[0] "Voleu suprimir %d cançó de la biblioteca?"
-msgstr[1] "Voleu suprimir %d cançons de la biblioteca?"
+msgstr[0] "Voleu suprimir %d cançó de la col·lecció?"
+msgstr[1] "Voleu suprimir %d cançons de la col·lecció?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:55
 #, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr "Se suprimeix \"%s\" de la biblioteca?"
+msgstr "Se suprimeix «%s» de la col·lecció?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
 msgid ""
@@ -603,15 +542,15 @@ msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
 msgstr[0] ""
-"Això suprimirà la cançó de la vostra biblioteca i de tots els dispositius "
+"Això suprimirà la cançó de la vostra col·lecció i de tots els dispositius "
 "que s'hi sincronitzin automàticament."
 msgstr[1] ""
-"Això suprimirà les cançons de la vostra biblioteca i de tots els dispositius "
+"Això suprimirà les cançons de la vostra col·lecció i de tots els dispositius "
 "que s'hi sincronitzin automàticament."
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
-msgstr "Suprimeix de la biblioteca"
+msgstr "Suprimeix de la col·lecció"
 
 #: src/Dialogs/SetMusicFolderConfirmation.vala:38
 msgid "Set Music Folder?"
@@ -624,7 +563,7 @@ msgid ""
 "library and remove your playlists."
 msgstr ""
 "Esteu segur que voleu que %s sigui la vostra carpeta de música? Això "
-"reiniciarà la biblioteca i suprimirà les llistes de reproducció."
+"reinicialitzarà la col·lecció i suprimirà les llistes de reproducció."
 
 #: src/Dialogs/SetMusicFolderConfirmation.vala:47
 msgid "Export Playlists"
@@ -814,11 +753,15 @@ msgid ""
 msgstr ""
 "Si countinueu amb la sincronització, els elements multimèdia seran suprimits "
 "de %s ja que no són a la llista de sincronització. Voleu importar-los a la "
-"biblioteca abans de procedir?"
+"col·lecció abans de procedir?"
 
 #: src/Dialogs/SyncWarningDialog.vala:57
 msgid "Continue Syncing"
 msgstr "Continua la sincronització"
+
+#: src/Dialogs/SyncWarningDialog.vala:62
+msgid "Import"
+msgstr "Importa"
 
 #: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
@@ -827,11 +770,11 @@ msgstr "S'importa música des de %s…"
 
 #: src/LocalBackend/LocalLibrary.vala:215
 msgid "Adding files to library…"
-msgstr "S'afegeixen fitxers a la biblioteca…"
+msgstr "S'afegeixen fitxers a la col·lecció…"
 
 #: src/LocalBackend/LocalLibrary.vala:228
 msgid "<b>Importing</b> music to library…"
-msgstr "<b>S'importa</b> música a la biblioteca…"
+msgstr "<b>S'importa</b> música a la col·lecció…"
 
 #: src/LocalBackend/LocalLibrary.vala:250
 msgid "All music files are already in your library"
@@ -1074,7 +1017,7 @@ msgstr "Sense compositors"
 
 #. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
-#: src/Widgets/EqualizerPopover.vala:328 src/Widgets/PresetList.vala:52
+#: src/Widgets/EqualizerPopover.vala:326 src/Widgets/PresetList.vala:52
 msgid "Automatic"
 msgstr "Automàtic"
 
@@ -1233,7 +1176,7 @@ msgstr "Aconseguïu algunes cançons"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:57
 msgid "Add music to your library."
-msgstr "Afegiu música a la vostra biblioteca."
+msgstr "Afegiu música a la vostra col·lecció."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import music from a source into your library."
@@ -1256,7 +1199,7 @@ msgstr "Importeu la vostra música"
 #: src/Views/Wrappers/MusicViewWrapper.vala:131
 #, c-format
 msgid "Import all your Music from %s into your library."
-msgstr "Importa tota la música des de %s a la biblioteca."
+msgstr "Importa tota la música des de %s a la col·lecció."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:143
 msgid "Select Music Folder"
@@ -1317,29 +1260,29 @@ msgstr "_Obre"
 msgid "_Cancel"
 msgstr "_Cancel·la"
 
-#: src/Widgets/EqualizerPopover.vala:167
+#: src/Widgets/EqualizerPopover.vala:162
 msgid "Save preset"
 msgstr "Desa els valors predefinits"
 
-#: src/Widgets/EqualizerPopover.vala:332
+#: src/Widgets/EqualizerPopover.vala:330
 msgid "Off"
 msgstr "Inactiu"
 
-#: src/Widgets/EqualizerPopover.vala:420
+#: src/Widgets/EqualizerPopover.vala:418
 #, c-format
 msgid "%s (Custom)"
 msgstr "%s (Personalitzat)"
 
-#: src/Widgets/EqualizerPopover.vala:422
+#: src/Widgets/EqualizerPopover.vala:420
 #, c-format
 msgid "%s (Custom %i)"
 msgstr "%s (%i personalitzat)"
 
-#: src/Widgets/EqualizerPopover.vala:425
+#: src/Widgets/EqualizerPopover.vala:423
 msgid "Custom Preset"
 msgstr "Valors predefinits personalitzats"
 
-#: src/Widgets/EqualizerPopover.vala:427
+#: src/Widgets/EqualizerPopover.vala:425
 #, c-format
 msgid "Custom Preset %i"
 msgstr "Valors predefinits personalitzats de %i"
@@ -1375,11 +1318,11 @@ msgstr "Suprimeix la cançó…"
 
 #: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
 msgid "Import to Library"
-msgstr "Importa a la biblioteca"
+msgstr "Importa a la col·lecció"
 
 #: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
 msgid "Remove from Library…"
-msgstr "Suprimeix de la biblioteca…"
+msgstr "Suprimeix de la col·lecció…"
 
 #: src/Widgets/MediaMenu.vala:99
 msgid "Remove from Device"
@@ -1444,7 +1387,7 @@ msgstr "Importa les llistes de reproducció"
 #. Adds the different sidebar categories.
 #: src/Widgets/SourceListView.vala:338
 msgid "Library"
-msgstr "Biblioteca"
+msgstr "Col·lecció"
 
 #: src/Widgets/SourceListView.vala:339
 msgid "Devices"
@@ -1500,6 +1443,51 @@ msgstr "Visualitza-ho com a llista"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "Visualitza-ho en columnes"
+
+#~ msgid "Audio CD Invalid"
+#~ msgstr "El CD d'àudio no és vàlid"
+
+#~ msgid "Impossible to read the contents of this Audio CD"
+#~ msgstr "No ha estat possible llegir el contingut d'aquest CD d'àudio"
+
+#~ msgid "Could not find Music Folder"
+#~ msgstr "No s'ha pogut trobar la carpeta de música"
+
+#~ msgid ""
+#~ "Please make sure that your music folder is accessible and mounted before "
+#~ "importing the CD."
+#~ msgstr ""
+#~ "Assegureu-vos que la carpeta de música sigui accessible i muntada abans "
+#~ "de la importació del CD."
+
+#~ msgid ""
+#~ "The Application could not find any songs on the CD. No songs can be "
+#~ "imported"
+#~ msgstr ""
+#~ "L'aplicació no pot trobar cançons al CD. No es pot importar cap cançó"
+
+#~ msgid "Song imported from Audio CD."
+#~ msgstr "Cançó importada des d'un CD d'àudio."
+
+#~ msgid "%i songs imported from Audio CD."
+#~ msgstr "%i cançons importades des d'un CD d'àudio."
+
+#~ msgid "Importing track %u: %s"
+#~ msgstr "S'importa la pista %u: %s"
+
+#~ msgid "CD import will be <b>cancelled</b> after current import."
+#~ msgstr ""
+#~ "La importació del CD <b>es cancel·larà</b> després de la importació "
+#~ "actual."
+
+#~ msgid "Could not import this CD"
+#~ msgstr "No s'ha pogut importar aquest CD"
+
+#~ msgid "An Error Occurred"
+#~ msgstr "S'ha produït un error."
+
+#~ msgid "Could not load this Audio CD."
+#~ msgstr "No s'ha pogut carregar aquest CD d'àudio."
 
 #~ msgid "Importation of a song from Audio CD finished."
 #~ msgstr "Ha acabat la importació d'una cançó del CD d'àudio."
