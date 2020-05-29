@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-22 17:33+0000\n"
-"PO-Revision-Date: 2020-02-14 17:08+0000\n"
-"Last-Translator: Daniel R. <riesp@pm.me>\n"
-"Language-Team: Spanish <https://l10n.elementary.io/projects/music/extra/es/"
-">\n"
+"PO-Revision-Date: 2020-05-30 13:11+0000\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
+"Language-Team: Spanish <https://l10n.elementary.io/projects/music/extra/es/>"
+"\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,7 +39,7 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:16
 msgid "Drop support for CD-ROM"
-msgstr ""
+msgstr "Ya no se admiten CD-ROM"
 
 #: data/io.elementary.music.appdata.xml.in:17
 #: data/io.elementary.music.appdata.xml.in:24
@@ -83,14 +83,14 @@ msgstr "Recordar con precisión el tamaño de la ventana"
 
 #: data/io.elementary.music.appdata.xml.in:39
 msgid "Scale album art properly at high resolutions"
-msgstr "Escalar la carátula del álbum correctamente a altas resoluciones"
+msgstr "Se escala la cubierta del álbum correctamente en resoluciones altas"
 
 #: data/io.elementary.music.appdata.xml.in:40
 msgid ""
 "Accurately select Music Folder Location for directories with spaces in name"
 msgstr ""
-"Seleccionar con precisión la ubicación de la carpeta de música para "
-"directorios con espacios en el nombre"
+"Selección precisa de la ubicación de la carpeta de música en directorios con "
+"espacios en el nombre"
 
 #: data/io.elementary.music.appdata.xml.in:41
 msgid "New MediaKeyListener path for gnome-settings-daemon"
@@ -131,11 +131,11 @@ msgstr "Fijar la lista de ordenación y las vistas de columna"
 
 #: data/io.elementary.music.appdata.xml.in:59
 msgid "Add orange accent color"
-msgstr "Añadir color de acento naranja"
+msgstr "Se añadió el color de realce naranja"
 
 #: data/io.elementary.music.appdata.xml.in:60
 msgid "Add shortcut accels to tooltips"
-msgstr "Agregar accesos directos a la información sobre herramientas"
+msgstr "Se añadieron atajos a las descripciones emergentes"
 
 #: data/io.elementary.music.appdata.xml.in:67
 msgid "Various UI changes"
@@ -147,7 +147,7 @@ msgstr "Correcciones en el modo aleatorio"
 
 #: data/io.elementary.music.appdata.xml.in:69
 msgid "Initial MPRIS support"
-msgstr "Soporte inicial de MPRIS"
+msgstr "Compatibilidad inicial con MPRIS"
 
 #: data/io.elementary.music.appdata.xml.in:76
 msgid "Detect library changes at startup."
@@ -155,7 +155,7 @@ msgstr "Detectar cambios en la biblioteca al iniciar."
 
 #: data/io.elementary.music.appdata.xml.in:77
 msgid "Support searching by URI"
-msgstr "Soporte de búsqueda por URI"
+msgstr "Se permiten las búsquedas por URI"
 
 #: data/io.elementary.music.appdata.xml.in:78
 msgid "Change the queue mechanism to make it less confusing."
