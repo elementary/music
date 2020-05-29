@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-22 17:33+0000\n"
-"PO-Revision-Date: 2020-05-11 12:10+0000\n"
+"PO-Revision-Date: 2020-05-30 13:11+0000\n"
 "Last-Translator: p-bo <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://l10n.elementary.io/projects/music/music/cs/>\n"
 "Language: cs\n"
@@ -145,7 +145,7 @@ msgstr "Seznam skladeb Shoutcast verze 2.0 (*.pls)"
 
 #: core/Utils/PlaylistsUtils.vala:272
 msgid "Export Playlist"
-msgstr "Exportovat playlist"
+msgstr "Exportovat seznam stop"
 
 #: core/Utils/PlaylistsUtils.vala:275 src/Dialogs/MediaEditor.vala:133
 #: src/Dialogs/SmartPlaylistEditor.vala:89
@@ -163,11 +163,11 @@ msgstr "Uložit"
 #: src/Dialogs/SyncWarningDialog.vala:60
 #: src/Views/Wrappers/MusicViewWrapper.vala:147 src/Widgets/TopDisplay.vala:64
 msgid "Cancel"
-msgstr "Zrušit"
+msgstr "Storno"
 
 #: core/Utils/PlaylistsUtils.vala:329
 msgid "Playlist"
-msgstr "Playlist"
+msgstr "Seznam stop"
 
 #: core/Utils/PlaylistsUtils.vala:341
 #, c-format
@@ -219,7 +219,7 @@ msgstr "Přidávání <b>$NAME</b> od <b>$ARTIST</b> na $DEVICE"
 #: plugins/Devices/iPod/iPodLibrary.vala:216
 #, c-format
 msgid "Syncing <b>%s</b>…"
-msgstr "Synchronizuji <b>%s</b>…"
+msgstr "Synchronizace <b>%s</b>…"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:283
 #: plugins/Devices/iPod/iPodLibrary.vala:561
@@ -230,17 +230,17 @@ msgstr "Odstraňování <b>$NAME</b> od <b>$ARTIST</b> z $DEVICE"
 #: plugins/Devices/iPod/iPodLibrary.vala:366
 #, c-format
 msgid "Removing from <b>%s</b>…"
-msgstr "Odstraňuji z <b>%s</b>…"
+msgstr "Odstraňování z <b>%s</b>…"
 
 #: plugins/Devices/iPod/iPodLibrary.vala:238
 #: plugins/Devices/iPod/iPodLibrary.vala:404
 msgid "Finishing sync process…"
-msgstr "Dokončuji synchronizaci…"
+msgstr "Dokončování synchronizace…"
 
 #: plugins/Devices/iPod/iPodLibrary.vala:250
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
-msgstr "Ruším synchronizaci…"
+msgstr "Rušení synchronizace…"
 
 #: plugins/LastFM/LastFM.vala:98
 msgid "No similar songs found"
@@ -394,7 +394,7 @@ msgstr "Tuto skladbu nelze přehrát. Pro přehrání je vyžadován plugin %s."
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:51
 msgid "Install Plugin"
-msgstr "Nainstalovat plugin"
+msgstr "Nainstalovat zásuvný modul"
 
 #: src/Dialogs/MediaEditor.vala:96
 msgid "Title:"
@@ -513,7 +513,7 @@ msgstr "Kopírovat importované soubory do knihovny:"
 
 #: src/Dialogs/PreferencesWindow.vala:87
 msgid "Desktop Integration"
-msgstr "Integrace do pracovní plochy"
+msgstr "Začlenění do desktopového prostředí"
 
 #: src/Dialogs/PreferencesWindow.vala:88
 msgid "Continue playback when closed:"
@@ -530,7 +530,7 @@ msgstr[2] "Odebrat %d písní z knihovny?"
 #: src/Dialogs/RemoveFilesDialog.vala:55
 #, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr "Odstranit \"%s\" z knihovny?"
+msgstr "Odstranit „%s“ z knihovny?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
 msgid ""
@@ -564,7 +564,7 @@ msgid ""
 "library and remove your playlists."
 msgstr ""
 "Opravdu chcete nastavit jako hudební složku %s? Pokud tak učiníte, smaže se "
-"importovaná knihovna a playlisty."
+"importovaná knihovna a seznamy skladeb."
 
 #: src/Dialogs/SetMusicFolderConfirmation.vala:47
 msgid "Export Playlists"
@@ -576,7 +576,7 @@ msgstr "Vybrat složku s hudbou"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:55
 msgid "Playlist Title"
-msgstr "Název playlistu"
+msgstr "Název seznamu skladeb"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:58
 msgid "any"
@@ -641,7 +641,7 @@ msgstr "Datový tok"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:266
 msgid "Comment"
-msgstr "Kometář"
+msgstr "Komentář"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:267
 msgid "Composer"
@@ -831,7 +831,7 @@ msgstr "Historie"
 
 #: src/Objects/MPRIS.vala:617 src/Widgets/SourceListView.vala:341
 msgid "Playlists"
-msgstr "Playlisty"
+msgstr "Seznamy skladeb"
 
 #: src/Views/DeviceSummaryWidget.vala:60
 msgid "Device Name:"
@@ -866,7 +866,8 @@ msgstr "Synchronizace selhala"
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
-"Playlist %s se používá k synchronizaci se zařízením %s, ale nebyl nalezen."
+"Seznam skladeb nazvaný %s se používá k synchronizaci se zařízením %s, ale "
+"nebyl nalezen."
 
 #: src/Views/DeviceSummaryWidget.vala:316
 #: src/Views/DeviceSummaryWidget.vala:321
@@ -882,11 +883,11 @@ msgstr ""
 
 #: src/Views/DeviceSummaryWidget.vala:322
 msgid "Device is already doing an operation."
-msgstr "Zařízení již provádí operaci."
+msgstr "Zařízení už provádí operaci."
 
 #: src/Views/DeviceView.vala:66
 msgid "Cancelling…"
-msgstr "Probíhá rušení…"
+msgstr "Rušení…"
 
 #: src/Views/DeviceView.vala:66
 msgid "Device operation has been cancelled and will stop after this media."
@@ -1225,7 +1226,7 @@ msgstr ""
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:58
 msgid "Edit Smart Playlist"
-msgstr "Upravit chytrý playlist"
+msgstr "Upravit inteligentní seznam skladeb"
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:65
 msgid ""
@@ -1256,7 +1257,7 @@ msgstr "_Otevřít"
 
 #: src/Widgets/AlbumListGrid.vala:201
 msgid "_Cancel"
-msgstr "_Zrušit"
+msgstr "_Storno"
 
 #: src/Widgets/EqualizerPopover.vala:162
 msgid "Save preset"
@@ -1308,7 +1309,7 @@ msgstr "Fronta"
 
 #: src/Widgets/MediaMenu.vala:54
 msgid "Add to Playlist"
-msgstr "Přidat do playlistu"
+msgstr "Přidat do seznamu skladeb"
 
 #: src/Widgets/MediaMenu.vala:55
 msgid "Remove Song…"
@@ -1332,7 +1333,7 @@ msgstr "Odstranit z fronty"
 
 #: src/Widgets/MediaMenu.vala:153
 msgid "New Playlist…"
-msgstr "Nový playlist…"
+msgstr "Nový seznam skladeb…"
 
 #: src/Widgets/MediaMenu.vala:193
 #, c-format
@@ -1361,7 +1362,7 @@ msgstr "Upravit…"
 
 #: src/Widgets/SourceListView.vala:95
 msgid "Save as Playlist"
-msgstr "Uložit jako playlist"
+msgstr "Uložit jako seznam skladeb"
 
 #: src/Widgets/SourceListView.vala:103
 msgid "Export…"
@@ -1373,15 +1374,15 @@ msgstr "Vysunout"
 
 #: src/Widgets/SourceListView.vala:176 src/Widgets/SourceListView.vala:219
 msgid "New Playlist"
-msgstr "Nový playlist"
+msgstr "Nový seznam skladeb"
 
 #: src/Widgets/SourceListView.vala:184 src/Widgets/SourceListView.vala:220
 msgid "New Smart Playlist"
-msgstr "Nový chytrý playlist"
+msgstr "Nový inteligentní seznam skladeb"
 
 #: src/Widgets/SourceListView.vala:221
 msgid "Import Playlists"
-msgstr "Importovat playlisty"
+msgstr "Importovat seznamy skladeb"
 
 #. Adds the different sidebar categories.
 #: src/Widgets/SourceListView.vala:338
@@ -1398,11 +1399,11 @@ msgstr "Síť"
 
 #: src/Widgets/StatusBar.vala:36 src/Widgets/StatusBar.vala:47
 msgid "Add Playlist"
-msgstr "Přidat playlist"
+msgstr "Přidat seznam skladeb"
 
 #: src/Widgets/StatusBar.vala:37
 msgid "Add Smart Playlist"
-msgstr "Přidat chytrý playlist"
+msgstr "Přidat seznam skladeb"
 
 #. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: src/Widgets/StatusBar.vala:75
