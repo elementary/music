@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-22 17:33+0000\n"
-"PO-Revision-Date: 2020-05-12 23:10+0000\n"
+"PO-Revision-Date: 2020-05-30 13:11+0000\n"
 "Last-Translator: p-bo <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://l10n.elementary.io/projects/music/extra/cs/>\n"
 "Language: cs\n"
@@ -61,56 +61,56 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:25
 msgid "Performance improvements"
-msgstr ""
+msgstr "Zlepšení odezvy aplikace"
 
 #: data/io.elementary.music.appdata.xml.in:30
 msgid "Removed old gsignond vapi"
-msgstr ""
+msgstr "Odebráno staré gsignond vapi"
 
 #: data/io.elementary.music.appdata.xml.in:31
 msgid "LibraryWindow: Use Granite.MessageDialog for showing alerts"
-msgstr ""
+msgstr "LibraryWindow: Pro zobrazování výstrah použito Granite.MessageDialog"
 
 #: data/io.elementary.music.appdata.xml.in:32
 msgid "PlaylistsUtils: Use Gtk.FileChooserNative"
-msgstr ""
+msgstr "PlaylistsUtils: Použito Gtk.FileChooserNative"
 
 #: data/io.elementary.music.appdata.xml.in:33
 msgid "Accurately remember window size"
-msgstr ""
+msgstr "Přesné zapamatování velikosti okna"
 
 #: data/io.elementary.music.appdata.xml.in:39
 msgid "Scale album art properly at high resolutions"
-msgstr ""
+msgstr "Přidána správná změna velikost přebalu alba při vysokých rozlišeních"
 
 #: data/io.elementary.music.appdata.xml.in:40
 msgid ""
 "Accurately select Music Folder Location for directories with spaces in name"
-msgstr ""
+msgstr "Přesný výběr umístění složky s hudbou pro složky s mezerami v názvu"
 
 #: data/io.elementary.music.appdata.xml.in:41
 msgid "New MediaKeyListener path for gnome-settings-daemon"
-msgstr ""
+msgstr "Nový popis umístění MediaKeyListener pro gnome-settings-daemon"
 
 #: data/io.elementary.music.appdata.xml.in:47
 msgid "AlbumView: double-click to play album"
-msgstr ""
+msgstr "AlbumView: přehrávání alba dvojklikem"
 
 #: data/io.elementary.music.appdata.xml.in:48
 msgid "Associate with s3m files"
-msgstr ""
+msgstr "Asociace se soubory typu s3m"
 
 #: data/io.elementary.music.appdata.xml.in:49
 msgid "Queue fixes"
-msgstr ""
+msgstr "Opravy fronty přehrávání"
 
 #: data/io.elementary.music.appdata.xml.in:50
 msgid "Properly restore playlists"
-msgstr ""
+msgstr "Řádné obnovování seznamů k přehrávání"
 
 #: data/io.elementary.music.appdata.xml.in:51
 msgid "Always respect custom music folder setting"
-msgstr ""
+msgstr "Vždy respektováno uživatelsky určené nastavení složky s hudbou"
 
 #: data/io.elementary.music.appdata.xml.in:52
 #: data/io.elementary.music.appdata.xml.in:61
@@ -118,91 +118,92 @@ msgstr ""
 #: data/io.elementary.music.appdata.xml.in:102
 #: data/io.elementary.music.appdata.xml.in:117
 msgid "Minor bug fixes"
-msgstr ""
+msgstr "Opravy drobných chyb"
 
 #: data/io.elementary.music.appdata.xml.in:58
 msgid "Fix list and column view sorting"
-msgstr ""
+msgstr "Oprava řazení v zobrazení seznamu a sloupce"
 
 #: data/io.elementary.music.appdata.xml.in:59
 msgid "Add orange accent color"
-msgstr ""
+msgstr "Přidána oranžová barva zvýraznění"
 
 #: data/io.elementary.music.appdata.xml.in:60
 msgid "Add shortcut accels to tooltips"
-msgstr ""
+msgstr "Do nástrojových tipů přidány akcelerátory"
 
 #: data/io.elementary.music.appdata.xml.in:67
 msgid "Various UI changes"
-msgstr ""
+msgstr "Různé změny v uživatelském rozhraní"
 
 #: data/io.elementary.music.appdata.xml.in:68
 msgid "Shuffle fixes"
-msgstr ""
+msgstr "Opravy náhodného pořadí přehrávání"
 
 #: data/io.elementary.music.appdata.xml.in:69
 msgid "Initial MPRIS support"
-msgstr ""
+msgstr "Počáteční podpora pro protokol MPRIS"
 
 #: data/io.elementary.music.appdata.xml.in:76
 msgid "Detect library changes at startup."
-msgstr ""
+msgstr "Zjišťování změn knihovny hudby při spouštění."
 
 #: data/io.elementary.music.appdata.xml.in:77
 msgid "Support searching by URI"
-msgstr ""
+msgstr "Podpora hledání podle URI"
 
 #: data/io.elementary.music.appdata.xml.in:78
 msgid "Change the queue mechanism to make it less confusing."
-msgstr ""
+msgstr "Změněn mechanizmus fronty přehrávání aby byl méně matoucí."
 
 #: data/io.elementary.music.appdata.xml.in:79
 msgid "Improve equalizer style."
-msgstr ""
+msgstr "Zlepšen styl ekvalizéru."
 
 #: data/io.elementary.music.appdata.xml.in:80
 #: data/io.elementary.music.appdata.xml.in:85
 #: data/io.elementary.music.appdata.xml.in:90
 #: data/io.elementary.music.appdata.xml.in:95
 msgid "Minor bug fixes."
-msgstr ""
+msgstr "Opravy drobných chyb."
 
 #: data/io.elementary.music.appdata.xml.in:100
 msgid "Add rounded bottom window corner."
-msgstr ""
+msgstr "Přidán zaoblený roh spodního okna."
 
 #: data/io.elementary.music.appdata.xml.in:103
 #: data/io.elementary.music.appdata.xml.in:118
 msgid "New translations"
-msgstr ""
+msgstr "Nové překlady"
 
 #: data/io.elementary.music.appdata.xml.in:109
 msgid "Release for Loki."
-msgstr ""
+msgstr "Vydání pro Loki."
 
 #: data/io.elementary.music.appdata.xml.in:111
 msgid "Add support for Opus Ogg"
-msgstr ""
+msgstr "Přidána podpora pro Opus Ogg"
 
 #: data/io.elementary.music.appdata.xml.in:112
 msgid "Fix Ctrl+Q support for non-Latin keyboard layouts"
 msgstr ""
+"Opravena podpora pro Ctrl+Q pro rozložení klávesnice, které nejsou latinka"
 
 #: data/io.elementary.music.appdata.xml.in:113
 msgid "Reorganize media edition layout"
-msgstr ""
+msgstr "Přeuspořádání rozvržení edice média"
 
 #: data/io.elementary.music.appdata.xml.in:114
 msgid "Port grid to support HiDPI displays"
-msgstr ""
+msgstr "Přenesení mřížky pro podporu obrazovek s vysokým rozlišením (HiDPI)"
 
 #: data/io.elementary.music.appdata.xml.in:115
 msgid "Update icons to latest elementary icon release"
-msgstr ""
+msgstr "Aktualizace ikon na nejnovější vydání v elementary"
 
 #: data/io.elementary.music.appdata.xml.in:116
 msgid "Respect privacy mode"
-msgstr ""
+msgstr "Respektování režimu ochrany soukromí"
 
 #: data/io.elementary.music.appdata.xml.in:156
 msgid "elementary, Inc."
