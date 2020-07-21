@@ -60,7 +60,6 @@ public class Music.TopDisplay : Gtk.Stack {
 
         var cancel_button = new Gtk.Button.from_icon_name ("process-stop-symbolic", Gtk.IconSize.MENU);
         cancel_button.halign = cancel_button.valign = Gtk.Align.CENTER;
-        cancel_button.vexpand = true;
         cancel_button.tooltip_text = _("Cancel");
 
         var action_grid = new Gtk.Grid ();

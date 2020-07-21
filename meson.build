@@ -9,7 +9,12 @@ datadir = join_paths(prefix, get_option('datadir'))
 plugindir = join_paths(prefix, get_option('libdir'), meson.project_name(), 'plugins')
 
 add_project_arguments(['--vapidir', join_paths(meson.current_source_dir(), 'vapi')], language: 'vala')
-add_global_arguments('-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()), language:'c')
+add_global_arguments([
+        '-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()),
+        '-DHANDY_USE_UNSTABLE_API'
+    ],
+    language:'c'
+)
 
 subdir('core')
 subdir('data')
@@ -17,6 +22,7 @@ subdir('data')
 app_deps = core_deps + [
   core,
   dependency('libgda-5.0'),
+  dependency('libhandy-1', version: '>=0.83.0'),
   dependency('taglib_c'),
   dependency('zeitgeist-2.0'),
   meson.get_compiler('vala').find_library('posix'),

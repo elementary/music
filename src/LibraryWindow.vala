@@ -27,7 +27,7 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public class Music.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWindow {
+public class Music.LibraryWindow : LibraryWindowInterface, Hdy.ApplicationWindow {
     public signal void play_pause_changed ();
 
     public bool initialization_finished { get; private set; default = false; }
@@ -91,6 +91,8 @@ public class Music.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWindow
     }
 
     construct {
+        Hdy.init ();
+
         add_action_entries (ACTION_ENTRIES, this);
 
         main_settings = Settings.Main.get_default ();
@@ -262,7 +264,7 @@ public class Music.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWindow
         top_display.margin_start = 30;
         top_display.margin_end = 30;
 
-        var headerbar = new Gtk.HeaderBar ();
+        var headerbar = new Hdy.HeaderBar ();
         headerbar.show_close_button = true;
         headerbar.pack_start (previous_button);
         headerbar.pack_start (play_button);
@@ -279,22 +281,24 @@ public class Music.LibraryWindow : LibraryWindowInterface, Gtk.ApplicationWindow
 
         statusbar = new Widgets.StatusBar ();
 
-        var grid = new Gtk.Grid ();
-        grid.orientation = Gtk.Orientation.VERTICAL;
-        grid.add (source_list_view);
-        grid.add (statusbar);
+        var sidebar_grid = new Gtk.Grid ();
+        sidebar_grid.orientation = Gtk.Orientation.VERTICAL;
+        sidebar_grid.add (source_list_view);
+        sidebar_grid.add (statusbar);
 
         var main_hpaned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL);
-        main_hpaned.pack1 (grid, false, false);
+        main_hpaned.pack1 (sidebar_grid, false, false);
         main_hpaned.pack2 (view_stack, true, false);
         main_hpaned.show_all ();
 
+        var grid = new Gtk.Grid ();
+        grid.attach (headerbar, 0, 0);
+        grid.attach (main_hpaned, 0, 1);
+        grid.show_all ();
+
+        add (grid);
+
         App.saved_state.bind ("sidebar-width", main_hpaned, "position", GLib.SettingsBindFlags.DEFAULT);
-
-        add (main_hpaned);
-        set_titlebar (headerbar);
-
-        show ();
 
         action_state_changed.connect ((name, new_state) => {
             if (name == ACTION_PLAY) {
