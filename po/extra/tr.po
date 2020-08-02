@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-22 17:33+0000\n"
-"PO-Revision-Date: 2020-01-12 15:07+0000\n"
-"Last-Translator: Ozgur Baskin <bebeto_baskin@yahoo.com>\n"
-"Language-Team: Turkish <https://l10n.elementary.io/projects/music/extra/tr/"
-">\n"
+"PO-Revision-Date: 2020-08-03 18:13+0000\n"
+"Last-Translator: Sinan Decron <intenfinitia@gmail.com>\n"
+"Language-Team: Turkish <https://l10n.elementary.io/projects/music/extra/tr/>"
+"\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,7 +40,7 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:16
 msgid "Drop support for CD-ROM"
-msgstr ""
+msgstr "CD-ROM desteği sonlandırıldı"
 
 #: data/io.elementary.music.appdata.xml.in:17
 #: data/io.elementary.music.appdata.xml.in:24
@@ -54,11 +54,13 @@ msgstr "Çeviriler güncellendi"
 
 #: data/io.elementary.music.appdata.xml.in:22
 msgid "Fix removing items from the queue"
-msgstr ""
+msgstr "Öğelerin kuyruktan kaldırılması düzeltildi"
 
 #: data/io.elementary.music.appdata.xml.in:23
 msgid "Fix equalizer sliders not properly disabled sometimes"
 msgstr ""
+"Ekolayzır kaydıraklarının bazen düzgün bir şekilde devre dışı bırakılamaması "
+"düzeltildi"
 
 #: data/io.elementary.music.appdata.xml.in:25
 msgid "Performance improvements"
@@ -66,28 +68,30 @@ msgstr "Performans iyileştirmeleri"
 
 #: data/io.elementary.music.appdata.xml.in:30
 msgid "Removed old gsignond vapi"
-msgstr ""
+msgstr "Eski gsignond vapi kaldırıldı"
 
 #: data/io.elementary.music.appdata.xml.in:31
 msgid "LibraryWindow: Use Granite.MessageDialog for showing alerts"
 msgstr ""
+"Uyarıları göstermek için LibraryWindow: Granite.MessageDialog kullanılıyor"
 
 #: data/io.elementary.music.appdata.xml.in:32
 msgid "PlaylistsUtils: Use Gtk.FileChooserNative"
-msgstr ""
+msgstr "PlaylistsUtils: Gtk.FileChooserNative kullanılıyor"
 
 #: data/io.elementary.music.appdata.xml.in:33
 msgid "Accurately remember window size"
-msgstr ""
+msgstr "Pencere boyutları doğru bir şekilde hatırlanır"
 
 #: data/io.elementary.music.appdata.xml.in:39
 msgid "Scale album art properly at high resolutions"
-msgstr ""
+msgstr "Yüksek çözünürlükte albüm görselleri düzgün bir şekilde boyutlanır"
 
 #: data/io.elementary.music.appdata.xml.in:40
 msgid ""
 "Accurately select Music Folder Location for directories with spaces in name"
 msgstr ""
+"Adında boşluk bulunan dizinler için Müzik Klasörü Konumu'nu doğru seçilir"
 
 #: data/io.elementary.music.appdata.xml.in:41
 msgid "New MediaKeyListener path for gnome-settings-daemon"
