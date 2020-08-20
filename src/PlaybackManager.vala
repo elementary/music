@@ -561,7 +561,7 @@ public class Music.PlaybackManager : Object {
         }
 
         //update settings
-        if (m.rowid >= 0 && !Settings.Main.get_default ().privacy_mode_enabled ()) {
+        if (m.rowid >= 0 && !Music.App.privacy_mode_enabled ()) {
             App.saved_state.set_int64 ("last-media-playing", m.rowid);
         }
 
@@ -643,7 +643,7 @@ public class Music.PlaybackManager : Object {
             was_playing = current_media.rowid;
         }
 
-        if (!Settings.Main.get_default ().privacy_mode_enabled ()) {
+        if (!Music.App.privacy_mode_enabled ()) {
             App.saved_state.set_int64 ("last-media-playing", 0);
         }
         current_media = null;

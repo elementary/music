@@ -64,6 +64,11 @@ public class Music.App : Gtk.Application {
         add_action (present_action);
     }
 
+    public static bool privacy_mode_enabled () {
+        var privacy_settings = new GLib.Settings ("org.gnome.desktop.privacy");
+        return !(privacy_settings.get_boolean ("remember-app-usage") || privacy_settings.get_boolean ("remember-recent-files"));
+    }
+
     public override void open (File[] files, string hint) {
         // Activate, then play files
         if (library_manager == null) {

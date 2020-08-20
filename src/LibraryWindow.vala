@@ -1203,7 +1203,7 @@ public class Music.LibraryWindow : LibraryWindowInterface, Hdy.ApplicationWindow
     }
 
     private void on_quit () {
-        if (!main_settings.privacy_mode_enabled ()) {
+        if (!Music.App.privacy_mode_enabled ()) {
             // Save media position and info
             App.saved_state.set_int ("last-media-position", (int)((double)App.player.player.get_position () / TimeUtils.NANO_INV));
             if (App.player.current_media != null) {

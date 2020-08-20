@@ -238,9 +238,8 @@ public abstract class Music.GenericList : Gtk.TreeView {
         Media to_set = m == null ? App.player.current_media : m;
 
         is_current_list = true;
-        var main_settings = Settings.Main.get_default ();
 
-        if (!main_settings.privacy_mode_enabled ()) {
+        if (!Music.App.privacy_mode_enabled ()) {
             if (playlist == null || playlist == ((Music.LocalLibrary)libraries_manager.local_library).p_music || parent_wrapper.library != libraries_manager.local_library) {
                 App.saved_state.set_string ("last-playlist-playing", "");
             } else if (playlist is SmartPlaylist) {

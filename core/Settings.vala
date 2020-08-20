@@ -41,12 +41,6 @@ namespace Music.Settings {
             return main_settings;
         }
 
-        public bool privacy_mode_enabled () {
-            var privacy_settings = new GLib.Settings ("org.gnome.desktop.privacy");
-            return !(privacy_settings.get_boolean ("remember-app-usage") ||
-                   privacy_settings.get_boolean ("remember-recent-files"));
-        }
-
         private Main () {
             base ("io.elementary.music.settings");
             if (music_folder == "") {
