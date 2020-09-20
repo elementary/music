@@ -28,10 +28,10 @@
 
 public class Music.FastGrid : Gtk.IconView {
     public delegate void ViewSearchFunc (Gee.HashMap<int, Object> showing);
-    public unowned ViewSearchFunc search_func { get; set; }
+    public unowned ViewSearchFunc? search_func = null;
 
     public delegate int SortCompareFunc (GLib.Object a, GLib.Object b);
-    public unowned SortCompareFunc compare_func { get; set; }
+    public unowned SortCompareFunc? compare_func = null;
 
     public bool research_needed = false;
 

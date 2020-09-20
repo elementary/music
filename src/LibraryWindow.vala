@@ -604,7 +604,7 @@ public class Music.LibraryWindow : LibraryWindowInterface, Hdy.ApplicationWindow
         view_stack.visible_child = view;
 
         if (view is ViewWrapper)
-            (view as ViewWrapper).set_as_current_view ();
+            ((ViewWrapper)view).set_as_current_view ();
     }
 
     private void load_playlists () {
@@ -1173,7 +1173,7 @@ public class Music.LibraryWindow : LibraryWindowInterface, Hdy.ApplicationWindow
         var vw = view_stack.visible_child;
 
         if (vw != null && vw is ViewWrapper) {
-            (vw as ViewWrapper).play_first_media ();
+            ((ViewWrapper)vw).play_first_media ();
         }
     }
 
