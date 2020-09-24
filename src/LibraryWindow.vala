@@ -33,6 +33,9 @@ public class Music.LibraryWindow : LibraryWindowInterface, Hdy.ApplicationWindow
     public bool initialization_finished { get; private set; default = false; }
     public bool newly_created_playlist { get; set; default = false; }
 
+    private Gtk.Overlay overlay;
+    private ImportErrorToast import_error_toast;
+
     public SourceListView source_list_view { get; private set; }
     public ViewStack view_stack { get; private set; }
     public Widgets.ViewSelector view_selector { get; private set; }
@@ -99,6 +102,8 @@ public class Music.LibraryWindow : LibraryWindowInterface, Hdy.ApplicationWindow
 
         library_manager.media_added.connect (update_sensitivities);
         library_manager.media_removed.connect (update_sensitivities);
+        library_manager.file_operations_started.connect (update_sensitivities);
+        library_manager.file_operations_done.connect (update_sensitivities);
 
         library_manager.playlist_added.connect ((p) => {add_playlist (p);});
         library_manager.playlist_removed.connect ((p) => {remove_playlist (p);});
@@ -296,7 +301,11 @@ public class Music.LibraryWindow : LibraryWindowInterface, Hdy.ApplicationWindow
         grid.attach (main_hpaned, 0, 1);
         grid.show_all ();
 
-        add (grid);
+        overlay = new Gtk.Overlay ();
+        import_error_toast = new ImportErrorToast ("");
+        overlay.add_overlay (import_error_toast);
+        overlay.add (grid);
+        add (overlay);
 
         App.saved_state.bind ("sidebar-width", main_hpaned, "position", GLib.SettingsBindFlags.DEFAULT);
 
@@ -537,11 +546,20 @@ public class Music.LibraryWindow : LibraryWindowInterface, Hdy.ApplicationWindow
             show_playlist_view (library_manager.p_music);
         }
 
+        show_all ();
     }
 
     /**
      * Notifications
      */
+
+    public void show_import_error_toast (Gee.HashMultiMap<Gst.PbUtils.DiscovererResult, string> errors) {
+        import_error_toast.set_errors (errors);
+        Idle.add (() => {
+            import_error_toast.send_notification ();
+            return Source.REMOVE;
+        });
+    }
 
     public void show_notification (
         string title,
@@ -670,11 +688,10 @@ public class Music.LibraryWindow : LibraryWindowInterface, Hdy.ApplicationWindow
         update_sensitivities_pending = false;
     }
     private void update_sensitivities_sync () {
-        debug ("UPDATE SENSITIVITIES");
-
         bool folder_set = library_manager.main_directory_set;
         bool have_media = library_manager.get_medias ().size > 0;
         bool doing_ops = library_manager.doing_file_operations ();
+
         bool media_active = App.player.current_media != null;
         bool media_available = App.player.get_current_media_list ().size > 0;
 
@@ -1259,5 +1276,54 @@ public class Music.LibraryWindow : LibraryWindowInterface, Hdy.ApplicationWindow
         }
 
         return base.configure_event (event);
+    }
+
+    private class ImportErrorToast : Granite.Widgets.Toast {
+        public Gee.HashMultiMap<Gst.PbUtils.DiscovererResult, string> import_errors { get; construct; }
+
+        public ImportErrorToast (string title) {
+            base (title);
+        }
+
+        construct {
+            import_errors = new Gee.HashMultiMap<Gst.PbUtils.DiscovererResult, string> ();
+            set_default_action (_("Details"));
+
+            default_action.connect (() => {
+                var files = import_errors.get_values ();
+                var primary_text = _("Issues while importing from %s").printf (Settings.Main.get_default ().music_folder);
+
+                string secondary_text = ngettext (
+                    "Unable to import %d item. The file may be damaged.",
+                    "Unable to import %d items. The files may be damaged.",
+                    files.size
+                ).printf (files.size);
+
+                var dialog = new Granite.MessageDialog (
+                    primary_text,
+                    secondary_text,
+                    new ThemedIcon ("dialog-error")
+                );
+
+                var filemanager_button = new Gtk.Button.with_label (_("Open Library in FileManager"));
+
+                dialog.custom_bin.add (filemanager_button);
+
+                dialog.run ();
+                dialog.destroy ();
+            });
+        }
+
+        public void set_errors (Gee.HashMultiMap<Gst.PbUtils.DiscovererResult, string> _import_errors) {
+            _import_errors.map_iterator ().@foreach ((k, v) => {
+                import_errors.@set (k, v);
+                return true;
+            });
+
+            var files = import_errors.get_values ();
+            title = ngettext (_("%i file was not imported"),
+                              _("%i files were not imported"),
+                              files.size).printf (files.size);
+        }
     }
 }

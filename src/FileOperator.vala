@@ -41,7 +41,7 @@ public class Music.FileOperator : Object {
     ImportType import_type;
     StaticPlaylist new_playlist;
     Gee.TreeSet<Media> all_new_imports;
-    Gee.TreeSet<string> import_errors;
+    Gee.HashMultiMap<Gst.PbUtils.DiscovererResult, string> import_errors;
     Gee.HashMap<string, GLib.FileMonitor> monitors;
 
     public enum ImportType {
@@ -56,7 +56,7 @@ public class Music.FileOperator : Object {
 
         cancellable = new GLib.Cancellable ();
         all_new_imports = new Gee.TreeSet<Media> ();
-        import_errors = new Gee.TreeSet<string> ();
+        import_errors = new Gee.HashMultiMap<Gst.PbUtils.DiscovererResult, string> ();
         monitors = new Gee.HashMap<string, GLib.FileMonitor> (null, null);
         tagger = new GStreamerTagger (cancellable);
 
@@ -287,9 +287,9 @@ public class Music.FileOperator : Object {
         }
     }
 
-    void import_error (string file) {
+    void import_error (string file, string err, Gst.PbUtils.DiscovererResult result) {
         index++;
-        import_errors.add (file);
+        import_errors.@set (result, file);
         if (index == queue_size) {
             queue_finished ();
         }
@@ -298,8 +298,7 @@ public class Music.FileOperator : Object {
     void queue_finished () {
         queue_size = 0;
         if (import_errors.size > 0) {
-            var not_imported_dialog = new NotImportedDialog (import_errors, Settings.Main.get_default ().music_folder);
-            not_imported_dialog.show ();
+            App.main_window.show_import_error_toast (import_errors);
         }
 
         if (all_new_imports.size > 0)

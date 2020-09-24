@@ -873,7 +873,6 @@ public class Music.LocalLibrary : Library {
 
         NotificationManager.get_default ().update_progress (message, 0.0);
         _doing_file_operations = true;
-        App.main_window.update_sensitivities.begin ();
         file_operations_started ();
         return true;
     }
