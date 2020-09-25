@@ -1290,14 +1290,45 @@ public class Music.LibraryWindow : LibraryWindowInterface, Hdy.ApplicationWindow
             set_default_action (_("Details"));
 
             default_action.connect (() => {
-                var files = import_errors.get_values ();
-                var primary_text = _("Issues while importing from %s").printf (Settings.Main.get_default ().music_folder);
+                var invalid_files = import_errors.@get (Gst.PbUtils.DiscovererResult.URI_INVALID);
+                var error_files = import_errors.@get (Gst.PbUtils.DiscovererResult.ERROR);
+                var timeout_files = import_errors.@get (Gst.PbUtils.DiscovererResult.TIMEOUT);
+                var busy_files = import_errors.@get (Gst.PbUtils.DiscovererResult.BUSY);
+                var missing_plugin_files = import_errors.@get (Gst.PbUtils.DiscovererResult.MISSING_PLUGINS);
+                var music_folder = Settings.Main.get_default ().music_folder;
 
-                string secondary_text = ngettext (
-                    "Unable to import %d item. The file may be damaged.",
-                    "Unable to import %d items. The files may be damaged.",
-                    files.size
-                ).printf (files.size);
+                var primary_text = _("Issues while importing from %s").printf (music_folder);
+
+                string secondary_text = "";
+                string invalid_text = "";
+                string error_text = "";
+                string timeout_text = "";
+                string busy_text = "";
+                string missing_plugin_text = "";
+
+                if (invalid_files.size > 0) {
+                    invalid_text = _("Invalid uri: %i").printf (invalid_files.size) + "\n";
+                }
+
+                if (error_files.size > 0) {
+                    error_text = _("Could not be read and may be damaged: %i").printf (error_files.size) + "\n";
+                }
+
+                if (timeout_files.size > 0) {
+                    timeout_text = _("Took too long to load: %i").printf (timeout_files.size) + "\n";
+                }
+
+                if (busy_files.size > 0) {
+                    busy_text = _("Already being used: %i").printf (busy_files.size) + "\n";
+                }
+
+                if (missing_plugin_files.size > 0) {
+                    missing_plugin_text = _("Required gstreamer plugin not installed: %i").printf (missing_plugin_files.size) + "\n";
+                }
+
+                secondary_text = string.join (
+                    "", invalid_text, error_text, timeout_text, busy_text, missing_plugin_text
+                );
 
                 var dialog = new Granite.MessageDialog (
                     primary_text,
@@ -1305,10 +1336,20 @@ public class Music.LibraryWindow : LibraryWindowInterface, Hdy.ApplicationWindow
                     new ThemedIcon ("dialog-error")
                 );
 
-                var filemanager_button = new Gtk.Button.with_label (_("Open Library in FileManager"));
+                var filemanager_button = new Gtk.Button.with_label (_("Open Library in FileManager")) {
+                    halign = Gtk.Align.START,
+                    hexpand = false
+                };
+
+                filemanager_button.clicked.connect (() => {
+                    try {
+                        /* Assumes that a filemanager is set as default app for inode/directory */
+                        Gtk.show_uri (null, "file://" + music_folder, Gtk.get_current_event_time ());
+                    } catch (Error e) {}
+                });
 
                 dialog.custom_bin.add (filemanager_button);
-
+                dialog.show_all ();
                 dialog.run ();
                 dialog.destroy ();
             });
