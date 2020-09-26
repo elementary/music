@@ -289,7 +289,11 @@ public class Music.FileOperator : Object {
 
     void import_error (string file, string err, Gst.PbUtils.DiscovererResult result) {
         index++;
-        import_errors.@set (result, file);
+
+        if (App.settings.get_boolean ("alert-import-errors")) {
+            import_errors.@set (result, file);
+        }
+
         if (index == queue_size) {
             queue_finished ();
         }

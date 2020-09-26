@@ -1103,8 +1103,10 @@ public class Music.LibraryWindow : LibraryWindowInterface, Hdy.ApplicationWindow
     }
 
     private void edit_preferences_click () {
-        if (preferences == null)
+        if (preferences == null) {
             preferences = new PreferencesWindow ();
+        }
+
         preferences.show_all ();
         preferences.run ();
         preferences = null;
