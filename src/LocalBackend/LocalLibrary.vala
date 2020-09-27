@@ -238,8 +238,9 @@ public class Music.LocalLibrary : Library {
         }
 
         foreach (var m in get_medias ()) {
-            if (files.contains (m.uri))
+            if (files.contains (m.uri)) {
                 files.remove (m.uri);
+            }
         }
 
         if (!files.is_empty) {
@@ -323,6 +324,7 @@ public class Music.LocalLibrary : Library {
                 if (type != FileOperator.ImportType.RESCAN) {
                     to_reimport.add (m);
                 }
+
                 files.remove (m.uri);
             }
         }

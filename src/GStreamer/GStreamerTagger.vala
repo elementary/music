@@ -105,10 +105,11 @@ public class Music.GStreamerTagger : Object {
             case Gst.PbUtils.DiscovererResult.OK:
                 gstreamer_discovery_successful = true;
                 /* Use these lines for testing error reporting */
-                /*
+ //               /*
                 gstreamer_discovery_successful = false;
-                result = (Gst.PbUtils.DiscovererResult)(Random.int_range (Gst.PbUtils.DiscovererResult.OK, Gst.PbUtils.DiscovererResult.MISSING_PLUGINS));
-                */
+                result = (Gst.PbUtils.DiscovererResult)(Random.int_range (Gst.PbUtils.DiscovererResult.URI_INVALID, Gst.PbUtils.DiscovererResult.MISSING_PLUGINS));
+                warning ("Fake error %s", result.to_string ());
+ //               */
             break;
 
             case Gst.PbUtils.DiscovererResult.URI_INVALID:

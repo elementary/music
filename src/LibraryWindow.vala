@@ -1338,8 +1338,14 @@ public class Music.LibraryWindow : LibraryWindowInterface, Hdy.ApplicationWindow
                     new ThemedIcon ("dialog-error")
                 );
 
-                var filemanager_button = new Gtk.Button.with_label (_("Open Library in FileManager")) {
+                var alert_toggle = new Gtk.CheckButton.with_label (_("Do not show this warning in future")) {
                     halign = Gtk.Align.START,
+                    hexpand = false
+                };
+                App.settings.bind ("alert-import-errors", alert_toggle, "active", SettingsBindFlags.INVERT_BOOLEAN);
+
+                var filemanager_button = new Gtk.Button.with_label (_("Open Library in FileManager")) {
+                    halign = Gtk.Align.END,
                     hexpand = false
                 };
 
@@ -1349,6 +1355,10 @@ public class Music.LibraryWindow : LibraryWindowInterface, Hdy.ApplicationWindow
                         Gtk.show_uri (null, "file://" + music_folder, Gtk.get_current_event_time ());
                     } catch (Error e) {}
                 });
+
+                var custom_grid = new Gtk.Grid ();
+                custom_grid.attach (alert_toggle, 0, 0);
+                custom_grid.attach (filemanager_button, 1, 0);
 
                 dialog.custom_bin.add (filemanager_button);
                 dialog.show_all ();
