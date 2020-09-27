@@ -1340,13 +1340,15 @@ public class Music.LibraryWindow : LibraryWindowInterface, Hdy.ApplicationWindow
 
                 var alert_toggle = new Gtk.CheckButton.with_label (_("Do not show this warning in future")) {
                     halign = Gtk.Align.START,
-                    hexpand = false
+                    hexpand = false,
+                    margin = 12
                 };
                 App.settings.bind ("alert-import-errors", alert_toggle, "active", SettingsBindFlags.INVERT_BOOLEAN);
 
                 var filemanager_button = new Gtk.Button.with_label (_("Open Library in FileManager")) {
                     halign = Gtk.Align.END,
-                    hexpand = false
+                    hexpand = false,
+                    margin = 12
                 };
 
                 filemanager_button.clicked.connect (() => {
@@ -1360,7 +1362,7 @@ public class Music.LibraryWindow : LibraryWindowInterface, Hdy.ApplicationWindow
                 custom_grid.attach (alert_toggle, 0, 0);
                 custom_grid.attach (filemanager_button, 1, 0);
 
-                dialog.custom_bin.add (filemanager_button);
+                dialog.custom_bin.add (custom_grid);
                 dialog.show_all ();
                 dialog.run ();
                 dialog.destroy ();
