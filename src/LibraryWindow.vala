@@ -563,13 +563,22 @@ public class Music.LibraryWindow : LibraryWindowInterface, Hdy.ApplicationWindow
 
         var dialog = new ImportErrorDialog (dir, errors);
         var response = dialog.run ();
-        dialog.destroy ();
         if (response == Gtk.ResponseType.ACCEPT) {
             try {
+                string tmp_file_name;
+                GLib.FileUtils.open_tmp ("ImportErrorsXXXXXX.txt", out tmp_file_name);
+                GLib.FileUtils.set_contents (tmp_file_name, dialog.error_details);
+                /* Show details of errors in default text editor */
+                Gtk.show_uri (null, "file://" + tmp_file_name, Gtk.get_current_event_time ());
+
                 /* Assumes that a filemanager is set as default app for inode/directory */
                 Gtk.show_uri (null, dir, Gtk.get_current_event_time ());
-            } catch (Error e) {}
+            } catch (Error e) {
+                warning ("Error showing import error details - %s", e.message);
+            }
         }
+
+        dialog.destroy ();
     }
 
     public void show_notification (

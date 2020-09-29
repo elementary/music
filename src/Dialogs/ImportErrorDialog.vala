@@ -29,7 +29,7 @@
 
 public class Music.ImportErrorDialog : Granite.MessageDialog {
     public Gee.HashMultiMap<Gst.PbUtils.DiscovererResult, string> import_errors { get; construct; }
-
+    public string error_details { get; private set; }
     public ImportErrorDialog (string imported_from,
                               Gee.HashMultiMap<Gst.PbUtils.DiscovererResult, string> import_errors) {
 
@@ -47,8 +47,7 @@ public class Music.ImportErrorDialog : Granite.MessageDialog {
         secondary_text = _("These files will not be able to be played and will not appear in the library");
 
         image_icon = new ThemedIcon ("dialog-error");
-
-        string error_details = "";
+        var sb = new StringBuilder ();
 
         var keys = import_errors.get_keys ();
         foreach (var key in keys) {
@@ -79,23 +78,23 @@ public class Music.ImportErrorDialog : Granite.MessageDialog {
                     break;
             }
 
+            sb.append (key_description + "\n");
+            sb.append (string.nfill (key_description.length, '-') + "\n");
+
             var uris = import_errors.@get (key);
 
             foreach (var uri in uris) {
                 var rel_uri = uri.slice (dir_path_length + 1, uri.length);
-                error_details = string.join ("",
-                    error_details,
-                    Uri.unescape_string (rel_uri),
-                    "\t",
-                    key_description,
-                    "\n"
-                );
+                sb.append (Uri.unescape_string (rel_uri) + "\n");
             }
+
+            sb.append ("\n");
         }
 
-        show_error_details (error_details);
+        error_details = sb.str;
 
-        add_button (_("Open Folder"), Gtk.ResponseType.ACCEPT);
+        add_button (_("Show details"), Gtk.ResponseType.ACCEPT);
+        add_button (_("Close"), Gtk.ResponseType.CLOSE);
         show_all ();
     }
 }
