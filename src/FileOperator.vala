@@ -302,7 +302,7 @@ public class Music.FileOperator : Object {
     void queue_finished () {
         queue_size = 0;
         if (import_errors.size > 0) {
-            App.main_window.show_import_error_toast (import_errors);
+            App.main_window.show_import_error_dialog (import_errors);
         }
 
         if (all_new_imports.size > 0)

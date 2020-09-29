@@ -33,9 +33,6 @@ public class Music.LibraryWindow : LibraryWindowInterface, Hdy.ApplicationWindow
     public bool initialization_finished { get; private set; default = false; }
     public bool newly_created_playlist { get; set; default = false; }
 
-    private Gtk.Overlay overlay;
-    private ImportErrorToast import_error_toast;
-
     public SourceListView source_list_view { get; private set; }
     public ViewStack view_stack { get; private set; }
     public Widgets.ViewSelector view_selector { get; private set; }
@@ -301,11 +298,7 @@ public class Music.LibraryWindow : LibraryWindowInterface, Hdy.ApplicationWindow
         grid.attach (main_hpaned, 0, 1);
         grid.show_all ();
 
-        overlay = new Gtk.Overlay ();
-        import_error_toast = new ImportErrorToast ("");
-        overlay.add_overlay (import_error_toast);
-        overlay.add (grid);
-        add (overlay);
+        add (grid);
 
         App.saved_state.bind ("sidebar-width", main_hpaned, "position", GLib.SettingsBindFlags.DEFAULT);
 
@@ -553,12 +546,30 @@ public class Music.LibraryWindow : LibraryWindowInterface, Hdy.ApplicationWindow
      * Notifications
      */
 
-    public void show_import_error_toast (Gee.HashMultiMap<Gst.PbUtils.DiscovererResult, string> errors) {
-        import_error_toast.set_errors (errors);
-        Idle.add (() => {
-            import_error_toast.send_notification ();
-            return Source.REMOVE;
-        });
+    public void show_import_error_dialog (Gee.HashMultiMap<Gst.PbUtils.DiscovererResult, string> errors) {
+
+        /* Find common parent in case multiple folders imported */
+        var uris = errors.get_values ();
+        string? dir = null;
+        foreach (string uri in uris) {
+            var dir2 = Path.get_dirname (uri);
+            if (dir == null) {
+                dir = dir2;
+            } else if (dir != dir2) {
+                dir = Path.get_dirname (dir); /* Grandparent must be common since source is filechooser */
+                break;
+            }
+        }
+
+        var dialog = new ImportErrorDialog (dir, errors);
+        var response = dialog.run ();
+        dialog.destroy ();
+        if (response == Gtk.ResponseType.ACCEPT) {
+            try {
+                /* Assumes that a filemanager is set as default app for inode/directory */
+                Gtk.show_uri (null, dir, Gtk.get_current_event_time ());
+            } catch (Error e) {}
+        }
     }
 
     public void show_notification (
@@ -709,7 +720,6 @@ public class Music.LibraryWindow : LibraryWindowInterface, Hdy.ApplicationWindow
         } else {
             ((SimpleAction) lookup_action (ACTION_PLAY)).set_state (true);
         }
-
     }
 
     /**
@@ -1278,107 +1288,5 @@ public class Music.LibraryWindow : LibraryWindowInterface, Hdy.ApplicationWindow
         }
 
         return base.configure_event (event);
-    }
-
-    private class ImportErrorToast : Granite.Widgets.Toast {
-        public Gee.HashMultiMap<Gst.PbUtils.DiscovererResult, string> import_errors { get; construct; }
-
-        public ImportErrorToast (string title) {
-            base (title);
-        }
-
-        construct {
-            import_errors = new Gee.HashMultiMap<Gst.PbUtils.DiscovererResult, string> ();
-            set_default_action (_("Details"));
-
-            default_action.connect (() => {
-                var invalid_files = import_errors.@get (Gst.PbUtils.DiscovererResult.URI_INVALID);
-                var error_files = import_errors.@get (Gst.PbUtils.DiscovererResult.ERROR);
-                var timeout_files = import_errors.@get (Gst.PbUtils.DiscovererResult.TIMEOUT);
-                var busy_files = import_errors.@get (Gst.PbUtils.DiscovererResult.BUSY);
-                var missing_plugin_files = import_errors.@get (Gst.PbUtils.DiscovererResult.MISSING_PLUGINS);
-                var music_folder = Settings.Main.get_default ().music_folder;
-
-                var primary_text = _("Issues while importing from %s").printf (music_folder);
-
-                string secondary_text = "";
-                string invalid_text = "";
-                string error_text = "";
-                string timeout_text = "";
-                string busy_text = "";
-                string missing_plugin_text = "";
-
-                if (invalid_files.size > 0) {
-                    invalid_text = _("Invalid uri: %i").printf (invalid_files.size) + "\n";
-                }
-
-                if (error_files.size > 0) {
-                    error_text = _("Could not be read and may be damaged: %i").printf (error_files.size) + "\n";
-                }
-
-                if (timeout_files.size > 0) {
-                    timeout_text = _("Took too long to load: %i").printf (timeout_files.size) + "\n";
-                }
-
-                if (busy_files.size > 0) {
-                    busy_text = _("Already being used: %i").printf (busy_files.size) + "\n";
-                }
-
-                if (missing_plugin_files.size > 0) {
-                    missing_plugin_text = _("Required gstreamer plugin not installed: %i").printf (missing_plugin_files.size) + "\n";
-                }
-
-                secondary_text = string.join (
-                    "", invalid_text, error_text, timeout_text, busy_text, missing_plugin_text
-                );
-
-                var dialog = new Granite.MessageDialog (
-                    primary_text,
-                    secondary_text,
-                    new ThemedIcon ("dialog-error")
-                );
-
-                var alert_toggle = new Gtk.CheckButton.with_label (_("Do not show this warning in future")) {
-                    halign = Gtk.Align.START,
-                    hexpand = false,
-                    margin = 12
-                };
-                App.settings.bind ("alert-import-errors", alert_toggle, "active", SettingsBindFlags.INVERT_BOOLEAN);
-
-                var filemanager_button = new Gtk.Button.with_label (_("Open Library in FileManager")) {
-                    halign = Gtk.Align.END,
-                    hexpand = false,
-                    margin = 12
-                };
-
-                filemanager_button.clicked.connect (() => {
-                    try {
-                        /* Assumes that a filemanager is set as default app for inode/directory */
-                        Gtk.show_uri (null, "file://" + music_folder, Gtk.get_current_event_time ());
-                    } catch (Error e) {}
-                });
-
-                var custom_grid = new Gtk.Grid ();
-                custom_grid.attach (alert_toggle, 0, 0);
-                custom_grid.attach (filemanager_button, 1, 0);
-
-                dialog.custom_bin.add (custom_grid);
-                dialog.show_all ();
-                dialog.run ();
-                dialog.destroy ();
-            });
-        }
-
-        public void set_errors (Gee.HashMultiMap<Gst.PbUtils.DiscovererResult, string> _import_errors) {
-            _import_errors.map_iterator ().@foreach ((k, v) => {
-                import_errors.@set (k, v);
-                return true;
-            });
-
-            var files = import_errors.get_values ();
-            title = ngettext (_("%i file was not imported"),
-                              _("%i files were not imported"),
-                              files.size).printf (files.size);
-        }
     }
 }

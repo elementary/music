@@ -43,6 +43,7 @@ app_files = files(
   'src/Dialogs/SetMusicFolderConfirmation.vala',
   'src/Dialogs/SmartPlaylistEditor.vala',
   'src/Dialogs/SyncWarningDialog.vala',
+  'src/Dialogs/ImportErrorDialog.vala',
   'src/GStreamer/CoverImport.vala',
   'src/GStreamer/GStreamerTagger.vala',
   'src/GStreamer/Streamer.vala',
