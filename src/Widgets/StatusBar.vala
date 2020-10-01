@@ -50,8 +50,6 @@ public class Music.Widgets.StatusBar : Gtk.ActionBar {
         };
 
         var eq_popover = new EqualizerPopover ();
-        eq_popover.preset_changed.connect (update_tooltip);
-        eq_popover.init ();
 
         var eq_menubutton = new Gtk.MenuButton () {
             image = new Gtk.Image.from_icon_name ("media-eq-symbolic", Gtk.IconSize.SMALL_TOOLBAR),
@@ -70,10 +68,11 @@ public class Music.Widgets.StatusBar : Gtk.ActionBar {
             var smart_playlist_editor = new SmartPlaylistEditor (null, App.main_window.library_manager);
             smart_playlist_editor.show ();
         });
-    }
 
-    private void update_tooltip (string eq_preset_name) {
-        /// Do not remove '%s'. It's a placeholder for selected equalizer preset name.
-        tooltip_markup = _("Equalizer: %s").printf ("<b>" + Markup.escape_text (eq_preset_name) + "</b>");
+        eq_popover.preset_changed.connect ((eq_preset_name) => {
+            /// Do not remove '%s'. It's a placeholder for selected equalizer preset name.
+            eq_menubutton.tooltip_markup = _("Equalizer: %s").printf ("<b>" + Markup.escape_text (eq_preset_name) + "</b>");
+        });
+        eq_popover.init ();
     }
 }
