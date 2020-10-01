@@ -41,22 +41,22 @@ public class Music.Widgets.StatusBar : Gtk.ActionBar {
         menu.append (add_spl_menuitem);
         menu.show_all ();
 
-        playlist_menubutton = new Gtk.MenuButton ();
-        playlist_menubutton.direction = Gtk.ArrowType.UP;
-        playlist_menubutton.popup = menu;
-        playlist_menubutton.tooltip_text = _("Add Playlist");
-        playlist_menubutton.add (new Gtk.Image.from_icon_name ("list-add-symbolic", Gtk.IconSize.MENU));
-        playlist_menubutton.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+        playlist_menubutton = new Gtk.MenuButton () {
+            always_show_image = true,
+            direction = Gtk.ArrowType.UP,
+            image = new Gtk.Image.from_icon_name ("list-add-symbolic", Gtk.IconSize.SMALL_TOOLBAR),
+            label = _("Add Playlist…"),
+            popup = menu
+        };
 
         var eq_popover = new EqualizerPopover ();
-        eq_popover.preset_changed.connect (update_tooltip);
-        eq_popover.init ();
 
-        var eq_menubutton = new Gtk.MenuButton ();
-        eq_menubutton.popover = eq_popover;
-        eq_menubutton.add (new Gtk.Image.from_icon_name ("media-eq-symbolic", Gtk.IconSize.MENU));
-        eq_menubutton.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+        var eq_menubutton = new Gtk.MenuButton () {
+            image = new Gtk.Image.from_icon_name ("media-eq-symbolic", Gtk.IconSize.SMALL_TOOLBAR),
+            popover = eq_popover
+        };
 
+        get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
         pack_start (playlist_menubutton);
         pack_end (eq_menubutton);
 
@@ -68,10 +68,11 @@ public class Music.Widgets.StatusBar : Gtk.ActionBar {
             var smart_playlist_editor = new SmartPlaylistEditor (null, App.main_window.library_manager);
             smart_playlist_editor.show ();
         });
-    }
 
-    private void update_tooltip (string eq_preset_name) {
-        /// Do not remove '%s'. It's a placeholder for selected equalizer preset name.
-        tooltip_markup = _("Equalizer: %s").printf ("<b>" + Markup.escape_text (eq_preset_name) + "</b>");
+        eq_popover.preset_changed.connect ((eq_preset_name) => {
+            /// Do not remove '%s'. It's a placeholder for selected equalizer preset name.
+            eq_menubutton.tooltip_markup = _("Equalizer: %s").printf ("<b>" + Markup.escape_text (eq_preset_name) + "</b>");
+        });
+        eq_popover.init ();
     }
 }
