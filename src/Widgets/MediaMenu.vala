@@ -270,7 +270,8 @@ public class Music.MediaMenu : Gtk.Menu {
     private void file_browse_clicked () {
         foreach (Media media in generic_list.get_selected_medias ()) {
             try {
-                Gtk.show_uri (null, media.file.get_parent ().get_uri (), Gdk.CURRENT_TIME);
+                var main_window = ((Gtk.Application) GLib.Application.get_default ()).get_active_window ();
+                Gtk.show_uri_on_window (main_window, media.file.get_parent ().get_uri (), Gdk.CURRENT_TIME);
             } catch (Error err) {
                 debug ("Could not browse media %s: %s\n", media.uri, err.message);
             }
