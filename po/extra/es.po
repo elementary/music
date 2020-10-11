@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-22 17:33+0000\n"
-"PO-Revision-Date: 2020-05-30 13:11+0000\n"
+"PO-Revision-Date: 2020-10-12 11:14+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/music/extra/es/>"
 "\n"
@@ -34,8 +34,9 @@ msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices, CDs, and album art."
 msgstr ""
-"Elegante y de rápido, está enfocado en la biblioteca musical. Admite "
-"dispositivos externos, CDs y carátulas."
+"Música es un reproductor de audio rápido y elegante que hace énfasis en la "
+"música y las fonotecas. Puede gestionar dispositivos externos, CD y "
+"cubiertas de álbumes."
 
 #: data/io.elementary.music.appdata.xml.in:16
 msgid "Drop support for CD-ROM"
@@ -67,7 +68,7 @@ msgstr "Mejoras de rendimiento"
 
 #: data/io.elementary.music.appdata.xml.in:30
 msgid "Removed old gsignond vapi"
-msgstr "Se eliminó el viejo gsignond vapi"
+msgstr "Se eliminó la antigua VAPI gsignond"
 
 #: data/io.elementary.music.appdata.xml.in:31
 msgid "LibraryWindow: Use Granite.MessageDialog for showing alerts"
@@ -79,7 +80,7 @@ msgstr "PlaylistsUtils: Usar Gtk.FileChooserNative"
 
 #: data/io.elementary.music.appdata.xml.in:33
 msgid "Accurately remember window size"
-msgstr "Recordar con precisión el tamaño de la ventana"
+msgstr "Se recuerda con precisión el tamaño de la ventana"
 
 #: data/io.elementary.music.appdata.xml.in:39
 msgid "Scale album art properly at high resolutions"
@@ -94,28 +95,28 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:41
 msgid "New MediaKeyListener path for gnome-settings-daemon"
-msgstr "Nueva ruta de MediaKeyListener para gnome-settings-daemon"
+msgstr "Ruta nueva de MediaKeyListener para gnome-settings-daemon"
 
 #: data/io.elementary.music.appdata.xml.in:47
 msgid "AlbumView: double-click to play album"
-msgstr "AlbumView: doble clic para reproducir el álbum"
+msgstr "AlbumView: pulse dos veces para reproducir el álbum"
 
 #: data/io.elementary.music.appdata.xml.in:48
 msgid "Associate with s3m files"
-msgstr "Asociar con archivos s3m"
+msgstr "Asociación con archivos s3m"
 
 #: data/io.elementary.music.appdata.xml.in:49
 msgid "Queue fixes"
-msgstr "Correcciones de cola"
+msgstr "Arreglos en la cola"
 
 #: data/io.elementary.music.appdata.xml.in:50
 msgid "Properly restore playlists"
-msgstr "Restaurar adecuadamente las listas de reproducción"
+msgstr "Se restauran adecuadamente las listas de reproducción"
 
 #: data/io.elementary.music.appdata.xml.in:51
 msgid "Always respect custom music folder setting"
 msgstr ""
-"Respetar siempre la configuración personalizada de la carpeta de música"
+"Se respeta siempre la configuración personalizada de la carpeta de música"
 
 #: data/io.elementary.music.appdata.xml.in:52
 #: data/io.elementary.music.appdata.xml.in:61
@@ -127,7 +128,7 @@ msgstr "Correcciones de errores menores"
 
 #: data/io.elementary.music.appdata.xml.in:58
 msgid "Fix list and column view sorting"
-msgstr "Fijar la lista de ordenación y las vistas de columna"
+msgstr "Se arregló la ordenación de las vistas de lista y por columnas"
 
 #: data/io.elementary.music.appdata.xml.in:59
 msgid "Add orange accent color"
@@ -151,7 +152,7 @@ msgstr "Compatibilidad inicial con MPRIS"
 
 #: data/io.elementary.music.appdata.xml.in:76
 msgid "Detect library changes at startup."
-msgstr "Detectar cambios en la biblioteca al iniciar."
+msgstr "Se detectan cambios en la fonoteca al iniciar."
 
 #: data/io.elementary.music.appdata.xml.in:77
 msgid "Support searching by URI"
@@ -159,11 +160,11 @@ msgstr "Se permiten las búsquedas por URI"
 
 #: data/io.elementary.music.appdata.xml.in:78
 msgid "Change the queue mechanism to make it less confusing."
-msgstr "Cambiar el mecanismo de la cola para que sea menos confuso."
+msgstr "Se cambió el mecanismo de la cola para que sea menos confuso."
 
 #: data/io.elementary.music.appdata.xml.in:79
 msgid "Improve equalizer style."
-msgstr "Mejorar el estilo del ecualizador."
+msgstr "Se mejoró el estilo del ecualizador."
 
 #: data/io.elementary.music.appdata.xml.in:80
 #: data/io.elementary.music.appdata.xml.in:85
@@ -179,7 +180,7 @@ msgstr "Agregar la esquina inferior redondeada de la ventana."
 #: data/io.elementary.music.appdata.xml.in:103
 #: data/io.elementary.music.appdata.xml.in:118
 msgid "New translations"
-msgstr "Nuevas traducciones"
+msgstr "Traducciones nuevas"
 
 #: data/io.elementary.music.appdata.xml.in:109
 msgid "Release for Loki."
@@ -187,7 +188,7 @@ msgstr "Lanzamiento de Loki."
 
 #: data/io.elementary.music.appdata.xml.in:111
 msgid "Add support for Opus Ogg"
-msgstr "Añadir soporte para Opus Ogg"
+msgstr "Se añadió compatibilidad con Opus Ogg"
 
 #: data/io.elementary.music.appdata.xml.in:112
 msgid "Fix Ctrl+Q support for non-Latin keyboard layouts"
@@ -196,19 +197,19 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:113
 msgid "Reorganize media edition layout"
-msgstr "Reorganizar el diseño de la edición de medios"
+msgstr "Se reorganizó la disposición de edición de medios"
 
 #: data/io.elementary.music.appdata.xml.in:114
 msgid "Port grid to support HiDPI displays"
-msgstr "Red de puertos para admitir pantallas HiDPI"
+msgstr "Se reescribió la cuadrícula para admitir pantallas HiDPI"
 
 #: data/io.elementary.music.appdata.xml.in:115
 msgid "Update icons to latest elementary icon release"
-msgstr "Actualizar iconos a la última versión de iconos de elementary"
+msgstr "Se actualizó a la versión más reciente de los iconos de elementary"
 
 #: data/io.elementary.music.appdata.xml.in:116
 msgid "Respect privacy mode"
-msgstr "Respetar el modo de privacidad"
+msgstr "Se respeta el modo de privacidad"
 
 #: data/io.elementary.music.appdata.xml.in:156
 msgid "elementary, Inc."
