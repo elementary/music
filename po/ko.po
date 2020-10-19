@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-22 17:33+0000\n"
+"POT-Creation-Date: 2020-10-01 20:45+0000\n"
 "PO-Revision-Date: 2018-11-07 01:40+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://weblate.elementary.io/projects/music/music/ko/"
@@ -154,7 +154,7 @@ msgid "Save"
 msgstr "저장"
 
 #: core/Utils/PlaylistsUtils.vala:276 core/Utils/PlaylistsUtils.vala:345
-#: src/LibraryWindow.vala:1025 src/Dialogs/FileNotFoundDialog.vala:55
+#: src/LibraryWindow.vala:1030 src/Dialogs/FileNotFoundDialog.vala:55
 #: src/Dialogs/FileNotFoundDialog.vala:103
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:49
 #: src/Dialogs/RemoveFilesDialog.vala:82
@@ -162,7 +162,7 @@ msgstr "저장"
 #: src/Dialogs/SetMusicFolderConfirmation.vala:86
 #: src/Dialogs/SmartPlaylistEditor.vala:93
 #: src/Dialogs/SyncWarningDialog.vala:60
-#: src/Views/Wrappers/MusicViewWrapper.vala:147 src/Widgets/TopDisplay.vala:64
+#: src/Views/Wrappers/MusicViewWrapper.vala:147 src/Widgets/TopDisplay.vala:63
 msgid "Cancel"
 msgstr "취소"
 
@@ -175,7 +175,7 @@ msgstr "재생목록"
 msgid "Import %s"
 msgstr "%s에서 가져오기"
 
-#: core/Utils/PlaylistsUtils.vala:344 src/LibraryWindow.vala:1024
+#: core/Utils/PlaylistsUtils.vala:344 src/LibraryWindow.vala:1029
 #: src/Dialogs/FileNotFoundDialog.vala:102
 #: src/Dialogs/SetMusicFolderConfirmation.vala:85
 #: src/Views/Wrappers/MusicViewWrapper.vala:146
@@ -282,44 +282,44 @@ msgstr "라이브러리를 가져왔습니다."
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr "<b>음악 폴더</b>에 파일 <b>복사 중</b>…"
 
-#: src/LibraryWindow.vala:195 src/LibraryWindow.vala:273
-#: src/LibraryWindow.vala:626 src/LibraryWindow.vala:746
+#: src/LibraryWindow.vala:197 src/LibraryWindow.vala:275
+#: src/LibraryWindow.vala:631 src/LibraryWindow.vala:751
 msgid "Music"
 msgstr "음악"
 
-#: src/LibraryWindow.vala:214
+#: src/LibraryWindow.vala:216
 msgid "Import to Library…"
 msgstr "라이브러리로 가져오기…"
 
-#: src/LibraryWindow.vala:217 src/Dialogs/PreferencesWindow.vala:40
+#: src/LibraryWindow.vala:219 src/Dialogs/PreferencesWindow.vala:40
 msgid "Preferences"
 msgstr "환경설정"
 
-#: src/LibraryWindow.vala:236
+#: src/LibraryWindow.vala:238
 msgid "Previous"
 msgstr "이전"
 
-#: src/LibraryWindow.vala:243 src/LibraryWindow.vala:306
+#: src/LibraryWindow.vala:245 src/LibraryWindow.vala:311
 msgid "Play"
 msgstr "재생"
 
-#: src/LibraryWindow.vala:250
+#: src/LibraryWindow.vala:252
 msgid "Next"
 msgstr "다음"
 
-#: src/LibraryWindow.vala:254
+#: src/LibraryWindow.vala:256
 msgid "Search Music"
 msgstr "음악 검색"
 
-#: src/LibraryWindow.vala:312
+#: src/LibraryWindow.vala:317
 msgid "Pause"
 msgstr "일시 정지"
 
-#: src/LibraryWindow.vala:815
+#: src/LibraryWindow.vala:820
 msgid "No songs in Queue"
 msgstr "대기열에 아무 곡도 없습니다"
 
-#: src/LibraryWindow.vala:815
+#: src/LibraryWindow.vala:820
 msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
@@ -329,11 +329,11 @@ msgstr ""
 "고 <b>재생 목록으로</b>를 선택하세요. 음악이 끝날 때, 재생 목록에 추가된 음악"
 "들이 현재 재생 중인 목록의 다음 음악보다 먼저 재생될 것입니다."
 
-#: src/LibraryWindow.vala:818
+#: src/LibraryWindow.vala:823
 msgid "No songs in History"
 msgstr "재생 기록에 아무 곡도 없습니다"
 
-#: src/LibraryWindow.vala:818
+#: src/LibraryWindow.vala:823
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
@@ -343,7 +343,7 @@ msgstr ""
 "이 리스트를 사용하여 현재 세션에서 당신이 재생했던 모든 음악들을 볼 수 있습니"
 "다."
 
-#: src/LibraryWindow.vala:1021 src/Views/Wrappers/MusicViewWrapper.vala:59
+#: src/LibraryWindow.vala:1026 src/Views/Wrappers/MusicViewWrapper.vala:59
 msgid "Import Music"
 msgstr "음악 가져오기"
 
@@ -1377,7 +1377,7 @@ msgstr "장치"
 msgid "Network"
 msgstr "네트워크"
 
-#: src/Widgets/StatusBar.vala:36 src/Widgets/StatusBar.vala:47
+#: src/Widgets/StatusBar.vala:36
 msgid "Add Playlist"
 msgstr "재생목록 추가"
 
@@ -1385,30 +1385,36 @@ msgstr "재생목록 추가"
 msgid "Add Smart Playlist"
 msgstr "스마트 재생목록 추가"
 
+#: src/Widgets/StatusBar.vala:48
+#, fuzzy
+#| msgid "Add Playlist"
+msgid "Add Playlist…"
+msgstr "재생목록 추가"
+
 #. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
-#: src/Widgets/StatusBar.vala:75
+#: src/Widgets/StatusBar.vala:74
 #, c-format
 msgid "Equalizer: %s"
 msgstr "이퀄라이저: %s"
 
 #. MUST follow the exact same order of Music.Player.Repeat
-#: src/Widgets/TopDisplay.vala:139
+#: src/Widgets/TopDisplay.vala:138
 msgid "Enable Repeat"
 msgstr "반복 설정"
 
-#: src/Widgets/TopDisplay.vala:140
+#: src/Widgets/TopDisplay.vala:139
 msgid "Repeat Song"
 msgstr "노래 반복하기"
 
-#: src/Widgets/TopDisplay.vala:141
+#: src/Widgets/TopDisplay.vala:140
 msgid "Disable Repeat"
 msgstr "반복 해제"
 
-#: src/Widgets/TopDisplay.vala:160
+#: src/Widgets/TopDisplay.vala:159
 msgid "Enable Shuffle"
 msgstr "셔플 사용하기"
 
-#: src/Widgets/TopDisplay.vala:161
+#: src/Widgets/TopDisplay.vala:160
 msgid "Disable Shuffle"
 msgstr "셔플 해제하기"
 

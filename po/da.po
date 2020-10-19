@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-22 17:33+0000\n"
+"POT-Creation-Date: 2020-10-01 20:45+0000\n"
 "PO-Revision-Date: 2018-12-12 23:02+0000\n"
 "Last-Translator: Kaj Printz Madsen <kajprintz@gmail.com>\n"
 "Language-Team: Danish <https://weblate.elementary.io/projects/music/music/da/"
@@ -154,7 +154,7 @@ msgid "Save"
 msgstr "Gem"
 
 #: core/Utils/PlaylistsUtils.vala:276 core/Utils/PlaylistsUtils.vala:345
-#: src/LibraryWindow.vala:1025 src/Dialogs/FileNotFoundDialog.vala:55
+#: src/LibraryWindow.vala:1030 src/Dialogs/FileNotFoundDialog.vala:55
 #: src/Dialogs/FileNotFoundDialog.vala:103
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:49
 #: src/Dialogs/RemoveFilesDialog.vala:82
@@ -162,7 +162,7 @@ msgstr "Gem"
 #: src/Dialogs/SetMusicFolderConfirmation.vala:86
 #: src/Dialogs/SmartPlaylistEditor.vala:93
 #: src/Dialogs/SyncWarningDialog.vala:60
-#: src/Views/Wrappers/MusicViewWrapper.vala:147 src/Widgets/TopDisplay.vala:64
+#: src/Views/Wrappers/MusicViewWrapper.vala:147 src/Widgets/TopDisplay.vala:63
 msgid "Cancel"
 msgstr "Annuller"
 
@@ -175,7 +175,7 @@ msgstr "Playliste"
 msgid "Import %s"
 msgstr "Importér %s"
 
-#: core/Utils/PlaylistsUtils.vala:344 src/LibraryWindow.vala:1024
+#: core/Utils/PlaylistsUtils.vala:344 src/LibraryWindow.vala:1029
 #: src/Dialogs/FileNotFoundDialog.vala:102
 #: src/Dialogs/SetMusicFolderConfirmation.vala:85
 #: src/Views/Wrappers/MusicViewWrapper.vala:146
@@ -282,44 +282,44 @@ msgstr "Dit Bibliotek Er Blevet Importeret."
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr "<b>Kopierer</b> filer til <b>Musikmappe</b>…"
 
-#: src/LibraryWindow.vala:195 src/LibraryWindow.vala:273
-#: src/LibraryWindow.vala:626 src/LibraryWindow.vala:746
+#: src/LibraryWindow.vala:197 src/LibraryWindow.vala:275
+#: src/LibraryWindow.vala:631 src/LibraryWindow.vala:751
 msgid "Music"
 msgstr "Musik"
 
-#: src/LibraryWindow.vala:214
+#: src/LibraryWindow.vala:216
 msgid "Import to Library…"
 msgstr "Importér til bibliotek…"
 
-#: src/LibraryWindow.vala:217 src/Dialogs/PreferencesWindow.vala:40
+#: src/LibraryWindow.vala:219 src/Dialogs/PreferencesWindow.vala:40
 msgid "Preferences"
 msgstr "Indstillinger"
 
-#: src/LibraryWindow.vala:236
+#: src/LibraryWindow.vala:238
 msgid "Previous"
 msgstr "Forrige"
 
-#: src/LibraryWindow.vala:243 src/LibraryWindow.vala:306
+#: src/LibraryWindow.vala:245 src/LibraryWindow.vala:311
 msgid "Play"
 msgstr "Afspil"
 
-#: src/LibraryWindow.vala:250
+#: src/LibraryWindow.vala:252
 msgid "Next"
 msgstr "Næste"
 
-#: src/LibraryWindow.vala:254
+#: src/LibraryWindow.vala:256
 msgid "Search Music"
 msgstr "Søg musik"
 
-#: src/LibraryWindow.vala:312
+#: src/LibraryWindow.vala:317
 msgid "Pause"
 msgstr "Pause"
 
-#: src/LibraryWindow.vala:815
+#: src/LibraryWindow.vala:820
 msgid "No songs in Queue"
 msgstr "Ingen sange i kø"
 
-#: src/LibraryWindow.vala:815
+#: src/LibraryWindow.vala:820
 msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
@@ -329,11 +329,11 @@ msgstr ""
 "<b>kø</b>. Når en sang er færdig, vil sangene i køen blive afspillet først "
 "før den næste sang i den nuværende afspilninsliste."
 
-#: src/LibraryWindow.vala:818
+#: src/LibraryWindow.vala:823
 msgid "No songs in History"
 msgstr "Ingen sange i historik"
 
-#: src/LibraryWindow.vala:818
+#: src/LibraryWindow.vala:823
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
@@ -344,7 +344,7 @@ msgstr ""
 "Du kan bruge denne liste til at se alle sange du har afspillet under den "
 "nuværende session."
 
-#: src/LibraryWindow.vala:1021 src/Views/Wrappers/MusicViewWrapper.vala:59
+#: src/LibraryWindow.vala:1026 src/Views/Wrappers/MusicViewWrapper.vala:59
 msgid "Import Music"
 msgstr "Importér musik"
 
@@ -1405,7 +1405,7 @@ msgstr "Enheder"
 msgid "Network"
 msgstr "Netværk"
 
-#: src/Widgets/StatusBar.vala:36 src/Widgets/StatusBar.vala:47
+#: src/Widgets/StatusBar.vala:36
 msgid "Add Playlist"
 msgstr "Tilføj afspilningsliste"
 
@@ -1413,30 +1413,36 @@ msgstr "Tilføj afspilningsliste"
 msgid "Add Smart Playlist"
 msgstr "Tilføj Smart-spilleliste"
 
+#: src/Widgets/StatusBar.vala:48
+#, fuzzy
+#| msgid "Add Playlist"
+msgid "Add Playlist…"
+msgstr "Tilføj afspilningsliste"
+
 #. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
-#: src/Widgets/StatusBar.vala:75
+#: src/Widgets/StatusBar.vala:74
 #, c-format
 msgid "Equalizer: %s"
 msgstr "Equalizer: %s"
 
 #. MUST follow the exact same order of Music.Player.Repeat
-#: src/Widgets/TopDisplay.vala:139
+#: src/Widgets/TopDisplay.vala:138
 msgid "Enable Repeat"
 msgstr "Slå gentagelse til"
 
-#: src/Widgets/TopDisplay.vala:140
+#: src/Widgets/TopDisplay.vala:139
 msgid "Repeat Song"
 msgstr "Gentag Sang"
 
-#: src/Widgets/TopDisplay.vala:141
+#: src/Widgets/TopDisplay.vala:140
 msgid "Disable Repeat"
 msgstr "Slå gentagelse fra"
 
-#: src/Widgets/TopDisplay.vala:160
+#: src/Widgets/TopDisplay.vala:159
 msgid "Enable Shuffle"
 msgstr "Slå blanding til"
 
-#: src/Widgets/TopDisplay.vala:161
+#: src/Widgets/TopDisplay.vala:160
 msgid "Disable Shuffle"
 msgstr "Slå blanding fra"
 

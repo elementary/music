@@ -74,7 +74,7 @@ public class Music.CellDataFunctionHelper {
         Value val;
         tree_model.get_value (iter, ListColumn.FILE_SIZE, out val);
         uint64 n = val.get_uint64 ();
-        (cell as Gtk.CellRendererText).text = n > 0 ? format_size (n) : NOT_AVAILABLE;
+        ((Gtk.CellRendererText)cell).text = n > 0 ? format_size (n) : NOT_AVAILABLE;
     }
 
     // For numbers. Needed because the column is not sortable and intelligent_func
@@ -116,7 +116,7 @@ public class Music.CellDataFunctionHelper {
 
         Value val;
         tree_model.get_value (iter, column, out val);
-        (cell as Gtk.CellRendererText).text = val.get_string ();
+        ((Gtk.CellRendererText)cell).text = val.get_string ();
     }
 
     // for Bitrate. Append 'kbps'

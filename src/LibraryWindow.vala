@@ -283,6 +283,7 @@ public class Music.LibraryWindow : LibraryWindowInterface, Hdy.ApplicationWindow
 
         var sidebar_grid = new Gtk.Grid ();
         sidebar_grid.orientation = Gtk.Orientation.VERTICAL;
+        sidebar_grid.get_style_context ().add_class (Gtk.STYLE_CLASS_SIDEBAR);
         sidebar_grid.add (source_list_view);
         sidebar_grid.add (statusbar);
 
@@ -604,7 +605,7 @@ public class Music.LibraryWindow : LibraryWindowInterface, Hdy.ApplicationWindow
         view_stack.visible_child = view;
 
         if (view is ViewWrapper)
-            (view as ViewWrapper).set_as_current_view ();
+            ((ViewWrapper)view).set_as_current_view ();
     }
 
     private void load_playlists () {
@@ -1173,7 +1174,7 @@ public class Music.LibraryWindow : LibraryWindowInterface, Hdy.ApplicationWindow
         var vw = view_stack.visible_child;
 
         if (vw != null && vw is ViewWrapper) {
-            (vw as ViewWrapper).play_first_media ();
+            ((ViewWrapper)vw).play_first_media ();
         }
     }
 
