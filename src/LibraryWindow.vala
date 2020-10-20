@@ -285,6 +285,7 @@ public class Music.LibraryWindow : LibraryWindowInterface, Hdy.ApplicationWindow
 
         var sidebar_grid = new Gtk.Grid ();
         sidebar_grid.orientation = Gtk.Orientation.VERTICAL;
+        sidebar_grid.get_style_context ().add_class (Gtk.STYLE_CLASS_SIDEBAR);
         sidebar_grid.add (source_list_view);
         sidebar_grid.add (statusbar);
 
