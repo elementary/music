@@ -31,7 +31,6 @@ finish-args:
 cleanup:
   - '/include'
   - '/lib/pkgconfig'
-  - '/lib/debug'
   - '/share/vala'
   - '/man'
   - '*.a'
@@ -42,7 +41,6 @@ modules:
     config-opts:
       - '-Ddemos=false'
       - '-Dgtk-doc=false'
-      - '-Dbuildtype=release'
     sources:
       - type: git
         url: https://gitlab.gnome.org/GNOME/libpeas.git
@@ -78,7 +76,7 @@ modules:
     sources:
       - type: git
         url: https://gitlab.gnome.org/GNOME/libhandy.git
-        tag: '1.0.0'
+        tag: '1.0.1'
 
   - name: taglib
     buildsystem: cmake-ninja
