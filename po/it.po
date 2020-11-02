@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-01 20:45+0000\n"
-"PO-Revision-Date: 2020-10-23 20:15+0000\n"
+"PO-Revision-Date: 2020-10-27 22:15+0000\n"
 "Last-Translator: Fabio Zaramella <fabiozaramella@hotmail.it>\n"
 "Language-Team: Italian <https://l10n.elementary.io/projects/music/music/it/>"
 "\n"
@@ -519,7 +519,7 @@ msgstr "Copia i file importati nella libreria:"
 
 #: src/Dialogs/PreferencesWindow.vala:87
 msgid "Desktop Integration"
-msgstr "Integrazione con il desktop"
+msgstr "Integrazione con il sistema"
 
 #: src/Dialogs/PreferencesWindow.vala:88
 msgid "Continue playback when closed:"
