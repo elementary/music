@@ -31,7 +31,7 @@ public class Music.GStreamerTagger : Object {
     private const int DISCOVERER_TIMEOUT = 5;
 
     public signal void media_imported (Media m);
-    public signal void import_error (string file_uri, Error error);
+    public signal void import_error (string file_uri, string message, Gst.PbUtils.DiscovererResult result);
     public signal void queue_finished ();
 
     private Gst.PbUtils.Discoverer d;
@@ -99,10 +99,17 @@ public class Music.GStreamerTagger : Object {
 
         string uri = info.get_uri ();
         bool gstreamer_discovery_successful = false;
+        var result = info.get_result ();
 
-        switch (info.get_result ()) {
+        switch (result) {
             case Gst.PbUtils.DiscovererResult.OK:
                 gstreamer_discovery_successful = true;
+                /* Use these lines for testing error reporting */
+ //               /*
+                gstreamer_discovery_successful = false;
+                result = (Gst.PbUtils.DiscovererResult)(Random.int_range (Gst.PbUtils.DiscovererResult.URI_INVALID, Gst.PbUtils.DiscovererResult.MISSING_PLUGINS));
+                warning ("Fake error %s", result.to_string ());
+ //               */
             break;
 
             case Gst.PbUtils.DiscovererResult.URI_INVALID:
@@ -133,7 +140,7 @@ public class Music.GStreamerTagger : Object {
         }
 
         if (!gstreamer_discovery_successful) {
-            import_error (uri, err);
+            import_error (uri, "Test", result);
             return;
         }
 

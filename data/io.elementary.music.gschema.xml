@@ -64,6 +64,11 @@
       <summary>List of disabled plugins</summary>
       <description>Plugin modules to not load during startup</description>
     </key>
+    <key type="b" name="alert-import-errors">
+      <default>true</default>
+      <summary>Whether to show warning when import errors occur.</summary>
+      <description>When enabled, a transient popup warning will be shown if errors occur trying to import files into the music database</description>
+    </key>
   </schema>
 
   <schema path="/io/elementary/music/saved-state/" id="io.elementary.music.saved-state">

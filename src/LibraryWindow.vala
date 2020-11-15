@@ -99,6 +99,8 @@ public class Music.LibraryWindow : LibraryWindowInterface, Hdy.ApplicationWindow
 
         library_manager.media_added.connect (update_sensitivities);
         library_manager.media_removed.connect (update_sensitivities);
+        library_manager.file_operations_started.connect (update_sensitivities);
+        library_manager.file_operations_done.connect (update_sensitivities);
 
         library_manager.playlist_added.connect ((p) => {add_playlist (p);});
         library_manager.playlist_removed.connect ((p) => {remove_playlist (p);});
@@ -538,11 +540,47 @@ public class Music.LibraryWindow : LibraryWindowInterface, Hdy.ApplicationWindow
             show_playlist_view (library_manager.p_music);
         }
 
+        show_all ();
     }
 
     /**
      * Notifications
      */
+
+    public void show_import_error_dialog (Gee.HashMultiMap<Gst.PbUtils.DiscovererResult, string> errors) {
+
+        /* Find common parent in case multiple folders imported */
+        var uris = errors.get_values ();
+        string? dir = null;
+        foreach (string uri in uris) {
+            var dir2 = Path.get_dirname (uri);
+            if (dir == null) {
+                dir = dir2;
+            } else if (dir != dir2) {
+                dir = Path.get_dirname (dir); /* Grandparent must be common since source is filechooser */
+                break;
+            }
+        }
+
+        var dialog = new ImportErrorDialog (dir, errors);
+        var response = dialog.run ();
+        if (response == Gtk.ResponseType.ACCEPT) {
+            try {
+                string tmp_file_name;
+                GLib.FileUtils.open_tmp ("ImportErrorsXXXXXX.txt", out tmp_file_name);
+                GLib.FileUtils.set_contents (tmp_file_name, dialog.error_details);
+                /* Show details of errors in default text editor */
+                Gtk.show_uri (null, "file://" + tmp_file_name, Gtk.get_current_event_time ());
+
+                /* Assumes that a filemanager is set as default app for inode/directory */
+                Gtk.show_uri (null, dir, Gtk.get_current_event_time ());
+            } catch (Error e) {
+                warning ("Error showing import error details - %s", e.message);
+            }
+        }
+
+        dialog.destroy ();
+    }
 
     public void show_notification (
         string title,
@@ -671,11 +709,10 @@ public class Music.LibraryWindow : LibraryWindowInterface, Hdy.ApplicationWindow
         update_sensitivities_pending = false;
     }
     private void update_sensitivities_sync () {
-        debug ("UPDATE SENSITIVITIES");
-
         bool folder_set = library_manager.main_directory_set;
         bool have_media = library_manager.get_medias ().size > 0;
         bool doing_ops = library_manager.doing_file_operations ();
+
         bool media_active = App.player.current_media != null;
         bool media_available = App.player.get_current_media_list ().size > 0;
 
@@ -693,7 +730,6 @@ public class Music.LibraryWindow : LibraryWindowInterface, Hdy.ApplicationWindow
         } else {
             ((SimpleAction) lookup_action (ACTION_PLAY)).set_state (true);
         }
-
     }
 
     /**
@@ -1087,8 +1123,10 @@ public class Music.LibraryWindow : LibraryWindowInterface, Hdy.ApplicationWindow
     }
 
     private void edit_preferences_click () {
-        if (preferences == null)
+        if (preferences == null) {
             preferences = new PreferencesWindow ();
+        }
+
         preferences.show_all ();
         preferences.run ();
         preferences = null;
