@@ -7,16 +7,16 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-01 20:45+0000\n"
-"PO-Revision-Date: 2018-10-21 09:30+0000\n"
+"PO-Revision-Date: 2020-12-15 15:16+0000\n"
 "Last-Translator: Eri Hidayat <eriwhidayat@gmail.com>\n"
-"Language-Team: Indonesian <https://weblate.elementary.io/projects/music/"
-"music/id/>\n"
+"Language-Team: Indonesian <https://l10n.elementary.io/projects/music/music/"
+"id/>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:53+0000\n"
 
 #: core/LibrariesManager.vala:146
@@ -432,9 +432,8 @@ msgid "Track:"
 msgstr "Trek:"
 
 #: src/Dialogs/MediaEditor.vala:114
-#, fuzzy
 msgid "Disc:"
-msgstr "Cakram"
+msgstr "Cakram:"
 
 #: src/Dialogs/MediaEditor.vala:116
 msgid "Rating:"
@@ -1390,16 +1389,14 @@ msgid "Add Smart Playlist"
 msgstr "Tambah Daftar Putar Pintar"
 
 #: src/Widgets/StatusBar.vala:48
-#, fuzzy
-#| msgid "Add Playlist"
 msgid "Add Playlist…"
-msgstr "Tambahkan Daftar Putar"
+msgstr "Tambah Daftar Putar…"
 
 #. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: src/Widgets/StatusBar.vala:74
 #, c-format
 msgid "Equalizer: %s"
-msgstr "Equalizer: %s"
+msgstr "Penyelaras: %s"
 
 #. MUST follow the exact same order of Music.Player.Repeat
 #: src/Widgets/TopDisplay.vala:138
@@ -1423,19 +1420,16 @@ msgid "Disable Shuffle"
 msgstr "Matikan Putar Acak"
 
 #: src/Widgets/ViewSelector.vala:81
-#, fuzzy
 msgid "View as albums"
-msgstr "Tampilkan sebagai album"
+msgstr "Lihat sebagai album"
 
 #: src/Widgets/ViewSelector.vala:87
-#, fuzzy
 msgid "View as list"
-msgstr "Tampilkan sebagai daftar"
+msgstr "Lihat sebagai daftar"
 
 #: src/Widgets/ViewSelector.vala:93
-#, fuzzy
 msgid "View in columns"
-msgstr "Tampilkan sebagai kolom"
+msgstr "Lihat sebagai kolom"
 
 #~ msgid "Audio CD Invalid"
 #~ msgstr "CD Audio Tidak Valid"
