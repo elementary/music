@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-01 20:45+0000\n"
-"PO-Revision-Date: 2020-10-04 13:14+0000\n"
+"PO-Revision-Date: 2021-01-18 12:02+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
 "Language-Team: Catalan <https://l10n.elementary.io/projects/music/music/ca/>"
 "\n"
@@ -17,12 +17,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:51+0000\n"
 
 #: core/LibrariesManager.vala:146
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "S'importa  <b>$NAME</b> fet per <b>$ARTIST</b> a la col·lecció…"
+msgstr "S'importa <b>$NAME</b> fet per <b>$ARTIST</b> a la col·lecció…"
 
 #. / Used for unknown titles, artists, or album names.
 #: core/Media.vala:33
@@ -715,7 +715,7 @@ msgstr "és com a màxim"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:381
 msgid "is at least"
-msgstr "és com a  mínim"
+msgstr "és com a mínim"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:395
 msgid "is within"
