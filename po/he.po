@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-01 20:45+0000\n"
-"PO-Revision-Date: 2020-10-04 13:14+0000\n"
+"PO-Revision-Date: 2021-01-24 19:25+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/music/music/he/>\n"
 "Language: he\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:52+0000\n"
 
 #: core/LibrariesManager.vala:146
@@ -167,7 +167,7 @@ msgstr "רשימת השמעה"
 #: core/Utils/PlaylistsUtils.vala:341
 #, c-format
 msgid "Import %s"
-msgstr "יבוא  %s"
+msgstr "יבוא %s"
 
 #: core/Utils/PlaylistsUtils.vala:344 src/LibraryWindow.vala:1029
 #: src/Dialogs/FileNotFoundDialog.vala:102
@@ -453,7 +453,7 @@ msgstr "התרחשו תקלות בעת הייבוא מ־%s"
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
 msgstr[0] "הייבוא של אחד הפריטים נכשל. יכול להיות שקובץ פגום."
-msgstr[1] "הייבוא של %s מהפריטים נכשל. יכול להיות שהקבצים פגומים."
+msgstr[1] "הייבוא של %d מהפריטים נכשל. יכול להיות שהקבצים פגומים."
 
 #: src/Dialogs/NotImportedDialog.vala:64
 msgid "Move all corrupted files to trash"
@@ -736,7 +736,7 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
-"באם הסנכרון ימשך, מדיה תוסר מ %s מכיוון שאינם ברשימת הסנכרון.  האם ברצונך "
+"המשיך הסנכרון יוביל להסרת פרטי מדיה מתוך %s כיוון שאינם ברשימת הסנכרון. "
 "לייבא אותם תחילה לספרייה שלך?"
 
 #: src/Dialogs/SyncWarningDialog.vala:57
@@ -915,7 +915,7 @@ msgstr "כל הסגנונות"
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
 #, c-format
 msgid "All %i Genres"
-msgstr "כל  %i הסגנונות"
+msgstr "כל %i הסגנונות"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
 msgid "No Genres"
@@ -1214,7 +1214,7 @@ msgid ""
 "below."
 msgstr ""
 "רשימת השמעה זו תאוכלס אוטומטית עם שירים התואמים את כלליה. כדי לשנות את "
-"הכללים, נא ללחוץ עליו ב<b>לחיצה משנית</b> בסרגל הצד ואז ללחוץ על   <b>עריכה</"
+"הכללים, נא ללחוץ עליהם ב<b>לחיצה משנית</b> בסרגל הצד ואז ללחוץ על <b>עריכה</"
 "b>. לחלופין, ניתן ללחוץ על הכפתור למטה."
 
 #: src/Views/Wrappers/ViewWrapper.vala:418
@@ -1322,8 +1322,8 @@ msgstr "יבוא %i מתוך %i שירים שנבחרו"
 #, c-format
 msgid "Import %i song"
 msgid_plural "Import %i songs"
-msgstr[0] "יבוא שיר  %i"
-msgstr[1] "יבוא  %i שירים"
+msgstr[0] "יבוא שיר אחד"
+msgstr[1] "יבוא %i שירים"
 
 #: src/Widgets/PresetList.vala:53
 msgid "Delete Current"
