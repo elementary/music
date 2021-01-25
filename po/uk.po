@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-01 20:45+0000\n"
-"PO-Revision-Date: 2021-01-18 16:37+0000\n"
+"PO-Revision-Date: 2021-01-26 00:44+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/music/music/uk/"
 ">\n"
@@ -781,7 +781,7 @@ msgstr "<b>Імпортування</b> музики до бібліотеки�
 
 #: src/LocalBackend/LocalLibrary.vala:250
 msgid "All music files are already in your library"
-msgstr "Всі музичні файли вже знаходяться у вашій бібліотеці"
+msgstr "Всі музичні файли вже у вашій бібліотеці"
 
 #: src/LocalBackend/LocalLibrary.vala:250
 msgid "No files were imported."
