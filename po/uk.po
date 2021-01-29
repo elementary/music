@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-01 20:45+0000\n"
-"PO-Revision-Date: 2021-01-26 00:44+0000\n"
+"PO-Revision-Date: 2021-01-29 11:20+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/music/music/uk/"
 ">\n"
@@ -276,7 +276,7 @@ msgstr "Імпортування завершено"
 
 #: src/FileOperator.vala:306
 msgid "Your Library Has Been Imported."
-msgstr "Вашу бібліотеку імпортовано."
+msgstr "Бібліотеку імпортовано."
 
 #. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:316
