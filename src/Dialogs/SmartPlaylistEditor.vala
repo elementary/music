@@ -27,7 +27,7 @@
  *              Corentin Noël <corentin@elementary.io>
  */
 
-public class Music.SmartPlaylistEditor : Gtk.Dialog {
+public class Music.SmartPlaylistEditor : Granite.Dialog {
     public Library library { get; construct; }
     public SmartPlaylist? smart_playlist { get; construct set; }
 

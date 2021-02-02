@@ -24,7 +24,7 @@
  * statement from your version.
  */
 
-public class Music.PreferencesWindow : Gtk.Dialog {
+public class Music.PreferencesWindow : Granite.Dialog {
     public const int MIN_WIDTH = 420;
     public const int MIN_HEIGHT = 300;
 
