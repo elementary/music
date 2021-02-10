@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-01 20:45+0000\n"
-"PO-Revision-Date: 2021-01-29 01:16+0000\n"
+"PO-Revision-Date: 2021-02-09 23:02+0000\n"
 "Last-Translator: Ozgur Baskin <bebeto_baskin@yahoo.com>\n"
 "Language-Team: Turkish <https://l10n.elementary.io/projects/music/music/tr/>"
 "\n"
@@ -650,7 +650,7 @@ msgstr "Eklendiği Tarih"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:269
 msgid "Genre"
-msgstr "Tür"
+msgstr "Tarz"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:270
 msgid "Grouping"
@@ -898,7 +898,7 @@ msgstr "Başka bir arama deneyin"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
 msgid "Genres"
-msgstr "Türler"
+msgstr "Tarzlar"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:60
 msgid "Artists"
@@ -926,16 +926,16 @@ msgstr "Gruplamalar"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
 msgid "All Genres"
-msgstr "Tüm Türler"
+msgstr "Tüm Tarzlar"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
 #, c-format
 msgid "All %i Genres"
-msgstr "Tüm %i Tür"
+msgstr "Tüm %i Tarz"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
 msgid "No Genres"
-msgstr "Tür Yok"
+msgstr "Tarz Yok"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
 msgid "All Artists"
@@ -1088,7 +1088,7 @@ msgstr "Besteci"
 #: src/Views/ListView/Lists/ListColumn.vala:93
 msgctxt "List column title"
 msgid "Genre"
-msgstr "Tür"
+msgstr "Tarz"
 
 #: src/Views/ListView/Lists/ListColumn.vala:96
 msgctxt "List column title"
