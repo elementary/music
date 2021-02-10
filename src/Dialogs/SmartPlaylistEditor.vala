@@ -86,7 +86,7 @@ public class Music.SmartPlaylistEditor : Granite.Dialog {
         limiter_grid.attach (limit_spin, 1, 0, 1, 1);
         limiter_grid.attach (new Gtk.Label (_("items")), 2, 0, 1, 1);
 
-        var close_button = (Gtk.Button) add_button (_("Cancel"), Gtk.ResponseType.CANCEL);
+        unowned var close_button = (Gtk.Button) add_button (_("Cancel"), Gtk.ResponseType.CANCEL);
         close_button.clicked.connect (close_click);
 
         save_button = (Gtk.Button) add_button (_("Save"), Gtk.ResponseType.APPLY);
@@ -97,9 +97,9 @@ public class Music.SmartPlaylistEditor : Granite.Dialog {
             column_spacing = 12,
             row_spacing = 6,
             margin = 12,
-            margin_top = 0
+            margin_top = 0,
+            expand = true
         };
-        main_grid.expand = true;
         main_grid.attach (new Granite.HeaderLabel (_("Name of Playlist")), 0, 0, 3, 1);
         main_grid.attach (name_entry, 0, 1, 3, 1);
         main_grid.attach (new Granite.HeaderLabel (_("Rules")), 0, 2, 3, 1);
