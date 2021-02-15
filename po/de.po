@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-01 20:45+0000\n"
-"PO-Revision-Date: 2021-02-15 14:45+0000\n"
+"PO-Revision-Date: 2021-02-15 17:19+0000\n"
 "Last-Translator: Uwe S <saabisto@gmx.de>\n"
 "Language-Team: German <https://l10n.elementary.io/projects/music/music/de/>\n"
 "Language: de\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: core/LibrariesManager.vala:146
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "<b>$NAME</b> von <b>$ARTIST</b> wird in die Bibliothek importiert …"
+msgstr "<b>$NAME</b> von <b>$ARTIST</b> wird in die Sammlung importiert …"
 
 #. / Used for unknown titles, artists, or album names.
 #: core/Media.vala:33
@@ -252,10 +252,10 @@ msgid ""
 "all song info is correct and you are connected to the Internet. Some songs "
 "may not have matches."
 msgstr ""
-"Es gibt keinen Titel in Ihrer Bibliothek, der Ähnlichkeiten mit dem "
-"aktuellen Titel aufweist. Stellen Sie sicher, dass alle Informationen "
-"korrekt und Sie mit dem Internet verbunden sind. Für manche Titel finden "
-"sich eventuell dennoch keine Übereinstimmungen."
+"Es gibt keinen Titel in Ihrer Sammlung, der Ähnlichkeiten mit dem aktuellen "
+"Titel aufweist. Stellen Sie sicher, dass alle Informationen korrekt und Sie "
+"mit dem Internet verbunden sind. Für manche Titel finden sich eventuell "
+"dennoch keine Übereinstimmungen."
 
 #: plugins/LastFM/SimilarMedia.vala:44
 msgid "Similar"
@@ -275,7 +275,7 @@ msgstr "Import abgeschlossen"
 
 #: src/FileOperator.vala:306
 msgid "Your Library Has Been Imported."
-msgstr "Ihre Bibliothek wurde importiert."
+msgstr "Ihre Sammlung wurde importiert."
 
 #. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:316
@@ -289,7 +289,7 @@ msgstr "Musik"
 
 #: src/LibraryWindow.vala:216
 msgid "Import to Library…"
-msgstr "In Bibliothek importieren …"
+msgstr "In Sammlung importieren …"
 
 #: src/LibraryWindow.vala:219 src/Dialogs/PreferencesWindow.vala:40
 msgid "Preferences"
@@ -371,7 +371,7 @@ msgstr "»%i«-Musikdatei konnte nicht gefunden werden?"
 
 #: src/Dialogs/FileNotFoundDialog.vala:53
 msgid "Rescan Library"
-msgstr "Bibliothek erneut einlesen"
+msgstr "Sammlung erneut einlesen"
 
 #: src/Dialogs/FileNotFoundDialog.vala:54
 msgid "Remove Song"
@@ -389,13 +389,13 @@ msgstr "Musikordner auswählen"
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:41
 #, c-format
 msgid "Would you like to install the %s plugin?"
-msgstr "Wollen Sie die »%s«-Erweiterung installieren?"
+msgstr "Wollen Sie die Erweiterung »%s« installieren?"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:42
 #, c-format
 msgid "This song cannot be played. The %s plugin is required to play the song."
 msgstr ""
-"Dieser Titel kann nicht wiedergegeben werden. Das Plugin »%s« ist zur "
+"Dieser Titel kann nicht wiedergegeben werden. Die Erweiterung »%s« ist zur "
 "Wiedergabe des Titels nötig."
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:51
@@ -466,14 +466,15 @@ msgstr "Probleme beim Import aus %s"
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
 msgstr[0] ""
-"Der Import von %d Stück ist nicht möglich. Die Datei könnte beschädigt sein."
+"Der Import von %d Element ist nicht möglich. Die Datei könnte beschädigt "
+"sein."
 msgstr[1] ""
-"Der Import von %d Stücke ist nicht möglich. Die Dateien könnten beschädigt "
+"Der Import von %d Elemente ist nicht möglich. Die Dateien könnten beschädigt "
 "sein."
 
 #: src/Dialogs/NotImportedDialog.vala:64
 msgid "Move all corrupted files to trash"
-msgstr "Alle beschädigten Datein in den Papierkorb verschieben"
+msgstr "Alle beschädigten Dateien in den Papierkorb verschieben"
 
 #: src/Dialogs/NotImportedDialog.vala:71
 msgid "del"
@@ -507,7 +508,7 @@ msgstr "Ort des Musikordners"
 
 #: src/Dialogs/PreferencesWindow.vala:80
 msgid "Library Management"
-msgstr "Verwaltung der Bibliothek"
+msgstr "Verwaltung der Sammlung"
 
 #: src/Dialogs/PreferencesWindow.vala:81
 msgid "Keep Music folder organized:"
@@ -519,7 +520,7 @@ msgstr "Metadaten in Datei schreiben:"
 
 #: src/Dialogs/PreferencesWindow.vala:85
 msgid "Copy imported files to Library:"
-msgstr "Importierte Dateien in Bibliothek kopieren:"
+msgstr "Importierte Dateien in Sammlung kopieren:"
 
 #: src/Dialogs/PreferencesWindow.vala:87
 msgid "Desktop Integration"
@@ -533,13 +534,13 @@ msgstr "Wiedergabe beim Schließen fortsetzen:"
 #, c-format
 msgid "Remove %d Song From Library?"
 msgid_plural "Remove %d Songs From Library?"
-msgstr[0] "%d Titel aus der Bibliothek entfernen?"
-msgstr[1] "%d Titel aus der Bibliothek entfernen?"
+msgstr[0] "%d Titel aus der Sammlung entfernen?"
+msgstr[1] "%d Titel aus der Sammlung entfernen?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:55
 #, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr "\"%s\" aus der Bibliothek entfernen?"
+msgstr "»%s« aus der Sammlung entfernen?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
 msgid ""
@@ -549,15 +550,15 @@ msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
 msgstr[0] ""
-"Dies wird den Titel aus Ihrer Bibliothek und von jedem anderen Gerät "
-"entfernen, das automatisch mit %s synchronisiert wird."
+"Hiermit wird den Titel aus Ihrer Sammlung und von jedem anderen Gerät "
+"entfernt, das automatisch mit %s synchronisiert wird."
 msgstr[1] ""
-"Dies wird die Titel aus Ihrer Bibliothek und von jedem anderen Gerät "
-"entfernen, das automatisch mit %s synchronisiert wird."
+"Hiermit werden die Titel aus Ihrer Sammlung und von jedem anderen Gerät "
+"entfernt, das automatisch mit %s synchronisiert wird."
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
-msgstr "Aus Medienbibliothek entfernen"
+msgstr "Aus Mediensammlung entfernen"
 
 #: src/Dialogs/SetMusicFolderConfirmation.vala:38
 msgid "Set Music Folder?"
@@ -570,8 +571,7 @@ msgid ""
 "library and remove your playlists."
 msgstr ""
 "Sind Sie sicher, dass Sie %s als Musikordner wählen möchten? Dabei wird die "
-"gesamte Bibliothek zurückgesetzt und es werden alle Wiedergabelisten "
-"entfernt."
+"gesamte Sammlung zurückgesetzt und es werden alle Wiedergabelisten entfernt."
 
 #: src/Dialogs/SetMusicFolderConfirmation.vala:47
 msgid "Export Playlists"
@@ -762,7 +762,7 @@ msgid ""
 msgstr ""
 "Wenn Sie mit der Synchronisierung fortfahren, werden Medien von %s gelöscht, "
 "da sie nicht in der Synchronisierungsliste enthalten sind. Möchten Sie diese "
-"zuerst noch in die Bibliothek importieren?"
+"zuerst noch in die Sammlung importieren?"
 
 #: src/Dialogs/SyncWarningDialog.vala:57
 msgid "Continue Syncing"
@@ -779,15 +779,15 @@ msgstr "Musik wird aus %s importiert …"
 
 #: src/LocalBackend/LocalLibrary.vala:215
 msgid "Adding files to library…"
-msgstr "Dateien werden zur Bibliothek hinzugefügt …"
+msgstr "Dateien werden zur Sammlung hinzugefügt …"
 
 #: src/LocalBackend/LocalLibrary.vala:228
 msgid "<b>Importing</b> music to library…"
-msgstr "Musik wird in die Bibliothek <b>importiert</b> …"
+msgstr "Musik wird in die Sammlung <b>importiert</b> …"
 
 #: src/LocalBackend/LocalLibrary.vala:250
 msgid "All music files are already in your library"
-msgstr "Sämtliche Musikdateien befinden sich bereits in Ihrer Bibliothek"
+msgstr "Sämtliche Musikdateien befinden sich bereits in Ihrer Sammlung"
 
 #: src/LocalBackend/LocalLibrary.vala:250
 msgid "No files were imported."
@@ -894,7 +894,7 @@ msgstr "Das Gerät führt bereits eine Aufgabe durch."
 
 #: src/Views/DeviceView.vala:66
 msgid "Cancelling…"
-msgstr "Abbruch …"
+msgstr "Abbrechen …"
 
 #: src/Views/DeviceView.vala:66
 msgid "Device operation has been cancelled and will stop after this media."
@@ -907,7 +907,7 @@ msgstr "Keine Ergebnisse"
 
 #: src/Views/ViewStack.vala:45
 msgid "Try another search"
-msgstr "Versuche eine neue Suche"
+msgstr "Neue Suche versuchen"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
 msgid "Genres"
@@ -1180,15 +1180,15 @@ msgstr "Beispiellänge Listeneintrag"
 #. Welcome screen
 #: src/Views/Wrappers/MusicViewWrapper.vala:56
 msgid "Get Some Tunes"
-msgstr "Legen Sie sich ein paar Songs zu"
+msgstr "Legen Sie sich einige Titel zu"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:57
 msgid "Add music to your library."
-msgstr "Fügen Sie Musik zu Ihrer Bibliothek hinzu."
+msgstr "Musik zu Ihrer Sammlung hinzufügen."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import music from a source into your library."
-msgstr "Musik aus einer Quelle in Ihre Bibliothek importieren."
+msgstr "Musik aus einer Quelle in Ihre Sammlung importieren."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:62
 msgid "Change Music Folder"
@@ -1209,7 +1209,7 @@ msgstr "Importieren Sie Ihre Musik"
 #: src/Views/Wrappers/MusicViewWrapper.vala:131
 #, c-format
 msgid "Import all your Music from %s into your library."
-msgstr "Importieren Ihrer gesamten Musik von %s in Ihre Bibliothek."
+msgstr "Ihre gesamte Musik von %s in Ihre Sammlung importieren."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:143
 msgid "Select Music Folder"
@@ -1223,7 +1223,7 @@ msgstr "Keine Titel"
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:51
 msgid "Updating playlist. Please wait."
-msgstr "Aktualisiere Wiedergabeliste. Bitte warten."
+msgstr "Wiedergabeliste aktualisieren. Bitte warten."
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:55
 msgid ""
@@ -1303,7 +1303,7 @@ msgstr "Zum aktuellen Titel scrollen"
 
 #: src/Widgets/MediaMenu.vala:49
 msgid "Show in File Browser…"
-msgstr "Im Dateimanager anzeigen…"
+msgstr "In der Dateiverwaltung anzeigen …"
 
 #: src/Widgets/MediaMenu.vala:50
 msgid "Edit Song Info…"
@@ -1324,15 +1324,15 @@ msgstr "Zur Wiedergabeliste hinzufügen"
 
 #: src/Widgets/MediaMenu.vala:55
 msgid "Remove Song…"
-msgstr "Titel entfernen…"
+msgstr "Titel entfernen …"
 
 #: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
 msgid "Import to Library"
-msgstr "In Bibliothek importieren"
+msgstr "In Sammlung importieren"
 
 #: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
 msgid "Remove from Library…"
-msgstr "Aus Bibliothek entfernen…"
+msgstr "Aus Sammlung entfernen …"
 
 #: src/Widgets/MediaMenu.vala:99
 msgid "Remove from Device"
@@ -1397,7 +1397,7 @@ msgstr "Wiedergabelisten importieren"
 #. Adds the different sidebar categories.
 #: src/Widgets/SourceListView.vala:338
 msgid "Library"
-msgstr "Bibliothek"
+msgstr "Sammlung"
 
 #: src/Widgets/SourceListView.vala:339
 msgid "Devices"
