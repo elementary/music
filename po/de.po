@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-01 20:45+0000\n"
-"PO-Revision-Date: 2020-10-27 22:15+0000\n"
+"PO-Revision-Date: 2021-02-15 14:45+0000\n"
 "Last-Translator: Uwe S <saabisto@gmx.de>\n"
 "Language-Team: German <https://l10n.elementary.io/projects/music/music/de/>\n"
 "Language: de\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-03-09 05:47+0000\n"
 
 #: core/LibrariesManager.vala:146
@@ -204,7 +204,7 @@ msgstr "Auf dem Gerät befindet sich keine Musik."
 
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:158
 msgid "Android Phone"
-msgstr "Android Handy"
+msgstr "Android-Handy"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:160
 msgid "Audio Player"
@@ -230,7 +230,7 @@ msgstr "<b>$NAME</b> von <b>$ARTIST</b> wird von $DEVICE entfernt"
 #: plugins/Devices/iPod/iPodLibrary.vala:366
 #, c-format
 msgid "Removing from <b>%s</b>…"
-msgstr "Es wird von <b>%s</b> entfernt …"
+msgstr "<b>%s</b> entfernen …"
 
 #: plugins/Devices/iPod/iPodLibrary.vala:238
 #: plugins/Devices/iPod/iPodLibrary.vala:404
@@ -252,11 +252,10 @@ msgid ""
 "all song info is correct and you are connected to the Internet. Some songs "
 "may not have matches."
 msgstr ""
-"Es gibt keinen Titel in Ihrer Bibliothek, das Ähnlichkeiten mit dem "
-"aktuellen Titel aufweist. \n"
-"Stellen Sie sicher, dass alle Informationen korrekt und Sie mit dem Internet "
-"verbunden sind. Für manche Titel finden sich eventuell dennoch keine "
-"Übereinstimmungen."
+"Es gibt keinen Titel in Ihrer Bibliothek, der Ähnlichkeiten mit dem "
+"aktuellen Titel aufweist. Stellen Sie sicher, dass alle Informationen "
+"korrekt und Sie mit dem Internet verbunden sind. Für manche Titel finden "
+"sich eventuell dennoch keine Übereinstimmungen."
 
 #: plugins/LastFM/SimilarMedia.vala:44
 msgid "Similar"
@@ -752,8 +751,8 @@ msgstr "kbit/s"
 #, c-format
 msgid "Sync will remove %i item from %s"
 msgid_plural "Sync will remove %i items from %s"
-msgstr[0] "Die Synchronisation wird eins von %s Elementen entfernen"
-msgstr[1] "Die Synchronisation wird %i von %s Elementen entfernen"
+msgstr[0] "Beim Synchronisieren wird %i von %s entfernt"
+msgstr[1] "Beim Synchronisieren werden %i von %s entfernt"
 
 #: src/Dialogs/SyncWarningDialog.vala:55
 #, c-format
