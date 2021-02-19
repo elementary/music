@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-01 20:45+0000\n"
-"PO-Revision-Date: 2020-10-04 13:14+0000\n"
+"PO-Revision-Date: 2021-02-18 20:55+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/music/music/ja/>"
 "\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:53+0000\n"
 
 #: core/LibrariesManager.vala:146
@@ -553,9 +553,7 @@ msgstr "ミュージックフォルダーを設定しますか？"
 msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
-msgstr ""
-"ミュージックフォルダーを %s に設定してもよろしいですか？この操作はライブラリ"
-"を初期化し、プレイリストを削除します。"
+msgstr "ミュージックフォルダーを %s に設定してもよろしいですか？　この操作はライブラリを初期化し、プレイリストを削除します。"
 
 #: src/Dialogs/SetMusicFolderConfirmation.vala:47
 msgid "Export Playlists"
@@ -1152,7 +1150,7 @@ msgstr "1234 kbps"
 #. / by the column's title header.
 #: src/Views/ListView/Lists/MusicListView.vala:481
 msgid "Sample List String"
-msgstr "Sample List String"
+msgstr "一覧の幅設定のための文字列"
 
 #. Welcome screen
 #: src/Views/Wrappers/MusicViewWrapper.vala:56
