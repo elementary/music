@@ -123,6 +123,7 @@ public class Music.LocalSmartPlaylist : SmartPlaylist {
             }
 
             var meds = library.medias_from_ids (rowids);
+            clear ();
             medias.add_all (meds);
             media_added (meds);
         } catch (Error e) {
