@@ -86,24 +86,20 @@ public class Music.SmartPlaylistEditor : Granite.Dialog {
         limiter_grid.attach (limit_spin, 1, 0, 1, 1);
         limiter_grid.attach (new Gtk.Label (_("items")), 2, 0, 1, 1);
 
-        save_button = new Gtk.Button.with_label (_("Save"));
+        unowned var close_button = (Gtk.Button) add_button (_("Cancel"), Gtk.ResponseType.CANCEL);
+        close_button.clicked.connect (close_click);
+
+        save_button = (Gtk.Button) add_button (_("Save"), Gtk.ResponseType.APPLY);
         save_button.clicked.connect (save_click);
         save_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
 
-        var close_button = new Gtk.Button.with_label (_("Cancel"));
-        close_button.clicked.connect (close_click);
-
-        var button_box = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL);
-        button_box.layout_style = Gtk.ButtonBoxStyle.END;
-        button_box.pack_end (close_button, false, false, 0);
-        button_box.pack_end (save_button, false, false, 0);
-        button_box.spacing = 6;
-
-        var main_grid = new Gtk.Grid ();
-        main_grid.expand = true;
-        main_grid.margin_start = main_grid.margin_end = 12;
-        main_grid.column_spacing = 12;
-        main_grid.row_spacing = 6;
+        var main_grid = new Gtk.Grid () {
+            column_spacing = 12,
+            row_spacing = 6,
+            margin = 12,
+            margin_top = 0,
+            expand = true
+        };
         main_grid.attach (new Granite.HeaderLabel (_("Name of Playlist")), 0, 0, 3, 1);
         main_grid.attach (name_entry, 0, 1, 3, 1);
         main_grid.attach (new Granite.HeaderLabel (_("Rules")), 0, 2, 3, 1);
@@ -111,14 +107,11 @@ public class Music.SmartPlaylistEditor : Granite.Dialog {
         main_grid.attach (queries_grid, 0, 4, 3, 1);
         main_grid.attach (new Granite.HeaderLabel (_("Options")), 0, 5, 3, 1);
         main_grid.attach (limiter_grid, 0, 6, 3, 1);
-        main_grid.attach (button_box, 0, 7, 3, 1);
 
-        deletable = false;
         destroy_with_parent = true;
         modal = true;
         title = _("Smart Playlist Editor");
         transient_for = App.main_window;
-        window_position = Gtk.WindowPosition.CENTER_ON_PARENT;
         get_content_area ().add (main_grid);
 
         if (smart_playlist == null) {
