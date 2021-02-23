@@ -206,11 +206,14 @@ public class Music.SmartPlaylistEditor : Granite.Dialog {
             queries.add (query);
         }
 
-        smart_playlist.add_queries (queries);
         smart_playlist.name = name_entry.text.strip ();
         smart_playlist.conditional = (SmartPlaylist.ConditionalType) match_combobox.get_active ();
         smart_playlist.limit = limit_check.get_active ();
         smart_playlist.limit_amount = (int)limit_spin.get_value ();
+
+        /* add_queries () causes an updated signal to be emitted even if @queries is empty
+         * so we do it last to reflect any other changes made. */
+        smart_playlist.add_queries (queries);
 
         if (is_new) {
             App.main_window.newly_created_playlist = true;
