@@ -68,6 +68,12 @@ modules:
             url: https://launchpad.net/intltool/trunk/0.51.0/+download/intltool-0.51.0.tar.gz
             md5: 12e517cac2b57a0121cda351570f1e63
 
+  - name: granite
+    buildsystem: meson
+    sources:
+      - type: git
+        url: https://github.com/elementary/granite.git
+
   - name: handy
     buildsystem: meson
     config-opts:
@@ -76,7 +82,7 @@ modules:
     sources:
       - type: git
         url: https://gitlab.gnome.org/GNOME/libhandy.git
-        tag: '1.0.1'
+        tag: '1.0.3'
 
   - name: taglib
     buildsystem: cmake-ninja
