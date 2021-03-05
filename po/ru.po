@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-01 20:45+0000\n"
-"PO-Revision-Date: 2021-03-03 22:57+0000\n"
+"PO-Revision-Date: 2021-03-05 22:14+0000\n"
 "Last-Translator: DartDeaDia <jorydit@gmail.com>\n"
 "Language-Team: Russian <https://l10n.elementary.io/projects/music/music/ru/>"
 "\n"
@@ -1017,7 +1017,7 @@ msgstr "Все композиторы"
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:273
 #, c-format
 msgid "All %i Composers"
-msgstr "Всех %i  композиторов"
+msgstr "Все %i композиторы"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:275
 msgid "No Composers"
@@ -1416,10 +1416,8 @@ msgid "Add Smart Playlist"
 msgstr "Добавить динамический список воспроизведения"
 
 #: src/Widgets/StatusBar.vala:48
-#, fuzzy
-#| msgid "Add Playlist"
 msgid "Add Playlist…"
-msgstr "Добавить список воспроизведения"
+msgstr "Добавить список воспроизведения…"
 
 #. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: src/Widgets/StatusBar.vala:74
