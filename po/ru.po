@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-01 20:45+0000\n"
-"PO-Revision-Date: 2021-03-05 22:14+0000\n"
+"PO-Revision-Date: 2021-03-07 20:35+0000\n"
 "Last-Translator: DartDeaDia <jorydit@gmail.com>\n"
 "Language-Team: Russian <https://l10n.elementary.io/projects/music/music/ru/>"
 "\n"
@@ -165,7 +165,7 @@ msgstr "Сохранить"
 #: src/Dialogs/SyncWarningDialog.vala:60
 #: src/Views/Wrappers/MusicViewWrapper.vala:147 src/Widgets/TopDisplay.vala:63
 msgid "Cancel"
-msgstr "Отмена"
+msgstr "Отменить"
 
 #: core/Utils/PlaylistsUtils.vala:329
 msgid "Playlist"
@@ -1267,7 +1267,7 @@ msgstr "_Открыть"
 
 #: src/Widgets/AlbumListGrid.vala:201
 msgid "_Cancel"
-msgstr "_Отмена"
+msgstr "_Отменить"
 
 #: src/Widgets/EqualizerPopover.vala:162
 msgid "Save preset"
