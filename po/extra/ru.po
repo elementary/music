@@ -8,17 +8,17 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-22 17:33+0000\n"
-"PO-Revision-Date: 2019-06-10 03:20+0000\n"
-"Last-Translator: Atlasi1 <myltykbaev.artur@mail.ru>\n"
-"Language-Team: Russian <https://l10n.elementary.io/projects/music/extra/ru/"
-">\n"
+"PO-Revision-Date: 2021-03-15 11:08+0000\n"
+"Last-Translator: DartDeaDia <jorydit@gmail.com>\n"
+"Language-Team: Russian <https://l10n.elementary.io/projects/music/extra/ru/>"
+"\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
 #: data/io.elementary.music.appdata.xml.in:8
@@ -35,12 +35,13 @@ msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices, CDs, and album art."
 msgstr ""
-"Быстрый и красивый аудио-плеер с акцентом на музыку и библиотеки.  "
-"Поддерживает внешние устройства, компакт-диски и обложки альбомов."
+"Приложение «Музыка» - это быстрый и красивый аудиоплеер с акцентом на музыку "
+"и библиотеки. Он Поддерживае внешние устройства, компакт-диски и обложки "
+"альбомов."
 
 #: data/io.elementary.music.appdata.xml.in:16
 msgid "Drop support for CD-ROM"
-msgstr ""
+msgstr "Прекращена поддержка CD-ROM"
 
 #: data/io.elementary.music.appdata.xml.in:17
 #: data/io.elementary.music.appdata.xml.in:24
@@ -50,35 +51,36 @@ msgstr ""
 #: data/io.elementary.music.appdata.xml.in:62
 #: data/io.elementary.music.appdata.xml.in:71
 msgid "Updated translations"
-msgstr ""
+msgstr "Обновлены переводы"
 
 #: data/io.elementary.music.appdata.xml.in:22
 msgid "Fix removing items from the queue"
-msgstr ""
+msgstr "Исправлено удаление элементов из очереди"
 
 #: data/io.elementary.music.appdata.xml.in:23
 msgid "Fix equalizer sliders not properly disabled sometimes"
-msgstr ""
+msgstr "Исправлены ползунки эквалайзера, которые иногда неправильно отключаются"
 
 #: data/io.elementary.music.appdata.xml.in:25
 msgid "Performance improvements"
-msgstr ""
+msgstr "Улучшения производительности"
 
 #: data/io.elementary.music.appdata.xml.in:30
 msgid "Removed old gsignond vapi"
-msgstr ""
+msgstr "Удален старый gsignond vapi"
 
 #: data/io.elementary.music.appdata.xml.in:31
 msgid "LibraryWindow: Use Granite.MessageDialog for showing alerts"
 msgstr ""
+"LibraryWindow: Использование Granite.MessageDialog для показа уведомлений"
 
 #: data/io.elementary.music.appdata.xml.in:32
 msgid "PlaylistsUtils: Use Gtk.FileChooserNative"
-msgstr ""
+msgstr "PlaylistsUtils: Использование Gtk.FileChooserNative"
 
 #: data/io.elementary.music.appdata.xml.in:33
 msgid "Accurately remember window size"
-msgstr ""
+msgstr "Точное запоминание размера окна"
 
 #: data/io.elementary.music.appdata.xml.in:39
 msgid "Scale album art properly at high resolutions"
@@ -95,7 +97,7 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:47
 msgid "AlbumView: double-click to play album"
-msgstr ""
+msgstr "AlbumView: двойной клик для воспроизведения альбома"
 
 #: data/io.elementary.music.appdata.xml.in:48
 msgid "Associate with s3m files"
@@ -103,7 +105,7 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:49
 msgid "Queue fixes"
-msgstr ""
+msgstr "Исправления очереди"
 
 #: data/io.elementary.music.appdata.xml.in:50
 msgid "Properly restore playlists"
@@ -119,7 +121,7 @@ msgstr ""
 #: data/io.elementary.music.appdata.xml.in:102
 #: data/io.elementary.music.appdata.xml.in:117
 msgid "Minor bug fixes"
-msgstr ""
+msgstr "Исправления незначительных ошибок"
 
 #: data/io.elementary.music.appdata.xml.in:58
 msgid "Fix list and column view sorting"
@@ -127,7 +129,7 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:59
 msgid "Add orange accent color"
-msgstr ""
+msgstr "Добавлен оранжевый цветовой акцент"
 
 #: data/io.elementary.music.appdata.xml.in:60
 msgid "Add shortcut accels to tooltips"
@@ -166,16 +168,16 @@ msgstr ""
 #: data/io.elementary.music.appdata.xml.in:90
 #: data/io.elementary.music.appdata.xml.in:95
 msgid "Minor bug fixes."
-msgstr ""
+msgstr "Исправления незначительных ошибок."
 
 #: data/io.elementary.music.appdata.xml.in:100
 msgid "Add rounded bottom window corner."
-msgstr ""
+msgstr "Добавлены закругленные нижние углы окна."
 
 #: data/io.elementary.music.appdata.xml.in:103
 #: data/io.elementary.music.appdata.xml.in:118
 msgid "New translations"
-msgstr ""
+msgstr "Новые переводы"
 
 #: data/io.elementary.music.appdata.xml.in:109
 msgid "Release for Loki."
@@ -206,9 +208,8 @@ msgid "Respect privacy mode"
 msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:156
-#, fuzzy
 msgid "elementary, Inc."
-msgstr "elementary LLC."
+msgstr "elementary, Inc."
 
 #: data/io.elementary.music.desktop.in:5
 msgid "Music Player"
@@ -220,11 +221,13 @@ msgstr "Слушайте музыку"
 
 #: data/io.elementary.music.desktop.in:8
 msgid "multimedia-audio-player"
-msgstr "мультимедийный аудио-плеер"
+msgstr "multimedia-audio-player"
 
 #: data/io.elementary.music.desktop.in:13
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-msgstr "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+msgstr ""
+"Шум;Аудио;Проигрыватель;MP3;iPod;Воспроизведение;Список "
+"воспроизведения;Плейлист;Медиа;CD;Телефон;Песни;Музыка;"
 
 #~ msgid "About Music"
 #~ msgstr "О программе"
