@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-01 20:45+0000\n"
-"PO-Revision-Date: 2021-02-18 20:55+0000\n"
+"PO-Revision-Date: 2021-03-16 08:12+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/music/music/ja/>"
 "\n"
@@ -363,7 +363,7 @@ msgstr "音楽ファイル <b>%s</b> / <b>%s</b> は見つかりませんでし�
 #: src/Dialogs/FileNotFoundDialog.vala:50
 #, c-format
 msgid "%i music files could not be found?"
-msgstr "%i の音楽ファイルが見つかりませんでしたか？"
+msgstr "%i個の音楽ファイルが見つかりませんでしたか？"
 
 #: src/Dialogs/FileNotFoundDialog.vala:53
 msgid "Rescan Library"
@@ -459,9 +459,7 @@ msgstr "%s からのインポート中に不具合が発生しました"
 #, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] ""
-"%d 個の項目をインポートできませんでした。ファイルが壊れている可能性がありま"
-"す。"
+msgstr[0] "%d個の項目をインポートできませんでした。ファイルが壊れている可能性があります。"
 
 #: src/Dialogs/NotImportedDialog.vala:64
 msgid "Move all corrupted files to trash"
@@ -523,7 +521,7 @@ msgstr "閉じたときに再生を続ける:"
 #, c-format
 msgid "Remove %d Song From Library?"
 msgid_plural "Remove %d Songs From Library?"
-msgstr[0] "ライブラリから %d 曲を削除しますか？"
+msgstr[0] "ライブラリから%d曲を削除しますか？"
 
 #: src/Dialogs/RemoveFilesDialog.vala:55
 #, c-format
@@ -732,7 +730,7 @@ msgstr "kbps"
 #, c-format
 msgid "Sync will remove %i item from %s"
 msgid_plural "Sync will remove %i items from %s"
-msgstr[0] "同期によって %i 個の項目が %s から削除されます"
+msgstr[0] "同期によって%i個の項目が %s から削除されます"
 
 #: src/Dialogs/SyncWarningDialog.vala:55
 #, c-format
@@ -784,7 +782,7 @@ msgstr "キューに追加しました:"
 #, c-format
 msgid "%d Track"
 msgid_plural "%d Tracks"
-msgstr[0] "%d トラック"
+msgstr[0] "%dトラック"
 
 #: src/LocalBackend/LocalSmartPlaylist.vala:217
 msgid "Favorite Songs"
@@ -920,7 +918,7 @@ msgstr "すべてのジャンル"
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
 #, c-format
 msgid "All %i Genres"
-msgstr "全 %i ジャンル"
+msgstr "全%iジャンル"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
 msgid "No Genres"
@@ -933,7 +931,7 @@ msgstr "すべてのアーティスト"
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
 #, c-format
 msgid "All %i Artists"
-msgstr "全 %i アーティスト"
+msgstr "全%iアーティスト"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
 msgid "No Artists"
@@ -946,7 +944,7 @@ msgstr "すべてのアルバム"
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
 #, c-format
 msgid "All %i Albums"
-msgstr "全 %i アルバム"
+msgstr "全%iアルバム"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
 msgid "No Albums"
@@ -959,7 +957,7 @@ msgstr "すべての年"
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
 #, c-format
 msgid "All %i Years"
-msgstr "全 %i 年"
+msgstr "全%i年"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:250
 msgid "No Years"
@@ -980,7 +978,7 @@ msgstr "すべてのグループ"
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
 #, c-format
 msgid "All %i Groupings"
-msgstr "全 %i グループ"
+msgstr "全%iグループ"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
 msgid "No Groupings"
@@ -993,7 +991,7 @@ msgstr "すべての作曲者"
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:273
 #, c-format
 msgid "All %i Composers"
-msgstr "全 %i 作曲者"
+msgstr "全%i作曲者"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:275
 msgid "No Composers"
@@ -1021,7 +1019,7 @@ msgstr "評価なし"
 #, c-format
 msgid "%u Star"
 msgid_plural "%u Stars"
-msgstr[0] "%u スター"
+msgstr[0] "スター%u個"
 
 #: src/Views/ListView/Lists/CellDataFunctionHelper.vala:128
 #, c-format
@@ -1266,7 +1264,7 @@ msgstr "カスタムプリセット"
 #: src/Widgets/EqualizerPopover.vala:425
 #, c-format
 msgid "Custom Preset %i"
-msgstr "カスタムプリセット %i"
+msgstr "カスタムプリセット%i"
 
 #: src/Widgets/MediaMenu.vala:46
 msgid "Scroll to Current Song"
@@ -1320,13 +1318,13 @@ msgstr "新しいプレイリスト…"
 #: src/Widgets/MediaMenu.vala:193
 #, c-format
 msgid "Import %i of %i selected songs"
-msgstr "選択された %i / %i 曲をインポート"
+msgstr "選択された%i / %i曲をインポート"
 
 #: src/Widgets/MediaMenu.vala:195
 #, c-format
 msgid "Import %i song"
 msgid_plural "Import %i songs"
-msgstr[0] "%i 曲をインポート"
+msgstr[0] "%i曲をインポート"
 
 #: src/Widgets/PresetList.vala:53
 msgid "Delete Current"
