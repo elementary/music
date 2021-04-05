@@ -17,8 +17,6 @@ finish-args:
   # needed for perfers-color-scheme
   - '--system-talk-name=org.freedesktop.Accounts'
 
-  - '--own-name=org.mpris.MediaPlayer2.Music'
-
   - '--talk-name=org.gnome.SettingsDaemon.MediaKeys'
   - '--talk-name=org.gnome.zeitgeist.Engine'
   - '--talk-name=org.gtk.vfs'
