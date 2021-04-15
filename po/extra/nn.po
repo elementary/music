@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-22 17:33+0000\n"
+"POT-Creation-Date: 2021-04-15 00:20+0000\n"
 "PO-Revision-Date: 2020-07-18 21:12+0000\n"
 "Last-Translator: Martin Myrvold <myrvold.martin@gmail.com>\n"
 "Language-Team: Norwegian Nynorsk <https://l10n.elementary.io/projects/music/"
@@ -218,9 +218,13 @@ msgid "Listen to music"
 msgstr "Høyr på musikk"
 
 #: data/io.elementary.music.desktop.in:8
-msgid "multimedia-audio-player"
-msgstr "multimedia-audio-player"
+#, fuzzy
+msgid "io.elementary.music"
+msgstr "elementary LLC."
 
 #: data/io.elementary.music.desktop.in:13
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 msgstr "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+
+#~ msgid "multimedia-audio-player"
+#~ msgstr "multimedia-audio-player"

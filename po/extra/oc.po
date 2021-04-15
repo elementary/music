@@ -2,11 +2,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-22 17:33+0000\n"
+"POT-Creation-Date: 2021-04-15 00:20+0000\n"
 "PO-Revision-Date: 2020-08-29 21:13+0000\n"
 "Last-Translator: Mejans <farga@mejans.fr>\n"
-"Language-Team: Occitan <https://l10n.elementary.io/projects/music/extra/oc/>"
-"\n"
+"Language-Team: Occitan <https://l10n.elementary.io/projects/music/extra/oc/"
+">\n"
 "Language: oc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -210,7 +210,7 @@ msgid "Listen to music"
 msgstr ""
 
 #: data/io.elementary.music.desktop.in:8
-msgid "multimedia-audio-player"
+msgid "io.elementary.music"
 msgstr ""
 
 #: data/io.elementary.music.desktop.in:13

@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-22 17:33+0000\n"
+"POT-Creation-Date: 2021-04-15 00:20+0000\n"
 "PO-Revision-Date: 2020-10-23 20:15+0000\n"
 "Last-Translator: Fabio Zaramella <fabiozaramella@hotmail.it>\n"
-"Language-Team: Italian <https://l10n.elementary.io/projects/music/extra/it/>"
-"\n"
+"Language-Team: Italian <https://l10n.elementary.io/projects/music/extra/it/"
+">\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -84,7 +84,8 @@ msgstr "Ricorda accuratamente la dimensione della finestra"
 
 #: data/io.elementary.music.appdata.xml.in:39
 msgid "Scale album art properly at high resolutions"
-msgstr "Ridimensiona correttamente le copertine degli album ad alte risoluzioni"
+msgstr ""
+"Ridimensiona correttamente le copertine degli album ad alte risoluzioni"
 
 #: data/io.elementary.music.appdata.xml.in:40
 msgid ""
@@ -222,13 +223,18 @@ msgid "Listen to music"
 msgstr "Ascolta la tua musica"
 
 #: data/io.elementary.music.desktop.in:8
-msgid "multimedia-audio-player"
-msgstr "multimedia-audio-player"
+#, fuzzy
+#| msgid "elementary, Inc."
+msgid "io.elementary.music"
+msgstr "elementary, Inc."
 
 #: data/io.elementary.music.desktop.in:13
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 msgstr ""
 "Noise;Audio;Riproduttore;MP3;iPod;Riproduci;Playlist;Media;CD;Telefono;Brani;"
+
+#~ msgid "multimedia-audio-player"
+#~ msgstr "multimedia-audio-player"
 
 #~ msgid "About Music"
 #~ msgstr "Informazioni"

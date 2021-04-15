@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-22 17:33+0000\n"
+"POT-Creation-Date: 2021-04-15 00:20+0000\n"
 "PO-Revision-Date: 2018-08-23 00:03+0000\n"
 "Last-Translator: Daniel Foré <daniel@elementary.io>\n"
 "Language-Team: Greek <https://weblate.elementary.io/projects/music/extra/el/"
@@ -218,14 +218,17 @@ msgid "Listen to music"
 msgstr "Ακούστε μουσική"
 
 #: data/io.elementary.music.desktop.in:8
-msgid "multimedia-audio-player"
-msgstr "multimedia-audio-player"
+msgid "io.elementary.music"
+msgstr ""
 
 #: data/io.elementary.music.desktop.in:13
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 msgstr ""
 "Noise;Ήχος;Αναπαραγωγέας;MP3;Αναπαραγωγή;Λίστα;Πολυμέσα;Δίσκος;Τηλέφωνο;"
 "Τραγούδια;"
+
+#~ msgid "multimedia-audio-player"
+#~ msgstr "multimedia-audio-player"
 
 #~ msgid "About Music"
 #~ msgstr "Σχετικά με τη Μουσική"

@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-22 17:33+0000\n"
+"POT-Creation-Date: 2021-04-15 00:20+0000\n"
 "PO-Revision-Date: 2021-03-17 14:54+0000\n"
 "Last-Translator: DartDeaDia <jorydit@gmail.com>\n"
-"Language-Team: Russian <https://l10n.elementary.io/projects/music/extra/ru/>"
-"\n"
+"Language-Team: Russian <https://l10n.elementary.io/projects/music/extra/ru/"
+">\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -59,7 +59,8 @@ msgstr "Исправлено удаление элементов из очере
 
 #: data/io.elementary.music.appdata.xml.in:23
 msgid "Fix equalizer sliders not properly disabled sometimes"
-msgstr "Исправлены ползунки эквалайзера, которые иногда неправильно отключаются"
+msgstr ""
+"Исправлены ползунки эквалайзера, которые иногда неправильно отключаются"
 
 #: data/io.elementary.music.appdata.xml.in:25
 msgid "Performance improvements"
@@ -222,14 +223,19 @@ msgid "Listen to music"
 msgstr "Слушайте музыку"
 
 #: data/io.elementary.music.desktop.in:8
-msgid "multimedia-audio-player"
-msgstr "multimedia-audio-player"
+#, fuzzy
+#| msgid "elementary, Inc."
+msgid "io.elementary.music"
+msgstr "elementary, Inc."
 
 #: data/io.elementary.music.desktop.in:13
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 msgstr ""
-"Шум;Аудио;Проигрыватель;MP3;iPod;Воспроизведение;Список "
-"воспроизведения;Плейлист;Медиа;CD;Телефон;Песни;Музыка;"
+"Шум;Аудио;Проигрыватель;MP3;iPod;Воспроизведение;Список воспроизведения;"
+"Плейлист;Медиа;CD;Телефон;Песни;Музыка;"
+
+#~ msgid "multimedia-audio-player"
+#~ msgstr "multimedia-audio-player"
 
 #~ msgid "About Music"
 #~ msgstr "О программе"
