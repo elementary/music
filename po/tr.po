@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-23 08:07+0000\n"
-"PO-Revision-Date: 2021-02-09 23:02+0000\n"
+"PO-Revision-Date: 2021-04-23 19:54+0000\n"
 "Last-Translator: Ozgur Baskin <bebeto_baskin@yahoo.com>\n"
-"Language-Team: Turkish <https://l10n.elementary.io/projects/music/music/tr/"
-">\n"
+"Language-Team: Turkish <https://l10n.elementary.io/projects/music/music/tr/>"
+"\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -362,10 +362,9 @@ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr "<b>%s</b> - <b>%s</b> müzik dosyası bulunamadı."
 
 #: src/Dialogs/FileNotFoundDialog.vala:50
-#, fuzzy, c-format
-#| msgid "%i music files could not be found?"
+#, c-format
 msgid "%i music files could not be found."
-msgstr "%i müzik dosyası bulunamadı?"
+msgstr "%i müzik dosyası bulunamadı."
 
 #: src/Dialogs/FileNotFoundDialog.vala:53
 msgid "Rescan Library"
