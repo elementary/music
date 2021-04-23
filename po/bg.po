@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-15 00:20+0000\n"
+"POT-Creation-Date: 2021-04-23 08:07+0000\n"
 "PO-Revision-Date: 2017-05-09 22:27+0000\n"
 "Last-Translator: Martin Tomov <martin.tomov@boomer.digital>\n"
 "Language-Team: Bulgarian <https://l10n.elementary.io/projects/music/music/bg/"
@@ -363,8 +363,9 @@ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr "Музикалният файл за <b>%s</b> от <b>%s</b> не беше намерен."
 
 #: src/Dialogs/FileNotFoundDialog.vala:50
-#, c-format
-msgid "%i music files could not be found?"
+#, fuzzy, c-format
+#| msgid "%i music files could not be found?"
+msgid "%i music files could not be found."
 msgstr "%i музикални файла не бяха намерени?"
 
 #: src/Dialogs/FileNotFoundDialog.vala:53

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-15 00:20+0000\n"
+"POT-Creation-Date: 2021-04-23 08:07+0000\n"
 "PO-Revision-Date: 2021-03-21 00:07+0000\n"
 "Last-Translator: Shukrullo Turgunov <shukrullo@umail.uz>\n"
 "Language-Team: Uzbek <https://l10n.elementary.io/projects/music/music/uz/>\n"
@@ -347,7 +347,7 @@ msgstr ""
 
 #: src/Dialogs/FileNotFoundDialog.vala:50
 #, c-format
-msgid "%i music files could not be found?"
+msgid "%i music files could not be found."
 msgstr ""
 
 #: src/Dialogs/FileNotFoundDialog.vala:53

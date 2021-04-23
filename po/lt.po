@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-15 00:20+0000\n"
+"POT-Creation-Date: 2021-04-23 08:07+0000\n"
 "PO-Revision-Date: 2018-11-06 20:47+0000\n"
 "Last-Translator: Moo <hazap@hotmail.com>\n"
 "Language-Team: Lithuanian <https://weblate.elementary.io/projects/music/"
@@ -362,8 +362,9 @@ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr "Nepavyko rasti muzikinio failo <b>%s</b> pagal <b>%s</b>."
 
 #: src/Dialogs/FileNotFoundDialog.vala:50
-#, c-format
-msgid "%i music files could not be found?"
+#, fuzzy, c-format
+#| msgid "%i music files could not be found?"
+msgid "%i music files could not be found."
 msgstr "Nepavyko rasti %i muzikinių failų?"
 
 #: src/Dialogs/FileNotFoundDialog.vala:53

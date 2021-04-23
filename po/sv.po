@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-15 00:20+0000\n"
+"POT-Creation-Date: 2021-04-23 08:07+0000\n"
 "PO-Revision-Date: 2018-10-21 09:30+0000\n"
 "Last-Translator: Cleiton Floss <cleitonfloss@gmail.com>\n"
 "Language-Team: Swedish <https://weblate.elementary.io/projects/music/music/"
@@ -362,8 +362,9 @@ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr "Ljudfilen för <b>%s</b> av <b>%s</b> kan inte hittas."
 
 #: src/Dialogs/FileNotFoundDialog.vala:50
-#, c-format
-msgid "%i music files could not be found?"
+#, fuzzy, c-format
+#| msgid "%i music files could not be found?"
+msgid "%i music files could not be found."
 msgstr "%i ljudfiler kan inte hittas?"
 
 #: src/Dialogs/FileNotFoundDialog.vala:53

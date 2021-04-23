@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-15 00:20+0000\n"
+"POT-Creation-Date: 2021-04-23 08:07+0000\n"
 "PO-Revision-Date: 2015-12-21 13:43+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Persian <fa@li.org>\n"
@@ -360,9 +360,10 @@ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr ""
 
 #: src/Dialogs/FileNotFoundDialog.vala:50
-#, c-format
-msgid "%i music files could not be found?"
-msgstr ""
+#, fuzzy, c-format
+#| msgid "%i media files could not be found. What would you like to do?"
+msgid "%i music files could not be found."
+msgstr "نمی‌توان %i پرونده موسیقی را پیدا کرد. قصد انجام چه کاری را دارید؟"
 
 #: src/Dialogs/FileNotFoundDialog.vala:53
 msgid "Rescan Library"
@@ -1795,9 +1796,6 @@ msgstr "نمایش ستونی"
 
 #~ msgid "Could not find media file"
 #~ msgstr "نمی‌توان پرونده رسانه را پیدا کرد"
-
-#~ msgid "%i media files could not be found. What would you like to do?"
-#~ msgstr "نمی‌توان %i پرونده موسیقی را پیدا کرد. قصد انجام چه کاری را دارید؟"
 
 #~ msgid "The name %s is already in use"
 #~ msgstr "پیش از این از نام %s استفاده شده است"

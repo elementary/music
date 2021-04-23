@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-15 00:20+0000\n"
+"POT-Creation-Date: 2021-04-23 08:07+0000\n"
 "PO-Revision-Date: 2019-02-12 00:06+0000\n"
 "Last-Translator: Rico Tzschichholz <ricotz@ubuntu.com>\n"
 "Language-Team: Croatian <https://weblate.elementary.io/projects/music/music/"
@@ -363,8 +363,9 @@ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr "Glazbena datoteka za <b>%s</b> od <b>%s</b> ne može se pronaći."
 
 #: src/Dialogs/FileNotFoundDialog.vala:50
-#, c-format
-msgid "%i music files could not be found?"
+#, fuzzy, c-format
+#| msgid "%i music files could not be found?"
+msgid "%i music files could not be found."
 msgstr "%i glazbenih datoteka ne može se pronaći?"
 
 #: src/Dialogs/FileNotFoundDialog.vala:53

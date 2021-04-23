@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-15 00:20+0000\n"
+"POT-Creation-Date: 2021-04-23 08:07+0000\n"
 "PO-Revision-Date: 2015-12-21 13:44+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: French (Canada) <fr_CA@li.org>\n"
@@ -362,9 +362,10 @@ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr ""
 
 #: src/Dialogs/FileNotFoundDialog.vala:50
-#, c-format
-msgid "%i music files could not be found?"
-msgstr ""
+#, fuzzy, c-format
+#| msgid "%i media files could not be found. What would you like to do?"
+msgid "%i music files could not be found."
+msgstr "%i pistes n'ont pas été trouvées. Que voulez-vous faire ?"
 
 #: src/Dialogs/FileNotFoundDialog.vala:53
 msgid "Rescan Library"
@@ -1925,9 +1926,6 @@ msgstr "Vue par colonne"
 
 #~ msgid "The name %s is already in use"
 #~ msgstr "Le nom %s est déjà utilisé"
-
-#~ msgid "%i media files could not be found. What would you like to do?"
-#~ msgstr "%i pistes n'ont pas été trouvées. Que voulez-vous faire ?"
 
 #~ msgid "Station"
 #~ msgstr "Station"

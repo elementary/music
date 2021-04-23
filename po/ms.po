@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-15 00:20+0000\n"
+"POT-Creation-Date: 2021-04-23 08:07+0000\n"
 "PO-Revision-Date: 2015-12-21 13:43+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Malay <ms@li.org>\n"
@@ -361,8 +361,9 @@ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr "Fail muzik untuk <b>%s</b> oleh <b>%s</b> tidak ditemui."
 
 #: src/Dialogs/FileNotFoundDialog.vala:50
-#, c-format
-msgid "%i music files could not be found?"
+#, fuzzy, c-format
+#| msgid "%i music files could not be found?"
+msgid "%i music files could not be found."
 msgstr "Fail muzik %i tidak ditemui?"
 
 #: src/Dialogs/FileNotFoundDialog.vala:53

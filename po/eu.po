@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-15 00:20+0000\n"
+"POT-Creation-Date: 2021-04-23 08:07+0000\n"
 "PO-Revision-Date: 2015-12-21 13:46+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Basque <eu@li.org>\n"
@@ -360,9 +360,10 @@ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr ""
 
 #: src/Dialogs/FileNotFoundDialog.vala:50
-#, c-format
-msgid "%i music files could not be found?"
-msgstr ""
+#, fuzzy, c-format
+#| msgid "%i media files could not be found. What would you like to do?"
+msgid "%i music files could not be found."
+msgstr "Ezin izan dira %i eduki-fitxategi aurkitu. Zer egin nahi duzu?"
 
 #: src/Dialogs/FileNotFoundDialog.vala:53
 msgid "Rescan Library"
@@ -1985,9 +1986,6 @@ msgstr "Ikusi zutabetan"
 
 #~ msgid "The name %s is already in use"
 #~ msgstr "%s izena dagoeneko erabilita dago"
-
-#~ msgid "%i media files could not be found. What would you like to do?"
-#~ msgstr "Ezin izan dira %i eduki-fitxategi aurkitu. Zer egin nahi duzu?"
 
 #~ msgid "Locate Media"
 #~ msgstr "Kokatu edukia"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-15 00:20+0000\n"
+"POT-Creation-Date: 2021-04-23 08:07+0000\n"
 "PO-Revision-Date: 2015-12-21 13:45+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Luxembourgish <lb@li.org>\n"
@@ -351,9 +351,10 @@ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr ""
 
 #: src/Dialogs/FileNotFoundDialog.vala:50
-#, c-format
-msgid "%i music files could not be found?"
-msgstr ""
+#, fuzzy, c-format
+#| msgid "%i media files could not be found. What would you like to do?"
+msgid "%i music files could not be found."
+msgstr "%i Dateie konnte net fonnt ginn. Wat géigt dir gäre maachen?"
 
 #: src/Dialogs/FileNotFoundDialog.vala:53
 msgid "Rescan Library"
@@ -1590,9 +1591,6 @@ msgstr ""
 #~ msgstr ""
 #~ "D'Musekdatei fir %s vun %s konnt net fonnt ginn. Wat géigt dir gäre "
 #~ "maachen?"
-
-#~ msgid "%i media files could not be found. What would you like to do?"
-#~ msgstr "%i Dateie konnte net fonnt ginn. Wat géigt dir gäre maachen?"
 
 #~ msgid "Could not find media file"
 #~ msgstr "Konnt keng Medie fannen"

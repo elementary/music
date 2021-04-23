@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-15 00:20+0000\n"
+"POT-Creation-Date: 2021-04-23 08:07+0000\n"
 "PO-Revision-Date: 2016-12-12 07:21+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: \n"
@@ -356,8 +356,9 @@ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr "<b>%s</b> ئورۇنلىغان <b>%s</b> ناملىق ناخشىنىڭ ھۆججىتى تىپىلمىدى."
 
 #: src/Dialogs/FileNotFoundDialog.vala:50
-#, c-format
-msgid "%i music files could not be found?"
+#, fuzzy, c-format
+#| msgid "%i music files could not be found?"
+msgid "%i music files could not be found."
 msgstr "%i ناملىق مۇزىكىنىڭ ھۆججىتى تىپىلمىدى؟"
 
 #: src/Dialogs/FileNotFoundDialog.vala:53

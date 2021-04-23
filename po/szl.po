@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-15 00:20+0000\n"
+"POT-Creation-Date: 2021-04-23 08:07+0000\n"
 "PO-Revision-Date: 2020-02-25 13:09+0000\n"
 "Last-Translator: gkkulik <g.kulik@o2.pl>\n"
 "Language-Team: Silesian <https://l10n.elementary.io/projects/music/music/szl/"
@@ -356,8 +356,9 @@ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr "Niy szło znojś zbioru muzycznego <b>%s</b> ôd <b>%s</b>."
 
 #: src/Dialogs/FileNotFoundDialog.vala:50
-#, c-format
-msgid "%i music files could not be found?"
+#, fuzzy, c-format
+#| msgid "%i music files could not be found?"
+msgid "%i music files could not be found."
 msgstr "%i zbiorōw muzycznych niy idzie znojś?"
 
 #: src/Dialogs/FileNotFoundDialog.vala:53

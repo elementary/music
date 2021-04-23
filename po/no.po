@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-15 00:20+0000\n"
+"POT-Creation-Date: 2021-04-23 08:07+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
@@ -339,7 +339,7 @@ msgstr ""
 
 #: src/Dialogs/FileNotFoundDialog.vala:50
 #, c-format
-msgid "%i music files could not be found?"
+msgid "%i music files could not be found."
 msgstr ""
 
 #: src/Dialogs/FileNotFoundDialog.vala:53

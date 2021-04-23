@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-15 00:20+0000\n"
+"POT-Creation-Date: 2021-04-23 08:07+0000\n"
 "PO-Revision-Date: 2020-10-06 19:14+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://l10n.elementary.io/projects/music/music/mr/"
@@ -354,8 +354,9 @@ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr "<b>%s</b> यांची <b>%s</b> साठी संगीत फाइल सापडू शकली नाही."
 
 #: src/Dialogs/FileNotFoundDialog.vala:50
-#, c-format
-msgid "%i music files could not be found?"
+#, fuzzy, c-format
+#| msgid "%i music files could not be found?"
+msgid "%i music files could not be found."
 msgstr "%i संगीत फाइल्स सापडली नाहीत?"
 
 #: src/Dialogs/FileNotFoundDialog.vala:53

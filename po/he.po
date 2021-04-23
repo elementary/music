@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-15 00:20+0000\n"
+"POT-Creation-Date: 2021-04-23 08:07+0000\n"
 "PO-Revision-Date: 2021-01-24 19:25+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/music/music/he/>\n"
@@ -353,8 +353,9 @@ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr "לא ניתן למצוא את קובץ המוזיקה עבור <b>%s</b> של <b>%s</b>."
 
 #: src/Dialogs/FileNotFoundDialog.vala:50
-#, c-format
-msgid "%i music files could not be found?"
+#, fuzzy, c-format
+#| msgid "%i music files could not be found?"
+msgid "%i music files could not be found."
 msgstr "לא ניתן למצוא %i קובצי מוזיקה?"
 
 #: src/Dialogs/FileNotFoundDialog.vala:53

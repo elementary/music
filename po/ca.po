@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-15 00:20+0000\n"
+"POT-Creation-Date: 2021-04-23 08:07+0000\n"
 "PO-Revision-Date: 2021-01-18 12:02+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
 "Language-Team: Catalan <https://l10n.elementary.io/projects/music/music/ca/"
@@ -363,8 +363,9 @@ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr "No s'ha pogut trobar el fitxer d'àudio <b>%s</b> per <b>%s</b>."
 
 #: src/Dialogs/FileNotFoundDialog.vala:50
-#, c-format
-msgid "%i music files could not be found?"
+#, fuzzy, c-format
+#| msgid "%i music files could not be found?"
+msgid "%i music files could not be found."
 msgstr "No s'han pogut trobar %i fitxers de música?"
 
 #: src/Dialogs/FileNotFoundDialog.vala:53

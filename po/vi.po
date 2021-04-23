@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-15 00:20+0000\n"
+"POT-Creation-Date: 2021-04-23 08:07+0000\n"
 "PO-Revision-Date: 2017-12-28 18:44+0000\n"
 "Last-Translator: Hải Hồ <hochihai1997@gmail.com>\n"
 "Language-Team: Vietnamese <https://weblate.elementary.io/projects/music/"
@@ -353,8 +353,9 @@ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr "Tập tin nhạc cho <b>%s</b> bởi <b>%s</b> không tìm thấy."
 
 #: src/Dialogs/FileNotFoundDialog.vala:50
-#, c-format
-msgid "%i music files could not be found?"
+#, fuzzy, c-format
+#| msgid "%i music files could not be found?"
+msgid "%i music files could not be found."
 msgstr "%i tập tin nhạc không tìm thấy?"
 
 #: src/Dialogs/FileNotFoundDialog.vala:53
