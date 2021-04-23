@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-23 08:07+0000\n"
-"PO-Revision-Date: 2021-01-21 19:25+0000\n"
+"PO-Revision-Date: 2021-04-23 08:40+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://l10n.elementary.io/projects/music/"
 "music/nb/>\n"
@@ -361,10 +361,9 @@ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr "Musikkfilen for <b>%s</b> av <b>%s</b> ble ikke funnet."
 
 #: src/Dialogs/FileNotFoundDialog.vala:50
-#, fuzzy, c-format
-#| msgid "%i music files could not be found?"
+#, c-format
 msgid "%i music files could not be found."
-msgstr "%i musikkfiler kunne ikke bli funnet?"
+msgstr "Fant ikke %i musikkfiler."
 
 #: src/Dialogs/FileNotFoundDialog.vala:53
 msgid "Rescan Library"
@@ -1397,10 +1396,8 @@ msgid "Add Smart Playlist"
 msgstr "Ny smart spilleliste"
 
 #: src/Widgets/StatusBar.vala:48
-#, fuzzy
-#| msgid "Add Playlist"
 msgid "Add Playlist…"
-msgstr "Legg til spilleliste"
+msgstr "Legg til spilleliste …"
 
 #. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: src/Widgets/StatusBar.vala:74
