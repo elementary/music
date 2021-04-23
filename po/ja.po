@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-15 00:20+0000\n"
-"PO-Revision-Date: 2021-03-16 08:12+0000\n"
+"PO-Revision-Date: 2021-04-23 08:07+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
-"Language-Team: Japanese <https://l10n.elementary.io/projects/music/music/ja/"
-">\n"
+"Language-Team: Japanese <https://l10n.elementary.io/projects/music/music/ja/>"
+"\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -384,7 +384,7 @@ msgstr "ミュージックフォルダーを選択"
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:41
 #, c-format
 msgid "Would you like to install the %s plugin?"
-msgstr "%s プラグインをインストールしてもよろしいですか？"
+msgstr "プラグイン %s をインストールしてもよろしいですか？"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:42
 #, c-format
