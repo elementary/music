@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-23 08:07+0000\n"
-"PO-Revision-Date: 2021-04-23 08:07+0000\n"
+"PO-Revision-Date: 2021-04-23 08:40+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
-"Language-Team: Japanese <https://l10n.elementary.io/projects/music/music/ja/"
-">\n"
+"Language-Team: Japanese <https://l10n.elementary.io/projects/music/music/ja/>"
+"\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -357,13 +357,12 @@ msgstr "ファイルが見つかりませんでした"
 #: src/Dialogs/FileNotFoundDialog.vala:47
 #, c-format
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
-msgstr "音楽ファイル <b>%s</b> / <b>%s</b> は見つかりませんでした。"
+msgstr "音楽ファイル <b>%s</b> / <b>%s</b> を見つけられませんでした。"
 
 #: src/Dialogs/FileNotFoundDialog.vala:50
-#, fuzzy, c-format
-#| msgid "%i music files could not be found?"
+#, c-format
 msgid "%i music files could not be found."
-msgstr "%i個の音楽ファイルが見つかりませんでしたか？"
+msgstr "%i個の音楽ファイルを見つけられませんでした。"
 
 #: src/Dialogs/FileNotFoundDialog.vala:53
 msgid "Rescan Library"
