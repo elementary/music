@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-23 08:07+0000\n"
-"PO-Revision-Date: 2021-02-15 17:19+0000\n"
+"PO-Revision-Date: 2021-04-24 11:18+0000\n"
 "Last-Translator: Uwe S <saabisto@gmx.de>\n"
 "Language-Team: German <https://l10n.elementary.io/projects/music/music/de/>\n"
 "Language: de\n"
@@ -364,10 +364,9 @@ msgstr ""
 "Die Musikdatei für <b>%s</b> von <b>%s</b> konnte nicht gefunden werden."
 
 #: src/Dialogs/FileNotFoundDialog.vala:50
-#, fuzzy, c-format
-#| msgid "%i music files could not be found?"
+#, c-format
 msgid "%i music files could not be found."
-msgstr "»%i«-Musikdatei konnte nicht gefunden werden?"
+msgstr "»%i« Musikdateien konnten nicht gefunden werden."
 
 #: src/Dialogs/FileNotFoundDialog.vala:53
 msgid "Rescan Library"
