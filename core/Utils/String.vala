@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -26,7 +26,7 @@
  * Authored by: Victor Eduardo <victoreduardm@gmail.com>
  */
 
-namespace Noise.String {
+namespace Music.String {
 
     public inline bool is_empty (string? text, bool check_white_space) {
         if (text != null)
@@ -65,7 +65,7 @@ namespace Noise.String {
      * Removes irrelevant and meaningless characters from a string. Useful for search operations.
      * (Taken from gnome-contacts' contacts-utils.vala)
      */
-    public inline string canonicalize_for_search (string str) {
+    private inline string canonicalize_for_search (string str) {
         var buf = new unichar[unichar.MAX_DECOMPOSITION_LENGTH];
         var res = new StringBuilder ();
 
@@ -106,42 +106,12 @@ namespace Noise.String {
     }
 
     /**
-     * Capitalizes the initial letters of a UTF-8 string (Title Case).
-     *
-     * The implementation is guaranteed to be efficient.
-     *
-     * For example:
-     * "This is an input string" => "This Is An Input String"
-     * "example string/text"     => "Example String/Text"
-     */
-    public inline string to_title_case (string text) {
-        bool capitalize_next = true;
-
-        var result = new StringBuilder ();
-        unichar c;
-
-        for (int i = 0; text.get_next_char (ref i, out c);) {
-            if (capitalize_next) {
-                result.append_unichar (c.totitle ());
-                capitalize_next = false;
-            } else {
-                result.append_unichar (c.tolower ());
-
-                // Capitalize letters following a space or control character.
-                capitalize_next = c.isspace () || c.iscntrl ();
-            }
-        }
-
-        return result.str;
-    }
-
-    /**
      * Converts a string encoded in the native operating system encoding to UTF-8.
      *
      * @param string_locale String in locale encoding.
      * @return String encoded in UTF-8, or //null// if the string could not be converted.
      */
-    public string? locale_to_utf8 (string string_locale) {
+    private string? locale_to_utf8 (string string_locale) {
         Error error;
         size_t bytes_read, bytes_written;
         string? string_utf8 = string_locale.locale_to_utf8 (string_locale.length,
@@ -165,11 +135,10 @@ namespace Noise.String {
      * @param parsed_rating location where the parsed rating it stored, or 0 if the
      * string didn't represent a valid rating.
      * @param parsed_search_string location where the canonicalized version of the
-     * search string is stored. Should be passed to the methods in Noise.Search.
+     * search string is stored. Should be passed to the methods in Music.Search.
      */
     public static void base_search_method (string search, out uint parsed_rating,
-                                           out string parsed_search_string)
-    {
+                                           out string parsed_search_string) {
         parsed_rating = 0;
         var result = Search.get_rating_from_string (search.strip ()); // guaranteed > 0 or null
 

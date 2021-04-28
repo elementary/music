@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -36,9 +36,9 @@
  * by all the views. Please see set_media(), update_media(), remove_media()
  * and add_media().
  *
- * The views it contains implement the {@link Noise.ContentView} interface.
+ * The views it contains implement the {@link Music.ContentView} interface.
  */
-public abstract class Noise.ViewWrapper : Gtk.Grid {
+public abstract class Music.ViewWrapper : Gtk.Grid {
     public enum Hint {
         NONE,
         MUSIC,
@@ -61,11 +61,11 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
      * Values *must* match the index of the respective view in the view selector.
      */
     public enum ViewType {
-        GRID    = 0,   // Matches index 0 of the view in lw.view_selector
-        LIST    = 1,   // Matches index 1 of the view in lw.view_selector
-        ALERT   = 2,   // For embedded alerts
-        WELCOME = 3,   // For welcome screens
-        NONE    = 4    // Nothing showing
+        GRID = 0, // Matches index 0 of the view in lw.view_selector
+        LIST = 1, // Matches index 1 of the view in lw.view_selector
+        ALERT = 2, // For embedded alerts
+        WELCOME = 3, // For welcome screens
+        NONE = 4 // Nothing showing
     }
 
     public ListView list_view { get; protected set; }
@@ -74,7 +74,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
     protected Granite.Widgets.Welcome welcome_screen { get; set; }
 
     public bool has_grid_view { get { return grid_view != null; } }
-    public bool has_list_view { get { return list_view != null;  } }
+    public bool has_list_view { get { return list_view != null; } }
     public bool has_embedded_alert { get { return embedded_alert != null; } }
     public bool has_welcome_screen { get { return welcome_screen != null; } }
 
@@ -130,7 +130,7 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
     // No widget is set as active until this is true!
     private bool data_initialized = false;
 
-    public ViewWrapper (Hint hint, Library library) {
+    protected ViewWrapper (Hint hint, Library library) {
         Object (hint: hint, library: library);
     }
 
@@ -371,7 +371,6 @@ public abstract class Noise.ViewWrapper : Gtk.Grid {
             set_active_view (ViewType.GRID);
         else if (has_list_view) {
             view_stack.visible_child = list_view;
-            list_view.list_view.scroll_to_current_media (true);
         } else if (has_grid_view)
             view_stack.visible_child = grid_view;
     }

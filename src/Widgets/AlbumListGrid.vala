@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -27,7 +27,7 @@
  *              Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-public class Noise.AlbumListGrid : Gtk.Grid {
+public class Music.AlbumListGrid : Gtk.Grid {
     private ViewWrapper _view_wrapper;
     public ViewWrapper view_wrapper {
         get {
@@ -46,7 +46,6 @@ public class Noise.AlbumListGrid : Gtk.Grid {
     private Gtk.Label album_label;
     private Gtk.Label artist_label;
     private Gtk.Menu cover_action_menu;
-    private Music.RatingWidget rating;
 
     public AlbumListGrid (ViewWrapper view_wrapper) {
         Object (view_wrapper: view_wrapper);
@@ -94,19 +93,13 @@ public class Noise.AlbumListGrid : Gtk.Grid {
         list_view_scrolled.margin_top = 18;
         list_view_scrolled.add (list_view);
 
-        rating = new Music.RatingWidget (true, Gtk.IconSize.MENU, true);
-        rating.star_spacing = 12;
-        rating.margin_bottom = rating.margin_top = 12;
-
         attach (cover_event_box, 0, 0, 1, 1);
         attach (album_label, 0, 1, 1, 1);
         attach (artist_label, 0, 2, 1, 1);
         attach (list_view_scrolled, 0, 3, 1, 1);
-        attach (rating, 0, 4, 1, 1);
 
         cover_event_box.button_press_event.connect (show_cover_context_menu);
         cover_set_new.activate.connect (set_new_cover);
-        rating.rating_changed.connect (rating_changed);
     }
 
     /**
@@ -159,10 +152,6 @@ public class Noise.AlbumListGrid : Gtk.Grid {
 
         if (list_view.get_realized ())
             list_view.columns_autosize ();
-
-        // Set rating
-        update_album_rating ();
-        view_wrapper.library.media_updated.connect (update_album_rating);
     }
 
     public void play_active_list () {
@@ -175,46 +164,6 @@ public class Noise.AlbumListGrid : Gtk.Grid {
         } else {
             album_cover.image.gicon = null;
         }
-    }
-
-    void update_album_rating () {
-        // We don't want to set the overall_rating as each media's rating.
-        // See rating_changed() in case you want to figure out what would happen.
-        rating.rating_changed.disconnect (rating_changed);
-
-        // Use average rating for the album
-        int total_rating = 0, n_media = 0;
-        foreach (var media in media_list) {
-            if (media == null)
-                continue;
-            n_media ++;
-            total_rating += (int)media.rating;
-        }
-
-        float average_rating = (float)total_rating / (float)n_media;
-
-        // fix approximation and set new rating
-        rating.rating = (int) GLib.Math.roundf (average_rating);
-
-        // connect again ...
-        rating.rating_changed.connect (rating_changed);
-    }
-
-    void rating_changed (int new_rating) {
-        var updated = new Gee.LinkedList<Media> ();
-        lock (media_list) {
-
-            foreach (var media in media_list) {
-                if (media == null)
-                    continue;
-
-                media.rating = (uint)new_rating;
-                updated.add (media);
-            }
-
-        }
-
-        view_wrapper.library.update_medias (updated, false, true);
     }
 
     private void view_search_func (string search, Gee.ArrayList<Media> table, Gee.ArrayList<Media> showing) {
@@ -244,10 +193,12 @@ public class Noise.AlbumListGrid : Gtk.Grid {
         image_filter.set_filter_name (_("Image files"));
         image_filter.add_mime_type ("image/*");
 
-        var file = new Gtk.FileChooserDialog (
-            _("Open"), App.main_window, Gtk.FileChooserAction.OPEN,
-            _("_Cancel"), Gtk.ResponseType.CANCEL,
-            _("_Open"), Gtk.ResponseType.ACCEPT
+        var file = new Gtk.FileChooserNative (
+            _("Open"),
+            App.main_window,
+            Gtk.FileChooserAction.OPEN,
+            _("_Open"),
+            _("_Cancel")
         );
         file.add_filter (image_filter);
 

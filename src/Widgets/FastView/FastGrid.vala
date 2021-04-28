@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -26,12 +26,12 @@
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-public class Noise.FastGrid : Gtk.IconView {
+public class Music.FastGrid : Gtk.IconView {
     public delegate void ViewSearchFunc (Gee.HashMap<int, Object> showing);
-    public unowned ViewSearchFunc search_func { get; set; }
+    public unowned ViewSearchFunc? search_func = null;
 
     public delegate int SortCompareFunc (GLib.Object a, GLib.Object b);
-    public unowned SortCompareFunc compare_func { get; set; }
+    public unowned SortCompareFunc? compare_func = null;
 
     public bool research_needed = false;
 
@@ -48,7 +48,7 @@ public class Noise.FastGrid : Gtk.IconView {
         set_table (table, true);
         set_model (fm);
 
-        cell_renderer = new Noise.Widgets.TileRenderer ();
+        cell_renderer = new Music.Widgets.TileRenderer ();
         pack_start (cell_renderer, false);
         activate_on_single_click = false;
         add_attribute (cell_renderer, "album", 0);
@@ -162,7 +162,7 @@ public class Noise.FastGrid : Gtk.IconView {
     }
 
     private void quicksort (int start, int end) {
-        GLib.Object pivot = table.get ( (start+end)/2);
+        GLib.Object pivot = table.get ((start + end) / 2);
         int i = start;
         int j = end;
 
@@ -176,7 +176,7 @@ public class Noise.FastGrid : Gtk.IconView {
             }
         }
 
-        if (start < j) { 
+        if (start < j) {
             quicksort (start, j);
         }
         if (i < end) {

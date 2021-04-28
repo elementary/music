@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -31,7 +31,7 @@
  *              Sergey Davidoff <shnatsel@gmail.com>
  */
 
-public class Noise.MusicListView : GenericList {
+public class Music.MusicListView : GenericList {
     public MediaMenu media_action_menu { get; private set; }
 
     //for header column chooser
@@ -200,7 +200,7 @@ public class Noise.MusicListView : GenericList {
         return false;
     }
 
-    protected override void mediaRemoveClicked () {
+    protected override void media_remove_clicked () {
         var selected_media = get_selected_medias ().read_only_view;
 
         switch (hint) {
@@ -219,12 +219,12 @@ public class Noise.MusicListView : GenericList {
                 playlist.remove_medias (selected_media);
                 break;
             case ViewWrapper.Hint.QUEUE:
-                playlist.remove_medias (selected_media);
+                App.player.unqueue_media (selected_media);
                 break;
           }
     }
 
-    protected virtual void onDragDataGet (Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {
+    protected virtual void on_drag_data_get (Gdk.DragContext context, Gtk.SelectionData selection_data, uint info, uint time_) {
         string[] uris = null;
 
         foreach (Media m in get_selected_medias ()) {
@@ -343,7 +343,7 @@ public class Noise.MusicListView : GenericList {
         // When order is zero, we'd like to jump into sorting by genre, but that'd
         // be a performance killer. Let's compare titles and that's it.
         if (order == 0 && column != ListColumn.GENRE && column != ListColumn.ARTIST)
-            order = Noise.Compare.titles (media_a, media_b);
+            order = Music.Compare.titles (media_a, media_b);
 
         // If still 0, fall back to comparing URIS
         if (order == 0)

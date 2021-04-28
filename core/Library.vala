@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -26,7 +26,7 @@
  * Authored by: Corentin Noël <corentin@elementary.io>
  */
 
-public abstract class Noise.Library : GLib.Object {
+public abstract class Music.Library : GLib.Object {
 
     /*
      * Signals
@@ -67,10 +67,10 @@ public abstract class Noise.Library : GLib.Object {
     public abstract Media? media_from_id (int64 id);
     public abstract Gee.Collection<Media> medias_from_uris (Gee.Collection<string> uris);
     public abstract Gee.Collection<Media> medias_from_ids (Gee.Collection<int64?> ids);
-    public abstract void update_media (Media s, bool updateMeta, bool record_time);
-    public abstract void update_medias (Gee.Collection<Media> updates, bool updateMeta, bool record_time);
+    public abstract void update_media (Media s, bool update_meta, bool record_time);
+    public abstract void update_medias (Gee.Collection<Media> updates, bool update_meta, bool record_time);
     public abstract void remove_media (Media s, bool trash);
-    public abstract void remove_medias (Gee.Collection<Media> toRemove, bool trash);
+    public abstract void remove_medias (Gee.Collection<Media> to_remove, bool trash);
 
     public abstract bool support_smart_playlists ();
     public abstract void add_smart_playlist (SmartPlaylist p);

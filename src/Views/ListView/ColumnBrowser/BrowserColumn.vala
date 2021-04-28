@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -27,7 +27,7 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public class Noise.BrowserColumn : Gtk.Grid {
+public class Music.BrowserColumn : Gtk.Grid {
     public signal void selection_changed (BrowserColumn.Category type, string val);
     public signal void row_activated (string text);
     public signal void reset_requested ();
@@ -279,16 +279,16 @@ public class Noise.BrowserColumn : Gtk.Grid {
     }
 
     private void selected_item_changed () {
-        Gtk.TreeModel tempModel;
+        Gtk.TreeModel temp_model;
         Gtk.TreeIter iter;
         string text;
 
-        if (view.get_selection ().get_selected (out tempModel, out iter)) {
+        if (view.get_selection ().get_selected (out temp_model, out iter)) {
             if (((SequenceIter<string>) iter.user_data).get_position () == 0) {
                 // first item selected
                 select_first_item ();
             } else {
-                tempModel.get (iter, 0, out text);
+                temp_model.get (iter, 0, out text);
                 set_selected (text, true);
             }
         }

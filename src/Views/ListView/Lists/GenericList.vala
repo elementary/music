@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -27,7 +27,7 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public abstract class Noise.GenericList : Gtk.TreeView {
+public abstract class Music.GenericList : Gtk.TreeView {
     public signal void import_requested (Gee.Collection<Media> to_import);
     public signal void rows_reordered ();
 
@@ -91,7 +91,7 @@ public abstract class Noise.GenericList : Gtk.TreeView {
     protected bool dragging;
     protected CellDataFunctionHelper cell_data_helper;
 
-    public GenericList (ViewWrapper view_wrapper, TreeViewSetup tvs) {
+    protected GenericList (ViewWrapper view_wrapper, TreeViewSetup tvs) {
         Object (parent_wrapper: view_wrapper, tvs: tvs);
     }
 
@@ -131,7 +131,7 @@ public abstract class Noise.GenericList : Gtk.TreeView {
 
         key_press_event.connect ((event) => {
             if (event.keyval == Gdk.Key.Delete) {
-                mediaRemoveClicked ();
+                media_remove_clicked ();
             }
 
             return false;
@@ -155,7 +155,7 @@ public abstract class Noise.GenericList : Gtk.TreeView {
     }
 
     protected abstract void add_column (Gtk.TreeViewColumn column, ListColumn type);
-    protected abstract void mediaRemoveClicked ();
+    protected abstract void media_remove_clicked ();
 
     public void set_media (Gee.Collection<Media> to_add) {
         var new_table = new Gee.ArrayList<Media> ();
@@ -241,7 +241,7 @@ public abstract class Noise.GenericList : Gtk.TreeView {
         var main_settings = Settings.Main.get_default ();
 
         if (!main_settings.privacy_mode_enabled ()) {
-            if (playlist == null || playlist == ((Noise.LocalLibrary)libraries_manager.local_library).p_music || parent_wrapper.library != libraries_manager.local_library) {
+            if (playlist == null || playlist == ((Music.LocalLibrary)libraries_manager.local_library).p_music || parent_wrapper.library != libraries_manager.local_library) {
                 App.saved_state.set_string ("last-playlist-playing", "");
             } else if (playlist is SmartPlaylist) {
                 App.saved_state.set_string ("last-playlist-playing", "s%lld".printf (playlist.rowid));
@@ -515,11 +515,12 @@ public abstract class Noise.GenericList : Gtk.TreeView {
         debug ("drag end\n");
 
         //unset_rows_drag_dest ();
-        Gtk.drag_dest_set (this,
-                          Gtk.DestDefaults.ALL,
-                          {},
-                          Gdk.DragAction.COPY|
-                          Gdk.DragAction.MOVE
-                          );
+        Gtk.drag_dest_set (
+            this,
+            Gtk.DestDefaults.ALL,
+            {},
+            Gdk.DragAction.COPY |
+            Gdk.DragAction.MOVE
+        );
     }
 }

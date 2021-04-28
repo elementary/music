@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -26,12 +26,12 @@
  * Authored by: Corentin Noël <corentin@elementary.io>
  */
 
-public class Noise.Plugins.iPodLibrary : Noise.Library {
+public class Music.Plugins.iPodLibrary : Music.Library { //vala-lint=naming-convention
     private unowned GPod.iTunesDB db;
-    Gee.HashMap<unowned GPod.Track, Noise.Media> medias;
-    Gee.LinkedList<Noise.Media> searched_medias;
-    Gee.HashMap<unowned GPod.Playlist, Noise.StaticPlaylist> playlists;
-    Gee.HashMap<unowned GPod.Playlist, Noise.SmartPlaylist> smart_playlists;
+    Gee.HashMap<unowned GPod.Track, Music.Media> medias;
+    Gee.LinkedList<Music.Media> searched_medias;
+    Gee.HashMap<unowned GPod.Playlist, Music.StaticPlaylist> playlists;
+    Gee.HashMap<unowned GPod.Playlist, Music.SmartPlaylist> smart_playlists;
     Device device;
     bool operation_cancelled = false;
     bool is_doing_file_operations = false;
@@ -39,11 +39,14 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
     public iPodLibrary (GPod.iTunesDB db, Device device) {
         this.db = db;
         this.device = device;
-        medias = new Gee.HashMap<unowned GPod.Track, Noise.Media>();
-        playlists = new Gee.HashMap<unowned GPod.Playlist, Noise.StaticPlaylist>();
-        smart_playlists = new Gee.HashMap<unowned GPod.Playlist, Noise.SmartPlaylist>();
-        searched_medias = new Gee.LinkedList<Noise.Media>();
-        NotificationManager.get_default ().progress_canceled.connect( () => {operation_cancelled = true;});
+        medias = new Gee.HashMap<unowned GPod.Track, Music.Media> ();
+        playlists = new Gee.HashMap<unowned GPod.Playlist, Music.StaticPlaylist> ();
+        smart_playlists = new Gee.HashMap<unowned GPod.Playlist, Music.SmartPlaylist> ();
+        searched_medias = new Gee.LinkedList<Music.Media> ();
+
+        NotificationManager.get_default ().progress_canceled.connect (() => {
+            operation_cancelled = true;
+        });
     }
 
     public override void initialize_library () {
@@ -52,9 +55,10 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
 
     public async void finish_initialization_async () {
         // get all songs first
-        for (int i = 0; i < db.tracks.length(); ++i) {
+        for (int i = 0; i < db.tracks.length (); ++i) {
             unowned GPod.Track t = db.tracks.nth_data (i);
             var m = iPodMediaHelper.media_from_track (device.get_uri (), t);
+
             if (m.file_exists && !this.medias.has (t, m)) {
                 this.medias.set (t, m);
             }
@@ -62,20 +66,28 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
 
         foreach (unowned GPod.Playlist p in db.playlists) {
             var playlist = iPodPlaylistHelper.get_playlist_from_gpod_playlist (p, medias);
+
             if (playlist is StaticPlaylist) {
                 playlist.rowid = playlists.size;
-                playlists.set(p, (StaticPlaylist)playlist);
-                playlist.media_added.connect((list) => {keep_playlist_synchronized ((StaticPlaylist)playlist, list, true);});
-                playlist.media_removed.connect((list) => {keep_playlist_synchronized ((StaticPlaylist)playlist, list, false);});
+                playlists.set (p, (StaticPlaylist)playlist);
+
+                playlist.media_added.connect ((list) => {
+                    keep_playlist_synchronized ((StaticPlaylist)playlist, list, true);
+                });
+
+                playlist.media_removed.connect ((list) => {
+                    keep_playlist_synchronized ((StaticPlaylist)playlist, list, false);
+                });
             } else if (playlist is SmartPlaylist) {
                 playlist.rowid = smart_playlists.size;
-                smart_playlists.set(p, (SmartPlaylist)playlist);
+                smart_playlists.set (p, (SmartPlaylist)playlist);
             }
         }
 
         Idle.add (() => {
             device.initialized (device);
             search_medias ("");
+
             return false;
         });
     }
@@ -87,6 +99,7 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
     public override void search_medias (string search) {
         lock (searched_medias) {
             searched_medias.clear ();
+
             if (search == "" || search == null) {
                 searched_medias.add_all (medias.values);
                 search_finished ();
@@ -101,8 +114,9 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
             lock (medias) {
                 foreach (var m in medias.values) {
                     if (rating_search) {
-                        if (m.rating == parsed_rating)
+                        if (m.rating == parsed_rating) {
                             searched_medias.add (m);
+                        }
                     } else if (Search.match_string_to_media (m, parsed_search_string)) {
                         searched_medias.add (m);
                     }
@@ -129,14 +143,19 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
         return smart_playlists.values;
     }
 
-    public override void add_media (Noise.Media s) {
+    public override void add_media (Music.Media s) {
         if (s == null)
             return;
 
         GPod.Track t = iPodMediaHelper.track_from_media (s);
         var icon = s.album_info.cover_icon;
         if (icon != null) {
-            var icon_info = Gtk.IconTheme.get_default ().lookup_by_gicon (icon, 128, Gtk.IconLookupFlags.GENERIC_FALLBACK);
+            var icon_info = Gtk.IconTheme.get_default ().lookup_by_gicon (
+                icon,
+                128,
+                Gtk.IconLookupFlags.GENERIC_FALLBACK
+            );
+
             try {
                 var pixbuf = icon_info.load_icon ();
                 t.set_thumbnails_from_pixbuf (pixbuf);
@@ -150,15 +169,16 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
         current_operation = current_operation.replace ("$ARTIST", t.artist ?? "");
         libraries_manager.current_operation = current_operation.replace ("$DEVICE", device.get_display_name () ?? "");
         debug ("Adding media %s by %s\n", t.title, t.artist);
-        db.track_add((owned)t, -1);
-        unowned GPod.Track added = db.tracks.nth_data(db.tracks.length() - 1);
+        db.track_add ((owned)t, -1);
+        unowned GPod.Track added = db.tracks.nth_data (db.tracks.length () - 1);
+
         if (added == null || added.title != s.title) {
             warning ("Track was not properly appended. Returning.\n");
             return;
         }
 
-        unowned GPod.Playlist mpl = db.playlist_mpl();
-        mpl.add_track(added, -1);
+        unowned GPod.Playlist mpl = db.playlist_mpl ();
+        mpl.add_track (added, -1);
 
         bool success = false;
         try {
@@ -169,7 +189,7 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
         }
 
         if (success) {
-            Noise.Media on_ipod = iPodMediaHelper.media_from_track (device.get_uri(), added);
+            Music.Media on_ipod = iPodMediaHelper.media_from_track (device.get_uri (), added);
             this.medias.set (added, on_ipod);
         } else {
             warning ("Failed to copy track %s to iPod. Removing it from database.\n", added.title);
@@ -177,29 +197,29 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
         }
     }
 
-    public override void add_medias (Gee.Collection<Noise.Media> list) {
+    public override void add_medias (Gee.Collection<Music.Media> list) {
         if (is_doing_file_operations) {
-            warning("Tried to add when already syncing\n");
+            warning ("Tried to add when already syncing\n");
             return;
         }
 
         // Check if all current media + this list will fit.
-        var new_list = new Gee.LinkedList<Noise.Media>();
-        new_list.add_all(list);
-        new_list.add_all(medias.values);
+        var new_list = new Gee.LinkedList<Music.Media> ();
+        new_list.add_all (list);
+        new_list.add_all (medias.values);
         bool fits = device.will_fit (new_list);
         if (!fits) {
-            warning("Tried to sync medias that will not fit\n");
+            warning ("Tried to sync medias that will not fit\n");
             return;
         }
 
         libraries_manager.current_operation = _("Syncing <b>%s</b>…").printf (device.get_display_name ());
         is_doing_file_operations = true;
-        Timeout.add(500, libraries_manager.do_progress_notification_with_timeout);
+        Timeout.add (500, libraries_manager.do_progress_notification_with_timeout);
         add_medias_async.begin (list);
     }
 
-    async void add_medias_async (Gee.Collection<Noise.Media> to_add) {
+    async void add_medias_async (Gee.Collection<Music.Media> to_add) {
         bool error_occurred = false;
         db.start_sync ();
         int total = to_add.size;
@@ -210,7 +230,7 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
             if (!operation_cancelled) {
                 add_media (m);
                 ++index;
-                libraries_manager.progress = (double)(index/total);
+                libraries_manager.progress = (double)(index / total);
             }
         }
 
@@ -254,10 +274,13 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
         var media_collection = new Gee.LinkedList<Media> ();
         lock (medias) {
             foreach (var m in medias.values) {
-                if (ids.contains (m.rowid))
+                if (ids.contains (m.rowid)) {
                     media_collection.add (m);
-                if (media_collection.size == ids.size)
+                }
+
+                if (media_collection.size == ids.size) {
                     break;
+                }
             }
         }
 
@@ -268,10 +291,13 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
         var media_collection = new Gee.LinkedList<Media> ();
         lock (medias) {
             foreach (var m in medias.values) {
-                if (uris.contains (m.uri))
+                if (uris.contains (m.uri)) {
                     media_collection.add (m);
-                if (media_collection.size == uris.size)
+                }
+
+                if (media_collection.size == uris.size) {
                     break;
+                }
             }
         }
 
@@ -295,8 +321,9 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
     public override Media? media_from_file (File file) {
         lock (medias) {
             foreach (var m in medias.values) {
-                if (m != null && m.file.equal (file))
+                if (m != null && m.file.equal (file)) {
                     return m;
+                }
             }
         }
 
@@ -306,19 +333,20 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
     public override Media? media_from_uri (string uri) {
         lock (medias) {
             foreach (var m in medias.values) {
-                if (m != null && m.uri == uri)
+                if (m != null && m.uri == uri) {
                     return m;
+                }
             }
         }
 
         return null;
     }
 
-    public override void update_media (Media s, bool updateMeta, bool record_time) {
+    public override void update_media (Media s, bool update_meta, bool record_time) {
 
     }
 
-    public override void update_medias (Gee.Collection<Media> updates, bool updateMeta, bool record_time) {
+    public override void update_medias (Gee.Collection<Media> updates, bool update_meta, bool record_time) {
 
     }
 
@@ -328,26 +356,28 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
         remove_medias (list, trash);
     }
 
-    public override void remove_medias(Gee.Collection<Media> toRemove, bool trash) {
+    public override void remove_medias (Gee.Collection<Media> to_remove, bool trash) {
         if (is_doing_file_operations) {
-            warning("Tried to add when already syncing\n");
+            warning ("Tried to add when already syncing\n");
+
             return;
         }
 
         libraries_manager.current_operation = _("Removing from <b>%s</b>…").printf (device.get_display_name ());
         is_doing_file_operations = true;
         Timeout.add (500, libraries_manager.do_progress_notification_with_timeout);
-        remove_medias_async.begin (toRemove);
+        remove_medias_async.begin (to_remove);
+
         return;
     }
 
-    async void remove_medias_async (Gee.Collection<Noise.Media> list) {
+    async void remove_medias_async (Gee.Collection<Music.Media> list) {
         bool error_occurred = false;
         int total = list.size;
         int index = 0;
         db.start_sync ();
 
-        var removed = new Gee.HashMap<unowned GPod.Track, Noise.Media> ();
+        var removed = new Gee.HashMap<unowned GPod.Track, Music.Media> ();
         foreach (var e in medias.entries) {
             foreach (var m in list) {
                 if (!operation_cancelled) {
@@ -362,7 +392,7 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
             }
 
             ++index;
-            libraries_manager.progress = (double)(index/total);
+            libraries_manager.progress = (double)(index / total);
         }
 
         foreach (var track in removed.keys) {
@@ -431,16 +461,16 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
         db.start_sync ();
         db.playlist_add ((owned)playlist, -1);
         try {
-            db.write();
-        } catch(Error err) {
-            critical("Error when writing iPod database. iPod contents may be incorrect: %s", err.message);
+            db.write ();
+        } catch (Error err) {
+            critical ("Error when writing iPod database. iPod contents may be incorrect: %s", err.message);
         }
 
-        db.stop_sync();
+        db.stop_sync ();
         playlists.set (playlist, p);
         playlist_added (p);
-        p.media_added.connect((list) => {keep_playlist_synchronized (p, list, true);});
-        p.media_removed.connect((list) => {keep_playlist_synchronized (p, list, false);});
+        p.media_added.connect ((list) => {keep_playlist_synchronized (p, list, true);});
+        p.media_removed.connect ((list) => {keep_playlist_synchronized (p, list, false);});
     }
 
     public override void remove_playlist (int64 id) {
@@ -474,8 +504,9 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
             }
         }
 
-        if (pl == null)
+        if (pl == null) {
             return;
+        }
 
         db.start_sync ();
         foreach (var t in iPodPlaylistHelper.get_gpod_tracks_from_medias (m, medias)) {
@@ -533,14 +564,14 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
         libraries_manager.current_operation = current_operation.replace ("$DEVICE", device.get_display_name () ?? "");
         /* first check if the file exists disk */
         if (t.ipod_path != null) {
-            var uri = device.get_uri () + GPod.iTunesDB.filename_ipod2fs(t.ipod_path);
-            var file = File.new_for_uri(uri);
-            if (file.query_exists()) {
+            var uri = device.get_uri () + GPod.iTunesDB.filename_ipod2fs (t.ipod_path);
+            var file = File.new_for_uri (uri);
+            if (file.query_exists ()) {
                 try {
                     /* check each playlist for the song to remove */
-                    if (db.playlists_number() != 0) {
-                        db.playlist_mpl().remove_track(t);
-                        db.playlist_podcasts().remove_track(t);
+                    if (db.playlists_number () != 0) {
+                        db.playlist_mpl ().remove_track (t);
+                        db.playlist_podcasts ().remove_track (t);
                     }
 
                     foreach (unowned GPod.Playlist p in db.playlists) {
@@ -570,10 +601,13 @@ public class Noise.Plugins.iPodLibrary : Noise.Library {
         }
     }
 
-    void cleanup_files(GLib.File music_folder, Gee.LinkedList<string> used_uris) {
+    void cleanup_files (GLib.File music_folder, Gee.LinkedList<string> used_uris) {
         GLib.FileInfo file_info = null;
         try {
-            var enumerator = music_folder.enumerate_children (FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_TYPE, 0);
+            var enumerator = music_folder.enumerate_children (
+                FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_TYPE,
+                0
+            );
             while ((file_info = enumerator.next_file ()) != null) {
                 var file_uri = music_folder.get_uri () + "/" + file_info.get_name ();
                 if (file_info.get_file_type () == GLib.FileType.REGULAR && !used_uris.contains (file_uri)) {

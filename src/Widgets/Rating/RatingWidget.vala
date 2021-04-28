@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -121,8 +121,8 @@ public class Music.RatingWidget : Gtk.EventBox {
 
             // if no cached star pixbufs were found, render them.
             if (starred_pix == null || not_starred_pix == null) {
-                var starred = symbolic ? new Noise.Icon ("starred-symbolic") : new Noise.Icon ("starred");
-                var not_starred = symbolic ? new Noise.Icon ("non-starred-symbolic") : new Noise.Icon ("non-starred");
+                var starred = symbolic ? new Music.Icon ("starred-symbolic") : new Music.Icon ("starred");
+                var not_starred = symbolic ? new Music.Icon ("non-starred-symbolic") : new Music.Icon ("non-starred");
 
                 starred_pix = starred.render (icon_size, style_context);
                 starred_pixbufs.set (state, starred_pix);
@@ -133,7 +133,7 @@ public class Music.RatingWidget : Gtk.EventBox {
 
             if (starred_pix != null && not_starred_pix != null) {
                 // Compute size
-                item_width  = int.max (starred_pix.width, not_starred_pix.width);
+                item_width = int.max (starred_pix.width, not_starred_pix.width);
                 item_height = int.max (starred_pix.height, not_starred_pix.height);
 
                 int new_width = (item_width + star_spacing) * n_stars - star_spacing;

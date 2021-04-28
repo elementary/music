@@ -15,16 +15,16 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
  */
 
-namespace Noise.Database {
+namespace Music.Database {
     /*
      * NOTE:
      * Update those constants when you change the order of columns.
@@ -113,14 +113,20 @@ namespace Noise.Database {
         }
     }
 
-    public static void set_field (int64 rowid, Gda.Connection connection, string table, string field, GLib.Value value) {
+    public static void set_field (int64 rowid, Gda.Connection connection, string table, string field, GLib.Value val) {
         try {
             var rowid_value = GLib.Value (typeof (int64));
             rowid_value.set_int64 (rowid);
             var col_names = new GLib.SList<string> ();
             col_names.append (field);
             var values = new GLib.SList<GLib.Value?> ();
-            values.append (value);
+            if (val.type ().is_enum ()) {
+                var int_val = Value (typeof (int));
+                int_val.set_int (val.get_enum ());
+                values.append (int_val);
+            } else {
+                values.append (val);
+            }
             connection.update_row_in_table_v (table, "rowid", rowid_value, col_names, values);
         } catch (Error e) {
             critical ("Could not set field %s: %s", field, e.message);
@@ -223,7 +229,7 @@ namespace Noise.Database {
         var id_field = builder.add_id (field);
         var id_value = builder.add_expr_value (null, value);
         if (sq.comparator == SmartQuery.ComparatorType.NOT_CONTAINS) {
-            var cond = builder.add_cond (sql_operator_type, id_field, id_value, 0);;
+            var cond = builder.add_cond (sql_operator_type, id_field, id_value, 0);
             return builder.add_cond (Gda.SqlOperatorType.NOT, cond, 0, 0);
         } else {
             return builder.add_cond (sql_operator_type, id_field, id_value, 0);

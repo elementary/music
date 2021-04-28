@@ -15,26 +15,27 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
  */
 
-public class Noise.Plugins.iPodMediaHelper {
+public class Music.Plugins.iPodMediaHelper { // vala-lint=naming-convention
     public static Media media_from_track (string uri, GPod.Track track) {
         Media rv = null;
+
         if (uri.has_suffix ("/")) {
-            rv = new Media (uri.slice (0, uri.char_count ()-1) + GPod.iTunesDB.filename_ipod2fs (track.ipod_path));
+            rv = new Media (uri.slice (0, uri.char_count () - 1) + GPod.iTunesDB.filename_ipod2fs (track.ipod_path));
         }
 
         if (rv == null)
             rv = new Media (uri + GPod.iTunesDB.filename_ipod2fs (track.ipod_path));
 
-        rv.isTemporary = true;
+        rv.is_temporary = true;
         rv.title = track.title;
         rv.artist = track.artist;
         rv.album_artist = track.albumartist;
@@ -60,16 +61,17 @@ public class Noise.Plugins.iPodMediaHelper {
         rv.file_size = track.size;
         rv.resume_pos = (int)track.bookmark_time;
 
-        if(rv.artist == "" && rv.album_artist != "")
+        if (rv.artist == "" && rv.album_artist != "") {
             rv.artist = rv.album_artist;
-        else if(rv.album_artist == "" && rv.artist != "")
+        } else if (rv.album_artist == "" && rv.artist != "") {
             rv.album_artist = rv.artist;
+        }
 
         return rv;
     }
 
     public static void update_track (ref unowned GPod.Track t, Media m) {
-        if(t == null)
+        if (t == null)
             return;
 
         t.title = m.get_display_title ();
@@ -111,7 +113,7 @@ public class Noise.Plugins.iPodMediaHelper {
      * caller *must* set ipod_path
      */
     public static GPod.Track track_from_media (Media m) {
-        GPod.Track t = new GPod.Track();
+        GPod.Track t = new GPod.Track ();
         unowned GPod.Track tu = t;
         update_track (ref tu, m);
         return t;

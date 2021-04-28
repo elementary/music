@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -26,7 +26,7 @@
  * Authored by: Corentin Noël <corentin@elementary.io>
  */
 
-public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
+public class Music.Plugins.iPodDevice : GLib.Object, Music.Device { //vala-lint=naming-convention
     GPod.iTunesDB db;
     public Mount mount;
     GLib.Icon icon;
@@ -43,7 +43,10 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
     public bool start_initialization () {
         try {
             db = GPod.iTunesDB.parse (mount.get_default_location ().get_path ());
-            if (db.device.get_ipod_info ().ipod_model == GPod.iPodModel.INVALID || db.device.get_ipod_info ().ipod_model == GPod.iPodModel.UNKNOWN) {
+            if (
+                db.device.get_ipod_info ().ipod_model == GPod.iPodModel.INVALID ||
+                db.device.get_ipod_info ().ipod_model == GPod.iPodModel.UNKNOWN
+            ) {
                 is_supported = false;
             }
 
@@ -209,7 +212,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
             var file_info = File.new_for_uri (get_uri ()).query_filesystem_info ("filesystem::*", null);
             rv = file_info.get_attribute_uint64 (GLib.FileAttribute.FILESYSTEM_FREE);
         } catch (Error err) {
-            critical("Error calculating free space on iPod: %s\n", err.message);
+            critical ("Error calculating free space on iPod: %s\n", err.message);
         }
 
         return rv;
@@ -241,7 +244,7 @@ public class Noise.Plugins.iPodDevice : GLib.Object, Noise.Device {
         return false;
     }
 
-    public Noise.Library get_library () {
+    public Music.Library get_library () {
         return library;
     }
 }

@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -27,22 +27,23 @@
  *              Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-public class Noise.SimilarMediasView : Gtk.TreeView {
+// TODO: Fix naming convention
+public class Music.similar_medias_view : Gtk.TreeView { // vala-lint=naming-convention
     private new Gtk.ListStore model;
     private Gee.LinkedList<Media> medias;
 
-    private Gee.LinkedList<string> urlsToOpen;//queue for opening urls
+    private Gee.LinkedList<string> urls_to_open;//queue for opening urls
 
-    public SimilarMediasView () {
+    public similar_medias_view () {
         medias = new Gee.LinkedList<Media> ();
-        urlsToOpen = new Gee.LinkedList<string> ();
+        urls_to_open = new Gee.LinkedList<string> ();
 
         /* id is always first and is stored as an int. Then the rest are (1)
          * strings (for simplicity), and include:
          * #, track, title, artist, album, genre, comment, year, rating, (9)
          * bitrate, play count, last played, date added, file name, (5)
          * bpm, length, file size, (3) */
-        model = new Gtk.ListStore (2, typeof (Noise.Media), typeof (string));
+        model = new Gtk.ListStore (2, typeof (Music.Media), typeof (string));
 
         var col = new Gtk.TreeViewColumn ();
         col.title = _("media");
@@ -54,14 +55,14 @@ public class Noise.SimilarMediasView : Gtk.TreeView {
         insert_column_with_attributes (-1, _("Similar Media"), text_renderer, "markup", 1, null);
         get_column (1).set_alignment ((float) 0.5);
         set_model (model);
-        row_activated.connect (viewDoubleClick);
+        row_activated.connect (view_double_click);
     }
 
-    public void populateView (Gee.Collection<Media> nMedias) {
+    public void populate_view (Gee.Collection<Media> n_medias) {
         medias.clear ();
         model.clear ();
         int count = 0;
-        foreach (Media s in nMedias) {
+        foreach (Media s in n_medias) {
             medias.add (s);
 
             Gtk.TreeIter iter;
@@ -78,7 +79,7 @@ public class Noise.SimilarMediasView : Gtk.TreeView {
         }
     }
 
-    public virtual void viewDoubleClick (Gtk.TreePath path, Gtk.TreeViewColumn column) {
+    public virtual void view_double_click (Gtk.TreePath path, Gtk.TreeViewColumn column) {
         try {
             new Thread<void*>.try (null, take_action);
         } catch (GLib.Error err) {

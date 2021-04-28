@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -27,7 +27,7 @@
  *              Corentin Noël <corentin@elementary.io>
  */
 
-public class Noise.FileOperator : Object {
+public class Music.FileOperator : Object {
     public signal void import_cancelled ();
     public signal void rescan_cancelled ();
 
@@ -108,7 +108,7 @@ public class Noise.FileOperator : Object {
         });
     }
 
-    public void resetProgress (int items) {
+    public void reset_progress (int items) {
         index = 0;
         item_count = items;
     }
@@ -119,7 +119,7 @@ public class Noise.FileOperator : Object {
         copy.add_all (to_save);
         var main_settings = Settings.Main.get_default ();
         foreach (Media s in copy) {
-            if (s.isTemporary || s.isPreview || File.new_for_uri (s.uri).get_path ().has_prefix (main_settings.music_folder) == false)
+            if (s.is_temporary || s.is_preview || File.new_for_uri (s.uri).get_path ().has_prefix (main_settings.music_folder) == false)
                 continue;
 
             if (App.settings.get_boolean ("write-metadata-to-file")) {
@@ -133,7 +133,7 @@ public class Noise.FileOperator : Object {
                     tag_file.tag.genre = s.genre;
                     tag_file.tag.comment = s.comment;
                     tag_file.tag.year = s.year;
-                    tag_file.tag.track  = s.track;
+                    tag_file.tag.track = s.track;
                     tag_file.save ();
                 } else {
                     debug ("Could not save %s.\n", s.uri);
@@ -196,9 +196,9 @@ public class Noise.FileOperator : Object {
         return true;
     }
 
-    public void remove_media (Gee.Collection<Media> toRemove) {
+    public void remove_media (Gee.Collection<Media> to_remove) {
         var dummy_list = new Gee.TreeSet<string> ();
-        foreach (var s in toRemove) {
+        foreach (var s in to_remove) {
             try {
                 var file = File.new_for_uri (s.uri);
                 file.trash ();
@@ -226,7 +226,7 @@ public class Noise.FileOperator : Object {
                     libraries_manager.local_library.remove_media (media, false);
                 var monitor = monitors.get (file.get_uri ());
                 if (monitor != null) {
-                    var medias_to_remove = new Gee.TreeSet<Noise.Media> ();
+                    var medias_to_remove = new Gee.TreeSet<Music.Media> ();
                     foreach (var m in libraries_manager.local_library.get_medias ()) {
                         if (m.uri.has_prefix (file.get_uri ()))
                             medias_to_remove.add (m);
@@ -325,7 +325,7 @@ public class Noise.FileOperator : Object {
     }
 
     public async void copy_imports_async () {
-        resetProgress (all_new_imports.size);
+        reset_progress (all_new_imports.size);
         foreach (Media s in all_new_imports) {
             if (!cancellable.is_cancelled ()) {
                 update_file_hierarchy (s, false, true);

@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -26,7 +26,7 @@
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-public class Noise.Pipeline : GLib.Object {
+public class Music.Pipeline : GLib.Object {
     public Gst.Pipeline pipe;
     public Equalizer eq;
 
@@ -43,62 +43,62 @@ public class Noise.Pipeline : GLib.Object {
     public dynamic Gst.Element audiobin;
     public dynamic Gst.Element preamp;
 
-    public Pipeline() {
+    public Pipeline () {
 
-        pipe = new Gst.Pipeline("pipeline");
+        pipe = new Gst.Pipeline ("pipeline");
         playbin = Gst.ElementFactory.make ("playbin", "play");
 
-        audiosink = Gst.ElementFactory.make("autoaudiosink", "audio-sink");
+        audiosink = Gst.ElementFactory.make ("autoaudiosink", "audio-sink");
 
-        audiobin = new Gst.Bin("audiobin"); // this holds the real primary sink
+        audiobin = new Gst.Bin ("audiobin"); // this holds the real primary sink
 
-        audiotee = Gst.ElementFactory.make("tee", null);
-        audiosinkqueue = Gst.ElementFactory.make("queue", null);
+        audiotee = Gst.ElementFactory.make ("tee", null);
+        audiosinkqueue = Gst.ElementFactory.make ("queue", null);
 
-        eq = new Equalizer();
-        if(eq.element != null) {
-            eq_audioconvert = Gst.ElementFactory.make("audioconvert", null);
-            eq_audioconvert2 = Gst.ElementFactory.make("audioconvert", null);
-            preamp = Gst.ElementFactory.make("volume", "preamp");
+        eq = new Equalizer ();
+        if (eq.element != null) {
+            eq_audioconvert = Gst.ElementFactory.make ("audioconvert", null);
+            eq_audioconvert2 = Gst.ElementFactory.make ("audioconvert", null);
+            preamp = Gst.ElementFactory.make ("volume", "preamp");
 
-            ((Gst.Bin)audiobin).add_many(eq.element, eq_audioconvert, eq_audioconvert2, preamp);
+            ((Gst.Bin)audiobin).add_many (eq.element, eq_audioconvert, eq_audioconvert2, preamp);
         }
 
-        ((Gst.Bin)audiobin).add_many(audiotee, audiosinkqueue, audiosink);
+        ((Gst.Bin)audiobin).add_many (audiotee, audiosinkqueue, audiosink);
 
         audiobin.add_pad (new Gst.GhostPad ("sink", audiotee.get_static_pad ("sink")));
 
         if (eq.element != null) {
-            audiosinkqueue.link_many(eq_audioconvert, preamp, eq.element, eq_audioconvert2, audiosink);
+            audiosinkqueue.link_many (eq_audioconvert, preamp, eq.element, eq_audioconvert2, audiosink);
         } else {
-            audiosinkqueue.link_many(audiosink); // link the queue with the real audio sink
+            audiosinkqueue.link_many (audiosink); // link the queue with the real audio sink
         }
 
-        playbin.set("audio-sink", audiobin);
-        bus = playbin.get_bus();
+        playbin.set ("audio-sink", audiobin);
+        bus = playbin.get_bus ();
 
         // Link the first tee pad to the primary audio sink queue
         Gst.Pad sinkpad = audiosinkqueue.get_static_pad ("sink");
         pad = audiotee.get_request_pad ("src_%u");
-        audiotee.set("alloc-pad", pad);
-        pad.link(sinkpad);
+        audiotee.set ("alloc-pad", pad);
+        pad.link (sinkpad);
     }
 
-    public void enableEqualizer() {
+    public void enable_equalizer () {
         if (eq.element != null) {
             audiosinkqueue.unlink (audiosink); // link the queue with the real audio sink
-            audiosinkqueue.link_many(eq_audioconvert, preamp, eq.element, eq_audioconvert2, audiosink);
+            audiosinkqueue.link_many (eq_audioconvert, preamp, eq.element, eq_audioconvert2, audiosink);
         }
     }
 
-    public void disableEqualizer() {
+    public void disable_equalizer () {
         if (eq.element != null) {
             audiosinkqueue.unlink (eq_audioconvert);
             audiosinkqueue.unlink (preamp);
             audiosinkqueue.unlink (eq.element);
             audiosinkqueue.unlink (eq_audioconvert2);
             audiosinkqueue.unlink (audiosink);
-            audiosinkqueue.link_many(audiosink); // link the queue with the real audio sink
+            audiosinkqueue.link_many (audiosink); // link the queue with the real audio sink
         }
     }
 }

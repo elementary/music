@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -27,16 +27,15 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public class Noise.MusicViewWrapper : ViewWrapper {
-
-    public MusicViewWrapper (TreeViewSetup? tvs = null, Library library, TopDisplay topDisplay) {
+public class Music.MusicViewWrapper : ViewWrapper {
+    public MusicViewWrapper (TreeViewSetup? tvs = null, Library library, TopDisplay top_display) {
         base (Hint.MUSIC, library);
-        build_async.begin (tvs, topDisplay);
+        build_async.begin (tvs, top_display);
     }
 
     private Gee.HashMap<unowned Device, int> _devices;
 
-    private async void build_async (TreeViewSetup? tvs = null, TopDisplay topDisplay) {
+    private async void build_async (TreeViewSetup? tvs = null, TopDisplay top_display) {
         Idle.add_full (VIEW_CONSTRUCT_PRIORITY, build_async.callback);
         yield;
         // Add grid view
@@ -51,7 +50,7 @@ public class Noise.MusicViewWrapper : ViewWrapper {
         }
 
         list_view = new ListView (this, music_setup, true);
-        topDisplay.list_view = list_view.list_view;
+        top_display.list_view = list_view.list_view;
 
         // Welcome screen
         welcome_screen = new Granite.Widgets.Welcome (_("Get Some Tunes"),
@@ -140,13 +139,13 @@ public class Noise.MusicViewWrapper : ViewWrapper {
             App.main_window.action_import ();
         } else if (index == 1) {
             if (!library.doing_file_operations ()) {
-                var file_chooser = new Gtk.FileChooserDialog (_("Select Music Folder"), App.main_window,
-                                                              Gtk.FileChooserAction.SELECT_FOLDER,
-                                                              _("Cancel"),
-                                                              Gtk.ResponseType.CANCEL,
-                                                              _("Open"),
-                                                              Gtk.ResponseType.ACCEPT);
-
+                var file_chooser = new Gtk.FileChooserNative (
+                    _("Select Music Folder"),
+                    App.main_window,
+                    Gtk.FileChooserAction.SELECT_FOLDER,
+                    _("Open"),
+                    _("Cancel")
+                );
                 file_chooser.set_local_only (true);
                 file_chooser.set_select_multiple (false);
                 file_chooser.set_current_folder (Settings.Main.get_default ().music_folder);
@@ -159,7 +158,7 @@ public class Noise.MusicViewWrapper : ViewWrapper {
                 file_chooser.destroy ();
 
                 if (!String.is_empty (folder, true))
-                    App.main_window.setMusicFolder (folder);
+                    App.main_window.set_music_folder (folder);
             }
         } else {
             foreach (var device_entry in _devices.entries) {

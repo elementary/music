@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -33,27 +33,27 @@
 public class LastFM.SimilarMedias : Object {
     public const int MAX_FETCHED = 20;
 
-    public signal void similar_retrieved (Gee.LinkedList<int64?> similarIDs, Gee.LinkedList<Noise.Media> similarDont);
+    public signal void similar_retrieved (Gee.LinkedList<int64?> similar_ids, Gee.LinkedList<Music.Media> similar_dont);
 
-    public Noise.StaticPlaylist similar_playlist;
+    public Music.StaticPlaylist similar_playlist;
     private GLib.Cancellable cancellable;
 
     public class SimilarMedias () {
         cancellable = new GLib.Cancellable ();
-        similar_playlist = new Noise.StaticPlaylist ();
+        similar_playlist = new Music.StaticPlaylist ();
         similar_playlist.name = _("Similar");
         similar_playlist.read_only = true;
         similar_playlist.show_badge = true;
         similar_playlist.icon = new GLib.ThemedIcon ("playlist-similar");
 
-        Noise.App.player.changing_player.connect ((m) => {
+        Music.App.player.changing_player.connect ((m) => {
             lock (similar_playlist) {
                 similar_playlist.clear ();
             }
         });
     }
 
-    public virtual void query_for_similar (Noise.Media s) {
+    public virtual void query_for_similar (Music.Media s) {
         if (cancellable.is_cancelled () == false) {
             cancellable.cancel ();
         }
@@ -61,23 +61,23 @@ public class LastFM.SimilarMedias : Object {
         similar_async.begin (s);
     }
 
-    public async void similar_async (Noise.Media s) {
+    public async void similar_async (Music.Media s) {
         debug ("In the similar thread");
         cancellable.reset ();
         var similar_medias = yield Core.get_default ().get_similar_tracks (s.title, s.artist, cancellable);
         if (cancellable.is_cancelled ())
             return;
 
-        var similarIDs = new Gee.LinkedList<int64?> ();
-        var similarDont = new Gee.LinkedList<Noise.Media> ();
-        Noise.libraries_manager.local_library.media_from_name (similar_medias, similarIDs, similarDont);
+        var similar_ids = new Gee.LinkedList<int64?> ();
+        var similar_dont = new Gee.LinkedList<Music.Media> ();
+        Music.libraries_manager.local_library.media_from_name (similar_medias, similar_ids, similar_dont);
         if (cancellable.is_cancelled ())
             return;
 
-        similarIDs.offer_head (s.rowid);
-        var found_medias = Noise.libraries_manager.local_library.medias_from_ids (similarIDs);
+        similar_ids.offer_head (s.rowid);
+        var found_medias = Music.libraries_manager.local_library.medias_from_ids (similar_ids);
         found_medias.remove (s);
         similar_playlist.add_medias (found_medias);
-        similar_retrieved (similarIDs, similarDont);
+        similar_retrieved (similar_ids, similar_dont);
     }
 }

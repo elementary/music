@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -26,10 +26,11 @@
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
-public class Noise.Media : Object {
+
+public class Music.Media : Object {
 
     /// Used for unknown titles, artists, or album names.
-    protected static string UNKNOWN = _("Unknown");
+    protected static string UNKNOWN = _("Unknown"); //vala-lint=naming-convention
 
     public int64 rowid { get; construct set; }
 
@@ -43,8 +44,8 @@ public class Noise.Media : Object {
 
     public virtual File file { get; set; }
 
-    public virtual bool isPreview { get; set; default = false; }
-    public virtual bool isTemporary { get; set; default = false; }
+    public virtual bool is_preview { get; set; default = false; }
+    public virtual bool is_temporary { get; set; default = false; }
 
     // TODO: evaluate if there's real need for these fields
     public virtual bool location_unknown { get; set; default = false; }
@@ -53,7 +54,7 @@ public class Noise.Media : Object {
     // XXX: these don't really belong here. It seems they only help to
     //      ease client-side stuff, and will be removed in the future
     public virtual GLib.Icon unique_status_image { get; set; }
-    public virtual bool showIndicator { get; set; default = false; }
+    public virtual bool show_indicator { get; set; default = false; }
 
     /**
      * Metadata Fields
@@ -103,7 +104,7 @@ public class Noise.Media : Object {
     }
 
     public inline string get_display_location () {
-        if (isTemporary)
+        if (is_temporary)
             return "";
 
         string? filename = String.locale_to_utf8 (file.get_path ());
@@ -224,11 +225,11 @@ public class Noise.Media : Object {
         rv.date_added = date_added;
         rv.last_played = last_played;
         rv.lyrics = lyrics;
-        rv.isPreview = isPreview;
-        rv.isTemporary = isTemporary;
+        rv.is_preview = is_preview;
+        rv.is_temporary = is_temporary;
         rv.last_modified = last_modified;
         rv.show = show;
-        rv.showIndicator = showIndicator;
+        rv.show_indicator = show_indicator;
         rv.unique_status_image = unique_status_image;
         rv.location_unknown = location_unknown;
 

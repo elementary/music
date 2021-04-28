@@ -1,6 +1,5 @@
-// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012-2018 elementary LLC. (https://elementary.io)
+ * Copyright (c) 2012-2019 elementary, Inc. (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -15,10 +14,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -26,25 +25,25 @@
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-public class Noise.InstallGstreamerPluginsDialog : Granite.MessageDialog {
-    public Gst.Message message;
+public class Music.InstallGstreamerPluginsDialog : Granite.MessageDialog {
+    private Gst.Message message;
+    private bool installation_done = false;
 
     public InstallGstreamerPluginsDialog (Gst.Message message) {
         Object ();
 
         this.message = message;
+    }
+
+    construct {
         var detail = Gst.PbUtils.missing_plugin_message_get_description (message);
 
         primary_text = _("Would you like to install the %s plugin?").printf (Markup.escape_text (detail));
         secondary_text = _("This song cannot be played. The %s plugin is required to play the song.").printf ("<b>" + Markup.escape_text (detail) + "</b>");
-    }
 
-    construct {
-        deletable = false;
         destroy_with_parent = true;
         image_icon = new GLib.ThemedIcon ("dialog-question");
         modal = true;
-        resizable = false;
         transient_for = App.main_window;
 
         add_button (_("Cancel"), Gtk.ResponseType.CLOSE);
@@ -66,7 +65,7 @@ public class Noise.InstallGstreamerPluginsDialog : Granite.MessageDialog {
         show_all ();
     }
 
-    public void install_plugin_clicked () {
+    private void install_plugin_clicked () {
         var installer = Gst.PbUtils.missing_plugin_message_get_installer_detail (message);
         var context = new Gst.PbUtils.InstallPluginsContext ();
 
@@ -76,17 +75,15 @@ public class Noise.InstallGstreamerPluginsDialog : Granite.MessageDialog {
         // This callback was called before APT was done, so let's periodically check
         // whether the plugins have actually been installed. We won't update the
         // registry here.
-        Timeout.add_seconds (3, Checker);
+        Timeout.add_seconds (3, checker);
         this.hide ();
     }
 
-    public void install_plugins_finished (Gst.PbUtils.InstallPluginsReturn result) {
+    private void install_plugins_finished (Gst.PbUtils.InstallPluginsReturn result) {
         GLib.message ("Install of plugins finished.. updating registry");
     }
 
-    private bool installation_done = false;
-
-    private bool Checker () {
+    private bool checker () {
         if (installation_done)
             return false;   // this ends the checking method
 

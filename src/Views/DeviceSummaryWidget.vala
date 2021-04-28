@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -26,7 +26,7 @@
  * Authored by: Scott Ringwelski <sgringwe@mtu.edu>
  */
 
-public class Noise.DeviceSummaryWidget : Gtk.EventBox {
+public class Music.DeviceSummaryWidget : Gtk.EventBox {
     public Device device { get; construct; }
     public DevicePreferences preferences { get; construct; }
 
@@ -85,7 +85,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         sync_music_combobox = new Gtk.ComboBox ();
         sync_music_combobox.set_model (music_list);
         sync_music_combobox.set_id_column (1);
-        sync_music_combobox.set_row_separator_func (rowSeparatorFunc);
+        sync_music_combobox.set_row_separator_func (row_separator_func);
         sync_music_combobox.pack_start (music_cell, false);
         sync_music_combobox.add_attribute (music_cell, "gicon", 2);
         sync_music_combobox.pack_start (cell, true);
@@ -204,7 +204,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         storagebar.update_block_size (Granite.Widgets.StorageBar.ItemDescription.AUDIO, music_size);
     }
 
-    private bool rowSeparatorFunc (Gtk.TreeModel model, Gtk.TreeIter iter) {
+    private bool row_separator_func (Gtk.TreeModel model, Gtk.TreeIter iter) {
         string sep = "";
         model.get (iter, 1, out sep);
         return sep == "<separator_item_unique_name>";
@@ -219,7 +219,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
             sync_music_combobox.get_active_iter (out iter);
             GLib.Value value;
             music_list.get_value (iter, 0, out value);
-            preferences.music_playlist = (Noise.Playlist)value.dup_object ();
+            preferences.music_playlist = (Music.Playlist)value.dup_object ();
         }
 
         sync_music_combobox.sensitive = sync_music_check.active;
@@ -230,11 +230,11 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
 
         Gtk.TreeIter iter;
         Playlist selected_playlist = null;
-        if (sync_music_combobox.get_active ()-2 >= 0) {
+        if (sync_music_combobox.get_active () - 2 >= 0) {
             sync_music_combobox.get_active_iter (out iter);
             GLib.Value value;
             music_list.get_value (iter, 0, out value);
-            selected_playlist = (Noise.Playlist)value.dup_object ();
+            selected_playlist = (Music.Playlist)value.dup_object ();
         }
 
         music_list.clear ();
@@ -280,7 +280,7 @@ public class Noise.DeviceSummaryWidget : Gtk.EventBox {
         if (preferences.sync_music) {
             if (preferences.sync_all_music) {
                 foreach (var s in libraries_manager.local_library.get_medias ()) {
-                    if (s.isTemporary == false) {
+                    if (s.is_temporary == false) {
                         list.add (s);
                     }
                 }

@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -28,12 +28,12 @@
 
 [DBus (name = "org.gnome.SettingsDaemon.MediaKeys")]
 public interface GnomeMediaKeys : Object {
-    public abstract void GrabMediaPlayerKeys (string application, uint32 time) throws GLib.Error;
-    public abstract void ReleaseMediaPlayerKeys (string application) throws GLib.Error;
-    public signal void MediaPlayerKeyPressed (string application, string key);
+    public abstract void grab_media_player_keys (string application, uint32 time) throws GLib.Error;
+    public abstract void release_media_player_keys (string application) throws GLib.Error;
+    public signal void media_player_key_pressed (string application, string key);
 }
 
-public class Noise.MediaKeyListener : Object {
+public class Music.MediaKeyListener : Object {
     private static MediaKeyListener? _instance;
     public static MediaKeyListener instance {
         get {
@@ -51,15 +51,15 @@ public class Noise.MediaKeyListener : Object {
         assert (media_object == null);
 
         try {
-            media_object = Bus.get_proxy_sync (BusType.SESSION, "org.gnome.SettingsDaemon", "/org/gnome/SettingsDaemon/MediaKeys");
+            media_object = Bus.get_proxy_sync (BusType.SESSION, "org.gnome.SettingsDaemon.MediaKeys", "/org/gnome/SettingsDaemon/MediaKeys");
         } catch (Error e) {
             warning ("Mediakeys error: %s", e.message);
         }
 
         if (media_object != null) {
-            media_object.MediaPlayerKeyPressed.connect (media_key_pressed);
+            media_object.media_player_key_pressed.connect (media_key_pressed);
             try {
-                media_object.GrabMediaPlayerKeys (Build.EXEC_NAME, (uint32)0);
+                media_object.grab_media_player_keys (Build.EXEC_NAME, (uint32)0);
             } catch (Error err) {
                 warning ("Could not grab media player keys: %s", err.message);
             }
@@ -68,7 +68,7 @@ public class Noise.MediaKeyListener : Object {
 
     public void release_media_keys () {
         try {
-            media_object.ReleaseMediaPlayerKeys (Build.EXEC_NAME);
+            media_object.release_media_player_keys (Build.EXEC_NAME);
         } catch (Error err) {
             warning ("Could not release media player keys: %s", err.message);
         }
@@ -95,4 +95,3 @@ public class Noise.MediaKeyListener : Object {
         }
     }
 }
-

@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -27,7 +27,7 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public class Noise.CellDataFunctionHelper {
+public class Music.CellDataFunctionHelper {
     private const string NOT_AVAILABLE = ""; //("N/A");
 
     private GenericList view;
@@ -44,7 +44,7 @@ public class Noise.CellDataFunctionHelper {
         if (m == null)
             return;
 
-        renderer.visible = !m.showIndicator;
+        renderer.visible = !m.show_indicator;
 
         var image_renderer = renderer as Gtk.CellRendererPixbuf;
         return_if_fail (image_renderer != null);
@@ -61,7 +61,7 @@ public class Noise.CellDataFunctionHelper {
         if (m == null)
             return;
 
-        renderer.visible = m.showIndicator;
+        renderer.visible = m.show_indicator;
 
         var spinner_renderer = renderer as Gtk.CellRendererSpinner;
         return_if_fail (spinner_renderer != null);
@@ -74,7 +74,7 @@ public class Noise.CellDataFunctionHelper {
         Value val;
         tree_model.get_value (iter, ListColumn.FILE_SIZE, out val);
         uint64 n = val.get_uint64 ();
-        (cell as Gtk.CellRendererText).text = n > 0 ? format_size (n) : NOT_AVAILABLE;
+        ((Gtk.CellRendererText)cell).text = n > 0 ? format_size (n) : NOT_AVAILABLE;
     }
 
     // For numbers. Needed because the column is not sortable and intelligent_func
@@ -116,7 +116,7 @@ public class Noise.CellDataFunctionHelper {
 
         Value val;
         tree_model.get_value (iter, column, out val);
-        (cell as Gtk.CellRendererText).text = val.get_string ();
+        ((Gtk.CellRendererText)cell).text = val.get_string ();
     }
 
     // for Bitrate. Append 'kbps'
@@ -134,7 +134,7 @@ public class Noise.CellDataFunctionHelper {
         tree_model.get_value (iter, ListColumn.LENGTH, out val);
         uint ms = val.get_uint ();
         var text_cell = cell as Gtk.CellRendererText;
-        text_cell.text = (ms <= 0) ? NOT_AVAILABLE : Granite.DateTime.seconds_to_time ((int)(ms / Noise.TimeUtils.MILI_INV));
+        text_cell.text = (ms <= 0) ? NOT_AVAILABLE : Granite.DateTime.seconds_to_time ((int)(ms / Music.TimeUtils.MILI_INV));
     }
 
     // turns seconds since Jan 1, 1970 into date format
@@ -156,4 +156,3 @@ public class Noise.CellDataFunctionHelper {
         rating_cell.rating = val.get_uint ();
     }
 }
-

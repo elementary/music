@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -27,7 +27,7 @@
  *              Victor Eduardo <victoreduardm@gmail.com>
  */
 
-public class Noise.BrowserColumnModel : Object, Gtk.TreeModel, Gtk.TreeSortable {
+public class Music.BrowserColumnModel : Object, Gtk.TreeModel, Gtk.TreeSortable {
     /* all iters must match this */
     private int stamp = (int)Random.next_int ();
 
@@ -334,7 +334,7 @@ public class Noise.BrowserColumnModel : Object, Gtk.TreeModel, Gtk.TreeSortable 
 
         if (changed && sort_column_id >= 0) {
             /* do the sort for reals */
-            rows.sort_iter (sequenceIterCompareFunc);
+            rows.sort_iter (sequence_iter_compare_func);
 
             sort_column_changed ();
         }
@@ -346,7 +346,7 @@ public class Noise.BrowserColumnModel : Object, Gtk.TreeModel, Gtk.TreeSortable 
 
 
     /** Custom function to use built in sort in Sequence to our advantage **/
-    public int sequenceIterCompareFunc (SequenceIter<string> a, SequenceIter<string> b) {
+    public int sequence_iter_compare_func (SequenceIter<string> a, SequenceIter<string> b) {
         int rv = 1;
 
         if (sort_column_id < 0)
@@ -376,4 +376,3 @@ public class Noise.BrowserColumnModel : Object, Gtk.TreeModel, Gtk.TreeSortable 
         return rv;
     }
 }
-

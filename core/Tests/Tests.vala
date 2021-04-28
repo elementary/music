@@ -15,10 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * The Noise authors hereby grant permission for non-GPL compatible
+ * The Music authors hereby grant permission for non-GPL compatible
  * GStreamer plugins to be used and distributed together with GStreamer
- * and Noise. This permission is above and beyond the permissions granted
- * by the GPL license by which Noise is covered. If you modify this code
+ * and Music. This permission is above and beyond the permissions granted
+ * by the GPL license by which Music is covered. If you modify this code
  * you may extend this exception to your version of the code, but you are not
  * obligated to do so. If you do not wish to do so, delete this exception
  * statement from your version.
@@ -36,7 +36,7 @@ static bool check_list_element_has_suffix (Gee.Collection<string> list, string s
 void add_file_utils_tests () {
     Test.add_func ("/FileUtils/count_music_files", () => {
         var files = new Gee.ArrayList<string> ();
-        assert (Noise.FileUtils.count_music_files (File.new_for_path (TEST_DATA_FILE + "/data/count_music_files/"),
+        assert (Music.FileUtils.count_music_files (File.new_for_path (TEST_DATA_FILE + "/data/count_music_files/"),
                 files) == 3);
 
         assert (check_list_element_has_suffix (files, "tests/data/count_music_files/file1.mp3"));
@@ -44,9 +44,9 @@ void add_file_utils_tests () {
         assert (check_list_element_has_suffix (files, "tests/data/count_music_files/file1.wav"));
         assert (files[0].has_prefix ("file:///"));
 
-        files.clear();
+        files.clear ();
 
-        assert (Noise.FileUtils.count_music_files (File.new_for_path (TEST_DATA_FILE + "/data/count_music_files_subdir/"),
+        assert (Music.FileUtils.count_music_files (File.new_for_path (TEST_DATA_FILE + "/data/count_music_files_subdir/"),
                 files) == 4);
 
         assert (check_list_element_has_suffix (files, "tests/data/count_music_files_subdir/file1.mp3"));
@@ -57,7 +57,7 @@ void add_file_utils_tests () {
     });
 
     Test.add_func ("/FileUtils/is_valid_content_type", () => {
-        assert (Noise.FileUtils.is_valid_content_type ("audio/mpeg", {"audio/mpeg"}));
+        assert (Music.FileUtils.is_valid_content_type ("audio/mpeg", {"audio/mpeg"}));
     });
 }
 
