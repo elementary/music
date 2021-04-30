@@ -1,0 +1,23 @@
+app-id: io.elementary.music
+runtime: io.elementary.Platform
+runtime-version: 'daily'
+sdk: io.elementary.Sdk
+command: io.elementary.music
+finish-args:
+  - '--share=ipc'
+  - '--socket=fallback-x11'
+  - '--socket=wayland'
+  - '--socket=pulseaudio'
+
+  # needed for perfers-color-scheme
+  - '--system-talk-name=org.freedesktop.Accounts'
+
+  - '--talk-name=org.gnome.SettingsDaemon.MediaKeys'
+
+  - '--metadata=X-DConf=migrate-path=/io/elementary/music/'
+modules:
+  - name: music
+    buildsystem: meson
+    sources:
+      - type: dir
+        path: .
