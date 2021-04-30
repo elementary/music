@@ -4,17 +4,8 @@
  */
 
 public class Music.MainWindow : Hdy.ApplicationWindow {
-    public const string ACTION_PREFIX = "win.";
-    public const string ACTION_PLAY_PAUSE = "action-play-pause";
-
-    private const ActionEntry[] ACTION_ENTRIES = {
-        { ACTION_PLAY_PAUSE, action_play_pause, null, "false" },
-    };
-
     construct {
         Hdy.init ();
-
-        add_action_entries (ACTION_ENTRIES, this);
 
         var headerbar = new Hdy.HeaderBar () {
             hexpand = true,
@@ -31,7 +22,7 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
         );
 
         var play_button = new Gtk.Button () {
-            action_name = ACTION_PREFIX + ACTION_PLAY_PAUSE,
+            action_name = Application.ACTION_PREFIX + Application.ACTION_PLAY_PAUSE,
             image = play_pause_image
         };
         play_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
@@ -45,8 +36,8 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
 
         add (grid);
 
-        action_state_changed.connect ((name, new_state) => {
-            if (name == ACTION_PLAY_PAUSE) {
+        GLib.Application.get_default ().action_state_changed.connect ((name, new_state) => {
+            if (name == Application.ACTION_PLAY_PAUSE) {
                 if (new_state.get_boolean () == false) {
                     play_pause_image.icon_name = "media-playback-start-symbolic";
                     play_button.tooltip_text = _("Play");
@@ -56,14 +47,5 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
                 }
             }
         });
-    }
-
-    private void action_play_pause () {
-        var play_pause_action = lookup_action (ACTION_PLAY_PAUSE);
-        if (play_pause_action.get_state ().get_boolean ()) {
-            ((SimpleAction) play_pause_action).set_state (false);
-        } else {
-            ((SimpleAction) play_pause_action).set_state (true);
-        }
     }
 }

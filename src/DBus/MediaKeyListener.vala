@@ -61,12 +61,10 @@ public class Music.MediaKeyListener : Object {
             return;
         }
 
-        var main_window = (Gtk.ApplicationWindow)(application).active_window;
-
         switch (key) {
             case "Play":
-                main_window.activate_action (
-                    Music.MainWindow.ACTION_PLAY_PAUSE,
+                application.activate_action (
+                    Application.ACTION_PLAY_PAUSE,
                     null
                 );
                 break;
