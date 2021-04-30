@@ -61,6 +61,10 @@ public class Music.PlaybackManager : Object {
         });
     }
 
+    public void seek_to_progress (double percent) {
+        playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)(percent * playback_duration));
+    }
+
     public void queue_files (File[] files) {
         playbin.uri = files[0].get_uri ();
         ((SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE)).set_state (true);

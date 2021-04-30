@@ -62,7 +62,7 @@ public class Music.SeekBar : Gtk.Grid {
         };
 
         scale.button_release_event.connect (() => {
-            playback_position = (int64) scale.get_value () * playback_duration;
+            PlaybackManager.get_default ().seek_to_progress (scale.get_value ());
             return Gdk.EVENT_PROPAGATE;
         });
 
