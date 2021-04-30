@@ -18,4 +18,5 @@ dependencies = [
     handy_dep
 ]
 
+subdir('data')
 subdir('src')

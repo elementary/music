@@ -16,6 +16,21 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
         header_context.add_class (Granite.STYLE_CLASS_DEFAULT_DECORATION);
         header_context.add_class (Gtk.STYLE_CLASS_FLAT);
 
+        var album_image = new Music.AlbumImage () {
+            width_request = 200
+        };
+
+        var title_label = new Gtk.Label (_("Unknown"));
+        title_label.get_style_context ().add_class (Granite.STYLE_CLASS_H3_LABEL);
+
+        var artist_label = new Gtk.Label (_("Unknown"));
+
+        var info_grid = new Gtk.Grid () {
+            halign = Gtk.Align.CENTER
+        };
+        info_grid.attach (title_label, 0, 0);
+        info_grid.attach (artist_label, 0, 1);
+
         var seekbar = new Music.SeekBar ();
 
         var play_pause_image = new Gtk.Image.from_icon_name (
@@ -32,12 +47,14 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
 
         var now_playing_grid = new Gtk.Grid () {
             margin = 12,
-            row_spacing = 12,
+            row_spacing = 24,
             valign = Gtk.Align.CENTER,
             vexpand = true
         };
-        now_playing_grid.attach (seekbar, 0, 0);
-        now_playing_grid.attach (play_button, 0, 1);
+        now_playing_grid.attach (album_image, 0, 0);
+        now_playing_grid.attach (info_grid, 0, 1);
+        now_playing_grid.attach (seekbar, 0, 2);
+        now_playing_grid.attach (play_button, 0, 3);
 
         var grid = new Gtk.Grid ();
         grid.attach (headerbar, 0, 0);
