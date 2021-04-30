@@ -16,6 +16,8 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
         header_context.add_class (Granite.STYLE_CLASS_DEFAULT_DECORATION);
         header_context.add_class (Gtk.STYLE_CLASS_FLAT);
 
+        var seekbar = new Granite.SeekBar (0);
+
         var play_pause_image = new Gtk.Image.from_icon_name (
             "media-playback-start-symbolic",
             Gtk.IconSize.LARGE_TOOLBAR
@@ -23,16 +25,23 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
 
         var play_button = new Gtk.Button () {
             action_name = Application.ACTION_PREFIX + Application.ACTION_PLAY_PAUSE,
+            halign = Gtk.Align.CENTER,
             image = play_pause_image
         };
         play_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
 
-        var grid = new Gtk.Grid () {
-            row_spacing = 24,
-            margin_bottom = 24
+        var now_playing_grid = new Gtk.Grid () {
+            margin = 12,
+            row_spacing = 12,
+            valign = Gtk.Align.CENTER,
+            vexpand = true
         };
+        now_playing_grid.attach (seekbar, 0, 0);
+        now_playing_grid.attach (play_button, 0, 1);
+
+        var grid = new Gtk.Grid ();
         grid.attach (headerbar, 0, 0);
-        grid.attach (play_button, 0, 1);
+        grid.attach (now_playing_grid, 0, 1);
 
         add (grid);
 
@@ -47,5 +56,9 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
                 }
             }
         });
+
+        var playback_manager = PlaybackManager.get_default ();
+        playback_manager.bind_property ("playback-duration", seekbar, "playback-duration");
+        playback_manager.bind_property ("playback-progress", seekbar, "playback-progress");
     }
 }
