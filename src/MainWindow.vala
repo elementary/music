@@ -16,7 +16,7 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
         header_context.add_class (Granite.STYLE_CLASS_DEFAULT_DECORATION);
         header_context.add_class (Gtk.STYLE_CLASS_FLAT);
 
-        var seekbar = new Granite.SeekBar (0);
+        var seekbar = new Music.SeekBar ();
 
         var play_pause_image = new Gtk.Image.from_icon_name (
             "media-playback-start-symbolic",
@@ -59,6 +59,6 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
 
         var playback_manager = PlaybackManager.get_default ();
         playback_manager.bind_property ("playback-duration", seekbar, "playback-duration");
-        playback_manager.bind_property ("playback-progress", seekbar, "playback-progress");
+        playback_manager.bind_property ("playback-position", seekbar, "playback-position");
     }
 }

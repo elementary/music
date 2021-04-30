@@ -4,8 +4,8 @@
  */
 
 public class Music.PlaybackManager : Object {
-    public double playback_duration { get; private set; }
-    public double playback_progress { get; private set; } 
+    public int64 playback_duration { get; private set; }
+    public int64 playback_position { get; private set; }
 
     private static PlaybackManager? _instance;
     public static PlaybackManager get_default () {
@@ -40,7 +40,7 @@ public class Music.PlaybackManager : Object {
                     GLib.Timeout.add (250, () => {
                         int64 duration = 0;
                         playbin.query_duration (Gst.Format.TIME, out duration);
-                        playback_duration = (double) duration / Gst.SECOND;
+                        playback_duration = duration;
 
                         if (duration > 0) {
                             return false;
@@ -52,9 +52,7 @@ public class Music.PlaybackManager : Object {
                     progress_timer = GLib.Timeout.add (250, () => {
                         int64 position = 0;
                         playbin.query_position (Gst.Format.TIME, out position);
-
-                        var playback_position = (double) position / Gst.SECOND;
-                        playback_progress = playback_position / playback_duration;
+                        playback_position = position;
 
                         return true;
                     });
