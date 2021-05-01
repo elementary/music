@@ -6,6 +6,8 @@
 public class Music.PlaybackManager : Object {
     public int64 playback_duration { get; private set; }
     public int64 playback_position { get; private set; }
+    public string artist { get; private set; }
+    public string title { get; private set; }
 
     private static PlaybackManager? _instance;
     public static PlaybackManager get_default () {
@@ -16,13 +18,18 @@ public class Music.PlaybackManager : Object {
         return _instance;
     }
 
-    private uint progress_timer = 0;
     private dynamic Gst.Element playbin;
+    private Gst.Bus bus;
+    private uint progress_timer = 0;
 
     private PlaybackManager () {}
 
     construct {
         playbin = Gst.ElementFactory.make ("playbin", "playbin");
+
+        bus = playbin.get_bus ();
+        bus.add_watch (0, bus_callback);
+        bus.enable_sync_message_emission ();
 
         GLib.Application.get_default ().action_state_changed.connect ((name, new_state) => {
             if (name == Application.ACTION_PLAY_PAUSE) {
@@ -68,5 +75,27 @@ public class Music.PlaybackManager : Object {
     public void queue_files (File[] files) {
         playbin.uri = files[0].get_uri ();
         ((SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE)).set_state (true);
+    }
+
+    private bool bus_callback (Gst.Bus bus, Gst.Message message) {
+        switch (message.type) {
+            case Gst.MessageType.TAG:
+                Gst.TagList tag_list;
+                message.parse_tag (out tag_list);
+
+                string _artist;
+                tag_list.get_string (Gst.Tags.ARTIST, out _artist);
+                artist = _artist;
+
+                string _title;
+                tag_list.get_string (Gst.Tags.TITLE, out _title);
+                title = _title;
+
+                break;
+            default:
+                break;
+        }
+
+        return true;
     }
 }

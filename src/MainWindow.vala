@@ -47,6 +47,7 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
 
         var now_playing_grid = new Gtk.Grid () {
             margin = 12,
+            margin_bottom = 24,
             row_spacing = 24,
             valign = Gtk.Align.CENTER,
             vexpand = true
@@ -77,5 +78,7 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
         var playback_manager = PlaybackManager.get_default ();
         playback_manager.bind_property ("playback-duration", seekbar, "playback-duration");
         playback_manager.bind_property ("playback-position", seekbar, "playback-position");
+        playback_manager.bind_property ("artist", artist_label, "label");
+        playback_manager.bind_property ("title", title_label, "label");
     }
 }
