@@ -4,7 +4,7 @@
  */
 
 public class Music.PlaybackManager : Object {
-    public int64 playback_duration { get; private set; }
+    public int64 playback_duration { get; private set; default = 0; }
     public int64 playback_position { get; private set; }
     public string artist { get; private set; }
     public string title { get; private set; }
@@ -40,29 +40,31 @@ public class Music.PlaybackManager : Object {
                         progress_timer = 0;
                     }
                 } else {
-                    playbin.set_state (Gst.State.PLAYING);
+                    if (playback_duration == 0) {
+                        // It may take time to calculate the length, so we keep
+                        // checking until we get something reasonable
+                        GLib.Timeout.add (250, () => {
+                            int64 duration = 0;
+                            playbin.query_duration (Gst.Format.TIME, out duration);
+                            playback_duration = duration;
 
-                    // It may take time to calculate the length, so we keep
-                    // checking until we get something reasonable
-                    GLib.Timeout.add (250, () => {
-                        int64 duration = 0;
-                        playbin.query_duration (Gst.Format.TIME, out duration);
-                        playback_duration = duration;
+                            if (playback_duration > 0) {
+                                return false;
+                            }
 
-                        if (duration > 0) {
-                            return false;
-                        }
-
-                        return true;
-                    });
+                            return true;
+                        });
+                    }
 
                     progress_timer = GLib.Timeout.add (250, () => {
                         int64 position = 0;
                         playbin.query_position (Gst.Format.TIME, out position);
-                        playback_position = position;
+                        playback_position = position.clamp (0, playback_duration);
 
                         return true;
                     });
+
+                    playbin.set_state (Gst.State.PLAYING);
                 }
             }
         });
@@ -79,6 +81,9 @@ public class Music.PlaybackManager : Object {
 
     private bool bus_callback (Gst.Bus bus, Gst.Message message) {
         switch (message.type) {
+            case Gst.MessageType.EOS:
+                ((SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE)).set_state (false);
+                break;
             case Gst.MessageType.TAG:
                 Gst.TagList tag_list;
                 message.parse_tag (out tag_list);
