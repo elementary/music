@@ -76,6 +76,7 @@ public class Music.PlaybackManager : Object {
 
     public void queue_files (File[] files) {
         playbin.uri = files[0].get_uri ();
+        title = files[0].get_path ();
         ((SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE)).set_state (true);
     }
 
@@ -88,13 +89,19 @@ public class Music.PlaybackManager : Object {
                 Gst.TagList tag_list;
                 message.parse_tag (out tag_list);
 
-                string _artist;
-                tag_list.get_string (Gst.Tags.ARTIST, out _artist);
-                artist = _artist;
-
                 string _title;
                 tag_list.get_string (Gst.Tags.TITLE, out _title);
-                title = _title;
+                if (_title != null) {
+                    title = _title;
+                }
+
+                string _artist;
+                tag_list.get_string (Gst.Tags.ARTIST, out _artist);
+                if (_artist != null) {
+                    artist = _artist;
+                } else if (_title != null) { // Don't set artist for files without tags
+                    artist = _("Unknown");
+                }
 
                 break;
             default:

@@ -20,16 +20,21 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
             width_request = 200
         };
 
-        var title_label = new Gtk.Label (_("Unknown"));
+        var title_label = new Gtk.Label (null) {
+            ellipsize = Pango.EllipsizeMode.MIDDLE
+        };
         title_label.get_style_context ().add_class (Granite.STYLE_CLASS_H3_LABEL);
 
-        var artist_label = new Gtk.Label (_("Unknown"));
+        var artist_label = new Gtk.Label (null);
+
+        var artist_revealer = new Gtk.Revealer ();
+        artist_revealer.add (artist_label);
 
         var info_grid = new Gtk.Grid () {
             halign = Gtk.Align.CENTER
         };
         info_grid.attach (title_label, 0, 0);
-        info_grid.attach (artist_label, 0, 1);
+        info_grid.attach (artist_revealer, 0, 1);
 
         var seekbar = new Music.SeekBar ();
 
@@ -80,5 +85,12 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
         playback_manager.bind_property ("playback-position", seekbar, "playback-position");
         playback_manager.bind_property ("artist", artist_label, "label");
         playback_manager.bind_property ("title", title_label, "label");
+
+        playback_manager.bind_property (
+            "artist", artist_revealer, "reveal-child", BindingFlags.SYNC_CREATE,
+            (binding, src_val, ref target_val) => {
+                target_val.set_boolean (src_val.get_string () != null);
+            }
+        );
     }
 }
