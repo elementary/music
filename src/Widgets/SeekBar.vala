@@ -4,6 +4,8 @@
  */
 
 public class Music.SeekBar : Gtk.Grid {
+    private bool scale_pressed = false;
+
     private int64 _playback_duration;
     public int64 playback_duration {
         get {
@@ -40,7 +42,9 @@ public class Music.SeekBar : Gtk.Grid {
                 Granite.DateTime.seconds_to_time ((int) (position / Gst.SECOND))
             );
 
-            scale.set_value ((double) 1 / playback_duration * position);
+            if (!scale_pressed) {
+                scale.set_value ((double) 1 / playback_duration * position);
+            }
         }
     }
 
@@ -61,8 +65,14 @@ public class Music.SeekBar : Gtk.Grid {
             hexpand = true
         };
 
+        scale.button_press_event.connect (() => {
+            scale_pressed = true;
+            return Gdk.EVENT_PROPAGATE;
+        });
+
         scale.button_release_event.connect (() => {
             PlaybackManager.get_default ().seek_to_progress (scale.get_value ());
+            scale_pressed = false;
             return Gdk.EVENT_PROPAGATE;
         });
 
