@@ -4,6 +4,9 @@
  */
 
 public class Music.PlaybackManager : Object {
+    public Gdk.Pixbuf pixbuf { get; private set; }
+    public string artist { get; private set; }
+    public string title { get; private set; }
     public int64 playback_duration { get; private set; }
     public int64 playback_position { get; private set; }
 
@@ -18,11 +21,16 @@ public class Music.PlaybackManager : Object {
 
     private uint progress_timer = 0;
     private dynamic Gst.Element playbin;
+    private Gst.Bus bus;
 
     private PlaybackManager () {}
 
     construct {
         playbin = Gst.ElementFactory.make ("playbin", "playbin");
+
+        bus = playbin.get_bus ();
+        bus.add_watch (0, bus_callback);
+        bus.enable_sync_message_emission ();
 
         GLib.Application.get_default ().action_state_changed.connect ((name, new_state) => {
             if (name == Application.ACTION_PLAY_PAUSE) {
@@ -68,5 +76,79 @@ public class Music.PlaybackManager : Object {
     public void queue_files (File[] files) {
         playbin.uri = files[0].get_uri ();
         ((SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE)).set_state (true);
+    }
+
+    private bool bus_callback (Gst.Bus bus, Gst.Message message) {
+        switch (message.type) {
+            case Gst.MessageType.TAG: 
+                Gst.TagList tag_list;
+                message.parse_tag (out tag_list);
+
+                string _artist;
+                tag_list.get_string (Gst.Tags.ARTIST, out _artist);
+                artist = _artist;
+
+                string _title;
+                tag_list.get_string (Gst.Tags.TITLE, out _title);
+                title = _title;
+
+                var sample = get_cover_sample (tag_list);
+                if (sample != null) {
+                    var buffer = sample.get_buffer ();
+
+                    if (buffer != null) {
+                        pixbuf = get_pixbuf_from_buffer (buffer);
+                    }
+                }
+
+                break;
+            default:
+                break;
+            }
+
+        return true;
+    }
+
+    private Gst.Sample? get_cover_sample (Gst.TagList tag_list) {
+        Gst.Sample cover_sample = null;
+        Gst.Sample sample;
+        for (int i = 0; tag_list.get_sample_index (Gst.Tags.IMAGE, i, out sample); i++) {
+            var caps = sample.get_caps ();
+            unowned Gst.Structure caps_struct = caps.get_structure (0);
+            int image_type = Gst.Tag.ImageType.UNDEFINED;
+            caps_struct.get_enum ("image-type", typeof (Gst.Tag.ImageType), out image_type);
+            if (image_type == Gst.Tag.ImageType.UNDEFINED && cover_sample == null) {
+                cover_sample = sample;
+            } else if (image_type == Gst.Tag.ImageType.FRONT_COVER) {
+                return sample;
+            }
+        }
+
+        return cover_sample;
+    }
+
+    private Gdk.Pixbuf? get_pixbuf_from_buffer (Gst.Buffer buffer) {
+        Gst.MapInfo map_info;
+
+        if (!buffer.map (out map_info, Gst.MapFlags.READ)) {
+            warning ("Could not map memory buffer");
+            return null;
+        }
+
+        Gdk.Pixbuf pix = null;
+
+        try {
+            var loader = new Gdk.PixbufLoader ();
+
+            if (loader.write (map_info.data) && loader.close ()) {
+                pix = loader.get_pixbuf ();
+            }
+        } catch (Error err) {
+            warning ("Error processing image data: %s", err.message);
+        }
+
+        buffer.unmap (map_info);
+
+        return pix;
     }
 }

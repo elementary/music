@@ -56,7 +56,9 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
         now_playing_grid.attach (seekbar, 0, 2);
         now_playing_grid.attach (play_button, 0, 3);
 
-        var grid = new Gtk.Grid ();
+        var grid = new Gtk.Grid () {
+            margin_bottom = 12
+        };
         grid.attach (headerbar, 0, 0);
         grid.attach (now_playing_grid, 0, 1);
 
@@ -77,5 +79,14 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
         var playback_manager = PlaybackManager.get_default ();
         playback_manager.bind_property ("playback-duration", seekbar, "playback-duration");
         playback_manager.bind_property ("playback-position", seekbar, "playback-position");
+        playback_manager.bind_property ("artist", artist_label, "label");
+        playback_manager.bind_property ("title", title_label, "label");
+
+        playback_manager.notify["pixbuf"].connect (() => {
+            var pixbuf = playback_manager.pixbuf;
+            var scaled = pixbuf.scale_simple (200, 200, Gdk.InterpType.BILINEAR);
+
+            album_image.image.pixbuf = scaled;
+        });
     }
 }
