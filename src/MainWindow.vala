@@ -80,6 +80,9 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
             }
         });
 
+        var play_pause_action = GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
+        play_pause_action.bind_property ("enabled", seekbar, "sensitive");
+
         var playback_manager = PlaybackManager.get_default ();
         playback_manager.bind_property ("playback-duration", seekbar, "playback-duration");
         playback_manager.bind_property ("playback-position", seekbar, "playback-position");
