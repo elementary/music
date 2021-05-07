@@ -7,7 +7,27 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
     construct {
         Hdy.init ();
 
+        var queue_header = new Hdy.HeaderBar () {
+            decoration_layout = "close:",
+            hexpand = true,
+            show_close_button = true
+        };
+
+        unowned var queue_header_context = queue_header.get_style_context ();
+        queue_header_context.add_class (Granite.STYLE_CLASS_DEFAULT_DECORATION);
+        queue_header_context.add_class (Gtk.STYLE_CLASS_FLAT);
+
+        var queue_listbox = new Gtk.ListBox () {
+            expand = true
+        };
+        queue_listbox.bind_model (PlaybackManager.get_default ().queue_liststore, create_queue_row);
+
+        var queue = new Gtk.Grid ();
+        queue.attach (queue_header, 0, 0);
+        queue.attach (queue_listbox, 0, 1);
+
         var headerbar = new Hdy.HeaderBar () {
+            decoration_layout = ":maximize",
             hexpand = true,
             show_close_button = true
         };
@@ -16,84 +36,36 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
         header_context.add_class (Granite.STYLE_CLASS_DEFAULT_DECORATION);
         header_context.add_class (Gtk.STYLE_CLASS_FLAT);
 
-        var album_image = new Music.AlbumImage () {
-            width_request = 200
-        };
-
-        var title_label = new Gtk.Label (null) {
-            ellipsize = Pango.EllipsizeMode.MIDDLE
-        };
-        title_label.get_style_context ().add_class (Granite.STYLE_CLASS_H3_LABEL);
-
-        var artist_label = new Gtk.Label (null);
-
-        var artist_revealer = new Gtk.Revealer ();
-        artist_revealer.add (artist_label);
-
-        var info_grid = new Gtk.Grid () {
-            halign = Gtk.Align.CENTER
-        };
-        info_grid.attach (title_label, 0, 0);
-        info_grid.attach (artist_revealer, 0, 1);
-
-        var seekbar = new Music.SeekBar ();
-
-        var play_pause_image = new Gtk.Image.from_icon_name (
-            "media-playback-start-symbolic",
-            Gtk.IconSize.LARGE_TOOLBAR
-        );
-
-        var play_button = new Gtk.Button () {
-            action_name = Application.ACTION_PREFIX + Application.ACTION_PLAY_PAUSE,
-            halign = Gtk.Align.CENTER,
-            image = play_pause_image
-        };
-        play_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
-
-        var now_playing_grid = new Gtk.Grid () {
+        var now_playing_view = new Music.NowPlayingView () {
             margin = 12,
             margin_bottom = 24,
-            row_spacing = 24,
             valign = Gtk.Align.CENTER,
             vexpand = true
         };
-        now_playing_grid.attach (album_image, 0, 0);
-        now_playing_grid.attach (info_grid, 0, 1);
-        now_playing_grid.attach (seekbar, 0, 2);
-        now_playing_grid.attach (play_button, 0, 3);
 
-        var grid = new Gtk.Grid ();
-        grid.attach (headerbar, 0, 0);
-        grid.attach (now_playing_grid, 0, 1);
+        var now_playing = new Gtk.Grid ();
+        now_playing.attach (headerbar, 0, 0);
+        now_playing.attach (now_playing_view, 0, 1);
 
-        add (grid);
+        var paned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL) {
+            position = 350
+        };
+        paned.pack1 (queue, true, false);
+        paned.pack2 (now_playing, false, false);
 
-        GLib.Application.get_default ().action_state_changed.connect ((name, new_state) => {
-            if (name == Application.ACTION_PLAY_PAUSE) {
-                if (new_state.get_boolean () == false) {
-                    play_pause_image.icon_name = "media-playback-start-symbolic";
-                    play_button.tooltip_text = _("Play");
-                } else {
-                    play_pause_image.icon_name = "media-playback-pause-symbolic";
-                    play_button.tooltip_text = _("Pause");
-                }
-            }
-        });
+        var window_handle = new Hdy.WindowHandle ();
+        window_handle.add (paned);
 
-        var play_pause_action = GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
-        play_pause_action.bind_property ("enabled", seekbar, "sensitive");
+        add (window_handle);
+    }
 
-        var playback_manager = PlaybackManager.get_default ();
-        playback_manager.bind_property ("playback-duration", seekbar, "playback-duration");
-        playback_manager.bind_property ("playback-position", seekbar, "playback-position");
-        playback_manager.bind_property ("artist", artist_label, "label");
-        playback_manager.bind_property ("title", title_label, "label");
+    private Gtk.Widget create_queue_row (GLib.Object object) {
+        unowned var audio_object = (Music.AudioObject) object;
 
-        playback_manager.bind_property (
-            "artist", artist_revealer, "reveal-child", BindingFlags.SYNC_CREATE,
-            (binding, src_val, ref target_val) => {
-                target_val.set_boolean (src_val.get_string () != null);
-            }
-        );
+        var label = new Gtk.Label (audio_object.title) {
+            ellipsize = Pango.EllipsizeMode.MIDDLE
+        };
+
+        return label;
     }
 }

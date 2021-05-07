@@ -4,6 +4,7 @@
  */
 
 public class Music.PlaybackManager : Object {
+    public ListStore queue_liststore { get; private set; }
     public int64 playback_duration { get; private set; default = 0; }
     public int64 playback_position { get; private set; }
     public string artist { get; private set; }
@@ -30,6 +31,8 @@ public class Music.PlaybackManager : Object {
         bus = playbin.get_bus ();
         bus.add_watch (0, bus_callback);
         bus.enable_sync_message_emission ();
+
+        queue_liststore = new ListStore (typeof (Music.AudioObject));
 
         GLib.Application.get_default ().action_state_changed.connect ((name, new_state) => {
             if (name == Application.ACTION_PLAY_PAUSE) {
@@ -77,6 +80,11 @@ public class Music.PlaybackManager : Object {
     public void queue_files (File[] files) {
         if (files[0].query_exists ()) {
             playbin.uri = files[0].get_uri ();
+
+            var audio_object = new AudioObject ("", files[0].get_path (), 0);
+
+            queue_liststore.append (audio_object);
+
             title = files[0].get_path ();
             ((SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE)).set_enabled (true);
             ((SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE)).set_state (true);
