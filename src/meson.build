@@ -3,6 +3,7 @@ sources = [
     'MainWindow.vala',
     'PlaybackManager.vala',
     'DBus/MediaKeyListener.vala',
+    'Views/NowPlayingView.vala',
     'Widgets/AlbumImage.vala',
     'Widgets/SeekBar.vala'
 ]
