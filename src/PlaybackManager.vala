@@ -83,17 +83,14 @@ public class Music.PlaybackManager : Object {
             play_pause_action.set_enabled (true);
             play_pause_action.set_state (true);
         } else {
-            playbin.uri = "";
-            title = _("Music");
-            artist = _("Not playing");
-            play_pause_action.set_enabled (false);
+            reset_metadata ();
         }
     }
 
     private bool bus_callback (Gst.Bus bus, Gst.Message message) {
         switch (message.type) {
             case Gst.MessageType.EOS:
-                ((SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE)).set_state (false);
+                reset_metadata ();
                 break;
             case Gst.MessageType.TAG:
                 Gst.TagList tag_list;
@@ -119,5 +116,18 @@ public class Music.PlaybackManager : Object {
         }
 
         return true;
+    }
+
+    private void reset_metadata () {
+        playbin.set_state (Gst.State.NULL);
+        playbin.uri = "";
+        playback_duration = 0;
+        playback_position = 0;
+        title = _("Music");
+        artist = _("Not playing");
+
+        var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
+        play_pause_action.set_enabled (false);
+        play_pause_action.set_state (false);
     }
 }
