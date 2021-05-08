@@ -36,7 +36,7 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
         header_context.add_class (Granite.STYLE_CLASS_DEFAULT_DECORATION);
         header_context.add_class (Gtk.STYLE_CLASS_FLAT);
 
-        var now_playing_view = new Music.NowPlayingView () {
+        var now_playing_view = new NowPlayingView () {
             margin = 12,
             margin_bottom = 24,
             valign = Gtk.Align.CENTER,

@@ -78,6 +78,8 @@ public class Music.PlaybackManager : Object {
     }
 
     public void queue_files (File[] files) {
+        var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
+
         if (files[0].query_exists ()) {
             playbin.uri = files[0].get_uri ();
 
@@ -86,13 +88,13 @@ public class Music.PlaybackManager : Object {
             queue_liststore.append (audio_object);
 
             title = files[0].get_path ();
-            ((SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE)).set_enabled (true);
-            ((SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE)).set_state (true);
+            play_pause_action.set_enabled (true);
+            play_pause_action.set_state (true);
         } else {
             playbin.uri = "";
             title = _("Music");
             artist = _("Not playing");
-            ((SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE)).set_enabled (false);
+            play_pause_action.set_enabled (false);
         }
     }
 
