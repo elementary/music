@@ -10,6 +10,7 @@ public class Music.PlaybackManager : Object {
     public string title { get; private set; }
 
     private ListStore queue_liststore;
+    private File current_file;
 
     private static PlaybackManager? _instance;
     public static PlaybackManager get_default () {
@@ -44,21 +45,7 @@ public class Music.PlaybackManager : Object {
                         progress_timer = 0;
                     }
                 } else {
-                    if (playback_duration == 0) {
-                        // It may take time to calculate the length, so we keep
-                        // checking until we get something reasonable
-                        GLib.Timeout.add (250, () => {
-                            int64 duration = 0;
-                            playbin.query_duration (Gst.Format.TIME, out duration);
-                            playback_duration = duration;
-
-                            if (playback_duration > 0) {
-                                return false;
-                            }
-
-                            return true;
-                        });
-                    }
+                    query_duration ();
 
                     progress_timer = GLib.Timeout.add (250, () => {
                         int64 position = 0;
@@ -87,6 +74,7 @@ public class Music.PlaybackManager : Object {
 
         var file = (File) queue_liststore.get_object (0);
         if (file != null) {
+            current_file = file;
             playbin.uri = file.get_uri ();
             title = file.get_path ();
 
@@ -101,7 +89,9 @@ public class Music.PlaybackManager : Object {
     private bool bus_callback (Gst.Bus bus, Gst.Message message) {
         switch (message.type) {
             case Gst.MessageType.EOS:
-                reset_metadata ();
+                playbin.set_state (Gst.State.NULL);
+                next ();
+                playbin.set_state (Gst.State.PLAYING);
                 break;
             case Gst.MessageType.TAG:
                 Gst.TagList tag_list;
@@ -127,6 +117,41 @@ public class Music.PlaybackManager : Object {
         }
 
         return true;
+    }
+
+    private void next () {
+        uint position = -1;
+        queue_liststore.find (current_file, out position);
+
+        if (position != -1 && position != queue_liststore.get_n_items () - 1) {
+            playback_duration = 0;
+            playback_position = 0;
+
+            current_file = (File) queue_liststore.get_item (position + 1);
+            playbin.uri = current_file.get_uri ();
+
+            query_duration ();
+        } else {
+            reset_metadata ();
+        }
+    }
+
+    private void query_duration () {
+        if (playback_duration == 0) {
+            // It may take time to calculate the length, so we keep
+            // checking until we get something reasonable
+            GLib.Timeout.add (250, () => {
+                int64 duration = 0;
+                playbin.query_duration (Gst.Format.TIME, out duration);
+                playback_duration = duration;
+
+                if (playback_duration > 0) {
+                    return false;
+                }
+
+                return true;
+            });
+        }
     }
 
     private void reset_metadata () {
