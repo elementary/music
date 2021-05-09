@@ -52,7 +52,7 @@ public class Music.PlaybackManager : Object {
                         playbin.query_position (Gst.Format.TIME, out position);
                         playback_position = position.clamp (0, playback_duration);
 
-                        return true;
+                        return Source.CONTINUE;
                     });
 
                     playbin.set_state (Gst.State.PLAYING);
@@ -146,10 +146,10 @@ public class Music.PlaybackManager : Object {
                 playback_duration = duration;
 
                 if (playback_duration > 0) {
-                    return false;
+                    return Source.REMOVE;
                 }
 
-                return true;
+                return Source.CONTINUE;
             });
         }
     }
