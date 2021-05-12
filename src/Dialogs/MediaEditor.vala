@@ -25,7 +25,7 @@
  * Authored by: Corentin Noël <corentin@elementary.io>
  */
 
-public class Music.MediaEditor : Gtk.Dialog {
+public class Music.MediaEditor : Granite.Dialog {
     private ActivatesDefaultEntry title_entry;
     private ActivatesDefaultEntry artist_entry;
     private ActivatesDefaultEntry album_artist_entry;

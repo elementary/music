@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-22 17:33+0000\n"
+"POT-Creation-Date: 2021-04-23 08:07+0000\n"
 "PO-Revision-Date: 2015-12-21 13:45+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Luxembourgish <lb@li.org>\n"
@@ -148,20 +148,19 @@ msgid "Export Playlist"
 msgstr "Playlescht exportéieren"
 
 #: core/Utils/PlaylistsUtils.vala:275 src/Dialogs/MediaEditor.vala:133
-#: src/Dialogs/SmartPlaylistEditor.vala:89
+#: src/Dialogs/SmartPlaylistEditor.vala:92
 msgid "Save"
 msgstr "Späicheren"
 
 #: core/Utils/PlaylistsUtils.vala:276 core/Utils/PlaylistsUtils.vala:345
-#: src/LibraryWindow.vala:1025 src/Dialogs/FileNotFoundDialog.vala:55
+#: src/LibraryWindow.vala:1030 src/Dialogs/FileNotFoundDialog.vala:55
 #: src/Dialogs/FileNotFoundDialog.vala:103
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:49
 #: src/Dialogs/RemoveFilesDialog.vala:82
-#: src/Dialogs/SetMusicFolderConfirmation.vala:63
-#: src/Dialogs/SetMusicFolderConfirmation.vala:86
-#: src/Dialogs/SmartPlaylistEditor.vala:93
+#: src/Dialogs/SetMusicFolderConfirmation.vala:85
+#: src/Dialogs/SmartPlaylistEditor.vala:89
 #: src/Dialogs/SyncWarningDialog.vala:60
-#: src/Views/Wrappers/MusicViewWrapper.vala:147 src/Widgets/TopDisplay.vala:64
+#: src/Views/Wrappers/MusicViewWrapper.vala:147 src/Widgets/TopDisplay.vala:63
 msgid "Cancel"
 msgstr "Ofbriechen"
 
@@ -174,9 +173,9 @@ msgstr "Playlescht"
 msgid "Import %s"
 msgstr ""
 
-#: core/Utils/PlaylistsUtils.vala:344 src/LibraryWindow.vala:1024
+#: core/Utils/PlaylistsUtils.vala:344 src/LibraryWindow.vala:1029
 #: src/Dialogs/FileNotFoundDialog.vala:102
-#: src/Dialogs/SetMusicFolderConfirmation.vala:85
+#: src/Dialogs/SetMusicFolderConfirmation.vala:84
 #: src/Views/Wrappers/MusicViewWrapper.vala:146
 #: src/Widgets/AlbumListGrid.vala:197
 msgid "Open"
@@ -278,62 +277,62 @@ msgstr ""
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr ""
 
-#: src/LibraryWindow.vala:195 src/LibraryWindow.vala:273
-#: src/LibraryWindow.vala:626 src/LibraryWindow.vala:746
+#: src/LibraryWindow.vala:197 src/LibraryWindow.vala:275
+#: src/LibraryWindow.vala:631 src/LibraryWindow.vala:751
 msgid "Music"
 msgstr "Musek"
 
-#: src/LibraryWindow.vala:214
+#: src/LibraryWindow.vala:216
 msgid "Import to Library…"
 msgstr "Vun der Librairie importéieren...."
 
-#: src/LibraryWindow.vala:217 src/Dialogs/PreferencesWindow.vala:40
+#: src/LibraryWindow.vala:219 src/Dialogs/PreferencesWindow.vala:32
 msgid "Preferences"
 msgstr "Astellungen"
 
-#: src/LibraryWindow.vala:236
+#: src/LibraryWindow.vala:238
 msgid "Previous"
 msgstr "Fierderun"
 
-#: src/LibraryWindow.vala:243 src/LibraryWindow.vala:306
+#: src/LibraryWindow.vala:245 src/LibraryWindow.vala:311
 msgid "Play"
 msgstr "Ofspillen"
 
-#: src/LibraryWindow.vala:250
+#: src/LibraryWindow.vala:252
 msgid "Next"
 msgstr "Nächsten"
 
-#: src/LibraryWindow.vala:254
+#: src/LibraryWindow.vala:256
 msgid "Search Music"
 msgstr ""
 
-#: src/LibraryWindow.vala:312
+#: src/LibraryWindow.vala:317
 msgid "Pause"
 msgstr "Paus"
 
-#: src/LibraryWindow.vala:815
+#: src/LibraryWindow.vala:820
 msgid "No songs in Queue"
 msgstr "Keng Titelen an der Lëscht"
 
-#: src/LibraryWindow.vala:815
+#: src/LibraryWindow.vala:820
 msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
 
-#: src/LibraryWindow.vala:818
+#: src/LibraryWindow.vala:823
 msgid "No songs in History"
 msgstr ""
 
-#: src/LibraryWindow.vala:818
+#: src/LibraryWindow.vala:823
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
 "current session."
 msgstr ""
 
-#: src/LibraryWindow.vala:1021 src/Views/Wrappers/MusicViewWrapper.vala:59
+#: src/LibraryWindow.vala:1026 src/Views/Wrappers/MusicViewWrapper.vala:59
 msgid "Import Music"
 msgstr "Musek importéierten"
 
@@ -352,9 +351,10 @@ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr ""
 
 #: src/Dialogs/FileNotFoundDialog.vala:50
-#, c-format
-msgid "%i music files could not be found?"
-msgstr ""
+#, fuzzy, c-format
+#| msgid "%i media files could not be found. What would you like to do?"
+msgid "%i music files could not be found."
+msgstr "%i Dateie konnte net fonnt ginn. Wat géigt dir gäre maachen?"
 
 #: src/Dialogs/FileNotFoundDialog.vala:53
 msgid "Rescan Library"
@@ -369,7 +369,7 @@ msgid "Find Song"
 msgstr ""
 
 #: src/Dialogs/FileNotFoundDialog.vala:99
-#: src/Dialogs/SetMusicFolderConfirmation.vala:82
+#: src/Dialogs/SetMusicFolderConfirmation.vala:81
 msgid "Choose Music Folder"
 msgstr "Musekuerdner wielen"
 
@@ -437,7 +437,7 @@ msgid "Comment:"
 msgstr ""
 
 #. FIXME: don't know if I can delete this
-#: src/Dialogs/MediaEditor.vala:131 src/Dialogs/PreferencesWindow.vala:97
+#: src/Dialogs/MediaEditor.vala:131 src/Dialogs/PreferencesWindow.vala:88
 #: src/Views/DeviceView.vala:45
 msgid "Close"
 msgstr "Zoumaachen"
@@ -478,35 +478,35 @@ msgstr "An d'Dreckskëscht geheien"
 msgid "Ignore"
 msgstr ""
 
-#: src/Dialogs/PreferencesWindow.vala:48
+#: src/Dialogs/PreferencesWindow.vala:38
 msgid "Select Music Folder…"
 msgstr ""
 
-#: src/Dialogs/PreferencesWindow.vala:78
+#: src/Dialogs/PreferencesWindow.vala:70
 msgid "Music Folder Location"
 msgstr "Uert vum Musekuerdner"
 
-#: src/Dialogs/PreferencesWindow.vala:80
+#: src/Dialogs/PreferencesWindow.vala:72
 msgid "Library Management"
 msgstr "Sammlungsverwaltung"
 
-#: src/Dialogs/PreferencesWindow.vala:81
+#: src/Dialogs/PreferencesWindow.vala:73
 msgid "Keep Music folder organized:"
 msgstr ""
 
-#: src/Dialogs/PreferencesWindow.vala:83
+#: src/Dialogs/PreferencesWindow.vala:75
 msgid "Write metadata to file:"
 msgstr ""
 
-#: src/Dialogs/PreferencesWindow.vala:85
+#: src/Dialogs/PreferencesWindow.vala:77
 msgid "Copy imported files to Library:"
 msgstr ""
 
-#: src/Dialogs/PreferencesWindow.vala:87
+#: src/Dialogs/PreferencesWindow.vala:79
 msgid "Desktop Integration"
 msgstr ""
 
-#: src/Dialogs/PreferencesWindow.vala:88
+#: src/Dialogs/PreferencesWindow.vala:80
 msgid "Continue playback when closed:"
 msgstr ""
 
@@ -558,7 +558,7 @@ msgstr ""
 msgid "Export Playlists"
 msgstr "Playlist exportéieren"
 
-#: src/Dialogs/SetMusicFolderConfirmation.vala:65
+#: src/Dialogs/SetMusicFolderConfirmation.vala:61
 msgid "Set Music Folder"
 msgstr "Musekuerdner festleeën"
 
@@ -594,135 +594,135 @@ msgstr "Limitéier op"
 msgid "items"
 msgstr "Elementer"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:107
+#: src/Dialogs/SmartPlaylistEditor.vala:103
 msgid "Name of Playlist"
 msgstr "Numm vun der Playlist"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:109
+#: src/Dialogs/SmartPlaylistEditor.vala:105
 msgid "Rules"
 msgstr "Reegelen"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:112
+#: src/Dialogs/SmartPlaylistEditor.vala:108
 msgid "Options"
 msgstr "Optiounen"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:119
+#: src/Dialogs/SmartPlaylistEditor.vala:113
 msgid "Smart Playlist Editor"
 msgstr "Intelligente Playlist-Editor"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:260 src/Widgets/SourceListView.vala:67
+#: src/Dialogs/SmartPlaylistEditor.vala:256 src/Widgets/SourceListView.vala:67
 #: src/Widgets/SourceListView.vala:80
 msgid "Remove"
 msgstr ""
 
-#: src/Dialogs/SmartPlaylistEditor.vala:263
+#: src/Dialogs/SmartPlaylistEditor.vala:259
 msgid "Album"
 msgstr "Album"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:264
+#: src/Dialogs/SmartPlaylistEditor.vala:260
 msgid "Artist"
 msgstr "Kënschtler"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:265
+#: src/Dialogs/SmartPlaylistEditor.vala:261
 msgid "Bitrate"
 msgstr "Bitrate"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:266
+#: src/Dialogs/SmartPlaylistEditor.vala:262
 msgid "Comment"
 msgstr "Kommentar"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:267
+#: src/Dialogs/SmartPlaylistEditor.vala:263
 msgid "Composer"
 msgstr "Komponist"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:268
+#: src/Dialogs/SmartPlaylistEditor.vala:264
 msgid "Date Added"
 msgstr "Datum bäigesat"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:269
+#: src/Dialogs/SmartPlaylistEditor.vala:265
 msgid "Genre"
 msgstr "Genre"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:270
+#: src/Dialogs/SmartPlaylistEditor.vala:266
 msgid "Grouping"
 msgstr "Gruppéierung"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:271
+#: src/Dialogs/SmartPlaylistEditor.vala:267
 msgid "Last Played"
 msgstr "Fir d'Lescht ofgespillt"
 
 #. helper for units
-#: src/Dialogs/SmartPlaylistEditor.vala:272
-#: src/Dialogs/SmartPlaylistEditor.vala:417
+#: src/Dialogs/SmartPlaylistEditor.vala:268
+#: src/Dialogs/SmartPlaylistEditor.vala:413
 msgid "Length"
 msgstr "Längt"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:273
+#: src/Dialogs/SmartPlaylistEditor.vala:269
 msgid "Playcount"
 msgstr "Ofspillzieler"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:274
+#: src/Dialogs/SmartPlaylistEditor.vala:270
 msgid "Rating"
 msgstr "Bewäertung"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:275
+#: src/Dialogs/SmartPlaylistEditor.vala:271
 msgid "Skipcount"
 msgstr "Iwwersprongszieler"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:276
+#: src/Dialogs/SmartPlaylistEditor.vala:272
 msgid "Title"
 msgstr "Titel"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:277
+#: src/Dialogs/SmartPlaylistEditor.vala:273
 msgid "Year"
 msgstr "Joer"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:278
+#: src/Dialogs/SmartPlaylistEditor.vala:274
 msgid "URI"
 msgstr ""
 
-#: src/Dialogs/SmartPlaylistEditor.vala:351
+#: src/Dialogs/SmartPlaylistEditor.vala:347
 msgid "is"
 msgstr "ass"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:352
+#: src/Dialogs/SmartPlaylistEditor.vala:348
 msgid "contains"
 msgstr "enthéilt"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:353
+#: src/Dialogs/SmartPlaylistEditor.vala:349
 msgid "does not contain"
 msgstr "enthéilt net"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:379
-#: src/Dialogs/SmartPlaylistEditor.vala:394
+#: src/Dialogs/SmartPlaylistEditor.vala:375
+#: src/Dialogs/SmartPlaylistEditor.vala:390
 msgid "is exactly"
 msgstr "ass genau"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:380
+#: src/Dialogs/SmartPlaylistEditor.vala:376
 msgid "is at most"
 msgstr "ass héichstens"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:381
+#: src/Dialogs/SmartPlaylistEditor.vala:377
 msgid "is at least"
 msgstr "ass mindestens"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:395
+#: src/Dialogs/SmartPlaylistEditor.vala:391
 msgid "is within"
 msgstr "ass an"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:396
+#: src/Dialogs/SmartPlaylistEditor.vala:392
 msgid "is before"
 msgstr "ass virun"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:418
+#: src/Dialogs/SmartPlaylistEditor.vala:414
 msgid "seconds"
 msgstr "Sekonnen"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:421
+#: src/Dialogs/SmartPlaylistEditor.vala:417
 msgid "days ago"
 msgstr "Deeg virdrun"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:424
+#: src/Dialogs/SmartPlaylistEditor.vala:420
 msgid "kbps"
 msgstr "kbps"
 
@@ -788,27 +788,27 @@ msgid_plural "%d Tracks"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/LocalBackend/LocalSmartPlaylist.vala:217
+#: src/LocalBackend/LocalSmartPlaylist.vala:218
 msgid "Favorite Songs"
 msgstr "Lieblingslidder"
 
-#: src/LocalBackend/LocalSmartPlaylist.vala:225
+#: src/LocalBackend/LocalSmartPlaylist.vala:226
 msgid "Recently Added"
 msgstr "Viru kuerzem derbäigesat"
 
-#: src/LocalBackend/LocalSmartPlaylist.vala:233
+#: src/LocalBackend/LocalSmartPlaylist.vala:234
 msgid "Recent Favorites"
 msgstr "Nei Lieblingslidder"
 
-#: src/LocalBackend/LocalSmartPlaylist.vala:241
+#: src/LocalBackend/LocalSmartPlaylist.vala:242
 msgid "Never Played"
 msgstr "Nie Ofgespillt"
 
-#: src/LocalBackend/LocalSmartPlaylist.vala:249
+#: src/LocalBackend/LocalSmartPlaylist.vala:250
 msgid "Over Played"
 msgstr "Oft Ofgespillt"
 
-#: src/LocalBackend/LocalSmartPlaylist.vala:257
+#: src/LocalBackend/LocalSmartPlaylist.vala:258
 msgid "Not Recently Played"
 msgstr "An der Lescht net ofgespillt"
 
@@ -1392,7 +1392,7 @@ msgstr ""
 msgid "Network"
 msgstr ""
 
-#: src/Widgets/StatusBar.vala:36 src/Widgets/StatusBar.vala:47
+#: src/Widgets/StatusBar.vala:36
 msgid "Add Playlist"
 msgstr ""
 
@@ -1400,30 +1400,36 @@ msgstr ""
 msgid "Add Smart Playlist"
 msgstr ""
 
+#: src/Widgets/StatusBar.vala:48
+#, fuzzy
+#| msgid "Playlist"
+msgid "Add Playlist…"
+msgstr "Playlescht"
+
 #. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
-#: src/Widgets/StatusBar.vala:75
+#: src/Widgets/StatusBar.vala:74
 #, c-format
 msgid "Equalizer: %s"
 msgstr ""
 
 #. MUST follow the exact same order of Music.Player.Repeat
-#: src/Widgets/TopDisplay.vala:139
+#: src/Widgets/TopDisplay.vala:138
 msgid "Enable Repeat"
 msgstr ""
 
-#: src/Widgets/TopDisplay.vala:140
+#: src/Widgets/TopDisplay.vala:139
 msgid "Repeat Song"
 msgstr ""
 
-#: src/Widgets/TopDisplay.vala:141
+#: src/Widgets/TopDisplay.vala:140
 msgid "Disable Repeat"
 msgstr ""
 
-#: src/Widgets/TopDisplay.vala:160
+#: src/Widgets/TopDisplay.vala:159
 msgid "Enable Shuffle"
 msgstr ""
 
-#: src/Widgets/TopDisplay.vala:161
+#: src/Widgets/TopDisplay.vala:160
 msgid "Disable Shuffle"
 msgstr ""
 
@@ -1585,9 +1591,6 @@ msgstr ""
 #~ msgstr ""
 #~ "D'Musekdatei fir %s vun %s konnt net fonnt ginn. Wat géigt dir gäre "
 #~ "maachen?"
-
-#~ msgid "%i media files could not be found. What would you like to do?"
-#~ msgstr "%i Dateie konnte net fonnt ginn. Wat géigt dir gäre maachen?"
 
 #~ msgid "Could not find media file"
 #~ msgstr "Konnt keng Medie fannen"

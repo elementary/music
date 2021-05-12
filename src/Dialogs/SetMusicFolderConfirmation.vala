@@ -1,6 +1,5 @@
-// -*- Mode: vala; indent-tabs-mode: nil; tab-width: 4 -*-
 /*-
- * Copyright (c) 2012-2018 elementary LLC. (https://elementary.io)
+ * Copyright 2012-2021 elementary, Inc. (https://elementary.io)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -34,6 +33,7 @@ public class Music.SetMusicFolderConfirmation : Granite.MessageDialog {
 
     public SetMusicFolderConfirmation (string path) {
         Object (
+            buttons: Gtk.ButtonsType.CANCEL,
             image_icon: new ThemedIcon ("dialog-warning"),
             primary_text: _("Set Music Folder?"),
             secondary_text: _("Are you sure you want to set the music folder to %s? This will reset your library and remove your playlists.").printf ("<b>" + Markup.escape_text (path) + "</b>")
@@ -55,22 +55,21 @@ public class Music.SetMusicFolderConfirmation : Granite.MessageDialog {
         playlist_box.pack_end (is_working, false, false, 0);
 
         var action_area = (Gtk.ButtonBox) get_action_area ();
-        action_area.margin = 5;
-        action_area.margin_top = 14;
         action_area.add (playlist_box);
         action_area.set_child_secondary (playlist_box, true);
 
-        var cancel = (Gtk.Button) add_button (_("Cancel"), Gtk.ResponseType.CLOSE);
-
-        var ok = (Gtk.Button) add_button (_("Set Music Folder"), Gtk.ResponseType.ACCEPT);
-        ok.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
+        unowned var set_button = (Gtk.Button) add_button (_("Set Music Folder"), Gtk.ResponseType.ACCEPT);
+        set_button.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
 
         var local_library = libraries_manager.local_library;
         save_playlists.set_sensitive (!local_library.get_medias ().is_empty && local_library.playlist_count_without_read_only () > 0);
 
         save_playlists.clicked.connect (save_playlists_clicked);
-        cancel.clicked.connect (cancel_clicked);
-        ok.clicked.connect (ok_clicked);
+
+        response.connect ((response) => {
+            finished (response == Gtk.ResponseType.ACCEPT);
+            destroy ();
+        });
 
         show_all ();
 
@@ -109,15 +108,5 @@ public class Music.SetMusicFolderConfirmation : Granite.MessageDialog {
             is_finished.show ();
             is_finished.set_from_icon_name (success ? "process-completed-symbolic" : "process-error-symbolic", Gtk.IconSize.MENU);
         }
-    }
-
-    private void cancel_clicked () {
-        finished (false);
-        this.destroy ();
-    }
-
-    private void ok_clicked () {
-        finished (true);
-        this.destroy ();
     }
 }

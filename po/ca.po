@@ -7,22 +7,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-22 17:33+0000\n"
-"PO-Revision-Date: 2020-03-24 20:09+0000\n"
-"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
-"Language-Team: Catalan <https://l10n.elementary.io/projects/music/music/ca/"
-">\n"
+"POT-Creation-Date: 2021-04-23 08:07+0000\n"
+"PO-Revision-Date: 2021-04-26 19:07+0000\n"
+"Last-Translator: David M <rbndavid@gmail.com>\n"
+"Language-Team: Catalan <https://l10n.elementary.io/projects/music/music/ca/>"
+"\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:51+0000\n"
 
 #: core/LibrariesManager.vala:146
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "S'importa  <b>$NAME</b> fet per <b>$ARTIST</b> a la col·lecció…"
+msgstr "S'importa <b>$NAME</b> fet per <b>$ARTIST</b> a la col·lecció…"
 
 #. / Used for unknown titles, artists, or album names.
 #: core/Media.vala:33
@@ -149,20 +149,19 @@ msgid "Export Playlist"
 msgstr "Exporta la llista de reproducció"
 
 #: core/Utils/PlaylistsUtils.vala:275 src/Dialogs/MediaEditor.vala:133
-#: src/Dialogs/SmartPlaylistEditor.vala:89
+#: src/Dialogs/SmartPlaylistEditor.vala:92
 msgid "Save"
 msgstr "Desa"
 
 #: core/Utils/PlaylistsUtils.vala:276 core/Utils/PlaylistsUtils.vala:345
-#: src/LibraryWindow.vala:1025 src/Dialogs/FileNotFoundDialog.vala:55
+#: src/LibraryWindow.vala:1030 src/Dialogs/FileNotFoundDialog.vala:55
 #: src/Dialogs/FileNotFoundDialog.vala:103
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:49
 #: src/Dialogs/RemoveFilesDialog.vala:82
-#: src/Dialogs/SetMusicFolderConfirmation.vala:63
-#: src/Dialogs/SetMusicFolderConfirmation.vala:86
-#: src/Dialogs/SmartPlaylistEditor.vala:93
+#: src/Dialogs/SetMusicFolderConfirmation.vala:85
+#: src/Dialogs/SmartPlaylistEditor.vala:89
 #: src/Dialogs/SyncWarningDialog.vala:60
-#: src/Views/Wrappers/MusicViewWrapper.vala:147 src/Widgets/TopDisplay.vala:64
+#: src/Views/Wrappers/MusicViewWrapper.vala:147 src/Widgets/TopDisplay.vala:63
 msgid "Cancel"
 msgstr "Cancel·la"
 
@@ -175,9 +174,9 @@ msgstr "Llista de reproducció"
 msgid "Import %s"
 msgstr "Importa %s"
 
-#: core/Utils/PlaylistsUtils.vala:344 src/LibraryWindow.vala:1024
+#: core/Utils/PlaylistsUtils.vala:344 src/LibraryWindow.vala:1029
 #: src/Dialogs/FileNotFoundDialog.vala:102
-#: src/Dialogs/SetMusicFolderConfirmation.vala:85
+#: src/Dialogs/SetMusicFolderConfirmation.vala:84
 #: src/Views/Wrappers/MusicViewWrapper.vala:146
 #: src/Widgets/AlbumListGrid.vala:197
 msgid "Open"
@@ -284,44 +283,44 @@ msgstr "S'ha importat la col·lecció."
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
 msgstr "<b>Es copien</b> fitxers a la <b>carpeta de música</b>…"
 
-#: src/LibraryWindow.vala:195 src/LibraryWindow.vala:273
-#: src/LibraryWindow.vala:626 src/LibraryWindow.vala:746
+#: src/LibraryWindow.vala:197 src/LibraryWindow.vala:275
+#: src/LibraryWindow.vala:631 src/LibraryWindow.vala:751
 msgid "Music"
 msgstr "Música"
 
-#: src/LibraryWindow.vala:214
+#: src/LibraryWindow.vala:216
 msgid "Import to Library…"
 msgstr "Importa a la col·lecció…"
 
-#: src/LibraryWindow.vala:217 src/Dialogs/PreferencesWindow.vala:40
+#: src/LibraryWindow.vala:219 src/Dialogs/PreferencesWindow.vala:32
 msgid "Preferences"
 msgstr "Preferències"
 
-#: src/LibraryWindow.vala:236
+#: src/LibraryWindow.vala:238
 msgid "Previous"
 msgstr "Anterior"
 
-#: src/LibraryWindow.vala:243 src/LibraryWindow.vala:306
+#: src/LibraryWindow.vala:245 src/LibraryWindow.vala:311
 msgid "Play"
 msgstr "Reprodueix"
 
-#: src/LibraryWindow.vala:250
+#: src/LibraryWindow.vala:252
 msgid "Next"
 msgstr "Següent"
 
-#: src/LibraryWindow.vala:254
+#: src/LibraryWindow.vala:256
 msgid "Search Music"
 msgstr "Cerca música"
 
-#: src/LibraryWindow.vala:312
+#: src/LibraryWindow.vala:317
 msgid "Pause"
 msgstr "Atura"
 
-#: src/LibraryWindow.vala:815
+#: src/LibraryWindow.vala:820
 msgid "No songs in Queue"
 msgstr "No hi ha cap cançó a la cua"
 
-#: src/LibraryWindow.vala:815
+#: src/LibraryWindow.vala:820
 msgid ""
 "To add songs to the queue, use the <b>secondary click</b> on an item and "
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
@@ -332,11 +331,11 @@ msgstr ""
 "cançons a la cua seran reproduïdes abans que la cançó següent a la llista de "
 "reproducció actual."
 
-#: src/LibraryWindow.vala:818
+#: src/LibraryWindow.vala:823
 msgid "No songs in History"
 msgstr "No hi ha cap cançó a l'historial"
 
-#: src/LibraryWindow.vala:818
+#: src/LibraryWindow.vala:823
 msgid ""
 "After a part of a song has been played, it is added to the history list.\n"
 "You can use this list to see all the songs you have played during the "
@@ -345,7 +344,7 @@ msgstr ""
 "Les cançons s'inclouen a l'historial un cop són reproduïdes.\n"
 "Aquesta llista enumeria totes les cançons reproduïdes a la sessió actual."
 
-#: src/LibraryWindow.vala:1021 src/Views/Wrappers/MusicViewWrapper.vala:59
+#: src/LibraryWindow.vala:1026 src/Views/Wrappers/MusicViewWrapper.vala:59
 msgid "Import Music"
 msgstr "Importa música"
 
@@ -365,8 +364,8 @@ msgstr "No s'ha pogut trobar el fitxer d'àudio <b>%s</b> per <b>%s</b>."
 
 #: src/Dialogs/FileNotFoundDialog.vala:50
 #, c-format
-msgid "%i music files could not be found?"
-msgstr "No s'han pogut trobar %i fitxers de música?"
+msgid "%i music files could not be found."
+msgstr "No s'han pogut trobar %i fitxers de música."
 
 #: src/Dialogs/FileNotFoundDialog.vala:53
 msgid "Rescan Library"
@@ -381,7 +380,7 @@ msgid "Find Song"
 msgstr "Cerca la cançó"
 
 #: src/Dialogs/FileNotFoundDialog.vala:99
-#: src/Dialogs/SetMusicFolderConfirmation.vala:82
+#: src/Dialogs/SetMusicFolderConfirmation.vala:81
 msgid "Choose Music Folder"
 msgstr "Escolliu la carpeta de música"
 
@@ -448,7 +447,7 @@ msgid "Comment:"
 msgstr "Comentari:"
 
 #. FIXME: don't know if I can delete this
-#: src/Dialogs/MediaEditor.vala:131 src/Dialogs/PreferencesWindow.vala:97
+#: src/Dialogs/MediaEditor.vala:131 src/Dialogs/PreferencesWindow.vala:88
 #: src/Views/DeviceView.vala:45
 msgid "Close"
 msgstr "Tanca"
@@ -490,35 +489,35 @@ msgstr "Mou a la paperera"
 msgid "Ignore"
 msgstr "Ignora"
 
-#: src/Dialogs/PreferencesWindow.vala:48
+#: src/Dialogs/PreferencesWindow.vala:38
 msgid "Select Music Folder…"
 msgstr "Seleccioneu la carpeta de música…"
 
-#: src/Dialogs/PreferencesWindow.vala:78
+#: src/Dialogs/PreferencesWindow.vala:70
 msgid "Music Folder Location"
 msgstr "Ubicació de la carpeta de música"
 
-#: src/Dialogs/PreferencesWindow.vala:80
+#: src/Dialogs/PreferencesWindow.vala:72
 msgid "Library Management"
 msgstr "Gestió de la col·lecció"
 
-#: src/Dialogs/PreferencesWindow.vala:81
+#: src/Dialogs/PreferencesWindow.vala:73
 msgid "Keep Music folder organized:"
 msgstr "Mantén la carpeta de música organitzada:"
 
-#: src/Dialogs/PreferencesWindow.vala:83
+#: src/Dialogs/PreferencesWindow.vala:75
 msgid "Write metadata to file:"
 msgstr "Escriu metadades al fitxer:"
 
-#: src/Dialogs/PreferencesWindow.vala:85
+#: src/Dialogs/PreferencesWindow.vala:77
 msgid "Copy imported files to Library:"
 msgstr "Copia els fitxers importats a la col·lecció:"
 
-#: src/Dialogs/PreferencesWindow.vala:87
+#: src/Dialogs/PreferencesWindow.vala:79
 msgid "Desktop Integration"
 msgstr "Integració amb l'escriptori"
 
-#: src/Dialogs/PreferencesWindow.vala:88
+#: src/Dialogs/PreferencesWindow.vala:80
 msgid "Continue playback when closed:"
 msgstr "Continua la reproducció en tancar:"
 
@@ -569,7 +568,7 @@ msgstr ""
 msgid "Export Playlists"
 msgstr "Exporta les llistes de reproducció"
 
-#: src/Dialogs/SetMusicFolderConfirmation.vala:65
+#: src/Dialogs/SetMusicFolderConfirmation.vala:61
 msgid "Set Music Folder"
 msgstr "Estableix la carpeta de música"
 
@@ -605,135 +604,135 @@ msgstr "Limita a"
 msgid "items"
 msgstr "elements"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:107
+#: src/Dialogs/SmartPlaylistEditor.vala:103
 msgid "Name of Playlist"
 msgstr "Nom de la llista de reproducció"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:109
+#: src/Dialogs/SmartPlaylistEditor.vala:105
 msgid "Rules"
 msgstr "Regles"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:112
+#: src/Dialogs/SmartPlaylistEditor.vala:108
 msgid "Options"
 msgstr "Opcions"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:119
+#: src/Dialogs/SmartPlaylistEditor.vala:113
 msgid "Smart Playlist Editor"
 msgstr "Editor de llistes de reproducció intel·ligents"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:260 src/Widgets/SourceListView.vala:67
+#: src/Dialogs/SmartPlaylistEditor.vala:256 src/Widgets/SourceListView.vala:67
 #: src/Widgets/SourceListView.vala:80
 msgid "Remove"
 msgstr "Suprimeix"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:263
+#: src/Dialogs/SmartPlaylistEditor.vala:259
 msgid "Album"
 msgstr "Àlbum"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:264
+#: src/Dialogs/SmartPlaylistEditor.vala:260
 msgid "Artist"
 msgstr "Artista"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:265
+#: src/Dialogs/SmartPlaylistEditor.vala:261
 msgid "Bitrate"
 msgstr "Taxa de bits"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:266
+#: src/Dialogs/SmartPlaylistEditor.vala:262
 msgid "Comment"
 msgstr "Comentari"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:267
+#: src/Dialogs/SmartPlaylistEditor.vala:263
 msgid "Composer"
 msgstr "Compositor"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:268
+#: src/Dialogs/SmartPlaylistEditor.vala:264
 msgid "Date Added"
 msgstr "Data d'addició"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:269
+#: src/Dialogs/SmartPlaylistEditor.vala:265
 msgid "Genre"
 msgstr "Gènere"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:270
+#: src/Dialogs/SmartPlaylistEditor.vala:266
 msgid "Grouping"
 msgstr "Agrupació"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:271
+#: src/Dialogs/SmartPlaylistEditor.vala:267
 msgid "Last Played"
 msgstr "Reproduïdes darrerament"
 
 #. helper for units
-#: src/Dialogs/SmartPlaylistEditor.vala:272
-#: src/Dialogs/SmartPlaylistEditor.vala:417
+#: src/Dialogs/SmartPlaylistEditor.vala:268
+#: src/Dialogs/SmartPlaylistEditor.vala:413
 msgid "Length"
 msgstr "Durada"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:273
+#: src/Dialogs/SmartPlaylistEditor.vala:269
 msgid "Playcount"
 msgstr "Nombre de reproduccions"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:274
+#: src/Dialogs/SmartPlaylistEditor.vala:270
 msgid "Rating"
 msgstr "Valoració"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:275
+#: src/Dialogs/SmartPlaylistEditor.vala:271
 msgid "Skipcount"
 msgstr "Nombre d'omissions"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:276
+#: src/Dialogs/SmartPlaylistEditor.vala:272
 msgid "Title"
 msgstr "Títol"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:277
+#: src/Dialogs/SmartPlaylistEditor.vala:273
 msgid "Year"
 msgstr "Any"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:278
+#: src/Dialogs/SmartPlaylistEditor.vala:274
 msgid "URI"
 msgstr "URI"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:351
+#: src/Dialogs/SmartPlaylistEditor.vala:347
 msgid "is"
 msgstr "és"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:352
+#: src/Dialogs/SmartPlaylistEditor.vala:348
 msgid "contains"
 msgstr "conté"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:353
+#: src/Dialogs/SmartPlaylistEditor.vala:349
 msgid "does not contain"
 msgstr "no conté"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:379
-#: src/Dialogs/SmartPlaylistEditor.vala:394
+#: src/Dialogs/SmartPlaylistEditor.vala:375
+#: src/Dialogs/SmartPlaylistEditor.vala:390
 msgid "is exactly"
 msgstr "és exactament"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:380
+#: src/Dialogs/SmartPlaylistEditor.vala:376
 msgid "is at most"
 msgstr "és com a màxim"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:381
+#: src/Dialogs/SmartPlaylistEditor.vala:377
 msgid "is at least"
-msgstr "és com a  mínim"
+msgstr "és com a mínim"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:395
+#: src/Dialogs/SmartPlaylistEditor.vala:391
 msgid "is within"
 msgstr "es troba entre"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:396
+#: src/Dialogs/SmartPlaylistEditor.vala:392
 msgid "is before"
 msgstr "és abans de"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:418
+#: src/Dialogs/SmartPlaylistEditor.vala:414
 msgid "seconds"
 msgstr "segons"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:421
+#: src/Dialogs/SmartPlaylistEditor.vala:417
 msgid "days ago"
 msgstr "dies enrere"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:424
+#: src/Dialogs/SmartPlaylistEditor.vala:420
 msgid "kbps"
 msgstr "kbps"
 
@@ -799,27 +798,27 @@ msgid_plural "%d Tracks"
 msgstr[0] "%d pista"
 msgstr[1] "%d pistes"
 
-#: src/LocalBackend/LocalSmartPlaylist.vala:217
+#: src/LocalBackend/LocalSmartPlaylist.vala:218
 msgid "Favorite Songs"
 msgstr "Cançons preferides"
 
-#: src/LocalBackend/LocalSmartPlaylist.vala:225
+#: src/LocalBackend/LocalSmartPlaylist.vala:226
 msgid "Recently Added"
 msgstr "Afegit recentment"
 
-#: src/LocalBackend/LocalSmartPlaylist.vala:233
+#: src/LocalBackend/LocalSmartPlaylist.vala:234
 msgid "Recent Favorites"
 msgstr "Preferits recents"
 
-#: src/LocalBackend/LocalSmartPlaylist.vala:241
+#: src/LocalBackend/LocalSmartPlaylist.vala:242
 msgid "Never Played"
 msgstr "Les mai reproduïdes"
 
-#: src/LocalBackend/LocalSmartPlaylist.vala:249
+#: src/LocalBackend/LocalSmartPlaylist.vala:250
 msgid "Over Played"
 msgstr "Les més reproduïdes"
 
-#: src/LocalBackend/LocalSmartPlaylist.vala:257
+#: src/LocalBackend/LocalSmartPlaylist.vala:258
 msgid "Not Recently Played"
 msgstr "No reproduït recentment"
 
@@ -1397,7 +1396,7 @@ msgstr "Dispositius"
 msgid "Network"
 msgstr "Xarxa"
 
-#: src/Widgets/StatusBar.vala:36 src/Widgets/StatusBar.vala:47
+#: src/Widgets/StatusBar.vala:36
 msgid "Add Playlist"
 msgstr "Afegeix una llista de reproducció"
 
@@ -1405,30 +1404,34 @@ msgstr "Afegeix una llista de reproducció"
 msgid "Add Smart Playlist"
 msgstr "Afegeix una llista de reproducció intel·ligent"
 
+#: src/Widgets/StatusBar.vala:48
+msgid "Add Playlist…"
+msgstr "Afegeix una llista de reproducció…"
+
 #. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
-#: src/Widgets/StatusBar.vala:75
+#: src/Widgets/StatusBar.vala:74
 #, c-format
 msgid "Equalizer: %s"
 msgstr "Equalitzador: %s"
 
 #. MUST follow the exact same order of Music.Player.Repeat
-#: src/Widgets/TopDisplay.vala:139
+#: src/Widgets/TopDisplay.vala:138
 msgid "Enable Repeat"
 msgstr "Activa la repetició"
 
-#: src/Widgets/TopDisplay.vala:140
+#: src/Widgets/TopDisplay.vala:139
 msgid "Repeat Song"
 msgstr "Repeteix la cançó"
 
-#: src/Widgets/TopDisplay.vala:141
+#: src/Widgets/TopDisplay.vala:140
 msgid "Disable Repeat"
 msgstr "Desactiva la repetició"
 
-#: src/Widgets/TopDisplay.vala:160
+#: src/Widgets/TopDisplay.vala:159
 msgid "Enable Shuffle"
 msgstr "Activa la reproducció aleatòria"
 
-#: src/Widgets/TopDisplay.vala:161
+#: src/Widgets/TopDisplay.vala:160
 msgid "Disable Shuffle"
 msgstr "Desactiva la reproducció aleatòria"
 

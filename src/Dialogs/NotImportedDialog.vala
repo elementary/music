@@ -28,7 +28,7 @@
 /* Merely a place holder for multiple pieces of information regarding
  * the current media playing. Mostly here because of dependence. */
 
-public class Music.NotImportedDialog : Gtk.Dialog {
+public class Music.NotImportedDialog : Granite.Dialog {
     private Gee.LinkedList<string> _files;
     private string music_folder;
 

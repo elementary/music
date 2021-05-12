@@ -24,23 +24,13 @@
  * statement from your version.
  */
 
-public class Music.PreferencesWindow : Gtk.Dialog {
-    public const int MIN_WIDTH = 420;
-    public const int MIN_HEIGHT = 300;
-
-    public Gtk.FileChooserButton library_filechooser;
-
+public class Music.PreferencesWindow : Granite.Dialog {
     public PreferencesWindow () {
         Object (
-            border_width: 6,
-            deletable: false,
             destroy_with_parent: true,
-            height_request: MIN_HEIGHT,
             resizable: false,
             title: _("Preferences"),
-            transient_for: App.main_window,
-            width_request: MIN_WIDTH,
-            window_position: Gtk.WindowPosition.CENTER_ON_PARENT
+            transient_for: App.main_window
         );
     }
 
@@ -71,10 +61,12 @@ public class Music.PreferencesWindow : Gtk.Dialog {
         hide_on_close_switch.halign = Gtk.Align.START;
         main_settings.schema.bind ("close-while-playing", hide_on_close_switch, "active", SettingsBindFlags.INVERT_BOOLEAN);
 
-        var layout = new Gtk.Grid ();
-        layout.column_spacing = 12;
-        layout.margin = 6;
-        layout.row_spacing = 6;
+        var layout = new Gtk.Grid () {
+            column_spacing = 12,
+            row_spacing = 6,
+            margin = 12,
+            margin_top = 0
+        };
         layout.attach (new Granite.HeaderLabel (_("Music Folder Location")), 0, 0);
         layout.attach (library_filechooser, 0, 1, 2, 1);
         layout.attach (new Granite.HeaderLabel (_("Library Management")), 0, 2);
@@ -88,8 +80,7 @@ public class Music.PreferencesWindow : Gtk.Dialog {
         layout.attach (new SettingsLabel (_("Continue playback when closed:")), 0, 7);
         layout.attach (hide_on_close_switch, 1, 7);
 
-        var content = get_content_area () as Gtk.Box;
-        content.add (layout);
+        get_content_area ().add (layout);
 
         //FIXME: don't know if I can delete this
         Plugins.Manager.get_default ().hook_preferences_window (this);

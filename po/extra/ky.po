@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-22 17:33+0000\n"
+"POT-Creation-Date: 2021-04-23 08:07+0000\n"
 "PO-Revision-Date: 2016-01-04 18:49+0000\n"
 "Last-Translator: Corentin Noël <corentin@elementaryos.org>\n"
 "Language-Team: Kirghiz <ky@li.org>\n"
@@ -213,7 +213,7 @@ msgid "Listen to music"
 msgstr ""
 
 #: data/io.elementary.music.desktop.in:8
-msgid "multimedia-audio-player"
+msgid "io.elementary.music"
 msgstr ""
 
 #: data/io.elementary.music.desktop.in:13

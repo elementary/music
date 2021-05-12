@@ -47,7 +47,7 @@ public class Music.FileNotFoundDialog : Granite.MessageDialog {
             secondary_text = (_("The music file for <b>%s</b> by <b>%s</b> could not be found.").printf
                            (Markup.escape_text (s.title), Markup.escape_text (s.artist)));
         } else {
-            secondary_text = (_("%i music files could not be found?").printf (media_list.size));
+            secondary_text = (_("%i music files could not be found.").printf (media_list.size));
         }
 
         var rescan_library = (Gtk.Button) add_button (_("Rescan Library"), 1);
