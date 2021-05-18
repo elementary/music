@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-23 08:07+0000\n"
-"PO-Revision-Date: 2021-04-15 04:26+0000\n"
+"PO-Revision-Date: 2021-05-12 19:01+0000\n"
 "Last-Translator: DartDeaDia <jorydit@gmail.com>\n"
-"Language-Team: Russian <https://l10n.elementary.io/projects/music/extra/ru/"
-">\n"
+"Language-Team: Russian <https://l10n.elementary.io/projects/music/extra/ru/>"
+"\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -104,7 +104,7 @@ msgstr "AlbumView: двойной клик для воспроизведения
 
 #: data/io.elementary.music.appdata.xml.in:48
 msgid "Associate with s3m files"
-msgstr ""
+msgstr "Сопряжение с файлами s3m"
 
 #: data/io.elementary.music.appdata.xml.in:49
 msgid "Queue fixes"
@@ -116,7 +116,7 @@ msgstr "Правильное восстановление списков вос�
 
 #: data/io.elementary.music.appdata.xml.in:51
 msgid "Always respect custom music folder setting"
-msgstr ""
+msgstr "Всегда запоминать пользовательские настройки папок для музыки"
 
 #: data/io.elementary.music.appdata.xml.in:52
 #: data/io.elementary.music.appdata.xml.in:61
