@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-23 08:07+0000\n"
 "PO-Revision-Date: 2021-05-19 23:21+0000\n"
-"Last-Translator: enzovitaliy <enzovitaliy@gmail.com>\n"
+"Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/music/music/uk/"
 ">\n"
 "Language: uk\n"
@@ -455,7 +455,7 @@ msgstr "Закрити"
 #: src/Dialogs/NotImportedDialog.vala:50
 #, c-format
 msgid "Issues while importing from %s"
-msgstr "Проблеми при імпорті з %s"
+msgstr "Проблеми під час імпортування з %s"
 
 #: src/Dialogs/NotImportedDialog.vala:56
 #, c-format
