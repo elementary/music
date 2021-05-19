@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-23 08:07+0000\n"
-"PO-Revision-Date: 2021-05-19 23:19+0000\n"
+"PO-Revision-Date: 2021-05-19 23:20+0000\n"
 "Last-Translator: enzovitaliy <enzovitaliy@gmail.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/music/music/uk/"
 ">\n"
@@ -454,7 +454,7 @@ msgstr "Закрити"
 #: src/Dialogs/NotImportedDialog.vala:50
 #, c-format
 msgid "Issues while importing from %s"
-msgstr "Виникли проблеми під час імпортування з %s"
+msgstr "Проблеми при імпорті з %s"
 
 #: src/Dialogs/NotImportedDialog.vala:56
 #, c-format
