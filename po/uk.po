@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-23 08:07+0000\n"
-"PO-Revision-Date: 2021-05-19 23:18+0000\n"
-"Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
+"PO-Revision-Date: 2021-05-19 23:19+0000\n"
+"Last-Translator: enzovitaliy <enzovitaliy@gmail.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/music/music/uk/"
 ">\n"
 "Language: uk\n"
@@ -391,7 +391,7 @@ msgstr "Бажаєте встановити плагін %s?"
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:42
 #, c-format
 msgid "This song cannot be played. The %s plugin is required to play the song."
-msgstr "Не вдалося відтворити пісню. Для відтворення потрібен плагін %s."
+msgstr "Ця пісня не може бути відтворена. Потрібен плагін %s щоб відтворити її."
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:51
 msgid "Install Plugin"
