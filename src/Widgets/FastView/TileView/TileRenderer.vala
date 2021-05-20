@@ -121,7 +121,11 @@ internal class Music.Widgets.TileRenderer : Gtk.CellRenderer {
         if (pixbuf != null) {
             int scale_factor = ctx.get_scale ();
 
-            var surface = Gdk.cairo_surface_create_from_pixbuf (pixbuf, scale_factor, null);
+            var dpi_based_width = (128 + border.left + border.right) * scale_factor;
+            var dpi_based_height = (128 + border.top + border.bottom) * scale_factor;
+            var scaled_pixbuf = pixbuf.scale_simple (dpi_based_width, dpi_based_height, Gdk.InterpType.BILINEAR);
+
+            var surface = Gdk.cairo_surface_create_from_pixbuf (scaled_pixbuf, scale_factor, null);
 
             ctx.render_icon_surface (cr, surface, x, y);
         }
