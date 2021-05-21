@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-23 08:07+0000\n"
-"PO-Revision-Date: 2021-04-23 19:54+0000\n"
+"PO-Revision-Date: 2021-05-20 05:24+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/music/music/uk/"
 ">\n"
@@ -33,7 +33,7 @@ msgstr "Невідомо"
 #. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: core/Media.vala:180
 msgid "$NAME on $ALBUM"
-msgstr "$NAME в $ALBUM"
+msgstr "$NAME у $ALBUM"
 
 #. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: core/Media.vala:183
@@ -275,7 +275,7 @@ msgstr "Імпортування завершено"
 
 #: src/FileOperator.vala:306
 msgid "Your Library Has Been Imported."
-msgstr "Бібліотеку імпортовано."
+msgstr "Ваша бібліотека була імпортована."
 
 #. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:316
@@ -391,7 +391,8 @@ msgstr "Бажаєте встановити плагін %s?"
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:42
 #, c-format
 msgid "This song cannot be played. The %s plugin is required to play the song."
-msgstr "Не вдалося відтворити пісню. Для відтворення потрібен плагін %s."
+msgstr ""
+"Ця пісня не може бути відтворена. Потрібен плагін %s, щоб відтворити її."
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:51
 msgid "Install Plugin"
@@ -454,15 +455,15 @@ msgstr "Закрити"
 #: src/Dialogs/NotImportedDialog.vala:50
 #, c-format
 msgid "Issues while importing from %s"
-msgstr "Виникли проблеми під час імпортування з %s"
+msgstr "Проблеми під час імпортування з %s"
 
 #: src/Dialogs/NotImportedDialog.vala:56
 #, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] "Неможливо імпортувати %d елемент. Файл, імовірно, пошкоджено."
-msgstr[1] "Неможливо імпортувати %d елементи. Файли, імовірно, пошкоджено."
-msgstr[2] "Неможливо імпортувати %d елементів. Файли, імовірно, пошкоджено."
+msgstr[0] "Неможливо імпортувати %d елемент. Файл може бути пошкоджений."
+msgstr[1] "Неможливо імпортувати %d елементи. Файли можуть бути пошкоджені."
+msgstr[2] "Неможливо імпортувати %d елементів. Файли можуть бути пошкоджені."
 
 #: src/Dialogs/NotImportedDialog.vala:64
 msgid "Move all corrupted files to trash"
@@ -531,7 +532,7 @@ msgstr[2] "Вилучити %d пісень з бібліотеки?"
 #: src/Dialogs/RemoveFilesDialog.vala:55
 #, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr "Вилучити \"%s\" з бібліотеки?"
+msgstr "Вилучити «%s» з бібліотеки?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
 msgid ""
@@ -541,14 +542,14 @@ msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
 msgstr[0] ""
-"Це вилучить пісню з вашої бібліотеки та будь-якого синхронізованого пристрою "
-"автоматично."
+"Це вилучить пісню з вашої бібліотеки та з усіх інших синхронізованих "
+"пристроїв автоматично."
 msgstr[1] ""
-"Це вилучить пісні з вашої бібліотеки та будь-якого синхронізованого пристрою "
-"автоматично."
+"Це вилучить пісні з вашої бібліотеки та з усіх інших синхронізованих "
+"пристроїв автоматично."
 msgstr[2] ""
-"Це вилучить пісні з вашої бібліотеки та будь-якого синхронізованого пристрою "
-"автоматично."
+"Це вилучить пісні з вашої бібліотеки та з усіх інших синхронізованих "
+"пристроїв автоматично."
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
@@ -745,7 +746,7 @@ msgstr "кбіт/с"
 msgid "Sync will remove %i item from %s"
 msgid_plural "Sync will remove %i items from %s"
 msgstr[0] "Синхронізація вилучить %i елемент із %s"
-msgstr[1] "Синхронізація вилучить %i елементи із %s"
+msgstr[1] "Синхронізація вилучить %i елементи з %s"
 msgstr[2] "Синхронізація вилучить %i елементів із %s"
 
 #: src/Dialogs/SyncWarningDialog.vala:55
@@ -1294,7 +1295,7 @@ msgstr "Прокрутити до цієї пісні"
 
 #: src/Widgets/MediaMenu.vala:49
 msgid "Show in File Browser…"
-msgstr "Відкрити у переглядачі файлів…"
+msgstr "Показати у переглядачі файлів…"
 
 #: src/Widgets/MediaMenu.vala:50
 msgid "Edit Song Info…"
