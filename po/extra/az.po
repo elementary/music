@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-22 17:33+0000\n"
+"POT-Creation-Date: 2021-04-23 08:07+0000\n"
 "PO-Revision-Date: 2018-02-15 21:10+0000\n"
 "Last-Translator: Вагиф Кязым <vaqif134@gmail.com>\n"
 "Language-Team: Azerbaijani <https://weblate.elementary.io/projects/music/"
@@ -215,7 +215,7 @@ msgid "Listen to music"
 msgstr "Musiqiyə qulaq asın"
 
 #: data/io.elementary.music.desktop.in:8
-msgid "multimedia-audio-player"
+msgid "io.elementary.music"
 msgstr ""
 
 #: data/io.elementary.music.desktop.in:13

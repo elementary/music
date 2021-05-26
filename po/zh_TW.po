@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-01 20:45+0000\n"
+"POT-Creation-Date: 2021-04-23 08:07+0000\n"
 "PO-Revision-Date: 2018-10-18 11:54+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://weblate.elementary.io/projects/"
@@ -149,7 +149,7 @@ msgid "Export Playlist"
 msgstr "匯出播放清單"
 
 #: core/Utils/PlaylistsUtils.vala:275 src/Dialogs/MediaEditor.vala:133
-#: src/Dialogs/SmartPlaylistEditor.vala:89
+#: src/Dialogs/SmartPlaylistEditor.vala:92
 msgid "Save"
 msgstr "儲存"
 
@@ -158,9 +158,8 @@ msgstr "儲存"
 #: src/Dialogs/FileNotFoundDialog.vala:103
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:49
 #: src/Dialogs/RemoveFilesDialog.vala:82
-#: src/Dialogs/SetMusicFolderConfirmation.vala:63
-#: src/Dialogs/SetMusicFolderConfirmation.vala:86
-#: src/Dialogs/SmartPlaylistEditor.vala:93
+#: src/Dialogs/SetMusicFolderConfirmation.vala:85
+#: src/Dialogs/SmartPlaylistEditor.vala:89
 #: src/Dialogs/SyncWarningDialog.vala:60
 #: src/Views/Wrappers/MusicViewWrapper.vala:147 src/Widgets/TopDisplay.vala:63
 msgid "Cancel"
@@ -177,7 +176,7 @@ msgstr "匯入 %s"
 
 #: core/Utils/PlaylistsUtils.vala:344 src/LibraryWindow.vala:1029
 #: src/Dialogs/FileNotFoundDialog.vala:102
-#: src/Dialogs/SetMusicFolderConfirmation.vala:85
+#: src/Dialogs/SetMusicFolderConfirmation.vala:84
 #: src/Views/Wrappers/MusicViewWrapper.vala:146
 #: src/Widgets/AlbumListGrid.vala:197
 msgid "Open"
@@ -290,7 +289,7 @@ msgstr "音樂"
 msgid "Import to Library…"
 msgstr "匯入珍藏館..."
 
-#: src/LibraryWindow.vala:219 src/Dialogs/PreferencesWindow.vala:40
+#: src/LibraryWindow.vala:219 src/Dialogs/PreferencesWindow.vala:32
 msgid "Preferences"
 msgstr "偏好設定"
 
@@ -359,8 +358,9 @@ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr "找不到曲名為 <b>%s</b>，歌手為 <b>%s</b> 的音樂檔案。"
 
 #: src/Dialogs/FileNotFoundDialog.vala:50
-#, c-format
-msgid "%i music files could not be found?"
+#, fuzzy, c-format
+#| msgid "%i music files could not be found?"
+msgid "%i music files could not be found."
 msgstr "找不到 %i 首音樂檔案？"
 
 #: src/Dialogs/FileNotFoundDialog.vala:53
@@ -376,7 +376,7 @@ msgid "Find Song"
 msgstr "尋找歌曲"
 
 #: src/Dialogs/FileNotFoundDialog.vala:99
-#: src/Dialogs/SetMusicFolderConfirmation.vala:82
+#: src/Dialogs/SetMusicFolderConfirmation.vala:81
 msgid "Choose Music Folder"
 msgstr "選擇音樂資料夾"
 
@@ -444,7 +444,7 @@ msgid "Comment:"
 msgstr "備註："
 
 #. FIXME: don't know if I can delete this
-#: src/Dialogs/MediaEditor.vala:131 src/Dialogs/PreferencesWindow.vala:97
+#: src/Dialogs/MediaEditor.vala:131 src/Dialogs/PreferencesWindow.vala:88
 #: src/Views/DeviceView.vala:45
 msgid "Close"
 msgstr "關閉"
@@ -484,35 +484,35 @@ msgstr "移至回收筒"
 msgid "Ignore"
 msgstr "忽略"
 
-#: src/Dialogs/PreferencesWindow.vala:48
+#: src/Dialogs/PreferencesWindow.vala:38
 msgid "Select Music Folder…"
 msgstr "選取音樂資料夾..."
 
-#: src/Dialogs/PreferencesWindow.vala:78
+#: src/Dialogs/PreferencesWindow.vala:70
 msgid "Music Folder Location"
 msgstr "音樂資料夾位置"
 
-#: src/Dialogs/PreferencesWindow.vala:80
+#: src/Dialogs/PreferencesWindow.vala:72
 msgid "Library Management"
 msgstr "珍藏館管理"
 
-#: src/Dialogs/PreferencesWindow.vala:81
+#: src/Dialogs/PreferencesWindow.vala:73
 msgid "Keep Music folder organized:"
 msgstr "讓音樂資料夾維持整理狀態："
 
-#: src/Dialogs/PreferencesWindow.vala:83
+#: src/Dialogs/PreferencesWindow.vala:75
 msgid "Write metadata to file:"
 msgstr "將中介資料寫入檔案："
 
-#: src/Dialogs/PreferencesWindow.vala:85
+#: src/Dialogs/PreferencesWindow.vala:77
 msgid "Copy imported files to Library:"
 msgstr "將匯入的檔案複製至珍藏館："
 
-#: src/Dialogs/PreferencesWindow.vala:87
+#: src/Dialogs/PreferencesWindow.vala:79
 msgid "Desktop Integration"
 msgstr "桌面整合"
 
-#: src/Dialogs/PreferencesWindow.vala:88
+#: src/Dialogs/PreferencesWindow.vala:80
 msgid "Continue playback when closed:"
 msgstr "當關閉時繼續播放："
 
@@ -555,7 +555,7 @@ msgstr "您確定要將音樂資料夾設為 %s？這會重設您的珍藏館並
 msgid "Export Playlists"
 msgstr "匯出播放清單"
 
-#: src/Dialogs/SetMusicFolderConfirmation.vala:65
+#: src/Dialogs/SetMusicFolderConfirmation.vala:61
 msgid "Set Music Folder"
 msgstr "設定音樂資料夾"
 
@@ -591,135 +591,135 @@ msgstr "限制為"
 msgid "items"
 msgstr "項目"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:107
+#: src/Dialogs/SmartPlaylistEditor.vala:103
 msgid "Name of Playlist"
 msgstr "播放清單的名稱"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:109
+#: src/Dialogs/SmartPlaylistEditor.vala:105
 msgid "Rules"
 msgstr "規則"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:112
+#: src/Dialogs/SmartPlaylistEditor.vala:108
 msgid "Options"
 msgstr "選項"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:119
+#: src/Dialogs/SmartPlaylistEditor.vala:113
 msgid "Smart Playlist Editor"
 msgstr "智慧型播放清單編輯器"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:260 src/Widgets/SourceListView.vala:67
+#: src/Dialogs/SmartPlaylistEditor.vala:256 src/Widgets/SourceListView.vala:67
 #: src/Widgets/SourceListView.vala:80
 msgid "Remove"
 msgstr "移除"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:263
+#: src/Dialogs/SmartPlaylistEditor.vala:259
 msgid "Album"
 msgstr "專輯"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:264
+#: src/Dialogs/SmartPlaylistEditor.vala:260
 msgid "Artist"
 msgstr "演出者"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:265
+#: src/Dialogs/SmartPlaylistEditor.vala:261
 msgid "Bitrate"
 msgstr "位元率"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:266
+#: src/Dialogs/SmartPlaylistEditor.vala:262
 msgid "Comment"
 msgstr "評註"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:267
+#: src/Dialogs/SmartPlaylistEditor.vala:263
 msgid "Composer"
 msgstr "作曲家"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:268
+#: src/Dialogs/SmartPlaylistEditor.vala:264
 msgid "Date Added"
 msgstr "加入日期"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:269
+#: src/Dialogs/SmartPlaylistEditor.vala:265
 msgid "Genre"
 msgstr "曲風"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:270
+#: src/Dialogs/SmartPlaylistEditor.vala:266
 msgid "Grouping"
 msgstr "分組"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:271
+#: src/Dialogs/SmartPlaylistEditor.vala:267
 msgid "Last Played"
 msgstr "上次播放"
 
 #. helper for units
-#: src/Dialogs/SmartPlaylistEditor.vala:272
-#: src/Dialogs/SmartPlaylistEditor.vala:417
+#: src/Dialogs/SmartPlaylistEditor.vala:268
+#: src/Dialogs/SmartPlaylistEditor.vala:413
 msgid "Length"
 msgstr "長度"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:273
+#: src/Dialogs/SmartPlaylistEditor.vala:269
 msgid "Playcount"
 msgstr "播放次數"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:274
+#: src/Dialogs/SmartPlaylistEditor.vala:270
 msgid "Rating"
 msgstr "評等"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:275
+#: src/Dialogs/SmartPlaylistEditor.vala:271
 msgid "Skipcount"
 msgstr "略過次數"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:276
+#: src/Dialogs/SmartPlaylistEditor.vala:272
 msgid "Title"
 msgstr "曲名"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:277
+#: src/Dialogs/SmartPlaylistEditor.vala:273
 msgid "Year"
 msgstr "年份"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:278
+#: src/Dialogs/SmartPlaylistEditor.vala:274
 msgid "URI"
 msgstr "URI"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:351
+#: src/Dialogs/SmartPlaylistEditor.vala:347
 msgid "is"
 msgstr "是"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:352
+#: src/Dialogs/SmartPlaylistEditor.vala:348
 msgid "contains"
 msgstr "包含"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:353
+#: src/Dialogs/SmartPlaylistEditor.vala:349
 msgid "does not contain"
 msgstr "不包含"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:379
-#: src/Dialogs/SmartPlaylistEditor.vala:394
+#: src/Dialogs/SmartPlaylistEditor.vala:375
+#: src/Dialogs/SmartPlaylistEditor.vala:390
 msgid "is exactly"
 msgstr "完全是"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:380
+#: src/Dialogs/SmartPlaylistEditor.vala:376
 msgid "is at most"
 msgstr "至多是"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:381
+#: src/Dialogs/SmartPlaylistEditor.vala:377
 msgid "is at least"
 msgstr "至少是"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:395
+#: src/Dialogs/SmartPlaylistEditor.vala:391
 msgid "is within"
 msgstr "在這之中"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:396
+#: src/Dialogs/SmartPlaylistEditor.vala:392
 msgid "is before"
 msgstr "在這之前"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:418
+#: src/Dialogs/SmartPlaylistEditor.vala:414
 msgid "seconds"
 msgstr "秒"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:421
+#: src/Dialogs/SmartPlaylistEditor.vala:417
 msgid "days ago"
 msgstr "天前"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:424
+#: src/Dialogs/SmartPlaylistEditor.vala:420
 msgid "kbps"
 msgstr "kbps"
 
@@ -782,27 +782,27 @@ msgid "%d Track"
 msgid_plural "%d Tracks"
 msgstr[0] "%d 首"
 
-#: src/LocalBackend/LocalSmartPlaylist.vala:217
+#: src/LocalBackend/LocalSmartPlaylist.vala:218
 msgid "Favorite Songs"
 msgstr "喜愛的歌曲"
 
-#: src/LocalBackend/LocalSmartPlaylist.vala:225
+#: src/LocalBackend/LocalSmartPlaylist.vala:226
 msgid "Recently Added"
 msgstr "最近加入"
 
-#: src/LocalBackend/LocalSmartPlaylist.vala:233
+#: src/LocalBackend/LocalSmartPlaylist.vala:234
 msgid "Recent Favorites"
 msgstr "最近喜愛"
 
-#: src/LocalBackend/LocalSmartPlaylist.vala:241
+#: src/LocalBackend/LocalSmartPlaylist.vala:242
 msgid "Never Played"
 msgstr "從未播放"
 
-#: src/LocalBackend/LocalSmartPlaylist.vala:249
+#: src/LocalBackend/LocalSmartPlaylist.vala:250
 msgid "Over Played"
 msgstr "經常播放"
 
-#: src/LocalBackend/LocalSmartPlaylist.vala:257
+#: src/LocalBackend/LocalSmartPlaylist.vala:258
 msgid "Not Recently Played"
 msgstr "最近未播放"
 

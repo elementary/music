@@ -1,0 +1,82 @@
+app-id: io.elementary.music
+runtime: io.elementary.Platform
+runtime-version: '0.1.0'
+sdk: io.elementary.Sdk
+command: io.elementary.music
+finish-args:
+  - '--filesystem=host:ro'
+  - '--filesystem=home'
+
+  - '--share=ipc'
+  - '--socket=fallback-x11'
+  - '--socket=wayland'
+  - '--socket=pulseaudio'
+
+  # needed for perfers-color-scheme
+  - '--system-talk-name=org.freedesktop.Accounts'
+
+  - '--talk-name=org.gnome.SettingsDaemon.MediaKeys'
+  - '--talk-name=org.gnome.zeitgeist.Engine'
+  - '--talk-name=org.gtk.vfs'
+  - '--talk-name=org.gtk.vfs.*'
+
+  - '--metadata=X-DConf=migrate-path=/io/elementary/music/'
+cleanup:
+  - '/include'
+  - '/lib/pkgconfig'
+  - '/share/vala'
+  - '/man'
+  - '*.a'
+  - '*.la'
+modules:
+  - name: peas
+    buildsystem: meson
+    config-opts:
+      - '-Ddemos=false'
+      - '-Dglade_catalog=false'
+      - '-Dlua51=false'
+    sources:
+      - type: git
+        url: https://gitlab.gnome.org/GNOME/libpeas.git
+        tag: libpeas-1.30.0
+
+  - name: gda
+    config-opts:
+      - '--with-java=no'
+      - '--with-jni=no'
+      - '--with-oracle=no'
+      - '--with-help=no'
+      - '--with-ui=no'
+      - '--disable-tools'
+      - '--enable-vala'
+    sources:
+      - type: archive
+        url: https://download.gnome.org/sources/libgda/5.2/libgda-5.2.9.tar.xz
+        sha256: 59caed8ca72b1ac6437c9844f0677f8a296d52cfd1c0049116026abfb1d87d9b
+    modules:
+      - name: intltool
+        cleanup:
+          - '*'
+        sources:
+          - type: archive
+            url: https://launchpad.net/intltool/trunk/0.51.0/+download/intltool-0.51.0.tar.gz
+            md5: 12e517cac2b57a0121cda351570f1e63
+
+  - name: taglib
+    buildsystem: cmake-ninja
+    config-opts:
+      - '-DBUILD_SHARED_LIBS=ON'
+    cleanup:
+      - /bin
+    sources:
+        - type: git
+          url: https://github.com/taglib/taglib.git
+          tag: v1.12
+
+  - name: music
+    buildsystem: meson
+    config-opts:
+      - '-Dbuild-plugins=false'
+    sources:
+      - type: dir
+        path: .

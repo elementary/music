@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-01 20:45+0000\n"
-"PO-Revision-Date: 2019-04-23 22:31+0000\n"
+"POT-Creation-Date: 2021-04-23 08:07+0000\n"
+"PO-Revision-Date: 2021-04-23 19:54+0000\n"
 "Last-Translator: Ozgur Baskin <bebeto_baskin@yahoo.com>\n"
 "Language-Team: Turkish <https://l10n.elementary.io/projects/music/music/tr/"
 ">\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.5.1\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:55+0000\n"
 
 #: core/LibrariesManager.vala:146
@@ -42,7 +42,7 @@ msgstr "$NAME <b>-</b> $ARTIST"
 #. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
 #: core/Media.vala:189
 msgid "$NAME by $ARTIST on $ALBUM"
-msgstr "$NAME  <b>($ARTIST: $ALBUM)</b>"
+msgstr "$NAME <b>($ARTIST: $ALBUM)</b>"
 
 #: core/GStreamer/Equalizer.vala:70
 msgid "Flat"
@@ -149,7 +149,7 @@ msgid "Export Playlist"
 msgstr "Çalma Listesini Dışa Aktar"
 
 #: core/Utils/PlaylistsUtils.vala:275 src/Dialogs/MediaEditor.vala:133
-#: src/Dialogs/SmartPlaylistEditor.vala:89
+#: src/Dialogs/SmartPlaylistEditor.vala:92
 msgid "Save"
 msgstr "Kaydet"
 
@@ -158,9 +158,8 @@ msgstr "Kaydet"
 #: src/Dialogs/FileNotFoundDialog.vala:103
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:49
 #: src/Dialogs/RemoveFilesDialog.vala:82
-#: src/Dialogs/SetMusicFolderConfirmation.vala:63
-#: src/Dialogs/SetMusicFolderConfirmation.vala:86
-#: src/Dialogs/SmartPlaylistEditor.vala:93
+#: src/Dialogs/SetMusicFolderConfirmation.vala:85
+#: src/Dialogs/SmartPlaylistEditor.vala:89
 #: src/Dialogs/SyncWarningDialog.vala:60
 #: src/Views/Wrappers/MusicViewWrapper.vala:147 src/Widgets/TopDisplay.vala:63
 msgid "Cancel"
@@ -177,7 +176,7 @@ msgstr "%s içe aktar"
 
 #: core/Utils/PlaylistsUtils.vala:344 src/LibraryWindow.vala:1029
 #: src/Dialogs/FileNotFoundDialog.vala:102
-#: src/Dialogs/SetMusicFolderConfirmation.vala:85
+#: src/Dialogs/SetMusicFolderConfirmation.vala:84
 #: src/Views/Wrappers/MusicViewWrapper.vala:146
 #: src/Widgets/AlbumListGrid.vala:197
 msgid "Open"
@@ -291,7 +290,7 @@ msgstr "Müzik"
 msgid "Import to Library…"
 msgstr "Kitaplığa Aktar…"
 
-#: src/LibraryWindow.vala:219 src/Dialogs/PreferencesWindow.vala:40
+#: src/LibraryWindow.vala:219 src/Dialogs/PreferencesWindow.vala:32
 msgid "Preferences"
 msgstr "Tercihler"
 
@@ -364,8 +363,8 @@ msgstr "<b>%s</b> - <b>%s</b> müzik dosyası bulunamadı."
 
 #: src/Dialogs/FileNotFoundDialog.vala:50
 #, c-format
-msgid "%i music files could not be found?"
-msgstr "%i müzik dosyası bulunamadı?"
+msgid "%i music files could not be found."
+msgstr "%i müzik dosyası bulunamadı."
 
 #: src/Dialogs/FileNotFoundDialog.vala:53
 msgid "Rescan Library"
@@ -380,7 +379,7 @@ msgid "Find Song"
 msgstr "Şarkı Bul"
 
 #: src/Dialogs/FileNotFoundDialog.vala:99
-#: src/Dialogs/SetMusicFolderConfirmation.vala:82
+#: src/Dialogs/SetMusicFolderConfirmation.vala:81
 msgid "Choose Music Folder"
 msgstr "Müzik Klasörü Seç"
 
@@ -447,7 +446,7 @@ msgid "Comment:"
 msgstr "Yorum:"
 
 #. FIXME: don't know if I can delete this
-#: src/Dialogs/MediaEditor.vala:131 src/Dialogs/PreferencesWindow.vala:97
+#: src/Dialogs/MediaEditor.vala:131 src/Dialogs/PreferencesWindow.vala:88
 #: src/Views/DeviceView.vala:45
 msgid "Close"
 msgstr "Çıkış"
@@ -488,35 +487,35 @@ msgstr "Çöpe Taşı"
 msgid "Ignore"
 msgstr "Yoksay"
 
-#: src/Dialogs/PreferencesWindow.vala:48
+#: src/Dialogs/PreferencesWindow.vala:38
 msgid "Select Music Folder…"
 msgstr "Müzik Klasörünü Seç…"
 
-#: src/Dialogs/PreferencesWindow.vala:78
+#: src/Dialogs/PreferencesWindow.vala:70
 msgid "Music Folder Location"
 msgstr "Müzik Klasörü Konumu"
 
-#: src/Dialogs/PreferencesWindow.vala:80
+#: src/Dialogs/PreferencesWindow.vala:72
 msgid "Library Management"
 msgstr "Kitaplık Yönetimi"
 
-#: src/Dialogs/PreferencesWindow.vala:81
+#: src/Dialogs/PreferencesWindow.vala:73
 msgid "Keep Music folder organized:"
 msgstr "Müzik klasörünü düzenli tut:"
 
-#: src/Dialogs/PreferencesWindow.vala:83
+#: src/Dialogs/PreferencesWindow.vala:75
 msgid "Write metadata to file:"
 msgstr "Dosyaya meta veri yaz:"
 
-#: src/Dialogs/PreferencesWindow.vala:85
+#: src/Dialogs/PreferencesWindow.vala:77
 msgid "Copy imported files to Library:"
 msgstr "İçe aktarılmış dosyaları Kitaplığa kopyala:"
 
-#: src/Dialogs/PreferencesWindow.vala:87
+#: src/Dialogs/PreferencesWindow.vala:79
 msgid "Desktop Integration"
 msgstr "Masaüstü Tümleştirme"
 
-#: src/Dialogs/PreferencesWindow.vala:88
+#: src/Dialogs/PreferencesWindow.vala:80
 msgid "Continue playback when closed:"
 msgstr "Kapatıldığında oynatmaya devam et:"
 
@@ -567,7 +566,7 @@ msgstr ""
 msgid "Export Playlists"
 msgstr "Çalma listesini dışarı aktar"
 
-#: src/Dialogs/SetMusicFolderConfirmation.vala:65
+#: src/Dialogs/SetMusicFolderConfirmation.vala:61
 msgid "Set Music Folder"
 msgstr "Müzik Klasörünü Ayarla"
 
@@ -603,135 +602,135 @@ msgstr "Sınırla"
 msgid "items"
 msgstr "öğe"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:107
+#: src/Dialogs/SmartPlaylistEditor.vala:103
 msgid "Name of Playlist"
 msgstr "Çalma Listesi Adı"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:109
+#: src/Dialogs/SmartPlaylistEditor.vala:105
 msgid "Rules"
 msgstr "Kurallar"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:112
+#: src/Dialogs/SmartPlaylistEditor.vala:108
 msgid "Options"
 msgstr "Seçenekler"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:119
+#: src/Dialogs/SmartPlaylistEditor.vala:113
 msgid "Smart Playlist Editor"
 msgstr "Akıllı Çalma Listesi Düzenleyici"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:260 src/Widgets/SourceListView.vala:67
+#: src/Dialogs/SmartPlaylistEditor.vala:256 src/Widgets/SourceListView.vala:67
 #: src/Widgets/SourceListView.vala:80
 msgid "Remove"
 msgstr "Sil"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:263
+#: src/Dialogs/SmartPlaylistEditor.vala:259
 msgid "Album"
 msgstr "Albüm"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:264
+#: src/Dialogs/SmartPlaylistEditor.vala:260
 msgid "Artist"
 msgstr "Sanatçı"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:265
+#: src/Dialogs/SmartPlaylistEditor.vala:261
 msgid "Bitrate"
 msgstr "Bit Hızı"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:266
+#: src/Dialogs/SmartPlaylistEditor.vala:262
 msgid "Comment"
 msgstr "Yorum"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:267
+#: src/Dialogs/SmartPlaylistEditor.vala:263
 msgid "Composer"
 msgstr "Besteci"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:268
+#: src/Dialogs/SmartPlaylistEditor.vala:264
 msgid "Date Added"
 msgstr "Eklendiği Tarih"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:269
+#: src/Dialogs/SmartPlaylistEditor.vala:265
 msgid "Genre"
-msgstr "Tür"
+msgstr "Tarz"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:270
+#: src/Dialogs/SmartPlaylistEditor.vala:266
 msgid "Grouping"
 msgstr "Gruplama"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:271
+#: src/Dialogs/SmartPlaylistEditor.vala:267
 msgid "Last Played"
 msgstr "Son Çalınan"
 
 #. helper for units
-#: src/Dialogs/SmartPlaylistEditor.vala:272
-#: src/Dialogs/SmartPlaylistEditor.vala:417
+#: src/Dialogs/SmartPlaylistEditor.vala:268
+#: src/Dialogs/SmartPlaylistEditor.vala:413
 msgid "Length"
 msgstr "Uzunluk"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:273
+#: src/Dialogs/SmartPlaylistEditor.vala:269
 msgid "Playcount"
 msgstr "Çalma Sayısı"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:274
+#: src/Dialogs/SmartPlaylistEditor.vala:270
 msgid "Rating"
 msgstr "Derecelendirme"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:275
+#: src/Dialogs/SmartPlaylistEditor.vala:271
 msgid "Skipcount"
 msgstr "Atlama"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:276
+#: src/Dialogs/SmartPlaylistEditor.vala:272
 msgid "Title"
 msgstr "Başlık"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:277
+#: src/Dialogs/SmartPlaylistEditor.vala:273
 msgid "Year"
 msgstr "Yıl"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:278
+#: src/Dialogs/SmartPlaylistEditor.vala:274
 msgid "URI"
 msgstr "URI"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:351
+#: src/Dialogs/SmartPlaylistEditor.vala:347
 msgid "is"
 msgstr "olan"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:352
+#: src/Dialogs/SmartPlaylistEditor.vala:348
 msgid "contains"
 msgstr "içerir"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:353
+#: src/Dialogs/SmartPlaylistEditor.vala:349
 msgid "does not contain"
 msgstr "içermez"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:379
-#: src/Dialogs/SmartPlaylistEditor.vala:394
+#: src/Dialogs/SmartPlaylistEditor.vala:375
+#: src/Dialogs/SmartPlaylistEditor.vala:390
 msgid "is exactly"
 msgstr "tam olarak"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:380
+#: src/Dialogs/SmartPlaylistEditor.vala:376
 msgid "is at most"
 msgstr "en çok olarak"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:381
+#: src/Dialogs/SmartPlaylistEditor.vala:377
 msgid "is at least"
 msgstr "en az olarak"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:395
+#: src/Dialogs/SmartPlaylistEditor.vala:391
 msgid "is within"
 msgstr "içinden olarak"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:396
+#: src/Dialogs/SmartPlaylistEditor.vala:392
 msgid "is before"
 msgstr "öncedir"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:418
+#: src/Dialogs/SmartPlaylistEditor.vala:414
 msgid "seconds"
 msgstr "saniye"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:421
+#: src/Dialogs/SmartPlaylistEditor.vala:417
 msgid "days ago"
 msgstr "gün önce"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:424
+#: src/Dialogs/SmartPlaylistEditor.vala:420
 msgid "kbps"
 msgstr "kbps"
 
@@ -798,27 +797,27 @@ msgid_plural "%d Tracks"
 msgstr[0] "%d Parça"
 msgstr[1] "%d Parça"
 
-#: src/LocalBackend/LocalSmartPlaylist.vala:217
+#: src/LocalBackend/LocalSmartPlaylist.vala:218
 msgid "Favorite Songs"
 msgstr "Favori Şarkılar"
 
-#: src/LocalBackend/LocalSmartPlaylist.vala:225
+#: src/LocalBackend/LocalSmartPlaylist.vala:226
 msgid "Recently Added"
 msgstr "Son Eklenenler"
 
-#: src/LocalBackend/LocalSmartPlaylist.vala:233
+#: src/LocalBackend/LocalSmartPlaylist.vala:234
 msgid "Recent Favorites"
 msgstr "Son Favoriler"
 
-#: src/LocalBackend/LocalSmartPlaylist.vala:241
+#: src/LocalBackend/LocalSmartPlaylist.vala:242
 msgid "Never Played"
 msgstr "Hiç Çalınmayan"
 
-#: src/LocalBackend/LocalSmartPlaylist.vala:249
+#: src/LocalBackend/LocalSmartPlaylist.vala:250
 msgid "Over Played"
 msgstr "Çok Çalınan"
 
-#: src/LocalBackend/LocalSmartPlaylist.vala:257
+#: src/LocalBackend/LocalSmartPlaylist.vala:258
 msgid "Not Recently Played"
 msgstr "Uzun Süredir Çalınmayanlar"
 
@@ -898,7 +897,7 @@ msgstr "Başka bir arama deneyin"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
 msgid "Genres"
-msgstr "Türler"
+msgstr "Tarzlar"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:60
 msgid "Artists"
@@ -926,16 +925,16 @@ msgstr "Gruplamalar"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
 msgid "All Genres"
-msgstr "Tüm Türler"
+msgstr "Tüm Tarzlar"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
 #, c-format
 msgid "All %i Genres"
-msgstr "Tüm %i Tür"
+msgstr "Tüm %i Tarz"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
 msgid "No Genres"
-msgstr "Tür Yok"
+msgstr "Tarz Yok"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
 msgid "All Artists"
@@ -1088,7 +1087,7 @@ msgstr "Besteci"
 #: src/Views/ListView/Lists/ListColumn.vala:93
 msgctxt "List column title"
 msgid "Genre"
-msgstr "Tür"
+msgstr "Tarz"
 
 #: src/Views/ListView/Lists/ListColumn.vala:96
 msgctxt "List column title"
@@ -1400,10 +1399,8 @@ msgid "Add Smart Playlist"
 msgstr "Akıllı Çalma Listesi Ekle"
 
 #: src/Widgets/StatusBar.vala:48
-#, fuzzy
-#| msgid "Add Playlist"
 msgid "Add Playlist…"
-msgstr "Çalma Listesi Ekle"
+msgstr "Çalma Listesi Ekle…"
 
 #. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: src/Widgets/StatusBar.vala:74

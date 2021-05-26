@@ -113,14 +113,20 @@ namespace Music.Database {
         }
     }
 
-    public static void set_field (int64 rowid, Gda.Connection connection, string table, string field, GLib.Value value) {
+    public static void set_field (int64 rowid, Gda.Connection connection, string table, string field, GLib.Value val) {
         try {
             var rowid_value = GLib.Value (typeof (int64));
             rowid_value.set_int64 (rowid);
             var col_names = new GLib.SList<string> ();
             col_names.append (field);
             var values = new GLib.SList<GLib.Value?> ();
-            values.append (value);
+            if (val.type ().is_enum ()) {
+                var int_val = Value (typeof (int));
+                int_val.set_int (val.get_enum ());
+                values.append (int_val);
+            } else {
+                values.append (val);
+            }
             connection.update_row_in_table_v (table, "rowid", rowid_value, col_names, values);
         } catch (Error e) {
             critical ("Could not set field %s: %s", field, e.message);

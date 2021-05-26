@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-22 17:33+0000\n"
-"PO-Revision-Date: 2020-09-19 19:14+0000\n"
+"POT-Creation-Date: 2021-04-23 08:07+0000\n"
+"PO-Revision-Date: 2021-04-15 04:26+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/music/extra/uk/"
 ">\n"
@@ -16,9 +16,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
-"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.9.1\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
 #: data/io.elementary.music.appdata.xml.in:8
@@ -35,8 +35,8 @@ msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices, CDs, and album art."
 msgstr ""
-"Music — швидкий та красивий програвач музики зосереджений на музиці та "
-"бібліотеках. Підтримує зовнішні пристрої та  CD-диски та обкладинки альбомів."
+"Music — швидкий та красивий програвач зосереджений на музиці та бібліотеках. "
+"Підтримує зовнішні пристрої, CD-диски та обкладинки альбомів."
 
 #: data/io.elementary.music.appdata.xml.in:16
 msgid "Drop support for CD-ROM"
@@ -189,7 +189,7 @@ msgstr "Додано підтримку Opus Ogg"
 
 #: data/io.elementary.music.appdata.xml.in:112
 msgid "Fix Ctrl+Q support for non-Latin keyboard layouts"
-msgstr "Виправте підтримку Ctrl + Q для розкладок клавіатури не латинкою"
+msgstr "Виправлено підтримку Ctrl + Q для розкладок клавіатури не латинкою"
 
 #: data/io.elementary.music.appdata.xml.in:113
 msgid "Reorganize media edition layout"
@@ -220,14 +220,17 @@ msgid "Listen to music"
 msgstr "Прослуховування музики"
 
 #: data/io.elementary.music.desktop.in:8
-msgid "multimedia-audio-player"
-msgstr "multimedia-audio-player"
+msgid "io.elementary.music"
+msgstr "io.elementary.music"
 
 #: data/io.elementary.music.desktop.in:13
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 msgstr ""
 "Noise;Audio;Аудіо;Player;Програвач;MP3;iPod;Відтворення;Playlist;Список "
 "відтворення;Плейлист;Медіа;Media;CD;Телефон;Пісні;Музика;"
+
+#~ msgid "multimedia-audio-player"
+#~ msgstr "multimedia-audio-player"
 
 #~ msgid "About Music"
 #~ msgstr "Про Музику"

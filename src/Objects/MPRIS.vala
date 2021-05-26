@@ -27,7 +27,7 @@
 namespace Music.MPRIS {
     public void initialize () {
         var owner_id = Bus.own_name (BusType.SESSION,
-                                "org.mpris.MediaPlayer2.Music",
+                                "org.mpris.MediaPlayer2.io.elementary.music",
                                 GLib.BusNameOwnerFlags.NONE,
                                 on_bus_acquired,
                                 null,
