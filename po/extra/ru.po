@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-23 08:07+0000\n"
-"PO-Revision-Date: 2021-05-12 19:01+0000\n"
+"PO-Revision-Date: 2021-06-01 13:49+0000\n"
 "Last-Translator: DartDeaDia <jorydit@gmail.com>\n"
 "Language-Team: Russian <https://l10n.elementary.io/projects/music/extra/ru/>"
 "\n"
@@ -200,7 +200,7 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:114
 msgid "Port grid to support HiDPI displays"
-msgstr ""
+msgstr "Поддержка HiDPI дисплеев для сетки портов"
 
 #: data/io.elementary.music.appdata.xml.in:115
 msgid "Update icons to latest elementary icon release"
