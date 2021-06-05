@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-23 08:07+0000\n"
-"PO-Revision-Date: 2021-04-15 04:26+0000\n"
+"PO-Revision-Date: 2021-06-06 00:20+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/music/extra/uk/"
 ">\n"
@@ -129,7 +129,7 @@ msgstr "Виправлено впорядкування подання спис�
 
 #: data/io.elementary.music.appdata.xml.in:59
 msgid "Add orange accent color"
-msgstr "Додано основний помаранчевий колір"
+msgstr "Додано основний жовтогарячий колір"
 
 #: data/io.elementary.music.appdata.xml.in:60
 msgid "Add shortcut accels to tooltips"
