@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-23 08:07+0000\n"
 "PO-Revision-Date: 2021-06-08 14:28+0000\n"
-"Last-Translator: Deleted User <noreply+411@weblate.org>\n"
+"Last-Translator: Özgür Baskin <queeup@zoho.com>\n"
 "Language-Team: Turkish <https://l10n.elementary.io/projects/music/extra/tr/>"
 "\n"
 "Language: tr\n"
@@ -147,11 +147,11 @@ msgstr "Karıştır özelliği düzeltmeleri"
 
 #: data/io.elementary.music.appdata.xml.in:69
 msgid "Initial MPRIS support"
-msgstr "İlkel MPRIS desteği"
+msgstr "MPRIS desteği eklendi"
 
 #: data/io.elementary.music.appdata.xml.in:76
 msgid "Detect library changes at startup."
-msgstr ""
+msgstr "Başlangıçta kitaplıktaki değişiklikleri algıla."
 
 #: data/io.elementary.music.appdata.xml.in:77
 msgid "Support searching by URI"
