@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-23 08:07+0000\n"
 "PO-Revision-Date: 2021-06-08 14:21+0000\n"
-"Last-Translator: Deleted User <noreply+411@weblate.org>\n"
+"Last-Translator: Özgür Baskin <queeup@zoho.com>\n"
 "Language-Team: Turkish <https://l10n.elementary.io/projects/music/extra/tr/>"
 "\n"
 "Language: tr\n"
@@ -99,7 +99,7 @@ msgstr "gnome-settings-daemon için yeni MediaKeyListener yolu"
 
 #: data/io.elementary.music.appdata.xml.in:47
 msgid "AlbumView: double-click to play album"
-msgstr ""
+msgstr "AlbümGörünümü: albümü çalmak için çift tıklatın"
 
 #: data/io.elementary.music.appdata.xml.in:48
 msgid "Associate with s3m files"
@@ -127,11 +127,11 @@ msgstr "Küçük hata düzeltmeleri"
 
 #: data/io.elementary.music.appdata.xml.in:58
 msgid "Fix list and column view sorting"
-msgstr ""
+msgstr "Liste ve sütun görünümü sıralaması düzeltildi"
 
 #: data/io.elementary.music.appdata.xml.in:59
 msgid "Add orange accent color"
-msgstr ""
+msgstr "Turuncu vurgulama rengi eklendi"
 
 #: data/io.elementary.music.appdata.xml.in:60
 msgid "Add shortcut accels to tooltips"
