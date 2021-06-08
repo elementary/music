@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-23 08:07+0000\n"
 "PO-Revision-Date: 2021-06-08 14:31+0000\n"
-"Last-Translator: Deleted User <noreply+411@weblate.org>\n"
+"Last-Translator: Özgür Baskin <queeup@zoho.com>\n"
 "Language-Team: Turkish <https://l10n.elementary.io/projects/music/extra/tr/>"
 "\n"
 "Language: tr\n"
@@ -159,7 +159,7 @@ msgstr "URI ile arama desteği"
 
 #: data/io.elementary.music.appdata.xml.in:78
 msgid "Change the queue mechanism to make it less confusing."
-msgstr "Daha az kafa karıştırıcı olması için kuyruk mekanizması değiştirildi"
+msgstr "Daha az kafa karıştırıcı olması için kuyruk mekanizması değiştirildi."
 
 #: data/io.elementary.music.appdata.xml.in:79
 msgid "Improve equalizer style."
