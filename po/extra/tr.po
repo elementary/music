@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-23 08:07+0000\n"
 "PO-Revision-Date: 2021-06-08 14:22+0000\n"
-"Last-Translator: Deleted User <noreply+411@weblate.org>\n"
+"Last-Translator: Özgür Baskin <queeup@zoho.com>\n"
 "Language-Team: Turkish <https://l10n.elementary.io/projects/music/extra/tr/>"
 "\n"
 "Language: tr\n"
@@ -139,7 +139,7 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:67
 msgid "Various UI changes"
-msgstr "Çeşitli arayüz değişiklikleri"
+msgstr "Çeşitli kullanıcı arayüzü (UI) değişiklikleri"
 
 #: data/io.elementary.music.appdata.xml.in:68
 msgid "Shuffle fixes"
