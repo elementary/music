@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-23 08:07+0000\n"
-"PO-Revision-Date: 2021-04-15 04:26+0000\n"
+"PO-Revision-Date: 2021-07-01 16:36+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://l10n.elementary.io/projects/music/"
 "extra/nb/>\n"
@@ -53,19 +53,20 @@ msgstr "Oppdaterte oversettelser"
 
 #: data/io.elementary.music.appdata.xml.in:22
 msgid "Fix removing items from the queue"
-msgstr ""
+msgstr "Fikset fjerning av elementer fra køen"
 
 #: data/io.elementary.music.appdata.xml.in:23
 msgid "Fix equalizer sliders not properly disabled sometimes"
-msgstr ""
+msgstr "Fikset tonekontroll-glidebrytere som ikke alltid skrur seg av"
 
 #: data/io.elementary.music.appdata.xml.in:25
 msgid "Performance improvements"
 msgstr "Ytelsesforbedringer"
 
 #: data/io.elementary.music.appdata.xml.in:30
+#, fuzzy
 msgid "Removed old gsignond vapi"
-msgstr ""
+msgstr "Fjernet gammelt gsignond-VAPI"
 
 #: data/io.elementary.music.appdata.xml.in:31
 msgid "LibraryWindow: Use Granite.MessageDialog for showing alerts"
@@ -102,11 +103,11 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:49
 msgid "Queue fixes"
-msgstr ""
+msgstr "Kø-fikser"
 
 #: data/io.elementary.music.appdata.xml.in:50
 msgid "Properly restore playlists"
-msgstr ""
+msgstr "Ordentlig gjenoppretting av spillelister"
 
 #: data/io.elementary.music.appdata.xml.in:51
 msgid "Always respect custom music folder setting"
@@ -118,7 +119,7 @@ msgstr ""
 #: data/io.elementary.music.appdata.xml.in:102
 #: data/io.elementary.music.appdata.xml.in:117
 msgid "Minor bug fixes"
-msgstr ""
+msgstr "Småfikser"
 
 #: data/io.elementary.music.appdata.xml.in:58
 msgid "Fix list and column view sorting"
@@ -134,7 +135,7 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:67
 msgid "Various UI changes"
-msgstr ""
+msgstr "Forskjellige grensesnittsendringer"
 
 #: data/io.elementary.music.appdata.xml.in:68
 msgid "Shuffle fixes"
@@ -174,7 +175,7 @@ msgstr ""
 #: data/io.elementary.music.appdata.xml.in:103
 #: data/io.elementary.music.appdata.xml.in:118
 msgid "New translations"
-msgstr ""
+msgstr "Nye oversettelser"
 
 #: data/io.elementary.music.appdata.xml.in:109
 msgid "Release for Loki."
@@ -182,7 +183,7 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:111
 msgid "Add support for Opus Ogg"
-msgstr ""
+msgstr "Tillagt støtte for Opus Ogg"
 
 #: data/io.elementary.music.appdata.xml.in:112
 msgid "Fix Ctrl+Q support for non-Latin keyboard layouts"
@@ -205,9 +206,8 @@ msgid "Respect privacy mode"
 msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:156
-#, fuzzy
 msgid "elementary, Inc."
-msgstr "elementary LLC. (selskap med begrenset ansvar)"
+msgstr "elementary, Inc."
 
 #: data/io.elementary.music.desktop.in:5
 msgid "Music Player"
