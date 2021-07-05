@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-23 08:07+0000\n"
-"PO-Revision-Date: 2021-05-20 05:24+0000\n"
+"PO-Revision-Date: 2021-07-05 10:58+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/music/music/uk/"
 ">\n"
@@ -293,7 +293,7 @@ msgstr "Імпортувати до Бібліотеки…"
 
 #: src/LibraryWindow.vala:219 src/Dialogs/PreferencesWindow.vala:32
 msgid "Preferences"
-msgstr "Параметри"
+msgstr "Налаштування"
 
 #: src/LibraryWindow.vala:238
 msgid "Previous"
@@ -618,7 +618,7 @@ msgstr "Правила"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:108
 msgid "Options"
-msgstr "Параметри"
+msgstr "Опції"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:113
 msgid "Smart Playlist Editor"
