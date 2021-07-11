@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-23 08:07+0000\n"
 "PO-Revision-Date: 2021-07-12 00:52+0000\n"
-"Last-Translator: Renato Trevisan <rjltrevisan@gmail.com>\n"
+"Last-Translator: Mateus Rangel <mateusmrangel@hotmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.elementary.io/projects/"
 "music/music/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -1408,10 +1408,8 @@ msgid "Add Smart Playlist"
 msgstr "Adicionar lista de reprodução inteligente"
 
 #: src/Widgets/StatusBar.vala:48
-#, fuzzy
-#| msgid "Add Playlist"
 msgid "Add Playlist…"
-msgstr "Adicionar lista de reprodução"
+msgstr "Adicionar lista de reprodução…"
 
 #. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: src/Widgets/StatusBar.vala:74
