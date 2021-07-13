@@ -1,7 +1,7 @@
 project(
   'io.elementary.music',
   'vala', 'c',
-  version: '5.0.5'
+  version: '5.1.0'
 )
 
 prefix = get_option('prefix')
