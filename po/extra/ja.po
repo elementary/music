@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-23 08:07+0000\n"
+"POT-Creation-Date: 2021-07-14 17:06+0000\n"
 "PO-Revision-Date: 2021-04-15 06:10+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/music/extra/ja/"
@@ -20,16 +20,16 @@ msgstr ""
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
-#: data/io.elementary.music.appdata.xml.in:8
+#: data/io.elementary.music.appdata.xml.in:9
 #: data/io.elementary.music.desktop.in:4
 msgid "Music"
 msgstr "ミュージック"
 
-#: data/io.elementary.music.appdata.xml.in:9
+#: data/io.elementary.music.appdata.xml.in:10
 msgid "The official elementary music player"
 msgstr "elementary の公式ミュージックプレーヤー"
 
-#: data/io.elementary.music.appdata.xml.in:11
+#: data/io.elementary.music.appdata.xml.in:12
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices, CDs, and album art."
@@ -37,175 +37,189 @@ msgstr ""
 "\"ミュージック\" は音楽とライブラリに重点を置いた、高速で美しいオーディオプレ"
 "イヤーです。外部デバイス、CD、アルバムアートを扱います。"
 
-#: data/io.elementary.music.appdata.xml.in:16
+#: data/io.elementary.music.appdata.xml.in:17
+msgid "Fix an issue with saving smart playlists"
+msgstr ""
+
+#: data/io.elementary.music.appdata.xml.in:18
 msgid "Drop support for CD-ROM"
 msgstr "CD-ROM への対応を終了"
 
-#: data/io.elementary.music.appdata.xml.in:17
-#: data/io.elementary.music.appdata.xml.in:24
-#: data/io.elementary.music.appdata.xml.in:34
-#: data/io.elementary.music.appdata.xml.in:42
-#: data/io.elementary.music.appdata.xml.in:53
-#: data/io.elementary.music.appdata.xml.in:62
-#: data/io.elementary.music.appdata.xml.in:71
+#: data/io.elementary.music.appdata.xml.in:19
+msgid "Dark style support"
+msgstr ""
+
+#: data/io.elementary.music.appdata.xml.in:20
+#, fuzzy
+#| msgid "Performance improvements"
+msgid "Minor visual improvements"
+msgstr "パフォーマンスの改善"
+
+#: data/io.elementary.music.appdata.xml.in:21
+#: data/io.elementary.music.appdata.xml.in:28
+#: data/io.elementary.music.appdata.xml.in:38
+#: data/io.elementary.music.appdata.xml.in:46
+#: data/io.elementary.music.appdata.xml.in:57
+#: data/io.elementary.music.appdata.xml.in:66
+#: data/io.elementary.music.appdata.xml.in:75
 msgid "Updated translations"
 msgstr "新しい翻訳"
 
-#: data/io.elementary.music.appdata.xml.in:22
+#: data/io.elementary.music.appdata.xml.in:26
 msgid "Fix removing items from the queue"
 msgstr "キューから項目を削除する際の不具合を修正"
 
-#: data/io.elementary.music.appdata.xml.in:23
+#: data/io.elementary.music.appdata.xml.in:27
 msgid "Fix equalizer sliders not properly disabled sometimes"
 msgstr "イコライザーのスライダーが適切に無効にならないことがある不具合を修正"
 
-#: data/io.elementary.music.appdata.xml.in:25
+#: data/io.elementary.music.appdata.xml.in:29
 msgid "Performance improvements"
 msgstr "パフォーマンスの改善"
 
-#: data/io.elementary.music.appdata.xml.in:30
+#: data/io.elementary.music.appdata.xml.in:34
 msgid "Removed old gsignond vapi"
 msgstr "古い gsignond vapi を削除"
 
-#: data/io.elementary.music.appdata.xml.in:31
+#: data/io.elementary.music.appdata.xml.in:35
 msgid "LibraryWindow: Use Granite.MessageDialog for showing alerts"
 msgstr "ライブラリーウィンドウ: 警告の表示に Granite.MessageDialog を使用"
 
-#: data/io.elementary.music.appdata.xml.in:32
+#: data/io.elementary.music.appdata.xml.in:36
 msgid "PlaylistsUtils: Use Gtk.FileChooserNative"
 msgstr "PlaylistsUtils: Gtk.FileChooserNative を使用"
 
-#: data/io.elementary.music.appdata.xml.in:33
+#: data/io.elementary.music.appdata.xml.in:37
 msgid "Accurately remember window size"
 msgstr "正確なウィンドウサイズを保存"
 
-#: data/io.elementary.music.appdata.xml.in:39
+#: data/io.elementary.music.appdata.xml.in:43
 msgid "Scale album art properly at high resolutions"
 msgstr "高解像度においてアルバムアートの大きさを正しく調整"
 
-#: data/io.elementary.music.appdata.xml.in:40
+#: data/io.elementary.music.appdata.xml.in:44
 msgid ""
 "Accurately select Music Folder Location for directories with spaces in name"
 msgstr ""
 "名前に空白が含まれるミュージックフォルダーの場所を正しく選択できるように修正"
 
-#: data/io.elementary.music.appdata.xml.in:41
+#: data/io.elementary.music.appdata.xml.in:45
 msgid "New MediaKeyListener path for gnome-settings-daemon"
 msgstr "gnome-settings-daemon に対する新しい MediaKeyListener のパスを使用"
 
-#: data/io.elementary.music.appdata.xml.in:47
+#: data/io.elementary.music.appdata.xml.in:51
 msgid "AlbumView: double-click to play album"
 msgstr "アルバムビュー: ダブルクリックでアルバムを再生"
 
-#: data/io.elementary.music.appdata.xml.in:48
+#: data/io.elementary.music.appdata.xml.in:52
 msgid "Associate with s3m files"
 msgstr "s3m ファイルとの関連付け"
 
-#: data/io.elementary.music.appdata.xml.in:49
+#: data/io.elementary.music.appdata.xml.in:53
 msgid "Queue fixes"
 msgstr "キューの修正"
 
-#: data/io.elementary.music.appdata.xml.in:50
+#: data/io.elementary.music.appdata.xml.in:54
 msgid "Properly restore playlists"
 msgstr "プレイリストを正しく復元するように修正"
 
-#: data/io.elementary.music.appdata.xml.in:51
+#: data/io.elementary.music.appdata.xml.in:55
 msgid "Always respect custom music folder setting"
 msgstr "カスタムミュージックフォルダーの設定を常に反映するように修正"
 
-#: data/io.elementary.music.appdata.xml.in:52
-#: data/io.elementary.music.appdata.xml.in:61
-#: data/io.elementary.music.appdata.xml.in:70
-#: data/io.elementary.music.appdata.xml.in:102
-#: data/io.elementary.music.appdata.xml.in:117
+#: data/io.elementary.music.appdata.xml.in:56
+#: data/io.elementary.music.appdata.xml.in:65
+#: data/io.elementary.music.appdata.xml.in:74
+#: data/io.elementary.music.appdata.xml.in:106
+#: data/io.elementary.music.appdata.xml.in:121
 msgid "Minor bug fixes"
 msgstr "軽微なバグの修正"
 
-#: data/io.elementary.music.appdata.xml.in:58
+#: data/io.elementary.music.appdata.xml.in:62
 msgid "Fix list and column view sorting"
 msgstr "リスト表示とコラム表示におけるファイルの表示順を修正"
 
-#: data/io.elementary.music.appdata.xml.in:59
+#: data/io.elementary.music.appdata.xml.in:63
 msgid "Add orange accent color"
 msgstr "オレンジ色のアクセントカラーを追加"
 
-#: data/io.elementary.music.appdata.xml.in:60
+#: data/io.elementary.music.appdata.xml.in:64
 msgid "Add shortcut accels to tooltips"
 msgstr "ツールチップにショートカットアクセラレーターを追加"
 
-#: data/io.elementary.music.appdata.xml.in:67
+#: data/io.elementary.music.appdata.xml.in:71
 msgid "Various UI changes"
 msgstr "UI のさまざまな変更"
 
-#: data/io.elementary.music.appdata.xml.in:68
+#: data/io.elementary.music.appdata.xml.in:72
 msgid "Shuffle fixes"
 msgstr "シャッフル再生の修正"
 
-#: data/io.elementary.music.appdata.xml.in:69
+#: data/io.elementary.music.appdata.xml.in:73
 msgid "Initial MPRIS support"
 msgstr "MPRIS への最初の対応"
 
-#: data/io.elementary.music.appdata.xml.in:76
+#: data/io.elementary.music.appdata.xml.in:80
 msgid "Detect library changes at startup."
 msgstr "起動時にライブラリーの変更を検出するように修正しました。"
 
-#: data/io.elementary.music.appdata.xml.in:77
+#: data/io.elementary.music.appdata.xml.in:81
 msgid "Support searching by URI"
 msgstr "URI による検索に対応"
 
-#: data/io.elementary.music.appdata.xml.in:78
+#: data/io.elementary.music.appdata.xml.in:82
 msgid "Change the queue mechanism to make it less confusing."
 msgstr "キューの仕組みを単純化しました。"
 
-#: data/io.elementary.music.appdata.xml.in:79
+#: data/io.elementary.music.appdata.xml.in:83
 msgid "Improve equalizer style."
 msgstr "イコライザーのスタイルを改善しました。"
 
-#: data/io.elementary.music.appdata.xml.in:80
-#: data/io.elementary.music.appdata.xml.in:85
-#: data/io.elementary.music.appdata.xml.in:90
-#: data/io.elementary.music.appdata.xml.in:95
+#: data/io.elementary.music.appdata.xml.in:84
+#: data/io.elementary.music.appdata.xml.in:89
+#: data/io.elementary.music.appdata.xml.in:94
+#: data/io.elementary.music.appdata.xml.in:99
 msgid "Minor bug fixes."
 msgstr "軽微なバグを修正しました。"
 
-#: data/io.elementary.music.appdata.xml.in:100
+#: data/io.elementary.music.appdata.xml.in:104
 msgid "Add rounded bottom window corner."
 msgstr "ウィンドウ下部の角を丸くしました。"
 
-#: data/io.elementary.music.appdata.xml.in:103
-#: data/io.elementary.music.appdata.xml.in:118
+#: data/io.elementary.music.appdata.xml.in:107
+#: data/io.elementary.music.appdata.xml.in:122
 msgid "New translations"
 msgstr "新しい翻訳"
 
-#: data/io.elementary.music.appdata.xml.in:109
+#: data/io.elementary.music.appdata.xml.in:113
 msgid "Release for Loki."
 msgstr "Loki 向けのリリースです。"
 
-#: data/io.elementary.music.appdata.xml.in:111
+#: data/io.elementary.music.appdata.xml.in:115
 msgid "Add support for Opus Ogg"
 msgstr "Opus Ogg への対応"
 
-#: data/io.elementary.music.appdata.xml.in:112
+#: data/io.elementary.music.appdata.xml.in:116
 msgid "Fix Ctrl+Q support for non-Latin keyboard layouts"
 msgstr "非ラテンキーボードレイアウトへの Ctrl+Q キーの対応を修正"
 
-#: data/io.elementary.music.appdata.xml.in:113
+#: data/io.elementary.music.appdata.xml.in:117
 msgid "Reorganize media edition layout"
 msgstr "メディアエディションレイアウトを認識するように修正"
 
-#: data/io.elementary.music.appdata.xml.in:114
+#: data/io.elementary.music.appdata.xml.in:118
 msgid "Port grid to support HiDPI displays"
 msgstr "グリッドの HiDPI ディスプレイへの対応"
 
-#: data/io.elementary.music.appdata.xml.in:115
+#: data/io.elementary.music.appdata.xml.in:119
 msgid "Update icons to latest elementary icon release"
 msgstr "最新の elementary アイコンテーマのアイコンに更新"
 
-#: data/io.elementary.music.appdata.xml.in:116
+#: data/io.elementary.music.appdata.xml.in:120
 msgid "Respect privacy mode"
 msgstr "プライバシーモードの設定を反映するように修正"
 
-#: data/io.elementary.music.appdata.xml.in:156
+#: data/io.elementary.music.appdata.xml.in:160
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
 
