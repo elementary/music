@@ -1,3 +1,37 @@
+noise (5.1.0) bionic; urgency=medium
+
+  * Release 5.1.0 (#641)
+  * MediaMenu: Use Gtk.show_uri_on_window (#607)
+  * Update translation files
+  * Add launchable tag to appdata (#633)
+  * Update translation template
+  * FileNotFoundDialog: Fix a typo (#631)
+  * Flatpak: use elementary runtime and Sdk (#629)
+  * RDNN Icons and MPRIS (#628)
+  * update flatpak dependencies (#627)
+  * Flatpak: Add Granite master, update Handy (#626)
+  * Fix invalid datatype when saving smart playlist (#625)
+  * SmartPlaylistEditor: Use add_button (#623)
+  * SetMusicFolderConfirmation: Fix action area margin, use response
+    (#624)
+  * PreferencesWindow: Cleanup and fix layout (#622)
+  * Replace Gtk.Dialog with Granite.Dialog (#618)
+  * LINGUAS: sort, remove en_US
+  * Add flatpak manifest (#614)
+  * Application: Support Granite dark style pref (#598)
+  * Styles: Define accent color for elementary OS 6 (#611)
+  * StatusBar: use flat style (#603)
+  * Fix some terminal warnings re casts and properties (#602)
+  * Add GitHub CI (#594)
+  * LibraryWindow: Use Hdy.Window and Hdy.HeaderBar (#588)
+  * Don't use invalid vala syntax (#589)
+  * Remove CDRom plugin (#577)
+  * Use GLib.Settings for Shuffle and Repeat (#578)
+  * PluginInterface: Remove unused and cleaup (#524)
+  * Use GSettings for EQ settings (#576)
+
+ -- elementary LLC <builds@elementary.io>  Wed, 14 Jul 2021 17:05:24 +0000
+
 noise (5.0.5) bionic; urgency=medium
 
   * Release 5.0.5 (#575)
