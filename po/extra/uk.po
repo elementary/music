@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 17:06+0000\n"
-"PO-Revision-Date: 2021-06-06 00:20+0000\n"
+"PO-Revision-Date: 2021-07-14 21:52+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/music/extra/uk/"
 ">\n"
@@ -40,7 +40,7 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:17
 msgid "Fix an issue with saving smart playlists"
-msgstr ""
+msgstr "Виправлено проблему зі збереженням розумних добірок"
 
 #: data/io.elementary.music.appdata.xml.in:18
 msgid "Drop support for CD-ROM"
@@ -48,13 +48,11 @@ msgstr "Завершено підтримку CD-ROM"
 
 #: data/io.elementary.music.appdata.xml.in:19
 msgid "Dark style support"
-msgstr ""
+msgstr "Підтримка темного стилю"
 
 #: data/io.elementary.music.appdata.xml.in:20
-#, fuzzy
-#| msgid "Performance improvements"
 msgid "Minor visual improvements"
-msgstr "Поліпшено швидкодію"
+msgstr "Незначні покращення вигляду"
 
 #: data/io.elementary.music.appdata.xml.in:21
 #: data/io.elementary.music.appdata.xml.in:28
