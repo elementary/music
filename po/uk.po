@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 17:06+0000\n"
-"PO-Revision-Date: 2021-07-05 10:58+0000\n"
+"PO-Revision-Date: 2021-07-14 21:52+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/music/music/uk/"
 ">\n"
@@ -129,7 +129,7 @@ msgstr "%s (%d)"
 
 #: core/Utils/PlaylistsUtils.vala:234
 msgid "New playlist"
-msgstr "Новий список відтворення"
+msgstr "Нова добірка"
 
 #. Translators: used for new playlists ex: "New playlist (1)"
 #: core/Utils/PlaylistsUtils.vala:245
@@ -143,11 +143,11 @@ msgstr "MPEG розширеної версії 3.0 (*.m3u)"
 
 #: core/Utils/PlaylistsUtils.vala:269 core/Utils/PlaylistsUtils.vala:338
 msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr "Список відтворення Shoutcast версії 2.0 (*.pls)"
+msgstr "Добірка Shoutcast версії 2.0 (*.pls)"
 
 #: core/Utils/PlaylistsUtils.vala:272
 msgid "Export Playlist"
-msgstr "Експортувати список відтворення"
+msgstr "Експортувати добірку"
 
 #: core/Utils/PlaylistsUtils.vala:275 src/Dialogs/MediaEditor.vala:133
 #: src/Dialogs/SmartPlaylistEditor.vala:92
@@ -168,7 +168,7 @@ msgstr "Скасувати"
 
 #: core/Utils/PlaylistsUtils.vala:329
 msgid "Playlist"
-msgstr "Список відтворення"
+msgstr "Добірка"
 
 #: core/Utils/PlaylistsUtils.vala:341
 #, c-format
@@ -570,7 +570,7 @@ msgstr ""
 
 #: src/Dialogs/SetMusicFolderConfirmation.vala:47
 msgid "Export Playlists"
-msgstr "Експортувати список відтворення"
+msgstr "Експортувати добірку"
 
 #: src/Dialogs/SetMusicFolderConfirmation.vala:61
 msgid "Set Music Folder"
@@ -868,8 +868,8 @@ msgstr "Не вдалося синхронізувати"
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
-"Список відтворення, що називається %s, використовується для синхронізації "
-"пристрою %s, але його неможливо знайти."
+"Добірку, з назвою %s, застосовано для синхронізації пристрою %s, але його "
+"неможливо знайти."
 
 #: src/Views/DeviceSummaryWidget.vala:316
 #: src/Views/DeviceSummaryWidget.vala:321
@@ -1228,7 +1228,7 @@ msgstr ""
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:58
 msgid "Edit Smart Playlist"
-msgstr "Змінити інтелектуальний список відтворення"
+msgstr "Змінити інтелектуальну добірку"
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:65
 msgid ""
@@ -1237,10 +1237,10 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
-"Цей список буде автоматично заповнюватися піснями, які задовольняють його "
-"умови. Щоб змінити ці умови, натисніть на елементі в боковій панелі "
-"<b>правою кнопкою миші</b> та виберіть <b>Змінити</b>. Або, ви можете "
-"натиснути на кнопку внизу."
+"Ця добірка автоматично наповнюватися піснями, які відповідають її умовам. "
+"Щоб змінити ці умови, натисніть на елементі в боковій панелі <b>правою "
+"кнопкою миші</b> та виберіть <b>Змінити</b>. Або, ви можете натиснути на "
+"кнопку внизу."
 
 #: src/Views/Wrappers/ViewWrapper.vala:418
 msgid "No media"
@@ -1336,7 +1336,7 @@ msgstr "Вилучити з черги"
 
 #: src/Widgets/MediaMenu.vala:153
 msgid "New Playlist…"
-msgstr "Новий список відтворення…"
+msgstr "Нова добірка…"
 
 #: src/Widgets/MediaMenu.vala:193
 #, c-format
@@ -1365,7 +1365,7 @@ msgstr "Змінити…"
 
 #: src/Widgets/SourceListView.vala:95
 msgid "Save as Playlist"
-msgstr "Зберегти як список відтворення"
+msgstr "Зберегти як добірку"
 
 #: src/Widgets/SourceListView.vala:103
 msgid "Export…"
@@ -1377,11 +1377,11 @@ msgstr "Витягти"
 
 #: src/Widgets/SourceListView.vala:176 src/Widgets/SourceListView.vala:219
 msgid "New Playlist"
-msgstr "Новий список відтворення"
+msgstr "Нова добірка"
 
 #: src/Widgets/SourceListView.vala:184 src/Widgets/SourceListView.vala:220
 msgid "New Smart Playlist"
-msgstr "Новий інтелектуальний список відтворення"
+msgstr "Нова інтелектуальна добірка"
 
 #: src/Widgets/SourceListView.vala:221
 msgid "Import Playlists"
@@ -1402,15 +1402,15 @@ msgstr "Мережа"
 
 #: src/Widgets/StatusBar.vala:36
 msgid "Add Playlist"
-msgstr "Додати список відтворення"
+msgstr "Додати добірку"
 
 #: src/Widgets/StatusBar.vala:37
 msgid "Add Smart Playlist"
-msgstr "Додати інтелектуальний список відтворювання"
+msgstr "Додати інтелектуальну добірку"
 
 #: src/Widgets/StatusBar.vala:48
 msgid "Add Playlist…"
-msgstr "Додати список відтворення…"
+msgstr "Додати добірку…"
 
 #. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: src/Widgets/StatusBar.vala:74
