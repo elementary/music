@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 17:06+0000\n"
-"PO-Revision-Date: 2021-07-15 08:06+0000\n"
+"PO-Revision-Date: 2021-07-15 10:58+0000\n"
 "Last-Translator: Özgür Baskin <queeup@zoho.com>\n"
 "Language-Team: Turkish <https://l10n.elementary.io/projects/music/extra/tr/>"
 "\n"
@@ -40,7 +40,7 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:17
 msgid "Fix an issue with saving smart playlists"
-msgstr ""
+msgstr "Akıllı çalma listelerini kaydetmeyle ilgili bir sorun düzeltildi"
 
 #: data/io.elementary.music.appdata.xml.in:18
 msgid "Drop support for CD-ROM"
