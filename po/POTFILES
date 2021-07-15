@@ -36,11 +36,6 @@ plugins/Devices/iPod/iPodLibrary.vala
 plugins/Devices/iPod/iPodMediaHelper.vala
 plugins/Devices/iPod/iPodPlaylistHelper.vala
 plugins/Devices/iPod/iPodStreamer.vala
-plugins/LastFM/Core.vala
-plugins/LastFM/LastFM.vala
-plugins/LastFM/SimilarMedia.vala
-plugins/LastFM/SimilarMediaView.vala
-plugins/LastFM/Tag.vala
 src/Application.vala
 src/DataBase.vala
 src/FileOperator.vala
