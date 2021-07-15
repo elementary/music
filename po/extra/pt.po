@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-15 13:56+0000\n"
-"PO-Revision-Date: 2021-07-14 21:52+0000\n"
+"PO-Revision-Date: 2021-07-15 20:19+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.elementary.io/projects/music/extra/"
 "pt/>\n"
@@ -238,12 +238,10 @@ msgid "io.elementary.music"
 msgstr "io.elementary.music"
 
 #: data/io.elementary.music.desktop.in:13
-#, fuzzy
-#| msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;Phone;Songs;"
 msgstr ""
-"Ruído;Áudio;Reprodutor;MP3;iPod;Tocar;Lista de reprodução;Média;CD;Telefone;"
-"Músicas;"
+"Ruído;Áudio;Reprodutor;MP3;iPod;Tocar;Lista de "
+"reprodução;Média;Telefone;Músicas;"
 
 #~ msgid "multimedia-audio-player"
 #~ msgstr "multimedia-audio-player"
