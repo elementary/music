@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-15 13:56+0000\n"
-"PO-Revision-Date: 2021-04-16 11:02+0000\n"
+"PO-Revision-Date: 2021-07-15 15:19+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
-"Language-Team: Catalan <https://l10n.elementary.io/projects/music/extra/ca/"
-">\n"
+"Language-Team: Catalan <https://l10n.elementary.io/projects/music/extra/ca/>"
+"\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,7 +39,7 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:17
 msgid "Fix an issue with saving smart playlists"
-msgstr ""
+msgstr "Correcció d'un problema en desar llistes de reproducció intel·ligents"
 
 #: data/io.elementary.music.appdata.xml.in:18
 msgid "Drop support for CD-ROM"
@@ -47,13 +47,11 @@ msgstr "S'abandona el suport per a CD-ROM."
 
 #: data/io.elementary.music.appdata.xml.in:19
 msgid "Dark style support"
-msgstr ""
+msgstr "Admissió de l'estil fosc"
 
 #: data/io.elementary.music.appdata.xml.in:20
-#, fuzzy
-#| msgid "Performance improvements"
 msgid "Minor visual improvements"
-msgstr "Millores de rendiment"
+msgstr "Millores visuals menors"
 
 #: data/io.elementary.music.appdata.xml.in:21
 #: data/io.elementary.music.appdata.xml.in:28
@@ -150,7 +148,7 @@ msgstr "Addició d'un color accentual de color taronja"
 
 #: data/io.elementary.music.appdata.xml.in:64
 msgid "Add shortcut accels to tooltips"
-msgstr "Addició de la drecera a l'eina de consells"
+msgstr "Addició de la drecera a la descripció emergent"
 
 #: data/io.elementary.music.appdata.xml.in:71
 msgid "Various UI changes"
@@ -243,12 +241,10 @@ msgid "io.elementary.music"
 msgstr "io.elementary.music"
 
 #: data/io.elementary.music.desktop.in:13
-#, fuzzy
-#| msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;Phone;Songs;"
 msgstr ""
-"Noise;Àudio;Reproductor;MP3;iPod;Play;Reproduir;Llista de reproducció;"
-"Multimèdia;Media;CD;Telèfon;Cançons;"
+"Noise;Àudio;Reproductor;MP3;iPod;Play;Reproduir;Llista de "
+"reproducció;Media;Telèfon;Cançons;"
 
 #~ msgid "multimedia-audio-player"
 #~ msgstr "multimedia-audio-player"
