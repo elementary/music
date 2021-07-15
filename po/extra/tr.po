@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-14 17:06+0000\n"
-"PO-Revision-Date: 2021-06-22 21:55+0000\n"
-"Last-Translator: Özgür Baskin <queeup@zoho.com>\n"
-"Language-Team: Turkish <https://l10n.elementary.io/projects/music/extra/tr/"
-">\n"
+"PO-Revision-Date: 2021-07-15 08:06+0000\n"
+"Last-Translator: Deleted User <noreply+411@weblate.org>\n"
+"Language-Team: Turkish <https://l10n.elementary.io/projects/music/extra/tr/>"
+"\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -193,7 +193,7 @@ msgstr ""
 #: data/io.elementary.music.appdata.xml.in:107
 #: data/io.elementary.music.appdata.xml.in:122
 msgid "New translations"
-msgstr ""
+msgstr "Yeni çeviriler"
 
 #: data/io.elementary.music.appdata.xml.in:113
 msgid "Release for Loki."
