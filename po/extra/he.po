@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-15 13:56+0000\n"
-"PO-Revision-Date: 2021-04-15 06:10+0000\n"
+"PO-Revision-Date: 2021-07-15 15:19+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/music/extra/he/>\n"
 "Language: he\n"
@@ -34,7 +34,7 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:17
 msgid "Fix an issue with saving smart playlists"
-msgstr ""
+msgstr "תוקנה תקלה בשמירת רשימות נגינה חכמות"
 
 #: data/io.elementary.music.appdata.xml.in:18
 msgid "Drop support for CD-ROM"
@@ -42,13 +42,11 @@ msgstr "השמטת תמיכה בתקליטורים"
 
 #: data/io.elementary.music.appdata.xml.in:19
 msgid "Dark style support"
-msgstr ""
+msgstr "תמיכה בסגנון כהה"
 
 #: data/io.elementary.music.appdata.xml.in:20
-#, fuzzy
-#| msgid "Performance improvements"
 msgid "Minor visual improvements"
-msgstr "שיפורי ביצועים"
+msgstr "תיקונים חזותיים קלים"
 
 #: data/io.elementary.music.appdata.xml.in:21
 #: data/io.elementary.music.appdata.xml.in:28
@@ -230,10 +228,10 @@ msgid "io.elementary.music"
 msgstr "io.elementary.music"
 
 #: data/io.elementary.music.desktop.in:13
-#, fuzzy
-#| msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;Phone;Songs;"
-msgstr "Noise;נגן;מוזיקה;MP3;אייפוד;נגן;רשימת-נגינה;מדיה;CD;פלאפון;שירים;"
+msgstr ""
+"Noise;נגן;מוזיקה;MP3;אייפוד;נגן;רשימת-נגינה;מדיה;פלאפון;סלולרי;סלולר;אייפון;ש"
+"ירים;"
 
 #~ msgid "multimedia-audio-player"
 #~ msgstr "multimedia-audio-player"
