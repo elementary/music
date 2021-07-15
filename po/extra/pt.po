@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-14 17:06+0000\n"
+"POT-Creation-Date: 2021-07-15 13:56+0000\n"
 "PO-Revision-Date: 2021-07-14 21:52+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.elementary.io/projects/music/extra/"
@@ -39,7 +39,8 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:17
 msgid "Fix an issue with saving smart playlists"
-msgstr "Resolve um problema com a gravação de listas de reprodução inteligentes"
+msgstr ""
+"Resolve um problema com a gravação de listas de reprodução inteligentes"
 
 #: data/io.elementary.music.appdata.xml.in:18
 msgid "Drop support for CD-ROM"
@@ -237,7 +238,9 @@ msgid "io.elementary.music"
 msgstr "io.elementary.music"
 
 #: data/io.elementary.music.desktop.in:13
-msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+#, fuzzy
+#| msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;Phone;Songs;"
 msgstr ""
 "Ruído;Áudio;Reprodutor;MP3;iPod;Tocar;Lista de reprodução;Média;CD;Telefone;"
 "Músicas;"

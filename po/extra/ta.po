@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-14 17:06+0000\n"
+"POT-Creation-Date: 2021-07-15 13:56+0000\n"
 "PO-Revision-Date: 2016-01-04 18:58+0000\n"
 "Last-Translator: Corentin Noël <corentin@elementaryos.org>\n"
 "Language-Team: Tamil <ta@li.org>\n"
@@ -229,6 +229,8 @@ msgid "io.elementary.music"
 msgstr ""
 
 #: data/io.elementary.music.desktop.in:13
-msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+#, fuzzy
+#| msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;Phone;Songs;"
 msgstr ""
 "சத்தம்;ஆடியோ;பிளேயர்;எம்பி3;ஐபாட்;பிளே;பிளேலிஸ்ட்;மீடியா;குறுவட்டு;தொலைபேசி;பாடல்கள்;"

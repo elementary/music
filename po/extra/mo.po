@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-14 17:06+0000\n"
+"POT-Creation-Date: 2021-07-15 13:56+0000\n"
 "PO-Revision-Date: 2018-05-26 11:00+0000\n"
 "Last-Translator: Romanic Ion Nicușor <contact.romanic@gmail.com>\n"
 "Language-Team: Moldovan <https://weblate.elementary.io/projects/music/extra/"
@@ -226,7 +226,9 @@ msgid "io.elementary.music"
 msgstr ""
 
 #: data/io.elementary.music.desktop.in:13
-msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+#, fuzzy
+#| msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;Phone;Songs;"
 msgstr ""
 "Zgomot, audio, player, MP3, iPod, Redare, listei de redare media, CD-uri, "
 "telefoane; cântece;"

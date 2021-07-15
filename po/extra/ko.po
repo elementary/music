@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-14 17:06+0000\n"
+"POT-Creation-Date: 2021-07-15 13:56+0000\n"
 "PO-Revision-Date: 2018-06-27 22:08+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://weblate.elementary.io/projects/music/extra/ko/"
@@ -235,7 +235,9 @@ msgid "io.elementary.music"
 msgstr "elementary LLC."
 
 #: data/io.elementary.music.desktop.in:13
-msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+#, fuzzy
+#| msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;Phone;Songs;"
 msgstr "노이즈;오디오;플레이어;MP3;iPod;재생;재생 목록;미디어;CD;폰;음악들;"
 
 #~ msgid "multimedia-audio-player"
