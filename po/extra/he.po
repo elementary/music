@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-07-15 15:19+0000\n"
+"PO-Revision-Date: 2021-07-16 22:48+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/music/extra/he/>\n"
 "Language: he\n"
@@ -25,22 +25,16 @@ msgid "The official elementary music player"
 msgstr "נגן המוזיקה הרשמי של elementary"
 
 #: data/io.elementary.music.appdata.xml.in:12
-#, fuzzy
-#| msgid ""
-#| "Music is a fast and beautiful audio player with a focus on music and "
-#| "libraries. It handles external devices, CDs, and album art."
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices and album art."
 msgstr ""
 "מוזיקה הוא נגן שמע מהיר ויפה המתמקד במוזיקה ובספריות. מסוגל לטפל בהתקנים "
-"חיצוניים, תקליטורים ועטיפות אלבומים."
+"חיצוניים ועטיפות אלבומים."
 
 #: data/io.elementary.music.appdata.xml.in:17
-#, fuzzy
-#| msgid "Drop support for CD-ROM"
 msgid "Drop support for Last.FM"
-msgstr "השמטת תמיכה בתקליטורים"
+msgstr "השמטת תמיכה ב־Last.FM"
 
 #: data/io.elementary.music.appdata.xml.in:18
 #: data/io.elementary.music.appdata.xml.in:27
