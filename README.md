@@ -7,7 +7,6 @@
 
 You'll need the following dependencies:
 * meson
-* libaccounts-glib-dev
 * libclutter-gtk-1.0-dev
 * libdbus-glib-1-dev
 * libgda-5.0-dev
@@ -16,7 +15,6 @@ You'll need the following dependencies:
 * libgpod-dev
 * libgranite-dev >= 5.2.0
 * libhandy-1-dev >= 0.83.0
-* libsignon-glib-dev >= 2.0
 * libgstreamer1.0-dev
 * libgstreamer-plugins-base1.0-dev
 * libgtk-3-dev >= 3.22
