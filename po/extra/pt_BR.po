@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-07-15 15:19+0000\n"
+"PO-Revision-Date: 2021-07-16 23:51+0000\n"
 "Last-Translator: lucaspifonseca <lucaspifonseca@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.elementary.io/projects/"
 "music/extra/pt_BR/>\n"
@@ -30,22 +30,16 @@ msgid "The official elementary music player"
 msgstr "O reprodutor de música oficial do elementary"
 
 #: data/io.elementary.music.appdata.xml.in:12
-#, fuzzy
-#| msgid ""
-#| "Music is a fast and beautiful audio player with a focus on music and "
-#| "libraries. It handles external devices, CDs, and album art."
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices and album art."
 msgstr ""
 "Musica é um rápido e belo reprodutor de áudio com foco em música e "
-"bibliotecas. Ele comporta dispositivos externos, CDs e artes de álbum."
+"bibliotecas. Ele comporta dispositivos externos e artes de álbum."
 
 #: data/io.elementary.music.appdata.xml.in:17
-#, fuzzy
-#| msgid "Drop support for CD-ROM"
 msgid "Drop support for Last.FM"
-msgstr "Suporte de queda para CD-ROM"
+msgstr "Suporte de Drop para Last.FM"
 
 #: data/io.elementary.music.appdata.xml.in:18
 #: data/io.elementary.music.appdata.xml.in:27
