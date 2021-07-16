@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-15 13:56+0000\n"
+"POT-Creation-Date: 2021-07-16 18:37+0000\n"
 "PO-Revision-Date: 2021-04-26 19:07+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
 "Language-Team: Catalan <https://l10n.elementary.io/projects/music/music/ca/"
@@ -243,32 +243,6 @@ msgstr "S'acaba el procés de sincronització…"
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "Es canel·la la sincronització…"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "No s'ha trobat cap cançó similar"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"No hi ha cap cançó similar a la cançó en reproducció a la vostra col·lecció. "
-"Assegureu-vos que tota la informació de la cançó és correcta i que esteu "
-"connectat a Internet. Algunes cançons poden no tenir coincidències."
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "Similars"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "elements multimèdia"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "Elements multimèdia similars"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -1446,6 +1420,28 @@ msgstr "Visualitza-ho com a llista"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "Visualitza-ho en columnes"
+
+#~ msgid "No similar songs found"
+#~ msgstr "No s'ha trobat cap cançó similar"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "No hi ha cap cançó similar a la cançó en reproducció a la vostra "
+#~ "col·lecció. Assegureu-vos que tota la informació de la cançó és correcta "
+#~ "i que esteu connectat a Internet. Algunes cançons poden no tenir "
+#~ "coincidències."
+
+#~ msgid "Similar"
+#~ msgstr "Similars"
+
+#~ msgid "media"
+#~ msgstr "elements multimèdia"
+
+#~ msgid "Similar Media"
+#~ msgstr "Elements multimèdia similars"
 
 #~ msgid "Audio CD Invalid"
 #~ msgstr "El CD d'àudio no és vàlid"

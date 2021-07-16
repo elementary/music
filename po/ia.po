@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-15 13:56+0000\n"
+"POT-Creation-Date: 2021-07-16 18:37+0000\n"
 "PO-Revision-Date: 2018-08-29 19:33+0000\n"
 "Last-Translator: Carmina16 <mistresssilvara@hotmail.com>\n"
 "Language-Team: Interlingua <https://weblate.elementary.io/projects/music/"
@@ -241,29 +241,6 @@ msgstr ""
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr ""
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr ""
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr ""
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "medios"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "Medios simile"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -1422,6 +1399,12 @@ msgstr "Nove lista de reproduction"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr ""
+
+#~ msgid "media"
+#~ msgstr "medios"
+
+#~ msgid "Similar Media"
+#~ msgstr "Medios simile"
 
 #~ msgid "Could not find Music Folder"
 #~ msgstr "Impossibile trovar le plica del musica"

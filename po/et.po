@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-15 13:56+0000\n"
+"POT-Creation-Date: 2021-07-16 18:37+0000\n"
 "PO-Revision-Date: 2016-08-04 00:04+0000\n"
 "Last-Translator: Kristjan Vool <tictac7x@gmail.com>\n"
 "Language-Team: Estonian <et@li.org>\n"
@@ -240,32 +240,6 @@ msgstr "Sünkroniseerimise lõpetamine..."
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "Sünkroniseerimise katkestamine..."
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "Sarnaseid laule ei leitud"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"Käimasoleva lauluga pole ühtegi sarnast laulu. Veendu, et laulude teave on "
-"õige ning sa oled ühendatud internetivõrku. Samuti võib juhtuda, et "
-"käimasoleval laulul polegi kogumikus sarnaseid laule."
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "Sarnased"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "media"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "Sarnased laulud"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -1454,6 +1428,27 @@ msgstr "Kuva nimekirjana"
 #, fuzzy
 msgid "View in columns"
 msgstr "Kuva veergudena"
+
+#~ msgid "No similar songs found"
+#~ msgstr "Sarnaseid laule ei leitud"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "Käimasoleva lauluga pole ühtegi sarnast laulu. Veendu, et laulude teave "
+#~ "on õige ning sa oled ühendatud internetivõrku. Samuti võib juhtuda, et "
+#~ "käimasoleval laulul polegi kogumikus sarnaseid laule."
+
+#~ msgid "Similar"
+#~ msgstr "Sarnased"
+
+#~ msgid "media"
+#~ msgstr "media"
+
+#~ msgid "Similar Media"
+#~ msgstr "Sarnased laulud"
 
 #~ msgid "Audio CD Invalid"
 #~ msgstr "Audio CD on vigane"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-15 13:56+0000\n"
+"POT-Creation-Date: 2021-07-16 18:37+0000\n"
 "PO-Revision-Date: 2018-11-09 07:20+0000\n"
 "Last-Translator: Elvis Mujanović <elvis.mujanovic@gmail.com>\n"
 "Language-Team: Bosnian <https://weblate.elementary.io/projects/music/music/"
@@ -242,32 +242,6 @@ msgstr "Sinhronizacija se završava…"
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "Sinhronizacija se otkazuje…"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "Nije pronađena niti jedna slična pjesma"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"Ne postoje pjesme slične trenutnoj u vašoj biblioteci. Pobrinite se da su "
-"sve informacije o datoteci dobre i da ste konektovani sa interetom. Možda "
-"postoje neke slične pjesme."
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "Slično"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "mediji"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "Slični mediji"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -1454,6 +1428,27 @@ msgstr "Prikaži kao listu"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "Prikaži u kolumnama"
+
+#~ msgid "No similar songs found"
+#~ msgstr "Nije pronađena niti jedna slična pjesma"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "Ne postoje pjesme slične trenutnoj u vašoj biblioteci. Pobrinite se da su "
+#~ "sve informacije o datoteci dobre i da ste konektovani sa interetom. Možda "
+#~ "postoje neke slične pjesme."
+
+#~ msgid "Similar"
+#~ msgstr "Slično"
+
+#~ msgid "media"
+#~ msgstr "mediji"
+
+#~ msgid "Similar Media"
+#~ msgstr "Slični mediji"
 
 #~ msgid "Audio CD Invalid"
 #~ msgstr "Audio CD nevaljan"

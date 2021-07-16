@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-15 13:56+0000\n"
+"POT-Creation-Date: 2021-07-16 18:37+0000\n"
 "PO-Revision-Date: 2015-12-21 13:46+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Basque <eu@li.org>\n"
@@ -240,32 +240,6 @@ msgstr "Sinkronizazio-prozesua amaitzen..."
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "Sinkronizazioa bertan behera uzten..."
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "Ez da antzeko kantarik aurkitu"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"Ez dago uneko abestiaren antzekorik liburutegian. Egiaztatu abestien "
-"informazio guztia zuzena dela eta Internetera konektaturik zaudela. Baliteke "
-"zenbait abestik parekorik ez izatea."
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "Antzekoa"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "edukia"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "Antzeko edukiak"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -1457,6 +1431,27 @@ msgstr "Ikusi zerrenda gisa"
 #, fuzzy
 msgid "View in columns"
 msgstr "Ikusi zutabetan"
+
+#~ msgid "No similar songs found"
+#~ msgstr "Ez da antzeko kantarik aurkitu"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "Ez dago uneko abestiaren antzekorik liburutegian. Egiaztatu abestien "
+#~ "informazio guztia zuzena dela eta Internetera konektaturik zaudela. "
+#~ "Baliteke zenbait abestik parekorik ez izatea."
+
+#~ msgid "Similar"
+#~ msgstr "Antzekoa"
+
+#~ msgid "media"
+#~ msgstr "edukia"
+
+#~ msgid "Similar Media"
+#~ msgstr "Antzeko edukiak"
 
 #~ msgid "Audio CD Invalid"
 #~ msgstr "Audio CD baliogabea"

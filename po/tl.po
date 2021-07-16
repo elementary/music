@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-15 13:56+0000\n"
+"POT-Creation-Date: 2021-07-16 18:37+0000\n"
 "PO-Revision-Date: 2018-10-08 00:04+0000\n"
 "Last-Translator: Axel Philip Advento <badwolf.bloodseeker.rev@gmail.com>\n"
 "Language-Team: Tagalog <https://weblate.elementary.io/projects/music/music/"
@@ -236,32 +236,6 @@ msgstr "Tinatapos ang proseso ng pag-sync..."
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "Kinakansela ang Pagsi-sync"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "Walang nakitang mga katulad na kanta"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"Walang mga kantang katulad sa kasalukuyang kanta mo sa library. Siguraduhing "
-"lahat ng info ng kanta ay tama at nakakonekta ka sa Internet. Maaaring may "
-"mga kantang walang katugma."
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "Katulad"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "midya"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "Katulad na Midya"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -1422,6 +1396,27 @@ msgstr "Tignan bilang Listahan"
 #, fuzzy
 msgid "View in columns"
 msgstr "Ipakita bilang mga Album"
+
+#~ msgid "No similar songs found"
+#~ msgstr "Walang nakitang mga katulad na kanta"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "Walang mga kantang katulad sa kasalukuyang kanta mo sa library. "
+#~ "Siguraduhing lahat ng info ng kanta ay tama at nakakonekta ka sa "
+#~ "Internet. Maaaring may mga kantang walang katugma."
+
+#~ msgid "Similar"
+#~ msgstr "Katulad"
+
+#~ msgid "media"
+#~ msgstr "midya"
+
+#~ msgid "Similar Media"
+#~ msgstr "Katulad na Midya"
 
 #~ msgid "Impossible to read the contents of this Audio CD"
 #~ msgstr "Imposibleng mabasa ang laman ng Audio CD na ito."

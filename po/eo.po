@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-15 13:56+0000\n"
+"POT-Creation-Date: 2021-07-16 18:37+0000\n"
 "PO-Revision-Date: 2019-07-21 10:24+0000\n"
 "Last-Translator: Shtonchjo <shtonchjo@gmail.com>\n"
 "Language-Team: Esperanto <https://l10n.elementary.io/projects/music/music/eo/"
@@ -241,32 +241,6 @@ msgstr "Finanta sinkronadon…"
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "Rezigni sinkronigon…"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "Neniu kanto simila estis trovita"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"Estas neniu kanto simila al la nuna kanto en via diskoteko. Certiĝu, ke ĉiuj "
-"kantaj informoj estas ĝustaj kaj ke vi konektas al interreto. Iuj kantoj "
-"povas ne kongrui."
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "Simila"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "aŭdovidaĵo"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "Simila aŭdovidaĵo"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -1441,6 +1415,27 @@ msgstr "Prezenti laŭ listo"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "Prezenti laŭ kolumnoj"
+
+#~ msgid "No similar songs found"
+#~ msgstr "Neniu kanto simila estis trovita"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "Estas neniu kanto simila al la nuna kanto en via diskoteko. Certiĝu, ke "
+#~ "ĉiuj kantaj informoj estas ĝustaj kaj ke vi konektas al interreto. Iuj "
+#~ "kantoj povas ne kongrui."
+
+#~ msgid "Similar"
+#~ msgstr "Simila"
+
+#~ msgid "media"
+#~ msgstr "aŭdovidaĵo"
+
+#~ msgid "Similar Media"
+#~ msgstr "Simila aŭdovidaĵo"
 
 #~ msgid "Audio CD Invalid"
 #~ msgstr "Nevalida son-KD"

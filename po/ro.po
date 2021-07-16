@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-15 13:56+0000\n"
+"POT-Creation-Date: 2021-07-16 18:37+0000\n"
 "PO-Revision-Date: 2020-12-29 15:16+0000\n"
 "Last-Translator: Silviu Popescu <teodorspopescu@gmail.com>\n"
 "Language-Team: Romanian <https://l10n.elementary.io/projects/music/music/ro/"
@@ -242,32 +242,6 @@ msgstr "Terminare proces de sincronizare..."
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "Anulând sincronizarea..."
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "Nu s-au găsit melodii similare"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"Nu exista melodii similare melodiei curente in biblioteca ta. Asigură-te că "
-"toată informaţia melodiei este corectă şi ca eşti conectat la internet. "
-"Unele melodii s-ar putea să nu aibe perechi."
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "Similar"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "media"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "Multimedia Similare"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -1465,6 +1439,27 @@ msgstr "Arată ca listă"
 #, fuzzy
 msgid "View in columns"
 msgstr "Afișează în coloane"
+
+#~ msgid "No similar songs found"
+#~ msgstr "Nu s-au găsit melodii similare"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "Nu exista melodii similare melodiei curente in biblioteca ta. Asigură-te "
+#~ "că toată informaţia melodiei este corectă şi ca eşti conectat la "
+#~ "internet. Unele melodii s-ar putea să nu aibe perechi."
+
+#~ msgid "Similar"
+#~ msgstr "Similar"
+
+#~ msgid "media"
+#~ msgstr "media"
+
+#~ msgid "Similar Media"
+#~ msgstr "Multimedia Similare"
 
 #~ msgid "Audio CD Invalid"
 #~ msgstr "CD audio invalid"

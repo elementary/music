@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-15 13:56+0000\n"
+"POT-Creation-Date: 2021-07-16 18:37+0000\n"
 "PO-Revision-Date: 2017-05-09 22:27+0000\n"
 "Last-Translator: Martin Tomov <martin.tomov@boomer.digital>\n"
 "Language-Team: Bulgarian <https://l10n.elementary.io/projects/music/music/bg/"
@@ -241,32 +241,6 @@ msgstr "Завършване на синхронизиращия процес…
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "Отмяна на синхронизирането…"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "Не бяха открити подобни песни"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"Няма песни които да са подобни на текущата във вашата библиотека. Уверете се "
-"че информацията за всички песни е правилна и че сте свързан с интернет. "
-"Някой песни може да нямат подобия."
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "Подобни"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "медия"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "Подобна медия"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -1461,6 +1435,27 @@ msgstr "Изглед като списък"
 #, fuzzy
 msgid "View in columns"
 msgstr "Изглед като колони"
+
+#~ msgid "No similar songs found"
+#~ msgstr "Не бяха открити подобни песни"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "Няма песни които да са подобни на текущата във вашата библиотека. Уверете "
+#~ "се че информацията за всички песни е правилна и че сте свързан с "
+#~ "интернет. Някой песни може да нямат подобия."
+
+#~ msgid "Similar"
+#~ msgstr "Подобни"
+
+#~ msgid "media"
+#~ msgstr "медия"
+
+#~ msgid "Similar Media"
+#~ msgstr "Подобна медия"
 
 #~ msgid "Audio CD Invalid"
 #~ msgstr "Музикалният диск е недействителен"

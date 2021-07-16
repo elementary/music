@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-15 13:56+0000\n"
+"POT-Creation-Date: 2021-07-16 18:37+0000\n"
 "PO-Revision-Date: 2015-12-21 13:43+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Albanian <sq@li.org>\n"
@@ -240,32 +240,6 @@ msgstr "Duke plotësuar procesin e sinkronizimit…"
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "Duke anuluar sinkronizimin…"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "Nuk u gjetën këngë të ngjashme"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"Nuk ka ndonjë këngë të ngjashme me këngën aktuale në librarinë tënde. "
-"Sigurohu që informacionet e të gjitha këngëve janë të sakta dhe që të jeni "
-"të lidhur me internet. Disa këngë mund të mos kenë përputhje."
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "Të ngjashme"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr ""
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "Këngë të ngjashme"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -1453,6 +1427,24 @@ msgstr "Paraqite si Listë"
 #, fuzzy
 msgid "View in columns"
 msgstr "Paraqite në Kolona"
+
+#~ msgid "No similar songs found"
+#~ msgstr "Nuk u gjetën këngë të ngjashme"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "Nuk ka ndonjë këngë të ngjashme me këngën aktuale në librarinë tënde. "
+#~ "Sigurohu që informacionet e të gjitha këngëve janë të sakta dhe që të "
+#~ "jeni të lidhur me internet. Disa këngë mund të mos kenë përputhje."
+
+#~ msgid "Similar"
+#~ msgstr "Të ngjashme"
+
+#~ msgid "Similar Media"
+#~ msgstr "Këngë të ngjashme"
 
 #~ msgid "Audio CD Invalid"
 #~ msgstr "CD Audio i pavlefshëm"

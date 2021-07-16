@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-15 13:56+0000\n"
+"POT-Creation-Date: 2021-07-16 18:37+0000\n"
 "PO-Revision-Date: 2020-12-15 15:16+0000\n"
 "Last-Translator: Eri Hidayat <eriwhidayat@gmail.com>\n"
 "Language-Team: Indonesian <https://l10n.elementary.io/projects/music/music/"
@@ -240,32 +240,6 @@ msgstr "Menyelesaikan proses penyelarasan…"
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "Membatalkan Penyelarasan…"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "Tidak ditemukan lagu yang mirip"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"Tidak ada lagu yang mirip dengan lagu yang sedang di pustaka Anda. Pastikan "
-"semua info lagu sudah benar dan Anda terhubung ke Internet. Beberapa lagu "
-"mungkin tidak cocok."
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "Serupa"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "media"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "Lagu yang Mirip"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -1430,6 +1404,27 @@ msgstr "Lihat sebagai daftar"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "Lihat sebagai kolom"
+
+#~ msgid "No similar songs found"
+#~ msgstr "Tidak ditemukan lagu yang mirip"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "Tidak ada lagu yang mirip dengan lagu yang sedang di pustaka Anda. "
+#~ "Pastikan semua info lagu sudah benar dan Anda terhubung ke Internet. "
+#~ "Beberapa lagu mungkin tidak cocok."
+
+#~ msgid "Similar"
+#~ msgstr "Serupa"
+
+#~ msgid "media"
+#~ msgstr "media"
+
+#~ msgid "Similar Media"
+#~ msgstr "Lagu yang Mirip"
 
 #~ msgid "Audio CD Invalid"
 #~ msgstr "CD Audio Tidak Valid"

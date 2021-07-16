@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-15 13:56+0000\n"
+"POT-Creation-Date: 2021-07-16 18:37+0000\n"
 "PO-Revision-Date: 2017-12-28 18:44+0000\n"
 "Last-Translator: Hải Hồ <hochihai1997@gmail.com>\n"
 "Language-Team: Vietnamese <https://weblate.elementary.io/projects/music/"
@@ -241,29 +241,6 @@ msgstr ""
 #: plugins/Devices/iPod/iPodLibrary.vala:250
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
-msgstr ""
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr ""
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr ""
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr ""
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
 msgstr ""
 
 #: src/FileOperator.vala:306

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-15 13:56+0000\n"
+"POT-Creation-Date: 2021-07-16 18:37+0000\n"
 "PO-Revision-Date: 2020-05-30 13:11+0000\n"
 "Last-Translator: p-bo <pavel.borecki@gmail.com>\n"
 "Language-Team: Czech <https://l10n.elementary.io/projects/music/music/cs/>\n"
@@ -240,32 +240,6 @@ msgstr "Dokončování synchronizace…"
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "Rušení synchronizace…"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "Žádná podobná píseň nenalezena"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"Ve vaší sbírce nejsou žádné podobné skladby. Ujistěte se, že informace o "
-"vašich skladbách jsou správné, a že jste připojeni k internetu. Pro některé "
-"skladby nemusí existovat žádné podobné."
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "Podobné"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "média"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "Podobná média"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -1449,6 +1423,27 @@ msgstr "Zobrazit jako seznam"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "Zobrazit ve sloupcích"
+
+#~ msgid "No similar songs found"
+#~ msgstr "Žádná podobná píseň nenalezena"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "Ve vaší sbírce nejsou žádné podobné skladby. Ujistěte se, že informace o "
+#~ "vašich skladbách jsou správné, a že jste připojeni k internetu. Pro "
+#~ "některé skladby nemusí existovat žádné podobné."
+
+#~ msgid "Similar"
+#~ msgstr "Podobné"
+
+#~ msgid "media"
+#~ msgstr "média"
+
+#~ msgid "Similar Media"
+#~ msgstr "Podobná média"
 
 #~ msgid "Audio CD Invalid"
 #~ msgstr "Neplatné audio CD"

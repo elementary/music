@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-15 13:56+0000\n"
+"POT-Creation-Date: 2021-07-16 18:37+0000\n"
 "PO-Revision-Date: 2020-10-31 21:15+0000\n"
 "Last-Translator: Jaimie85 <alsemgeest@gmail.com>\n"
 "Language-Team: Dutch <https://l10n.elementary.io/projects/music/music/nl/>\n"
@@ -240,32 +240,6 @@ msgstr "Synchronisatieproces afronden…"
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "Synchronisatie afbreken…"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "Geen vergelijkbare liedjes gevonden"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"Er zijn geen nummers vergelijkbaar met het huidige nummer in je bibliotheek. "
-"Ga na of alle informatie over het nummer correct is, en dat je met internet "
-"verbonden bent. Sommige nummers kunnen geen resultaten hebben."
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "Vergelijkbaar"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "media"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "Vergelijkbare media"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -1447,6 +1421,28 @@ msgstr "Lijstweergave"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "Kolomweergave"
+
+#~ msgid "No similar songs found"
+#~ msgstr "Geen vergelijkbare liedjes gevonden"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "Er zijn geen nummers vergelijkbaar met het huidige nummer in je "
+#~ "bibliotheek. Ga na of alle informatie over het nummer correct is, en dat "
+#~ "je met internet verbonden bent. Sommige nummers kunnen geen resultaten "
+#~ "hebben."
+
+#~ msgid "Similar"
+#~ msgstr "Vergelijkbaar"
+
+#~ msgid "media"
+#~ msgstr "media"
+
+#~ msgid "Similar Media"
+#~ msgstr "Vergelijkbare media"
 
 #~ msgid "Audio CD Invalid"
 #~ msgstr "Audio CD ongeldig"

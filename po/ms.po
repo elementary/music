@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-15 13:56+0000\n"
+"POT-Creation-Date: 2021-07-16 18:37+0000\n"
 "PO-Revision-Date: 2015-12-21 13:43+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Malay <ms@li.org>\n"
@@ -240,32 +240,6 @@ msgstr "Menyelesaikan proses segerak..."
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "Membatalkan Segerak..."
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "Tiada lagu yang serupa ditemui"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"Tiada lagu yang serupa dengan lagu semasa di dalam pustaka anda. Pastikan "
-"semua maklumat lagu adalah betul dan anda bersambung dengan Internet. "
-"Sesetengah lagu mungkin tidak mempunyai padanan."
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "Seakan"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "media"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "Media Serupa"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -1455,6 +1429,27 @@ msgstr "Lihat sebagai Senarai"
 #, fuzzy
 msgid "View in columns"
 msgstr "Lihat dalam Lajur"
+
+#~ msgid "No similar songs found"
+#~ msgstr "Tiada lagu yang serupa ditemui"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "Tiada lagu yang serupa dengan lagu semasa di dalam pustaka anda. Pastikan "
+#~ "semua maklumat lagu adalah betul dan anda bersambung dengan Internet. "
+#~ "Sesetengah lagu mungkin tidak mempunyai padanan."
+
+#~ msgid "Similar"
+#~ msgstr "Seakan"
+
+#~ msgid "media"
+#~ msgstr "media"
+
+#~ msgid "Similar Media"
+#~ msgstr "Media Serupa"
 
 #~ msgid "Audio CD Invalid"
 #~ msgstr "CD Audio Tidak Sah"

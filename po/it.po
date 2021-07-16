@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-15 13:56+0000\n"
+"POT-Creation-Date: 2021-07-16 18:37+0000\n"
 "PO-Revision-Date: 2020-10-27 22:15+0000\n"
 "Last-Translator: Fabio Zaramella <fabiozaramella@hotmail.it>\n"
 "Language-Team: Italian <https://l10n.elementary.io/projects/music/music/it/"
@@ -241,32 +241,6 @@ msgstr "Completamento sincronizzazione…"
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "Annullamento sincronizzazione…"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "Non sono stati trovati brani simili"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"Non ci sono canzoni simili per il brano corrente nella tua libreria. "
-"Assicurati che tutte le informazioni della canzone siano corrette e di "
-"essere connesso a Internet. Alcune canzoni possono non avere riscontri."
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "Simile"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "contenuto multimediale"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "Brani simili"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -1451,6 +1425,27 @@ msgstr "Visualizza come elenco"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "Visualizza in colonne"
+
+#~ msgid "No similar songs found"
+#~ msgstr "Non sono stati trovati brani simili"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "Non ci sono canzoni simili per il brano corrente nella tua libreria. "
+#~ "Assicurati che tutte le informazioni della canzone siano corrette e di "
+#~ "essere connesso a Internet. Alcune canzoni possono non avere riscontri."
+
+#~ msgid "Similar"
+#~ msgstr "Simile"
+
+#~ msgid "media"
+#~ msgstr "contenuto multimediale"
+
+#~ msgid "Similar Media"
+#~ msgstr "Brani simili"
 
 #~ msgid "Audio CD Invalid"
 #~ msgstr "CD audio non valido"

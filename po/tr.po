@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-15 13:56+0000\n"
+"POT-Creation-Date: 2021-07-16 18:37+0000\n"
 "PO-Revision-Date: 2021-04-23 19:54+0000\n"
 "Last-Translator: Ozgur Baskin <bebeto_baskin@yahoo.com>\n"
 "Language-Team: Turkish <https://l10n.elementary.io/projects/music/music/tr/"
@@ -241,32 +241,6 @@ msgstr "Eşitleme işlemi bitiriliyor…"
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "Eşitleme İptal Ediliyor…"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "Benzer şarkı bulunamadı"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"Kitaplığınızda bu şarkıya benzer hiçbir şarkı yok. Şarkı bilgilerinin doğru "
-"olduğundan ve internete bağlı olduğunuzdan emin olun. Bazı şarkıların eşleri "
-"bulunamayabilir."
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "Benzer"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "medya"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "Benzer Medya"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -1440,6 +1414,27 @@ msgstr "Liste Görünümü"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "Sütun Görünümü"
+
+#~ msgid "No similar songs found"
+#~ msgstr "Benzer şarkı bulunamadı"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "Kitaplığınızda bu şarkıya benzer hiçbir şarkı yok. Şarkı bilgilerinin "
+#~ "doğru olduğundan ve internete bağlı olduğunuzdan emin olun. Bazı "
+#~ "şarkıların eşleri bulunamayabilir."
+
+#~ msgid "Similar"
+#~ msgstr "Benzer"
+
+#~ msgid "media"
+#~ msgstr "medya"
+
+#~ msgid "Similar Media"
+#~ msgstr "Benzer Medya"
 
 #~ msgid "Audio CD Invalid"
 #~ msgstr "Geçersiz Ses CD'si"

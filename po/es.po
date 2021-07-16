@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-15 13:56+0000\n"
+"POT-Creation-Date: 2021-07-16 18:37+0000\n"
 "PO-Revision-Date: 2021-04-23 11:47+0000\n"
 "Last-Translator: Alvaro <alvaroaraoz_92@hotmail.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/music/music/es/"
@@ -241,32 +241,6 @@ msgstr "Finalizando el proceso de sincronización…"
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "Cancelando la sincronización…"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "No se encontraron canciones similares"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"No hay ninguna canción similar a la canción en reproducción en su fonoteca. "
-"Asegúrese de que toda la información de la canción es correcta y que esté "
-"conectado a Internet. Algunas canciones no tienen coincidencias."
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "Similares"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "media"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "Archivos multimedia similares"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -1443,6 +1417,28 @@ msgstr "Ver como lista"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "Ver en columnas"
+
+#~ msgid "No similar songs found"
+#~ msgstr "No se encontraron canciones similares"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "No hay ninguna canción similar a la canción en reproducción en su "
+#~ "fonoteca. Asegúrese de que toda la información de la canción es correcta "
+#~ "y que esté conectado a Internet. Algunas canciones no tienen "
+#~ "coincidencias."
+
+#~ msgid "Similar"
+#~ msgstr "Similares"
+
+#~ msgid "media"
+#~ msgstr "media"
+
+#~ msgid "Similar Media"
+#~ msgstr "Archivos multimedia similares"
 
 #~ msgid "Audio CD Invalid"
 #~ msgstr "CD de audio no válido"

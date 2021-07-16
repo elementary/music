@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-15 13:56+0000\n"
+"POT-Creation-Date: 2021-07-16 18:37+0000\n"
 "PO-Revision-Date: 2015-12-21 13:43+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Armenian <hy@li.org>\n"
@@ -240,29 +240,6 @@ msgstr "Սինխրոնիզացման գործընթացը ավարտվում է�
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr ""
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "Նմանատիպ երգեր չեն հայտնաբերվել"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "Նմանատիպ"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "մեդիա"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "Նմանատիպ մեդիա"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -1423,6 +1400,18 @@ msgstr "Ցույց տալ որպես ցուցակ"
 #, fuzzy
 msgid "View in columns"
 msgstr "Ցույց տալ ալբոմներով"
+
+#~ msgid "No similar songs found"
+#~ msgstr "Նմանատիպ երգեր չեն հայտնաբերվել"
+
+#~ msgid "Similar"
+#~ msgstr "Նմանատիպ"
+
+#~ msgid "media"
+#~ msgstr "մեդիա"
+
+#~ msgid "Similar Media"
+#~ msgstr "Նմանատիպ մեդիա"
 
 #~ msgid "Could not find Music Folder"
 #~ msgstr "Երաժշտության թղթապանակը չի գտնվել"

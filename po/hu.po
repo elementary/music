@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-15 13:56+0000\n"
+"POT-Creation-Date: 2021-07-16 18:37+0000\n"
 "PO-Revision-Date: 2018-06-17 14:43+0000\n"
 "Last-Translator: Majer Tamás <mtamas@disroot.org>\n"
 "Language-Team: Hungarian <https://weblate.elementary.io/projects/music/music/"
@@ -242,32 +242,6 @@ msgstr "Szinkronizálás befejezése…"
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "Szinkronizálás megszakítása…"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "Nem található hasonló szám"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"Nincsenek az éppen lejátszotthoz hasonló számok a gyűjteményében. Győződjön "
-"meg róla, hogy minden száminformáció helyes, és hogy csatlakozik-e az "
-"internetre. Néhány számra nincs találat."
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "Hasonló"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "média"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "Hasonló média"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -1461,6 +1435,27 @@ msgstr "Listanézet"
 #, fuzzy
 msgid "View in columns"
 msgstr "Oszlop nézet"
+
+#~ msgid "No similar songs found"
+#~ msgstr "Nem található hasonló szám"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "Nincsenek az éppen lejátszotthoz hasonló számok a gyűjteményében. "
+#~ "Győződjön meg róla, hogy minden száminformáció helyes, és hogy "
+#~ "csatlakozik-e az internetre. Néhány számra nincs találat."
+
+#~ msgid "Similar"
+#~ msgstr "Hasonló"
+
+#~ msgid "media"
+#~ msgstr "média"
+
+#~ msgid "Similar Media"
+#~ msgstr "Hasonló média"
 
 #~ msgid "Audio CD Invalid"
 #~ msgstr "Hang CD érvénytelen"

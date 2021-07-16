@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-15 13:56+0000\n"
+"POT-Creation-Date: 2021-07-16 18:37+0000\n"
 "PO-Revision-Date: 2021-04-24 11:18+0000\n"
 "Last-Translator: DartDeaDia <jorydit@gmail.com>\n"
 "Language-Team: Russian <https://l10n.elementary.io/projects/music/music/ru/"
@@ -242,32 +242,6 @@ msgstr "Завершение процесса синхронизации…"
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "Отмена синхронизации…"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "Похожие композиции не найдены"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"Нет композиций, похожих на текущую композицию в вашей медиатеке. Убедитесь, "
-"что вся информация о композиции является верной и вы подключены к Интернету. "
-"Некоторые композиции могут не иметь схожих."
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "Похожие"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "медиа"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "Похожие композиции"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -1456,6 +1430,27 @@ msgstr "Просмотр в виде списка"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "Просмотр в виде колонок"
+
+#~ msgid "No similar songs found"
+#~ msgstr "Похожие композиции не найдены"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "Нет композиций, похожих на текущую композицию в вашей медиатеке. "
+#~ "Убедитесь, что вся информация о композиции является верной и вы "
+#~ "подключены к Интернету. Некоторые композиции могут не иметь схожих."
+
+#~ msgid "Similar"
+#~ msgstr "Похожие"
+
+#~ msgid "media"
+#~ msgstr "медиа"
+
+#~ msgid "Similar Media"
+#~ msgstr "Похожие композиции"
 
 #~ msgid "Audio CD Invalid"
 #~ msgstr "Неверный компакт-диск"

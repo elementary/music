@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-15 13:56+0000\n"
+"POT-Creation-Date: 2021-07-16 18:37+0000\n"
 "PO-Revision-Date: 2021-07-14 21:52+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/music/music/uk/"
@@ -242,32 +242,6 @@ msgstr "Завершення синхронізації…"
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "Скасування синхронізації…"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "Не знайдено подібних пісень"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"Немає пісень подібних до поточної в вашій бібліотеці. Переконайтеся в "
-"правильності відомостей про пісню та з'єднання з Інтернетом. Деякі пісні "
-"можуть не мати збігів."
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "Подібні"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "медіа"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "Подібні медіа"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -1450,6 +1424,27 @@ msgstr "Подання списком"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "Подання стовпчиками"
+
+#~ msgid "No similar songs found"
+#~ msgstr "Не знайдено подібних пісень"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "Немає пісень подібних до поточної в вашій бібліотеці. Переконайтеся в "
+#~ "правильності відомостей про пісню та з'єднання з Інтернетом. Деякі пісні "
+#~ "можуть не мати збігів."
+
+#~ msgid "Similar"
+#~ msgstr "Подібні"
+
+#~ msgid "media"
+#~ msgstr "медіа"
+
+#~ msgid "Similar Media"
+#~ msgstr "Подібні медіа"
 
 #~ msgid "Audio CD Invalid"
 #~ msgstr "Не дійсний CD з музикою"

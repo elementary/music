@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-15 13:56+0000\n"
+"POT-Creation-Date: 2021-07-16 18:37+0000\n"
 "PO-Revision-Date: 2018-10-18 11:54+0000\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://weblate.elementary.io/projects/"
@@ -241,31 +241,6 @@ msgstr "正在完成同步程序..."
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "正在取消同步..."
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "找不到類似歌曲"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"您珍藏館中沒有與目前歌曲相似的其他歌曲。請確認您所有歌曲的資訊都正確，而且有"
-"連線至網際網路。有些歌曲可能沒有與它類似的其他歌曲。"
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "類似"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "媒體"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "類似的媒體"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -1425,6 +1400,26 @@ msgstr "以列表檢視"
 #, fuzzy
 msgid "View in columns"
 msgstr "以分欄檢視"
+
+#~ msgid "No similar songs found"
+#~ msgstr "找不到類似歌曲"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "您珍藏館中沒有與目前歌曲相似的其他歌曲。請確認您所有歌曲的資訊都正確，而且"
+#~ "有連線至網際網路。有些歌曲可能沒有與它類似的其他歌曲。"
+
+#~ msgid "Similar"
+#~ msgstr "類似"
+
+#~ msgid "media"
+#~ msgstr "媒體"
+
+#~ msgid "Similar Media"
+#~ msgstr "類似的媒體"
 
 #~ msgid "Audio CD Invalid"
 #~ msgstr "音訊 CD 無效"

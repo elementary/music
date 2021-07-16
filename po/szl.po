@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-15 13:56+0000\n"
+"POT-Creation-Date: 2021-07-16 18:37+0000\n"
 "PO-Revision-Date: 2020-02-25 13:09+0000\n"
 "Last-Translator: gkkulik <g.kulik@o2.pl>\n"
 "Language-Team: Silesian <https://l10n.elementary.io/projects/music/music/szl/"
@@ -235,32 +235,6 @@ msgstr "Kōńczynie synchrōnizacyje…"
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "Pociepowanie synchrōnizacyje…"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "Niy szło znojś podobnych śpiywek"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"Niy ma we bibliotyce żodnych śpiywek podobnych do teroźnyj. Dej pozōr, czy "
-"wszyjske informacyje sōm noleżne i czy mosz połōnczynie z Internetym. "
-"Niykere śpiywki mogōm niy mieć żodnych trefiyń."
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "Podobny"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "media"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "Podobne media"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -1443,6 +1417,27 @@ msgstr "Pokoż jako lista"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "Pokoż we kolumnach"
+
+#~ msgid "No similar songs found"
+#~ msgstr "Niy szło znojś podobnych śpiywek"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "Niy ma we bibliotyce żodnych śpiywek podobnych do teroźnyj. Dej pozōr, "
+#~ "czy wszyjske informacyje sōm noleżne i czy mosz połōnczynie z Internetym. "
+#~ "Niykere śpiywki mogōm niy mieć żodnych trefiyń."
+
+#~ msgid "Similar"
+#~ msgstr "Podobny"
+
+#~ msgid "media"
+#~ msgstr "media"
+
+#~ msgid "Similar Media"
+#~ msgstr "Podobne media"
 
 #~ msgid "Audio CD Invalid"
 #~ msgstr "Niynoleżno plata Audio CD"
