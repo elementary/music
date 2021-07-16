@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-07-12 00:52+0000\n"
+"PO-Revision-Date: 2021-07-16 23:51+0000\n"
 "Last-Translator: lucaspifonseca <lucaspifonseca@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.elementary.io/projects/"
 "music/music/pt_BR/>\n"
@@ -1382,7 +1382,7 @@ msgstr "Adicionar lista de reprodução inteligente"
 
 #: src/Widgets/StatusBar.vala:48
 msgid "Add Playlist…"
-msgstr "Adicionar lista de reprodução…"
+msgstr "Adicionar Playlist…"
 
 #. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: src/Widgets/StatusBar.vala:74
