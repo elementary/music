@@ -1,3 +1,13 @@
+noise (5.1.1) bionic; urgency=medium
+
+  * Release 5.1.1 (#644)
+  * Update translation files
+  * Update translation template
+  * Remove LastFM plugin (#643)
+  * desktop: No longer mention CD (#642)
+
+ -- elementary LLC <builds@elementary.io>  Fri, 16 Jul 2021 19:02:55 +0000
+
 noise (5.1.0) bionic; urgency=medium
 
   * Release 5.1.0 (#641)
