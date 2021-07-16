@@ -9,9 +9,15 @@
   <name>Music</name>
   <summary>The official elementary music player</summary>
   <description>
-    <p>Music is a fast and beautiful audio player with a focus on music and libraries. It handles external devices, CDs, and album art.</p>
+    <p>Music is a fast and beautiful audio player with a focus on music and libraries. It handles external devices and album art.</p>
   </description>
   <releases>
+    <release version="5.1.1" date="2021-07-16" urgency="medium">
+      <description>
+        <p>Drop support for Last.FM</p>
+        <p>Updated translations</p>
+      </description>
+    </release>
     <release version="5.1.0" date="2021-07-13" urgency="medium">
       <description>
         <p>Fix an issue with saving smart playlists</p>
