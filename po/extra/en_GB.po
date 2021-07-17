@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-04-23 13:51+0000\n"
+"PO-Revision-Date: 2021-07-18 00:28+0000\n"
 "Last-Translator: Ciarán Ainsworth <ciaranainsworth@outlook.com>\n"
 "Language-Team: English (United Kingdom) <https://l10n.elementary.io/projects/"
 "music/extra/en_GB/>\n"
@@ -30,22 +30,16 @@ msgid "The official elementary music player"
 msgstr "The official elementary music player"
 
 #: data/io.elementary.music.appdata.xml.in:12
-#, fuzzy
-#| msgid ""
-#| "Music is a fast and beautiful audio player with a focus on music and "
-#| "libraries. It handles external devices, CDs, and album art."
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices and album art."
 msgstr ""
 "Music is a fast and beautiful audio player with a focus on music and "
-"libraries. It handles external devices, CDs, and album art."
+"libraries. It handles external devices and album art."
 
 #: data/io.elementary.music.appdata.xml.in:17
-#, fuzzy
-#| msgid "Drop support for CD-ROM"
 msgid "Drop support for Last.FM"
-msgstr "Drop support for CD-ROM"
+msgstr "Drop support for Last.FM"
 
 #: data/io.elementary.music.appdata.xml.in:18
 #: data/io.elementary.music.appdata.xml.in:27
@@ -60,7 +54,7 @@ msgstr "Updated translations"
 
 #: data/io.elementary.music.appdata.xml.in:23
 msgid "Fix an issue with saving smart playlists"
-msgstr ""
+msgstr "Fix an issue with saving smart playlists"
 
 #: data/io.elementary.music.appdata.xml.in:24
 msgid "Drop support for CD-ROM"
@@ -68,13 +62,11 @@ msgstr "Drop support for CD-ROM"
 
 #: data/io.elementary.music.appdata.xml.in:25
 msgid "Dark style support"
-msgstr ""
+msgstr "Dark style support"
 
 #: data/io.elementary.music.appdata.xml.in:26
-#, fuzzy
-#| msgid "Performance improvements"
 msgid "Minor visual improvements"
-msgstr "Performance improvements"
+msgstr "Minor visual improvements"
 
 #: data/io.elementary.music.appdata.xml.in:32
 msgid "Fix removing items from the queue"
@@ -247,10 +239,8 @@ msgid "io.elementary.music"
 msgstr "io.elementary.music"
 
 #: data/io.elementary.music.desktop.in:13
-#, fuzzy
-#| msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;Phone;Songs;"
-msgstr "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+msgstr "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;Phone;Songs;"
 
 #~ msgid "multimedia-audio-player"
 #~ msgstr "multimedia-audio-player"
