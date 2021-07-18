@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-07-15 20:19+0000\n"
+"PO-Revision-Date: 2021-07-18 23:12+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.elementary.io/projects/music/extra/"
 "pt/>\n"
@@ -30,22 +30,16 @@ msgid "The official elementary music player"
 msgstr "O reprodutor de música oficial do elementary"
 
 #: data/io.elementary.music.appdata.xml.in:12
-#, fuzzy
-#| msgid ""
-#| "Music is a fast and beautiful audio player with a focus on music and "
-#| "libraries. It handles external devices, CDs, and album art."
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices and album art."
 msgstr ""
-"Música é um leve e belo reprodutor de áudio com o foco em bibliotecas de "
-"música. É capaz de lidar com dispositivos externos, CDs, e arte de álbuns."
+"Música é um reprodutor de áudio com a música no seu foco. É capaz de lidar "
+"com dispositivos externos e grafismos de álbuns."
 
 #: data/io.elementary.music.appdata.xml.in:17
-#, fuzzy
-#| msgid "Drop support for CD-ROM"
 msgid "Drop support for Last.FM"
-msgstr "Abandono do suporte para CD-ROM"
+msgstr "Abandono do suporte à Last.FM"
 
 #: data/io.elementary.music.appdata.xml.in:18
 #: data/io.elementary.music.appdata.xml.in:27
