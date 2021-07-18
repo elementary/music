@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-07-17 11:51+0000\n"
+"PO-Revision-Date: 2021-07-18 01:12+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/music/extra/ja/>"
 "\n"
@@ -60,7 +60,7 @@ msgstr "CD-ROM への対応を終了"
 
 #: data/io.elementary.music.appdata.xml.in:25
 msgid "Dark style support"
-msgstr "ダークモードへの対応"
+msgstr "ダークスタイルへの対応"
 
 #: data/io.elementary.music.appdata.xml.in:26
 msgid "Minor visual improvements"
