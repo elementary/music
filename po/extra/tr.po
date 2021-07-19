@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-07-15 10:58+0000\n"
+"PO-Revision-Date: 2021-07-19 22:02+0000\n"
 "Last-Translator: Özgür Baskin <queeup@zoho.com>\n"
-"Language-Team: Turkish <https://l10n.elementary.io/projects/music/extra/tr/"
-">\n"
+"Language-Team: Turkish <https://l10n.elementary.io/projects/music/extra/tr/>"
+"\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,23 +30,17 @@ msgid "The official elementary music player"
 msgstr "Resmi elementary müzik çaları"
 
 #: data/io.elementary.music.appdata.xml.in:12
-#, fuzzy
-#| msgid ""
-#| "Music is a fast and beautiful audio player with a focus on music and "
-#| "libraries. It handles external devices, CDs, and album art."
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices and album art."
 msgstr ""
 "Müzik, senin müziklerine ve kütüphanene yoğunlaşan hızlı ve güzel bir ses "
-"oynatıcısıdır. Harici cihazların, CD'lerin ve albüm kapaklarının üstesinden "
-"rahatlıkla gelir."
+"oynatıcısıdır. Harici cihazların ve albüm kapaklarının üstesinden rahatlıkla "
+"gelir."
 
 #: data/io.elementary.music.appdata.xml.in:17
-#, fuzzy
-#| msgid "Drop support for CD-ROM"
 msgid "Drop support for Last.FM"
-msgstr "CD-ROM desteği sonlandırıldı"
+msgstr "Last.FM desteği sonlandırıldı"
 
 #: data/io.elementary.music.appdata.xml.in:18
 #: data/io.elementary.music.appdata.xml.in:27
@@ -158,7 +152,7 @@ msgstr "Turuncu vurgulama rengi eklendi"
 
 #: data/io.elementary.music.appdata.xml.in:70
 msgid "Add shortcut accels to tooltips"
-msgstr ""
+msgstr "Araç ipuçlarına kısayol erişimleri eklendi"
 
 #: data/io.elementary.music.appdata.xml.in:77
 msgid "Various UI changes"
@@ -197,7 +191,7 @@ msgstr "Küçük hata düzeltmeleri."
 
 #: data/io.elementary.music.appdata.xml.in:110
 msgid "Add rounded bottom window corner."
-msgstr ""
+msgstr "Pencere alt köşeleri yuvarlatıldı."
 
 #: data/io.elementary.music.appdata.xml.in:113
 #: data/io.elementary.music.appdata.xml.in:128
@@ -210,27 +204,27 @@ msgstr "Loki için yayınlandı."
 
 #: data/io.elementary.music.appdata.xml.in:121
 msgid "Add support for Opus Ogg"
-msgstr ""
+msgstr "Opus Ogg desteği eklendi"
 
 #: data/io.elementary.music.appdata.xml.in:122
 msgid "Fix Ctrl+Q support for non-Latin keyboard layouts"
-msgstr ""
+msgstr "Latin olmayan klavye düzenleri için Ctrl+Q desteği düzeltildi"
 
 #: data/io.elementary.music.appdata.xml.in:123
 msgid "Reorganize media edition layout"
-msgstr ""
+msgstr "Medya sürümü düzeni yeniden düzenlendi"
 
 #: data/io.elementary.music.appdata.xml.in:124
 msgid "Port grid to support HiDPI displays"
-msgstr ""
+msgstr "HiDPI ekranları desteklemek için port ızgarası"
 
 #: data/io.elementary.music.appdata.xml.in:125
 msgid "Update icons to latest elementary icon release"
-msgstr ""
+msgstr "Simgeler en son elementary simge sürümüne güncellendi"
 
 #: data/io.elementary.music.appdata.xml.in:126
 msgid "Respect privacy mode"
-msgstr ""
+msgstr "Gizlilik modunu dikkate al"
 
 #: data/io.elementary.music.appdata.xml.in:166
 msgid "elementary, Inc."
@@ -249,11 +243,10 @@ msgid "io.elementary.music"
 msgstr "io.elementary.music"
 
 #: data/io.elementary.music.desktop.in:13
-#, fuzzy
-#| msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;Phone;Songs;"
 msgstr ""
-"Noise;Ses;Oynatıcı;MP3;iPod;Çal;Çalma Listesi;Medya;CD;Telefon;Şarkılar;"
+"Noise;Ses;Oynatıcı;MP3;iPod;Çal;Çalma "
+"Listesi;Medya;Telefon;Şarkılar;Audio;Player;Play;Playlist;Media;Phone;Songs;"
 
 #~ msgid "multimedia-audio-player"
 #~ msgstr "multimedia-audio-player"
