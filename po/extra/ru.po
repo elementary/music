@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-06-01 13:49+0000\n"
+"PO-Revision-Date: 2021-07-22 12:09+0000\n"
 "Last-Translator: DartDeaDia <jorydit@gmail.com>\n"
-"Language-Team: Russian <https://l10n.elementary.io/projects/music/extra/ru/"
-">\n"
+"Language-Team: Russian <https://l10n.elementary.io/projects/music/extra/ru/>"
+"\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,23 +31,16 @@ msgid "The official elementary music player"
 msgstr "Официальный музыкальный проигрыватель elementary"
 
 #: data/io.elementary.music.appdata.xml.in:12
-#, fuzzy
-#| msgid ""
-#| "Music is a fast and beautiful audio player with a focus on music and "
-#| "libraries. It handles external devices, CDs, and album art."
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices and album art."
 msgstr ""
 "Приложение «Музыка» - это быстрый и красивый аудиоплеер с акцентом на музыку "
-"и библиотеки. Он Поддерживае внешние устройства, компакт-диски и обложки "
-"альбомов."
+"и библиотеки. Он Поддерживает внешние устройства и обложки альбомов."
 
 #: data/io.elementary.music.appdata.xml.in:17
-#, fuzzy
-#| msgid "Drop support for CD-ROM"
 msgid "Drop support for Last.FM"
-msgstr "Прекращена поддержка CD-ROM"
+msgstr "Прекращена поддержка Last.FM"
 
 #: data/io.elementary.music.appdata.xml.in:18
 #: data/io.elementary.music.appdata.xml.in:27
@@ -63,6 +56,7 @@ msgstr "Обновлены переводы"
 #: data/io.elementary.music.appdata.xml.in:23
 msgid "Fix an issue with saving smart playlists"
 msgstr ""
+"Исправлена проблема с сохранением интеллектуальных списков воспроизведения"
 
 #: data/io.elementary.music.appdata.xml.in:24
 msgid "Drop support for CD-ROM"
@@ -70,13 +64,11 @@ msgstr "Прекращена поддержка CD-ROM"
 
 #: data/io.elementary.music.appdata.xml.in:25
 msgid "Dark style support"
-msgstr ""
+msgstr "Поддержка темного стиля"
 
 #: data/io.elementary.music.appdata.xml.in:26
-#, fuzzy
-#| msgid "Performance improvements"
 msgid "Minor visual improvements"
-msgstr "Улучшения производительности"
+msgstr "Незначительные визуальные улучшения"
 
 #: data/io.elementary.music.appdata.xml.in:32
 msgid "Fix removing items from the queue"
@@ -153,7 +145,7 @@ msgstr "Исправления незначительных ошибок"
 
 #: data/io.elementary.music.appdata.xml.in:68
 msgid "Fix list and column view sorting"
-msgstr ""
+msgstr "Исправлена сортировка представления списком и столбцом"
 
 #: data/io.elementary.music.appdata.xml.in:69
 msgid "Add orange accent color"
@@ -169,7 +161,7 @@ msgstr "Различные изменения пользовательского
 
 #: data/io.elementary.music.appdata.xml.in:78
 msgid "Shuffle fixes"
-msgstr ""
+msgstr "Исправления в случайном воспроизведении"
 
 #: data/io.elementary.music.appdata.xml.in:79
 msgid "Initial MPRIS support"
@@ -221,7 +213,7 @@ msgstr "Исправлена поддержка Ctrl+Q для нелатинск
 
 #: data/io.elementary.music.appdata.xml.in:123
 msgid "Reorganize media edition layout"
-msgstr ""
+msgstr "Переработан макет медиа-издания"
 
 #: data/io.elementary.music.appdata.xml.in:124
 msgid "Port grid to support HiDPI displays"
@@ -252,12 +244,10 @@ msgid "io.elementary.music"
 msgstr "io.elementary.music"
 
 #: data/io.elementary.music.desktop.in:13
-#, fuzzy
-#| msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;Phone;Songs;"
 msgstr ""
-"Шум;Аудио;Проигрыватель;MP3;iPod;Воспроизведение;Список воспроизведения;"
-"Плейлист;Медиа;CD;Телефон;Песни;Музыка;"
+"Шум;Аудио;Проигрыватель;MP3;iPod;Воспроизведение;Список "
+"воспроизведения;Плейлист;Медиа;Телефон;Песни;Музыка;"
 
 #~ msgid "multimedia-audio-player"
 #~ msgstr "multimedia-audio-player"
