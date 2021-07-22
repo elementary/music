@@ -3,16 +3,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2020-05-04 08:10+0000\n"
-"Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
-"Language-Team: Marathi <https://l10n.elementary.io/projects/music/extra/mr/"
-">\n"
+"PO-Revision-Date: 2021-07-22 10:14+0000\n"
+"Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
+"Language-Team: Marathi <https://l10n.elementary.io/projects/music/extra/mr/>"
+"\n"
 "Language: mr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
 #: data/io.elementary.music.appdata.xml.in:9
@@ -237,10 +237,8 @@ msgid "Listen to music"
 msgstr "संगीत ऐका"
 
 #: data/io.elementary.music.desktop.in:8
-#, fuzzy
-#| msgid "elementary, Inc."
 msgid "io.elementary.music"
-msgstr "एलिमेंटरी, Inc."
+msgstr "io.elementary.music"
 
 #: data/io.elementary.music.desktop.in:13
 #, fuzzy
