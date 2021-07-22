@@ -2,16 +2,16 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2018-08-29 19:33+0000\n"
-"Last-Translator: Carmina16 <mistresssilvara@hotmail.com>\n"
-"Language-Team: Occidental <https://weblate.elementary.io/projects/music/"
-"extra/ie/>\n"
+"PO-Revision-Date: 2021-07-22 10:14+0000\n"
+"Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
+"Language-Team: Occidental <https://l10n.elementary.io/projects/music/extra/"
+"ie/>\n"
 "Language: ie\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 4.4.2\n"
 
 #: data/io.elementary.music.appdata.xml.in:9
 #: data/io.elementary.music.desktop.in:4
@@ -232,9 +232,8 @@ msgid "Listen to music"
 msgstr "Escutar musica"
 
 #: data/io.elementary.music.desktop.in:8
-#, fuzzy
 msgid "io.elementary.music"
-msgstr "elementary LLC."
+msgstr "io.elementary.music"
 
 #: data/io.elementary.music.desktop.in:13
 #, fuzzy
