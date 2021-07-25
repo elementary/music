@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-07-22 12:09+0000\n"
+"PO-Revision-Date: 2021-07-25 12:31+0000\n"
 "Last-Translator: DartDeaDia <jorydit@gmail.com>\n"
 "Language-Team: Russian <https://l10n.elementary.io/projects/music/extra/ru/>"
 "\n"
@@ -153,7 +153,7 @@ msgstr "Добавлен оранжевый цветовой акцент"
 
 #: data/io.elementary.music.appdata.xml.in:70
 msgid "Add shortcut accels to tooltips"
-msgstr "Добавлена комбинация клавиш для доступа к подсказкам"
+msgstr "Добавлено сочетание клавиш для доступа к подсказкам"
 
 #: data/io.elementary.music.appdata.xml.in:77
 msgid "Various UI changes"
