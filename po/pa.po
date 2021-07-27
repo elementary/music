@@ -3,136 +3,137 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2016-01-04 18:35+0000\n"
-"Last-Translator: Launchpad Translations Administrators <Unknown>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2021-07-27 18:06+0000\n"
+"Last-Translator: elSolus <tumbleweed@tuta.io>\n"
+"Language-Team: Punjabi <https://l10n.elementary.io/projects/music/music/pa/>"
+"\n"
+"Language: pa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
-"X-Generator: Launchpad (build 18330)\n"
 
 #: core/LibrariesManager.vala:146
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr ""
+msgstr "<b>$ARTIST</b> ਦੇ <b>$NAME</b> ਦੀ ਲਾਇਬ੍ਰੇਰੀ 'ਚ ਆਮਦ ਹੋ ਰਹੀ ਹੈ…"
 
 #. / Used for unknown titles, artists, or album names.
 #: core/Media.vala:33
 msgid "Unknown"
-msgstr ""
+msgstr "ਅਣਜਾਣ"
 
 #. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: core/Media.vala:180
 msgid "$NAME on $ALBUM"
-msgstr ""
+msgstr "$ALBUM ਵਿੱਚ $NAME"
 
 #. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: core/Media.vala:183
 msgid "$NAME by $ARTIST"
-msgstr ""
+msgstr "$ARTIST ਦਾ ਗਾਇਆ/ਗਾਈ $NAME"
 
 #. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
 #: core/Media.vala:189
 msgid "$NAME by $ARTIST on $ALBUM"
-msgstr ""
+msgstr "$ALBUM ਵਿੱਚੋਂ $ARTIST ਦਾ ਗਾਇਆ $NAME"
 
 #: core/GStreamer/Equalizer.vala:70
 msgid "Flat"
-msgstr ""
+msgstr "ਫ਼ਲੈਟ"
 
 #: core/GStreamer/Equalizer.vala:71
 msgid "Classical"
-msgstr ""
+msgstr "ਕਲਾਸੀਕਲ"
 
 #: core/GStreamer/Equalizer.vala:72
 msgid "Club"
-msgstr ""
+msgstr "ਕਲੱਬ"
 
 #: core/GStreamer/Equalizer.vala:73
 msgid "Dance"
-msgstr ""
+msgstr "ਡਾਂਸ"
 
 #: core/GStreamer/Equalizer.vala:74
 msgid "Full Bass"
-msgstr ""
+msgstr "ਪੂਰੀ ਧਮਕ"
 
 #: core/GStreamer/Equalizer.vala:75
 msgid "Full Treble"
-msgstr ""
+msgstr "ਪੂਰੇ ਛੈਣੇ"
 
 #: core/GStreamer/Equalizer.vala:76
 msgid "Full Bass + Treble"
-msgstr ""
+msgstr "ਪੂਰੀ ਧਮਕ + ਛੈਣੇ"
 
 #: core/GStreamer/Equalizer.vala:77
 msgid "Headphones"
-msgstr ""
+msgstr "ਹੈੱਡਫ਼ੋਨ"
 
 #: core/GStreamer/Equalizer.vala:78
 msgid "Large Hall"
-msgstr ""
+msgstr "ਵੱਡਾ ਹਾਲ"
 
 #: core/GStreamer/Equalizer.vala:79
 msgid "Live"
-msgstr ""
+msgstr "ਲਾਈਵ"
 
 #: core/GStreamer/Equalizer.vala:80
 msgid "Party"
-msgstr ""
+msgstr "ਪਾਰਟੀ"
 
 #: core/GStreamer/Equalizer.vala:81
 msgid "Pop"
-msgstr ""
+msgstr "ਪੌਪ"
 
 #: core/GStreamer/Equalizer.vala:82
 msgid "Reggae"
-msgstr ""
+msgstr "ਰੈਗੇ"
 
 #: core/GStreamer/Equalizer.vala:83
 msgid "Rock"
-msgstr ""
+msgstr "ਰੌਕ"
 
 #: core/GStreamer/Equalizer.vala:84
 msgid "Soft"
-msgstr ""
+msgstr "ਨਰਮ"
 
 #: core/GStreamer/Equalizer.vala:85
 msgid "Ska"
-msgstr ""
+msgstr "ਸਕਾ"
 
 #: core/GStreamer/Equalizer.vala:86
 msgid "Soft Rock"
-msgstr ""
+msgstr "ਨਰਮ ਰੌਕ"
 
 #: core/GStreamer/Equalizer.vala:87
 msgid "Techno"
-msgstr ""
+msgstr "ਟੈਕਨੋ"
 
 #: core/Utils/FileUtils.vala:142
 #, c-format
 msgid " (%d)"
-msgstr ""
+msgstr " (%d)"
 
 #: core/Utils/PlaylistsUtils.vala:95
 #, c-format
 msgid "%s (%d)"
-msgstr ""
+msgstr "%s (%d)"
 
 #: core/Utils/PlaylistsUtils.vala:234
 msgid "New playlist"
-msgstr ""
+msgstr "ਨਵੀਂ ਪਲੇ-ਸੂਚੀ"
 
 #. Translators: used for new playlists ex: "New playlist (1)"
 #: core/Utils/PlaylistsUtils.vala:245
 #, c-format
 msgid "%s (%i)"
-msgstr ""
+msgstr "%s (%i)"
 
 #: core/Utils/PlaylistsUtils.vala:265 core/Utils/PlaylistsUtils.vala:334
 msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr ""
+msgstr "ਐੱਮਪੀਈਜੀ ਵਰਜਨ 3.0 ਐਕਸਟੈਂਡਿਡ (*.m3u)"
 
 #: core/Utils/PlaylistsUtils.vala:269 core/Utils/PlaylistsUtils.vala:338
 msgid "Shoutcast Playlist Version 2.0 (*.pls)"
@@ -140,12 +141,12 @@ msgstr ""
 
 #: core/Utils/PlaylistsUtils.vala:272
 msgid "Export Playlist"
-msgstr ""
+msgstr "ਪਲੇ-ਸੂਚੀ ਦਰਾਮਦ ਕਰੋ"
 
 #: core/Utils/PlaylistsUtils.vala:275 src/Dialogs/MediaEditor.vala:133
 #: src/Dialogs/SmartPlaylistEditor.vala:92
 msgid "Save"
-msgstr ""
+msgstr "ਸਾਂਭੋ"
 
 #: core/Utils/PlaylistsUtils.vala:276 core/Utils/PlaylistsUtils.vala:345
 #: src/LibraryWindow.vala:1030 src/Dialogs/FileNotFoundDialog.vala:55
@@ -157,16 +158,16 @@ msgstr ""
 #: src/Dialogs/SyncWarningDialog.vala:60
 #: src/Views/Wrappers/MusicViewWrapper.vala:147 src/Widgets/TopDisplay.vala:63
 msgid "Cancel"
-msgstr ""
+msgstr "ਰੱਦ ਕਰੋ"
 
 #: core/Utils/PlaylistsUtils.vala:329
 msgid "Playlist"
-msgstr ""
+msgstr "ਪਲੇ-ਸੂਚੀ"
 
 #: core/Utils/PlaylistsUtils.vala:341
 #, c-format
 msgid "Import %s"
-msgstr ""
+msgstr "%s ਦੀ ਆਮਦ ਕਰੋ"
 
 #: core/Utils/PlaylistsUtils.vala:344 src/LibraryWindow.vala:1029
 #: src/Dialogs/FileNotFoundDialog.vala:102
