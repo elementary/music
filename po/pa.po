@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-07-27 18:06+0000\n"
+"PO-Revision-Date: 2021-07-29 08:25+0000\n"
 "Last-Translator: elSolus <tumbleweed@tuta.io>\n"
 "Language-Team: Punjabi <https://l10n.elementary.io/projects/music/music/pa/>"
 "\n"
@@ -175,11 +175,11 @@ msgstr "%s ਦੀ ਆਮਦ ਕਰੋ"
 #: src/Views/Wrappers/MusicViewWrapper.vala:146
 #: src/Widgets/AlbumListGrid.vala:197
 msgid "Open"
-msgstr ""
+msgstr "ਖੋਲ੍ਹੋ"
 
 #: core/Utils/PlaylistsUtils.vala:371
 msgid "Unrecognized playlist file. Import failed."
-msgstr ""
+msgstr "ਅਣਪਛਾਤੀ ਪਲੇ-ਸੂਚੀ ਫ਼ਾਇਲ। ਆਮਦ ਨਹੀਂ ਹੋ ਸਕੀ।"
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
@@ -190,102 +190,102 @@ msgstr ""
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:109
 #: plugins/Devices/iPod/iPodDevice.vala:68
 msgid "Empty device!"
-msgstr ""
+msgstr "ਡਿਵਾਈਸ ਖ਼ਾਲੀ ਕਰੋ!"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:113
 #: plugins/Devices/iPod/iPodDevice.vala:72
 msgid "This device does not contain any music."
-msgstr ""
+msgstr "ਇਸ ਡਿਵਾਈਸ ਵਿੱਚ ਕੋਈ ਸੰਗੀਤ ਨਹੀਂ ਹੈ।"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:158
 msgid "Android Phone"
-msgstr ""
+msgstr "ਐਂਡਰਾਇਡ ਫ਼ੋਨ"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:160
 msgid "Audio Player"
-msgstr ""
+msgstr "ਆਡੀਓ ਪਲੇਅਰ"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:146
 #: plugins/Devices/iPod/iPodLibrary.vala:167
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr ""
+msgstr "<b>$ARTIST</b> ਦੇ ਗਾਏ <b>$NAME</b> ਨੂੰ $DEVICE ਵਿੱਚ ਸ਼ਾਮਲ ਕੀਤਾ ਜਾ ਰਿਹੈ"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:171
 #: plugins/Devices/iPod/iPodLibrary.vala:216
 #, c-format
 msgid "Syncing <b>%s</b>…"
-msgstr ""
+msgstr "<b>%s</b> ਦਾ ਤਾਲਮੇਲ ਹੋ ਰਿਹੈ…"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:283
 #: plugins/Devices/iPod/iPodLibrary.vala:561
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr ""
+msgstr "<b>$ARTIST</b> ਦੇ ਗਾਏ <b>$NAME</b> ਨੂੰ $DEVICE ਵਿੱਚੋਂ ਹਟਾਇਆ ਜਾ ਰਿਹੈ"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:315
 #: plugins/Devices/iPod/iPodLibrary.vala:366
 #, c-format
 msgid "Removing from <b>%s</b>…"
-msgstr ""
+msgstr "<b>%s</b> ਵਿੱਚੋਂ ਹਟਾਇਆ ਜਾ ਰਿਹੈ…"
 
 #: plugins/Devices/iPod/iPodLibrary.vala:238
 #: plugins/Devices/iPod/iPodLibrary.vala:404
 msgid "Finishing sync process…"
-msgstr ""
+msgstr "ਤਾਲਮੇਲ ਦਾ ਕੰਮ ਮੁਕੰਮਲ ਹੋ ਰਿਹੈ…"
 
 #: plugins/Devices/iPod/iPodLibrary.vala:250
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
-msgstr ""
+msgstr "ਤਾਲਮੇਲ ਰੱਦ ਹੋ ਰਿਹੈ…"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
-msgstr ""
+msgstr "ਆਮਦ ਮੁਕੰਮਲ"
 
 #: src/FileOperator.vala:306
 msgid "Your Library Has Been Imported."
-msgstr ""
+msgstr "ਤੁਹਾਡੀ ਲਾਇਬ੍ਰੇਰੀ ਦੀ ਆਮਦ ਹੋ ਚੁੱਕੀ ਹੈ।"
 
 #. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:316
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr ""
+msgstr "ਫ਼ਾਇਲਾਂ ਨੂੰ <b>ਮਿਊਜ਼ਿਕ ਫ਼ੋਲਡਰ</b> ਵਿੱਚ <b>ਨਕਲ</b> ਕੀਤਾ ਜਾ ਰਿਹੈ…"
 
 #: src/LibraryWindow.vala:197 src/LibraryWindow.vala:275
 #: src/LibraryWindow.vala:631 src/LibraryWindow.vala:751
 msgid "Music"
-msgstr ""
+msgstr "ਮਿਊਜ਼ਿਕ"
 
 #: src/LibraryWindow.vala:216
 msgid "Import to Library…"
-msgstr ""
+msgstr "ਲਾਇਬ੍ਰੇਰੀ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ…"
 
 #: src/LibraryWindow.vala:219 src/Dialogs/PreferencesWindow.vala:32
 msgid "Preferences"
-msgstr ""
+msgstr "ਤਰਜੀਹਾਂ"
 
 #: src/LibraryWindow.vala:238
 msgid "Previous"
-msgstr ""
+msgstr "ਪਿਛਲਾ"
 
 #: src/LibraryWindow.vala:245 src/LibraryWindow.vala:311
 msgid "Play"
-msgstr ""
+msgstr "ਚਲਾਓ"
 
 #: src/LibraryWindow.vala:252
 msgid "Next"
-msgstr ""
+msgstr "ਅਗਲਾ"
 
 #: src/LibraryWindow.vala:256
 msgid "Search Music"
-msgstr ""
+msgstr "ਸੰਗੀਤ ਖੋਜੋ"
 
 #: src/LibraryWindow.vala:317
 msgid "Pause"
-msgstr ""
+msgstr "ਰੋਕੋ"
 
 #: src/LibraryWindow.vala:820
 msgid "No songs in Queue"
-msgstr ""
+msgstr "ਕਤਾਰ ਵਿੱਚ ਕੋਈ ਗੀਤ ਨਹੀਂ ਹਨ"
 
 #: src/LibraryWindow.vala:820
 msgid ""
@@ -293,10 +293,13 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
+"ਗੀਤਾਂ ਨੂੰ ਕਤਾਰ ਵਿੱਚ ਪਾਉਣ ਲਈ ਗੀਤ 'ਤੇ <b>ਸੱਜੀ ਕਲਿਕ</b> ਕਰੋ ਅਤੇ <b>ਕਤਾਰ ਵਿੱਚ "
+"ਪਾਓ</b> ਚੁਣੋ। ਜਦੋਂ ਗੀਤ ਖ਼ਤਮ ਹੁੰਦਾ ਹੈ ਤਾਂ ਪਹਿਲਾਂ ਕਤਾਰ ਵਿਚਲੇ ਗੀਤਾਂ ਨੂੰ ਚਲਾਇਆ "
+"ਜਾਂਦੈ, ਮੌਜੂਦਾ ਪਲੇ-ਸੂਚੀ ਵਿਚਲੇ ਗੀਤਾਂ ਤੋਂ ਵੀ ਪਹਿਲਾਂ।"
 
 #: src/LibraryWindow.vala:823
 msgid "No songs in History"
-msgstr ""
+msgstr "ਇਤਿਹਾਸ ਵਿੱਚ ਕੋਈ ਗੀਤ ਨਹੀਂ ਹਨ"
 
 #: src/LibraryWindow.vala:823
 msgid ""
