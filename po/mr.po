@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-23 08:07+0000\n"
+"POT-Creation-Date: 2021-07-16 19:03+0000\n"
 "PO-Revision-Date: 2020-10-06 19:14+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://l10n.elementary.io/projects/music/music/mr/"
@@ -236,31 +236,6 @@ msgstr "समक्रमण प्रक्रिया समाप्त क
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "समक्रमण रद्द करीत आहे…"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "एकही समान गाणी सापडली नाहीत"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"आपल्या लायब्ररीमधील वर्तमान गाण्यासारखे कोणतेही गाणे नाहीत. सर्व गाणे माहिती बरोबर आहे "
-"आणि आपण इंटरनेटशी कनेक्ट केलेले आहात याची खात्री करा. काही गाणी जुळत नाहीत."
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "समान"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "माध्यम"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "तत्सम माध्यम"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -1430,6 +1405,26 @@ msgstr "यादी म्हणून पहा"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "स्तंभांमध्ये पहा"
+
+#~ msgid "No similar songs found"
+#~ msgstr "एकही समान गाणी सापडली नाहीत"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "आपल्या लायब्ररीमधील वर्तमान गाण्यासारखे कोणतेही गाणे नाहीत. सर्व गाणे माहिती बरोबर "
+#~ "आहे आणि आपण इंटरनेटशी कनेक्ट केलेले आहात याची खात्री करा. काही गाणी जुळत नाहीत."
+
+#~ msgid "Similar"
+#~ msgstr "समान"
+
+#~ msgid "media"
+#~ msgstr "माध्यम"
+
+#~ msgid "Similar Media"
+#~ msgstr "तत्सम माध्यम"
 
 #~ msgid "Audio CD Invalid"
 #~ msgstr "अयोग्य ऑडिओ CD"

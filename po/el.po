@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-23 08:07+0000\n"
+"POT-Creation-Date: 2021-07-16 19:03+0000\n"
 "PO-Revision-Date: 2019-02-12 00:06+0000\n"
 "Last-Translator: Rico Tzschichholz <ricotz@ubuntu.com>\n"
 "Language-Team: Greek <https://weblate.elementary.io/projects/music/music/el/"
@@ -241,32 +241,6 @@ msgstr "Η διαδικασία συγχρονισμού τελειώνει..."
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "Ακύρωση συγχρονισμού..."
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "Δε βρέθηκαν παρόμοια τραγούδια"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"Δεν υπάρχουν τραγούδια παρόμοια με το τρέχον στην βιβλιοθήκη σας. "
-"Σιγουρευτείτε ότι όλες οι πληροφορίες τραγουδιού είναι σωστές και ότι είστε "
-"συνδεδεμένοι στο διαδίκτυο. Μερικά τραγούδια μπορεί να μην έχουν αντιστοιχία."
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "Παρόμοιο"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "πολυμέσα"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "Παρόμοια πολυμέσα"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -1465,6 +1439,28 @@ msgstr "Προβολή ως λίστα"
 #, fuzzy
 msgid "View in columns"
 msgstr "Προβολή σε στήλες"
+
+#~ msgid "No similar songs found"
+#~ msgstr "Δε βρέθηκαν παρόμοια τραγούδια"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "Δεν υπάρχουν τραγούδια παρόμοια με το τρέχον στην βιβλιοθήκη σας. "
+#~ "Σιγουρευτείτε ότι όλες οι πληροφορίες τραγουδιού είναι σωστές και ότι "
+#~ "είστε συνδεδεμένοι στο διαδίκτυο. Μερικά τραγούδια μπορεί να μην έχουν "
+#~ "αντιστοιχία."
+
+#~ msgid "Similar"
+#~ msgstr "Παρόμοιο"
+
+#~ msgid "media"
+#~ msgstr "πολυμέσα"
+
+#~ msgid "Similar Media"
+#~ msgstr "Παρόμοια πολυμέσα"
 
 #~ msgid "Audio CD Invalid"
 #~ msgstr "Άκυρο μουσικό CD"

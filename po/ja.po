@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-23 08:07+0000\n"
+"POT-Creation-Date: 2021-07-16 19:03+0000\n"
 "PO-Revision-Date: 2021-04-23 08:40+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/music/music/ja/"
@@ -241,32 +241,6 @@ msgstr "同期プロセスを終了しています…"
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "同期を取り消しています…"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "同様な楽曲が見つかりませんでした"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"ライブラリの現在の曲に似た曲はありません。すべての曲情報が正しいこと、イン"
-"ターネットに接続していることを確認してください。一致する曲がないこともありま"
-"す。"
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "同様な楽曲"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "メディア"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "同様なメディア"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -1428,6 +1402,27 @@ msgstr "リスト表示"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "カラム表示"
+
+#~ msgid "No similar songs found"
+#~ msgstr "同様な楽曲が見つかりませんでした"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "ライブラリの現在の曲に似た曲はありません。すべての曲情報が正しいこと、イン"
+#~ "ターネットに接続していることを確認してください。一致する曲がないこともあり"
+#~ "ます。"
+
+#~ msgid "Similar"
+#~ msgstr "同様な楽曲"
+
+#~ msgid "media"
+#~ msgstr "メディア"
+
+#~ msgid "Similar Media"
+#~ msgstr "同様なメディア"
 
 #~ msgid "Audio CD Invalid"
 #~ msgstr "無効なオーディオ CD"

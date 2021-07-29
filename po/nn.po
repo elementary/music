@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-23 08:07+0000\n"
+"POT-Creation-Date: 2021-07-16 19:03+0000\n"
 "PO-Revision-Date: 2020-07-22 07:16+0000\n"
 "Last-Translator: Martin Myrvold <myrvold.martin@gmail.com>\n"
 "Language-Team: Norwegian Nynorsk <https://l10n.elementary.io/projects/music/"
@@ -241,32 +241,6 @@ msgstr "Sluttfører synkroniseringa…"
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "Avbryter synkroniseringa…"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "Fann ingen lignande songar"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"Det er ingen songar som liknar på songen i biblioteket. Kontroller at all "
-"song info er riktig og du er kopla opp mot internett. Nokre songar har "
-"kanskje ikkje kopiar."
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "Liknande"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "Medie"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "Liknande media"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -1444,6 +1418,27 @@ msgstr "Vis som liste"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "Vis i kolonnar"
+
+#~ msgid "No similar songs found"
+#~ msgstr "Fann ingen lignande songar"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "Det er ingen songar som liknar på songen i biblioteket. Kontroller at all "
+#~ "song info er riktig og du er kopla opp mot internett. Nokre songar har "
+#~ "kanskje ikkje kopiar."
+
+#~ msgid "Similar"
+#~ msgstr "Liknande"
+
+#~ msgid "media"
+#~ msgstr "Medie"
+
+#~ msgid "Similar Media"
+#~ msgstr "Liknande media"
 
 #~ msgid "Audio CD Invalid"
 #~ msgstr "Lyd CD ugyldig"

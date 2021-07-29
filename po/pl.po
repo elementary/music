@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-23 08:07+0000\n"
+"POT-Creation-Date: 2021-07-16 19:03+0000\n"
 "PO-Revision-Date: 2018-11-06 01:57+0000\n"
 "Last-Translator: Piotr Strebski <strebski@gmail.com>\n"
 "Language-Team: Polish <https://weblate.elementary.io/projects/music/music/pl/"
@@ -242,32 +242,6 @@ msgstr "Kończenie synchronizacji…"
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "Przerywanie synchronizacji…"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "Nie odnaleziono podobnych utworów"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"Nie ma żadnych piosenek podobnych do aktualnej w twojej bibliotece. Upewnij "
-"się, że wszystkie informacje są poprawne i masz połączenie z Internetem. "
-"Niektóre piosenki mogą nie mieć żadnych trafień."
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "Podobne"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "nagrań"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "Podobne"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -1459,6 +1433,27 @@ msgstr "Wyświetl jako listę"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "Wyświetl w kolumnach"
+
+#~ msgid "No similar songs found"
+#~ msgstr "Nie odnaleziono podobnych utworów"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "Nie ma żadnych piosenek podobnych do aktualnej w twojej bibliotece. "
+#~ "Upewnij się, że wszystkie informacje są poprawne i masz połączenie z "
+#~ "Internetem. Niektóre piosenki mogą nie mieć żadnych trafień."
+
+#~ msgid "Similar"
+#~ msgstr "Podobne"
+
+#~ msgid "media"
+#~ msgstr "nagrań"
+
+#~ msgid "Similar Media"
+#~ msgstr "Podobne"
 
 #~ msgid "Audio CD Invalid"
 #~ msgstr "Nieprawidłowa płyta Audio CD"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-23 08:07+0000\n"
+"POT-Creation-Date: 2021-07-16 19:03+0000\n"
 "PO-Revision-Date: 2021-04-23 19:54+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.elementary.io/projects/music/music/"
@@ -241,32 +241,6 @@ msgstr "A terminar sincronização…"
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "A cancelar sincronização…"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "Não foram encontradas faixas semelhantes"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"Não há músicas semelhantes à faixa atual na sua coleção. Confirme se os "
-"dados da faixa estão corretos e se possui uma ligação à Internet. Algumas "
-"músicas poderão não ter correspondência."
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "Semelhantes"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "multimédia"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "Multimédia semelhante"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -1446,6 +1420,27 @@ msgstr "Ver como lista"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "Ver em colunas"
+
+#~ msgid "No similar songs found"
+#~ msgstr "Não foram encontradas faixas semelhantes"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "Não há músicas semelhantes à faixa atual na sua coleção. Confirme se os "
+#~ "dados da faixa estão corretos e se possui uma ligação à Internet. Algumas "
+#~ "músicas poderão não ter correspondência."
+
+#~ msgid "Similar"
+#~ msgstr "Semelhantes"
+
+#~ msgid "media"
+#~ msgstr "multimédia"
+
+#~ msgid "Similar Media"
+#~ msgstr "Multimédia semelhante"
 
 #~ msgid "Audio CD Invalid"
 #~ msgstr "CD áudio inválido"

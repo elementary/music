@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-23 08:07+0000\n"
+"POT-Creation-Date: 2021-07-16 19:03+0000\n"
 "PO-Revision-Date: 2018-08-29 19:33+0000\n"
 "Last-Translator: Carmina16 <mistresssilvara@hotmail.com>\n"
 "Language-Team: Occidental <https://weblate.elementary.io/projects/music/"
@@ -233,29 +233,6 @@ msgstr ""
 #: plugins/Devices/iPod/iPodLibrary.vala:250
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
-msgstr ""
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr ""
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr ""
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr ""
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
 msgstr ""
 
 #: src/FileOperator.vala:306

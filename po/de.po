@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-23 08:07+0000\n"
-"PO-Revision-Date: 2021-04-24 11:18+0000\n"
-"Last-Translator: Uwe S <saabisto@gmx.de>\n"
+"POT-Creation-Date: 2021-07-16 19:03+0000\n"
+"PO-Revision-Date: 2021-07-24 19:19+0000\n"
+"Last-Translator: supaeasy <ismo+github@wolffson.ch>\n"
 "Language-Team: German <https://l10n.elementary.io/projects/music/music/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -240,33 +240,6 @@ msgstr "Synchronisierung wird beendet …"
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "Synchronisierung wird abgebrochen …"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "Es wurden keine ähnlichen Titel gefunden"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"Es gibt keinen Titel in Ihrer Sammlung, der Ähnlichkeiten mit dem aktuellen "
-"Titel aufweist. Stellen Sie sicher, dass alle Informationen korrekt und Sie "
-"mit dem Internet verbunden sind. Für manche Titel finden sich eventuell "
-"dennoch keine Übereinstimmungen."
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "Ähnliches"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "Medien"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "Ähnliche Medien"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -885,7 +858,7 @@ msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
 "Das Gerät kann mit den ausgewählten Einstellungen nicht synchronisiert "
-"werden, da nicht ausreichend Speicherplatz vorhanden ist."
+"werden, da nicht ausreichend Speicherplatz vorhanden ist"
 
 #: src/Views/DeviceSummaryWidget.vala:322
 msgid "Device is already doing an operation."
@@ -1456,6 +1429,28 @@ msgstr "Listenansicht"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "Spaltenansicht"
+
+#~ msgid "No similar songs found"
+#~ msgstr "Es wurden keine ähnlichen Titel gefunden"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "Es gibt keinen Titel in Ihrer Sammlung, der Ähnlichkeiten mit dem "
+#~ "aktuellen Titel aufweist. Stellen Sie sicher, dass alle Informationen "
+#~ "korrekt und Sie mit dem Internet verbunden sind. Für manche Titel finden "
+#~ "sich eventuell dennoch keine Übereinstimmungen."
+
+#~ msgid "Similar"
+#~ msgstr "Ähnliches"
+
+#~ msgid "media"
+#~ msgstr "Medien"
+
+#~ msgid "Similar Media"
+#~ msgstr "Ähnliche Medien"
 
 #~ msgid "Audio CD Invalid"
 #~ msgstr "Audio-CD fehlerhaft"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-23 08:07+0000\n"
+"POT-Creation-Date: 2021-07-16 19:03+0000\n"
 "PO-Revision-Date: 2018-03-08 16:33+0000\n"
 "Last-Translator: Shawn <syst3mfailur3@gmail.com>\n"
 "Language-Team: English (Canada) <https://weblate.elementary.io/projects/"
@@ -241,32 +241,6 @@ msgstr "Finishing sync process…"
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "Cancelling Sync…"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "No similar songs found"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "Similar"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "media"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "Similar Media"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -1452,6 +1426,27 @@ msgstr "View as List"
 #, fuzzy
 msgid "View in columns"
 msgstr "View in Columns"
+
+#~ msgid "No similar songs found"
+#~ msgstr "No similar songs found"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+
+#~ msgid "Similar"
+#~ msgstr "Similar"
+
+#~ msgid "media"
+#~ msgstr "media"
+
+#~ msgid "Similar Media"
+#~ msgstr "Similar Media"
 
 #~ msgid "Audio CD Invalid"
 #~ msgstr "Audio CD Invalid"

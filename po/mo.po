@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-23 08:07+0000\n"
+"POT-Creation-Date: 2021-07-16 19:03+0000\n"
 "PO-Revision-Date: 2018-05-27 08:51+0000\n"
 "Last-Translator: Romanic Ion Nicușor <contact.romanic@gmail.com>\n"
 "Language-Team: Moldovan <https://weblate.elementary.io/projects/music/music/"
@@ -235,32 +235,6 @@ msgstr "Finalizarea procesului de sincronizare …"
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "Anulează sincronizarea …"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "Nu au fost găsite cântece similare"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"Nu există cântece similare cu piesa curentă în bibliotecă. Asigurați-vă că "
-"toate informațiile despre melodii sunt corecte și că sunteți conectat la "
-"Internet. Este posibil ca unele melodii să nu aibă potriviri."
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "Similare"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "mass-media"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "Medii similare"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -1473,6 +1447,27 @@ msgstr "Vizualizare ca listă"
 #, fuzzy
 msgid "View in columns"
 msgstr "Vizualizați în coloane"
+
+#~ msgid "No similar songs found"
+#~ msgstr "Nu au fost găsite cântece similare"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "Nu există cântece similare cu piesa curentă în bibliotecă. Asigurați-vă "
+#~ "că toate informațiile despre melodii sunt corecte și că sunteți conectat "
+#~ "la Internet. Este posibil ca unele melodii să nu aibă potriviri."
+
+#~ msgid "Similar"
+#~ msgstr "Similare"
+
+#~ msgid "media"
+#~ msgstr "mass-media"
+
+#~ msgid "Similar Media"
+#~ msgstr "Medii similare"
 
 #~ msgid "Audio CD Invalid"
 #~ msgstr "Cd audio nevalid"

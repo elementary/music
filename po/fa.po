@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-23 08:07+0000\n"
+"POT-Creation-Date: 2021-07-16 19:03+0000\n"
 "PO-Revision-Date: 2015-12-21 13:43+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Persian <fa@li.org>\n"
@@ -240,31 +240,6 @@ msgstr "پروسه همسان سازی اتمام یافت..."
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "لغو همسان سازی..."
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "هیچ آهنگ مشابهی پیدا نشد"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"هیچ آهنگ مشابهی با این آهنگ وجود ندارد. لطفا اطمینان پیدا کنید که اطلاعات "
-"آهنگ های شما درست است. و شما به اینترنت متصل هستید"
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "مشابه"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "رسانه"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "رسانه مشابه"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -1447,6 +1422,26 @@ msgstr "نمایش فهرستی"
 #, fuzzy
 msgid "View in columns"
 msgstr "نمایش ستونی"
+
+#~ msgid "No similar songs found"
+#~ msgstr "هیچ آهنگ مشابهی پیدا نشد"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "هیچ آهنگ مشابهی با این آهنگ وجود ندارد. لطفا اطمینان پیدا کنید که اطلاعات "
+#~ "آهنگ های شما درست است. و شما به اینترنت متصل هستید"
+
+#~ msgid "Similar"
+#~ msgstr "مشابه"
+
+#~ msgid "media"
+#~ msgstr "رسانه"
+
+#~ msgid "Similar Media"
+#~ msgstr "رسانه مشابه"
 
 #~ msgid "Audio CD Invalid"
 #~ msgstr "سی‌دی صوتی نامعتبر"

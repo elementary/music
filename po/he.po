@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-23 08:07+0000\n"
+"POT-Creation-Date: 2021-07-16 19:03+0000\n"
 "PO-Revision-Date: 2021-04-23 11:47+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/music/music/he/>\n"
@@ -235,31 +235,6 @@ msgstr "הסנכרון מסתיים…"
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
 msgstr "הסנכרון מבוטל…"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "לא נמצאו שירים דומים"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"אין שירים דומים לשיר הנוכחי בספרייה שלך. ודא שכל פרטי השיר נכונים ושקיים "
-"חיבור לאינטרנט. שירים מסוימים עשויים שלא להיות תואמים."
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "דומה"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "מדיה"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "מדיה דומה"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -1423,6 +1398,26 @@ msgstr "הצגה כרשימה"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "הצגה כעמודות"
+
+#~ msgid "No similar songs found"
+#~ msgstr "לא נמצאו שירים דומים"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "אין שירים דומים לשיר הנוכחי בספרייה שלך. ודא שכל פרטי השיר נכונים ושקיים "
+#~ "חיבור לאינטרנט. שירים מסוימים עשויים שלא להיות תואמים."
+
+#~ msgid "Similar"
+#~ msgstr "דומה"
+
+#~ msgid "media"
+#~ msgstr "מדיה"
+
+#~ msgid "Similar Media"
+#~ msgstr "מדיה דומה"
 
 #~ msgid "Audio CD Invalid"
 #~ msgstr "תקליטור השמע אינו תקין"

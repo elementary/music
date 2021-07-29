@@ -7,17 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-23 08:07+0000\n"
-"PO-Revision-Date: 2018-11-08 03:16+0000\n"
-"Last-Translator: Rodrigo Oliveira <rod.oliveira@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) <https://weblate.elementary.io/projects/"
+"POT-Creation-Date: 2021-07-16 19:03+0000\n"
+"PO-Revision-Date: 2021-07-16 23:51+0000\n"
+"Last-Translator: lucaspifonseca <lucaspifonseca@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) <https://l10n.elementary.io/projects/"
 "music/music/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
 #: core/LibrariesManager.vala:146
@@ -242,32 +242,6 @@ msgstr "Concluindo a sincronização…"
 msgid "Cancelling Sync…"
 msgstr "Cancelando a sincronização…"
 
-#: plugins/LastFM/LastFM.vala:98
-msgid "No similar songs found"
-msgstr "Nenhuma música similar encontrada"
-
-#: plugins/LastFM/LastFM.vala:98
-msgid ""
-"There are no songs similar to the current song in your library. Make sure "
-"all song info is correct and you are connected to the Internet. Some songs "
-"may not have matches."
-msgstr ""
-"Não há músicas similares à atual em sua biblioteca. Certifique-se de que "
-"todas as informações da música estão corretas e de que você está conectado à "
-"internet. Algumas músicas podem não ser encontradas."
-
-#: plugins/LastFM/SimilarMedia.vala:44
-msgid "Similar"
-msgstr "Similar"
-
-#: plugins/LastFM/SimilarMediaView.vala:49
-msgid "media"
-msgstr "mídia"
-
-#: plugins/LastFM/SimilarMediaView.vala:55
-msgid "Similar Media"
-msgstr "Mídia similar"
-
 #: src/FileOperator.vala:306
 msgid "Import Complete"
 msgstr "Importação Concluída"
@@ -364,10 +338,9 @@ msgstr ""
 "O arquivo de música para <b>%s</b> por <b>%s</b> não pôde ser encontrado."
 
 #: src/Dialogs/FileNotFoundDialog.vala:50
-#, fuzzy, c-format
-#| msgid "%i music files could not be found?"
+#, c-format
 msgid "%i music files could not be found."
-msgstr "%i arquivos de música não puderam ser encontrados?"
+msgstr "%i arquivos de música não puderam ser encontrados."
 
 #: src/Dialogs/FileNotFoundDialog.vala:53
 msgid "Rescan Library"
@@ -531,7 +504,7 @@ msgstr "Continuar reproduzindo quando fechado:"
 msgid "Remove %d Song From Library?"
 msgid_plural "Remove %d Songs From Library?"
 msgstr[0] "Remover %d música da Biblioteca?"
-msgstr[1] "Remover %d músicas  Biblioteca?"
+msgstr[1] "Remover %d músicas Biblioteca?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:55
 #, c-format
@@ -1408,10 +1381,8 @@ msgid "Add Smart Playlist"
 msgstr "Adicionar lista de reprodução inteligente"
 
 #: src/Widgets/StatusBar.vala:48
-#, fuzzy
-#| msgid "Add Playlist"
 msgid "Add Playlist…"
-msgstr "Adicionar lista de reprodução"
+msgstr "Adicionar Playlist…"
 
 #. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: src/Widgets/StatusBar.vala:74
@@ -1451,6 +1422,27 @@ msgstr "Ver como lista"
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
 msgstr "Ver em colunas"
+
+#~ msgid "No similar songs found"
+#~ msgstr "Nenhuma música similar encontrada"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "Não há músicas similares à atual em sua biblioteca. Certifique-se de que "
+#~ "todas as informações da música estão corretas e de que você está "
+#~ "conectado à internet. Algumas músicas podem não ser encontradas."
+
+#~ msgid "Similar"
+#~ msgstr "Similar"
+
+#~ msgid "media"
+#~ msgstr "mídia"
+
+#~ msgid "Similar Media"
+#~ msgstr "Mídia similar"
 
 #~ msgid "Audio CD Invalid"
 #~ msgstr "CD de Áudio Invalido"

@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-23 08:07+0000\n"
-"PO-Revision-Date: 2021-04-15 13:01+0000\n"
-"Last-Translator: Ozgur Baskin <bebeto_baskin@yahoo.com>\n"
-"Language-Team: Turkish <https://l10n.elementary.io/projects/music/extra/tr/"
-">\n"
+"POT-Creation-Date: 2021-07-16 19:03+0000\n"
+"PO-Revision-Date: 2021-07-19 22:02+0000\n"
+"Last-Translator: Özgür Baskin <queeup@zoho.com>\n"
+"Language-Team: Turkish <https://l10n.elementary.io/projects/music/extra/tr/>"
+"\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,196 +20,213 @@ msgstr ""
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
-#: data/io.elementary.music.appdata.xml.in:8
+#: data/io.elementary.music.appdata.xml.in:9
 #: data/io.elementary.music.desktop.in:4
 msgid "Music"
 msgstr "Müzik"
 
-#: data/io.elementary.music.appdata.xml.in:9
+#: data/io.elementary.music.appdata.xml.in:10
 msgid "The official elementary music player"
 msgstr "Resmi elementary müzik çaları"
 
-#: data/io.elementary.music.appdata.xml.in:11
+#: data/io.elementary.music.appdata.xml.in:12
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
-"libraries. It handles external devices, CDs, and album art."
+"libraries. It handles external devices and album art."
 msgstr ""
 "Müzik, senin müziklerine ve kütüphanene yoğunlaşan hızlı ve güzel bir ses "
-"oynatıcısıdır. Harici cihazların, CD'lerin ve albüm kapaklarının üstesinden "
-"rahatlıkla gelir."
-
-#: data/io.elementary.music.appdata.xml.in:16
-msgid "Drop support for CD-ROM"
-msgstr "CD-ROM desteği sonlandırıldı"
+"oynatıcısıdır. Harici cihazların ve albüm kapaklarının üstesinden rahatlıkla "
+"gelir."
 
 #: data/io.elementary.music.appdata.xml.in:17
-#: data/io.elementary.music.appdata.xml.in:24
+msgid "Drop support for Last.FM"
+msgstr "Last.FM desteği sonlandırıldı"
+
+#: data/io.elementary.music.appdata.xml.in:18
+#: data/io.elementary.music.appdata.xml.in:27
 #: data/io.elementary.music.appdata.xml.in:34
-#: data/io.elementary.music.appdata.xml.in:42
-#: data/io.elementary.music.appdata.xml.in:53
-#: data/io.elementary.music.appdata.xml.in:62
-#: data/io.elementary.music.appdata.xml.in:71
+#: data/io.elementary.music.appdata.xml.in:44
+#: data/io.elementary.music.appdata.xml.in:52
+#: data/io.elementary.music.appdata.xml.in:63
+#: data/io.elementary.music.appdata.xml.in:72
+#: data/io.elementary.music.appdata.xml.in:81
 msgid "Updated translations"
 msgstr "Çeviriler güncellendi"
 
-#: data/io.elementary.music.appdata.xml.in:22
+#: data/io.elementary.music.appdata.xml.in:23
+msgid "Fix an issue with saving smart playlists"
+msgstr "Akıllı çalma listelerini kaydetmeyle ilgili bir sorun düzeltildi"
+
+#: data/io.elementary.music.appdata.xml.in:24
+msgid "Drop support for CD-ROM"
+msgstr "CD-ROM desteği sonlandırıldı"
+
+#: data/io.elementary.music.appdata.xml.in:25
+msgid "Dark style support"
+msgstr "Koyu renk tema desteği eklendi"
+
+#: data/io.elementary.music.appdata.xml.in:26
+msgid "Minor visual improvements"
+msgstr "Küçük görsel iyileştirmeler"
+
+#: data/io.elementary.music.appdata.xml.in:32
 msgid "Fix removing items from the queue"
 msgstr "Öğelerin kuyruktan kaldırılması düzeltildi"
 
-#: data/io.elementary.music.appdata.xml.in:23
+#: data/io.elementary.music.appdata.xml.in:33
 msgid "Fix equalizer sliders not properly disabled sometimes"
 msgstr ""
 "Ekolayzır kaydıraklarının bazen düzgün bir şekilde devre dışı bırakılamaması "
 "düzeltildi"
 
-#: data/io.elementary.music.appdata.xml.in:25
+#: data/io.elementary.music.appdata.xml.in:35
 msgid "Performance improvements"
 msgstr "Performans iyileştirmeleri"
 
-#: data/io.elementary.music.appdata.xml.in:30
+#: data/io.elementary.music.appdata.xml.in:40
 msgid "Removed old gsignond vapi"
 msgstr "Eski gsignond vapi kaldırıldı"
 
-#: data/io.elementary.music.appdata.xml.in:31
+#: data/io.elementary.music.appdata.xml.in:41
 msgid "LibraryWindow: Use Granite.MessageDialog for showing alerts"
 msgstr ""
 "Uyarıları göstermek için LibraryWindow: Granite.MessageDialog kullanılıyor"
 
-#: data/io.elementary.music.appdata.xml.in:32
+#: data/io.elementary.music.appdata.xml.in:42
 msgid "PlaylistsUtils: Use Gtk.FileChooserNative"
 msgstr "PlaylistsUtils: Gtk.FileChooserNative kullanılıyor"
 
-#: data/io.elementary.music.appdata.xml.in:33
+#: data/io.elementary.music.appdata.xml.in:43
 msgid "Accurately remember window size"
 msgstr "Pencere boyutları doğru bir şekilde hatırlanır"
 
-#: data/io.elementary.music.appdata.xml.in:39
+#: data/io.elementary.music.appdata.xml.in:49
 msgid "Scale album art properly at high resolutions"
 msgstr "Yüksek çözünürlükte albüm görselleri düzgün bir şekilde boyutlanır"
 
-#: data/io.elementary.music.appdata.xml.in:40
+#: data/io.elementary.music.appdata.xml.in:50
 msgid ""
 "Accurately select Music Folder Location for directories with spaces in name"
 msgstr ""
 "Adında boşluk bulunan dizinler için Müzik Klasörü Konumu'nu doğru seçilir"
 
-#: data/io.elementary.music.appdata.xml.in:41
+#: data/io.elementary.music.appdata.xml.in:51
 msgid "New MediaKeyListener path for gnome-settings-daemon"
 msgstr "gnome-settings-daemon için yeni MediaKeyListener yolu"
 
-#: data/io.elementary.music.appdata.xml.in:47
+#: data/io.elementary.music.appdata.xml.in:57
 msgid "AlbumView: double-click to play album"
-msgstr ""
+msgstr "AlbümGörünümü: albümü çalmak için çift tıklatın"
 
-#: data/io.elementary.music.appdata.xml.in:48
+#: data/io.elementary.music.appdata.xml.in:58
 msgid "Associate with s3m files"
-msgstr ""
+msgstr "s3m dosyaları ile ilişkilendir"
 
-#: data/io.elementary.music.appdata.xml.in:49
+#: data/io.elementary.music.appdata.xml.in:59
 msgid "Queue fixes"
-msgstr ""
+msgstr "Kuyruk düzeltmeleri"
 
-#: data/io.elementary.music.appdata.xml.in:50
+#: data/io.elementary.music.appdata.xml.in:60
 msgid "Properly restore playlists"
-msgstr ""
+msgstr "Çalma listelerini düzgünce geri yükleme"
 
-#: data/io.elementary.music.appdata.xml.in:51
-msgid "Always respect custom music folder setting"
-msgstr ""
-
-#: data/io.elementary.music.appdata.xml.in:52
 #: data/io.elementary.music.appdata.xml.in:61
-#: data/io.elementary.music.appdata.xml.in:70
-#: data/io.elementary.music.appdata.xml.in:102
-#: data/io.elementary.music.appdata.xml.in:117
+msgid "Always respect custom music folder setting"
+msgstr "Her zaman özel müzik klasörü ayarına uy"
+
+#: data/io.elementary.music.appdata.xml.in:62
+#: data/io.elementary.music.appdata.xml.in:71
+#: data/io.elementary.music.appdata.xml.in:80
+#: data/io.elementary.music.appdata.xml.in:112
+#: data/io.elementary.music.appdata.xml.in:127
 msgid "Minor bug fixes"
 msgstr "Küçük hata düzeltmeleri"
 
-#: data/io.elementary.music.appdata.xml.in:58
-msgid "Fix list and column view sorting"
-msgstr ""
-
-#: data/io.elementary.music.appdata.xml.in:59
-msgid "Add orange accent color"
-msgstr ""
-
-#: data/io.elementary.music.appdata.xml.in:60
-msgid "Add shortcut accels to tooltips"
-msgstr ""
-
-#: data/io.elementary.music.appdata.xml.in:67
-msgid "Various UI changes"
-msgstr ""
-
 #: data/io.elementary.music.appdata.xml.in:68
-msgid "Shuffle fixes"
-msgstr ""
+msgid "Fix list and column view sorting"
+msgstr "Liste ve sütun görünümü sıralaması düzeltildi"
 
 #: data/io.elementary.music.appdata.xml.in:69
-msgid "Initial MPRIS support"
-msgstr ""
+msgid "Add orange accent color"
+msgstr "Turuncu vurgulama rengi eklendi"
 
-#: data/io.elementary.music.appdata.xml.in:76
-msgid "Detect library changes at startup."
-msgstr ""
+#: data/io.elementary.music.appdata.xml.in:70
+msgid "Add shortcut accels to tooltips"
+msgstr "Araç ipuçlarına kısayol erişimleri eklendi"
 
 #: data/io.elementary.music.appdata.xml.in:77
-msgid "Support searching by URI"
-msgstr ""
+msgid "Various UI changes"
+msgstr "Çeşitli kullanıcı arayüzü (UI) değişiklikleri"
 
 #: data/io.elementary.music.appdata.xml.in:78
-msgid "Change the queue mechanism to make it less confusing."
-msgstr ""
+msgid "Shuffle fixes"
+msgstr "Karıştır özelliği düzeltmeleri"
 
 #: data/io.elementary.music.appdata.xml.in:79
-msgid "Improve equalizer style."
-msgstr ""
+msgid "Initial MPRIS support"
+msgstr "MPRIS desteği eklendi"
 
-#: data/io.elementary.music.appdata.xml.in:80
-#: data/io.elementary.music.appdata.xml.in:85
+#: data/io.elementary.music.appdata.xml.in:86
+msgid "Detect library changes at startup."
+msgstr "Başlangıçta kitaplıktaki değişiklikleri algıla."
+
+#: data/io.elementary.music.appdata.xml.in:87
+msgid "Support searching by URI"
+msgstr "URI ile arama desteği"
+
+#: data/io.elementary.music.appdata.xml.in:88
+msgid "Change the queue mechanism to make it less confusing."
+msgstr "Daha az kafa karıştırıcı olması için kuyruk mekanizması değiştirildi."
+
+#: data/io.elementary.music.appdata.xml.in:89
+msgid "Improve equalizer style."
+msgstr "Equalizer tarzı iyileştirildi."
+
 #: data/io.elementary.music.appdata.xml.in:90
 #: data/io.elementary.music.appdata.xml.in:95
+#: data/io.elementary.music.appdata.xml.in:100
+#: data/io.elementary.music.appdata.xml.in:105
 msgid "Minor bug fixes."
 msgstr "Küçük hata düzeltmeleri."
 
-#: data/io.elementary.music.appdata.xml.in:100
+#: data/io.elementary.music.appdata.xml.in:110
 msgid "Add rounded bottom window corner."
-msgstr ""
-
-#: data/io.elementary.music.appdata.xml.in:103
-#: data/io.elementary.music.appdata.xml.in:118
-msgid "New translations"
-msgstr ""
-
-#: data/io.elementary.music.appdata.xml.in:109
-msgid "Release for Loki."
-msgstr ""
-
-#: data/io.elementary.music.appdata.xml.in:111
-msgid "Add support for Opus Ogg"
-msgstr ""
-
-#: data/io.elementary.music.appdata.xml.in:112
-msgid "Fix Ctrl+Q support for non-Latin keyboard layouts"
-msgstr ""
+msgstr "Pencere alt köşeleri yuvarlatıldı."
 
 #: data/io.elementary.music.appdata.xml.in:113
+#: data/io.elementary.music.appdata.xml.in:128
+msgid "New translations"
+msgstr "Yeni çeviriler"
+
+#: data/io.elementary.music.appdata.xml.in:119
+msgid "Release for Loki."
+msgstr "Loki için yayınlandı."
+
+#: data/io.elementary.music.appdata.xml.in:121
+msgid "Add support for Opus Ogg"
+msgstr "Opus Ogg desteği eklendi"
+
+#: data/io.elementary.music.appdata.xml.in:122
+msgid "Fix Ctrl+Q support for non-Latin keyboard layouts"
+msgstr "Latin olmayan klavye düzenleri için Ctrl+Q desteği düzeltildi"
+
+#: data/io.elementary.music.appdata.xml.in:123
 msgid "Reorganize media edition layout"
-msgstr ""
+msgstr "Medya sürümü düzeni yeniden düzenlendi"
 
-#: data/io.elementary.music.appdata.xml.in:114
+#: data/io.elementary.music.appdata.xml.in:124
 msgid "Port grid to support HiDPI displays"
-msgstr ""
+msgstr "HiDPI ekranları desteklemek için port ızgarası"
 
-#: data/io.elementary.music.appdata.xml.in:115
+#: data/io.elementary.music.appdata.xml.in:125
 msgid "Update icons to latest elementary icon release"
-msgstr ""
+msgstr "Simgeler en son elementary simge sürümüne güncellendi"
 
-#: data/io.elementary.music.appdata.xml.in:116
+#: data/io.elementary.music.appdata.xml.in:126
 msgid "Respect privacy mode"
-msgstr ""
+msgstr "Gizlilik modunu dikkate al"
 
-#: data/io.elementary.music.appdata.xml.in:156
+#: data/io.elementary.music.appdata.xml.in:166
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
 
@@ -226,9 +243,10 @@ msgid "io.elementary.music"
 msgstr "io.elementary.music"
 
 #: data/io.elementary.music.desktop.in:13
-msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;Phone;Songs;"
 msgstr ""
-"Noise;Ses;Oynatıcı;MP3;iPod;Çal;Çalma Listesi;Medya;CD;Telefon;Şarkılar;"
+"Noise;Ses;Oynatıcı;MP3;iPod;Çal;Çalma "
+"Listesi;Medya;Telefon;Şarkılar;Audio;Player;Play;Playlist;Media;Phone;Songs;"
 
 #~ msgid "multimedia-audio-player"
 #~ msgstr "multimedia-audio-player"

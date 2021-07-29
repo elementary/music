@@ -1,8 +1,0 @@
-[Plugin]
-Module=lastfm
-IAge=2
-Name=Last.fm Scrobbling
-Description=Enable scrobbling and suggestions with Last.fm
-Authors=Noise Developers
-Copyright=Copyright © 2012 Noise Developers
-Website=http://launchpad.net/noise
