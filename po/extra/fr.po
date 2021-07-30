@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beatbox 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-04-15 13:01+0000\n"
-"Last-Translator: Corentin Noël <corentin@elementary.io>\n"
+"PO-Revision-Date: 2021-07-30 19:58+0000\n"
+"Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://l10n.elementary.io/projects/music/extra/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -29,23 +29,17 @@ msgid "The official elementary music player"
 msgstr "Le lecteur audio officiel d'elementary"
 
 #: data/io.elementary.music.appdata.xml.in:12
-#, fuzzy
-#| msgid ""
-#| "Music is a fast and beautiful audio player with a focus on music and "
-#| "libraries. It handles external devices, CDs, and album art."
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices and album art."
 msgstr ""
 "Musique est un lecteur audio rapide et beau permettant de rester concentré "
-"sur la musique et votre bibliothèque. Il gère les périphériques externes, "
-"les CD et les couvertures d'albums."
+"sur la musique et votre bibliothèque. Il gère les périphériques externes et "
+"les couvertures d'albums."
 
 #: data/io.elementary.music.appdata.xml.in:17
-#, fuzzy
-#| msgid "Drop support for CD-ROM"
 msgid "Drop support for Last.FM"
-msgstr "Arrêt de la prise en charge des CD-ROM"
+msgstr "Arrêt de la prise en charge de Last.FM"
 
 #: data/io.elementary.music.appdata.xml.in:18
 #: data/io.elementary.music.appdata.xml.in:27
@@ -61,6 +55,7 @@ msgstr "Mise à jour des traductions"
 #: data/io.elementary.music.appdata.xml.in:23
 msgid "Fix an issue with saving smart playlists"
 msgstr ""
+"Correction d'un problème avec l'enregistrement des playlists intelligentes"
 
 #: data/io.elementary.music.appdata.xml.in:24
 msgid "Drop support for CD-ROM"
@@ -68,13 +63,11 @@ msgstr "Arrêt de la prise en charge des CD-ROM"
 
 #: data/io.elementary.music.appdata.xml.in:25
 msgid "Dark style support"
-msgstr ""
+msgstr "Prise en charge du thème sombre"
 
 #: data/io.elementary.music.appdata.xml.in:26
-#, fuzzy
-#| msgid "Performance improvements"
 msgid "Minor visual improvements"
-msgstr "Améliorations des performances"
+msgstr "Améliorations visuelles mineures"
 
 #: data/io.elementary.music.appdata.xml.in:32
 msgid "Fix removing items from the queue"
@@ -259,12 +252,10 @@ msgid "io.elementary.music"
 msgstr "io.elementary.music"
 
 #: data/io.elementary.music.desktop.in:13
-#, fuzzy
-#| msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;Phone;Songs;"
 msgstr ""
-"Bruit;Audio;Lecteur;MP3;iPod;Lire;Playlist;Liste de lecture;Média;CD;"
-"Téléphone;Musique;Chanson;"
+"Bruit;Audio;Lecteur;MP3;iPod;Lire;Playlist;Liste de "
+"lecture;Média;Téléphone;Musique;Chanson;"
 
 #~ msgid "multimedia-audio-player"
 #~ msgstr "multimedia-audio-player"
