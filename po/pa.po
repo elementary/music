@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-07-30 16:43+0000\n"
+"PO-Revision-Date: 2021-07-31 05:06+0000\n"
 "Last-Translator: elSolus <tumbleweed@tuta.io>\n"
 "Language-Team: Punjabi <https://l10n.elementary.io/projects/music/music/pa/>"
 "\n"
@@ -137,7 +137,7 @@ msgstr "ਐੱਮਪੀਈਜੀ ਵਰਜਨ 3.0 ਐਕਸਟੈਂਡਿਡ (*
 
 #: core/Utils/PlaylistsUtils.vala:269 core/Utils/PlaylistsUtils.vala:338
 msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr ""
+msgstr "ਸ਼ਾਊਟਕਾਸਟ ਪਲੇ-ਸੂਚੀ ਵਰਜਨ 2.0 (*.pls)"
 
 #: core/Utils/PlaylistsUtils.vala:272
 msgid "Export Playlist"
@@ -383,7 +383,7 @@ msgstr "ਐਲਬਮ ਕਲਾਕਾਰ:"
 
 #: src/Dialogs/MediaEditor.vala:104
 msgid "Composer:"
-msgstr "ਕਮਪੋਜ਼ਰ:"
+msgstr "ਸੰਗੀਤਕਾਰ:"
 
 #: src/Dialogs/MediaEditor.vala:106
 msgid "Grouping:"
@@ -650,7 +650,7 @@ msgstr "ਸਿਰਲੇਖ"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:273
 msgid "Year"
-msgstr "ਵਰ੍ਹਾ"
+msgstr "ਸਾਲ"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:274
 msgid "URI"
@@ -715,6 +715,9 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
+"ਜੇ ਤੁਸੀਂ ਤਾਲਮੇਲ ਜਾਰੀ ਰੱਖਿਆ ਤਾਂ %s ਤੋਂ ਮੀਡੀਆ ਹਟਾ ਦਿੱਤਾ ਜਾਵੇਗਾ ਕਿਉਂਕਿ ਉਹ ਤਾਲਮੇ"
+"ਲ ਸੂਚੀ ਵਿੱਚ ਨਹੀਂ ਹੈ। ਕੀ ਤੁਸੀਂ ਪਹਿਲਾਂ ਉਸਨੂੰ ਆਪਣੀ ਲਾਇਬ੍ਰੇਰੀ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰਨਾ "
+"ਚਾਹੋਗੇ?"
 
 #: src/Dialogs/SyncWarningDialog.vala:57
 msgid "Continue Syncing"
@@ -804,316 +807,318 @@ msgstr "ਡਿਵਾਈਸ ਦਾ ਨਾਂ"
 
 #: src/Views/DeviceSummaryWidget.vala:66
 msgid "Automatically sync when plugged in:"
-msgstr ""
+msgstr "ਕੰਪਿਊਟਰ ਨਾਲ਼ ਜੋੜਨ ਤੇ ਆਪਣੇ-ਆਪ ਤਾਲਮੇਲ ਕਰੋ:"
 
 #: src/Views/DeviceSummaryWidget.vala:72
 msgid "Sync:"
-msgstr ""
+msgstr "ਤਾਲਮੇਲ:"
 
 #: src/Views/DeviceSummaryWidget.vala:100 src/Widgets/SourceListView.vala:192
 msgid "Sync"
-msgstr ""
+msgstr "ਤਾਲਮੇਲ"
 
 #: src/Views/DeviceSummaryWidget.vala:244
 msgid "All Music"
-msgstr ""
+msgstr "ਸਾਰਾ ਸੰਗੀਤ"
 
 #: src/Views/DeviceSummaryWidget.vala:298
 msgid "Sync Failed"
-msgstr ""
+msgstr "ਤਾਲਮੇਲ ਨਾਕਾਮ ਰਿਹਾ"
 
 #: src/Views/DeviceSummaryWidget.vala:299
 #, c-format
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
-msgstr ""
+msgstr "ਡਿਵਾਈਸ %s ਨੂੰ ਤਾਲਮੇਲ ਕਰਨ ਵਾਲ਼ੀ ਪਲੇਸੂਚੀ %s ਨਹੀਂ ਲੱਭੀ।"
 
 #: src/Views/DeviceSummaryWidget.vala:316
 #: src/Views/DeviceSummaryWidget.vala:321
 msgid "Cannot Sync"
-msgstr ""
+msgstr "ਤਾਲਮੇਲ ਨਹੀਂ ਹੋ ਸਕਦਾ"
 
 #: src/Views/DeviceSummaryWidget.vala:317
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
+"ਚੁਣੀਆਂ ਹੋਈਆਂ ਤਾਲਮੇਲ ਸੈਟਿੰਗਾਂ ਨਾਲ਼ ਡਿਵਾਈਸ ਤਾਲਮੇਲ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕਦੀ। ਡਿਸਕ 'ਤੇ "
+"ਜਗ੍ਹਾ ਘੱਟ ਹੈ"
 
 #: src/Views/DeviceSummaryWidget.vala:322
 msgid "Device is already doing an operation."
-msgstr ""
+msgstr "ਡਿਵਾਈਸ ਪਹਿਲਾਂ ਹੀ ਕੋਈ ਕਾਰਵਾਈ ਕਰ ਰਹੀ ਹੈ।"
 
 #: src/Views/DeviceView.vala:66
 msgid "Cancelling…"
-msgstr ""
+msgstr "ਰੱਦ ਹੋ ਰਿਹੈ…"
 
 #: src/Views/DeviceView.vala:66
 msgid "Device operation has been cancelled and will stop after this media."
-msgstr ""
+msgstr "ਡਿਵਾਈਸ ਕਾਰਵਾਈ ਰੱਦ ਕੀਤੀ ਗਈ ਹੈ ਅਤੇ ਇਸ ਮੀਡੀਏ ਤੋਂ ਬਾਅਦ ਰੁਕ ਜਾਵੇਗੀ।"
 
 #: src/Views/ViewStack.vala:45
 msgid "No Results"
-msgstr ""
+msgstr "ਕੋਈ ਨਤੀਜੇ ਨਹੀਂ"
 
 #: src/Views/ViewStack.vala:45
 msgid "Try another search"
-msgstr ""
+msgstr "ਇੱਕ ਹੋਰ ਖੋਜ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
 msgid "Genres"
-msgstr ""
+msgstr "ਵੰਨਗੀਆਂ"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:60
 msgid "Artists"
-msgstr ""
+msgstr "ਕਲਾਕਾਰ"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:62
 msgid "Albums"
-msgstr ""
+msgstr "ਐਲਬਮਾਂ"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:64
 msgid "Years"
-msgstr ""
+msgstr "ਸਾਲ"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:66
 msgid "Ratings"
-msgstr ""
+msgstr "ਰੇਟਿੰਗਾਂ"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:68
 msgid "Composers"
-msgstr ""
+msgstr "ਸੰਗੀਤਕਾਰ"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:70
 msgid "Groupings"
-msgstr ""
+msgstr "ਗਰੁੱਪਿੰਗਾਂ"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
 msgid "All Genres"
-msgstr ""
+msgstr "ਸਾਰੀਆਂ ਵੰਨਗੀਆਂ"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
 #, c-format
 msgid "All %i Genres"
-msgstr ""
+msgstr "ਸਾਰੀਆਂ %i ਵੰਨਗੀਆਂ"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
 msgid "No Genres"
-msgstr ""
+msgstr "ਕੋਈ ਵੰਨਗੀ ਨਹੀਂ"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
 msgid "All Artists"
-msgstr ""
+msgstr "ਸਾਰੇ ਕਲਾਕਾਰ"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
 #, c-format
 msgid "All %i Artists"
-msgstr ""
+msgstr "ਸਾਰੇ %i ਕਲਾਕਾਰ"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
 msgid "No Artists"
-msgstr ""
+msgstr "ਕੋਈ ਕਲਾਕਾਰ ਨਹੀਂ"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
 msgid "All Albums"
-msgstr ""
+msgstr "ਸਾਰੀਆਂ ਐਲਬਮਾਂ"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
 #, c-format
 msgid "All %i Albums"
-msgstr ""
+msgstr "ਸਾਰੀਆਂ %i ਐਲਬਮਾਂ"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
 msgid "No Albums"
-msgstr ""
+msgstr "ਕੋਈ ਐਲਬਮ ਨਹੀਂ"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
 msgid "All Years"
-msgstr ""
+msgstr "ਸਾਰੇ ਸਾਲ"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
 #, c-format
 msgid "All %i Years"
-msgstr ""
+msgstr "ਸਾਰੇ %i ਸਾਲ"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:250
 msgid "No Years"
-msgstr ""
+msgstr "ਕੋਈ ਸਾਲ ਨਹੀਂ"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
 msgid "All Ratings"
-msgstr ""
+msgstr "ਸਾਰੀਆਂ ਰੇਟਿੰਗਾਂ"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
 msgid "No Ratings"
-msgstr ""
+msgstr "ਕੋਈ ਰੇਟਿੰਗਾਂ ਨਹੀਂ"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
 msgid "All Groupings"
-msgstr ""
+msgstr "ਸਾਰੀਆਂ ਗਰੁੱਪਿੰਗਾਂ"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
 #, c-format
 msgid "All %i Groupings"
-msgstr ""
+msgstr "ਸਾਰੀਆਂ %i ਗਰੁੱਪਿੰਗਾਂ"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
 msgid "No Groupings"
-msgstr ""
+msgstr "ਕੋਈ ਗਰੁੱਪਿੰਗ ਨਹੀਂ"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:271
 msgid "All Composers"
-msgstr ""
+msgstr "ਸਾਰੇ ਸੰਗੀਤਕਾਰ"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:273
 #, c-format
 msgid "All %i Composers"
-msgstr ""
+msgstr "ਸਾਰੇ %i ਸੰਗੀਤਕਾਰ"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:275
 msgid "No Composers"
-msgstr ""
+msgstr "ਕੋਈ ਸੰਗੀਤਕਾਰ ਨਹੀਂ"
 
 #. We cannot make these constants due to issues with N_()
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
 #: src/Widgets/EqualizerPopover.vala:326 src/Widgets/PresetList.vala:52
 msgid "Automatic"
-msgstr ""
+msgstr "ਖ਼ੁਦ-ਮੁਖ਼ਤਾਰ"
 
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:146
 msgid "On Left"
-msgstr ""
+msgstr "ਖੱਬੇ ਪਾਸੇ"
 
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:147
 msgid "On Top"
-msgstr ""
+msgstr "ਉੱਤੇ"
 
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:428
 msgid "Unrated"
-msgstr ""
+msgstr "ਬੇ-ਦਰਜਾ"
 
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:430
 #, c-format
 msgid "%u Star"
 msgid_plural "%u Stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u ਤਾਰਾ"
+msgstr[1] "%u ਤਾਰੇ"
 
 #: src/Views/ListView/Lists/CellDataFunctionHelper.vala:128
 #, c-format
 msgid "%u kbps"
-msgstr ""
+msgstr "%u ਕੇਬੀਪੀਐੱਸ"
 
 #: src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #: src/Views/ListView/Lists/MusicListView.vala:425
 msgid "Never"
-msgstr ""
+msgstr "ਕਦੇ ਵੀ ਨਹੀਂ"
 
 #: src/Views/ListView/Lists/ListColumn.vala:69
 msgctxt "List column title"
 msgid "#"
-msgstr ""
+msgstr "#"
 
 #: src/Views/ListView/Lists/ListColumn.vala:72
 msgctxt "List column title"
 msgid "Track"
-msgstr ""
+msgstr "ਗੀਤ"
 
 #: src/Views/ListView/Lists/ListColumn.vala:75
 msgctxt "List column title"
 msgid "Title"
-msgstr ""
+msgstr "ਨਾਂ"
 
 #: src/Views/ListView/Lists/ListColumn.vala:78
 msgctxt "List column title"
 msgid "Length"
-msgstr ""
+msgstr "ਲੰਬਾਈ"
 
 #: src/Views/ListView/Lists/ListColumn.vala:81
 msgctxt "List column title"
 msgid "Artist"
-msgstr ""
+msgstr "ਕਲਾਕਾਰ"
 
 #: src/Views/ListView/Lists/ListColumn.vala:84
 msgctxt "List column title"
 msgid "Album"
-msgstr ""
+msgstr "ਐਲਬਮ"
 
 #: src/Views/ListView/Lists/ListColumn.vala:87
 msgctxt "List column title"
 msgid "Album Artist"
-msgstr ""
+msgstr "ਐਲਬਮ ਕਲਾਕਾਰ"
 
 #: src/Views/ListView/Lists/ListColumn.vala:90
 msgctxt "List column title"
 msgid "Composer"
-msgstr ""
+msgstr "ਸੰਗੀਤਕਾਰ"
 
 #: src/Views/ListView/Lists/ListColumn.vala:93
 msgctxt "List column title"
 msgid "Genre"
-msgstr ""
+msgstr "ਵੰਨਗੀ"
 
 #: src/Views/ListView/Lists/ListColumn.vala:96
 msgctxt "List column title"
 msgid "Year"
-msgstr ""
+msgstr "ਸਾਲ"
 
 #: src/Views/ListView/Lists/ListColumn.vala:99
 msgctxt "List column title"
 msgid "Grouping"
-msgstr ""
+msgstr "ਗਰੁੱਪਿੰਗ"
 
 #: src/Views/ListView/Lists/ListColumn.vala:102
 msgctxt "List column title"
 msgid "Bitrate"
-msgstr ""
+msgstr "ਬਿੱਟਰੇਟ"
 
 #: src/Views/ListView/Lists/ListColumn.vala:105
 msgctxt "List column title"
 msgid "Rating"
-msgstr ""
+msgstr "ਦਰਜਾਬੰਦੀ"
 
 #: src/Views/ListView/Lists/ListColumn.vala:108
 msgctxt "List column title"
 msgid "Plays"
-msgstr ""
+msgstr "ਚਲਾਏ"
 
 #: src/Views/ListView/Lists/ListColumn.vala:111
 msgctxt "List column title"
 msgid "Skips"
-msgstr ""
+msgstr "ਛੱਡੇ"
 
 #: src/Views/ListView/Lists/ListColumn.vala:114
 msgctxt "List column title"
 msgid "Date Added"
-msgstr ""
+msgstr "ਸ਼ਾਮਲ ਕਰਨ ਦੀ ਮਿਤੀ"
 
 #: src/Views/ListView/Lists/ListColumn.vala:117
 msgctxt "List column title"
 msgid "Last Played"
-msgstr ""
+msgstr "ਆਖ਼ਰੀ ਵਾਰ ਚਲਾਏ"
 
 #: src/Views/ListView/Lists/ListColumn.vala:120
 msgctxt "List column title (beats per minute)"
 msgid "BPM"
-msgstr ""
+msgstr "ਬੀਪੀਐੱਮ"
 
 #: src/Views/ListView/Lists/ListColumn.vala:123
 msgctxt "List column title (file location)"
 msgid "Location"
-msgstr ""
+msgstr "ਟਿਕਾਣਾ"
 
 #: src/Views/ListView/Lists/ListColumn.vala:126
 msgctxt "List column title"
 msgid "File Size"
-msgstr ""
+msgstr "ਫ਼ਾਇਲ ਦਾ ਸਾਈਜ਼"
 
 #: src/Views/ListView/Lists/MusicListView.vala:74
 msgid "Autosize Columns"
-msgstr ""
+msgstr "ਕਾਲਮਾਂ ਨੂੰ ਆਪਣੇ-ਆਪ ਸਾਈਜ਼ ਲੈਣ ਦਿਓ"
 
 #: src/Views/ListView/Lists/MusicListView.vala:410
 msgid "1234 kbps"
-msgstr ""
+msgstr "1234 ਕੇਬੀਪੀਐੱਸ"
 
 #. / Sample string used to measure the ideal size of the Title, Artist,
 #. / Album, Album Artist, Composer, Genre, and Grouping columns in the
@@ -1124,63 +1129,65 @@ msgstr ""
 #. / by the column's title header.
 #: src/Views/ListView/Lists/MusicListView.vala:481
 msgid "Sample List String"
-msgstr ""
+msgstr "ਨਮੂਨਾ ਸੂਚੀ ਲਾਈਨ"
 
 #. Welcome screen
 #: src/Views/Wrappers/MusicViewWrapper.vala:56
 msgid "Get Some Tunes"
-msgstr ""
+msgstr "ਕੋਈ ਗੀਤ-ਸੰਗੀਤ ਚਲਾਓ"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:57
 msgid "Add music to your library."
-msgstr ""
+msgstr "ਆਪਣੀ ਲਾਇਬ੍ਰੇਰੀ 'ਚ ਸੰਗੀਤ ਸ਼ਾਮਲ ਕਰੋ।"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import music from a source into your library."
-msgstr ""
+msgstr "ਕਿਸੇ ਸਰੋਤ ਤੋਂ ਆਪਣੀ ਲਾਇਬ੍ਰੇਰੀ ਵਿੱਚ ਸੰਗੀਤ ਦੀ ਆਮਦ ਕਰੋ।"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:62
 msgid "Change Music Folder"
-msgstr ""
+msgstr "ਸੰਗੀਤ ਫ਼ੋਲਡਰ ਬਦਲੋ"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:63
 msgid "Load music from a folder, a network or an external disk."
-msgstr ""
+msgstr "ਕਿਸੇ ਫ਼ੋਲਡਰ, ਨੈੱਟਵਰਕ ਜਾਂ ਬਾਹਰੀ ਡਿਸਕ ਤੋਂ ਸੰਗੀਤ ਲੋਡ ਕਰੋ।"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:110
 #: src/Views/Wrappers/MusicViewWrapper.vala:130
 msgid "Import your Music"
-msgstr ""
+msgstr "ਆਪਣੇ ਸੰਗੀਤ ਦੀ ਆਮਦ ਕਰੋ"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:111
 #: src/Views/Wrappers/MusicViewWrapper.vala:131
 #, c-format
 msgid "Import all your Music from %s into your library."
-msgstr ""
+msgstr "%s ਤੋਂ ਆਪਣੇ ਸਾਰੇ ਸੰਗੀਤ ਦੀ ਆਪਣੀ ਲਾਇਬ੍ਰੇਰੀ ਵਿੱਚ ਆਮਦ ਕਰੋ।"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:143
 msgid "Select Music Folder"
-msgstr ""
+msgstr "ਸੰਗੀਤ ਫ਼ੋਲਡਰ ਚੁਣੋ"
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:50
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:54
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:64
 msgid "No Songs"
-msgstr ""
+msgstr "ਕੋਈ ਗੀਤ ਨਹੀਂ"
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:51
 msgid "Updating playlist. Please wait."
-msgstr ""
+msgstr "ਪਲੇ-ਸੂਚੀ ਅਪਡੇਟ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ। ਮਿਹਰਬਾਨੀ ਕਰਕੇ ਉਡੀਕ ਕਰੋ।"
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:55
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
+"ਇਸ ਪਲੇ-ਸੂਚੀ ਵਿੱਚ ਗੀਤ ਸ਼ਾਮਲ ਕਰਨ ਲਈ ਗੀਤ 'ਤੇ <b>ਸੱਜੀ ਕਲਿੱਕ</b> ਕਰੋ ਅਤੇ "
+"<b>ਪਲੇ-ਸੂਚੀ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</b> ਚੁਣੋ।"
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:58
 msgid "Edit Smart Playlist"
-msgstr ""
+msgstr "ਚੁਸਤ ਪਲੇ-ਸੂਚੀ ਦਾ ਸੰਪਾਦਨ ਕਰੋ"
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:65
 msgid ""
@@ -1189,211 +1196,215 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
+"ਇਹ ਪਲੇ-ਸੂਚੀ ਆਪਣੇ-ਆਪ ਉਹਨਾਂ ਗੀਤ ਨਾਲ਼ ਭਰ ਜਾਵੇਗੀ ਜਿਹੜੇ ਇਹਦੇ ਨੇਮ ਨਾਲ਼ ਮੇਲ ਖਾਂਦੇ "
+"ਹੋਣਗੇ। ਇਹਨਾਂ ਨੇਮਾਂ ਨੂੰ ਬਦਲਣ ਲਈ ਸਾਈਡਬਾਰ ਵਿੱਚ ਇਹਦੇ 'ਤੇ <b>ਸੱਜੀ ਕਲਿੱਕ</b> ਕਰੋ "
+"ਅਤੇ ਫਿਰ <b>ਸੰਪਾਦਿਤ ਕਰੋ</b> 'ਤੇ ਕਲਿੱਕ ਕਰੋ। ਜਾਂ ਤੁਸੀਂ ਹੇਠਾਂ ਦਿੱਤੇ ਬਟਨ 'ਤੇ ਵੀ "
+"ਕਲਿੱਕ ਕਰ ਸਕਦੇ ਹੋ।"
 
 #: src/Views/Wrappers/ViewWrapper.vala:418
 msgid "No media"
-msgstr ""
+msgstr "ਕੋਈ ਮੀਡੀਆ ਨਹੀਂ"
 
 #: src/Widgets/AlbumListGrid.vala:63
 msgid "Set new album cover"
-msgstr ""
+msgstr "ਨਵੀਂ ਐਲਬਮ ਤਸਵੀਰ ਸੈੱਟ ਕਰੋ"
 
 #: src/Widgets/AlbumListGrid.vala:193
 msgid "Image files"
-msgstr ""
+msgstr "ਤਸਵੀਰ ਫ਼ਾਇਲਾਂ"
 
 #: src/Widgets/AlbumListGrid.vala:200
 msgid "_Open"
-msgstr ""
+msgstr "_ਖੋਲ੍ਹੋ"
 
 #: src/Widgets/AlbumListGrid.vala:201
 msgid "_Cancel"
-msgstr ""
+msgstr "_ਰੱਦ ਕਰੋ"
 
 #: src/Widgets/EqualizerPopover.vala:162
 msgid "Save preset"
-msgstr ""
+msgstr "ਪ੍ਰੀਸੈੱਟ ਸਾਂਭੋ"
 
 #: src/Widgets/EqualizerPopover.vala:330
 msgid "Off"
-msgstr ""
+msgstr "ਬੰਦ ਕਰੋ"
 
 #: src/Widgets/EqualizerPopover.vala:418
 #, c-format
 msgid "%s (Custom)"
-msgstr ""
+msgstr "%s (ਤਬਦੀਲੀਸ਼ੁਦਾ)"
 
 #: src/Widgets/EqualizerPopover.vala:420
 #, c-format
 msgid "%s (Custom %i)"
-msgstr ""
+msgstr "%s (ਤਬਦੀਲੀਸ਼ੁਦਾ %i)"
 
 #: src/Widgets/EqualizerPopover.vala:423
 msgid "Custom Preset"
-msgstr ""
+msgstr "ਤਬਦੀਲੀਸ਼ੁਦਾ ਪ੍ਰੀਸੈੱਟ"
 
 #: src/Widgets/EqualizerPopover.vala:425
 #, c-format
 msgid "Custom Preset %i"
-msgstr ""
+msgstr "ਤਬਦੀਲੀਸ਼ੁਦਾ ਪ੍ਰੀਸੈੱਟ %i"
 
 #: src/Widgets/MediaMenu.vala:46
 msgid "Scroll to Current Song"
-msgstr ""
+msgstr "ਚਲੰਤ ਗੀਤ 'ਤੇ ਜਾਓ"
 
 #: src/Widgets/MediaMenu.vala:49
 msgid "Show in File Browser…"
-msgstr ""
+msgstr "ਫ਼ਾਇਲ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਵਿਖਾਓ…"
 
 #: src/Widgets/MediaMenu.vala:50
 msgid "Edit Song Info…"
-msgstr ""
+msgstr "ਗੀਤ ਜਾਣਕਾਰੀ ਸੰਪਾਦਿਤ ਕਰੋ…"
 
 #: src/Widgets/MediaMenu.vala:51
 msgid "Other Actions"
-msgstr ""
+msgstr "ਹੋਰ ਕਾਰਵਾਈਆਂ"
 
 #: src/Widgets/MediaMenu.vala:53
 msgctxt "Action item (verb)"
 msgid "Queue"
-msgstr ""
+msgstr "ਕਤਾਰ ਵਿੱਚ ਲਾਓ"
 
 #: src/Widgets/MediaMenu.vala:54
 msgid "Add to Playlist"
-msgstr ""
+msgstr "ਪਲੇ-ਸੂਚੀ 'ਚ ਸ਼ਾਮਲ ਕਰੋ"
 
 #: src/Widgets/MediaMenu.vala:55
 msgid "Remove Song…"
-msgstr ""
+msgstr "ਗੀਤ ਹਟਾਓ…"
 
 #: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
 msgid "Import to Library"
-msgstr ""
+msgstr "ਲਾਇਬ੍ਰੇਰੀ ਵਿੱਚ ਆਮਦ ਕਰੋ"
 
 #: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
 msgid "Remove from Library…"
-msgstr ""
+msgstr "ਲਾਇਬ੍ਰੇਰੀ 'ਚੋਂ ਹਟਾਓ…"
 
 #: src/Widgets/MediaMenu.vala:99
 msgid "Remove from Device"
-msgstr ""
+msgstr "ਡਿਵਾਈਸ ਤੋਂ ਹਟਾਓ"
 
 #: src/Widgets/MediaMenu.vala:119
 msgid "Remove from Queue"
-msgstr ""
+msgstr "ਕਤਾਰ 'ਚੋਂ ਹਟਾਓ"
 
 #: src/Widgets/MediaMenu.vala:153
 msgid "New Playlist…"
-msgstr ""
+msgstr "ਨਵੀਂ ਪਲੇ-ਸੂਚੀ…"
 
 #: src/Widgets/MediaMenu.vala:193
 #, c-format
 msgid "Import %i of %i selected songs"
-msgstr ""
+msgstr "%i ਵਿੱਚੋਂ %i ਚੁਣੇ ਹੋਏ ਗੀਤਾਂ ਦੀ ਆਮਦ ਕਰੋ"
 
 #: src/Widgets/MediaMenu.vala:195
 #, c-format
 msgid "Import %i song"
 msgid_plural "Import %i songs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%i ਗੀਤ ਦੀ ਆਮਦ ਕਰੋ"
+msgstr[1] "%i ਗੀਤਾਂ ਦੀ ਆਮਦ ਕਰੋ"
 
 #: src/Widgets/PresetList.vala:53
 msgid "Delete Current"
-msgstr ""
+msgstr "ਮੌਜੂਦਾ ਨੂੰ ਮਿਟਾਓ"
 
 #: src/Widgets/SourceListView.vala:66 src/Widgets/SourceListView.vala:78
 msgid "Rename"
-msgstr ""
+msgstr "ਨਾਂ ਬਦਲੋ"
 
 #: src/Widgets/SourceListView.vala:79
 msgid "Edit…"
-msgstr ""
+msgstr "ਸੰਪਾਦਿਤ ਕਰੋ…"
 
 #: src/Widgets/SourceListView.vala:95
 msgid "Save as Playlist"
-msgstr ""
+msgstr "ਪਲੇ-ਸੂਚੀ ਵਜੋਂ ਸਾਂਭੋ"
 
 #: src/Widgets/SourceListView.vala:103
 msgid "Export…"
-msgstr ""
+msgstr "ਦਰਾਮਦ ਕਰੋ…"
 
 #: src/Widgets/SourceListView.vala:166
 msgid "Eject"
-msgstr ""
+msgstr "ਬਾਹਰ ਕੱਢੋ"
 
 #: src/Widgets/SourceListView.vala:176 src/Widgets/SourceListView.vala:219
 msgid "New Playlist"
-msgstr ""
+msgstr "ਨਵੀਂ ਪਲੇ-ਸੂਚੀ"
 
 #: src/Widgets/SourceListView.vala:184 src/Widgets/SourceListView.vala:220
 msgid "New Smart Playlist"
-msgstr ""
+msgstr "ਨਵੀਂ ਚੁਸਤ ਪਲੇ-ਸੂਚੀ"
 
 #: src/Widgets/SourceListView.vala:221
 msgid "Import Playlists"
-msgstr ""
+msgstr "ਪਲੇ-ਸੂਚੀਆਂ ਦੀ ਆਮਦ ਕਰੋ"
 
 #. Adds the different sidebar categories.
 #: src/Widgets/SourceListView.vala:338
 msgid "Library"
-msgstr ""
+msgstr "ਲਾਇਬ੍ਰੇਰੀ"
 
 #: src/Widgets/SourceListView.vala:339
 msgid "Devices"
-msgstr ""
+msgstr "ਡਿਵਾਈਸਾਂ"
 
 #: src/Widgets/SourceListView.vala:340
 msgid "Network"
-msgstr ""
+msgstr "ਨੈੱਟਵਰਕ"
 
 #: src/Widgets/StatusBar.vala:36
 msgid "Add Playlist"
-msgstr ""
+msgstr "ਪਲੇ-ਸੂਚੀ ਸ਼ਾਮਲ ਕਰੋ"
 
 #: src/Widgets/StatusBar.vala:37
 msgid "Add Smart Playlist"
-msgstr ""
+msgstr "ਚੁਸਤ ਪਲੇ-ਸੂਚੀ ਸ਼ਾਮਲ ਕਰੋ"
 
 #: src/Widgets/StatusBar.vala:48
 msgid "Add Playlist…"
-msgstr ""
+msgstr "ਪਲੇ-ਸੂਚੀ ਸ਼ਾਮਲ ਕਰੋ…"
 
 #. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: src/Widgets/StatusBar.vala:74
 #, c-format
 msgid "Equalizer: %s"
-msgstr ""
+msgstr "ਈਕਵਾਲਾਈਜ਼ਰ: %s"
 
 #. MUST follow the exact same order of Music.Player.Repeat
 #: src/Widgets/TopDisplay.vala:138
 msgid "Enable Repeat"
-msgstr ""
+msgstr "ਦੁਬਾਰਾ ਉਹੀ ਚਲਾਉਣਾ ਚਾਲੂ ਕਰੋ"
 
 #: src/Widgets/TopDisplay.vala:139
 msgid "Repeat Song"
-msgstr ""
+msgstr "ਗੀਤ ਨੂੰ ਦੁਬਾਰਾ ਚਲਾਓ"
 
 #: src/Widgets/TopDisplay.vala:140
 msgid "Disable Repeat"
-msgstr ""
+msgstr "ਦੁਬਾਰਾ ਚਲਾਉਣਾ ਬੰਦ ਕਰੋ"
 
 #: src/Widgets/TopDisplay.vala:159
 msgid "Enable Shuffle"
-msgstr ""
+msgstr "ਫੈਂਟਣਾ ਚਾਲੂ ਕਰੋ"
 
 #: src/Widgets/TopDisplay.vala:160
 msgid "Disable Shuffle"
-msgstr ""
+msgstr "ਫੈਂਟਣਾ ਬੰਦ ਕਰੋ"
 
 #: src/Widgets/ViewSelector.vala:81
 msgid "View as albums"
-msgstr ""
+msgstr "ਐਲਬਮਾਂ ਵਜੋਂ ਵੇਖੋ"
 
 #: src/Widgets/ViewSelector.vala:87
 msgid "View as list"
-msgstr ""
+msgstr "ਸੂਚੀ ਵਜੋਂ ਵੇਖੋ"
 
 #: src/Widgets/ViewSelector.vala:93
 msgid "View in columns"
-msgstr ""
+msgstr "ਕਾਲਮਾਂ ਵਜੋਂ ਵੇਖੋ"
