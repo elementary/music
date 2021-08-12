@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beatbox 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-04-23 11:47+0000\n"
+"PO-Revision-Date: 2021-08-12 13:43+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://l10n.elementary.io/projects/music/music/fr/>\n"
 "Language: fr\n"
@@ -760,7 +760,7 @@ msgstr "Aucun fichier importé."
 
 #: src/LocalBackend/LocalLibrary.vala:255
 msgid "Rescanning music for changes. This may take a while…"
-msgstr "Recherches des changements. Ceci peut prendre du temps…"
+msgstr "Recherches des modifications. Ceci peut prendre du temps…"
 
 #: src/LocalBackend/LocalLibrary.vala:356
 msgid "Added to your queue:"
