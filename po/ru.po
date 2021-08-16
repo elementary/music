@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-04-24 11:18+0000\n"
-"Last-Translator: DartDeaDia <jorydit@gmail.com>\n"
-"Language-Team: Russian <https://l10n.elementary.io/projects/music/music/ru/"
-">\n"
+"PO-Revision-Date: 2021-08-16 08:06+0000\n"
+"Last-Translator: DartDeaDia <dartdeadia@protonmail.com>\n"
+"Language-Team: Russian <https://l10n.elementary.io/projects/music/music/ru/>"
+"\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +23,7 @@ msgstr ""
 
 #: core/LibrariesManager.vala:146
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "Импортирование <b>$NAME</b> в исполнении <b>$ARTIST</b> в медиатеку…"
+msgstr "Импортирование <b>$NAME</b> в исполнении <b>$ARTIST</b> в библиотеку…"
 
 #. / Used for unknown titles, artists, or album names.
 #: core/Media.vala:33
@@ -263,7 +263,7 @@ msgstr "Музыка"
 
 #: src/LibraryWindow.vala:216
 msgid "Import to Library…"
-msgstr "Импортировать в медиатеку…"
+msgstr "Импортировать в билиотеку…"
 
 #: src/LibraryWindow.vala:219 src/Dialogs/PreferencesWindow.vala:32
 msgid "Preferences"
@@ -271,7 +271,7 @@ msgstr "Настройки"
 
 #: src/LibraryWindow.vala:238
 msgid "Previous"
-msgstr "Предыдущая композиция"
+msgstr "Назад"
 
 #: src/LibraryWindow.vala:245 src/LibraryWindow.vala:311
 msgid "Play"
@@ -279,7 +279,7 @@ msgstr "Воспроизвести"
 
 #: src/LibraryWindow.vala:252
 msgid "Next"
-msgstr "Следующая композиция"
+msgstr "Далее"
 
 #: src/LibraryWindow.vala:256
 msgid "Search Music"
@@ -374,7 +374,7 @@ msgstr "Установить плагин"
 
 #: src/Dialogs/MediaEditor.vala:96
 msgid "Title:"
-msgstr "Заголовок:"
+msgstr "Название:"
 
 #: src/Dialogs/MediaEditor.vala:98
 msgid "Artist:"
@@ -476,7 +476,7 @@ msgstr "Расположение папки с музыкой"
 
 #: src/Dialogs/PreferencesWindow.vala:72
 msgid "Library Management"
-msgstr "Управление медиатекой"
+msgstr "Управление библиотекой"
 
 #: src/Dialogs/PreferencesWindow.vala:73
 msgid "Keep Music folder organized:"
@@ -488,7 +488,7 @@ msgstr "Записать метаданные в файл:"
 
 #: src/Dialogs/PreferencesWindow.vala:77
 msgid "Copy imported files to Library:"
-msgstr "Копировать импортированные файлы в медиатеку:"
+msgstr "Копировать импортированные файлы в библиотеку:"
 
 #: src/Dialogs/PreferencesWindow.vala:79
 msgid "Desktop Integration"
@@ -502,14 +502,14 @@ msgstr "Продолжить воспроизведение после закр�
 #, c-format
 msgid "Remove %d Song From Library?"
 msgid_plural "Remove %d Songs From Library?"
-msgstr[0] "Удалить %d композицию из медиатеки?"
-msgstr[1] "Удалить %d композиции из медиатеки?"
-msgstr[2] "Удалить %d композиций из медиатеки?"
+msgstr[0] "Удалить %d композицию из библиотеки?"
+msgstr[1] "Удалить %d композиции из библиотеки?"
+msgstr[2] "Удалить %d композиций из библиотеки?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:55
 #, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr "Удалить «%s» из медиатеки?"
+msgstr "Удалить «%s» из библиотеки?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
 msgid ""
@@ -519,18 +519,18 @@ msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
 msgstr[0] ""
-"Это удалит композицию из вашей медиатеки и всех устройств, которые "
-"синхронизируются автоматически."
+"Это удалит композицию из вашей библиотеки и всех устройств "
+"синхронизированных автоматически."
 msgstr[1] ""
-"Это удалит композиции из вашей медиатеки и всех устройств, которые "
-"синхронизируются автоматически."
+"Это удалит композиции из вашей библиотеки и всех устройств "
+"синхронизированных автоматически."
 msgstr[2] ""
-"Это удалит композиции из вашей медиатеки и всех устройств, которые "
-"синхронизируются автоматически."
+"Это удалит композиции из вашей библиотеки и всех устройств "
+"синхронизированных автоматически."
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
-msgstr "Удалить из медиатеки"
+msgstr "Удалить из библиотеки"
 
 #: src/Dialogs/SetMusicFolderConfirmation.vala:38
 msgid "Set Music Folder?"
@@ -543,7 +543,7 @@ msgid ""
 "library and remove your playlists."
 msgstr ""
 "Вы уверены, что хотите назначить %s папкой с музыкой? Это сбросит сведения о "
-"вашей медиатеке и удалит списки воспроизведения."
+"вашей библиотеке и удалит Ваши списки воспроизведения."
 
 #: src/Dialogs/SetMusicFolderConfirmation.vala:47
 msgid "Export Playlists"
@@ -555,7 +555,7 @@ msgstr "Выбрать папку с музыкой"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:55
 msgid "Playlist Title"
-msgstr "Заголовок списка воспроизведения"
+msgstr "Название списка воспроизведения"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:58
 msgid "any"
@@ -628,7 +628,7 @@ msgstr "Композитор"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:264
 msgid "Date Added"
-msgstr "Добавлено"
+msgstr "Дата добавления"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:265
 msgid "Genre"
@@ -654,7 +654,7 @@ msgstr "Счётчик воспроизведений"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:270
 msgid "Rating"
-msgstr "Рейтинг"
+msgstr "Оценка"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:271
 msgid "Skipcount"
@@ -808,7 +808,7 @@ msgstr "Воспроизведённые давно"
 
 #: src/Objects/HistoryPlaylist.vala:38
 msgid "History"
-msgstr "Журнал"
+msgstr "История"
 
 #: src/Objects/MPRIS.vala:617 src/Widgets/SourceListView.vala:341
 msgid "Playlists"
@@ -1090,7 +1090,7 @@ msgstr "Группа"
 #: src/Views/ListView/Lists/ListColumn.vala:102
 msgctxt "List column title"
 msgid "Bitrate"
-msgstr "Качество звука"
+msgstr "Битрейт"
 
 #: src/Views/ListView/Lists/ListColumn.vala:105
 msgctxt "List column title"
@@ -1288,7 +1288,7 @@ msgstr "Другие действия"
 #: src/Widgets/MediaMenu.vala:53
 msgctxt "Action item (verb)"
 msgid "Queue"
-msgstr "Поставить в очередь"
+msgstr "Добавить в очередь"
 
 #: src/Widgets/MediaMenu.vala:54
 msgid "Add to Playlist"
