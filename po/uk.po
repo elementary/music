@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-07-14 21:52+0000\n"
-"Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
+"PO-Revision-Date: 2021-08-16 08:06+0000\n"
+"Last-Translator: DartDeaDia <dartdeadia@protonmail.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/music/music/uk/"
 ">\n"
 "Language: uk\n"
@@ -263,7 +263,7 @@ msgstr "Музика"
 
 #: src/LibraryWindow.vala:216
 msgid "Import to Library…"
-msgstr "Імпортувати до Бібліотеки…"
+msgstr "Імпортувати до бібліотеки…"
 
 #: src/LibraryWindow.vala:219 src/Dialogs/PreferencesWindow.vala:32
 msgid "Preferences"
@@ -342,7 +342,7 @@ msgstr "Не знайдено %i музичних файлів."
 
 #: src/Dialogs/FileNotFoundDialog.vala:53
 msgid "Rescan Library"
-msgstr "Сканувати Бібліотеку повторно"
+msgstr "Сканувати бібліотеку повторно"
 
 #: src/Dialogs/FileNotFoundDialog.vala:54
 msgid "Remove Song"
