@@ -1,0 +1,2213 @@
+# Catalan translation for beat-box
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the beat-box package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: beat-box\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-07-16 19:03+0000\n"
+"PO-Revision-Date: 2021-04-26 19:07+0000\n"
+"Last-Translator: David M <rbndavid@gmail.com>\n"
+"Language-Team: Catalan <https://l10n.elementary.io/projects/music/music/ca/"
+">\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.4.2\n"
+"X-Launchpad-Export-Date: 2017-03-07 05:51+0000\n"
+
+#: core/LibrariesManager.vala:146
+msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
+msgstr "S'importa <b>$NAME</b> fet per <b>$ARTIST</b> a la col·lecció…"
+
+#. / Used for unknown titles, artists, or album names.
+#: core/Media.vala:33
+msgid "Unknown"
+msgstr "Desconegut"
+
+#. / Please keep $NAME and $ALBUM, they will be replaced by their values
+#: core/Media.vala:180
+msgid "$NAME on $ALBUM"
+msgstr "$NAME a $ALBUM"
+
+#. / Please keep $NAME and $ARTIST, they will be replaced by their values
+#: core/Media.vala:183
+msgid "$NAME by $ARTIST"
+msgstr "$NAME per $ARTIST"
+
+#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
+#: core/Media.vala:189
+msgid "$NAME by $ARTIST on $ALBUM"
+msgstr "$NAME per $ARTIST a $ALBUM"
+
+#: core/GStreamer/Equalizer.vala:70
+msgid "Flat"
+msgstr "Plana"
+
+#: core/GStreamer/Equalizer.vala:71
+msgid "Classical"
+msgstr "Música clàssica"
+
+#: core/GStreamer/Equalizer.vala:72
+msgid "Club"
+msgstr "Club"
+
+#: core/GStreamer/Equalizer.vala:73
+msgid "Dance"
+msgstr "Dance"
+
+#: core/GStreamer/Equalizer.vala:74
+msgid "Full Bass"
+msgstr "Màxim de greus"
+
+#: core/GStreamer/Equalizer.vala:75
+msgid "Full Treble"
+msgstr "Màxim d'aguts"
+
+#: core/GStreamer/Equalizer.vala:76
+msgid "Full Bass + Treble"
+msgstr "Màxim de greus i aguts"
+
+#: core/GStreamer/Equalizer.vala:77
+msgid "Headphones"
+msgstr "Auriculars"
+
+#: core/GStreamer/Equalizer.vala:78
+msgid "Large Hall"
+msgstr "Auditori gran"
+
+#: core/GStreamer/Equalizer.vala:79
+msgid "Live"
+msgstr "En directe"
+
+#: core/GStreamer/Equalizer.vala:80
+msgid "Party"
+msgstr "Festa"
+
+#: core/GStreamer/Equalizer.vala:81
+msgid "Pop"
+msgstr "Pop"
+
+#: core/GStreamer/Equalizer.vala:82
+msgid "Reggae"
+msgstr "Reggae"
+
+#: core/GStreamer/Equalizer.vala:83
+msgid "Rock"
+msgstr "Rock"
+
+#: core/GStreamer/Equalizer.vala:84
+msgid "Soft"
+msgstr "Suau"
+
+#: core/GStreamer/Equalizer.vala:85
+msgid "Ska"
+msgstr "Ska"
+
+#: core/GStreamer/Equalizer.vala:86
+msgid "Soft Rock"
+msgstr "Rock suau"
+
+#: core/GStreamer/Equalizer.vala:87
+msgid "Techno"
+msgstr "Tecno"
+
+#: core/Utils/FileUtils.vala:142
+#, c-format
+msgid " (%d)"
+msgstr " (%d)"
+
+#: core/Utils/PlaylistsUtils.vala:95
+#, c-format
+msgid "%s (%d)"
+msgstr "%s (%d)"
+
+#: core/Utils/PlaylistsUtils.vala:234
+msgid "New playlist"
+msgstr "Llista de reproducció nova"
+
+#. Translators: used for new playlists ex: "New playlist (1)"
+#: core/Utils/PlaylistsUtils.vala:245
+#, c-format
+msgid "%s (%i)"
+msgstr "%s (%i)"
+
+#: core/Utils/PlaylistsUtils.vala:265 core/Utils/PlaylistsUtils.vala:334
+msgid "MPEG Version 3.0 Extended (*.m3u)"
+msgstr "MPEG versió 3.0 ampliada (*.m3u)"
+
+#: core/Utils/PlaylistsUtils.vala:269 core/Utils/PlaylistsUtils.vala:338
+msgid "Shoutcast Playlist Version 2.0 (*.pls)"
+msgstr "Llista de reproducció Shoutcast versió 2.0 (*.pls)"
+
+#: core/Utils/PlaylistsUtils.vala:272
+msgid "Export Playlist"
+msgstr "Exporta la llista de reproducció"
+
+#: core/Utils/PlaylistsUtils.vala:275 src/Dialogs/MediaEditor.vala:133
+#: src/Dialogs/SmartPlaylistEditor.vala:92
+msgid "Save"
+msgstr "Desa"
+
+#: core/Utils/PlaylistsUtils.vala:276 core/Utils/PlaylistsUtils.vala:345
+#: src/LibraryWindow.vala:1030 src/Dialogs/FileNotFoundDialog.vala:55
+#: src/Dialogs/FileNotFoundDialog.vala:103
+#: src/Dialogs/InstallGstreamerPluginsDialog.vala:49
+#: src/Dialogs/RemoveFilesDialog.vala:82
+#: src/Dialogs/SetMusicFolderConfirmation.vala:85
+#: src/Dialogs/SmartPlaylistEditor.vala:89
+#: src/Dialogs/SyncWarningDialog.vala:60
+#: src/Views/Wrappers/MusicViewWrapper.vala:147 src/Widgets/TopDisplay.vala:63
+msgid "Cancel"
+msgstr "Cancel·la"
+
+#: core/Utils/PlaylistsUtils.vala:329
+msgid "Playlist"
+msgstr "Llista de reproducció"
+
+#: core/Utils/PlaylistsUtils.vala:341
+#, c-format
+msgid "Import %s"
+msgstr "Importa %s"
+
+#: core/Utils/PlaylistsUtils.vala:344 src/LibraryWindow.vala:1029
+#: src/Dialogs/FileNotFoundDialog.vala:102
+#: src/Dialogs/SetMusicFolderConfirmation.vala:84
+#: src/Views/Wrappers/MusicViewWrapper.vala:146
+#: src/Widgets/AlbumListGrid.vala:197
+msgid "Open"
+msgstr "Obre"
+
+#: core/Utils/PlaylistsUtils.vala:371
+msgid "Unrecognized playlist file. Import failed."
+msgstr ""
+"No s'ha pogut reconèixer el fitxer de la llista de reproducció. Ha fallat la "
+"importació."
+
+#. / Format of date strings. See reference documentation of g_date_time_format()
+#. / for more details.
+#: core/Utils/TimeUtils.vala:40
+msgid "%m/%e/%Y %l:%M %p"
+msgstr "%e/%m/%Y %-H.%M"
+
+#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:109
+#: plugins/Devices/iPod/iPodDevice.vala:68
+msgid "Empty device!"
+msgstr "El dispositiu està buit!"
+
+#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:113
+#: plugins/Devices/iPod/iPodDevice.vala:72
+msgid "This device does not contain any music."
+msgstr "Aquest dispositiu no conté cap cançó."
+
+#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:158
+msgid "Android Phone"
+msgstr "Telèfon amb Android"
+
+#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:160
+msgid "Audio Player"
+msgstr "Reproductor d'àudio"
+
+#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:146
+#: plugins/Devices/iPod/iPodLibrary.vala:167
+msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
+msgstr "S'afegeix <b>$NAME</b> fet per <b>$ARTIST</b> a $DEVICE"
+
+#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:171
+#: plugins/Devices/iPod/iPodLibrary.vala:216
+#, c-format
+msgid "Syncing <b>%s</b>…"
+msgstr "Se sincronitza <b>%s</b>…"
+
+#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:283
+#: plugins/Devices/iPod/iPodLibrary.vala:561
+msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
+msgstr "Se suprimeix <b>$NAME</b> fet per <b>$ARTIST</b> de $DEVICE"
+
+#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:315
+#: plugins/Devices/iPod/iPodLibrary.vala:366
+#, c-format
+msgid "Removing from <b>%s</b>…"
+msgstr "Se suprimeix de <b>%s</b>…"
+
+#: plugins/Devices/iPod/iPodLibrary.vala:238
+#: plugins/Devices/iPod/iPodLibrary.vala:404
+msgid "Finishing sync process…"
+msgstr "S'acaba el procés de sincronització…"
+
+#: plugins/Devices/iPod/iPodLibrary.vala:250
+#: plugins/Devices/iPod/iPodLibrary.vala:416
+msgid "Cancelling Sync…"
+msgstr "Es canel·la la sincronització…"
+
+#: src/FileOperator.vala:306
+msgid "Import Complete"
+msgstr "S'ha completat la importació"
+
+#: src/FileOperator.vala:306
+msgid "Your Library Has Been Imported."
+msgstr "S'ha importat la col·lecció."
+
+#. if doing import and copy to music folder is enabled, do copy here
+#: src/FileOperator.vala:316
+msgid "<b>Copying</b> files to <b>Music Folder</b>…"
+msgstr "<b>Es copien</b> fitxers a la <b>carpeta de música</b>…"
+
+#: src/LibraryWindow.vala:197 src/LibraryWindow.vala:275
+#: src/LibraryWindow.vala:631 src/LibraryWindow.vala:751
+msgid "Music"
+msgstr "Música"
+
+#: src/LibraryWindow.vala:216
+msgid "Import to Library…"
+msgstr "Importa a la col·lecció…"
+
+#: src/LibraryWindow.vala:219 src/Dialogs/PreferencesWindow.vala:32
+msgid "Preferences"
+msgstr "Preferències"
+
+#: src/LibraryWindow.vala:238
+msgid "Previous"
+msgstr "Anterior"
+
+#: src/LibraryWindow.vala:245 src/LibraryWindow.vala:311
+msgid "Play"
+msgstr "Reprodueix"
+
+#: src/LibraryWindow.vala:252
+msgid "Next"
+msgstr "Següent"
+
+#: src/LibraryWindow.vala:256
+msgid "Search Music"
+msgstr "Cerca música"
+
+#: src/LibraryWindow.vala:317
+msgid "Pause"
+msgstr "Atura"
+
+#: src/LibraryWindow.vala:820
+msgid "No songs in Queue"
+msgstr "No hi ha cap cançó a la cua"
+
+#: src/LibraryWindow.vala:820
+msgid ""
+"To add songs to the queue, use the <b>secondary click</b> on an item and "
+"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
+"first before the next song in the currently playing list."
+msgstr ""
+"Per afegir cançons a la cua, feu clic amb el <b>botó secundari</b> sobre un "
+"element i seleccioneu <b>«Afegeix a la cua»</b>. Quan s'acabi una cançó, les "
+"cançons a la cua seran reproduïdes abans que la cançó següent a la llista de "
+"reproducció actual."
+
+#: src/LibraryWindow.vala:823
+msgid "No songs in History"
+msgstr "No hi ha cap cançó a l'historial"
+
+#: src/LibraryWindow.vala:823
+msgid ""
+"After a part of a song has been played, it is added to the history list.\n"
+"You can use this list to see all the songs you have played during the "
+"current session."
+msgstr ""
+"Les cançons s'inclouen a l'historial un cop són reproduïdes.\n"
+"Aquesta llista enumeria totes les cançons reproduïdes a la sessió actual."
+
+#: src/LibraryWindow.vala:1026 src/Views/Wrappers/MusicViewWrapper.vala:59
+msgid "Import Music"
+msgstr "Importa música"
+
+#: src/PlaybackManager.vala:117
+msgctxt "Name of the playlist"
+msgid "Queue"
+msgstr "Cua"
+
+#: src/Dialogs/FileNotFoundDialog.vala:37
+msgid "File not found"
+msgstr "No s'ha trobat el fitxer"
+
+#: src/Dialogs/FileNotFoundDialog.vala:47
+#, c-format
+msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
+msgstr "No s'ha pogut trobar el fitxer d'àudio <b>%s</b> per <b>%s</b>."
+
+#: src/Dialogs/FileNotFoundDialog.vala:50
+#, c-format
+msgid "%i music files could not be found."
+msgstr "No s'han pogut trobar %i fitxers de música."
+
+#: src/Dialogs/FileNotFoundDialog.vala:53
+msgid "Rescan Library"
+msgstr "Torna a examinar la col·lecció"
+
+#: src/Dialogs/FileNotFoundDialog.vala:54
+msgid "Remove Song"
+msgstr "Suprimeix la cançó"
+
+#: src/Dialogs/FileNotFoundDialog.vala:56
+msgid "Find Song"
+msgstr "Cerca la cançó"
+
+#: src/Dialogs/FileNotFoundDialog.vala:99
+#: src/Dialogs/SetMusicFolderConfirmation.vala:81
+msgid "Choose Music Folder"
+msgstr "Escolliu la carpeta de música"
+
+#: src/Dialogs/InstallGstreamerPluginsDialog.vala:41
+#, c-format
+msgid "Would you like to install the %s plugin?"
+msgstr "Voleu instal·lar el connector %s?"
+
+#: src/Dialogs/InstallGstreamerPluginsDialog.vala:42
+#, c-format
+msgid "This song cannot be played. The %s plugin is required to play the song."
+msgstr "Aquesta cançó no es pot reproduir. Per fer-ho, cal el connector %s."
+
+#: src/Dialogs/InstallGstreamerPluginsDialog.vala:51
+msgid "Install Plugin"
+msgstr "Instal·la el connector"
+
+#: src/Dialogs/MediaEditor.vala:96
+msgid "Title:"
+msgstr "Títol:"
+
+#: src/Dialogs/MediaEditor.vala:98
+msgid "Artist:"
+msgstr "Artista:"
+
+#: src/Dialogs/MediaEditor.vala:100
+msgid "Album:"
+msgstr "Àlbum:"
+
+#: src/Dialogs/MediaEditor.vala:102
+msgid "Album Artist:"
+msgstr "Artista de l'àlbum:"
+
+#: src/Dialogs/MediaEditor.vala:104
+msgid "Composer:"
+msgstr "Compositor:"
+
+#: src/Dialogs/MediaEditor.vala:106
+msgid "Grouping:"
+msgstr "Agrupament:"
+
+#: src/Dialogs/MediaEditor.vala:108
+msgid "Genre:"
+msgstr "Gènere:"
+
+#: src/Dialogs/MediaEditor.vala:110
+msgid "Year:"
+msgstr "Any:"
+
+#: src/Dialogs/MediaEditor.vala:112
+msgid "Track:"
+msgstr "Pista:"
+
+#: src/Dialogs/MediaEditor.vala:114
+msgid "Disc:"
+msgstr "Disc:"
+
+#: src/Dialogs/MediaEditor.vala:116
+msgid "Rating:"
+msgstr "Puntuació:"
+
+#: src/Dialogs/MediaEditor.vala:118
+msgid "Comment:"
+msgstr "Comentari:"
+
+#. FIXME: don't know if I can delete this
+#: src/Dialogs/MediaEditor.vala:131 src/Dialogs/PreferencesWindow.vala:88
+#: src/Views/DeviceView.vala:45
+msgid "Close"
+msgstr "Tanca"
+
+#: src/Dialogs/NotImportedDialog.vala:50
+#, c-format
+msgid "Issues while importing from %s"
+msgstr "Hi ha hagut problemes important des de %s"
+
+#: src/Dialogs/NotImportedDialog.vala:56
+#, c-format
+msgid "Unable to import %d item. The file may be damaged."
+msgid_plural "Unable to import %d items. The files may be damaged."
+msgstr[0] "No es poden importar %d element. El fitxer podria estar danyat."
+msgstr[1] ""
+"No es poden importar %d elements. Els fitxers podrien estar danyats."
+
+#: src/Dialogs/NotImportedDialog.vala:64
+msgid "Move all corrupted files to trash"
+msgstr "Mou tots els fitxers corruptes a la paperera"
+
+#: src/Dialogs/NotImportedDialog.vala:71
+msgid "del"
+msgstr "supr"
+
+#: src/Dialogs/NotImportedDialog.vala:80
+msgid "File Location"
+msgstr "Ubicació del fitxer"
+
+#: src/Dialogs/NotImportedDialog.vala:96
+msgid "Select individual files to move to trash:"
+msgstr "Selecciona els fitxers individualment per moure'ls a la paperera:"
+
+#: src/Dialogs/NotImportedDialog.vala:100 src/Dialogs/RemoveFilesDialog.vala:73
+msgid "Move to Trash"
+msgstr "Mou a la paperera"
+
+#: src/Dialogs/NotImportedDialog.vala:103
+msgid "Ignore"
+msgstr "Ignora"
+
+#: src/Dialogs/PreferencesWindow.vala:38
+msgid "Select Music Folder…"
+msgstr "Seleccioneu la carpeta de música…"
+
+#: src/Dialogs/PreferencesWindow.vala:70
+msgid "Music Folder Location"
+msgstr "Ubicació de la carpeta de música"
+
+#: src/Dialogs/PreferencesWindow.vala:72
+msgid "Library Management"
+msgstr "Gestió de la col·lecció"
+
+#: src/Dialogs/PreferencesWindow.vala:73
+msgid "Keep Music folder organized:"
+msgstr "Mantén la carpeta de música organitzada:"
+
+#: src/Dialogs/PreferencesWindow.vala:75
+msgid "Write metadata to file:"
+msgstr "Escriu metadades al fitxer:"
+
+#: src/Dialogs/PreferencesWindow.vala:77
+msgid "Copy imported files to Library:"
+msgstr "Copia els fitxers importats a la col·lecció:"
+
+#: src/Dialogs/PreferencesWindow.vala:79
+msgid "Desktop Integration"
+msgstr "Integració amb l'escriptori"
+
+#: src/Dialogs/PreferencesWindow.vala:80
+msgid "Continue playback when closed:"
+msgstr "Continua la reproducció en tancar:"
+
+#: src/Dialogs/RemoveFilesDialog.vala:49
+#, c-format
+msgid "Remove %d Song From Library?"
+msgid_plural "Remove %d Songs From Library?"
+msgstr[0] "Voleu suprimir %d cançó de la col·lecció?"
+msgstr[1] "Voleu suprimir %d cançons de la col·lecció?"
+
+#: src/Dialogs/RemoveFilesDialog.vala:55
+#, c-format
+msgid "Remove \"%s\" From Library?"
+msgstr "Se suprimeix «%s» de la col·lecció?"
+
+#: src/Dialogs/RemoveFilesDialog.vala:59
+msgid ""
+"This will remove the song from your library and from any device synced "
+"automatically."
+msgid_plural ""
+"This will remove the songs from your library and from any device synced "
+"automatically."
+msgstr[0] ""
+"Això suprimirà la cançó de la vostra col·lecció i de tots els dispositius "
+"que s'hi sincronitzin automàticament."
+msgstr[1] ""
+"Això suprimirà les cançons de la vostra col·lecció i de tots els dispositius "
+"que s'hi sincronitzin automàticament."
+
+#: src/Dialogs/RemoveFilesDialog.vala:83
+msgid "Remove from Library"
+msgstr "Suprimeix de la col·lecció"
+
+#: src/Dialogs/SetMusicFolderConfirmation.vala:38
+msgid "Set Music Folder?"
+msgstr "Voleu establir la carpeta de música?"
+
+#: src/Dialogs/SetMusicFolderConfirmation.vala:39
+#, c-format
+msgid ""
+"Are you sure you want to set the music folder to %s? This will reset your "
+"library and remove your playlists."
+msgstr ""
+"Esteu segur que voleu que %s sigui la vostra carpeta de música? Això "
+"reinicialitzarà la col·lecció i suprimirà les llistes de reproducció."
+
+#: src/Dialogs/SetMusicFolderConfirmation.vala:47
+msgid "Export Playlists"
+msgstr "Exporta les llistes de reproducció"
+
+#: src/Dialogs/SetMusicFolderConfirmation.vala:61
+msgid "Set Music Folder"
+msgstr "Estableix la carpeta de música"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:55
+msgid "Playlist Title"
+msgstr "Títol de la llista de reproducció"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:58
+msgid "any"
+msgstr "qualsevol"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:59
+msgid "all"
+msgstr "tots"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:63
+msgid "Match"
+msgstr "Coincideix amb"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:65
+msgid "of the following:"
+msgstr "dels següents:"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:74
+msgid "Add"
+msgstr "Afegeix"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:79
+msgid "Limit to"
+msgstr "Limita a"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:87
+msgid "items"
+msgstr "elements"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:103
+msgid "Name of Playlist"
+msgstr "Nom de la llista de reproducció"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:105
+msgid "Rules"
+msgstr "Regles"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:108
+msgid "Options"
+msgstr "Opcions"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:113
+msgid "Smart Playlist Editor"
+msgstr "Editor de llistes de reproducció intel·ligents"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:256 src/Widgets/SourceListView.vala:67
+#: src/Widgets/SourceListView.vala:80
+msgid "Remove"
+msgstr "Suprimeix"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:259
+msgid "Album"
+msgstr "Àlbum"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:260
+msgid "Artist"
+msgstr "Artista"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:261
+msgid "Bitrate"
+msgstr "Taxa de bits"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:262
+msgid "Comment"
+msgstr "Comentari"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:263
+msgid "Composer"
+msgstr "Compositor"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:264
+msgid "Date Added"
+msgstr "Data d'addició"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:265
+msgid "Genre"
+msgstr "Gènere"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:266
+msgid "Grouping"
+msgstr "Agrupació"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:267
+msgid "Last Played"
+msgstr "Reproduïdes darrerament"
+
+#. helper for units
+#: src/Dialogs/SmartPlaylistEditor.vala:268
+#: src/Dialogs/SmartPlaylistEditor.vala:413
+msgid "Length"
+msgstr "Durada"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:269
+msgid "Playcount"
+msgstr "Nombre de reproduccions"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:270
+msgid "Rating"
+msgstr "Valoració"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:271
+msgid "Skipcount"
+msgstr "Nombre d'omissions"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:272
+msgid "Title"
+msgstr "Títol"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:273
+msgid "Year"
+msgstr "Any"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:274
+msgid "URI"
+msgstr "URI"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:347
+msgid "is"
+msgstr "és"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:348
+msgid "contains"
+msgstr "conté"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:349
+msgid "does not contain"
+msgstr "no conté"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:375
+#: src/Dialogs/SmartPlaylistEditor.vala:390
+msgid "is exactly"
+msgstr "és exactament"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:376
+msgid "is at most"
+msgstr "és com a màxim"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:377
+msgid "is at least"
+msgstr "és com a mínim"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:391
+msgid "is within"
+msgstr "es troba entre"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:392
+msgid "is before"
+msgstr "és abans de"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:414
+msgid "seconds"
+msgstr "segons"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:417
+msgid "days ago"
+msgstr "dies enrere"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:420
+msgid "kbps"
+msgstr "kbps"
+
+#. be a bit explicit to make translations better
+#: src/Dialogs/SyncWarningDialog.vala:52
+#, c-format
+msgid "Sync will remove %i item from %s"
+msgid_plural "Sync will remove %i items from %s"
+msgstr[0] "La sincronització suprimirà %i element de %s."
+msgstr[1] "La sincronització suprimirà %i elements de %s."
+
+#: src/Dialogs/SyncWarningDialog.vala:55
+#, c-format
+msgid ""
+"If you continue to sync, media will be removed from %s since they are not on "
+"the sync list. Would you like to import them to your library first?"
+msgstr ""
+"Si countinueu amb la sincronització, els elements multimèdia seran suprimits "
+"de %s ja que no són a la llista de sincronització. Voleu importar-los a la "
+"col·lecció abans de procedir?"
+
+#: src/Dialogs/SyncWarningDialog.vala:57
+msgid "Continue Syncing"
+msgstr "Continua la sincronització"
+
+#: src/Dialogs/SyncWarningDialog.vala:62
+msgid "Import"
+msgstr "Importa"
+
+#: src/LocalBackend/LocalLibrary.vala:188
+#, c-format
+msgid "Importing music from %s…"
+msgstr "S'importa música des de %s…"
+
+#: src/LocalBackend/LocalLibrary.vala:215
+msgid "Adding files to library…"
+msgstr "S'afegeixen fitxers a la col·lecció…"
+
+#: src/LocalBackend/LocalLibrary.vala:228
+msgid "<b>Importing</b> music to library…"
+msgstr "<b>S'importa</b> música a la col·lecció…"
+
+#: src/LocalBackend/LocalLibrary.vala:250
+msgid "All music files are already in your library"
+msgstr "Tots els fitxers de música ja són a la col·lecció"
+
+#: src/LocalBackend/LocalLibrary.vala:250
+msgid "No files were imported."
+msgstr "No s’ha importat cap fitxer."
+
+#: src/LocalBackend/LocalLibrary.vala:255
+msgid "Rescanning music for changes. This may take a while…"
+msgstr "S'analitzen els canvis. Això pot trigar una bona estona…"
+
+#: src/LocalBackend/LocalLibrary.vala:356
+msgid "Added to your queue:"
+msgstr "S'ha afegit a la cua:"
+
+#: src/LocalBackend/LocalLibrary.vala:367
+#, c-format
+msgid "%d Track"
+msgid_plural "%d Tracks"
+msgstr[0] "%d pista"
+msgstr[1] "%d pistes"
+
+#: src/LocalBackend/LocalSmartPlaylist.vala:218
+msgid "Favorite Songs"
+msgstr "Cançons preferides"
+
+#: src/LocalBackend/LocalSmartPlaylist.vala:226
+msgid "Recently Added"
+msgstr "Afegit recentment"
+
+#: src/LocalBackend/LocalSmartPlaylist.vala:234
+msgid "Recent Favorites"
+msgstr "Preferits recents"
+
+#: src/LocalBackend/LocalSmartPlaylist.vala:242
+msgid "Never Played"
+msgstr "Les mai reproduïdes"
+
+#: src/LocalBackend/LocalSmartPlaylist.vala:250
+msgid "Over Played"
+msgstr "Les més reproduïdes"
+
+#: src/LocalBackend/LocalSmartPlaylist.vala:258
+msgid "Not Recently Played"
+msgstr "No reproduït recentment"
+
+#: src/Objects/HistoryPlaylist.vala:38
+msgid "History"
+msgstr "Historial"
+
+#: src/Objects/MPRIS.vala:617 src/Widgets/SourceListView.vala:341
+msgid "Playlists"
+msgstr "Llistes de reproducció"
+
+#: src/Views/DeviceSummaryWidget.vala:60
+msgid "Device Name:"
+msgstr "Nom del dispositiu:"
+
+#: src/Views/DeviceSummaryWidget.vala:64
+msgid "Device Name"
+msgstr "Nom del dispositiu"
+
+#: src/Views/DeviceSummaryWidget.vala:66
+msgid "Automatically sync when plugged in:"
+msgstr "Sincronitza automàticament en connectar-lo:"
+
+#: src/Views/DeviceSummaryWidget.vala:72
+msgid "Sync:"
+msgstr "Sincronitza:"
+
+#: src/Views/DeviceSummaryWidget.vala:100 src/Widgets/SourceListView.vala:192
+msgid "Sync"
+msgstr "Sincronitza"
+
+#: src/Views/DeviceSummaryWidget.vala:244
+msgid "All Music"
+msgstr "Tota la música"
+
+#: src/Views/DeviceSummaryWidget.vala:298
+msgid "Sync Failed"
+msgstr "La sincronització ha fallat"
+
+#: src/Views/DeviceSummaryWidget.vala:299
+#, c-format
+msgid ""
+"The playlist named %s is used to sync device %s, but could not be found."
+msgstr ""
+"La llista de reproducció %s acostuma a sincronitzar-se amb el dispositiu %s, "
+"però no s'ha pogut trobar."
+
+#: src/Views/DeviceSummaryWidget.vala:316
+#: src/Views/DeviceSummaryWidget.vala:321
+msgid "Cannot Sync"
+msgstr "No es pot sincronitzar"
+
+#: src/Views/DeviceSummaryWidget.vala:317
+msgid ""
+"Cannot sync device with selected sync settings. Not enough space on disk"
+msgstr ""
+"No es pot sincronitzar el dispositiu amb els paràmetres seleccionats. No hi "
+"ha prou espai al disc."
+
+#: src/Views/DeviceSummaryWidget.vala:322
+msgid "Device is already doing an operation."
+msgstr "El dispositiu ja està fent una operació."
+
+#: src/Views/DeviceView.vala:66
+msgid "Cancelling…"
+msgstr "Es cancel·la…"
+
+#: src/Views/DeviceView.vala:66
+msgid "Device operation has been cancelled and will stop after this media."
+msgstr ""
+"L'operació del dispositiu s'ha cancel·lat i es pararà després d'aquest "
+"fitxer."
+
+#: src/Views/ViewStack.vala:45
+msgid "No Results"
+msgstr "Sense resultats"
+
+#: src/Views/ViewStack.vala:45
+msgid "Try another search"
+msgstr "Proveu de fer una altra cerca"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
+msgid "Genres"
+msgstr "Gèneres"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:60
+msgid "Artists"
+msgstr "Artistes"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:62
+msgid "Albums"
+msgstr "Àlbums"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:64
+msgid "Years"
+msgstr "Anys"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:66
+msgid "Ratings"
+msgstr "Valoracions"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:68
+msgid "Composers"
+msgstr "Compositors"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:70
+msgid "Groupings"
+msgstr "Agrupacions"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
+msgid "All Genres"
+msgstr "Tots els gèneres"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
+#, c-format
+msgid "All %i Genres"
+msgstr "Tots els gèneres (%i)"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
+msgid "No Genres"
+msgstr "Sense gèneres"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
+msgid "All Artists"
+msgstr "Tots els artistes"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
+#, c-format
+msgid "All %i Artists"
+msgstr "Tots els artistes (%i)"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
+msgid "No Artists"
+msgstr "Sense artistes"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
+msgid "All Albums"
+msgstr "Tots els àlbums"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
+#, c-format
+msgid "All %i Albums"
+msgstr "Tots els àlbums (%i)"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
+msgid "No Albums"
+msgstr "Sense àlbums"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
+msgid "All Years"
+msgstr "Tots els anys"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
+#, c-format
+msgid "All %i Years"
+msgstr "Tots els anys (%i)"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:250
+msgid "No Years"
+msgstr "Sense anys"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
+msgid "All Ratings"
+msgstr "Totes les valoracions"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
+msgid "No Ratings"
+msgstr "Sense valoracions"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
+msgid "All Groupings"
+msgstr "Totes les agrupacions"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
+#, c-format
+msgid "All %i Groupings"
+msgstr "Totes les agrupacions (%i)"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
+msgid "No Groupings"
+msgstr "Sense agrupacions"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:271
+msgid "All Composers"
+msgstr "Tots els compositors"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:273
+#, c-format
+msgid "All %i Composers"
+msgstr "Tots els compositors (%i)"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:275
+msgid "No Composers"
+msgstr "Sense compositors"
+
+#. We cannot make these constants due to issues with N_()
+#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
+#: src/Widgets/EqualizerPopover.vala:326 src/Widgets/PresetList.vala:52
+msgid "Automatic"
+msgstr "Automàtic"
+
+#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:146
+msgid "On Left"
+msgstr "A l'esquerra"
+
+#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:147
+msgid "On Top"
+msgstr "A dalt"
+
+#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:428
+msgid "Unrated"
+msgstr "Sense valoració"
+
+#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:430
+#, c-format
+msgid "%u Star"
+msgid_plural "%u Stars"
+msgstr[0] "%u estrella"
+msgstr[1] "%u estrelles"
+
+#: src/Views/ListView/Lists/CellDataFunctionHelper.vala:128
+#, c-format
+msgid "%u kbps"
+msgstr "%u kbps"
+
+#: src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
+#: src/Views/ListView/Lists/MusicListView.vala:425
+msgid "Never"
+msgstr "Mai"
+
+#: src/Views/ListView/Lists/ListColumn.vala:69
+msgctxt "List column title"
+msgid "#"
+msgstr "Núm."
+
+#: src/Views/ListView/Lists/ListColumn.vala:72
+msgctxt "List column title"
+msgid "Track"
+msgstr "Pista"
+
+#: src/Views/ListView/Lists/ListColumn.vala:75
+msgctxt "List column title"
+msgid "Title"
+msgstr "Tí­tol"
+
+#: src/Views/ListView/Lists/ListColumn.vala:78
+msgctxt "List column title"
+msgid "Length"
+msgstr "Durada"
+
+#: src/Views/ListView/Lists/ListColumn.vala:81
+msgctxt "List column title"
+msgid "Artist"
+msgstr "Artista"
+
+#: src/Views/ListView/Lists/ListColumn.vala:84
+msgctxt "List column title"
+msgid "Album"
+msgstr "Àlbum"
+
+#: src/Views/ListView/Lists/ListColumn.vala:87
+msgctxt "List column title"
+msgid "Album Artist"
+msgstr "Artista de l'àlbum"
+
+#: src/Views/ListView/Lists/ListColumn.vala:90
+msgctxt "List column title"
+msgid "Composer"
+msgstr "Compositor"
+
+#: src/Views/ListView/Lists/ListColumn.vala:93
+msgctxt "List column title"
+msgid "Genre"
+msgstr "Gènere"
+
+#: src/Views/ListView/Lists/ListColumn.vala:96
+msgctxt "List column title"
+msgid "Year"
+msgstr "Any"
+
+#: src/Views/ListView/Lists/ListColumn.vala:99
+msgctxt "List column title"
+msgid "Grouping"
+msgstr "Agrupació"
+
+#: src/Views/ListView/Lists/ListColumn.vala:102
+msgctxt "List column title"
+msgid "Bitrate"
+msgstr "Taxa de bits"
+
+#: src/Views/ListView/Lists/ListColumn.vala:105
+msgctxt "List column title"
+msgid "Rating"
+msgstr "Valoració"
+
+#: src/Views/ListView/Lists/ListColumn.vala:108
+msgctxt "List column title"
+msgid "Plays"
+msgstr "Reproduccions"
+
+#: src/Views/ListView/Lists/ListColumn.vala:111
+msgctxt "List column title"
+msgid "Skips"
+msgstr "Omissions"
+
+#: src/Views/ListView/Lists/ListColumn.vala:114
+msgctxt "List column title"
+msgid "Date Added"
+msgstr "Data d'addició"
+
+#: src/Views/ListView/Lists/ListColumn.vala:117
+msgctxt "List column title"
+msgid "Last Played"
+msgstr "Darrera reproducció"
+
+#: src/Views/ListView/Lists/ListColumn.vala:120
+msgctxt "List column title (beats per minute)"
+msgid "BPM"
+msgstr "PPM"
+
+#: src/Views/ListView/Lists/ListColumn.vala:123
+msgctxt "List column title (file location)"
+msgid "Location"
+msgstr "Ubicació"
+
+#: src/Views/ListView/Lists/ListColumn.vala:126
+msgctxt "List column title"
+msgid "File Size"
+msgstr "Mida del fitxer"
+
+#: src/Views/ListView/Lists/MusicListView.vala:74
+msgid "Autosize Columns"
+msgstr "Mida de les columnes automàtic"
+
+#: src/Views/ListView/Lists/MusicListView.vala:410
+msgid "1234 kbps"
+msgstr "1234 kbps"
+
+#. / Sample string used to measure the ideal size of the Title, Artist,
+#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
+#. / list view. It's *never* displayed in the user interface. The translated
+#. / string should have a reasonable length, similar to the average length
+#. / of a song title or artist name in your language. The automatic column
+#. / width will depend on the length of this string and the space needed
+#. / by the column's title header.
+#: src/Views/ListView/Lists/MusicListView.vala:481
+msgid "Sample List String"
+msgstr "Exemple de títol de cançó"
+
+#. Welcome screen
+#: src/Views/Wrappers/MusicViewWrapper.vala:56
+msgid "Get Some Tunes"
+msgstr "Aconseguïu algunes cançons"
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:57
+msgid "Add music to your library."
+msgstr "Afegiu música a la vostra col·lecció."
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:60
+msgid "Import music from a source into your library."
+msgstr "Importa música des d’una font a la col·lecció."
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:62
+msgid "Change Music Folder"
+msgstr "Canvia la carpeta de música"
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:63
+msgid "Load music from a folder, a network or an external disk."
+msgstr "Carrega música des d'una carpeta, una xarxa o un disc extern."
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:110
+#: src/Views/Wrappers/MusicViewWrapper.vala:130
+msgid "Import your Music"
+msgstr "Importeu la vostra música"
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:111
+#: src/Views/Wrappers/MusicViewWrapper.vala:131
+#, c-format
+msgid "Import all your Music from %s into your library."
+msgstr "Importa tota la música des de %s a la col·lecció."
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:143
+msgid "Select Music Folder"
+msgstr "Seleccioneu la carpeta de música"
+
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:50
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:54
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:64
+msgid "No Songs"
+msgstr "No hi ha cap cançó"
+
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:51
+msgid "Updating playlist. Please wait."
+msgstr "S'actualitza la llista de reproducció. Espereu, si us plau."
+
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:55
+msgid ""
+"To add songs to this playlist, use the <b>secondary click</b> on an item and "
+"choose <b>Add to Playlist</b>."
+msgstr ""
+"Per afegir cançons a aquesta llista de reproducció, feu clic amb el <b>botó "
+"secundari</b> sobre un element i seleccioneu <b>«Afegeix a una llista de "
+"reproducció»</b>."
+
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:58
+msgid "Edit Smart Playlist"
+msgstr "Edita la llista de reproducció intel·ligent"
+
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:65
+msgid ""
+"This playlist will be automatically populated with songs that match its "
+"rules. To modify these rules, use the <b>secondary click</b> on it in the "
+"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
+"below."
+msgstr ""
+"Aquesta llista de reproducció s'omplirà amb totes les cançons que "
+"coincideixin amb les regles. Per modificar les regles, feu clic amb el "
+"<b>botó secundari</b> sobre la llista de reproducció a la barra lateral i "
+"feu clic a <b>«Edita»</b>. Opcionalment podeu fer clic al botó de baix."
+
+#: src/Views/Wrappers/ViewWrapper.vala:418
+msgid "No media"
+msgstr "No hi ha cap element multimèdia"
+
+#: src/Widgets/AlbumListGrid.vala:63
+msgid "Set new album cover"
+msgstr "Estableix caràtula nova de l’àlbum"
+
+#: src/Widgets/AlbumListGrid.vala:193
+msgid "Image files"
+msgstr "Fitxers d’imatges"
+
+#: src/Widgets/AlbumListGrid.vala:200
+msgid "_Open"
+msgstr "_Obre"
+
+#: src/Widgets/AlbumListGrid.vala:201
+msgid "_Cancel"
+msgstr "_Cancel·la"
+
+#: src/Widgets/EqualizerPopover.vala:162
+msgid "Save preset"
+msgstr "Desa els valors predefinits"
+
+#: src/Widgets/EqualizerPopover.vala:330
+msgid "Off"
+msgstr "Inactiu"
+
+#: src/Widgets/EqualizerPopover.vala:418
+#, c-format
+msgid "%s (Custom)"
+msgstr "%s (Personalitzat)"
+
+#: src/Widgets/EqualizerPopover.vala:420
+#, c-format
+msgid "%s (Custom %i)"
+msgstr "%s (%i personalitzat)"
+
+#: src/Widgets/EqualizerPopover.vala:423
+msgid "Custom Preset"
+msgstr "Valors predefinits personalitzats"
+
+#: src/Widgets/EqualizerPopover.vala:425
+#, c-format
+msgid "Custom Preset %i"
+msgstr "Valors predefinits personalitzats de %i"
+
+#: src/Widgets/MediaMenu.vala:46
+msgid "Scroll to Current Song"
+msgstr "Desplaça fins la cançó actual"
+
+#: src/Widgets/MediaMenu.vala:49
+msgid "Show in File Browser…"
+msgstr "Mostra al navegador de fitxers…"
+
+#: src/Widgets/MediaMenu.vala:50
+msgid "Edit Song Info…"
+msgstr "Edita la informació de la cançó…"
+
+#: src/Widgets/MediaMenu.vala:51
+msgid "Other Actions"
+msgstr "Altres accions"
+
+#: src/Widgets/MediaMenu.vala:53
+msgctxt "Action item (verb)"
+msgid "Queue"
+msgstr "Afegeix a la cua"
+
+#: src/Widgets/MediaMenu.vala:54
+msgid "Add to Playlist"
+msgstr "Afegeix a una llista de reproducció"
+
+#: src/Widgets/MediaMenu.vala:55
+msgid "Remove Song…"
+msgstr "Suprimeix la cançó…"
+
+#: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
+msgid "Import to Library"
+msgstr "Importa a la col·lecció"
+
+#: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
+msgid "Remove from Library…"
+msgstr "Suprimeix de la col·lecció…"
+
+#: src/Widgets/MediaMenu.vala:99
+msgid "Remove from Device"
+msgstr "Suprimeix del dispositiu"
+
+#: src/Widgets/MediaMenu.vala:119
+msgid "Remove from Queue"
+msgstr "Suprimeix de la cua"
+
+#: src/Widgets/MediaMenu.vala:153
+msgid "New Playlist…"
+msgstr "Llista de reproducció nova…"
+
+#: src/Widgets/MediaMenu.vala:193
+#, c-format
+msgid "Import %i of %i selected songs"
+msgstr "Importa %i de les %i cançons seleccionades"
+
+#: src/Widgets/MediaMenu.vala:195
+#, c-format
+msgid "Import %i song"
+msgid_plural "Import %i songs"
+msgstr[0] "Importa %i cançó"
+msgstr[1] "Importa %i cançons"
+
+#: src/Widgets/PresetList.vala:53
+msgid "Delete Current"
+msgstr "Suprimeix l'actual"
+
+#: src/Widgets/SourceListView.vala:66 src/Widgets/SourceListView.vala:78
+msgid "Rename"
+msgstr "Canvia'n el nom"
+
+#: src/Widgets/SourceListView.vala:79
+msgid "Edit…"
+msgstr "Edita…"
+
+#: src/Widgets/SourceListView.vala:95
+msgid "Save as Playlist"
+msgstr "Desa com a una llista de reproducció"
+
+#: src/Widgets/SourceListView.vala:103
+msgid "Export…"
+msgstr "Exporta…"
+
+#: src/Widgets/SourceListView.vala:166
+msgid "Eject"
+msgstr "Expulsa"
+
+#: src/Widgets/SourceListView.vala:176 src/Widgets/SourceListView.vala:219
+msgid "New Playlist"
+msgstr "Llista de reproducció nova"
+
+#: src/Widgets/SourceListView.vala:184 src/Widgets/SourceListView.vala:220
+msgid "New Smart Playlist"
+msgstr "Llista de reproducció intel·ligent nova"
+
+#: src/Widgets/SourceListView.vala:221
+msgid "Import Playlists"
+msgstr "Importa les llistes de reproducció"
+
+#. Adds the different sidebar categories.
+#: src/Widgets/SourceListView.vala:338
+msgid "Library"
+msgstr "Col·lecció"
+
+#: src/Widgets/SourceListView.vala:339
+msgid "Devices"
+msgstr "Dispositius"
+
+#: src/Widgets/SourceListView.vala:340
+msgid "Network"
+msgstr "Xarxa"
+
+#: src/Widgets/StatusBar.vala:36
+msgid "Add Playlist"
+msgstr "Afegeix una llista de reproducció"
+
+#: src/Widgets/StatusBar.vala:37
+msgid "Add Smart Playlist"
+msgstr "Afegeix una llista de reproducció intel·ligent"
+
+#: src/Widgets/StatusBar.vala:48
+msgid "Add Playlist…"
+msgstr "Afegeix una llista de reproducció…"
+
+#. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
+#: src/Widgets/StatusBar.vala:74
+#, c-format
+msgid "Equalizer: %s"
+msgstr "Equalitzador: %s"
+
+#. MUST follow the exact same order of Music.Player.Repeat
+#: src/Widgets/TopDisplay.vala:138
+msgid "Enable Repeat"
+msgstr "Activa la repetició"
+
+#: src/Widgets/TopDisplay.vala:139
+msgid "Repeat Song"
+msgstr "Repeteix la cançó"
+
+#: src/Widgets/TopDisplay.vala:140
+msgid "Disable Repeat"
+msgstr "Desactiva la repetició"
+
+#: src/Widgets/TopDisplay.vala:159
+msgid "Enable Shuffle"
+msgstr "Activa la reproducció aleatòria"
+
+#: src/Widgets/TopDisplay.vala:160
+msgid "Disable Shuffle"
+msgstr "Desactiva la reproducció aleatòria"
+
+#: src/Widgets/ViewSelector.vala:81
+msgid "View as albums"
+msgstr "Visualitza-ho com a àlbums"
+
+#: src/Widgets/ViewSelector.vala:87
+msgid "View as list"
+msgstr "Visualitza-ho com a llista"
+
+#: src/Widgets/ViewSelector.vala:93
+msgid "View in columns"
+msgstr "Visualitza-ho en columnes"
+
+#~ msgid "No similar songs found"
+#~ msgstr "No s'ha trobat cap cançó similar"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "No hi ha cap cançó similar a la cançó en reproducció a la vostra "
+#~ "col·lecció. Assegureu-vos que tota la informació de la cançó és correcta "
+#~ "i que esteu connectat a Internet. Algunes cançons poden no tenir "
+#~ "coincidències."
+
+#~ msgid "Similar"
+#~ msgstr "Similars"
+
+#~ msgid "media"
+#~ msgstr "elements multimèdia"
+
+#~ msgid "Similar Media"
+#~ msgstr "Elements multimèdia similars"
+
+#~ msgid "Audio CD Invalid"
+#~ msgstr "El CD d'àudio no és vàlid"
+
+#~ msgid "Impossible to read the contents of this Audio CD"
+#~ msgstr "No ha estat possible llegir el contingut d'aquest CD d'àudio"
+
+#~ msgid "Could not find Music Folder"
+#~ msgstr "No s'ha pogut trobar la carpeta de música"
+
+#~ msgid ""
+#~ "Please make sure that your music folder is accessible and mounted before "
+#~ "importing the CD."
+#~ msgstr ""
+#~ "Assegureu-vos que la carpeta de música sigui accessible i muntada abans "
+#~ "de la importació del CD."
+
+#~ msgid ""
+#~ "The Application could not find any songs on the CD. No songs can be "
+#~ "imported"
+#~ msgstr ""
+#~ "L'aplicació no pot trobar cançons al CD. No es pot importar cap cançó"
+
+#~ msgid "Song imported from Audio CD."
+#~ msgstr "Cançó importada des d'un CD d'àudio."
+
+#~ msgid "%i songs imported from Audio CD."
+#~ msgstr "%i cançons importades des d'un CD d'àudio."
+
+#~ msgid "Importing track %u: %s"
+#~ msgstr "S'importa la pista %u: %s"
+
+#~ msgid "CD import will be <b>cancelled</b> after current import."
+#~ msgstr ""
+#~ "La importació del CD <b>es cancel·larà</b> després de la importació "
+#~ "actual."
+
+#~ msgid "Could not import this CD"
+#~ msgstr "No s'ha pogut importar aquest CD"
+
+#~ msgid "An Error Occurred"
+#~ msgstr "S'ha produït un error."
+
+#~ msgid "Could not load this Audio CD."
+#~ msgstr "No s'ha pogut carregar aquest CD d'àudio."
+
+#~ msgid "Importation of a song from Audio CD finished."
+#~ msgstr "Ha acabat la importació d'una cançó del CD d'àudio."
+
+#~ msgid "Importation of %i songs from Audio CD finished."
+#~ msgstr "Ha acabat la importació de %i cançons del CD d'àudio."
+
+#~ msgid "An error occured during the Import of this CD"
+#~ msgstr "S'ha produït un error en importar aquest CD"
+
+#~ msgid "There was an error while loading this Audio CD."
+#~ msgstr "S'ha produït un error en carregar aquest CD d'àudio."
+
+#~ msgid "Disk:"
+#~ msgstr "Disc:"
+
+#~ msgid "%s has imported your library."
+#~ msgstr "El %s ha importat la vostra biblioteca."
+
+#~ msgid "Unable to import %d items from %s"
+#~ msgstr "No s'han pogut importar %d elements des de %s"
+
+#~ msgid "Remove from %s"
+#~ msgstr "Suprimeix de %s"
+
+#~ msgid "Remove \"%s\" From %s?"
+#~ msgstr "Voleu suprimir «%s» de %s?"
+
+#~ msgid "No Albums Found."
+#~ msgstr "No s'ha trobat cap àlbum."
+
+#~ msgid "No Songs Found."
+#~ msgstr "No s'ha trobat cap cançó."
+
+#~ msgid "%u second"
+#~ msgid_plural "%u seconds"
+#~ msgstr[0] "%u segon"
+#~ msgstr[1] "%u segons"
+
+#~ msgid "%u minute"
+#~ msgid_plural "%u minutes"
+#~ msgstr[0] "%u minut"
+#~ msgstr[1] "%u minuts"
+
+#~ msgctxt "minutes and seconds"
+#~ msgid "%s and %s"
+#~ msgstr "%s i %s"
+
+#~ msgid "%u day"
+#~ msgid_plural "%u days"
+#~ msgstr[0] "%u dia"
+#~ msgstr[1] "%u dies"
+
+#~ msgid "%u hour"
+#~ msgid_plural "%u hours"
+#~ msgstr[0] "%u hora"
+#~ msgstr[1] "%u hores"
+
+#~ msgctxt "days, hours and minutes"
+#~ msgid "%s, %s and %s"
+#~ msgstr "%s, %s i %s"
+
+#~ msgctxt "days and hours"
+#~ msgid "%s and %s"
+#~ msgstr "%s i %s"
+
+#~ msgctxt "days and minutes"
+#~ msgid "%s and %s"
+#~ msgstr "%s i %s"
+
+#~ msgctxt "hours and minutes"
+#~ msgid "%s and %s"
+#~ msgstr "%s i %s"
+
+#~ msgid "Song"
+#~ msgstr "Cançó"
+
+#~ msgid "Repeat Album"
+#~ msgstr "Repeteix l'àlbum"
+
+#~ msgid "Repeat Artist"
+#~ msgstr "Repeteix l'artista"
+
+#~ msgid "All"
+#~ msgstr "Tot"
+
+#~ msgid "Hide"
+#~ msgstr "Amaga"
+
+#~ msgid "Show Info Panel"
+#~ msgstr "Mostra el tauler d'informació"
+
+#~ msgid "Show"
+#~ msgstr "Mostra"
+
+#~ msgid "Hide Info Panel"
+#~ msgstr "Amaga el tauler d'informació"
+
+#~ msgid "Free"
+#~ msgstr "Lliure"
+
+#~ msgid "Using %s of %s (%.2f%)"
+#~ msgstr "S'estan utilitzant %s de %s (%.2f%)"
+
+#~ msgid "General"
+#~ msgstr "General"
+
+#~ msgid "Import from Device"
+#~ msgstr "Importa des d'un dispositiu"
+
+#~ msgid "Import media from %s"
+#~ msgstr "Importa elements multimèdia des de %s"
+
+#~ msgid ""
+#~ "The following files were found on %s, but are not in your library. Check "
+#~ "all the files you would like to import."
+#~ msgstr ""
+#~ "S'han trobat els següents fitxers a %s, però no hi són a la biblioteca. "
+#~ "Seleccioneu tots els fitxers que voleu importar."
+
+#~ msgid "Import all media"
+#~ msgstr "Importa tots els elements multimèdia"
+
+#~ msgid "Don't Import"
+#~ msgstr "No ho importis"
+
+#~ msgid "Import %i items from %s"
+#~ msgstr "Importa %i elements des de %s"
+
+#~ msgid "Import %s from %s"
+#~ msgstr "Importa %s des de %s"
+
+#~ msgid "ID"
+#~ msgstr "Identificador"
+
+#~ msgid "Select individual media to import:"
+#~ msgstr "Seleccioneu els elements multimèdia individuals a importar:"
+
+#~ msgid "Check Item"
+#~ msgstr "Selecciona l'element"
+
+#~ msgid "Check Album"
+#~ msgstr "Selecciona l'àlbum"
+
+#~ msgid "Check Artist"
+#~ msgstr "Selecciona l'artista"
+
+#~ msgid "Cannot Import"
+#~ msgstr "No es pot importar"
+
+#~ msgid ""
+#~ "Noise is already doing file operations. Please wait until those finish to "
+#~ "import from %s"
+#~ msgstr ""
+#~ "El Noise ja està fent operacions de fitxers. Si us plau, espereu fins que "
+#~ "s'acabi la importació des de %s"
+
+#~ msgid "Import media to Library"
+#~ msgstr "Importa elements multimèdia a la biblioteca"
+
+#~ msgid "Stop Syncing"
+#~ msgstr "Atura la sincronització"
+
+#~ msgid "Sync will remove 1 item from %s"
+#~ msgstr "La sincronització suprimirà 1 element de %s"
+
+#~ msgid "%u album"
+#~ msgid_plural "%u albums"
+#~ msgstr[0] "%u àlbum"
+#~ msgstr[1] "%u àlbums"
+
+#~ msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
+#~ msgid "%s by %s"
+#~ msgstr "%s per %s"
+
+#~ msgctxt ""
+#~ "Format used on statusbar: $description, $total_duration, $total_file_size"
+#~ msgid "%s, %s, %s"
+#~ msgstr "%s, %s, %s"
+
+#~ msgid "OK"
+#~ msgstr "D'acord"
+
+#~ msgid "No External Songs"
+#~ msgstr "No hi ha cap cançó externa"
+
+#~ msgid ""
+#~ "There were no songs found on this device that are not in your library."
+#~ msgstr ""
+#~ "No s'ha pogut trobar cap cançó al dispositiu que no sigui a la vostra "
+#~ "biblioteca."
+
+#~ msgid "%i track"
+#~ msgid_plural "%i tracks"
+#~ msgstr[0] "%i pista"
+#~ msgstr[1] "%i pistes"
+
+#~ msgid "%u song"
+#~ msgid_plural "%u songs"
+#~ msgstr[0] "%u cançó"
+#~ msgstr[1] "%u cançons"
+
+#~ msgctxt "Format used on statusbar: $description, $total_duration"
+#~ msgid "%s, %s"
+#~ msgstr "%s, %s"
+
+#~ msgid "Other Files"
+#~ msgstr "Altres fitxers"
+
+#~ msgid "translator-credits"
+#~ msgstr ""
+#~ "Launchpad Contributions:\n"
+#~ "  Adolfo Jayme https://launchpad.net/~fitojb\n"
+#~ "  Alfredo Hernández https://launchpad.net/~aldomann\n"
+#~ "  Daniel Fore https://launchpad.net/~danrabbit\n"
+#~ "  Davidmp https://launchpad.net/~davidmp\n"
+#~ "  JoanColl https://launchpad.net/~joancoll\n"
+#~ "  Mario Rodrigo https://launchpad.net/~capitantrueno\n"
+#~ "  Tomeu Canals https://launchpad.net/~tomeuari\n"
+#~ "  Victor Martinez https://launchpad.net/~victored"
+
+#~ msgid "Lyrics fetched from www.lyricsmania.com"
+#~ msgstr "Lletras obtingudes de www.lyricsmania.com"
+
+#~ msgid "Add Podcast"
+#~ msgstr "Afegeix un podcast"
+
+#~ msgid "Edit"
+#~ msgstr "Edita"
+
+#~ msgid "Export..."
+#~ msgstr "Exporta..."
+
+#~ msgid "Podcasts"
+#~ msgstr "Podcasts"
+
+#~ msgid "#"
+#~ msgstr "Núm."
+
+#~ msgid "Track"
+#~ msgstr "Pista"
+
+#~ msgid "Plays"
+#~ msgstr "Reproduccions"
+
+#~ msgid "Skips"
+#~ msgstr "Omissions"
+
+#~ msgid "Done"
+#~ msgstr "Fet"
+
+#~ msgid "Podcast"
+#~ msgstr "Podcast"
+
+#~ msgid "is not"
+#~ msgstr "no és"
+
+#~ msgid "Rescan Music Folder"
+#~ msgstr "Torna a examinar la carpeta de música"
+
+#~ msgid "Change your music folder."
+#~ msgstr "Canvia la carpeta de música."
+
+#~ msgid "Queue"
+#~ msgstr "Cua"
+
+#~ msgid "Unknown Artist"
+#~ msgstr "Artista desconegut"
+
+#~ msgid " by "
+#~ msgstr " per "
+
+#~ msgid "Unknown Album"
+#~ msgstr "Àlbum desconegut"
+
+#~ msgid " on "
+#~ msgstr " a "
+
+#~ msgid "<b>Importing</b> music from <b>%s</b> to library."
+#~ msgstr "<b>S'està important</b> música des de <b>%s</b> a la biblioteca."
+
+#~ msgid "Rescanning music folder for changes"
+#~ msgstr "S'estan cercant canvis a la carpeta de música"
+
+#~ msgid "Please make sure that your music folder is accessible and mounted."
+#~ msgstr "Assegureu-vos que la carpeta de música sigui accessible i muntada."
+
+#~ msgid "CD Import Complete"
+#~ msgstr "L'importació del CD s'ha completat"
+
+#~ msgid "Importing track %i"
+#~ msgstr "S'està imporant la pista %i"
+
+#~ msgid "BPM"
+#~ msgstr "PPM"
+
+#~ msgid "Locate"
+#~ msgstr "Troba"
+
+#~ msgid "%s is already doing an import"
+#~ msgstr "El %s ja està fent una importació"
+
+#~ msgid "%s could not find any songs on the CD. No songs can be imported"
+#~ msgstr ""
+#~ "El %s no ha pogut trobar cap cançó al CD. No es pot importar cap cançó"
+
+#~ msgid "%s has finished importing %i songs from Audio CD."
+#~ msgstr "El %s ha acabat d'importar %i cançons des del CD d'àudio."
+
+#~ msgid ""
+#~ "Please wait until %s is finished with the current import before importing "
+#~ "the CD."
+#~ msgstr ""
+#~ "Si us plau, espereu fins que el %s hagi acabat la importació actual abans "
+#~ "d'importar el CD."
+
+#~ msgid "%s by %s"
+#~ msgstr "%s per %s"
+
+#~ msgid "Editing %s"
+#~ msgstr "S'està editant %s"
+
+#~ msgid "Recently Played"
+#~ msgstr "Reproduccions recents"
+
+#~ msgid "Unheard Podcasts"
+#~ msgstr "Podcasts no sentits"
+
+#~ msgid "Show Equalizer"
+#~ msgstr "Mostra l'equalitzador"
+
+#~ msgid "Hide Equalizer"
+#~ msgstr "Amaga l'equalitzador"
+
+#~ msgid "1 Star"
+#~ msgstr "1 estrella"
+
+#~ msgid "%s Stars"
+#~ msgstr "%s estrelles"
+
+#~ msgid "Station"
+#~ msgstr "Estació"
+
+#~ msgid "Episode"
+#~ msgstr "Episodi"
+
+#~ msgid "Name"
+#~ msgstr "Nom"
+
+#~ msgid "Date"
+#~ msgstr "Data"
+
+#~ msgid "Category"
+#~ msgstr "Categoria"
+
+#~ msgid "%i kbps"
+#~ msgstr "%i kbps"
+
+#~ msgid "All Podcasts"
+#~ msgstr "Tots els podcasts"
+
+#~ msgid "Device is already being synced."
+#~ msgstr "El dispositiu s'està sincronitzant."
+
+#~ msgid "%i albums"
+#~ msgstr "%i àlbums"
+
+#~ msgid "1 album"
+#~ msgstr "1 àlbum"
+
+#~ msgid "%i songs"
+#~ msgstr "%i cançons"
+
+#~ msgid "1 song"
+#~ msgstr "1 cançó"
+
+#~ msgid "1 track"
+#~ msgstr "1 pista"
+
+#~ msgid "%i tracks"
+#~ msgstr "%i pistes"
+
+#~ msgid "%i hours"
+#~ msgstr "%i hores"
+
+#~ msgid "1 day"
+#~ msgstr "1 dia"
+
+#~ msgid "1 hour"
+#~ msgstr "1 hora"
+
+#~ msgid "1 second"
+#~ msgstr "1 segon"
+
+#~ msgid "%s seconds"
+#~ msgstr "%s segons"
+
+#~ msgid "1 minute"
+#~ msgstr "1 minut"
+
+#~ msgid "%i days"
+#~ msgstr "%i dies"
+
+#~ msgid "%i minutes"
+#~ msgstr "%i minuts"
+
+#~ msgid "Unknown Title"
+#~ msgstr "Títol desconegut"
+
+#~ msgid "%s and %s"
+#~ msgstr "%s i %s"
+
+#~ msgid "%s, %s and %s"
+#~ msgstr "%s, %s i %s"
+
+#~ msgid "Do Nothing"
+#~ msgstr "No facis res"
+
+#~ msgid "Lyrics"
+#~ msgstr "Lletres"
+
+#~ msgid "Metadata"
+#~ msgstr "Metadades"
+
+#~ msgid "Album Artist"
+#~ msgstr "Artista de l'àlbum"
+
+#~ msgid "Try again"
+#~ msgstr "Torna-ho a provar"
+
+#~ msgid "Music Folder"
+#~ msgstr "Carpeta de música"
+
+#~ msgid "Radio Station"
+#~ msgstr "Estació de ràdio"
+
+#~ msgid "Equalizer"
+#~ msgstr "Equalitzador"
+
+#~ msgid "Download new Episodes"
+#~ msgstr "Baixa episodis nous"
+
+#~ msgid "Import Stations"
+#~ msgstr "Importa estacions"
+
+#~ msgid "Required GStreamer plugin not installed"
+#~ msgstr "El connector del GStreamer no està instal·lat"
+
+#~ msgid "Adding files to library..."
+#~ msgstr "S'estan afegint fitxers a la biblioteca..."
+
+#~ msgid "No songs on CD"
+#~ msgstr "No hi ha cap cançó al CD"
+
+#~ msgid "Ripping track 1"
+#~ msgstr "S'està capturant la pista 1"
+
+#~ msgid "Media Type"
+#~ msgstr "Tipus d'elements multimèdia"
+
+#~ msgid ""
+#~ "The plugin for media type %s is not installed.\n"
+#~ "What would you like to do?"
+#~ msgstr ""
+#~ "El connector pel tipus d'elements multimèdia %s no està instal·lat.\n"
+#~ "Què voleu fer?"
+
+#~ msgid "Import media from device"
+#~ msgstr "Importa elements multimèdia d'un dispositiu"
+
+#~ msgid "Could not find media file"
+#~ msgstr "No s'ha pogut trobar el fitxer multimèdia"
+
+#~ msgid "%i media files could not be found. What would you like to do?"
+#~ msgstr "No s'han pogut trobar %i fitxers multimèdia. Què voleu fer?"
+
+#~ msgid ""
+#~ "Device Sync has been cancelled. Operation will stop after this media."
+#~ msgstr ""
+#~ "La sincronització amb el dispositiu ha estat cancel·lada. L'operació "
+#~ "s'aturarà després de sincronitzar aquest element."
+
+#~ msgid "Lyrics not found for \"%s\" by \"%s\""
+#~ msgstr "No s'ha pogut trobar la lletra de «%s» per «%s»"
+
+#~ msgid "Editing %s by %s"
+#~ msgstr "S'està editant %s per %s"
+
+#~ msgid "Editing %i songs"
+#~ msgstr "S'estan editant %i cançons"
+
+#~ msgid "The name %s is already in use"
+#~ msgstr "El nom «%s» ja està en ús"
+
+#~ msgid "%s can't seem to find your music."
+#~ msgstr "El %s no ha pogut trobar la vostra música."
+
+#~ msgid "Cancelling Sync"
+#~ msgstr "S'està cancel·lant la sincronització"
+
+#~ msgid "Cancelling Import"
+#~ msgstr "S'està cancel·lant la importació"
+
+#~ msgid "All %i Ratings"
+#~ msgstr "Totes les %i valoracions"
+
+#~ msgid "Import %i songs"
+#~ msgstr "Importa %i cançons"
+
+#~ msgid "Import this song"
+#~ msgstr "Importa aquesta cançó"
+
+#~ msgid "Remove %d %s from %s?"
+#~ msgstr "Voleu suprimir %d %s de %s?"
+
+#~ msgid "Remove Media"
+#~ msgstr "Suprimeix l'element multimèdia"
+
+#~ msgid "Audiobook"
+#~ msgstr "Audiollibre"
+
+#~ msgid "Similar to %s"
+#~ msgstr "Similars a %s"
+
+#~ msgid "Similar Song View"
+#~ msgstr "Vista de cançons similars"
+
+#~ msgid "Finding songs similar to %s by %s"
+#~ msgstr "S'estan cercant cançons similars a %s per %s"
+
+#~ msgid "Not Imported Files"
+#~ msgstr "Fitxers no importats"
+
+#~ msgid "Rescanning music for changes. This may take a while..."
+#~ msgstr ""
+#~ "S'estan cercant canvis a la biblioteca. Això pot trigar una bona estona..."
+
+#~ msgid "Pulser"
+#~ msgstr "Generador d'impulsos"
+
+#~ msgid "All the songs in this device are already in your library."
+#~ msgstr "Totes les cançons d'aquest dispositiu ja són a la vostra biblioteca"
+
+#~ msgid "Fetching similar songs"
+#~ msgstr "Determinant cançons similars"
+
+#~ msgid ""
+#~ "The music file for %s by %s could not be found. What would you like to do?"
+#~ msgstr ""
+#~ "No s'ha pogut trobar el fitxer de música per a %s per %s. Què voleu fer?"
+
+#~ msgid "Date Released"
+#~ msgstr "Data de llançament"
+
+#~ msgid ""
+#~ "In this view, %s will automatically find songs similar to the one you're "
+#~ "playing. You can then start playing those songs, or save them as a "
+#~ "playlist for later."
+#~ msgstr ""
+#~ "En aquesta vista, el %s trobarà automàticament cançons similars a la que "
+#~ "s'estigui reproduint. Podeu reproduir-les o desar-les com a una llista de "
+#~ "reproducció."
+
+#~ msgid ""
+#~ "%s could not find songs similar to %s by %s in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "El %s no ha pogut trobar cap cançó similar a %s per %s a la biblioteca. "
+#~ "Assegureu-vos que la informació de la cançó sigui correcta i que sigueu "
+#~ "connectat a Internet. Pot ser que algunes cançons no tinguin cap "
+#~ "coincidència."
+
+#~ msgid ""
+#~ "You must wait until previous file operations finish before setting your "
+#~ "music folder"
+#~ msgstr ""
+#~ "Heu d'esperar fins que les operacions amb el fitxer anterior acabin abans "
+#~ "de establir la carpeta de música"
+
+#~ msgid ""
+#~ "This will remove the %s from your library and from any device that "
+#~ "automatically syncs with %s."
+#~ msgstr ""
+#~ "Aquesta acció suprimirà el %s de la biblioteca i de qualsevol dispositiu "
+#~ "que se sincronitzi automàticament amb el %s."
+
+#~ msgid "Write metadata to file"
+#~ msgstr "Escriu metadades al fitxer"
+
+#~ msgid "Keep music folder organized"
+#~ msgstr "Mantén organitzada la carpeta de música"
+
+#~ msgid "%i items"
+#~ msgstr "%i elements"
+
+#~ msgid "1 item"
+#~ msgstr "1 element"
+
+#~ msgid "Unknown Track"
+#~ msgstr "Pista desconeguda"
+
+#~ msgid "%d second"
+#~ msgid_plural "%d seconds"
+#~ msgstr[0] "%d segon"
+#~ msgstr[1] "%d segons"
+
+#~ msgid "Last.fm"
+#~ msgstr "Last.fm"
+
+#~ msgid "Last.fm Integration"
+#~ msgstr "Integració amb el Last.fm"
+
+#~ msgid "Locate Media"
+#~ msgstr "Troba elements multimèdia"
+
+#~ msgid "Success!"
+#~ msgstr "L'operació s'ha realitzat correctament."
+
+#~ msgid "Scrobbling already Enabled"
+#~ msgstr "L'scrobbling ja està activat"
+
+#~ msgid "Unsuccessful. Click To Try Again."
+#~ msgstr "No hi ha hagut èxit. Feu clic per tornar-ho a intentar."
+
+#~ msgid "Click to redo the Last.fm login process"
+#~ msgstr "Feu clic per tornar a realitzar l'inici de sessió al Last.fm"
+
+#~ msgid "Complete login"
+#~ msgstr "Inici de sessió completat"
+
+#~ msgid "Scrobbling Already Enabled"
+#~ msgstr "L'Scrobbling ja està activat."
+
+#~ msgid "Complete Login"
+#~ msgstr "Completa l'inici de sessió"
+
+#~ msgid "Lyrics not found for %s"
+#~ msgstr "No s'ha trobat la lletra de %s"
+
+#~ msgid "Display Album Art"
+#~ msgstr "Mostra la portada de l'àlbum"
+
+#~ msgid "%i Star"
+#~ msgid_plural "%i Stars"
+#~ msgstr[0] "%i estrella"
+#~ msgstr[1] "%i estrelles"
+
+#~ msgid "Listen to music"
+#~ msgstr "Escolteu música"
+
+#~ msgid "Music Player"
+#~ msgstr "Reproductor de música"
+
+#~ msgid "Desktop Integration:"
+#~ msgstr "Integració amb l'escriptori:"
+
+#~ msgid "Library Management:"
+#~ msgstr "Gestió de la biblioteca:"
+
+#~ msgid "Importing music from %s..."
+#~ msgstr "S'està important música des de %s..."
+
+#~ msgid "Adding music from %s to library..."
+#~ msgstr "S'està afegint música des de %s a la biblioteca..."
+
+#~ msgid ""
+#~ "Import from device has been cancelled. Operation will stop after this "
+#~ "media."
+#~ msgstr ""
+#~ "La importació des del dispositiu ha estat cancel·lada. L'operació "
+#~ "s'aturarà després d'importar aquest element."
+
+#~ msgid "Music Folder Location:"
+#~ msgstr "Ubicació de la carpeta de música:"
+
+#~ msgid "Importing track %i: %s"
+#~ msgstr "S'està important la pista %i:%s"
+
+#~ msgid "Editing $NAME by $ARTIST"
+#~ msgstr "S'està editant $NAME per $ARTIST"
+
+#~ msgid "There is not enough space on Device to complete the Sync…"
+#~ msgstr "No hi ha prou espai al dispositiu per completar la sincronització…"
+
+#~ msgid ""
+#~ "Noise is already doing file operations. Please wait until those finish to "
+#~ "import from %d"
+#~ msgstr ""
+#~ "El Noise ja està fent operacions amb els fitxers. Espereu fins que "
+#~ "finalitzi l'importació des de %d"
+
+#~ msgid ""
+#~ "To allow for Last.fm integration, you must give permission to %s. You "
+#~ "only need to do this once."
+#~ msgstr ""
+#~ "Per permetre la integració amb el Last.fm, heu de donar permisos al %s. "
+#~ "Només s'ha de fer un cop."
+
+#~ msgid "Give %s Permission"
+#~ msgstr "Doneu permisos al %s"
+
+#~ msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+#~ msgstr ""
+#~ "Noise;Àudio;Reproductor;MP3;iPod;Play;Reproduir;Llista de reproducció;"
+#~ "Multimèdia;Media;CD;Telèfon;Cançons;"
+
+#~ msgid "Notifications:"
+#~ msgstr "Notificacions:"
+
+#~ msgid "Reset"
+#~ msgstr "Reinicia"
+
+#~ msgid "<b>Stats</b>"
+#~ msgstr "<b>Estadístiques</b>"
+
+#~ msgid "Details"
+#~ msgstr "Detalls"
+
+#~ msgid "About Noise"
+#~ msgstr "Quant al Noise"
+
+#~ msgid "About Music"
+#~ msgstr "Quant al Música"
