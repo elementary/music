@@ -1,0 +1,2199 @@
+# Turkish translation for beat-box
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the beat-box package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: beat-box\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-07-16 19:03+0000\n"
+"PO-Revision-Date: 2021-04-23 19:54+0000\n"
+"Last-Translator: Ozgur Baskin <bebeto_baskin@yahoo.com>\n"
+"Language-Team: Turkish <https://l10n.elementary.io/projects/music/music/tr/"
+">\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.4.2\n"
+"X-Launchpad-Export-Date: 2017-03-07 05:55+0000\n"
+
+#: core/LibrariesManager.vala:146
+msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
+msgstr "<b>$ARTIST</b> - <b>$NAME</b> kitaplığa aktarılıyor…"
+
+#. / Used for unknown titles, artists, or album names.
+#: core/Media.vala:33
+msgid "Unknown"
+msgstr "Bilinmiyor"
+
+#. / Please keep $NAME and $ALBUM, they will be replaced by their values
+#: core/Media.vala:180
+msgid "$NAME on $ALBUM"
+msgstr "$NAME <b>-</b> $ALBUM"
+
+#. / Please keep $NAME and $ARTIST, they will be replaced by their values
+#: core/Media.vala:183
+msgid "$NAME by $ARTIST"
+msgstr "$NAME <b>-</b> $ARTIST"
+
+#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
+#: core/Media.vala:189
+msgid "$NAME by $ARTIST on $ALBUM"
+msgstr "$NAME <b>($ARTIST: $ALBUM)</b>"
+
+#: core/GStreamer/Equalizer.vala:70
+msgid "Flat"
+msgstr "Düz"
+
+#: core/GStreamer/Equalizer.vala:71
+msgid "Classical"
+msgstr "Klasik"
+
+#: core/GStreamer/Equalizer.vala:72
+msgid "Club"
+msgstr "Klüp"
+
+#: core/GStreamer/Equalizer.vala:73
+msgid "Dance"
+msgstr "Dans"
+
+#: core/GStreamer/Equalizer.vala:74
+msgid "Full Bass"
+msgstr "Tam Bas"
+
+#: core/GStreamer/Equalizer.vala:75
+msgid "Full Treble"
+msgstr "Tam Tiz"
+
+#: core/GStreamer/Equalizer.vala:76
+msgid "Full Bass + Treble"
+msgstr "Tam Bas + Tiz"
+
+#: core/GStreamer/Equalizer.vala:77
+msgid "Headphones"
+msgstr "Kulaklık"
+
+#: core/GStreamer/Equalizer.vala:78
+msgid "Large Hall"
+msgstr "Geniş Salon"
+
+#: core/GStreamer/Equalizer.vala:79
+msgid "Live"
+msgstr "Canlı"
+
+#: core/GStreamer/Equalizer.vala:80
+msgid "Party"
+msgstr "Parti"
+
+#: core/GStreamer/Equalizer.vala:81
+msgid "Pop"
+msgstr "Pop"
+
+#: core/GStreamer/Equalizer.vala:82
+msgid "Reggae"
+msgstr "Regi"
+
+#: core/GStreamer/Equalizer.vala:83
+msgid "Rock"
+msgstr "Rock"
+
+#: core/GStreamer/Equalizer.vala:84
+msgid "Soft"
+msgstr "Soft"
+
+#: core/GStreamer/Equalizer.vala:85
+msgid "Ska"
+msgstr "Ska"
+
+#: core/GStreamer/Equalizer.vala:86
+msgid "Soft Rock"
+msgstr "Soft Rock"
+
+#: core/GStreamer/Equalizer.vala:87
+msgid "Techno"
+msgstr "Tekno"
+
+#: core/Utils/FileUtils.vala:142
+#, c-format
+msgid " (%d)"
+msgstr " (%d)"
+
+#: core/Utils/PlaylistsUtils.vala:95
+#, c-format
+msgid "%s (%d)"
+msgstr "%s (%d)"
+
+#: core/Utils/PlaylistsUtils.vala:234
+msgid "New playlist"
+msgstr "Yeni çalma listesi"
+
+#. Translators: used for new playlists ex: "New playlist (1)"
+#: core/Utils/PlaylistsUtils.vala:245
+#, c-format
+msgid "%s (%i)"
+msgstr "%s (%i)"
+
+#: core/Utils/PlaylistsUtils.vala:265 core/Utils/PlaylistsUtils.vala:334
+msgid "MPEG Version 3.0 Extended (*.m3u)"
+msgstr "MPEG Sürüm 3.0 Genişletilmiş (*.m3u)"
+
+#: core/Utils/PlaylistsUtils.vala:269 core/Utils/PlaylistsUtils.vala:338
+msgid "Shoutcast Playlist Version 2.0 (*.pls)"
+msgstr "Shoutcast Çalma Listesi Sürüm 2.0 (*.pls)"
+
+#: core/Utils/PlaylistsUtils.vala:272
+msgid "Export Playlist"
+msgstr "Çalma Listesini Dışa Aktar"
+
+#: core/Utils/PlaylistsUtils.vala:275 src/Dialogs/MediaEditor.vala:133
+#: src/Dialogs/SmartPlaylistEditor.vala:92
+msgid "Save"
+msgstr "Kaydet"
+
+#: core/Utils/PlaylistsUtils.vala:276 core/Utils/PlaylistsUtils.vala:345
+#: src/LibraryWindow.vala:1030 src/Dialogs/FileNotFoundDialog.vala:55
+#: src/Dialogs/FileNotFoundDialog.vala:103
+#: src/Dialogs/InstallGstreamerPluginsDialog.vala:49
+#: src/Dialogs/RemoveFilesDialog.vala:82
+#: src/Dialogs/SetMusicFolderConfirmation.vala:85
+#: src/Dialogs/SmartPlaylistEditor.vala:89
+#: src/Dialogs/SyncWarningDialog.vala:60
+#: src/Views/Wrappers/MusicViewWrapper.vala:147 src/Widgets/TopDisplay.vala:63
+msgid "Cancel"
+msgstr "Vazgeç"
+
+#: core/Utils/PlaylistsUtils.vala:329
+msgid "Playlist"
+msgstr "Çalma listesi"
+
+#: core/Utils/PlaylistsUtils.vala:341
+#, c-format
+msgid "Import %s"
+msgstr "%s içe aktar"
+
+#: core/Utils/PlaylistsUtils.vala:344 src/LibraryWindow.vala:1029
+#: src/Dialogs/FileNotFoundDialog.vala:102
+#: src/Dialogs/SetMusicFolderConfirmation.vala:84
+#: src/Views/Wrappers/MusicViewWrapper.vala:146
+#: src/Widgets/AlbumListGrid.vala:197
+msgid "Open"
+msgstr "Aç"
+
+#: core/Utils/PlaylistsUtils.vala:371
+msgid "Unrecognized playlist file. Import failed."
+msgstr "Tanımlanamayan çalma listesi dosyası. İçe aktarma başarısız oldu."
+
+#. / Format of date strings. See reference documentation of g_date_time_format()
+#. / for more details.
+#: core/Utils/TimeUtils.vala:40
+msgid "%m/%e/%Y %l:%M %p"
+msgstr "%e/%m/%Y %k:%M"
+
+#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:109
+#: plugins/Devices/iPod/iPodDevice.vala:68
+msgid "Empty device!"
+msgstr "Boş cihaz!"
+
+#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:113
+#: plugins/Devices/iPod/iPodDevice.vala:72
+msgid "This device does not contain any music."
+msgstr "Bu cihaz herhangi bir müzik içermiyor."
+
+#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:158
+msgid "Android Phone"
+msgstr "Android Telefon"
+
+#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:160
+msgid "Audio Player"
+msgstr "Müzik Çalar"
+
+#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:146
+#: plugins/Devices/iPod/iPodLibrary.vala:167
+msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
+msgstr "<b>$ARTIST</b> - <b>$NAME</b> $DEVICE cihazına ekleniyor"
+
+#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:171
+#: plugins/Devices/iPod/iPodLibrary.vala:216
+#, c-format
+msgid "Syncing <b>%s</b>…"
+msgstr "<b>%s</b> Eşitleniyor…"
+
+#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:283
+#: plugins/Devices/iPod/iPodLibrary.vala:561
+msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
+msgstr "<b>$ARTIST</b> - <b>$NAME</b> $DEVICE cihazından kaldırılıyor"
+
+#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:315
+#: plugins/Devices/iPod/iPodLibrary.vala:366
+#, c-format
+msgid "Removing from <b>%s</b>…"
+msgstr "<b>%s</b> cihazından kaldırılıyor…"
+
+#: plugins/Devices/iPod/iPodLibrary.vala:238
+#: plugins/Devices/iPod/iPodLibrary.vala:404
+msgid "Finishing sync process…"
+msgstr "Eşitleme işlemi bitiriliyor…"
+
+#: plugins/Devices/iPod/iPodLibrary.vala:250
+#: plugins/Devices/iPod/iPodLibrary.vala:416
+msgid "Cancelling Sync…"
+msgstr "Eşitleme İptal Ediliyor…"
+
+#: src/FileOperator.vala:306
+msgid "Import Complete"
+msgstr "İçe Aktarma Tamamlandı"
+
+#: src/FileOperator.vala:306
+msgid "Your Library Has Been Imported."
+msgstr "Kitaplığınız İçe Aktarıldı."
+
+#. if doing import and copy to music folder is enabled, do copy here
+#: src/FileOperator.vala:316
+msgid "<b>Copying</b> files to <b>Music Folder</b>…"
+msgstr "Dosyalar <b>Müzik Klasörüne</b> <b>kopyalanıyor</b>…"
+
+#: src/LibraryWindow.vala:197 src/LibraryWindow.vala:275
+#: src/LibraryWindow.vala:631 src/LibraryWindow.vala:751
+msgid "Music"
+msgstr "Müzik"
+
+#: src/LibraryWindow.vala:216
+msgid "Import to Library…"
+msgstr "Kitaplığa Aktar…"
+
+#: src/LibraryWindow.vala:219 src/Dialogs/PreferencesWindow.vala:32
+msgid "Preferences"
+msgstr "Tercihler"
+
+#: src/LibraryWindow.vala:238
+msgid "Previous"
+msgstr "Önceki"
+
+#: src/LibraryWindow.vala:245 src/LibraryWindow.vala:311
+msgid "Play"
+msgstr "Oynat"
+
+#: src/LibraryWindow.vala:252
+msgid "Next"
+msgstr "Sonraki"
+
+#: src/LibraryWindow.vala:256
+msgid "Search Music"
+msgstr "Müzik Ara"
+
+#: src/LibraryWindow.vala:317
+msgid "Pause"
+msgstr "Duraklat"
+
+#: src/LibraryWindow.vala:820
+msgid "No songs in Queue"
+msgstr "Sırada Şarkı Yok"
+
+#: src/LibraryWindow.vala:820
+msgid ""
+"To add songs to the queue, use the <b>secondary click</b> on an item and "
+"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
+"first before the next song in the currently playing list."
+msgstr ""
+"Çalma sırasına şarkı eklemek için, bir öğe üzerinde <b>ikincil tıklamayı</b> "
+"kullanın ve <b>Sıraya Al</b> seçeneğini seçin. Bir şarkı biterken, halen "
+"çalan listedeki sonraki şarkıdan önce ilk olarak sıraya alınmış şarkılar "
+"çalınmış olacak."
+
+#: src/LibraryWindow.vala:823
+msgid "No songs in History"
+msgstr "Geçmişte şarkı yok"
+
+#: src/LibraryWindow.vala:823
+msgid ""
+"After a part of a song has been played, it is added to the history list.\n"
+"You can use this list to see all the songs you have played during the "
+"current session."
+msgstr ""
+"Şarkının bir bölümü oynatıldığında geçmiş listesine eklenir.\n"
+"Bu listeyi geçerli oturumunuzda oynattığınız bütün şarkıları görmek için "
+"kullanabilirsiniz."
+
+#: src/LibraryWindow.vala:1026 src/Views/Wrappers/MusicViewWrapper.vala:59
+msgid "Import Music"
+msgstr "Müziği İçe Aktar"
+
+#: src/PlaybackManager.vala:117
+msgctxt "Name of the playlist"
+msgid "Queue"
+msgstr "Çalma Sırası"
+
+#: src/Dialogs/FileNotFoundDialog.vala:37
+msgid "File not found"
+msgstr "Dosya bulunamadı"
+
+#: src/Dialogs/FileNotFoundDialog.vala:47
+#, c-format
+msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
+msgstr "<b>%s</b> - <b>%s</b> müzik dosyası bulunamadı."
+
+#: src/Dialogs/FileNotFoundDialog.vala:50
+#, c-format
+msgid "%i music files could not be found."
+msgstr "%i müzik dosyası bulunamadı."
+
+#: src/Dialogs/FileNotFoundDialog.vala:53
+msgid "Rescan Library"
+msgstr "Kitaplığı Yeniden Tara"
+
+#: src/Dialogs/FileNotFoundDialog.vala:54
+msgid "Remove Song"
+msgstr "Şarkıyı Kaldır"
+
+#: src/Dialogs/FileNotFoundDialog.vala:56
+msgid "Find Song"
+msgstr "Şarkı Bul"
+
+#: src/Dialogs/FileNotFoundDialog.vala:99
+#: src/Dialogs/SetMusicFolderConfirmation.vala:81
+msgid "Choose Music Folder"
+msgstr "Müzik Klasörü Seç"
+
+#: src/Dialogs/InstallGstreamerPluginsDialog.vala:41
+#, c-format
+msgid "Would you like to install the %s plugin?"
+msgstr "%s eklentisini yüklemek ister misiniz ?"
+
+#: src/Dialogs/InstallGstreamerPluginsDialog.vala:42
+#, c-format
+msgid "This song cannot be played. The %s plugin is required to play the song."
+msgstr "Bu parça çalınamıyor. Parçayı çalmak için %s eklentisi gerekli."
+
+#: src/Dialogs/InstallGstreamerPluginsDialog.vala:51
+msgid "Install Plugin"
+msgstr "Eklentiyi Yükle"
+
+#: src/Dialogs/MediaEditor.vala:96
+msgid "Title:"
+msgstr "Parça Adı:"
+
+#: src/Dialogs/MediaEditor.vala:98
+msgid "Artist:"
+msgstr "Sanatçı:"
+
+#: src/Dialogs/MediaEditor.vala:100
+msgid "Album:"
+msgstr "Albüm:"
+
+#: src/Dialogs/MediaEditor.vala:102
+msgid "Album Artist:"
+msgstr "Albüm Sanatçısı:"
+
+#: src/Dialogs/MediaEditor.vala:104
+msgid "Composer:"
+msgstr "Besteci:"
+
+#: src/Dialogs/MediaEditor.vala:106
+msgid "Grouping:"
+msgstr "Gruplama:"
+
+#: src/Dialogs/MediaEditor.vala:108
+msgid "Genre:"
+msgstr "Tarz:"
+
+#: src/Dialogs/MediaEditor.vala:110
+msgid "Year:"
+msgstr "Yıl:"
+
+#: src/Dialogs/MediaEditor.vala:112
+msgid "Track:"
+msgstr "Parça:"
+
+#: src/Dialogs/MediaEditor.vala:114
+msgid "Disc:"
+msgstr "Disk:"
+
+#: src/Dialogs/MediaEditor.vala:116
+msgid "Rating:"
+msgstr "Derecelendirme:"
+
+#: src/Dialogs/MediaEditor.vala:118
+msgid "Comment:"
+msgstr "Yorum:"
+
+#. FIXME: don't know if I can delete this
+#: src/Dialogs/MediaEditor.vala:131 src/Dialogs/PreferencesWindow.vala:88
+#: src/Views/DeviceView.vala:45
+msgid "Close"
+msgstr "Çıkış"
+
+#: src/Dialogs/NotImportedDialog.vala:50
+#, c-format
+msgid "Issues while importing from %s"
+msgstr "%s kaynağından içe aktarırken karşılaşılan sorunlar"
+
+#: src/Dialogs/NotImportedDialog.vala:56
+#, c-format
+msgid "Unable to import %d item. The file may be damaged."
+msgid_plural "Unable to import %d items. The files may be damaged."
+msgstr[0] "%d öğe içe aktarılamıyor. Dosya bozuk olabilir."
+msgstr[1] "%d öğe içe aktarılamıyor. Dosyalar bozuk olabilir."
+
+#: src/Dialogs/NotImportedDialog.vala:64
+msgid "Move all corrupted files to trash"
+msgstr "Bütün bozuk dosyaları çöp kutusuna taşı"
+
+#: src/Dialogs/NotImportedDialog.vala:71
+msgid "del"
+msgstr "sil"
+
+#: src/Dialogs/NotImportedDialog.vala:80
+msgid "File Location"
+msgstr "Dosya Konumu"
+
+#: src/Dialogs/NotImportedDialog.vala:96
+msgid "Select individual files to move to trash:"
+msgstr "Çöpe göndermek istediğiniz dosyaları seçin:"
+
+#: src/Dialogs/NotImportedDialog.vala:100 src/Dialogs/RemoveFilesDialog.vala:73
+msgid "Move to Trash"
+msgstr "Çöpe Taşı"
+
+#: src/Dialogs/NotImportedDialog.vala:103
+msgid "Ignore"
+msgstr "Yoksay"
+
+#: src/Dialogs/PreferencesWindow.vala:38
+msgid "Select Music Folder…"
+msgstr "Müzik Klasörünü Seç…"
+
+#: src/Dialogs/PreferencesWindow.vala:70
+msgid "Music Folder Location"
+msgstr "Müzik Klasörü Konumu"
+
+#: src/Dialogs/PreferencesWindow.vala:72
+msgid "Library Management"
+msgstr "Kitaplık Yönetimi"
+
+#: src/Dialogs/PreferencesWindow.vala:73
+msgid "Keep Music folder organized:"
+msgstr "Müzik klasörünü düzenli tut:"
+
+#: src/Dialogs/PreferencesWindow.vala:75
+msgid "Write metadata to file:"
+msgstr "Dosyaya meta veri yaz:"
+
+#: src/Dialogs/PreferencesWindow.vala:77
+msgid "Copy imported files to Library:"
+msgstr "İçe aktarılmış dosyaları Kitaplığa kopyala:"
+
+#: src/Dialogs/PreferencesWindow.vala:79
+msgid "Desktop Integration"
+msgstr "Masaüstü Tümleştirme"
+
+#: src/Dialogs/PreferencesWindow.vala:80
+msgid "Continue playback when closed:"
+msgstr "Kapatıldığında oynatmaya devam et:"
+
+#: src/Dialogs/RemoveFilesDialog.vala:49
+#, c-format
+msgid "Remove %d Song From Library?"
+msgid_plural "Remove %d Songs From Library?"
+msgstr[0] "%d Şarkı Kitaplıktan Kaldırılsın Mı?"
+msgstr[1] "%d Şarkı Kitaplıktan Kaldırılsın Mı?"
+
+#: src/Dialogs/RemoveFilesDialog.vala:55
+#, c-format
+msgid "Remove \"%s\" From Library?"
+msgstr "\"%s\" Kitaplıktan Kaldırılsın Mı?"
+
+#: src/Dialogs/RemoveFilesDialog.vala:59
+msgid ""
+"This will remove the song from your library and from any device synced "
+"automatically."
+msgid_plural ""
+"This will remove the songs from your library and from any device synced "
+"automatically."
+msgstr[0] ""
+"Bu işlem şarkıyı kitaplığınızdan ve otomatik olarak eşitlenmiş tüm "
+"cihazlardan kaldıracaktır."
+msgstr[1] ""
+"Bu işlem şarkıları kitaplığınızdan ve otomatik olarak eşitlenmiş tüm "
+"cihazlardan kaldıracaktır."
+
+#: src/Dialogs/RemoveFilesDialog.vala:83
+msgid "Remove from Library"
+msgstr "Kitaplıktan Kaldır"
+
+#: src/Dialogs/SetMusicFolderConfirmation.vala:38
+msgid "Set Music Folder?"
+msgstr "Müzik Klasörü Ayarlansın Mı?"
+
+#: src/Dialogs/SetMusicFolderConfirmation.vala:39
+#, c-format
+msgid ""
+"Are you sure you want to set the music folder to %s? This will reset your "
+"library and remove your playlists."
+msgstr ""
+"Müzik klasörünü %s olarak belirlemek istediğinize emin misin? Bu işlemden "
+"sonra müzik kitaplığınız sıfırlanacak ve çalma listeleriniz kaldırılacak."
+
+#: src/Dialogs/SetMusicFolderConfirmation.vala:47
+msgid "Export Playlists"
+msgstr "Çalma listesini dışarı aktar"
+
+#: src/Dialogs/SetMusicFolderConfirmation.vala:61
+msgid "Set Music Folder"
+msgstr "Müzik Klasörünü Ayarla"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:55
+msgid "Playlist Title"
+msgstr "Çalma Listesi Başlığı"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:58
+msgid "any"
+msgstr "herhangi"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:59
+msgid "all"
+msgstr "tümü"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:63
+msgid "Match"
+msgstr "Eşleşme"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:65
+msgid "of the following:"
+msgstr "izleyen:"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:74
+msgid "Add"
+msgstr "Ekle"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:79
+msgid "Limit to"
+msgstr "Sınırla"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:87
+msgid "items"
+msgstr "öğe"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:103
+msgid "Name of Playlist"
+msgstr "Çalma Listesi Adı"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:105
+msgid "Rules"
+msgstr "Kurallar"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:108
+msgid "Options"
+msgstr "Seçenekler"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:113
+msgid "Smart Playlist Editor"
+msgstr "Akıllı Çalma Listesi Düzenleyici"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:256 src/Widgets/SourceListView.vala:67
+#: src/Widgets/SourceListView.vala:80
+msgid "Remove"
+msgstr "Sil"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:259
+msgid "Album"
+msgstr "Albüm"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:260
+msgid "Artist"
+msgstr "Sanatçı"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:261
+msgid "Bitrate"
+msgstr "Bit Hızı"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:262
+msgid "Comment"
+msgstr "Yorum"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:263
+msgid "Composer"
+msgstr "Besteci"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:264
+msgid "Date Added"
+msgstr "Eklendiği Tarih"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:265
+msgid "Genre"
+msgstr "Tarz"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:266
+msgid "Grouping"
+msgstr "Gruplama"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:267
+msgid "Last Played"
+msgstr "Son Çalınan"
+
+#. helper for units
+#: src/Dialogs/SmartPlaylistEditor.vala:268
+#: src/Dialogs/SmartPlaylistEditor.vala:413
+msgid "Length"
+msgstr "Uzunluk"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:269
+msgid "Playcount"
+msgstr "Çalma Sayısı"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:270
+msgid "Rating"
+msgstr "Derecelendirme"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:271
+msgid "Skipcount"
+msgstr "Atlama"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:272
+msgid "Title"
+msgstr "Başlık"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:273
+msgid "Year"
+msgstr "Yıl"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:274
+msgid "URI"
+msgstr "URI"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:347
+msgid "is"
+msgstr "olan"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:348
+msgid "contains"
+msgstr "içerir"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:349
+msgid "does not contain"
+msgstr "içermez"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:375
+#: src/Dialogs/SmartPlaylistEditor.vala:390
+msgid "is exactly"
+msgstr "tam olarak"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:376
+msgid "is at most"
+msgstr "en çok olarak"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:377
+msgid "is at least"
+msgstr "en az olarak"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:391
+msgid "is within"
+msgstr "içinden olarak"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:392
+msgid "is before"
+msgstr "öncedir"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:414
+msgid "seconds"
+msgstr "saniye"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:417
+msgid "days ago"
+msgstr "gün önce"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:420
+msgid "kbps"
+msgstr "kbps"
+
+#. be a bit explicit to make translations better
+#: src/Dialogs/SyncWarningDialog.vala:52
+#, c-format
+msgid "Sync will remove %i item from %s"
+msgid_plural "Sync will remove %i items from %s"
+msgstr[0] "Eşitleme %s cihazından %i öğeyi kaldırır"
+msgstr[1] "Eşitleme %s cihazından %i öğeyi kaldırır"
+
+#: src/Dialogs/SyncWarningDialog.vala:55
+#, c-format
+msgid ""
+"If you continue to sync, media will be removed from %s since they are not on "
+"the sync list. Would you like to import them to your library first?"
+msgstr ""
+"Eşitlemeye devam ederseniz, medya eşitleme listesinde olmadığı için %s "
+"cihazından kaldırılacak. Öncelikle onları kitaplığınıza aktarmak ister "
+"misiniz?"
+
+#: src/Dialogs/SyncWarningDialog.vala:57
+msgid "Continue Syncing"
+msgstr "Eşitlemeye Devam Et"
+
+#: src/Dialogs/SyncWarningDialog.vala:62
+msgid "Import"
+msgstr "İçe Aktar"
+
+#: src/LocalBackend/LocalLibrary.vala:188
+#, c-format
+msgid "Importing music from %s…"
+msgstr "%s kaynağından müzik içe aktarılıyor…"
+
+#: src/LocalBackend/LocalLibrary.vala:215
+msgid "Adding files to library…"
+msgstr "Dosyalar kitaplığa ekleniyor…"
+
+#: src/LocalBackend/LocalLibrary.vala:228
+msgid "<b>Importing</b> music to library…"
+msgstr "Kitaplığa müzik <b>aktarılıyor</b>…"
+
+#: src/LocalBackend/LocalLibrary.vala:250
+msgid "All music files are already in your library"
+msgstr "Tüm müzik dosyaları zaten kitaplığınızda"
+
+#: src/LocalBackend/LocalLibrary.vala:250
+msgid "No files were imported."
+msgstr "Hiçbir dosya içeri aktarılamadı."
+
+#: src/LocalBackend/LocalLibrary.vala:255
+msgid "Rescanning music for changes. This may take a while…"
+msgstr ""
+"Müzikleriniz değişiklikler için yeniden taranıyor. Bu biraz zaman alabilir…"
+
+#: src/LocalBackend/LocalLibrary.vala:356
+msgid "Added to your queue:"
+msgstr "Çalma sıranıza eklendi:"
+
+#: src/LocalBackend/LocalLibrary.vala:367
+#, c-format
+msgid "%d Track"
+msgid_plural "%d Tracks"
+msgstr[0] "%d Parça"
+msgstr[1] "%d Parça"
+
+#: src/LocalBackend/LocalSmartPlaylist.vala:218
+msgid "Favorite Songs"
+msgstr "Favori Şarkılar"
+
+#: src/LocalBackend/LocalSmartPlaylist.vala:226
+msgid "Recently Added"
+msgstr "Son Eklenenler"
+
+#: src/LocalBackend/LocalSmartPlaylist.vala:234
+msgid "Recent Favorites"
+msgstr "Son Favoriler"
+
+#: src/LocalBackend/LocalSmartPlaylist.vala:242
+msgid "Never Played"
+msgstr "Hiç Çalınmayan"
+
+#: src/LocalBackend/LocalSmartPlaylist.vala:250
+msgid "Over Played"
+msgstr "Çok Çalınan"
+
+#: src/LocalBackend/LocalSmartPlaylist.vala:258
+msgid "Not Recently Played"
+msgstr "Uzun Süredir Çalınmayanlar"
+
+#: src/Objects/HistoryPlaylist.vala:38
+msgid "History"
+msgstr "Geçmiş"
+
+#: src/Objects/MPRIS.vala:617 src/Widgets/SourceListView.vala:341
+msgid "Playlists"
+msgstr "Çalma Listeleri"
+
+#: src/Views/DeviceSummaryWidget.vala:60
+msgid "Device Name:"
+msgstr "Aygıt Adı:"
+
+#: src/Views/DeviceSummaryWidget.vala:64
+msgid "Device Name"
+msgstr "Aygıt Adı"
+
+#: src/Views/DeviceSummaryWidget.vala:66
+msgid "Automatically sync when plugged in:"
+msgstr "Takıldığı zaman otomatik olarak eşitle:"
+
+#: src/Views/DeviceSummaryWidget.vala:72
+msgid "Sync:"
+msgstr "Eşitle:"
+
+#: src/Views/DeviceSummaryWidget.vala:100 src/Widgets/SourceListView.vala:192
+msgid "Sync"
+msgstr "Eşitle"
+
+#: src/Views/DeviceSummaryWidget.vala:244
+msgid "All Music"
+msgstr "Tüm Müzikler"
+
+#: src/Views/DeviceSummaryWidget.vala:298
+msgid "Sync Failed"
+msgstr "Eşitleme Başarısız Oldu"
+
+#: src/Views/DeviceSummaryWidget.vala:299
+#, c-format
+msgid ""
+"The playlist named %s is used to sync device %s, but could not be found."
+msgstr ""
+"%s adlı oynatma listesi %s cihazıyla eşitlemek için kullanılıyordu ama "
+"bulunamadı."
+
+#: src/Views/DeviceSummaryWidget.vala:316
+#: src/Views/DeviceSummaryWidget.vala:321
+msgid "Cannot Sync"
+msgstr "Eşitlenemiyor"
+
+#: src/Views/DeviceSummaryWidget.vala:317
+msgid ""
+"Cannot sync device with selected sync settings. Not enough space on disk"
+msgstr "Seçili eşitleme ayarlarıyla cihaz eşitlenemiyor. Yetersiz disk alanı"
+
+#: src/Views/DeviceSummaryWidget.vala:322
+msgid "Device is already doing an operation."
+msgstr "Cihaz zaten bir işlem gerçekleştiriyor."
+
+#: src/Views/DeviceView.vala:66
+msgid "Cancelling…"
+msgstr "İptal ediliyor…"
+
+#: src/Views/DeviceView.vala:66
+msgid "Device operation has been cancelled and will stop after this media."
+msgstr "İşlem iptal edildi ve bu medya dosyasından sonra durdurulacak."
+
+#: src/Views/ViewStack.vala:45
+msgid "No Results"
+msgstr "Sonuç Yok"
+
+#: src/Views/ViewStack.vala:45
+msgid "Try another search"
+msgstr "Başka bir arama deneyin"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
+msgid "Genres"
+msgstr "Tarzlar"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:60
+msgid "Artists"
+msgstr "Sanatçılar"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:62
+msgid "Albums"
+msgstr "Albümler"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:64
+msgid "Years"
+msgstr "Yıllar"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:66
+msgid "Ratings"
+msgstr "Derecelendirmeler"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:68
+msgid "Composers"
+msgstr "Besteciler"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:70
+msgid "Groupings"
+msgstr "Gruplamalar"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
+msgid "All Genres"
+msgstr "Tüm Tarzlar"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
+#, c-format
+msgid "All %i Genres"
+msgstr "Tüm %i Tarz"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
+msgid "No Genres"
+msgstr "Tarz Yok"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
+msgid "All Artists"
+msgstr "Tüm Sanatçılar"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
+#, c-format
+msgid "All %i Artists"
+msgstr "Tüm %i Sanatçı"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
+msgid "No Artists"
+msgstr "Sanatçı Yok"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
+msgid "All Albums"
+msgstr "Bütün Albümler"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
+#, c-format
+msgid "All %i Albums"
+msgstr "Tüm %i Albüm"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
+msgid "No Albums"
+msgstr "Albüm Yok"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
+msgid "All Years"
+msgstr "Tüm Yıllar"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
+#, c-format
+msgid "All %i Years"
+msgstr "Tüm %i Yıl"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:250
+msgid "No Years"
+msgstr "Yıl Yok"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
+msgid "All Ratings"
+msgstr "Tüm Derecelendirmeler"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
+msgid "No Ratings"
+msgstr "Derecelendirme Yok"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
+msgid "All Groupings"
+msgstr "Tüm Gruplamalar"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
+#, c-format
+msgid "All %i Groupings"
+msgstr "Tüm %i Gruplama"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
+msgid "No Groupings"
+msgstr "Gruplama Yok"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:271
+msgid "All Composers"
+msgstr "Tüm Besteciler"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:273
+#, c-format
+msgid "All %i Composers"
+msgstr "Tüm %i Besteci"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:275
+msgid "No Composers"
+msgstr "Besteci Yok"
+
+#. We cannot make these constants due to issues with N_()
+#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
+#: src/Widgets/EqualizerPopover.vala:326 src/Widgets/PresetList.vala:52
+msgid "Automatic"
+msgstr "Otomatik"
+
+#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:146
+msgid "On Left"
+msgstr "Solda"
+
+#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:147
+msgid "On Top"
+msgstr "Üstte"
+
+#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:428
+msgid "Unrated"
+msgstr "Derecelendirilmemiş"
+
+#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:430
+#, c-format
+msgid "%u Star"
+msgid_plural "%u Stars"
+msgstr[0] "%u Yıldız"
+msgstr[1] "%u Yıldız"
+
+#: src/Views/ListView/Lists/CellDataFunctionHelper.vala:128
+#, c-format
+msgid "%u kbps"
+msgstr "%u kbps"
+
+#: src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
+#: src/Views/ListView/Lists/MusicListView.vala:425
+msgid "Never"
+msgstr "Asla"
+
+#: src/Views/ListView/Lists/ListColumn.vala:69
+msgctxt "List column title"
+msgid "#"
+msgstr "#"
+
+#: src/Views/ListView/Lists/ListColumn.vala:72
+msgctxt "List column title"
+msgid "Track"
+msgstr "Parça"
+
+#: src/Views/ListView/Lists/ListColumn.vala:75
+msgctxt "List column title"
+msgid "Title"
+msgstr "Başlık"
+
+#: src/Views/ListView/Lists/ListColumn.vala:78
+msgctxt "List column title"
+msgid "Length"
+msgstr "Uzunluk"
+
+#: src/Views/ListView/Lists/ListColumn.vala:81
+msgctxt "List column title"
+msgid "Artist"
+msgstr "Sanatçı"
+
+#: src/Views/ListView/Lists/ListColumn.vala:84
+msgctxt "List column title"
+msgid "Album"
+msgstr "Albüm"
+
+#: src/Views/ListView/Lists/ListColumn.vala:87
+msgctxt "List column title"
+msgid "Album Artist"
+msgstr "Albüm Sanatçısı"
+
+#: src/Views/ListView/Lists/ListColumn.vala:90
+msgctxt "List column title"
+msgid "Composer"
+msgstr "Besteci"
+
+#: src/Views/ListView/Lists/ListColumn.vala:93
+msgctxt "List column title"
+msgid "Genre"
+msgstr "Tarz"
+
+#: src/Views/ListView/Lists/ListColumn.vala:96
+msgctxt "List column title"
+msgid "Year"
+msgstr "Yıl"
+
+#: src/Views/ListView/Lists/ListColumn.vala:99
+msgctxt "List column title"
+msgid "Grouping"
+msgstr "Gruplama"
+
+#: src/Views/ListView/Lists/ListColumn.vala:102
+msgctxt "List column title"
+msgid "Bitrate"
+msgstr "Bit Hızı"
+
+#: src/Views/ListView/Lists/ListColumn.vala:105
+msgctxt "List column title"
+msgid "Rating"
+msgstr "Derecelendirme"
+
+#: src/Views/ListView/Lists/ListColumn.vala:108
+msgctxt "List column title"
+msgid "Plays"
+msgstr "Çalmalar"
+
+#: src/Views/ListView/Lists/ListColumn.vala:111
+msgctxt "List column title"
+msgid "Skips"
+msgstr "Atlamalar"
+
+#: src/Views/ListView/Lists/ListColumn.vala:114
+msgctxt "List column title"
+msgid "Date Added"
+msgstr "Eklendiği Tarih"
+
+#: src/Views/ListView/Lists/ListColumn.vala:117
+msgctxt "List column title"
+msgid "Last Played"
+msgstr "Son Çalınma"
+
+#: src/Views/ListView/Lists/ListColumn.vala:120
+msgctxt "List column title (beats per minute)"
+msgid "BPM"
+msgstr "BPM(Dakikalık Vuruş Sayısı)"
+
+#: src/Views/ListView/Lists/ListColumn.vala:123
+msgctxt "List column title (file location)"
+msgid "Location"
+msgstr "Konum"
+
+#: src/Views/ListView/Lists/ListColumn.vala:126
+msgctxt "List column title"
+msgid "File Size"
+msgstr "Dosya Boyutu"
+
+#: src/Views/ListView/Lists/MusicListView.vala:74
+msgid "Autosize Columns"
+msgstr "Sütunları Otomatik Boyutlandır"
+
+#: src/Views/ListView/Lists/MusicListView.vala:410
+msgid "1234 kbps"
+msgstr "1234 kbps"
+
+#. / Sample string used to measure the ideal size of the Title, Artist,
+#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
+#. / list view. It's *never* displayed in the user interface. The translated
+#. / string should have a reasonable length, similar to the average length
+#. / of a song title or artist name in your language. The automatic column
+#. / width will depend on the length of this string and the space needed
+#. / by the column's title header.
+#: src/Views/ListView/Lists/MusicListView.vala:481
+msgid "Sample List String"
+msgstr "Örnek Liste Dizisi"
+
+#. Welcome screen
+#: src/Views/Wrappers/MusicViewWrapper.vala:56
+msgid "Get Some Tunes"
+msgstr "Müziklerinizi Bulun"
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:57
+msgid "Add music to your library."
+msgstr "Kitaplığınıza müzik ekleyin."
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:60
+msgid "Import music from a source into your library."
+msgstr "Bir kaynaktan kitaplığınıza müzik aktarın."
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:62
+msgid "Change Music Folder"
+msgstr "Müzik Klasörünü Değiştir"
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:63
+msgid "Load music from a folder, a network or an external disk."
+msgstr "Bir klasörden, ağdan veya harici diskten müzik yükleyin."
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:110
+#: src/Views/Wrappers/MusicViewWrapper.vala:130
+msgid "Import your Music"
+msgstr "Müziklerinizi içeri aktarın"
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:111
+#: src/Views/Wrappers/MusicViewWrapper.vala:131
+#, c-format
+msgid "Import all your Music from %s into your library."
+msgstr "%s üzerinde bulunan tüm müziğinizi kitaplığınıza aktarın."
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:143
+msgid "Select Music Folder"
+msgstr "Müzik Klasörünü Seç"
+
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:50
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:54
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:64
+msgid "No Songs"
+msgstr "Şarkı Yok"
+
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:51
+msgid "Updating playlist. Please wait."
+msgstr "Çalma listesi güncelleniyor. Lütfen bekleyin."
+
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:55
+msgid ""
+"To add songs to this playlist, use the <b>secondary click</b> on an item and "
+"choose <b>Add to Playlist</b>."
+msgstr ""
+"Bu çalma listesine şarkılar eklemek için, bir öğe üzerinde <b>ikincil "
+"tıklama</b>yı kullanın ve <b>Çalma Listesine Ekle</b>yi seçin."
+
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:58
+msgid "Edit Smart Playlist"
+msgstr "Akıllı Çalma Listesini Düzenle"
+
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:65
+msgid ""
+"This playlist will be automatically populated with songs that match its "
+"rules. To modify these rules, use the <b>secondary click</b> on it in the "
+"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
+"below."
+msgstr ""
+"Bu çalma listesi otomatik olarak kurallara uyan şarkılar ile doldurulur. Bu "
+"kuralları değiştirmek için, kenar çubuğu üzerinde <b>ikincil tıklama</b>yı "
+"kullanın ve <b>Düzenle</b>yi tıklayın. İsteğe bağlı olarak, aşağıdaki "
+"düğmeyi tıklayabilirsiniz."
+
+#: src/Views/Wrappers/ViewWrapper.vala:418
+msgid "No media"
+msgstr "Medya yok"
+
+#: src/Widgets/AlbumListGrid.vala:63
+msgid "Set new album cover"
+msgstr "Yeni albüm kapağı ayarla"
+
+#: src/Widgets/AlbumListGrid.vala:193
+msgid "Image files"
+msgstr "Resim dosyaları"
+
+#: src/Widgets/AlbumListGrid.vala:200
+msgid "_Open"
+msgstr "_Aç"
+
+#: src/Widgets/AlbumListGrid.vala:201
+msgid "_Cancel"
+msgstr "_İptal"
+
+#: src/Widgets/EqualizerPopover.vala:162
+msgid "Save preset"
+msgstr "Önayarı kaydet"
+
+#: src/Widgets/EqualizerPopover.vala:330
+msgid "Off"
+msgstr "Kapalı"
+
+#: src/Widgets/EqualizerPopover.vala:418
+#, c-format
+msgid "%s (Custom)"
+msgstr "%s (Özel)"
+
+#: src/Widgets/EqualizerPopover.vala:420
+#, c-format
+msgid "%s (Custom %i)"
+msgstr "%s (Özel %i)"
+
+#: src/Widgets/EqualizerPopover.vala:423
+msgid "Custom Preset"
+msgstr "Özel Önayarlar"
+
+#: src/Widgets/EqualizerPopover.vala:425
+#, c-format
+msgid "Custom Preset %i"
+msgstr "Özel Önayar %i"
+
+#: src/Widgets/MediaMenu.vala:46
+msgid "Scroll to Current Song"
+msgstr "Mevcut Şarkıya Git"
+
+#: src/Widgets/MediaMenu.vala:49
+msgid "Show in File Browser…"
+msgstr "Dosya Tarayıcısında Göster…"
+
+#: src/Widgets/MediaMenu.vala:50
+msgid "Edit Song Info…"
+msgstr "Şarkı Bilgisini Düzenle…"
+
+#: src/Widgets/MediaMenu.vala:51
+msgid "Other Actions"
+msgstr "Diğer Eylemler"
+
+#: src/Widgets/MediaMenu.vala:53
+msgctxt "Action item (verb)"
+msgid "Queue"
+msgstr "Sıraya Al"
+
+#: src/Widgets/MediaMenu.vala:54
+msgid "Add to Playlist"
+msgstr "Çalma Listesine Ekle"
+
+#: src/Widgets/MediaMenu.vala:55
+msgid "Remove Song…"
+msgstr "Şarkıyı Kaldır…"
+
+#: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
+msgid "Import to Library"
+msgstr "Kitaplığa Aktar"
+
+#: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
+msgid "Remove from Library…"
+msgstr "Kitaplıktan Kaldır…"
+
+#: src/Widgets/MediaMenu.vala:99
+msgid "Remove from Device"
+msgstr "Cihazdan Kaldır"
+
+#: src/Widgets/MediaMenu.vala:119
+msgid "Remove from Queue"
+msgstr "Sıradan Kaldır"
+
+#: src/Widgets/MediaMenu.vala:153
+msgid "New Playlist…"
+msgstr "Yeni Çalma Listesi…"
+
+#: src/Widgets/MediaMenu.vala:193
+#, c-format
+msgid "Import %i of %i selected songs"
+msgstr "Seçilen %i şarkının %i tanesini içe aktar"
+
+#: src/Widgets/MediaMenu.vala:195
+#, c-format
+msgid "Import %i song"
+msgid_plural "Import %i songs"
+msgstr[0] "%i şarkıyı içe aktar"
+msgstr[1] "%i şarkıyı içe aktar"
+
+#: src/Widgets/PresetList.vala:53
+msgid "Delete Current"
+msgstr "Şimdikini Sil"
+
+#: src/Widgets/SourceListView.vala:66 src/Widgets/SourceListView.vala:78
+msgid "Rename"
+msgstr "Yeniden Adlandır"
+
+#: src/Widgets/SourceListView.vala:79
+msgid "Edit…"
+msgstr "Düzenle…"
+
+#: src/Widgets/SourceListView.vala:95
+msgid "Save as Playlist"
+msgstr "Çalma listesi olarak kaydet"
+
+#: src/Widgets/SourceListView.vala:103
+msgid "Export…"
+msgstr "Dışarı aktar…"
+
+#: src/Widgets/SourceListView.vala:166
+msgid "Eject"
+msgstr "Çıkart"
+
+#: src/Widgets/SourceListView.vala:176 src/Widgets/SourceListView.vala:219
+msgid "New Playlist"
+msgstr "Yeni Çalma Listesi"
+
+#: src/Widgets/SourceListView.vala:184 src/Widgets/SourceListView.vala:220
+msgid "New Smart Playlist"
+msgstr "Yeni Akıllı Çalma Listesi"
+
+#: src/Widgets/SourceListView.vala:221
+msgid "Import Playlists"
+msgstr "Çalma Listesini İçe Aktar"
+
+#. Adds the different sidebar categories.
+#: src/Widgets/SourceListView.vala:338
+msgid "Library"
+msgstr "Kitaplık"
+
+#: src/Widgets/SourceListView.vala:339
+msgid "Devices"
+msgstr "Aygıtlar"
+
+#: src/Widgets/SourceListView.vala:340
+msgid "Network"
+msgstr "Ağ"
+
+#: src/Widgets/StatusBar.vala:36
+msgid "Add Playlist"
+msgstr "Çalma Listesi Ekle"
+
+#: src/Widgets/StatusBar.vala:37
+msgid "Add Smart Playlist"
+msgstr "Akıllı Çalma Listesi Ekle"
+
+#: src/Widgets/StatusBar.vala:48
+msgid "Add Playlist…"
+msgstr "Çalma Listesi Ekle…"
+
+#. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
+#: src/Widgets/StatusBar.vala:74
+#, c-format
+msgid "Equalizer: %s"
+msgstr "Ekolayzır: %s"
+
+#. MUST follow the exact same order of Music.Player.Repeat
+#: src/Widgets/TopDisplay.vala:138
+msgid "Enable Repeat"
+msgstr "Tekrarlamayı Aç"
+
+#: src/Widgets/TopDisplay.vala:139
+msgid "Repeat Song"
+msgstr "Şarkı Tekrar Çal"
+
+#: src/Widgets/TopDisplay.vala:140
+msgid "Disable Repeat"
+msgstr "Tekrarlamayı Kapat"
+
+#: src/Widgets/TopDisplay.vala:159
+msgid "Enable Shuffle"
+msgstr "Karışık Çalmayı Aç"
+
+#: src/Widgets/TopDisplay.vala:160
+msgid "Disable Shuffle"
+msgstr "Karışık Çalmayı Kapat"
+
+#: src/Widgets/ViewSelector.vala:81
+msgid "View as albums"
+msgstr "Albüm Görünümü"
+
+#: src/Widgets/ViewSelector.vala:87
+msgid "View as list"
+msgstr "Liste Görünümü"
+
+#: src/Widgets/ViewSelector.vala:93
+msgid "View in columns"
+msgstr "Sütun Görünümü"
+
+#~ msgid "No similar songs found"
+#~ msgstr "Benzer şarkı bulunamadı"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "Kitaplığınızda bu şarkıya benzer hiçbir şarkı yok. Şarkı bilgilerinin "
+#~ "doğru olduğundan ve internete bağlı olduğunuzdan emin olun. Bazı "
+#~ "şarkıların eşleri bulunamayabilir."
+
+#~ msgid "Similar"
+#~ msgstr "Benzer"
+
+#~ msgid "media"
+#~ msgstr "medya"
+
+#~ msgid "Similar Media"
+#~ msgstr "Benzer Medya"
+
+#~ msgid "Audio CD Invalid"
+#~ msgstr "Geçersiz Ses CD'si"
+
+#~ msgid "Impossible to read the contents of this Audio CD"
+#~ msgstr "Bu Ses CD'sinin içeriği okunamıyor"
+
+#~ msgid "Could not find Music Folder"
+#~ msgstr "Müzik klasörü bulunamadı"
+
+#~ msgid ""
+#~ "Please make sure that your music folder is accessible and mounted before "
+#~ "importing the CD."
+#~ msgstr ""
+#~ "Lütfen CD'yi içe aktarmadan önce müzik klasörünüzün erişilebilir "
+#~ "olduğundan emin olun."
+
+#~ msgid ""
+#~ "The Application could not find any songs on the CD. No songs can be "
+#~ "imported"
+#~ msgstr ""
+#~ "Uygulama, CD'de hiçbir şarkı bulamadı. Hiçbir şarkı içe aktarılamıyor"
+
+#~ msgid "Song imported from Audio CD."
+#~ msgstr "Müzik CD'sinden şarkı aktarıldı."
+
+#~ msgid "%i songs imported from Audio CD."
+#~ msgstr "%s şarkı Müzik CD'sinden aktarıldı."
+
+#~ msgid "Importing track %u: %s"
+#~ msgstr "İçe aktarılan parça %u: %s"
+
+#~ msgid "CD import will be <b>cancelled</b> after current import."
+#~ msgstr ""
+#~ "CD'den içeri aktarma, geçerli içeri aktarma işleminden sonra <b>iptal</b> "
+#~ "edilecek."
+
+#~ msgid "Could not import this CD"
+#~ msgstr "Bu CD içeri aktarılamadı"
+
+#~ msgid "An Error Occurred"
+#~ msgstr "Bir Hata Oluştu"
+
+#~ msgid "Could not load this Audio CD."
+#~ msgstr "Bu Ses CD'si yüklenemedi."
+
+#~ msgid "Importation of a song from Audio CD finished."
+#~ msgstr "Ses CD'sinden şarkının aktarılması sona erdi."
+
+#~ msgid "Importation of %i songs from Audio CD finished."
+#~ msgstr "Ses CD'sinden %i şarkının aktarılması sona erdi."
+
+#~ msgid "An error occured during the Import of this CD"
+#~ msgstr "Bu CD'nin İçe Aktarımı sırasında bir hata oluştu"
+
+#~ msgid "There was an error while loading this Audio CD."
+#~ msgstr "Bu Ses CD'si yüklenirken bir hata oluştu."
+
+#~ msgid "Disk:"
+#~ msgstr "Disk:"
+
+#~ msgid "%s has imported your library."
+#~ msgstr "%s kütüphanenize eklendi."
+
+#~ msgid "Unable to import %d items from %s"
+#~ msgstr "%d öğeleri %s ten içe aktarılamıyor"
+
+#~ msgid "Remove from %s"
+#~ msgstr "Burdan sil %s"
+
+#~ msgid "Remove \"%s\" From %s?"
+#~ msgstr "\"%s\", %s'den silinsin mi ?"
+
+#~ msgid "No Albums Found."
+#~ msgstr "Albüm Bulunamadı."
+
+#~ msgid "No Songs Found."
+#~ msgstr "Şarkı Bulunamadı."
+
+#~ msgid "%u second"
+#~ msgid_plural "%u seconds"
+#~ msgstr[0] "%u saniye"
+#~ msgstr[1] "%u saniye"
+
+#~ msgid "%u minute"
+#~ msgid_plural "%u minutes"
+#~ msgstr[0] "%u dakika"
+#~ msgstr[1] "%u dakika"
+
+#~ msgctxt "minutes and seconds"
+#~ msgid "%s and %s"
+#~ msgstr "%s ve %s"
+
+#~ msgid "%u day"
+#~ msgid_plural "%u days"
+#~ msgstr[0] "%u gün"
+#~ msgstr[1] "%u gün"
+
+#~ msgid "%u hour"
+#~ msgid_plural "%u hours"
+#~ msgstr[0] "%u saat"
+#~ msgstr[1] "%u saat"
+
+#~ msgctxt "days, hours and minutes"
+#~ msgid "%s, %s and %s"
+#~ msgstr "%s, %s ve %s"
+
+#~ msgctxt "days and hours"
+#~ msgid "%s and %s"
+#~ msgstr "%s ve %s"
+
+#~ msgctxt "days and minutes"
+#~ msgid "%s and %s"
+#~ msgstr "%s ve %s"
+
+#~ msgctxt "hours and minutes"
+#~ msgid "%s and %s"
+#~ msgstr "%s ve %s"
+
+#~ msgid "Song"
+#~ msgstr "Şarkı"
+
+#~ msgid "Repeat Album"
+#~ msgstr "Albümü Tekrar Çal"
+
+#~ msgid "Repeat Artist"
+#~ msgstr "Sanatçıyı Tekrar Çal"
+
+#~ msgid "All"
+#~ msgstr "Tümü"
+
+#~ msgid "Hide"
+#~ msgstr "Gizle"
+
+#~ msgid "Show Info Panel"
+#~ msgstr "Bilgi Panelini Göster"
+
+#~ msgid "Show"
+#~ msgstr "Göster"
+
+#~ msgid "Hide Info Panel"
+#~ msgstr "Bilgi Panelini Gizle"
+
+#~ msgid "Free"
+#~ msgstr "Ücretsiz"
+
+#~ msgid "Using %s of %s (%.2f%)"
+#~ msgstr "%s 'nin %s 'i Kullanılıyor (%.2f%)"
+
+#~ msgid "General"
+#~ msgstr "Genel"
+
+#~ msgid "Import from Device"
+#~ msgstr "Aygıtdan aktar"
+
+#~ msgid "Import media from %s"
+#~ msgstr "Burdan medya aktar %s"
+
+#~ msgid ""
+#~ "The following files were found on %s, but are not in your library. Check "
+#~ "all the files you would like to import."
+#~ msgstr ""
+#~ "Aşağıdaki dosyalar %s üzerinde bulundu ama şu anda kütüphanenizde "
+#~ "değiller. İçe aktarmak istediğiniz tüm dosyaları kontrol edin."
+
+#~ msgid "Import all media"
+#~ msgstr "Tüm medyayı aktar"
+
+#~ msgid "Don't Import"
+#~ msgstr "Aktarma"
+
+#~ msgid "Import %i items from %s"
+#~ msgstr "%i öğeyi %s den içe aktar"
+
+#~ msgid "Import %s from %s"
+#~ msgstr "%s i %s den içe aktar"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Select individual media to import:"
+#~ msgstr "İçe aktarmak tek bir ortam seçin:"
+
+#~ msgid "Check Item"
+#~ msgstr "Dosyayı kontrol et"
+
+#~ msgid "Check Album"
+#~ msgstr "Albümü kontrol et"
+
+#~ msgid "Check Artist"
+#~ msgstr "Sanatçıyı kontrol et"
+
+#~ msgid "Cannot Import"
+#~ msgstr "İçe aktarılamıyor"
+
+#~ msgid ""
+#~ "Noise is already doing file operations. Please wait until those finish to "
+#~ "import from %s"
+#~ msgstr ""
+#~ "Noise zaten dosya işlemleri yapıyor. Lütfen %s bu işlem tamamlanıncaya "
+#~ "kadar bekleyin."
+
+#~ msgid "Import media to Library"
+#~ msgstr "Kütüphaneye medya aktar"
+
+#~ msgid "Stop Syncing"
+#~ msgstr "Senkronize etmeyi durdur"
+
+#~ msgid "Sync will remove 1 item from %s"
+#~ msgstr "Senkronize etme 1 öğeyi %s'den çıkaracak"
+
+#~ msgid "%u album"
+#~ msgid_plural "%u albums"
+#~ msgstr[0] "%u albüm"
+#~ msgstr[1] "%u albüm"
+
+#~ msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
+#~ msgid "%s by %s"
+#~ msgstr "%s tarafından %s"
+
+#~ msgctxt ""
+#~ "Format used on statusbar: $description, $total_duration, $total_file_size"
+#~ msgid "%s, %s, %s"
+#~ msgstr "%s, %s, %s"
+
+#~ msgid "OK"
+#~ msgstr "Tamam"
+
+#~ msgid "No External Songs"
+#~ msgstr "Harici Şarkı Yok"
+
+#~ msgid ""
+#~ "There were no songs found on this device that are not in your library."
+#~ msgstr "Bu cihazda kütüphanenizde bulunmayan bir şarkı bulunamadı"
+
+#~ msgid "%i track"
+#~ msgid_plural "%i tracks"
+#~ msgstr[0] "%i parça"
+#~ msgstr[1] "%i parça"
+
+#~ msgid "%u song"
+#~ msgid_plural "%u songs"
+#~ msgstr[0] "%u şarkı"
+#~ msgstr[1] "%u şarkı"
+
+#~ msgctxt "Format used on statusbar: $description, $total_duration"
+#~ msgid "%s, %s"
+#~ msgstr "%s, %s"
+
+#~ msgid "Other Files"
+#~ msgstr "Diğer Dosyalar"
+
+#~ msgid "translator-credits"
+#~ msgstr ""
+#~ "Launchpad Contributions:\n"
+#~ "  Ahmet Çiçek https://launchpad.net/~ahmetcck35\n"
+#~ "  Alperen Elhan https://launchpad.net/~alperenelhan\n"
+#~ "  Daniel Fore https://launchpad.net/~danrabbit\n"
+#~ "  Emre Ayca https://launchpad.net/~anatolica\n"
+#~ "  Ferhat TUNÇTAN https://launchpad.net/~ferhattnctn66\n"
+#~ "  Furkan Ege Öztürk https://launchpad.net/~furkanegeozturk\n"
+#~ "  H. Fatih ATASEVER https://launchpad.net/~h-f-atasever\n"
+#~ "  Halit Alptekin https://launchpad.net/~halitalptekin\n"
+#~ "  Hamza https://launchpad.net/~ckr-hamza\n"
+#~ "  Hasan Yılmaz https://launchpad.net/~hasanyilmaz\n"
+#~ "  Huseyin Erdem https://launchpad.net/~herdem09\n"
+#~ "  Mehmet https://launchpad.net/~darkmehmet3\n"
+#~ "  Mehmet Bozoklu https://launchpad.net/~mehmet-bozoklu\n"
+#~ "  Melih Güçlü https://launchpad.net/~melihguclu\n"
+#~ "  Mustafa Yılmaz https://launchpad.net/~apshalasha\n"
+#~ "  Ramazan Buğdaycı https://launchpad.net/~rbugdayci-g\n"
+#~ "  Sadık Atalay https://launchpad.net/~seaflames\n"
+#~ "  Sadık Poyraz https://launchpad.net/~sadikpoyraz01\n"
+#~ "  Salih https://launchpad.net/~hernandomtoto\n"
+#~ "  Victor Martinez https://launchpad.net/~victored\n"
+#~ "  _BaCKDOoR_ https://launchpad.net/~tunaemre\n"
+#~ "  asdasdqwdq qwd qwq https://launchpad.net/~onlycodetr-deactivatedaccount-"
+#~ "deactivatedaccount\n"
+#~ "  jan https://launchpad.net/~janeser\n"
+#~ "  seaflames https://launchpad.net/~protoman-s\n"
+#~ "  İbrahim Ethem Göl https://launchpad.net/~ethem578"
+
+#~ msgid "Lyrics fetched from www.lyricsmania.com"
+#~ msgstr "Şarkı sözleri www.lyricsmania.com'dan aktarıldı."
+
+#~ msgid "Add Podcast"
+#~ msgstr "Podcast Ekle"
+
+#~ msgid "Download new Episodes"
+#~ msgstr "Yeni bölümler indir"
+
+#~ msgid "Edit"
+#~ msgstr "Düzenle"
+
+#~ msgid "Export..."
+#~ msgstr "Dışa Aktar..."
+
+#~ msgid "Podcasts"
+#~ msgstr "Podcastler"
+
+#~ msgid "#"
+#~ msgstr "#"
+
+#~ msgid "Track"
+#~ msgstr "Parça"
+
+#~ msgid "Plays"
+#~ msgstr "Çalanlar"
+
+#~ msgid "BPM"
+#~ msgstr "BPM"
+
+#~ msgid "Podcast"
+#~ msgstr "Podcast"
+
+#~ msgid "is not"
+#~ msgstr "değil"
+
+#~ msgid "Locate"
+#~ msgstr "Yer Belirle"
+
+#~ msgid "Queue"
+#~ msgstr "Kuyruk"
+
+#~ msgid "Unknown Artist"
+#~ msgstr "Bilinmeyen Sanatçı"
+
+#~ msgid " by "
+#~ msgstr " tarafından "
+
+#~ msgid "Unknown Album"
+#~ msgstr "Bilinmeyen Albüm"
+
+#~ msgid " on "
+#~ msgstr " açık "
+
+#~ msgid "<b>Importing</b> music from <b>%s</b> to library."
+#~ msgstr "<b>Müzik  </b> şuradan<b>%s</b> kitaplığa aktarılıyor."
+
+#~ msgid "Import media from device"
+#~ msgstr "Aygıtdan medyaları aktar"
+
+#~ msgid "%s is already doing an import"
+#~ msgstr "%s zaten bir içe aktarım yapıyor"
+
+#~ msgid "%s could not find any songs on the CD. No songs can be imported"
+#~ msgstr "%s CD de hiç müzik tespit edemedi.İçe aktaracak müzik bulunmuyor"
+
+#~ msgid ""
+#~ "Please wait until %s is finished with the current import before importing "
+#~ "the CD."
+#~ msgstr ""
+#~ "Lütfen CDyi içe aktarmadan önce devam eden %s içe aktarmasının bitmesini "
+#~ "bekleyin."
+
+#~ msgid "Importing music from %s..."
+#~ msgstr "Müzikler %s ten içeri aktarılıyor..."
+
+#~ msgid "Adding files to library..."
+#~ msgstr "Dosyalar kütüphaneye ekleniyor..."
+
+#~ msgid "No songs on CD"
+#~ msgstr "CD de müzik bulunmuyor"
+
+#~ msgid "Rescanning music for changes. This may take a while..."
+#~ msgstr "Müzik klasörü taranıyor.Bu işlem biraz zaman alabilir..."
+
+#~ msgid "Adding music from %s to library..."
+#~ msgstr "Müzikler %s ten kütüphaneye ekleniyor..."
+
+#~ msgid "Ripping track 1"
+#~ msgstr "Parça 1 sıkıştırılıyor"
+
+#~ msgid "%s has finished importing %i songs from Audio CD."
+#~ msgstr "%s CD den %i parçayı içe aktarmayı tamamladı."
+
+#~ msgid "CD Import Complete"
+#~ msgstr "CD içe aktarımı tamamlandı"
+
+#~ msgid "Unknown Title"
+#~ msgstr "Bilinmeyen Başlık"
+
+#~ msgid "Importing track %i"
+#~ msgstr "%i Parça içe aktarılıyor"
+
+#~ msgid "Import Stations"
+#~ msgstr "İstansyonları içeri aktar"
+
+#~ msgid "Equalizer"
+#~ msgstr "Ekolayzer"
+
+#~ msgid "Not Imported Files"
+#~ msgstr "İçe aktarılmamış dosyalar"
+
+#~ msgid "Lyrics"
+#~ msgstr "Şarkı Sözleri"
+
+#~ msgid ""
+#~ "The plugin for media type %s is not installed.\n"
+#~ "What would you like to do?"
+#~ msgstr ""
+#~ "%s türü ortam için gereken eklenti yüklü değil.\n"
+#~ "Ne yapmak istersiniz?"
+
+#~ msgid "Required GStreamer plugin not installed"
+#~ msgstr "Gereken Gstreamer eklentisi kurulu değil"
+
+#~ msgid "Do Nothing"
+#~ msgstr "Bir Şey Yapma"
+
+#~ msgid "Editing %s"
+#~ msgstr "%s düzenleniyor"
+
+#~ msgid "Album Artist"
+#~ msgstr "Albüm Sanatçısı"
+
+#~ msgid "Media Type"
+#~ msgstr "Medya Türü"
+
+#~ msgid "Success!"
+#~ msgstr "Başarılı!"
+
+#~ msgid "Music Folder"
+#~ msgstr "Müzik Dizini"
+
+#~ msgid "Unsuccessful. Click to try again."
+#~ msgstr "Başarısız. Tekrar denemek için tıklayın."
+
+#~ msgid "Copy files to music folder when added to library"
+#~ msgstr "Kütüphaneye eklendiğinde dosyaları müzik klasörüne kopyala"
+
+#~ msgid "Date Released"
+#~ msgstr "Çıkış Tarihi"
+
+#~ msgid "Audiobook"
+#~ msgstr "Sesli Kitap"
+
+#~ msgid "Could not find media file"
+#~ msgstr "Medya dosyası bulunamadı"
+
+#~ msgid "Remove Media"
+#~ msgstr "Medyayı sil"
+
+#~ msgid "1 album"
+#~ msgstr "%1 albüm"
+
+#~ msgid "1 song"
+#~ msgstr "1 şarkı"
+
+#~ msgid "1 track"
+#~ msgstr "1 parça"
+
+#~ msgid "Cancelling Import"
+#~ msgstr "İçe aktarmayı durdur"
+
+#~ msgid "Date"
+#~ msgstr "Tarih"
+
+#~ msgid "%i kbps"
+#~ msgstr "%i kb/s"
+
+#~ msgid "Name"
+#~ msgstr "İsim"
+
+#~ msgid "Episode"
+#~ msgstr "Bölüm"
+
+#~ msgid "Category"
+#~ msgstr "Kategori"
+
+#~ msgid "Import this song"
+#~ msgstr "Bu şarkıyı içe aktar"
+
+#~ msgid "%s Stars"
+#~ msgstr "%s Yıldız"
+
+#~ msgid "1 Star"
+#~ msgstr "1 Yıldız"
+
+#~ msgid "All Podcasts"
+#~ msgstr "Tüm Yayınlar"
+
+#~ msgid "Recently Played"
+#~ msgstr "Son Çalınanlar"
+
+#~ msgid "Device is already being synced."
+#~ msgstr "Aygıt zaten senkronize edildi."
+
+#~ msgid "Show Equalizer"
+#~ msgstr "Ekolayzırı Göster"
+
+#~ msgid "Hide Equalizer"
+#~ msgstr "Ekolayzırı Gizle"
+
+#~ msgid "%i hours"
+#~ msgstr "%i saat"
+
+#~ msgid "1 minute"
+#~ msgstr "%1 dakika"
+
+#~ msgid "1 day"
+#~ msgstr "1 gün"
+
+#~ msgid "1 hour"
+#~ msgstr "1 saat"
+
+#~ msgid "%i minutes"
+#~ msgstr "%i dakika"
+
+#~ msgid "%s and %s"
+#~ msgstr "%s ve %s"
+
+#~ msgid "%s seconds"
+#~ msgstr "%s saniye"
+
+#~ msgid "1 second"
+#~ msgstr "%1 saniye"
+
+#~ msgid "%s, %s and %s"
+#~ msgstr "%s, %s ve %s"
+
+#~ msgid "Metadata"
+#~ msgstr "Meta Bilgisi"
+
+#~ msgid "Done"
+#~ msgstr "Tamam"
+
+#~ msgid "Station"
+#~ msgstr "İstasyon"
+
+#~ msgid "%s by %s"
+#~ msgstr "%s, %s tarafından"
+
+#~ msgid "%i albums"
+#~ msgstr "%i albüm"
+
+#~ msgid "%i songs"
+#~ msgstr "%i şarkı"
+
+#~ msgid "Similar Song View"
+#~ msgstr "Benzer şarkı görünümü"
+
+#~ msgid "Fetching similar songs"
+#~ msgstr "Benzer şarkılar bulunuyor"
+
+#~ msgid "Locate Media"
+#~ msgstr "Medya Bulun"
+
+#~ msgid "%i tracks"
+#~ msgstr "%i parça"
+
+#~ msgid "%i days"
+#~ msgstr "%i gün"
+
+#~ msgid "Editing %i songs"
+#~ msgstr "%i şarkı düzenleniyor"
+
+#~ msgid "Editing %s by %s"
+#~ msgstr "%s, %s tarafından düzenleniyor"
+
+#~ msgid "All the songs in this device are already in your library."
+#~ msgstr "Bu cihazdaki bütün müzikler zaten kitaplığınızda mevcut"
+
+#~ msgid ""
+#~ "Import from device has been cancelled. Operation will stop after this "
+#~ "media."
+#~ msgstr ""
+#~ "Bu cihazdan içe akarma iptal edildi.Bu ortamdan sonra işlem durdurulacak."
+
+#~ msgid "Unheard Podcasts"
+#~ msgstr "Duyulmamış Podcastlar"
+
+#~ msgid "The name %s is already in use"
+#~ msgstr "%s ismi zaten kullanımda"
+
+#~ msgid "Similar to %s"
+#~ msgstr "%s ya benzer"
+
+#~ msgid "Try again"
+#~ msgstr "Yeniden dene"
+
+#~ msgid "Rescan Music Folder"
+#~ msgstr "Müzik dizinini yeniden tara"
+
+#~ msgid "Please make sure that your music folder is accessible and mounted."
+#~ msgstr ""
+#~ "Lütfen müzik dizininizin bağlı ve ulaşılabilir olduğundan emin oldun."
+
+#~ msgid "Rescanning music folder for changes"
+#~ msgstr "Değişimler için müzik dizini yeniden taranıyor."
+
+#~ msgid ""
+#~ "You must wait until previous file operations finish before setting your "
+#~ "music folder"
+#~ msgstr ""
+#~ "Müzik dizininizi ayarlamadan önce diğer dosya işlemlerinin bitmesini "
+#~ "beklemelisiniz"
+
+#~ msgid "Change your music folder."
+#~ msgstr "Müzik dizinini değiştir."
+
+#~ msgid "Unknown Track"
+#~ msgstr "Bilinmeyen Parça"
+
+#~ msgid "Lyrics not found for %s"
+#~ msgstr "%s için Şarkı Sözleri bulunamadı"
+
+#~ msgid "Write metadata to file"
+#~ msgstr "Dosyaya medadata yaz"
+
+#~ msgid "Remove %d %s from %s?"
+#~ msgstr "%d %s tarafından %s kaldırılsın mı?"
+
+#~ msgid ""
+#~ "This will remove the %s from your library and from any device that "
+#~ "automatically syncs with %s."
+#~ msgstr ""
+#~ "Bu işlem %s i kütüphanenizden ve %s ile otomatik olarak eşitlenen "
+#~ "herhangibir cihazdan kaldıracak."
+
+#~ msgid "%i media files could not be found. What would you like to do?"
+#~ msgstr "%i ortam dosyaları bulunamadı. Ne yapmak istersiniz?"
+
+#~ msgid ""
+#~ "The music file for %s by %s could not be found. What would you like to do?"
+#~ msgstr ""
+#~ "%s tarafından %s için müzik dosyası bulunamadı. Ne yapmak istersiniz?"
+
+#~ msgid "Import %i songs"
+#~ msgstr "%i şarkıyı içe aktar"
+
+#~ msgid "Display Album Art"
+#~ msgstr "Albüm Kapağını göster"
+
+#~ msgid "Unsuccessful. Click To Try Again."
+#~ msgstr "Başarısız. Tekrar denemek için tıklayın."
+
+#~ msgid "Click to redo the Last.fm login process"
+#~ msgstr "Last.fm oturum açma işlemini geri almak için tıklayın"
+
+#~ msgid "Scrobbling Already Enabled"
+#~ msgstr "Scrobbling Zaten Etkin"
+
+#~ msgid "Complete Login"
+#~ msgstr "Oturum açmayı tamamlayın"
+
+#~ msgid "Last.fm"
+#~ msgstr "Last.fm"
+
+#~ msgid "Last.fm Integration"
+#~ msgstr "Last.fm bütünleşmesi"
+
+#~ msgid ""
+#~ "%s could not find songs similar to %s by %s in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "%s kütüphanenizde %s den %s e benzer şarkılar bulamadı. Tüm şarkı "
+#~ "bilgisinin doğru olduğundan ve internete bağlı olduğunuzdan emin olun. "
+#~ "Bazı şarkıların benzerleri olmayabilir."
+
+#~ msgid ""
+#~ "In this view, %s will automatically find songs similar to the one you're "
+#~ "playing. You can then start playing those songs, or save them as a "
+#~ "playlist for later."
+#~ msgstr ""
+#~ "Bu görünümde, %s çalmakta olduğunuz şarkının benzerlerini otomatik olarak "
+#~ "bulacak. Ardından bu şarkıları çalmaya başlayabilirsiniz ya da bunları "
+#~ "daha sonrası için çalma listesi olarak kaydedebilirsiniz."
+
+#~ msgid "Finding songs similar to %s by %s"
+#~ msgstr "%s den %s e benzer şarkılar bulunuyor"
+
+#~ msgid "Listen to music"
+#~ msgstr "Müzik dinle"
+
+#~ msgid "Music Player"
+#~ msgstr "Müzikçalar"
+
+#~ msgid "Skips"
+#~ msgstr "Atlamalar"
+
+#~ msgid "Importing track %i: %s"
+#~ msgstr "İçe aktarılan parça %i: %s"
+
+#~ msgid "Cancelling Sync"
+#~ msgstr "Senkronize etme durduruluyor"
+
+#~ msgid ""
+#~ "Device Sync has been cancelled. Operation will stop after this media."
+#~ msgstr ""
+#~ "Cihaz senkronizasyonu iptal edildi.Bu ortamdan sonra işlem durdurulacak."
+
+#~ msgid "Desktop Integration:"
+#~ msgstr "Masaüstü Bütünleşmesi:"
+
+#~ msgid "Library Management:"
+#~ msgstr "Kütüphane Yönetimi:"
+
+#~ msgid ""
+#~ "Noise is already doing file operations. Please wait until those finish to "
+#~ "import from %d"
+#~ msgstr ""
+#~ "Noise zaten dosya işlemleri yapıyor. Lütfen onlar %d 'den içe aktarmayı "
+#~ "bitirene kadar bekleyin."
+
+#~ msgid "Music Folder Location:"
+#~ msgstr "Müzik Klasörü Konumu:"
+
+#~ msgid "Editing $NAME by $ARTIST"
+#~ msgstr "$ARTIST tarafından $NAME Düzenleniyor"
+
+#~ msgid "%s can't seem to find your music."
+#~ msgstr "Görünüşe göre %s müziğinizi bulamadı"
+
+#~ msgid "Radio Station"
+#~ msgstr "Radyo İstasyonu"
+
+#~ msgid "There is not enough space on Device to complete the Sync…"
+#~ msgstr "Aygıtta eşitlemeyi tamamlamak için yeterli alan yok..."
+
+#~ msgid "<b>Stats</b>"
+#~ msgstr "İstatistikler"
+
+#~ msgid "Notifications:"
+#~ msgstr "Bildirimler:"
+
+#~ msgid ""
+#~ "To allow for Last.fm integration, you must give permission to %s. You "
+#~ "only need to do this once."
+#~ msgstr ""
+#~ "Last.fm eşitlenmesine izin verilmesi için %s 'e yetki vermelisin. Bu "
+#~ "işleme tek sefer ihtiyacın olacak."
+
+#~ msgid "%d second"
+#~ msgid_plural "%d seconds"
+#~ msgstr[0] "%d saniye"
+#~ msgstr[1] "%d saniye"
+
+#~ msgid "About Music"
+#~ msgstr "Müzik Hakkında"
+
+#~ msgid "About Noise"
+#~ msgstr "Noise Hakkında"
+
+#~ msgid "Reset"
+#~ msgstr "Sıfırla"
+
+#~ msgid "Details"
+#~ msgstr "Ayrıntılar"
+
+#~ msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+#~ msgstr ""
+#~ "Noise;Ses;Oynatıcı;MP3;iPod;Çal;Çalma Listesi;Medya;CD;Telefon;Şarkılar;"
+
+#~ msgid "%i Star"
+#~ msgid_plural "%i Stars"
+#~ msgstr[0] "%i Yıldız"
+#~ msgstr[1] "%i Yıldız"
+
+#~ msgid "Give %s Permission"
+#~ msgstr "%s'e Yetki Ver"
