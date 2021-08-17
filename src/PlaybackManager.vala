@@ -4,6 +4,7 @@
  */
 
 public class Music.PlaybackManager : Object {
+    public Gdk.Pixbuf pixbuf { get; private set; }
     public ListStore queue_liststore { get; private set; }
     public int64 playback_duration { get; private set; default = 0; }
     public int64 playback_position { get; private set; }
@@ -111,6 +112,15 @@ public class Music.PlaybackManager : Object {
                     artist = _("Unknown");
                 }
 
+                var sample = get_cover_sample (tag_list);
+                if (sample != null) {
+                    var buffer = sample.get_buffer ();
+
+                    if (buffer != null) {
+                        pixbuf = get_pixbuf_from_buffer (buffer);
+                    }
+                }
+
                 break;
             default:
                 break;
@@ -161,9 +171,53 @@ public class Music.PlaybackManager : Object {
         playback_position = 0;
         title = _("Music");
         artist = _("Not playing");
+        pixbuf = null;
 
         var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
         play_pause_action.set_enabled (false);
         play_pause_action.set_state (false);
+    }
+
+    private Gst.Sample? get_cover_sample (Gst.TagList tag_list) {
+        Gst.Sample cover_sample = null;
+        Gst.Sample sample;
+        for (int i = 0; tag_list.get_sample_index (Gst.Tags.IMAGE, i, out sample); i++) {
+            var caps = sample.get_caps ();
+            unowned Gst.Structure caps_struct = caps.get_structure (0);
+            int image_type = Gst.Tag.ImageType.UNDEFINED;
+            caps_struct.get_enum ("image-type", typeof (Gst.Tag.ImageType), out image_type);
+            if (image_type == Gst.Tag.ImageType.UNDEFINED && cover_sample == null) {
+                cover_sample = sample;
+            } else if (image_type == Gst.Tag.ImageType.FRONT_COVER) {
+                return sample;
+            }
+        }
+
+        return cover_sample;
+    }
+
+    private Gdk.Pixbuf? get_pixbuf_from_buffer (Gst.Buffer buffer) {
+        Gst.MapInfo map_info;
+
+        if (!buffer.map (out map_info, Gst.MapFlags.READ)) {
+            warning ("Could not map memory buffer");
+            return null;
+        }
+
+        Gdk.Pixbuf pix = null;
+
+        try {
+            var loader = new Gdk.PixbufLoader ();
+
+            if (loader.write (map_info.data) && loader.close ()) {
+                pix = loader.get_pixbuf ();
+            }
+        } catch (Error err) {
+            warning ("Error processing image data: %s", err.message);
+        }
+
+        buffer.unmap (map_info);
+
+        return pix;
     }
 }

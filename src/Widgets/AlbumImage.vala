@@ -20,25 +20,18 @@ public class Music.AlbumImage : Gtk.Grid {
     construct {
         unowned var style_context = get_style_context ();
         style_context.add_class (Granite.STYLE_CLASS_CARD);
-        style_context.add_class (Granite.STYLE_CLASS_ROUNDED);
         style_context.add_provider (css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
         image = new Gtk.Image () {
             height_request = 32,
-            width_request = 32
+            width_request = 32,
+            pixel_size = 200
         };
 
         halign = Gtk.Align.CENTER;
         valign = Gtk.Align.CENTER;
+        height_request = 200;
+        width_request = 200;
         add (image);
-    }
-
-    public override Gtk.SizeRequestMode get_request_mode () {
-        return Gtk.SizeRequestMode.HEIGHT_FOR_WIDTH;
-    }
-
-    public override void get_preferred_height_for_width (int width, out int minimum_height, out int natural_height) {
-        minimum_height = natural_height = width;
-        image.pixel_size = width;
     }
 }

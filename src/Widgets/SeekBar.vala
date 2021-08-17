@@ -53,10 +53,10 @@ public class Music.SeekBar : Gtk.Grid {
     private Gtk.Scale scale;
 
     construct {
-        position_label = new Gtk.Label (null) {
+        position_label = new Gtk.Label ("--:--") {
             use_markup = true
         };
-        duration_label = new Gtk.Label (null) {
+        duration_label = new Gtk.Label ("--:--") {
             use_markup = true
         };
 

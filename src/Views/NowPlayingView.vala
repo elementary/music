@@ -5,9 +5,7 @@
 
 public class Music.NowPlayingView : Gtk.Grid {
     construct {
-        var album_image = new Music.AlbumImage () {
-            width_request = 200
-        };
+        var album_image = new Music.AlbumImage ();
 
         var title_label = new Gtk.Label (null) {
             ellipsize = Pango.EllipsizeMode.MIDDLE
@@ -72,5 +70,12 @@ public class Music.NowPlayingView : Gtk.Grid {
                 target_val.set_boolean (src_val.get_string () != null);
             }
         );
+
+        playback_manager.notify["pixbuf"].connect (() => {
+            var pixbuf = playback_manager.pixbuf;
+            var scaled = pixbuf.scale_simple (200, 200, Gdk.InterpType.BILINEAR);
+
+            album_image.image.pixbuf = scaled;
+        });
     }
 }
