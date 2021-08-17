@@ -1,6 +1,5 @@
 sources = [
     'Application.vala',
-    'AudioObject.vala',
     'MainWindow.vala',
     'PlaybackManager.vala',
     'DBus/MediaKeyListener.vala',

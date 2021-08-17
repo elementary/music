@@ -17,7 +17,8 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
         queue_header_context.add_class (Gtk.STYLE_CLASS_FLAT);
 
         var queue_listbox = new Gtk.ListBox () {
-            expand = true
+            expand = true,
+            sensitive = false
         };
         queue_listbox.bind_model (PlaybackManager.get_default ().queue_liststore, create_queue_row);
 
