@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-08-16 09:16+0000\n"
+"PO-Revision-Date: 2021-08-17 22:54+0000\n"
 "Last-Translator: DartDeaDia <dartdeadia@protonmail.com>\n"
 "Language-Team: Russian <https://l10n.elementary.io/projects/music/music/ru/>"
 "\n"
@@ -759,7 +759,7 @@ msgstr "<b>Импортирование</b> музыки в библиотеку
 
 #: src/LocalBackend/LocalLibrary.vala:250
 msgid "All music files are already in your library"
-msgstr "Все музыкальные файлы уже находятся в вашей медиатеке"
+msgstr "Все файлы с музыкой уже находятся в вашей библиотеке"
 
 #: src/LocalBackend/LocalLibrary.vala:250
 msgid "No files were imported."
