@@ -21,14 +21,14 @@ public class Music.Application : Gtk.Application {
     }
 
     protected override void activate () {
+        add_action_entries (ACTION_ENTRIES, this);
+
         MediaKeyListener.get_default ();
         playback_manager = PlaybackManager.get_default ();
 
-        add_action_entries (ACTION_ENTRIES, this);
-
         var main_window = new MainWindow () {
             application = this,
-            default_width = 300,
+            default_width = 650,
             title = _("Music")
         };
         main_window.show_all ();

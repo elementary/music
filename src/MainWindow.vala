@@ -7,6 +7,25 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
     construct {
         Hdy.init ();
 
+        var queue_header = new Hdy.HeaderBar () {
+            hexpand = true,
+            show_close_button = true
+        };
+
+        unowned var queue_header_context = queue_header.get_style_context ();
+        queue_header_context.add_class (Granite.STYLE_CLASS_DEFAULT_DECORATION);
+        queue_header_context.add_class (Gtk.STYLE_CLASS_FLAT);
+
+        var queue_listbox = new Gtk.ListBox () {
+            expand = true,
+            sensitive = false
+        };
+        queue_listbox.bind_model (PlaybackManager.get_default ().queue_liststore, create_queue_row);
+
+        var queue = new Gtk.Grid ();
+        queue.attach (queue_header, 0, 0);
+        queue.attach (queue_listbox, 0, 1);
+
         var headerbar = new Hdy.HeaderBar () {
             hexpand = true,
             show_close_button = true
@@ -16,77 +35,47 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
         header_context.add_class (Granite.STYLE_CLASS_DEFAULT_DECORATION);
         header_context.add_class (Gtk.STYLE_CLASS_FLAT);
 
-        var album_image = new Music.AlbumImage () {
-            width_request = 200
-        };
-
-        var title_label = new Gtk.Label (_("Unknown"));
-        title_label.get_style_context ().add_class (Granite.STYLE_CLASS_H3_LABEL);
-
-        var artist_label = new Gtk.Label (_("Unknown"));
-
-        var info_grid = new Gtk.Grid () {
-            halign = Gtk.Align.CENTER
-        };
-        info_grid.attach (title_label, 0, 0);
-        info_grid.attach (artist_label, 0, 1);
-
-        var seekbar = new Music.SeekBar ();
-
-        var play_pause_image = new Gtk.Image.from_icon_name (
-            "media-playback-start-symbolic",
-            Gtk.IconSize.LARGE_TOOLBAR
-        );
-
-        var play_button = new Gtk.Button () {
-            action_name = Application.ACTION_PREFIX + Application.ACTION_PLAY_PAUSE,
-            halign = Gtk.Align.CENTER,
-            image = play_pause_image
-        };
-        play_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
-
-        var now_playing_grid = new Gtk.Grid () {
+        var now_playing_view = new NowPlayingView () {
             margin = 12,
-            row_spacing = 24,
+            margin_bottom = 24,
             valign = Gtk.Align.CENTER,
             vexpand = true
         };
-        now_playing_grid.attach (album_image, 0, 0);
-        now_playing_grid.attach (info_grid, 0, 1);
-        now_playing_grid.attach (seekbar, 0, 2);
-        now_playing_grid.attach (play_button, 0, 3);
+
+        var now_playing = new Gtk.Grid ();
+        now_playing.attach (headerbar, 0, 0);
+        now_playing.attach (now_playing_view, 0, 1);
+
+        var now_playing_handle = new Hdy.WindowHandle ();
+        now_playing_handle.add (now_playing);
+
+        var paned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL) {
+            position = 350
+        };
+        paned.pack1 (queue, true, false);
+        paned.pack2 (now_playing_handle, false, false);
+
+        add (paned);
+
+        var header_group = new Hdy.HeaderGroup ();
+        header_group.add_header_bar (queue_header);
+        header_group.add_header_bar (headerbar);
+    }
+
+    private Gtk.Widget create_queue_row (GLib.Object object) {
+        unowned var audio_file = (File) object;
+
+        var label = new Gtk.Label (audio_file.get_path ()) {
+            ellipsize = Pango.EllipsizeMode.MIDDLE,
+            xalign = 0
+        };
 
         var grid = new Gtk.Grid () {
-            margin_bottom = 12
+            margin = 6
         };
-        grid.attach (headerbar, 0, 0);
-        grid.attach (now_playing_grid, 0, 1);
+        grid.add (label);
+        grid.show_all ();
 
-        add (grid);
-
-        GLib.Application.get_default ().action_state_changed.connect ((name, new_state) => {
-            if (name == Application.ACTION_PLAY_PAUSE) {
-                if (new_state.get_boolean () == false) {
-                    play_pause_image.icon_name = "media-playback-start-symbolic";
-                    play_button.tooltip_text = _("Play");
-                } else {
-                    play_pause_image.icon_name = "media-playback-pause-symbolic";
-                    play_button.tooltip_text = _("Pause");
-                }
-            }
-        });
-
-        var playback_manager = PlaybackManager.get_default ();
-        playback_manager.bind_property ("playback-duration", seekbar, "playback-duration");
-        playback_manager.bind_property ("playback-position", seekbar, "playback-position");
-        playback_manager.bind_property ("artist", artist_label, "label");
-        playback_manager.bind_property ("title", title_label, "label");
-
-        playback_manager.notify["pixbuf"].connect (() => {
-            var pixbuf = playback_manager.pixbuf;
-            var scaled = pixbuf.scale_simple (200, 200, Gdk.InterpType.BILINEAR);
-
-            album_image.image.pixbuf = scaled;
-        });
+        return grid;
     }
 }

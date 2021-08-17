@@ -1,0 +1,2230 @@
+# Hungarian translation for noise
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the noise package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: noise\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-07-16 19:03+0000\n"
+"PO-Revision-Date: 2018-06-17 14:43+0000\n"
+"Last-Translator: Majer Tamás <mtamas@disroot.org>\n"
+"Language-Team: Hungarian <https://weblate.elementary.io/projects/music/music/"
+"hu/>\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.18\n"
+"X-Launchpad-Export-Date: 2017-03-07 05:52+0000\n"
+
+#: core/LibrariesManager.vala:146
+msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
+msgstr "<b>$ARTIST</b> - <b>$NAME</b> importálása a gyűjteménybe…"
+
+#. / Used for unknown titles, artists, or album names.
+#: core/Media.vala:33
+msgid "Unknown"
+msgstr "Ismeretlen"
+
+#. / Please keep $NAME and $ALBUM, they will be replaced by their values
+#: core/Media.vala:180
+msgid "$NAME on $ALBUM"
+msgstr "$NAME, $ALBUM albumról"
+
+#. / Please keep $NAME and $ARTIST, they will be replaced by their values
+#: core/Media.vala:183
+msgid "$NAME by $ARTIST"
+msgstr "$NAME, $ARTIST előadótól"
+
+#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
+#: core/Media.vala:189
+msgid "$NAME by $ARTIST on $ALBUM"
+msgstr "$NAME, $ARTIST előadó $ALBUM című albumáról"
+
+#: core/GStreamer/Equalizer.vala:70
+msgid "Flat"
+msgstr "Sima"
+
+#: core/GStreamer/Equalizer.vala:71
+msgid "Classical"
+msgstr "Klasszikus"
+
+#: core/GStreamer/Equalizer.vala:72
+msgid "Club"
+msgstr "Club"
+
+#: core/GStreamer/Equalizer.vala:73
+msgid "Dance"
+msgstr "Tánczene"
+
+#: core/GStreamer/Equalizer.vala:74
+msgid "Full Bass"
+msgstr "Teljes mély"
+
+#: core/GStreamer/Equalizer.vala:75
+msgid "Full Treble"
+msgstr "Teljes magas"
+
+#: core/GStreamer/Equalizer.vala:76
+msgid "Full Bass + Treble"
+msgstr "Teljes mély és magas"
+
+#: core/GStreamer/Equalizer.vala:77
+msgid "Headphones"
+msgstr "Fülhallgató"
+
+#: core/GStreamer/Equalizer.vala:78
+msgid "Large Hall"
+msgstr "Nagy terem"
+
+#: core/GStreamer/Equalizer.vala:79
+msgid "Live"
+msgstr "Élő"
+
+#: core/GStreamer/Equalizer.vala:80
+msgid "Party"
+msgstr "Party"
+
+#: core/GStreamer/Equalizer.vala:81
+msgid "Pop"
+msgstr "Pop"
+
+#: core/GStreamer/Equalizer.vala:82
+msgid "Reggae"
+msgstr "Reggae"
+
+#: core/GStreamer/Equalizer.vala:83
+msgid "Rock"
+msgstr "Rock"
+
+#: core/GStreamer/Equalizer.vala:84
+msgid "Soft"
+msgstr "Lágy"
+
+#: core/GStreamer/Equalizer.vala:85
+msgid "Ska"
+msgstr "Ska"
+
+#: core/GStreamer/Equalizer.vala:86
+msgid "Soft Rock"
+msgstr "Könnyű Rock"
+
+#: core/GStreamer/Equalizer.vala:87
+msgid "Techno"
+msgstr "Techno"
+
+#: core/Utils/FileUtils.vala:142
+#, c-format
+msgid " (%d)"
+msgstr " (%d)"
+
+#: core/Utils/PlaylistsUtils.vala:95
+#, c-format
+msgid "%s (%d)"
+msgstr "%s (%d)"
+
+#: core/Utils/PlaylistsUtils.vala:234
+msgid "New playlist"
+msgstr "Új lejátszási lista"
+
+#. Translators: used for new playlists ex: "New playlist (1)"
+#: core/Utils/PlaylistsUtils.vala:245
+#, c-format
+msgid "%s (%i)"
+msgstr "%s (%i)"
+
+#: core/Utils/PlaylistsUtils.vala:265 core/Utils/PlaylistsUtils.vala:334
+msgid "MPEG Version 3.0 Extended (*.m3u)"
+msgstr "Kiterjesztett MPEG 3.0 (*.m3u)"
+
+#: core/Utils/PlaylistsUtils.vala:269 core/Utils/PlaylistsUtils.vala:338
+msgid "Shoutcast Playlist Version 2.0 (*.pls)"
+msgstr "Shoutcast lejátszási lista 2.0 (*.pls)"
+
+#: core/Utils/PlaylistsUtils.vala:272
+msgid "Export Playlist"
+msgstr "Lejátszási lista exportálása"
+
+#: core/Utils/PlaylistsUtils.vala:275 src/Dialogs/MediaEditor.vala:133
+#: src/Dialogs/SmartPlaylistEditor.vala:92
+msgid "Save"
+msgstr "Mentés"
+
+#: core/Utils/PlaylistsUtils.vala:276 core/Utils/PlaylistsUtils.vala:345
+#: src/LibraryWindow.vala:1030 src/Dialogs/FileNotFoundDialog.vala:55
+#: src/Dialogs/FileNotFoundDialog.vala:103
+#: src/Dialogs/InstallGstreamerPluginsDialog.vala:49
+#: src/Dialogs/RemoveFilesDialog.vala:82
+#: src/Dialogs/SetMusicFolderConfirmation.vala:85
+#: src/Dialogs/SmartPlaylistEditor.vala:89
+#: src/Dialogs/SyncWarningDialog.vala:60
+#: src/Views/Wrappers/MusicViewWrapper.vala:147 src/Widgets/TopDisplay.vala:63
+msgid "Cancel"
+msgstr "Mégsem"
+
+#: core/Utils/PlaylistsUtils.vala:329
+msgid "Playlist"
+msgstr "Lejátszási lista"
+
+#: core/Utils/PlaylistsUtils.vala:341
+#, c-format
+msgid "Import %s"
+msgstr "%s importálása"
+
+#: core/Utils/PlaylistsUtils.vala:344 src/LibraryWindow.vala:1029
+#: src/Dialogs/FileNotFoundDialog.vala:102
+#: src/Dialogs/SetMusicFolderConfirmation.vala:84
+#: src/Views/Wrappers/MusicViewWrapper.vala:146
+#: src/Widgets/AlbumListGrid.vala:197
+msgid "Open"
+msgstr "Megnyitás"
+
+#: core/Utils/PlaylistsUtils.vala:371
+msgid "Unrecognized playlist file. Import failed."
+msgstr "Ismeretlen lejátszási lista fájl. Az importálás sikertelen."
+
+#. / Format of date strings. See reference documentation of g_date_time_format()
+#. / for more details.
+#: core/Utils/TimeUtils.vala:40
+msgid "%m/%e/%Y %l:%M %p"
+msgstr "%Y.%m.%e. %H:%M"
+
+#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:109
+#: plugins/Devices/iPod/iPodDevice.vala:68
+msgid "Empty device!"
+msgstr "Üres eszköz!"
+
+#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:113
+#: plugins/Devices/iPod/iPodDevice.vala:72
+msgid "This device does not contain any music."
+msgstr "Ez az eszköz nem tartalmaz zenét."
+
+#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:158
+msgid "Android Phone"
+msgstr "Android telefon"
+
+#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:160
+msgid "Audio Player"
+msgstr "Zenelejátszó"
+
+#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:146
+#: plugins/Devices/iPod/iPodLibrary.vala:167
+msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
+msgstr ""
+"<b>$ARTIST</b> előadó <b>$NAME</b> című számának hozzáadása $DEVICE eszközhöz"
+
+#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:171
+#: plugins/Devices/iPod/iPodLibrary.vala:216
+#, c-format
+msgid "Syncing <b>%s</b>…"
+msgstr "Szinkronizálás ezzel: <b>%s</b>…"
+
+#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:283
+#: plugins/Devices/iPod/iPodLibrary.vala:561
+msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
+msgstr "<b>$ARTIST</b> - <b>$NAME</b> eltávolítása $DEVICE eszközről"
+
+#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:315
+#: plugins/Devices/iPod/iPodLibrary.vala:366
+#, c-format
+msgid "Removing from <b>%s</b>…"
+msgstr "Eltávolitás innen: <b>%s</b>…"
+
+#: plugins/Devices/iPod/iPodLibrary.vala:238
+#: plugins/Devices/iPod/iPodLibrary.vala:404
+msgid "Finishing sync process…"
+msgstr "Szinkronizálás befejezése…"
+
+#: plugins/Devices/iPod/iPodLibrary.vala:250
+#: plugins/Devices/iPod/iPodLibrary.vala:416
+msgid "Cancelling Sync…"
+msgstr "Szinkronizálás megszakítása…"
+
+#: src/FileOperator.vala:306
+msgid "Import Complete"
+msgstr "Importálás kész"
+
+#: src/FileOperator.vala:306
+msgid "Your Library Has Been Imported."
+msgstr ""
+
+#. if doing import and copy to music folder is enabled, do copy here
+#: src/FileOperator.vala:316
+msgid "<b>Copying</b> files to <b>Music Folder</b>…"
+msgstr "Fájlok <b>másolása</b> a <b>zenemappába</b>…"
+
+#: src/LibraryWindow.vala:197 src/LibraryWindow.vala:275
+#: src/LibraryWindow.vala:631 src/LibraryWindow.vala:751
+msgid "Music"
+msgstr "Zene"
+
+#: src/LibraryWindow.vala:216
+msgid "Import to Library…"
+msgstr "Importálás a gyűjteménybe…"
+
+#: src/LibraryWindow.vala:219 src/Dialogs/PreferencesWindow.vala:32
+msgid "Preferences"
+msgstr "Beállítások"
+
+#: src/LibraryWindow.vala:238
+msgid "Previous"
+msgstr "Előző"
+
+#: src/LibraryWindow.vala:245 src/LibraryWindow.vala:311
+msgid "Play"
+msgstr "Lejátszás"
+
+#: src/LibraryWindow.vala:252
+msgid "Next"
+msgstr "Következő"
+
+#: src/LibraryWindow.vala:256
+msgid "Search Music"
+msgstr "Zene keresése"
+
+#: src/LibraryWindow.vala:317
+msgid "Pause"
+msgstr "Szünet"
+
+#: src/LibraryWindow.vala:820
+msgid "No songs in Queue"
+msgstr "Nincs szám a lejátszási sorban"
+
+#: src/LibraryWindow.vala:820
+msgid ""
+"To add songs to the queue, use the <b>secondary click</b> on an item and "
+"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
+"first before the next song in the currently playing list."
+msgstr ""
+"Zeneszámok sorba állításához válassza a <b>jobbgombos menüből</b> a "
+"<b>Hozzáadás a lejátszási sorhoz</b> lehetőséget. Ha a zeneszám befejeződik, "
+"a sorba állított zeneszám fog elindulni, nem az éppen lejátszott lista "
+"következő eleme."
+
+#: src/LibraryWindow.vala:823
+msgid "No songs in History"
+msgstr "Nincs szám az előzmények között"
+
+#: src/LibraryWindow.vala:823
+msgid ""
+"After a part of a song has been played, it is added to the history list.\n"
+"You can use this list to see all the songs you have played during the "
+"current session."
+msgstr ""
+"Ha egy zeneszám egy része lejátszásra került, akkor hozzáadódik az "
+"előzmények listájához.\n"
+"Ebben a listában meg tudja nézni az összes aktuális munkamenetben lejátszott "
+"számot."
+
+#: src/LibraryWindow.vala:1026 src/Views/Wrappers/MusicViewWrapper.vala:59
+msgid "Import Music"
+msgstr "Zene importálása"
+
+#: src/PlaybackManager.vala:117
+msgctxt "Name of the playlist"
+msgid "Queue"
+msgstr "Lejátszási sor"
+
+#: src/Dialogs/FileNotFoundDialog.vala:37
+msgid "File not found"
+msgstr "A fájl nem található"
+
+#: src/Dialogs/FileNotFoundDialog.vala:47
+#, c-format
+msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
+msgstr "A hangfájl <b>%s</b>, <b>%s</b> előadótól  nem található."
+
+#: src/Dialogs/FileNotFoundDialog.vala:50
+#, fuzzy, c-format
+#| msgid "%i music files could not be found?"
+msgid "%i music files could not be found."
+msgstr "%i hangfájl nem található?"
+
+#: src/Dialogs/FileNotFoundDialog.vala:53
+msgid "Rescan Library"
+msgstr "Gyűjtemény átvizsgálása"
+
+#: src/Dialogs/FileNotFoundDialog.vala:54
+msgid "Remove Song"
+msgstr "Szám eltávolítása"
+
+#: src/Dialogs/FileNotFoundDialog.vala:56
+msgid "Find Song"
+msgstr "Szám keresése"
+
+#: src/Dialogs/FileNotFoundDialog.vala:99
+#: src/Dialogs/SetMusicFolderConfirmation.vala:81
+msgid "Choose Music Folder"
+msgstr "Zenemappa kiválasztása"
+
+#: src/Dialogs/InstallGstreamerPluginsDialog.vala:41
+#, c-format
+msgid "Would you like to install the %s plugin?"
+msgstr "Szeretné telepíteni a(z) %s bővítményt?"
+
+#: src/Dialogs/InstallGstreamerPluginsDialog.vala:42
+#, c-format
+msgid "This song cannot be played. The %s plugin is required to play the song."
+msgstr ""
+"Ezt a számot nem lehet lejátszani. A(z) %s bővítmény szükséges a szám "
+"lejátszáshoz."
+
+#: src/Dialogs/InstallGstreamerPluginsDialog.vala:51
+msgid "Install Plugin"
+msgstr "Bővítmény telepítése"
+
+#: src/Dialogs/MediaEditor.vala:96
+msgid "Title:"
+msgstr "Cím:"
+
+#: src/Dialogs/MediaEditor.vala:98
+msgid "Artist:"
+msgstr "Előadó:"
+
+#: src/Dialogs/MediaEditor.vala:100
+msgid "Album:"
+msgstr "Album:"
+
+#: src/Dialogs/MediaEditor.vala:102
+msgid "Album Artist:"
+msgstr "Album előadó:"
+
+#: src/Dialogs/MediaEditor.vala:104
+msgid "Composer:"
+msgstr "Zeneszerző:"
+
+#: src/Dialogs/MediaEditor.vala:106
+msgid "Grouping:"
+msgstr "Csoportosítás:"
+
+#: src/Dialogs/MediaEditor.vala:108
+msgid "Genre:"
+msgstr "Műfaj:"
+
+#: src/Dialogs/MediaEditor.vala:110
+msgid "Year:"
+msgstr "Év:"
+
+#: src/Dialogs/MediaEditor.vala:112
+msgid "Track:"
+msgstr "Szám:"
+
+#: src/Dialogs/MediaEditor.vala:114
+#, fuzzy
+msgid "Disc:"
+msgstr "Lemez"
+
+#: src/Dialogs/MediaEditor.vala:116
+msgid "Rating:"
+msgstr "Értékelés:"
+
+#: src/Dialogs/MediaEditor.vala:118
+msgid "Comment:"
+msgstr "Megjegyzés:"
+
+#. FIXME: don't know if I can delete this
+#: src/Dialogs/MediaEditor.vala:131 src/Dialogs/PreferencesWindow.vala:88
+#: src/Views/DeviceView.vala:45
+msgid "Close"
+msgstr "Bezárás"
+
+#: src/Dialogs/NotImportedDialog.vala:50
+#, fuzzy, c-format
+msgid "Issues while importing from %s"
+msgstr "Zene importálása innen: %s…"
+
+#: src/Dialogs/NotImportedDialog.vala:56
+#, fuzzy, c-format
+msgid "Unable to import %d item. The file may be damaged."
+msgid_plural "Unable to import %d items. The files may be damaged."
+msgstr[0] ""
+"A(z) %s nem tudott importálni %d elemet. Lehetséges, hogy a fájlok sérültek."
+msgstr[1] ""
+"A(z) %s nem tudott importálni %d elemet. Lehetséges, hogy a fájlok sérültek."
+
+#: src/Dialogs/NotImportedDialog.vala:64
+msgid "Move all corrupted files to trash"
+msgstr "Az összes hibás fájl kukába helyezése"
+
+#: src/Dialogs/NotImportedDialog.vala:71
+msgid "del"
+msgstr "törlés"
+
+#: src/Dialogs/NotImportedDialog.vala:80
+msgid "File Location"
+msgstr "Fájl helye"
+
+#: src/Dialogs/NotImportedDialog.vala:96
+msgid "Select individual files to move to trash:"
+msgstr "Egyedifájlok kiválasztása a kukába helyezéshez:"
+
+#: src/Dialogs/NotImportedDialog.vala:100 src/Dialogs/RemoveFilesDialog.vala:73
+msgid "Move to Trash"
+msgstr "Áthelyezés a kukába"
+
+#: src/Dialogs/NotImportedDialog.vala:103
+msgid "Ignore"
+msgstr "Mellőz"
+
+#: src/Dialogs/PreferencesWindow.vala:38
+msgid "Select Music Folder…"
+msgstr "Zene mappa kiválasztása…"
+
+#: src/Dialogs/PreferencesWindow.vala:70
+msgid "Music Folder Location"
+msgstr "Zenemappa helye"
+
+#: src/Dialogs/PreferencesWindow.vala:72
+msgid "Library Management"
+msgstr "Gyűjtemény kezelés"
+
+#: src/Dialogs/PreferencesWindow.vala:73
+msgid "Keep Music folder organized:"
+msgstr "Zenemappa rendezetten hagyása:"
+
+#: src/Dialogs/PreferencesWindow.vala:75
+msgid "Write metadata to file:"
+msgstr "Metaadatok fájlba írása:"
+
+#: src/Dialogs/PreferencesWindow.vala:77
+msgid "Copy imported files to Library:"
+msgstr "Importált fájlok másolása a gyűjteménybe:"
+
+#: src/Dialogs/PreferencesWindow.vala:79
+msgid "Desktop Integration"
+msgstr "Asztali integráció"
+
+#: src/Dialogs/PreferencesWindow.vala:80
+msgid "Continue playback when closed:"
+msgstr "Lejátszás folytatása bezárás után:"
+
+#: src/Dialogs/RemoveFilesDialog.vala:49
+#, fuzzy, c-format
+msgid "Remove %d Song From Library?"
+msgid_plural "Remove %d Songs From Library?"
+msgstr[0] "Eltávolítja %d zeneszámokat innen: %s?"
+msgstr[1] "Eltávolítja %d zeneszámokat innen: %s?"
+
+#: src/Dialogs/RemoveFilesDialog.vala:55
+#, fuzzy, c-format
+msgid "Remove \"%s\" From Library?"
+msgstr "Eltávolítás a gyűjteményből"
+
+#: src/Dialogs/RemoveFilesDialog.vala:59
+#, fuzzy
+msgid ""
+"This will remove the song from your library and from any device synced "
+"automatically."
+msgid_plural ""
+"This will remove the songs from your library and from any device synced "
+"automatically."
+msgstr[0] ""
+"Ez el fogja távolítani a zeneszámot a gyűjteményéből és minden olyan "
+"eszközről ami automatikusan szinkronizál ezzel: %s."
+msgstr[1] ""
+"Ez el fogja távolítani a zeneszámokat a gyűjteményéből és minden olyan "
+"eszközről ami automatikusan szinkronizál ezzel: %s."
+
+#: src/Dialogs/RemoveFilesDialog.vala:83
+msgid "Remove from Library"
+msgstr "Eltávolítás a gyűjteményből"
+
+#: src/Dialogs/SetMusicFolderConfirmation.vala:38
+msgid "Set Music Folder?"
+msgstr "Zenemappa beállítása?"
+
+#: src/Dialogs/SetMusicFolderConfirmation.vala:39
+#, c-format
+msgid ""
+"Are you sure you want to set the music folder to %s? This will reset your "
+"library and remove your playlists."
+msgstr ""
+"Biztos, hogy szeretné a(z) %s mappára állítani a zenemappát? Ez "
+"visszaállítja a gyűjteményét és eltávolítja a lejátszási listáit."
+
+#: src/Dialogs/SetMusicFolderConfirmation.vala:47
+msgid "Export Playlists"
+msgstr "Lejátszási lista exportálása"
+
+#: src/Dialogs/SetMusicFolderConfirmation.vala:61
+msgid "Set Music Folder"
+msgstr "Zenemappa"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:55
+msgid "Playlist Title"
+msgstr "Lejátszási lista címe"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:58
+msgid "any"
+msgstr "bármely"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:59
+msgid "all"
+msgstr "mind"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:63
+msgid "Match"
+msgstr "Egyezés"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:65
+msgid "of the following:"
+msgstr "a következőkkel:"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:74
+msgid "Add"
+msgstr "Hozzáadás"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:79
+msgid "Limit to"
+msgstr "Határ"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:87
+msgid "items"
+msgstr "elem"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:103
+msgid "Name of Playlist"
+msgstr "Lejátszási lista neve"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:105
+msgid "Rules"
+msgstr "Szabályok"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:108
+msgid "Options"
+msgstr "Beállítások"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:113
+msgid "Smart Playlist Editor"
+msgstr "Intelligens lejátszási lista szerkesztő"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:256 src/Widgets/SourceListView.vala:67
+#: src/Widgets/SourceListView.vala:80
+msgid "Remove"
+msgstr "Eltávolítás"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:259
+msgid "Album"
+msgstr "Album"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:260
+msgid "Artist"
+msgstr "Előadó"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:261
+msgid "Bitrate"
+msgstr "Bitráta"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:262
+msgid "Comment"
+msgstr "Megjegyzés"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:263
+msgid "Composer"
+msgstr "Zeneszerző"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:264
+msgid "Date Added"
+msgstr "Hozzáadás dátuma"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:265
+msgid "Genre"
+msgstr "Műfaj"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:266
+msgid "Grouping"
+msgstr "Csoportosítás"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:267
+msgid "Last Played"
+msgstr "Utoljára játszva"
+
+#. helper for units
+#: src/Dialogs/SmartPlaylistEditor.vala:268
+#: src/Dialogs/SmartPlaylistEditor.vala:413
+msgid "Length"
+msgstr "Hossz"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:269
+msgid "Playcount"
+msgstr "Lejátszások száma"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:270
+msgid "Rating"
+msgstr "Értékelés"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:271
+msgid "Skipcount"
+msgstr "Kihagyva"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:272
+msgid "Title"
+msgstr "Cím"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:273
+msgid "Year"
+msgstr "Év"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:274
+msgid "URI"
+msgstr "URI"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:347
+msgid "is"
+msgstr "egyenlő"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:348
+msgid "contains"
+msgstr "tartalmazza"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:349
+msgid "does not contain"
+msgstr "nem tartalmazza"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:375
+#: src/Dialogs/SmartPlaylistEditor.vala:390
+msgid "is exactly"
+msgstr "pontosan"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:376
+msgid "is at most"
+msgstr "több"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:377
+msgid "is at least"
+msgstr "kevesebb"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:391
+msgid "is within"
+msgstr "között"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:392
+msgid "is before"
+msgstr "előtt"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:414
+msgid "seconds"
+msgstr "másodperc"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:417
+msgid "days ago"
+msgstr "napja"
+
+#: src/Dialogs/SmartPlaylistEditor.vala:420
+msgid "kbps"
+msgstr "kb/s"
+
+#. be a bit explicit to make translations better
+#: src/Dialogs/SyncWarningDialog.vala:52
+#, c-format
+msgid "Sync will remove %i item from %s"
+msgid_plural "Sync will remove %i items from %s"
+msgstr[0] "A szinkronizálás el fog távolítani %i elemet innen: %s"
+msgstr[1] "A szinkronizálás el fog távolítani %i elemet innen: %s"
+
+#: src/Dialogs/SyncWarningDialog.vala:55
+#, c-format
+msgid ""
+"If you continue to sync, media will be removed from %s since they are not on "
+"the sync list. Would you like to import them to your library first?"
+msgstr ""
+"Ha folytatja a szinkronizálást, akkor az adatok törlődni fognak a(z) %s "
+"eszközről, mivel nincsenek a szinkronizálási listán. Szeretné előbb "
+"beolvasni őket a gyűjteménybe?"
+
+#: src/Dialogs/SyncWarningDialog.vala:57
+msgid "Continue Syncing"
+msgstr "Szinkronizálás folytatása"
+
+#: src/Dialogs/SyncWarningDialog.vala:62
+msgid "Import"
+msgstr "Importálás"
+
+#: src/LocalBackend/LocalLibrary.vala:188
+#, c-format
+msgid "Importing music from %s…"
+msgstr "Zene importálása innen: %s…"
+
+#: src/LocalBackend/LocalLibrary.vala:215
+msgid "Adding files to library…"
+msgstr "Fájlok hozzáadása a gyűjteményhez…"
+
+#: src/LocalBackend/LocalLibrary.vala:228
+msgid "<b>Importing</b> music to library…"
+msgstr "Zene <b>importálása</b> a gyűjteménybe…"
+
+#: src/LocalBackend/LocalLibrary.vala:250
+msgid "All music files are already in your library"
+msgstr "Az összes zenefájl már a gyűjteményben van"
+
+#: src/LocalBackend/LocalLibrary.vala:250
+msgid "No files were imported."
+msgstr "Egy fájl sem került importálásra."
+
+#: src/LocalBackend/LocalLibrary.vala:255
+msgid "Rescanning music for changes. This may take a while…"
+msgstr "Változások keresése a zenékben. Ez eltarthat egy ideig…"
+
+#: src/LocalBackend/LocalLibrary.vala:356
+msgid "Added to your queue:"
+msgstr "Hozzáadva a lejátszási sorához:"
+
+#: src/LocalBackend/LocalLibrary.vala:367
+#, c-format
+msgid "%d Track"
+msgid_plural "%d Tracks"
+msgstr[0] "%d Szám"
+msgstr[1] "%d Szám"
+
+#: src/LocalBackend/LocalSmartPlaylist.vala:218
+msgid "Favorite Songs"
+msgstr "Kedvenc számok"
+
+#: src/LocalBackend/LocalSmartPlaylist.vala:226
+msgid "Recently Added"
+msgstr "Legutóbb hozzáadott"
+
+#: src/LocalBackend/LocalSmartPlaylist.vala:234
+msgid "Recent Favorites"
+msgstr "Legutóbbi kedvencek"
+
+#: src/LocalBackend/LocalSmartPlaylist.vala:242
+msgid "Never Played"
+msgstr "Még le nem játszott"
+
+#: src/LocalBackend/LocalSmartPlaylist.vala:250
+msgid "Over Played"
+msgstr "Túljátszott"
+
+#: src/LocalBackend/LocalSmartPlaylist.vala:258
+msgid "Not Recently Played"
+msgstr "Mostanában nem játszott"
+
+#: src/Objects/HistoryPlaylist.vala:38
+msgid "History"
+msgstr "Előzmények"
+
+#: src/Objects/MPRIS.vala:617 src/Widgets/SourceListView.vala:341
+msgid "Playlists"
+msgstr "Lejátszási listák"
+
+#: src/Views/DeviceSummaryWidget.vala:60
+msgid "Device Name:"
+msgstr "Eszköznév:"
+
+#: src/Views/DeviceSummaryWidget.vala:64
+msgid "Device Name"
+msgstr "Eszköznév"
+
+#: src/Views/DeviceSummaryWidget.vala:66
+msgid "Automatically sync when plugged in:"
+msgstr "Automatikus szinkronizálás, ha csatlakoztatva van:"
+
+#: src/Views/DeviceSummaryWidget.vala:72
+msgid "Sync:"
+msgstr "Szinkronizálás:"
+
+#: src/Views/DeviceSummaryWidget.vala:100 src/Widgets/SourceListView.vala:192
+msgid "Sync"
+msgstr "Szinkronizálás"
+
+#: src/Views/DeviceSummaryWidget.vala:244
+msgid "All Music"
+msgstr "Minden zene"
+
+#: src/Views/DeviceSummaryWidget.vala:298
+msgid "Sync Failed"
+msgstr "Szinkronizáció meghiúsult"
+
+#: src/Views/DeviceSummaryWidget.vala:299
+#, c-format
+msgid ""
+"The playlist named %s is used to sync device %s, but could not be found."
+msgstr ""
+"A(z) %s lejátszási listával szinkronizált a(z) %s eszköz, de nem található."
+
+#: src/Views/DeviceSummaryWidget.vala:316
+#: src/Views/DeviceSummaryWidget.vala:321
+msgid "Cannot Sync"
+msgstr "Nem lehet szinkronizálni"
+
+#: src/Views/DeviceSummaryWidget.vala:317
+msgid ""
+"Cannot sync device with selected sync settings. Not enough space on disk"
+msgstr ""
+"Nem lehet szinkronizálni az eszközzel a kiválasztott szinkronizálási "
+"beállításokkal. Nincs elég hely a lemezen"
+
+#: src/Views/DeviceSummaryWidget.vala:322
+msgid "Device is already doing an operation."
+msgstr "Az eszköz már végez egy műveletet."
+
+#: src/Views/DeviceView.vala:66
+msgid "Cancelling…"
+msgstr "Megszakítás…"
+
+#: src/Views/DeviceView.vala:66
+msgid "Device operation has been cancelled and will stop after this media."
+msgstr ""
+"Az eszközművelet meg lett szakítva, és le lesz állítva ezután a média után."
+
+#: src/Views/ViewStack.vala:45
+#, fuzzy
+msgid "No Results"
+msgstr "Nincs értékelés"
+
+#: src/Views/ViewStack.vala:45
+msgid "Try another search"
+msgstr ""
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
+msgid "Genres"
+msgstr "Műfajok"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:60
+msgid "Artists"
+msgstr "Előadók"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:62
+msgid "Albums"
+msgstr "Albumok"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:64
+msgid "Years"
+msgstr "Évek"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:66
+msgid "Ratings"
+msgstr "Értékelések"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:68
+msgid "Composers"
+msgstr "Szerzők"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:70
+msgid "Groupings"
+msgstr "Csoportosítások"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
+msgid "All Genres"
+msgstr "Minden műfaj"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
+#, c-format
+msgid "All %i Genres"
+msgstr "Mind a(z) %i műfaj"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
+msgid "No Genres"
+msgstr "Nincs műfaj"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
+msgid "All Artists"
+msgstr "Minden előadó"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
+#, c-format
+msgid "All %i Artists"
+msgstr "Mind a(z) %i előadó"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
+msgid "No Artists"
+msgstr "Nincs előadó"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
+msgid "All Albums"
+msgstr "Minden album"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
+#, c-format
+msgid "All %i Albums"
+msgstr "Mind a(z) %i album"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
+msgid "No Albums"
+msgstr "Nincs album"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
+msgid "All Years"
+msgstr "Minden év"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
+#, c-format
+msgid "All %i Years"
+msgstr "Mind a(z) %i év"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:250
+msgid "No Years"
+msgstr "Nincs év"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
+msgid "All Ratings"
+msgstr "Minden értékelés"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
+msgid "No Ratings"
+msgstr "Nincs értékelés"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
+msgid "All Groupings"
+msgstr "Minden csoportosítás"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
+#, c-format
+msgid "All %i Groupings"
+msgstr "Mind a(z) %i csoportosítás"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
+msgid "No Groupings"
+msgstr "Nincs csoportosítás"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:271
+msgid "All Composers"
+msgstr "Minden szerző"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:273
+#, c-format
+msgid "All %i Composers"
+msgstr "Mind a(z) %i szerző"
+
+#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:275
+msgid "No Composers"
+msgstr "Nincs szerző"
+
+#. We cannot make these constants due to issues with N_()
+#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
+#: src/Widgets/EqualizerPopover.vala:326 src/Widgets/PresetList.vala:52
+msgid "Automatic"
+msgstr "Automatikus"
+
+#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:146
+msgid "On Left"
+msgstr "Baloldalt"
+
+#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:147
+msgid "On Top"
+msgstr "Felül"
+
+#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:428
+msgid "Unrated"
+msgstr "Értékeletlen"
+
+#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:430
+#, c-format
+msgid "%u Star"
+msgid_plural "%u Stars"
+msgstr[0] "%u Csillag"
+msgstr[1] "%u Csillag"
+
+#: src/Views/ListView/Lists/CellDataFunctionHelper.vala:128
+#, c-format
+msgid "%u kbps"
+msgstr "%u kb/s"
+
+#: src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
+#: src/Views/ListView/Lists/MusicListView.vala:425
+msgid "Never"
+msgstr "Soha"
+
+#: src/Views/ListView/Lists/ListColumn.vala:69
+msgctxt "List column title"
+msgid "#"
+msgstr "#"
+
+#: src/Views/ListView/Lists/ListColumn.vala:72
+msgctxt "List column title"
+msgid "Track"
+msgstr "Szám"
+
+#: src/Views/ListView/Lists/ListColumn.vala:75
+msgctxt "List column title"
+msgid "Title"
+msgstr "Cím"
+
+#: src/Views/ListView/Lists/ListColumn.vala:78
+msgctxt "List column title"
+msgid "Length"
+msgstr "Hossz"
+
+#: src/Views/ListView/Lists/ListColumn.vala:81
+msgctxt "List column title"
+msgid "Artist"
+msgstr "Előadó"
+
+#: src/Views/ListView/Lists/ListColumn.vala:84
+msgctxt "List column title"
+msgid "Album"
+msgstr "Album"
+
+#: src/Views/ListView/Lists/ListColumn.vala:87
+msgctxt "List column title"
+msgid "Album Artist"
+msgstr "Album előadója"
+
+#: src/Views/ListView/Lists/ListColumn.vala:90
+msgctxt "List column title"
+msgid "Composer"
+msgstr "Szerző"
+
+#: src/Views/ListView/Lists/ListColumn.vala:93
+msgctxt "List column title"
+msgid "Genre"
+msgstr "Műfaj"
+
+#: src/Views/ListView/Lists/ListColumn.vala:96
+msgctxt "List column title"
+msgid "Year"
+msgstr "Év"
+
+#: src/Views/ListView/Lists/ListColumn.vala:99
+msgctxt "List column title"
+msgid "Grouping"
+msgstr "Csoportosítás"
+
+#: src/Views/ListView/Lists/ListColumn.vala:102
+msgctxt "List column title"
+msgid "Bitrate"
+msgstr "Bitráta"
+
+#: src/Views/ListView/Lists/ListColumn.vala:105
+msgctxt "List column title"
+msgid "Rating"
+msgstr "Értékelés"
+
+#: src/Views/ListView/Lists/ListColumn.vala:108
+msgctxt "List column title"
+msgid "Plays"
+msgstr "Lejátszások"
+
+#: src/Views/ListView/Lists/ListColumn.vala:111
+msgctxt "List column title"
+msgid "Skips"
+msgstr "Kihagyások"
+
+#: src/Views/ListView/Lists/ListColumn.vala:114
+msgctxt "List column title"
+msgid "Date Added"
+msgstr "Hozzáadás dátuma"
+
+#: src/Views/ListView/Lists/ListColumn.vala:117
+msgctxt "List column title"
+msgid "Last Played"
+msgstr "Utoljára játszva"
+
+#: src/Views/ListView/Lists/ListColumn.vala:120
+msgctxt "List column title (beats per minute)"
+msgid "BPM"
+msgstr "BPM (ütem/perc)"
+
+#: src/Views/ListView/Lists/ListColumn.vala:123
+msgctxt "List column title (file location)"
+msgid "Location"
+msgstr "Hely"
+
+#: src/Views/ListView/Lists/ListColumn.vala:126
+msgctxt "List column title"
+msgid "File Size"
+msgstr "Fájlméret"
+
+#: src/Views/ListView/Lists/MusicListView.vala:74
+msgid "Autosize Columns"
+msgstr "Oszlopok automatikus méretezése"
+
+#: src/Views/ListView/Lists/MusicListView.vala:410
+msgid "1234 kbps"
+msgstr "1234 kb/s"
+
+#. / Sample string used to measure the ideal size of the Title, Artist,
+#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
+#. / list view. It's *never* displayed in the user interface. The translated
+#. / string should have a reasonable length, similar to the average length
+#. / of a song title or artist name in your language. The automatic column
+#. / width will depend on the length of this string and the space needed
+#. / by the column's title header.
+#: src/Views/ListView/Lists/MusicListView.vala:481
+msgid "Sample List String"
+msgstr "Minta karakterlánc szám címre"
+
+#. Welcome screen
+#: src/Views/Wrappers/MusicViewWrapper.vala:56
+msgid "Get Some Tunes"
+msgstr "Dalok beszerzése"
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:57
+msgid "Add music to your library."
+msgstr "Zene hozzáadása gyűjteményhez."
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:60
+msgid "Import music from a source into your library."
+msgstr "Zene importálása a gyűjteménybe külső forrásból."
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:62
+msgid "Change Music Folder"
+msgstr "Zenemappa megváltoztatása"
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:63
+msgid "Load music from a folder, a network or an external disk."
+msgstr "Zene betöltése mappából, hálózatról vagy külső lemezről."
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:110
+#: src/Views/Wrappers/MusicViewWrapper.vala:130
+msgid "Import your Music"
+msgstr "Importálja zenéit"
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:111
+#: src/Views/Wrappers/MusicViewWrapper.vala:131
+#, c-format
+msgid "Import all your Music from %s into your library."
+msgstr "Importálja összes zenéjét a(z) %s eszközről a gyűjteményébe."
+
+#: src/Views/Wrappers/MusicViewWrapper.vala:143
+msgid "Select Music Folder"
+msgstr "Zenemappa kiválasztása"
+
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:50
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:54
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:64
+msgid "No Songs"
+msgstr "Nincs szám"
+
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:51
+msgid "Updating playlist. Please wait."
+msgstr "Lejátszólista frissítése. Kérem várjon."
+
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:55
+msgid ""
+"To add songs to this playlist, use the <b>secondary click</b> on an item and "
+"choose <b>Add to Playlist</b>."
+msgstr ""
+"Zeneszámok lejátszási listához való hozzáadásához válassza a <b>jobbgombos "
+"menüből</b> a <b>Hozzáadás a lejátszási sorhoz</b> lehetőséget."
+
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:58
+msgid "Edit Smart Playlist"
+msgstr "Okos lejátszási lista szerkesztése"
+
+#: src/Views/Wrappers/PlaylistViewWrapper.vala:65
+msgid ""
+"This playlist will be automatically populated with songs that match its "
+"rules. To modify these rules, use the <b>secondary click</b> on it in the "
+"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
+"below."
+msgstr ""
+"Ez a lejátszási lista automatikusan fog felépülni azokból a zeneszámokból "
+"amelyek megfelelnek a szabályoknak. A szabályok megváltoztatásához "
+"kattintson <b>jobb gombbal</b> az oldalsávon, és válassza a <b>Szerkesztés</"
+"b> lehetőséget, vagy rá is kattinthat az alább lévő gombra."
+
+#: src/Views/Wrappers/ViewWrapper.vala:418
+msgid "No media"
+msgstr "Nincs adathordozó"
+
+#: src/Widgets/AlbumListGrid.vala:63
+msgid "Set new album cover"
+msgstr "Új album borító beállítása"
+
+#: src/Widgets/AlbumListGrid.vala:193
+msgid "Image files"
+msgstr "Képfájlok"
+
+#: src/Widgets/AlbumListGrid.vala:200
+msgid "_Open"
+msgstr "_Megnyitás"
+
+#: src/Widgets/AlbumListGrid.vala:201
+msgid "_Cancel"
+msgstr "_Mégsem"
+
+#: src/Widgets/EqualizerPopover.vala:162
+msgid "Save preset"
+msgstr "Beállítás mentése"
+
+#: src/Widgets/EqualizerPopover.vala:330
+msgid "Off"
+msgstr "Ki"
+
+#: src/Widgets/EqualizerPopover.vala:418
+#, c-format
+msgid "%s (Custom)"
+msgstr "%s (egyéni)"
+
+#: src/Widgets/EqualizerPopover.vala:420
+#, c-format
+msgid "%s (Custom %i)"
+msgstr "%s (egyéni %i)"
+
+#: src/Widgets/EqualizerPopover.vala:423
+msgid "Custom Preset"
+msgstr "Egyéni beállítás"
+
+#: src/Widgets/EqualizerPopover.vala:425
+#, c-format
+msgid "Custom Preset %i"
+msgstr "Egyéni beállítás %i"
+
+#: src/Widgets/MediaMenu.vala:46
+msgid "Scroll to Current Song"
+msgstr "Görgetés az éppen lejátszott számhoz"
+
+#: src/Widgets/MediaMenu.vala:49
+#, fuzzy
+msgid "Show in File Browser…"
+msgstr "Megjelenítés a fájlböngészőben"
+
+#: src/Widgets/MediaMenu.vala:50
+#, fuzzy
+msgid "Edit Song Info…"
+msgstr "Száminformációk szerkesztése"
+
+#: src/Widgets/MediaMenu.vala:51
+#, fuzzy
+msgid "Other Actions"
+msgstr "Egyéb műveletek"
+
+#: src/Widgets/MediaMenu.vala:53
+msgctxt "Action item (verb)"
+msgid "Queue"
+msgstr "Hozzáadás a lejátszási sorhoz"
+
+#: src/Widgets/MediaMenu.vala:54
+msgid "Add to Playlist"
+msgstr "Hozzáadás a lejátszási listához"
+
+#: src/Widgets/MediaMenu.vala:55
+#, fuzzy
+msgid "Remove Song…"
+msgstr "Szám eltávolítása"
+
+#: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
+msgid "Import to Library"
+msgstr "Importálás a gyűjteménybe"
+
+#: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
+#, fuzzy
+msgid "Remove from Library…"
+msgstr "Eltávolítás a gyűjteményből"
+
+#: src/Widgets/MediaMenu.vala:99
+msgid "Remove from Device"
+msgstr "Eltávolítás az eszközről"
+
+#: src/Widgets/MediaMenu.vala:119
+msgid "Remove from Queue"
+msgstr "Eltávolítás a sorból"
+
+#: src/Widgets/MediaMenu.vala:153
+msgid "New Playlist…"
+msgstr "Új lejátszási lista…"
+
+#: src/Widgets/MediaMenu.vala:193
+#, c-format
+msgid "Import %i of %i selected songs"
+msgstr "%i zeneszám importálása ennyiből: %i"
+
+#: src/Widgets/MediaMenu.vala:195
+#, c-format
+msgid "Import %i song"
+msgid_plural "Import %i songs"
+msgstr[0] "%i szám importálása"
+msgstr[1] "%i szám importálása"
+
+#: src/Widgets/PresetList.vala:53
+msgid "Delete Current"
+msgstr "Aktuális törlése"
+
+#: src/Widgets/SourceListView.vala:66 src/Widgets/SourceListView.vala:78
+msgid "Rename"
+msgstr "Átnevezés"
+
+#: src/Widgets/SourceListView.vala:79
+msgid "Edit…"
+msgstr "Szerkesztés…"
+
+#: src/Widgets/SourceListView.vala:95
+msgid "Save as Playlist"
+msgstr "Mentés lejátszási listaként"
+
+#: src/Widgets/SourceListView.vala:103
+msgid "Export…"
+msgstr "Exportálás…"
+
+#: src/Widgets/SourceListView.vala:166
+msgid "Eject"
+msgstr "Kiadás"
+
+#: src/Widgets/SourceListView.vala:176 src/Widgets/SourceListView.vala:219
+msgid "New Playlist"
+msgstr "Új lejátszási lista"
+
+#: src/Widgets/SourceListView.vala:184 src/Widgets/SourceListView.vala:220
+msgid "New Smart Playlist"
+msgstr "Új okos lejátszási lista"
+
+#: src/Widgets/SourceListView.vala:221
+msgid "Import Playlists"
+msgstr "Lejátszási listák importálása"
+
+#. Adds the different sidebar categories.
+#: src/Widgets/SourceListView.vala:338
+msgid "Library"
+msgstr "Gyűjtemény"
+
+#: src/Widgets/SourceListView.vala:339
+msgid "Devices"
+msgstr "Eszközök"
+
+#: src/Widgets/SourceListView.vala:340
+msgid "Network"
+msgstr "Hálózat"
+
+#: src/Widgets/StatusBar.vala:36
+msgid "Add Playlist"
+msgstr "Lejátszási lista hozzáadása"
+
+#: src/Widgets/StatusBar.vala:37
+msgid "Add Smart Playlist"
+msgstr "Intelligens lejátszási lista hozzáadása"
+
+#: src/Widgets/StatusBar.vala:48
+#, fuzzy
+#| msgid "Add Playlist"
+msgid "Add Playlist…"
+msgstr "Lejátszási lista hozzáadása"
+
+#. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
+#: src/Widgets/StatusBar.vala:74
+#, c-format
+msgid "Equalizer: %s"
+msgstr "Kiegyenlítő: %s"
+
+#. MUST follow the exact same order of Music.Player.Repeat
+#: src/Widgets/TopDisplay.vala:138
+msgid "Enable Repeat"
+msgstr "Ismétlés bekapcsolása"
+
+#: src/Widgets/TopDisplay.vala:139
+msgid "Repeat Song"
+msgstr "Zeneszám ismétlése"
+
+#: src/Widgets/TopDisplay.vala:140
+msgid "Disable Repeat"
+msgstr "Ismétlés kikapcsolása"
+
+#: src/Widgets/TopDisplay.vala:159
+msgid "Enable Shuffle"
+msgstr "Keverés bekapcsolása"
+
+#: src/Widgets/TopDisplay.vala:160
+msgid "Disable Shuffle"
+msgstr "Keverés kikapcsolása"
+
+#: src/Widgets/ViewSelector.vala:81
+#, fuzzy
+msgid "View as albums"
+msgstr "Album nézet"
+
+#: src/Widgets/ViewSelector.vala:87
+#, fuzzy
+msgid "View as list"
+msgstr "Listanézet"
+
+#: src/Widgets/ViewSelector.vala:93
+#, fuzzy
+msgid "View in columns"
+msgstr "Oszlop nézet"
+
+#~ msgid "No similar songs found"
+#~ msgstr "Nem található hasonló szám"
+
+#~ msgid ""
+#~ "There are no songs similar to the current song in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "Nincsenek az éppen lejátszotthoz hasonló számok a gyűjteményében. "
+#~ "Győződjön meg róla, hogy minden száminformáció helyes, és hogy "
+#~ "csatlakozik-e az internetre. Néhány számra nincs találat."
+
+#~ msgid "Similar"
+#~ msgstr "Hasonló"
+
+#~ msgid "media"
+#~ msgstr "média"
+
+#~ msgid "Similar Media"
+#~ msgstr "Hasonló média"
+
+#~ msgid "Audio CD Invalid"
+#~ msgstr "Hang CD érvénytelen"
+
+#~ msgid "Impossible to read the contents of this Audio CD"
+#~ msgstr "Lehetetlen beolvasni ennek a hang CD-nek a tartalmát"
+
+#~ msgid "Could not find Music Folder"
+#~ msgstr "Nem található zenemappa"
+
+#~ msgid ""
+#~ "Please make sure that your music folder is accessible and mounted before "
+#~ "importing the CD."
+#~ msgstr ""
+#~ "Bizonyosodjon meg róla, hogy a zenemappája elérhető és csatolva van, "
+#~ "mielőtt a CD-t importálja."
+
+#~ msgid ""
+#~ "The Application could not find any songs on the CD. No songs can be "
+#~ "imported"
+#~ msgstr ""
+#~ "Az alkalmazás nem talált számokat a CD-n. Nem lehet zenét importálni"
+
+#, fuzzy
+#~ msgid "Song imported from Audio CD."
+#~ msgstr "Dalok importálása Hang CD-ről"
+
+#, fuzzy
+#~ msgid "%i songs imported from Audio CD."
+#~ msgstr "A(z) %s befejezte egy szám importálását a hanglemezről."
+
+#~ msgid "Importing track %u: %s"
+#~ msgstr "Számok importálása %u:%s"
+
+#~ msgid "CD import will be <b>cancelled</b> after current import."
+#~ msgstr "CD importálás <b>megszakítva</b> a jelenlegi importálás után."
+
+#, fuzzy
+#~ msgid "An Error Occurred"
+#~ msgstr "Hiba történt"
+
+#, fuzzy
+#~ msgid "Could not load this Audio CD."
+#~ msgstr "%s nem tudja a hang CD tartalmát beolvasni."
+
+#~ msgid "Importation of a song from Audio CD finished."
+#~ msgstr "Egy szám importálása befejeződött a hang CD-ről."
+
+#~ msgid "Importation of %i songs from Audio CD finished."
+#~ msgstr "%i szám importálása befejeződött a hang CD-ről."
+
+#~ msgid "An error occured during the Import of this CD"
+#~ msgstr "Hiba történt a CD-ről való importálás közben"
+
+#~ msgid "There was an error while loading this Audio CD."
+#~ msgstr "Hiba történt az audio CD betöltésekor."
+
+#~ msgid "Disk:"
+#~ msgstr "Lemez:"
+
+#~ msgid "%s has imported your library."
+#~ msgstr "%s importálva a gyűjteménybe."
+
+#~ msgid "Unable to import %d items from %s"
+#~ msgstr "Nem lehet %d elemet importálni innen: %s"
+
+#~ msgid "Remove from %s"
+#~ msgstr "Eltávolítás innen: %s"
+
+#~ msgid "Remove \"%s\" From %s?"
+#~ msgstr "A(z) „%s” eltávolítása innen: %s?"
+
+#~ msgid "No Albums Found."
+#~ msgstr "Nem található album."
+
+#~ msgid "No Songs Found."
+#~ msgstr "Nem található zeneszám."
+
+#~ msgid "%u second"
+#~ msgid_plural "%u seconds"
+#~ msgstr[0] "%u másodperc"
+#~ msgstr[1] "%u másodperc"
+
+#~ msgid "%u minute"
+#~ msgid_plural "%u minutes"
+#~ msgstr[0] "%u perc"
+#~ msgstr[1] "%u perc"
+
+#~ msgctxt "minutes and seconds"
+#~ msgid "%s and %s"
+#~ msgstr "%s és %s"
+
+#~ msgid "%u day"
+#~ msgid_plural "%u days"
+#~ msgstr[0] "%u nap"
+#~ msgstr[1] "%u nap"
+
+#~ msgid "%u hour"
+#~ msgid_plural "%u hours"
+#~ msgstr[0] "%u óra"
+#~ msgstr[1] "%u óra"
+
+#~ msgctxt "days, hours and minutes"
+#~ msgid "%s, %s and %s"
+#~ msgstr "%s, %s és %s"
+
+#~ msgctxt "days and hours"
+#~ msgid "%s and %s"
+#~ msgstr "%s és %s"
+
+#~ msgctxt "days and minutes"
+#~ msgid "%s and %s"
+#~ msgstr "%s és %s"
+
+#~ msgctxt "hours and minutes"
+#~ msgid "%s and %s"
+#~ msgstr "%s és %s"
+
+#~ msgid "Song"
+#~ msgstr "Zeneszám"
+
+#~ msgid "Repeat Album"
+#~ msgstr "Album ismétlése"
+
+#~ msgid "Repeat Artist"
+#~ msgstr "Előadó ismétlése"
+
+#~ msgid "All"
+#~ msgstr "Mind"
+
+#~ msgid "Hide"
+#~ msgstr "Elrejtés"
+
+#~ msgid "Show Info Panel"
+#~ msgstr "Információs panel megjelenítése"
+
+#~ msgid "Show"
+#~ msgstr "Megjelenítés"
+
+#~ msgid "Hide Info Panel"
+#~ msgstr "Információs panel elrejtése"
+
+#~ msgid "Free"
+#~ msgstr "Ingyenes"
+
+#~ msgid "Using %s of %s (%.2f%)"
+#~ msgstr "%s használva ennyiből: %s (%.2f%)"
+
+#~ msgid "General"
+#~ msgstr "Általános"
+
+#~ msgid "Import from Device"
+#~ msgstr "Importálása az eszközről"
+
+#~ msgid "Import media from %s"
+#~ msgstr "Média importálása innen: %s"
+
+#~ msgid ""
+#~ "The following files were found on %s, but are not in your library. Check "
+#~ "all the files you would like to import."
+#~ msgstr ""
+#~ "A következő fájlok megtalálhatók %s eszközön, de nincsenek a "
+#~ "gyűjteményében. Ellenőrizze azokat a fájlokat amiket be szeretne olvasni."
+
+#~ msgid "Import all media"
+#~ msgstr "Minden média importálása"
+
+#~ msgid "Don't Import"
+#~ msgstr "Ne importálja"
+
+#~ msgid "Import %i items from %s"
+#~ msgstr "%i elem importálása innen: %s"
+
+#~ msgid "Import %s from %s"
+#~ msgstr "%s importálása innen: %s"
+
+#~ msgid "ID"
+#~ msgstr "Azonosító"
+
+#~ msgid "Select individual media to import:"
+#~ msgstr "Egyéni média kiválasztása importálásra"
+
+#~ msgid "Check Item"
+#~ msgstr "Elem ellenőrzése"
+
+#~ msgid "Check Album"
+#~ msgstr "Album ellenőrzése"
+
+#~ msgid "Check Artist"
+#~ msgstr "Előadó ellenőrzése"
+
+#~ msgid "Cannot Import"
+#~ msgstr "Nem importálható"
+
+#~ msgid "Import media to Library"
+#~ msgstr "Média importálása a gyűjteménybe"
+
+#~ msgid "Stop Syncing"
+#~ msgstr "Szinkronizálása leállítása"
+
+#~ msgid "Sync will remove 1 item from %s"
+#~ msgstr "A szinkronizálás el fog távolítani 1 elemet innen: %s"
+
+#~ msgid "%u album"
+#~ msgid_plural "%u albums"
+#~ msgstr[0] "%u album"
+#~ msgstr[1] "%u album"
+
+#~ msgctxt "Title format used on Album View Popup: $ALBUM by $ARTIST"
+#~ msgid "%s by %s"
+#~ msgstr "%s, előadó: %s"
+
+#~ msgctxt ""
+#~ "Format used on statusbar: $description, $total_duration, $total_file_size"
+#~ msgid "%s, %s, %s"
+#~ msgstr "%s, %s, %s"
+
+#~ msgid "OK"
+#~ msgstr "Rendben"
+
+#~ msgid "No External Songs"
+#~ msgstr "Nincs külső szám"
+
+#~ msgid ""
+#~ "There were no songs found on this device that are not in your library."
+#~ msgstr ""
+#~ "Nem található olyan zeneszám ezen az eszközön, ami megtalálható lenne a "
+#~ "gyűjteményében."
+
+#~ msgid "%i track"
+#~ msgid_plural "%i tracks"
+#~ msgstr[0] "%i szám"
+#~ msgstr[1] "%i szám"
+
+#~ msgid "%u song"
+#~ msgid_plural "%u songs"
+#~ msgstr[0] "%u szám"
+#~ msgstr[1] "%u szám"
+
+#~ msgctxt "Format used on statusbar: $description, $total_duration"
+#~ msgid "%s, %s"
+#~ msgstr "%s, %s"
+
+#~ msgid "Other Files"
+#~ msgstr "Más fájlok"
+
+#~ msgid "translator-credits"
+#~ msgstr ""
+#~ "Launchpad Contributions:\n"
+#~ "  Balázs Kóti https://launchpad.net/~ktibalazs\n"
+#~ "  Bence Lukács https://launchpad.net/~lukacs-bence1\n"
+#~ "  Daniel Fore https://launchpad.net/~danrabbit\n"
+#~ "  Dono https://launchpad.net/~laszlo-bence-27\n"
+#~ "  Dániel Ács https://launchpad.net/~acsi\n"
+#~ "  Felix https://launchpad.net/~hututorials\n"
+#~ "  Janos Meszaros https://launchpad.net/~janez89\n"
+#~ "  Laszlo Espadas https://launchpad.net/~kardi-web\n"
+#~ "  Mark Lutring https://launchpad.net/~marcus-elitemail\n"
+#~ "  Papp Ferenc https://launchpad.net/~pappfer\n"
+#~ "  emil https://launchpad.net/~m-il-b"
+
+#~ msgid "Lyrics fetched from www.lyricsmania.com"
+#~ msgstr "Zeneszöveg letöltve innen: www.lyricsmania.com"
+
+#~ msgid "Done"
+#~ msgstr "Kész"
+
+#~ msgid "Importing music from %s..."
+#~ msgstr "Zenék importálása innen: %s"
+
+#~ msgid "Adding files to library..."
+#~ msgstr "Fájlok hozzáadása a gyűjteményhez"
+
+#~ msgid "Rescanning music for changes. This may take a while..."
+#~ msgstr "Zenék átvizsgálása változásokért. Ez eltarthat egy darabig..."
+
+#~ msgid "Adding music from %s to library..."
+#~ msgstr "Zenék hozzáadása a gyűjteményhez innen: %s"
+
+#~ msgid "Unknown Album"
+#~ msgstr "Ismeretlen album"
+
+#~ msgid "Unknown Title"
+#~ msgstr "Ismeretlen cím"
+
+#~ msgid "Unknown Artist"
+#~ msgstr "Ismeretlen előadó"
+
+#~ msgid "Radio Station"
+#~ msgstr "Rádió állomás"
+
+#~ msgid "Ripping track 1"
+#~ msgstr "1. szám másolása"
+
+#~ msgid "CD Import Complete"
+#~ msgstr "CD importálása kész"
+
+#~ msgid "Import Stations"
+#~ msgstr "Állomások importálása"
+
+#~ msgid "Add Podcast"
+#~ msgstr "Podcast hozzáadása"
+
+#~ msgid "Edit"
+#~ msgstr "Szerkesztés"
+
+#~ msgid "Export..."
+#~ msgstr "Exportálás…"
+
+#~ msgid "Equalizer"
+#~ msgstr "Hangszínszabályzó"
+
+#~ msgid "Podcasts"
+#~ msgstr "Podcastek"
+
+#~ msgid "Do Nothing"
+#~ msgstr "Ne tegyen semmit"
+
+#~ msgid "Lyrics"
+#~ msgstr "Dalszövegek"
+
+#~ msgid "Metadata"
+#~ msgstr "Metaadat"
+
+#~ msgid "Editing %i songs"
+#~ msgstr "%i szám szerkesztése"
+
+#~ msgid "Editing %s"
+#~ msgstr "%s szerkesztése"
+
+#~ msgid "Album Artist"
+#~ msgstr "Album előadója"
+
+#~ msgid "Media Type"
+#~ msgstr "Médiatípus"
+
+#~ msgid "Track"
+#~ msgstr "Szám"
+
+#~ msgid "Try again"
+#~ msgstr "Próbálja újra"
+
+#~ msgid "Success!"
+#~ msgstr "Siker!"
+
+#~ msgid "Podcast"
+#~ msgstr "Podcast"
+
+#~ msgid "Lyrics not found for \"%s\" by \"%s\""
+#~ msgstr "Nem található dalszöveg a \"%s\" dalhoz, \"%s\" előadótól"
+
+#~ msgid "Music Folder"
+#~ msgstr "Zenemappa"
+
+#~ msgid "Unsuccessful. Click to try again."
+#~ msgstr "Sikertelen. Kattintson az újrapróbáláshoz."
+
+#~ msgid "Copy files to music folder when added to library"
+#~ msgstr "Fájlok másolása a zenemappába, a gyűjteményhez adáskor"
+
+#~ msgid "Keep music folder organized"
+#~ msgstr "Hagyja meg a zenemappa rendezettségét"
+
+#~ msgid "Write metadata to file"
+#~ msgstr "Metaadatok fájlba írása"
+
+#~ msgid "Last.fm Integration"
+#~ msgstr "Last.fm integráció"
+
+#~ msgid "Date Released"
+#~ msgstr "Kiadás dátuma"
+
+#~ msgid "Audiobook"
+#~ msgstr "Hangoskönyv"
+
+#~ msgid "Could not find media file"
+#~ msgstr "Nem található médiafájl"
+
+#~ msgid "Remove Media"
+#~ msgstr "Média eltávolítása"
+
+#~ msgid "%i albums"
+#~ msgstr "%i album"
+
+#~ msgid "%i days"
+#~ msgstr "%i nap"
+
+#~ msgid "%i hours"
+#~ msgstr "%i óra"
+
+#~ msgid "%i minutes"
+#~ msgstr "%i perc"
+
+#~ msgid "Required GStreamer plugin not installed"
+#~ msgstr "Szükséges GStreamer plugin nincs telepítve"
+
+#~ msgid "Station"
+#~ msgstr "Állomás"
+
+#~ msgid "%s by %s"
+#~ msgstr "%s, előadó: %s"
+
+#~ msgid "1 album"
+#~ msgstr "1 album"
+
+#~ msgid "%i songs"
+#~ msgstr "%i dal"
+
+#~ msgid "1 song"
+#~ msgstr "1 dal"
+
+#~ msgid "1 item"
+#~ msgstr "1 elem"
+
+#~ msgid "Change your music folder."
+#~ msgstr "Zenemappa megváltoztatása"
+
+#~ msgid "%i items"
+#~ msgstr "%i elem"
+
+#~ msgid "1 track"
+#~ msgstr "1 szám"
+
+#~ msgid "%i tracks"
+#~ msgstr "%i szám"
+
+#~ msgid "Name"
+#~ msgstr "Név"
+
+#~ msgid "Date"
+#~ msgstr "Dátum"
+
+#~ msgid "Category"
+#~ msgstr "Kategória"
+
+#~ msgid "#"
+#~ msgstr "#"
+
+#~ msgid "BPM"
+#~ msgstr "BPM (ütem/perc)"
+
+#~ msgid "1 Star"
+#~ msgstr "1 csillag"
+
+#~ msgid "%s Stars"
+#~ msgstr "%s csillag"
+
+#~ msgid "Recently Played"
+#~ msgstr "Legutóbb lejátszva"
+
+#~ msgid "Rescan Music Folder"
+#~ msgstr "Zenemappa újravizsgálása"
+
+#~ msgid "Show Equalizer"
+#~ msgstr "Hangszínszabályzó megjelenítése"
+
+#~ msgid "Hide Equalizer"
+#~ msgstr "Hangszínszabályzó elrejtése"
+
+#~ msgid " by "
+#~ msgstr " , előadó: "
+
+#~ msgid "1 minute"
+#~ msgstr "1 perc"
+
+#~ msgid "1 day"
+#~ msgstr "1 nap"
+
+#~ msgid "1 hour"
+#~ msgstr "1 óra"
+
+#~ msgid "%s seconds"
+#~ msgstr "%s másodperc"
+
+#~ msgid "1 second"
+#~ msgstr "1 másodperc"
+
+#~ msgid " on "
+#~ msgstr " , album: "
+
+#~ msgid "Unheard Podcasts"
+#~ msgstr "Nemhallott podcastek"
+
+#~ msgid "<b>Importing</b> music from <b>%s</b> to library."
+#~ msgstr "Zene <b>importálása</b> a gyűjteménybe, innen: <b>%s</b>"
+
+#~ msgid "Rescanning music folder for changes"
+#~ msgstr "Zenemappa átvizsgálása a változásokért"
+
+#~ msgid "All %i Ratings"
+#~ msgstr "Mind a(z) %i értékelés"
+
+#~ msgid "Plays"
+#~ msgstr "Lejátszások"
+
+#~ msgid "%i kbps"
+#~ msgstr "%i kbps"
+
+#~ msgid "Similar to %s"
+#~ msgstr "Hasonló ehhez: %s"
+
+#~ msgid "Locate"
+#~ msgstr "Kikeresés"
+
+#~ msgid "Import media from device"
+#~ msgstr "Média importálása eszközről"
+
+#~ msgid "%s and %s"
+#~ msgstr "%s és %s"
+
+#~ msgid "%s, %s and %s"
+#~ msgstr "%s %s és %s"
+
+#~ msgid "%s is already doing an import"
+#~ msgstr "%s már importál"
+
+#~ msgid ""
+#~ "Please wait until %s is finished with the current import before importing "
+#~ "the CD."
+#~ msgstr ""
+#~ "Kérem várjon, amíg a %s befejezi a jelenlegi importálást, mielőtt "
+#~ "importálja a CD-t."
+
+#~ msgid "Importing track %i"
+#~ msgstr "Szám importálása: %i"
+
+#~ msgid "Download new Episodes"
+#~ msgstr "Új epizódok letöltése"
+
+#~ msgid "Not Imported Files"
+#~ msgstr "Nincs importált fájl"
+
+#~ msgid "%i media files could not be found. What would you like to do?"
+#~ msgstr "%i médiafájl nem található. Mit szeretne tenni?"
+
+#~ msgid "Locate Media"
+#~ msgstr "Média helye"
+
+#~ msgid "All the songs in this device are already in your library."
+#~ msgstr "Minden dal az eszközről már a gyújteményében van."
+
+#~ msgid "Skips"
+#~ msgstr "Kihagyások"
+
+#~ msgid "Episode"
+#~ msgstr "Epizód"
+
+#~ msgid "Cancelling Sync"
+#~ msgstr "Szinkronizálás visszavonása"
+
+#~ msgid "Cancelling Import"
+#~ msgstr "Importálás visszavonása"
+
+#~ msgid ""
+#~ "Device Sync has been cancelled. Operation will stop after this media."
+#~ msgstr ""
+#~ "Eszköz szinkronizáció visszavonva. Művelet leáll a mostani média után."
+
+#~ msgid "All Podcasts"
+#~ msgstr "Minden Podcast"
+
+#~ msgid "Editing %s by %s"
+#~ msgstr "%s, előadó %s szerkesztése"
+
+#~ msgid "is not"
+#~ msgstr "nem"
+
+#~ msgid "The name %s is already in use"
+#~ msgstr "%s név már használatban van"
+
+#~ msgid ""
+#~ "You must wait until previous file operations finish before setting your "
+#~ "music folder"
+#~ msgstr ""
+#~ "Meg kell várnia amíg az előző fájl műveletek befejeződnek mielőtt "
+#~ "beállítja a zenemappáját."
+
+#~ msgid "Remove %d %s from %s?"
+#~ msgstr "Eltávolítja a %d %s innen: %s?"
+
+#~ msgid "Please make sure that your music folder is accessible and mounted."
+#~ msgstr ""
+#~ "Bizonyosodjon meg róla, hogy a zenemappája elérhető és csatolva van."
+
+#~ msgid "Device is already being synced."
+#~ msgstr "Az eszköz már szinkronizálva van."
+
+#~ msgid "Unknown Track"
+#~ msgstr "Ismeretlen szám"
+
+#~ msgid ""
+#~ "The plugin for media type %s is not installed.\n"
+#~ "What would you like to do?"
+#~ msgstr ""
+#~ "A(z) %s médiatípushoz való bővítmény nincs telepítve.\n"
+#~ "Mit szeretne tenni?"
+
+#~ msgid "Queue"
+#~ msgstr "Lejátszási sor"
+
+#~ msgid ""
+#~ "Import from device has been cancelled. Operation will stop after this "
+#~ "media."
+#~ msgstr ""
+#~ "A beolvasás az eszközről meg lett szakítva. A művelet meg lesz szakítva "
+#~ "ezután a zeneszám után."
+
+#~ msgid ""
+#~ "This will remove the %s from your library and from any device that "
+#~ "automatically syncs with %s."
+#~ msgstr ""
+#~ "Ez el fogja távolítani %s-t a gyűjteményéből és minden eszközről ami "
+#~ "automatikusan szinkronizál %s eszközzel."
+
+#~ msgid "%s can't seem to find your music."
+#~ msgstr "%s nem találta a zenéit"
+
+#~ msgid "%d second"
+#~ msgid_plural "%d seconds"
+#~ msgstr[0] "%d másodperc"
+#~ msgstr[1] "%d másodperc"
+
+#~ msgid "Last.fm"
+#~ msgstr "Last.fm"
+
+#~ msgid "Click to redo the Last.fm Login Process"
+#~ msgstr "Kattintson ide a Last.fm bejelentkező folyamat ismétléséhez"
+
+#~ msgid "Enable Scrobbling"
+#~ msgstr "Továbbítás engedélyezése"
+
+#~ msgid "Complete login"
+#~ msgstr "Bejelentkezés befejezése"
+
+#~ msgid "Scrobbling already Enabled"
+#~ msgstr "A továbbítás már engedélyezve van"
+
+#~ msgid ""
+#~ "The music file for %s by %s could not be found. What would you like to do?"
+#~ msgstr "%s - %s zeneszám nem található. Mit szeretne tenni?"
+
+#~ msgid "Pulser"
+#~ msgstr "Pulser"
+
+#~ msgid "Finding songs similar to %s by %s"
+#~ msgstr "%s előadó %s számához hasonló dalok keresése"
+
+#~ msgid "Unsuccessful. Click To Try Again."
+#~ msgstr "Sikertelen. Kattintson az újrapróbáláshoz."
+
+#~ msgid "Click to redo the Last.fm login process"
+#~ msgstr "Kattintson a Last.fm bejelentkező folyamat megismétléséhez"
+
+#~ msgid "Scrobbling Already Enabled"
+#~ msgstr "A továbbítás már engedélyezve van"
+
+#~ msgid "Complete Login"
+#~ msgstr "Bejelentkezés befejezése"
+
+#~ msgid "Music Player"
+#~ msgstr "Zenelejátszó"
+
+#~ msgid "%i Star"
+#~ msgid_plural "%i Stars"
+#~ msgstr[0] "%i csillag"
+#~ msgstr[1] "%i csillag"
+
+#~ msgid "Display Album Art"
+#~ msgstr "Albumborító megjelenítése"
+
+#~ msgid "Lyrics not found for %s"
+#~ msgstr "Nem található zeneszöveg ehhez: %s"
+
+#~ msgid "Listen to music"
+#~ msgstr "Zene hallgatása"
+
+#~ msgid "Importing track %i: %s"
+#~ msgstr "Sáv importálása: %i: %s"
+
+#~ msgid "Import this song"
+#~ msgstr "Zeneszám importálása"
+
+#~ msgid "Import %i songs"
+#~ msgstr "%i zeneszám importálása"
+
+#~ msgid "%s has finished importing %i songs from Audio CD."
+#~ msgstr "A(z) %s befejezte %i szám importálását a hanglemezről."
+
+#~ msgid "No songs on CD"
+#~ msgstr "Nem található szám a CD-n"
+
+#~ msgid "Fetching similar songs"
+#~ msgstr "Hasonló számok lekérése"
+
+#~ msgid "%s could not find any songs on the CD. No songs can be imported"
+#~ msgstr "A(z) %s nem talált számokat a CD-n. Nem lehet számot importálni."
+
+#~ msgid ""
+#~ "In this view, %s will automatically find songs similar to the one you're "
+#~ "playing. You can then start playing those songs, or save them as a "
+#~ "playlist for later."
+#~ msgstr ""
+#~ "Ebben a nézetben a(z) %s automatikusan meg fogja keresni az éppen "
+#~ "lejátszotthoz hasonló számokat. Ezek után elindíthatja, vagy elmentheti "
+#~ "lejátszólistába őket, a későbbi lejátszáshoz."
+
+#~ msgid "Similar Song View"
+#~ msgstr "Hasonló szám nézet"
+
+#~ msgid ""
+#~ "%s could not find songs similar to %s by %s in your library. Make sure "
+#~ "all song info is correct and you are connected to the Internet. Some "
+#~ "songs may not have matches."
+#~ msgstr ""
+#~ "A(z) %s nem talált ehhez hasonló dalokat a gyűjteményében: %s - %s. "
+#~ "Győződjön meg róla, hogy az összes száminformáció helyes, és hogy "
+#~ "csatlakozik-e az internetre. Néhány számra lehet, hogy nincs találat."
+
+#~ msgid "Music Folder Location:"
+#~ msgstr "Zenemappa helye"
+
+#~ msgid "Desktop Integration:"
+#~ msgstr "Asztali integráció:"
+
+#~ msgid ""
+#~ "Noise is already doing file operations. Please wait until those finish to "
+#~ "import from %d"
+#~ msgstr ""
+#~ "A Noise már végez fájlműveleteket. Kérem várja meg míg befejeződik az "
+#~ "importálás %d eszközről."
+
+#~ msgid "Editing $NAME by $ARTIST"
+#~ msgstr "$ARTIST előadó $NAME című számának szerkesztése"
+
+#~ msgid "Library Management:"
+#~ msgstr "Gyűjteménykezelés:"
+
+#~ msgid "There is not enough space on Device to complete the Sync…"
+#~ msgstr "Nincs elég hely az eszközön a szinkronizálás befejezéséhez..."
+
+#~ msgid ""
+#~ "To allow for Last.fm integration, you must give permission to %s. You "
+#~ "only need to do this once."
+#~ msgstr ""
+#~ "A Last.fm integráció engedélyezéséhez engedélyt kell adnia ennek: %s. Ezt "
+#~ "csak egyszer kell elvégeznie."
+
+#~ msgid "Give %s Permission"
+#~ msgstr "Engedély megadása ennek: %s"
+
+#~ msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+#~ msgstr ""
+#~ "Noise;Audió;Lejátszó;MP3;iPod;Lejátszás;Lejátszási lista;Média;CD;Telefon;"
+#~ "Számok;"
+
+#~ msgid "Reset"
+#~ msgstr "Visszaállítás"
+
+#~ msgid "Notifications:"
+#~ msgstr "Értesítések:"
+
+#~ msgid "<b>Stats</b>"
+#~ msgstr "<b>Statisztikák</b>"
+
+#~ msgid "Details"
+#~ msgstr "Részletek"
+
+#~ msgid "About Noise"
+#~ msgstr "A Noise névjegye"
+
+#~ msgid "About Music"
+#~ msgstr "A Zene névjegye"
