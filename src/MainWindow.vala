@@ -8,7 +8,6 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
         Hdy.init ();
 
         var queue_header = new Hdy.HeaderBar () {
-            decoration_layout = "close:",
             hexpand = true,
             show_close_button = true
         };
@@ -27,7 +26,6 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
         queue.attach (queue_listbox, 0, 1);
 
         var headerbar = new Hdy.HeaderBar () {
-            decoration_layout = ":maximize",
             hexpand = true,
             show_close_button = true
         };
@@ -57,6 +55,10 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
         window_handle.add (paned);
 
         add (window_handle);
+
+        var header_group = new Hdy.HeaderGroup ();
+        header_group.add_header_bar (queue_header);
+        header_group.add_header_bar (headerbar);
     }
 
     private Gtk.Widget create_queue_row (GLib.Object object) {
