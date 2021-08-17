@@ -46,16 +46,16 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
         now_playing.attach (headerbar, 0, 0);
         now_playing.attach (now_playing_view, 0, 1);
 
+        var now_playing_handle = new Hdy.WindowHandle ();
+        now_playing_handle.add (now_playing);
+
         var paned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL) {
             position = 350
         };
         paned.pack1 (queue, true, false);
-        paned.pack2 (now_playing, false, false);
+        paned.pack2 (now_playing_handle, false, false);
 
-        var window_handle = new Hdy.WindowHandle ();
-        window_handle.add (paned);
-
-        add (window_handle);
+        add (paned);
 
         var header_group = new Hdy.HeaderGroup ();
         header_group.add_header_bar (queue_header);
