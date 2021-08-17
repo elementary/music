@@ -171,6 +171,7 @@ public class Music.PlaybackManager : Object {
         playback_position = 0;
         title = _("Music");
         artist = _("Not playing");
+        pixbuf = null;
 
         var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
         play_pause_action.set_enabled (false);

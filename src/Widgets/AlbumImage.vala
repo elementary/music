@@ -30,6 +30,8 @@ public class Music.AlbumImage : Gtk.Grid {
 
         halign = Gtk.Align.CENTER;
         valign = Gtk.Align.CENTER;
+        height_request = 200;
+        width_request = 200;
         add (image);
     }
 }

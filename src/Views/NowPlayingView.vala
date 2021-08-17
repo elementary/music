@@ -5,9 +5,7 @@
 
 public class Music.NowPlayingView : Gtk.Grid {
     construct {
-        var album_image = new Music.AlbumImage () {
-            width_request = 200
-        };
+        var album_image = new Music.AlbumImage ();
 
         var title_label = new Gtk.Label (null) {
             ellipsize = Pango.EllipsizeMode.MIDDLE
