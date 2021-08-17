@@ -4,6 +4,8 @@ project(
   version: '7.0.0'
 )
 
+i18n = import('i18n')
+
 add_global_arguments('-DGETTEXT_PACKAGE="@0@"'.format (meson.project_name()), language:'c')
 
 granite_dep = dependency('granite', version: '>=6.0.0')
@@ -21,4 +23,5 @@ dependencies = [
 ]
 
 subdir('data')
+subdir('po')
 subdir('src')
