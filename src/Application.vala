@@ -28,7 +28,7 @@ public class Music.Application : Gtk.Application {
 
         var main_window = new MainWindow () {
             application = this,
-            default_width = 300,
+            default_width = 650,
             title = _("Music")
         };
         main_window.show_all ();

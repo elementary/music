@@ -4,12 +4,12 @@
  */
 
 public class Music.PlaybackManager : Object {
+    public ListStore queue_liststore { get; private set; }
     public int64 playback_duration { get; private set; default = 0; }
     public int64 playback_position { get; private set; }
     public string artist { get; private set; }
     public string title { get; private set; }
 
-    private ListStore queue_liststore;
     private File current_file;
 
     private static PlaybackManager? _instance;
