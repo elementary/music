@@ -24,13 +24,13 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
         queue_placeholder.show_all ();
 
         var queue_listbox = new Gtk.ListBox () {
-            expand = true,
-            sensitive = false
+            expand = true
         };
         queue_listbox.bind_model (PlaybackManager.get_default ().queue_liststore, create_queue_row);
         queue_listbox.set_placeholder (queue_placeholder);
 
         var queue = new Gtk.Grid ();
+        queue.get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
         queue.attach (queue_header, 0, 0);
         queue.attach (queue_listbox, 0, 1);
 
@@ -79,7 +79,8 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
         };
 
         var grid = new Gtk.Grid () {
-            margin = 6
+            margin = 6,
+            sensitive = false
         };
         grid.add (label);
         grid.show_all ();
