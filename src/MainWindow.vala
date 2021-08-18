@@ -16,11 +16,19 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
         queue_header_context.add_class (Granite.STYLE_CLASS_DEFAULT_DECORATION);
         queue_header_context.add_class (Gtk.STYLE_CLASS_FLAT);
 
+        var queue_placeholder = new Granite.Widgets.AlertView (
+            _("Queue is Empty"),
+            _("Audio files opened from Files will appear here"),
+            "playlist-queue"
+        );
+        queue_placeholder.show_all ();
+
         var queue_listbox = new Gtk.ListBox () {
             expand = true,
             sensitive = false
         };
         queue_listbox.bind_model (PlaybackManager.get_default ().queue_liststore, create_queue_row);
+        queue_listbox.set_placeholder (queue_placeholder);
 
         var queue = new Gtk.Grid ();
         queue.attach (queue_header, 0, 0);
