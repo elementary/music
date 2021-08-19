@@ -89,9 +89,7 @@ public class Music.PlaybackManager : Object {
     private bool bus_callback (Gst.Bus bus, Gst.Message message) {
         switch (message.type) {
             case Gst.MessageType.EOS:
-                playbin.set_state (Gst.State.NULL);
                 next ();
-                playbin.set_state (Gst.State.PLAYING);
                 break;
             case Gst.MessageType.TAG:
                 Gst.TagList tag_list;
@@ -128,7 +126,9 @@ public class Music.PlaybackManager : Object {
         return true;
     }
 
-    private void next () {
+    public void next () {
+        playbin.set_state (Gst.State.NULL);
+
         uint position = -1;
         queue_liststore.find (current_audio, out position);
 
@@ -139,6 +139,8 @@ public class Music.PlaybackManager : Object {
             playbin.uri = current_audio.file.get_uri ();
 
             query_duration ();
+
+            playbin.set_state (Gst.State.PLAYING);
         } else {
             reset_metadata ();
         }

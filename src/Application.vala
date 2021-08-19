@@ -5,10 +5,12 @@
 
 public class Music.Application : Gtk.Application {
     public const string ACTION_PREFIX = "app.";
+    public const string ACTION_NEXT = "action-next";
     public const string ACTION_PLAY_PAUSE = "action-play-pause";
 
     private const ActionEntry[] ACTION_ENTRIES = {
         { ACTION_PLAY_PAUSE, action_play_pause, null, "false" },
+        { ACTION_NEXT, action_next }
     };
 
     private PlaybackManager? playback_manager = null;
@@ -62,6 +64,10 @@ public class Music.Application : Gtk.Application {
         } else {
             ((SimpleAction) play_pause_action).set_state (true);
         }
+    }
+
+    private void action_next () {
+        playback_manager.next ();
     }
 
     public static int main (string[] args) {
