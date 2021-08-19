@@ -40,6 +40,7 @@ public class Music.NowPlayingView : Gtk.Grid {
         var next_button = new Gtk.Button.from_icon_name ("media-skip-forward-symbolic", Gtk.IconSize.LARGE_TOOLBAR) {
             action_name = Application.ACTION_PREFIX + Application.ACTION_NEXT,
             halign = Gtk.Align.START,
+            tooltip_text = _("Next")
         };
 
         column_spacing = 12;
