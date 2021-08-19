@@ -88,6 +88,7 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
         time_label.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
 
         var grid = new Gtk.Grid () {
+            column_spacing = 6,
             margin = 6,
             margin_start = 12,
             margin_end = 12,
