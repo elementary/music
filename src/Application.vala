@@ -11,7 +11,7 @@ public class Music.Application : Gtk.Application {
         { ACTION_PLAY_PAUSE, action_play_pause, null, "false" },
     };
 
-    private PlaybackManager playback_manager;
+    private PlaybackManager? playback_manager = null;
 
     public Application () {
         Object (
@@ -48,7 +48,10 @@ public class Music.Application : Gtk.Application {
     }
 
     protected override void open (File[] files, string hint) {
-        activate ();
+        if (playback_manager == null) {
+            activate ();
+        }
+
         playback_manager.queue_files (files);
     }
 
