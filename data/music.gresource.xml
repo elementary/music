@@ -2,5 +2,26 @@
 <gresources>
   <gresource prefix="/io/elementary/music">
     <file compressed="true">AlbumImage.css</file>
+
+    <file compressed="true">PlaybackIndicator.css</file>
+    <file alias="playback-paused-symbolic.svg" compressed="true">playback-indicator/paused.svg</file>
+    <file alias="playback-playing-00-symbolic.svg" compressed="true">playback-indicator/playing-00.svg</file>
+    <file alias="playback-playing-01-symbolic.svg" compressed="true">playback-indicator/playing-01.svg</file>
+    <file alias="playback-playing-02-symbolic.svg" compressed="true">playback-indicator/playing-02.svg</file>
+    <file alias="playback-playing-03-symbolic.svg" compressed="true">playback-indicator/playing-03.svg</file>
+    <file alias="playback-playing-04-symbolic.svg" compressed="true">playback-indicator/playing-04.svg</file>
+    <file alias="playback-playing-05-symbolic.svg" compressed="true">playback-indicator/playing-05.svg</file>
+    <file alias="playback-playing-06-symbolic.svg" compressed="true">playback-indicator/playing-06.svg</file>
+    <file alias="playback-playing-07-symbolic.svg" compressed="true">playback-indicator/playing-07.svg</file>
+    <file alias="playback-playing-08-symbolic.svg" compressed="true">playback-indicator/playing-08.svg</file>
+    <file alias="playback-playing-09-symbolic.svg" compressed="true">playback-indicator/playing-09.svg</file>
+    <file alias="playback-playing-10-symbolic.svg" compressed="true">playback-indicator/playing-10.svg</file>
+    <file alias="playback-playing-11-symbolic.svg" compressed="true">playback-indicator/playing-11.svg</file>
+    <file alias="playback-playing-12-symbolic.svg" compressed="true">playback-indicator/playing-12.svg</file>
+    <file alias="playback-playing-13-symbolic.svg" compressed="true">playback-indicator/playing-13.svg</file>
+    <file alias="playback-playing-14-symbolic.svg" compressed="true">playback-indicator/playing-14.svg</file>
+    <file alias="playback-playing-15-symbolic.svg" compressed="true">playback-indicator/playing-15.svg</file>
+    <file alias="playback-playing-16-symbolic.svg" compressed="true">playback-indicator/playing-16.svg</file>
+    <file alias="playback-playing-17-symbolic.svg" compressed="true">playback-indicator/playing-17.svg</file>
   </gresource>
 </gresources>

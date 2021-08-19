@@ -64,6 +64,7 @@ public class Music.SeekBar : Gtk.Grid {
             draw_value = false,
             hexpand = true
         };
+        scale.get_style_context ().add_class (Granite.STYLE_CLASS_ACCENT);
 
         scale.button_press_event.connect (() => {
             scale.value_changed.connect (scale_value_changed);
