@@ -71,19 +71,23 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
     }
 
     private Gtk.Widget create_queue_row (GLib.Object object) {
-        unowned var audio_file = (File) object;
+        unowned var audio_object = (AudioObject) object;
 
-        var label = new Gtk.Label (audio_file.get_path ()) {
+        var label = new Gtk.Label (audio_object.title) {
             ellipsize = Pango.EllipsizeMode.MIDDLE,
             xalign = 0
         };
 
         var grid = new Gtk.Grid () {
             margin = 6,
+            margin_start = 12,
+            margin_end = 12,
             sensitive = false
         };
         grid.add (label);
         grid.show_all ();
+
+        audio_object.bind_property ("title", label, "label");
 
         return grid;
     }

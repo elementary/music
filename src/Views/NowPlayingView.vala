@@ -61,21 +61,29 @@ public class Music.NowPlayingView : Gtk.Grid {
         var playback_manager = PlaybackManager.get_default ();
         playback_manager.bind_property ("playback-duration", seekbar, "playback-duration");
         playback_manager.bind_property ("playback-position", seekbar, "playback-position");
-        playback_manager.bind_property ("artist", artist_label, "label");
-        playback_manager.bind_property ("title", title_label, "label");
 
-        playback_manager.bind_property (
-            "artist", artist_revealer, "reveal-child", BindingFlags.SYNC_CREATE,
+        playback_manager.notify["current-audio"].connect (() => {
+            if (playback_manager.current_audio != null) {
+                playback_manager.current_audio.bind_property ("artist", artist_label, "label");
+                playback_manager.current_audio.bind_property ("title", title_label, "label");
+
+                playback_manager.current_audio.notify["pixbuf"].connect (() => {
+                    var pixbuf = playback_manager.current_audio.pixbuf;
+                    var scaled = pixbuf.scale_simple (200, 200, Gdk.InterpType.BILINEAR);
+
+                    album_image.image.pixbuf = scaled;
+                });
+            } else {
+                artist_label.label = _("Not playing");
+                title_label.label = _("Music");
+            }
+        });
+
+        artist_label.bind_property (
+            "label", artist_revealer, "reveal-child", BindingFlags.SYNC_CREATE,
             (binding, src_val, ref target_val) => {
                 target_val.set_boolean (src_val.get_string () != null);
             }
         );
-
-        playback_manager.notify["pixbuf"].connect (() => {
-            var pixbuf = playback_manager.pixbuf;
-            var scaled = pixbuf.scale_simple (200, 200, Gdk.InterpType.BILINEAR);
-
-            album_image.image.pixbuf = scaled;
-        });
     }
 }
