@@ -29,10 +29,13 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
         queue_listbox.bind_model (PlaybackManager.get_default ().queue_liststore, create_queue_row);
         queue_listbox.set_placeholder (queue_placeholder);
 
+        var scrolled = new Gtk.ScrolledWindow (null, null);
+        scrolled.add (queue_listbox);
+
         var queue = new Gtk.Grid ();
         queue.get_style_context ().add_class (Gtk.STYLE_CLASS_VIEW);
         queue.attach (queue_header, 0, 0);
-        queue.attach (queue_listbox, 0, 1);
+        queue.attach (scrolled, 0, 1);
 
         var headerbar = new Hdy.HeaderBar () {
             hexpand = true,
@@ -73,10 +76,16 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
     private Gtk.Widget create_queue_row (GLib.Object object) {
         unowned var audio_object = (AudioObject) object;
 
-        var label = new Gtk.Label (audio_object.title) {
+        var title_label = new Gtk.Label (audio_object.title) {
             ellipsize = Pango.EllipsizeMode.MIDDLE,
+            hexpand = true,
             xalign = 0
         };
+
+        var time_label = new Gtk.Label (null) {
+            use_markup = true
+        };
+        time_label.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
 
         var grid = new Gtk.Grid () {
             margin = 6,
@@ -84,10 +93,17 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
             margin_end = 12,
             sensitive = false
         };
-        grid.add (label);
+        grid.add (title_label);
+        grid.add (time_label);
         grid.show_all ();
 
-        audio_object.bind_property ("title", label, "label");
+        audio_object.bind_property ("title", title_label, "label");
+
+        audio_object.notify["duration"].connect (() => {
+            time_label.label = "<span font-features='tnum'>%s</span>".printf (
+                Granite.DateTime.seconds_to_time ((int) (audio_object.duration / Gst.SECOND))
+            );
+        });
 
         return grid;
     }

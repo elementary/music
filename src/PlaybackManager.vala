@@ -6,7 +6,6 @@
 public class Music.PlaybackManager : Object {
     public AudioObject? current_audio { get; private set; default = null; }
     public ListStore queue_liststore { get; private set; }
-    public int64 playback_duration { get; private set; default = 0; }
     public int64 playback_position { get; private set; }
 
     private static PlaybackManager? _instance;
@@ -47,7 +46,7 @@ public class Music.PlaybackManager : Object {
                     progress_timer = GLib.Timeout.add (250, () => {
                         int64 position = 0;
                         playbin.query_position (Gst.Format.TIME, out position);
-                        playback_position = position.clamp (0, playback_duration);
+                        playback_position = position.clamp (0, current_audio.duration);
 
                         return Source.CONTINUE;
                     });
@@ -59,7 +58,7 @@ public class Music.PlaybackManager : Object {
     }
 
     public void seek_to_progress (double percent) {
-        playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)(percent * playback_duration));
+        playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)(percent * current_audio.duration));
     }
 
     public void queue_files (File[] files) {
@@ -134,7 +133,6 @@ public class Music.PlaybackManager : Object {
         queue_liststore.find (current_audio, out position);
 
         if (position != -1 && position != queue_liststore.get_n_items () - 1) {
-            playback_duration = 0;
             playback_position = 0;
 
             current_audio = (AudioObject) queue_liststore.get_item (position + 1);
@@ -147,15 +145,15 @@ public class Music.PlaybackManager : Object {
     }
 
     private void query_duration () {
-        if (playback_duration == 0) {
+        if (current_audio.duration == 0) {
             // It may take time to calculate the length, so we keep
             // checking until we get something reasonable
             GLib.Timeout.add (250, () => {
                 int64 duration = 0;
                 playbin.query_duration (Gst.Format.TIME, out duration);
-                playback_duration = duration;
+                current_audio.duration = duration;
 
-                if (playback_duration > 0) {
+                if (current_audio.duration > 0) {
                     return Source.REMOVE;
                 }
 
@@ -168,7 +166,6 @@ public class Music.PlaybackManager : Object {
         current_audio = null;
         playbin.set_state (Gst.State.NULL);
         playbin.uri = "";
-        playback_duration = 0;
         playback_position = 0;
 
         var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);

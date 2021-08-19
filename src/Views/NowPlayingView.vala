@@ -59,13 +59,13 @@ public class Music.NowPlayingView : Gtk.Grid {
         play_pause_action.bind_property ("enabled", seekbar, "sensitive");
 
         var playback_manager = PlaybackManager.get_default ();
-        playback_manager.bind_property ("playback-duration", seekbar, "playback-duration");
         playback_manager.bind_property ("playback-position", seekbar, "playback-position");
 
         playback_manager.notify["current-audio"].connect (() => {
             if (playback_manager.current_audio != null) {
                 playback_manager.current_audio.bind_property ("artist", artist_label, "label");
                 playback_manager.current_audio.bind_property ("title", title_label, "label");
+                playback_manager.current_audio.bind_property ("duration", seekbar, "playback-duration");
 
                 playback_manager.current_audio.notify["pixbuf"].connect (() => {
                     var pixbuf = playback_manager.current_audio.pixbuf;
