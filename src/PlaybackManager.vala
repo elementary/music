@@ -4,14 +4,9 @@
  */
 
 public class Music.PlaybackManager : Object {
-    public Gdk.Pixbuf pixbuf { get; private set; }
+    public AudioObject? current_audio { get; private set; default = null; }
     public ListStore queue_liststore { get; private set; }
-    public int64 playback_duration { get; private set; default = 0; }
     public int64 playback_position { get; private set; }
-    public string artist { get; private set; }
-    public string title { get; private set; }
-
-    private File? current_file = null;
 
     private static PlaybackManager? _instance;
     public static PlaybackManager get_default () {
@@ -29,7 +24,7 @@ public class Music.PlaybackManager : Object {
     private PlaybackManager () {}
 
     construct {
-        queue_liststore = new ListStore (typeof (File));
+        queue_liststore = new ListStore (typeof (AudioObject));
 
         playbin = Gst.ElementFactory.make ("playbin", "playbin");
 
@@ -51,7 +46,7 @@ public class Music.PlaybackManager : Object {
                     progress_timer = GLib.Timeout.add (250, () => {
                         int64 position = 0;
                         playbin.query_position (Gst.Format.TIME, out position);
-                        playback_position = position.clamp (0, playback_duration);
+                        playback_position = position.clamp (0, current_audio.duration);
 
                         return Source.CONTINUE;
                     });
@@ -63,22 +58,24 @@ public class Music.PlaybackManager : Object {
     }
 
     public void seek_to_progress (double percent) {
-        playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)(percent * playback_duration));
+        playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)(percent * current_audio.duration));
     }
 
     public void queue_files (File[] files) {
         foreach (unowned var file in files) {
             if (file.query_exists ()) {
-                queue_liststore.append (file);
+                var audio_object = new AudioObject (file);
+                audio_object.title = audio_object.file.get_path ();
+
+                queue_liststore.append (audio_object);
             }
         }
 
-        if (current_file == null) {
-            var file = (File) queue_liststore.get_object (0);
-            if (file != null) {
-                current_file = file;
-                playbin.uri = file.get_uri ();
-                title = file.get_path ();
+        if (current_audio == null) {
+            var audio_object = (AudioObject) queue_liststore.get_object (0);
+            if (audio_object != null) {
+                current_audio = audio_object;
+                playbin.uri = audio_object.file.get_uri ();
 
                 var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
                 play_pause_action.set_enabled (true);
@@ -103,15 +100,15 @@ public class Music.PlaybackManager : Object {
                 string _title;
                 tag_list.get_string (Gst.Tags.TITLE, out _title);
                 if (_title != null) {
-                    title = _title;
+                    current_audio.title = _title;
                 }
 
                 string _artist;
                 tag_list.get_string (Gst.Tags.ARTIST, out _artist);
                 if (_artist != null) {
-                    artist = _artist;
+                    current_audio.artist = _artist;
                 } else if (_title != null) { // Don't set artist for files without tags
-                    artist = _("Unknown");
+                    current_audio.artist = _("Unknown");
                 }
 
                 var sample = get_cover_sample (tag_list);
@@ -119,7 +116,7 @@ public class Music.PlaybackManager : Object {
                     var buffer = sample.get_buffer ();
 
                     if (buffer != null) {
-                        pixbuf = get_pixbuf_from_buffer (buffer);
+                        current_audio.pixbuf = get_pixbuf_from_buffer (buffer);
                     }
                 }
 
@@ -133,14 +130,13 @@ public class Music.PlaybackManager : Object {
 
     private void next () {
         uint position = -1;
-        queue_liststore.find (current_file, out position);
+        queue_liststore.find (current_audio, out position);
 
         if (position != -1 && position != queue_liststore.get_n_items () - 1) {
-            playback_duration = 0;
             playback_position = 0;
 
-            current_file = (File) queue_liststore.get_item (position + 1);
-            playbin.uri = current_file.get_uri ();
+            current_audio = (AudioObject) queue_liststore.get_item (position + 1);
+            playbin.uri = current_audio.file.get_uri ();
 
             query_duration ();
         } else {
@@ -149,15 +145,15 @@ public class Music.PlaybackManager : Object {
     }
 
     private void query_duration () {
-        if (playback_duration == 0) {
+        if (current_audio.duration == 0) {
             // It may take time to calculate the length, so we keep
             // checking until we get something reasonable
             GLib.Timeout.add (250, () => {
                 int64 duration = 0;
                 playbin.query_duration (Gst.Format.TIME, out duration);
-                playback_duration = duration;
+                current_audio.duration = duration;
 
-                if (playback_duration > 0) {
+                if (current_audio.duration > 0) {
                     return Source.REMOVE;
                 }
 
@@ -167,14 +163,10 @@ public class Music.PlaybackManager : Object {
     }
 
     private void reset_metadata () {
-        current_file = null;
+        current_audio = null;
         playbin.set_state (Gst.State.NULL);
         playbin.uri = "";
-        playback_duration = 0;
         playback_position = 0;
-        title = _("Music");
-        artist = _("Not playing");
-        pixbuf = null;
 
         var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
         play_pause_action.set_enabled (false);
