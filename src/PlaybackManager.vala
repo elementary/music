@@ -11,7 +11,7 @@ public class Music.PlaybackManager : Object {
     public string artist { get; private set; }
     public string title { get; private set; }
 
-    private File current_file;
+    private File? current_file = null;
 
     private static PlaybackManager? _instance;
     public static PlaybackManager get_default () {
@@ -73,17 +73,19 @@ public class Music.PlaybackManager : Object {
             }
         }
 
-        var file = (File) queue_liststore.get_object (0);
-        if (file != null) {
-            current_file = file;
-            playbin.uri = file.get_uri ();
-            title = file.get_path ();
+        if (current_file == null) {
+            var file = (File) queue_liststore.get_object (0);
+            if (file != null) {
+                current_file = file;
+                playbin.uri = file.get_uri ();
+                title = file.get_path ();
 
-            var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
-            play_pause_action.set_enabled (true);
-            play_pause_action.set_state (true);
-        } else {
-            reset_metadata ();
+                var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
+                play_pause_action.set_enabled (true);
+                play_pause_action.set_state (true);
+            } else {
+                reset_metadata ();
+            }
         }
     }
 
@@ -165,6 +167,7 @@ public class Music.PlaybackManager : Object {
     }
 
     private void reset_metadata () {
+        current_file = null;
         playbin.set_state (Gst.State.NULL);
         playbin.uri = "";
         playback_duration = 0;
