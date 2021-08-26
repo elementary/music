@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
 "PO-Revision-Date: 2021-08-26 02:06+0000\n"
-"Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
+"Last-Translator: Benjamin Kőhidi <benstone326@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/music/music/hu/"
 ">\n"
 "Language: hu\n"
@@ -1268,9 +1268,8 @@ msgid "Show in File Browser…"
 msgstr "Megjelenítés a fájlkezelőben…"
 
 #: src/Widgets/MediaMenu.vala:50
-#, fuzzy
 msgid "Edit Song Info…"
-msgstr "Száminformációk szerkesztése"
+msgstr "Zeneszám információinak szerkesztése…"
 
 #: src/Widgets/MediaMenu.vala:51
 msgid "Other Actions"
@@ -1286,9 +1285,8 @@ msgid "Add to Playlist"
 msgstr "Hozzáadás a lejátszási listához"
 
 #: src/Widgets/MediaMenu.vala:55
-#, fuzzy
 msgid "Remove Song…"
-msgstr "Szám eltávolítása"
+msgstr "Szám eltávolítása…"
 
 #: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
 msgid "Import to Library"
