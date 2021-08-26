@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
 "PO-Revision-Date: 2021-08-26 00:41+0000\n"
-"Last-Translator: Benjamin Kőhidi <benstone326@gmail.com>\n"
+"Last-Translator: Zsori Aron Abel <zsoriaronabel@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/music/music/hu/"
 ">\n"
 "Language: hu\n"
@@ -869,7 +869,7 @@ msgstr ""
 
 #: src/Views/ViewStack.vala:45
 msgid "No Results"
-msgstr "Nincs eredmény"
+msgstr "Nincs találat"
 
 #: src/Views/ViewStack.vala:45
 msgid "Try another search"
