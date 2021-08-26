@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
 "PO-Revision-Date: 2021-08-26 00:38+0000\n"
-"Last-Translator: Benjamin Kőhidi <benstone326@gmail.com>\n"
+"Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/music/music/hu/"
 ">\n"
 "Language: hu\n"
@@ -523,12 +523,12 @@ msgstr[0] ""
 "Ez eltávolítja a zeneszámot a gyűjteményből és minden olyan eszközről, ami "
 "szinkronizálva van vele."
 msgstr[1] ""
-"Ez eltávolítja a zeneszámokat a gyűjteményből és minden olyan eszközről, ami "
+"Ez eltávolítja a zeneszámokat a médiatárból és minden olyan eszközről, ami "
 "szinkronizálva van vele."
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
-msgstr "Eltávolítás a gyűjteményből"
+msgstr "Eltávolítás a médiatárból"
 
 #: src/Dialogs/SetMusicFolderConfirmation.vala:38
 msgid "Set Music Folder?"
@@ -541,7 +541,7 @@ msgid ""
 "library and remove your playlists."
 msgstr ""
 "Biztos, hogy szeretné a(z) %s mappára állítani a zenemappát? Ez "
-"visszaállítja a gyűjteményét és eltávolítja a lejátszási listáit."
+"visszaállítja a médiatárát és eltávolítja a lejátszási listáit."
 
 #: src/Dialogs/SetMusicFolderConfirmation.vala:47
 msgid "Export Playlists"
@@ -731,7 +731,7 @@ msgid ""
 msgstr ""
 "Ha folytatja a szinkronizálást, akkor az adatok törlődni fognak a(z) %s "
 "eszközről, mivel nincsenek a szinkronizálási listán. Szeretné előbb "
-"beolvasni őket a gyűjteménybe?"
+"importálni őket a médiatárba?"
 
 #: src/Dialogs/SyncWarningDialog.vala:57
 msgid "Continue Syncing"
@@ -748,15 +748,15 @@ msgstr "Zene importálása innen: %s…"
 
 #: src/LocalBackend/LocalLibrary.vala:215
 msgid "Adding files to library…"
-msgstr "Fájlok hozzáadása a gyűjteményhez…"
+msgstr "Fájlok hozzáadása a médiatárhoz…"
 
 #: src/LocalBackend/LocalLibrary.vala:228
 msgid "<b>Importing</b> music to library…"
-msgstr "Zene <b>importálása</b> a gyűjteménybe…"
+msgstr "Zene <b>importálása</b> a médiatárba…"
 
 #: src/LocalBackend/LocalLibrary.vala:250
 msgid "All music files are already in your library"
-msgstr "Az összes zenefájl már a gyűjteményben van"
+msgstr "Az összes zenefájl már a médiatárban van"
 
 #: src/LocalBackend/LocalLibrary.vala:250
 msgid "No files were imported."
@@ -1153,11 +1153,11 @@ msgstr "Dalok beszerzése"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:57
 msgid "Add music to your library."
-msgstr "Zene hozzáadása gyűjteményhez."
+msgstr "Zene hozzáadása médiatárhoz."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import music from a source into your library."
-msgstr "Zene importálása a gyűjteménybe külső forrásból."
+msgstr "Zene importálása a médiatárba külső forrásból."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:62
 msgid "Change Music Folder"
@@ -1176,7 +1176,7 @@ msgstr "Importálja zenéit"
 #: src/Views/Wrappers/MusicViewWrapper.vala:131
 #, c-format
 msgid "Import all your Music from %s into your library."
-msgstr "Importálja összes zenéjét a(z) %s eszközről a gyűjteményébe."
+msgstr "Importálja összes zenéjét a(z) %s eszközről a médiatárba."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:143
 msgid "Select Music Folder"
@@ -1298,7 +1298,7 @@ msgstr "Szám eltávolítása"
 
 #: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
 msgid "Import to Library"
-msgstr "Importálás a gyűjteménybe"
+msgstr "Importálás a médiatárba"
 
 #: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
 msgid "Remove from Library…"
