@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-08-23 13:13+0000\n"
-"Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
+"PO-Revision-Date: 2021-08-26 00:32+0000\n"
+"Last-Translator: Benjamin Kőhidi <benstone326@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/music/music/hu/"
 ">\n"
 "Language: hu\n"
@@ -509,9 +509,9 @@ msgstr[0] "Eltávolítja %d zeneszámokat innen: %s?"
 msgstr[1] "Eltávolítja %d zeneszámokat innen: %s?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:55
-#, fuzzy, c-format
+#, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr "Eltávolítás a gyűjteményből"
+msgstr "Eltávolítod a \"%s\" a gyűjteményből?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
 #, fuzzy
