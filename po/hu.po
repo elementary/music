@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
 "PO-Revision-Date: 2021-08-26 00:34+0000\n"
-"Last-Translator: Zsori Aron Abel <zsoriaronabel@gmail.com>\n"
+"Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/music/music/hu/"
 ">\n"
 "Language: hu\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: core/LibrariesManager.vala:146
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "<b>$ARTIST</b> - <b>$NAME</b> importálása a gyűjteménybe…"
+msgstr "<b>$ARTIST</b> - <b>$NAME</b> importálása a médiatárba…"
 
 #. / Used for unknown titles, artists, or album names.
 #: core/Media.vala:33
@@ -510,7 +510,7 @@ msgstr[1] "Eltávolítja %d zeneszámokat innen: %s?"
 #: src/Dialogs/RemoveFilesDialog.vala:55
 #, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr "\"%s\" Törlés a könyvtárból?"
+msgstr "\"%s\" eltávolítása a médiatárból?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
 #, fuzzy
