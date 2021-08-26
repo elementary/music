@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-08-26 02:06+0000\n"
-"Last-Translator: Benjamin Kőhidi <benstone326@gmail.com>\n"
+"PO-Revision-Date: 2021-08-26 12:47+0000\n"
+"Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/music/music/hu/"
 ">\n"
 "Language: hu\n"
@@ -74,7 +74,7 @@ msgstr "Teljes mély és magas"
 
 #: core/GStreamer/Equalizer.vala:77
 msgid "Headphones"
-msgstr "Fülhallgató"
+msgstr "Fejhallgató"
 
 #: core/GStreamer/Equalizer.vala:78
 msgid "Large Hall"
@@ -110,7 +110,7 @@ msgstr "Ska"
 
 #: core/GStreamer/Equalizer.vala:86
 msgid "Soft Rock"
-msgstr "Könnyű Rock"
+msgstr "Könnyű rock"
 
 #: core/GStreamer/Equalizer.vala:87
 msgid "Techno"
@@ -163,7 +163,7 @@ msgstr "Mentés"
 #: src/Dialogs/SyncWarningDialog.vala:60
 #: src/Views/Wrappers/MusicViewWrapper.vala:147 src/Widgets/TopDisplay.vala:63
 msgid "Cancel"
-msgstr "Mégsem"
+msgstr "Mégse"
 
 #: core/Utils/PlaylistsUtils.vala:329
 msgid "Playlist"
@@ -225,7 +225,9 @@ msgstr "Szinkronizálás ezzel: <b>%s</b>…"
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:283
 #: plugins/Devices/iPod/iPodLibrary.vala:561
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr "<b>$ARTIST</b> - <b>$NAME</b> eltávolítása $DEVICE eszközről"
+msgstr ""
+"<b>$ARTIST</b> előadó <b>$NAME</b> című számának eltávolítása $DEVICE "
+"eszközről"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:315
 #: plugins/Devices/iPod/iPodLibrary.vala:366
@@ -455,7 +457,7 @@ msgstr "Fájl helye"
 
 #: src/Dialogs/NotImportedDialog.vala:96
 msgid "Select individual files to move to trash:"
-msgstr "Egyedifájlok kiválasztása a kukába helyezéshez:"
+msgstr "Fájlok kiválasztása a kukába helyezéshez:"
 
 #: src/Dialogs/NotImportedDialog.vala:100 src/Dialogs/RemoveFilesDialog.vala:73
 msgid "Move to Trash"
@@ -463,11 +465,11 @@ msgstr "Áthelyezés a kukába"
 
 #: src/Dialogs/NotImportedDialog.vala:103
 msgid "Ignore"
-msgstr "Mellőz"
+msgstr "Mellőzés"
 
 #: src/Dialogs/PreferencesWindow.vala:38
 msgid "Select Music Folder…"
-msgstr "Zene mappa kiválasztása…"
+msgstr "Zenemappa kiválasztása…"
 
 #: src/Dialogs/PreferencesWindow.vala:70
 msgid "Music Folder Location"
@@ -517,7 +519,7 @@ msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
 msgstr[0] ""
-"Ez eltávolítja a zeneszámot a gyűjteményből és minden olyan eszközről, ami "
+"Ez eltávolítja a zeneszámokat a médiatárból és minden olyan eszközről, ami "
 "szinkronizálva van vele."
 msgstr[1] ""
 "Ez eltávolítja a zeneszámokat a médiatárból és minden olyan eszközről, ami "
@@ -554,11 +556,11 @@ msgstr "Lejátszási lista címe"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:58
 msgid "any"
-msgstr "bármely"
+msgstr "bármellyel"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:59
 msgid "all"
-msgstr "mind"
+msgstr "minddel"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:63
 msgid "Match"
@@ -566,7 +568,7 @@ msgstr "Egyezés"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:65
 msgid "of the following:"
-msgstr "a következőkkel:"
+msgstr "a következőkből:"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:74
 msgid "Add"
@@ -574,11 +576,11 @@ msgstr "Hozzáadás"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:79
 msgid "Limit to"
-msgstr "Határ"
+msgstr "Korlátozás"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:87
 msgid "items"
-msgstr "elem"
+msgstr "elemre"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:103
 msgid "Name of Playlist"
@@ -686,11 +688,11 @@ msgstr "pontosan"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:376
 msgid "is at most"
-msgstr "több"
+msgstr "legfeljebb"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:377
 msgid "is at least"
-msgstr "kevesebb"
+msgstr "legalább"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:391
 msgid "is within"
@@ -771,8 +773,8 @@ msgstr "Hozzáadva a lejátszási sorához:"
 #, c-format
 msgid "%d Track"
 msgid_plural "%d Tracks"
-msgstr[0] "%d Szám"
-msgstr[1] "%d Szám"
+msgstr[0] "%d szám"
+msgstr[1] "%d szám"
 
 #: src/LocalBackend/LocalSmartPlaylist.vala:218
 msgid "Favorite Songs"
@@ -1010,8 +1012,8 @@ msgstr "Értékeletlen"
 #, c-format
 msgid "%u Star"
 msgid_plural "%u Stars"
-msgstr[0] "%u Csillag"
-msgstr[1] "%u Csillag"
+msgstr[0] "%u csillag"
+msgstr[1] "%u csillag"
 
 #: src/Views/ListView/Lists/CellDataFunctionHelper.vala:128
 #, c-format
@@ -1230,7 +1232,7 @@ msgstr "_Megnyitás"
 
 #: src/Widgets/AlbumListGrid.vala:201
 msgid "_Cancel"
-msgstr "_Mégsem"
+msgstr "_Mégse"
 
 #: src/Widgets/EqualizerPopover.vala:162
 msgid "Save preset"
@@ -1385,7 +1387,7 @@ msgstr "Lejátszási lista hozzáadása…"
 #: src/Widgets/StatusBar.vala:74
 #, c-format
 msgid "Equalizer: %s"
-msgstr "Kiegyenlítő: %s"
+msgstr "Hangszínszabályzó: %s"
 
 #. MUST follow the exact same order of Music.Player.Repeat
 #: src/Widgets/TopDisplay.vala:138
