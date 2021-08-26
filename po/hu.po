@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
 "PO-Revision-Date: 2021-08-26 00:35+0000\n"
-"Last-Translator: Benjamin Kőhidi <benstone326@gmail.com>\n"
+"Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/music/music/hu/"
 ">\n"
 "Language: hu\n"
@@ -249,7 +249,7 @@ msgstr "Importálás kész"
 
 #: src/FileOperator.vala:306
 msgid "Your Library Has Been Imported."
-msgstr "A gyűjteménye importálásra került."
+msgstr "A médiatára importálásra került."
 
 #. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:316
@@ -263,7 +263,7 @@ msgstr "Zene"
 
 #: src/LibraryWindow.vala:216
 msgid "Import to Library…"
-msgstr "Importálás a gyűjteménybe…"
+msgstr "Importálás a médiatárba…"
 
 #: src/LibraryWindow.vala:219 src/Dialogs/PreferencesWindow.vala:32
 msgid "Preferences"
@@ -344,7 +344,7 @@ msgstr "%i hangfájl nem található."
 
 #: src/Dialogs/FileNotFoundDialog.vala:53
 msgid "Rescan Library"
-msgstr "Gyűjtemény átvizsgálása"
+msgstr "Médiatár átvizsgálása"
 
 #: src/Dialogs/FileNotFoundDialog.vala:54
 msgid "Remove Song"
@@ -478,7 +478,7 @@ msgstr "Zenemappa helye"
 
 #: src/Dialogs/PreferencesWindow.vala:72
 msgid "Library Management"
-msgstr "Gyűjtemény kezelés"
+msgstr "Médiatárkezelés"
 
 #: src/Dialogs/PreferencesWindow.vala:73
 msgid "Keep Music folder organized:"
@@ -490,7 +490,7 @@ msgstr "Metaadatok fájlba írása:"
 
 #: src/Dialogs/PreferencesWindow.vala:77
 msgid "Copy imported files to Library:"
-msgstr "Importált fájlok másolása a gyűjteménybe:"
+msgstr "Importált fájlok másolása a médiatárba:"
 
 #: src/Dialogs/PreferencesWindow.vala:79
 msgid "Desktop Integration"
