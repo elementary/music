@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
 "PO-Revision-Date: 2021-08-26 00:40+0000\n"
-"Last-Translator: Zsori Aron Abel <zsoriaronabel@gmail.com>\n"
+"Last-Translator: Benjamin Kőhidi <benstone326@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/music/music/hu/"
 ">\n"
 "Language: hu\n"
@@ -436,13 +436,12 @@ msgid "Issues while importing from %s"
 msgstr "Hiba történt a %s importálása közben."
 
 #: src/Dialogs/NotImportedDialog.vala:56
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] ""
-"A(z) %s nem tudott importálni %d elemet. Lehetséges, hogy a fájlok sérültek."
+msgstr[0] "Nem sikerült importálni a(z) %d elemet. Lehet, hogy a fájl sérült."
 msgstr[1] ""
-"A(z) %s nem tudott importálni %d elemet. Lehetséges, hogy a fájlok sérültek."
+"Nem sikerült importálni a(z) %d elemeket. Lehet, hogy a fájlok sérültek."
 
 #: src/Dialogs/NotImportedDialog.vala:64
 msgid "Move all corrupted files to trash"
