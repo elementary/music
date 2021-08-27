@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-08-21 13:26+0000\n"
+"PO-Revision-Date: 2021-08-27 23:33+0000\n"
 "Last-Translator: DartDeaDia <dartdeadia@protonmail.com>\n"
 "Language-Team: Russian <https://l10n.elementary.io/projects/music/music/ru/>"
 "\n"
@@ -1154,7 +1154,7 @@ msgstr "Простой список"
 #. Welcome screen
 #: src/Views/Wrappers/MusicViewWrapper.vala:56
 msgid "Get Some Tunes"
-msgstr "Настройтесь на мелодию"
+msgstr "Добавьте несколько мелодий"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:57
 msgid "Add music to your library."
