@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-08-26 12:47+0000\n"
-"Last-Translator: zoli111 <acszoltan111@gmail.com>\n"
+"PO-Revision-Date: 2021-09-03 00:01+0000\n"
+"Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/music/extra/hu/"
 ">\n"
 "Language: hu\n"
@@ -30,17 +30,12 @@ msgid "The official elementary music player"
 msgstr "A hivatalos elementary zenelejátszó"
 
 #: data/io.elementary.music.appdata.xml.in:12
-#, fuzzy
-#| msgid ""
-#| "Music is a fast and beautiful audio player with a focus on music and "
-#| "libraries. It handles external devices, CDs, and album art."
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices and album art."
 msgstr ""
-"A Zene egy gyors és gyönyörű audió lejátszó, amely elsősorban a zenére és a "
-"gyűjteményekre összpontosít. Kezel külső eszközöket, CD-ket és "
-"albumgrafikákat is."
+"A Zene egy gyors és gyönyörű hanglejátszó, amely elsősorban a zenére és a "
+"gyűjteményekre összpontosít. Kezel külső eszközöket és albumgrafikákat is."
 
 #: data/io.elementary.music.appdata.xml.in:17
 msgid "Drop support for Last.FM"
@@ -243,12 +238,10 @@ msgid "io.elementary.music"
 msgstr ""
 
 #: data/io.elementary.music.desktop.in:13
-#, fuzzy
-#| msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;Phone;Songs;"
 msgstr ""
-"Noise;Audió;Lejátszó;MP3;iPod;Lejátszás;Lejátszási lista;Média;CD;Telefon;"
-"Számok;"
+"Noise;Audió;Lejátszó;MP3;iPod;Lejátszás;Lejátszási "
+"lista;Média;Telefon;Számok;"
 
 #~ msgid "multimedia-audio-player"
 #~ msgstr "multimedia-audio-player"
