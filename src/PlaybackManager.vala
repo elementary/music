@@ -83,6 +83,21 @@ public class Music.PlaybackManager : Object {
             } else {
                 reset_metadata ();
             }
+        } else {
+            // Don't notify on app startup or if the app is focused
+            var application = GLib.Application.get_default ();
+            if (!((Gtk.Application) application).get_active_window ().has_toplevel_focus) {
+                var notification = new Notification (
+                    ngettext (
+                        "%d track was added to the queue",
+                        "%d tracks were added to the queue",
+                        files.length
+                    ).printf (files.length)
+                );
+                notification.set_icon (new ThemedIcon ("playlist-queue"));
+
+                application.send_notification ("queue-files", notification);
+            }
         }
     }
 
