@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-04-29 20:55+0000\n"
-"Last-Translator: colindemian <colindemian@outlook.com>\n"
+"PO-Revision-Date: 2021-09-07 07:59+0000\n"
+"Last-Translator: XXTXTOP <xxtxtop@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
 "music/extra/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -74,15 +74,15 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:32
 msgid "Fix removing items from the queue"
-msgstr ""
+msgstr "修复从队列中删除项目的问题"
 
 #: data/io.elementary.music.appdata.xml.in:33
 msgid "Fix equalizer sliders not properly disabled sometimes"
-msgstr ""
+msgstr "修正均衡器滑块有时不能正常禁用的问题"
 
 #: data/io.elementary.music.appdata.xml.in:35
 msgid "Performance improvements"
-msgstr ""
+msgstr "性能提升"
 
 #: data/io.elementary.music.appdata.xml.in:40
 msgid "Removed old gsignond vapi"
