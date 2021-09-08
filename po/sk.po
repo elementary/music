@@ -9,21 +9,20 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2019-02-12 00:06+0000\n"
-"Last-Translator: Rico Tzschichholz <ricotz@ubuntu.com>\n"
-"Language-Team: Slovak <https://weblate.elementary.io/projects/music/music/sk/"
-">\n"
+"PO-Revision-Date: 2021-09-08 18:23+0000\n"
+"Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
+"Language-Team: Slovak <https://l10n.elementary.io/projects/music/music/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 
 #: core/LibrariesManager.vala:146
 msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "Importujem <b>$NAME</b> podľa <b>$ARTIST</b> do knižnice…"
+msgstr "Importovanie <b>$NAME</b> od <b>$ARTIST</b> do knižnice…"
 
 #. / Used for unknown titles, artists, or album names.
 #: core/Media.vala:33
@@ -33,21 +32,21 @@ msgstr "Neznámy"
 #. / Please keep $NAME and $ALBUM, they will be replaced by their values
 #: core/Media.vala:180
 msgid "$NAME on $ALBUM"
-msgstr "$NAME v $ALBUM"
+msgstr "$NAME z albumu $ALBUM"
 
 #. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: core/Media.vala:183
 msgid "$NAME by $ARTIST"
-msgstr "$NAME podľa $ARTIST"
+msgstr "$NAME od $ARTIST"
 
 #. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
 #: core/Media.vala:189
 msgid "$NAME by $ARTIST on $ALBUM"
-msgstr "$NAME podľa $ARTIST v $ALBUM"
+msgstr "$NAME od $ARTIST z $ALBUM"
 
 #: core/GStreamer/Equalizer.vala:70
 msgid "Flat"
-msgstr "Ploché"
+msgstr "Plochý"
 
 #: core/GStreamer/Equalizer.vala:71
 msgid "Classical"
@@ -55,7 +54,7 @@ msgstr "Klasická hudba"
 
 #: core/GStreamer/Equalizer.vala:72
 msgid "Club"
-msgstr "Klubová"
+msgstr "Klubová hudba"
 
 #: core/GStreamer/Equalizer.vala:73
 msgid "Dance"
@@ -91,11 +90,11 @@ msgstr "Oslava"
 
 #: core/GStreamer/Equalizer.vala:81
 msgid "Pop"
-msgstr "Populárna"
+msgstr "Pop"
 
 #: core/GStreamer/Equalizer.vala:82
 msgid "Reggae"
-msgstr "Regge"
+msgstr "Reggae"
 
 #: core/GStreamer/Equalizer.vala:83
 msgid "Rock"
@@ -103,7 +102,7 @@ msgstr "Rock"
 
 #: core/GStreamer/Equalizer.vala:84
 msgid "Soft"
-msgstr "Jemná"
+msgstr "Jemná hudba"
 
 #: core/GStreamer/Equalizer.vala:85
 msgid "Ska"
@@ -139,11 +138,11 @@ msgstr "%s (%i)"
 
 #: core/Utils/PlaylistsUtils.vala:265 core/Utils/PlaylistsUtils.vala:334
 msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr "Verzia MPEG 3.0 Extended (*.m3u)"
+msgstr "MPEG verzie 3.0 Extended (*.m3u)"
 
 #: core/Utils/PlaylistsUtils.vala:269 core/Utils/PlaylistsUtils.vala:338
 msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr "Verzia Shoutcast zoznamu 2.0 (*.pls)"
+msgstr "Zoznam skladieb Shoutcast verzie 2.0 (*.pls)"
 
 #: core/Utils/PlaylistsUtils.vala:272
 msgid "Export Playlist"
@@ -173,7 +172,7 @@ msgstr "Zoznam skladieb"
 #: core/Utils/PlaylistsUtils.vala:341
 #, c-format
 msgid "Import %s"
-msgstr "Import %s"
+msgstr "Importovať %s"
 
 #: core/Utils/PlaylistsUtils.vala:344 src/LibraryWindow.vala:1029
 #: src/Dialogs/FileNotFoundDialog.vala:102
@@ -185,11 +184,12 @@ msgstr "Otvoriť"
 
 #: core/Utils/PlaylistsUtils.vala:371
 msgid "Unrecognized playlist file. Import failed."
-msgstr "Nerozpoznaný súbor so zoznamom. Importovanie zlyhalo."
+msgstr "Nerozpoznateľný zoznam skladieb. Importovanie zlyhalo."
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
 #: core/Utils/TimeUtils.vala:40
+#, fuzzy
 msgid "%m/%e/%Y %l:%M %p"
 msgstr "%e.%m.%Y %H:%M"
 
@@ -205,16 +205,16 @@ msgstr "Toto zariadenie neobsahuje žiadnu hudbu."
 
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:158
 msgid "Android Phone"
-msgstr "Android telefon"
+msgstr "Telefón s Androidom"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:160
 msgid "Audio Player"
-msgstr "Zvukový prehrávač"
+msgstr "Hudobný prehrávač"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:146
 #: plugins/Devices/iPod/iPodLibrary.vala:167
 msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr "Pridávanie <b>$MENO</b> od <b>$UMELEC</b> do $ZARIADENIA"
+msgstr "Pridávanie <b>$NAME</b> od <b>$ARTIST</b> do $DEVICE"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:171
 #: plugins/Devices/iPod/iPodLibrary.vala:216
@@ -225,7 +225,7 @@ msgstr "Synchronizácia <b>%s</b>..."
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:283
 #: plugins/Devices/iPod/iPodLibrary.vala:561
 msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr "Odstraňovanie <b>$MENO</b> od <b>$UMELEC</b> z $ZARIADENIE"
+msgstr "Odstraňovanie <b>$NAME</b> od <b>$ARTIST</b> z $DEVICE"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:315
 #: plugins/Devices/iPod/iPodLibrary.vala:366
@@ -249,12 +249,12 @@ msgstr "Importovanie dokončené"
 
 #: src/FileOperator.vala:306
 msgid "Your Library Has Been Imported."
-msgstr ""
+msgstr "Vaša knižnica bola importovaná."
 
 #. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:316
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr "<b>Copying</b> súbory do <b>Music Folder</b>…"
+msgstr "<b>Kopírovanie</b> súborov do <b>priečinku s hudbou</b>…"
 
 #: src/LibraryWindow.vala:197 src/LibraryWindow.vala:275
 #: src/LibraryWindow.vala:631 src/LibraryWindow.vala:751
@@ -271,7 +271,7 @@ msgstr "Nastavenia"
 
 #: src/LibraryWindow.vala:238
 msgid "Previous"
-msgstr "Predchadzajúci"
+msgstr "Predchadzajúca"
 
 #: src/LibraryWindow.vala:245 src/LibraryWindow.vala:311
 msgid "Play"
@@ -279,11 +279,11 @@ msgstr "Prehrať"
 
 #: src/LibraryWindow.vala:252
 msgid "Next"
-msgstr "Nasledujúci"
+msgstr "Nasledujúca"
 
 #: src/LibraryWindow.vala:256
 msgid "Search Music"
-msgstr "Vyhľadať hudbu"
+msgstr "Hľadať hudbu"
 
 #: src/LibraryWindow.vala:317
 msgid "Pause"
@@ -291,7 +291,7 @@ msgstr "Pozastaviť"
 
 #: src/LibraryWindow.vala:820
 msgid "No songs in Queue"
-msgstr "Žiadna skladba v poradí"
+msgstr "Žiadna skladba vo fronte"
 
 #: src/LibraryWindow.vala:820
 msgid ""
@@ -299,13 +299,13 @@ msgid ""
 "choose <b>Queue</b>. When a song finishes, the queued songs will be played "
 "first before the next song in the currently playing list."
 msgstr ""
-"Pre pridanie skladby do poradia použite <b>pravé tlačidlo myši</b> na "
-"položke a vyberte  <b>Poradie</b>. Po skončení skladby, sa spustí "
-"prehrávanie tejto skladby namiesto skladby v zozname."
+"Pre pridanie skladby do fronty kliknite <b>sekundárnym tlačidlom myši</b> na "
+"položku a vyberte <b>Fronta</b>. Po skončení skladby sa spustí prehrávanie "
+"skladieb vo fronte namiesto ďalšej skladby v práve prehrávanom zozname."
 
 #: src/LibraryWindow.vala:823
 msgid "No songs in History"
-msgstr "Žiadna skladba v histórii"
+msgstr "Žiadne skladby v histórii"
 
 #: src/LibraryWindow.vala:823
 msgid ""
@@ -313,9 +313,9 @@ msgid ""
 "You can use this list to see all the songs you have played during the "
 "current session."
 msgstr ""
-"Po odohraní časti skladby, bude pridaná do histórie.\n"
-"Tento zoznam Vám umožní zobraziť všetky skladby hrané počas aktuálneho "
-"sedenia."
+"Skladba bude po prehratí pridaná do zoznamu histórie.\n"
+"Tento zoznam môžete použiť na zobrazenie všetkých skladieb, ktoré ste si "
+"prehrali počas tejto relácie."
 
 #: src/LibraryWindow.vala:1026 src/Views/Wrappers/MusicViewWrapper.vala:59
 msgid "Import Music"
@@ -324,7 +324,7 @@ msgstr "Importovať hudbu"
 #: src/PlaybackManager.vala:117
 msgctxt "Name of the playlist"
 msgid "Queue"
-msgstr "Poradie"
+msgstr "Fronta"
 
 #: src/Dialogs/FileNotFoundDialog.vala:37
 msgid "File not found"
@@ -333,17 +333,16 @@ msgstr "Súbor nebol nájdený"
 #: src/Dialogs/FileNotFoundDialog.vala:47
 #, c-format
 msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
-msgstr "Hudobný súbor pre <b>%s</b> od <b>%s</b> nebol nájdený."
+msgstr "Hudobný súbor <b>%s</b> od <b>%s</b> nebol nájdený."
 
 #: src/Dialogs/FileNotFoundDialog.vala:50
-#, fuzzy, c-format
-#| msgid "%i music files could not be found?"
+#, c-format
 msgid "%i music files could not be found."
-msgstr "%i hudobný súbor nebol nájdený?"
+msgstr "%i hudobné súbory sa nepodarilo nájsť."
 
 #: src/Dialogs/FileNotFoundDialog.vala:53
 msgid "Rescan Library"
-msgstr "Skontrolovať knižnicu"
+msgstr "Aktualizovať knižnicu"
 
 #: src/Dialogs/FileNotFoundDialog.vala:54
 msgid "Remove Song"
@@ -351,7 +350,7 @@ msgstr "Odstrániť skladbu"
 
 #: src/Dialogs/FileNotFoundDialog.vala:56
 msgid "Find Song"
-msgstr "Nájsť hudbu"
+msgstr "Nájsť skladbu"
 
 #: src/Dialogs/FileNotFoundDialog.vala:99
 #: src/Dialogs/SetMusicFolderConfirmation.vala:81
@@ -359,20 +358,19 @@ msgid "Choose Music Folder"
 msgstr "Vybrať priečinok s hudbou"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:41
-#, fuzzy, c-format
+#, c-format
 msgid "Would you like to install the %s plugin?"
-msgstr "Chcete nainštalovať zásuvný modul %s ?\n"
+msgstr "Chceli by ste nainštalovať zásuvný modul %s?"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:42
-#, fuzzy, c-format
+#, c-format
 msgid "This song cannot be played. The %s plugin is required to play the song."
 msgstr ""
-"\n"
-"Táto hudba nemôže byť prehratá. Plugin %s je potrebný na prehratie pesničky."
+"Táto skladba sa nedá prehrať. Pre prehranie je potrebný zásuvný modul %s."
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:51
 msgid "Install Plugin"
-msgstr "Nainštalovať plugin"
+msgstr "Nainštalovať zásuvný modul"
 
 #: src/Dialogs/MediaEditor.vala:96
 msgid "Title:"
@@ -380,7 +378,7 @@ msgstr "Názov:"
 
 #: src/Dialogs/MediaEditor.vala:98
 msgid "Artist:"
-msgstr "Interprét:"
+msgstr "Interpret:"
 
 #: src/Dialogs/MediaEditor.vala:100
 msgid "Album:"
@@ -388,7 +386,7 @@ msgstr "Album:"
 
 #: src/Dialogs/MediaEditor.vala:102
 msgid "Album Artist:"
-msgstr "Interprét albumu:"
+msgstr "Interpret albumu:"
 
 #: src/Dialogs/MediaEditor.vala:104
 msgid "Composer:"
@@ -408,12 +406,11 @@ msgstr "Rok:"
 
 #: src/Dialogs/MediaEditor.vala:112
 msgid "Track:"
-msgstr "Skladba:"
+msgstr "Stopa:"
 
 #: src/Dialogs/MediaEditor.vala:114
-#, fuzzy
 msgid "Disc:"
-msgstr "Disk"
+msgstr "Disk:"
 
 #: src/Dialogs/MediaEditor.vala:116
 msgid "Rating:"
@@ -427,31 +424,28 @@ msgstr "Komentár:"
 #: src/Dialogs/MediaEditor.vala:131 src/Dialogs/PreferencesWindow.vala:88
 #: src/Views/DeviceView.vala:45
 msgid "Close"
-msgstr "Zavrieť"
+msgstr "Zatvoriť"
 
 #: src/Dialogs/NotImportedDialog.vala:50
-#, fuzzy, c-format
+#, c-format
 msgid "Issues while importing from %s"
-msgstr "Importovať hudbu z %s..."
+msgstr "Problémy s importovaním hudby z %s"
 
 #: src/Dialogs/NotImportedDialog.vala:56
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] ""
-"%s sa nepodarilo importovať %d položiek. Tieto súbory môžu byť poškodené."
-msgstr[1] ""
-"%s sa nepodarilo importovať %d položiek. Tieto súbory môžu byť poškodené."
-msgstr[2] ""
-"%s sa nepodarilo importovať %d položiek. Tieto súbory môžu byť poškodené."
+msgstr[0] "Nepodarilo sa imporovať %d položiek. Súbory môžu byť poškodené."
+msgstr[1] "Nepodarilo sa imporovať %d položku. Súbor môže byť poškodený."
+msgstr[2] "Nepodarilo sa imporovať %d položky. Súbory môžu byť poškodené."
 
 #: src/Dialogs/NotImportedDialog.vala:64
 msgid "Move all corrupted files to trash"
-msgstr "Presunúť všetky poškodené súbory do koša."
+msgstr "Presunúť všetky poškodené súbory do koša"
 
 #: src/Dialogs/NotImportedDialog.vala:71
 msgid "del"
-msgstr "Vymazať"
+msgstr "vymazať"
 
 #: src/Dialogs/NotImportedDialog.vala:80
 msgid "File Location"
@@ -459,7 +453,7 @@ msgstr "Umiestnenie súboru"
 
 #: src/Dialogs/NotImportedDialog.vala:96
 msgid "Select individual files to move to trash:"
-msgstr "Vybrať jednotlivé súbory na presun do koša"
+msgstr "Vybrať jednotlivé súbory na presun do koša:"
 
 #: src/Dialogs/NotImportedDialog.vala:100 src/Dialogs/RemoveFilesDialog.vala:73
 msgid "Move to Trash"
@@ -475,7 +469,7 @@ msgstr "Vybrať priečinok s hudbou..."
 
 #: src/Dialogs/PreferencesWindow.vala:70
 msgid "Music Folder Location"
-msgstr "Lokácia hudobného priečinku"
+msgstr "Umiestnenie priečinku s hudbou"
 
 #: src/Dialogs/PreferencesWindow.vala:72
 msgid "Library Management"
@@ -483,11 +477,11 @@ msgstr "Správa knižníc"
 
 #: src/Dialogs/PreferencesWindow.vala:73
 msgid "Keep Music folder organized:"
-msgstr "Organizácia priečinka s hudbou:"
+msgstr "Udržovať priečinok s hudbou organizovaný:"
 
 #: src/Dialogs/PreferencesWindow.vala:75
 msgid "Write metadata to file:"
-msgstr "Zapísať údaje do súboru:"
+msgstr "Zapisovať metadáta do súborov:"
 
 #: src/Dialogs/PreferencesWindow.vala:77
 msgid "Copy imported files to Library:"
@@ -495,24 +489,24 @@ msgstr "Kopírovať importované súbory do knižnice:"
 
 #: src/Dialogs/PreferencesWindow.vala:79
 msgid "Desktop Integration"
-msgstr "Integrácia s pracovným prostredím"
+msgstr "Začlenenie do desktopového prostredia"
 
 #: src/Dialogs/PreferencesWindow.vala:80
 msgid "Continue playback when closed:"
 msgstr "Pokračovať s prehrávaním po zatvorení:"
 
 #: src/Dialogs/RemoveFilesDialog.vala:49
-#, fuzzy, c-format
+#, c-format
 msgid "Remove %d Song From Library?"
 msgid_plural "Remove %d Songs From Library?"
-msgstr[0] "Vymazať %d piesní z %s?"
-msgstr[1] "Vymazať %d piesní z %s?"
-msgstr[2] "Vymazať %d piesní z %s?"
+msgstr[0] "Odstrániť %d skladieb z knižnice?"
+msgstr[1] "Odstrániť %d skladbu z knižnice?"
+msgstr[2] "Odstrániť %d skladby z knižnice?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:55
-#, fuzzy, c-format
+#, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr "Odstrániť z knižnice"
+msgstr "Odstrániť „%s“ z knižnice?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
 #, fuzzy
