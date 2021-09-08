@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
 "PO-Revision-Date: 2021-09-08 18:23+0000\n"
-"Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
+"Last-Translator: Cleiton Floss <cleitonfloss@tutanota.de>\n"
 "Language-Team: Slovak <https://l10n.elementary.io/projects/music/music/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
@@ -220,7 +220,7 @@ msgstr "Pridávanie <b>$NAME</b> od <b>$ARTIST</b> do $DEVICE"
 #: plugins/Devices/iPod/iPodLibrary.vala:216
 #, c-format
 msgid "Syncing <b>%s</b>…"
-msgstr "Synchronizácia <b>%s</b>..."
+msgstr "Synchronizácia <b>%s</b>…"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:283
 #: plugins/Devices/iPod/iPodLibrary.vala:561
@@ -231,17 +231,17 @@ msgstr "Odstraňovanie <b>$NAME</b> od <b>$ARTIST</b> z $DEVICE"
 #: plugins/Devices/iPod/iPodLibrary.vala:366
 #, c-format
 msgid "Removing from <b>%s</b>…"
-msgstr "Odstraňovanie z <b>%s</b>..."
+msgstr "Odstraňovanie z <b>%s</b>…"
 
 #: plugins/Devices/iPod/iPodLibrary.vala:238
 #: plugins/Devices/iPod/iPodLibrary.vala:404
 msgid "Finishing sync process…"
-msgstr "Dokončovanie synchronizácie..."
+msgstr "Dokončovanie synchronizácie…"
 
 #: plugins/Devices/iPod/iPodLibrary.vala:250
 #: plugins/Devices/iPod/iPodLibrary.vala:416
 msgid "Cancelling Sync…"
-msgstr "Rušenie synchronizácie..."
+msgstr "Rušenie synchronizácie…"
 
 #: src/FileOperator.vala:306
 msgid "Import Complete"
@@ -263,7 +263,7 @@ msgstr "Hudba"
 
 #: src/LibraryWindow.vala:216
 msgid "Import to Library…"
-msgstr "Importovať do knižnice"
+msgstr "Importovať do knižnice…"
 
 #: src/LibraryWindow.vala:219 src/Dialogs/PreferencesWindow.vala:32
 msgid "Preferences"
@@ -465,7 +465,7 @@ msgstr "Ignorovať"
 
 #: src/Dialogs/PreferencesWindow.vala:38
 msgid "Select Music Folder…"
-msgstr "Vybrať priečinok s hudbou..."
+msgstr "Vybrať priečinok s hudbou…"
 
 #: src/Dialogs/PreferencesWindow.vala:70
 msgid "Music Folder Location"
