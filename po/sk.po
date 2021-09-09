@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
 "PO-Revision-Date: 2021-09-09 16:57+0000\n"
-"Last-Translator: Cleiton Floss <cleitonfloss@tutanota.de>\n"
+"Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
 "Language-Team: Slovak <https://l10n.elementary.io/projects/music/music/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
@@ -509,7 +509,6 @@ msgid "Remove \"%s\" From Library?"
 msgstr "Odstrániť „%s“ z knižnice?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
-#, fuzzy
 msgid ""
 "This will remove the song from your library and from any device synced "
 "automatically."
@@ -517,14 +516,14 @@ msgid_plural ""
 "This will remove the songs from your library and from any device synced "
 "automatically."
 msgstr[0] ""
-"Tým sa odstráni skladieb z knižnice a z ľubovoľného zariadenia, ktoré "
-"automaticky synchronizuje s% s."
+"Týmto odstránite skladby z vašej knižnice a zo všetkých automaticky "
+"synchronizovaných zariadení."
 msgstr[1] ""
-"Tým sa odstráni skladba z knižnice a z ľubovoľného zariadenia, ktoré "
-"automaticky synchronizuje s% s."
+"Týmto odstránite skladbu z vašej knižnice a zo všetkých automaticky "
+"synchronizovaných zariadení."
 msgstr[2] ""
-"Tým sa odstránia skladby z knižnice a z ľubovoľného zariadenia, ktoré "
-"automaticky synchronizuje s% s."
+"Týmto odstránite skladby z vašej knižnice a zo všetkých automaticky "
+"synchronizovaných zariadení."
 
 #: src/Dialogs/RemoveFilesDialog.vala:83
 msgid "Remove from Library"
@@ -540,12 +539,12 @@ msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
 msgstr ""
-"Si si istý, že chceš nastaviť priečinok s hudbou na %s? Tvoja knižnica a "
-"playlisty budú zresetované."
+"Naozaj chcete nastaviť %s ako hudobný priečinok? Týmto sa vymaže vaša "
+"knižnica s hudbou a odstránia sa zoznamy skladieb."
 
 #: src/Dialogs/SetMusicFolderConfirmation.vala:47
 msgid "Export Playlists"
-msgstr "Exportovať playlisty"
+msgstr "Exportovať zoznamy skladieb"
 
 #: src/Dialogs/SetMusicFolderConfirmation.vala:61
 msgid "Set Music Folder"
@@ -553,7 +552,7 @@ msgstr "Nastaviť priečinok s hudbou"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:55
 msgid "Playlist Title"
-msgstr "Nadpis playlistu"
+msgstr "Názov zoznamu skladieb"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:58
 msgid "any"
@@ -561,7 +560,7 @@ msgstr "akékoľvek"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:59
 msgid "all"
-msgstr "všetky"
+msgstr "všetko"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:63
 msgid "Match"
@@ -585,7 +584,7 @@ msgstr "položky"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:103
 msgid "Name of Playlist"
-msgstr "Názov playlistu"
+msgstr "Názov zoznamu skladieb"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:105
 msgid "Rules"
@@ -593,11 +592,11 @@ msgstr "Pravidlá"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:108
 msgid "Options"
-msgstr "Nastavenia"
+msgstr "Možnosti"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:113
 msgid "Smart Playlist Editor"
-msgstr "Inteligentný Playlist Editor"
+msgstr "Editor inteligentných zoznamov skladieb"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:256 src/Widgets/SourceListView.vala:67
 #: src/Widgets/SourceListView.vala:80
@@ -610,7 +609,7 @@ msgstr "Album"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:260
 msgid "Artist"
-msgstr "Interprét"
+msgstr "Interpret"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:261
 msgid "Bitrate"
@@ -634,11 +633,11 @@ msgstr "Žáner"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:266
 msgid "Grouping"
-msgstr "Zoskupovanie"
+msgstr "Zoskupenie"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:267
 msgid "Last Played"
-msgstr "Naposledy prehrané"
+msgstr "Naposledy prehrávané"
 
 #. helper for units
 #: src/Dialogs/SmartPlaylistEditor.vala:268
@@ -668,7 +667,7 @@ msgstr "Rok"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:274
 msgid "URI"
-msgstr ""
+msgstr "URI"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:347
 msgid "is"
@@ -701,7 +700,7 @@ msgstr "je v rámci"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:392
 msgid "is before"
-msgstr "je pred"
+msgstr "je menej ako"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:414
 msgid "seconds"
@@ -717,12 +716,12 @@ msgstr "kb/s"
 
 #. be a bit explicit to make translations better
 #: src/Dialogs/SyncWarningDialog.vala:52
-#, fuzzy, c-format
+#, c-format
 msgid "Sync will remove %i item from %s"
 msgid_plural "Sync will remove %i items from %s"
-msgstr[0] "Synchronizácia vymaže %i položiek z %s"
-msgstr[1] "Synchronizácia vymaže %i položiek z %s"
-msgstr[2] "Synchronizácia vymaže %i položiek z %s"
+msgstr[0] "Synchronizácia odstráni %i položiek z %s"
+msgstr[1] "Synchronizácia odstráni %i položku z %s"
+msgstr[2] "Synchronizácia odstráni %i položky z %s"
 
 #: src/Dialogs/SyncWarningDialog.vala:55
 #, c-format
@@ -730,8 +729,9 @@ msgid ""
 "If you continue to sync, media will be removed from %s since they are not on "
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
-"Pokiaľ chceš pokračovať v synchronizácii, média z %s budú zmazané, pretože "
-"nie sú na synchronizačnom zozname. Chceš ich importovať do knižnice ako prvé?"
+"Ak budete pokračovať v synchronizácii, médiá z %s budú vymazané, keďže "
+"chýbajú na zozname synchronizácie. Chceli by ste ich najprv importovať do "
+"vašej knižnice?"
 
 #: src/Dialogs/SyncWarningDialog.vala:57
 msgid "Continue Syncing"
