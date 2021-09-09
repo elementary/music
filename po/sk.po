@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-09-09 17:00+0000\n"
+"PO-Revision-Date: 2021-09-09 17:13+0000\n"
 "Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
 "Language-Team: Slovak <https://l10n.elementary.io/projects/music/music/sk/>\n"
 "Language: sk\n"
@@ -764,43 +764,43 @@ msgstr "Neboli importované žiadne súbory."
 
 #: src/LocalBackend/LocalLibrary.vala:255
 msgid "Rescanning music for changes. This may take a while…"
-msgstr "Opakované skenovanie hudby pre zmeny. To môže chvíľu trvať …"
+msgstr "Vyhľadávajú sa zmeny v hudobných súboroch. Môže to chvíľu trvať…"
 
 #: src/LocalBackend/LocalLibrary.vala:356
 msgid "Added to your queue:"
-msgstr "Pridať do radu:"
+msgstr "Pridané do fronty:"
 
 #: src/LocalBackend/LocalLibrary.vala:367
 #, c-format
 msgid "%d Track"
 msgid_plural "%d Tracks"
-msgstr[0] "%d Stôp"
-msgstr[1] "%d Stopa"
-msgstr[2] "%d Stopy"
+msgstr[0] "%d stôp"
+msgstr[1] "%d stopa"
+msgstr[2] "%d stopy"
 
 #: src/LocalBackend/LocalSmartPlaylist.vala:218
 msgid "Favorite Songs"
-msgstr "Obľúbená pieseň"
+msgstr "Obľúbené skladby"
 
 #: src/LocalBackend/LocalSmartPlaylist.vala:226
 msgid "Recently Added"
-msgstr "Nedávno pridané"
+msgstr "Naposledy pridané"
 
 #: src/LocalBackend/LocalSmartPlaylist.vala:234
 msgid "Recent Favorites"
-msgstr "Naposledy obľúbené"
+msgstr "Nedávne obľúbené"
 
 #: src/LocalBackend/LocalSmartPlaylist.vala:242
 msgid "Never Played"
-msgstr "Nikdy nehrané"
+msgstr "Nikdy neprehrané"
 
 #: src/LocalBackend/LocalSmartPlaylist.vala:250
 msgid "Over Played"
-msgstr "Prehrané"
+msgstr "Často prehrávané"
 
 #: src/LocalBackend/LocalSmartPlaylist.vala:258
 msgid "Not Recently Played"
-msgstr "V poslednej dobe neprehrávané"
+msgstr "V poslednej dobe neprehrané"
 
 #: src/Objects/HistoryPlaylist.vala:38
 msgid "History"
@@ -808,7 +808,7 @@ msgstr "História"
 
 #: src/Objects/MPRIS.vala:617 src/Widgets/SourceListView.vala:341
 msgid "Playlists"
-msgstr "Zoznam skladieb"
+msgstr "Zoznamy skladieb"
 
 #: src/Views/DeviceSummaryWidget.vala:60
 msgid "Device Name:"
@@ -820,7 +820,7 @@ msgstr "Názov zariadenia"
 
 #: src/Views/DeviceSummaryWidget.vala:66
 msgid "Automatically sync when plugged in:"
-msgstr "Automaticky synchronizovať, keď zapojené:"
+msgstr "Automaticky synchronizovať, keď pripojené:"
 
 #: src/Views/DeviceSummaryWidget.vala:72
 msgid "Sync:"
@@ -843,7 +843,8 @@ msgstr "Synchronizácia zlyhala"
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
-"Playlist %s sa používa na synchronizáciu so zariadením %s, ale nebol nájdený."
+"Zoznam skladieb nazvaný %s sa používa na synchronizáciu so zariadením %s, "
+"ale nebol nájdený."
 
 #: src/Views/DeviceSummaryWidget.vala:316
 #: src/Views/DeviceSummaryWidget.vala:321
@@ -854,12 +855,12 @@ msgstr "Nedá sa synchronizovať"
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
-"Nedá sa synchronizovať zariadenie s vybraným nastavením synchronizácie. Na "
-"disku nie je dostatok miesta."
+"Nie je možné synchronizovať zariadenie s vybraným nastavením synchronizácie. "
+"Na disku nie je dostatok miesta"
 
 #: src/Views/DeviceSummaryWidget.vala:322
 msgid "Device is already doing an operation."
-msgstr "Zariadenie už vykonáva operáciu."
+msgstr "Zariadenie už vykonáva činnosť."
 
 #: src/Views/DeviceView.vala:66
 msgid "Cancelling…"
@@ -867,16 +868,15 @@ msgstr "Ruší sa…"
 
 #: src/Views/DeviceView.vala:66
 msgid "Device operation has been cancelled and will stop after this media."
-msgstr "McMurdo, Južný pól, Scott (Novozélandský čas)"
+msgstr "Činnosť v zariadení bola zrušená a bude ukončená po tomto médiu."
 
 #: src/Views/ViewStack.vala:45
-#, fuzzy
 msgid "No Results"
-msgstr "Žiadne hodnotenia"
+msgstr "Žiadne výsledky"
 
 #: src/Views/ViewStack.vala:45
 msgid "Try another search"
-msgstr ""
+msgstr "Skúste pozmeniť hľadaný výraz"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
 msgid "Genres"
@@ -892,11 +892,11 @@ msgstr "Albumy"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:64
 msgid "Years"
-msgstr "Rokov"
+msgstr "Roky"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:66
 msgid "Ratings"
-msgstr "Hodnotenie"
+msgstr "Hodnotenia"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:68
 msgid "Composers"
@@ -904,7 +904,7 @@ msgstr "Skladatelia"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:70
 msgid "Groupings"
-msgstr "Zoskupovanie"
+msgstr "Zoskupenia"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
 msgid "All Genres"
@@ -913,11 +913,11 @@ msgstr "Všetky žánre"
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
 #, c-format
 msgid "All %i Genres"
-msgstr "Všetké %i žánry"
+msgstr "Všetky %i žánre"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
 msgid "No Genres"
-msgstr "Žiadne žánry"
+msgstr "Žiadne žánre"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
 msgid "All Artists"
@@ -926,11 +926,11 @@ msgstr "Všetci interpreti"
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
 #, c-format
 msgid "All %i Artists"
-msgstr "Všetci %i umelci"
+msgstr "Všetci %i interpreti"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
 msgid "No Artists"
-msgstr "Žiadni umelci"
+msgstr "Žiadni interpreti"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
 msgid "All Albums"
@@ -939,7 +939,7 @@ msgstr "Všetky albumy"
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
 #, c-format
 msgid "All %i Albums"
-msgstr "Všetke %i albumy"
+msgstr "Všetky %i albumy"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
 msgid "No Albums"
@@ -947,12 +947,12 @@ msgstr "Žiadne albumy"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
 msgid "All Years"
-msgstr "Všetke roky"
+msgstr "Všetky roky"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
 #, c-format
 msgid "All %i Years"
-msgstr "Všetke %i roky"
+msgstr "Všetky %i roky"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:250
 msgid "No Years"
@@ -960,7 +960,7 @@ msgstr "Žiadne roky"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
 msgid "All Ratings"
-msgstr "Všetke hodnotenia"
+msgstr "Všetky hodnotenia"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
 msgid "No Ratings"
@@ -968,16 +968,16 @@ msgstr "Žiadne hodnotenia"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
 msgid "All Groupings"
-msgstr "Všetke skupiny"
+msgstr "Všetky zoskupenia"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
 #, c-format
 msgid "All %i Groupings"
-msgstr "Všetke %i skupiny"
+msgstr "Všetky %i zoskupenia"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
 msgid "No Groupings"
-msgstr "Žiadne skupiny"
+msgstr "Žiadne zoskupenia"
 
 #: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:271
 msgid "All Composers"
@@ -1000,37 +1000,38 @@ msgstr "Automaticky"
 
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:146
 msgid "On Left"
-msgstr "Na ľavo"
+msgstr "Naľavo"
 
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:147
 msgid "On Top"
-msgstr "Na vrchu"
+msgstr "Navrchu"
 
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:428
 msgid "Unrated"
-msgstr "Neohodnotená"
+msgstr "Nehodnotené"
 
 #: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:430
 #, c-format
 msgid "%u Star"
 msgid_plural "%u Stars"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u hviezdičiek"
+msgstr[1] "%u hviezdička"
+msgstr[2] "%u hviezdičky"
 
 #: src/Views/ListView/Lists/CellDataFunctionHelper.vala:128
 #, c-format
 msgid "%u kbps"
-msgstr ""
+msgstr "%u kb/s"
 
 #: src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
 #: src/Views/ListView/Lists/MusicListView.vala:425
 msgid "Never"
-msgstr "NIkdy"
+msgstr "Nikdy"
 
 #: src/Views/ListView/Lists/ListColumn.vala:69
 msgctxt "List column title"
 msgid "#"
-msgstr "#"
+msgstr "č."
 
 #: src/Views/ListView/Lists/ListColumn.vala:72
 msgctxt "List column title"
