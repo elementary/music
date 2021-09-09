@@ -1041,7 +1041,7 @@ msgstr "Stopa"
 #: src/Views/ListView/Lists/ListColumn.vala:75
 msgctxt "List column title"
 msgid "Title"
-msgstr "Názov skladby"
+msgstr "Názov"
 
 #: src/Views/ListView/Lists/ListColumn.vala:78
 msgctxt "List column title"
