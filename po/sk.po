@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-09-09 17:13+0000\n"
+"PO-Revision-Date: 2021-09-09 17:19+0000\n"
 "Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
 "Language-Team: Slovak <https://l10n.elementary.io/projects/music/music/sk/>\n"
 "Language: sk\n"
@@ -1051,7 +1051,7 @@ msgstr "Dĺžka"
 #: src/Views/ListView/Lists/ListColumn.vala:81
 msgctxt "List column title"
 msgid "Artist"
-msgstr "Interprét"
+msgstr "Interpret"
 
 #: src/Views/ListView/Lists/ListColumn.vala:84
 msgctxt "List column title"
@@ -1081,7 +1081,7 @@ msgstr "Rok"
 #: src/Views/ListView/Lists/ListColumn.vala:99
 msgctxt "List column title"
 msgid "Grouping"
-msgstr "Skupina"
+msgstr "Zoskupenie"
 
 #: src/Views/ListView/Lists/ListColumn.vala:102
 msgctxt "List column title"
@@ -1096,12 +1096,12 @@ msgstr "Hodnotenie"
 #: src/Views/ListView/Lists/ListColumn.vala:108
 msgctxt "List column title"
 msgid "Plays"
-msgstr "Hrá"
+msgstr "Prehrania"
 
 #: src/Views/ListView/Lists/ListColumn.vala:111
 msgctxt "List column title"
 msgid "Skips"
-msgstr "Preskočí"
+msgstr "Preskočenia"
 
 #: src/Views/ListView/Lists/ListColumn.vala:114
 msgctxt "List column title"
@@ -1116,7 +1116,7 @@ msgstr "Naposledy prehrané"
 #: src/Views/ListView/Lists/ListColumn.vala:120
 msgctxt "List column title (beats per minute)"
 msgid "BPM"
-msgstr "Úderov/min"
+msgstr "BPM"
 
 #: src/Views/ListView/Lists/ListColumn.vala:123
 msgctxt "List column title (file location)"
@@ -1130,11 +1130,11 @@ msgstr "Veľkosť súboru"
 
 #: src/Views/ListView/Lists/MusicListView.vala:74
 msgid "Autosize Columns"
-msgstr "Automatická veľkosť stĺpcov"
+msgstr "Automaticky upraviť šírku stĺpcov"
 
 #: src/Views/ListView/Lists/MusicListView.vala:410
 msgid "1234 kbps"
-msgstr "1234 kbps"
+msgstr "1234 kb/s"
 
 #. / Sample string used to measure the ideal size of the Title, Artist,
 #. / Album, Album Artist, Composer, Genre, and Grouping columns in the
@@ -1145,28 +1145,28 @@ msgstr "1234 kbps"
 #. / by the column's title header.
 #: src/Views/ListView/Lists/MusicListView.vala:481
 msgid "Sample List String"
-msgstr "Ukážka zoznamu"
+msgstr "Vzorový textový reťazec"
 
 #. Welcome screen
 #: src/Views/Wrappers/MusicViewWrapper.vala:56
 msgid "Get Some Tunes"
-msgstr "Získať hudbu"
+msgstr "Pridajte nejakú hudbu"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:57
 msgid "Add music to your library."
-msgstr "Pridať hudbu do knižnice."
+msgstr "Pridajte hudbu do knižnice."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import music from a source into your library."
-msgstr "Importovať hudbu zo zdroja do vašej knižnice."
+msgstr "Importujte hudbu zo zdroja do vašej knižnice."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:62
 msgid "Change Music Folder"
-msgstr "Zmeniť priečinok hudby"
+msgstr "Zmeniť priečinok s hudbou"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:63
 msgid "Load music from a folder, a network or an external disk."
-msgstr "Načítať hudbu z priečinka, sieťového alebo externého disku."
+msgstr "Načítať hudbu z priečinka, zo siete alebo externého disku."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:110
 #: src/Views/Wrappers/MusicViewWrapper.vala:130
