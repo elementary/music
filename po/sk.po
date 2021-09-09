@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-09-08 18:23+0000\n"
+"PO-Revision-Date: 2021-09-09 16:57+0000\n"
 "Last-Translator: Cleiton Floss <cleitonfloss@tutanota.de>\n"
 "Language-Team: Slovak <https://l10n.elementary.io/projects/music/music/sk/>\n"
 "Language: sk\n"
@@ -744,7 +744,7 @@ msgstr "Importovať"
 #: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
 msgid "Importing music from %s…"
-msgstr "Importovať hudbu z %s..."
+msgstr "Importovať hudbu z %s…"
 
 #: src/LocalBackend/LocalLibrary.vala:215
 msgid "Adding files to library…"
