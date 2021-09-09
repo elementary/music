@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
 "PO-Revision-Date: 2021-09-09 17:00+0000\n"
-"Last-Translator: Cleiton Floss <cleitonfloss@tutanota.de>\n"
+"Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
 "Language-Team: Slovak <https://l10n.elementary.io/projects/music/music/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
@@ -748,19 +748,19 @@ msgstr "Importovanie hudby z %s…"
 
 #: src/LocalBackend/LocalLibrary.vala:215
 msgid "Adding files to library…"
-msgstr "Pridať súbory do knižnice…"
+msgstr "Pridávanie súborov do knižnice…"
 
 #: src/LocalBackend/LocalLibrary.vala:228
 msgid "<b>Importing</b> music to library…"
-msgstr "<b>Importujem</b> skladby do knižnice…"
+msgstr "<b>Importovanie</b> hudby do knižnice…"
 
 #: src/LocalBackend/LocalLibrary.vala:250
 msgid "All music files are already in your library"
-msgstr "Všetky piesne už sú vo vašej knižnici"
+msgstr "Všetky hudobné súbory sa už nachádzajú vo vašej knižnici"
 
 #: src/LocalBackend/LocalLibrary.vala:250
 msgid "No files were imported."
-msgstr "Žiadne nové súbory neboli importované"
+msgstr "Neboli importované žiadne súbory."
 
 #: src/LocalBackend/LocalLibrary.vala:255
 msgid "Rescanning music for changes. This may take a while…"
