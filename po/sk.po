@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-09-09 17:19+0000\n"
+"PO-Revision-Date: 2021-09-09 17:35+0000\n"
 "Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
 "Language-Team: Slovak <https://l10n.elementary.io/projects/music/music/sk/>\n"
 "Language: sk\n"
@@ -1162,48 +1162,48 @@ msgstr "Importujte hudbu zo zdroja do vašej knižnice."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:62
 msgid "Change Music Folder"
-msgstr "Zmeniť priečinok s hudbou"
+msgstr "Zmeňte priečinok s hudbou"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:63
 msgid "Load music from a folder, a network or an external disk."
-msgstr "Načítať hudbu z priečinka, zo siete alebo externého disku."
+msgstr "Načítajte hudbu z priečinka, zo siete alebo externého disku."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:110
 #: src/Views/Wrappers/MusicViewWrapper.vala:130
 msgid "Import your Music"
-msgstr "Importovať vašu hudbu"
+msgstr "Importujte vašu hudbu"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:111
 #: src/Views/Wrappers/MusicViewWrapper.vala:131
 #, c-format
 msgid "Import all your Music from %s into your library."
-msgstr "Importovať všetku vašu hudbu z %s do vašej knižnice."
+msgstr "Importujte svoje hudobné súbory z %s do vašej knižnice."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:143
 msgid "Select Music Folder"
-msgstr "Vybrať priečinok hudbu"
+msgstr "Nastavte hudobný priečinok"
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:50
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:54
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:64
 msgid "No Songs"
-msgstr "Žiadne piesne"
+msgstr "Žiadne skladby"
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:51
 msgid "Updating playlist. Please wait."
-msgstr "Aktualizácia zoznamu skladieb. Prosím čakajte."
+msgstr "Aktualizuje sa zoznam skladieb. Prosím čakajte."
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:55
 msgid ""
 "To add songs to this playlist, use the <b>secondary click</b> on an item and "
 "choose <b>Add to Playlist</b>."
 msgstr ""
-"Na pridanie piesne použite <b>pravé tláčitko</b> na položku a vyberte "
-"<b>Pridať do zoznamu skladieb</b>."
+"Aby ste mohli pridať súbory do zoznamu skladieb, kliknite <b>sekundárnym "
+"tlačidlom myši</b> a vyberte <b>Pridať do zoznamu skladieb</b>."
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:58
 msgid "Edit Smart Playlist"
-msgstr "Upraviť chytrý zoznam skladieb"
+msgstr "Upraviť inteligentný zoznam skladieb"
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:65
 msgid ""
@@ -1212,10 +1212,10 @@ msgid ""
 "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
 "below."
 msgstr ""
-"Tento zoznam skladieb bude automaticky naplnený s piesňami, ktoré "
-"zodpovedajú pravidlám. Ak chcete zmeniť tieto pravidlá, použite <b>pravé "
-"kliknutie</b> v bočnom paneli a kliknite na <b>Upraviť</b>. Voliteľne môžete "
-"kliknúť na tlačidlo nižšie."
+"Tento zoznam skladieb bude automaticky naplnený skladbami, ktoré zodpovedajú "
+"jeho pravidlám. Pre zmenu pravidiel zoznamu naň kliknite v bočnom paneli "
+"<b>sekundárnym tlačidlom myši</b> a vyberte možnosť <b>Upraviť</b>. Prípadne "
+"môžete kliknúť na tlačidlo nižšie."
 
 #: src/Views/Wrappers/ViewWrapper.vala:418
 msgid "No media"
@@ -1223,7 +1223,7 @@ msgstr "Žiadne médiá"
 
 #: src/Widgets/AlbumListGrid.vala:63
 msgid "Set new album cover"
-msgstr "Nastaviť nový obal albumu"
+msgstr "Nastaviť nový obrázok albumu"
 
 #: src/Widgets/AlbumListGrid.vala:193
 msgid "Image files"
@@ -1243,45 +1243,42 @@ msgstr "Uložiť predvoľbu"
 
 #: src/Widgets/EqualizerPopover.vala:330
 msgid "Off"
-msgstr "Vypnúť"
+msgstr "Vypnuté"
 
 #: src/Widgets/EqualizerPopover.vala:418
 #, c-format
 msgid "%s (Custom)"
-msgstr "%s (Vlastné)"
+msgstr "%s (vlastné)"
 
 #: src/Widgets/EqualizerPopover.vala:420
 #, c-format
 msgid "%s (Custom %i)"
-msgstr "%s (Vlastné %i)"
+msgstr "%s (vlastné %i)"
 
 #: src/Widgets/EqualizerPopover.vala:423
 msgid "Custom Preset"
-msgstr "Vlastné nastavenie"
+msgstr "Vlastná predvoľba"
 
 #: src/Widgets/EqualizerPopover.vala:425
 #, c-format
 msgid "Custom Preset %i"
-msgstr "Vlastné nastavenie %i"
+msgstr "Vlastná predvoľba %i"
 
 #: src/Widgets/MediaMenu.vala:46
 msgid "Scroll to Current Song"
 msgstr "Prejsť na aktuálnu skladbu"
 
 #: src/Widgets/MediaMenu.vala:49
-#, fuzzy
 msgid "Show in File Browser…"
-msgstr "Zobraziť v prehliadači súborov"
+msgstr "Zobraziť v správcovi súborov…"
 
 #: src/Widgets/MediaMenu.vala:50
-#, fuzzy
 msgid "Edit Song Info…"
-msgstr "Upraviť info o skladbe"
+msgstr "Upraviť informácie skladby…"
 
 #: src/Widgets/MediaMenu.vala:51
-#, fuzzy
 msgid "Other Actions"
-msgstr "Ostatné akcie"
+msgstr "Ďalšie akcie"
 
 #: src/Widgets/MediaMenu.vala:53
 msgctxt "Action item (verb)"
@@ -1293,18 +1290,16 @@ msgid "Add to Playlist"
 msgstr "Pridať do zoznamu skladieb"
 
 #: src/Widgets/MediaMenu.vala:55
-#, fuzzy
 msgid "Remove Song…"
-msgstr "Odstrániť skladbu"
+msgstr "Odstrániť skladbu…"
 
 #: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
 msgid "Import to Library"
 msgstr "Importovať do knižnice"
 
 #: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
-#, fuzzy
 msgid "Remove from Library…"
-msgstr "Odstrániť z knižnice"
+msgstr "Odstrániť z knižnice…"
 
 #: src/Widgets/MediaMenu.vala:99
 msgid "Remove from Device"
