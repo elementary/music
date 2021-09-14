@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
 "PO-Revision-Date: 2021-09-14 19:16+0000\n"
-"Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
+"Last-Translator: Cleiton Floss <cleitonfloss@tutanota.de>\n"
 "Language-Team: Slovak <https://l10n.elementary.io/projects/music/music/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
@@ -1311,7 +1311,7 @@ msgstr "Odstrániť z fronty"
 
 #: src/Widgets/MediaMenu.vala:153
 msgid "New Playlist…"
-msgstr "Nový zoznam skladieb..."
+msgstr "Nový zoznam skladieb…"
 
 #: src/Widgets/MediaMenu.vala:193
 #, c-format
@@ -1336,7 +1336,7 @@ msgstr "Premenovať"
 
 #: src/Widgets/SourceListView.vala:79
 msgid "Edit…"
-msgstr "Upraviť..."
+msgstr "Upraviť…"
 
 #: src/Widgets/SourceListView.vala:95
 msgid "Save as Playlist"
@@ -1344,7 +1344,7 @@ msgstr "Uložiť ako zoznam skladieb"
 
 #: src/Widgets/SourceListView.vala:103
 msgid "Export…"
-msgstr "Exportovať..."
+msgstr "Exportovať…"
 
 #: src/Widgets/SourceListView.vala:166
 msgid "Eject"
