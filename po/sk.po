@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-09-09 17:35+0000\n"
+"PO-Revision-Date: 2021-09-14 19:16+0000\n"
 "Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
 "Language-Team: Slovak <https://l10n.elementary.io/projects/music/music/sk/>\n"
 "Language: sk\n"
@@ -1316,19 +1316,19 @@ msgstr "Nový zoznam skladieb..."
 #: src/Widgets/MediaMenu.vala:193
 #, c-format
 msgid "Import %i of %i selected songs"
-msgstr "Importujem %i z %i vybraných skladieb"
+msgstr "Importovať %i z %i vybraných skladieb"
 
 #: src/Widgets/MediaMenu.vala:195
 #, c-format
 msgid "Import %i song"
 msgid_plural "Import %i songs"
-msgstr[0] "Importujem %i skladbu"
-msgstr[1] "Importujem %i skladby"
-msgstr[2] "Importujem %i skladieb"
+msgstr[0] "Importovať %i skladieb"
+msgstr[1] "Importovať %i skladbu"
+msgstr[2] "Importovať %i skladby"
 
 #: src/Widgets/PresetList.vala:53
 msgid "Delete Current"
-msgstr "Odstrániť súčasné"
+msgstr "Odstrániť aktuálne"
 
 #: src/Widgets/SourceListView.vala:66 src/Widgets/SourceListView.vala:78
 msgid "Rename"
@@ -1340,7 +1340,7 @@ msgstr "Upraviť..."
 
 #: src/Widgets/SourceListView.vala:95
 msgid "Save as Playlist"
-msgstr "Uložiť ako playlist"
+msgstr "Uložiť ako zoznam skladieb"
 
 #: src/Widgets/SourceListView.vala:103
 msgid "Export…"
@@ -1356,7 +1356,7 @@ msgstr "Nový zoznam skladieb"
 
 #: src/Widgets/SourceListView.vala:184 src/Widgets/SourceListView.vala:220
 msgid "New Smart Playlist"
-msgstr "Nový chytrý zoznam skladieb"
+msgstr "Nový inteligentný zoznam skladieb"
 
 #: src/Widgets/SourceListView.vala:221
 msgid "Import Playlists"
@@ -1384,10 +1384,8 @@ msgid "Add Smart Playlist"
 msgstr "Pridať inteligentný zoznam skladieb"
 
 #: src/Widgets/StatusBar.vala:48
-#, fuzzy
-#| msgid "Add Playlist"
 msgid "Add Playlist…"
-msgstr "Pridať zoznam skladieb"
+msgstr "Pridať zoznam skladieb…"
 
 #. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
 #: src/Widgets/StatusBar.vala:74
@@ -1398,36 +1396,33 @@ msgstr "Ekvalizér: %s"
 #. MUST follow the exact same order of Music.Player.Repeat
 #: src/Widgets/TopDisplay.vala:138
 msgid "Enable Repeat"
-msgstr "Povoliť opakovanie"
+msgstr "Zapnúť opakovanie"
 
 #: src/Widgets/TopDisplay.vala:139
 msgid "Repeat Song"
-msgstr "Opakovať pieseň"
+msgstr "Opakovať skladbu"
 
 #: src/Widgets/TopDisplay.vala:140
 msgid "Disable Repeat"
-msgstr "Zakázať opakovanie"
+msgstr "Vypnúť opakovanie"
 
 #: src/Widgets/TopDisplay.vala:159
 msgid "Enable Shuffle"
-msgstr "Povoliť náhodne"
+msgstr "Zapnúť náhodný výber"
 
 #: src/Widgets/TopDisplay.vala:160
 msgid "Disable Shuffle"
-msgstr "Zakázať náhodne"
+msgstr "Vypnúť náhodný výber"
 
 #: src/Widgets/ViewSelector.vala:81
-#, fuzzy
 msgid "View as albums"
-msgstr "Zobraziť ako album"
+msgstr "Zobraziť ako albumy"
 
 #: src/Widgets/ViewSelector.vala:87
-#, fuzzy
 msgid "View as list"
 msgstr "Zobraziť ako zoznam"
 
 #: src/Widgets/ViewSelector.vala:93
-#, fuzzy
 msgid "View in columns"
 msgstr "Zobraziť v stĺpcoch"
 
