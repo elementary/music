@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-09-14 19:16+0000\n"
-"Last-Translator: Cleiton Floss <cleitonfloss@tutanota.de>\n"
+"PO-Revision-Date: 2021-09-16 17:17+0000\n"
+"Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
 "Language-Team: Slovak <https://l10n.elementary.io/projects/music/music/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
@@ -191,7 +191,7 @@ msgstr "Nerozpoznateľný zoznam skladieb. Importovanie zlyhalo."
 #: core/Utils/TimeUtils.vala:40
 #, fuzzy
 msgid "%m/%e/%Y %l:%M %p"
-msgstr "%e.%m.%Y %H:%M"
+msgstr "%m/%e/%Y %l:%M %p"
 
 #: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:109
 #: plugins/Devices/iPod/iPodDevice.vala:68
