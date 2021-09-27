@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beat-box 0.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-07-22 10:14+0000\n"
-"Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
+"PO-Revision-Date: 2021-09-27 13:45+0000\n"
+"Last-Translator: Szymon Scholz <szymonscholz@gmail.com>\n"
 "Language-Team: Polish <https://l10n.elementary.io/projects/music/extra/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -62,7 +62,7 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:24
 msgid "Drop support for CD-ROM"
-msgstr ""
+msgstr "Porzuć obsługę CD-ROM"
 
 #: data/io.elementary.music.appdata.xml.in:25
 msgid "Dark style support"
@@ -74,7 +74,7 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:32
 msgid "Fix removing items from the queue"
-msgstr ""
+msgstr "Korekta usuwania elementów z kolejki"
 
 #: data/io.elementary.music.appdata.xml.in:33
 msgid "Fix equalizer sliders not properly disabled sometimes"
@@ -94,7 +94,7 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:42
 msgid "PlaylistsUtils: Use Gtk.FileChooserNative"
-msgstr ""
+msgstr "PlaylistsUtils: Użyto Gtk.FileChooserNative"
 
 #: data/io.elementary.music.appdata.xml.in:43
 msgid "Accurately remember window size"
@@ -102,7 +102,7 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:49
 msgid "Scale album art properly at high resolutions"
-msgstr ""
+msgstr "Poprawne skalowanie okładki albumów w wysokich rozdzielczościach"
 
 #: data/io.elementary.music.appdata.xml.in:50
 msgid ""
@@ -111,7 +111,7 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:51
 msgid "New MediaKeyListener path for gnome-settings-daemon"
-msgstr ""
+msgstr "Nowa ścieżka MediaKeyListener dla gnome-settings-daemon"
 
 #: data/io.elementary.music.appdata.xml.in:57
 msgid "AlbumView: double-click to play album"
