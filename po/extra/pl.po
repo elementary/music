@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
 "PO-Revision-Date: 2021-09-27 13:45+0000\n"
-"Last-Translator: Szymon Scholz <szymonscholz@gmail.com>\n"
+"Last-Translator: Marcin Serwin <marcin.serwin0@protonmail.com>\n"
 "Language-Team: Polish <https://l10n.elementary.io/projects/music/extra/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -82,7 +82,7 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:35
 msgid "Performance improvements"
-msgstr ""
+msgstr "Ulepszenia wydajności"
 
 #: data/io.elementary.music.appdata.xml.in:40
 msgid "Removed old gsignond vapi"
@@ -98,7 +98,7 @@ msgstr "PlaylistsUtils: Użyto Gtk.FileChooserNative"
 
 #: data/io.elementary.music.appdata.xml.in:43
 msgid "Accurately remember window size"
-msgstr ""
+msgstr "Pamiętaj dokładnie wielkość okna"
 
 #: data/io.elementary.music.appdata.xml.in:49
 msgid "Scale album art properly at high resolutions"
