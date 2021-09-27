@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box 0.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-09-27 11:50+0000\n"
+"PO-Revision-Date: 2021-09-27 13:45+0000\n"
 "Last-Translator: DarkKnightComes <darkknightcomes@gmail.com>\n"
 "Language-Team: Polish <https://l10n.elementary.io/projects/music/music/pl/>\n"
 "Language: pl\n"
@@ -1420,7 +1420,7 @@ msgstr "Wyłącza losowe wybieranie nagrania"
 
 #: src/Widgets/ViewSelector.vala:81
 msgid "View as albums"
-msgstr "Wyświetl  jako albumy"
+msgstr "Wyświetl jako albumy"
 
 #: src/Widgets/ViewSelector.vala:87
 msgid "View as list"
