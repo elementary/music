@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-04-23 19:54+0000\n"
-"Last-Translator: Ozgur Baskin <bebeto_baskin@yahoo.com>\n"
-"Language-Team: Turkish <https://l10n.elementary.io/projects/music/music/tr/"
-">\n"
+"PO-Revision-Date: 2021-09-28 07:16+0000\n"
+"Last-Translator: Özgür Baskin <queeup@zoho.com>\n"
+"Language-Team: Turkish <https://l10n.elementary.io/projects/music/music/tr/>"
+"\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1380,7 +1380,7 @@ msgstr "Çalma Listesi Ekle…"
 #: src/Widgets/StatusBar.vala:74
 #, c-format
 msgid "Equalizer: %s"
-msgstr "Ekolayzır: %s"
+msgstr "Equalizer: %s"
 
 #. MUST follow the exact same order of Music.Player.Repeat
 #: src/Widgets/TopDisplay.vala:138
