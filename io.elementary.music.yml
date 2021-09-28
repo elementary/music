@@ -1,6 +1,6 @@
 app-id: io.elementary.music
 runtime: io.elementary.Platform
-runtime-version: 'daily'
+runtime-version: '6'
 sdk: io.elementary.Sdk
 command: io.elementary.music
 finish-args:
@@ -100,7 +100,7 @@ modules:
         url: https://files.pythonhosted.org/packages/9a/43/0a5bcaeb7cac3db3cf02ce3a2030cdbdd3d9000402cc859753951ca2596f/rdflib-6.0.1.tar.gz
         sha256: f071caff0b68634e4a7bd1d66ea3416ac98f1cc3b915938147ea899c32608728
 
-  - name: zeitghest
+  - name: zeitgeist
     buildsystem: autotools
     config-opts:
       - '--enable-telepathy=false'
