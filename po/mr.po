@@ -3,16 +3,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2020-10-06 19:14+0000\n"
+"PO-Revision-Date: 2021-10-16 22:45+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
-"Language-Team: Marathi <https://l10n.elementary.io/projects/music/music/mr/"
-">\n"
+"Language-Team: Marathi <https://l10n.elementary.io/projects/music/music/mr/>"
+"\n"
 "Language: mr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 
 #: core/LibrariesManager.vala:146
@@ -32,7 +32,7 @@ msgstr "$ALBUM मधले $NAME"
 #. / Please keep $NAME and $ARTIST, they will be replaced by their values
 #: core/Media.vala:183
 msgid "$NAME by $ARTIST"
-msgstr "$ARTIST यांचे  $NAME"
+msgstr "$ARTIST यांचे $NAME"
 
 #. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
 #: core/Media.vala:189
@@ -179,7 +179,7 @@ msgstr "उघडा"
 
 #: core/Utils/PlaylistsUtils.vala:371
 msgid "Unrecognized playlist file. Import failed."
-msgstr "अनोळखी यादी फाईल. फाईल आणणे अपयशी."
+msgstr "अनोळखी यादी फाईल. ही फाईल आणणे अपयशी."
 
 #. / Format of date strings. See reference documentation of g_date_time_format()
 #. / for more details.
@@ -329,10 +329,9 @@ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr "<b>%s</b> यांची <b>%s</b> साठी संगीत फाइल सापडू शकली नाही."
 
 #: src/Dialogs/FileNotFoundDialog.vala:50
-#, fuzzy, c-format
-#| msgid "%i music files could not be found?"
+#, c-format
 msgid "%i music files could not be found."
-msgstr "%i संगीत फाइल्स सापडली नाहीत?"
+msgstr "%i संगीत फाइल्स सापडली नाहीत."
 
 #: src/Dialogs/FileNotFoundDialog.vala:53
 msgid "Rescan Library"
@@ -354,7 +353,7 @@ msgstr "संगीत फोल्डर निवडा"
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:41
 #, c-format
 msgid "Would you like to install the %s plugin?"
-msgstr "आपण  %s प्लगइन स्थापित करू इच्छिता?"
+msgstr "आपण %s प्लगइन स्थापित करू इच्छिता?"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:42
 #, c-format
@@ -429,7 +428,7 @@ msgstr "%s पासून आयात करताना समस्या"
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
 msgstr[0] "%d आयटम आयात करण्यास अक्षम. फाइल खराब असू शकते."
-msgstr[1] "%d आयटम आयात करण्यास अक्षम. फायली खराब असू  शकतात."
+msgstr[1] "%d आयटम आयात करण्यास अक्षम. फायली खराब असू शकतात."
 
 #: src/Dialogs/NotImportedDialog.vala:64
 msgid "Move all corrupted files to trash"
