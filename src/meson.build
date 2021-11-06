@@ -6,7 +6,8 @@ sources = [
     'DBus/MediaKeyListener.vala',
     'Views/NowPlayingView.vala',
     'Widgets/AlbumImage.vala',
-    'Widgets/SeekBar.vala'
+    'Widgets/SeekBar.vala',
+    'Widgets/TrackRow.vala',
 ]
 
 executable(

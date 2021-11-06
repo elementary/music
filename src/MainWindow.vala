@@ -7,6 +7,15 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
     construct {
         Hdy.init ();
 
+        try {
+            var css_provider = new Gtk.CssProvider ();
+            css_provider.load_from_data ("@define-color accent_color @ORANGE_500;");
+
+            Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+        } catch (Error e) {
+            critical ("Can't set accent color: %s", e.message);
+        }
+
         var queue_header = new Hdy.HeaderBar () {
             hexpand = true,
             show_close_button = true
@@ -75,37 +84,6 @@ public class Music.MainWindow : Hdy.ApplicationWindow {
 
     private Gtk.Widget create_queue_row (GLib.Object object) {
         unowned var audio_object = (AudioObject) object;
-
-        var title_label = new Gtk.Label (audio_object.title) {
-            ellipsize = Pango.EllipsizeMode.MIDDLE,
-            hexpand = true,
-            xalign = 0
-        };
-
-        var time_label = new Gtk.Label (null) {
-            use_markup = true
-        };
-        time_label.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
-
-        var grid = new Gtk.Grid () {
-            column_spacing = 6,
-            margin = 6,
-            margin_start = 12,
-            margin_end = 12,
-            sensitive = false
-        };
-        grid.add (title_label);
-        grid.add (time_label);
-        grid.show_all ();
-
-        audio_object.bind_property ("title", title_label, "label");
-
-        audio_object.notify["duration"].connect (() => {
-            time_label.label = "<span font-features='tnum'>%s</span>".printf (
-                Granite.DateTime.seconds_to_time ((int) (audio_object.duration / Gst.SECOND))
-            );
-        });
-
-        return grid;
+        return new TrackRow (audio_object);
     }
 }
