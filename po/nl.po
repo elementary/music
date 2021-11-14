@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2020-10-31 21:15+0000\n"
+"PO-Revision-Date: 2021-11-14 01:59+0000\n"
 "Last-Translator: Jaimie85 <alsemgeest@gmail.com>\n"
 "Language-Team: Dutch <https://l10n.elementary.io/projects/music/music/nl/>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:52+0000\n"
 
 #: core/LibrariesManager.vala:146
@@ -337,10 +337,9 @@ msgstr ""
 "Het muziek bestand voor <b>%s</b> door <b>%s</b> kan niet worden gevonden."
 
 #: src/Dialogs/FileNotFoundDialog.vala:50
-#, fuzzy, c-format
-#| msgid "%i music files could not be found?"
+#, c-format
 msgid "%i music files could not be found."
-msgstr "%i muziekbestanden konden niet worden gevonden?"
+msgstr "%i muziekbestanden konden niet worden gevonden."
 
 #: src/Dialogs/FileNotFoundDialog.vala:53
 msgid "Rescan Library"
@@ -1212,7 +1211,7 @@ msgstr ""
 "De afspeellijst zal automatisch aangevuld worden met nummers die "
 "overeenkomen met de opgegeven regels. Om deze regels aan te passen, gebruik "
 "je de <b>rechter muisknop</b> op de regel in de kantlijn en klik je op "
-"<b>Aanpassen</b>.  Je kan optioneel ook op de knop hieronder klikken."
+"<b>Aanpassen</b>. Je kan optioneel ook op de knop hieronder klikken."
 
 #: src/Views/Wrappers/ViewWrapper.vala:418
 msgid "No media"
