@@ -3,10 +3,8 @@
  * SPDX-FileCopyrightText: 2021 elementary, Inc. (https://elementary.io)
  */
 
-public class Music.MainWindow : Hdy.ApplicationWindow {
+public class Music.MainWindow : Gtk.ApplicationWindow {
     construct {
-        Hdy.init ();
-
         try {
             var css_provider = new Gtk.CssProvider ();
             css_provider.load_from_data ("@define-color accent_color @ORANGE_500;");
