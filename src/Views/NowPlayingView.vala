@@ -10,12 +10,13 @@ public class Music.NowPlayingView : Gtk.Grid {
         var title_label = new Gtk.Label (null) {
             ellipsize = Pango.EllipsizeMode.MIDDLE
         };
-        title_label.get_style_context ().add_class (Granite.STYLE_CLASS_H3_LABEL);
+        title_label.get_style_context ().add_class ("h3");
 
         var artist_label = new Gtk.Label (null);
 
-        var artist_revealer = new Gtk.Revealer ();
-        artist_revealer.add (artist_label);
+        var artist_revealer = new Gtk.Revealer () {
+            child = artist_label
+        };
 
         var info_grid = new Gtk.Grid () {
             halign = Gtk.Align.CENTER
@@ -25,17 +26,16 @@ public class Music.NowPlayingView : Gtk.Grid {
 
         var seekbar = new Music.SeekBar ();
 
-        var play_pause_image = new Gtk.Image.from_icon_name (
-            "media-playback-start-symbolic",
-            Gtk.IconSize.LARGE_TOOLBAR
-        );
+        var play_pause_image = new Gtk.Image.from_icon_name ("media-playback-start-symbolic") {
+            pixel_size = 24
+        };
 
         var play_button = new Gtk.Button () {
             action_name = Application.ACTION_PREFIX + Application.ACTION_PLAY_PAUSE,
             halign = Gtk.Align.CENTER,
-            image = play_pause_image
+            child = play_pause_image
         };
-        play_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+        play_button.get_style_context ().add_class ("flat");
 
         row_spacing = 24;
         attach (album_image, 0, 0);
@@ -71,7 +71,7 @@ public class Music.NowPlayingView : Gtk.Grid {
                     var pixbuf = playback_manager.current_audio.pixbuf;
                     var scaled = pixbuf.scale_simple (200, 200, Gdk.InterpType.BILINEAR);
 
-                    album_image.image.pixbuf = scaled;
+                    album_image.image.set_from_pixbuf (scaled);
                 });
             } else {
                 artist_label.label = _("Not playing");
