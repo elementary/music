@@ -68,12 +68,11 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         var paned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL) {
             position = 350,
             start_child = queue,
+            end_child = now_playing,
             resize_end_child = false,
-            resize_start_child = true,
             shrink_end_child = false,
             shrink_start_child = false
         };
-        paned.set_end_child (now_playing);
 
         child = paned;
 
