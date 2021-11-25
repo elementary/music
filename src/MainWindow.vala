@@ -75,10 +75,6 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         };
 
         child = paned;
-
-        // var header_group = new Hdy.HeaderGroup ();
-        // header_group.add_header_bar (queue_header);
-        // header_group.add_header_bar (headerbar);
     }
 
     private Gtk.Widget create_queue_row (GLib.Object object) {
