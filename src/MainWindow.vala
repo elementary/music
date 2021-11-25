@@ -14,10 +14,10 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         //     critical ("Can't set accent color: %s", e.message);
         // }
 
-        var queue_header = new Gtk.HeaderBar () {
+        var queue_header = new Adw.HeaderBar () {
             css_classes = {"default-decoration", "flat"},
             hexpand = true,
-            show_title_buttons = true
+            show_end_title_buttons = false
         };
 
         // var queue_placeholder = new Granite.Widgets.AlertView (
@@ -43,10 +43,10 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         queue.attach (queue_header, 0, 0);
         queue.attach (scrolled, 0, 1);
 
-        var headerbar = new Gtk.HeaderBar () {
+        var headerbar = new Adw.HeaderBar () {
             css_classes = {"default-decoration", "flat"},
             hexpand = true,
-            show_title_buttons = true
+            show_start_title_buttons = false
         };
 
         var now_playing_view = new NowPlayingView () {

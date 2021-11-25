@@ -29,5 +29,6 @@ album {
     background-size: cover, 50%, cover;
     background-repeat: no-repeat;
     background-position: center center;
+    border-radius: 6px;
     color: alpha (@insensitive_fg_color, 0.75);
 }
