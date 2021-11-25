@@ -52,6 +52,8 @@ public class Music.App : Gtk.Application {
         GLib.Intl.bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
         GLib.Intl.textdomain (GETTEXT_PACKAGE);
 
+        Environment.set_variable ("GTK_USE_PORTAL", "1", true);
+
         weak Gtk.IconTheme default_theme = Gtk.IconTheme.get_default ();
         default_theme.add_resource_path ("/io/elementary/music");
 
