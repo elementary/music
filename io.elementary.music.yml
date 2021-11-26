@@ -1,6 +1,6 @@
 app-id: io.elementary.music
 runtime: io.elementary.Platform
-runtime-version: '6'
+runtime-version: 'daily'
 sdk: io.elementary.Sdk
 command: io.elementary.music
 finish-args:
