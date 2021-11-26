@@ -39,9 +39,8 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
             child = queue_listbox
         };
 
-        var queue = new Gtk.Grid () {
-            css_classes = {"view"}
-        };
+        var queue = new Gtk.Grid ();
+        queue.add_css_class ("view");
         queue.attach (queue_header, 0, 0);
         queue.attach (scrolled, 0, 1);
 

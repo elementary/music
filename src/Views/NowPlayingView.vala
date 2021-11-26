@@ -8,9 +8,9 @@ public class Music.NowPlayingView : Gtk.Grid {
         var album_image = new Music.AlbumImage ();
 
         var title_label = new Gtk.Label (null) {
-            css_classes = {"h3"},
             ellipsize = Pango.EllipsizeMode.MIDDLE
         };
+        title_label.add_css_class ("h3");
 
         var artist_label = new Gtk.Label (null);
 
@@ -32,10 +32,10 @@ public class Music.NowPlayingView : Gtk.Grid {
 
         var play_button = new Gtk.Button () {
             action_name = Application.ACTION_PREFIX + Application.ACTION_PLAY_PAUSE,
-            css_classes = {"flat"},
             halign = Gtk.Align.CENTER,
             child = play_pause_image
         };
+        play_button.add_css_class ("flat");
 
         row_spacing = 24;
         attach (album_image, 0, 0);

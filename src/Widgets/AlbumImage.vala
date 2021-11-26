@@ -27,7 +27,7 @@ public class Music.AlbumImage : Gtk.Grid {
             pixel_size = 200
         };
 
-        css_classes = {"card"};
+        add_css_class ("card");
         halign = Gtk.Align.CENTER;
         valign = Gtk.Align.CENTER;
         height_request = 200;

@@ -61,10 +61,10 @@ public class Music.SeekBar : Gtk.Grid {
         };
 
         scale = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, 0, 1, 0.1) {
-            css_classes = {"accent"},
             draw_value = false,
             hexpand = true
         };
+        scale.add_css_class ("accent");
 
         // scale.button_press_event.connect (() => {
         //     scale.value_changed.connect (scale_value_changed);
@@ -81,7 +81,7 @@ public class Music.SeekBar : Gtk.Grid {
         // });
 
         column_spacing = 6;
-        css_classes = {"seekbar"};
+        add_css_class ("seekbar");
         attach (position_label, 0, 0);
         attach (scale, 1, 0);
         attach (duration_label, 2, 0);
