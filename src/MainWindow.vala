@@ -15,10 +15,12 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         // }
 
         var queue_header = new Adw.HeaderBar () {
-            css_classes = {"default-decoration", "flat"},
             hexpand = true,
             show_end_title_buttons = false
         };
+        queue_header.add_css_class ("default-decoration");
+        queue_header.add_css_class ("flat");
+        queue_header.add_css_class ("titlebar");
 
         // var queue_placeholder = new Granite.Widgets.AlertView (
         //     _("Queue is Empty"),
@@ -44,10 +46,12 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         queue.attach (scrolled, 0, 1);
 
         var headerbar = new Adw.HeaderBar () {
-            css_classes = {"default-decoration", "flat"},
             hexpand = true,
             show_start_title_buttons = false
         };
+        headerbar.add_css_class ("default-decoration");
+        headerbar.add_css_class ("flat");
+        headerbar.add_css_class ("titlebar");
 
         var now_playing_view = new NowPlayingView () {
             margin_top = 12,
@@ -75,6 +79,12 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         };
 
         child = paned;
+
+        // We need to hide the title area for the split headerbar
+        var null_title = new Gtk.Grid () {
+            visible = false
+        };
+        set_titlebar (null_title);
     }
 
     private Gtk.Widget create_queue_row (GLib.Object object) {
