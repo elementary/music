@@ -65,13 +65,14 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         now_playing.attach (headerbar, 0, 0);
         now_playing.attach (now_playing_view, 0, 1);
 
-        // var now_playing_handle = new Hdy.WindowHandle ();
-        // now_playing_handle.add (now_playing);
+        var now_playing_handle = new Gtk.WindowHandle () {
+            child = now_playing
+        };
 
         var paned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL) {
             position = 350,
             start_child = queue,
-            end_child = now_playing,
+            end_child = now_playing_handle,
             resize_end_child = false,
             shrink_end_child = false,
             shrink_start_child = false
