@@ -5,14 +5,10 @@
 
 public class Music.MainWindow : Gtk.ApplicationWindow {
     construct {
-        // try {
-        //     var css_provider = new Gtk.CssProvider ();
-        //     css_provider.load_from_data ("@define-color accent_color @ORANGE_500;");
+        var css_provider = new Gtk.CssProvider ();
+        css_provider.load_from_resource ("/io/elementary/music/Application.css");
 
-        //     Gtk.StyleContext.add_provider_for_display (Gdk.Display.get_default (), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-        // } catch (Error e) {
-        //     critical ("Can't set accent color: %s", e.message);
-        // }
+        Gtk.StyleContext.add_provider_for_display (Gdk.Display.get_default (), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
         var queue_header = new Adw.HeaderBar () {
             hexpand = true,
