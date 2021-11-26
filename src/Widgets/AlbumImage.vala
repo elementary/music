@@ -28,10 +28,12 @@ public class Music.AlbumImage : Gtk.Grid {
         };
 
         add_css_class ("card");
+        add_css_class ("rounded");
         halign = Gtk.Align.CENTER;
         valign = Gtk.Align.CENTER;
         height_request = 200;
         width_request = 200;
+        overflow = Gtk.Overflow.HIDDEN;
         attach (image, 0, 0);
     }
 }
