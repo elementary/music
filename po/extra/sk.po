@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-12-01 11:34+0000\n"
+"PO-Revision-Date: 2021-12-01 11:51+0000\n"
 "Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
 "Language-Team: Slovak <https://l10n.elementary.io/projects/music/extra/sk/>\n"
 "Language: sk\n"
@@ -108,27 +108,27 @@ msgstr ""
 
 #: data/io.elementary.music.appdata.xml.in:51
 msgid "New MediaKeyListener path for gnome-settings-daemon"
-msgstr ""
+msgstr "Nový popis umiestnenia MediaKeyListener pre gnome-settings-daemon"
 
 #: data/io.elementary.music.appdata.xml.in:57
 msgid "AlbumView: double-click to play album"
-msgstr ""
+msgstr "AlbumView: prehrávanie albumu dvojitým kliknutím"
 
 #: data/io.elementary.music.appdata.xml.in:58
 msgid "Associate with s3m files"
-msgstr ""
+msgstr "Asociácia so súbormi typu s3m"
 
 #: data/io.elementary.music.appdata.xml.in:59
 msgid "Queue fixes"
-msgstr ""
+msgstr "Opravy fronty prehrávania"
 
 #: data/io.elementary.music.appdata.xml.in:60
 msgid "Properly restore playlists"
-msgstr ""
+msgstr "Správne obnovovanie zoznamov skladieb"
 
 #: data/io.elementary.music.appdata.xml.in:61
 msgid "Always respect custom music folder setting"
-msgstr ""
+msgstr "Vždy rešpektovať používateľsky určené nastavenie priečinku s hudbou"
 
 #: data/io.elementary.music.appdata.xml.in:62
 #: data/io.elementary.music.appdata.xml.in:71
@@ -136,31 +136,31 @@ msgstr ""
 #: data/io.elementary.music.appdata.xml.in:112
 #: data/io.elementary.music.appdata.xml.in:127
 msgid "Minor bug fixes"
-msgstr ""
+msgstr "Opravy drobných chýb"
 
 #: data/io.elementary.music.appdata.xml.in:68
 msgid "Fix list and column view sorting"
-msgstr ""
+msgstr "Opravené triedenie v zobrazení zoznamu a stĺpcov"
 
 #: data/io.elementary.music.appdata.xml.in:69
 msgid "Add orange accent color"
-msgstr ""
+msgstr "Pridaný oranžový farebný odtieň"
 
 #: data/io.elementary.music.appdata.xml.in:70
 msgid "Add shortcut accels to tooltips"
-msgstr ""
+msgstr "Pridanie urýchľovačov skratiek do popisov"
 
 #: data/io.elementary.music.appdata.xml.in:77
 msgid "Various UI changes"
-msgstr ""
+msgstr "Rozličné zmeny v používateľskom rozhraní"
 
 #: data/io.elementary.music.appdata.xml.in:78
 msgid "Shuffle fixes"
-msgstr ""
+msgstr "Opravy funkcie náhodného prehrávania"
 
 #: data/io.elementary.music.appdata.xml.in:79
 msgid "Initial MPRIS support"
-msgstr ""
+msgstr "Počiatočná podpora pre protokol MPRIS"
 
 #: data/io.elementary.music.appdata.xml.in:86
 msgid "Detect library changes at startup."
