@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-12-01 11:51+0000\n"
+"PO-Revision-Date: 2021-12-01 16:06+0000\n"
 "Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
 "Language-Team: Slovak <https://l10n.elementary.io/projects/music/extra/sk/>\n"
 "Language: sk\n"
@@ -164,67 +164,68 @@ msgstr "Počiatočná podpora pre protokol MPRIS"
 
 #: data/io.elementary.music.appdata.xml.in:86
 msgid "Detect library changes at startup."
-msgstr ""
+msgstr "Zisťovanie zmien v knižnici hudby pri spustení."
 
 #: data/io.elementary.music.appdata.xml.in:87
 msgid "Support searching by URI"
-msgstr ""
+msgstr "Podpora vyhľadávania podľa URI"
 
 #: data/io.elementary.music.appdata.xml.in:88
 msgid "Change the queue mechanism to make it less confusing."
-msgstr ""
+msgstr "Upravený mechanizmus fronty prehrávania, aby bol menej mätúci."
 
 #: data/io.elementary.music.appdata.xml.in:89
 msgid "Improve equalizer style."
-msgstr ""
+msgstr "Vylepšený štýl ekvalizéru."
 
 #: data/io.elementary.music.appdata.xml.in:90
 #: data/io.elementary.music.appdata.xml.in:95
 #: data/io.elementary.music.appdata.xml.in:100
 #: data/io.elementary.music.appdata.xml.in:105
 msgid "Minor bug fixes."
-msgstr ""
+msgstr "Opravy drobných chýb."
 
 #: data/io.elementary.music.appdata.xml.in:110
 msgid "Add rounded bottom window corner."
-msgstr ""
+msgstr "Pridané zaoblené rohy na spodný okraj okna."
 
 #: data/io.elementary.music.appdata.xml.in:113
 #: data/io.elementary.music.appdata.xml.in:128
 msgid "New translations"
-msgstr ""
+msgstr "Nové preklady"
 
 #: data/io.elementary.music.appdata.xml.in:119
 msgid "Release for Loki."
-msgstr ""
+msgstr "Vydanie pre Loki."
 
 #: data/io.elementary.music.appdata.xml.in:121
 msgid "Add support for Opus Ogg"
-msgstr ""
+msgstr "Pridaná podpora formátu Opus Ogg"
 
 #: data/io.elementary.music.appdata.xml.in:122
 msgid "Fix Ctrl+Q support for non-Latin keyboard layouts"
 msgstr ""
+"Opravená podpora Ctrl+Q pre rozloženia klávesnice, ktoré nepoužívajú latinku"
 
 #: data/io.elementary.music.appdata.xml.in:123
 msgid "Reorganize media edition layout"
-msgstr ""
+msgstr "Nové usporiadanie rozloženia edícií média"
 
 #: data/io.elementary.music.appdata.xml.in:124
 msgid "Port grid to support HiDPI displays"
-msgstr ""
+msgstr "Prenesenie mriežky pre podporu obrazoviek s vysokým rozlíšením (HiDPI)"
 
 #: data/io.elementary.music.appdata.xml.in:125
 msgid "Update icons to latest elementary icon release"
-msgstr ""
+msgstr "Aktualizované ikonky na najnovšiu verziu"
 
 #: data/io.elementary.music.appdata.xml.in:126
 msgid "Respect privacy mode"
-msgstr ""
+msgstr "Rešpektovanie režimu ochrany súkromia"
 
 #: data/io.elementary.music.appdata.xml.in:166
 msgid "elementary, Inc."
-msgstr ""
+msgstr "elementary, Inc."
 
 #: data/io.elementary.music.desktop.in:5
 msgid "Music Player"
@@ -239,10 +240,10 @@ msgid "io.elementary.music"
 msgstr ""
 
 #: data/io.elementary.music.desktop.in:13
-#, fuzzy
-#| msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;Phone;Songs;"
-msgstr "Hlas;Zvuk;Prehrávač;MP3;iPod;Play;Playlist;Média;CD;Mobil;Hudba;"
+msgstr ""
+"Audio;Zvuk;Prehrávač;MP3;iPod;Play;Prehrať;Playlist;Zoznam "
+"skladieb;Médiá;Mobil;Telefón;Hudba;Skladby;"
 
 #~ msgid "About Music"
 #~ msgstr "O hudbe..."
