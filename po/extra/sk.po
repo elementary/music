@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-09-16 17:17+0000\n"
+"PO-Revision-Date: 2021-12-01 11:34+0000\n"
 "Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
 "Language-Team: Slovak <https://l10n.elementary.io/projects/music/extra/sk/>\n"
 "Language: sk\n"
@@ -104,6 +104,7 @@ msgstr "Pridaná správna zmena veľkosti obrázku albumu pri vysokých rozlíš
 msgid ""
 "Accurately select Music Folder Location for directories with spaces in name"
 msgstr ""
+"Presný výber umiestnenia priečinku s hudbou pre adresáre s medzerami v názve"
 
 #: data/io.elementary.music.appdata.xml.in:51
 msgid "New MediaKeyListener path for gnome-settings-daemon"
