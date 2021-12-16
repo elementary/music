@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-09-28 07:16+0000\n"
+"PO-Revision-Date: 2021-12-16 17:28+0000\n"
 "Last-Translator: Özgür Baskin <queeup@zoho.com>\n"
 "Language-Team: Turkish <https://l10n.elementary.io/projects/music/extra/tr/>"
 "\n"
@@ -75,7 +75,9 @@ msgstr "Öğelerin kuyruktan kaldırılması düzeltildi"
 
 #: data/io.elementary.music.appdata.xml.in:33
 msgid "Fix equalizer sliders not properly disabled sometimes"
-msgstr " "
+msgstr ""
+"Bazen uygun şekilde devre dışı bırakılmayan equalizer kaydırıcıları "
+"düzeltildi"
 
 #: data/io.elementary.music.appdata.xml.in:35
 msgid "Performance improvements"
