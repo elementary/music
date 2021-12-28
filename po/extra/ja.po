@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-07-18 10:39+0000\n"
+"PO-Revision-Date: 2021-12-28 21:22+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/music/extra/ja/>"
 "\n"
@@ -92,7 +92,7 @@ msgstr "PlaylistsUtils: Gtk.FileChooserNative を使用"
 
 #: data/io.elementary.music.appdata.xml.in:43
 msgid "Accurately remember window size"
-msgstr "正確なウィンドウサイズを保存"
+msgstr "ウィンドウサイズを正確に保存"
 
 #: data/io.elementary.music.appdata.xml.in:49
 msgid "Scale album art properly at high resolutions"
@@ -101,8 +101,7 @@ msgstr "高解像度においてアルバムアートの大きさを正しく調
 #: data/io.elementary.music.appdata.xml.in:50
 msgid ""
 "Accurately select Music Folder Location for directories with spaces in name"
-msgstr ""
-"名前に空白が含まれるミュージックフォルダーの場所を正しく選択できるように修正"
+msgstr "名前に空白が含まれるミュージックフォルダーの場所を正確に選択できるように修正"
 
 #: data/io.elementary.music.appdata.xml.in:51
 msgid "New MediaKeyListener path for gnome-settings-daemon"
