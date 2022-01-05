@@ -18,18 +18,18 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         queue_header.add_css_class ("flat");
         queue_header.add_css_class ("titlebar");
 
-        // var queue_placeholder = new Granite.Widgets.AlertView (
-        //     _("Queue is Empty"),
-        //     _("Audio files opened from Files will appear here"),
-        //     "playlist-queue"
-        // );
+        var queue_placeholder = new Granite.Widgets.AlertView (
+            _("Queue is Empty"),
+            _("Audio files opened from Files will appear here"),
+            "playlist-queue"
+        );
 
         var queue_listbox = new Gtk.ListBox () {
             hexpand = true,
             vexpand = true
         };
         queue_listbox.bind_model (PlaybackManager.get_default ().queue_liststore, create_queue_row);
-        // queue_listbox.set_placeholder (queue_placeholder);
+        queue_listbox.set_placeholder (queue_placeholder);
 
         var scrolled = new Gtk.ScrolledWindow () {
             child = queue_listbox
