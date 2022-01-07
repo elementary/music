@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2020-12-15 15:16+0000\n"
-"Last-Translator: Eri Hidayat <eriwhidayat@gmail.com>\n"
+"PO-Revision-Date: 2022-01-07 19:32+0000\n"
+"Last-Translator: Faisal Rachmadin <frachmadin@gmail.com>\n"
 "Language-Team: Indonesian <https://l10n.elementary.io/projects/music/music/"
 "id/>\n"
 "Language: id\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:53+0000\n"
 
 #: core/LibrariesManager.vala:146
@@ -333,14 +333,13 @@ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 msgstr "Berkas musik untuk <b>%s</b> oleh <b>%s</b> tidak dapat ditemukan."
 
 #: src/Dialogs/FileNotFoundDialog.vala:50
-#, fuzzy, c-format
-#| msgid "%i music files could not be found?"
+#, c-format
 msgid "%i music files could not be found."
-msgstr "%i berkas musik tidak dapat ditemukan?"
+msgstr "%i berkas musik tidak dapat ditemukan."
 
 #: src/Dialogs/FileNotFoundDialog.vala:53
 msgid "Rescan Library"
-msgstr "Periksa ulang Pustaka"
+msgstr "Pindai Ulang Pustaka"
 
 #: src/Dialogs/FileNotFoundDialog.vala:54
 msgid "Remove Song"
@@ -432,7 +431,7 @@ msgstr "Masalah saat mengimpor dari %s"
 #, c-format
 msgid "Unable to import %d item. The file may be damaged."
 msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] "Tidak dapat mengimpor  %d item. File tersebut mungkin rusak."
+msgstr[0] "Tidak dapat mengimpor %d item. Berkas tersebut mungkin rusak."
 
 #: src/Dialogs/NotImportedDialog.vala:64
 msgid "Move all corrupted files to trash"
@@ -499,7 +498,7 @@ msgstr[0] "Hapus %d Lagu Dari Pustaka?"
 #: src/Dialogs/RemoveFilesDialog.vala:55
 #, c-format
 msgid "Remove \"%s\" From Library?"
-msgstr "Hapus  \"%s\" Dari Pustaka?"
+msgstr "Hapus \"%s\" Dari Pustaka?"
 
 #: src/Dialogs/RemoveFilesDialog.vala:59
 msgid ""
@@ -1194,9 +1193,9 @@ msgid ""
 "below."
 msgstr ""
 "Daftar putar ini akan dipopulasi secara otomatis dengan lagu-lagu yang "
-"sesuai dengan aturan. Untuk mengubah aturan-aturan ini,  <b>klik kanan</b>  "
-"Daftar Putar di sisi kiri  dan klik <b>Sunting</b>. Selain itu anda juga "
-"dapat mengaksesnya dengan mengeklik tombol di bawah ini."
+"sesuai dengan aturan. Untuk mengubah aturan-aturan ini, gunakan <b>klik "
+"kanan</b> padanya di bilah kiri dan klik <b>Sunting</b>. Selain itu anda "
+"juga dapat mengaksesnya dengan mengeklik tombol di bawah ini."
 
 #: src/Views/Wrappers/ViewWrapper.vala:418
 msgid "No media"
