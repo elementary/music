@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2022-01-07 19:32+0000\n"
+"PO-Revision-Date: 2022-01-12 00:12+0000\n"
 "Last-Translator: Faisal Rachmadin <frachmadin@gmail.com>\n"
 "Language-Team: Indonesian <https://l10n.elementary.io/projects/music/music/"
 "id/>\n"
@@ -289,7 +289,7 @@ msgstr "Jeda"
 
 #: src/LibraryWindow.vala:820
 msgid "No songs in Queue"
-msgstr "Tidak ada lagu di antrian"
+msgstr "Tidak ada lagu di Antrian"
 
 #: src/LibraryWindow.vala:820
 msgid ""
@@ -357,12 +357,12 @@ msgstr "Pilih Folder Musik"
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:41
 #, c-format
 msgid "Would you like to install the %s plugin?"
-msgstr "Apakah Anda ingin menginstal %s plugin ?"
+msgstr "Apakah Anda ingin menginstal pengaya %s?"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:42
 #, c-format
 msgid "This song cannot be played. The %s plugin is required to play the song."
-msgstr "Lagu ini tidak dapat diputar. Plugin %s dibutuhkan untuk memutar lagu."
+msgstr "Lagu ini tidak dapat diputar. Pengaya %s dibutuhkan untuk memutar lagu."
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:51
 msgid "Install Plugin"
@@ -435,7 +435,7 @@ msgstr[0] "Tidak dapat mengimpor %d item. Berkas tersebut mungkin rusak."
 
 #: src/Dialogs/NotImportedDialog.vala:64
 msgid "Move all corrupted files to trash"
-msgstr "Buang semua berkas rusak ke tempat sampah"
+msgstr "Pindahkan semua berkas rusak ke tempat sampah"
 
 #: src/Dialogs/NotImportedDialog.vala:71
 msgid "del"
@@ -451,7 +451,7 @@ msgstr "Pilih berkas satu-satu untuk dipindah ke tong sampah:"
 
 #: src/Dialogs/NotImportedDialog.vala:100 src/Dialogs/RemoveFilesDialog.vala:73
 msgid "Move to Trash"
-msgstr "Pindah ke Tong Sampah"
+msgstr "Pindahkan ke Tong Sampah"
 
 #: src/Dialogs/NotImportedDialog.vala:103
 msgid "Ignore"
@@ -483,7 +483,7 @@ msgstr "Salin berkas yang diimpor ke Pustaka:"
 
 #: src/Dialogs/PreferencesWindow.vala:79
 msgid "Desktop Integration"
-msgstr "Integrasi destop"
+msgstr "Integrasi Desktop"
 
 #: src/Dialogs/PreferencesWindow.vala:80
 msgid "Continue playback when closed:"
@@ -641,7 +641,7 @@ msgstr "Peringkat"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:271
 msgid "Skipcount"
-msgstr "jumlah diskip"
+msgstr "Jumlah dilewat"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:272
 msgid "Title"
@@ -714,7 +714,7 @@ msgid ""
 "the sync list. Would you like to import them to your library first?"
 msgstr ""
 "Jika sinkronisasi diteruskan, semua media akan dihapus dari %s karena tidak "
-"ada di daftar singkronisasi. Apakah anda ingin mengimpornya ke pustaka "
+"ada di daftar sinkronisasi. Apakah anda ingin mengimpornya ke pustaka "
 "terlebih dahulu?"
 
 #: src/Dialogs/SyncWarningDialog.vala:57
@@ -806,7 +806,7 @@ msgstr "Sinkronkan otomatis ketika terpasang:"
 
 #: src/Views/DeviceSummaryWidget.vala:72
 msgid "Sync:"
-msgstr "Singkronisasi:"
+msgstr "Sinkronisasi:"
 
 #: src/Views/DeviceSummaryWidget.vala:100 src/Widgets/SourceListView.vala:192
 msgid "Sync"
@@ -825,20 +825,20 @@ msgstr "Sinkronisasi Gagal"
 msgid ""
 "The playlist named %s is used to sync device %s, but could not be found."
 msgstr ""
-"Daftar Putar dengan nama %s digunakan untuk singkronisasi perangkat %s, "
+"Daftar Putar dengan nama %s digunakan untuk sinkronisasi perangkat %s, "
 "tetapi tidak dapat ditemukan."
 
 #: src/Views/DeviceSummaryWidget.vala:316
 #: src/Views/DeviceSummaryWidget.vala:321
 msgid "Cannot Sync"
-msgstr "Tidak Dapat Mensinkroniasi"
+msgstr "Tidak Dapat Menyinkronisasi"
 
 #: src/Views/DeviceSummaryWidget.vala:317
 msgid ""
 "Cannot sync device with selected sync settings. Not enough space on disk"
 msgstr ""
-"Tidak dapat mensinkronisasi perangkat dengan pengaturan sinkronisasi ini. "
-"Tidak cukup tempat di disk"
+"Tidak dapat menyinkronisasi perangkat dengan pengaturan sinkronisasi ini. "
+"Tidak cukup tempat pada diska"
 
 #: src/Views/DeviceSummaryWidget.vala:322
 msgid "Device is already doing an operation."
@@ -1146,7 +1146,7 @@ msgstr "Ganti Folder Musik"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:63
 msgid "Load music from a folder, a network or an external disk."
-msgstr "Muat musik dari folder, jaringan atau disk eksternal."
+msgstr "Muat musik dari folder, jaringan atau diska eksternal."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:110
 #: src/Views/Wrappers/MusicViewWrapper.vala:130
@@ -1167,11 +1167,11 @@ msgstr "Pilih Folder Musik"
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:54
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:64
 msgid "No Songs"
-msgstr "Tidak ada lagu"
+msgstr "Tidak ada Lagu"
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:51
 msgid "Updating playlist. Please wait."
-msgstr "Memperbarui playlist. Harap tunggu."
+msgstr "Memperbarui daftar putar. Harap tunggu."
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:55
 msgid ""
@@ -1219,34 +1219,34 @@ msgstr "_Batal"
 
 #: src/Widgets/EqualizerPopover.vala:162
 msgid "Save preset"
-msgstr "Simpan set awal"
+msgstr "Simpan preset"
 
 #: src/Widgets/EqualizerPopover.vala:330
 msgid "Off"
-msgstr "Padam"
+msgstr "Matikan"
 
 #: src/Widgets/EqualizerPopover.vala:418
 #, c-format
 msgid "%s (Custom)"
-msgstr "%s (Sesuka)"
+msgstr "%s (Suai)"
 
 #: src/Widgets/EqualizerPopover.vala:420
 #, c-format
 msgid "%s (Custom %i)"
-msgstr "%s (Sesuka %i)"
+msgstr "%s (Suai %i)"
 
 #: src/Widgets/EqualizerPopover.vala:423
 msgid "Custom Preset"
-msgstr "Set Awal Sesuka"
+msgstr "Preset Suai"
 
 #: src/Widgets/EqualizerPopover.vala:425
 #, c-format
 msgid "Custom Preset %i"
-msgstr "Set Awal Sesuka %i"
+msgstr "Preset Suai %i"
 
 #: src/Widgets/MediaMenu.vala:46
 msgid "Scroll to Current Song"
-msgstr "Tunjukkan Lagu yang dimainkan"
+msgstr "Gulirkan ke Lagu Saat Ini"
 
 #: src/Widgets/MediaMenu.vala:49
 msgid "Show in File Browser…"
@@ -1254,7 +1254,7 @@ msgstr "Tampilkan di Peramban Berkas…"
 
 #: src/Widgets/MediaMenu.vala:50
 msgid "Edit Song Info…"
-msgstr "Ubah Info Lagu…"
+msgstr "Sunting Info Lagu…"
 
 #: src/Widgets/MediaMenu.vala:51
 msgid "Other Actions"
@@ -1275,7 +1275,7 @@ msgstr "Hapus Lagu…"
 
 #: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
 msgid "Import to Library"
-msgstr "Impor folder ke Pustaka"
+msgstr "Impor ke Pustaka"
 
 #: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
 msgid "Remove from Library…"
@@ -1291,7 +1291,7 @@ msgstr "Hapus dari Antrian"
 
 #: src/Widgets/MediaMenu.vala:153
 msgid "New Playlist…"
-msgstr "Daftarputar baru…"
+msgstr "Daftar Putar Baru…"
 
 #: src/Widgets/MediaMenu.vala:193
 #, c-format
@@ -1302,11 +1302,11 @@ msgstr "Impor %i dari %i berkas yang dipilih"
 #, c-format
 msgid "Import %i song"
 msgid_plural "Import %i songs"
-msgstr[0] "impor %i song"
+msgstr[0] "Impor %i lagu"
 
 #: src/Widgets/PresetList.vala:53
 msgid "Delete Current"
-msgstr "Hapus Ini"
+msgstr "Hapus Saat Ini"
 
 #: src/Widgets/SourceListView.vala:66 src/Widgets/SourceListView.vala:78
 msgid "Rename"
@@ -1334,7 +1334,7 @@ msgstr "Daftar Putar Baru"
 
 #: src/Widgets/SourceListView.vala:184 src/Widgets/SourceListView.vala:220
 msgid "New Smart Playlist"
-msgstr "Daftar Putar pintar baru"
+msgstr "Daftar Putar Pintar Baru"
 
 #: src/Widgets/SourceListView.vala:221
 msgid "Import Playlists"
@@ -1355,7 +1355,7 @@ msgstr "Jaringan"
 
 #: src/Widgets/StatusBar.vala:36
 msgid "Add Playlist"
-msgstr "Tambahkan Daftar Putar"
+msgstr "Tambah Daftar Putar"
 
 #: src/Widgets/StatusBar.vala:37
 msgid "Add Smart Playlist"
@@ -1374,7 +1374,7 @@ msgstr "Penyelaras: %s"
 #. MUST follow the exact same order of Music.Player.Repeat
 #: src/Widgets/TopDisplay.vala:138
 msgid "Enable Repeat"
-msgstr "Nyalakan Pengulangan"
+msgstr "Aktifkan Pengulangan"
 
 #: src/Widgets/TopDisplay.vala:139
 msgid "Repeat Song"
@@ -1386,7 +1386,7 @@ msgstr "Matikan pengulangan"
 
 #: src/Widgets/TopDisplay.vala:159
 msgid "Enable Shuffle"
-msgstr "Hidupkan Putar Acak"
+msgstr "Aktifkan Putar Acak"
 
 #: src/Widgets/TopDisplay.vala:160
 msgid "Disable Shuffle"
