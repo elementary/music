@@ -1,7 +1,7 @@
 Source: io.elementary.music
 Section: sound
 Priority: optional
-Maintainer: elementary LLC <builds@elementary.io>
+Maintainer: elementary, Inc. <builds@elementary.io>
 Build-Depends: debhelper (>= 10.5.1),
                gettext,
                libgee-0.8-dev,
