@@ -1,56 +1,10 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: Music
+Format: http://dep.debian.net/deps/dep5
+Upstream-Name: io.elementary.music
 Source: https://github.com/elementary/music
 
 Files: *
-Copyright: 2011-2012 Scott Ringwelski <sgringwe@mtu.edu>
-           2011-2012 Lucas Baudin <xapantu@gmail.com>
-           2011-2013 Sergey "Shnatsel" Davidoff <sergey@elementaryos.org>
-           2012 Andrea Basso <andrea@elementaryos.org>
-           2012 Adam Davies <adam.davies@outlook.com>
-           2012 Patrick Pace <patrickqpace@gmail.com>
-           2012-2013 Rico Tzschichholz <ricotz@ubuntu.com>
-           2012-2013 Marcus Lundgren <marcus.lundgren@gmail.com>
-           2011-2014 Victor Martinez <victor@elementaryos.org>
-           2011-2014 Avi Romanoff <avi@elementaryos.org>
-           2011-2014 Cody Garver <cody@elementaryos.org>
-           2012-2014 Mario Guerriero <mario@elementaryos.org>
-           2012-2014 Corentin Noël <corentin@elementaryos.org>
-           2012-2014 Daniel Fore <daniel@elementaryos.org>
-           2012-2014 David Gomes <david@elementaryos.org>
-           2012-2014 Matthew Markell <markellmtthw@aol.com>
-           2013 Patrick Zingerle <patrick.zingerle@gmail.com>
-           2013 Julien Spautz <spautz.julien@gmail.com>
-           2013-2014 Viko Adi Rahmawan <vikoadi@gmail.com>
-           2014 Cameron Norman <camerontnorman@gmail.com>
+Copyright: 2022 elementary, Inc. <builds@elementary.io>
 License: GPL-3.0+
-
-Files: debian/*
-Copyright: 2011-2012 Devid Antonio Filoni <d.filoni@ubuntu.com>
-           2011-2012 Scott Ringwelski <sgringwe@gmail.com>
-           2011-2012 Lucas Baudin <xapantu@gmail.com>
-           2012-2013 Rico Tzschichholz <ricotz@ubuntu.com>
-           2012-2014 Cody Garver <cody@elementaryos.org>
-           2012-2014 Sergey "Shnatsel" Davidoff <sergey@elementaryos.org>
-           2013-2014 Corentin Noël <corentin@elementaryos.org>
-License: GPL-2.0+
-
-License: GPL-2.0+
- This package is free software; you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation; either version 2 of the License, or
- (at your option) any later version.
- .
- This package is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
- .
- You should have received a copy of the GNU General Public License
- along with this program. If not, see <http://www.gnu.org/licenses/>
- .
- On Debian systems, the complete text of the GNU General
- Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".
 
 License: GPL-3.0+
  This program is free software: you can redistribute it and/or modify
@@ -69,23 +23,3 @@ License: GPL-3.0+
  On Debian systems, the complete text of the GNU General
  Public License version 3 can be found in "/usr/share/common-licenses/GPL-3".
 
-License: 2-clause BSD
- Redistribution and use in source and binary forms, with or without
- modification, are permitted provided that the following conditions are met:
- .
- 1. Redistributions of source code must retain the above copyright notice, this
-    list of conditions and the following disclaimer.
- 2. Redistributions in binary form must reproduce the above copyright notice,
-    this list of conditions and the following disclaimer in the documentation
-    and/or other materials provided with the distribution.
- .
- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
- ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
- WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
- ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
- LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
- ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.

@@ -1,20 +1,14 @@
 #!/usr/bin/make -f
+# -*- makefile -*-
+# Sample debian/rules that uses debhelper.
+# This file was originally written by Joey Hess and Craig Small.
+# As a special exception, when this file is copied by dh-make into a
+# dh-make output file, you may use that output file without restriction.
+# This special exception was added by Craig Small in version 0.37 of dh-make.
 
-# Enable additional explot mitigation
-# (PIE and *full* RELRO at the time of this writing)
-export DEB_BUILD_MAINT_OPTIONS=hardening=+all
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
 
 %:
-	dh $@ --buildsystem=meson
-
-override_dh_builddeb:
-	dh_builddeb -- -Zxz
-
-override_dh_install:
-	dh_install --fail-missing
-
-override_dh_strip:
-	dh_strip -p libnoise-core0 --dbgsym-migration='libnoise-core0-dbg (<< 0.4.2)'
-	dh_strip -p noise --dbgsym-migration='noise-dbg (<< 0.4.2)'
-
+	dh $@
 

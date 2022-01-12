@@ -1,4 +1,4 @@
-noise (5.1.1) bionic; urgency=medium
+io.elementary.music (5.1.1) bionic; urgency=medium
 
   * Release 5.1.1 (#644)
   * Update translation files
@@ -8,7 +8,7 @@ noise (5.1.1) bionic; urgency=medium
 
  -- elementary LLC <builds@elementary.io>  Fri, 16 Jul 2021 19:02:55 +0000
 
-noise (5.1.0) bionic; urgency=medium
+io.elementary.music (5.1.0) bionic; urgency=medium
 
   * Release 5.1.0 (#641)
   * MediaMenu: Use Gtk.show_uri_on_window (#607)
@@ -42,7 +42,7 @@ noise (5.1.0) bionic; urgency=medium
 
  -- elementary LLC <builds@elementary.io>  Wed, 14 Jul 2021 17:05:24 +0000
 
-noise (5.0.5) bionic; urgency=medium
+io.elementary.music (5.0.5) bionic; urgency=medium
 
   * Release 5.0.5 (#575)
   * Fix error on clicking previous button for the first time (#573)
@@ -87,7 +87,7 @@ noise (5.0.5) bionic; urgency=medium
   * LibraryWindow: Reduce scope of main_hpaned (#532)
   * ViewInterface: Remove unused get_hint (#526)
   * Equalizer: Code style fixes (#522)
-  * Change Noise namespace to Music (#519)
+  * Change io.elementary.music namespace to Music (#519)
   * AppData: two space XML (#513)
   * Remove dead code (#510)
   * Add Silesian and update translation template
@@ -95,127 +95,127 @@ noise (5.0.5) bionic; urgency=medium
 
  -- elementary LLC <builds@elementary.io>  Wed, 04 Mar 2020 22:51:41 +0000
 
-noise (5.0.4) bionic; urgency=medium
+io.elementary.music (5.0.4) bionic; urgency=medium
 
   * New upstream release.
 
  -- Cody Garver <codygarver@gmail.com>  Wed, 17 Apr 2019 03:46:55 -0500
 
-noise (5.0.3) bionic; urgency=medium
+io.elementary.music (5.0.3) bionic; urgency=medium
 
   * New upstream release.
 
  -- Cody Garver <codygarver@gmail.com>  Tue, 26 Feb 2019 13:36:31 -0600
 
-noise (5.0.2) bionic; urgency=medium
+io.elementary.music (5.0.2) bionic; urgency=medium
 
   * New upstream release.
 
  -- Cody Garver <cody@elementary.io>  Tue, 18 Dec 2018 06:06:39 -0600
 
-noise (5.0.1) bionic; urgency=medium
+io.elementary.music (5.0.1) bionic; urgency=medium
 
   * New upstream release.
 
  -- Cody Garver <cody@elementary.io>  Fri, 30 Nov 2018 04:49:32 -0600
 
-noise (5.0) bionic; urgency=medium
+io.elementary.music (5.0) bionic; urgency=medium
 
   * New upstream release.
 
  -- Cody Garver <cody@elementary.io>  Tue, 16 Oct 2018 03:42:11 -0500
 
-noise (0.4.3) UNRELEASED; urgency=medium
+io.elementary.music (0.4.3) UNRELEASED; urgency=medium
 
   * Pre-release version bump.
 
  -- Daniel Foré <daniel@elementary.io>  Sun, 01 Apr 2018 11:06:19 -0700
 
-noise (0.4.2) xenial; urgency=medium
+io.elementary.music (0.4.2) xenial; urgency=medium
 
   * New upstream release.
 
  -- Cody Garver <cody@elementary.io>  Mon, 27 Nov 2017 09:59:49 -0600
 
-noise (0.4.1) xenial; urgency=medium
+io.elementary.music (0.4.1) xenial; urgency=medium
 
   * New upstream release.
 
  -- Cody Garver <cody@elementary.io>  Thu, 27 Jul 2017 22:50:31 -0500
 
-noise (0.4.0.3) xenial; urgency=medium
+io.elementary.music (0.4.0.3) xenial; urgency=medium
 
   * New upstream release.
 
  -- Cody Garver <cody@elementary.io>  Fri, 21 Apr 2017 12:50:28 -0500
 
-noise (0.4.0.2) xenial; urgency=medium
+io.elementary.music (0.4.0.2) xenial; urgency=medium
 
   * New upstream release.
 
  -- Cody Garver <cody@elementary.io>  Thu, 01 Dec 2016 05:45:56 -0600
 
-noise (0.4.0.1) xenial; urgency=medium
+io.elementary.music (0.4.0.1) xenial; urgency=medium
 
   * New upstream release.
 
  -- Cody Garver <cody@elementary.io>  Tue, 20 Sep 2016 06:33:31 -0500
 
-noise (0.4) xenial; urgency=medium
+io.elementary.music (0.4) xenial; urgency=medium
 
   * New upstream release.
 
  -- Cody Garver <cody@elementary.io>  Wed, 10 Aug 2016 08:25:49 -0500
 
-noise (0.3.1) trusty; urgency=low
+io.elementary.music (0.3.1) trusty; urgency=low
 
   * New upstream release.
 
  -- Cody Garver <cody@elementaryos.org>  Mon, 01 Apr 2015 14:15:04 -0500
 
-noise (0.3.0) trusty; urgency=medium
+io.elementary.music (0.3.0) trusty; urgency=medium
 
   * New upstream release.
 
  -- Cody Garver <cody@elementaryos.org>  Sun, 25 May 2014 02:38:00 -0500
 
-noise (0.2.4) precise; urgency=low
+io.elementary.music (0.2.4) precise; urgency=low
 
   * New upstream release.
 
  -- Cody Garver <cody@elementaryos.org>  Sat, 17 Aug 2013 00:57:40 -0500
 
-noise (0.2.3) precise; urgency=low
+io.elementary.music (0.2.3) precise; urgency=low
 
   * New upstream release.
 
  -- Cody Garver <cody@elementaryos.org>  Sun, 21 Jul 2013 09:09:03 -0500
 
-noise (0.2.2) precise; urgency=low
+io.elementary.music (0.2.2) precise; urgency=low
 
   * New upstream release.
 
  -- Corentin Noël <tintou@mailoo.org>  Thu, 27 Jun 2013 22:45:09 +0100
 
-noise (0.2.1) precise; urgency=low
+io.elementary.music (0.2.1) precise; urgency=low
 
   * New upstream release.
 
  -- Cody Garver <cody@elementaryos.org>  Sun, 09 Jun 2013 19:55:02 -0500
 
-noise (0.2) quantal; urgency=low
+io.elementary.music (0.2) quantal; urgency=low
 
   * New upstream release.
 
  -- Devid Antonio Filoni <d.filoni@ubuntu.com>  Tue, 11 Dec 2012 15:36:41 +0100
 
-noise (0.4-0) precise; urgency=low
+io.elementary.music (0.4-0) precise; urgency=low
 
   * New upstream release
 
  -- Sergey "Shnatsel" Davidoff <shnatsel@gmail.com>  Wed, 22 Feb 2012 18:18:59 +0400
 
-noise (0.1-0) oneiric; urgency=low
+io.elementary.music (0.1-0) oneiric; urgency=low
 
   * Initial release
 
