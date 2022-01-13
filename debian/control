@@ -16,7 +16,7 @@ Build-Depends: debhelper (>= 10.5.1),
 Standards-Version: 4.1.1
 Homepage: https://github.com/elementary/music
 
-Package: io.elementary.msuic
+Package: io.elementary.music
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}
 Replaces: noise
