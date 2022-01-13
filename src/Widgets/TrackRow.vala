@@ -35,7 +35,7 @@ public class Music.TrackRow : Gtk.ListBoxRow {
         var time_label = new Gtk.Label (null) {
             use_markup = true
         };
-        time_label.add_css_class ("dim-label");
+        time_label.add_css_class (Granite.STYLE_CLASS_DIM_LABEL);
 
         var grid = new Gtk.Grid () {
             column_spacing = 6,

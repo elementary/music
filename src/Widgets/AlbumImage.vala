@@ -27,8 +27,8 @@ public class Music.AlbumImage : Gtk.Grid {
             pixel_size = 200
         };
 
-        add_css_class ("card");
-        add_css_class ("rounded");
+        add_css_class (Granite.STYLE_CLASS_CARD);
+        add_css_class (Granite.STYLE_CLASS_ROUNDED);
         halign = Gtk.Align.CENTER;
         valign = Gtk.Align.CENTER;
         height_request = 200;

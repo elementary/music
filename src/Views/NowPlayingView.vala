@@ -10,7 +10,7 @@ public class Music.NowPlayingView : Gtk.Grid {
         var title_label = new Gtk.Label (null) {
             ellipsize = Pango.EllipsizeMode.MIDDLE
         };
-        title_label.add_css_class ("h3");
+        title_label.add_css_class (Granite.STYLE_CLASS_H3_LABEL);
 
         var artist_label = new Gtk.Label (null);
 
@@ -35,7 +35,7 @@ public class Music.NowPlayingView : Gtk.Grid {
             halign = Gtk.Align.CENTER,
             child = play_pause_image
         };
-        play_button.add_css_class ("flat");
+        play_button.add_css_class (Granite.STYLE_CLASS_FLAT);
 
         row_spacing = 24;
         attach (album_image, 0, 0);

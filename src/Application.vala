@@ -35,18 +35,18 @@ public class Music.Application : Gtk.Application {
 
         Gtk.IconTheme.get_for_display (Gdk.Display.get_default ()).add_resource_path ("/io/elementary/music");
 
-        // var granite_settings = Granite.Settings.get_default ();
-        // var gtk_settings = Gtk.Settings.get_default ();
+        var granite_settings = Granite.Settings.get_default ();
+        var gtk_settings = Gtk.Settings.get_default ();
 
-        // gtk_settings.gtk_application_prefer_dark_theme = (
-        //     granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK
-        // );
+        gtk_settings.gtk_application_prefer_dark_theme = (
+            granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK
+        );
 
-        // granite_settings.notify["prefers-color-scheme"].connect (() => {
-        //     gtk_settings.gtk_application_prefer_dark_theme = (
-        //         granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK
-        //     );
-        // });
+        granite_settings.notify["prefers-color-scheme"].connect (() => {
+            gtk_settings.gtk_application_prefer_dark_theme = (
+                granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK
+            );
+        });
     }
 
     protected override void open (File[] files, string hint) {
