@@ -16,6 +16,13 @@ finish-args:
 
   - '--metadata=X-DConf=migrate-path=/io/elementary/music/'
 modules:
+  - name: Adwaita
+    buildsystem: meson
+    sources:
+      - type: git
+        url: https://gitlab.gnome.org/GNOME/libadwaita
+        tag: 1.0.1
+
   - name: music
     buildsystem: meson
     sources:
