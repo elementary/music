@@ -6,7 +6,7 @@
 public class Music.MainWindow : Gtk.ApplicationWindow {
     construct {
         var css_provider = new Gtk.CssProvider ();
-        css_provider.load_from_resource ("/io/elementary/music/Application.css");
+        css_provider.load_from_data ("@define-color accent_color @ORANGE_500;".data);
 
         Gtk.StyleContext.add_provider_for_display (Gdk.Display.get_default (), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
