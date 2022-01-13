@@ -53,9 +53,9 @@ public class Music.TrackRow : Gtk.ListBoxRow {
         audio_object.bind_property ("title", title_label, "label");
 
         audio_object.notify["duration"].connect (() => {
-            // time_label.label = "<span font-features='tnum'>%s</span>".printf (
-            //     Granite.DateTime.seconds_to_time ((int) (audio_object.duration / Gst.SECOND))
-            // );
+            time_label.label = "<span font-features='tnum'>%s</span>".printf (
+                Granite.DateTime.seconds_to_time ((int) (audio_object.duration / Gst.SECOND))
+            );
         });
 
         playback_manager.notify["current-audio"].connect (() => {
