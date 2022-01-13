@@ -3,7 +3,7 @@
  * SPDX-FileCopyrightText: 2021 elementary, Inc. (https://elementary.io)
  */
 
-public class Music.SeekBar : Gtk.Grid {
+public class Music.SeekBar : Gtk.Box {
     private bool scale_pressed = false;
 
     private int64 _playback_duration;
@@ -69,11 +69,11 @@ public class Music.SeekBar : Gtk.Grid {
         scale.add_controller (scale_event_controller);
         scale.add_css_class (Granite.STYLE_CLASS_ACCENT);
 
-        column_spacing = 6;
-        add_css_class ("seekbar");
-        attach (position_label, 0, 0);
-        attach (scale, 1, 0);
-        attach (duration_label, 2, 0);
+        spacing = 6;
+        add_css_class (Granite.STYLE_CLASS_SEEKBAR);
+        append (position_label);
+        append (scale);
+        append (duration_label);
 
         scale_event_controller.pressed.connect (() => {
             scale.value_changed.connect (scale_value_changed);
