@@ -21,7 +21,7 @@ modules:
     sources:
       - type: git
         url: https://gitlab.gnome.org/GNOME/libadwaita
-        tag: 1.0.1
+        tag: 1.0.0.alpha.4
     modules:
       - name: sassc
         cleanup: [ "*" ]
