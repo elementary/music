@@ -31,9 +31,9 @@ public class Music.Application : Gtk.Application {
             default_width = 650,
             title = _("Music")
         };
-        main_window.show_all ();
+        main_window.present ();
 
-        Gtk.IconTheme.get_default ().add_resource_path ("/io/elementary/music");
+        Gtk.IconTheme.get_for_display (Gdk.Display.get_default ()).add_resource_path ("/io/elementary/music");
 
         var granite_settings = Granite.Settings.get_default ();
         var gtk_settings = Gtk.Settings.get_default ();

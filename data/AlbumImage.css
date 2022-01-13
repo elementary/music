@@ -7,15 +7,15 @@ album {
     background-image:
         linear-gradient(
             170deg,
-            alpha (
+            alpha(
                 @highlight_color,
                 0.1
             ),
-            alpha (
+            alpha(
                 @highlight_color,
                 0.15
             ) 43%,
-            alpha (
+            alpha(
                 @highlight_color,
                 0
             ) 44%
@@ -29,5 +29,5 @@ album {
     background-size: cover, 50%, cover;
     background-repeat: no-repeat;
     background-position: center center;
-    color: alpha (@insensitive_fg_color, 0.75);
+    color: alpha(@insensitive_fg_color, 0.75);
 }

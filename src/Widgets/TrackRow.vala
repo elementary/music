@@ -35,20 +35,20 @@ public class Music.TrackRow : Gtk.ListBoxRow {
         var time_label = new Gtk.Label (null) {
             use_markup = true
         };
-        time_label.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
+        time_label.add_css_class (Granite.STYLE_CLASS_DIM_LABEL);
 
         var grid = new Gtk.Grid () {
             column_spacing = 6,
-            margin = 6,
+            margin_top = 6,
             margin_start = 12,
-            margin_end = 12
+            margin_end = 12,
+            margin_bottom = 6
         };
-        grid.add (play_icon);
-        grid.add (title_label);
-        grid.add (time_label);
+        grid.attach (play_icon, 0, 0);
+        grid.attach (title_label, 1, 0);
+        grid.attach (time_label, 2, 0);
 
-        add (grid);
-        show_all ();
+        child = grid;
 
         audio_object.bind_property ("title", title_label, "label");
 
@@ -59,7 +59,7 @@ public class Music.TrackRow : Gtk.ListBoxRow {
         });
 
         playback_manager.notify["current-audio"].connect (() => {
-            play_icon.active = playback_manager.current_audio == audio_object;
+            play_icon.spinning = playback_manager.current_audio == audio_object;
         });
 
         GLib.Application.get_default ().action_state_changed.connect ((name, new_state) => {
