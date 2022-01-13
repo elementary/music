@@ -19,9 +19,9 @@ public class Music.SeekBar : Gtk.Grid {
 
             _playback_duration = duration;
 
-            // duration_label.label = "<span font-features='tnum'>%s</span>".printf (
-            //     Granite.DateTime.seconds_to_time ((int) (duration / Gst.SECOND))
-            // );
+            duration_label.label = "<span font-features='tnum'>%s</span>".printf (
+                Granite.DateTime.seconds_to_time ((int) (duration / Gst.SECOND))
+            );
         }
     }
 
@@ -39,9 +39,9 @@ public class Music.SeekBar : Gtk.Grid {
             _playback_position = position;
 
             if (!scale_pressed) {
-                // position_label.label = "<span font-features='tnum'>%s</span>".printf (
-                //     Granite.DateTime.seconds_to_time ((int) (position / Gst.SECOND))
-                // );
+                position_label.label = "<span font-features='tnum'>%s</span>".printf (
+                    Granite.DateTime.seconds_to_time ((int) (position / Gst.SECOND))
+                );
 
                 scale.set_value ((double) 1 / playback_duration * position);
             }
@@ -60,36 +60,37 @@ public class Music.SeekBar : Gtk.Grid {
             use_markup = true
         };
 
+        var scale_event_controller = new Gtk.GestureClick ();
+
         scale = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, 0, 1, 0.1) {
             draw_value = false,
             hexpand = true
         };
-        scale.add_css_class ("accent");
-
-        // scale.button_press_event.connect (() => {
-        //     scale.value_changed.connect (scale_value_changed);
-
-        //     scale_pressed = true;
-        //     return Gdk.EVENT_PROPAGATE;
-        // });
-
-        // scale.button_release_event.connect (() => {
-        //     scale.value_changed.disconnect (scale_value_changed);
-        //     PlaybackManager.get_default ().seek_to_progress (scale.get_value ());
-        //     scale_pressed = false;
-        //     return Gdk.EVENT_PROPAGATE;
-        // });
+        scale.add_controller (scale_event_controller);
+        scale.add_css_class (Granite.STYLE_CLASS_ACCENT);
 
         column_spacing = 6;
         add_css_class ("seekbar");
         attach (position_label, 0, 0);
         attach (scale, 1, 0);
         attach (duration_label, 2, 0);
+
+        scale_event_controller.pressed.connect (() => {
+            scale.value_changed.connect (scale_value_changed);
+
+            scale_pressed = true;
+        });
+
+        scale_event_controller.stopped.connect (() => {
+            scale.value_changed.disconnect (scale_value_changed);
+            PlaybackManager.get_default ().seek_to_progress (scale.get_value ());
+            scale_pressed = false;
+        });
     }
 
     private void scale_value_changed () {
-        // position_label.label = "<span font-features='tnum'>%s</span>".printf (
-        //     Granite.DateTime.seconds_to_time ((int) (scale.get_value () * (playback_duration / Gst.SECOND)))
-        // );
+        position_label.label = "<span font-features='tnum'>%s</span>".printf (
+            Granite.DateTime.seconds_to_time ((int) (scale.get_value () * (playback_duration / Gst.SECOND)))
+        );
     }
 }
