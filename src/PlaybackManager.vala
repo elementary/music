@@ -36,21 +36,7 @@ public class Music.PlaybackManager : Object {
             if (name == Application.ACTION_PLAY_PAUSE) {
                 if (new_state.get_boolean () == false) {
                     playbin.set_state (Gst.State.PAUSED);
-                    if (progress_timer != 0) {
-                        Source.remove (progress_timer);
-                        progress_timer = 0;
-                    }
                 } else {
-                    query_duration ();
-
-                    progress_timer = GLib.Timeout.add (250, () => {
-                        int64 position = 0;
-                        playbin.query_position (Gst.Format.TIME, out position);
-                        playback_position = position.clamp (0, current_audio.duration);
-
-                        return Source.CONTINUE;
-                    });
-
                     playbin.set_state (Gst.State.PLAYING);
                 }
             }
@@ -103,6 +89,35 @@ public class Music.PlaybackManager : Object {
 
     private bool bus_callback (Gst.Bus bus, Gst.Message message) {
         switch (message.type) {
+            case Gst.MessageType.STATE_CHANGED:
+                Gst.State old_state;
+                Gst.State new_state;
+                Gst.State pending_state;
+                message.parse_state_changed (out old_state, out new_state, out pending_state);
+
+                var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
+                if (new_state == Gst.State.PLAYING) {
+                    play_pause_action.set_state (true);
+
+                    query_duration ();
+
+                    progress_timer = GLib.Timeout.add (250, () => {
+                        int64 position = 0;
+                        playbin.query_position (Gst.Format.TIME, out position);
+                        playback_position = position.clamp (0, current_audio.duration);
+
+                        return Source.CONTINUE;
+                    });
+                } else {
+                    play_pause_action.set_state (false);
+
+                    if (progress_timer != 0) {
+                        Source.remove (progress_timer);
+                        progress_timer = 0;
+                    }
+                }
+
+                break;
             case Gst.MessageType.EOS:
                 next ();
                 break;
