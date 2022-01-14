@@ -19,7 +19,6 @@ public class Music.AlbumImage : Gtk.Grid {
 
     construct {
         unowned var style_context = get_style_context ();
-        style_context.add_class (Granite.STYLE_CLASS_CARD);
         style_context.add_provider (css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
         image = new Gtk.Image () {
@@ -28,10 +27,13 @@ public class Music.AlbumImage : Gtk.Grid {
             pixel_size = 200
         };
 
+        add_css_class (Granite.STYLE_CLASS_CARD);
+        add_css_class (Granite.STYLE_CLASS_ROUNDED);
         halign = Gtk.Align.CENTER;
         valign = Gtk.Align.CENTER;
         height_request = 200;
         width_request = 200;
-        add (image);
+        overflow = Gtk.Overflow.HIDDEN;
+        attach (image, 0, 0);
     }
 }

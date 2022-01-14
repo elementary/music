@@ -3,7 +3,7 @@
  * SPDX-FileCopyrightText: 2021 elementary, Inc. (https://elementary.io)
  */
 
-public class Music.SeekBar : Gtk.Grid {
+public class Music.SeekBar : Gtk.Box {
     private bool scale_pressed = false;
 
     private int64 _playback_duration;
@@ -60,30 +60,32 @@ public class Music.SeekBar : Gtk.Grid {
             use_markup = true
         };
 
+        var scale_event_controller = new Gtk.GestureClick ();
+
         scale = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, 0, 1, 0.1) {
             draw_value = false,
             hexpand = true
         };
+        scale.add_controller (scale_event_controller);
+        scale.add_css_class (Granite.STYLE_CLASS_ACCENT);
 
-        scale.button_press_event.connect (() => {
+        spacing = 6;
+        add_css_class (Granite.STYLE_CLASS_SEEKBAR);
+        append (position_label);
+        append (scale);
+        append (duration_label);
+
+        scale_event_controller.pressed.connect (() => {
             scale.value_changed.connect (scale_value_changed);
 
             scale_pressed = true;
-            return Gdk.EVENT_PROPAGATE;
         });
 
-        scale.button_release_event.connect (() => {
+        scale_event_controller.stopped.connect (() => {
             scale.value_changed.disconnect (scale_value_changed);
             PlaybackManager.get_default ().seek_to_progress (scale.get_value ());
             scale_pressed = false;
-            return Gdk.EVENT_PROPAGATE;
         });
-
-        column_spacing = 6;
-        get_style_context ().add_class (Granite.STYLE_CLASS_SEEKBAR);
-        add (position_label);
-        add (scale);
-        add (duration_label);
     }
 
     private void scale_value_changed () {
