@@ -37,11 +37,17 @@ public class Music.NowPlayingView : Gtk.Grid {
         };
         play_button.add_css_class (Granite.STYLE_CLASS_FLAT);
 
-        var next_button = new Gtk.Button.from_icon_name ("media-skip-forward-symbolic", Gtk.IconSize.LARGE_TOOLBAR) {
+        var next_image = new Gtk.Image.from_icon_name ("media-skip-forward-symbolic") {
+            pixel_size = 24
+        };
+
+        var next_button = new Gtk.Button () {
             action_name = Application.ACTION_PREFIX + Application.ACTION_NEXT,
+            child = next_image,
             halign = Gtk.Align.START,
             tooltip_text = _("Next")
         };
+        next_button.add_css_class (Granite.STYLE_CLASS_FLAT);
 
         column_spacing = 12;
         row_spacing = 24;
