@@ -35,7 +35,7 @@ public class Music.NowPlayingView : Gtk.Grid {
             halign = Gtk.Align.END,
             child = play_pause_image
         };
-        play_button.add_css_class (Granite.STYLE_CLASS_FLAT);
+        play_button.add_css_class ("image-button");
 
         var next_image = new Gtk.Image.from_icon_name ("media-skip-forward-symbolic") {
             pixel_size = 24
@@ -47,7 +47,7 @@ public class Music.NowPlayingView : Gtk.Grid {
             halign = Gtk.Align.START,
             tooltip_text = _("Next")
         };
-        next_button.add_css_class (Granite.STYLE_CLASS_FLAT);
+        next_button.add_css_class ("image-button");
 
         column_spacing = 12;
         row_spacing = 24;
