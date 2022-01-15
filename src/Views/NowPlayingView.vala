@@ -90,9 +90,9 @@ public class Music.NowPlayingView : Gtk.Grid {
 
         playback_manager.notify["current-audio"].connect (() => {
             if (playback_manager.current_audio != null) {
-                playback_manager.current_audio.bind_property ("artist", artist_label, "label");
-                playback_manager.current_audio.bind_property ("title", title_label, "label");
-                playback_manager.current_audio.bind_property ("duration", seekbar, "playback-duration");
+                playback_manager.current_audio.bind_property ("artist", artist_label, "label", BindingFlags.SYNC_CREATE);
+                playback_manager.current_audio.bind_property ("title", title_label, "label", BindingFlags.SYNC_CREATE);
+                playback_manager.current_audio.bind_property ("duration", seekbar, "playback-duration", BindingFlags.SYNC_CREATE);
 
                 playback_manager.current_audio.notify["pixbuf"].connect (() => {
                     var pixbuf = playback_manager.current_audio.pixbuf;
