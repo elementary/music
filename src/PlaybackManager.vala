@@ -55,6 +55,14 @@ public class Music.PlaybackManager : Object {
                 }
             }
         });
+
+        queue_liststore.items_changed.connect (() => {
+            update_next_sensitivity ();
+        });
+
+        notify["current-audio"].connect (() => {
+            update_next_sensitivity ();
+        });
     }
 
     public void seek_to_progress (double percent) {
@@ -104,9 +112,7 @@ public class Music.PlaybackManager : Object {
     private bool bus_callback (Gst.Bus bus, Gst.Message message) {
         switch (message.type) {
             case Gst.MessageType.EOS:
-                playbin.set_state (Gst.State.NULL);
                 next ();
-                playbin.set_state (Gst.State.PLAYING);
                 break;
             case Gst.MessageType.TAG:
                 Gst.TagList tag_list;
@@ -143,7 +149,9 @@ public class Music.PlaybackManager : Object {
         return true;
     }
 
-    private void next () {
+    public void next () {
+        playbin.set_state (Gst.State.NULL);
+
         uint position = -1;
         queue_liststore.find (current_audio, out position);
 
@@ -154,9 +162,27 @@ public class Music.PlaybackManager : Object {
             playbin.uri = current_audio.file.get_uri ();
 
             query_duration ();
+
+            playbin.set_state (Gst.State.PLAYING);
         } else {
             reset_metadata ();
         }
+    }
+
+    private void update_next_sensitivity () {
+        var next_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_NEXT);
+
+        if (current_audio != null) {
+            uint position = -1;
+            queue_liststore.find (current_audio, out position);
+
+            if (position != -1 && position != queue_liststore.get_n_items () - 1) {
+                next_action.set_enabled (true);
+                return;
+            }
+        }
+
+        next_action.set_enabled (false);
     }
 
     private void query_duration () {

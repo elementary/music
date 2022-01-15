@@ -32,16 +32,30 @@ public class Music.NowPlayingView : Gtk.Grid {
 
         var play_button = new Gtk.Button () {
             action_name = Application.ACTION_PREFIX + Application.ACTION_PLAY_PAUSE,
-            halign = Gtk.Align.CENTER,
+            halign = Gtk.Align.END,
             child = play_pause_image
         };
         play_button.add_css_class (Granite.STYLE_CLASS_FLAT);
 
+        var next_image = new Gtk.Image.from_icon_name ("media-skip-forward-symbolic") {
+            pixel_size = 24
+        };
+
+        var next_button = new Gtk.Button () {
+            action_name = Application.ACTION_PREFIX + Application.ACTION_NEXT,
+            child = next_image,
+            halign = Gtk.Align.START,
+            tooltip_text = _("Next")
+        };
+        next_button.add_css_class (Granite.STYLE_CLASS_FLAT);
+
+        column_spacing = 12;
         row_spacing = 24;
-        attach (album_image, 0, 0);
-        attach (info_grid, 0, 1);
-        attach (seekbar, 0, 2);
+        attach (album_image, 0, 0, 2);
+        attach (info_grid, 0, 1, 2);
+        attach (seekbar, 0, 2, 2);
         attach (play_button, 0, 3);
+        attach (next_button, 1, 3);
 
         GLib.Application.get_default ().action_state_changed.connect ((name, new_state) => {
             if (name == Application.ACTION_PLAY_PAUSE) {
