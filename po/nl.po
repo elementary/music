@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-11-14 01:59+0000\n"
-"Last-Translator: Jaimie85 <alsemgeest@gmail.com>\n"
+"PO-Revision-Date: 2022-01-16 09:53+0000\n"
+"Last-Translator: Dennis ten Hoove <dennistenhoove@protonmail.com>\n"
 "Language-Team: Dutch <https://l10n.elementary.io/projects/music/music/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -252,7 +252,7 @@ msgstr "Uw muziekbibliotheek is geïmporteerd."
 #. if doing import and copy to music folder is enabled, do copy here
 #: src/FileOperator.vala:316
 msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr "Bestanden <b>kopiëren</b> naar <b>muziekmap</b>…"
+msgstr "Bestanden <b>kopiëren</b> naar de <b>muziekfolder</b>…"
 
 #: src/LibraryWindow.vala:197 src/LibraryWindow.vala:275
 #: src/LibraryWindow.vala:631 src/LibraryWindow.vala:751
@@ -356,7 +356,7 @@ msgstr "Zoek nummer"
 #: src/Dialogs/FileNotFoundDialog.vala:99
 #: src/Dialogs/SetMusicFolderConfirmation.vala:81
 msgid "Choose Music Folder"
-msgstr "Kies muziek-map"
+msgstr "Kies muziekfolder"
 
 #: src/Dialogs/InstallGstreamerPluginsDialog.vala:41
 #, c-format
@@ -468,11 +468,11 @@ msgstr "Negeren"
 
 #: src/Dialogs/PreferencesWindow.vala:38
 msgid "Select Music Folder…"
-msgstr "Selecteer muziekmap…"
+msgstr "Selecteer muziekfolder…"
 
 #: src/Dialogs/PreferencesWindow.vala:70
 msgid "Music Folder Location"
-msgstr "Locatie muziekmap"
+msgstr "Locatie muziekfolder"
 
 #: src/Dialogs/PreferencesWindow.vala:72
 msgid "Library Management"
@@ -480,7 +480,7 @@ msgstr "Bibliotheekbeheer"
 
 #: src/Dialogs/PreferencesWindow.vala:73
 msgid "Keep Music folder organized:"
-msgstr "Houd Muziekmap georganiseerd:"
+msgstr "Houd de muziekfolder georganiseerd:"
 
 #: src/Dialogs/PreferencesWindow.vala:75
 msgid "Write metadata to file:"
@@ -530,7 +530,7 @@ msgstr "Verwijderen uit bibliotheek"
 
 #: src/Dialogs/SetMusicFolderConfirmation.vala:38
 msgid "Set Music Folder?"
-msgstr "Muziek-map instellen?"
+msgstr "Muziekfolder instellen?"
 
 #: src/Dialogs/SetMusicFolderConfirmation.vala:39
 #, c-format
@@ -538,7 +538,7 @@ msgid ""
 "Are you sure you want to set the music folder to %s? This will reset your "
 "library and remove your playlists."
 msgstr ""
-"Weet je zeker dat je %s als muziekmap in wilt stellen? Dit zal je "
+"Weet je zeker dat je %s als muziekfolder in wilt stellen? Dit zal je "
 "muziekbibliotheek resetten en je afspeellijsten verwijderen."
 
 #: src/Dialogs/SetMusicFolderConfirmation.vala:47
@@ -547,7 +547,7 @@ msgstr "Afspeellijst exporteren"
 
 #: src/Dialogs/SetMusicFolderConfirmation.vala:61
 msgid "Set Music Folder"
-msgstr "Selecteer muziek-map"
+msgstr "Selecteer muziekfolder"
 
 #: src/Dialogs/SmartPlaylistEditor.vala:55
 msgid "Playlist Title"
@@ -1158,11 +1158,11 @@ msgstr "Importeer een nummer van een bron naar uw bibliotheek."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:62
 msgid "Change Music Folder"
-msgstr "Wijzig muziekmap"
+msgstr "Wijzig muziekfolder"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:63
 msgid "Load music from a folder, a network or an external disk."
-msgstr "Laad muziek uit een map, een netwerk of een externe schijf."
+msgstr "Laad muziek uit een folder, vanaf een netwerk of een externe schijf."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:110
 #: src/Views/Wrappers/MusicViewWrapper.vala:130
@@ -1177,7 +1177,7 @@ msgstr "Importeer al je muziek uit %s naar je bibliotheek."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:143
 msgid "Select Music Folder"
-msgstr "Selecteer muziekmap"
+msgstr "Selecteer muziekfolder"
 
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:50
 #: src/Views/Wrappers/PlaylistViewWrapper.vala:54
