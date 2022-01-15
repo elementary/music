@@ -57,11 +57,11 @@ public class Music.PlaybackManager : Object {
         });
 
         queue_liststore.items_changed.connect (() => {
-            update_next_sensitivity ();
+            update_next_previous_sensitivity ();
         });
 
         notify["current-audio"].connect (() => {
-            update_next_sensitivity ();
+            update_next_previous_sensitivity ();
         });
     }
 
@@ -169,20 +169,51 @@ public class Music.PlaybackManager : Object {
         }
     }
 
-    private void update_next_sensitivity () {
-        var next_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_NEXT);
+    public void previous () {
+        playbin.set_state (Gst.State.NULL);
+
+        uint position = -1;
+        queue_liststore.find (current_audio, out position);
+
+        if (position != -1 && position != 0) {
+            playback_position = 0;
+
+            current_audio = (AudioObject) queue_liststore.get_item (position - 1);
+            playbin.uri = current_audio.file.get_uri ();
+
+            query_duration ();
+
+            playbin.set_state (Gst.State.PLAYING);
+        }
+    }
+
+    private void update_next_previous_sensitivity () {
+        var next_sensitive = false;
+        var previous_sensitive = false;
 
         if (current_audio != null) {
             uint position = -1;
             queue_liststore.find (current_audio, out position);
 
-            if (position != -1 && position != queue_liststore.get_n_items () - 1) {
-                next_action.set_enabled (true);
-                return;
+            if (position != -1) {
+                if (position != queue_liststore.get_n_items () - 1) {
+                    next_sensitive = true;
+                }
+
+                if (position != 0) {
+                    previous_sensitive = true;
+                }
             }
         }
 
-        next_action.set_enabled (false);
+        var default_application = GLib.Application.get_default ();
+
+        var next_action = (SimpleAction) default_application.lookup_action (Application.ACTION_NEXT);
+        next_action.set_enabled (next_sensitive);
+
+        var previous_action = (SimpleAction) default_application.lookup_action (Application.ACTION_PREVIOUS);
+        previous_action.set_enabled (previous_sensitive);
+
     }
 
     private void query_duration () {

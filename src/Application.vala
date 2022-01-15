@@ -7,10 +7,12 @@ public class Music.Application : Gtk.Application {
     public const string ACTION_PREFIX = "app.";
     public const string ACTION_NEXT = "action-next";
     public const string ACTION_PLAY_PAUSE = "action-play-pause";
+    public const string ACTION_PREVIOUS = "action-previous";
 
     private const ActionEntry[] ACTION_ENTRIES = {
         { ACTION_PLAY_PAUSE, action_play_pause, null, "false" },
-        { ACTION_NEXT, action_next }
+        { ACTION_NEXT, action_next },
+        { ACTION_PREVIOUS, action_previous }
     };
 
     private PlaybackManager? playback_manager = null;
@@ -70,6 +72,10 @@ public class Music.Application : Gtk.Application {
 
     private void action_next () {
         playback_manager.next ();
+    }
+
+    private void action_previous () {
+        playback_manager.previous ();
     }
 
     public static int main (string[] args) {
