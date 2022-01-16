@@ -3,9 +3,13 @@
  * SPDX-FileCopyrightText: 2021 elementary, Inc. (https://elementary.io)
  */
 
-public class Music.NowPlayingView : Gtk.Grid {
+public class Music.NowPlayingView : Gtk.Box {
     construct {
         var album_image = new Music.AlbumImage ();
+
+        var aspect_frame = new Gtk.AspectFrame (0.5f, 1.0f, 1, false) {
+            child = album_image
+        };
 
         var title_label = new Gtk.Label (_("Music")) {
             ellipsize = Pango.EllipsizeMode.MIDDLE
@@ -61,14 +65,22 @@ public class Music.NowPlayingView : Gtk.Grid {
         };
         next_button.add_css_class ("image-button");
 
-        column_spacing = 12;
-        row_spacing = 24;
-        attach (album_image, 0, 0, 3);
-        attach (info_grid, 0, 1, 3);
-        attach (seekbar, 0, 2, 3);
-        attach (previous_button, 0, 3);
-        attach (play_button, 1, 3);
-        attach (next_button, 2, 3);
+        var grid = new Gtk.Grid () {
+            column_spacing = 12,
+            row_spacing = 24,
+            valign = Gtk.Align.START,
+            vexpand = true
+        };
+        grid.attach (info_grid, 0, 1, 3);
+        grid.attach (seekbar, 0, 2, 3);
+        grid.attach (previous_button, 0, 3);
+        grid.attach (play_button, 1, 3);
+        grid.attach (next_button, 2, 3);
+
+        orientation = Gtk.Orientation.VERTICAL;
+        spacing = 24;
+        append (aspect_frame);
+        append (grid);
 
         GLib.Application.get_default ().action_state_changed.connect ((name, new_state) => {
             if (name == Application.ACTION_PLAY_PAUSE) {
@@ -94,14 +106,14 @@ public class Music.NowPlayingView : Gtk.Grid {
                 playback_manager.current_audio.bind_property ("title", title_label, "label", BindingFlags.SYNC_CREATE);
                 playback_manager.current_audio.bind_property ("duration", seekbar, "playback-duration", BindingFlags.SYNC_CREATE);
 
-                playback_manager.current_audio.notify["pixbuf"].connect (() => {
-                    var pixbuf = playback_manager.current_audio.pixbuf;
-                    var scaled = pixbuf.scale_simple (200, 200, Gdk.InterpType.BILINEAR);
+                playback_manager.current_audio.notify["texture"].connect (() => {
+                    var texture = playback_manager.current_audio.texture;
+                    // var scaled = pixbuf.scale_simple (200, 200, Gdk.InterpType.BILINEAR);
 
-                    album_image.image.set_from_pixbuf (scaled);
+                    album_image.image.paintable = texture;
                 });
             } else {
-                album_image.image.set_from_pixbuf (null);
+                album_image.image.paintable = null;
                 artist_label.label = _("Not playing");
                 title_label.label = _("Music");
                 seekbar.playback_duration = 0;

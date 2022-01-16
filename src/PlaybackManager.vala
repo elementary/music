@@ -137,7 +137,7 @@ public class Music.PlaybackManager : Object {
                     var buffer = sample.get_buffer ();
 
                     if (buffer != null) {
-                        current_audio.pixbuf = get_pixbuf_from_buffer (buffer);
+                        current_audio.texture = Gdk.Texture.for_pixbuf (get_pixbuf_from_buffer (buffer));
                     }
                 }
 

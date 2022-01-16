@@ -5,7 +5,7 @@
 
 public class Music.AudioObject : Object {
     public File file { get; construct; }
-    public Gdk.Pixbuf pixbuf { get; set; }
+    public Gdk.Texture texture { get; set; }
     public string artist { get; set; }
     public string title { get; set; }
     public int64 duration { get; set; default = 0; }
