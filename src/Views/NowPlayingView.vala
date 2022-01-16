@@ -7,12 +7,12 @@ public class Music.NowPlayingView : Gtk.Grid {
     construct {
         var album_image = new Music.AlbumImage ();
 
-        var title_label = new Gtk.Label (null) {
+        var title_label = new Gtk.Label (_("Music")) {
             ellipsize = Pango.EllipsizeMode.MIDDLE
         };
         title_label.add_css_class (Granite.STYLE_CLASS_H3_LABEL);
 
-        var artist_label = new Gtk.Label (null);
+        var artist_label = new Gtk.Label (_("Not playing"));
 
         var artist_revealer = new Gtk.Revealer () {
             child = artist_label
@@ -83,7 +83,7 @@ public class Music.NowPlayingView : Gtk.Grid {
         });
 
         var play_pause_action = GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
-        play_pause_action.bind_property ("enabled", seekbar, "sensitive");
+        play_pause_action.bind_property ("enabled", seekbar, "sensitive", BindingFlags.SYNC_CREATE);
 
         var playback_manager = PlaybackManager.get_default ();
         playback_manager.bind_property ("playback-position", seekbar, "playback-position");
@@ -101,8 +101,11 @@ public class Music.NowPlayingView : Gtk.Grid {
                     album_image.image.set_from_pixbuf (scaled);
                 });
             } else {
+                album_image.image.set_from_pixbuf (null);
                 artist_label.label = _("Not playing");
                 title_label.label = _("Music");
+                seekbar.playback_duration = 0;
+                seekbar.playback_position = 0;
             }
         });
 

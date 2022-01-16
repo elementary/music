@@ -27,6 +27,11 @@ public class Music.Application : Gtk.Application {
     protected override void activate () {
         add_action_entries (ACTION_ENTRIES, this);
 
+        ((SimpleAction) lookup_action (ACTION_PLAY_PAUSE)).set_enabled (false);
+        ((SimpleAction) lookup_action (ACTION_PLAY_PAUSE)).set_state (false);
+        ((SimpleAction) lookup_action (ACTION_NEXT)).set_enabled (false);
+        ((SimpleAction) lookup_action (ACTION_PREVIOUS)).set_enabled (false);
+
         MediaKeyListener.get_default ();
         playback_manager = PlaybackManager.get_default ();
 

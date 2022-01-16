@@ -43,7 +43,12 @@ public class Music.SeekBar : Gtk.Box {
                     Granite.DateTime.seconds_to_time ((int) (position / Gst.SECOND))
                 );
 
-                scale.set_value ((double) 1 / playback_duration * position);
+                if (position != 0) {
+                    scale.set_value ((double) 1 / playback_duration * position);
+                } else {
+                    scale.set_value (0);
+                }
+
             }
         }
     }
