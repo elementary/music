@@ -19,11 +19,10 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         queue_header.add_css_class (Granite.STYLE_CLASS_FLAT);
         queue_header.add_css_class (Granite.STYLE_CLASS_DEFAULT_DECORATION);
 
-        var queue_placeholder = new Granite.Widgets.AlertView (
-            _("Queue is Empty"),
-            _("Audio files opened from Files will appear here"),
-            "playlist-queue"
-        );
+        var queue_placeholder = new Granite.Placeholder (_("Queue is Empty")) {
+            description = _("Audio files opened from Files will appear here"),
+            icon = new ThemedIcon ("playlist-queue")
+        };
 
         var queue_listbox = new Gtk.ListBox () {
             hexpand = true,
