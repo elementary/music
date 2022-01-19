@@ -21,6 +21,8 @@ public class Music.PlaybackManager : Object {
     private Gst.Bus bus;
     private uint progress_timer = 0;
 
+    private Settings settings;
+
     private PlaybackManager () {}
 
     construct {
@@ -63,6 +65,8 @@ public class Music.PlaybackManager : Object {
         notify["current-audio"].connect (() => {
             update_next_previous_sensitivity ();
         });
+
+        settings = new Settings ("io.elementary.music");
     }
 
     public void seek_to_progress (double percent) {
@@ -155,17 +159,33 @@ public class Music.PlaybackManager : Object {
         uint position = -1;
         queue_liststore.find (current_audio, out position);
 
-        if (position != -1 && position != queue_liststore.get_n_items () - 1) {
+        if (position != -1) {
             playback_position = 0;
 
-            current_audio = (AudioObject) queue_liststore.get_item (position + 1);
+            switch (settings.get_string ("repeat-mode")) {
+                case "disabled":
+                    if (position == queue_liststore.get_n_items () - 1) {
+                        reset_metadata ();
+                        return;
+                    }
+
+                    current_audio = (AudioObject) queue_liststore.get_item (position + 1);
+
+                    break;
+
+                case "all":
+                    if (position == queue_liststore.get_n_items () - 1) {
+                        current_audio = (AudioObject) queue_liststore.get_item (0);
+                    } else {
+                        current_audio = (AudioObject) queue_liststore.get_item (position + 1);
+                    }
+
+                    break;
+            }
+
             playbin.uri = current_audio.file.get_uri ();
-
             query_duration ();
-
             playbin.set_state (Gst.State.PLAYING);
-        } else {
-            reset_metadata ();
         }
     }
 
