@@ -22,17 +22,14 @@ public class Music.AlbumImage : Gtk.Grid {
         style_context.add_provider (css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
         image = new Gtk.Image () {
-            height_request = 32,
-            width_request = 32,
-            pixel_size = 200
+            height_request = 200,
+            width_request = 200,
+            hexpand = true,
+            vexpand = true
         };
 
         add_css_class (Granite.STYLE_CLASS_CARD);
         add_css_class (Granite.STYLE_CLASS_ROUNDED);
-        halign = Gtk.Align.CENTER;
-        valign = Gtk.Align.CENTER;
-        height_request = 200;
-        width_request = 200;
         overflow = Gtk.Overflow.HIDDEN;
         attach (image, 0, 0);
     }

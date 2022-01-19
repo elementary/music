@@ -52,7 +52,6 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
             margin_end = 12,
             margin_bottom = 24,
             margin_start = 12,
-            valign = Gtk.Align.CENTER,
             vexpand = true
         };
 
