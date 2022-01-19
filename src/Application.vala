@@ -25,41 +25,45 @@ public class Music.Application : Gtk.Application {
     }
 
     protected override void activate () {
-        add_action_entries (ACTION_ENTRIES, this);
+        if (active_window == null) {
+            add_action_entries (ACTION_ENTRIES, this);
 
-        ((SimpleAction) lookup_action (ACTION_PLAY_PAUSE)).set_enabled (false);
-        ((SimpleAction) lookup_action (ACTION_PLAY_PAUSE)).set_state (false);
-        ((SimpleAction) lookup_action (ACTION_NEXT)).set_enabled (false);
-        ((SimpleAction) lookup_action (ACTION_PREVIOUS)).set_enabled (false);
+            ((SimpleAction) lookup_action (ACTION_PLAY_PAUSE)).set_enabled (false);
+            ((SimpleAction) lookup_action (ACTION_PLAY_PAUSE)).set_state (false);
+            ((SimpleAction) lookup_action (ACTION_NEXT)).set_enabled (false);
+            ((SimpleAction) lookup_action (ACTION_PREVIOUS)).set_enabled (false);
 
-        MediaKeyListener.get_default ();
-        playback_manager = PlaybackManager.get_default ();
+            MediaKeyListener.get_default ();
+            playback_manager = PlaybackManager.get_default ();
 
-        var main_window = new MainWindow () {
-            application = this,
-            default_width = 650,
-            title = _("Music")
-        };
-        main_window.present ();
+            var main_window = new MainWindow () {
+                default_width = 650,
+                title = _("Music")
+            };
 
-        Gtk.IconTheme.get_for_display (Gdk.Display.get_default ()).add_resource_path ("/io/elementary/music");
+            add_window (main_window);
 
-        var granite_settings = Granite.Settings.get_default ();
-        var gtk_settings = Gtk.Settings.get_default ();
+            Gtk.IconTheme.get_for_display (Gdk.Display.get_default ()).add_resource_path ("/io/elementary/music");
 
-        gtk_settings.gtk_application_prefer_dark_theme = (
-            granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK
-        );
+            var granite_settings = Granite.Settings.get_default ();
+            var gtk_settings = Gtk.Settings.get_default ();
 
-        granite_settings.notify["prefers-color-scheme"].connect (() => {
             gtk_settings.gtk_application_prefer_dark_theme = (
                 granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK
             );
-        });
+
+            granite_settings.notify["prefers-color-scheme"].connect (() => {
+                gtk_settings.gtk_application_prefer_dark_theme = (
+                    granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK
+                );
+            });
+        }
+
+        active_window.present_with_time (Gdk.CURRENT_TIME);
     }
 
     protected override void open (File[] files, string hint) {
-        if (playback_manager == null) {
+        if (active_window == null) {
             activate ();
         }
 
