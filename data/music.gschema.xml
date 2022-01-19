@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <enum id="io.elementary.music.repeat-mode">
+    <value value="0" nick="disabled"/>
+    <value value="1" nick="all"/>
+    <value value="2" nick="one"/>
+  </enum>
+
+  <schema path="/io/elementary/music/" id="io.elementary.music">
+    <key enum="io.elementary.music.repeat-mode" name="repeat-mode">
+      <default>'disabled'</default>
+      <summary>An index representing the repeat mode</summary>
+      <description>An index representing the repeat mode</description>
+    </key>
+  </schema>
+</schemalist>

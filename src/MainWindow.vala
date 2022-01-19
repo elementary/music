@@ -4,20 +4,27 @@
  */
 
 public class Music.MainWindow : Gtk.ApplicationWindow {
+    private Gtk.Button repeat_button;
+    private Settings settings;
+
     construct {
         var css_provider = new Gtk.CssProvider ();
         css_provider.load_from_data ("@define-color accent_color @ORANGE_500;".data);
 
         Gtk.StyleContext.add_provider_for_display (Gdk.Display.get_default (), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
-        var start_window_controls = new Gtk.WindowControls (Gtk.PackType.START);
-
-        var queue_header = new Gtk.WindowHandle () {
-            child = start_window_controls
+        var start_window_controls = new Gtk.WindowControls (Gtk.PackType.START) {
+            hexpand = true
         };
+
+        repeat_button = new Gtk.Button ();
+
+        var queue_header = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         queue_header.add_css_class ("titlebar");
         queue_header.add_css_class (Granite.STYLE_CLASS_FLAT);
         queue_header.add_css_class (Granite.STYLE_CLASS_DEFAULT_DECORATION);
+        queue_header.append (start_window_controls);
+        queue_header.append (repeat_button);
 
         var queue_placeholder = new Granite.Placeholder (_("Queue is Empty")) {
             description = _("Audio files opened from Files will appear here"),
@@ -39,6 +46,10 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         queue.add_css_class (Granite.STYLE_CLASS_VIEW);
         queue.attach (queue_header, 0, 0);
         queue.attach (scrolled, 0, 1);
+
+        var queue_handle = new Gtk.WindowHandle () {
+            child = queue
+        };
 
         var end_window_controls = new Gtk.WindowControls (Gtk.PackType.END) {
             halign = Gtk.Align.END
@@ -65,7 +76,7 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
 
         var paned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL) {
             position = 350,
-            start_child = queue,
+            start_child = queue_handle,
             end_child = now_playing_handle,
             resize_end_child = false,
             shrink_end_child = false,
@@ -79,6 +90,37 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
             visible = false
         };
         set_titlebar (null_title);
+
+        settings = new Settings ("io.elementary.music");
+        settings.changed["repeat-mode"].connect (update_repeat_button);
+
+        update_repeat_button ();
+
+        repeat_button.clicked.connect (() => {
+            var enum_step = settings.get_enum ("repeat-mode");
+            if (enum_step < 2) {
+                settings.set_enum ("repeat-mode", enum_step + 1);
+            } else {
+                settings.set_enum ("repeat-mode", 0);
+            }
+        });
+    }
+
+    private void update_repeat_button () {
+        switch (settings.get_string ("repeat-mode")) {
+            case "disabled":
+                repeat_button.icon_name = "media-playlist-no-repeat-symbolic";
+                repeat_button.tooltip_text = _("Repeat None");
+                break;
+            case "all":
+                repeat_button.icon_name = "media-playlist-repeat-symbolic";
+                repeat_button.tooltip_text = _("Repeat All");
+                break;
+            case "one":
+                repeat_button.icon_name = "media-playlist-repeat-song-symbolic";
+                repeat_button.tooltip_text = _("Repeat One");
+                break;
+        }
     }
 
     private Gtk.Widget create_queue_row (GLib.Object object) {

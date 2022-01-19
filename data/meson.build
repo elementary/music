@@ -5,6 +5,12 @@ gresource = gnome.compile_resources(
     source_dir: join_paths(meson.source_root(), 'data')
 )
 
+install_data(
+    'music.gschema.xml',
+    install_dir: get_option('datadir') / 'glib-2.0' / 'schemas',
+    rename: meson.project_name() + '.gschema.xml'
+)
+
 i18n.merge_file(
     input: 'music.desktop.in',
     output: meson.project_name() + '.desktop',
