@@ -36,13 +36,13 @@ public class Music.MprisRoot : Object {
     }
 
     public string[] supported_uri_schemes {
-        get {
+        owned get {
             return {"file"};
         }
     }
 
     public string[] supported_mime_types {
-        get {
+        owned get {
             return {"audio"};
         }
     }
