@@ -9,11 +9,6 @@ finish-args:
   - '--socket=wayland'
   - '--socket=pulseaudio'
 
-  # needed for perfers-color-scheme
-  - '--system-talk-name=org.freedesktop.Accounts'
-
-  - '--talk-name=org.gnome.SettingsDaemon.MediaKeys'
-
   - '--metadata=X-DConf=migrate-path=/io/elementary/music/'
 modules:
   - name: Adwaita
