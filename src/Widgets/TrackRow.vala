@@ -26,37 +26,41 @@ public class Music.TrackRow : Gtk.ListBoxRow {
         unowned var play_icon_context = play_icon.get_style_context ();
         play_icon_context.add_provider (css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
+        var album_image = new Music.AlbumImage ();
+        album_image.image.height_request = 32;
+        album_image.image.width_request = 32;
+
         var title_label = new Gtk.Label (audio_object.title) {
             ellipsize = Pango.EllipsizeMode.MIDDLE,
             hexpand = true,
             xalign = 0
         };
 
-        var time_label = new Gtk.Label (null) {
-            use_markup = true
+        var artist_label = new Gtk.Label (audio_object.artist) {
+            ellipsize = Pango.EllipsizeMode.MIDDLE,
+            hexpand = true,
+            xalign = 0
         };
-        time_label.add_css_class (Granite.STYLE_CLASS_DIM_LABEL);
+        artist_label.add_css_class (Granite.STYLE_CLASS_DIM_LABEL);
+        artist_label.add_css_class (Granite.STYLE_CLASS_SMALL_LABEL);
 
         var grid = new Gtk.Grid () {
-            column_spacing = 6,
+            column_spacing = 12,
             margin_top = 6,
             margin_start = 12,
             margin_end = 12,
             margin_bottom = 6
         };
-        grid.attach (play_icon, 0, 0);
+        grid.attach (album_image, 0, 0, 1, 2);
         grid.attach (title_label, 1, 0);
-        grid.attach (time_label, 2, 0);
+        grid.attach (artist_label, 1, 1);
+        grid.attach (play_icon, 2, 0, 1, 2);
 
         child = grid;
 
+        audio_object.bind_property ("artist", artist_label, "label");
         audio_object.bind_property ("title", title_label, "label");
-
-        audio_object.notify["duration"].connect (() => {
-            time_label.label = "<span font-features='tnum'>%s</span>".printf (
-                Granite.DateTime.seconds_to_time ((int) (audio_object.duration / Gst.SECOND))
-            );
-        });
+        audio_object.bind_property ("texture", album_image.image, "paintable");
 
         playback_manager.notify["current-audio"].connect (() => {
             play_icon.spinning = playback_manager.current_audio == audio_object;

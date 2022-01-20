@@ -17,7 +17,9 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
             hexpand = true
         };
 
-        repeat_button = new Gtk.Button ();
+        repeat_button = new Gtk.Button () {
+            margin_end = 6
+        };
 
         var queue_header = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         queue_header.add_css_class ("titlebar");

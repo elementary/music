@@ -21,12 +21,7 @@ public class Music.AlbumImage : Gtk.Grid {
         unowned var style_context = get_style_context ();
         style_context.add_provider (css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
-        image = new Gtk.Image () {
-            height_request = 200,
-            width_request = 200,
-            hexpand = true,
-            vexpand = true
-        };
+        image = new Gtk.Image ();
 
         add_css_class (Granite.STYLE_CLASS_CARD);
         add_css_class (Granite.STYLE_CLASS_ROUNDED);
