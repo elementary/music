@@ -24,13 +24,13 @@ public class Music.MprisRoot : Object {
     }
 
     public string desktop_entry {
-        owned get {
+        get {
             return "io.elementary.music";
         }
     }
 
     public string identity {
-        owned get {
+        get {
             return "io.elementary.music";
         }
     }
