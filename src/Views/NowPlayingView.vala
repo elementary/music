@@ -108,8 +108,6 @@ public class Music.NowPlayingView : Gtk.Box {
 
                 playback_manager.current_audio.notify["texture"].connect (() => {
                     var texture = playback_manager.current_audio.texture;
-                    // var scaled = pixbuf.scale_simple (200, 200, Gdk.InterpType.BILINEAR);
-
                     album_image.image.paintable = texture;
                 });
             } else {
