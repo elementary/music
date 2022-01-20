@@ -8,31 +8,33 @@ public class Music.MprisPlayer : Object {
     [DBus (visible = false)]
     public unowned DBusConnection connection { get; construct; }
 
-    private bool _can_go_next = false;
     public bool can_go_next {
         get {
-            return _can_go_next;
+            return application.lookup_action (Application.ACTION_NEXT).enabled;
         }
     }
 
-    private bool _can_go_previous = false;
     public bool can_go_previous {
         get {
-            return _can_go_previous;
+            return application.lookup_action (Application.ACTION_PREVIOUS).enabled;
         }
     }
 
-    private bool _can_play = false;
     public bool can_play {
         get {
-            return _can_play;
+            return application.lookup_action (Application.ACTION_PLAY_PAUSE).enabled;
         }
     }
 
-    private string _playback_status = "Stopped";
+
     public string playback_status {
-        owned get {
-            return _playback_status;
+        get {
+            var state = (bool) application.lookup_action (Application.ACTION_PLAY_PAUSE).state;
+            if (state == false) {
+                return "Stopped";
+            } else {
+                return "Playing";
+            }
         }
     }
 
@@ -56,12 +58,12 @@ public class Music.MprisPlayer : Object {
         }
     }
 
+    private GLib.Application application;
+    private PlaybackManager playback_manager;
+
     public MprisPlayer (DBusConnection connection) {
         Object (connection: connection);
     }
-
-    private GLib.Application application;
-    private PlaybackManager playback_manager;
 
     construct {
         application = GLib.Application.get_default ();
@@ -73,12 +75,6 @@ public class Music.MprisPlayer : Object {
 
         application.action_state_changed.connect ((name, new_state) => {
             if (name == Application.ACTION_PLAY_PAUSE) {
-                if (new_state.get_boolean () == false) {
-                    _playback_status = "Stopped";
-                } else {
-                    _playback_status = "Playing";
-                }
-
                 send_property_change ("PlaybackStatus", playback_status);
             }
         });
@@ -86,15 +82,12 @@ public class Music.MprisPlayer : Object {
         application.action_enabled_changed.connect ((name, enabled) => {
             switch (name) {
                 case Application.ACTION_NEXT:
-                    _can_go_next = enabled;
                     send_property_change ("CanGoNext", can_go_next);
                     break;
                 case Application.ACTION_PREVIOUS:
-                    _can_go_previous = enabled;
                     send_property_change ("CanGoPrevious", can_go_previous);
                     break;
                 case Application.ACTION_PLAY_PAUSE:
-                    _can_play = enabled;
                     send_property_change ("CanPlay", can_play);
                     break;
             }
@@ -102,7 +95,7 @@ public class Music.MprisPlayer : Object {
     }
 
     private void send_property_change (string name, Variant variant) {
-        var invalidated_builder = new VariantBuilder (new VariantType ("as"));
+        var invalid_builder = new VariantBuilder (new VariantType ("as"));
 
         var builder = new VariantBuilder (VariantType.ARRAY);
         builder.add ("{sv}", name, variant);
@@ -117,11 +110,11 @@ public class Music.MprisPlayer : Object {
                     "(sa{sv}as)",
                     "org.mpris.MediaPlayer2.Player",
                     builder,
-                    invalidated_builder
+                    invalid_builder
                 )
             );
         } catch (Error e) {
-            print ("Could not send MPRIS property change: %s\n", e.message);
+            critical ("Could not send MPRIS property change: %s", e.message);
         }
     }
 
