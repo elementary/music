@@ -36,7 +36,7 @@ public class Music.PlaybackManager : Object {
         bus.enable_sync_message_emission ();
 
         try {
-            discoverer =  new Gst.PbUtils.Discoverer ((Gst.ClockTime) (5 * Gst.SECOND));
+            discoverer = new Gst.PbUtils.Discoverer ((Gst.ClockTime) (5 * Gst.SECOND));
             discoverer.discovered.connect (update_metadata);
             discoverer.finished.connect (discoverer.stop);
         } catch (Error e) {
