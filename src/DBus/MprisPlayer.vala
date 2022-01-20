@@ -8,24 +8,9 @@ public class Music.MprisPlayer : Object {
     [DBus (visible = false)]
     public unowned DBusConnection connection { get; construct; }
 
-    public bool can_go_next {
-        get {
-            return application.lookup_action (Application.ACTION_NEXT).enabled;
-        }
-    }
-
-    public bool can_go_previous {
-        get {
-            return application.lookup_action (Application.ACTION_PREVIOUS).enabled;
-        }
-    }
-
-    public bool can_play {
-        get {
-            return application.lookup_action (Application.ACTION_PLAY_PAUSE).enabled;
-        }
-    }
-
+    public bool can_go_next { get; set; }
+    public bool can_go_previous { get; set; }
+    public bool can_play { get; set; }
 
     public string playback_status {
         get {
@@ -79,19 +64,18 @@ public class Music.MprisPlayer : Object {
             }
         });
 
-        application.action_enabled_changed.connect ((name, enabled) => {
-            switch (name) {
-                case Application.ACTION_NEXT:
-                    send_property_change ("CanGoNext", can_go_next);
-                    break;
-                case Application.ACTION_PREVIOUS:
-                    send_property_change ("CanGoPrevious", can_go_previous);
-                    break;
-                case Application.ACTION_PLAY_PAUSE:
-                    send_property_change ("CanPlay", can_play);
-                    break;
-            }
-        });
+        var action_next = application.lookup_action (Application.ACTION_NEXT);
+        action_next.bind_property ("enabled", this, "can-go-next", BindingFlags.SYNC_CREATE);
+
+        var action_play_pause = application.lookup_action (Application.ACTION_PLAY_PAUSE);
+        action_play_pause.bind_property ("enabled", this, "can-play", BindingFlags.SYNC_CREATE);
+
+        var action_previous = application.lookup_action (Application.ACTION_PREVIOUS);
+        action_previous.bind_property ("enabled", this, "can-go-previous", BindingFlags.SYNC_CREATE);
+
+        notify["can-go-next"].connect (() => send_property_change ("CanGoNext", can_go_next));
+        notify["can-go-previous"].connect (() => send_property_change ("CanGoPrevious", can_go_previous));
+        notify["can-play"].connect (() => send_property_change ("CanPlay", can_play));
     }
 
     private void send_property_change (string name, Variant variant) {
