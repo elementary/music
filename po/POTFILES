@@ -1,7 +1,6 @@
 src/Application.vala
 src/MainWindow.vala
 src/PlaybackManager.vala
-DBus/MediaKeyListener.vala
 Views/NowPlayingView.vala
 Widgets/AlbumImage.vala
 Widgets/SeekBar.vala

@@ -33,8 +33,20 @@ public class Music.Application : Gtk.Application {
             ((SimpleAction) lookup_action (ACTION_NEXT)).set_enabled (false);
             ((SimpleAction) lookup_action (ACTION_PREVIOUS)).set_enabled (false);
 
-            MediaKeyListener.get_default ();
             playback_manager = PlaybackManager.get_default ();
+
+            var mpris_id = Bus.own_name (
+                BusType.SESSION,
+                "org.mpris.MediaPlayer2.io.elementary.music",
+                BusNameOwnerFlags.NONE,
+                on_bus_acquired,
+                null,
+                null
+            );
+
+            if (mpris_id == 0) {
+                warning ("Could not initialize MPRIS session.\n");
+            }
 
             var main_window = new MainWindow () {
                 default_width = 650,
@@ -85,6 +97,15 @@ public class Music.Application : Gtk.Application {
 
     private void action_previous () {
         playback_manager.previous ();
+    }
+
+    private void on_bus_acquired (DBusConnection connection, string name) {
+        try {
+            connection.register_object ("/org/mpris/MediaPlayer2", new MprisRoot ());
+            connection.register_object ("/org/mpris/MediaPlayer2", new MprisPlayer (connection));
+        } catch (IOError e) {
+            warning ("could not create MPRIS player: %s\n", e.message);
+        }
     }
 
     public static int main (string[] args) {

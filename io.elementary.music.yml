@@ -8,13 +8,8 @@ finish-args:
   - '--socket=fallback-x11'
   - '--socket=wayland'
   - '--socket=pulseaudio'
+  - '--device=dri'
 
-  # needed for perfers-color-scheme
-  - '--system-talk-name=org.freedesktop.Accounts'
-
-  - '--talk-name=org.gnome.SettingsDaemon.MediaKeys'
-
-  - '--metadata=X-DConf=migrate-path=/io/elementary/music/'
 modules:
   - name: Adwaita
     buildsystem: meson
