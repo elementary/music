@@ -24,25 +24,25 @@ public class Music.MprisRoot : Object {
     }
 
     public string desktop_entry {
-        owned get {
+        get {
             return "io.elementary.music";
         }
     }
 
     public string identity {
-        owned get {
+        get {
             return "io.elementary.music";
         }
     }
 
     public string[] supported_uri_schemes {
-        owned get {
+        get {
             return {"file"};
         }
     }
 
     public string[] supported_mime_types {
-        owned get {
+        get {
             return {"audio"};
         }
     }
