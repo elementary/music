@@ -264,7 +264,6 @@ public class Music.PlaybackManager : Object {
 
         uint position = -1;
         queue_liststore.find (current_audio, out position);
-
         queue_liststore.remove (position);
 
         while (queue_liststore.get_n_items () > 0) {
