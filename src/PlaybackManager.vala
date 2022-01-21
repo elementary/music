@@ -174,25 +174,14 @@ public class Music.PlaybackManager : Object {
                 Gst.State old_state, new_state, pending_state;
                 message.parse_state_changed (out old_state, out new_state, out pending_state);
 
+                if (progress_timer != 0) {
+                    Source.remove (progress_timer);
+                    progress_timer = 0;
+                }
+
                 var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
                 if (new_state == Gst.State.PLAYING) {
                     play_pause_action.set_state (true);
-
-                    if (current_audio.duration == 0) {
-                        // It may take time to calculate the length, so we keep
-                        // checking until we get something reasonable
-                        GLib.Timeout.add (250, () => {
-                            int64 duration = 0;
-                            playbin.query_duration (Gst.Format.TIME, out duration);
-                            current_audio.duration = duration;
-
-                            if (current_audio.duration > 0) {
-                                return Source.REMOVE;
-                            }
-
-                            return Source.CONTINUE;
-                        });
-                    }
 
                     progress_timer = GLib.Timeout.add (250, () => {
                         int64 position = 0;
@@ -203,11 +192,6 @@ public class Music.PlaybackManager : Object {
                     });
                 } else {
                     play_pause_action.set_state (false);
-
-                    if (progress_timer != 0) {
-                        Source.remove (progress_timer);
-                        progress_timer = 0;
-                    }
                 }
                 break;
             default:
@@ -305,8 +289,8 @@ public class Music.PlaybackManager : Object {
     }
 
     private void reset_metadata () {
-        current_audio = null;
         playbin.set_state (Gst.State.NULL);
+        current_audio = null;
         playbin.uri = "";
         playback_position = 0;
     }
