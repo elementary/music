@@ -1,6 +1,6 @@
 /*
  * SPDX-License-Identifier: LGPL-3.0-or-later
- * SPDX-FileCopyrightText: 2021 elementary, Inc. (https://elementary.io)
+ * SPDX-FileCopyrightText: 2021-2022 elementary, Inc. (https://elementary.io)
  */
 
 public class Music.PlaybackManager : Object {
@@ -18,10 +18,8 @@ public class Music.PlaybackManager : Object {
     }
 
     private dynamic Gst.Element playbin;
-    private Gst.Bus bus;
     private Gst.PbUtils.Discoverer discoverer;
     private uint progress_timer = 0;
-
     private Settings settings;
 
     private PlaybackManager () {}
@@ -31,7 +29,7 @@ public class Music.PlaybackManager : Object {
 
         playbin = Gst.ElementFactory.make ("playbin", "playbin");
 
-        bus = playbin.get_bus ();
+        var bus = playbin.get_bus ();
         bus.add_watch (0, bus_callback);
         bus.enable_sync_message_emission ();
 
