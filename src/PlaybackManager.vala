@@ -51,7 +51,7 @@ public class Music.PlaybackManager : Object {
         notify["current-audio"].connect (() => {
             playbin.set_state (Gst.State.NULL);
             if (current_audio != null) {
-                playbin.uri = current_audio.file.get_uri ();
+                playbin.uri = current_audio.uri;
                 playbin.set_state (Gst.State.PLAYING);
             } else {
                 playbin.uri = "";
@@ -80,10 +80,10 @@ public class Music.PlaybackManager : Object {
         discoverer.start ();
         foreach (unowned var file in files) {
             if (file.query_exists ()) {
-                var audio_object = new AudioObject (file);
-                audio_object.title = audio_object.file.get_path ();
+                var audio_object = new AudioObject (file.get_uri ());
+                audio_object.title = audio_object.uri;
 
-                discoverer.discover_uri_async (audio_object.file.get_uri ());
+                discoverer.discover_uri_async (audio_object.uri);
 
                 queue_liststore.append (audio_object);
             }
@@ -135,10 +135,10 @@ public class Music.PlaybackManager : Object {
         }
 
         EqualFunc<string> equal_func = (a, b) => {
-            return ((AudioObject) a).file.get_uri () == ((AudioObject) b).file.get_uri () ;
+            return ((AudioObject) a).uri == ((AudioObject) b).uri;
         };
 
-        var temp_audio_object = new AudioObject (File.new_for_uri (uri));
+        var temp_audio_object = new AudioObject (uri);
 
         uint position = -1;
         queue_liststore.find_with_equal_func (temp_audio_object, equal_func, out position);
