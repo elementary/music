@@ -48,11 +48,11 @@ public class Music.PlaybackManager : Object {
         });
 
         notify["current-audio"].connect (() => {
+            playbin.set_state (Gst.State.NULL);
             if (current_audio != null) {
                 playbin.uri = current_audio.file.get_uri ();
                 playbin.set_state (Gst.State.PLAYING);
             } else {
-                playbin.set_state (Gst.State.NULL);
                 playbin.uri = "";
                 playback_position = 0;
 
@@ -221,14 +221,10 @@ public class Music.PlaybackManager : Object {
     }
 
     public void next () {
-        playbin.set_state (Gst.State.NULL);
-
         uint position = -1;
         queue_liststore.find (current_audio, out position);
 
         if (position != -1) {
-            playback_position = 0;
-
             switch (settings.get_string ("repeat-mode")) {
                 case "disabled":
                     if (position == queue_liststore.get_n_items () - 1) {
@@ -253,14 +249,10 @@ public class Music.PlaybackManager : Object {
     }
 
     public void previous () {
-        playbin.set_state (Gst.State.NULL);
-
         uint position = -1;
         queue_liststore.find (current_audio, out position);
 
         if (position != -1 && position != 0) {
-            playback_position = 0;
-
             current_audio = (AudioObject) queue_liststore.get_item (position - 1);
         }
     }
