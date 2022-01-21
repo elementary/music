@@ -8,6 +8,8 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
     private Settings settings;
 
     construct {
+        var playback_manager = PlaybackManager.get_default ();
+
         var css_provider = new Gtk.CssProvider ();
         css_provider.load_from_data ("@define-color accent_color @ORANGE_500;".data);
 
@@ -37,7 +39,7 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
             hexpand = true,
             vexpand = true
         };
-        queue_listbox.bind_model (PlaybackManager.get_default ().queue_liststore, create_queue_row);
+        queue_listbox.bind_model (playback_manager.queue_liststore, create_queue_row);
         queue_listbox.set_placeholder (queue_placeholder);
 
         var scrolled = new Gtk.ScrolledWindow () {
@@ -105,6 +107,10 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
             } else {
                 settings.set_enum ("repeat-mode", 0);
             }
+        });
+
+        queue_listbox.row_activated.connect ((row) => {
+            playback_manager.current_audio = ((TrackRow) row).audio_object;
         });
     }
 

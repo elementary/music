@@ -4,7 +4,7 @@
  */
 
 public class Music.PlaybackManager : Object {
-    public AudioObject? current_audio { get; private set; default = null; }
+    public AudioObject? current_audio { get; set; default = null; }
     public ListStore queue_liststore { get; private set; }
     public int64 playback_position { get; private set; }
 
