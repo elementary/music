@@ -46,10 +46,13 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
             child = queue_listbox
         };
 
+        var drop_target = new Gtk.DropTarget (typeof (Gdk.FileList), Gdk.DragAction.COPY);
+
         var queue = new Gtk.Grid ();
         queue.add_css_class (Granite.STYLE_CLASS_VIEW);
         queue.attach (queue_header, 0, 0);
         queue.attach (scrolled, 0, 1);
+        queue.add_controller (drop_target);
 
         var queue_handle = new Gtk.WindowHandle () {
             child = queue
@@ -99,6 +102,22 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         settings.changed["repeat-mode"].connect (update_repeat_button);
 
         update_repeat_button ();
+
+        drop_target.on_drop.connect ((target, value, x, y) => {
+            if (value.type () == typeof (Gdk.FileList)) {
+
+                File[] files;
+                foreach (unowned var file in (SList<File>) value.get_boxed ()) {
+                    files += file;
+                }
+
+                playback_manager.queue_files (files);
+
+                return true;
+            }
+
+            return false;
+        });
 
         repeat_button.clicked.connect (() => {
             var enum_step = settings.get_enum ("repeat-mode");
