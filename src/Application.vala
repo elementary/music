@@ -83,12 +83,7 @@ public class Music.Application : Gtk.Application {
     }
 
     private void action_play_pause () {
-        var play_pause_action = lookup_action (ACTION_PLAY_PAUSE);
-        if (play_pause_action.get_state ().get_boolean ()) {
-            ((SimpleAction) play_pause_action).set_state (false);
-        } else {
-            ((SimpleAction) play_pause_action).set_state (true);
-        }
+        playback_manager.play_pause ();
     }
 
     private void action_next () {

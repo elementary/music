@@ -43,36 +43,15 @@ public class Music.PlaybackManager : Object {
             critical ("Unable to start Gstreamer Discoverer: %s", e.message);
         }
 
-        GLib.Application.get_default ().action_state_changed.connect ((name, new_state) => {
-            if (name == Application.ACTION_PLAY_PAUSE) {
-                if (new_state.get_boolean () == false) {
-                    playbin.set_state (Gst.State.PAUSED);
-                    if (progress_timer != 0) {
-                        Source.remove (progress_timer);
-                        progress_timer = 0;
-                    }
-                } else {
-                    query_duration ();
-
-                    progress_timer = GLib.Timeout.add (250, () => {
-                        int64 position = 0;
-                        playbin.query_position (Gst.Format.TIME, out position);
-                        playback_position = position.clamp (0, current_audio.duration);
-
-                        return Source.CONTINUE;
-                    });
-
-                    playbin.set_state (Gst.State.PLAYING);
-                }
-            }
-        });
-
         queue_liststore.items_changed.connect (() => {
             update_next_previous_sensitivity ();
         });
 
         notify["current-audio"].connect (() => {
             update_next_previous_sensitivity ();
+
+            var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
+            play_pause_action.set_enabled (current_audio != null);
         });
 
         settings = new Settings ("io.elementary.music");
@@ -100,10 +79,7 @@ public class Music.PlaybackManager : Object {
             if (audio_object != null) {
                 current_audio = audio_object;
                 playbin.uri = audio_object.file.get_uri ();
-
-                var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
-                play_pause_action.set_enabled (true);
-                play_pause_action.set_state (true);
+                playbin.set_state (Gst.State.PLAYING);
             } else {
                 reset_metadata ();
             }
@@ -194,11 +170,44 @@ public class Music.PlaybackManager : Object {
             case Gst.MessageType.EOS:
                 next ();
                 break;
+            case Gst.MessageType.STATE_CHANGED:
+                if (progress_timer != 0) {
+                    Source.remove (progress_timer);
+                    progress_timer = 0;
+                }
+
+                var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
+
+                Gst.State old_state, new_state, pending_state;
+                message.parse_state_changed (out old_state, out new_state, out pending_state);
+                if (new_state == Gst.State.PLAYING) {
+                    play_pause_action.set_state (true);
+
+                    progress_timer = GLib.Timeout.add (250, () => {
+                        int64 position = 0;
+                        playbin.query_position (Gst.Format.TIME, out position);
+                        playback_position = position.clamp (0, current_audio.duration);
+
+                        return Source.CONTINUE;
+                    });
+                } else {
+                    play_pause_action.set_state (false);
+                }
+                break;
             default:
                 break;
         }
 
         return true;
+    }
+
+    public void play_pause () {
+        var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
+        if (play_pause_action.get_state ().get_boolean ()) {
+            playbin.set_state (Gst.State.PAUSED);
+        } else {
+            playbin.set_state (Gst.State.PLAYING);
+        }
     }
 
     public void next () {
@@ -232,7 +241,6 @@ public class Music.PlaybackManager : Object {
             }
 
             playbin.uri = current_audio.file.get_uri ();
-            query_duration ();
             playbin.set_state (Gst.State.PLAYING);
         }
     }
@@ -248,9 +256,6 @@ public class Music.PlaybackManager : Object {
 
             current_audio = (AudioObject) queue_liststore.get_item (position - 1);
             playbin.uri = current_audio.file.get_uri ();
-
-            query_duration ();
-
             playbin.set_state (Gst.State.PLAYING);
         }
     }
@@ -284,33 +289,16 @@ public class Music.PlaybackManager : Object {
 
     }
 
-    private void query_duration () {
-        if (current_audio.duration == 0) {
-            // It may take time to calculate the length, so we keep
-            // checking until we get something reasonable
-            GLib.Timeout.add (250, () => {
-                int64 duration = 0;
-                playbin.query_duration (Gst.Format.TIME, out duration);
-                current_audio.duration = duration;
-
-                if (current_audio.duration > 0) {
-                    return Source.REMOVE;
-                }
-
-                return Source.CONTINUE;
-            });
-        }
-    }
-
     private void reset_metadata () {
-        current_audio = null;
+        if (progress_timer != 0) {
+            Source.remove (progress_timer);
+            progress_timer = 0;
+        }
+
         playbin.set_state (Gst.State.NULL);
+        current_audio = null;
         playbin.uri = "";
         playback_position = 0;
-
-        var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
-        play_pause_action.set_enabled (false);
-        play_pause_action.set_state (false);
     }
 
     private Gst.Sample? get_cover_sample (Gst.TagList tag_list) {
