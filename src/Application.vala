@@ -8,11 +8,13 @@ public class Music.Application : Gtk.Application {
     public const string ACTION_NEXT = "action-next";
     public const string ACTION_PLAY_PAUSE = "action-play-pause";
     public const string ACTION_PREVIOUS = "action-previous";
+    public const string ACTION_SHUFFLE = "action-shuffle";
 
     private const ActionEntry[] ACTION_ENTRIES = {
         { ACTION_PLAY_PAUSE, action_play_pause, null, "false" },
         { ACTION_NEXT, action_next },
-        { ACTION_PREVIOUS, action_previous }
+        { ACTION_PREVIOUS, action_previous },
+        { ACTION_SHUFFLE, action_shuffle }
     };
 
     private PlaybackManager? playback_manager = null;
@@ -32,6 +34,7 @@ public class Music.Application : Gtk.Application {
             ((SimpleAction) lookup_action (ACTION_PLAY_PAUSE)).set_state (false);
             ((SimpleAction) lookup_action (ACTION_NEXT)).set_enabled (false);
             ((SimpleAction) lookup_action (ACTION_PREVIOUS)).set_enabled (false);
+            ((SimpleAction) lookup_action (ACTION_SHUFFLE)).set_enabled (false);
 
             playback_manager = PlaybackManager.get_default ();
 
@@ -92,6 +95,10 @@ public class Music.Application : Gtk.Application {
 
     private void action_previous () {
         playback_manager.previous ();
+    }
+
+    private void action_shuffle () {
+        playback_manager.shuffle ();
     }
 
     private void on_bus_acquired (DBusConnection connection, string name) {
