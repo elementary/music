@@ -201,8 +201,9 @@ public class Music.PlaybackManager : Object {
         return true;
     }
 
-    public void play_pause (bool playing) {
-        if (playing) {
+    public void play_pause () {
+        var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
+        if (play_pause_action.get_state ().get_boolean ()) {
             playbin.set_state (Gst.State.PAUSED);
         } else {
             playbin.set_state (Gst.State.PLAYING);
