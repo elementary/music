@@ -9,6 +9,8 @@ public class Music.TrackRow : Gtk.ListBoxRow {
     private static Gtk.CssProvider css_provider;
     private static PlaybackManager playback_manager;
 
+    private Gtk.Spinner play_icon;
+
     public TrackRow (AudioObject audio_object) {
         Object (audio_object: audio_object);
     }
@@ -21,10 +23,10 @@ public class Music.TrackRow : Gtk.ListBoxRow {
     }
 
     construct {
-        var play_icon = new Gtk.Spinner ();
-
-        unowned var play_icon_context = play_icon.get_style_context ();
-        play_icon_context.add_provider (css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+        play_icon = new Gtk.Spinner () {
+            spinning = playback_manager.current_audio == audio_object
+        };
+        play_icon.get_style_context ().add_provider (css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
         var album_image = new Music.AlbumImage ();
         album_image.image.height_request = 32;
@@ -58,23 +60,30 @@ public class Music.TrackRow : Gtk.ListBoxRow {
 
         child = grid;
 
-        audio_object.bind_property ("artist", artist_label, "label");
-        audio_object.bind_property ("title", title_label, "label");
-        audio_object.bind_property ("texture", album_image.image, "paintable");
+        audio_object.bind_property ("artist", artist_label, "label", BindingFlags.SYNC_CREATE);
+        audio_object.bind_property ("title", title_label, "label", BindingFlags.SYNC_CREATE);
+        audio_object.bind_property ("texture", album_image.image, "paintable", BindingFlags.SYNC_CREATE);
 
         playback_manager.notify["current-audio"].connect (() => {
             play_icon.spinning = playback_manager.current_audio == audio_object;
         });
 
+        var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
+        update_playing (play_pause_action.get_state ().get_boolean ());
+
         GLib.Application.get_default ().action_state_changed.connect ((name, new_state) => {
             if (name == Application.ACTION_PLAY_PAUSE) {
-                if (new_state.get_boolean () == true) {
-                    play_icon_context.add_class ("playing");
-                } else {
-                    play_icon_context.remove_class ("playing");
-                }
+                update_playing (new_state.get_boolean ());
             }
         });
 
+    }
+
+    private void update_playing (bool playing) {
+        if (playing) {
+            play_icon.add_css_class ("playing");
+        } else {
+            play_icon.remove_css_class ("playing");
+        }
     }
 }

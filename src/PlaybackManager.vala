@@ -42,6 +42,9 @@ public class Music.PlaybackManager : Object {
         }
 
         queue_liststore.items_changed.connect (() => {
+            var shuffle_action_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_SHUFFLE);
+            shuffle_action_action.set_enabled (queue_liststore.get_n_items () > 1);
+
             update_next_previous_sensitivity ();
         });
 
@@ -252,6 +255,26 @@ public class Music.PlaybackManager : Object {
 
         if (position != -1 && position != 0) {
             current_audio = (AudioObject) queue_liststore.get_item (position - 1);
+        }
+    }
+
+    public void shuffle () {
+        var temp_list = new ListStore (typeof (AudioObject));
+        temp_list.append (current_audio);
+
+        uint position = -1;
+        queue_liststore.find (current_audio, out position);
+        queue_liststore.remove (position);
+
+        while (queue_liststore.get_n_items () > 0) {
+            var random_position = Random.int_range (0, (int32) queue_liststore.get_n_items ());
+
+            temp_list.append (queue_liststore.get_item (random_position));
+            queue_liststore.remove (random_position);
+        }
+
+        for (int i = 0; i < temp_list.get_n_items (); i++) {
+            queue_liststore.append (temp_list.get_item (i));
         }
     }
 

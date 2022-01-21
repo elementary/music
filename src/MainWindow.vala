@@ -5,6 +5,7 @@
 
 public class Music.MainWindow : Gtk.ApplicationWindow {
     private Gtk.Button repeat_button;
+    private Gtk.Button shuffle_button;
     private Settings settings;
 
     construct {
@@ -19,6 +20,12 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
             hexpand = true
         };
 
+        shuffle_button = new Gtk.Button.from_icon_name ("media-playlist-shuffle-symbolic") {
+            action_name = Application.ACTION_PREFIX + Application.ACTION_SHUFFLE,
+            margin_end = 3,
+            tooltip_text = _("Shuffle")
+        };
+
         repeat_button = new Gtk.Button () {
             margin_end = 6
         };
@@ -28,6 +35,7 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         queue_header.add_css_class (Granite.STYLE_CLASS_FLAT);
         queue_header.add_css_class (Granite.STYLE_CLASS_DEFAULT_DECORATION);
         queue_header.append (start_window_controls);
+        queue_header.append (shuffle_button);
         queue_header.append (repeat_button);
 
         var queue_placeholder = new Granite.Placeholder (_("Queue is Empty")) {
