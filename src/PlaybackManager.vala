@@ -171,15 +171,15 @@ public class Music.PlaybackManager : Object {
                 next ();
                 break;
             case Gst.MessageType.STATE_CHANGED:
-                Gst.State old_state, new_state, pending_state;
-                message.parse_state_changed (out old_state, out new_state, out pending_state);
-
                 if (progress_timer != 0) {
                     Source.remove (progress_timer);
                     progress_timer = 0;
                 }
 
                 var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
+
+                Gst.State old_state, new_state, pending_state;
+                message.parse_state_changed (out old_state, out new_state, out pending_state);
                 if (new_state == Gst.State.PLAYING) {
                     play_pause_action.set_state (true);
 
@@ -289,6 +289,11 @@ public class Music.PlaybackManager : Object {
     }
 
     private void reset_metadata () {
+        if (progress_timer != 0) {
+            Source.remove (progress_timer);
+            progress_timer = 0;
+        }
+
         playbin.set_state (Gst.State.NULL);
         current_audio = null;
         playbin.uri = "";
