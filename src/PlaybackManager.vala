@@ -1,6 +1,6 @@
 /*
  * SPDX-License-Identifier: LGPL-3.0-or-later
- * SPDX-FileCopyrightText: 2021 elementary, Inc. (https://elementary.io)
+ * SPDX-FileCopyrightText: 2021-2022 elementary, Inc. (https://elementary.io)
  */
 
 public class Music.PlaybackManager : Object {
@@ -18,10 +18,8 @@ public class Music.PlaybackManager : Object {
     }
 
     private dynamic Gst.Element playbin;
-    private Gst.Bus bus;
     private Gst.PbUtils.Discoverer discoverer;
     private uint progress_timer = 0;
-
     private Settings settings;
 
     private PlaybackManager () {}
@@ -31,7 +29,7 @@ public class Music.PlaybackManager : Object {
 
         playbin = Gst.ElementFactory.make ("playbin", "playbin");
 
-        bus = playbin.get_bus ();
+        var bus = playbin.get_bus ();
         bus.add_watch (0, bus_callback);
         bus.enable_sync_message_emission ();
 
@@ -48,6 +46,20 @@ public class Music.PlaybackManager : Object {
         });
 
         notify["current-audio"].connect (() => {
+            playbin.set_state (Gst.State.NULL);
+            if (current_audio != null) {
+                playbin.uri = current_audio.file.get_uri ();
+                playbin.set_state (Gst.State.PLAYING);
+            } else {
+                playbin.uri = "";
+                playback_position = 0;
+
+                if (progress_timer != 0) {
+                    Source.remove (progress_timer);
+                    progress_timer = 0;
+                }
+            }
+
             update_next_previous_sensitivity ();
 
             var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
@@ -78,10 +90,6 @@ public class Music.PlaybackManager : Object {
             var audio_object = (AudioObject) queue_liststore.get_object (0);
             if (audio_object != null) {
                 current_audio = audio_object;
-                playbin.uri = audio_object.file.get_uri ();
-                playbin.set_state (Gst.State.PLAYING);
-            } else {
-                reset_metadata ();
             }
         } else {
             // Don't notify on app startup or if the app is focused
@@ -211,18 +219,14 @@ public class Music.PlaybackManager : Object {
     }
 
     public void next () {
-        playbin.set_state (Gst.State.NULL);
-
         uint position = -1;
         queue_liststore.find (current_audio, out position);
 
         if (position != -1) {
-            playback_position = 0;
-
             switch (settings.get_string ("repeat-mode")) {
                 case "disabled":
                     if (position == queue_liststore.get_n_items () - 1) {
-                        reset_metadata ();
+                        current_audio = null;
                         return;
                     }
 
@@ -239,24 +243,15 @@ public class Music.PlaybackManager : Object {
 
                     break;
             }
-
-            playbin.uri = current_audio.file.get_uri ();
-            playbin.set_state (Gst.State.PLAYING);
         }
     }
 
     public void previous () {
-        playbin.set_state (Gst.State.NULL);
-
         uint position = -1;
         queue_liststore.find (current_audio, out position);
 
         if (position != -1 && position != 0) {
-            playback_position = 0;
-
             current_audio = (AudioObject) queue_liststore.get_item (position - 1);
-            playbin.uri = current_audio.file.get_uri ();
-            playbin.set_state (Gst.State.PLAYING);
         }
     }
 
@@ -287,18 +282,6 @@ public class Music.PlaybackManager : Object {
         var previous_action = (SimpleAction) default_application.lookup_action (Application.ACTION_PREVIOUS);
         previous_action.set_enabled (previous_sensitive);
 
-    }
-
-    private void reset_metadata () {
-        if (progress_timer != 0) {
-            Source.remove (progress_timer);
-            progress_timer = 0;
-        }
-
-        playbin.set_state (Gst.State.NULL);
-        current_audio = null;
-        playbin.uri = "";
-        playback_position = 0;
     }
 
     private Gst.Sample? get_cover_sample (Gst.TagList tag_list) {
