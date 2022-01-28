@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-04-29 20:55+0000\n"
+"PO-Revision-Date: 2022-01-28 09:15+0000\n"
 "Last-Translator: colindemian <colindemian@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
 "music/music/zh_Hans/>\n"
@@ -70,7 +70,7 @@ msgstr "全高音"
 
 #: core/GStreamer/Equalizer.vala:76
 msgid "Full Bass + Treble"
-msgstr "全低音+高音"
+msgstr "全低音 + 高音"
 
 #: core/GStreamer/Equalizer.vala:77
 msgid "Headphones"
