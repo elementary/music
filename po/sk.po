@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2021-09-16 17:17+0000\n"
+"PO-Revision-Date: 2022-03-03 19:01+0000\n"
 "Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
 "Language-Team: Slovak <https://l10n.elementary.io/projects/music/music/sk/>\n"
 "Language: sk\n"
@@ -1154,7 +1154,7 @@ msgstr "Pridajte nejakú hudbu"
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:57
 msgid "Add music to your library."
-msgstr "Pridajte hudbu do knižnice."
+msgstr "Pridajte hudbu do vašej knižnice."
 
 #: src/Views/Wrappers/MusicViewWrapper.vala:60
 msgid "Import music from a source into your library."
