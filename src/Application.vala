@@ -26,6 +26,13 @@ public class Music.Application : Gtk.Application {
         );
     }
 
+    construct {
+        GLib.Intl.setlocale (LocaleCategory.ALL, "");
+        GLib.Intl.bindtextdomain (Constants.GETTEXT_PACKAGE, Constants.LOCALEDIR);
+        GLib.Intl.bind_textdomain_codeset (Constants.GETTEXT_PACKAGE, "UTF-8");
+        GLib.Intl.textdomain (Constants.GETTEXT_PACKAGE);
+    }
+
     protected override void activate () {
         if (active_window == null) {
             add_action_entries (ACTION_ENTRIES, this);
