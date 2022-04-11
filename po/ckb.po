@@ -190,7 +190,6 @@ msgstr ""
 #~ msgid "All Artists"
 #~ msgstr "هەموو هونەرمەندەکان"
 
-#, c-format
 #~ msgid "All %i Artists"
 #~ msgstr "هەموو %i  هونەرمەدەکان"
 

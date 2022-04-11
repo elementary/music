@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n==1 ? 0 : n%10>=2 && (n%100<10 || "
-"n%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3;\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 0 : n%10>=2 && (n%100<10 || n"
+"%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3;\n"
 "X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:53+0000\n"
 
@@ -156,15 +156,12 @@ msgstr "Pristabdyti"
 #~ msgid "Techno"
 #~ msgstr "Techno"
 
-#, c-format
 #~ msgid " (%d)"
 #~ msgstr " (%d)"
 
-#, c-format
 #~ msgid "%s (%d)"
 #~ msgstr "%s (%d)"
 
-#, c-format
 #~ msgid "%s (%i)"
 #~ msgstr "%s (%i)"
 
@@ -186,7 +183,6 @@ msgstr "Pristabdyti"
 #~ msgid "Playlist"
 #~ msgstr "Grojaraštis"
 
-#, c-format
 #~ msgid "Import %s"
 #~ msgstr "Importuoti %s"
 
@@ -214,14 +210,12 @@ msgstr "Pristabdyti"
 #~ msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 #~ msgstr "Į $DEVICE pridedama <b>$NAME</b>, kurią atlieka <b>$ARTIST</b>"
 
-#, c-format
 #~ msgid "Syncing <b>%s</b>…"
 #~ msgstr "Sinchronizuojama <b>%s</b>…"
 
 #~ msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 #~ msgstr "Iš $DEVICE šalinama <b>$NAME</b>, kurią atlieką <b>$ARTIST</b>"
 
-#, c-format
 #~ msgid "Removing from <b>%s</b>…"
 #~ msgstr "Šalinama iš <b>%s</b>…"
 
@@ -284,11 +278,10 @@ msgstr "Pristabdyti"
 #~ msgid "File not found"
 #~ msgstr "Failas nerastas"
 
-#, c-format
 #~ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 #~ msgstr "Nepavyko rasti muzikinio failo <b>%s</b> pagal <b>%s</b>."
 
-#, fuzzy, c-format
+#, fuzzy
 #~| msgid "%i music files could not be found?"
 #~ msgid "%i music files could not be found."
 #~ msgstr "Nepavyko rasti %i muzikinių failų?"
@@ -305,11 +298,9 @@ msgstr "Pristabdyti"
 #~ msgid "Choose Music Folder"
 #~ msgstr "Pasirinkti muzikos aplanką"
 
-#, c-format
 #~ msgid "Would you like to install the %s plugin?"
 #~ msgstr "Ar norėtumėte įdiegti %s įskiepį?"
 
-#, c-format
 #~ msgid ""
 #~ "This song cannot be played. The %s plugin is required to play the song."
 #~ msgstr ""
@@ -358,11 +349,9 @@ msgstr "Pristabdyti"
 #~ msgid "Close"
 #~ msgstr "Užverti"
 
-#, c-format
 #~ msgid "Issues while importing from %s"
 #~ msgstr "Klaidos, importuojant iš %s"
 
-#, c-format
 #~ msgid "Unable to import %d item. The file may be damaged."
 #~ msgid_plural "Unable to import %d items. The files may be damaged."
 #~ msgstr[0] "Nepavyko importuoti %d elemento. Gali būti, kad failai pažeisti."
@@ -412,7 +401,6 @@ msgstr "Pristabdyti"
 #~ msgid "Continue playback when closed:"
 #~ msgstr "Užvėrus, tęsti grojimą:"
 
-#, c-format
 #~ msgid "Remove %d Song From Library?"
 #~ msgid_plural "Remove %d Songs From Library?"
 #~ msgstr[0] "Šalinti %d dainą iš bibliotekos?"
@@ -420,7 +408,6 @@ msgstr "Pristabdyti"
 #~ msgstr[2] "Šalinti %d dainų iš bibliotekos?"
 #~ msgstr[3] "Šalinti %d dainą iš bibliotekos?"
 
-#, c-format
 #~ msgid "Remove \"%s\" From Library?"
 #~ msgstr "Šalinti \"%s\" iš bibliotekos?"
 
@@ -449,7 +436,6 @@ msgstr "Pristabdyti"
 #~ msgid "Set Music Folder?"
 #~ msgstr "Nustatyti muzikos aplanką?"
 
-#, c-format
 #~ msgid ""
 #~ "Are you sure you want to set the music folder to %s? This will reset your "
 #~ "library and remove your playlists."
@@ -583,7 +569,6 @@ msgstr "Pristabdyti"
 #~ msgid "kbps"
 #~ msgstr "kbps"
 
-#, c-format
 #~ msgid "Sync will remove %i item from %s"
 #~ msgid_plural "Sync will remove %i items from %s"
 #~ msgstr[0] "Sinchronizavimas pašalins %i elementą iš %s"
@@ -591,7 +576,6 @@ msgstr "Pristabdyti"
 #~ msgstr[2] "Sinchronizavimas pašalins %i elementų iš %s"
 #~ msgstr[3] ""
 
-#, c-format
 #~ msgid ""
 #~ "If you continue to sync, media will be removed from %s since they are not "
 #~ "on the sync list. Would you like to import them to your library first?"
@@ -606,7 +590,6 @@ msgstr "Pristabdyti"
 #~ msgid "Import"
 #~ msgstr "Importuoti"
 
-#, c-format
 #~ msgid "Importing music from %s…"
 #~ msgstr "Importuojama muzika iš %s…"
 
@@ -628,7 +611,6 @@ msgstr "Pristabdyti"
 #~ msgid "Added to your queue:"
 #~ msgstr "Pridėta į jūsų eilę:"
 
-#, c-format
 #~ msgid "%d Track"
 #~ msgid_plural "%d Tracks"
 #~ msgstr[0] "%d takelis"
@@ -680,7 +662,6 @@ msgstr "Pristabdyti"
 #~ msgid "Sync Failed"
 #~ msgstr "Sinchronizavimas nepavyko"
 
-#, c-format
 #~ msgid ""
 #~ "The playlist named %s is used to sync device %s, but could not be found."
 #~ msgstr ""
@@ -736,7 +717,6 @@ msgstr "Pristabdyti"
 #~ msgid "All Genres"
 #~ msgstr "Visi žanrai"
 
-#, c-format
 #~ msgid "All %i Genres"
 #~ msgstr "Visi %i žanrai"
 
@@ -746,7 +726,6 @@ msgstr "Pristabdyti"
 #~ msgid "All Artists"
 #~ msgstr "Visi atlikėjai"
 
-#, c-format
 #~ msgid "All %i Artists"
 #~ msgstr "Visi %i atlikėjai"
 
@@ -756,7 +735,6 @@ msgstr "Pristabdyti"
 #~ msgid "All Albums"
 #~ msgstr "Visi albumai"
 
-#, c-format
 #~ msgid "All %i Albums"
 #~ msgstr "Visi %i albumai"
 
@@ -766,7 +744,6 @@ msgstr "Pristabdyti"
 #~ msgid "All Years"
 #~ msgstr "Visi metai"
 
-#, c-format
 #~ msgid "All %i Years"
 #~ msgstr "Visi %i metai"
 
@@ -782,7 +759,6 @@ msgstr "Pristabdyti"
 #~ msgid "All Groupings"
 #~ msgstr "Visi grupavimai"
 
-#, c-format
 #~ msgid "All %i Groupings"
 #~ msgstr "Visi %i grupavimai"
 
@@ -792,7 +768,6 @@ msgstr "Pristabdyti"
 #~ msgid "All Composers"
 #~ msgstr "Visi koompozitoriai"
 
-#, c-format
 #~ msgid "All %i Composers"
 #~ msgstr "Visi %i kompozitoriai"
 
@@ -811,14 +786,12 @@ msgstr "Pristabdyti"
 #~ msgid "Unrated"
 #~ msgstr "Nevertintos"
 
-#, c-format
 #~ msgid "%u Star"
 #~ msgid_plural "%u Stars"
 #~ msgstr[0] "%u žvaigždutė"
 #~ msgstr[1] "%u žvaigždutės"
 #~ msgstr[2] "%u žvaigždučių"
 
-#, c-format
 #~ msgid "%u kbps"
 #~ msgstr "%u kbps"
 
@@ -932,7 +905,6 @@ msgstr "Pristabdyti"
 #~ msgid "Import your Music"
 #~ msgstr "Importuokite savo muziką"
 
-#, c-format
 #~ msgid "Import all your Music from %s into your library."
 #~ msgstr "Importuoti visą jūsų muziką iš %s į jūsų biblioteką."
 
@@ -987,18 +959,15 @@ msgstr "Pristabdyti"
 #~ msgid "Off"
 #~ msgstr "Išjungta"
 
-#, c-format
 #~ msgid "%s (Custom)"
 #~ msgstr "%s (Tinkinta)"
 
-#, c-format
 #~ msgid "%s (Custom %i)"
 #~ msgstr "%s (Tinkinta %i)"
 
 #~ msgid "Custom Preset"
 #~ msgstr "Tinkinta išankstinė parinktis"
 
-#, c-format
 #~ msgid "Custom Preset %i"
 #~ msgstr "Tinkinta išankstinė parinktis %i"
 
@@ -1039,11 +1008,9 @@ msgstr "Pristabdyti"
 #~ msgid "New Playlist…"
 #~ msgstr "Naujas grojaraštis…"
 
-#, c-format
 #~ msgid "Import %i of %i selected songs"
 #~ msgstr "Importuoti %i iš %i pažymėtų dainų"
 
-#, c-format
 #~ msgid "Import %i song"
 #~ msgid_plural "Import %i songs"
 #~ msgstr[0] "Importuoti %i dainą"
@@ -1097,7 +1064,6 @@ msgstr "Pristabdyti"
 #~ msgid "Add Playlist…"
 #~ msgstr "Pridėti grojaraštį"
 
-#, c-format
 #~ msgid "Equalizer: %s"
 #~ msgstr "Glodintuvas: %s"
 

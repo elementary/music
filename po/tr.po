@@ -152,15 +152,12 @@ msgstr "Duraklat"
 #~ msgid "Techno"
 #~ msgstr "Tekno"
 
-#, c-format
 #~ msgid " (%d)"
 #~ msgstr " (%d)"
 
-#, c-format
 #~ msgid "%s (%d)"
 #~ msgstr "%s (%d)"
 
-#, c-format
 #~ msgid "%s (%i)"
 #~ msgstr "%s (%i)"
 
@@ -182,7 +179,6 @@ msgstr "Duraklat"
 #~ msgid "Playlist"
 #~ msgstr "Çalma listesi"
 
-#, c-format
 #~ msgid "Import %s"
 #~ msgstr "%s içe aktar"
 
@@ -210,14 +206,12 @@ msgstr "Duraklat"
 #~ msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 #~ msgstr "<b>$ARTIST</b> - <b>$NAME</b> $DEVICE cihazına ekleniyor"
 
-#, c-format
 #~ msgid "Syncing <b>%s</b>…"
 #~ msgstr "<b>%s</b> Eşitleniyor…"
 
 #~ msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 #~ msgstr "<b>$ARTIST</b> - <b>$NAME</b> $DEVICE cihazından kaldırılıyor"
 
-#, c-format
 #~ msgid "Removing from <b>%s</b>…"
 #~ msgstr "<b>%s</b> cihazından kaldırılıyor…"
 
@@ -280,11 +274,9 @@ msgstr "Duraklat"
 #~ msgid "File not found"
 #~ msgstr "Dosya bulunamadı"
 
-#, c-format
 #~ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 #~ msgstr "<b>%s</b> - <b>%s</b> müzik dosyası bulunamadı."
 
-#, c-format
 #~ msgid "%i music files could not be found."
 #~ msgstr "%i müzik dosyası bulunamadı."
 
@@ -300,11 +292,9 @@ msgstr "Duraklat"
 #~ msgid "Choose Music Folder"
 #~ msgstr "Müzik Klasörü Seç"
 
-#, c-format
 #~ msgid "Would you like to install the %s plugin?"
 #~ msgstr "%s eklentisini yüklemek ister misiniz ?"
 
-#, c-format
 #~ msgid ""
 #~ "This song cannot be played. The %s plugin is required to play the song."
 #~ msgstr "Bu parça çalınamıyor. Parçayı çalmak için %s eklentisi gerekli."
@@ -351,11 +341,9 @@ msgstr "Duraklat"
 #~ msgid "Close"
 #~ msgstr "Çıkış"
 
-#, c-format
 #~ msgid "Issues while importing from %s"
 #~ msgstr "%s kaynağından içe aktarırken karşılaşılan sorunlar"
 
-#, c-format
 #~ msgid "Unable to import %d item. The file may be damaged."
 #~ msgid_plural "Unable to import %d items. The files may be damaged."
 #~ msgstr[0] "%d öğe içe aktarılamıyor. Dosya bozuk olabilir."
@@ -403,13 +391,11 @@ msgstr "Duraklat"
 #~ msgid "Continue playback when closed:"
 #~ msgstr "Kapatıldığında oynatmaya devam et:"
 
-#, c-format
 #~ msgid "Remove %d Song From Library?"
 #~ msgid_plural "Remove %d Songs From Library?"
 #~ msgstr[0] "%d Şarkı Kitaplıktan Kaldırılsın Mı?"
 #~ msgstr[1] "%d Şarkı Kitaplıktan Kaldırılsın Mı?"
 
-#, c-format
 #~ msgid "Remove \"%s\" From Library?"
 #~ msgstr "\"%s\" Kitaplıktan Kaldırılsın Mı?"
 
@@ -432,7 +418,6 @@ msgstr "Duraklat"
 #~ msgid "Set Music Folder?"
 #~ msgstr "Müzik Klasörü Ayarlansın Mı?"
 
-#, c-format
 #~ msgid ""
 #~ "Are you sure you want to set the music folder to %s? This will reset your "
 #~ "library and remove your playlists."
@@ -566,13 +551,11 @@ msgstr "Duraklat"
 #~ msgid "kbps"
 #~ msgstr "kbps"
 
-#, c-format
 #~ msgid "Sync will remove %i item from %s"
 #~ msgid_plural "Sync will remove %i items from %s"
 #~ msgstr[0] "Eşitleme %s cihazından %i öğeyi kaldırır"
 #~ msgstr[1] "Eşitleme %s cihazından %i öğeyi kaldırır"
 
-#, c-format
 #~ msgid ""
 #~ "If you continue to sync, media will be removed from %s since they are not "
 #~ "on the sync list. Would you like to import them to your library first?"
@@ -587,7 +570,6 @@ msgstr "Duraklat"
 #~ msgid "Import"
 #~ msgstr "İçe Aktar"
 
-#, c-format
 #~ msgid "Importing music from %s…"
 #~ msgstr "%s kaynağından müzik içe aktarılıyor…"
 
@@ -611,7 +593,6 @@ msgstr "Duraklat"
 #~ msgid "Added to your queue:"
 #~ msgstr "Çalma sıranıza eklendi:"
 
-#, c-format
 #~ msgid "%d Track"
 #~ msgid_plural "%d Tracks"
 #~ msgstr[0] "%d Parça"
@@ -662,7 +643,6 @@ msgstr "Duraklat"
 #~ msgid "Sync Failed"
 #~ msgstr "Eşitleme Başarısız Oldu"
 
-#, c-format
 #~ msgid ""
 #~ "The playlist named %s is used to sync device %s, but could not be found."
 #~ msgstr ""
@@ -716,7 +696,6 @@ msgstr "Duraklat"
 #~ msgid "All Genres"
 #~ msgstr "Tüm Tarzlar"
 
-#, c-format
 #~ msgid "All %i Genres"
 #~ msgstr "Tüm %i Tarz"
 
@@ -726,7 +705,6 @@ msgstr "Duraklat"
 #~ msgid "All Artists"
 #~ msgstr "Tüm Sanatçılar"
 
-#, c-format
 #~ msgid "All %i Artists"
 #~ msgstr "Tüm %i Sanatçı"
 
@@ -736,7 +714,6 @@ msgstr "Duraklat"
 #~ msgid "All Albums"
 #~ msgstr "Bütün Albümler"
 
-#, c-format
 #~ msgid "All %i Albums"
 #~ msgstr "Tüm %i Albüm"
 
@@ -746,7 +723,6 @@ msgstr "Duraklat"
 #~ msgid "All Years"
 #~ msgstr "Tüm Yıllar"
 
-#, c-format
 #~ msgid "All %i Years"
 #~ msgstr "Tüm %i Yıl"
 
@@ -762,7 +738,6 @@ msgstr "Duraklat"
 #~ msgid "All Groupings"
 #~ msgstr "Tüm Gruplamalar"
 
-#, c-format
 #~ msgid "All %i Groupings"
 #~ msgstr "Tüm %i Gruplama"
 
@@ -772,7 +747,6 @@ msgstr "Duraklat"
 #~ msgid "All Composers"
 #~ msgstr "Tüm Besteciler"
 
-#, c-format
 #~ msgid "All %i Composers"
 #~ msgstr "Tüm %i Besteci"
 
@@ -791,13 +765,11 @@ msgstr "Duraklat"
 #~ msgid "Unrated"
 #~ msgstr "Derecelendirilmemiş"
 
-#, c-format
 #~ msgid "%u Star"
 #~ msgid_plural "%u Stars"
 #~ msgstr[0] "%u Yıldız"
 #~ msgstr[1] "%u Yıldız"
 
-#, c-format
 #~ msgid "%u kbps"
 #~ msgstr "%u kbps"
 
@@ -911,7 +883,6 @@ msgstr "Duraklat"
 #~ msgid "Import your Music"
 #~ msgstr "Müziklerinizi içeri aktarın"
 
-#, c-format
 #~ msgid "Import all your Music from %s into your library."
 #~ msgstr "%s üzerinde bulunan tüm müziğinizi kitaplığınıza aktarın."
 
@@ -966,18 +937,15 @@ msgstr "Duraklat"
 #~ msgid "Off"
 #~ msgstr "Kapalı"
 
-#, c-format
 #~ msgid "%s (Custom)"
 #~ msgstr "%s (Özel)"
 
-#, c-format
 #~ msgid "%s (Custom %i)"
 #~ msgstr "%s (Özel %i)"
 
 #~ msgid "Custom Preset"
 #~ msgstr "Özel Önayarlar"
 
-#, c-format
 #~ msgid "Custom Preset %i"
 #~ msgstr "Özel Önayar %i"
 
@@ -1018,11 +986,9 @@ msgstr "Duraklat"
 #~ msgid "New Playlist…"
 #~ msgstr "Yeni Çalma Listesi…"
 
-#, c-format
 #~ msgid "Import %i of %i selected songs"
 #~ msgstr "Seçilen %i şarkının %i tanesini içe aktar"
 
-#, c-format
 #~ msgid "Import %i song"
 #~ msgid_plural "Import %i songs"
 #~ msgstr[0] "%i şarkıyı içe aktar"
@@ -1073,7 +1039,6 @@ msgstr "Duraklat"
 #~ msgid "Add Playlist…"
 #~ msgstr "Çalma Listesi Ekle…"
 
-#, c-format
 #~ msgid "Equalizer: %s"
 #~ msgstr "Ekolayzır: %s"
 

@@ -80,7 +80,7 @@ msgstr ""
 msgid "Pause"
 msgstr ""
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Issues while importing from %s"
 #~ msgstr "Vïedtjedh musihke %s..."
 

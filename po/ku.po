@@ -131,15 +131,12 @@ msgstr "Raweste"
 #~ msgid "Techno"
 #~ msgstr "Tekno"
 
-#, c-format
 #~ msgid " (%d)"
 #~ msgstr " (%d)"
 
-#, c-format
 #~ msgid "%s (%d)"
 #~ msgstr "%s (%d)"
 
-#, c-format
 #~ msgid "%s (%i)"
 #~ msgstr "%s (%i)"
 
@@ -152,7 +149,6 @@ msgstr "Raweste"
 #~ msgid "Playlist"
 #~ msgstr "Lîsteya lêdanê"
 
-#, c-format
 #~ msgid "Import %s"
 #~ msgstr "Têxe %s"
 
@@ -220,13 +216,13 @@ msgstr "Raweste"
 #~ msgid "Desktop Integration"
 #~ msgstr "Yekkerbûna Sermasê"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Remove %d Song From Library?"
 #~ msgid_plural "Remove %d Songs From Library?"
 #~ msgstr[0] "Ji pirtûkxaneyê rake"
 #~ msgstr[1] "Ji pirtûkxaneyê rake"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Remove \"%s\" From Library?"
 #~ msgstr "Ji pirtûkxaneyê rake"
 

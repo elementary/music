@@ -151,15 +151,12 @@ msgstr "暂停"
 #~ msgid "Techno"
 #~ msgstr "电音"
 
-#, c-format
 #~ msgid " (%d)"
 #~ msgstr " (%d)"
 
-#, c-format
 #~ msgid "%s (%d)"
 #~ msgstr "%s (%d)"
 
-#, c-format
 #~ msgid "%s (%i)"
 #~ msgstr "%s (%i)"
 
@@ -181,7 +178,6 @@ msgstr "暂停"
 #~ msgid "Playlist"
 #~ msgstr "播放列表"
 
-#, c-format
 #~ msgid "Import %s"
 #~ msgstr "导入 %s"
 
@@ -209,14 +205,12 @@ msgstr "暂停"
 #~ msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 #~ msgstr "正在添加 <b>$NAME</b>(艺术家 <b>$ARTIST</b>) 到 $DEVICE"
 
-#, c-format
 #~ msgid "Syncing <b>%s</b>…"
 #~ msgstr "正在同步 <b>%s</b>…"
 
 #~ msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 #~ msgstr "正在移除 $DEVICE 中的 <b>$NAME</b>(艺人 <b>$ARTIST</b>)"
 
-#, c-format
 #~ msgid "Removing from <b>%s</b>…"
 #~ msgstr "正在从 <b>%s</b> 移除…"
 
@@ -276,11 +270,9 @@ msgstr "暂停"
 #~ msgid "File not found"
 #~ msgstr "找不到文件"
 
-#, c-format
 #~ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 #~ msgstr "无法找到 <b>%s</b> 艺术家 <b>%s</b> 的音乐文件。"
 
-#, c-format
 #~ msgid "%i music files could not be found."
 #~ msgstr "%i 音乐文件无法找到"
 
@@ -296,11 +288,9 @@ msgstr "暂停"
 #~ msgid "Choose Music Folder"
 #~ msgstr "选择音乐文件夹"
 
-#, c-format
 #~ msgid "Would you like to install the %s plugin?"
 #~ msgstr "您想要安装 %s 插件吗？"
 
-#, c-format
 #~ msgid ""
 #~ "This song cannot be played. The %s plugin is required to play the song."
 #~ msgstr "无法播放此歌曲。播放此歌曲需要 %s 插件。"
@@ -347,11 +337,9 @@ msgstr "暂停"
 #~ msgid "Close"
 #~ msgstr "关闭"
 
-#, c-format
 #~ msgid "Issues while importing from %s"
 #~ msgstr "从 %s 导入时出错"
 
-#, c-format
 #~ msgid "Unable to import %d item. The file may be damaged."
 #~ msgid_plural "Unable to import %d items. The files may be damaged."
 #~ msgstr[0] "无法导入 %d 个项目。文件可能已损坏。"
@@ -398,12 +386,10 @@ msgstr "暂停"
 #~ msgid "Continue playback when closed:"
 #~ msgstr "关闭时后台继续播放："
 
-#, c-format
 #~ msgid "Remove %d Song From Library?"
 #~ msgid_plural "Remove %d Songs From Library?"
 #~ msgstr[0] "从库中删除 %d 首歌曲？"
 
-#, c-format
 #~ msgid "Remove \"%s\" From Library?"
 #~ msgstr "从媒体库移除\"%s\" ？"
 
@@ -421,7 +407,6 @@ msgstr "暂停"
 #~ msgid "Set Music Folder?"
 #~ msgstr "设置音乐文件夹？"
 
-#, c-format
 #~ msgid ""
 #~ "Are you sure you want to set the music folder to %s? This will reset your "
 #~ "library and remove your playlists."
@@ -553,12 +538,10 @@ msgstr "暂停"
 #~ msgid "kbps"
 #~ msgstr "千比特/秒"
 
-#, c-format
 #~ msgid "Sync will remove %i item from %s"
 #~ msgid_plural "Sync will remove %i items from %s"
 #~ msgstr[0] "同步将从 %s 中移除 %i 个项目"
 
-#, c-format
 #~ msgid ""
 #~ "If you continue to sync, media will be removed from %s since they are not "
 #~ "on the sync list. Would you like to import them to your library first?"
@@ -572,7 +555,6 @@ msgstr "暂停"
 #~ msgid "Import"
 #~ msgstr "导入"
 
-#, c-format
 #~ msgid "Importing music from %s…"
 #~ msgstr "正在导入 %s 中的音乐…"
 
@@ -594,7 +576,6 @@ msgstr "暂停"
 #~ msgid "Added to your queue:"
 #~ msgstr "已添加到您的队列："
 
-#, c-format
 #~ msgid "%d Track"
 #~ msgid_plural "%d Tracks"
 #~ msgstr[0] "%d 曲目"
@@ -644,7 +625,6 @@ msgstr "暂停"
 #~ msgid "Sync Failed"
 #~ msgstr "同步失败"
 
-#, c-format
 #~ msgid ""
 #~ "The playlist named %s is used to sync device %s, but could not be found."
 #~ msgstr "播放列表 %s 被用来同步设备 %s，但未发现该列表。"
@@ -695,7 +675,6 @@ msgstr "暂停"
 #~ msgid "All Genres"
 #~ msgstr "所有流派"
 
-#, c-format
 #~ msgid "All %i Genres"
 #~ msgstr "所有 %i 流派"
 
@@ -705,7 +684,6 @@ msgstr "暂停"
 #~ msgid "All Artists"
 #~ msgstr "所有艺术家"
 
-#, c-format
 #~ msgid "All %i Artists"
 #~ msgstr "所有 %i 艺术家"
 
@@ -715,7 +693,6 @@ msgstr "暂停"
 #~ msgid "All Albums"
 #~ msgstr "所有专辑"
 
-#, c-format
 #~ msgid "All %i Albums"
 #~ msgstr "所有 %i 专辑"
 
@@ -725,7 +702,6 @@ msgstr "暂停"
 #~ msgid "All Years"
 #~ msgstr "所有年份"
 
-#, c-format
 #~ msgid "All %i Years"
 #~ msgstr "所有 %i 年份"
 
@@ -741,7 +717,6 @@ msgstr "暂停"
 #~ msgid "All Groupings"
 #~ msgstr "所有分组"
 
-#, c-format
 #~ msgid "All %i Groupings"
 #~ msgstr "所有 %i 分组"
 
@@ -751,7 +726,6 @@ msgstr "暂停"
 #~ msgid "All Composers"
 #~ msgstr "所有作曲家"
 
-#, c-format
 #~ msgid "All %i Composers"
 #~ msgstr "所有 %i 作曲家"
 
@@ -770,12 +744,10 @@ msgstr "暂停"
 #~ msgid "Unrated"
 #~ msgstr "未评分"
 
-#, c-format
 #~ msgid "%u Star"
 #~ msgid_plural "%u Stars"
 #~ msgstr[0] "%u 星"
 
-#, c-format
 #~ msgid "%u kbps"
 #~ msgstr "%u 千比特/秒"
 
@@ -889,7 +861,6 @@ msgstr "暂停"
 #~ msgid "Import your Music"
 #~ msgstr "导入您的音乐"
 
-#, c-format
 #~ msgid "Import all your Music from %s into your library."
 #~ msgstr "将 %s 中的所有音乐导入到媒体库。"
 
@@ -942,18 +913,15 @@ msgstr "暂停"
 #~ msgid "Off"
 #~ msgstr "关闭"
 
-#, c-format
 #~ msgid "%s (Custom)"
 #~ msgstr "%s (自定义)"
 
-#, c-format
 #~ msgid "%s (Custom %i)"
 #~ msgstr "%s (自定义 %i)"
 
 #~ msgid "Custom Preset"
 #~ msgstr "自定义预设"
 
-#, c-format
 #~ msgid "Custom Preset %i"
 #~ msgstr "自定义预设 %i"
 
@@ -994,11 +962,9 @@ msgstr "暂停"
 #~ msgid "New Playlist…"
 #~ msgstr "新建播放列表…"
 
-#, c-format
 #~ msgid "Import %i of %i selected songs"
 #~ msgstr "导入 %i/%i 首选中歌曲"
 
-#, c-format
 #~ msgid "Import %i song"
 #~ msgid_plural "Import %i songs"
 #~ msgstr[0] "导入 %i 首歌曲"
@@ -1048,7 +1014,6 @@ msgstr "暂停"
 #~ msgid "Add Playlist…"
 #~ msgstr "添加播放列表…"
 
-#, c-format
 #~ msgid "Equalizer: %s"
 #~ msgstr "均衡器： %s"
 

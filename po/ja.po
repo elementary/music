@@ -151,15 +151,12 @@ msgstr "一時停止"
 #~ msgid "Techno"
 #~ msgstr "テクノ"
 
-#, c-format
 #~ msgid " (%d)"
 #~ msgstr " (%d)"
 
-#, c-format
 #~ msgid "%s (%d)"
 #~ msgstr "%s (%d)"
 
-#, c-format
 #~ msgid "%s (%i)"
 #~ msgstr "%s (%i)"
 
@@ -181,7 +178,6 @@ msgstr "一時停止"
 #~ msgid "Playlist"
 #~ msgstr "プレイリスト"
 
-#, c-format
 #~ msgid "Import %s"
 #~ msgstr "%s のインポート"
 
@@ -209,14 +205,12 @@ msgstr "一時停止"
 #~ msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 #~ msgstr "<b>$ARTIST</b> の <b>$NAME</b> を $DEVICE に追加しています"
 
-#, c-format
 #~ msgid "Syncing <b>%s</b>…"
 #~ msgstr "<b>%s</b> を同期しています…"
 
 #~ msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 #~ msgstr "<b>$ARTIST</b> の <b>$NAME</b> を $DEVICE から削除しています"
 
-#, c-format
 #~ msgid "Removing from <b>%s</b>…"
 #~ msgstr "<b>%s</b> から削除しています…"
 
@@ -277,11 +271,9 @@ msgstr "一時停止"
 #~ msgid "File not found"
 #~ msgstr "ファイルが見つかりませんでした"
 
-#, c-format
 #~ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 #~ msgstr "音楽ファイル <b>%s</b> / <b>%s</b> を見つけられませんでした。"
 
-#, c-format
 #~ msgid "%i music files could not be found."
 #~ msgstr "%i個の音楽ファイルを見つけられませんでした。"
 
@@ -297,11 +289,9 @@ msgstr "一時停止"
 #~ msgid "Choose Music Folder"
 #~ msgstr "ミュージックフォルダーを選択"
 
-#, c-format
 #~ msgid "Would you like to install the %s plugin?"
 #~ msgstr "プラグイン %s をインストールしてもよろしいですか？"
 
-#, c-format
 #~ msgid ""
 #~ "This song cannot be played. The %s plugin is required to play the song."
 #~ msgstr "この曲は再生できません。再生するには %s プラグインが必要です。"
@@ -348,11 +338,9 @@ msgstr "一時停止"
 #~ msgid "Close"
 #~ msgstr "閉じる"
 
-#, c-format
 #~ msgid "Issues while importing from %s"
 #~ msgstr "%s からのインポート中に不具合が発生しました"
 
-#, c-format
 #~ msgid "Unable to import %d item. The file may be damaged."
 #~ msgid_plural "Unable to import %d items. The files may be damaged."
 #~ msgstr[0] ""
@@ -401,12 +389,10 @@ msgstr "一時停止"
 #~ msgid "Continue playback when closed:"
 #~ msgstr "閉じたときに再生を続ける:"
 
-#, c-format
 #~ msgid "Remove %d Song From Library?"
 #~ msgid_plural "Remove %d Songs From Library?"
 #~ msgstr[0] "ライブラリから%d曲を削除しますか？"
 
-#, c-format
 #~ msgid "Remove \"%s\" From Library?"
 #~ msgstr "ライブラリから \"%s\" を削除しますか？"
 
@@ -426,7 +412,6 @@ msgstr "一時停止"
 #~ msgid "Set Music Folder?"
 #~ msgstr "ミュージックフォルダーを設定しますか？"
 
-#, c-format
 #~ msgid ""
 #~ "Are you sure you want to set the music folder to %s? This will reset your "
 #~ "library and remove your playlists."
@@ -560,12 +545,10 @@ msgstr "一時停止"
 #~ msgid "kbps"
 #~ msgstr "kbps"
 
-#, c-format
 #~ msgid "Sync will remove %i item from %s"
 #~ msgid_plural "Sync will remove %i items from %s"
 #~ msgstr[0] "同期によって%i個の項目が %s から削除されます"
 
-#, c-format
 #~ msgid ""
 #~ "If you continue to sync, media will be removed from %s since they are not "
 #~ "on the sync list. Would you like to import them to your library first?"
@@ -579,7 +562,6 @@ msgstr "一時停止"
 #~ msgid "Import"
 #~ msgstr "インポート"
 
-#, c-format
 #~ msgid "Importing music from %s…"
 #~ msgstr "%s から曲をインポートしています…"
 
@@ -601,7 +583,6 @@ msgstr "一時停止"
 #~ msgid "Added to your queue:"
 #~ msgstr "キューに追加しました:"
 
-#, c-format
 #~ msgid "%d Track"
 #~ msgid_plural "%d Tracks"
 #~ msgstr[0] "%dトラック"
@@ -651,7 +632,6 @@ msgstr "一時停止"
 #~ msgid "Sync Failed"
 #~ msgstr "同期に失敗しました"
 
-#, c-format
 #~ msgid ""
 #~ "The playlist named %s is used to sync device %s, but could not be found."
 #~ msgstr ""
@@ -705,7 +685,6 @@ msgstr "一時停止"
 #~ msgid "All Genres"
 #~ msgstr "すべてのジャンル"
 
-#, c-format
 #~ msgid "All %i Genres"
 #~ msgstr "全%iジャンル"
 
@@ -715,7 +694,6 @@ msgstr "一時停止"
 #~ msgid "All Artists"
 #~ msgstr "すべてのアーティスト"
 
-#, c-format
 #~ msgid "All %i Artists"
 #~ msgstr "全%iアーティスト"
 
@@ -725,7 +703,6 @@ msgstr "一時停止"
 #~ msgid "All Albums"
 #~ msgstr "すべてのアルバム"
 
-#, c-format
 #~ msgid "All %i Albums"
 #~ msgstr "全%iアルバム"
 
@@ -735,7 +712,6 @@ msgstr "一時停止"
 #~ msgid "All Years"
 #~ msgstr "すべての年"
 
-#, c-format
 #~ msgid "All %i Years"
 #~ msgstr "全%i年"
 
@@ -751,7 +727,6 @@ msgstr "一時停止"
 #~ msgid "All Groupings"
 #~ msgstr "すべてのグループ"
 
-#, c-format
 #~ msgid "All %i Groupings"
 #~ msgstr "全%iグループ"
 
@@ -761,7 +736,6 @@ msgstr "一時停止"
 #~ msgid "All Composers"
 #~ msgstr "すべての作曲者"
 
-#, c-format
 #~ msgid "All %i Composers"
 #~ msgstr "全%i作曲者"
 
@@ -780,12 +754,10 @@ msgstr "一時停止"
 #~ msgid "Unrated"
 #~ msgstr "評価なし"
 
-#, c-format
 #~ msgid "%u Star"
 #~ msgid_plural "%u Stars"
 #~ msgstr[0] "スター%u個"
 
-#, c-format
 #~ msgid "%u kbps"
 #~ msgstr "%u kbps"
 
@@ -899,7 +871,6 @@ msgstr "一時停止"
 #~ msgid "Import your Music"
 #~ msgstr "曲をインポート"
 
-#, c-format
 #~ msgid "Import all your Music from %s into your library."
 #~ msgstr "すべての曲を %s からライブラリにインポートします。"
 
@@ -953,18 +924,15 @@ msgstr "一時停止"
 #~ msgid "Off"
 #~ msgstr "オフ"
 
-#, c-format
 #~ msgid "%s (Custom)"
 #~ msgstr "%s (カスタム)"
 
-#, c-format
 #~ msgid "%s (Custom %i)"
 #~ msgstr "%s (カスタム %i)"
 
 #~ msgid "Custom Preset"
 #~ msgstr "カスタムプリセット"
 
-#, c-format
 #~ msgid "Custom Preset %i"
 #~ msgstr "カスタムプリセット%i"
 
@@ -1005,11 +973,9 @@ msgstr "一時停止"
 #~ msgid "New Playlist…"
 #~ msgstr "新しいプレイリスト…"
 
-#, c-format
 #~ msgid "Import %i of %i selected songs"
 #~ msgstr "選択された%i / %i曲をインポート"
 
-#, c-format
 #~ msgid "Import %i song"
 #~ msgid_plural "Import %i songs"
 #~ msgstr[0] "%i曲をインポート"
@@ -1059,7 +1025,6 @@ msgstr "一時停止"
 #~ msgid "Add Playlist…"
 #~ msgstr "プレイリストを追加…"
 
-#, c-format
 #~ msgid "Equalizer: %s"
 #~ msgstr "イコライザー: %s"
 

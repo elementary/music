@@ -151,15 +151,12 @@ msgstr "일시 정지"
 #~ msgid "Techno"
 #~ msgstr "테크노"
 
-#, c-format
 #~ msgid " (%d)"
 #~ msgstr " (%d)"
 
-#, c-format
 #~ msgid "%s (%d)"
 #~ msgstr "%s (%d)"
 
-#, c-format
 #~ msgid "%s (%i)"
 #~ msgstr "%s (%i)"
 
@@ -181,7 +178,6 @@ msgstr "일시 정지"
 #~ msgid "Playlist"
 #~ msgstr "재생목록"
 
-#, c-format
 #~ msgid "Import %s"
 #~ msgstr "%s에서 가져오기"
 
@@ -209,14 +205,12 @@ msgstr "일시 정지"
 #~ msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 #~ msgstr "<b>$ARTIST</b>의<b>$NAME</b> $DEVICE에 추가합니다"
 
-#, c-format
 #~ msgid "Syncing <b>%s</b>…"
 #~ msgstr "<b>%s</b>를 동기화 중입니다…"
 
 #~ msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 #~ msgstr "$DEVICE에서 <b>$ARTIST</b>의 <b>$NAME</b>를 삭제합니다"
 
-#, c-format
 #~ msgid "Removing from <b>%s</b>…"
 #~ msgstr "<b>%s</b>에서 제거 중입니다…"
 
@@ -278,11 +272,10 @@ msgstr "일시 정지"
 #~ msgid "File not found"
 #~ msgstr "파일을 찾을 수 없습니다"
 
-#, c-format
 #~ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 #~ msgstr "<b>%s</b> by <b>%s</b> 를 위한 음악 파일을 찾을 수 없습니다."
 
-#, fuzzy, c-format
+#, fuzzy
 #~| msgid "%i music files could not be found?"
 #~ msgid "%i music files could not be found."
 #~ msgstr "%i 음악 파일을 찾을 수 없습니까?"
@@ -299,11 +292,9 @@ msgstr "일시 정지"
 #~ msgid "Choose Music Folder"
 #~ msgstr "음악 폴더 선택"
 
-#, c-format
 #~ msgid "Would you like to install the %s plugin?"
 #~ msgstr "%s 플러그인을 설치할까요?"
 
-#, c-format
 #~ msgid ""
 #~ "This song cannot be played. The %s plugin is required to play the song."
 #~ msgstr ""
@@ -351,11 +342,9 @@ msgstr "일시 정지"
 #~ msgid "Close"
 #~ msgstr "닫기"
 
-#, c-format
 #~ msgid "Issues while importing from %s"
 #~ msgstr "%s에서 가져오는 동안 생기는 문제입니다"
 
-#, c-format
 #~ msgid "Unable to import %d item. The file may be damaged."
 #~ msgid_plural "Unable to import %d items. The files may be damaged."
 #~ msgstr[0] ""
@@ -403,12 +392,10 @@ msgstr "일시 정지"
 #~ msgid "Continue playback when closed:"
 #~ msgstr "닫아도 계속 재생하기:"
 
-#, c-format
 #~ msgid "Remove %d Song From Library?"
 #~ msgid_plural "Remove %d Songs From Library?"
 #~ msgstr[0] "%d개의 곡을 라이브러리에서 제거할까요?"
 
-#, c-format
 #~ msgid "Remove \"%s\" From Library?"
 #~ msgstr "라이브러리에서 \"%s\"를 제거할까요?"
 
@@ -428,7 +415,6 @@ msgstr "일시 정지"
 #~ msgid "Set Music Folder?"
 #~ msgstr "음악 폴더를 설정하시겠습니까?"
 
-#, c-format
 #~ msgid ""
 #~ "Are you sure you want to set the music folder to %s? This will reset your "
 #~ "library and remove your playlists."
@@ -562,12 +548,10 @@ msgstr "일시 정지"
 #~ msgid "kbps"
 #~ msgstr "kbps"
 
-#, c-format
 #~ msgid "Sync will remove %i item from %s"
 #~ msgid_plural "Sync will remove %i items from %s"
 #~ msgstr[0] "동기화를 진행하면 %i개 항목을 %s에서 제거하게 됩니다"
 
-#, c-format
 #~ msgid ""
 #~ "If you continue to sync, media will be removed from %s since they are not "
 #~ "on the sync list. Would you like to import them to your library first?"
@@ -581,7 +565,6 @@ msgstr "일시 정지"
 #~ msgid "Import"
 #~ msgstr "불러들이기"
 
-#, c-format
 #~ msgid "Importing music from %s…"
 #~ msgstr "%s에서 음악을 가져오고 있습니다…"
 
@@ -603,7 +586,6 @@ msgstr "일시 정지"
 #~ msgid "Added to your queue:"
 #~ msgstr "대기열에 추가되었습니다:"
 
-#, c-format
 #~ msgid "%d Track"
 #~ msgid_plural "%d Tracks"
 #~ msgstr[0] "%d 개의 트랙"
@@ -653,7 +635,6 @@ msgstr "일시 정지"
 #~ msgid "Sync Failed"
 #~ msgstr "동기화 실패"
 
-#, c-format
 #~ msgid ""
 #~ "The playlist named %s is used to sync device %s, but could not be found."
 #~ msgstr ""
@@ -706,7 +687,6 @@ msgstr "일시 정지"
 #~ msgid "All Genres"
 #~ msgstr "모든 장르"
 
-#, c-format
 #~ msgid "All %i Genres"
 #~ msgstr "모든 %i 장르"
 
@@ -716,7 +696,6 @@ msgstr "일시 정지"
 #~ msgid "All Artists"
 #~ msgstr "모든 아티스트"
 
-#, c-format
 #~ msgid "All %i Artists"
 #~ msgstr "모든 %i 아티스트"
 
@@ -726,7 +705,6 @@ msgstr "일시 정지"
 #~ msgid "All Albums"
 #~ msgstr "모든 앨범"
 
-#, c-format
 #~ msgid "All %i Albums"
 #~ msgstr "모든 %i 앨범"
 
@@ -736,7 +714,6 @@ msgstr "일시 정지"
 #~ msgid "All Years"
 #~ msgstr "모든 연도"
 
-#, c-format
 #~ msgid "All %i Years"
 #~ msgstr "모든 %i 년도"
 
@@ -752,7 +729,6 @@ msgstr "일시 정지"
 #~ msgid "All Groupings"
 #~ msgstr "모든 그룹"
 
-#, c-format
 #~ msgid "All %i Groupings"
 #~ msgstr "모든 %i 그룹"
 
@@ -762,7 +738,6 @@ msgstr "일시 정지"
 #~ msgid "All Composers"
 #~ msgstr "모든 작곡가"
 
-#, c-format
 #~ msgid "All %i Composers"
 #~ msgstr "모든 %i 작곡가"
 
@@ -781,12 +756,10 @@ msgstr "일시 정지"
 #~ msgid "Unrated"
 #~ msgstr "등급 지정 안 됨"
 
-#, c-format
 #~ msgid "%u Star"
 #~ msgid_plural "%u Stars"
 #~ msgstr[0] "별 %u"
 
-#, c-format
 #~ msgid "%u kbps"
 #~ msgstr "%u kbps"
 
@@ -900,7 +873,6 @@ msgstr "일시 정지"
 #~ msgid "Import your Music"
 #~ msgstr "음악을 가져오세요"
 
-#, c-format
 #~ msgid "Import all your Music from %s into your library."
 #~ msgstr "%s의 모든 음악을 여러분의 라이브러리로 불러옵니다."
 
@@ -954,18 +926,15 @@ msgstr "일시 정지"
 #~ msgid "Off"
 #~ msgstr "끄기"
 
-#, c-format
 #~ msgid "%s (Custom)"
 #~ msgstr "%s (사용자 지정)"
 
-#, c-format
 #~ msgid "%s (Custom %i)"
 #~ msgstr "%s (사용자 지정 %i)"
 
 #~ msgid "Custom Preset"
 #~ msgstr "사용자 지정 설정값"
 
-#, c-format
 #~ msgid "Custom Preset %i"
 #~ msgstr "사용자 지정 설정값 %i"
 
@@ -1006,11 +975,9 @@ msgstr "일시 정지"
 #~ msgid "New Playlist…"
 #~ msgstr "새로운 재생목록…"
 
-#, c-format
 #~ msgid "Import %i of %i selected songs"
 #~ msgstr "%i (%i개 중) 개의 선택된 곡을 가져옵니다"
 
-#, c-format
 #~ msgid "Import %i song"
 #~ msgid_plural "Import %i songs"
 #~ msgstr[0] "%i 개의 곡들 불러오는 중"
@@ -1062,7 +1029,6 @@ msgstr "일시 정지"
 #~ msgid "Add Playlist…"
 #~ msgstr "재생목록 추가"
 
-#, c-format
 #~ msgid "Equalizer: %s"
 #~ msgstr "이퀄라이저: %s"
 

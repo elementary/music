@@ -147,7 +147,6 @@ msgstr ""
 #~ msgid "Techno"
 #~ msgstr "Nhạc công nghệ"
 
-#, c-format
 #~ msgid " (%d)"
 #~ msgstr " (%d)"
 
@@ -166,7 +165,6 @@ msgstr ""
 #~ msgid "Playlist"
 #~ msgstr "Danh sách phát"
 
-#, c-format
 #~ msgid "Import %s"
 #~ msgstr "Nhập %s"
 
@@ -187,11 +185,10 @@ msgstr ""
 #~ msgid "File not found"
 #~ msgstr "Không tìm thấy tập tin"
 
-#, c-format
 #~ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 #~ msgstr "Tập tin nhạc cho <b>%s</b> bởi <b>%s</b> không tìm thấy."
 
-#, fuzzy, c-format
+#, fuzzy
 #~| msgid "%i music files could not be found?"
 #~ msgid "%i music files could not be found."
 #~ msgstr "%i tập tin nhạc không tìm thấy?"
@@ -208,11 +205,11 @@ msgstr ""
 #~ msgid "Choose Music Folder"
 #~ msgstr "Chọn thư mục nhạc"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Would you like to install the %s plugin?"
 #~ msgstr "Bạn có muốn cài đặt plugin %s không?\n"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid ""
 #~ "This song cannot be played. The %s plugin is required to play the song."
 #~ msgstr ""
@@ -258,11 +255,11 @@ msgstr ""
 #~ msgid "Close"
 #~ msgstr "Đóng"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Issues while importing from %s"
 #~ msgstr "Nhập phương tiện từ %s"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Unable to import %d item. The file may be damaged."
 #~ msgid_plural "Unable to import %d items. The files may be damaged."
 #~ msgstr[0] "%s không thể nhập %d mục. Các tệp có thể bị hỏng."
@@ -309,12 +306,12 @@ msgstr ""
 #~ msgid "Continue playback when closed:"
 #~ msgstr "Tiếp tục phát khi đóng:"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Remove %d Song From Library?"
 #~ msgid_plural "Remove %d Songs From Library?"
 #~ msgstr[0] "Xóa %d bài hát khỏi %s?"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Remove \"%s\" From Library?"
 #~ msgstr "Xóa \"%s\" khỏi %s?"
 
@@ -332,7 +329,6 @@ msgstr ""
 #~ msgid "Set Music Folder?"
 #~ msgstr "Đặt thư mục nhạc?"
 
-#, c-format
 #~ msgid ""
 #~ "Are you sure you want to set the music folder to %s? This will reset your "
 #~ "library and remove your playlists."
@@ -358,7 +354,7 @@ msgstr ""
 #~ msgid "Title"
 #~ msgstr "Tiêu đề"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Sync will remove %i item from %s"
 #~ msgid_plural "Sync will remove %i items from %s"
 #~ msgstr[0] "Nhập %i mục từ %s"
@@ -444,18 +440,15 @@ msgstr ""
 #~ msgid "Off"
 #~ msgstr "Tắt"
 
-#, c-format
 #~ msgid "%s (Custom)"
 #~ msgstr "%s (Tùy chọn)"
 
-#, c-format
 #~ msgid "%s (Custom %i)"
 #~ msgstr "%s (Tùy chọn %i)"
 
 #~ msgid "Custom Preset"
 #~ msgstr "Tùy chọn giá trị đã đặt"
 
-#, c-format
 #~ msgid "Custom Preset %i"
 #~ msgstr "Tùy chọn giá trị đặt trước %i"
 
@@ -522,7 +515,6 @@ msgstr ""
 #~ msgid "Add Playlist…"
 #~ msgstr "Thêm danh sách phát"
 
-#, c-format
 #~ msgid "Equalizer: %s"
 #~ msgstr "Bộ điều chỉnh: %s"
 

@@ -129,11 +129,9 @@ msgstr ""
 #~ msgid "Techno"
 #~ msgstr "Texno"
 
-#, c-format
 #~ msgid "%s (%d)"
 #~ msgstr "%s (%d)"
 
-#, c-format
 #~ msgid "%s (%i)"
 #~ msgstr "%s (%i)"
 
@@ -187,13 +185,13 @@ msgstr ""
 #~ msgid "Select Music Folder…"
 #~ msgstr "Musiqi Qovluğu seç..."
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Remove %d Song From Library?"
 #~ msgid_plural "Remove %d Songs From Library?"
 #~ msgstr[0] "Kolleksiyadan sil"
 #~ msgstr[1] "Kolleksiyadan sil"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Remove \"%s\" From Library?"
 #~ msgstr "Kolleksiyadan sil"
 
@@ -452,7 +450,6 @@ msgstr ""
 #~ msgid "New Playlist…"
 #~ msgstr "Yeni Playlist..."
 
-#, c-format
 #~ msgid "Import %i song"
 #~ msgid_plural "Import %i songs"
 #~ msgstr[0] "%i mahnı idxal et"

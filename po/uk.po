@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:55+0000\n"
 
@@ -154,15 +154,12 @@ msgstr "Пауза"
 #~ msgid "Techno"
 #~ msgstr "Техно"
 
-#, c-format
 #~ msgid " (%d)"
 #~ msgstr " (%d)"
 
-#, c-format
 #~ msgid "%s (%d)"
 #~ msgstr "%s (%d)"
 
-#, c-format
 #~ msgid "%s (%i)"
 #~ msgstr "%s (%i)"
 
@@ -184,7 +181,6 @@ msgstr "Пауза"
 #~ msgid "Playlist"
 #~ msgstr "Добірка"
 
-#, c-format
 #~ msgid "Import %s"
 #~ msgstr "Імпортувати %s"
 
@@ -212,14 +208,12 @@ msgstr "Пауза"
 #~ msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 #~ msgstr "Додавання <b>$NAME</b> виконавця <b>$ARTIST</b> на $DEVICE"
 
-#, c-format
 #~ msgid "Syncing <b>%s</b>…"
 #~ msgstr "Синхронізація <b>%s</b>…"
 
 #~ msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 #~ msgstr "Вилучення <b>$NAME</b> виконавця <b>$ARTIST</b> з $DEVICE"
 
-#, c-format
 #~ msgid "Removing from <b>%s</b>…"
 #~ msgstr "Вилучення з <b>%s</b>…"
 
@@ -281,11 +275,9 @@ msgstr "Пауза"
 #~ msgid "File not found"
 #~ msgstr "Файл не знайдено"
 
-#, c-format
 #~ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 #~ msgstr "Музичний файл для <b>%s</b> з <b>%s</b> не знайдено."
 
-#, c-format
 #~ msgid "%i music files could not be found."
 #~ msgstr "Не знайдено %i музичних файлів."
 
@@ -301,11 +293,9 @@ msgstr "Пауза"
 #~ msgid "Choose Music Folder"
 #~ msgstr "Вибір теки з музикою"
 
-#, c-format
 #~ msgid "Would you like to install the %s plugin?"
 #~ msgstr "Бажаєте встановити плагін %s?"
 
-#, c-format
 #~ msgid ""
 #~ "This song cannot be played. The %s plugin is required to play the song."
 #~ msgstr ""
@@ -353,11 +343,9 @@ msgstr "Пауза"
 #~ msgid "Close"
 #~ msgstr "Закрити"
 
-#, c-format
 #~ msgid "Issues while importing from %s"
 #~ msgstr "Проблеми під час імпортування з %s"
 
-#, c-format
 #~ msgid "Unable to import %d item. The file may be damaged."
 #~ msgid_plural "Unable to import %d items. The files may be damaged."
 #~ msgstr[0] "Неможливо імпортувати %d елемент. Файл може бути пошкоджений."
@@ -407,14 +395,12 @@ msgstr "Пауза"
 #~ msgid "Continue playback when closed:"
 #~ msgstr "Продовжувати відтворення після закриття:"
 
-#, c-format
 #~ msgid "Remove %d Song From Library?"
 #~ msgid_plural "Remove %d Songs From Library?"
 #~ msgstr[0] "Вилучити %d пісню з бібліотеки?"
 #~ msgstr[1] "Вилучити %d пісні з бібліотеки?"
 #~ msgstr[2] "Вилучити %d пісень з бібліотеки?"
 
-#, c-format
 #~ msgid "Remove \"%s\" From Library?"
 #~ msgstr "Вилучити «%s» з бібліотеки?"
 
@@ -440,7 +426,6 @@ msgstr "Пауза"
 #~ msgid "Set Music Folder?"
 #~ msgstr "Встановити теку з музикою?"
 
-#, c-format
 #~ msgid ""
 #~ "Are you sure you want to set the music folder to %s? This will reset your "
 #~ "library and remove your playlists."
@@ -574,14 +559,12 @@ msgstr "Пауза"
 #~ msgid "kbps"
 #~ msgstr "кбіт/с"
 
-#, c-format
 #~ msgid "Sync will remove %i item from %s"
 #~ msgid_plural "Sync will remove %i items from %s"
 #~ msgstr[0] "Синхронізація вилучить %i елемент із %s"
 #~ msgstr[1] "Синхронізація вилучить %i елементи з %s"
 #~ msgstr[2] "Синхронізація вилучить %i елементів із %s"
 
-#, c-format
 #~ msgid ""
 #~ "If you continue to sync, media will be removed from %s since they are not "
 #~ "on the sync list. Would you like to import them to your library first?"
@@ -596,7 +579,6 @@ msgstr "Пауза"
 #~ msgid "Import"
 #~ msgstr "Імпортувати"
 
-#, c-format
 #~ msgid "Importing music from %s…"
 #~ msgstr "Імпорт музики з %s…"
 
@@ -618,7 +600,6 @@ msgstr "Пауза"
 #~ msgid "Added to your queue:"
 #~ msgstr "Додано до черги:"
 
-#, c-format
 #~ msgid "%d Track"
 #~ msgid_plural "%d Tracks"
 #~ msgstr[0] "%d доріжка"
@@ -670,7 +651,6 @@ msgstr "Пауза"
 #~ msgid "Sync Failed"
 #~ msgstr "Не вдалося синхронізувати"
 
-#, c-format
 #~ msgid ""
 #~ "The playlist named %s is used to sync device %s, but could not be found."
 #~ msgstr ""
@@ -725,7 +705,6 @@ msgstr "Пауза"
 #~ msgid "All Genres"
 #~ msgstr "Всі жанри"
 
-#, c-format
 #~ msgid "All %i Genres"
 #~ msgstr "Всі %i жанри"
 
@@ -735,7 +714,6 @@ msgstr "Пауза"
 #~ msgid "All Artists"
 #~ msgstr "Всі виконавці"
 
-#, c-format
 #~ msgid "All %i Artists"
 #~ msgstr "Всі %i виконавці"
 
@@ -745,7 +723,6 @@ msgstr "Пауза"
 #~ msgid "All Albums"
 #~ msgstr "Всі Альбоми"
 
-#, c-format
 #~ msgid "All %i Albums"
 #~ msgstr "Всі %i Альбомів"
 
@@ -755,7 +732,6 @@ msgstr "Пауза"
 #~ msgid "All Years"
 #~ msgstr "Всі роки"
 
-#, c-format
 #~ msgid "All %i Years"
 #~ msgstr "Всі %i роки"
 
@@ -771,7 +747,6 @@ msgstr "Пауза"
 #~ msgid "All Groupings"
 #~ msgstr "Всі групи"
 
-#, c-format
 #~ msgid "All %i Groupings"
 #~ msgstr "Всі %i групи"
 
@@ -781,7 +756,6 @@ msgstr "Пауза"
 #~ msgid "All Composers"
 #~ msgstr "Всі композитори"
 
-#, c-format
 #~ msgid "All %i Composers"
 #~ msgstr "Всі %i композитори"
 
@@ -800,14 +774,12 @@ msgstr "Пауза"
 #~ msgid "Unrated"
 #~ msgstr "Без оцінки"
 
-#, c-format
 #~ msgid "%u Star"
 #~ msgid_plural "%u Stars"
 #~ msgstr[0] "%u зірка"
 #~ msgstr[1] "%u зірки"
 #~ msgstr[2] "%u зірок"
 
-#, c-format
 #~ msgid "%u kbps"
 #~ msgstr "%u кбіт/с"
 
@@ -921,7 +893,6 @@ msgstr "Пауза"
 #~ msgid "Import your Music"
 #~ msgstr "Імпортувати музику"
 
-#, c-format
 #~ msgid "Import all your Music from %s into your library."
 #~ msgstr "Імпортувати всю музику з %s до вашої бібліотеки."
 
@@ -976,18 +947,15 @@ msgstr "Пауза"
 #~ msgid "Off"
 #~ msgstr "Вимк."
 
-#, c-format
 #~ msgid "%s (Custom)"
 #~ msgstr "%s (Власні)"
 
-#, c-format
 #~ msgid "%s (Custom %i)"
 #~ msgstr "%s (Власні %i)"
 
 #~ msgid "Custom Preset"
 #~ msgstr "Власні налаштування"
 
-#, c-format
 #~ msgid "Custom Preset %i"
 #~ msgstr "Власні налаштування %i"
 
@@ -1028,11 +996,9 @@ msgstr "Пауза"
 #~ msgid "New Playlist…"
 #~ msgstr "Нова добірка…"
 
-#, c-format
 #~ msgid "Import %i of %i selected songs"
 #~ msgstr "Імпорт %i з %i вибраних пісень"
 
-#, c-format
 #~ msgid "Import %i song"
 #~ msgid_plural "Import %i songs"
 #~ msgstr[0] "Імпортовано %i пісню"
@@ -1084,7 +1050,6 @@ msgstr "Пауза"
 #~ msgid "Add Playlist…"
 #~ msgstr "Додати добірку…"
 
-#, c-format
 #~ msgid "Equalizer: %s"
 #~ msgstr "Еквалайзер: %s"
 

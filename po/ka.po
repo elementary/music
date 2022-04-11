@@ -153,15 +153,12 @@ msgstr "დაპაუზება"
 #~ msgid "Techno"
 #~ msgstr "ტექნო"
 
-#, c-format
 #~ msgid " (%d)"
 #~ msgstr " (%d)"
 
-#, c-format
 #~ msgid "%s (%d)"
 #~ msgstr "%s (%d)"
 
-#, c-format
 #~ msgid "%s (%i)"
 #~ msgstr "%s (%i)"
 
@@ -183,7 +180,6 @@ msgstr "დაპაუზება"
 #~ msgid "Playlist"
 #~ msgstr "დასაკრავი სია"
 
-#, c-format
 #~ msgid "Import %s"
 #~ msgstr "%s-ს შემოტანა"
 
@@ -246,7 +242,7 @@ msgstr "დაპაუზება"
 #~ msgid "Remove Song"
 #~ msgstr "სიმღერის ამოღება"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Issues while importing from %s"
 #~ msgstr "მიმდინარეობს მუსიკის შემოტანა %s-დან..."
 
@@ -256,12 +252,12 @@ msgstr "დაპაუზება"
 #~ msgid "Ignore"
 #~ msgstr "უგულებელყოფა"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Remove %d Song From Library?"
 #~ msgid_plural "Remove %d Songs From Library?"
 #~ msgstr[0] "ბიბლიოთეკიდან ამოღება"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Remove \"%s\" From Library?"
 #~ msgstr "ბიბლიოთეკიდან ამოღება"
 
@@ -289,7 +285,6 @@ msgstr "დაპაუზება"
 #~ msgid "Artist"
 #~ msgstr "შემსრულებელი"
 
-#, c-format
 #~ msgid "Importing music from %s…"
 #~ msgstr "მიმდინარეობს მუსიკის შემოტანა %s-დან..."
 
@@ -311,7 +306,6 @@ msgstr "დაპაუზება"
 #~ msgid "Added to your queue:"
 #~ msgstr "დაემატა თქვენს სიაში:"
 
-#, c-format
 #~ msgid "%d Track"
 #~ msgid_plural "%d Tracks"
 #~ msgstr[0] "%d სიმღერა"
@@ -389,7 +383,6 @@ msgstr "დაპაუზება"
 #~ msgid "All Genres"
 #~ msgstr "ყველა ჟანრი"
 
-#, c-format
 #~ msgid "All %i Genres"
 #~ msgstr "ყველა %i ჟანრი"
 
@@ -399,7 +392,6 @@ msgstr "დაპაუზება"
 #~ msgid "All Artists"
 #~ msgstr "ყველა შემსრულებელი"
 
-#, c-format
 #~ msgid "All %i Artists"
 #~ msgstr "ყველა %i შემსრულებელი"
 
@@ -409,7 +401,6 @@ msgstr "დაპაუზება"
 #~ msgid "All Albums"
 #~ msgstr "ყველა ალბომი"
 
-#, c-format
 #~ msgid "All %i Albums"
 #~ msgstr "ყველა %i ალბომი"
 
@@ -419,7 +410,6 @@ msgstr "დაპაუზება"
 #~ msgid "All Years"
 #~ msgstr "ყველა წელი"
 
-#, c-format
 #~ msgid "All %i Years"
 #~ msgstr "ყველა %i წელი"
 
@@ -435,7 +425,6 @@ msgstr "დაპაუზება"
 #~ msgid "All Groupings"
 #~ msgstr "ყველა დაჯგუფებები"
 
-#, c-format
 #~ msgid "All %i Groupings"
 #~ msgstr "ყველა %i დაჯგუფებები"
 
@@ -445,7 +434,6 @@ msgstr "დაპაუზება"
 #~ msgid "All Composers"
 #~ msgstr "ყველა კომპოზიტორი"
 
-#, c-format
 #~ msgid "All %i Composers"
 #~ msgstr "ყველა %i კომპოზიტორი"
 
@@ -640,7 +628,6 @@ msgstr "დაპაუზება"
 #~ msgid "New Playlist…"
 #~ msgstr "ახალი დასაკრავი სია..."
 
-#, c-format
 #~ msgid "Import %i song"
 #~ msgid_plural "Import %i songs"
 #~ msgstr[0] "%i სიმღერის შემოტანა"

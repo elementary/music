@@ -146,15 +146,12 @@ msgstr ""
 #~ msgid "Techno"
 #~ msgstr "Techno"
 
-#, c-format
 #~ msgid " (%d)"
 #~ msgstr " (%d)"
 
-#, c-format
 #~ msgid "%s (%d)"
 #~ msgstr "%s (%d)"
 
-#, c-format
 #~ msgid "%s (%i)"
 #~ msgstr "%s (%i)"
 
@@ -176,7 +173,6 @@ msgstr ""
 #~ msgid "Playlist"
 #~ msgstr "Playlist"
 
-#, c-format
 #~ msgid "Import %s"
 #~ msgstr "I-import ang %s"
 
@@ -204,14 +200,12 @@ msgstr ""
 #~ msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 #~ msgstr "Inilalagay <b>$NAME</b> ni <b>$ARTIST</b> sa $DEVICE"
 
-#, c-format
 #~ msgid "Syncing <b>%s</b>…"
 #~ msgstr "Isini-sync ang <b>%s</b>"
 
 #~ msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 #~ msgstr "Tinatanggal ang <b>$NAME</b> ni <b>$ARTIST</b> mula sa $DEVICE"
 
-#, c-format
 #~ msgid "Removing from <b>%s</b>…"
 #~ msgstr "Tinatanggal mula sa <b>%s</b>…"
 
@@ -287,13 +281,11 @@ msgstr ""
 #~ msgid "Library Management"
 #~ msgstr "Pamamahala sa Library"
 
-#, c-format
 #~ msgid "Remove %d Song From Library?"
 #~ msgid_plural "Remove %d Songs From Library?"
 #~ msgstr[0] "Tanggalin ang %d Kanta mula sa Library?"
 #~ msgstr[1] "Tanggalin ang %d Kanta mula sa Library?"
 
-#, c-format
 #~ msgid "Remove \"%s\" From Library?"
 #~ msgstr "Tanggalin ang \"%s\" mula sa Library?"
 
@@ -489,7 +481,6 @@ msgstr ""
 #~ msgid "All Genres"
 #~ msgstr "Lahat ng Uri ng Kanta"
 
-#, c-format
 #~ msgid "All %i Genres"
 #~ msgstr "Lahat ng %i na Uri ng Kanta"
 
@@ -499,7 +490,6 @@ msgstr ""
 #~ msgid "All Artists"
 #~ msgstr "Lahat ng mga Artista"
 
-#, c-format
 #~ msgid "All %i Artists"
 #~ msgstr "Lahat ng %i na mga Artista"
 
@@ -509,7 +499,6 @@ msgstr ""
 #~ msgid "All Albums"
 #~ msgstr "Lahat ng mga Album"
 
-#, c-format
 #~ msgid "All %i Albums"
 #~ msgstr "Lahat ng %i na mga Album"
 
@@ -519,7 +508,6 @@ msgstr ""
 #~ msgid "All Years"
 #~ msgstr "Lahat ng mga Taon"
 
-#, c-format
 #~ msgid "All %i Years"
 #~ msgstr "Lahat ng %i na mga Taon"
 
@@ -535,7 +523,6 @@ msgstr ""
 #~ msgid "All Groupings"
 #~ msgstr "Lahat ng mga Grupo"
 
-#, c-format
 #~ msgid "All %i Groupings"
 #~ msgstr "Lahat ng %i na mga Grupo"
 
@@ -545,7 +532,6 @@ msgstr ""
 #~ msgid "All Composers"
 #~ msgstr "Lahat ng mga Nag-kompose"
 
-#, c-format
 #~ msgid "All %i Composers"
 #~ msgstr "Lahat ng %i na mga Nag-kompose"
 
@@ -665,7 +651,6 @@ msgstr ""
 #~ msgid "Import your Music"
 #~ msgstr "I-import ang iyong Musika"
 
-#, c-format
 #~ msgid "Import all your Music from %s into your library."
 #~ msgstr "I-import ang iyong Musika mula sa %s papunta sa iyong library."
 
@@ -706,11 +691,9 @@ msgstr ""
 #~ msgid "Off"
 #~ msgstr "Nakapatay"
 
-#, c-format
 #~ msgid "%s (Custom)"
 #~ msgstr "%s (Custom)"
 
-#, c-format
 #~ msgid "%s (Custom %i)"
 #~ msgstr "%s (Custom %i)"
 
@@ -744,11 +727,9 @@ msgstr ""
 #~ msgid "New Playlist…"
 #~ msgstr "Bagong Playlist..."
 
-#, c-format
 #~ msgid "Import %i of %i selected songs"
 #~ msgstr "I-import ang %i sa %i na mga napiling kanta"
 
-#, c-format
 #~ msgid "Import %i song"
 #~ msgid_plural "Import %i songs"
 #~ msgstr[0] "I-import ang %i kanta"
@@ -789,7 +770,6 @@ msgstr ""
 #~ msgid "Add Playlist…"
 #~ msgstr "Idagdag sa Playlist"
 
-#, c-format
 #~ msgid "Equalizer: %s"
 #~ msgstr "Equalizer: %s"
 

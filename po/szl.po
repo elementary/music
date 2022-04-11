@@ -147,15 +147,12 @@ msgstr "Pauza"
 #~ msgid "Techno"
 #~ msgstr "Techno"
 
-#, c-format
 #~ msgid " (%d)"
 #~ msgstr " (%d)"
 
-#, c-format
 #~ msgid "%s (%d)"
 #~ msgstr "%s (%d)"
 
-#, c-format
 #~ msgid "%s (%i)"
 #~ msgstr "%s (%i)"
 
@@ -177,7 +174,6 @@ msgstr "Pauza"
 #~ msgid "Playlist"
 #~ msgstr "Playlista"
 
-#, c-format
 #~ msgid "Import %s"
 #~ msgstr "Import %s"
 
@@ -205,14 +201,12 @@ msgstr "Pauza"
 #~ msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 #~ msgstr "Przidowanie <b>$NAME</b> ôd <b>$ARTIST</b> do $DEVICE"
 
-#, c-format
 #~ msgid "Syncing <b>%s</b>…"
 #~ msgstr "Synchrōnizowanie <b>%s</b>…"
 
 #~ msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 #~ msgstr "Kasowanie <b>$NAME</b> ôd <b>$ARTIST</b> ze $DEVICE"
 
-#, c-format
 #~ msgid "Removing from <b>%s</b>…"
 #~ msgstr "Kasowanie ze <b>%s</b>…"
 
@@ -275,11 +269,10 @@ msgstr "Pauza"
 #~ msgid "File not found"
 #~ msgstr "Niy szło znojś zbioru"
 
-#, c-format
 #~ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 #~ msgstr "Niy szło znojś zbioru muzycznego <b>%s</b> ôd <b>%s</b>."
 
-#, fuzzy, c-format
+#, fuzzy
 #~| msgid "%i music files could not be found?"
 #~ msgid "%i music files could not be found."
 #~ msgstr "%i zbiorōw muzycznych niy idzie znojś?"
@@ -296,11 +289,9 @@ msgstr "Pauza"
 #~ msgid "Choose Music Folder"
 #~ msgstr "Ôbier katalog z muzykōm"
 
-#, c-format
 #~ msgid "Would you like to install the %s plugin?"
 #~ msgstr "Chcesz zainstalować rozszyrzynie %s?"
 
-#, c-format
 #~ msgid ""
 #~ "This song cannot be played. The %s plugin is required to play the song."
 #~ msgstr ""
@@ -349,11 +340,9 @@ msgstr "Pauza"
 #~ msgid "Close"
 #~ msgstr "Zawrzij"
 
-#, c-format
 #~ msgid "Issues while importing from %s"
 #~ msgstr "Problymy przi imporcie ze %s"
 
-#, c-format
 #~ msgid "Unable to import %d item. The file may be damaged."
 #~ msgid_plural "Unable to import %d items. The files may be damaged."
 #~ msgstr[0] "Niy idzie zaimportować %d elymyntu. Zbiōr może być poprzniōny."
@@ -404,14 +393,12 @@ msgstr "Pauza"
 #~ msgid "Continue playback when closed:"
 #~ msgstr "Kōntynuuj granie po zawarciu:"
 
-#, c-format
 #~ msgid "Remove %d Song From Library?"
 #~ msgid_plural "Remove %d Songs From Library?"
 #~ msgstr[0] "Skasować %d śpiywka z bibliotyki?"
 #~ msgstr[1] "Skasować %d śpiywki z bibliotyki?"
 #~ msgstr[2] "Skasować %d śpiywek z bibliotyki?"
 
-#, c-format
 #~ msgid "Remove \"%s\" From Library?"
 #~ msgstr "Skasować „%s” z bibliotyki?"
 
@@ -437,7 +424,6 @@ msgstr "Pauza"
 #~ msgid "Set Music Folder?"
 #~ msgstr "Ôbsztalować katalog z muzykōm?"
 
-#, c-format
 #~ msgid ""
 #~ "Are you sure you want to set the music folder to %s? This will reset your "
 #~ "library and remove your playlists."
@@ -570,14 +556,12 @@ msgstr "Pauza"
 #~ msgid "kbps"
 #~ msgstr "kb/s"
 
-#, c-format
 #~ msgid "Sync will remove %i item from %s"
 #~ msgid_plural "Sync will remove %i items from %s"
 #~ msgstr[0] "Synchrōnizacyjo skasuje %i elymynt z %s"
 #~ msgstr[1] "Synchrōnizacyjo skasuje %i elymynta z %s"
 #~ msgstr[2] "Synchrōnizacyjo skasuje %i elymyntōw z %s"
 
-#, c-format
 #~ msgid ""
 #~ "If you continue to sync, media will be removed from %s since they are not "
 #~ "on the sync list. Would you like to import them to your library first?"
@@ -591,7 +575,6 @@ msgstr "Pauza"
 #~ msgid "Import"
 #~ msgstr "Zaimportuj"
 
-#, c-format
 #~ msgid "Importing music from %s…"
 #~ msgstr "Importowanie muzyki ze %s…"
 
@@ -613,7 +596,6 @@ msgstr "Pauza"
 #~ msgid "Added to your queue:"
 #~ msgstr "Przidano do raje:"
 
-#, c-format
 #~ msgid "%d Track"
 #~ msgid_plural "%d Tracks"
 #~ msgstr[0] "%d kōncek"
@@ -665,7 +647,6 @@ msgstr "Pauza"
 #~ msgid "Sync Failed"
 #~ msgstr "Synchrōnizacyjo sie niy podarziła"
 
-#, c-format
 #~ msgid ""
 #~ "The playlist named %s is used to sync device %s, but could not be found."
 #~ msgstr ""
@@ -720,7 +701,6 @@ msgstr "Pauza"
 #~ msgid "All Genres"
 #~ msgstr "Wszyjske zorty"
 
-#, c-format
 #~ msgid "All %i Genres"
 #~ msgstr "Wszyjske %i zortōw"
 
@@ -730,7 +710,6 @@ msgstr "Pauza"
 #~ msgid "All Artists"
 #~ msgstr "Wszyjscy artyści"
 
-#, c-format
 #~ msgid "All %i Artists"
 #~ msgstr "Wszyjskich %i artystōw"
 
@@ -740,7 +719,6 @@ msgstr "Pauza"
 #~ msgid "All Albums"
 #~ msgstr "Wszyjske albumy"
 
-#, c-format
 #~ msgid "All %i Albums"
 #~ msgstr "Wszyjske %i albumōw"
 
@@ -750,7 +728,6 @@ msgstr "Pauza"
 #~ msgid "All Years"
 #~ msgstr "Wszyjske lata"
 
-#, c-format
 #~ msgid "All %i Years"
 #~ msgstr "Wszyjske %i lot"
 
@@ -766,7 +743,6 @@ msgstr "Pauza"
 #~ msgid "All Groupings"
 #~ msgstr "Wszyjske grupy"
 
-#, c-format
 #~ msgid "All %i Groupings"
 #~ msgstr "Wszyjske %i grup"
 
@@ -776,7 +752,6 @@ msgstr "Pauza"
 #~ msgid "All Composers"
 #~ msgstr "Wszyjscy kōmpozytorzi"
 
-#, c-format
 #~ msgid "All %i Composers"
 #~ msgstr "Wszyjscy %i kōmpozytorzi"
 
@@ -795,14 +770,12 @@ msgstr "Pauza"
 #~ msgid "Unrated"
 #~ msgstr "Niyôcyniōne"
 
-#, c-format
 #~ msgid "%u Star"
 #~ msgid_plural "%u Stars"
 #~ msgstr[0] "%u gwiozdka"
 #~ msgstr[1] "%u gwiozdki"
 #~ msgstr[2] "%u gwiozdek"
 
-#, c-format
 #~ msgid "%u kbps"
 #~ msgstr "%u kb/s"
 
@@ -916,7 +889,6 @@ msgstr "Pauza"
 #~ msgid "Import your Music"
 #~ msgstr "Importuj muzyka"
 
-#, c-format
 #~ msgid "Import all your Music from %s into your library."
 #~ msgstr "Importuj cołko muzyka ze %s do kolekcyje."
 
@@ -971,18 +943,15 @@ msgstr "Pauza"
 #~ msgid "Off"
 #~ msgstr "Zastawiōny"
 
-#, c-format
 #~ msgid "%s (Custom)"
 #~ msgstr "%s (włosny)"
 
-#, c-format
 #~ msgid "%s (Custom %i)"
 #~ msgstr "%s (włosny %i)"
 
 #~ msgid "Custom Preset"
 #~ msgstr "Włosny profil"
 
-#, c-format
 #~ msgid "Custom Preset %i"
 #~ msgstr "Włosny profil %i"
 
@@ -1023,11 +992,9 @@ msgstr "Pauza"
 #~ msgid "New Playlist…"
 #~ msgstr "Nowo playlista…"
 
-#, c-format
 #~ msgid "Import %i of %i selected songs"
 #~ msgstr "Importowanie %i z %i ôbranych śpiywek"
 
-#, c-format
 #~ msgid "Import %i song"
 #~ msgid_plural "Import %i songs"
 #~ msgstr[0] "Importowanie %i śpiywki"
@@ -1081,7 +1048,6 @@ msgstr "Pauza"
 #~ msgid "Add Playlist…"
 #~ msgstr "Przidowo playlista"
 
-#, c-format
 #~ msgid "Equalizer: %s"
 #~ msgstr "Korektōr: %s"
 

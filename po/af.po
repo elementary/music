@@ -99,7 +99,6 @@ msgstr "Pouse"
 #~ msgid "Techno"
 #~ msgstr "Tegno"
 
-#, c-format
 #~ msgid "%s (%d)"
 #~ msgstr "%s (%d)"
 

@@ -143,15 +143,12 @@ msgstr "Դադար"
 #~ msgid "Techno"
 #~ msgstr "Տեխնո"
 
-#, c-format
 #~ msgid " (%d)"
 #~ msgstr " (%d)"
 
-#, c-format
 #~ msgid "%s (%d)"
 #~ msgstr "%s (%d)"
 
-#, c-format
 #~ msgid "%s (%i)"
 #~ msgstr "%s (%i)"
 
@@ -170,7 +167,6 @@ msgstr "Դադար"
 #~ msgid "Playlist"
 #~ msgstr "Երգացանկ"
 
-#, c-format
 #~ msgid "Import %s"
 #~ msgstr "Ներբեռնել %s"
 
@@ -217,11 +213,10 @@ msgstr "Դադար"
 #~ msgid "File not found"
 #~ msgstr "Ֆայլը չի գտնվել"
 
-#, c-format
 #~ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 #~ msgstr "<b>%s</b>-ի երաժշտական ֆայը <b>%s</b>-ի կատարմամբ չի գտնվել:"
 
-#, fuzzy, c-format
+#, fuzzy
 #~| msgid "%i music files could not be found?"
 #~ msgid "%i music files could not be found."
 #~ msgstr "%i երաժշտական ֆայլերը հնարավեր չէ՞ գտնել:"
@@ -238,11 +233,11 @@ msgstr "Դադար"
 #~ msgid "Choose Music Folder"
 #~ msgstr "Ընտրել երաժշտության թղթապանակը"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Would you like to install the %s plugin?"
 #~ msgstr "Դուք ցանկանու՞մ եք տեղադրել %s փլագինը:\n"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid ""
 #~ "This song cannot be played. The %s plugin is required to play the song."
 #~ msgstr ""
@@ -260,7 +255,7 @@ msgstr "Դադար"
 #~ msgid "Close"
 #~ msgstr "Փակել"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Issues while importing from %s"
 #~ msgstr "Երաժշտության ներբեռնում %s֊ից․․․"
 
@@ -279,12 +274,12 @@ msgstr "Դադար"
 #~ msgid "Copy imported files to Library:"
 #~ msgstr "Պատճենել ներբեռնված ֆայլերը գրադարանում"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Remove %d Song From Library?"
 #~ msgid_plural "Remove %d Songs From Library?"
 #~ msgstr[0] "Հեռացնե՞լ %d երգերը %s-ից:"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Remove \"%s\" From Library?"
 #~ msgstr "Հեռացնել գրադարանից"
 
@@ -375,7 +370,6 @@ msgstr "Դադար"
 #~ msgid "Import"
 #~ msgstr "Ներբեռնել"
 
-#, c-format
 #~ msgid "Importing music from %s…"
 #~ msgstr "Երաժշտության ներբեռնում %s֊ից․․․"
 
@@ -434,7 +428,6 @@ msgstr "Դադար"
 #~ msgid "All Genres"
 #~ msgstr "Բոլոր ոճերը"
 
-#, c-format
 #~ msgid "All %i Genres"
 #~ msgstr "Բոլոր %i ոճերը"
 
@@ -444,7 +437,6 @@ msgstr "Դադար"
 #~ msgid "All Artists"
 #~ msgstr "Բոլոր կատարողները"
 
-#, c-format
 #~ msgid "All %i Artists"
 #~ msgstr "Բոլոր %i կատարողները"
 
@@ -454,7 +446,6 @@ msgstr "Դադար"
 #~ msgid "All Albums"
 #~ msgstr "Բոլոր ալբոմները"
 
-#, c-format
 #~ msgid "All %i Albums"
 #~ msgstr "Բոլոր %i ալբոմները"
 
@@ -464,7 +455,6 @@ msgstr "Դադար"
 #~ msgid "All Years"
 #~ msgstr "Բոլոր տարիները"
 
-#, c-format
 #~ msgid "All %i Years"
 #~ msgstr "Բոլոր %i տարիները"
 
@@ -480,7 +470,6 @@ msgstr "Դադար"
 #~ msgid "All Groupings"
 #~ msgstr "Բոլոր խմբերը"
 
-#, c-format
 #~ msgid "All %i Groupings"
 #~ msgstr "Բոլոր %i խմբերը"
 
@@ -490,7 +479,6 @@ msgstr "Դադար"
 #~ msgid "All Composers"
 #~ msgstr "Բոլոր կոմպոզիտորները"
 
-#, c-format
 #~ msgid "All %i Composers"
 #~ msgstr "Բոլոր %i կոմպոզիտորները"
 

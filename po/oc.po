@@ -119,7 +119,6 @@ msgstr "Metre en pausa"
 #~ msgid "Techno"
 #~ msgstr "Techno"
 
-#, c-format
 #~ msgid "%s (%d)"
 #~ msgstr "%s (%d)"
 
@@ -129,7 +128,6 @@ msgstr "Metre en pausa"
 #~ msgid "Playlist"
 #~ msgstr "Lista de lectura"
 
-#, c-format
 #~ msgid "Import %s"
 #~ msgstr "Importar %s"
 

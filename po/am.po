@@ -125,15 +125,12 @@ msgstr ""
 #~ msgid "Techno"
 #~ msgstr "ቴክኖ"
 
-#, c-format
 #~ msgid " (%d)"
 #~ msgstr " (%d)"
 
-#, c-format
 #~ msgid "%s (%d)"
 #~ msgstr "%s (%d)"
 
-#, c-format
 #~ msgid "%s (%i)"
 #~ msgstr "%s (%i)"
 
@@ -143,7 +140,6 @@ msgstr ""
 #~ msgid "Playlist"
 #~ msgstr "የማጫወቻ ዝርዝር"
 
-#, c-format
 #~ msgid "Import %s"
 #~ msgstr "ማምጫ %s"
 
@@ -157,7 +153,7 @@ msgstr ""
 #~ msgid "Queue"
 #~ msgstr "ወረፋ"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Issues while importing from %s"
 #~ msgstr "ሙዚቃ በማምጣት ላይ ከ %s..."
 

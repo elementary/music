@@ -153,15 +153,12 @@ msgstr "Pausa"
 #~ msgid "Techno"
 #~ msgstr "Techno"
 
-#, c-format
 #~ msgid " (%d)"
 #~ msgstr " (%d)"
 
-#, c-format
 #~ msgid "%s (%d)"
 #~ msgstr "%s (%d)"
 
-#, c-format
 #~ msgid "%s (%i)"
 #~ msgstr "%s (%i)"
 
@@ -183,7 +180,6 @@ msgstr "Pausa"
 #~ msgid "Playlist"
 #~ msgstr "Spellista"
 
-#, c-format
 #~ msgid "Import %s"
 #~ msgstr "Importera %s"
 
@@ -211,14 +207,12 @@ msgstr "Pausa"
 #~ msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 #~ msgstr "Lägger till <b>$NAME</b> av <b>$ARTIST</b> till $DEVICE"
 
-#, c-format
 #~ msgid "Syncing <b>%s</b>…"
 #~ msgstr "Synkroniserar <b>%s</b>…"
 
 #~ msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 #~ msgstr "Tar bort <b>$NAME</b> av <b>$ARTIST</b> från $DEVICE"
 
-#, c-format
 #~ msgid "Removing from <b>%s</b>…"
 #~ msgstr "Tar bort från <b>%s</b>…"
 
@@ -280,11 +274,10 @@ msgstr "Pausa"
 #~ msgid "File not found"
 #~ msgstr "Filen hittades inte"
 
-#, c-format
 #~ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 #~ msgstr "Ljudfilen för <b>%s</b> av <b>%s</b> kan inte hittas."
 
-#, fuzzy, c-format
+#, fuzzy
 #~| msgid "%i music files could not be found?"
 #~ msgid "%i music files could not be found."
 #~ msgstr "%i ljudfiler kan inte hittas?"
@@ -301,11 +294,9 @@ msgstr "Pausa"
 #~ msgid "Choose Music Folder"
 #~ msgstr "Välj musikmapp"
 
-#, c-format
 #~ msgid "Would you like to install the %s plugin?"
 #~ msgstr "Vill du installera insticksmodulen %s?"
 
-#, c-format
 #~ msgid ""
 #~ "This song cannot be played. The %s plugin is required to play the song."
 #~ msgstr ""
@@ -354,11 +345,9 @@ msgstr "Pausa"
 #~ msgid "Close"
 #~ msgstr "Stäng"
 
-#, c-format
 #~ msgid "Issues while importing from %s"
 #~ msgstr "Fel uppstod vid importering från %s"
 
-#, c-format
 #~ msgid "Unable to import %d item. The file may be damaged."
 #~ msgid_plural "Unable to import %d items. The files may be damaged."
 #~ msgstr[0] "Kunde inte importera %d objekt. Filerna kan vara skadade."
@@ -406,13 +395,11 @@ msgstr "Pausa"
 #~ msgid "Continue playback when closed:"
 #~ msgstr "Fortsätt spela när stängd:"
 
-#, c-format
 #~ msgid "Remove %d Song From Library?"
 #~ msgid_plural "Remove %d Songs From Library?"
 #~ msgstr[0] "Ta bort %d låt från bibliotek?"
 #~ msgstr[1] "Ta bort %d låtar från bibliotek?"
 
-#, c-format
 #~ msgid "Remove \"%s\" From Library?"
 #~ msgstr "Ta bort \"%s\" från bibliotek?"
 
@@ -435,7 +422,6 @@ msgstr "Pausa"
 #~ msgid "Set Music Folder?"
 #~ msgstr "Välj som musikmapp?"
 
-#, c-format
 #~ msgid ""
 #~ "Are you sure you want to set the music folder to %s? This will reset your "
 #~ "library and remove your playlists."
@@ -569,13 +555,11 @@ msgstr "Pausa"
 #~ msgid "kbps"
 #~ msgstr "kbit/s"
 
-#, c-format
 #~ msgid "Sync will remove %i item from %s"
 #~ msgid_plural "Sync will remove %i items from %s"
 #~ msgstr[0] "Synkroniseringen kommer att ta bort %i objekt från %s"
 #~ msgstr[1] "Synkroniseringen kommer att ta bort %i objekt från %s"
 
-#, c-format
 #~ msgid ""
 #~ "If you continue to sync, media will be removed from %s since they are not "
 #~ "on the sync list. Would you like to import them to your library first?"
@@ -590,7 +574,6 @@ msgstr "Pausa"
 #~ msgid "Import"
 #~ msgstr "Importera"
 
-#, c-format
 #~ msgid "Importing music from %s…"
 #~ msgstr "Importerar musik från %s…"
 
@@ -612,7 +595,6 @@ msgstr "Pausa"
 #~ msgid "Added to your queue:"
 #~ msgstr "Tillagd i din spelkö:"
 
-#, c-format
 #~ msgid "%d Track"
 #~ msgid_plural "%d Tracks"
 #~ msgstr[0] "%d spår"
@@ -663,7 +645,6 @@ msgstr "Pausa"
 #~ msgid "Sync Failed"
 #~ msgstr "Synkroniseringen misslyckades"
 
-#, c-format
 #~ msgid ""
 #~ "The playlist named %s is used to sync device %s, but could not be found."
 #~ msgstr ""
@@ -719,7 +700,6 @@ msgstr "Pausa"
 #~ msgid "All Genres"
 #~ msgstr "Alla genrer"
 
-#, c-format
 #~ msgid "All %i Genres"
 #~ msgstr "Alla %i genrer"
 
@@ -729,7 +709,6 @@ msgstr "Pausa"
 #~ msgid "All Artists"
 #~ msgstr "Alla artister"
 
-#, c-format
 #~ msgid "All %i Artists"
 #~ msgstr "Alla %i artister"
 
@@ -739,7 +718,6 @@ msgstr "Pausa"
 #~ msgid "All Albums"
 #~ msgstr "Alla album"
 
-#, c-format
 #~ msgid "All %i Albums"
 #~ msgstr "Alla %i album"
 
@@ -749,7 +727,6 @@ msgstr "Pausa"
 #~ msgid "All Years"
 #~ msgstr "Alla årtal"
 
-#, c-format
 #~ msgid "All %i Years"
 #~ msgstr "Alla %i årtal"
 
@@ -765,7 +742,6 @@ msgstr "Pausa"
 #~ msgid "All Groupings"
 #~ msgstr "Alla grupperingar"
 
-#, c-format
 #~ msgid "All %i Groupings"
 #~ msgstr "Alla %i grupperingar"
 
@@ -775,7 +751,6 @@ msgstr "Pausa"
 #~ msgid "All Composers"
 #~ msgstr "Alla kompositörer"
 
-#, c-format
 #~ msgid "All %i Composers"
 #~ msgstr "Alla %i kompositörer"
 
@@ -794,13 +769,11 @@ msgstr "Pausa"
 #~ msgid "Unrated"
 #~ msgstr "Ej betygsatt"
 
-#, c-format
 #~ msgid "%u Star"
 #~ msgid_plural "%u Stars"
 #~ msgstr[0] "%u stjärna"
 #~ msgstr[1] "%u stjärnor"
 
-#, c-format
 #~ msgid "%u kbps"
 #~ msgstr "%u kb/s"
 
@@ -914,7 +887,6 @@ msgstr "Pausa"
 #~ msgid "Import your Music"
 #~ msgstr "Importera din musik"
 
-#, c-format
 #~ msgid "Import all your Music from %s into your library."
 #~ msgstr "Importera all din musik från %s till ditt bibliotek."
 
@@ -969,18 +941,15 @@ msgstr "Pausa"
 #~ msgid "Off"
 #~ msgstr "Av"
 
-#, c-format
 #~ msgid "%s (Custom)"
 #~ msgstr "%s (anpassad)"
 
-#, c-format
 #~ msgid "%s (Custom %i)"
 #~ msgstr "%s (anpassad %i)"
 
 #~ msgid "Custom Preset"
 #~ msgstr "Anpassad förinställning"
 
-#, c-format
 #~ msgid "Custom Preset %i"
 #~ msgstr "Anpassad förinställning %i"
 
@@ -1021,11 +990,9 @@ msgstr "Pausa"
 #~ msgid "New Playlist…"
 #~ msgstr "Ny spellista…"
 
-#, c-format
 #~ msgid "Import %i of %i selected songs"
 #~ msgstr "Importera %i av %i markerade låtar"
 
-#, c-format
 #~ msgid "Import %i song"
 #~ msgid_plural "Import %i songs"
 #~ msgstr[0] "Importera %i låt"
@@ -1078,7 +1045,6 @@ msgstr "Pausa"
 #~ msgid "Add Playlist…"
 #~ msgstr "Lägg till spellista"
 
-#, c-format
 #~ msgid "Equalizer: %s"
 #~ msgstr "Equalizer: %s"
 

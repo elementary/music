@@ -152,15 +152,12 @@ msgstr "Pause"
 #~ msgid "Techno"
 #~ msgstr "Techno"
 
-#, c-format
 #~ msgid " (%d)"
 #~ msgstr " (%d)"
 
-#, c-format
 #~ msgid "%s (%d)"
 #~ msgstr "%s (%d)"
 
-#, c-format
 #~ msgid "%s (%i)"
 #~ msgstr "%s (%i)"
 
@@ -182,7 +179,6 @@ msgstr "Pause"
 #~ msgid "Playlist"
 #~ msgstr "Playlist"
 
-#, c-format
 #~ msgid "Import %s"
 #~ msgstr "Import %s"
 
@@ -210,14 +206,12 @@ msgstr "Pause"
 #~ msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 #~ msgstr "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 
-#, c-format
 #~ msgid "Syncing <b>%s</b>…"
 #~ msgstr "Syncing <b>%s</b>…"
 
 #~ msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 #~ msgstr "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 
-#, c-format
 #~ msgid "Removing from <b>%s</b>…"
 #~ msgstr "Removing from <b>%s</b>…"
 
@@ -276,11 +270,10 @@ msgstr "Pause"
 #~ msgid "File not found"
 #~ msgstr "File not found"
 
-#, c-format
 #~ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 #~ msgstr "The music file for <b>%s</b> by <b>%s</b> could not be found."
 
-#, fuzzy, c-format
+#, fuzzy
 #~| msgid "%i music files could not be found?"
 #~ msgid "%i music files could not be found."
 #~ msgstr "%i music files could not be found?"
@@ -297,11 +290,9 @@ msgstr "Pause"
 #~ msgid "Choose Music Folder"
 #~ msgstr "Choose Music Folder"
 
-#, c-format
 #~ msgid "Would you like to install the %s plugin?"
 #~ msgstr "Would you like to install the %s plugin?"
 
-#, c-format
 #~ msgid ""
 #~ "This song cannot be played. The %s plugin is required to play the song."
 #~ msgstr ""
@@ -350,11 +341,11 @@ msgstr "Pause"
 #~ msgid "Close"
 #~ msgstr "Close"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Issues while importing from %s"
 #~ msgstr "Importing music from %s…"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Unable to import %d item. The file may be damaged."
 #~ msgid_plural "Unable to import %d items. The files may be damaged."
 #~ msgstr[0] "%s was unable to import %d items. The files may be damaged."
@@ -402,13 +393,13 @@ msgstr "Pause"
 #~ msgid "Continue playback when closed:"
 #~ msgstr "Continue playback when closed:"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Remove %d Song From Library?"
 #~ msgid_plural "Remove %d Songs From Library?"
 #~ msgstr[0] "Remove %d Songs From %s?"
 #~ msgstr[1] "Remove %d Songs From %s?"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Remove \"%s\" From Library?"
 #~ msgstr "Remove from Library"
 
@@ -432,7 +423,6 @@ msgstr "Pause"
 #~ msgid "Set Music Folder?"
 #~ msgstr "Set Music Folder?"
 
-#, c-format
 #~ msgid ""
 #~ "Are you sure you want to set the music folder to %s? This will reset your "
 #~ "library and remove your playlists."
@@ -566,13 +556,11 @@ msgstr "Pause"
 #~ msgid "kbps"
 #~ msgstr "kbps"
 
-#, c-format
 #~ msgid "Sync will remove %i item from %s"
 #~ msgid_plural "Sync will remove %i items from %s"
 #~ msgstr[0] "Sync will remove %i item from %s"
 #~ msgstr[1] "Sync will remove %i items from %s"
 
-#, c-format
 #~ msgid ""
 #~ "If you continue to sync, media will be removed from %s since they are not "
 #~ "on the sync list. Would you like to import them to your library first?"
@@ -586,7 +574,6 @@ msgstr "Pause"
 #~ msgid "Import"
 #~ msgstr "Import"
 
-#, c-format
 #~ msgid "Importing music from %s…"
 #~ msgstr "Importing music from %s…"
 
@@ -608,7 +595,6 @@ msgstr "Pause"
 #~ msgid "Added to your queue:"
 #~ msgstr "Added to your queue:"
 
-#, c-format
 #~ msgid "%d Track"
 #~ msgid_plural "%d Tracks"
 #~ msgstr[0] "%d Track"
@@ -659,7 +645,6 @@ msgstr "Pause"
 #~ msgid "Sync Failed"
 #~ msgstr "Sync Failed"
 
-#, c-format
 #~ msgid ""
 #~ "The playlist named %s is used to sync device %s, but could not be found."
 #~ msgstr ""
@@ -710,7 +695,6 @@ msgstr "Pause"
 #~ msgid "All Genres"
 #~ msgstr "All Genres"
 
-#, c-format
 #~ msgid "All %i Genres"
 #~ msgstr "All %i Genres"
 
@@ -720,7 +704,6 @@ msgstr "Pause"
 #~ msgid "All Artists"
 #~ msgstr "All Artists"
 
-#, c-format
 #~ msgid "All %i Artists"
 #~ msgstr "All %i Artists"
 
@@ -730,7 +713,6 @@ msgstr "Pause"
 #~ msgid "All Albums"
 #~ msgstr "All Albums"
 
-#, c-format
 #~ msgid "All %i Albums"
 #~ msgstr "All %i Albums"
 
@@ -740,7 +722,6 @@ msgstr "Pause"
 #~ msgid "All Years"
 #~ msgstr "All Years"
 
-#, c-format
 #~ msgid "All %i Years"
 #~ msgstr "All %i Years"
 
@@ -756,7 +737,6 @@ msgstr "Pause"
 #~ msgid "All Groupings"
 #~ msgstr "All Groupings"
 
-#, c-format
 #~ msgid "All %i Groupings"
 #~ msgstr "All %i Groupings"
 
@@ -766,7 +746,6 @@ msgstr "Pause"
 #~ msgid "All Composers"
 #~ msgstr "All Composers"
 
-#, c-format
 #~ msgid "All %i Composers"
 #~ msgstr "All %i Composers"
 
@@ -785,13 +764,11 @@ msgstr "Pause"
 #~ msgid "Unrated"
 #~ msgstr "Unrated"
 
-#, c-format
 #~ msgid "%u Star"
 #~ msgid_plural "%u Stars"
 #~ msgstr[0] "%u Star"
 #~ msgstr[1] "%u Stars"
 
-#, c-format
 #~ msgid "%u kbps"
 #~ msgstr "%u kbps"
 
@@ -905,7 +882,6 @@ msgstr "Pause"
 #~ msgid "Import your Music"
 #~ msgstr "Import your Music"
 
-#, c-format
 #~ msgid "Import all your Music from %s into your library."
 #~ msgstr "Import all your Music from %s into your library."
 
@@ -960,18 +936,15 @@ msgstr "Pause"
 #~ msgid "Off"
 #~ msgstr "Off"
 
-#, c-format
 #~ msgid "%s (Custom)"
 #~ msgstr "%s (Custom)"
 
-#, c-format
 #~ msgid "%s (Custom %i)"
 #~ msgstr "%s (Custom %i)"
 
 #~ msgid "Custom Preset"
 #~ msgstr "Custom Preset"
 
-#, c-format
 #~ msgid "Custom Preset %i"
 #~ msgstr "Custom Preset %i"
 
@@ -1017,11 +990,9 @@ msgstr "Pause"
 #~ msgid "New Playlist…"
 #~ msgstr "New Playlist…"
 
-#, c-format
 #~ msgid "Import %i of %i selected songs"
 #~ msgstr "Import %i of %i selected songs"
 
-#, c-format
 #~ msgid "Import %i song"
 #~ msgid_plural "Import %i songs"
 #~ msgstr[0] "Import %i song"
@@ -1074,7 +1045,6 @@ msgstr "Pause"
 #~ msgid "Add Playlist…"
 #~ msgstr "Add Playlist"
 
-#, c-format
 #~ msgid "Equalizer: %s"
 #~ msgstr "Equalizer: %s"
 

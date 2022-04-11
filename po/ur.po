@@ -76,11 +76,9 @@ msgstr ""
 msgid "Pause"
 msgstr ""
 
-#, c-format
 #~ msgid "%s (%d)"
 #~ msgstr "%s (%d)"
 
-#, c-format
 #~ msgid "%s (%i)"
 #~ msgstr "%s (%i)"
 
@@ -102,7 +100,6 @@ msgstr ""
 #~ msgid "Playlist"
 #~ msgstr "پلے لسٹ"
 
-#, c-format
 #~ msgid "Import %s"
 #~ msgstr "درآمد کریں %s"
 

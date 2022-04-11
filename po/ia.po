@@ -139,15 +139,12 @@ msgstr "Pausar"
 #~ msgid "Techno"
 #~ msgstr "Techno"
 
-#, c-format
 #~ msgid " (%d)"
 #~ msgstr " (%d)"
 
-#, c-format
 #~ msgid "%s (%d)"
 #~ msgstr "%s (%d)"
 
-#, c-format
 #~ msgid "%s (%i)"
 #~ msgstr "%s (%i)"
 
@@ -166,7 +163,6 @@ msgstr "Pausar"
 #~ msgid "Playlist"
 #~ msgstr "Lista de reproduction"
 
-#, c-format
 #~ msgid "Import %s"
 #~ msgstr "Importar %s"
 
@@ -204,7 +200,7 @@ msgstr "Pausar"
 #~ msgid "Choose Music Folder"
 #~ msgstr "Seliger le plica del musica"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Would you like to install the %s plugin?"
 #~ msgstr "Desira tu installar le plugin %s?\n"
 
@@ -218,7 +214,7 @@ msgstr "Pausar"
 #~ msgid "Close"
 #~ msgstr "Clauder"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Issues while importing from %s"
 #~ msgstr "Importar le medios ab %s"
 
@@ -345,7 +341,7 @@ msgstr "Pausar"
 #~ msgid "kbps"
 #~ msgstr "kbps"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Sync will remove %i item from %s"
 #~ msgid_plural "Sync will remove %i items from %s"
 #~ msgstr[0] "Importar %i elementos ab %s"
@@ -396,7 +392,6 @@ msgstr "Pausar"
 #~ msgid "All Genres"
 #~ msgstr "Tote le generes"
 
-#, c-format
 #~ msgid "All %i Genres"
 #~ msgstr "Tote le %i Generes"
 
@@ -415,7 +410,6 @@ msgstr "Pausar"
 #~ msgid "All Composers"
 #~ msgstr "Tote le compositores"
 
-#, c-format
 #~ msgid "All %i Composers"
 #~ msgstr "Tote le %i compositores"
 

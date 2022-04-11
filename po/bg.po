@@ -152,15 +152,12 @@ msgstr "Прекъсване"
 #~ msgid "Techno"
 #~ msgstr "Техно"
 
-#, c-format
 #~ msgid " (%d)"
 #~ msgstr " (%d)"
 
-#, c-format
 #~ msgid "%s (%d)"
 #~ msgstr "%s (%d)"
 
-#, c-format
 #~ msgid "%s (%i)"
 #~ msgstr "%s (%i)"
 
@@ -182,7 +179,6 @@ msgstr "Прекъсване"
 #~ msgid "Playlist"
 #~ msgstr "Списък за изпълнение"
 
-#, c-format
 #~ msgid "Import %s"
 #~ msgstr "Внасяне на %s"
 
@@ -210,14 +206,12 @@ msgstr "Прекъсване"
 #~ msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 #~ msgstr "Вкарване на <b>$NAME</b> от <b>$ARTIST</b> във $DEVICE"
 
-#, c-format
 #~ msgid "Syncing <b>%s</b>…"
 #~ msgstr "Синхронизиране <b>%s</b>…"
 
 #~ msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 #~ msgstr "Премахване на <b>$NAME</b> - <b>$ARTIST</b> от $DEVICE"
 
-#, c-format
 #~ msgid "Removing from <b>%s</b>…"
 #~ msgstr "Премахване от <b>%s</b>…"
 
@@ -278,11 +272,10 @@ msgstr "Прекъсване"
 #~ msgid "File not found"
 #~ msgstr "Файлът не е намерен"
 
-#, c-format
 #~ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 #~ msgstr "Музикалният файл за <b>%s</b> от <b>%s</b> не беше намерен."
 
-#, fuzzy, c-format
+#, fuzzy
 #~| msgid "%i music files could not be found?"
 #~ msgid "%i music files could not be found."
 #~ msgstr "%i музикални файла не бяха намерени?"
@@ -299,11 +292,11 @@ msgstr "Прекъсване"
 #~ msgid "Choose Music Folder"
 #~ msgstr "Избиране на папка за музика"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Would you like to install the %s plugin?"
 #~ msgstr "Бихте ли искали да вградите добавката %s ?\n"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid ""
 #~ "This song cannot be played. The %s plugin is required to play the song."
 #~ msgstr ""
@@ -354,11 +347,11 @@ msgstr "Прекъсване"
 #~ msgid "Close"
 #~ msgstr "Затваряне"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Issues while importing from %s"
 #~ msgstr "Внасям музиката от %s…"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Unable to import %d item. The file may be damaged."
 #~ msgid_plural "Unable to import %d items. The files may be damaged."
 #~ msgstr[0] "%s не можа да внесе %d предмета. Файловетe може да са повредени."
@@ -406,13 +399,13 @@ msgstr "Прекъсване"
 #~ msgid "Continue playback when closed:"
 #~ msgstr "Продължи възпроизвеждането дори приложението да е затворено:"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Remove %d Song From Library?"
 #~ msgid_plural "Remove %d Songs From Library?"
 #~ msgstr[0] "Премахни %d песни от %s?"
 #~ msgstr[1] "Премахни %d песни от %s?"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Remove \"%s\" From Library?"
 #~ msgstr "Премахване от библиотеката"
 
@@ -436,7 +429,6 @@ msgstr "Прекъсване"
 #~ msgid "Set Music Folder?"
 #~ msgstr "Задаване за папка за музика?"
 
-#, c-format
 #~ msgid ""
 #~ "Are you sure you want to set the music folder to %s? This will reset your "
 #~ "library and remove your playlists."
@@ -567,13 +559,12 @@ msgstr "Прекъсване"
 #~ msgid "kbps"
 #~ msgstr "кб/сек."
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Sync will remove %i item from %s"
 #~ msgid_plural "Sync will remove %i items from %s"
 #~ msgstr[0] "Синхронизацията ще премахне %i предмета от %s"
 #~ msgstr[1] "Синхронизацията ще премахне %i предмета от %s"
 
-#, c-format
 #~ msgid ""
 #~ "If you continue to sync, media will be removed from %s since they are not "
 #~ "on the sync list. Would you like to import them to your library first?"
@@ -588,7 +579,6 @@ msgstr "Прекъсване"
 #~ msgid "Import"
 #~ msgstr "Внасяне"
 
-#, c-format
 #~ msgid "Importing music from %s…"
 #~ msgstr "Внасям музиката от %s…"
 
@@ -612,7 +602,6 @@ msgstr "Прекъсване"
 #~ msgid "Added to your queue:"
 #~ msgstr "Добавено към опашката:"
 
-#, c-format
 #~ msgid "%d Track"
 #~ msgid_plural "%d Tracks"
 #~ msgstr[0] "%d песен"
@@ -663,7 +652,6 @@ msgstr "Прекъсване"
 #~ msgid "Sync Failed"
 #~ msgstr "Синхронизация неуспешна"
 
-#, c-format
 #~ msgid ""
 #~ "The playlist named %s is used to sync device %s, but could not be found."
 #~ msgstr ""
@@ -717,7 +705,6 @@ msgstr "Прекъсване"
 #~ msgid "All Genres"
 #~ msgstr "Всички жанрове"
 
-#, c-format
 #~ msgid "All %i Genres"
 #~ msgstr "Всички %i жанра"
 
@@ -727,7 +714,6 @@ msgstr "Прекъсване"
 #~ msgid "All Artists"
 #~ msgstr "Всички изпълнители"
 
-#, c-format
 #~ msgid "All %i Artists"
 #~ msgstr "Всички %i изпълнителя"
 
@@ -737,7 +723,6 @@ msgstr "Прекъсване"
 #~ msgid "All Albums"
 #~ msgstr "Всички албуми"
 
-#, c-format
 #~ msgid "All %i Albums"
 #~ msgstr "Всички %i албума"
 
@@ -747,7 +732,6 @@ msgstr "Прекъсване"
 #~ msgid "All Years"
 #~ msgstr "Всички години"
 
-#, c-format
 #~ msgid "All %i Years"
 #~ msgstr "Всички %i години"
 
@@ -763,7 +747,6 @@ msgstr "Прекъсване"
 #~ msgid "All Groupings"
 #~ msgstr "Всички Групирания"
 
-#, c-format
 #~ msgid "All %i Groupings"
 #~ msgstr "Всички %i Групирания"
 
@@ -773,7 +756,6 @@ msgstr "Прекъсване"
 #~ msgid "All Composers"
 #~ msgstr "Всички съчинители"
 
-#, c-format
 #~ msgid "All %i Composers"
 #~ msgstr "Всички %i Композитори"
 
@@ -792,13 +774,11 @@ msgstr "Прекъсване"
 #~ msgid "Unrated"
 #~ msgstr "Без оценка"
 
-#, c-format
 #~ msgid "%u Star"
 #~ msgid_plural "%u Stars"
 #~ msgstr[0] "%u звезда"
 #~ msgstr[1] "%u звезди"
 
-#, c-format
 #~ msgid "%u kbps"
 #~ msgstr "%u kbps"
 
@@ -912,7 +892,6 @@ msgstr "Прекъсване"
 #~ msgid "Import your Music"
 #~ msgstr "Внесете вашата музика"
 
-#, c-format
 #~ msgid "Import all your Music from %s into your library."
 #~ msgstr "Внасяне на всичката ваша Музика от %s в библиотеката ви."
 
@@ -967,18 +946,15 @@ msgstr "Прекъсване"
 #~ msgid "Off"
 #~ msgstr "Изключено"
 
-#, c-format
 #~ msgid "%s (Custom)"
 #~ msgstr "%s (По избор)"
 
-#, c-format
 #~ msgid "%s (Custom %i)"
 #~ msgstr "%s (%i по избор)"
 
 #~ msgid "Custom Preset"
 #~ msgstr "Фиксирана настройка по избор"
 
-#, c-format
 #~ msgid "Custom Preset %i"
 #~ msgstr "Фиксирана настройка по избор %i"
 
@@ -1024,11 +1000,9 @@ msgstr "Прекъсване"
 #~ msgid "New Playlist…"
 #~ msgstr "Нов списък…"
 
-#, c-format
 #~ msgid "Import %i of %i selected songs"
 #~ msgstr "Внасяне на %i от %i избрани песни"
 
-#, c-format
 #~ msgid "Import %i song"
 #~ msgid_plural "Import %i songs"
 #~ msgstr[0] "Внасяне на %i песен"
@@ -1081,7 +1055,6 @@ msgstr "Прекъсване"
 #~ msgid "Add Playlist…"
 #~ msgstr "Добавяне на списък за изпълнение"
 
-#, c-format
 #~ msgid "Equalizer: %s"
 #~ msgstr "Уравнител: %s"
 

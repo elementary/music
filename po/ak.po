@@ -119,15 +119,12 @@ msgstr ""
 #~ msgid "Party"
 #~ msgstr "Party"
 
-#, c-format
 #~ msgid " (%d)"
 #~ msgstr " (%d)"
 
-#, c-format
 #~ msgid "%s (%d)"
 #~ msgstr "%s (%d)"
 
-#, c-format
 #~ msgid "%s (%i)"
 #~ msgstr "%s (%i)"
 
@@ -146,7 +143,6 @@ msgstr ""
 #~ msgid "Playlist"
 #~ msgstr "Playlist"
 
-#, c-format
 #~ msgid "Import %s"
 #~ msgstr "Import %s"
 

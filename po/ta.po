@@ -132,15 +132,12 @@ msgstr ""
 #~ msgid "Techno"
 #~ msgstr "டெக்னோ"
 
-#, c-format
 #~ msgid " (%d)"
 #~ msgstr " (%d)"
 
-#, c-format
 #~ msgid "%s (%d)"
 #~ msgstr "%s (%d)"
 
-#, c-format
 #~ msgid "%s (%i)"
 #~ msgstr "%s (%i)"
 
@@ -153,7 +150,6 @@ msgstr ""
 #~ msgid "Playlist"
 #~ msgstr "இசைப்பட்டியல்"
 
-#, c-format
 #~ msgid "Import %s"
 #~ msgstr "%s ஐ இறக்குமதி செய்"
 
@@ -170,13 +166,13 @@ msgstr ""
 #~ msgid "Queue"
 #~ msgstr "வரிசை"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Remove %d Song From Library?"
 #~ msgid_plural "Remove %d Songs From Library?"
 #~ msgstr[0] "நூலகத்திலிருந்து நீக்குக"
 #~ msgstr[1] "நூலகத்திலிருந்து நீக்குக"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Remove \"%s\" From Library?"
 #~ msgstr "நூலகத்திலிருந்து நீக்குக"
 

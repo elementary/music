@@ -151,15 +151,12 @@ msgstr "Jeda"
 #~ msgid "Techno"
 #~ msgstr "Techno"
 
-#, c-format
 #~ msgid " (%d)"
 #~ msgstr " (%d)"
 
-#, c-format
 #~ msgid "%s (%d)"
 #~ msgstr "%s (%d)"
 
-#, c-format
 #~ msgid "%s (%i)"
 #~ msgstr "%s (%i)"
 
@@ -181,7 +178,6 @@ msgstr "Jeda"
 #~ msgid "Playlist"
 #~ msgstr "Senarai main"
 
-#, c-format
 #~ msgid "Import %s"
 #~ msgstr "Import %s"
 
@@ -209,14 +205,12 @@ msgstr "Jeda"
 #~ msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 #~ msgstr "Menambah <b>$NAME</b> oleh <b>$ARTIST</b> ke $DEVICE"
 
-#, c-format
 #~ msgid "Syncing <b>%s</b>…"
 #~ msgstr "Menyegerak <b>%s</b>…"
 
 #~ msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 #~ msgstr "Membuang <b>$NAME</b> oleh <b>$ARTIST</b> daripada $DEVICE"
 
-#, c-format
 #~ msgid "Removing from <b>%s</b>…"
 #~ msgstr "Membuang dari <b>%s</b>…"
 
@@ -276,11 +270,10 @@ msgstr "Jeda"
 #~ msgid "File not found"
 #~ msgstr "Fail tidak ditemui"
 
-#, c-format
 #~ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 #~ msgstr "Fail muzik untuk <b>%s</b> oleh <b>%s</b> tidak ditemui."
 
-#, fuzzy, c-format
+#, fuzzy
 #~| msgid "%i music files could not be found?"
 #~ msgid "%i music files could not be found."
 #~ msgstr "Fail muzik %i tidak ditemui?"
@@ -297,11 +290,11 @@ msgstr "Jeda"
 #~ msgid "Choose Music Folder"
 #~ msgstr "Pilih Folder Muzik"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Would you like to install the %s plugin?"
 #~ msgstr "Anda mahu pasang pemalam %s?\n"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid ""
 #~ "This song cannot be played. The %s plugin is required to play the song."
 #~ msgstr ""
@@ -319,11 +312,11 @@ msgstr "Jeda"
 #~ msgid "Close"
 #~ msgstr "Tutup"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Issues while importing from %s"
 #~ msgstr "Mengimport muzik dari %s..."
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Unable to import %d item. The file may be damaged."
 #~ msgid_plural "Unable to import %d items. The files may be damaged."
 #~ msgstr[0] "%s tidak boleh improt %d item. Fail mungkin rosak."
@@ -368,13 +361,13 @@ msgstr "Jeda"
 #~ msgid "Continue playback when closed:"
 #~ msgstr "Teruskan main balik bila ditutup:"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Remove %d Song From Library?"
 #~ msgid_plural "Remove %d Songs From Library?"
 #~ msgstr[0] "Buang %d Lagu Dari %s?"
 #~ msgstr[1] "Buang %d Lagu Dari %s?"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Remove \"%s\" From Library?"
 #~ msgstr "Buang dari Pustaka"
 
@@ -398,7 +391,6 @@ msgstr "Jeda"
 #~ msgid "Set Music Folder?"
 #~ msgstr "Tetapkan Folder Muzik?"
 
-#, c-format
 #~ msgid ""
 #~ "Are you sure you want to set the music folder to %s? This will reset your "
 #~ "library and remove your playlists."
@@ -529,13 +521,12 @@ msgstr "Jeda"
 #~ msgid "kbps"
 #~ msgstr "kbps"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Sync will remove %i item from %s"
 #~ msgid_plural "Sync will remove %i items from %s"
 #~ msgstr[0] "Segerak akan buang %i item dari %s"
 #~ msgstr[1] "Segerak akan buang %i item dari %s"
 
-#, c-format
 #~ msgid ""
 #~ "If you continue to sync, media will be removed from %s since they are not "
 #~ "on the sync list. Would you like to import them to your library first?"
@@ -549,7 +540,6 @@ msgstr "Jeda"
 #~ msgid "Import"
 #~ msgstr "Import"
 
-#, c-format
 #~ msgid "Importing music from %s…"
 #~ msgstr "Mengimport muzik dari %s..."
 
@@ -616,7 +606,6 @@ msgstr "Jeda"
 #~ msgid "Sync Failed"
 #~ msgstr "Segerak Mengalami Kegagaln"
 
-#, c-format
 #~ msgid ""
 #~ "The playlist named %s is used to sync device %s, but could not be found."
 #~ msgstr ""
@@ -670,7 +659,6 @@ msgstr "Jeda"
 #~ msgid "All Genres"
 #~ msgstr "Semua Genre"
 
-#, c-format
 #~ msgid "All %i Genres"
 #~ msgstr "Semua %i Genre"
 
@@ -680,7 +668,6 @@ msgstr "Jeda"
 #~ msgid "All Artists"
 #~ msgstr "Semua Artis"
 
-#, c-format
 #~ msgid "All %i Artists"
 #~ msgstr "Semua %i Artis"
 
@@ -690,7 +677,6 @@ msgstr "Jeda"
 #~ msgid "All Albums"
 #~ msgstr "Semua Album"
 
-#, c-format
 #~ msgid "All %i Albums"
 #~ msgstr "Semua %i Album"
 
@@ -700,7 +686,6 @@ msgstr "Jeda"
 #~ msgid "All Years"
 #~ msgstr "Semua Tahun"
 
-#, c-format
 #~ msgid "All %i Years"
 #~ msgstr "Semua %i Tahun"
 
@@ -716,7 +701,6 @@ msgstr "Jeda"
 #~ msgid "All Groupings"
 #~ msgstr "Semua Pengumpulan"
 
-#, c-format
 #~ msgid "All %i Groupings"
 #~ msgstr "Semua %i Pengumpulan"
 
@@ -726,7 +710,6 @@ msgstr "Jeda"
 #~ msgid "All Composers"
 #~ msgstr "Semua Penggubah"
 
-#, c-format
 #~ msgid "All %i Composers"
 #~ msgstr "Semua %i Penggubah"
 
@@ -855,7 +838,6 @@ msgstr "Jeda"
 #~ msgid "Import your Music"
 #~ msgstr "Import Muzik anda"
 
-#, c-format
 #~ msgid "Import all your Music from %s into your library."
 #~ msgstr "Import semua muzik anda dari %s ke dalam pustaka anda."
 
@@ -910,18 +892,15 @@ msgstr "Jeda"
 #~ msgid "Off"
 #~ msgstr "Dimatikan"
 
-#, c-format
 #~ msgid "%s (Custom)"
 #~ msgstr "%s (Suai)"
 
-#, c-format
 #~ msgid "%s (Custom %i)"
 #~ msgstr "%s (Suai %i)"
 
 #~ msgid "Custom Preset"
 #~ msgstr "Praset Suai"
 
-#, c-format
 #~ msgid "Custom Preset %i"
 #~ msgstr "Praset Suai %i"
 
@@ -967,11 +946,9 @@ msgstr "Jeda"
 #~ msgid "New Playlist…"
 #~ msgstr "Senarai Main Baru..."
 
-#, c-format
 #~ msgid "Import %i of %i selected songs"
 #~ msgstr "Import %i dari %i lagu terpilih"
 
-#, c-format
 #~ msgid "Import %i song"
 #~ msgid_plural "Import %i songs"
 #~ msgstr[0] "Import %i lagu"

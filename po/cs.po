@@ -152,15 +152,12 @@ msgstr "Pozastavit"
 #~ msgid "Techno"
 #~ msgstr "Techno"
 
-#, c-format
 #~ msgid " (%d)"
 #~ msgstr " (%d)"
 
-#, c-format
 #~ msgid "%s (%d)"
 #~ msgstr "%s (%d)"
 
-#, c-format
 #~ msgid "%s (%i)"
 #~ msgstr "%s (%i)"
 
@@ -182,7 +179,6 @@ msgstr "Pozastavit"
 #~ msgid "Playlist"
 #~ msgstr "Seznam stop"
 
-#, c-format
 #~ msgid "Import %s"
 #~ msgstr "Importovat %s"
 
@@ -210,14 +206,12 @@ msgstr "Pozastavit"
 #~ msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 #~ msgstr "Přidávání <b>$NAME</b> od <b>$ARTIST</b> na $DEVICE"
 
-#, c-format
 #~ msgid "Syncing <b>%s</b>…"
 #~ msgstr "Synchronizace <b>%s</b>…"
 
 #~ msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 #~ msgstr "Odstraňování <b>$NAME</b> od <b>$ARTIST</b> z $DEVICE"
 
-#, c-format
 #~ msgid "Removing from <b>%s</b>…"
 #~ msgstr "Odstraňování z <b>%s</b>…"
 
@@ -279,11 +273,10 @@ msgstr "Pozastavit"
 #~ msgid "File not found"
 #~ msgstr "Soubor nenalezen"
 
-#, c-format
 #~ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 #~ msgstr "Soubor skladby  <b>%s</b> od <b>%s</b> nebyl nalezen."
 
-#, fuzzy, c-format
+#, fuzzy
 #~| msgid "%i music files could not be found?"
 #~ msgid "%i music files could not be found."
 #~ msgstr "%i hudebních souborů nebylo nalezeno?"
@@ -300,11 +293,9 @@ msgstr "Pozastavit"
 #~ msgid "Choose Music Folder"
 #~ msgstr "Vybrat složku s hudbou"
 
-#, c-format
 #~ msgid "Would you like to install the %s plugin?"
 #~ msgstr "Přejete si nainstalovat plugin %s?"
 
-#, c-format
 #~ msgid ""
 #~ "This song cannot be played. The %s plugin is required to play the song."
 #~ msgstr "Tuto skladbu nelze přehrát. Pro přehrání je vyžadován plugin %s."
@@ -351,11 +342,9 @@ msgstr "Pozastavit"
 #~ msgid "Close"
 #~ msgstr "Zavřít"
 
-#, c-format
 #~ msgid "Issues while importing from %s"
 #~ msgstr "Problémy s přidáváním hudby z %s"
 
-#, c-format
 #~ msgid "Unable to import %d item. The file may be damaged."
 #~ msgid_plural "Unable to import %d items. The files may be damaged."
 #~ msgstr[0] "Nelze naimportovat %d položku. Soubor je možná poškozený."
@@ -404,14 +393,12 @@ msgstr "Pozastavit"
 #~ msgid "Continue playback when closed:"
 #~ msgstr "Pokračovat v přehrávání při zavření:"
 
-#, c-format
 #~ msgid "Remove %d Song From Library?"
 #~ msgid_plural "Remove %d Songs From Library?"
 #~ msgstr[0] "Odebrat %d píseň z knihovny?"
 #~ msgstr[1] "Odebrat %d písně z knihovny?"
 #~ msgstr[2] "Odebrat %d písní z knihovny?"
 
-#, c-format
 #~ msgid "Remove \"%s\" From Library?"
 #~ msgstr "Odstranit „%s“ z knihovny?"
 
@@ -437,7 +424,6 @@ msgstr "Pozastavit"
 #~ msgid "Set Music Folder?"
 #~ msgstr "Nastavit složku s hudbou?"
 
-#, c-format
 #~ msgid ""
 #~ "Are you sure you want to set the music folder to %s? This will reset your "
 #~ "library and remove your playlists."
@@ -571,14 +557,12 @@ msgstr "Pozastavit"
 #~ msgid "kbps"
 #~ msgstr "kb/s"
 
-#, c-format
 #~ msgid "Sync will remove %i item from %s"
 #~ msgid_plural "Sync will remove %i items from %s"
 #~ msgstr[0] "Synchronizace smaže %i položku z %s"
 #~ msgstr[1] "Synchronizace smaže %i položky z %s"
 #~ msgstr[2] "Synchronizace smaže %i položek z %s"
 
-#, c-format
 #~ msgid ""
 #~ "If you continue to sync, media will be removed from %s since they are not "
 #~ "on the sync list. Would you like to import them to your library first?"
@@ -593,7 +577,6 @@ msgstr "Pozastavit"
 #~ msgid "Import"
 #~ msgstr "Importovat"
 
-#, c-format
 #~ msgid "Importing music from %s…"
 #~ msgstr "Přidávání hudby z %s…"
 
@@ -615,7 +598,6 @@ msgstr "Pozastavit"
 #~ msgid "Added to your queue:"
 #~ msgstr "Přidáno do fronty:"
 
-#, c-format
 #~ msgid "%d Track"
 #~ msgid_plural "%d Tracks"
 #~ msgstr[0] "%d stopa"
@@ -667,7 +649,6 @@ msgstr "Pozastavit"
 #~ msgid "Sync Failed"
 #~ msgstr "Synchronizace selhala"
 
-#, c-format
 #~ msgid ""
 #~ "The playlist named %s is used to sync device %s, but could not be found."
 #~ msgstr ""
@@ -722,7 +703,6 @@ msgstr "Pozastavit"
 #~ msgid "All Genres"
 #~ msgstr "Všechny žánry"
 
-#, c-format
 #~ msgid "All %i Genres"
 #~ msgstr "Všechny %i žánry"
 
@@ -732,7 +712,6 @@ msgstr "Pozastavit"
 #~ msgid "All Artists"
 #~ msgstr "Všichni interpreti"
 
-#, c-format
 #~ msgid "All %i Artists"
 #~ msgstr "Všichni %i interpreti"
 
@@ -742,7 +721,6 @@ msgstr "Pozastavit"
 #~ msgid "All Albums"
 #~ msgstr "Všechna alba"
 
-#, c-format
 #~ msgid "All %i Albums"
 #~ msgstr "Všechna %i alba"
 
@@ -752,7 +730,6 @@ msgstr "Pozastavit"
 #~ msgid "All Years"
 #~ msgstr "Všechny roky"
 
-#, c-format
 #~ msgid "All %i Years"
 #~ msgstr "Všechny %i roky"
 
@@ -768,7 +745,6 @@ msgstr "Pozastavit"
 #~ msgid "All Groupings"
 #~ msgstr "Všechna seskupení"
 
-#, c-format
 #~ msgid "All %i Groupings"
 #~ msgstr "Všech %i seskupení"
 
@@ -778,7 +754,6 @@ msgstr "Pozastavit"
 #~ msgid "All Composers"
 #~ msgstr "Všichni skladatelé"
 
-#, c-format
 #~ msgid "All %i Composers"
 #~ msgstr "Všech %i skladatelů"
 
@@ -797,14 +772,12 @@ msgstr "Pozastavit"
 #~ msgid "Unrated"
 #~ msgstr "Nehodnoceno"
 
-#, c-format
 #~ msgid "%u Star"
 #~ msgid_plural "%u Stars"
 #~ msgstr[0] "%u hvězdička"
 #~ msgstr[1] "%u hvězdičky"
 #~ msgstr[2] "%u hvězdiček"
 
-#, c-format
 #~ msgid "%u kbps"
 #~ msgstr "%u kb/s"
 
@@ -918,7 +891,6 @@ msgstr "Pozastavit"
 #~ msgid "Import your Music"
 #~ msgstr "Importujte si hudbu"
 
-#, c-format
 #~ msgid "Import all your Music from %s into your library."
 #~ msgstr "Importujte svou hudbu z %s do vaší knihovny."
 
@@ -972,18 +944,15 @@ msgstr "Pozastavit"
 #~ msgid "Off"
 #~ msgstr "Vypnuto"
 
-#, c-format
 #~ msgid "%s (Custom)"
 #~ msgstr "%s (vlastní)"
 
-#, c-format
 #~ msgid "%s (Custom %i)"
 #~ msgstr "%s (vlastní %i)"
 
 #~ msgid "Custom Preset"
 #~ msgstr "Vlastní předvolba"
 
-#, c-format
 #~ msgid "Custom Preset %i"
 #~ msgstr "Vlatní předvolba %i"
 
@@ -1024,11 +993,9 @@ msgstr "Pozastavit"
 #~ msgid "New Playlist…"
 #~ msgstr "Nový seznam skladeb…"
 
-#, c-format
 #~ msgid "Import %i of %i selected songs"
 #~ msgstr "Importovat %i z %i vybraných písní"
 
-#, c-format
 #~ msgid "Import %i song"
 #~ msgid_plural "Import %i songs"
 #~ msgstr[0] "Importovat %i píseň"
@@ -1082,7 +1049,6 @@ msgstr "Pozastavit"
 #~ msgid "Add Playlist…"
 #~ msgstr "Přidat seznam skladeb"
 
-#, c-format
 #~ msgid "Equalizer: %s"
 #~ msgstr "Ekvalizér: %s"
 

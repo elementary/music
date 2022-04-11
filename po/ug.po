@@ -147,15 +147,12 @@ msgstr "توختىتىش"
 #~ msgid "Techno"
 #~ msgstr "سۈنئىي ئاۋاز"
 
-#, c-format
 #~ msgid " (%d)"
 #~ msgstr " (%d)"
 
-#, c-format
 #~ msgid "%s (%d)"
 #~ msgstr "%s (%d)"
 
-#, c-format
 #~ msgid "%s (%i)"
 #~ msgstr "%s (%i)"
 
@@ -177,7 +174,6 @@ msgstr "توختىتىش"
 #~ msgid "Playlist"
 #~ msgstr "قويۇش تىزىملىكى"
 
-#, c-format
 #~ msgid "Import %s"
 #~ msgstr "%s چىقىرىش"
 
@@ -205,14 +201,12 @@ msgstr "توختىتىش"
 #~ msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 #~ msgstr "<b>$ARTIST</b> بويىچە <b>$NAME</b> نى $DEVICE قا قىتىش"
 
-#, c-format
 #~ msgid "Syncing <b>%s</b>…"
 #~ msgstr "<b>%s</b> نى ماس قەدەمگە كەلتۈرۈۋاتىدۇ...."
 
 #~ msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 #~ msgstr "<b>$ARTIST</b> بويىچە <b>$NAME</b> نى $DEVICE دىن ئۆچۈرۈش"
 
-#, c-format
 #~ msgid "Removing from <b>%s</b>…"
 #~ msgstr "<b>%s</b> دىن ئۆچۈرىۋاتىدۇ...."
 
@@ -271,11 +265,10 @@ msgstr "توختىتىش"
 #~ msgid "File not found"
 #~ msgstr "ھۆججەت تىپىلمىدى"
 
-#, c-format
 #~ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 #~ msgstr "<b>%s</b> ئورۇنلىغان <b>%s</b> ناملىق ناخشىنىڭ ھۆججىتى تىپىلمىدى."
 
-#, fuzzy, c-format
+#, fuzzy
 #~| msgid "%i music files could not be found?"
 #~ msgid "%i music files could not be found."
 #~ msgstr "%i ناملىق مۇزىكىنىڭ ھۆججىتى تىپىلمىدى؟"
@@ -292,11 +285,11 @@ msgstr "توختىتىش"
 #~ msgid "Choose Music Folder"
 #~ msgstr "مۇزىكا مۇندەرىجىسىنى تاقاش"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Would you like to install the %s plugin?"
 #~ msgstr "%s قىستۇرمىسىنى ئورنىتامسىز؟\n"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid ""
 #~ "This song cannot be played. The %s plugin is required to play the song."
 #~ msgstr ""
@@ -343,11 +336,11 @@ msgstr "توختىتىش"
 #~ msgid "Close"
 #~ msgstr "تاقاش"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Issues while importing from %s"
 #~ msgstr "%s مۇزىكا كىرگۈزۈۋاتىدۇ....."
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Unable to import %d item. The file may be damaged."
 #~ msgid_plural "Unable to import %d items. The files may be damaged."
 #~ msgstr[0] ""
@@ -395,12 +388,12 @@ msgstr "توختىتىش"
 #~ msgid "Continue playback when closed:"
 #~ msgstr "تاقالغاندىن كىيىن ئارقا ئۈستەلدە داۋاملىق قويۇش："
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Remove %d Song From Library?"
 #~ msgid_plural "Remove %d Songs From Library?"
 #~ msgstr[0] "%s دىن %d ناخشىنى ئۆچۈرۈش"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Remove \"%s\" From Library?"
 #~ msgstr "ئامباردىن چىقىرىۋىتىش"
 
@@ -421,7 +414,6 @@ msgstr "توختىتىش"
 #~ msgid "Set Music Folder?"
 #~ msgstr "مۇزىكا مۇندەرىجىسىنى تەڭشەمسىز؟"
 
-#, c-format
 #~ msgid ""
 #~ "Are you sure you want to set the music folder to %s? This will reset your "
 #~ "library and remove your playlists."
@@ -549,12 +541,11 @@ msgstr "توختىتىش"
 #~ msgid "kbps"
 #~ msgstr "kb/سىكۇنت"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Sync will remove %i item from %s"
 #~ msgid_plural "Sync will remove %i items from %s"
 #~ msgstr[0] "ماس قەدەمگە كەلتۈرۈش %s دىن %i  تۈرنى ئۆچۈرىدۇ"
 
-#, c-format
 #~ msgid ""
 #~ "If you continue to sync, media will be removed from %s since they are not "
 #~ "on the sync list. Would you like to import them to your library first?"
@@ -569,7 +560,6 @@ msgstr "توختىتىش"
 #~ msgid "Import"
 #~ msgstr "كىرگۈزۈش"
 
-#, c-format
 #~ msgid "Importing music from %s…"
 #~ msgstr "%s مۇزىكا كىرگۈزۈۋاتىدۇ....."
 
@@ -593,7 +583,6 @@ msgstr "توختىتىش"
 #~ msgid "Added to your queue:"
 #~ msgstr "سەپكە قىتىلغىنى:"
 
-#, c-format
 #~ msgid "%d Track"
 #~ msgid_plural "%d Tracks"
 #~ msgstr[0] "%d پارچە"
@@ -643,7 +632,6 @@ msgstr "توختىتىش"
 #~ msgid "Sync Failed"
 #~ msgstr "ماس قەدەمگە كەلتۈرۈش مەغلۇپ بولدى"
 
-#, c-format
 #~ msgid ""
 #~ "The playlist named %s is used to sync device %s, but could not be found."
 #~ msgstr ""
@@ -697,7 +685,6 @@ msgstr "توختىتىش"
 #~ msgid "All Genres"
 #~ msgstr "بارلىق ئىقىملار"
 
-#, c-format
 #~ msgid "All %i Genres"
 #~ msgstr "بارلىق %i ئىقىملار"
 
@@ -707,7 +694,6 @@ msgstr "توختىتىش"
 #~ msgid "All Artists"
 #~ msgstr "بارلىق ناخشىچىلار"
 
-#, c-format
 #~ msgid "All %i Artists"
 #~ msgstr "بارلىق %i ناخشىچىلار"
 
@@ -717,7 +703,6 @@ msgstr "توختىتىش"
 #~ msgid "All Albums"
 #~ msgstr "بارلىق ئالبوملار"
 
-#, c-format
 #~ msgid "All %i Albums"
 #~ msgstr "بارلىق %i ئالبوملار"
 
@@ -727,7 +712,6 @@ msgstr "توختىتىش"
 #~ msgid "All Years"
 #~ msgstr "بارلىق يىللار"
 
-#, c-format
 #~ msgid "All %i Years"
 #~ msgstr "بارلىق %i يىللار"
 
@@ -743,7 +727,6 @@ msgstr "توختىتىش"
 #~ msgid "All Groupings"
 #~ msgstr "بارلىق گۇرۇپپىلار"
 
-#, c-format
 #~ msgid "All %i Groupings"
 #~ msgstr "بارلىق %i گۇرۇپپىلار"
 
@@ -753,7 +736,6 @@ msgstr "توختىتىش"
 #~ msgid "All Composers"
 #~ msgstr "بارلىق كومپوزىتورلار"
 
-#, c-format
 #~ msgid "All %i Composers"
 #~ msgstr "بارلىق %i كومپوزىتورلار"
 
@@ -882,7 +864,6 @@ msgstr "توختىتىش"
 #~ msgid "Import your Music"
 #~ msgstr "مۇزىكىڭىزنى كىرگۈزۈڭ"
 
-#, c-format
 #~ msgid "Import all your Music from %s into your library."
 #~ msgstr "%sدىن مۇزىكا ئامبىرىڭىزغا مۇزىكىڭىزنى كىرگۈزۈڭ."
 
@@ -937,18 +918,15 @@ msgstr "توختىتىش"
 #~ msgid "Off"
 #~ msgstr "تاقاش"
 
-#, c-format
 #~ msgid "%s (Custom)"
 #~ msgstr "%s (ئۆزگەرتىش)"
 
-#, c-format
 #~ msgid "%s (Custom %i)"
 #~ msgstr "%s (ئۆزگەرتىش%i)"
 
 #~ msgid "Custom Preset"
 #~ msgstr "ئالدىن تەڭشەكنى ئۆزگەرتىش"
 
-#, c-format
 #~ msgid "Custom Preset %i"
 #~ msgstr "ئالدىن تەڭشەك %i نى ئۆزگەرتىش"
 
@@ -994,11 +972,9 @@ msgstr "توختىتىش"
 #~ msgid "New Playlist…"
 #~ msgstr "يىڭى قويۇش تىزىملىكى قۇرۇش"
 
-#, c-format
 #~ msgid "Import %i of %i selected songs"
 #~ msgstr "%i نىڭ %i دىن تاللانغان ناخشىلىرىنى كىرگۈزۈش"
 
-#, c-format
 #~ msgid "Import %i song"
 #~ msgid_plural "Import %i songs"
 #~ msgstr[0] "ناخشا %i نى كىرگۈزۈش"
@@ -1050,7 +1026,6 @@ msgstr "توختىتىش"
 #~ msgid "Add Playlist…"
 #~ msgstr "قويۇش تىزىملىكى قىتىش"
 
-#, c-format
 #~ msgid "Equalizer: %s"
 #~ msgstr "تەڭپۇڭلاشتۇرغۇچى:  %s"
 

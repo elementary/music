@@ -159,7 +159,6 @@ msgstr ""
 #~ msgid "Playlist"
 #~ msgstr "সঙ্গীত-তালিকা"
 
-#, c-format
 #~ msgid "Import %s"
 #~ msgstr "%s আমদানি করুন"
 
@@ -216,7 +215,6 @@ msgstr ""
 #~ msgid "Custom Preset"
 #~ msgstr "কাস্টম প্রিসেট"
 
-#, c-format
 #~ msgid "Custom Preset %i"
 #~ msgstr "কাস্টম প্রিসেট %i"
 
@@ -275,7 +273,6 @@ msgstr ""
 #~ msgid "Add Playlist…"
 #~ msgstr "সংগীত-তালিকা যোগ করুন"
 
-#, c-format
 #~ msgid "Equalizer: %s"
 #~ msgstr "ইকুয়ালাইজার: %s"
 

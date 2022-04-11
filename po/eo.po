@@ -152,15 +152,12 @@ msgstr "Paŭzi"
 #~ msgid "Techno"
 #~ msgstr "Tekna"
 
-#, c-format
 #~ msgid " (%d)"
 #~ msgstr " (%d)"
 
-#, c-format
 #~ msgid "%s (%d)"
 #~ msgstr "%s (%d)"
 
-#, c-format
 #~ msgid "%s (%i)"
 #~ msgstr "%s (%i)"
 
@@ -182,7 +179,6 @@ msgstr "Paŭzi"
 #~ msgid "Playlist"
 #~ msgstr "Ludlisto"
 
-#, c-format
 #~ msgid "Import %s"
 #~ msgstr "Importi %s"
 
@@ -210,14 +206,12 @@ msgstr "Paŭzi"
 #~ msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 #~ msgstr "Aldoni <b>$NAME</b> de <b>$ARTIST</b> al $DEVICE"
 
-#, c-format
 #~ msgid "Syncing <b>%s</b>…"
 #~ msgstr "Sinkronizo de <b>%s</b>…"
 
 #~ msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 #~ msgstr "Forigi  <b>$NAME</b> de <b>$ARTIST</b> el $DEVICE"
 
-#, c-format
 #~ msgid "Removing from <b>%s</b>…"
 #~ msgstr "Forigo de <b>%s</b>…"
 
@@ -278,11 +272,10 @@ msgstr "Paŭzi"
 #~ msgid "File not found"
 #~ msgstr "Dosiero ne trovita"
 
-#, c-format
 #~ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 #~ msgstr "La muzika dosiero <b>%s</b> de <b>%s</b> ne estis trovita."
 
-#, fuzzy, c-format
+#, fuzzy
 #~| msgid "%i music files could not be found?"
 #~ msgid "%i music files could not be found."
 #~ msgstr "Ĉu neeblis trovi %i muzikajn dosierojn?"
@@ -299,11 +292,9 @@ msgstr "Paŭzi"
 #~ msgid "Choose Music Folder"
 #~ msgstr "Elekti dosierujon Muziko"
 
-#, c-format
 #~ msgid "Would you like to install the %s plugin?"
 #~ msgstr "Ĉu vi deziras instali la kromaĵon %s?"
 
-#, c-format
 #~ msgid ""
 #~ "This song cannot be played. The %s plugin is required to play the song."
 #~ msgstr "Neeblas ludi la kanton. La kromaĵo %s necesas por ludi la kanton."
@@ -350,11 +341,9 @@ msgstr "Paŭzi"
 #~ msgid "Close"
 #~ msgstr "Fermi"
 
-#, c-format
 #~ msgid "Issues while importing from %s"
 #~ msgstr "Okazis problemoj dum importo de %s"
 
-#, c-format
 #~ msgid "Unable to import %d item. The file may be damaged."
 #~ msgid_plural "Unable to import %d items. The files may be damaged."
 #~ msgstr[0] "Neeblis importi %d elementon. La dosiero povas esti difektita."
@@ -402,13 +391,11 @@ msgstr "Paŭzi"
 #~ msgid "Continue playback when closed:"
 #~ msgstr "Daŭrigi ludadon kiam fermita:"
 
-#, c-format
 #~ msgid "Remove %d Song From Library?"
 #~ msgid_plural "Remove %d Songs From Library?"
 #~ msgstr[0] "Ĉu forigi %d kanto el la diskoteko?"
 #~ msgstr[1] "Ĉu forigi %d kantoj el la diskoteko?"
 
-#, c-format
 #~ msgid "Remove \"%s\" From Library?"
 #~ msgstr "Ĉu forigi „%s“ el la diskoteko?"
 
@@ -431,7 +418,6 @@ msgstr "Paŭzi"
 #~ msgid "Set Music Folder?"
 #~ msgstr "Ĉu elekti muzik-dosierujon?"
 
-#, c-format
 #~ msgid ""
 #~ "Are you sure you want to set the music folder to %s? This will reset your "
 #~ "library and remove your playlists."
@@ -565,13 +551,11 @@ msgstr "Paŭzi"
 #~ msgid "kbps"
 #~ msgstr "kb/s"
 
-#, c-format
 #~ msgid "Sync will remove %i item from %s"
 #~ msgid_plural "Sync will remove %i items from %s"
 #~ msgstr[0] "Sinkronigo forigos %i elementon el %s"
 #~ msgstr[1] "Sinkronigo forigos %i elementojn el %s"
 
-#, c-format
 #~ msgid ""
 #~ "If you continue to sync, media will be removed from %s since they are not "
 #~ "on the sync list. Would you like to import them to your library first?"
@@ -586,7 +570,6 @@ msgstr "Paŭzi"
 #~ msgid "Import"
 #~ msgstr "Importi"
 
-#, c-format
 #~ msgid "Importing music from %s…"
 #~ msgstr "importi muzikon de %s…"
 
@@ -608,7 +591,6 @@ msgstr "Paŭzi"
 #~ msgid "Added to your queue:"
 #~ msgstr "Aldonita en la vico:"
 
-#, c-format
 #~ msgid "%d Track"
 #~ msgid_plural "%d Tracks"
 #~ msgstr[0] "%d kanto"
@@ -659,7 +641,6 @@ msgstr "Paŭzi"
 #~ msgid "Sync Failed"
 #~ msgstr "Neeblis sinkronigi"
 
-#, c-format
 #~ msgid ""
 #~ "The playlist named %s is used to sync device %s, but could not be found."
 #~ msgstr ""
@@ -714,7 +695,6 @@ msgstr "Paŭzi"
 #~ msgid "All Genres"
 #~ msgstr "Ĉiuj ĝenroj"
 
-#, c-format
 #~ msgid "All %i Genres"
 #~ msgstr "Ĉiuj %i ĝenroj"
 
@@ -724,7 +704,6 @@ msgstr "Paŭzi"
 #~ msgid "All Artists"
 #~ msgstr "Ĉiuj artistoj"
 
-#, c-format
 #~ msgid "All %i Artists"
 #~ msgstr "Ĉiuj %i artistoj"
 
@@ -734,7 +713,6 @@ msgstr "Paŭzi"
 #~ msgid "All Albums"
 #~ msgstr "Ĉiuj albumoj"
 
-#, c-format
 #~ msgid "All %i Albums"
 #~ msgstr "Ĉiuj %i albumoj"
 
@@ -744,7 +722,6 @@ msgstr "Paŭzi"
 #~ msgid "All Years"
 #~ msgstr "Ĉiuj jaroj"
 
-#, c-format
 #~ msgid "All %i Years"
 #~ msgstr "Ĉiuj %i jaroj"
 
@@ -760,7 +737,6 @@ msgstr "Paŭzi"
 #~ msgid "All Groupings"
 #~ msgstr "Ĉiuj grupadoj"
 
-#, c-format
 #~ msgid "All %i Groupings"
 #~ msgstr "Ĉiuj %i grupadoj"
 
@@ -770,7 +746,6 @@ msgstr "Paŭzi"
 #~ msgid "All Composers"
 #~ msgstr "Ĉiuj komponistoj"
 
-#, c-format
 #~ msgid "All %i Composers"
 #~ msgstr "Ĉiuj %i komponistoj"
 
@@ -789,13 +764,11 @@ msgstr "Paŭzi"
 #~ msgid "Unrated"
 #~ msgstr "Netaksita"
 
-#, c-format
 #~ msgid "%u Star"
 #~ msgid_plural "%u Stars"
 #~ msgstr[0] "%u stelo"
 #~ msgstr[1] "%u steloj"
 
-#, c-format
 #~ msgid "%u kbps"
 #~ msgstr "%u kb/s"
 
@@ -909,7 +882,6 @@ msgstr "Paŭzi"
 #~ msgid "Import your Music"
 #~ msgstr "Importi vian muzikon"
 
-#, c-format
 #~ msgid "Import all your Music from %s into your library."
 #~ msgstr "Importi ĉiujn viajn muzikojn de %s en la diskoteko."
 
@@ -964,18 +936,15 @@ msgstr "Paŭzi"
 #~ msgid "Off"
 #~ msgstr "Malŝaltita"
 
-#, c-format
 #~ msgid "%s (Custom)"
 #~ msgstr "%s (Tajlorita)"
 
-#, c-format
 #~ msgid "%s (Custom %i)"
 #~ msgstr "%s(Tajlorita %i)"
 
 #~ msgid "Custom Preset"
 #~ msgstr "Tajloritaj agordoj"
 
-#, c-format
 #~ msgid "Custom Preset %i"
 #~ msgstr "Tajloritaj agordoj %i"
 
@@ -1016,11 +985,9 @@ msgstr "Paŭzi"
 #~ msgid "New Playlist…"
 #~ msgstr "Nova ludlisto…"
 
-#, c-format
 #~ msgid "Import %i of %i selected songs"
 #~ msgstr "Importi %i el %i elektitaj kantoj"
 
-#, c-format
 #~ msgid "Import %i song"
 #~ msgid_plural "Import %i songs"
 #~ msgstr[0] "Importi %i kanto"
@@ -1073,7 +1040,6 @@ msgstr "Paŭzi"
 #~ msgid "Add Playlist…"
 #~ msgstr "Aldoni ludliston"
 
-#, c-format
 #~ msgid "Equalizer: %s"
 #~ msgstr "Ekvalizilo: %s"
 

@@ -147,15 +147,12 @@ msgstr "विराम द्या"
 #~ msgid "Techno"
 #~ msgstr "टेक्नो"
 
-#, c-format
 #~ msgid " (%d)"
 #~ msgstr " (%d)"
 
-#, c-format
 #~ msgid "%s (%d)"
 #~ msgstr "%s (%d)"
 
-#, c-format
 #~ msgid "%s (%i)"
 #~ msgstr "%s (%i)"
 
@@ -177,7 +174,6 @@ msgstr "विराम द्या"
 #~ msgid "Playlist"
 #~ msgstr "यादी"
 
-#, c-format
 #~ msgid "Import %s"
 #~ msgstr "%s आणा"
 
@@ -205,14 +201,12 @@ msgstr "विराम द्या"
 #~ msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 #~ msgstr "$DEVICE मध्ये <b>$ARTIST</b> यांचे <b>$NAME</b> टाकले जात आहे"
 
-#, c-format
 #~ msgid "Syncing <b>%s</b>…"
 #~ msgstr "<b>%s</b>संक्रमित केले जात आहे…"
 
 #~ msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 #~ msgstr "$DEVICE मधून <b>$ARTIST</b> यांचे <b>$NAME</b> काढले जात आहे"
 
-#, c-format
 #~ msgid "Removing from <b>%s</b>…"
 #~ msgstr "<b>%s</b>मधून काढले जात आहे…"
 
@@ -273,11 +267,10 @@ msgstr "विराम द्या"
 #~ msgid "File not found"
 #~ msgstr "फाइल सापडली नाही"
 
-#, c-format
 #~ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 #~ msgstr "<b>%s</b> यांची <b>%s</b> साठी संगीत फाइल सापडू शकली नाही."
 
-#, fuzzy, c-format
+#, fuzzy
 #~| msgid "%i music files could not be found?"
 #~ msgid "%i music files could not be found."
 #~ msgstr "%i संगीत फाइल्स सापडली नाहीत?"
@@ -294,11 +287,9 @@ msgstr "विराम द्या"
 #~ msgid "Choose Music Folder"
 #~ msgstr "संगीत फोल्डर निवडा"
 
-#, c-format
 #~ msgid "Would you like to install the %s plugin?"
 #~ msgstr "आपण  %s प्लगइन स्थापित करू इच्छिता?"
 
-#, c-format
 #~ msgid ""
 #~ "This song cannot be played. The %s plugin is required to play the song."
 #~ msgstr "हे गाणे प्ले केले जाऊ शकत नाही. गाणे प्ले करण्यासाठी %s प्लगइन आवश्यक आहे."
@@ -345,11 +336,9 @@ msgstr "विराम द्या"
 #~ msgid "Close"
 #~ msgstr "बंद करा"
 
-#, c-format
 #~ msgid "Issues while importing from %s"
 #~ msgstr "%s पासून आयात करताना समस्या"
 
-#, c-format
 #~ msgid "Unable to import %d item. The file may be damaged."
 #~ msgid_plural "Unable to import %d items. The files may be damaged."
 #~ msgstr[0] "%d आयटम आयात करण्यास अक्षम. फाइल खराब असू शकते."
@@ -397,13 +386,11 @@ msgstr "विराम द्या"
 #~ msgid "Continue playback when closed:"
 #~ msgstr "बंद असताना प्लेबॅक सुरू ठेवा:"
 
-#, c-format
 #~ msgid "Remove %d Song From Library?"
 #~ msgid_plural "Remove %d Songs From Library?"
 #~ msgstr[0] "लायब्ररीमधून %d गाणे काढून टाकायचे?"
 #~ msgstr[1] "लायब्ररीमधून %d गाणी काढून टाकायची?"
 
-#, c-format
 #~ msgid "Remove \"%s\" From Library?"
 #~ msgstr "लायब्ररीमधून \"%s\" काढायचे?"
 
@@ -426,7 +413,6 @@ msgstr "विराम द्या"
 #~ msgid "Set Music Folder?"
 #~ msgstr "संगीत फोल्डर सेट करायचे?"
 
-#, c-format
 #~ msgid ""
 #~ "Are you sure you want to set the music folder to %s? This will reset your "
 #~ "library and remove your playlists."
@@ -560,13 +546,11 @@ msgstr "विराम द्या"
 #~ msgid "kbps"
 #~ msgstr "केबीपीएस"
 
-#, c-format
 #~ msgid "Sync will remove %i item from %s"
 #~ msgid_plural "Sync will remove %i items from %s"
 #~ msgstr[0] "समक्रमण %i आयटम %s मधून काढेल"
 #~ msgstr[1] "समक्रमण %i आयटम %s मधून काढेल"
 
-#, c-format
 #~ msgid ""
 #~ "If you continue to sync, media will be removed from %s since they are not "
 #~ "on the sync list. Would you like to import them to your library first?"
@@ -580,7 +564,6 @@ msgstr "विराम द्या"
 #~ msgid "Import"
 #~ msgstr "आयात"
 
-#, c-format
 #~ msgid "Importing music from %s…"
 #~ msgstr "%s वरुन संगीत आयात करीत आहे…"
 
@@ -602,7 +585,6 @@ msgstr "विराम द्या"
 #~ msgid "Added to your queue:"
 #~ msgstr "आपल्या रांगेत जोडले:"
 
-#, c-format
 #~ msgid "%d Track"
 #~ msgid_plural "%d Tracks"
 #~ msgstr[0] "%d ट्रॅक"
@@ -653,7 +635,6 @@ msgstr "विराम द्या"
 #~ msgid "Sync Failed"
 #~ msgstr "सिंक अयशस्वी"
 
-#, c-format
 #~ msgid ""
 #~ "The playlist named %s is used to sync device %s, but could not be found."
 #~ msgstr ""
@@ -706,7 +687,6 @@ msgstr "विराम द्या"
 #~ msgid "All Genres"
 #~ msgstr "सर्व शैली"
 
-#, c-format
 #~ msgid "All %i Genres"
 #~ msgstr "सर्व %i शैली"
 
@@ -716,7 +696,6 @@ msgstr "विराम द्या"
 #~ msgid "All Artists"
 #~ msgstr "सर्व कलावंत"
 
-#, c-format
 #~ msgid "All %i Artists"
 #~ msgstr "सर्व %i कलावंत"
 
@@ -726,7 +705,6 @@ msgstr "विराम द्या"
 #~ msgid "All Albums"
 #~ msgstr "सर्व अल्बम"
 
-#, c-format
 #~ msgid "All %i Albums"
 #~ msgstr "सर्व %i अल्बम"
 
@@ -736,7 +714,6 @@ msgstr "विराम द्या"
 #~ msgid "All Years"
 #~ msgstr "सर्व वर्ष"
 
-#, c-format
 #~ msgid "All %i Years"
 #~ msgstr "सर्व %i वर्ष"
 
@@ -752,7 +729,6 @@ msgstr "विराम द्या"
 #~ msgid "All Groupings"
 #~ msgstr "सर्व वर्ग"
 
-#, c-format
 #~ msgid "All %i Groupings"
 #~ msgstr "सर्व %i वर्ग"
 
@@ -762,7 +738,6 @@ msgstr "विराम द्या"
 #~ msgid "All Composers"
 #~ msgstr "सर्व संगीतकार"
 
-#, c-format
 #~ msgid "All %i Composers"
 #~ msgstr "सर्व %i संगीतकार"
 
@@ -781,13 +756,11 @@ msgstr "विराम द्या"
 #~ msgid "Unrated"
 #~ msgstr "अनरेटेड"
 
-#, c-format
 #~ msgid "%u Star"
 #~ msgid_plural "%u Stars"
 #~ msgstr[0] "%u तारा"
 #~ msgstr[1] "%u तारे"
 
-#, c-format
 #~ msgid "%u kbps"
 #~ msgstr "%u केबीपीएस"
 
@@ -901,7 +874,6 @@ msgstr "विराम द्या"
 #~ msgid "Import your Music"
 #~ msgstr "आपले संगीत आयात करा"
 
-#, c-format
 #~ msgid "Import all your Music from %s into your library."
 #~ msgstr "आपला सर्व संगीत %s वरून आपल्या लायब्ररीत आयात करा."
 
@@ -955,18 +927,15 @@ msgstr "विराम द्या"
 #~ msgid "Off"
 #~ msgstr "बंद"
 
-#, c-format
 #~ msgid "%s (Custom)"
 #~ msgstr "%s (सानुकूल)"
 
-#, c-format
 #~ msgid "%s (Custom %i)"
 #~ msgstr "%s (सानुकूल %i)"
 
 #~ msgid "Custom Preset"
 #~ msgstr "सानुकूल प्रीसेट"
 
-#, c-format
 #~ msgid "Custom Preset %i"
 #~ msgstr "सानुकूल प्रीसेट %i"
 
@@ -1007,11 +976,9 @@ msgstr "विराम द्या"
 #~ msgid "New Playlist…"
 #~ msgstr "नवीन प्लेलिस्ट…"
 
-#, c-format
 #~ msgid "Import %i of %i selected songs"
 #~ msgstr "निवडलेल्या %i गाण्यांपैकी %i आयात करा"
 
-#, c-format
 #~ msgid "Import %i song"
 #~ msgid_plural "Import %i songs"
 #~ msgstr[0] "%i गाणे आयात करा"
@@ -1062,7 +1029,6 @@ msgstr "विराम द्या"
 #~ msgid "Add Playlist…"
 #~ msgstr "प्लेलिस्ट जोडा…"
 
-#, c-format
 #~ msgid "Equalizer: %s"
 #~ msgstr "इक्विलायझर: %s"
 

@@ -102,11 +102,9 @@ msgstr ""
 #~ msgid "Party"
 #~ msgstr "Festa"
 
-#, c-format
 #~ msgid " (%d)"
 #~ msgstr " (%d)"
 
-#, c-format
 #~ msgid "%s (%i)"
 #~ msgstr "%s (%i)"
 
@@ -128,7 +126,6 @@ msgstr ""
 #~ msgid "Playlist"
 #~ msgstr "Playlist"
 
-#, c-format
 #~ msgid "Import %s"
 #~ msgstr "Importar %s"
 
@@ -156,18 +153,15 @@ msgstr ""
 #~ msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 #~ msgstr "Adjuntente <b>$NAME</b> de <b>$ARTIST</b> a $DEVICE"
 
-#, c-format
 #~ msgid "Syncing <b>%s</b>…"
 #~ msgstr "Sincronisation de <b>%s</b>…"
 
 #~ msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 #~ msgstr "Removente <b>$NAME</b> de <b>$ARTIST</b> ex $DEVICE"
 
-#, c-format
 #~ msgid "Removing from <b>%s</b>…"
 #~ msgstr "Removente ex <b>%s</b>…"
 
-#, c-format
 #~ msgid ""
 #~ "This song cannot be played. The %s plugin is required to play the song."
 #~ msgstr ""
@@ -228,13 +222,11 @@ msgstr ""
 #~ msgid "Copy imported files to Library:"
 #~ msgstr "Copiar importat files al biblioteca:"
 
-#, c-format
 #~ msgid "Remove %d Song From Library?"
 #~ msgid_plural "Remove %d Songs From Library?"
 #~ msgstr[0] "Remover %d canzone ex li biblioteca?"
 #~ msgstr[1] "Remover %d canzones ex li biblioteca?"
 
-#, c-format
 #~ msgid "Remove \"%s\" From Library?"
 #~ msgstr "Remover «%s» ex li biblioteca?"
 
@@ -343,7 +335,6 @@ msgstr ""
 #~ msgid "days ago"
 #~ msgstr "dies, ante"
 
-#, c-format
 #~ msgid "Sync will remove %i item from %s"
 #~ msgid_plural "Sync will remove %i items from %s"
 #~ msgstr[0] "Li sincronisation va remover %i element ex %s"
@@ -352,7 +343,6 @@ msgstr ""
 #~ msgid "Continue Syncing"
 #~ msgstr "Continuar li sincronisation"
 
-#, c-format
 #~ msgid "Importing music from %s…"
 #~ msgstr "Importante musica ex %s…"
 
@@ -365,7 +355,6 @@ msgstr ""
 #~ msgid "No files were imported."
 #~ msgstr "Null files esset importat."
 
-#, c-format
 #~ msgid "%d Track"
 #~ msgid_plural "%d Tracks"
 #~ msgstr[0] "%d track"
@@ -401,7 +390,6 @@ msgstr ""
 #~ msgid "Sync Failed"
 #~ msgstr "Sincronisation ne successat"
 
-#, c-format
 #~ msgid ""
 #~ "The playlist named %s is used to sync device %s, but could not be found."
 #~ msgstr ""
@@ -438,7 +426,6 @@ msgstr ""
 #~ msgid "All Genres"
 #~ msgstr "Li tot genres"
 
-#, c-format
 #~ msgid "All %i Genres"
 #~ msgstr "Omni %i genres"
 
@@ -448,7 +435,6 @@ msgstr ""
 #~ msgid "All Artists"
 #~ msgstr "Li tot artistes"
 
-#, c-format
 #~ msgid "All %i Artists"
 #~ msgstr "Omni %i artistes"
 
@@ -494,7 +480,6 @@ msgstr ""
 #~ msgid "Import your Music"
 #~ msgstr "Importar vor musica"
 
-#, c-format
 #~ msgid "Import all your Music from %s into your library."
 #~ msgstr "Importar li tot musica ex «%s» al vor biblioteca."
 

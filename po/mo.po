@@ -147,15 +147,12 @@ msgstr "Pauză"
 #~ msgid "Techno"
 #~ msgstr "Tehno"
 
-#, c-format
 #~ msgid " (%d)"
 #~ msgstr " (%d 1)"
 
-#, c-format
 #~ msgid "%s (%d)"
 #~ msgstr "%s 1 (%d 2)"
 
-#, c-format
 #~ msgid "%s (%i)"
 #~ msgstr "%s 1 (%i 2)"
 
@@ -177,7 +174,6 @@ msgstr "Pauză"
 #~ msgid "Playlist"
 #~ msgstr "Listă de redare"
 
-#, c-format
 #~ msgid "Import %s"
 #~ msgstr "Importare %s 1"
 
@@ -205,14 +201,12 @@ msgstr "Pauză"
 #~ msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 #~ msgstr "Adăugarea <b>1 $NUME </b>2 de către <b>3 $ARTIST </b>4 la $DEVICE"
 
-#, c-format
 #~ msgid "Syncing <b>%s</b>…"
 #~ msgstr "Sincronizarea <b>1%s 2 </b> 3 …"
 
 #~ msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 #~ msgstr "Eliminarea <b>1 $NUME </b>2 de <b>3 $ARTIST </b>4 de la $ DEVICE"
 
-#, c-format
 #~ msgid "Removing from <b>%s</b>…"
 #~ msgstr "Se elimină din <b>1%s 2 </b> 3 …"
 
@@ -268,13 +262,12 @@ msgstr "Pauză"
 #~ msgid "File not found"
 #~ msgstr "Fișierul nu a fost găsit"
 
-#, c-format
 #~ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 #~ msgstr ""
 #~ "Fișierul de muzică pentru <b>1%s 2 </b> 3 de <b> 4%s 5 </b> 6 nu a putut "
 #~ "fi găsit."
 
-#, fuzzy, c-format
+#, fuzzy
 #~| msgid "%i music files could not be found?"
 #~ msgid "%i music files could not be found."
 #~ msgstr "%i 1 fișiere muzicale nu au putut fi găsite?"
@@ -291,11 +284,9 @@ msgstr "Pauză"
 #~ msgid "Choose Music Folder"
 #~ msgstr "Selectați Dosarul muzical"
 
-#, c-format
 #~ msgid "Would you like to install the %s plugin?"
 #~ msgstr "Doriți să instalați pluginul %s 1?"
 
-#, c-format
 #~ msgid ""
 #~ "This song cannot be played. The %s plugin is required to play the song."
 #~ msgstr ""
@@ -341,11 +332,11 @@ msgstr "Pauză"
 #~ msgid "Close"
 #~ msgstr "Închide"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Issues while importing from %s"
 #~ msgstr "Importarea muzicii din %s 1 …"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Unable to import %d item. The file may be damaged."
 #~ msgid_plural "Unable to import %d items. The files may be damaged."
 #~ msgstr[0] ""
@@ -397,13 +388,13 @@ msgstr "Pauză"
 #~ msgid "Continue playback when closed:"
 #~ msgstr "Continuați redarea când este închis:"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Remove %d Song From Library?"
 #~ msgid_plural "Remove %d Songs From Library?"
 #~ msgstr[0] "Eliminați%d 1 melodii de la%s 2?"
 #~ msgstr[1] "Eliminați%d 1 melodii de la%s 2?"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Remove \"%s\" From Library?"
 #~ msgstr "Eliminați din Bibliotecă"
 
@@ -427,7 +418,6 @@ msgstr "Pauză"
 #~ msgid "Set Music Folder?"
 #~ msgstr "Setați dosarul de muzică?"
 
-#, c-format
 #~ msgid ""
 #~ "Are you sure you want to set the music folder to %s? This will reset your "
 #~ "library and remove your playlists."
@@ -561,13 +551,11 @@ msgstr "Pauză"
 #~ msgid "kbps"
 #~ msgstr "kibps"
 
-#, c-format
 #~ msgid "Sync will remove %i item from %s"
 #~ msgid_plural "Sync will remove %i items from %s"
 #~ msgstr[0] "Sincronizarea va elimina%i 1 element din%s 2"
 #~ msgstr[1] "Sincronizarea va elimina %i3 element din %s4"
 
-#, c-format
 #~ msgid ""
 #~ "If you continue to sync, media will be removed from %s since they are not "
 #~ "on the sync list. Would you like to import them to your library first?"
@@ -582,7 +570,6 @@ msgstr "Pauză"
 #~ msgid "Import"
 #~ msgstr "Importare"
 
-#, c-format
 #~ msgid "Importing music from %s…"
 #~ msgstr "Importarea muzicii din %s 1 …"
 
@@ -604,7 +591,6 @@ msgstr "Pauză"
 #~ msgid "Added to your queue:"
 #~ msgstr "Adăugat la coada ta:"
 
-#, c-format
 #~ msgid "%d Track"
 #~ msgid_plural "%d Tracks"
 #~ msgstr[0] "%d 1 Pista"
@@ -655,7 +641,6 @@ msgstr "Pauză"
 #~ msgid "Sync Failed"
 #~ msgstr "Sinc eșuată"
 
-#, c-format
 #~ msgid ""
 #~ "The playlist named %s is used to sync device %s, but could not be found."
 #~ msgstr ""
@@ -710,7 +695,6 @@ msgstr "Pauză"
 #~ msgid "All Genres"
 #~ msgstr "Toate genurile"
 
-#, c-format
 #~ msgid "All %i Genres"
 #~ msgstr "Toate genurile%i 1"
 
@@ -720,7 +704,6 @@ msgstr "Pauză"
 #~ msgid "All Artists"
 #~ msgstr "Toți artiștii"
 
-#, c-format
 #~ msgid "All %i Artists"
 #~ msgstr "Toți %i 1 artiști"
 
@@ -730,7 +713,6 @@ msgstr "Pauză"
 #~ msgid "All Albums"
 #~ msgstr "Toate albumele"
 
-#, c-format
 #~ msgid "All %i Albums"
 #~ msgstr "Toate %i 1 Albumele"
 
@@ -740,7 +722,6 @@ msgstr "Pauză"
 #~ msgid "All Years"
 #~ msgstr "Toți anii"
 
-#, c-format
 #~ msgid "All %i Years"
 #~ msgstr "Toți %i 1 Anii"
 
@@ -756,7 +737,6 @@ msgstr "Pauză"
 #~ msgid "All Groupings"
 #~ msgstr "Toate grupările"
 
-#, c-format
 #~ msgid "All %i Groupings"
 #~ msgstr "Toate grupările %i 1"
 
@@ -766,7 +746,6 @@ msgstr "Pauză"
 #~ msgid "All Composers"
 #~ msgstr "Toți compozitorii"
 
-#, c-format
 #~ msgid "All %i Composers"
 #~ msgstr "Toți %i 1 Compozitori"
 
@@ -785,13 +764,11 @@ msgstr "Pauză"
 #~ msgid "Unrated"
 #~ msgstr "Neevaluate"
 
-#, c-format
 #~ msgid "%u Star"
 #~ msgid_plural "%u Stars"
 #~ msgstr[0] "%u 1 Vedetă"
 #~ msgstr[1] "%u 2 Vedete"
 
-#, c-format
 #~ msgid "%u kbps"
 #~ msgstr "%u 1 kibps"
 
@@ -906,7 +883,6 @@ msgstr "Pauză"
 #~ msgid "Import your Music"
 #~ msgstr "Importați muzica dvs"
 
-#, c-format
 #~ msgid "Import all your Music from %s into your library."
 #~ msgstr "Importați toată Muzica din %s 1 în biblioteca dvs."
 
@@ -961,18 +937,15 @@ msgstr "Pauză"
 #~ msgid "Off"
 #~ msgstr "de pe"
 
-#, c-format
 #~ msgid "%s (Custom)"
 #~ msgstr "%s 1 (Personalizat)"
 
-#, c-format
 #~ msgid "%s (Custom %i)"
 #~ msgstr "%s 1 (personalizat %i 2)"
 
 #~ msgid "Custom Preset"
 #~ msgstr "Setare prestabilită"
 
-#, c-format
 #~ msgid "Custom Preset %i"
 #~ msgstr "Setare prestabilită %i 1"
 
@@ -1014,11 +987,9 @@ msgstr "Pauză"
 #~ msgid "New Playlist…"
 #~ msgstr "Nouă listă de redare…"
 
-#, c-format
 #~ msgid "Import %i of %i selected songs"
 #~ msgstr "Importați %i 1 din %i 2 melodii selectate"
 
-#, c-format
 #~ msgid "Import %i song"
 #~ msgid_plural "Import %i songs"
 #~ msgstr[0] "Importați %i 1 cântec"
@@ -1071,7 +1042,6 @@ msgstr "Pauză"
 #~ msgid "Add Playlist…"
 #~ msgstr "Adăugați listă de redare"
 
-#, c-format
 #~ msgid "Equalizer: %s"
 #~ msgstr "Egalizator: %s 1"
 

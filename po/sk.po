@@ -154,15 +154,12 @@ msgstr "Pozastaviť"
 #~ msgid "Techno"
 #~ msgstr "Techno"
 
-#, c-format
 #~ msgid " (%d)"
 #~ msgstr " (%d)"
 
-#, c-format
 #~ msgid "%s (%d)"
 #~ msgstr "%s (%d)"
 
-#, c-format
 #~ msgid "%s (%i)"
 #~ msgstr "%s (%i)"
 
@@ -184,7 +181,6 @@ msgstr "Pozastaviť"
 #~ msgid "Playlist"
 #~ msgstr "Zoznam skladieb"
 
-#, c-format
 #~ msgid "Import %s"
 #~ msgstr "Import %s"
 
@@ -212,14 +208,12 @@ msgstr "Pozastaviť"
 #~ msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 #~ msgstr "Pridávanie <b>$MENO</b> od <b>$UMELEC</b> do $ZARIADENIA"
 
-#, c-format
 #~ msgid "Syncing <b>%s</b>…"
 #~ msgstr "Synchronizácia <b>%s</b>..."
 
 #~ msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 #~ msgstr "Odstraňovanie <b>$MENO</b> od <b>$UMELEC</b> z $ZARIADENIE"
 
-#, c-format
 #~ msgid "Removing from <b>%s</b>…"
 #~ msgstr "Odstraňovanie z <b>%s</b>..."
 
@@ -278,11 +272,10 @@ msgstr "Pozastaviť"
 #~ msgid "File not found"
 #~ msgstr "Súbor nebol nájdený"
 
-#, c-format
 #~ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 #~ msgstr "Hudobný súbor pre <b>%s</b> od <b>%s</b> nebol nájdený."
 
-#, fuzzy, c-format
+#, fuzzy
 #~| msgid "%i music files could not be found?"
 #~ msgid "%i music files could not be found."
 #~ msgstr "%i hudobný súbor nebol nájdený?"
@@ -299,11 +292,11 @@ msgstr "Pozastaviť"
 #~ msgid "Choose Music Folder"
 #~ msgstr "Vybrať priečinok s hudbou"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Would you like to install the %s plugin?"
 #~ msgstr "Chcete nainštalovať zásuvný modul %s ?\n"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid ""
 #~ "This song cannot be played. The %s plugin is required to play the song."
 #~ msgstr ""
@@ -354,11 +347,11 @@ msgstr "Pozastaviť"
 #~ msgid "Close"
 #~ msgstr "Zavrieť"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Issues while importing from %s"
 #~ msgstr "Importovať hudbu z %s..."
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Unable to import %d item. The file may be damaged."
 #~ msgid_plural "Unable to import %d items. The files may be damaged."
 #~ msgstr[0] ""
@@ -410,14 +403,14 @@ msgstr "Pozastaviť"
 #~ msgid "Continue playback when closed:"
 #~ msgstr "Pokračovať s prehrávaním po zatvorení:"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Remove %d Song From Library?"
 #~ msgid_plural "Remove %d Songs From Library?"
 #~ msgstr[0] "Vymazať %d piesní z %s?"
 #~ msgstr[1] "Vymazať %d piesní z %s?"
 #~ msgstr[2] "Vymazať %d piesní z %s?"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Remove \"%s\" From Library?"
 #~ msgstr "Odstrániť z knižnice"
 
@@ -444,7 +437,6 @@ msgstr "Pozastaviť"
 #~ msgid "Set Music Folder?"
 #~ msgstr "Nastaviť priečinok s hudbou?"
 
-#, c-format
 #~ msgid ""
 #~ "Are you sure you want to set the music folder to %s? This will reset your "
 #~ "library and remove your playlists."
@@ -575,14 +567,13 @@ msgstr "Pozastaviť"
 #~ msgid "kbps"
 #~ msgstr "kb/s"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Sync will remove %i item from %s"
 #~ msgid_plural "Sync will remove %i items from %s"
 #~ msgstr[0] "Synchronizácia vymaže %i položiek z %s"
 #~ msgstr[1] "Synchronizácia vymaže %i položiek z %s"
 #~ msgstr[2] "Synchronizácia vymaže %i položiek z %s"
 
-#, c-format
 #~ msgid ""
 #~ "If you continue to sync, media will be removed from %s since they are not "
 #~ "on the sync list. Would you like to import them to your library first?"
@@ -597,7 +588,6 @@ msgstr "Pozastaviť"
 #~ msgid "Import"
 #~ msgstr "Importovať"
 
-#, c-format
 #~ msgid "Importing music from %s…"
 #~ msgstr "Importovať hudbu z %s..."
 
@@ -619,7 +609,6 @@ msgstr "Pozastaviť"
 #~ msgid "Added to your queue:"
 #~ msgstr "Pridať do radu:"
 
-#, c-format
 #~ msgid "%d Track"
 #~ msgid_plural "%d Tracks"
 #~ msgstr[0] "%d Stôp"
@@ -671,7 +660,6 @@ msgstr "Pozastaviť"
 #~ msgid "Sync Failed"
 #~ msgstr "Synchronizácia zlyhala"
 
-#, c-format
 #~ msgid ""
 #~ "The playlist named %s is used to sync device %s, but could not be found."
 #~ msgstr ""
@@ -724,7 +712,6 @@ msgstr "Pozastaviť"
 #~ msgid "All Genres"
 #~ msgstr "Všetky žánre"
 
-#, c-format
 #~ msgid "All %i Genres"
 #~ msgstr "Všetké %i žánry"
 
@@ -734,7 +721,6 @@ msgstr "Pozastaviť"
 #~ msgid "All Artists"
 #~ msgstr "Všetci interpreti"
 
-#, c-format
 #~ msgid "All %i Artists"
 #~ msgstr "Všetci %i umelci"
 
@@ -744,7 +730,6 @@ msgstr "Pozastaviť"
 #~ msgid "All Albums"
 #~ msgstr "Všetky albumy"
 
-#, c-format
 #~ msgid "All %i Albums"
 #~ msgstr "Všetke %i albumy"
 
@@ -754,7 +739,6 @@ msgstr "Pozastaviť"
 #~ msgid "All Years"
 #~ msgstr "Všetke roky"
 
-#, c-format
 #~ msgid "All %i Years"
 #~ msgstr "Všetke %i roky"
 
@@ -770,7 +754,6 @@ msgstr "Pozastaviť"
 #~ msgid "All Groupings"
 #~ msgstr "Všetke skupiny"
 
-#, c-format
 #~ msgid "All %i Groupings"
 #~ msgstr "Všetke %i skupiny"
 
@@ -780,7 +763,6 @@ msgstr "Pozastaviť"
 #~ msgid "All Composers"
 #~ msgstr "Všetci skladatelia"
 
-#, c-format
 #~ msgid "All %i Composers"
 #~ msgstr "Všetci %i skladatelia"
 
@@ -909,7 +891,6 @@ msgstr "Pozastaviť"
 #~ msgid "Import your Music"
 #~ msgstr "Importovať vašu hudbu"
 
-#, c-format
 #~ msgid "Import all your Music from %s into your library."
 #~ msgstr "Importovať všetku vašu hudbu z %s do vašej knižnice."
 
@@ -964,18 +945,15 @@ msgstr "Pozastaviť"
 #~ msgid "Off"
 #~ msgstr "Vypnúť"
 
-#, c-format
 #~ msgid "%s (Custom)"
 #~ msgstr "%s (Vlastné)"
 
-#, c-format
 #~ msgid "%s (Custom %i)"
 #~ msgstr "%s (Vlastné %i)"
 
 #~ msgid "Custom Preset"
 #~ msgstr "Vlastné nastavenie"
 
-#, c-format
 #~ msgid "Custom Preset %i"
 #~ msgstr "Vlastné nastavenie %i"
 
@@ -1021,11 +999,9 @@ msgstr "Pozastaviť"
 #~ msgid "New Playlist…"
 #~ msgstr "Nový zoznam skladieb..."
 
-#, c-format
 #~ msgid "Import %i of %i selected songs"
 #~ msgstr "Importujem %i z %i vybraných skladieb"
 
-#, c-format
 #~ msgid "Import %i song"
 #~ msgid_plural "Import %i songs"
 #~ msgstr[0] "Importujem %i skladbu"
@@ -1079,7 +1055,6 @@ msgstr "Pozastaviť"
 #~ msgid "Add Playlist…"
 #~ msgstr "Pridať zoznam skladieb"
 
-#, c-format
 #~ msgid "Equalizer: %s"
 #~ msgstr "Ekvalizér: %s"
 

@@ -82,7 +82,6 @@ msgstr ""
 #~ msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 #~ msgstr "นำเข้า <b>$NAME</b> โดย <b>$ARTIST</b> เข้าสู่รายการ…"
 
-#, c-format
 #~ msgid "Import %s"
 #~ msgstr "นำเข้า %s"
 

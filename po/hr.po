@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 
@@ -154,15 +154,12 @@ msgstr "Pauziraj"
 #~ msgid "Techno"
 #~ msgstr "Tehno"
 
-#, c-format
 #~ msgid " (%d)"
 #~ msgstr " (%d)"
 
-#, c-format
 #~ msgid "%s (%d)"
 #~ msgstr "%s (%d)"
 
-#, c-format
 #~ msgid "%s (%i)"
 #~ msgstr "%s (%i)"
 
@@ -184,7 +181,6 @@ msgstr "Pauziraj"
 #~ msgid "Playlist"
 #~ msgstr "Popis izvođenja"
 
-#, c-format
 #~ msgid "Import %s"
 #~ msgstr "Uvezi %s"
 
@@ -212,14 +208,12 @@ msgstr "Pauziraj"
 #~ msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 #~ msgstr "Dodavanje <b>$NAME</b> od  <b>$ARTIST</b> u $DEVICE"
 
-#, c-format
 #~ msgid "Syncing <b>%s</b>…"
 #~ msgstr "Usklađivanje <b>%s</b>"
 
 #~ msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 #~ msgstr "Uklanjanje <b>$NAME</b> od <b>$ARTIST</b> iz $DEVICE"
 
-#, c-format
 #~ msgid "Removing from <b>%s</b>…"
 #~ msgstr "Uklanjanje iz <b>%s</b>"
 
@@ -279,11 +273,10 @@ msgstr "Pauziraj"
 #~ msgid "File not found"
 #~ msgstr "Datoteka nije pronađena"
 
-#, c-format
 #~ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 #~ msgstr "Glazbena datoteka za <b>%s</b> od <b>%s</b> ne može se pronaći."
 
-#, fuzzy, c-format
+#, fuzzy
 #~| msgid "%i music files could not be found?"
 #~ msgid "%i music files could not be found."
 #~ msgstr "%i glazbenih datoteka ne može se pronaći?"
@@ -300,11 +293,11 @@ msgstr "Pauziraj"
 #~ msgid "Choose Music Folder"
 #~ msgstr "Odaberi glazbenu mapu"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Would you like to install the %s plugin?"
 #~ msgstr "Želite li instalirati %s priključak?\n"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid ""
 #~ "This song cannot be played. The %s plugin is required to play the song."
 #~ msgstr ""
@@ -355,11 +348,11 @@ msgstr "Pauziraj"
 #~ msgid "Close"
 #~ msgstr "Zatvori"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Issues while importing from %s"
 #~ msgstr "Uvoženje glazbe iz %s..."
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Unable to import %d item. The file may be damaged."
 #~ msgid_plural "Unable to import %d items. The files may be damaged."
 #~ msgstr[0] "%s ne može uvesti %d stavaka. Datoteke su možda oštećene."
@@ -408,14 +401,14 @@ msgstr "Pauziraj"
 #~ msgid "Continue playback when closed:"
 #~ msgstr "Nastavi reprodukciju po zatvaranju:"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Remove %d Song From Library?"
 #~ msgid_plural "Remove %d Songs From Library?"
 #~ msgstr[0] "Ukloni %d pjesama iz %s?"
 #~ msgstr[1] "Ukloni %d pjesama iz %s?"
 #~ msgstr[2] "Ukloni %d pjesama iz %s?"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Remove \"%s\" From Library?"
 #~ msgstr "Ukloni iz fonoteke"
 
@@ -442,7 +435,6 @@ msgstr "Pauziraj"
 #~ msgid "Set Music Folder?"
 #~ msgstr "Postavi glazbenu mapu?"
 
-#, c-format
 #~ msgid ""
 #~ "Are you sure you want to set the music folder to %s? This will reset your "
 #~ "library and remove your playlists."
@@ -573,14 +565,13 @@ msgstr "Pauziraj"
 #~ msgid "kbps"
 #~ msgstr "kbps"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Sync will remove %i item from %s"
 #~ msgid_plural "Sync will remove %i items from %s"
 #~ msgstr[0] "Usklađivanje će ukloniti %i stavaka iz %s"
 #~ msgstr[1] "Usklađivanje će ukloniti %i stavaka iz %s"
 #~ msgstr[2] "Usklađivanje će ukloniti %i stavaka iz %s"
 
-#, c-format
 #~ msgid ""
 #~ "If you continue to sync, media will be removed from %s since they are not "
 #~ "on the sync list. Would you like to import them to your library first?"
@@ -594,7 +585,6 @@ msgstr "Pauziraj"
 #~ msgid "Import"
 #~ msgstr "Uvezi"
 
-#, c-format
 #~ msgid "Importing music from %s…"
 #~ msgstr "Uvoženje glazbe iz %s..."
 
@@ -616,7 +606,6 @@ msgstr "Pauziraj"
 #~ msgid "Added to your queue:"
 #~ msgstr "Dodano na vaš red čekanja:"
 
-#, c-format
 #~ msgid "%d Track"
 #~ msgid_plural "%d Tracks"
 #~ msgstr[0] "%d pjesma"
@@ -668,7 +657,6 @@ msgstr "Pauziraj"
 #~ msgid "Sync Failed"
 #~ msgstr "Neuspjelo usklađivanje"
 
-#, c-format
 #~ msgid ""
 #~ "The playlist named %s is used to sync device %s, but could not be found."
 #~ msgstr ""
@@ -721,7 +709,6 @@ msgstr "Pauziraj"
 #~ msgid "All Genres"
 #~ msgstr "Sve vrste glazbe"
 
-#, c-format
 #~ msgid "All %i Genres"
 #~ msgstr "Svih %i vrsta glazbe"
 
@@ -731,7 +718,6 @@ msgstr "Pauziraj"
 #~ msgid "All Artists"
 #~ msgstr "Svi izvođači"
 
-#, c-format
 #~ msgid "All %i Artists"
 #~ msgstr "Svih %i izvođača"
 
@@ -741,7 +727,6 @@ msgstr "Pauziraj"
 #~ msgid "All Albums"
 #~ msgstr "Svi albumi"
 
-#, c-format
 #~ msgid "All %i Albums"
 #~ msgstr "Svih %i albuma"
 
@@ -751,7 +736,6 @@ msgstr "Pauziraj"
 #~ msgid "All Years"
 #~ msgstr "Sve godine"
 
-#, c-format
 #~ msgid "All %i Years"
 #~ msgstr "Svih %i godina"
 
@@ -767,7 +751,6 @@ msgstr "Pauziraj"
 #~ msgid "All Groupings"
 #~ msgstr "Sva grupiranja"
 
-#, c-format
 #~ msgid "All %i Groupings"
 #~ msgstr "Svih %i grupiranja"
 
@@ -777,7 +760,6 @@ msgstr "Pauziraj"
 #~ msgid "All Composers"
 #~ msgstr "Svi skladatelji"
 
-#, c-format
 #~ msgid "All %i Composers"
 #~ msgstr "Svih %i skladatelja"
 
@@ -796,14 +778,12 @@ msgstr "Pauziraj"
 #~ msgid "Unrated"
 #~ msgstr "Neocijenjeno"
 
-#, c-format
 #~ msgid "%u Star"
 #~ msgid_plural "%u Stars"
 #~ msgstr[0] "%u zvjezdica"
 #~ msgstr[1] "%u zvjezdice"
 #~ msgstr[2] "%u zvjezdica"
 
-#, c-format
 #~ msgid "%u kbps"
 #~ msgstr "%u kbps"
 
@@ -917,7 +897,6 @@ msgstr "Pauziraj"
 #~ msgid "Import your Music"
 #~ msgstr "Uvezite svoju glazbu"
 
-#, c-format
 #~ msgid "Import all your Music from %s into your library."
 #~ msgstr "Uvezite svu vašu glazbu iz %s u vašu fonoteku."
 
@@ -972,18 +951,15 @@ msgstr "Pauziraj"
 #~ msgid "Off"
 #~ msgstr "Isključeno"
 
-#, c-format
 #~ msgid "%s (Custom)"
 #~ msgstr "%s (Prilagođeno)"
 
-#, c-format
 #~ msgid "%s (Custom %i)"
 #~ msgstr "%s (Prilagođeno %i)"
 
 #~ msgid "Custom Preset"
 #~ msgstr "Prilagođeni predložak"
 
-#, c-format
 #~ msgid "Custom Preset %i"
 #~ msgstr "Prilagođeni predložak %i"
 
@@ -1029,11 +1005,9 @@ msgstr "Pauziraj"
 #~ msgid "New Playlist…"
 #~ msgstr "Novi popis izvođenja..."
 
-#, c-format
 #~ msgid "Import %i of %i selected songs"
 #~ msgstr "Uvezi %i od %i odabranih pjesama"
 
-#, c-format
 #~ msgid "Import %i song"
 #~ msgid_plural "Import %i songs"
 #~ msgstr[0] "Uvezi %i pjesmu"
@@ -1087,7 +1061,6 @@ msgstr "Pauziraj"
 #~ msgid "Add Playlist…"
 #~ msgstr "Dodaj popis izvođenja"
 
-#, c-format
 #~ msgid "Equalizer: %s"
 #~ msgstr "Ekvalizator: %s"
 

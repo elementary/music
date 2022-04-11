@@ -151,15 +151,12 @@ msgstr "Paus"
 #~ msgid "Techno"
 #~ msgstr "Tehno"
 
-#, c-format
 #~ msgid " (%d)"
 #~ msgstr " (%d)"
 
-#, c-format
 #~ msgid "%s (%d)"
 #~ msgstr "%s (%d)"
 
-#, c-format
 #~ msgid "%s (%i)"
 #~ msgstr "%s (%i)"
 
@@ -181,7 +178,6 @@ msgstr "Paus"
 #~ msgid "Playlist"
 #~ msgstr "Esitusloend"
 
-#, c-format
 #~ msgid "Import %s"
 #~ msgstr "Impordi %s"
 
@@ -209,14 +205,12 @@ msgstr "Paus"
 #~ msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
 #~ msgstr "<b>$NAME</b> - <b>$ARTIST</b> lisamine asukohta $DEVICE"
 
-#, c-format
 #~ msgid "Syncing <b>%s</b>…"
 #~ msgstr "Sünkroniseerimisel <b>%s</b>..."
 
 #~ msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
 #~ msgstr "<b>$NAME</b> - <b>$ARTIST</b> eemaldamine seadmelt  $DEVICE"
 
-#, c-format
 #~ msgid "Removing from <b>%s</b>…"
 #~ msgstr "Eemaldamine asukohast <b>%s</b>..."
 
@@ -275,11 +269,11 @@ msgstr "Paus"
 #~ msgid "File not found"
 #~ msgstr "Faili ei leitud"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
 #~ msgstr "Muusika faili <b>%s</b> jaoks ei leitud."
 
-#, fuzzy, c-format
+#, fuzzy
 #~| msgid "%i music files could not be found?"
 #~ msgid "%i music files could not be found."
 #~ msgstr "%i muusika faili ei leitud?"
@@ -296,11 +290,11 @@ msgstr "Paus"
 #~ msgid "Choose Music Folder"
 #~ msgstr "Muusika kausta valimine"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Would you like to install the %s plugin?"
 #~ msgstr "Oled kindel, et soovid paigaldada plugina %s?\n"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid ""
 #~ "This song cannot be played. The %s plugin is required to play the song."
 #~ msgstr ""
@@ -350,11 +344,11 @@ msgstr "Paus"
 #~ msgid "Close"
 #~ msgstr "Sulge"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Issues while importing from %s"
 #~ msgstr "Muusika importimine asukohast %s..."
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Unable to import %d item. The file may be damaged."
 #~ msgid_plural "Unable to import %d items. The files may be damaged."
 #~ msgstr[0] "%s ei saa importida %d laulu, sest need võivad olla kahjustatud."
@@ -402,13 +396,13 @@ msgstr "Paus"
 #~ msgid "Continue playback when closed:"
 #~ msgstr "Sulgemisel esitamise jätkamine:"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Remove %d Song From Library?"
 #~ msgid_plural "Remove %d Songs From Library?"
 #~ msgstr[0] "Eemaldada %d laulu %s'ist?"
 #~ msgstr[1] "Eemaldada %d laulu %s'ist?"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Remove \"%s\" From Library?"
 #~ msgstr "Eemalda kogumikust"
 
@@ -432,7 +426,6 @@ msgstr "Paus"
 #~ msgid "Set Music Folder?"
 #~ msgstr "Muusika kausta määramine"
 
-#, c-format
 #~ msgid ""
 #~ "Are you sure you want to set the music folder to %s? This will reset your "
 #~ "library and remove your playlists."
@@ -564,13 +557,12 @@ msgstr "Paus"
 #~ msgid "kbps"
 #~ msgstr "kb/s"
 
-#, fuzzy, c-format
+#, fuzzy
 #~ msgid "Sync will remove %i item from %s"
 #~ msgid_plural "Sync will remove %i items from %s"
 #~ msgstr[0] "Sünkroniseerimise käigus eemaldatakse %i laulu asukohast %s"
 #~ msgstr[1] "Sünkroniseerimise käigus eemaldatakse %i laulu asukohast %s"
 
-#, c-format
 #~ msgid ""
 #~ "If you continue to sync, media will be removed from %s since they are not "
 #~ "on the sync list. Would you like to import them to your library first?"
@@ -585,7 +577,6 @@ msgstr "Paus"
 #~ msgid "Import"
 #~ msgstr "Impordi"
 
-#, c-format
 #~ msgid "Importing music from %s…"
 #~ msgstr "Muusika importimine asukohast %s..."
 
@@ -607,7 +598,6 @@ msgstr "Paus"
 #~ msgid "Added to your queue:"
 #~ msgstr "Lisati järjekorda:"
 
-#, c-format
 #~ msgid "%d Track"
 #~ msgid_plural "%d Tracks"
 #~ msgstr[0] "%d lugu"
@@ -658,7 +648,6 @@ msgstr "Paus"
 #~ msgid "Sync Failed"
 #~ msgstr "Sünkroniseerimine ebaõnnestus"
 
-#, c-format
 #~ msgid ""
 #~ "The playlist named %s is used to sync device %s, but could not be found."
 #~ msgstr "Esitusloendi %s sünkroniseerimine seadmega %s ebaõnnestus."
@@ -709,7 +698,6 @@ msgstr "Paus"
 #~ msgid "All Genres"
 #~ msgstr "Kõik stiilid"
 
-#, c-format
 #~ msgid "All %i Genres"
 #~ msgstr "Kõik %i stiili"
 
@@ -719,7 +707,6 @@ msgstr "Paus"
 #~ msgid "All Artists"
 #~ msgstr "Kõik esitajad"
 
-#, c-format
 #~ msgid "All %i Artists"
 #~ msgstr "Kõik %i esitajat"
 
@@ -729,7 +716,6 @@ msgstr "Paus"
 #~ msgid "All Albums"
 #~ msgstr "Kõik albumid"
 
-#, c-format
 #~ msgid "All %i Albums"
 #~ msgstr "Kõik %i albumit"
 
@@ -739,7 +725,6 @@ msgstr "Paus"
 #~ msgid "All Years"
 #~ msgstr "Kõik ilmumisaastad"
 
-#, c-format
 #~ msgid "All %i Years"
 #~ msgstr "Kõik %i ilmumisaastat"
 
@@ -755,7 +740,6 @@ msgstr "Paus"
 #~ msgid "All Groupings"
 #~ msgstr "Kõik grupeeringud"
 
-#, c-format
 #~ msgid "All %i Groupings"
 #~ msgstr "Kõik %i grupeeringut"
 
@@ -765,7 +749,6 @@ msgstr "Paus"
 #~ msgid "All Composers"
 #~ msgstr "Kõik heliloojad"
 
-#, c-format
 #~ msgid "All %i Composers"
 #~ msgstr "Kõik %i heliloojat"
 
@@ -894,7 +877,6 @@ msgstr "Paus"
 #~ msgid "Import your Music"
 #~ msgstr "Muusika importimine"
 
-#, c-format
 #~ msgid "Import all your Music from %s into your library."
 #~ msgstr "Muusika importimine asukohast %s muusika kogumikku."
 
@@ -949,18 +931,15 @@ msgstr "Paus"
 #~ msgid "Off"
 #~ msgstr "Väljas"
 
-#, c-format
 #~ msgid "%s (Custom)"
 #~ msgstr "%s (Kohandatud)"
 
-#, c-format
 #~ msgid "%s (Custom %i)"
 #~ msgstr "%s (Kohandatud %i)"
 
 #~ msgid "Custom Preset"
 #~ msgstr "Kohandamisvalikud"
 
-#, c-format
 #~ msgid "Custom Preset %i"
 #~ msgstr "Kohandatud eelistused %i"
 
@@ -1006,11 +985,9 @@ msgstr "Paus"
 #~ msgid "New Playlist…"
 #~ msgstr "Uus esitusloend..."
 
-#, c-format
 #~ msgid "Import %i of %i selected songs"
 #~ msgstr "Impordi %i laulu %i valitud laulust"
 
-#, c-format
 #~ msgid "Import %i song"
 #~ msgid_plural "Import %i songs"
 #~ msgstr[0] "Impordi %i laul"
@@ -1063,7 +1040,6 @@ msgstr "Paus"
 #~ msgid "Add Playlist…"
 #~ msgstr "Loo esitusloend"
 
-#, c-format
 #~ msgid "Equalizer: %s"
 #~ msgstr "Ekvalaiser: %s"
 
