@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-11 14:16-0700\n"
-"PO-Revision-Date: 2021-07-16 22:48+0000\n"
+"PO-Revision-Date: 2022-04-11 23:47+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/music/extra/he/>\n"
 "Language: he\n"
@@ -37,7 +37,7 @@ msgstr "elementary בע״מ"
 
 #: data/music.appdata.xml.in:40
 msgid "Complete rewrite"
-msgstr ""
+msgstr "שכתוב מחדש"
 
 #: data/music.appdata.xml.in:46
 msgid "Drop support for Last.FM"
@@ -223,11 +223,10 @@ msgid "Listen to music"
 msgstr "האזנה למוזיקה"
 
 #: data/music.desktop.in:13
-#, fuzzy
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
-"Noise;נגן;מוזיקה;MP3;אייפוד;נגן;רשימת-נגינה;מדיה;פלאפון;סלולרי;סלולר;אייפון;"
-"שירים;"
+"Noise;נגן;מוזיקה;MP3;אייפוד;נגן;רשימת-נגינה;מדיה;פלאפון;סלולרי;סלולר;אייפון;ש"
+"ירים;רעש;"
 
 #~ msgid "io.elementary.music"
 #~ msgstr "io.elementary.music"
