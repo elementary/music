@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+
+flatpak remove --system --noninteractive io.elementary.music//stable || true
+
+#DEBHELPER#
+
+exit 0
