@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-16 19:03+0000\n"
+"POT-Creation-Date: 2022-04-11 14:16-0700\n"
 "PO-Revision-Date: 2020-10-31 21:15+0000\n"
 "Last-Translator: Jaimie85 <alsemgeest@gmail.com>\n"
 "Language-Team: Dutch <https://l10n.elementary.io/projects/music/music/nl/>\n"
@@ -19,1408 +19,1089 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:52+0000\n"
 
-#: core/LibrariesManager.vala:146
-msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "Importeren van <b>$NAME</b> door <b>$ARTIST</b> naar bibliotheek…"
-
-#. / Used for unknown titles, artists, or album names.
-#: core/Media.vala:33
-msgid "Unknown"
-msgstr "Onbekend"
-
-#. / Please keep $NAME and $ALBUM, they will be replaced by their values
-#: core/Media.vala:180
-msgid "$NAME on $ALBUM"
-msgstr "$NAME op $ALBUM"
-
-#. / Please keep $NAME and $ARTIST, they will be replaced by their values
-#: core/Media.vala:183
-msgid "$NAME by $ARTIST"
-msgstr "$NAME door $ARTIST"
-
-#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
-#: core/Media.vala:189
-msgid "$NAME by $ARTIST on $ALBUM"
-msgstr "$NAME door $ARTIST op $ALBUM"
-
-#: core/GStreamer/Equalizer.vala:70
-msgid "Flat"
-msgstr "Plat"
-
-#: core/GStreamer/Equalizer.vala:71
-msgid "Classical"
-msgstr "Klassiek"
-
-#: core/GStreamer/Equalizer.vala:72
-msgid "Club"
-msgstr "Club"
-
-#: core/GStreamer/Equalizer.vala:73
-msgid "Dance"
-msgstr "Dance"
-
-#: core/GStreamer/Equalizer.vala:74
-msgid "Full Bass"
-msgstr "Maximale bas"
-
-#: core/GStreamer/Equalizer.vala:75
-msgid "Full Treble"
-msgstr "Maximale hoge tonen"
-
-#: core/GStreamer/Equalizer.vala:76
-msgid "Full Bass + Treble"
-msgstr "Maximale bas en hoge tonen"
-
-#: core/GStreamer/Equalizer.vala:77
-msgid "Headphones"
-msgstr "Koptelefoon"
-
-#: core/GStreamer/Equalizer.vala:78
-msgid "Large Hall"
-msgstr "Grote hal"
-
-#: core/GStreamer/Equalizer.vala:79
-msgid "Live"
-msgstr "Live"
-
-#: core/GStreamer/Equalizer.vala:80
-msgid "Party"
-msgstr "Feest"
-
-#: core/GStreamer/Equalizer.vala:81
-msgid "Pop"
-msgstr "Pop"
-
-#: core/GStreamer/Equalizer.vala:82
-msgid "Reggae"
-msgstr "Reggae"
-
-#: core/GStreamer/Equalizer.vala:83
-msgid "Rock"
-msgstr "Rock"
-
-#: core/GStreamer/Equalizer.vala:84
-msgid "Soft"
-msgstr "Zacht"
-
-#: core/GStreamer/Equalizer.vala:85
-msgid "Ska"
-msgstr "Ska"
-
-#: core/GStreamer/Equalizer.vala:86
-msgid "Soft Rock"
-msgstr "Softrock"
-
-#: core/GStreamer/Equalizer.vala:87
-msgid "Techno"
-msgstr "Techno"
-
-#: core/Utils/FileUtils.vala:142
-#, c-format
-msgid " (%d)"
-msgstr " (%d)"
-
-#: core/Utils/PlaylistsUtils.vala:95
-#, c-format
-msgid "%s (%d)"
-msgstr "%s (%d)"
-
-#: core/Utils/PlaylistsUtils.vala:234
-msgid "New playlist"
-msgstr "Nieuwe afspeellijst"
-
-#. Translators: used for new playlists ex: "New playlist (1)"
-#: core/Utils/PlaylistsUtils.vala:245
-#, c-format
-msgid "%s (%i)"
-msgstr "%s (%i)"
-
-#: core/Utils/PlaylistsUtils.vala:265 core/Utils/PlaylistsUtils.vala:334
-msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr "MPEG versie 3.0 uitgebreid (*.m3u)"
-
-#: core/Utils/PlaylistsUtils.vala:269 core/Utils/PlaylistsUtils.vala:338
-msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr "Shoutcast Afspeellijst Versie 2.0 (*.pls)"
-
-#: core/Utils/PlaylistsUtils.vala:272
-msgid "Export Playlist"
-msgstr "Afspeellijst exporteren"
-
-#: core/Utils/PlaylistsUtils.vala:275 src/Dialogs/MediaEditor.vala:133
-#: src/Dialogs/SmartPlaylistEditor.vala:92
-msgid "Save"
-msgstr "Opslaan"
-
-#: core/Utils/PlaylistsUtils.vala:276 core/Utils/PlaylistsUtils.vala:345
-#: src/LibraryWindow.vala:1030 src/Dialogs/FileNotFoundDialog.vala:55
-#: src/Dialogs/FileNotFoundDialog.vala:103
-#: src/Dialogs/InstallGstreamerPluginsDialog.vala:49
-#: src/Dialogs/RemoveFilesDialog.vala:82
-#: src/Dialogs/SetMusicFolderConfirmation.vala:85
-#: src/Dialogs/SmartPlaylistEditor.vala:89
-#: src/Dialogs/SyncWarningDialog.vala:60
-#: src/Views/Wrappers/MusicViewWrapper.vala:147 src/Widgets/TopDisplay.vala:63
-msgid "Cancel"
-msgstr "Annuleren"
-
-#: core/Utils/PlaylistsUtils.vala:329
-msgid "Playlist"
-msgstr "Afspeellijst"
-
-#: core/Utils/PlaylistsUtils.vala:341
-#, c-format
-msgid "Import %s"
-msgstr "%s importeren"
-
-#: core/Utils/PlaylistsUtils.vala:344 src/LibraryWindow.vala:1029
-#: src/Dialogs/FileNotFoundDialog.vala:102
-#: src/Dialogs/SetMusicFolderConfirmation.vala:84
-#: src/Views/Wrappers/MusicViewWrapper.vala:146
-#: src/Widgets/AlbumListGrid.vala:197
-msgid "Open"
-msgstr "Open"
-
-#: core/Utils/PlaylistsUtils.vala:371
-msgid "Unrecognized playlist file. Import failed."
-msgstr "Onherkenbaar afspeellijst bestand. Importeren mislukt."
-
-#. / Format of date strings. See reference documentation of g_date_time_format()
-#. / for more details.
-#: core/Utils/TimeUtils.vala:40
-msgid "%m/%e/%Y %l:%M %p"
-msgstr "%d-%m-%Y %k:%M"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:109
-#: plugins/Devices/iPod/iPodDevice.vala:68
-msgid "Empty device!"
-msgstr "Leeg apparaat!"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:113
-#: plugins/Devices/iPod/iPodDevice.vala:72
-msgid "This device does not contain any music."
-msgstr "Dit apparaat bevat geen muziek."
-
-#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:158
-msgid "Android Phone"
-msgstr "Android telefoon"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:160
-msgid "Audio Player"
-msgstr "Muziekspeler"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:146
-#: plugins/Devices/iPod/iPodLibrary.vala:167
-msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr "Toevoegen van <b>$NAME</b> door <b>$ARTIST</b> aan $DEVICE"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:171
-#: plugins/Devices/iPod/iPodLibrary.vala:216
-#, c-format
-msgid "Syncing <b>%s</b>…"
-msgstr "Synchroniseren <b>%s</b>…"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:283
-#: plugins/Devices/iPod/iPodLibrary.vala:561
-msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr "Verwijderen van <b>$NAME</b> door <b>$ARTIST</b> van $DEVICE"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:315
-#: plugins/Devices/iPod/iPodLibrary.vala:366
-#, c-format
-msgid "Removing from <b>%s</b>…"
-msgstr "Verwijderen van <b>%s</b>…"
-
-#: plugins/Devices/iPod/iPodLibrary.vala:238
-#: plugins/Devices/iPod/iPodLibrary.vala:404
-msgid "Finishing sync process…"
-msgstr "Synchronisatieproces afronden…"
-
-#: plugins/Devices/iPod/iPodLibrary.vala:250
-#: plugins/Devices/iPod/iPodLibrary.vala:416
-msgid "Cancelling Sync…"
-msgstr "Synchronisatie afbreken…"
-
-#: src/FileOperator.vala:306
-msgid "Import Complete"
-msgstr "Importeren voltooid"
-
-#: src/FileOperator.vala:306
-msgid "Your Library Has Been Imported."
-msgstr "Uw muziekbibliotheek is geïmporteerd."
-
-#. if doing import and copy to music folder is enabled, do copy here
-#: src/FileOperator.vala:316
-msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr "Bestanden <b>kopiëren</b> naar <b>muziekmap</b>…"
-
-#: src/LibraryWindow.vala:197 src/LibraryWindow.vala:275
-#: src/LibraryWindow.vala:631 src/LibraryWindow.vala:751
+#: src/Application.vala:63 src/Views/NowPlayingView.vala:18
+#: src/Views/NowPlayingView.vala:116
 msgid "Music"
 msgstr "Muziek"
 
-#: src/LibraryWindow.vala:216
-msgid "Import to Library…"
-msgstr "Importeer naar bibliotheek…"
+#: src/MainWindow.vala:26
+#, fuzzy
+msgid "Shuffle"
+msgstr "Shuffle inschakelen"
 
-#: src/LibraryWindow.vala:219 src/Dialogs/PreferencesWindow.vala:32
-msgid "Preferences"
-msgstr "Voorkeuren"
+#: src/MainWindow.vala:41
+msgid "Queue is Empty"
+msgstr ""
 
-#: src/LibraryWindow.vala:238
+#: src/MainWindow.vala:42
+msgid "Audio files opened from Files will appear here"
+msgstr ""
+
+#: src/MainWindow.vala:148
+#, fuzzy
+msgid "Repeat None"
+msgstr "Nummer herhalen"
+
+#: src/MainWindow.vala:152
+#, fuzzy
+msgid "Repeat All"
+msgstr "Album herhalen"
+
+#: src/MainWindow.vala:156
+#, fuzzy
+msgid "Repeat One"
+msgstr "Nummer herhalen"
+
+#: src/PlaybackManager.vala:103
+#, c-format
+msgid "%d track was added to the queue"
+msgid_plural "%d tracks were added to the queue"
+msgstr[0] ""
+msgstr[1] ""
+
+#. Don't set artist for files without tags
+#: src/PlaybackManager.vala:163
+msgid "Unknown"
+msgstr "Onbekend"
+
+#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
+#, fuzzy
+msgid "Not playing"
+msgstr "Nieuwe afspeellijst"
+
+#: src/Views/NowPlayingView.vala:45
 msgid "Previous"
 msgstr "Vorige"
 
-#: src/LibraryWindow.vala:245 src/LibraryWindow.vala:311
-msgid "Play"
-msgstr "Afspelen"
-
-#: src/LibraryWindow.vala:252
+#: src/Views/NowPlayingView.vala:68
 msgid "Next"
 msgstr "Volgende"
 
-#: src/LibraryWindow.vala:256
-msgid "Search Music"
-msgstr "Zoek muziek"
+#: src/Views/NowPlayingView.vala:93
+msgid "Play"
+msgstr "Afspelen"
 
-#: src/LibraryWindow.vala:317
+#: src/Views/NowPlayingView.vala:96
 msgid "Pause"
 msgstr "Pauze"
 
-#: src/LibraryWindow.vala:820
-msgid "No songs in Queue"
-msgstr "Geen nummers in de wachtrij"
+#~ msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
+#~ msgstr "Importeren van <b>$NAME</b> door <b>$ARTIST</b> naar bibliotheek…"
 
-#: src/LibraryWindow.vala:820
-msgid ""
-"To add songs to the queue, use the <b>secondary click</b> on an item and "
-"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
-"first before the next song in the currently playing list."
-msgstr ""
-"Om items in de wachtlijst te zetten, klik met de <b>rechter muisknop</b> op "
-"een nummer en selecteer je <b>Wachtlijst</b>. Wanneer een nummer eindigt, "
-"zullen items voor het volgende nummer in de huidige wachtlijst eerst "
-"afgespeeld worden."
+#~ msgid "$NAME on $ALBUM"
+#~ msgstr "$NAME op $ALBUM"
 
-#: src/LibraryWindow.vala:823
-msgid "No songs in History"
-msgstr "Geen nummers in geschiedenis"
+#~ msgid "$NAME by $ARTIST"
+#~ msgstr "$NAME door $ARTIST"
 
-#: src/LibraryWindow.vala:823
-msgid ""
-"After a part of a song has been played, it is added to the history list.\n"
-"You can use this list to see all the songs you have played during the "
-"current session."
-msgstr ""
-"Als er een nummer wordt afgespeeld, wordt deze toegevoegd aan de "
-"Geschiedenis lijst.\n"
-"Je kunt deze lijst gebruiken om de liedjes die je hebt afgespeeld te "
-"bekijken."
+#~ msgid "$NAME by $ARTIST on $ALBUM"
+#~ msgstr "$NAME door $ARTIST op $ALBUM"
 
-#: src/LibraryWindow.vala:1026 src/Views/Wrappers/MusicViewWrapper.vala:59
-msgid "Import Music"
-msgstr "Importeer muziek"
+#~ msgid "Flat"
+#~ msgstr "Plat"
 
-#: src/PlaybackManager.vala:117
-msgctxt "Name of the playlist"
-msgid "Queue"
-msgstr "Wachtrij"
+#~ msgid "Classical"
+#~ msgstr "Klassiek"
 
-#: src/Dialogs/FileNotFoundDialog.vala:37
-msgid "File not found"
-msgstr "Bestand niet gevonden"
+#~ msgid "Club"
+#~ msgstr "Club"
 
-#: src/Dialogs/FileNotFoundDialog.vala:47
+#~ msgid "Dance"
+#~ msgstr "Dance"
+
+#~ msgid "Full Bass"
+#~ msgstr "Maximale bas"
+
+#~ msgid "Full Treble"
+#~ msgstr "Maximale hoge tonen"
+
+#~ msgid "Full Bass + Treble"
+#~ msgstr "Maximale bas en hoge tonen"
+
+#~ msgid "Headphones"
+#~ msgstr "Koptelefoon"
+
+#~ msgid "Large Hall"
+#~ msgstr "Grote hal"
+
+#~ msgid "Live"
+#~ msgstr "Live"
+
+#~ msgid "Party"
+#~ msgstr "Feest"
+
+#~ msgid "Pop"
+#~ msgstr "Pop"
+
+#~ msgid "Reggae"
+#~ msgstr "Reggae"
+
+#~ msgid "Rock"
+#~ msgstr "Rock"
+
+#~ msgid "Soft"
+#~ msgstr "Zacht"
+
+#~ msgid "Ska"
+#~ msgstr "Ska"
+
+#~ msgid "Soft Rock"
+#~ msgstr "Softrock"
+
+#~ msgid "Techno"
+#~ msgstr "Techno"
+
 #, c-format
-msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
-msgstr ""
-"Het muziek bestand voor <b>%s</b> door <b>%s</b> kan niet worden gevonden."
+#~ msgid " (%d)"
+#~ msgstr " (%d)"
 
-#: src/Dialogs/FileNotFoundDialog.vala:50
+#, c-format
+#~ msgid "%s (%d)"
+#~ msgstr "%s (%d)"
+
+#, c-format
+#~ msgid "%s (%i)"
+#~ msgstr "%s (%i)"
+
+#~ msgid "MPEG Version 3.0 Extended (*.m3u)"
+#~ msgstr "MPEG versie 3.0 uitgebreid (*.m3u)"
+
+#~ msgid "Shoutcast Playlist Version 2.0 (*.pls)"
+#~ msgstr "Shoutcast Afspeellijst Versie 2.0 (*.pls)"
+
+#~ msgid "Export Playlist"
+#~ msgstr "Afspeellijst exporteren"
+
+#~ msgid "Save"
+#~ msgstr "Opslaan"
+
+#~ msgid "Cancel"
+#~ msgstr "Annuleren"
+
+#~ msgid "Playlist"
+#~ msgstr "Afspeellijst"
+
+#, c-format
+#~ msgid "Import %s"
+#~ msgstr "%s importeren"
+
+#~ msgid "Open"
+#~ msgstr "Open"
+
+#~ msgid "Unrecognized playlist file. Import failed."
+#~ msgstr "Onherkenbaar afspeellijst bestand. Importeren mislukt."
+
+#~ msgid "%m/%e/%Y %l:%M %p"
+#~ msgstr "%d-%m-%Y %k:%M"
+
+#~ msgid "Empty device!"
+#~ msgstr "Leeg apparaat!"
+
+#~ msgid "This device does not contain any music."
+#~ msgstr "Dit apparaat bevat geen muziek."
+
+#~ msgid "Android Phone"
+#~ msgstr "Android telefoon"
+
+#~ msgid "Audio Player"
+#~ msgstr "Muziekspeler"
+
+#~ msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
+#~ msgstr "Toevoegen van <b>$NAME</b> door <b>$ARTIST</b> aan $DEVICE"
+
+#, c-format
+#~ msgid "Syncing <b>%s</b>…"
+#~ msgstr "Synchroniseren <b>%s</b>…"
+
+#~ msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
+#~ msgstr "Verwijderen van <b>$NAME</b> door <b>$ARTIST</b> van $DEVICE"
+
+#, c-format
+#~ msgid "Removing from <b>%s</b>…"
+#~ msgstr "Verwijderen van <b>%s</b>…"
+
+#~ msgid "Finishing sync process…"
+#~ msgstr "Synchronisatieproces afronden…"
+
+#~ msgid "Cancelling Sync…"
+#~ msgstr "Synchronisatie afbreken…"
+
+#~ msgid "Import Complete"
+#~ msgstr "Importeren voltooid"
+
+#~ msgid "Your Library Has Been Imported."
+#~ msgstr "Uw muziekbibliotheek is geïmporteerd."
+
+#~ msgid "<b>Copying</b> files to <b>Music Folder</b>…"
+#~ msgstr "Bestanden <b>kopiëren</b> naar <b>muziekmap</b>…"
+
+#~ msgid "Import to Library…"
+#~ msgstr "Importeer naar bibliotheek…"
+
+#~ msgid "Preferences"
+#~ msgstr "Voorkeuren"
+
+#~ msgid "Search Music"
+#~ msgstr "Zoek muziek"
+
+#~ msgid "No songs in Queue"
+#~ msgstr "Geen nummers in de wachtrij"
+
+#~ msgid ""
+#~ "To add songs to the queue, use the <b>secondary click</b> on an item and "
+#~ "choose <b>Queue</b>. When a song finishes, the queued songs will be "
+#~ "played first before the next song in the currently playing list."
+#~ msgstr ""
+#~ "Om items in de wachtlijst te zetten, klik met de <b>rechter muisknop</b> "
+#~ "op een nummer en selecteer je <b>Wachtlijst</b>. Wanneer een nummer "
+#~ "eindigt, zullen items voor het volgende nummer in de huidige wachtlijst "
+#~ "eerst afgespeeld worden."
+
+#~ msgid "No songs in History"
+#~ msgstr "Geen nummers in geschiedenis"
+
+#~ msgid ""
+#~ "After a part of a song has been played, it is added to the history list.\n"
+#~ "You can use this list to see all the songs you have played during the "
+#~ "current session."
+#~ msgstr ""
+#~ "Als er een nummer wordt afgespeeld, wordt deze toegevoegd aan de "
+#~ "Geschiedenis lijst.\n"
+#~ "Je kunt deze lijst gebruiken om de liedjes die je hebt afgespeeld te "
+#~ "bekijken."
+
+#~ msgid "Import Music"
+#~ msgstr "Importeer muziek"
+
+#~ msgctxt "Name of the playlist"
+#~ msgid "Queue"
+#~ msgstr "Wachtrij"
+
+#~ msgid "File not found"
+#~ msgstr "Bestand niet gevonden"
+
+#, c-format
+#~ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
+#~ msgstr ""
+#~ "Het muziek bestand voor <b>%s</b> door <b>%s</b> kan niet worden gevonden."
+
 #, fuzzy, c-format
-#| msgid "%i music files could not be found?"
-msgid "%i music files could not be found."
-msgstr "%i muziekbestanden konden niet worden gevonden?"
+#~| msgid "%i music files could not be found?"
+#~ msgid "%i music files could not be found."
+#~ msgstr "%i muziekbestanden konden niet worden gevonden?"
 
-#: src/Dialogs/FileNotFoundDialog.vala:53
-msgid "Rescan Library"
-msgstr "Scan bibliotheek opnieuw"
+#~ msgid "Rescan Library"
+#~ msgstr "Scan bibliotheek opnieuw"
 
-#: src/Dialogs/FileNotFoundDialog.vala:54
-msgid "Remove Song"
-msgstr "Verwijder nummer"
+#~ msgid "Remove Song"
+#~ msgstr "Verwijder nummer"
 
-#: src/Dialogs/FileNotFoundDialog.vala:56
-msgid "Find Song"
-msgstr "Zoek nummer"
+#~ msgid "Find Song"
+#~ msgstr "Zoek nummer"
 
-#: src/Dialogs/FileNotFoundDialog.vala:99
-#: src/Dialogs/SetMusicFolderConfirmation.vala:81
-msgid "Choose Music Folder"
-msgstr "Kies muziek-map"
+#~ msgid "Choose Music Folder"
+#~ msgstr "Kies muziek-map"
 
-#: src/Dialogs/InstallGstreamerPluginsDialog.vala:41
 #, c-format
-msgid "Would you like to install the %s plugin?"
-msgstr "Wilt u de %s plugin installeren?"
+#~ msgid "Would you like to install the %s plugin?"
+#~ msgstr "Wilt u de %s plugin installeren?"
 
-#: src/Dialogs/InstallGstreamerPluginsDialog.vala:42
 #, c-format
-msgid "This song cannot be played. The %s plugin is required to play the song."
-msgstr ""
-"Dit nummer kan niet worden afgespeeld. De %s plugin is nodig om deze af te "
-"spelen."
+#~ msgid ""
+#~ "This song cannot be played. The %s plugin is required to play the song."
+#~ msgstr ""
+#~ "Dit nummer kan niet worden afgespeeld. De %s plugin is nodig om deze af "
+#~ "te spelen."
 
-#: src/Dialogs/InstallGstreamerPluginsDialog.vala:51
-msgid "Install Plugin"
-msgstr "Installeer plug-in"
+#~ msgid "Install Plugin"
+#~ msgstr "Installeer plug-in"
 
-#: src/Dialogs/MediaEditor.vala:96
-msgid "Title:"
-msgstr "Titel:"
+#~ msgid "Title:"
+#~ msgstr "Titel:"
 
-#: src/Dialogs/MediaEditor.vala:98
-msgid "Artist:"
-msgstr "Artiest:"
+#~ msgid "Artist:"
+#~ msgstr "Artiest:"
 
-#: src/Dialogs/MediaEditor.vala:100
-msgid "Album:"
-msgstr "Album:"
+#~ msgid "Album:"
+#~ msgstr "Album:"
 
-#: src/Dialogs/MediaEditor.vala:102
-msgid "Album Artist:"
-msgstr "Album artiest:"
+#~ msgid "Album Artist:"
+#~ msgstr "Album artiest:"
 
-#: src/Dialogs/MediaEditor.vala:104
-msgid "Composer:"
-msgstr "Componist:"
+#~ msgid "Composer:"
+#~ msgstr "Componist:"
 
-#: src/Dialogs/MediaEditor.vala:106
-msgid "Grouping:"
-msgstr "Groepering:"
+#~ msgid "Grouping:"
+#~ msgstr "Groepering:"
 
-#: src/Dialogs/MediaEditor.vala:108
-msgid "Genre:"
-msgstr "Genre:"
+#~ msgid "Genre:"
+#~ msgstr "Genre:"
 
-#: src/Dialogs/MediaEditor.vala:110
-msgid "Year:"
-msgstr "Jaar:"
+#~ msgid "Year:"
+#~ msgstr "Jaar:"
 
-#: src/Dialogs/MediaEditor.vala:112
-msgid "Track:"
-msgstr "Nummer:"
+#~ msgid "Track:"
+#~ msgstr "Nummer:"
 
-#: src/Dialogs/MediaEditor.vala:114
-msgid "Disc:"
-msgstr "Disc:"
+#~ msgid "Disc:"
+#~ msgstr "Disc:"
 
-#: src/Dialogs/MediaEditor.vala:116
-msgid "Rating:"
-msgstr "Beoordeling:"
+#~ msgid "Rating:"
+#~ msgstr "Beoordeling:"
 
-#: src/Dialogs/MediaEditor.vala:118
-msgid "Comment:"
-msgstr "Commentaar:"
+#~ msgid "Comment:"
+#~ msgstr "Commentaar:"
 
-#. FIXME: don't know if I can delete this
-#: src/Dialogs/MediaEditor.vala:131 src/Dialogs/PreferencesWindow.vala:88
-#: src/Views/DeviceView.vala:45
-msgid "Close"
-msgstr "Sluiten"
+#~ msgid "Close"
+#~ msgstr "Sluiten"
 
-#: src/Dialogs/NotImportedDialog.vala:50
 #, c-format
-msgid "Issues while importing from %s"
-msgstr "Problemen tijdens het importeren van %s"
+#~ msgid "Issues while importing from %s"
+#~ msgstr "Problemen tijdens het importeren van %s"
 
-#: src/Dialogs/NotImportedDialog.vala:56
 #, c-format
-msgid "Unable to import %d item. The file may be damaged."
-msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] "Kon %d item niet importeren. Het bestand is mogelijks beschadigd."
-msgstr[1] ""
-"Kon %d items niet importeren. De bestanden zijn mogelijks beschadigd."
+#~ msgid "Unable to import %d item. The file may be damaged."
+#~ msgid_plural "Unable to import %d items. The files may be damaged."
+#~ msgstr[0] ""
+#~ "Kon %d item niet importeren. Het bestand is mogelijks beschadigd."
+#~ msgstr[1] ""
+#~ "Kon %d items niet importeren. De bestanden zijn mogelijks beschadigd."
 
-#: src/Dialogs/NotImportedDialog.vala:64
-msgid "Move all corrupted files to trash"
-msgstr "Verplaats alle corrupte bestanden naar de prullenbak"
+#~ msgid "Move all corrupted files to trash"
+#~ msgstr "Verplaats alle corrupte bestanden naar de prullenbak"
 
-#: src/Dialogs/NotImportedDialog.vala:71
-msgid "del"
-msgstr "verwijderen"
+#~ msgid "del"
+#~ msgstr "verwijderen"
 
-#: src/Dialogs/NotImportedDialog.vala:80
-msgid "File Location"
-msgstr "Bestandslocatie"
+#~ msgid "File Location"
+#~ msgstr "Bestandslocatie"
 
-#: src/Dialogs/NotImportedDialog.vala:96
-msgid "Select individual files to move to trash:"
-msgstr ""
-"Selecteer afzonderlijke bestanden om naar de prullenbak te verplaatsen:"
+#~ msgid "Select individual files to move to trash:"
+#~ msgstr ""
+#~ "Selecteer afzonderlijke bestanden om naar de prullenbak te verplaatsen:"
 
-#: src/Dialogs/NotImportedDialog.vala:100 src/Dialogs/RemoveFilesDialog.vala:73
-msgid "Move to Trash"
-msgstr "Naar prullenbak verplaatsen"
+#~ msgid "Move to Trash"
+#~ msgstr "Naar prullenbak verplaatsen"
 
-#: src/Dialogs/NotImportedDialog.vala:103
-msgid "Ignore"
-msgstr "Negeren"
+#~ msgid "Ignore"
+#~ msgstr "Negeren"
 
-#: src/Dialogs/PreferencesWindow.vala:38
-msgid "Select Music Folder…"
-msgstr "Selecteer muziekmap…"
+#~ msgid "Select Music Folder…"
+#~ msgstr "Selecteer muziekmap…"
 
-#: src/Dialogs/PreferencesWindow.vala:70
-msgid "Music Folder Location"
-msgstr "Locatie muziekmap"
+#~ msgid "Music Folder Location"
+#~ msgstr "Locatie muziekmap"
 
-#: src/Dialogs/PreferencesWindow.vala:72
-msgid "Library Management"
-msgstr "Bibliotheekbeheer"
+#~ msgid "Library Management"
+#~ msgstr "Bibliotheekbeheer"
 
-#: src/Dialogs/PreferencesWindow.vala:73
-msgid "Keep Music folder organized:"
-msgstr "Houd Muziekmap georganiseerd:"
+#~ msgid "Keep Music folder organized:"
+#~ msgstr "Houd Muziekmap georganiseerd:"
 
-#: src/Dialogs/PreferencesWindow.vala:75
-msgid "Write metadata to file:"
-msgstr "Schrijf metadata naar bestand:"
+#~ msgid "Write metadata to file:"
+#~ msgstr "Schrijf metadata naar bestand:"
 
-#: src/Dialogs/PreferencesWindow.vala:77
-msgid "Copy imported files to Library:"
-msgstr "Kopieer geïmporteerde bestanden naar bibliotheek:"
+#~ msgid "Copy imported files to Library:"
+#~ msgstr "Kopieer geïmporteerde bestanden naar bibliotheek:"
 
-#: src/Dialogs/PreferencesWindow.vala:79
-msgid "Desktop Integration"
-msgstr "Desktop integratie"
+#~ msgid "Desktop Integration"
+#~ msgstr "Desktop integratie"
 
-#: src/Dialogs/PreferencesWindow.vala:80
-msgid "Continue playback when closed:"
-msgstr "Blijf afspelen op achtergrond:"
+#~ msgid "Continue playback when closed:"
+#~ msgstr "Blijf afspelen op achtergrond:"
 
-#: src/Dialogs/RemoveFilesDialog.vala:49
 #, c-format
-msgid "Remove %d Song From Library?"
-msgid_plural "Remove %d Songs From Library?"
-msgstr[0] "Verwijder %d nummer uit bibliotheek?"
-msgstr[1] "Verwijder %d nummers uit bibliotheek?"
+#~ msgid "Remove %d Song From Library?"
+#~ msgid_plural "Remove %d Songs From Library?"
+#~ msgstr[0] "Verwijder %d nummer uit bibliotheek?"
+#~ msgstr[1] "Verwijder %d nummers uit bibliotheek?"
 
-#: src/Dialogs/RemoveFilesDialog.vala:55
 #, c-format
-msgid "Remove \"%s\" From Library?"
-msgstr "\"%s\" verwijderen uit bibliotheek?"
+#~ msgid "Remove \"%s\" From Library?"
+#~ msgstr "\"%s\" verwijderen uit bibliotheek?"
 
-#: src/Dialogs/RemoveFilesDialog.vala:59
-msgid ""
-"This will remove the song from your library and from any device synced "
-"automatically."
-msgid_plural ""
-"This will remove the songs from your library and from any device synced "
-"automatically."
-msgstr[0] ""
-"Dit zal het nummer verwijderen uit uw muziekbibliotheek en van elk apparaat "
-"dat automatisch synchroniseert."
-msgstr[1] ""
-"Dit zal de nummers verwijderen uit uw muziekbibliotheek en van elk apparaat "
-"dat automatisch synchroniseert."
+#~ msgid ""
+#~ "This will remove the song from your library and from any device synced "
+#~ "automatically."
+#~ msgid_plural ""
+#~ "This will remove the songs from your library and from any device synced "
+#~ "automatically."
+#~ msgstr[0] ""
+#~ "Dit zal het nummer verwijderen uit uw muziekbibliotheek en van elk "
+#~ "apparaat dat automatisch synchroniseert."
+#~ msgstr[1] ""
+#~ "Dit zal de nummers verwijderen uit uw muziekbibliotheek en van elk "
+#~ "apparaat dat automatisch synchroniseert."
 
-#: src/Dialogs/RemoveFilesDialog.vala:83
-msgid "Remove from Library"
-msgstr "Verwijderen uit bibliotheek"
+#~ msgid "Remove from Library"
+#~ msgstr "Verwijderen uit bibliotheek"
 
-#: src/Dialogs/SetMusicFolderConfirmation.vala:38
-msgid "Set Music Folder?"
-msgstr "Muziek-map instellen?"
+#~ msgid "Set Music Folder?"
+#~ msgstr "Muziek-map instellen?"
 
-#: src/Dialogs/SetMusicFolderConfirmation.vala:39
 #, c-format
-msgid ""
-"Are you sure you want to set the music folder to %s? This will reset your "
-"library and remove your playlists."
-msgstr ""
-"Weet je zeker dat je %s als muziekmap in wilt stellen? Dit zal je "
-"muziekbibliotheek resetten en je afspeellijsten verwijderen."
+#~ msgid ""
+#~ "Are you sure you want to set the music folder to %s? This will reset your "
+#~ "library and remove your playlists."
+#~ msgstr ""
+#~ "Weet je zeker dat je %s als muziekmap in wilt stellen? Dit zal je "
+#~ "muziekbibliotheek resetten en je afspeellijsten verwijderen."
 
-#: src/Dialogs/SetMusicFolderConfirmation.vala:47
-msgid "Export Playlists"
-msgstr "Afspeellijst exporteren"
+#~ msgid "Export Playlists"
+#~ msgstr "Afspeellijst exporteren"
 
-#: src/Dialogs/SetMusicFolderConfirmation.vala:61
-msgid "Set Music Folder"
-msgstr "Selecteer muziek-map"
+#~ msgid "Set Music Folder"
+#~ msgstr "Selecteer muziek-map"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:55
-msgid "Playlist Title"
-msgstr "Afspeellijst-naam"
+#~ msgid "Playlist Title"
+#~ msgstr "Afspeellijst-naam"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:58
-msgid "any"
-msgstr "elk"
+#~ msgid "any"
+#~ msgstr "elk"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:59
-msgid "all"
-msgstr "alle"
+#~ msgid "all"
+#~ msgstr "alle"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:63
-msgid "Match"
-msgstr "Overeenkomst"
+#~ msgid "Match"
+#~ msgstr "Overeenkomst"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:65
-msgid "of the following:"
-msgstr "van het volgende:"
+#~ msgid "of the following:"
+#~ msgstr "van het volgende:"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:74
-msgid "Add"
-msgstr "Toevoegen"
+#~ msgid "Add"
+#~ msgstr "Toevoegen"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:79
-msgid "Limit to"
-msgstr "Beperken tot"
+#~ msgid "Limit to"
+#~ msgstr "Beperken tot"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:87
-msgid "items"
-msgstr "items"
+#~ msgid "items"
+#~ msgstr "items"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:103
-msgid "Name of Playlist"
-msgstr "Afspeellijstnaam"
+#~ msgid "Name of Playlist"
+#~ msgstr "Afspeellijstnaam"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:105
-msgid "Rules"
-msgstr "Regels"
+#~ msgid "Rules"
+#~ msgstr "Regels"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:108
-msgid "Options"
-msgstr "Voorkeuren"
+#~ msgid "Options"
+#~ msgstr "Voorkeuren"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:113
-msgid "Smart Playlist Editor"
-msgstr "Slimme afspeellijst bewerker"
+#~ msgid "Smart Playlist Editor"
+#~ msgstr "Slimme afspeellijst bewerker"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:256 src/Widgets/SourceListView.vala:67
-#: src/Widgets/SourceListView.vala:80
-msgid "Remove"
-msgstr "Verwijderen"
+#~ msgid "Remove"
+#~ msgstr "Verwijderen"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:259
-msgid "Album"
-msgstr "Album"
+#~ msgid "Album"
+#~ msgstr "Album"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:260
-msgid "Artist"
-msgstr "Artiest"
+#~ msgid "Artist"
+#~ msgstr "Artiest"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:261
-msgid "Bitrate"
-msgstr "Bitsnelheid"
+#~ msgid "Bitrate"
+#~ msgstr "Bitsnelheid"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:262
-msgid "Comment"
-msgstr "Commentaar"
+#~ msgid "Comment"
+#~ msgstr "Commentaar"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:263
-msgid "Composer"
-msgstr "Componist"
+#~ msgid "Composer"
+#~ msgstr "Componist"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:264
-msgid "Date Added"
-msgstr "Datum toegevoegd"
+#~ msgid "Date Added"
+#~ msgstr "Datum toegevoegd"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:265
-msgid "Genre"
-msgstr "Genre"
+#~ msgid "Genre"
+#~ msgstr "Genre"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:266
-msgid "Grouping"
-msgstr "Groepering"
+#~ msgid "Grouping"
+#~ msgstr "Groepering"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:267
-msgid "Last Played"
-msgstr "Laatst afgespeeld"
+#~ msgid "Last Played"
+#~ msgstr "Laatst afgespeeld"
 
-#. helper for units
-#: src/Dialogs/SmartPlaylistEditor.vala:268
-#: src/Dialogs/SmartPlaylistEditor.vala:413
-msgid "Length"
-msgstr "Duur"
+#~ msgid "Length"
+#~ msgstr "Duur"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:269
-msgid "Playcount"
-msgstr "Aantal keren afgespeeld"
+#~ msgid "Playcount"
+#~ msgstr "Aantal keren afgespeeld"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:270
-msgid "Rating"
-msgstr "Beoordeling"
+#~ msgid "Rating"
+#~ msgstr "Beoordeling"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:271
-msgid "Skipcount"
-msgstr "Aantal keren overgeslagen"
+#~ msgid "Skipcount"
+#~ msgstr "Aantal keren overgeslagen"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:272
-msgid "Title"
-msgstr "Titel"
+#~ msgid "Title"
+#~ msgstr "Titel"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:273
-msgid "Year"
-msgstr "Jaar"
+#~ msgid "Year"
+#~ msgstr "Jaar"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:274
-msgid "URI"
-msgstr "URI"
+#~ msgid "URI"
+#~ msgstr "URI"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:347
-msgid "is"
-msgstr "is"
+#~ msgid "is"
+#~ msgstr "is"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:348
-msgid "contains"
-msgstr "bevat"
+#~ msgid "contains"
+#~ msgstr "bevat"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:349
-msgid "does not contain"
-msgstr "bevat niet"
+#~ msgid "does not contain"
+#~ msgstr "bevat niet"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:375
-#: src/Dialogs/SmartPlaylistEditor.vala:390
-msgid "is exactly"
-msgstr "is gelijk aan"
+#~ msgid "is exactly"
+#~ msgstr "is gelijk aan"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:376
-msgid "is at most"
-msgstr "is maximaal"
+#~ msgid "is at most"
+#~ msgstr "is maximaal"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:377
-msgid "is at least"
-msgstr "is ten minste"
+#~ msgid "is at least"
+#~ msgstr "is ten minste"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:391
-msgid "is within"
-msgstr "is tussen"
+#~ msgid "is within"
+#~ msgstr "is tussen"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:392
-msgid "is before"
-msgstr "is voor"
+#~ msgid "is before"
+#~ msgstr "is voor"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:414
-msgid "seconds"
-msgstr "seconden"
+#~ msgid "seconds"
+#~ msgstr "seconden"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:417
-msgid "days ago"
-msgstr "dagen geleden"
+#~ msgid "days ago"
+#~ msgstr "dagen geleden"
 
-#: src/Dialogs/SmartPlaylistEditor.vala:420
-msgid "kbps"
-msgstr "kbps"
+#~ msgid "kbps"
+#~ msgstr "kbps"
 
-#. be a bit explicit to make translations better
-#: src/Dialogs/SyncWarningDialog.vala:52
 #, c-format
-msgid "Sync will remove %i item from %s"
-msgid_plural "Sync will remove %i items from %s"
-msgstr[0] "Synchronisatie zal %i item uit %s verwijderen"
-msgstr[1] "Synchronisatie zal %i items uit %s verwijderen"
+#~ msgid "Sync will remove %i item from %s"
+#~ msgid_plural "Sync will remove %i items from %s"
+#~ msgstr[0] "Synchronisatie zal %i item uit %s verwijderen"
+#~ msgstr[1] "Synchronisatie zal %i items uit %s verwijderen"
 
-#: src/Dialogs/SyncWarningDialog.vala:55
 #, c-format
-msgid ""
-"If you continue to sync, media will be removed from %s since they are not on "
-"the sync list. Would you like to import them to your library first?"
-msgstr ""
-"Als je doorgaat met synchroniseren zal media verwijderd worden van %s "
-"aangezien deze niet op de synchronisatielijst staan. Wil je deze eerst "
-"importeren in je muziekbibliotheek?"
+#~ msgid ""
+#~ "If you continue to sync, media will be removed from %s since they are not "
+#~ "on the sync list. Would you like to import them to your library first?"
+#~ msgstr ""
+#~ "Als je doorgaat met synchroniseren zal media verwijderd worden van %s "
+#~ "aangezien deze niet op de synchronisatielijst staan. Wil je deze eerst "
+#~ "importeren in je muziekbibliotheek?"
 
-#: src/Dialogs/SyncWarningDialog.vala:57
-msgid "Continue Syncing"
-msgstr "Ga verder met het synchroniseren"
+#~ msgid "Continue Syncing"
+#~ msgstr "Ga verder met het synchroniseren"
 
-#: src/Dialogs/SyncWarningDialog.vala:62
-msgid "Import"
-msgstr "Importeer"
+#~ msgid "Import"
+#~ msgstr "Importeer"
 
-#: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
-msgid "Importing music from %s…"
-msgstr "Muziek importeren van %s…"
+#~ msgid "Importing music from %s…"
+#~ msgstr "Muziek importeren van %s…"
 
-#: src/LocalBackend/LocalLibrary.vala:215
-msgid "Adding files to library…"
-msgstr "Bestanden toevoegen aan bibliotheek…"
+#~ msgid "Adding files to library…"
+#~ msgstr "Bestanden toevoegen aan bibliotheek…"
 
-#: src/LocalBackend/LocalLibrary.vala:228
-msgid "<b>Importing</b> music to library…"
-msgstr "<b>Importeren</b> van muziek naar bibliotheek…"
+#~ msgid "<b>Importing</b> music to library…"
+#~ msgstr "<b>Importeren</b> van muziek naar bibliotheek…"
 
-#: src/LocalBackend/LocalLibrary.vala:250
-msgid "All music files are already in your library"
-msgstr "Alle muziekbestanden bevinden zich reeds in uw bibliotheek"
+#~ msgid "All music files are already in your library"
+#~ msgstr "Alle muziekbestanden bevinden zich reeds in uw bibliotheek"
 
-#: src/LocalBackend/LocalLibrary.vala:250
-msgid "No files were imported."
-msgstr "Er zijn geen bestanden geïmporteerd."
+#~ msgid "No files were imported."
+#~ msgstr "Er zijn geen bestanden geïmporteerd."
 
-#: src/LocalBackend/LocalLibrary.vala:255
-msgid "Rescanning music for changes. This may take a while…"
-msgstr "Muziek opnieuw aan het scannen voor veranderingen. Dit kan even duren…"
+#~ msgid "Rescanning music for changes. This may take a while…"
+#~ msgstr ""
+#~ "Muziek opnieuw aan het scannen voor veranderingen. Dit kan even duren…"
 
-#: src/LocalBackend/LocalLibrary.vala:356
-msgid "Added to your queue:"
-msgstr "Toegevoegd aan je wachtrij:"
+#~ msgid "Added to your queue:"
+#~ msgstr "Toegevoegd aan je wachtrij:"
 
-#: src/LocalBackend/LocalLibrary.vala:367
 #, c-format
-msgid "%d Track"
-msgid_plural "%d Tracks"
-msgstr[0] "%d Nummer"
-msgstr[1] "%d Nummers"
+#~ msgid "%d Track"
+#~ msgid_plural "%d Tracks"
+#~ msgstr[0] "%d Nummer"
+#~ msgstr[1] "%d Nummers"
 
-#: src/LocalBackend/LocalSmartPlaylist.vala:218
-msgid "Favorite Songs"
-msgstr "Favoriete Nummers"
+#~ msgid "Favorite Songs"
+#~ msgstr "Favoriete Nummers"
 
-#: src/LocalBackend/LocalSmartPlaylist.vala:226
-msgid "Recently Added"
-msgstr "Recentelijk toegevoegd"
+#~ msgid "Recently Added"
+#~ msgstr "Recentelijk toegevoegd"
 
-#: src/LocalBackend/LocalSmartPlaylist.vala:234
-msgid "Recent Favorites"
-msgstr "Recente favorieten"
+#~ msgid "Recent Favorites"
+#~ msgstr "Recente favorieten"
 
-#: src/LocalBackend/LocalSmartPlaylist.vala:242
-msgid "Never Played"
-msgstr "Nooit afgespeeld"
+#~ msgid "Never Played"
+#~ msgstr "Nooit afgespeeld"
 
-#: src/LocalBackend/LocalSmartPlaylist.vala:250
-msgid "Over Played"
-msgstr "Vaak gespeeld"
+#~ msgid "Over Played"
+#~ msgstr "Vaak gespeeld"
 
-#: src/LocalBackend/LocalSmartPlaylist.vala:258
-msgid "Not Recently Played"
-msgstr "Niet recentelijk afgespeeld"
+#~ msgid "Not Recently Played"
+#~ msgstr "Niet recentelijk afgespeeld"
 
-#: src/Objects/HistoryPlaylist.vala:38
-msgid "History"
-msgstr "Geschiedenis"
+#~ msgid "History"
+#~ msgstr "Geschiedenis"
 
-#: src/Objects/MPRIS.vala:617 src/Widgets/SourceListView.vala:341
-msgid "Playlists"
-msgstr "Afspeellijsten"
+#~ msgid "Playlists"
+#~ msgstr "Afspeellijsten"
 
-#: src/Views/DeviceSummaryWidget.vala:60
-msgid "Device Name:"
-msgstr "Apparaatnaam:"
+#~ msgid "Device Name:"
+#~ msgstr "Apparaatnaam:"
 
-#: src/Views/DeviceSummaryWidget.vala:64
-msgid "Device Name"
-msgstr "Apparaatnaam"
+#~ msgid "Device Name"
+#~ msgstr "Apparaatnaam"
 
-#: src/Views/DeviceSummaryWidget.vala:66
-msgid "Automatically sync when plugged in:"
-msgstr "Automatisch synchroniseren bij aankoppelen:"
+#~ msgid "Automatically sync when plugged in:"
+#~ msgstr "Automatisch synchroniseren bij aankoppelen:"
 
-#: src/Views/DeviceSummaryWidget.vala:72
-msgid "Sync:"
-msgstr "Synchroniseren:"
+#~ msgid "Sync:"
+#~ msgstr "Synchroniseren:"
 
-#: src/Views/DeviceSummaryWidget.vala:100 src/Widgets/SourceListView.vala:192
-msgid "Sync"
-msgstr "Synchroniseren"
+#~ msgid "Sync"
+#~ msgstr "Synchroniseren"
 
-#: src/Views/DeviceSummaryWidget.vala:244
-msgid "All Music"
-msgstr "Alle muziek"
+#~ msgid "All Music"
+#~ msgstr "Alle muziek"
 
-#: src/Views/DeviceSummaryWidget.vala:298
-msgid "Sync Failed"
-msgstr "Synchronisatie mislukt"
+#~ msgid "Sync Failed"
+#~ msgstr "Synchronisatie mislukt"
 
-#: src/Views/DeviceSummaryWidget.vala:299
 #, c-format
-msgid ""
-"The playlist named %s is used to sync device %s, but could not be found."
-msgstr ""
-"De afspeellijst %s wordt gebruikt om apparaat %s te synchroniseren, maar kon "
-"niet gevonden worden."
+#~ msgid ""
+#~ "The playlist named %s is used to sync device %s, but could not be found."
+#~ msgstr ""
+#~ "De afspeellijst %s wordt gebruikt om apparaat %s te synchroniseren, maar "
+#~ "kon niet gevonden worden."
 
-#: src/Views/DeviceSummaryWidget.vala:316
-#: src/Views/DeviceSummaryWidget.vala:321
-msgid "Cannot Sync"
-msgstr "Kan niet synchroniseren"
+#~ msgid "Cannot Sync"
+#~ msgstr "Kan niet synchroniseren"
 
-#: src/Views/DeviceSummaryWidget.vala:317
-msgid ""
-"Cannot sync device with selected sync settings. Not enough space on disk"
-msgstr ""
-"Kan het apparaat niet synchroniseren met de geselecteerde instellingen. Niet "
-"genoeg schijfruimte"
+#~ msgid ""
+#~ "Cannot sync device with selected sync settings. Not enough space on disk"
+#~ msgstr ""
+#~ "Kan het apparaat niet synchroniseren met de geselecteerde instellingen. "
+#~ "Niet genoeg schijfruimte"
 
-#: src/Views/DeviceSummaryWidget.vala:322
-msgid "Device is already doing an operation."
-msgstr "Het apparaat is al bezig met een operatie."
+#~ msgid "Device is already doing an operation."
+#~ msgstr "Het apparaat is al bezig met een operatie."
 
-#: src/Views/DeviceView.vala:66
-msgid "Cancelling…"
-msgstr "Afbreken…"
+#~ msgid "Cancelling…"
+#~ msgstr "Afbreken…"
 
-#: src/Views/DeviceView.vala:66
-msgid "Device operation has been cancelled and will stop after this media."
-msgstr "Apparaat bewerking is geannuleerd en stopt na deze media."
+#~ msgid "Device operation has been cancelled and will stop after this media."
+#~ msgstr "Apparaat bewerking is geannuleerd en stopt na deze media."
 
-#: src/Views/ViewStack.vala:45
-msgid "No Results"
-msgstr "Geen resultaten"
+#~ msgid "No Results"
+#~ msgstr "Geen resultaten"
 
-#: src/Views/ViewStack.vala:45
-msgid "Try another search"
-msgstr "Probeer een andere zoekopdracht"
+#~ msgid "Try another search"
+#~ msgstr "Probeer een andere zoekopdracht"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
-msgid "Genres"
-msgstr "Genres"
+#~ msgid "Genres"
+#~ msgstr "Genres"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:60
-msgid "Artists"
-msgstr "Artiesten"
+#~ msgid "Artists"
+#~ msgstr "Artiesten"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:62
-msgid "Albums"
-msgstr "Albums"
+#~ msgid "Albums"
+#~ msgstr "Albums"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:64
-msgid "Years"
-msgstr "Jaren"
+#~ msgid "Years"
+#~ msgstr "Jaren"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:66
-msgid "Ratings"
-msgstr "Waardering"
+#~ msgid "Ratings"
+#~ msgstr "Waardering"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:68
-msgid "Composers"
-msgstr "Componisten"
+#~ msgid "Composers"
+#~ msgstr "Componisten"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:70
-msgid "Groupings"
-msgstr "Groeperingen"
+#~ msgid "Groupings"
+#~ msgstr "Groeperingen"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
-msgid "All Genres"
-msgstr "Alle Genres"
+#~ msgid "All Genres"
+#~ msgstr "Alle Genres"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
 #, c-format
-msgid "All %i Genres"
-msgstr "Alle %i Genres"
+#~ msgid "All %i Genres"
+#~ msgstr "Alle %i Genres"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
-msgid "No Genres"
-msgstr "Geen Genres"
+#~ msgid "No Genres"
+#~ msgstr "Geen Genres"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
-msgid "All Artists"
-msgstr "Alle Artiesten"
+#~ msgid "All Artists"
+#~ msgstr "Alle Artiesten"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
 #, c-format
-msgid "All %i Artists"
-msgstr "Alle %i Artiesten"
+#~ msgid "All %i Artists"
+#~ msgstr "Alle %i Artiesten"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
-msgid "No Artists"
-msgstr "Geen Artiesten"
+#~ msgid "No Artists"
+#~ msgstr "Geen Artiesten"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
-msgid "All Albums"
-msgstr "Alle Albums"
+#~ msgid "All Albums"
+#~ msgstr "Alle Albums"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
 #, c-format
-msgid "All %i Albums"
-msgstr "Alle %i Albums"
+#~ msgid "All %i Albums"
+#~ msgstr "Alle %i Albums"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
-msgid "No Albums"
-msgstr "Geen Albums"
+#~ msgid "No Albums"
+#~ msgstr "Geen Albums"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
-msgid "All Years"
-msgstr "Alle Jaren"
+#~ msgid "All Years"
+#~ msgstr "Alle Jaren"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
 #, c-format
-msgid "All %i Years"
-msgstr "Alle %i Jaren"
+#~ msgid "All %i Years"
+#~ msgstr "Alle %i Jaren"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:250
-msgid "No Years"
-msgstr "Geen Jaren"
+#~ msgid "No Years"
+#~ msgstr "Geen Jaren"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
-msgid "All Ratings"
-msgstr "Alle Beoordelingen"
+#~ msgid "All Ratings"
+#~ msgstr "Alle Beoordelingen"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
-msgid "No Ratings"
-msgstr "Geen Beoordelingen"
+#~ msgid "No Ratings"
+#~ msgstr "Geen Beoordelingen"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
-msgid "All Groupings"
-msgstr "Alle groeperingen"
+#~ msgid "All Groupings"
+#~ msgstr "Alle groeperingen"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
 #, c-format
-msgid "All %i Groupings"
-msgstr "Alle %i groeperingen"
+#~ msgid "All %i Groupings"
+#~ msgstr "Alle %i groeperingen"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
-msgid "No Groupings"
-msgstr "Geen groeperingen"
+#~ msgid "No Groupings"
+#~ msgstr "Geen groeperingen"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:271
-msgid "All Composers"
-msgstr "Alle componisten"
+#~ msgid "All Composers"
+#~ msgstr "Alle componisten"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:273
 #, c-format
-msgid "All %i Composers"
-msgstr "Alle %i componisten"
+#~ msgid "All %i Composers"
+#~ msgstr "Alle %i componisten"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:275
-msgid "No Composers"
-msgstr "Geen componisten"
+#~ msgid "No Composers"
+#~ msgstr "Geen componisten"
 
-#. We cannot make these constants due to issues with N_()
-#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
-#: src/Widgets/EqualizerPopover.vala:326 src/Widgets/PresetList.vala:52
-msgid "Automatic"
-msgstr "Automatisch"
+#~ msgid "Automatic"
+#~ msgstr "Automatisch"
 
-#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:146
-msgid "On Left"
-msgstr "Aan de linkerkant"
+#~ msgid "On Left"
+#~ msgstr "Aan de linkerkant"
 
-#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:147
-msgid "On Top"
-msgstr "Bovenop"
+#~ msgid "On Top"
+#~ msgstr "Bovenop"
 
-#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:428
-msgid "Unrated"
-msgstr "Niet beoordeeld"
+#~ msgid "Unrated"
+#~ msgstr "Niet beoordeeld"
 
-#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:430
 #, c-format
-msgid "%u Star"
-msgid_plural "%u Stars"
-msgstr[0] "%u Ster"
-msgstr[1] "%u Sterren"
+#~ msgid "%u Star"
+#~ msgid_plural "%u Stars"
+#~ msgstr[0] "%u Ster"
+#~ msgstr[1] "%u Sterren"
 
-#: src/Views/ListView/Lists/CellDataFunctionHelper.vala:128
 #, c-format
-msgid "%u kbps"
-msgstr "%u kbps"
+#~ msgid "%u kbps"
+#~ msgstr "%u kbps"
 
-#: src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
-#: src/Views/ListView/Lists/MusicListView.vala:425
-msgid "Never"
-msgstr "Nooit"
+#~ msgid "Never"
+#~ msgstr "Nooit"
 
-#: src/Views/ListView/Lists/ListColumn.vala:69
-msgctxt "List column title"
-msgid "#"
-msgstr "#"
+#~ msgctxt "List column title"
+#~ msgid "#"
+#~ msgstr "#"
 
-#: src/Views/ListView/Lists/ListColumn.vala:72
-msgctxt "List column title"
-msgid "Track"
-msgstr "Nummer"
+#~ msgctxt "List column title"
+#~ msgid "Track"
+#~ msgstr "Nummer"
 
-#: src/Views/ListView/Lists/ListColumn.vala:75
-msgctxt "List column title"
-msgid "Title"
-msgstr "Titel"
+#~ msgctxt "List column title"
+#~ msgid "Title"
+#~ msgstr "Titel"
 
-#: src/Views/ListView/Lists/ListColumn.vala:78
-msgctxt "List column title"
-msgid "Length"
-msgstr "Lengte"
+#~ msgctxt "List column title"
+#~ msgid "Length"
+#~ msgstr "Lengte"
 
-#: src/Views/ListView/Lists/ListColumn.vala:81
-msgctxt "List column title"
-msgid "Artist"
-msgstr "Artiest"
+#~ msgctxt "List column title"
+#~ msgid "Artist"
+#~ msgstr "Artiest"
 
-#: src/Views/ListView/Lists/ListColumn.vala:84
-msgctxt "List column title"
-msgid "Album"
-msgstr "Album"
+#~ msgctxt "List column title"
+#~ msgid "Album"
+#~ msgstr "Album"
 
-#: src/Views/ListView/Lists/ListColumn.vala:87
-msgctxt "List column title"
-msgid "Album Artist"
-msgstr "Albumartiest"
+#~ msgctxt "List column title"
+#~ msgid "Album Artist"
+#~ msgstr "Albumartiest"
 
-#: src/Views/ListView/Lists/ListColumn.vala:90
-msgctxt "List column title"
-msgid "Composer"
-msgstr "Componist"
+#~ msgctxt "List column title"
+#~ msgid "Composer"
+#~ msgstr "Componist"
 
-#: src/Views/ListView/Lists/ListColumn.vala:93
-msgctxt "List column title"
-msgid "Genre"
-msgstr "Genre"
+#~ msgctxt "List column title"
+#~ msgid "Genre"
+#~ msgstr "Genre"
 
-#: src/Views/ListView/Lists/ListColumn.vala:96
-msgctxt "List column title"
-msgid "Year"
-msgstr "Jaar"
+#~ msgctxt "List column title"
+#~ msgid "Year"
+#~ msgstr "Jaar"
 
-#: src/Views/ListView/Lists/ListColumn.vala:99
-msgctxt "List column title"
-msgid "Grouping"
-msgstr "Groepering"
+#~ msgctxt "List column title"
+#~ msgid "Grouping"
+#~ msgstr "Groepering"
 
-#: src/Views/ListView/Lists/ListColumn.vala:102
-msgctxt "List column title"
-msgid "Bitrate"
-msgstr "Bitsnelheid"
+#~ msgctxt "List column title"
+#~ msgid "Bitrate"
+#~ msgstr "Bitsnelheid"
 
-#: src/Views/ListView/Lists/ListColumn.vala:105
-msgctxt "List column title"
-msgid "Rating"
-msgstr "Beoordeling"
+#~ msgctxt "List column title"
+#~ msgid "Rating"
+#~ msgstr "Beoordeling"
 
-#: src/Views/ListView/Lists/ListColumn.vala:108
-msgctxt "List column title"
-msgid "Plays"
-msgstr "Afgespeeld"
+#~ msgctxt "List column title"
+#~ msgid "Plays"
+#~ msgstr "Afgespeeld"
 
-#: src/Views/ListView/Lists/ListColumn.vala:111
-msgctxt "List column title"
-msgid "Skips"
-msgstr "Doorgespoeld"
+#~ msgctxt "List column title"
+#~ msgid "Skips"
+#~ msgstr "Doorgespoeld"
 
-#: src/Views/ListView/Lists/ListColumn.vala:114
-msgctxt "List column title"
-msgid "Date Added"
-msgstr "Datum toegevoegd"
+#~ msgctxt "List column title"
+#~ msgid "Date Added"
+#~ msgstr "Datum toegevoegd"
 
-#: src/Views/ListView/Lists/ListColumn.vala:117
-msgctxt "List column title"
-msgid "Last Played"
-msgstr "Laatst afgespeeld"
+#~ msgctxt "List column title"
+#~ msgid "Last Played"
+#~ msgstr "Laatst afgespeeld"
 
-#: src/Views/ListView/Lists/ListColumn.vala:120
-msgctxt "List column title (beats per minute)"
-msgid "BPM"
-msgstr "BPM"
+#~ msgctxt "List column title (beats per minute)"
+#~ msgid "BPM"
+#~ msgstr "BPM"
 
-#: src/Views/ListView/Lists/ListColumn.vala:123
-msgctxt "List column title (file location)"
-msgid "Location"
-msgstr "Locatie"
+#~ msgctxt "List column title (file location)"
+#~ msgid "Location"
+#~ msgstr "Locatie"
 
-#: src/Views/ListView/Lists/ListColumn.vala:126
-msgctxt "List column title"
-msgid "File Size"
-msgstr "Bestandsgrootte"
+#~ msgctxt "List column title"
+#~ msgid "File Size"
+#~ msgstr "Bestandsgrootte"
 
-#: src/Views/ListView/Lists/MusicListView.vala:74
-msgid "Autosize Columns"
-msgstr "Pas kolommen automatisch aan"
+#~ msgid "Autosize Columns"
+#~ msgstr "Pas kolommen automatisch aan"
 
-#: src/Views/ListView/Lists/MusicListView.vala:410
-msgid "1234 kbps"
-msgstr "1234 kbps"
+#~ msgid "1234 kbps"
+#~ msgstr "1234 kbps"
 
-#. / Sample string used to measure the ideal size of the Title, Artist,
-#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
-#. / list view. It's *never* displayed in the user interface. The translated
-#. / string should have a reasonable length, similar to the average length
-#. / of a song title or artist name in your language. The automatic column
-#. / width will depend on the length of this string and the space needed
-#. / by the column's title header.
-#: src/Views/ListView/Lists/MusicListView.vala:481
-msgid "Sample List String"
-msgstr "Dance (The war is over)"
+#~ msgid "Sample List String"
+#~ msgstr "Dance (The war is over)"
 
-#. Welcome screen
-#: src/Views/Wrappers/MusicViewWrapper.vala:56
-msgid "Get Some Tunes"
-msgstr "Scoor wat nummers"
+#~ msgid "Get Some Tunes"
+#~ msgstr "Scoor wat nummers"
 
-#: src/Views/Wrappers/MusicViewWrapper.vala:57
-msgid "Add music to your library."
-msgstr "Voeg muziek toe aan je bibliotheek."
+#~ msgid "Add music to your library."
+#~ msgstr "Voeg muziek toe aan je bibliotheek."
 
-#: src/Views/Wrappers/MusicViewWrapper.vala:60
-msgid "Import music from a source into your library."
-msgstr "Importeer een nummer van een bron naar uw bibliotheek."
+#~ msgid "Import music from a source into your library."
+#~ msgstr "Importeer een nummer van een bron naar uw bibliotheek."
 
-#: src/Views/Wrappers/MusicViewWrapper.vala:62
-msgid "Change Music Folder"
-msgstr "Wijzig muziekmap"
+#~ msgid "Change Music Folder"
+#~ msgstr "Wijzig muziekmap"
 
-#: src/Views/Wrappers/MusicViewWrapper.vala:63
-msgid "Load music from a folder, a network or an external disk."
-msgstr "Laad muziek uit een map, een netwerk of een externe schijf."
+#~ msgid "Load music from a folder, a network or an external disk."
+#~ msgstr "Laad muziek uit een map, een netwerk of een externe schijf."
 
-#: src/Views/Wrappers/MusicViewWrapper.vala:110
-#: src/Views/Wrappers/MusicViewWrapper.vala:130
-msgid "Import your Music"
-msgstr "Importeer je muziek"
+#~ msgid "Import your Music"
+#~ msgstr "Importeer je muziek"
 
-#: src/Views/Wrappers/MusicViewWrapper.vala:111
-#: src/Views/Wrappers/MusicViewWrapper.vala:131
 #, c-format
-msgid "Import all your Music from %s into your library."
-msgstr "Importeer al je muziek uit %s naar je bibliotheek."
+#~ msgid "Import all your Music from %s into your library."
+#~ msgstr "Importeer al je muziek uit %s naar je bibliotheek."
 
-#: src/Views/Wrappers/MusicViewWrapper.vala:143
-msgid "Select Music Folder"
-msgstr "Selecteer muziekmap"
+#~ msgid "Select Music Folder"
+#~ msgstr "Selecteer muziekmap"
 
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:50
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:54
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:64
-msgid "No Songs"
-msgstr "Geen nummers"
+#~ msgid "No Songs"
+#~ msgstr "Geen nummers"
 
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:51
-msgid "Updating playlist. Please wait."
-msgstr "Afspeellijst wordt bijgewerkt. Een moment geduld."
+#~ msgid "Updating playlist. Please wait."
+#~ msgstr "Afspeellijst wordt bijgewerkt. Een moment geduld."
 
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:55
-msgid ""
-"To add songs to this playlist, use the <b>secondary click</b> on an item and "
-"choose <b>Add to Playlist</b>."
-msgstr ""
-"Om nummers aan deze afspeellijst toe te voegen, gebruik de <b>rechter "
-"muisknop</b> op een item en kies <b>Toevoegen aan afspeellijst</b>."
+#~ msgid ""
+#~ "To add songs to this playlist, use the <b>secondary click</b> on an item "
+#~ "and choose <b>Add to Playlist</b>."
+#~ msgstr ""
+#~ "Om nummers aan deze afspeellijst toe te voegen, gebruik de <b>rechter "
+#~ "muisknop</b> op een item en kies <b>Toevoegen aan afspeellijst</b>."
 
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:58
-msgid "Edit Smart Playlist"
-msgstr "Bewerk slimme afspeellijst"
+#~ msgid "Edit Smart Playlist"
+#~ msgstr "Bewerk slimme afspeellijst"
 
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:65
-msgid ""
-"This playlist will be automatically populated with songs that match its "
-"rules. To modify these rules, use the <b>secondary click</b> on it in the "
-"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
-"below."
-msgstr ""
-"De afspeellijst zal automatisch aangevuld worden met nummers die "
-"overeenkomen met de opgegeven regels. Om deze regels aan te passen, gebruik "
-"je de <b>rechter muisknop</b> op de regel in de kantlijn en klik je op "
-"<b>Aanpassen</b>.  Je kan optioneel ook op de knop hieronder klikken."
+#~ msgid ""
+#~ "This playlist will be automatically populated with songs that match its "
+#~ "rules. To modify these rules, use the <b>secondary click</b> on it in the "
+#~ "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
+#~ "below."
+#~ msgstr ""
+#~ "De afspeellijst zal automatisch aangevuld worden met nummers die "
+#~ "overeenkomen met de opgegeven regels. Om deze regels aan te passen, "
+#~ "gebruik je de <b>rechter muisknop</b> op de regel in de kantlijn en klik "
+#~ "je op <b>Aanpassen</b>.  Je kan optioneel ook op de knop hieronder "
+#~ "klikken."
 
-#: src/Views/Wrappers/ViewWrapper.vala:418
-msgid "No media"
-msgstr "Geen medium"
+#~ msgid "No media"
+#~ msgstr "Geen medium"
 
-#: src/Widgets/AlbumListGrid.vala:63
-msgid "Set new album cover"
-msgstr "Nieuwe albumillustratie kiezen"
+#~ msgid "Set new album cover"
+#~ msgstr "Nieuwe albumillustratie kiezen"
 
-#: src/Widgets/AlbumListGrid.vala:193
-msgid "Image files"
-msgstr "Afbeeldingsbestanden"
+#~ msgid "Image files"
+#~ msgstr "Afbeeldingsbestanden"
 
-#: src/Widgets/AlbumListGrid.vala:200
-msgid "_Open"
-msgstr "_Open"
+#~ msgid "_Open"
+#~ msgstr "_Open"
 
-#: src/Widgets/AlbumListGrid.vala:201
-msgid "_Cancel"
-msgstr "_Annuleer"
+#~ msgid "_Cancel"
+#~ msgstr "_Annuleer"
 
-#: src/Widgets/EqualizerPopover.vala:162
-msgid "Save preset"
-msgstr "Voorinstelling opslaan"
+#~ msgid "Save preset"
+#~ msgstr "Voorinstelling opslaan"
 
-#: src/Widgets/EqualizerPopover.vala:330
-msgid "Off"
-msgstr "Uit"
+#~ msgid "Off"
+#~ msgstr "Uit"
 
-#: src/Widgets/EqualizerPopover.vala:418
 #, c-format
-msgid "%s (Custom)"
-msgstr "%s (aangepast)"
+#~ msgid "%s (Custom)"
+#~ msgstr "%s (aangepast)"
 
-#: src/Widgets/EqualizerPopover.vala:420
 #, c-format
-msgid "%s (Custom %i)"
-msgstr "%s (aangepast %i)"
+#~ msgid "%s (Custom %i)"
+#~ msgstr "%s (aangepast %i)"
 
-#: src/Widgets/EqualizerPopover.vala:423
-msgid "Custom Preset"
-msgstr "Aangepaste voorinstelling"
+#~ msgid "Custom Preset"
+#~ msgstr "Aangepaste voorinstelling"
 
-#: src/Widgets/EqualizerPopover.vala:425
 #, c-format
-msgid "Custom Preset %i"
-msgstr "Aangepaste voorinstelling %i"
+#~ msgid "Custom Preset %i"
+#~ msgstr "Aangepaste voorinstelling %i"
 
-#: src/Widgets/MediaMenu.vala:46
-msgid "Scroll to Current Song"
-msgstr "Scroll naar het huidige nummer"
+#~ msgid "Scroll to Current Song"
+#~ msgstr "Scroll naar het huidige nummer"
 
-#: src/Widgets/MediaMenu.vala:49
-msgid "Show in File Browser…"
-msgstr "Toon in verkenner…"
+#~ msgid "Show in File Browser…"
+#~ msgstr "Toon in verkenner…"
 
-#: src/Widgets/MediaMenu.vala:50
-msgid "Edit Song Info…"
-msgstr "Bewerk informatie…"
+#~ msgid "Edit Song Info…"
+#~ msgstr "Bewerk informatie…"
 
-#: src/Widgets/MediaMenu.vala:51
-msgid "Other Actions"
-msgstr "Andere acties"
+#~ msgid "Other Actions"
+#~ msgstr "Andere acties"
 
-#: src/Widgets/MediaMenu.vala:53
-msgctxt "Action item (verb)"
-msgid "Queue"
-msgstr "In wachtrij zetten"
+#~ msgctxt "Action item (verb)"
+#~ msgid "Queue"
+#~ msgstr "In wachtrij zetten"
 
-#: src/Widgets/MediaMenu.vala:54
-msgid "Add to Playlist"
-msgstr "Toevoegen aan afspeellijst"
+#~ msgid "Add to Playlist"
+#~ msgstr "Toevoegen aan afspeellijst"
 
-#: src/Widgets/MediaMenu.vala:55
-msgid "Remove Song…"
-msgstr "Verwijder nummer…"
+#~ msgid "Remove Song…"
+#~ msgstr "Verwijder nummer…"
 
-#: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
-msgid "Import to Library"
-msgstr "Importeren naar bibliotheek"
+#~ msgid "Import to Library"
+#~ msgstr "Importeren naar bibliotheek"
 
-#: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
-msgid "Remove from Library…"
-msgstr "Verwijderen uit bibliotheek…"
+#~ msgid "Remove from Library…"
+#~ msgstr "Verwijderen uit bibliotheek…"
 
-#: src/Widgets/MediaMenu.vala:99
-msgid "Remove from Device"
-msgstr "Verwijder van apparaat"
+#~ msgid "Remove from Device"
+#~ msgstr "Verwijder van apparaat"
 
-#: src/Widgets/MediaMenu.vala:119
-msgid "Remove from Queue"
-msgstr "Verwijder van wachtrij"
+#~ msgid "Remove from Queue"
+#~ msgstr "Verwijder van wachtrij"
 
-#: src/Widgets/MediaMenu.vala:153
-msgid "New Playlist…"
-msgstr "Nieuwe afspeellijst…"
+#~ msgid "New Playlist…"
+#~ msgstr "Nieuwe afspeellijst…"
 
-#: src/Widgets/MediaMenu.vala:193
 #, c-format
-msgid "Import %i of %i selected songs"
-msgstr "Importeer %i van %i geselecteerde nummers"
+#~ msgid "Import %i of %i selected songs"
+#~ msgstr "Importeer %i van %i geselecteerde nummers"
 
-#: src/Widgets/MediaMenu.vala:195
 #, c-format
-msgid "Import %i song"
-msgid_plural "Import %i songs"
-msgstr[0] "Importeer %i liedje"
-msgstr[1] "Importeer %i liedjes"
+#~ msgid "Import %i song"
+#~ msgid_plural "Import %i songs"
+#~ msgstr[0] "Importeer %i liedje"
+#~ msgstr[1] "Importeer %i liedjes"
 
-#: src/Widgets/PresetList.vala:53
-msgid "Delete Current"
-msgstr "Huidige verwijderen"
+#~ msgid "Delete Current"
+#~ msgstr "Huidige verwijderen"
 
-#: src/Widgets/SourceListView.vala:66 src/Widgets/SourceListView.vala:78
-msgid "Rename"
-msgstr "Naam wijzigen"
+#~ msgid "Rename"
+#~ msgstr "Naam wijzigen"
 
-#: src/Widgets/SourceListView.vala:79
-msgid "Edit…"
-msgstr "Bewerken…"
+#~ msgid "Edit…"
+#~ msgstr "Bewerken…"
 
-#: src/Widgets/SourceListView.vala:95
-msgid "Save as Playlist"
-msgstr "Als afspeellijst opslaan"
+#~ msgid "Save as Playlist"
+#~ msgstr "Als afspeellijst opslaan"
 
-#: src/Widgets/SourceListView.vala:103
-msgid "Export…"
-msgstr "Exporteren…"
+#~ msgid "Export…"
+#~ msgstr "Exporteren…"
 
-#: src/Widgets/SourceListView.vala:166
-msgid "Eject"
-msgstr "Uitwerpen"
+#~ msgid "Eject"
+#~ msgstr "Uitwerpen"
 
-#: src/Widgets/SourceListView.vala:176 src/Widgets/SourceListView.vala:219
-msgid "New Playlist"
-msgstr "Nieuwe afspeellijst"
+#~ msgid "New Playlist"
+#~ msgstr "Nieuwe afspeellijst"
 
-#: src/Widgets/SourceListView.vala:184 src/Widgets/SourceListView.vala:220
-msgid "New Smart Playlist"
-msgstr "Nieuwe slimme afspeellijst"
+#~ msgid "New Smart Playlist"
+#~ msgstr "Nieuwe slimme afspeellijst"
 
-#: src/Widgets/SourceListView.vala:221
-msgid "Import Playlists"
-msgstr "Afspeellijsten importeren"
+#~ msgid "Import Playlists"
+#~ msgstr "Afspeellijsten importeren"
 
-#. Adds the different sidebar categories.
-#: src/Widgets/SourceListView.vala:338
-msgid "Library"
-msgstr "Bibliotheek"
+#~ msgid "Library"
+#~ msgstr "Bibliotheek"
 
-#: src/Widgets/SourceListView.vala:339
-msgid "Devices"
-msgstr "Apparaten"
+#~ msgid "Devices"
+#~ msgstr "Apparaten"
 
-#: src/Widgets/SourceListView.vala:340
-msgid "Network"
-msgstr "Netwerk"
+#~ msgid "Network"
+#~ msgstr "Netwerk"
 
-#: src/Widgets/StatusBar.vala:36
-msgid "Add Playlist"
-msgstr "Afspeellijst Toevoegen"
+#~ msgid "Add Playlist"
+#~ msgstr "Afspeellijst Toevoegen"
 
-#: src/Widgets/StatusBar.vala:37
-msgid "Add Smart Playlist"
-msgstr "Voeg intelligente afspeellijst toe"
+#~ msgid "Add Smart Playlist"
+#~ msgstr "Voeg intelligente afspeellijst toe"
 
-#: src/Widgets/StatusBar.vala:48
-msgid "Add Playlist…"
-msgstr "Afspeellijst Toevoegen…"
+#~ msgid "Add Playlist…"
+#~ msgstr "Afspeellijst Toevoegen…"
 
-#. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
-#: src/Widgets/StatusBar.vala:74
 #, c-format
-msgid "Equalizer: %s"
-msgstr "Equalizer: %s"
+#~ msgid "Equalizer: %s"
+#~ msgstr "Equalizer: %s"
 
-#. MUST follow the exact same order of Music.Player.Repeat
-#: src/Widgets/TopDisplay.vala:138
-msgid "Enable Repeat"
-msgstr "Herhalen inschakelen"
+#~ msgid "Enable Repeat"
+#~ msgstr "Herhalen inschakelen"
 
-#: src/Widgets/TopDisplay.vala:139
-msgid "Repeat Song"
-msgstr "Nummer herhalen"
+#~ msgid "Disable Repeat"
+#~ msgstr "Herhalen uitschakelen"
 
-#: src/Widgets/TopDisplay.vala:140
-msgid "Disable Repeat"
-msgstr "Herhalen uitschakelen"
+#~ msgid "Disable Shuffle"
+#~ msgstr "Shuffle uitschakelen"
 
-#: src/Widgets/TopDisplay.vala:159
-msgid "Enable Shuffle"
-msgstr "Shuffle inschakelen"
+#~ msgid "View as albums"
+#~ msgstr "Albumweergave"
 
-#: src/Widgets/TopDisplay.vala:160
-msgid "Disable Shuffle"
-msgstr "Shuffle uitschakelen"
+#~ msgid "View as list"
+#~ msgstr "Lijstweergave"
 
-#: src/Widgets/ViewSelector.vala:81
-msgid "View as albums"
-msgstr "Albumweergave"
-
-#: src/Widgets/ViewSelector.vala:87
-msgid "View as list"
-msgstr "Lijstweergave"
-
-#: src/Widgets/ViewSelector.vala:93
-msgid "View in columns"
-msgstr "Kolomweergave"
+#~ msgid "View in columns"
+#~ msgstr "Kolomweergave"
 
 #~ msgid "No similar songs found"
 #~ msgstr "Geen vergelijkbare liedjes gevonden"
@@ -1563,9 +1244,6 @@ msgstr "Kolomweergave"
 
 #~ msgid "Song"
 #~ msgstr "Nummer"
-
-#~ msgid "Repeat Album"
-#~ msgstr "Album herhalen"
 
 #~ msgid "Repeat Artist"
 #~ msgstr "Artiest herhalen"

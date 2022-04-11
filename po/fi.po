@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-16 19:03+0000\n"
+"POT-Creation-Date: 2022-04-11 14:16-0700\n"
 "PO-Revision-Date: 2021-05-04 13:09+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <https://l10n.elementary.io/projects/music/music/fi/"
@@ -20,1406 +20,1087 @@ msgstr ""
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-03-19 06:29+0000\n"
 
-#: core/LibrariesManager.vala:146
-msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "Tuodaan <b>$NAME</b> esittäjältä <b>$ARTIST</b> kirjastoon…"
-
-#. / Used for unknown titles, artists, or album names.
-#: core/Media.vala:33
-msgid "Unknown"
-msgstr "Tuntematon"
-
-#. / Please keep $NAME and $ALBUM, they will be replaced by their values
-#: core/Media.vala:180
-msgid "$NAME on $ALBUM"
-msgstr "$NAME albumilla $ALBUM"
-
-#. / Please keep $NAME and $ARTIST, they will be replaced by their values
-#: core/Media.vala:183
-msgid "$NAME by $ARTIST"
-msgstr "$NAME, esittäjä $ARTIST"
-
-#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
-#: core/Media.vala:189
-msgid "$NAME by $ARTIST on $ALBUM"
-msgstr "$NAME, esittäjä $ARTIST albumilla $ALBUM"
-
-#: core/GStreamer/Equalizer.vala:70
-msgid "Flat"
-msgstr "Tasainen"
-
-#: core/GStreamer/Equalizer.vala:71
-msgid "Classical"
-msgstr "Classical"
-
-#: core/GStreamer/Equalizer.vala:72
-msgid "Club"
-msgstr "Club"
-
-#: core/GStreamer/Equalizer.vala:73
-msgid "Dance"
-msgstr "Dance"
-
-#: core/GStreamer/Equalizer.vala:74
-msgid "Full Bass"
-msgstr "Basso täysillä"
-
-#: core/GStreamer/Equalizer.vala:75
-msgid "Full Treble"
-msgstr "Diskantti täysillä"
-
-#: core/GStreamer/Equalizer.vala:76
-msgid "Full Bass + Treble"
-msgstr "Basso ja diskantti täysillä"
-
-#: core/GStreamer/Equalizer.vala:77
-msgid "Headphones"
-msgstr "Kuulokkeet"
-
-#: core/GStreamer/Equalizer.vala:78
-msgid "Large Hall"
-msgstr "Suuri sali"
-
-#: core/GStreamer/Equalizer.vala:79
-msgid "Live"
-msgstr "Live"
-
-#: core/GStreamer/Equalizer.vala:80
-msgid "Party"
-msgstr "Party"
-
-#: core/GStreamer/Equalizer.vala:81
-msgid "Pop"
-msgstr "Pop"
-
-#: core/GStreamer/Equalizer.vala:82
-msgid "Reggae"
-msgstr "Reggae"
-
-#: core/GStreamer/Equalizer.vala:83
-msgid "Rock"
-msgstr "Rock"
-
-#: core/GStreamer/Equalizer.vala:84
-msgid "Soft"
-msgstr "Soft"
-
-#: core/GStreamer/Equalizer.vala:85
-msgid "Ska"
-msgstr "Ska"
-
-#: core/GStreamer/Equalizer.vala:86
-msgid "Soft Rock"
-msgstr "Soft Rock"
-
-#: core/GStreamer/Equalizer.vala:87
-msgid "Techno"
-msgstr "Tekno"
-
-#: core/Utils/FileUtils.vala:142
-#, c-format
-msgid " (%d)"
-msgstr " (%d)"
-
-#: core/Utils/PlaylistsUtils.vala:95
-#, c-format
-msgid "%s (%d)"
-msgstr "%s (%d)"
-
-#: core/Utils/PlaylistsUtils.vala:234
-msgid "New playlist"
-msgstr "Uusi soittolista"
-
-#. Translators: used for new playlists ex: "New playlist (1)"
-#: core/Utils/PlaylistsUtils.vala:245
-#, c-format
-msgid "%s (%i)"
-msgstr "%s (%i)"
-
-#: core/Utils/PlaylistsUtils.vala:265 core/Utils/PlaylistsUtils.vala:334
-msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr "MPEG-versio 3.0, laajennettu (*.m3u)"
-
-#: core/Utils/PlaylistsUtils.vala:269 core/Utils/PlaylistsUtils.vala:338
-msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr "Shoutcast-soittolista, versio 2.0 (*.pls)"
-
-#: core/Utils/PlaylistsUtils.vala:272
-msgid "Export Playlist"
-msgstr "Vie soittolista"
-
-#: core/Utils/PlaylistsUtils.vala:275 src/Dialogs/MediaEditor.vala:133
-#: src/Dialogs/SmartPlaylistEditor.vala:92
-msgid "Save"
-msgstr "Tallenna"
-
-#: core/Utils/PlaylistsUtils.vala:276 core/Utils/PlaylistsUtils.vala:345
-#: src/LibraryWindow.vala:1030 src/Dialogs/FileNotFoundDialog.vala:55
-#: src/Dialogs/FileNotFoundDialog.vala:103
-#: src/Dialogs/InstallGstreamerPluginsDialog.vala:49
-#: src/Dialogs/RemoveFilesDialog.vala:82
-#: src/Dialogs/SetMusicFolderConfirmation.vala:85
-#: src/Dialogs/SmartPlaylistEditor.vala:89
-#: src/Dialogs/SyncWarningDialog.vala:60
-#: src/Views/Wrappers/MusicViewWrapper.vala:147 src/Widgets/TopDisplay.vala:63
-msgid "Cancel"
-msgstr "Peru"
-
-#: core/Utils/PlaylistsUtils.vala:329
-msgid "Playlist"
-msgstr "Soittolista"
-
-#: core/Utils/PlaylistsUtils.vala:341
-#, c-format
-msgid "Import %s"
-msgstr "Tuo %s"
-
-#: core/Utils/PlaylistsUtils.vala:344 src/LibraryWindow.vala:1029
-#: src/Dialogs/FileNotFoundDialog.vala:102
-#: src/Dialogs/SetMusicFolderConfirmation.vala:84
-#: src/Views/Wrappers/MusicViewWrapper.vala:146
-#: src/Widgets/AlbumListGrid.vala:197
-msgid "Open"
-msgstr "Avaa"
-
-#: core/Utils/PlaylistsUtils.vala:371
-msgid "Unrecognized playlist file. Import failed."
-msgstr "Tunnistamaton soittolistatiedosto. Tuonti epäonnistui."
-
-#. / Format of date strings. See reference documentation of g_date_time_format()
-#. / for more details.
-#: core/Utils/TimeUtils.vala:40
-msgid "%m/%e/%Y %l:%M %p"
-msgstr "%e.%m.%Y %l:%M %p"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:109
-#: plugins/Devices/iPod/iPodDevice.vala:68
-msgid "Empty device!"
-msgstr "Tyhjä laite!"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:113
-#: plugins/Devices/iPod/iPodDevice.vala:72
-msgid "This device does not contain any music."
-msgstr "Tämä laite ei sisällä minkäänlaista musiikkia."
-
-#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:158
-msgid "Android Phone"
-msgstr "Android-puhelin"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:160
-msgid "Audio Player"
-msgstr "Musiikkisoitin"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:146
-#: plugins/Devices/iPod/iPodLibrary.vala:167
-msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr ""
-"Lisätään esittäjän <b>$ARTIST</b> kappale <b>$NAME</b> laitteelle $DEVICE"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:171
-#: plugins/Devices/iPod/iPodLibrary.vala:216
-#, c-format
-msgid "Syncing <b>%s</b>…"
-msgstr "Synkronoidaan <b>%s</b>…"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:283
-#: plugins/Devices/iPod/iPodLibrary.vala:561
-msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr ""
-"Poistetaan esittäjän <b>$ARTIST</b> kappale <b>$NAME</b> laitteelta $DEVICE"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:315
-#: plugins/Devices/iPod/iPodLibrary.vala:366
-#, c-format
-msgid "Removing from <b>%s</b>…"
-msgstr "Poistetaan laitteelta <b>%s</b>…"
-
-#: plugins/Devices/iPod/iPodLibrary.vala:238
-#: plugins/Devices/iPod/iPodLibrary.vala:404
-msgid "Finishing sync process…"
-msgstr "Viimeistellään synkronointiprosessia…"
-
-#: plugins/Devices/iPod/iPodLibrary.vala:250
-#: plugins/Devices/iPod/iPodLibrary.vala:416
-msgid "Cancelling Sync…"
-msgstr "Perutaan synkronointia…"
-
-#: src/FileOperator.vala:306
-msgid "Import Complete"
-msgstr "Tuonti on valmis"
-
-#: src/FileOperator.vala:306
-msgid "Your Library Has Been Imported."
-msgstr "Kirjastosi on tuotu."
-
-#. if doing import and copy to music folder is enabled, do copy here
-#: src/FileOperator.vala:316
-msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr "<b>Kopioidaan</b> tiedostoja <b>musiikkikansioon</b>…"
-
-#: src/LibraryWindow.vala:197 src/LibraryWindow.vala:275
-#: src/LibraryWindow.vala:631 src/LibraryWindow.vala:751
+#: src/Application.vala:63 src/Views/NowPlayingView.vala:18
+#: src/Views/NowPlayingView.vala:116
 msgid "Music"
 msgstr "Musiikki"
 
-#: src/LibraryWindow.vala:216
-msgid "Import to Library…"
-msgstr "Tuo kirjastoon…"
+#: src/MainWindow.vala:26
+#, fuzzy
+msgid "Shuffle"
+msgstr "Ota sekoitus käyttöön"
 
-#: src/LibraryWindow.vala:219 src/Dialogs/PreferencesWindow.vala:32
-msgid "Preferences"
-msgstr "Asetukset"
+#: src/MainWindow.vala:41
+msgid "Queue is Empty"
+msgstr ""
 
-#: src/LibraryWindow.vala:238
+#: src/MainWindow.vala:42
+msgid "Audio files opened from Files will appear here"
+msgstr ""
+
+#: src/MainWindow.vala:148
+#, fuzzy
+msgid "Repeat None"
+msgstr "Toista kappaletta"
+
+#: src/MainWindow.vala:152
+#, fuzzy
+msgid "Repeat All"
+msgstr "Toista albumi"
+
+#: src/MainWindow.vala:156
+#, fuzzy
+msgid "Repeat One"
+msgstr "Toista kappaletta"
+
+#: src/PlaybackManager.vala:103
+#, c-format
+msgid "%d track was added to the queue"
+msgid_plural "%d tracks were added to the queue"
+msgstr[0] ""
+msgstr[1] ""
+
+#. Don't set artist for files without tags
+#: src/PlaybackManager.vala:163
+msgid "Unknown"
+msgstr "Tuntematon"
+
+#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
+#, fuzzy
+msgid "Not playing"
+msgstr "Uusi soittolista"
+
+#: src/Views/NowPlayingView.vala:45
 msgid "Previous"
 msgstr "Edellinen"
 
-#: src/LibraryWindow.vala:245 src/LibraryWindow.vala:311
-msgid "Play"
-msgstr "Toista"
-
-#: src/LibraryWindow.vala:252
+#: src/Views/NowPlayingView.vala:68
 msgid "Next"
 msgstr "Seuraava"
 
-#: src/LibraryWindow.vala:256
-msgid "Search Music"
-msgstr "Etsi musiikkia"
+#: src/Views/NowPlayingView.vala:93
+msgid "Play"
+msgstr "Toista"
 
-#: src/LibraryWindow.vala:317
+#: src/Views/NowPlayingView.vala:96
 msgid "Pause"
 msgstr "Keskeytä"
 
-#: src/LibraryWindow.vala:820
-msgid "No songs in Queue"
-msgstr "Jonossa ei ole kappaleita"
+#~ msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
+#~ msgstr "Tuodaan <b>$NAME</b> esittäjältä <b>$ARTIST</b> kirjastoon…"
 
-#: src/LibraryWindow.vala:820
-msgid ""
-"To add songs to the queue, use the <b>secondary click</b> on an item and "
-"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
-"first before the next song in the currently playing list."
-msgstr ""
-"Lisää kappaleita jonoon napsauttamalla kohdetta hiiren <b>oikealla "
-"painikkeella</b> ja valitsemalla <b>Lisää jonoon</b>. Kun kappale loppuu, "
-"jonoon asetetut kappaleet toistetaan ennen soittolistalla seuraavana olevaa "
-"kappaletta."
+#~ msgid "$NAME on $ALBUM"
+#~ msgstr "$NAME albumilla $ALBUM"
 
-#: src/LibraryWindow.vala:823
-msgid "No songs in History"
-msgstr "Historiassa ei ole kappaleita"
+#~ msgid "$NAME by $ARTIST"
+#~ msgstr "$NAME, esittäjä $ARTIST"
 
-#: src/LibraryWindow.vala:823
-msgid ""
-"After a part of a song has been played, it is added to the history list.\n"
-"You can use this list to see all the songs you have played during the "
-"current session."
-msgstr ""
-"Kun kappaleesta on soitettu tietty osa, kyseinen kappale lisätään "
-"historialuetteloon.\n"
-"Näet kaikki tällä kuuntelukerralla kuuntelemasi kappaleet tämän luettelon "
-"avulla."
+#~ msgid "$NAME by $ARTIST on $ALBUM"
+#~ msgstr "$NAME, esittäjä $ARTIST albumilla $ALBUM"
 
-#: src/LibraryWindow.vala:1026 src/Views/Wrappers/MusicViewWrapper.vala:59
-msgid "Import Music"
-msgstr "Tuo musiikkia"
+#~ msgid "Flat"
+#~ msgstr "Tasainen"
 
-#: src/PlaybackManager.vala:117
-msgctxt "Name of the playlist"
-msgid "Queue"
-msgstr "Jono"
+#~ msgid "Classical"
+#~ msgstr "Classical"
 
-#: src/Dialogs/FileNotFoundDialog.vala:37
-msgid "File not found"
-msgstr "Tiedostoa ei löydy"
+#~ msgid "Club"
+#~ msgstr "Club"
 
-#: src/Dialogs/FileNotFoundDialog.vala:47
+#~ msgid "Dance"
+#~ msgstr "Dance"
+
+#~ msgid "Full Bass"
+#~ msgstr "Basso täysillä"
+
+#~ msgid "Full Treble"
+#~ msgstr "Diskantti täysillä"
+
+#~ msgid "Full Bass + Treble"
+#~ msgstr "Basso ja diskantti täysillä"
+
+#~ msgid "Headphones"
+#~ msgstr "Kuulokkeet"
+
+#~ msgid "Large Hall"
+#~ msgstr "Suuri sali"
+
+#~ msgid "Live"
+#~ msgstr "Live"
+
+#~ msgid "Party"
+#~ msgstr "Party"
+
+#~ msgid "Pop"
+#~ msgstr "Pop"
+
+#~ msgid "Reggae"
+#~ msgstr "Reggae"
+
+#~ msgid "Rock"
+#~ msgstr "Rock"
+
+#~ msgid "Soft"
+#~ msgstr "Soft"
+
+#~ msgid "Ska"
+#~ msgstr "Ska"
+
+#~ msgid "Soft Rock"
+#~ msgstr "Soft Rock"
+
+#~ msgid "Techno"
+#~ msgstr "Tekno"
+
 #, c-format
-msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
-msgstr "Musiikkitiedostoa <b>%s</b>, esittäjä <b>%s</b>, ei löydy."
+#~ msgid " (%d)"
+#~ msgstr " (%d)"
 
-#: src/Dialogs/FileNotFoundDialog.vala:50
 #, c-format
-msgid "%i music files could not be found."
-msgstr "%i musiikkitiedostoa ei löytynyt."
+#~ msgid "%s (%d)"
+#~ msgstr "%s (%d)"
 
-#: src/Dialogs/FileNotFoundDialog.vala:53
-msgid "Rescan Library"
-msgstr "Selaa kirjasto uudelleen"
-
-#: src/Dialogs/FileNotFoundDialog.vala:54
-msgid "Remove Song"
-msgstr "Poista kappale"
-
-#: src/Dialogs/FileNotFoundDialog.vala:56
-msgid "Find Song"
-msgstr "Etsi kappale"
-
-#: src/Dialogs/FileNotFoundDialog.vala:99
-#: src/Dialogs/SetMusicFolderConfirmation.vala:81
-msgid "Choose Music Folder"
-msgstr "Valitse musiikkikansio"
-
-#: src/Dialogs/InstallGstreamerPluginsDialog.vala:41
 #, c-format
-msgid "Would you like to install the %s plugin?"
-msgstr "Haluatko asentaa liitännäisen %s?"
+#~ msgid "%s (%i)"
+#~ msgstr "%s (%i)"
 
-#: src/Dialogs/InstallGstreamerPluginsDialog.vala:42
+#~ msgid "MPEG Version 3.0 Extended (*.m3u)"
+#~ msgstr "MPEG-versio 3.0, laajennettu (*.m3u)"
+
+#~ msgid "Shoutcast Playlist Version 2.0 (*.pls)"
+#~ msgstr "Shoutcast-soittolista, versio 2.0 (*.pls)"
+
+#~ msgid "Export Playlist"
+#~ msgstr "Vie soittolista"
+
+#~ msgid "Save"
+#~ msgstr "Tallenna"
+
+#~ msgid "Cancel"
+#~ msgstr "Peru"
+
+#~ msgid "Playlist"
+#~ msgstr "Soittolista"
+
 #, c-format
-msgid "This song cannot be played. The %s plugin is required to play the song."
-msgstr "Tämän kappaleen toistaminen ei onnistu. Liitännäinen %s vaaditaan."
+#~ msgid "Import %s"
+#~ msgstr "Tuo %s"
 
-#: src/Dialogs/InstallGstreamerPluginsDialog.vala:51
-msgid "Install Plugin"
-msgstr "Asenna liitännäinen"
+#~ msgid "Open"
+#~ msgstr "Avaa"
 
-#: src/Dialogs/MediaEditor.vala:96
-msgid "Title:"
-msgstr "Nimi:"
+#~ msgid "Unrecognized playlist file. Import failed."
+#~ msgstr "Tunnistamaton soittolistatiedosto. Tuonti epäonnistui."
 
-#: src/Dialogs/MediaEditor.vala:98
-msgid "Artist:"
-msgstr "Esittäjä:"
+#~ msgid "%m/%e/%Y %l:%M %p"
+#~ msgstr "%e.%m.%Y %l:%M %p"
 
-#: src/Dialogs/MediaEditor.vala:100
-msgid "Album:"
-msgstr "Albumi:"
+#~ msgid "Empty device!"
+#~ msgstr "Tyhjä laite!"
 
-#: src/Dialogs/MediaEditor.vala:102
-msgid "Album Artist:"
-msgstr "Albumin esittäjä:"
+#~ msgid "This device does not contain any music."
+#~ msgstr "Tämä laite ei sisällä minkäänlaista musiikkia."
 
-#: src/Dialogs/MediaEditor.vala:104
-msgid "Composer:"
-msgstr "Säveltäjä:"
+#~ msgid "Android Phone"
+#~ msgstr "Android-puhelin"
 
-#: src/Dialogs/MediaEditor.vala:106
-msgid "Grouping:"
-msgstr "Ryhmittely:"
+#~ msgid "Audio Player"
+#~ msgstr "Musiikkisoitin"
 
-#: src/Dialogs/MediaEditor.vala:108
-msgid "Genre:"
-msgstr "Tyylilaji:"
+#~ msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
+#~ msgstr ""
+#~ "Lisätään esittäjän <b>$ARTIST</b> kappale <b>$NAME</b> laitteelle $DEVICE"
 
-#: src/Dialogs/MediaEditor.vala:110
-msgid "Year:"
-msgstr "Vuosi:"
-
-#: src/Dialogs/MediaEditor.vala:112
-msgid "Track:"
-msgstr "Kappale:"
-
-#: src/Dialogs/MediaEditor.vala:114
-msgid "Disc:"
-msgstr "Levy:"
-
-#: src/Dialogs/MediaEditor.vala:116
-msgid "Rating:"
-msgstr "Arvostelu:"
-
-#: src/Dialogs/MediaEditor.vala:118
-msgid "Comment:"
-msgstr "Kommentti:"
-
-#. FIXME: don't know if I can delete this
-#: src/Dialogs/MediaEditor.vala:131 src/Dialogs/PreferencesWindow.vala:88
-#: src/Views/DeviceView.vala:45
-msgid "Close"
-msgstr "Sulje"
-
-#: src/Dialogs/NotImportedDialog.vala:50
 #, c-format
-msgid "Issues while importing from %s"
-msgstr "Ongelmia tuodessa musiikkia kohteesta %s"
+#~ msgid "Syncing <b>%s</b>…"
+#~ msgstr "Synkronoidaan <b>%s</b>…"
 
-#: src/Dialogs/NotImportedDialog.vala:56
+#~ msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
+#~ msgstr ""
+#~ "Poistetaan esittäjän <b>$ARTIST</b> kappale <b>$NAME</b> laitteelta "
+#~ "$DEVICE"
+
 #, c-format
-msgid "Unable to import %d item. The file may be damaged."
-msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] "Ei voitu tuoda %d kohdetta. Tiedosto saattaa olla vahingoittunut."
-msgstr[1] ""
-"Ei voitu tuoda %d kohdetta. Tiedostot saattavat olla vahingoittuneita."
+#~ msgid "Removing from <b>%s</b>…"
+#~ msgstr "Poistetaan laitteelta <b>%s</b>…"
 
-#: src/Dialogs/NotImportedDialog.vala:64
-msgid "Move all corrupted files to trash"
-msgstr "Siirrä kaikki korruptoituneet tiedostot roskakoriin"
+#~ msgid "Finishing sync process…"
+#~ msgstr "Viimeistellään synkronointiprosessia…"
 
-#: src/Dialogs/NotImportedDialog.vala:71
-msgid "del"
-msgstr "poista"
+#~ msgid "Cancelling Sync…"
+#~ msgstr "Perutaan synkronointia…"
 
-#: src/Dialogs/NotImportedDialog.vala:80
-msgid "File Location"
-msgstr "Tiedoston sijainti"
+#~ msgid "Import Complete"
+#~ msgstr "Tuonti on valmis"
 
-#: src/Dialogs/NotImportedDialog.vala:96
-msgid "Select individual files to move to trash:"
-msgstr "Valitse yksittäiset roskakoriin siirrettävät tiedostot:"
+#~ msgid "Your Library Has Been Imported."
+#~ msgstr "Kirjastosi on tuotu."
 
-#: src/Dialogs/NotImportedDialog.vala:100 src/Dialogs/RemoveFilesDialog.vala:73
-msgid "Move to Trash"
-msgstr "Siirrä roskakoriin"
+#~ msgid "<b>Copying</b> files to <b>Music Folder</b>…"
+#~ msgstr "<b>Kopioidaan</b> tiedostoja <b>musiikkikansioon</b>…"
 
-#: src/Dialogs/NotImportedDialog.vala:103
-msgid "Ignore"
-msgstr "Ohita"
+#~ msgid "Import to Library…"
+#~ msgstr "Tuo kirjastoon…"
 
-#: src/Dialogs/PreferencesWindow.vala:38
-msgid "Select Music Folder…"
-msgstr "Valitse musiikkikansio…"
+#~ msgid "Preferences"
+#~ msgstr "Asetukset"
 
-#: src/Dialogs/PreferencesWindow.vala:70
-msgid "Music Folder Location"
-msgstr "Musiikkikansion sijainti"
+#~ msgid "Search Music"
+#~ msgstr "Etsi musiikkia"
 
-#: src/Dialogs/PreferencesWindow.vala:72
-msgid "Library Management"
-msgstr "Kirjaston hallinta"
+#~ msgid "No songs in Queue"
+#~ msgstr "Jonossa ei ole kappaleita"
 
-#: src/Dialogs/PreferencesWindow.vala:73
-msgid "Keep Music folder organized:"
-msgstr "Pidä musiikkikansio organisoituna:"
+#~ msgid ""
+#~ "To add songs to the queue, use the <b>secondary click</b> on an item and "
+#~ "choose <b>Queue</b>. When a song finishes, the queued songs will be "
+#~ "played first before the next song in the currently playing list."
+#~ msgstr ""
+#~ "Lisää kappaleita jonoon napsauttamalla kohdetta hiiren <b>oikealla "
+#~ "painikkeella</b> ja valitsemalla <b>Lisää jonoon</b>. Kun kappale loppuu, "
+#~ "jonoon asetetut kappaleet toistetaan ennen soittolistalla seuraavana "
+#~ "olevaa kappaletta."
 
-#: src/Dialogs/PreferencesWindow.vala:75
-msgid "Write metadata to file:"
-msgstr "Kirjoita metatiedot tiedostoon:"
+#~ msgid "No songs in History"
+#~ msgstr "Historiassa ei ole kappaleita"
 
-#: src/Dialogs/PreferencesWindow.vala:77
-msgid "Copy imported files to Library:"
-msgstr "Kopioi tuodut tiedostot kirjastoon:"
+#~ msgid ""
+#~ "After a part of a song has been played, it is added to the history list.\n"
+#~ "You can use this list to see all the songs you have played during the "
+#~ "current session."
+#~ msgstr ""
+#~ "Kun kappaleesta on soitettu tietty osa, kyseinen kappale lisätään "
+#~ "historialuetteloon.\n"
+#~ "Näet kaikki tällä kuuntelukerralla kuuntelemasi kappaleet tämän luettelon "
+#~ "avulla."
 
-#: src/Dialogs/PreferencesWindow.vala:79
-msgid "Desktop Integration"
-msgstr "Työpöytäintegraatio"
+#~ msgid "Import Music"
+#~ msgstr "Tuo musiikkia"
 
-#: src/Dialogs/PreferencesWindow.vala:80
-msgid "Continue playback when closed:"
-msgstr "Jatka toistoa suljettaessa:"
+#~ msgctxt "Name of the playlist"
+#~ msgid "Queue"
+#~ msgstr "Jono"
 
-#: src/Dialogs/RemoveFilesDialog.vala:49
+#~ msgid "File not found"
+#~ msgstr "Tiedostoa ei löydy"
+
 #, c-format
-msgid "Remove %d Song From Library?"
-msgid_plural "Remove %d Songs From Library?"
-msgstr[0] "Poistetaanko %d kappale kirjastosta?"
-msgstr[1] "Poistetaanko %d kappaletta kirjastosta?"
+#~ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
+#~ msgstr "Musiikkitiedostoa <b>%s</b>, esittäjä <b>%s</b>, ei löydy."
 
-#: src/Dialogs/RemoveFilesDialog.vala:55
 #, c-format
-msgid "Remove \"%s\" From Library?"
-msgstr "Poistetaanko \"%s\" kirjastosta?"
+#~ msgid "%i music files could not be found."
+#~ msgstr "%i musiikkitiedostoa ei löytynyt."
 
-#: src/Dialogs/RemoveFilesDialog.vala:59
-msgid ""
-"This will remove the song from your library and from any device synced "
-"automatically."
-msgid_plural ""
-"This will remove the songs from your library and from any device synced "
-"automatically."
-msgstr[0] ""
-"Tämä poistaa kappaleen kirjastostasi ja kaikilta laitteilta, jotka ovat "
-"automaattisesti synkronoituja."
-msgstr[1] ""
-"Tämä poistaa kappaleet kirjastostasi ja kaikilta laitteilta, jotka ovat "
-"automaattisesti synkronoituja."
+#~ msgid "Rescan Library"
+#~ msgstr "Selaa kirjasto uudelleen"
 
-#: src/Dialogs/RemoveFilesDialog.vala:83
-msgid "Remove from Library"
-msgstr "Poista kirjastosta"
+#~ msgid "Remove Song"
+#~ msgstr "Poista kappale"
 
-#: src/Dialogs/SetMusicFolderConfirmation.vala:38
-msgid "Set Music Folder?"
-msgstr "Aseta musiikkikansio?"
+#~ msgid "Find Song"
+#~ msgstr "Etsi kappale"
 
-#: src/Dialogs/SetMusicFolderConfirmation.vala:39
+#~ msgid "Choose Music Folder"
+#~ msgstr "Valitse musiikkikansio"
+
 #, c-format
-msgid ""
-"Are you sure you want to set the music folder to %s? This will reset your "
-"library and remove your playlists."
-msgstr ""
-"Haluatko varmasti asettaa kansion %s musiikkikansioksi? Tämän toimenpiteen "
-"seurauksena kirjastosi tyhjenee ja soittolistat poistuvat."
+#~ msgid "Would you like to install the %s plugin?"
+#~ msgstr "Haluatko asentaa liitännäisen %s?"
 
-#: src/Dialogs/SetMusicFolderConfirmation.vala:47
-msgid "Export Playlists"
-msgstr "Vie soittolistoja"
-
-#: src/Dialogs/SetMusicFolderConfirmation.vala:61
-msgid "Set Music Folder"
-msgstr "Aseta musiikkikansio"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:55
-msgid "Playlist Title"
-msgstr "Soittolistan nimi"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:58
-msgid "any"
-msgstr "mihin tahansa"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:59
-msgid "all"
-msgstr "kaikkiin"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:63
-msgid "Match"
-msgstr "Täsmää"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:65
-msgid "of the following:"
-msgstr "seuraavista:"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:74
-msgid "Add"
-msgstr "Lisää"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:79
-msgid "Limit to"
-msgstr "Rajoita"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:87
-msgid "items"
-msgstr "kohteeseen"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:103
-msgid "Name of Playlist"
-msgstr "Soittolistan nimi"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:105
-msgid "Rules"
-msgstr "Säännöt"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:108
-msgid "Options"
-msgstr "Asetukset"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:113
-msgid "Smart Playlist Editor"
-msgstr "Älykkään soittolistan muokkain"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:256 src/Widgets/SourceListView.vala:67
-#: src/Widgets/SourceListView.vala:80
-msgid "Remove"
-msgstr "Poista"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:259
-msgid "Album"
-msgstr "Albumi"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:260
-msgid "Artist"
-msgstr "Artisti"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:261
-msgid "Bitrate"
-msgstr "Laatu"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:262
-msgid "Comment"
-msgstr "Kommentti"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:263
-msgid "Composer"
-msgstr "Säveltäjä"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:264
-msgid "Date Added"
-msgstr "Lisäyspäivä"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:265
-msgid "Genre"
-msgstr "Tyylilaji"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:266
-msgid "Grouping"
-msgstr "Ryhmittely"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:267
-msgid "Last Played"
-msgstr "Viimeksi soitettu"
-
-#. helper for units
-#: src/Dialogs/SmartPlaylistEditor.vala:268
-#: src/Dialogs/SmartPlaylistEditor.vala:413
-msgid "Length"
-msgstr "Kesto"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:269
-msgid "Playcount"
-msgstr "Soittokerrat"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:270
-msgid "Rating"
-msgstr "Arvostelu"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:271
-msgid "Skipcount"
-msgstr "Ohituskerrat"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:272
-msgid "Title"
-msgstr "Nimi"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:273
-msgid "Year"
-msgstr "Vuosi"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:274
-msgid "URI"
-msgstr "URI"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:347
-msgid "is"
-msgstr "on"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:348
-msgid "contains"
-msgstr "sisältää"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:349
-msgid "does not contain"
-msgstr "ei sisällä"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:375
-#: src/Dialogs/SmartPlaylistEditor.vala:390
-msgid "is exactly"
-msgstr "on tarkalleen"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:376
-msgid "is at most"
-msgstr "on enintään"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:377
-msgid "is at least"
-msgstr "on vähintään"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:391
-msgid "is within"
-msgstr "ajankohta on"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:392
-msgid "is before"
-msgstr "on ennen"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:414
-msgid "seconds"
-msgstr "sekuntia"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:417
-msgid "days ago"
-msgstr "päivää sitten"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:420
-msgid "kbps"
-msgstr "kb/s"
-
-#. be a bit explicit to make translations better
-#: src/Dialogs/SyncWarningDialog.vala:52
 #, c-format
-msgid "Sync will remove %i item from %s"
-msgid_plural "Sync will remove %i items from %s"
-msgstr[0] "Synkronointi poistaa %i kohteen kohteesta %s"
-msgstr[1] "Synkronointi poistaa %i kohdetta kohteesta %s"
+#~ msgid ""
+#~ "This song cannot be played. The %s plugin is required to play the song."
+#~ msgstr "Tämän kappaleen toistaminen ei onnistu. Liitännäinen %s vaaditaan."
 
-#: src/Dialogs/SyncWarningDialog.vala:55
+#~ msgid "Install Plugin"
+#~ msgstr "Asenna liitännäinen"
+
+#~ msgid "Title:"
+#~ msgstr "Nimi:"
+
+#~ msgid "Artist:"
+#~ msgstr "Esittäjä:"
+
+#~ msgid "Album:"
+#~ msgstr "Albumi:"
+
+#~ msgid "Album Artist:"
+#~ msgstr "Albumin esittäjä:"
+
+#~ msgid "Composer:"
+#~ msgstr "Säveltäjä:"
+
+#~ msgid "Grouping:"
+#~ msgstr "Ryhmittely:"
+
+#~ msgid "Genre:"
+#~ msgstr "Tyylilaji:"
+
+#~ msgid "Year:"
+#~ msgstr "Vuosi:"
+
+#~ msgid "Track:"
+#~ msgstr "Kappale:"
+
+#~ msgid "Disc:"
+#~ msgstr "Levy:"
+
+#~ msgid "Rating:"
+#~ msgstr "Arvostelu:"
+
+#~ msgid "Comment:"
+#~ msgstr "Kommentti:"
+
+#~ msgid "Close"
+#~ msgstr "Sulje"
+
 #, c-format
-msgid ""
-"If you continue to sync, media will be removed from %s since they are not on "
-"the sync list. Would you like to import them to your library first?"
-msgstr ""
-"Jos jatkat synkronointia, tiedostot poistetaan kohteesta %s, koska ne eivät "
-"ole synkronointi-listassa. Haluatko tuoda tiedostot sinun kirjastoosi ensin?"
+#~ msgid "Issues while importing from %s"
+#~ msgstr "Ongelmia tuodessa musiikkia kohteesta %s"
 
-#: src/Dialogs/SyncWarningDialog.vala:57
-msgid "Continue Syncing"
-msgstr "Jatka synkronointia"
-
-#: src/Dialogs/SyncWarningDialog.vala:62
-msgid "Import"
-msgstr "Tuo"
-
-#: src/LocalBackend/LocalLibrary.vala:188
 #, c-format
-msgid "Importing music from %s…"
-msgstr "Tuodaan musiikkia kohteesta %s…"
+#~ msgid "Unable to import %d item. The file may be damaged."
+#~ msgid_plural "Unable to import %d items. The files may be damaged."
+#~ msgstr[0] ""
+#~ "Ei voitu tuoda %d kohdetta. Tiedosto saattaa olla vahingoittunut."
+#~ msgstr[1] ""
+#~ "Ei voitu tuoda %d kohdetta. Tiedostot saattavat olla vahingoittuneita."
 
-#: src/LocalBackend/LocalLibrary.vala:215
-msgid "Adding files to library…"
-msgstr "Lisätään tiedostoja kirjastoon…"
+#~ msgid "Move all corrupted files to trash"
+#~ msgstr "Siirrä kaikki korruptoituneet tiedostot roskakoriin"
 
-#: src/LocalBackend/LocalLibrary.vala:228
-msgid "<b>Importing</b> music to library…"
-msgstr "<b>Tuodaan</b> musiikkia kirjastoon…"
+#~ msgid "del"
+#~ msgstr "poista"
 
-#: src/LocalBackend/LocalLibrary.vala:250
-msgid "All music files are already in your library"
-msgstr "Kaikki musiikkitiedostot ovat jo kirjastossasi"
+#~ msgid "File Location"
+#~ msgstr "Tiedoston sijainti"
 
-#: src/LocalBackend/LocalLibrary.vala:250
-msgid "No files were imported."
-msgstr "Tiedostoja ei tuotu."
+#~ msgid "Select individual files to move to trash:"
+#~ msgstr "Valitse yksittäiset roskakoriin siirrettävät tiedostot:"
 
-#: src/LocalBackend/LocalLibrary.vala:255
-msgid "Rescanning music for changes. This may take a while…"
-msgstr "Selataan musiikkia muutosten varalta. Tämä saattaa kestää hetken…"
+#~ msgid "Move to Trash"
+#~ msgstr "Siirrä roskakoriin"
 
-#: src/LocalBackend/LocalLibrary.vala:356
-msgid "Added to your queue:"
-msgstr "Lisätty jonoon:"
+#~ msgid "Ignore"
+#~ msgstr "Ohita"
 
-#: src/LocalBackend/LocalLibrary.vala:367
+#~ msgid "Select Music Folder…"
+#~ msgstr "Valitse musiikkikansio…"
+
+#~ msgid "Music Folder Location"
+#~ msgstr "Musiikkikansion sijainti"
+
+#~ msgid "Library Management"
+#~ msgstr "Kirjaston hallinta"
+
+#~ msgid "Keep Music folder organized:"
+#~ msgstr "Pidä musiikkikansio organisoituna:"
+
+#~ msgid "Write metadata to file:"
+#~ msgstr "Kirjoita metatiedot tiedostoon:"
+
+#~ msgid "Copy imported files to Library:"
+#~ msgstr "Kopioi tuodut tiedostot kirjastoon:"
+
+#~ msgid "Desktop Integration"
+#~ msgstr "Työpöytäintegraatio"
+
+#~ msgid "Continue playback when closed:"
+#~ msgstr "Jatka toistoa suljettaessa:"
+
 #, c-format
-msgid "%d Track"
-msgid_plural "%d Tracks"
-msgstr[0] "%d kappale"
-msgstr[1] "%d kappaletta"
+#~ msgid "Remove %d Song From Library?"
+#~ msgid_plural "Remove %d Songs From Library?"
+#~ msgstr[0] "Poistetaanko %d kappale kirjastosta?"
+#~ msgstr[1] "Poistetaanko %d kappaletta kirjastosta?"
 
-#: src/LocalBackend/LocalSmartPlaylist.vala:218
-msgid "Favorite Songs"
-msgstr "Suosikkikappaleet"
-
-#: src/LocalBackend/LocalSmartPlaylist.vala:226
-msgid "Recently Added"
-msgstr "Viimeksi lisätyt"
-
-#: src/LocalBackend/LocalSmartPlaylist.vala:234
-msgid "Recent Favorites"
-msgstr "Viimeisimmät suosikit"
-
-#: src/LocalBackend/LocalSmartPlaylist.vala:242
-msgid "Never Played"
-msgstr "Soittamattomat kappaleet"
-
-#: src/LocalBackend/LocalSmartPlaylist.vala:250
-msgid "Over Played"
-msgstr "Liikaa soitetut"
-
-#: src/LocalBackend/LocalSmartPlaylist.vala:258
-msgid "Not Recently Played"
-msgstr "Ei äskettäin soitettu"
-
-#: src/Objects/HistoryPlaylist.vala:38
-msgid "History"
-msgstr "Historia"
-
-#: src/Objects/MPRIS.vala:617 src/Widgets/SourceListView.vala:341
-msgid "Playlists"
-msgstr "Soittolistat"
-
-#: src/Views/DeviceSummaryWidget.vala:60
-msgid "Device Name:"
-msgstr "Laitteen nimi:"
-
-#: src/Views/DeviceSummaryWidget.vala:64
-msgid "Device Name"
-msgstr "Laitteen nimi"
-
-#: src/Views/DeviceSummaryWidget.vala:66
-msgid "Automatically sync when plugged in:"
-msgstr "Synkronoi automaattisesti liitettäessä:"
-
-#: src/Views/DeviceSummaryWidget.vala:72
-msgid "Sync:"
-msgstr "Synkronoi:"
-
-#: src/Views/DeviceSummaryWidget.vala:100 src/Widgets/SourceListView.vala:192
-msgid "Sync"
-msgstr "Synkronoi"
-
-#: src/Views/DeviceSummaryWidget.vala:244
-msgid "All Music"
-msgstr "Kaikki musiikki"
-
-#: src/Views/DeviceSummaryWidget.vala:298
-msgid "Sync Failed"
-msgstr "Synkronointi epäonnistui"
-
-#: src/Views/DeviceSummaryWidget.vala:299
 #, c-format
-msgid ""
-"The playlist named %s is used to sync device %s, but could not be found."
-msgstr ""
-"Soittolistaa %s käytetään laitteen %s synkronoimiseen, mutta sitä ei "
-"löydetty."
+#~ msgid "Remove \"%s\" From Library?"
+#~ msgstr "Poistetaanko \"%s\" kirjastosta?"
 
-#: src/Views/DeviceSummaryWidget.vala:316
-#: src/Views/DeviceSummaryWidget.vala:321
-msgid "Cannot Sync"
-msgstr "Ei voida synkronoida"
+#~ msgid ""
+#~ "This will remove the song from your library and from any device synced "
+#~ "automatically."
+#~ msgid_plural ""
+#~ "This will remove the songs from your library and from any device synced "
+#~ "automatically."
+#~ msgstr[0] ""
+#~ "Tämä poistaa kappaleen kirjastostasi ja kaikilta laitteilta, jotka ovat "
+#~ "automaattisesti synkronoituja."
+#~ msgstr[1] ""
+#~ "Tämä poistaa kappaleet kirjastostasi ja kaikilta laitteilta, jotka ovat "
+#~ "automaattisesti synkronoituja."
 
-#: src/Views/DeviceSummaryWidget.vala:317
-msgid ""
-"Cannot sync device with selected sync settings. Not enough space on disk"
-msgstr ""
-"Laitetta ei voi synkronoida valituilla synkronointiasetuksilla. Levyllä ei "
-"ole tarpeeksi tilaa"
+#~ msgid "Remove from Library"
+#~ msgstr "Poista kirjastosta"
 
-#: src/Views/DeviceSummaryWidget.vala:322
-msgid "Device is already doing an operation."
-msgstr "Laite suorittaa jo toimenpidettä."
+#~ msgid "Set Music Folder?"
+#~ msgstr "Aseta musiikkikansio?"
 
-#: src/Views/DeviceView.vala:66
-msgid "Cancelling…"
-msgstr "Perutaan…"
-
-#: src/Views/DeviceView.vala:66
-msgid "Device operation has been cancelled and will stop after this media."
-msgstr "Laite-operaatio on peruutettu ja sammuu tämän tiedoston jälkeen."
-
-#: src/Views/ViewStack.vala:45
-msgid "No Results"
-msgstr "Ei tuloksia"
-
-#: src/Views/ViewStack.vala:45
-msgid "Try another search"
-msgstr "Kokeile muita hakuehtoja"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
-msgid "Genres"
-msgstr "Tyylilajit"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:60
-msgid "Artists"
-msgstr "Artistit"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:62
-msgid "Albums"
-msgstr "Albumit"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:64
-msgid "Years"
-msgstr "Vuodet"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:66
-msgid "Ratings"
-msgstr "Arvostelut"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:68
-msgid "Composers"
-msgstr "Säveltäjät"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:70
-msgid "Groupings"
-msgstr "Ryhmittely"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
-msgid "All Genres"
-msgstr "Kaikki tyylilajit"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
 #, c-format
-msgid "All %i Genres"
-msgstr "Kaikki %i tyylilajia"
+#~ msgid ""
+#~ "Are you sure you want to set the music folder to %s? This will reset your "
+#~ "library and remove your playlists."
+#~ msgstr ""
+#~ "Haluatko varmasti asettaa kansion %s musiikkikansioksi? Tämän "
+#~ "toimenpiteen seurauksena kirjastosi tyhjenee ja soittolistat poistuvat."
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
-msgid "No Genres"
-msgstr "Ei tyylilajeja"
+#~ msgid "Export Playlists"
+#~ msgstr "Vie soittolistoja"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
-msgid "All Artists"
-msgstr "Kaikki artistit"
+#~ msgid "Set Music Folder"
+#~ msgstr "Aseta musiikkikansio"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
+#~ msgid "Playlist Title"
+#~ msgstr "Soittolistan nimi"
+
+#~ msgid "any"
+#~ msgstr "mihin tahansa"
+
+#~ msgid "all"
+#~ msgstr "kaikkiin"
+
+#~ msgid "Match"
+#~ msgstr "Täsmää"
+
+#~ msgid "of the following:"
+#~ msgstr "seuraavista:"
+
+#~ msgid "Add"
+#~ msgstr "Lisää"
+
+#~ msgid "Limit to"
+#~ msgstr "Rajoita"
+
+#~ msgid "items"
+#~ msgstr "kohteeseen"
+
+#~ msgid "Name of Playlist"
+#~ msgstr "Soittolistan nimi"
+
+#~ msgid "Rules"
+#~ msgstr "Säännöt"
+
+#~ msgid "Options"
+#~ msgstr "Asetukset"
+
+#~ msgid "Smart Playlist Editor"
+#~ msgstr "Älykkään soittolistan muokkain"
+
+#~ msgid "Remove"
+#~ msgstr "Poista"
+
+#~ msgid "Album"
+#~ msgstr "Albumi"
+
+#~ msgid "Artist"
+#~ msgstr "Artisti"
+
+#~ msgid "Bitrate"
+#~ msgstr "Laatu"
+
+#~ msgid "Comment"
+#~ msgstr "Kommentti"
+
+#~ msgid "Composer"
+#~ msgstr "Säveltäjä"
+
+#~ msgid "Date Added"
+#~ msgstr "Lisäyspäivä"
+
+#~ msgid "Genre"
+#~ msgstr "Tyylilaji"
+
+#~ msgid "Grouping"
+#~ msgstr "Ryhmittely"
+
+#~ msgid "Last Played"
+#~ msgstr "Viimeksi soitettu"
+
+#~ msgid "Length"
+#~ msgstr "Kesto"
+
+#~ msgid "Playcount"
+#~ msgstr "Soittokerrat"
+
+#~ msgid "Rating"
+#~ msgstr "Arvostelu"
+
+#~ msgid "Skipcount"
+#~ msgstr "Ohituskerrat"
+
+#~ msgid "Title"
+#~ msgstr "Nimi"
+
+#~ msgid "Year"
+#~ msgstr "Vuosi"
+
+#~ msgid "URI"
+#~ msgstr "URI"
+
+#~ msgid "is"
+#~ msgstr "on"
+
+#~ msgid "contains"
+#~ msgstr "sisältää"
+
+#~ msgid "does not contain"
+#~ msgstr "ei sisällä"
+
+#~ msgid "is exactly"
+#~ msgstr "on tarkalleen"
+
+#~ msgid "is at most"
+#~ msgstr "on enintään"
+
+#~ msgid "is at least"
+#~ msgstr "on vähintään"
+
+#~ msgid "is within"
+#~ msgstr "ajankohta on"
+
+#~ msgid "is before"
+#~ msgstr "on ennen"
+
+#~ msgid "seconds"
+#~ msgstr "sekuntia"
+
+#~ msgid "days ago"
+#~ msgstr "päivää sitten"
+
+#~ msgid "kbps"
+#~ msgstr "kb/s"
+
 #, c-format
-msgid "All %i Artists"
-msgstr "Kaikki %i artistia"
+#~ msgid "Sync will remove %i item from %s"
+#~ msgid_plural "Sync will remove %i items from %s"
+#~ msgstr[0] "Synkronointi poistaa %i kohteen kohteesta %s"
+#~ msgstr[1] "Synkronointi poistaa %i kohdetta kohteesta %s"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
-msgid "No Artists"
-msgstr "Ei artisteja"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
-msgid "All Albums"
-msgstr "Kaikki albumit"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
 #, c-format
-msgid "All %i Albums"
-msgstr "Kaikki %i albumia"
+#~ msgid ""
+#~ "If you continue to sync, media will be removed from %s since they are not "
+#~ "on the sync list. Would you like to import them to your library first?"
+#~ msgstr ""
+#~ "Jos jatkat synkronointia, tiedostot poistetaan kohteesta %s, koska ne "
+#~ "eivät ole synkronointi-listassa. Haluatko tuoda tiedostot sinun "
+#~ "kirjastoosi ensin?"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
-msgid "No Albums"
-msgstr "Ei albumeita"
+#~ msgid "Continue Syncing"
+#~ msgstr "Jatka synkronointia"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
-msgid "All Years"
-msgstr "Kaikki vuodet"
+#~ msgid "Import"
+#~ msgstr "Tuo"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
 #, c-format
-msgid "All %i Years"
-msgstr "Kaikki %i vuotta"
+#~ msgid "Importing music from %s…"
+#~ msgstr "Tuodaan musiikkia kohteesta %s…"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:250
-msgid "No Years"
-msgstr "Ei vuosia"
+#~ msgid "Adding files to library…"
+#~ msgstr "Lisätään tiedostoja kirjastoon…"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
-msgid "All Ratings"
-msgstr "Kaikki arvostelut"
+#~ msgid "<b>Importing</b> music to library…"
+#~ msgstr "<b>Tuodaan</b> musiikkia kirjastoon…"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
-msgid "No Ratings"
-msgstr "Ei arvosteluja"
+#~ msgid "All music files are already in your library"
+#~ msgstr "Kaikki musiikkitiedostot ovat jo kirjastossasi"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
-msgid "All Groupings"
-msgstr "Kaikki ryhmittelyt"
+#~ msgid "No files were imported."
+#~ msgstr "Tiedostoja ei tuotu."
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
+#~ msgid "Rescanning music for changes. This may take a while…"
+#~ msgstr "Selataan musiikkia muutosten varalta. Tämä saattaa kestää hetken…"
+
+#~ msgid "Added to your queue:"
+#~ msgstr "Lisätty jonoon:"
+
 #, c-format
-msgid "All %i Groupings"
-msgstr "Kaikki %i ryhmittelyä"
+#~ msgid "%d Track"
+#~ msgid_plural "%d Tracks"
+#~ msgstr[0] "%d kappale"
+#~ msgstr[1] "%d kappaletta"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
-msgid "No Groupings"
-msgstr "Ei ryhmittelyä"
+#~ msgid "Favorite Songs"
+#~ msgstr "Suosikkikappaleet"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:271
-msgid "All Composers"
-msgstr "Kaikki säveltäjät"
+#~ msgid "Recently Added"
+#~ msgstr "Viimeksi lisätyt"
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:273
+#~ msgid "Recent Favorites"
+#~ msgstr "Viimeisimmät suosikit"
+
+#~ msgid "Never Played"
+#~ msgstr "Soittamattomat kappaleet"
+
+#~ msgid "Over Played"
+#~ msgstr "Liikaa soitetut"
+
+#~ msgid "Not Recently Played"
+#~ msgstr "Ei äskettäin soitettu"
+
+#~ msgid "History"
+#~ msgstr "Historia"
+
+#~ msgid "Playlists"
+#~ msgstr "Soittolistat"
+
+#~ msgid "Device Name:"
+#~ msgstr "Laitteen nimi:"
+
+#~ msgid "Device Name"
+#~ msgstr "Laitteen nimi"
+
+#~ msgid "Automatically sync when plugged in:"
+#~ msgstr "Synkronoi automaattisesti liitettäessä:"
+
+#~ msgid "Sync:"
+#~ msgstr "Synkronoi:"
+
+#~ msgid "Sync"
+#~ msgstr "Synkronoi"
+
+#~ msgid "All Music"
+#~ msgstr "Kaikki musiikki"
+
+#~ msgid "Sync Failed"
+#~ msgstr "Synkronointi epäonnistui"
+
 #, c-format
-msgid "All %i Composers"
-msgstr "Kaikki %i säveltäjää"
+#~ msgid ""
+#~ "The playlist named %s is used to sync device %s, but could not be found."
+#~ msgstr ""
+#~ "Soittolistaa %s käytetään laitteen %s synkronoimiseen, mutta sitä ei "
+#~ "löydetty."
 
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:275
-msgid "No Composers"
-msgstr "Ei säveltäjiä"
+#~ msgid "Cannot Sync"
+#~ msgstr "Ei voida synkronoida"
 
-#. We cannot make these constants due to issues with N_()
-#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
-#: src/Widgets/EqualizerPopover.vala:326 src/Widgets/PresetList.vala:52
-msgid "Automatic"
-msgstr "Automaattinen"
+#~ msgid ""
+#~ "Cannot sync device with selected sync settings. Not enough space on disk"
+#~ msgstr ""
+#~ "Laitetta ei voi synkronoida valituilla synkronointiasetuksilla. Levyllä "
+#~ "ei ole tarpeeksi tilaa"
 
-#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:146
-msgid "On Left"
-msgstr "Vasemmalla"
+#~ msgid "Device is already doing an operation."
+#~ msgstr "Laite suorittaa jo toimenpidettä."
 
-#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:147
-msgid "On Top"
-msgstr "Ylhäällä"
+#~ msgid "Cancelling…"
+#~ msgstr "Perutaan…"
 
-#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:428
-msgid "Unrated"
-msgstr "Ei arvosteltu"
+#~ msgid "Device operation has been cancelled and will stop after this media."
+#~ msgstr "Laite-operaatio on peruutettu ja sammuu tämän tiedoston jälkeen."
 
-#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:430
+#~ msgid "No Results"
+#~ msgstr "Ei tuloksia"
+
+#~ msgid "Try another search"
+#~ msgstr "Kokeile muita hakuehtoja"
+
+#~ msgid "Genres"
+#~ msgstr "Tyylilajit"
+
+#~ msgid "Artists"
+#~ msgstr "Artistit"
+
+#~ msgid "Albums"
+#~ msgstr "Albumit"
+
+#~ msgid "Years"
+#~ msgstr "Vuodet"
+
+#~ msgid "Ratings"
+#~ msgstr "Arvostelut"
+
+#~ msgid "Composers"
+#~ msgstr "Säveltäjät"
+
+#~ msgid "Groupings"
+#~ msgstr "Ryhmittely"
+
+#~ msgid "All Genres"
+#~ msgstr "Kaikki tyylilajit"
+
 #, c-format
-msgid "%u Star"
-msgid_plural "%u Stars"
-msgstr[0] "%u tähti"
-msgstr[1] "%u tähteä"
+#~ msgid "All %i Genres"
+#~ msgstr "Kaikki %i tyylilajia"
 
-#: src/Views/ListView/Lists/CellDataFunctionHelper.vala:128
+#~ msgid "No Genres"
+#~ msgstr "Ei tyylilajeja"
+
+#~ msgid "All Artists"
+#~ msgstr "Kaikki artistit"
+
 #, c-format
-msgid "%u kbps"
-msgstr "%u kb/s"
+#~ msgid "All %i Artists"
+#~ msgstr "Kaikki %i artistia"
 
-#: src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
-#: src/Views/ListView/Lists/MusicListView.vala:425
-msgid "Never"
-msgstr "Ei koskaan"
+#~ msgid "No Artists"
+#~ msgstr "Ei artisteja"
 
-#: src/Views/ListView/Lists/ListColumn.vala:69
-msgctxt "List column title"
-msgid "#"
-msgstr "#"
+#~ msgid "All Albums"
+#~ msgstr "Kaikki albumit"
 
-#: src/Views/ListView/Lists/ListColumn.vala:72
-msgctxt "List column title"
-msgid "Track"
-msgstr "Kappale"
-
-#: src/Views/ListView/Lists/ListColumn.vala:75
-msgctxt "List column title"
-msgid "Title"
-msgstr "Nimi"
-
-#: src/Views/ListView/Lists/ListColumn.vala:78
-msgctxt "List column title"
-msgid "Length"
-msgstr "Kesto"
-
-#: src/Views/ListView/Lists/ListColumn.vala:81
-msgctxt "List column title"
-msgid "Artist"
-msgstr "Esittäjä"
-
-#: src/Views/ListView/Lists/ListColumn.vala:84
-msgctxt "List column title"
-msgid "Album"
-msgstr "Albumi"
-
-#: src/Views/ListView/Lists/ListColumn.vala:87
-msgctxt "List column title"
-msgid "Album Artist"
-msgstr "Levyn esittäjä"
-
-#: src/Views/ListView/Lists/ListColumn.vala:90
-msgctxt "List column title"
-msgid "Composer"
-msgstr "Säveltäjä"
-
-#: src/Views/ListView/Lists/ListColumn.vala:93
-msgctxt "List column title"
-msgid "Genre"
-msgstr "Tyylilaji"
-
-#: src/Views/ListView/Lists/ListColumn.vala:96
-msgctxt "List column title"
-msgid "Year"
-msgstr "Vuosi"
-
-#: src/Views/ListView/Lists/ListColumn.vala:99
-msgctxt "List column title"
-msgid "Grouping"
-msgstr "Ryhmittely"
-
-#: src/Views/ListView/Lists/ListColumn.vala:102
-msgctxt "List column title"
-msgid "Bitrate"
-msgstr "Bittinopeus"
-
-#: src/Views/ListView/Lists/ListColumn.vala:105
-msgctxt "List column title"
-msgid "Rating"
-msgstr "Arvostelu"
-
-#: src/Views/ListView/Lists/ListColumn.vala:108
-msgctxt "List column title"
-msgid "Plays"
-msgstr "Soittokerrat"
-
-#: src/Views/ListView/Lists/ListColumn.vala:111
-msgctxt "List column title"
-msgid "Skips"
-msgstr "Ohituskerrat"
-
-#: src/Views/ListView/Lists/ListColumn.vala:114
-msgctxt "List column title"
-msgid "Date Added"
-msgstr "Lisäyspäivä"
-
-#: src/Views/ListView/Lists/ListColumn.vala:117
-msgctxt "List column title"
-msgid "Last Played"
-msgstr "Viimeksi soitettu"
-
-#: src/Views/ListView/Lists/ListColumn.vala:120
-msgctxt "List column title (beats per minute)"
-msgid "BPM"
-msgstr "BPM"
-
-#: src/Views/ListView/Lists/ListColumn.vala:123
-msgctxt "List column title (file location)"
-msgid "Location"
-msgstr "Sijainti"
-
-#: src/Views/ListView/Lists/ListColumn.vala:126
-msgctxt "List column title"
-msgid "File Size"
-msgstr "Tiedoston koko"
-
-#: src/Views/ListView/Lists/MusicListView.vala:74
-msgid "Autosize Columns"
-msgstr "Aseta sarakkeiden koko automaattisesti"
-
-#: src/Views/ListView/Lists/MusicListView.vala:410
-msgid "1234 kbps"
-msgstr "1234 kb/s"
-
-#. / Sample string used to measure the ideal size of the Title, Artist,
-#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
-#. / list view. It's *never* displayed in the user interface. The translated
-#. / string should have a reasonable length, similar to the average length
-#. / of a song title or artist name in your language. The automatic column
-#. / width will depend on the length of this string and the space needed
-#. / by the column's title header.
-#: src/Views/ListView/Lists/MusicListView.vala:481
-msgid "Sample List String"
-msgstr "Esimerkki listoille"
-
-#. Welcome screen
-#: src/Views/Wrappers/MusicViewWrapper.vala:56
-msgid "Get Some Tunes"
-msgstr "Hanki kappaleita"
-
-#: src/Views/Wrappers/MusicViewWrapper.vala:57
-msgid "Add music to your library."
-msgstr "Lisää musiikkia kirjastoosi."
-
-#: src/Views/Wrappers/MusicViewWrapper.vala:60
-msgid "Import music from a source into your library."
-msgstr "Tuo musiikkia kirjastoosi."
-
-#: src/Views/Wrappers/MusicViewWrapper.vala:62
-msgid "Change Music Folder"
-msgstr "Vaihda musiikkikansiota"
-
-#: src/Views/Wrappers/MusicViewWrapper.vala:63
-msgid "Load music from a folder, a network or an external disk."
-msgstr ""
-"Lataa musiikkia kansiosta, verkosta tai erilliseltä tallennuslaitteelta."
-
-#: src/Views/Wrappers/MusicViewWrapper.vala:110
-#: src/Views/Wrappers/MusicViewWrapper.vala:130
-msgid "Import your Music"
-msgstr "Tuo musiikkiasi"
-
-#: src/Views/Wrappers/MusicViewWrapper.vala:111
-#: src/Views/Wrappers/MusicViewWrapper.vala:131
 #, c-format
-msgid "Import all your Music from %s into your library."
-msgstr "Tuo kaikki musiikki kohteesta %s kirjastoosi."
+#~ msgid "All %i Albums"
+#~ msgstr "Kaikki %i albumia"
 
-#: src/Views/Wrappers/MusicViewWrapper.vala:143
-msgid "Select Music Folder"
-msgstr "Valitse musiikkikansio"
+#~ msgid "No Albums"
+#~ msgstr "Ei albumeita"
 
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:50
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:54
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:64
-msgid "No Songs"
-msgstr "Ei kappaleita"
+#~ msgid "All Years"
+#~ msgstr "Kaikki vuodet"
 
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:51
-msgid "Updating playlist. Please wait."
-msgstr "Päivitetään soittolistaa, odota hetki."
-
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:55
-msgid ""
-"To add songs to this playlist, use the <b>secondary click</b> on an item and "
-"choose <b>Add to Playlist</b>."
-msgstr ""
-"Lisää kappaleita soittolistaan napsauttamalla kohdetta hiiren <b>oikealla "
-"painikkeella</b> ja valitsemalla <b>Lisää soittolistaan</b>."
-
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:58
-msgid "Edit Smart Playlist"
-msgstr "Muokkaa älykästä soittolistaa"
-
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:65
-msgid ""
-"This playlist will be automatically populated with songs that match its "
-"rules. To modify these rules, use the <b>secondary click</b> on it in the "
-"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
-"below."
-msgstr ""
-"Tämä soittolista muodostetaan automaattisesti kappaleista, jotka vastaavat "
-"soittolistan sääntöihin. Muokkaa soittolistan sääntöjä napsauttamalla "
-"sivupaneelissa soittolistan nimeä <b>hiiren oikealla painikkeella</b> ja "
-"valitsemalla <b>Muokkaa</b>. Vaihtoehtoisesti voit napsauttaa alla olevaa "
-"painiketta."
-
-#: src/Views/Wrappers/ViewWrapper.vala:418
-msgid "No media"
-msgstr "Ei mediaa"
-
-#: src/Widgets/AlbumListGrid.vala:63
-msgid "Set new album cover"
-msgstr "Aseta uusi levyn kansi"
-
-#: src/Widgets/AlbumListGrid.vala:193
-msgid "Image files"
-msgstr "Kuvatiedostot"
-
-#: src/Widgets/AlbumListGrid.vala:200
-msgid "_Open"
-msgstr "_Avaa"
-
-#: src/Widgets/AlbumListGrid.vala:201
-msgid "_Cancel"
-msgstr "_Peru"
-
-#: src/Widgets/EqualizerPopover.vala:162
-msgid "Save preset"
-msgstr "Tallenna esiasetus"
-
-#: src/Widgets/EqualizerPopover.vala:330
-msgid "Off"
-msgstr "Pois"
-
-#: src/Widgets/EqualizerPopover.vala:418
 #, c-format
-msgid "%s (Custom)"
-msgstr "%s (Mukautettu)"
+#~ msgid "All %i Years"
+#~ msgstr "Kaikki %i vuotta"
 
-#: src/Widgets/EqualizerPopover.vala:420
+#~ msgid "No Years"
+#~ msgstr "Ei vuosia"
+
+#~ msgid "All Ratings"
+#~ msgstr "Kaikki arvostelut"
+
+#~ msgid "No Ratings"
+#~ msgstr "Ei arvosteluja"
+
+#~ msgid "All Groupings"
+#~ msgstr "Kaikki ryhmittelyt"
+
 #, c-format
-msgid "%s (Custom %i)"
-msgstr "%s (Mukautettu %i)"
+#~ msgid "All %i Groupings"
+#~ msgstr "Kaikki %i ryhmittelyä"
 
-#: src/Widgets/EqualizerPopover.vala:423
-msgid "Custom Preset"
-msgstr "Oma esiasetus"
+#~ msgid "No Groupings"
+#~ msgstr "Ei ryhmittelyä"
 
-#: src/Widgets/EqualizerPopover.vala:425
+#~ msgid "All Composers"
+#~ msgstr "Kaikki säveltäjät"
+
 #, c-format
-msgid "Custom Preset %i"
-msgstr "Oma esiasetus %i"
+#~ msgid "All %i Composers"
+#~ msgstr "Kaikki %i säveltäjää"
 
-#: src/Widgets/MediaMenu.vala:46
-msgid "Scroll to Current Song"
-msgstr "Vieritä nykyiseen kappaleeseen"
+#~ msgid "No Composers"
+#~ msgstr "Ei säveltäjiä"
 
-#: src/Widgets/MediaMenu.vala:49
-msgid "Show in File Browser…"
-msgstr "Näytä tiedostonhallinnassa…"
+#~ msgid "Automatic"
+#~ msgstr "Automaattinen"
 
-#: src/Widgets/MediaMenu.vala:50
-msgid "Edit Song Info…"
-msgstr "Muokkaa kappaleen tietoja…"
+#~ msgid "On Left"
+#~ msgstr "Vasemmalla"
 
-#: src/Widgets/MediaMenu.vala:51
-msgid "Other Actions"
-msgstr "Muut toiminnot"
+#~ msgid "On Top"
+#~ msgstr "Ylhäällä"
 
-#: src/Widgets/MediaMenu.vala:53
-msgctxt "Action item (verb)"
-msgid "Queue"
-msgstr "Lisää jonoon"
+#~ msgid "Unrated"
+#~ msgstr "Ei arvosteltu"
 
-#: src/Widgets/MediaMenu.vala:54
-msgid "Add to Playlist"
-msgstr "Lisää soittolistaan"
-
-#: src/Widgets/MediaMenu.vala:55
-msgid "Remove Song…"
-msgstr "Poista kappale…"
-
-#: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
-msgid "Import to Library"
-msgstr "Tuo kirjastoon"
-
-#: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
-msgid "Remove from Library…"
-msgstr "Poista kirjastosta…"
-
-#: src/Widgets/MediaMenu.vala:99
-msgid "Remove from Device"
-msgstr "Poista laitteelta"
-
-#: src/Widgets/MediaMenu.vala:119
-msgid "Remove from Queue"
-msgstr "Poista jonosta"
-
-#: src/Widgets/MediaMenu.vala:153
-msgid "New Playlist…"
-msgstr "Uusi soittolista…"
-
-#: src/Widgets/MediaMenu.vala:193
 #, c-format
-msgid "Import %i of %i selected songs"
-msgstr "Tuo %i/%i valittua kappaletta"
+#~ msgid "%u Star"
+#~ msgid_plural "%u Stars"
+#~ msgstr[0] "%u tähti"
+#~ msgstr[1] "%u tähteä"
 
-#: src/Widgets/MediaMenu.vala:195
 #, c-format
-msgid "Import %i song"
-msgid_plural "Import %i songs"
-msgstr[0] "Tuo %i kappale"
-msgstr[1] "Tuo %i kappaletta"
+#~ msgid "%u kbps"
+#~ msgstr "%u kb/s"
 
-#: src/Widgets/PresetList.vala:53
-msgid "Delete Current"
-msgstr "Poista nykyinen"
+#~ msgid "Never"
+#~ msgstr "Ei koskaan"
 
-#: src/Widgets/SourceListView.vala:66 src/Widgets/SourceListView.vala:78
-msgid "Rename"
-msgstr "Nimeä uudelleen"
+#~ msgctxt "List column title"
+#~ msgid "#"
+#~ msgstr "#"
 
-#: src/Widgets/SourceListView.vala:79
-msgid "Edit…"
-msgstr "Muokkaa…"
+#~ msgctxt "List column title"
+#~ msgid "Track"
+#~ msgstr "Kappale"
 
-#: src/Widgets/SourceListView.vala:95
-msgid "Save as Playlist"
-msgstr "Tallenna soittolistana"
+#~ msgctxt "List column title"
+#~ msgid "Title"
+#~ msgstr "Nimi"
 
-#: src/Widgets/SourceListView.vala:103
-msgid "Export…"
-msgstr "Vie…"
+#~ msgctxt "List column title"
+#~ msgid "Length"
+#~ msgstr "Kesto"
 
-#: src/Widgets/SourceListView.vala:166
-msgid "Eject"
-msgstr "Irrota"
+#~ msgctxt "List column title"
+#~ msgid "Artist"
+#~ msgstr "Esittäjä"
 
-#: src/Widgets/SourceListView.vala:176 src/Widgets/SourceListView.vala:219
-msgid "New Playlist"
-msgstr "Uusi soittolista"
+#~ msgctxt "List column title"
+#~ msgid "Album"
+#~ msgstr "Albumi"
 
-#: src/Widgets/SourceListView.vala:184 src/Widgets/SourceListView.vala:220
-msgid "New Smart Playlist"
-msgstr "Uusi älykäs soittolista"
+#~ msgctxt "List column title"
+#~ msgid "Album Artist"
+#~ msgstr "Levyn esittäjä"
 
-#: src/Widgets/SourceListView.vala:221
-msgid "Import Playlists"
-msgstr "Tuo soittolistoja"
+#~ msgctxt "List column title"
+#~ msgid "Composer"
+#~ msgstr "Säveltäjä"
 
-#. Adds the different sidebar categories.
-#: src/Widgets/SourceListView.vala:338
-msgid "Library"
-msgstr "Kirjasto"
+#~ msgctxt "List column title"
+#~ msgid "Genre"
+#~ msgstr "Tyylilaji"
 
-#: src/Widgets/SourceListView.vala:339
-msgid "Devices"
-msgstr "Laitteet"
+#~ msgctxt "List column title"
+#~ msgid "Year"
+#~ msgstr "Vuosi"
 
-#: src/Widgets/SourceListView.vala:340
-msgid "Network"
-msgstr "Verkko"
+#~ msgctxt "List column title"
+#~ msgid "Grouping"
+#~ msgstr "Ryhmittely"
 
-#: src/Widgets/StatusBar.vala:36
-msgid "Add Playlist"
-msgstr "Lisää soittolista"
+#~ msgctxt "List column title"
+#~ msgid "Bitrate"
+#~ msgstr "Bittinopeus"
 
-#: src/Widgets/StatusBar.vala:37
-msgid "Add Smart Playlist"
-msgstr "Lisää älykäs soittolista"
+#~ msgctxt "List column title"
+#~ msgid "Rating"
+#~ msgstr "Arvostelu"
 
-#: src/Widgets/StatusBar.vala:48
-msgid "Add Playlist…"
-msgstr "Lisää soittolista…"
+#~ msgctxt "List column title"
+#~ msgid "Plays"
+#~ msgstr "Soittokerrat"
 
-#. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
-#: src/Widgets/StatusBar.vala:74
+#~ msgctxt "List column title"
+#~ msgid "Skips"
+#~ msgstr "Ohituskerrat"
+
+#~ msgctxt "List column title"
+#~ msgid "Date Added"
+#~ msgstr "Lisäyspäivä"
+
+#~ msgctxt "List column title"
+#~ msgid "Last Played"
+#~ msgstr "Viimeksi soitettu"
+
+#~ msgctxt "List column title (beats per minute)"
+#~ msgid "BPM"
+#~ msgstr "BPM"
+
+#~ msgctxt "List column title (file location)"
+#~ msgid "Location"
+#~ msgstr "Sijainti"
+
+#~ msgctxt "List column title"
+#~ msgid "File Size"
+#~ msgstr "Tiedoston koko"
+
+#~ msgid "Autosize Columns"
+#~ msgstr "Aseta sarakkeiden koko automaattisesti"
+
+#~ msgid "1234 kbps"
+#~ msgstr "1234 kb/s"
+
+#~ msgid "Sample List String"
+#~ msgstr "Esimerkki listoille"
+
+#~ msgid "Get Some Tunes"
+#~ msgstr "Hanki kappaleita"
+
+#~ msgid "Add music to your library."
+#~ msgstr "Lisää musiikkia kirjastoosi."
+
+#~ msgid "Import music from a source into your library."
+#~ msgstr "Tuo musiikkia kirjastoosi."
+
+#~ msgid "Change Music Folder"
+#~ msgstr "Vaihda musiikkikansiota"
+
+#~ msgid "Load music from a folder, a network or an external disk."
+#~ msgstr ""
+#~ "Lataa musiikkia kansiosta, verkosta tai erilliseltä tallennuslaitteelta."
+
+#~ msgid "Import your Music"
+#~ msgstr "Tuo musiikkiasi"
+
 #, c-format
-msgid "Equalizer: %s"
-msgstr "Taajuuskorjain: %s"
+#~ msgid "Import all your Music from %s into your library."
+#~ msgstr "Tuo kaikki musiikki kohteesta %s kirjastoosi."
 
-#. MUST follow the exact same order of Music.Player.Repeat
-#: src/Widgets/TopDisplay.vala:138
-msgid "Enable Repeat"
-msgstr "Ota toisto käyttöön"
+#~ msgid "Select Music Folder"
+#~ msgstr "Valitse musiikkikansio"
 
-#: src/Widgets/TopDisplay.vala:139
-msgid "Repeat Song"
-msgstr "Toista kappaletta"
+#~ msgid "No Songs"
+#~ msgstr "Ei kappaleita"
 
-#: src/Widgets/TopDisplay.vala:140
-msgid "Disable Repeat"
-msgstr "Poista toisto käytöstä"
+#~ msgid "Updating playlist. Please wait."
+#~ msgstr "Päivitetään soittolistaa, odota hetki."
 
-#: src/Widgets/TopDisplay.vala:159
-msgid "Enable Shuffle"
-msgstr "Ota sekoitus käyttöön"
+#~ msgid ""
+#~ "To add songs to this playlist, use the <b>secondary click</b> on an item "
+#~ "and choose <b>Add to Playlist</b>."
+#~ msgstr ""
+#~ "Lisää kappaleita soittolistaan napsauttamalla kohdetta hiiren <b>oikealla "
+#~ "painikkeella</b> ja valitsemalla <b>Lisää soittolistaan</b>."
 
-#: src/Widgets/TopDisplay.vala:160
-msgid "Disable Shuffle"
-msgstr "Poista sekoitus käytöstä"
+#~ msgid "Edit Smart Playlist"
+#~ msgstr "Muokkaa älykästä soittolistaa"
 
-#: src/Widgets/ViewSelector.vala:81
-msgid "View as albums"
-msgstr "Näytä albumeina"
+#~ msgid ""
+#~ "This playlist will be automatically populated with songs that match its "
+#~ "rules. To modify these rules, use the <b>secondary click</b> on it in the "
+#~ "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
+#~ "below."
+#~ msgstr ""
+#~ "Tämä soittolista muodostetaan automaattisesti kappaleista, jotka "
+#~ "vastaavat soittolistan sääntöihin. Muokkaa soittolistan sääntöjä "
+#~ "napsauttamalla sivupaneelissa soittolistan nimeä <b>hiiren oikealla "
+#~ "painikkeella</b> ja valitsemalla <b>Muokkaa</b>. Vaihtoehtoisesti voit "
+#~ "napsauttaa alla olevaa painiketta."
 
-#: src/Widgets/ViewSelector.vala:87
-msgid "View as list"
-msgstr "Näytä luettelona"
+#~ msgid "No media"
+#~ msgstr "Ei mediaa"
 
-#: src/Widgets/ViewSelector.vala:93
-msgid "View in columns"
-msgstr "Näytä sarakkeina"
+#~ msgid "Set new album cover"
+#~ msgstr "Aseta uusi levyn kansi"
+
+#~ msgid "Image files"
+#~ msgstr "Kuvatiedostot"
+
+#~ msgid "_Open"
+#~ msgstr "_Avaa"
+
+#~ msgid "_Cancel"
+#~ msgstr "_Peru"
+
+#~ msgid "Save preset"
+#~ msgstr "Tallenna esiasetus"
+
+#~ msgid "Off"
+#~ msgstr "Pois"
+
+#, c-format
+#~ msgid "%s (Custom)"
+#~ msgstr "%s (Mukautettu)"
+
+#, c-format
+#~ msgid "%s (Custom %i)"
+#~ msgstr "%s (Mukautettu %i)"
+
+#~ msgid "Custom Preset"
+#~ msgstr "Oma esiasetus"
+
+#, c-format
+#~ msgid "Custom Preset %i"
+#~ msgstr "Oma esiasetus %i"
+
+#~ msgid "Scroll to Current Song"
+#~ msgstr "Vieritä nykyiseen kappaleeseen"
+
+#~ msgid "Show in File Browser…"
+#~ msgstr "Näytä tiedostonhallinnassa…"
+
+#~ msgid "Edit Song Info…"
+#~ msgstr "Muokkaa kappaleen tietoja…"
+
+#~ msgid "Other Actions"
+#~ msgstr "Muut toiminnot"
+
+#~ msgctxt "Action item (verb)"
+#~ msgid "Queue"
+#~ msgstr "Lisää jonoon"
+
+#~ msgid "Add to Playlist"
+#~ msgstr "Lisää soittolistaan"
+
+#~ msgid "Remove Song…"
+#~ msgstr "Poista kappale…"
+
+#~ msgid "Import to Library"
+#~ msgstr "Tuo kirjastoon"
+
+#~ msgid "Remove from Library…"
+#~ msgstr "Poista kirjastosta…"
+
+#~ msgid "Remove from Device"
+#~ msgstr "Poista laitteelta"
+
+#~ msgid "Remove from Queue"
+#~ msgstr "Poista jonosta"
+
+#~ msgid "New Playlist…"
+#~ msgstr "Uusi soittolista…"
+
+#, c-format
+#~ msgid "Import %i of %i selected songs"
+#~ msgstr "Tuo %i/%i valittua kappaletta"
+
+#, c-format
+#~ msgid "Import %i song"
+#~ msgid_plural "Import %i songs"
+#~ msgstr[0] "Tuo %i kappale"
+#~ msgstr[1] "Tuo %i kappaletta"
+
+#~ msgid "Delete Current"
+#~ msgstr "Poista nykyinen"
+
+#~ msgid "Rename"
+#~ msgstr "Nimeä uudelleen"
+
+#~ msgid "Edit…"
+#~ msgstr "Muokkaa…"
+
+#~ msgid "Save as Playlist"
+#~ msgstr "Tallenna soittolistana"
+
+#~ msgid "Export…"
+#~ msgstr "Vie…"
+
+#~ msgid "Eject"
+#~ msgstr "Irrota"
+
+#~ msgid "New Playlist"
+#~ msgstr "Uusi soittolista"
+
+#~ msgid "New Smart Playlist"
+#~ msgstr "Uusi älykäs soittolista"
+
+#~ msgid "Import Playlists"
+#~ msgstr "Tuo soittolistoja"
+
+#~ msgid "Library"
+#~ msgstr "Kirjasto"
+
+#~ msgid "Devices"
+#~ msgstr "Laitteet"
+
+#~ msgid "Network"
+#~ msgstr "Verkko"
+
+#~ msgid "Add Playlist"
+#~ msgstr "Lisää soittolista"
+
+#~ msgid "Add Smart Playlist"
+#~ msgstr "Lisää älykäs soittolista"
+
+#~ msgid "Add Playlist…"
+#~ msgstr "Lisää soittolista…"
+
+#, c-format
+#~ msgid "Equalizer: %s"
+#~ msgstr "Taajuuskorjain: %s"
+
+#~ msgid "Enable Repeat"
+#~ msgstr "Ota toisto käyttöön"
+
+#~ msgid "Disable Repeat"
+#~ msgstr "Poista toisto käytöstä"
+
+#~ msgid "Disable Shuffle"
+#~ msgstr "Poista sekoitus käytöstä"
+
+#~ msgid "View as albums"
+#~ msgstr "Näytä albumeina"
+
+#~ msgid "View as list"
+#~ msgstr "Näytä luettelona"
+
+#~ msgid "View in columns"
+#~ msgstr "Näytä sarakkeina"
 
 #~ msgid "No similar songs found"
 #~ msgstr "Samankaltaisia kappaleita ei löydetty"
@@ -1560,9 +1241,6 @@ msgstr "Näytä sarakkeina"
 
 #~ msgid "Song"
 #~ msgstr "Kappale"
-
-#~ msgid "Repeat Album"
-#~ msgstr "Toista albumi"
 
 #~ msgid "Repeat Artist"
 #~ msgstr "Toista esittäjää"
