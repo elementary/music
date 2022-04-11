@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-11 14:16-0700\n"
-"PO-Revision-Date: 2021-04-23 11:47+0000\n"
+"PO-Revision-Date: 2022-04-11 23:47+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/music/music/he/>\n"
 "Language: he\n"
@@ -20,39 +20,35 @@ msgid "Music"
 msgstr "מוזיקה"
 
 #: src/MainWindow.vala:26
-#, fuzzy
 msgid "Shuffle"
-msgstr "הפעלת ערבול צליל"
+msgstr "ערבוב"
 
 #: src/MainWindow.vala:41
 msgid "Queue is Empty"
-msgstr ""
+msgstr "התור ריק"
 
 #: src/MainWindow.vala:42
 msgid "Audio files opened from Files will appear here"
-msgstr ""
+msgstr "קובצי שמע שנפתחו מיישום הקבצים יופיעו כאן"
 
 #: src/MainWindow.vala:148
-#, fuzzy
 msgid "Repeat None"
-msgstr "ניגון חוזר של השיר"
+msgstr "לא לחזור על כלום"
 
 #: src/MainWindow.vala:152
-#, fuzzy
 msgid "Repeat All"
-msgstr "ניגון חוזר של האלבום"
+msgstr "לחזור על הכול"
 
 #: src/MainWindow.vala:156
-#, fuzzy
 msgid "Repeat One"
-msgstr "ניגון חוזר של השיר"
+msgstr "לחזור על אחד"
 
 #: src/PlaybackManager.vala:103
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "רצועה נוספה לתור"
+msgstr[1] "%d רצועות נוספו לתור"
 
 #. Don't set artist for files without tags
 #: src/PlaybackManager.vala:163
@@ -60,9 +56,8 @@ msgid "Unknown"
 msgstr "לא ידוע"
 
 #: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
-#, fuzzy
 msgid "Not playing"
-msgstr "רשימת השמעה חדשה"
+msgstr "לא מנגן"
 
 #: src/Views/NowPlayingView.vala:45
 msgid "Previous"
