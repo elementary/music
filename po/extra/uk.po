@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-16 19:03+0000\n"
+"POT-Creation-Date: 2022-04-11 14:16-0700\n"
 "PO-Revision-Date: 2021-07-25 12:31+0000\n"
 "Last-Translator: DartDeaDia <jorydit@gmail.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/music/extra/uk/"
@@ -16,21 +16,20 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
-#: data/io.elementary.music.appdata.xml.in:9
-#: data/io.elementary.music.desktop.in:4
+#: data/music.appdata.xml.in:9 data/music.desktop.in:4
 msgid "Music"
 msgstr "Музика"
 
-#: data/io.elementary.music.appdata.xml.in:10
+#: data/music.appdata.xml.in:10
 msgid "The official elementary music player"
 msgstr "Офіційний музичний програвач elementryOS"
 
-#: data/io.elementary.music.appdata.xml.in:12
+#: data/music.appdata.xml.in:12
 msgid ""
 "Music is a fast and beautiful audio player with a focus on music and "
 "libraries. It handles external devices and album art."
@@ -38,213 +37,208 @@ msgstr ""
 "Музика — швидкий та красивий програвач зосереджений на музиці та "
 "бібліотеках. Підтримує зовнішні пристрої та обкладинки альбомів."
 
-#: data/io.elementary.music.appdata.xml.in:17
+#: data/music.appdata.xml.in:33
+msgid "elementary, Inc."
+msgstr "elementary, Inc."
+
+#: data/music.appdata.xml.in:40
+msgid "Complete rewrite"
+msgstr ""
+
+#: data/music.appdata.xml.in:46
 msgid "Drop support for Last.FM"
 msgstr "Завершено підтримку Last.FM"
 
-#: data/io.elementary.music.appdata.xml.in:18
-#: data/io.elementary.music.appdata.xml.in:27
-#: data/io.elementary.music.appdata.xml.in:34
-#: data/io.elementary.music.appdata.xml.in:44
-#: data/io.elementary.music.appdata.xml.in:52
-#: data/io.elementary.music.appdata.xml.in:63
-#: data/io.elementary.music.appdata.xml.in:72
-#: data/io.elementary.music.appdata.xml.in:81
+#: data/music.appdata.xml.in:47 data/music.appdata.xml.in:57
+#: data/music.appdata.xml.in:65 data/music.appdata.xml.in:76
+#: data/music.appdata.xml.in:85 data/music.appdata.xml.in:97
+#: data/music.appdata.xml.in:107 data/music.appdata.xml.in:117
 msgid "Updated translations"
 msgstr "Оновлено переклади"
 
-#: data/io.elementary.music.appdata.xml.in:23
+#: data/music.appdata.xml.in:53
 msgid "Fix an issue with saving smart playlists"
 msgstr "Виправлено проблему зі збереженням розумних добірок"
 
-#: data/io.elementary.music.appdata.xml.in:24
+#: data/music.appdata.xml.in:54
 msgid "Drop support for CD-ROM"
 msgstr "Завершено підтримку CD-ROM"
 
-#: data/io.elementary.music.appdata.xml.in:25
+#: data/music.appdata.xml.in:55
 msgid "Dark style support"
 msgstr "Підтримка темного стилю"
 
-#: data/io.elementary.music.appdata.xml.in:26
+#: data/music.appdata.xml.in:56
 msgid "Minor visual improvements"
 msgstr "Незначні покращення вигляду"
 
-#: data/io.elementary.music.appdata.xml.in:32
+#: data/music.appdata.xml.in:63
 msgid "Fix removing items from the queue"
 msgstr "Виправлено ваду вилучення елементів із черги"
 
-#: data/io.elementary.music.appdata.xml.in:33
+#: data/music.appdata.xml.in:64
 msgid "Fix equalizer sliders not properly disabled sometimes"
 msgstr "Виправлено повзунки еквалайзера, які іноді неправильно вимикаються"
 
-#: data/io.elementary.music.appdata.xml.in:35
+#: data/music.appdata.xml.in:66
 msgid "Performance improvements"
 msgstr "Поліпшено швидкодію"
 
-#: data/io.elementary.music.appdata.xml.in:40
+#: data/music.appdata.xml.in:72
 msgid "Removed old gsignond vapi"
 msgstr "Вилучено старий gsignond vapi"
 
-#: data/io.elementary.music.appdata.xml.in:41
+#: data/music.appdata.xml.in:73
 msgid "LibraryWindow: Use Granite.MessageDialog for showing alerts"
 msgstr "LibraryWindow: Використання Granite.MessageDialog для показу сповіщень"
 
-#: data/io.elementary.music.appdata.xml.in:42
+#: data/music.appdata.xml.in:74
 msgid "PlaylistsUtils: Use Gtk.FileChooserNative"
 msgstr "PlaylistsUtils: Використання Gtk.FileChooserNative"
 
-#: data/io.elementary.music.appdata.xml.in:43
+#: data/music.appdata.xml.in:75
 msgid "Accurately remember window size"
 msgstr "Точне запам'ятовування розміру вікна"
 
-#: data/io.elementary.music.appdata.xml.in:49
+#: data/music.appdata.xml.in:82
 msgid "Scale album art properly at high resolutions"
 msgstr ""
 "Правильне масштабування обкладинок альбомів з високою роздільною здатністю"
 
-#: data/io.elementary.music.appdata.xml.in:50
+#: data/music.appdata.xml.in:83
 msgid ""
 "Accurately select Music Folder Location for directories with spaces in name"
 msgstr ""
 "Точний вибір розташування музичної теки для каталогів з пробілами в назві"
 
-#: data/io.elementary.music.appdata.xml.in:51
+#: data/music.appdata.xml.in:84
 msgid "New MediaKeyListener path for gnome-settings-daemon"
 msgstr "Новий шлях MediaKeyListener для gnome-settings-daemon"
 
-#: data/io.elementary.music.appdata.xml.in:57
+#: data/music.appdata.xml.in:91
 msgid "AlbumView: double-click to play album"
 msgstr "AlbumView: двічі клацніть, щоб відтворити альбом"
 
-#: data/io.elementary.music.appdata.xml.in:58
+#: data/music.appdata.xml.in:92
 msgid "Associate with s3m files"
 msgstr "Пов'язування з файлами s3m"
 
-#: data/io.elementary.music.appdata.xml.in:59
+#: data/music.appdata.xml.in:93
 msgid "Queue fixes"
 msgstr "Чергові виправлення"
 
-#: data/io.elementary.music.appdata.xml.in:60
+#: data/music.appdata.xml.in:94
 msgid "Properly restore playlists"
 msgstr "Правильне відновлення списків відтворення"
 
-#: data/io.elementary.music.appdata.xml.in:61
+#: data/music.appdata.xml.in:95
 msgid "Always respect custom music folder setting"
 msgstr "Запам'ятовування власних налаштувань музичної теки"
 
-#: data/io.elementary.music.appdata.xml.in:62
-#: data/io.elementary.music.appdata.xml.in:71
-#: data/io.elementary.music.appdata.xml.in:80
-#: data/io.elementary.music.appdata.xml.in:112
-#: data/io.elementary.music.appdata.xml.in:127
+#: data/music.appdata.xml.in:96 data/music.appdata.xml.in:106
+#: data/music.appdata.xml.in:116 data/music.appdata.xml.in:153
+#: data/music.appdata.xml.in:169
 msgid "Minor bug fixes"
 msgstr "Незначні виправлення"
 
-#: data/io.elementary.music.appdata.xml.in:68
+#: data/music.appdata.xml.in:103
 msgid "Fix list and column view sorting"
 msgstr "Виправлено впорядкування подання списком та стовпчиком"
 
-#: data/io.elementary.music.appdata.xml.in:69
+#: data/music.appdata.xml.in:104
 msgid "Add orange accent color"
 msgstr "Додано основний жовтогарячий колір"
 
-#: data/io.elementary.music.appdata.xml.in:70
+#: data/music.appdata.xml.in:105
 msgid "Add shortcut accels to tooltips"
 msgstr "Додано комбінацію клавіш для доступу до підказок"
 
-#: data/io.elementary.music.appdata.xml.in:77
+#: data/music.appdata.xml.in:113
 msgid "Various UI changes"
 msgstr "Різні зміни зовнішнього вигляду"
 
-#: data/io.elementary.music.appdata.xml.in:78
+#: data/music.appdata.xml.in:114
 msgid "Shuffle fixes"
 msgstr "Виправлення у випадковому порядку"
 
-#: data/io.elementary.music.appdata.xml.in:79
+#: data/music.appdata.xml.in:115
 msgid "Initial MPRIS support"
 msgstr "Початок підтримки MPRIS"
 
-#: data/io.elementary.music.appdata.xml.in:86
+#: data/music.appdata.xml.in:123
 msgid "Detect library changes at startup."
 msgstr "Виявлення змін у бібліотеці під час запуску."
 
-#: data/io.elementary.music.appdata.xml.in:87
+#: data/music.appdata.xml.in:124
 msgid "Support searching by URI"
 msgstr "Підтримка пошуку за URI"
 
-#: data/io.elementary.music.appdata.xml.in:88
+#: data/music.appdata.xml.in:125
 msgid "Change the queue mechanism to make it less confusing."
 msgstr "Змінено механізм черги, щоб зробити його менш заплутаним."
 
-#: data/io.elementary.music.appdata.xml.in:89
+#: data/music.appdata.xml.in:126
 msgid "Improve equalizer style."
 msgstr "Покращено стиль еквалайзера."
 
-#: data/io.elementary.music.appdata.xml.in:90
-#: data/io.elementary.music.appdata.xml.in:95
-#: data/io.elementary.music.appdata.xml.in:100
-#: data/io.elementary.music.appdata.xml.in:105
+#: data/music.appdata.xml.in:127 data/music.appdata.xml.in:133
+#: data/music.appdata.xml.in:139 data/music.appdata.xml.in:145
 msgid "Minor bug fixes."
 msgstr "Незначні виправлення."
 
-#: data/io.elementary.music.appdata.xml.in:110
+#: data/music.appdata.xml.in:151
 msgid "Add rounded bottom window corner."
 msgstr "Додано закруглені нижні кути вікна."
 
-#: data/io.elementary.music.appdata.xml.in:113
-#: data/io.elementary.music.appdata.xml.in:128
+#: data/music.appdata.xml.in:154 data/music.appdata.xml.in:170
 msgid "New translations"
 msgstr "Нові переклади"
 
-#: data/io.elementary.music.appdata.xml.in:119
+#: data/music.appdata.xml.in:161
 msgid "Release for Loki."
 msgstr "Випуск для Loki."
 
-#: data/io.elementary.music.appdata.xml.in:121
+#: data/music.appdata.xml.in:163
 msgid "Add support for Opus Ogg"
 msgstr "Додано підтримку Opus Ogg"
 
-#: data/io.elementary.music.appdata.xml.in:122
+#: data/music.appdata.xml.in:164
 msgid "Fix Ctrl+Q support for non-Latin keyboard layouts"
 msgstr "Виправлено підтримку Ctrl + Q для розкладок клавіатури не латинкою"
 
-#: data/io.elementary.music.appdata.xml.in:123
+#: data/music.appdata.xml.in:165
 msgid "Reorganize media edition layout"
 msgstr "Перероблено макет медіа видання"
 
-#: data/io.elementary.music.appdata.xml.in:124
+#: data/music.appdata.xml.in:166
 msgid "Port grid to support HiDPI displays"
 msgstr "Сітка портів для підтримки дисплеїв HiDPI"
 
-#: data/io.elementary.music.appdata.xml.in:125
+#: data/music.appdata.xml.in:167
 msgid "Update icons to latest elementary icon release"
 msgstr "Оновлено піктограми до нового стилю піктограм elementary"
 
-#: data/io.elementary.music.appdata.xml.in:126
+#: data/music.appdata.xml.in:168
 msgid "Respect privacy mode"
 msgstr "Дотримання режиму приватності"
 
-#: data/io.elementary.music.appdata.xml.in:166
-msgid "elementary, Inc."
-msgstr "elementary, Inc."
-
-#: data/io.elementary.music.desktop.in:5
+#: data/music.desktop.in:5
 msgid "Music Player"
 msgstr "Музичний програвач"
 
-#: data/io.elementary.music.desktop.in:6
+#: data/music.desktop.in:6
 msgid "Listen to music"
 msgstr "Прослуховування музики"
 
-#: data/io.elementary.music.desktop.in:8
-msgid "io.elementary.music"
-msgstr "io.elementary.music"
-
-#: data/io.elementary.music.desktop.in:13
-msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;Phone;Songs;"
+#: data/music.desktop.in:13
+#, fuzzy
+msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
 "Noise;Audio;Аудіо;Player;Програвач;MP3;iPod;Відтворення;Playlist;Добірка;"
 "Список відтворення;Плейлист;Медіа;Media;Телефон;Пісні;Музика;"
+
+#~ msgid "io.elementary.music"
+#~ msgstr "io.elementary.music"
 
 #~ msgid "multimedia-audio-player"
 #~ msgstr "multimedia-audio-player"
