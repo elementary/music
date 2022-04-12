@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-11 14:16-0700\n"
-"PO-Revision-Date: 2021-04-23 19:54+0000\n"
-"Last-Translator: Ozgur Baskin <bebeto_baskin@yahoo.com>\n"
-"Language-Team: Turkish <https://l10n.elementary.io/projects/music/music/tr/"
-">\n"
+"PO-Revision-Date: 2022-04-12 17:24+0000\n"
+"Last-Translator: Özgür Baskin <queeup@zoho.com>\n"
+"Language-Team: Turkish <https://l10n.elementary.io/projects/music/music/tr/>"
+"\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,39 +26,35 @@ msgid "Music"
 msgstr "Müzik"
 
 #: src/MainWindow.vala:26
-#, fuzzy
 msgid "Shuffle"
-msgstr "Karışık Çalmayı Aç"
+msgstr "Karıştır"
 
 #: src/MainWindow.vala:41
 msgid "Queue is Empty"
-msgstr ""
+msgstr "Sıra Boş"
 
 #: src/MainWindow.vala:42
 msgid "Audio files opened from Files will appear here"
-msgstr ""
+msgstr "Dosyalar uygulamasından açılan ses dosyaları burada görünecek"
 
 #: src/MainWindow.vala:148
-#, fuzzy
 msgid "Repeat None"
-msgstr "Şarkı Tekrar Çal"
+msgstr "Tekrar Yok"
 
 #: src/MainWindow.vala:152
-#, fuzzy
 msgid "Repeat All"
-msgstr "Albümü Tekrar Çal"
+msgstr "Tümünü Tekrarla"
 
 #: src/MainWindow.vala:156
-#, fuzzy
 msgid "Repeat One"
-msgstr "Şarkı Tekrar Çal"
+msgstr "Birini Tekrarla"
 
 #: src/PlaybackManager.vala:103
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d parça sıraya eklendi"
+msgstr[1] "%d parça sıraya eklendi"
 
 #. Don't set artist for files without tags
 #: src/PlaybackManager.vala:163
@@ -66,9 +62,8 @@ msgid "Unknown"
 msgstr "Bilinmiyor"
 
 #: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
-#, fuzzy
 msgid "Not playing"
-msgstr "Yeni çalma listesi"
+msgstr "Çalınmıyor"
 
 #: src/Views/NowPlayingView.vala:45
 msgid "Previous"
