@@ -8,17 +8,16 @@ msgstr ""
 "Project-Id-Version: beat-box 0.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-11 14:16-0700\n"
-"PO-Revision-Date: 2018-11-06 01:57+0000\n"
-"Last-Translator: Piotr Strebski <strebski@gmail.com>\n"
-"Language-Team: Polish <https://weblate.elementary.io/projects/music/music/pl/"
-">\n"
+"PO-Revision-Date: 2022-04-12 07:25+0000\n"
+"Last-Translator: Marcin Serwin <marcin.serwin0@protonmail.com>\n"
+"Language-Team: Polish <https://l10n.elementary.io/projects/music/music/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 
 #: src/Application.vala:63 src/Views/NowPlayingView.vala:18
@@ -27,40 +26,36 @@ msgid "Music"
 msgstr "Muzyka"
 
 #: src/MainWindow.vala:26
-#, fuzzy
 msgid "Shuffle"
-msgstr "Włącza losowe wybieranie nagrania"
+msgstr "Losowo"
 
 #: src/MainWindow.vala:41
 msgid "Queue is Empty"
-msgstr ""
+msgstr "Kolejka jest pusta"
 
 #: src/MainWindow.vala:42
 msgid "Audio files opened from Files will appear here"
-msgstr ""
+msgstr "Pliki audio otwarte przez Pliki pojawią się tutaj"
 
 #: src/MainWindow.vala:148
-#, fuzzy
 msgid "Repeat None"
-msgstr "Powtórz nagranie"
+msgstr "Nie powtarzaj"
 
 #: src/MainWindow.vala:152
-#, fuzzy
 msgid "Repeat All"
-msgstr "Przełącza powtarzanie odtwarzania albumu"
+msgstr "Powtarzaj wszystko"
 
 #: src/MainWindow.vala:156
-#, fuzzy
 msgid "Repeat One"
-msgstr "Powtórz nagranie"
+msgstr "Powtarzaj jedno"
 
 #: src/PlaybackManager.vala:103
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d piosenka została dodana do kolejki"
+msgstr[1] "%d piosenki zostały dodane do kolejki"
+msgstr[2] "%d piosenek zostało dodane do kolejki"
 
 #. Don't set artist for files without tags
 #: src/PlaybackManager.vala:163
@@ -68,9 +63,8 @@ msgid "Unknown"
 msgstr "Nieznany"
 
 #: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
-#, fuzzy
 msgid "Not playing"
-msgstr "Nowa lista odtwarzania"
+msgstr "Nie odtwarza"
 
 #: src/Views/NowPlayingView.vala:45
 msgid "Previous"

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beatbox 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-11 14:16-0700\n"
-"PO-Revision-Date: 2021-07-30 19:58+0000\n"
+"PO-Revision-Date: 2022-04-12 13:09+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://l10n.elementary.io/projects/music/extra/fr/>\n"
 "Language: fr\n"
@@ -42,7 +42,7 @@ msgstr "elementary, Inc."
 
 #: data/music.appdata.xml.in:40
 msgid "Complete rewrite"
-msgstr ""
+msgstr "Réécriture complète"
 
 #: data/music.appdata.xml.in:46
 msgid "Drop support for Last.FM"
@@ -242,11 +242,10 @@ msgid "Listen to music"
 msgstr "Écouter de la musique"
 
 #: data/music.desktop.in:13
-#, fuzzy
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
-"Bruit;Audio;Lecteur;MP3;iPod;Lire;Playlist;Liste de lecture;Média;Téléphone;"
-"Musique;Chanson;"
+"Bruit;Audio;Lecteur;MP3;Lecture;Playlist;Liste de "
+"lecture;Média;Musique;Chanson;"
 
 #~ msgid "io.elementary.music"
 #~ msgstr "io.elementary.music"
