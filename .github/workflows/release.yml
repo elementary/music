@@ -1,0 +1,73 @@
+---
+
+name: Release
+
+on:
+  pull_request:
+    branches: main
+    types: closed
+
+jobs:
+  create_release:
+     name: Create Release
+     runs-on: ubuntu-latest
+
+     if: github.event.pull_request.merged == true && true == contains(join(github.event.pull_request.labels.*.name), 'Release')
+
+     steps:
+       - name: Checkout
+         uses: actions/checkout@v2
+
+       - name: Release
+         uses: elementary/actions/release@master
+         env:
+           GIT_USER_TOKEN: "${{ secrets.GIT_USER_TOKEN }}"
+           GIT_USER_NAME: "elementaryBot"
+           GIT_USER_EMAIL: "builds@elementary.io"
+         with:
+           release_branch: 'odin'
+
+  deploy_flatpak:
+    name: Deploy Flatpak
+    runs-on: ubuntu-latest
+
+    if: github.event.pull_request.merged == true && true == contains(join(github.event.pull_request.labels.*.name), 'Release')
+
+    strategy:
+      matrix:
+        arch: [x86_64, aarch64]
+      # Don't fail the whole workflow if one architecture fails
+      fail-fast: false
+
+    container:
+      image: ghcr.io/elementary/flatpak-platform/runtime:daily-${{ matrix.arch }}
+      options: --privileged
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up QEMU for aarch64 emulation
+        if: ${{ matrix.arch != 'x86_64' }}
+        uses: docker/setup-qemu-action@v1
+        with:
+          platforms: arm64
+
+      - name: Build
+        uses: bilelmoussaoui/flatpak-github-actions/flatpak-builder@v4
+        with:
+          bundle: music.flatpak
+          manifest-path: io.elementary.music.yml
+          run-tests: true
+          repository-name: appcenter
+          repository-url: https://flatpak.elementary.io/repo.flatpakrepo
+          cache-key: "flatpak-builder-${{ github.sha }}"
+          branch: stable
+          arch: ${{ matrix.arch }}
+
+      - name: Deploy
+        uses: bilelmoussaoui/flatpak-github-actions/flat-manager@v4
+        with:
+          repository: appcenter
+          flat-manager-url: https://flatpak-api.elementary.io
+          token: ${{ secrets.FLAT_MANAGER_TOKEN }}
