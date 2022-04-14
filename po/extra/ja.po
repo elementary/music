@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-11 14:16-0700\n"
-"PO-Revision-Date: 2021-07-18 10:39+0000\n"
+"PO-Revision-Date: 2022-04-14 14:33+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
-"Language-Team: Japanese <https://l10n.elementary.io/projects/music/extra/ja/"
-">\n"
+"Language-Team: Japanese <https://l10n.elementary.io/projects/music/extra/ja/>"
+"\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,7 +42,7 @@ msgstr "elementary, Inc."
 
 #: data/music.appdata.xml.in:40
 msgid "Complete rewrite"
-msgstr ""
+msgstr "コードの完全な書き直し"
 
 #: data/music.appdata.xml.in:46
 msgid "Drop support for Last.FM"
@@ -229,11 +229,10 @@ msgid "Listen to music"
 msgstr "音楽を聴きます"
 
 #: data/music.desktop.in:13
-#, fuzzy
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
-"Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;Phone;Songs;オーディオ;プレー"
-"ヤー;再生;プレイリスト;メディア;電話;曲;"
+"Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;オーディオ;音声;プレーヤー;プレイヤー;再生;プレイリ"
+"スト;メディア;曲;"
 
 #~ msgid "io.elementary.music"
 #~ msgstr "io.elementary.music"
