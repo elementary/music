@@ -3,16 +3,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-11 14:16-0700\n"
-"PO-Revision-Date: 2020-10-06 19:14+0000\n"
+"PO-Revision-Date: 2022-04-17 03:26+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
-"Language-Team: Marathi <https://l10n.elementary.io/projects/music/music/mr/"
-">\n"
+"Language-Team: Marathi <https://l10n.elementary.io/projects/music/music/mr/>"
+"\n"
 "Language: mr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 
 #: src/Application.vala:63 src/Views/NowPlayingView.vala:18
@@ -21,32 +21,28 @@ msgid "Music"
 msgstr "संगीत"
 
 #: src/MainWindow.vala:26
-#, fuzzy
 msgid "Shuffle"
-msgstr "शफल सक्षम करा"
+msgstr "शफल करा"
 
 #: src/MainWindow.vala:41
 msgid "Queue is Empty"
-msgstr ""
+msgstr "रांग रिकामी आहे"
 
 #: src/MainWindow.vala:42
 msgid "Audio files opened from Files will appear here"
-msgstr ""
+msgstr "Files मधून उघडलेल्या ऑडिओ फाइल्स येथे दिसतील"
 
 #: src/MainWindow.vala:148
-#, fuzzy
 msgid "Repeat None"
-msgstr "गाणे पुन्हा चालवा"
+msgstr "काहीही पुनरावृत्ती करू नका"
 
 #: src/MainWindow.vala:152
-#, fuzzy
 msgid "Repeat All"
-msgstr "गाणे पुन्हा चालवा"
+msgstr "सर्व गाणी पुन्हा चालवा"
 
 #: src/MainWindow.vala:156
-#, fuzzy
 msgid "Repeat One"
-msgstr "गाणे पुन्हा चालवा"
+msgstr "एक गाणे पुन्हा चालवा"
 
 #: src/PlaybackManager.vala:103
 #, c-format
