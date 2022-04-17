@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-11 14:16-0700\n"
-"PO-Revision-Date: 2021-07-19 09:59+0000\n"
+"PO-Revision-Date: 2022-04-17 14:00+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
-"Language-Team: Catalan <https://l10n.elementary.io/projects/music/extra/ca/"
-">\n"
+"Language-Team: Catalan <https://l10n.elementary.io/projects/music/extra/ca/>"
+"\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,7 +42,7 @@ msgstr "elementary, Inc."
 
 #: data/music.appdata.xml.in:40
 msgid "Complete rewrite"
-msgstr ""
+msgstr "Reescriptura completa"
 
 #: data/music.appdata.xml.in:46
 msgid "Drop support for Last.FM"
@@ -236,11 +236,10 @@ msgid "Listen to music"
 msgstr "Escolteu música"
 
 #: data/music.desktop.in:13
-#, fuzzy
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
-"Noise;Àudio;Reproductor;MP3;iPod;Play;Reproduir;Llista de reproducció;Media;"
-"Telèfon;Cançons;"
+"Noise;Àudio;Reproductor;MP3;Play;Reproduir;Llista de "
+"reproducció;Media;Cançons;"
 
 #~ msgid "io.elementary.music"
 #~ msgstr "io.elementary.music"
