@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-11 14:16-0700\n"
-"PO-Revision-Date: 2021-07-18 23:12+0000\n"
+"PO-Revision-Date: 2022-04-30 17:58+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.elementary.io/projects/music/extra/"
 "pt/>\n"
@@ -42,7 +42,7 @@ msgstr "elementary, Inc."
 
 #: data/music.appdata.xml.in:40
 msgid "Complete rewrite"
-msgstr ""
+msgstr "Reescrita completa"
 
 #: data/music.appdata.xml.in:46
 msgid "Drop support for Last.FM"
@@ -233,11 +233,8 @@ msgid "Listen to music"
 msgstr "Ouvir música"
 
 #: data/music.desktop.in:13
-#, fuzzy
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
-msgstr ""
-"Ruído;Áudio;Reprodutor;MP3;iPod;Tocar;Lista de reprodução;Média;Telefone;"
-"Músicas;"
+msgstr "Ruído;Áudio;Reprodutor;MP3;Tocar;Lista de reprodução;Media;Músicas;"
 
 #~ msgid "io.elementary.music"
 #~ msgstr "io.elementary.music"
