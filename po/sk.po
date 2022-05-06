@@ -9,16 +9,15 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-11 14:16-0700\n"
-"PO-Revision-Date: 2019-02-12 00:06+0000\n"
-"Last-Translator: Rico Tzschichholz <ricotz@ubuntu.com>\n"
-"Language-Team: Slovak <https://weblate.elementary.io/projects/music/music/sk/"
-">\n"
+"PO-Revision-Date: 2022-05-07 05:22+0000\n"
+"Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
+"Language-Team: Slovak <https://l10n.elementary.io/projects/music/music/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 
 #: src/Application.vala:63 src/Views/NowPlayingView.vala:18
@@ -27,40 +26,36 @@ msgid "Music"
 msgstr "Hudba"
 
 #: src/MainWindow.vala:26
-#, fuzzy
 msgid "Shuffle"
-msgstr "Povoliť náhodne"
+msgstr "Náhodné prehrávanie"
 
 #: src/MainWindow.vala:41
 msgid "Queue is Empty"
-msgstr ""
+msgstr "Fronta je prázdna"
 
 #: src/MainWindow.vala:42
 msgid "Audio files opened from Files will appear here"
-msgstr ""
+msgstr "Zvukové súbory otvorené v aplikácii Súbory sa zobrazia tu"
 
 #: src/MainWindow.vala:148
-#, fuzzy
 msgid "Repeat None"
-msgstr "Opakovať pieseň"
+msgstr "Neopakovať"
 
 #: src/MainWindow.vala:152
-#, fuzzy
 msgid "Repeat All"
-msgstr "Opakovať album"
+msgstr "Opakovať všetko"
 
 #: src/MainWindow.vala:156
-#, fuzzy
 msgid "Repeat One"
-msgstr "Opakovať pieseň"
+msgstr "Opakovať jednu skladbu"
 
 #: src/PlaybackManager.vala:103
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d zvukových stôp bolo pridaných do fronty"
+msgstr[1] "%d zvuková stopa bola pridaná do fronty"
+msgstr[2] "%d zvukové stopy boli pridané do fronty"
 
 #. Don't set artist for files without tags
 #: src/PlaybackManager.vala:163
@@ -68,9 +63,8 @@ msgid "Unknown"
 msgstr "Neznámy"
 
 #: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
-#, fuzzy
 msgid "Not playing"
-msgstr "Nový zoznam skladieb"
+msgstr "Neprehráva sa"
 
 #: src/Views/NowPlayingView.vala:45
 msgid "Previous"
