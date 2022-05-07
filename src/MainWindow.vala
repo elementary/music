@@ -7,7 +7,6 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
     private Gtk.Button repeat_button;
     private Gtk.Button shuffle_button;
     private Settings settings;
-    private uint layout_timeout;
 
     construct {
         var playback_manager = PlaybackManager.get_default ();
@@ -107,6 +106,7 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         set_titlebar (null_title);
 
         settings = new Settings ("io.elementary.music");
+        settings.bind ("pane-position", paned, "position", SettingsBindFlags.DEFAULT);
         settings.changed["repeat-mode"].connect (update_repeat_button);
 
         update_repeat_button ();
@@ -139,36 +139,6 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         queue_listbox.row_activated.connect ((row) => {
             playback_manager.current_audio = ((TrackRow) row).audio_object;
         });
-
-        ((Gtk.Widget) this).realize.connect (() => {
-            var surface = get_surface ();
-            surface.notify ["height"].connect (() => {
-                save_window_size ();
-            });
-
-            surface.notify ["width"].connect (() => {
-                save_window_size ();
-            });
-
-            settings.bind ("pane-position", paned, "position", SettingsBindFlags.DEFAULT);
-        });
-    }
-
-    private void save_window_size () {
-        if (layout_timeout == 0) {
-            /* Avoid spamming the settings */
-            layout_timeout = Timeout.add (200, () => {
-                layout_timeout = 0;
-
-                settings.set_boolean ("window-maximized", maximized);
-
-                if (!maximized) {
-                    settings.set ("window-size", "(ii)", default_width, default_height);
-                }
-
-                return GLib.Source.REMOVE;
-            });
-        }
     }
 
     private void update_repeat_button () {

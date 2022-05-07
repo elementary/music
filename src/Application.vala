@@ -61,6 +61,7 @@ public class Music.Application : Gtk.Application {
             var main_window = new MainWindow () {
                 title = _("Music")
             };
+            main_window.present ();
 
             add_window (main_window);
 
@@ -78,20 +79,23 @@ public class Music.Application : Gtk.Application {
                     granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK
                 );
             });
-        }
 
-        active_window.present_with_time (Gdk.CURRENT_TIME);
+            /*
+            * This is very finicky. Bind size after present else set_titlebar gives us bad sizes
+            * Set maximize after height/width else window is min size on unmaximize
+            * Bind maximize as SET else get get bad sizes
+            */
+            var settings = new Settings ("io.elementary.music");
+            settings.bind ("window-height", main_window, "default-height", SettingsBindFlags.DEFAULT);
+            settings.bind ("window-width", main_window, "default-width", SettingsBindFlags.DEFAULT);
 
-        var settings = new Settings ("io.elementary.music");
-        var rect = Gtk.Allocation ();
-        settings.get ("window-size", "(ii)", out rect.width, out rect.height);
+            if (settings.get_boolean ("window-maximized")) {
+                main_window.maximize ();
+            }
 
-        // Set size after present to prevent resizing
-        active_window.default_height = rect.height;
-        active_window.default_width = rect.width;
-
-        if (settings.get_boolean ("window-maximized")) {
-            active_window.maximize ();
+            settings.bind ("window-maximized", main_window, "maximized", SettingsBindFlags.SET);
+        } else {
+            active_window.present_with_time (Gdk.CURRENT_TIME);
         }
     }
 
