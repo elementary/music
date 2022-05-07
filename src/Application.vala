@@ -37,10 +37,21 @@ public class Music.Application : Gtk.Application {
 
         var main_window = new MainWindow () {
             application = this,
-            default_width = 650,
             title = _("Music")
         };
         main_window.present ();
+
+        var settings = new Settings ("io.elementary.music");
+        var rect = Gtk.Allocation ();
+        settings.get ("window-size", "(ii)", out rect.width, out rect.height);
+
+        // Set size after present to prevent resizing
+        main_window.default_height = rect.height;
+        main_window.default_width = rect.width;
+
+        if (settings.get_boolean ("window-maximized")) {
+            main_window.maximize ();
+        }
 
         Gtk.IconTheme.get_for_display (Gdk.Display.get_default ()).add_resource_path ("/io/elementary/music");
 

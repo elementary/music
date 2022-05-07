@@ -107,33 +107,32 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         });
 
         ((Gtk.Widget) this).realize.connect (() => {
+            var surface = get_surface ();
+            surface.notify ["height"].connect (() => {
+                save_window_size ();
+            });
 
-            int window_width, window_height;
-            settings.get ("window-size", "(ii)", out window_width, out window_height);
-
-            layout_manager.allocate (this, window_width, window_height, 0);
-
-            if (settings.get_boolean ("window-maximized")) {
-                maximize ();
-            }
-
-            get_surface ().layout.connect ((width, height) => {
-                if (layout_timeout == 0) {
-                    /* Avoid spamming the settings */
-                    layout_timeout = Timeout.add (200, () => {
-                        layout_timeout = 0;
-
-                        settings.set_boolean ("window-maximized", maximized);
-
-                        if (!maximized) {
-                            settings.set ("window-size", "(ii)", get_width (), get_height ());
-                        }
-
-                        return GLib.Source.REMOVE;
-                    });
-                }
+            surface.notify ["width"].connect (() => {
+                save_window_size ();
             });
         });
+    }
+
+    private void save_window_size () {
+        if (layout_timeout == 0) {
+            /* Avoid spamming the settings */
+            layout_timeout = Timeout.add (200, () => {
+                layout_timeout = 0;
+
+                settings.set_boolean ("window-maximized", maximized);
+
+                if (!maximized) {
+                    settings.set ("window-size", "(ii)", default_width, default_height);
+                }
+
+                return GLib.Source.REMOVE;
+            });
+        }
     }
 
     private void update_repeat_button () {
