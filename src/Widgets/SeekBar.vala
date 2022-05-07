@@ -75,7 +75,7 @@ public class Music.SeekBar : Gtk.Box {
         scale.add_css_class (Granite.STYLE_CLASS_ACCENT);
 
         spacing = 6;
-        add_css_class (Granite.STYLE_CLASS_SEEKBAR);
+        add_css_class ("seek-bar");
         append (position_label);
         append (scale);
         append (duration_label);

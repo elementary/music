@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-16 19:03+0000\n"
-"PO-Revision-Date: 2020-10-06 19:14+0000\n"
+"POT-Creation-Date: 2022-04-11 14:16-0700\n"
+"PO-Revision-Date: 2022-04-17 03:26+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://l10n.elementary.io/projects/music/music/mr/"
 ">\n"
@@ -12,1399 +12,1039 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 
-#: core/LibrariesManager.vala:146
-msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "<b>$ARTIST</b> यांचे <b>$NAME</b> संग्रहात आणले जात आहे…"
-
-#. / Used for unknown titles, artists, or album names.
-#: core/Media.vala:33
-msgid "Unknown"
-msgstr "अनोळखी"
-
-#. / Please keep $NAME and $ALBUM, they will be replaced by their values
-#: core/Media.vala:180
-msgid "$NAME on $ALBUM"
-msgstr "$ALBUM मधले $NAME"
-
-#. / Please keep $NAME and $ARTIST, they will be replaced by their values
-#: core/Media.vala:183
-msgid "$NAME by $ARTIST"
-msgstr "$ARTIST यांचे  $NAME"
-
-#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
-#: core/Media.vala:189
-msgid "$NAME by $ARTIST on $ALBUM"
-msgstr "$ARTIST यांचे $ALBUM मधले $NAME"
-
-#: core/GStreamer/Equalizer.vala:70
-msgid "Flat"
-msgstr "फ्लॅट"
-
-#: core/GStreamer/Equalizer.vala:71
-msgid "Classical"
-msgstr "क्लासिकल"
-
-#: core/GStreamer/Equalizer.vala:72
-msgid "Club"
-msgstr "क्लब"
-
-#: core/GStreamer/Equalizer.vala:73
-msgid "Dance"
-msgstr "डान्स"
-
-#: core/GStreamer/Equalizer.vala:74
-msgid "Full Bass"
-msgstr "फुल बास"
-
-#: core/GStreamer/Equalizer.vala:75
-msgid "Full Treble"
-msgstr "फुल ट्रेंबल"
-
-#: core/GStreamer/Equalizer.vala:76
-msgid "Full Bass + Treble"
-msgstr "फुल बास+ट्रेंबल"
-
-#: core/GStreamer/Equalizer.vala:77
-msgid "Headphones"
-msgstr "हेडफोन"
-
-#: core/GStreamer/Equalizer.vala:78
-msgid "Large Hall"
-msgstr "मोठा हॉल"
-
-#: core/GStreamer/Equalizer.vala:79
-msgid "Live"
-msgstr "लाईव्ह"
-
-#: core/GStreamer/Equalizer.vala:80
-msgid "Party"
-msgstr "पार्टी"
-
-#: core/GStreamer/Equalizer.vala:81
-msgid "Pop"
-msgstr "पॉप"
-
-#: core/GStreamer/Equalizer.vala:82
-msgid "Reggae"
-msgstr "रेगे"
-
-#: core/GStreamer/Equalizer.vala:83
-msgid "Rock"
-msgstr "रॉक"
-
-#: core/GStreamer/Equalizer.vala:84
-msgid "Soft"
-msgstr "सॉफ्ट"
-
-#: core/GStreamer/Equalizer.vala:85
-msgid "Ska"
-msgstr "स्का"
-
-#: core/GStreamer/Equalizer.vala:86
-msgid "Soft Rock"
-msgstr "सॉफ्ट रॉक"
-
-#: core/GStreamer/Equalizer.vala:87
-msgid "Techno"
-msgstr "टेक्नो"
-
-#: core/Utils/FileUtils.vala:142
-#, c-format
-msgid " (%d)"
-msgstr " (%d)"
-
-#: core/Utils/PlaylistsUtils.vala:95
-#, c-format
-msgid "%s (%d)"
-msgstr "%s (%d)"
-
-#: core/Utils/PlaylistsUtils.vala:234
-msgid "New playlist"
-msgstr "नवीन यादी"
-
-#. Translators: used for new playlists ex: "New playlist (1)"
-#: core/Utils/PlaylistsUtils.vala:245
-#, c-format
-msgid "%s (%i)"
-msgstr "%s (%i)"
-
-#: core/Utils/PlaylistsUtils.vala:265 core/Utils/PlaylistsUtils.vala:334
-msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr "MPEG आवृत्ती 3.0 विस्तारित (*.m3u)"
-
-#: core/Utils/PlaylistsUtils.vala:269 core/Utils/PlaylistsUtils.vala:338
-msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr "Shoutcast यादी आवृत्ती 2.0 (*.pls)"
-
-#: core/Utils/PlaylistsUtils.vala:272
-msgid "Export Playlist"
-msgstr "यादी एक्स्पोर्ट करा"
-
-#: core/Utils/PlaylistsUtils.vala:275 src/Dialogs/MediaEditor.vala:133
-#: src/Dialogs/SmartPlaylistEditor.vala:92
-msgid "Save"
-msgstr "सेव्ह करा"
-
-#: core/Utils/PlaylistsUtils.vala:276 core/Utils/PlaylistsUtils.vala:345
-#: src/LibraryWindow.vala:1030 src/Dialogs/FileNotFoundDialog.vala:55
-#: src/Dialogs/FileNotFoundDialog.vala:103
-#: src/Dialogs/InstallGstreamerPluginsDialog.vala:49
-#: src/Dialogs/RemoveFilesDialog.vala:82
-#: src/Dialogs/SetMusicFolderConfirmation.vala:85
-#: src/Dialogs/SmartPlaylistEditor.vala:89
-#: src/Dialogs/SyncWarningDialog.vala:60
-#: src/Views/Wrappers/MusicViewWrapper.vala:147 src/Widgets/TopDisplay.vala:63
-msgid "Cancel"
-msgstr "रद्द करा"
-
-#: core/Utils/PlaylistsUtils.vala:329
-msgid "Playlist"
-msgstr "यादी"
-
-#: core/Utils/PlaylistsUtils.vala:341
-#, c-format
-msgid "Import %s"
-msgstr "%s आणा"
-
-#: core/Utils/PlaylistsUtils.vala:344 src/LibraryWindow.vala:1029
-#: src/Dialogs/FileNotFoundDialog.vala:102
-#: src/Dialogs/SetMusicFolderConfirmation.vala:84
-#: src/Views/Wrappers/MusicViewWrapper.vala:146
-#: src/Widgets/AlbumListGrid.vala:197
-msgid "Open"
-msgstr "उघडा"
-
-#: core/Utils/PlaylistsUtils.vala:371
-msgid "Unrecognized playlist file. Import failed."
-msgstr "अनोळखी यादी फाईल. फाईल आणणे अपयशी."
-
-#. / Format of date strings. See reference documentation of g_date_time_format()
-#. / for more details.
-#: core/Utils/TimeUtils.vala:40
-msgid "%m/%e/%Y %l:%M %p"
-msgstr "%m/%e/%Y %l:%M %p"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:109
-#: plugins/Devices/iPod/iPodDevice.vala:68
-msgid "Empty device!"
-msgstr "उपकरण रिकामे आहे!"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:113
-#: plugins/Devices/iPod/iPodDevice.vala:72
-msgid "This device does not contain any music."
-msgstr "या उपकरणात कोणतेही संगीत नाही."
-
-#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:158
-msgid "Android Phone"
-msgstr "अँड्रॉइड फोन"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:160
-msgid "Audio Player"
-msgstr "ऑडिओ प्लेयर"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:146
-#: plugins/Devices/iPod/iPodLibrary.vala:167
-msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr "$DEVICE मध्ये <b>$ARTIST</b> यांचे <b>$NAME</b> टाकले जात आहे"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:171
-#: plugins/Devices/iPod/iPodLibrary.vala:216
-#, c-format
-msgid "Syncing <b>%s</b>…"
-msgstr "<b>%s</b>संक्रमित केले जात आहे…"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:283
-#: plugins/Devices/iPod/iPodLibrary.vala:561
-msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr "$DEVICE मधून <b>$ARTIST</b> यांचे <b>$NAME</b> काढले जात आहे"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:315
-#: plugins/Devices/iPod/iPodLibrary.vala:366
-#, c-format
-msgid "Removing from <b>%s</b>…"
-msgstr "<b>%s</b>मधून काढले जात आहे…"
-
-#: plugins/Devices/iPod/iPodLibrary.vala:238
-#: plugins/Devices/iPod/iPodLibrary.vala:404
-msgid "Finishing sync process…"
-msgstr "समक्रमण प्रक्रिया समाप्त करीत आहे…"
-
-#: plugins/Devices/iPod/iPodLibrary.vala:250
-#: plugins/Devices/iPod/iPodLibrary.vala:416
-msgid "Cancelling Sync…"
-msgstr "समक्रमण रद्द करीत आहे…"
-
-#: src/FileOperator.vala:306
-msgid "Import Complete"
-msgstr "आयात पूर्ण"
-
-#: src/FileOperator.vala:306
-msgid "Your Library Has Been Imported."
-msgstr "आपली लायब्ररी आयात केली गेली आहे."
-
-#. if doing import and copy to music folder is enabled, do copy here
-#: src/FileOperator.vala:316
-msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr "फायली <b>संगीत</b> फोल्डरमध्ये <b>कॉपी</b> करत आहे…"
-
-#: src/LibraryWindow.vala:197 src/LibraryWindow.vala:275
-#: src/LibraryWindow.vala:631 src/LibraryWindow.vala:751
+#: src/Application.vala:63 src/Views/NowPlayingView.vala:18
+#: src/Views/NowPlayingView.vala:116
 msgid "Music"
 msgstr "संगीत"
 
-#: src/LibraryWindow.vala:216
-msgid "Import to Library…"
-msgstr "लायब्ररीत आयात करा…"
+#: src/MainWindow.vala:26
+msgid "Shuffle"
+msgstr "शफल करा"
 
-#: src/LibraryWindow.vala:219 src/Dialogs/PreferencesWindow.vala:32
-msgid "Preferences"
-msgstr "प्राधान्ये"
+#: src/MainWindow.vala:41
+msgid "Queue is Empty"
+msgstr "रांग रिकामी आहे"
 
-#: src/LibraryWindow.vala:238
+#: src/MainWindow.vala:42
+msgid "Audio files opened from Files will appear here"
+msgstr "Files मधून उघडलेल्या ऑडिओ फाइल्स येथे दिसतील"
+
+#: src/MainWindow.vala:148
+msgid "Repeat None"
+msgstr "काहीही पुनरावृत्ती करू नका"
+
+#: src/MainWindow.vala:152
+msgid "Repeat All"
+msgstr "सर्व गाणी पुन्हा चालवा"
+
+#: src/MainWindow.vala:156
+msgid "Repeat One"
+msgstr "एक गाणे पुन्हा चालवा"
+
+#: src/PlaybackManager.vala:103
+#, c-format
+msgid "%d track was added to the queue"
+msgid_plural "%d tracks were added to the queue"
+msgstr[0] ""
+msgstr[1] ""
+
+#. Don't set artist for files without tags
+#: src/PlaybackManager.vala:163
+msgid "Unknown"
+msgstr "अनोळखी"
+
+#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
+#, fuzzy
+msgid "Not playing"
+msgstr "नवीन यादी"
+
+#: src/Views/NowPlayingView.vala:45
 msgid "Previous"
 msgstr "मागील"
 
-#: src/LibraryWindow.vala:245 src/LibraryWindow.vala:311
-msgid "Play"
-msgstr "वाजवा"
-
-#: src/LibraryWindow.vala:252
+#: src/Views/NowPlayingView.vala:68
 msgid "Next"
 msgstr "पुढील"
 
-#: src/LibraryWindow.vala:256
-msgid "Search Music"
-msgstr "संगीत शोधा"
+#: src/Views/NowPlayingView.vala:93
+msgid "Play"
+msgstr "वाजवा"
 
-#: src/LibraryWindow.vala:317
+#: src/Views/NowPlayingView.vala:96
 msgid "Pause"
 msgstr "विराम द्या"
 
-#: src/LibraryWindow.vala:820
-msgid "No songs in Queue"
-msgstr "रांगेत कोणतीही गाणी नाहीत"
-
-#: src/LibraryWindow.vala:820
-msgid ""
-"To add songs to the queue, use the <b>secondary click</b> on an item and "
-"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
-"first before the next song in the currently playing list."
-msgstr ""
-"रांगेत गाणी जोडण्यासाठी, आयटमवरील <b>दुय्यम क्लिक </b>वापरा आणि <b>रांग </b>निवडा. "
-"गाणे समाप्त झाल्यावर, रांगेत असलेल्या गाण्यांना सध्याच्या प्लेलिस्टमधील पुढील गाण्याच्या आधी "
-"प्रथम प्ले केले जाईल."
-
-#: src/LibraryWindow.vala:823
-msgid "No songs in History"
-msgstr "इतिहासात कोणतीही गाणी नाहीत"
-
-#: src/LibraryWindow.vala:823
-msgid ""
-"After a part of a song has been played, it is added to the history list.\n"
-"You can use this list to see all the songs you have played during the "
-"current session."
-msgstr ""
-"गाण्याचे काही भाग चालवल्या नंतर ते इतिहासाच्या यादीमध्ये जोडले जाते.\n"
-"आपण वर्तमान सत्रादरम्यान चालवलेले सर्व गाणे पाहण्यासाठी या सूचीचा वापर करू शकता."
-
-#: src/LibraryWindow.vala:1026 src/Views/Wrappers/MusicViewWrapper.vala:59
-msgid "Import Music"
-msgstr "संगीत आयात करा"
-
-#: src/PlaybackManager.vala:117
-msgctxt "Name of the playlist"
-msgid "Queue"
-msgstr "ओळ"
-
-#: src/Dialogs/FileNotFoundDialog.vala:37
-msgid "File not found"
-msgstr "फाइल सापडली नाही"
-
-#: src/Dialogs/FileNotFoundDialog.vala:47
-#, c-format
-msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
-msgstr "<b>%s</b> यांची <b>%s</b> साठी संगीत फाइल सापडू शकली नाही."
-
-#: src/Dialogs/FileNotFoundDialog.vala:50
-#, fuzzy, c-format
-#| msgid "%i music files could not be found?"
-msgid "%i music files could not be found."
-msgstr "%i संगीत फाइल्स सापडली नाहीत?"
-
-#: src/Dialogs/FileNotFoundDialog.vala:53
-msgid "Rescan Library"
-msgstr "लायब्ररी पुन्हा स्कॅन करा"
-
-#: src/Dialogs/FileNotFoundDialog.vala:54
-msgid "Remove Song"
-msgstr "गाणे काढा"
-
-#: src/Dialogs/FileNotFoundDialog.vala:56
-msgid "Find Song"
-msgstr "गाणे शोधा"
-
-#: src/Dialogs/FileNotFoundDialog.vala:99
-#: src/Dialogs/SetMusicFolderConfirmation.vala:81
-msgid "Choose Music Folder"
-msgstr "संगीत फोल्डर निवडा"
-
-#: src/Dialogs/InstallGstreamerPluginsDialog.vala:41
-#, c-format
-msgid "Would you like to install the %s plugin?"
-msgstr "आपण  %s प्लगइन स्थापित करू इच्छिता?"
-
-#: src/Dialogs/InstallGstreamerPluginsDialog.vala:42
-#, c-format
-msgid "This song cannot be played. The %s plugin is required to play the song."
-msgstr "हे गाणे प्ले केले जाऊ शकत नाही. गाणे प्ले करण्यासाठी %s प्लगइन आवश्यक आहे."
-
-#: src/Dialogs/InstallGstreamerPluginsDialog.vala:51
-msgid "Install Plugin"
-msgstr "प्लगइन स्थापित करा"
-
-#: src/Dialogs/MediaEditor.vala:96
-msgid "Title:"
-msgstr "शीर्षक:"
-
-#: src/Dialogs/MediaEditor.vala:98
-msgid "Artist:"
-msgstr "कलावंत:"
-
-#: src/Dialogs/MediaEditor.vala:100
-msgid "Album:"
-msgstr "अल्बम:"
-
-#: src/Dialogs/MediaEditor.vala:102
-msgid "Album Artist:"
-msgstr "अल्बम कलावंत:"
-
-#: src/Dialogs/MediaEditor.vala:104
-msgid "Composer:"
-msgstr "रचनाकार:"
-
-#: src/Dialogs/MediaEditor.vala:106
-msgid "Grouping:"
-msgstr "वर्गीकरण:"
-
-#: src/Dialogs/MediaEditor.vala:108
-msgid "Genre:"
-msgstr "शैली:"
-
-#: src/Dialogs/MediaEditor.vala:110
-msgid "Year:"
-msgstr "वर्ष:"
-
-#: src/Dialogs/MediaEditor.vala:112
-msgid "Track:"
-msgstr "ट्रॅक:"
-
-#: src/Dialogs/MediaEditor.vala:114
-msgid "Disc:"
-msgstr "डिस्क:"
-
-#: src/Dialogs/MediaEditor.vala:116
-msgid "Rating:"
-msgstr "रेटिंग:"
-
-#: src/Dialogs/MediaEditor.vala:118
-msgid "Comment:"
-msgstr "टिप्पणी:"
-
-#. FIXME: don't know if I can delete this
-#: src/Dialogs/MediaEditor.vala:131 src/Dialogs/PreferencesWindow.vala:88
-#: src/Views/DeviceView.vala:45
-msgid "Close"
-msgstr "बंद करा"
-
-#: src/Dialogs/NotImportedDialog.vala:50
-#, c-format
-msgid "Issues while importing from %s"
-msgstr "%s पासून आयात करताना समस्या"
-
-#: src/Dialogs/NotImportedDialog.vala:56
-#, c-format
-msgid "Unable to import %d item. The file may be damaged."
-msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] "%d आयटम आयात करण्यास अक्षम. फाइल खराब असू शकते."
-msgstr[1] "%d आयटम आयात करण्यास अक्षम. फायली खराब असू  शकतात."
-
-#: src/Dialogs/NotImportedDialog.vala:64
-msgid "Move all corrupted files to trash"
-msgstr "सर्व दूषित फाइल्स कचर्यामध्ये हलवा"
-
-#: src/Dialogs/NotImportedDialog.vala:71
-msgid "del"
-msgstr "del"
-
-#: src/Dialogs/NotImportedDialog.vala:80
-msgid "File Location"
-msgstr "फाइल स्थान"
-
-#: src/Dialogs/NotImportedDialog.vala:96
-msgid "Select individual files to move to trash:"
-msgstr "कचर्यामध्ये हलविण्यासाठी स्वतंत्र फायली निवडा:"
-
-#: src/Dialogs/NotImportedDialog.vala:100 src/Dialogs/RemoveFilesDialog.vala:73
-msgid "Move to Trash"
-msgstr "कचर्यामध्ये हलवा"
-
-#: src/Dialogs/NotImportedDialog.vala:103
-msgid "Ignore"
-msgstr "दुर्लक्ष करा"
-
-#: src/Dialogs/PreferencesWindow.vala:38
-msgid "Select Music Folder…"
-msgstr "संगीत फोल्डर निवडा…"
-
-#: src/Dialogs/PreferencesWindow.vala:70
-msgid "Music Folder Location"
-msgstr "संगीत फोल्डर स्थान"
-
-#: src/Dialogs/PreferencesWindow.vala:72
-msgid "Library Management"
-msgstr "लायब्ररी व्यवस्थापन"
-
-#: src/Dialogs/PreferencesWindow.vala:73
-msgid "Keep Music folder organized:"
-msgstr "संगीत फोल्डर व्यवस्थापित ठेवा:"
-
-#: src/Dialogs/PreferencesWindow.vala:75
-msgid "Write metadata to file:"
-msgstr "फाइलमध्ये मेटाडेटा लिहा:"
-
-#: src/Dialogs/PreferencesWindow.vala:77
-msgid "Copy imported files to Library:"
-msgstr "आयात केलेल्या फायली लायब्ररीत कॉपी करा:"
-
-#: src/Dialogs/PreferencesWindow.vala:79
-msgid "Desktop Integration"
-msgstr "डेस्कटॉप एकत्रीकरण"
-
-#: src/Dialogs/PreferencesWindow.vala:80
-msgid "Continue playback when closed:"
-msgstr "बंद असताना प्लेबॅक सुरू ठेवा:"
-
-#: src/Dialogs/RemoveFilesDialog.vala:49
-#, c-format
-msgid "Remove %d Song From Library?"
-msgid_plural "Remove %d Songs From Library?"
-msgstr[0] "लायब्ररीमधून %d गाणे काढून टाकायचे?"
-msgstr[1] "लायब्ररीमधून %d गाणी काढून टाकायची?"
-
-#: src/Dialogs/RemoveFilesDialog.vala:55
-#, c-format
-msgid "Remove \"%s\" From Library?"
-msgstr "लायब्ररीमधून \"%s\" काढायचे?"
-
-#: src/Dialogs/RemoveFilesDialog.vala:59
-msgid ""
-"This will remove the song from your library and from any device synced "
-"automatically."
-msgid_plural ""
-"This will remove the songs from your library and from any device synced "
-"automatically."
-msgstr[0] ""
-"हे आपल्या लायब्ररीमधील आणि आपल्या स्वयंचलितपणे समक्रमित केलेल्या सर्व डिव्हाइसेसवरून गाणे "
-"काढेल."
-msgstr[1] ""
-"हे आपल्या लायब्ररीमधील आणि आपल्या स्वयंचलितपणे समक्रमित केलेल्या सर्व डिव्हाइसेसवरून गाणी "
-"काढेल."
-
-#: src/Dialogs/RemoveFilesDialog.vala:83
-msgid "Remove from Library"
-msgstr "लायब्ररीमधून काढा"
-
-#: src/Dialogs/SetMusicFolderConfirmation.vala:38
-msgid "Set Music Folder?"
-msgstr "संगीत फोल्डर सेट करायचे?"
-
-#: src/Dialogs/SetMusicFolderConfirmation.vala:39
-#, c-format
-msgid ""
-"Are you sure you want to set the music folder to %s? This will reset your "
-"library and remove your playlists."
-msgstr ""
-"आपणास खात्री आहे की आपण संगीत फोल्डर %s वर सेट करू इच्छिता? हे आपले लायब्ररी रीसेट करेल "
-"आणि आपल्या प्लेलिस्ट हटवेल."
-
-#: src/Dialogs/SetMusicFolderConfirmation.vala:47
-msgid "Export Playlists"
-msgstr "प्लेलिस्ट निर्यात करा"
-
-#: src/Dialogs/SetMusicFolderConfirmation.vala:61
-msgid "Set Music Folder"
-msgstr "संगीत फोल्डर सेट करा"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:55
-msgid "Playlist Title"
-msgstr "प्लेलिस्ट शीर्षक"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:58
-msgid "any"
-msgstr "कोणतेही"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:59
-msgid "all"
-msgstr "सर्व"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:63
-msgid "Match"
-msgstr "जुळणारे"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:65
-msgid "of the following:"
-msgstr "पुढीलपैकी:"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:74
-msgid "Add"
-msgstr "जोडा"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:79
-msgid "Limit to"
-msgstr "मर्यादित"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:87
-msgid "items"
-msgstr "आयटम"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:103
-msgid "Name of Playlist"
-msgstr "प्लेलिस्टचे नाव"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:105
-msgid "Rules"
-msgstr "नियम"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:108
-msgid "Options"
-msgstr "पर्याय"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:113
-msgid "Smart Playlist Editor"
-msgstr "स्मार्ट प्लेलिस्ट संपादक"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:256 src/Widgets/SourceListView.vala:67
-#: src/Widgets/SourceListView.vala:80
-msgid "Remove"
-msgstr "काढा"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:259
-msgid "Album"
-msgstr "अल्बम"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:260
-msgid "Artist"
-msgstr "कलावंत"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:261
-msgid "Bitrate"
-msgstr "बिटरेट"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:262
-msgid "Comment"
-msgstr "टिप्पणी"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:263
-msgid "Composer"
-msgstr "रचनाकार"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:264
-msgid "Date Added"
-msgstr "तारीख जोडली"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:265
-msgid "Genre"
-msgstr "शैली"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:266
-msgid "Grouping"
-msgstr "वर्गीकरण"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:267
-msgid "Last Played"
-msgstr "शेवटचे वाजवले"
-
-#. helper for units
-#: src/Dialogs/SmartPlaylistEditor.vala:268
-#: src/Dialogs/SmartPlaylistEditor.vala:413
-msgid "Length"
-msgstr "अवधी"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:269
-msgid "Playcount"
-msgstr "प्लेकाउंट"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:270
-msgid "Rating"
-msgstr "रेटिंग"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:271
-msgid "Skipcount"
-msgstr "स्कीपकाउंट"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:272
-msgid "Title"
-msgstr "शीर्षक"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:273
-msgid "Year"
-msgstr "वर्ष"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:274
-msgid "URI"
-msgstr "युआरआय"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:347
-msgid "is"
-msgstr "आहे"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:348
-msgid "contains"
-msgstr "समाविष्ट"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:349
-msgid "does not contain"
-msgstr "समाविष्ट नाही"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:375
-#: src/Dialogs/SmartPlaylistEditor.vala:390
-msgid "is exactly"
-msgstr "नक्कीच आहे"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:376
-msgid "is at most"
-msgstr "सर्वात जास्त आहे"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:377
-msgid "is at least"
-msgstr "किमान आहे"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:391
-msgid "is within"
-msgstr "आत आहे"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:392
-msgid "is before"
-msgstr "आधी आहे"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:414
-msgid "seconds"
-msgstr "सेकंद"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:417
-msgid "days ago"
-msgstr "दिवसांपूर्वी"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:420
-msgid "kbps"
-msgstr "केबीपीएस"
-
-#. be a bit explicit to make translations better
-#: src/Dialogs/SyncWarningDialog.vala:52
-#, c-format
-msgid "Sync will remove %i item from %s"
-msgid_plural "Sync will remove %i items from %s"
-msgstr[0] "समक्रमण %i आयटम %s मधून काढेल"
-msgstr[1] "समक्रमण %i आयटम %s मधून काढेल"
-
-#: src/Dialogs/SyncWarningDialog.vala:55
-#, c-format
-msgid ""
-"If you continue to sync, media will be removed from %s since they are not on "
-"the sync list. Would you like to import them to your library first?"
-msgstr ""
-"आपण समक्रमित करणे सुरू ठेवल्यास, %s वरून सिंक सूचीवर नसल्यामुळे ते मीडिया काढले जातील. आपण "
-"त्यांना प्रथम आपल्या लायब्ररीमध्ये आयात करू इच्छिता?"
-
-#: src/Dialogs/SyncWarningDialog.vala:57
-msgid "Continue Syncing"
-msgstr "संकालन सुरू ठेवा"
-
-#: src/Dialogs/SyncWarningDialog.vala:62
-msgid "Import"
-msgstr "आयात"
-
-#: src/LocalBackend/LocalLibrary.vala:188
-#, c-format
-msgid "Importing music from %s…"
-msgstr "%s वरुन संगीत आयात करीत आहे…"
-
-#: src/LocalBackend/LocalLibrary.vala:215
-msgid "Adding files to library…"
-msgstr "लायब्ररीमध्ये फायली जोडत आहे…"
-
-#: src/LocalBackend/LocalLibrary.vala:228
-msgid "<b>Importing</b> music to library…"
-msgstr "संगीत लायब्ररीत संगीत <b> आयात करीत आहे </b>…"
-
-#: src/LocalBackend/LocalLibrary.vala:250
-msgid "All music files are already in your library"
-msgstr "सर्व संगीत फायली आधीपासूनच आपल्या लायब्ररीमध्ये आहेत"
-
-#: src/LocalBackend/LocalLibrary.vala:250
-msgid "No files were imported."
-msgstr "कोणत्याही फायली आयात केल्या नाहीत."
-
-#: src/LocalBackend/LocalLibrary.vala:255
-msgid "Rescanning music for changes. This may take a while…"
-msgstr "बदलांसाठी संगीत पुनर्वितरण. यास काही वेळ लागू शकतो…"
-
-#: src/LocalBackend/LocalLibrary.vala:356
-msgid "Added to your queue:"
-msgstr "आपल्या रांगेत जोडले:"
-
-#: src/LocalBackend/LocalLibrary.vala:367
-#, c-format
-msgid "%d Track"
-msgid_plural "%d Tracks"
-msgstr[0] "%d ट्रॅक"
-msgstr[1] "%d ट्रॅक्स"
-
-#: src/LocalBackend/LocalSmartPlaylist.vala:218
-msgid "Favorite Songs"
-msgstr "आवडती गाणी"
-
-#: src/LocalBackend/LocalSmartPlaylist.vala:226
-msgid "Recently Added"
-msgstr "अलीकडे जोडलेले"
-
-#: src/LocalBackend/LocalSmartPlaylist.vala:234
-msgid "Recent Favorites"
-msgstr "अलीकडील आवडी"
-
-#: src/LocalBackend/LocalSmartPlaylist.vala:242
-msgid "Never Played"
-msgstr "कधीही न वाजविलेले"
-
-#: src/LocalBackend/LocalSmartPlaylist.vala:250
-msgid "Over Played"
-msgstr "खूपवेळा वाजविलेले"
-
-#: src/LocalBackend/LocalSmartPlaylist.vala:258
-msgid "Not Recently Played"
-msgstr "अलीकडे न वाजविलेले"
-
-#: src/Objects/HistoryPlaylist.vala:38
-msgid "History"
-msgstr "इतिहास"
-
-#: src/Objects/MPRIS.vala:617 src/Widgets/SourceListView.vala:341
-msgid "Playlists"
-msgstr "प्लेलिस्ट"
-
-#: src/Views/DeviceSummaryWidget.vala:60
-msgid "Device Name:"
-msgstr "उपकरणाचे नाव:"
-
-#: src/Views/DeviceSummaryWidget.vala:64
-msgid "Device Name"
-msgstr "उपकरणाचे नाव"
-
-#: src/Views/DeviceSummaryWidget.vala:66
-msgid "Automatically sync when plugged in:"
-msgstr "प्लग इन केलेले असताना स्वयंचलितपणे समक्रमित करा:"
-
-#: src/Views/DeviceSummaryWidget.vala:72
-msgid "Sync:"
-msgstr "सिंक:"
-
-#: src/Views/DeviceSummaryWidget.vala:100 src/Widgets/SourceListView.vala:192
-msgid "Sync"
-msgstr "सिंक"
-
-#: src/Views/DeviceSummaryWidget.vala:244
-msgid "All Music"
-msgstr "सर्व संगीत"
-
-#: src/Views/DeviceSummaryWidget.vala:298
-msgid "Sync Failed"
-msgstr "सिंक अयशस्वी"
-
-#: src/Views/DeviceSummaryWidget.vala:299
-#, c-format
-msgid ""
-"The playlist named %s is used to sync device %s, but could not be found."
-msgstr ""
-"%s नावाची प्लेलिस्टचा वापर %s संकालन करण्यासाठी केला जातो, परंतु ती आढळू शकली नाही."
-
-#: src/Views/DeviceSummaryWidget.vala:316
-#: src/Views/DeviceSummaryWidget.vala:321
-msgid "Cannot Sync"
-msgstr "सिंक करू शकत नाही"
-
-#: src/Views/DeviceSummaryWidget.vala:317
-msgid ""
-"Cannot sync device with selected sync settings. Not enough space on disk"
-msgstr ""
-"निवडलेल्या सिंक सेटिंग्जसह डिव्हाइस समक्रमित करू शकत नाही. डिस्कवर पुरेशी जागा नाही"
-
-#: src/Views/DeviceSummaryWidget.vala:322
-msgid "Device is already doing an operation."
-msgstr "डिव्हाइस आधीच ऑपरेशन करत आहे."
-
-#: src/Views/DeviceView.vala:66
-msgid "Cancelling…"
-msgstr "रद्द करीत आहे…"
-
-#: src/Views/DeviceView.vala:66
-msgid "Device operation has been cancelled and will stop after this media."
-msgstr "डिव्हाइस ऑपरेशन रद्द केले गेले आहे आणि या मीडियानंतर थांबेल."
-
-#: src/Views/ViewStack.vala:45
-msgid "No Results"
-msgstr "परिणाम नाहीत"
-
-#: src/Views/ViewStack.vala:45
-msgid "Try another search"
-msgstr "दुसरा शोध करून पहा"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
-msgid "Genres"
-msgstr "शैली"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:60
-msgid "Artists"
-msgstr "कलावंत"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:62
-msgid "Albums"
-msgstr "अल्बम"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:64
-msgid "Years"
-msgstr "वर्षे"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:66
-msgid "Ratings"
-msgstr "रेटिंग"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:68
-msgid "Composers"
-msgstr "संगीतकार"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:70
-msgid "Groupings"
-msgstr "वर्गीकरण"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
-msgid "All Genres"
-msgstr "सर्व शैली"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
-#, c-format
-msgid "All %i Genres"
-msgstr "सर्व %i शैली"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
-msgid "No Genres"
-msgstr "कोणतीही शैली नाही"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
-msgid "All Artists"
-msgstr "सर्व कलावंत"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
-#, c-format
-msgid "All %i Artists"
-msgstr "सर्व %i कलावंत"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
-msgid "No Artists"
-msgstr "कोणतेही कलावंत नाहीत"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
-msgid "All Albums"
-msgstr "सर्व अल्बम"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
-#, c-format
-msgid "All %i Albums"
-msgstr "सर्व %i अल्बम"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
-msgid "No Albums"
-msgstr "कोणतेही अल्बम नाहीत"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
-msgid "All Years"
-msgstr "सर्व वर्ष"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
-#, c-format
-msgid "All %i Years"
-msgstr "सर्व %i वर्ष"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:250
-msgid "No Years"
-msgstr "वर्ष नसलेले"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
-msgid "All Ratings"
-msgstr "सर्व रेटिंग"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
-msgid "No Ratings"
-msgstr "रेटिंग नसलेले"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
-msgid "All Groupings"
-msgstr "सर्व वर्ग"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
-#, c-format
-msgid "All %i Groupings"
-msgstr "सर्व %i वर्ग"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
-msgid "No Groupings"
-msgstr "वर्गीकरण न केलेले"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:271
-msgid "All Composers"
-msgstr "सर्व संगीतकार"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:273
-#, c-format
-msgid "All %i Composers"
-msgstr "सर्व %i संगीतकार"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:275
-msgid "No Composers"
-msgstr "संगीतकार नसलेले"
-
-#. We cannot make these constants due to issues with N_()
-#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
-#: src/Widgets/EqualizerPopover.vala:326 src/Widgets/PresetList.vala:52
-msgid "Automatic"
-msgstr "स्वयंगतिक"
-
-#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:146
-msgid "On Left"
-msgstr "डावीकडे"
-
-#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:147
-msgid "On Top"
-msgstr "वर"
-
-#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:428
-msgid "Unrated"
-msgstr "अनरेटेड"
-
-#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:430
-#, c-format
-msgid "%u Star"
-msgid_plural "%u Stars"
-msgstr[0] "%u तारा"
-msgstr[1] "%u तारे"
-
-#: src/Views/ListView/Lists/CellDataFunctionHelper.vala:128
-#, c-format
-msgid "%u kbps"
-msgstr "%u केबीपीएस"
-
-#: src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
-#: src/Views/ListView/Lists/MusicListView.vala:425
-msgid "Never"
-msgstr "कधीही नाही"
-
-#: src/Views/ListView/Lists/ListColumn.vala:69
-msgctxt "List column title"
-msgid "#"
-msgstr "#"
-
-#: src/Views/ListView/Lists/ListColumn.vala:72
-msgctxt "List column title"
-msgid "Track"
-msgstr "ट्रॅक"
-
-#: src/Views/ListView/Lists/ListColumn.vala:75
-msgctxt "List column title"
-msgid "Title"
-msgstr "शीर्षक"
-
-#: src/Views/ListView/Lists/ListColumn.vala:78
-msgctxt "List column title"
-msgid "Length"
-msgstr "अवधी"
-
-#: src/Views/ListView/Lists/ListColumn.vala:81
-msgctxt "List column title"
-msgid "Artist"
-msgstr "कलावंत"
-
-#: src/Views/ListView/Lists/ListColumn.vala:84
-msgctxt "List column title"
-msgid "Album"
-msgstr "अल्बम"
-
-#: src/Views/ListView/Lists/ListColumn.vala:87
-msgctxt "List column title"
-msgid "Album Artist"
-msgstr "अल्बम कलावंत"
-
-#: src/Views/ListView/Lists/ListColumn.vala:90
-msgctxt "List column title"
-msgid "Composer"
-msgstr "संगीतकार"
-
-#: src/Views/ListView/Lists/ListColumn.vala:93
-msgctxt "List column title"
-msgid "Genre"
-msgstr "शैली"
-
-#: src/Views/ListView/Lists/ListColumn.vala:96
-msgctxt "List column title"
-msgid "Year"
-msgstr "वर्ष"
-
-#: src/Views/ListView/Lists/ListColumn.vala:99
-msgctxt "List column title"
-msgid "Grouping"
-msgstr "वर्गीकरण"
-
-#: src/Views/ListView/Lists/ListColumn.vala:102
-msgctxt "List column title"
-msgid "Bitrate"
-msgstr "बिटरेट"
-
-#: src/Views/ListView/Lists/ListColumn.vala:105
-msgctxt "List column title"
-msgid "Rating"
-msgstr "रेटिंग"
-
-#: src/Views/ListView/Lists/ListColumn.vala:108
-msgctxt "List column title"
-msgid "Plays"
-msgstr "चालवते"
-
-#: src/Views/ListView/Lists/ListColumn.vala:111
-msgctxt "List column title"
-msgid "Skips"
-msgstr "वगळते"
-
-#: src/Views/ListView/Lists/ListColumn.vala:114
-msgctxt "List column title"
-msgid "Date Added"
-msgstr "तारीख जोडली"
-
-#: src/Views/ListView/Lists/ListColumn.vala:117
-msgctxt "List column title"
-msgid "Last Played"
-msgstr "वाजविलेले"
-
-#: src/Views/ListView/Lists/ListColumn.vala:120
-msgctxt "List column title (beats per minute)"
-msgid "BPM"
-msgstr "बीपीएम"
-
-#: src/Views/ListView/Lists/ListColumn.vala:123
-msgctxt "List column title (file location)"
-msgid "Location"
-msgstr "स्थान"
-
-#: src/Views/ListView/Lists/ListColumn.vala:126
-msgctxt "List column title"
-msgid "File Size"
-msgstr "फाईलचा आकार"
-
-#: src/Views/ListView/Lists/MusicListView.vala:74
-msgid "Autosize Columns"
-msgstr "ऑटोसाईझ कॉलम"
-
-#: src/Views/ListView/Lists/MusicListView.vala:410
-msgid "1234 kbps"
-msgstr "1234 केबीपीएस"
-
-#. / Sample string used to measure the ideal size of the Title, Artist,
-#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
-#. / list view. It's *never* displayed in the user interface. The translated
-#. / string should have a reasonable length, similar to the average length
-#. / of a song title or artist name in your language. The automatic column
-#. / width will depend on the length of this string and the space needed
-#. / by the column's title header.
-#: src/Views/ListView/Lists/MusicListView.vala:481
-msgid "Sample List String"
-msgstr "नमुना यादी स्ट्रिंग"
-
-#. Welcome screen
-#: src/Views/Wrappers/MusicViewWrapper.vala:56
-msgid "Get Some Tunes"
-msgstr "काही ट्यून मिळवा"
-
-#: src/Views/Wrappers/MusicViewWrapper.vala:57
-msgid "Add music to your library."
-msgstr "आपल्या लायब्ररीमध्ये संगीत जोडा."
-
-#: src/Views/Wrappers/MusicViewWrapper.vala:60
-msgid "Import music from a source into your library."
-msgstr "स्त्रोतापासून आपल्या लायब्ररीत संगीत आयात करा."
-
-#: src/Views/Wrappers/MusicViewWrapper.vala:62
-msgid "Change Music Folder"
-msgstr "संगीत फोल्डर बदला"
-
-#: src/Views/Wrappers/MusicViewWrapper.vala:63
-msgid "Load music from a folder, a network or an external disk."
-msgstr "फोल्डर, नेटवर्क किंवा बाह्य डिस्कमधून संगीत लोड करा."
-
-#: src/Views/Wrappers/MusicViewWrapper.vala:110
-#: src/Views/Wrappers/MusicViewWrapper.vala:130
-msgid "Import your Music"
-msgstr "आपले संगीत आयात करा"
-
-#: src/Views/Wrappers/MusicViewWrapper.vala:111
-#: src/Views/Wrappers/MusicViewWrapper.vala:131
-#, c-format
-msgid "Import all your Music from %s into your library."
-msgstr "आपला सर्व संगीत %s वरून आपल्या लायब्ररीत आयात करा."
-
-#: src/Views/Wrappers/MusicViewWrapper.vala:143
-msgid "Select Music Folder"
-msgstr "संगीत फोल्डर निवडा"
-
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:50
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:54
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:64
-msgid "No Songs"
-msgstr "गाणी नाहीत"
-
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:51
-msgid "Updating playlist. Please wait."
-msgstr "प्लेलिस्ट अपडेट करत आहे. कृपया थांबा."
-
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:55
-msgid ""
-"To add songs to this playlist, use the <b>secondary click</b> on an item and "
-"choose <b>Add to Playlist</b>."
-msgstr ""
-"या प्लेलिस्टमध्ये गाणी जोडण्यासाठी, आयटमवरील <b> दुय्यम क्लिक </b> वापरा आणि <b> "
-"प्लेलिस्टमध्ये जोडा </b> निवडा."
-
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:58
-msgid "Edit Smart Playlist"
-msgstr "स्मार्ट प्लेलिस्ट संपादित करा"
-
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:65
-msgid ""
-"This playlist will be automatically populated with songs that match its "
-"rules. To modify these rules, use the <b>secondary click</b> on it in the "
-"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
-"below."
-msgstr ""
-"ही प्लेलिस्ट स्वयंचलितपणे गाण्यांसह पॉप्युलेट केली जाईल जी त्याच्या नियमांशी जुळते. या "
-"नियमांमध्ये सुधारणा करण्यासाठी, साइडबारमध्ये <b> दुय्यम क्लिक </b> वापरा आणि <b> "
-"संपादित करा </b> वर क्लिक करा. वैकल्पिकरित्या, आपण खालील बटणावर क्लिक करू शकता."
-
-#: src/Views/Wrappers/ViewWrapper.vala:418
-msgid "No media"
-msgstr "मीडिया नाहीत"
-
-#: src/Widgets/AlbumListGrid.vala:63
-msgid "Set new album cover"
-msgstr "नवीन अल्बम कव्हर सेट करा"
-
-#: src/Widgets/AlbumListGrid.vala:193
-msgid "Image files"
-msgstr "प्रतिमा फायली"
-
-#: src/Widgets/AlbumListGrid.vala:200
-msgid "_Open"
-msgstr "(_O)उघडा"
-
-#: src/Widgets/AlbumListGrid.vala:201
-msgid "_Cancel"
-msgstr "(_C)रद्द करा"
-
-#: src/Widgets/EqualizerPopover.vala:162
-msgid "Save preset"
-msgstr "प्रीसेट जतन करा"
-
-#: src/Widgets/EqualizerPopover.vala:330
-msgid "Off"
-msgstr "बंद"
-
-#: src/Widgets/EqualizerPopover.vala:418
-#, c-format
-msgid "%s (Custom)"
-msgstr "%s (सानुकूल)"
-
-#: src/Widgets/EqualizerPopover.vala:420
-#, c-format
-msgid "%s (Custom %i)"
-msgstr "%s (सानुकूल %i)"
-
-#: src/Widgets/EqualizerPopover.vala:423
-msgid "Custom Preset"
-msgstr "सानुकूल प्रीसेट"
-
-#: src/Widgets/EqualizerPopover.vala:425
-#, c-format
-msgid "Custom Preset %i"
-msgstr "सानुकूल प्रीसेट %i"
-
-#: src/Widgets/MediaMenu.vala:46
-msgid "Scroll to Current Song"
-msgstr "वर्तमान गाण्यावर स्क्रोल करा"
-
-#: src/Widgets/MediaMenu.vala:49
-msgid "Show in File Browser…"
-msgstr "फाइल ब्राउझरमध्ये दाखवा…"
-
-#: src/Widgets/MediaMenu.vala:50
-msgid "Edit Song Info…"
-msgstr "गाण्याची माहिती संपादित करा…"
-
-#: src/Widgets/MediaMenu.vala:51
-msgid "Other Actions"
-msgstr "इतर क्रिया"
-
-#: src/Widgets/MediaMenu.vala:53
-msgctxt "Action item (verb)"
-msgid "Queue"
-msgstr "रांग"
-
-#: src/Widgets/MediaMenu.vala:54
-msgid "Add to Playlist"
-msgstr "प्लेलिस्टमध्ये जोडा"
-
-#: src/Widgets/MediaMenu.vala:55
-msgid "Remove Song…"
-msgstr "गाणे काढा…"
-
-#: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
-msgid "Import to Library"
-msgstr "लायब्ररीत आयात करा"
-
-#: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
-msgid "Remove from Library…"
-msgstr "लायब्ररीमधून काढा…"
-
-#: src/Widgets/MediaMenu.vala:99
-msgid "Remove from Device"
-msgstr "डिव्हाइसवरून काढा"
-
-#: src/Widgets/MediaMenu.vala:119
-msgid "Remove from Queue"
-msgstr "रांगेतून काढा"
-
-#: src/Widgets/MediaMenu.vala:153
-msgid "New Playlist…"
-msgstr "नवीन प्लेलिस्ट…"
-
-#: src/Widgets/MediaMenu.vala:193
-#, c-format
-msgid "Import %i of %i selected songs"
-msgstr "निवडलेल्या %i गाण्यांपैकी %i आयात करा"
-
-#: src/Widgets/MediaMenu.vala:195
-#, c-format
-msgid "Import %i song"
-msgid_plural "Import %i songs"
-msgstr[0] "%i गाणे आयात करा"
-msgstr[1] "%i गाणी आयात करा"
-
-#: src/Widgets/PresetList.vala:53
-msgid "Delete Current"
-msgstr "सध्याचे हटवा"
-
-#: src/Widgets/SourceListView.vala:66 src/Widgets/SourceListView.vala:78
-msgid "Rename"
-msgstr "पुनर्नामित करा"
-
-#: src/Widgets/SourceListView.vala:79
-msgid "Edit…"
-msgstr "संपादित करा…"
-
-#: src/Widgets/SourceListView.vala:95
-msgid "Save as Playlist"
-msgstr "प्लेलिस्ट म्हणून जतन करा"
-
-#: src/Widgets/SourceListView.vala:103
-msgid "Export…"
-msgstr "निर्यात करा…"
-
-#: src/Widgets/SourceListView.vala:166
-msgid "Eject"
-msgstr "बाहेर काढा"
-
-#: src/Widgets/SourceListView.vala:176 src/Widgets/SourceListView.vala:219
-msgid "New Playlist"
-msgstr "नवीन प्लेलिस्ट"
-
-#: src/Widgets/SourceListView.vala:184 src/Widgets/SourceListView.vala:220
-msgid "New Smart Playlist"
-msgstr "नवीन स्मार्ट प्लेलिस्ट"
-
-#: src/Widgets/SourceListView.vala:221
-msgid "Import Playlists"
-msgstr "प्लेलिस्ट आयात करा"
-
-#. Adds the different sidebar categories.
-#: src/Widgets/SourceListView.vala:338
-msgid "Library"
-msgstr "लायब्ररी"
-
-#: src/Widgets/SourceListView.vala:339
-msgid "Devices"
-msgstr "उपकरणे"
-
-#: src/Widgets/SourceListView.vala:340
-msgid "Network"
-msgstr "नेटवर्क"
-
-#: src/Widgets/StatusBar.vala:36
-msgid "Add Playlist"
-msgstr "प्लेलिस्ट जोडा"
-
-#: src/Widgets/StatusBar.vala:37
-msgid "Add Smart Playlist"
-msgstr "स्मार्ट प्लेलिस्ट जोडा"
-
-#: src/Widgets/StatusBar.vala:48
-msgid "Add Playlist…"
-msgstr "प्लेलिस्ट जोडा…"
-
-#. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
-#: src/Widgets/StatusBar.vala:74
-#, c-format
-msgid "Equalizer: %s"
-msgstr "इक्विलायझर: %s"
-
-#. MUST follow the exact same order of Music.Player.Repeat
-#: src/Widgets/TopDisplay.vala:138
-msgid "Enable Repeat"
-msgstr "पुनरावृत्ती सक्षम करा"
-
-#: src/Widgets/TopDisplay.vala:139
-msgid "Repeat Song"
-msgstr "गाणे पुन्हा चालवा"
-
-#: src/Widgets/TopDisplay.vala:140
-msgid "Disable Repeat"
-msgstr "पुनरावृत्ती अक्षम करा"
-
-#: src/Widgets/TopDisplay.vala:159
-msgid "Enable Shuffle"
-msgstr "शफल सक्षम करा"
-
-#: src/Widgets/TopDisplay.vala:160
-msgid "Disable Shuffle"
-msgstr "शफल अक्षम करा"
-
-#: src/Widgets/ViewSelector.vala:81
-msgid "View as albums"
-msgstr "अल्बम म्हणून पहा"
-
-#: src/Widgets/ViewSelector.vala:87
-msgid "View as list"
-msgstr "यादी म्हणून पहा"
-
-#: src/Widgets/ViewSelector.vala:93
-msgid "View in columns"
-msgstr "स्तंभांमध्ये पहा"
+#~ msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
+#~ msgstr "<b>$ARTIST</b> यांचे <b>$NAME</b> संग्रहात आणले जात आहे…"
+
+#~ msgid "$NAME on $ALBUM"
+#~ msgstr "$ALBUM मधले $NAME"
+
+#~ msgid "$NAME by $ARTIST"
+#~ msgstr "$ARTIST यांचे  $NAME"
+
+#~ msgid "$NAME by $ARTIST on $ALBUM"
+#~ msgstr "$ARTIST यांचे $ALBUM मधले $NAME"
+
+#~ msgid "Flat"
+#~ msgstr "फ्लॅट"
+
+#~ msgid "Classical"
+#~ msgstr "क्लासिकल"
+
+#~ msgid "Club"
+#~ msgstr "क्लब"
+
+#~ msgid "Dance"
+#~ msgstr "डान्स"
+
+#~ msgid "Full Bass"
+#~ msgstr "फुल बास"
+
+#~ msgid "Full Treble"
+#~ msgstr "फुल ट्रेंबल"
+
+#~ msgid "Full Bass + Treble"
+#~ msgstr "फुल बास+ट्रेंबल"
+
+#~ msgid "Headphones"
+#~ msgstr "हेडफोन"
+
+#~ msgid "Large Hall"
+#~ msgstr "मोठा हॉल"
+
+#~ msgid "Live"
+#~ msgstr "लाईव्ह"
+
+#~ msgid "Party"
+#~ msgstr "पार्टी"
+
+#~ msgid "Pop"
+#~ msgstr "पॉप"
+
+#~ msgid "Reggae"
+#~ msgstr "रेगे"
+
+#~ msgid "Rock"
+#~ msgstr "रॉक"
+
+#~ msgid "Soft"
+#~ msgstr "सॉफ्ट"
+
+#~ msgid "Ska"
+#~ msgstr "स्का"
+
+#~ msgid "Soft Rock"
+#~ msgstr "सॉफ्ट रॉक"
+
+#~ msgid "Techno"
+#~ msgstr "टेक्नो"
+
+#~ msgid " (%d)"
+#~ msgstr " (%d)"
+
+#~ msgid "%s (%d)"
+#~ msgstr "%s (%d)"
+
+#~ msgid "%s (%i)"
+#~ msgstr "%s (%i)"
+
+#~ msgid "MPEG Version 3.0 Extended (*.m3u)"
+#~ msgstr "MPEG आवृत्ती 3.0 विस्तारित (*.m3u)"
+
+#~ msgid "Shoutcast Playlist Version 2.0 (*.pls)"
+#~ msgstr "Shoutcast यादी आवृत्ती 2.0 (*.pls)"
+
+#~ msgid "Export Playlist"
+#~ msgstr "यादी एक्स्पोर्ट करा"
+
+#~ msgid "Save"
+#~ msgstr "सेव्ह करा"
+
+#~ msgid "Cancel"
+#~ msgstr "रद्द करा"
+
+#~ msgid "Playlist"
+#~ msgstr "यादी"
+
+#~ msgid "Import %s"
+#~ msgstr "%s आणा"
+
+#~ msgid "Open"
+#~ msgstr "उघडा"
+
+#~ msgid "Unrecognized playlist file. Import failed."
+#~ msgstr "अनोळखी यादी फाईल. फाईल आणणे अपयशी."
+
+#~ msgid "%m/%e/%Y %l:%M %p"
+#~ msgstr "%m/%e/%Y %l:%M %p"
+
+#~ msgid "Empty device!"
+#~ msgstr "उपकरण रिकामे आहे!"
+
+#~ msgid "This device does not contain any music."
+#~ msgstr "या उपकरणात कोणतेही संगीत नाही."
+
+#~ msgid "Android Phone"
+#~ msgstr "अँड्रॉइड फोन"
+
+#~ msgid "Audio Player"
+#~ msgstr "ऑडिओ प्लेयर"
+
+#~ msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
+#~ msgstr "$DEVICE मध्ये <b>$ARTIST</b> यांचे <b>$NAME</b> टाकले जात आहे"
+
+#~ msgid "Syncing <b>%s</b>…"
+#~ msgstr "<b>%s</b>संक्रमित केले जात आहे…"
+
+#~ msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
+#~ msgstr "$DEVICE मधून <b>$ARTIST</b> यांचे <b>$NAME</b> काढले जात आहे"
+
+#~ msgid "Removing from <b>%s</b>…"
+#~ msgstr "<b>%s</b>मधून काढले जात आहे…"
+
+#~ msgid "Finishing sync process…"
+#~ msgstr "समक्रमण प्रक्रिया समाप्त करीत आहे…"
+
+#~ msgid "Cancelling Sync…"
+#~ msgstr "समक्रमण रद्द करीत आहे…"
+
+#~ msgid "Import Complete"
+#~ msgstr "आयात पूर्ण"
+
+#~ msgid "Your Library Has Been Imported."
+#~ msgstr "आपली लायब्ररी आयात केली गेली आहे."
+
+#~ msgid "<b>Copying</b> files to <b>Music Folder</b>…"
+#~ msgstr "फायली <b>संगीत</b> फोल्डरमध्ये <b>कॉपी</b> करत आहे…"
+
+#~ msgid "Import to Library…"
+#~ msgstr "लायब्ररीत आयात करा…"
+
+#~ msgid "Preferences"
+#~ msgstr "प्राधान्ये"
+
+#~ msgid "Search Music"
+#~ msgstr "संगीत शोधा"
+
+#~ msgid "No songs in Queue"
+#~ msgstr "रांगेत कोणतीही गाणी नाहीत"
+
+#~ msgid ""
+#~ "To add songs to the queue, use the <b>secondary click</b> on an item and "
+#~ "choose <b>Queue</b>. When a song finishes, the queued songs will be "
+#~ "played first before the next song in the currently playing list."
+#~ msgstr ""
+#~ "रांगेत गाणी जोडण्यासाठी, आयटमवरील <b>दुय्यम क्लिक </b>वापरा आणि <b>रांग </"
+#~ "b>निवडा. गाणे समाप्त झाल्यावर, रांगेत असलेल्या गाण्यांना सध्याच्या प्लेलिस्टमधील पुढील "
+#~ "गाण्याच्या आधी प्रथम प्ले केले जाईल."
+
+#~ msgid "No songs in History"
+#~ msgstr "इतिहासात कोणतीही गाणी नाहीत"
+
+#~ msgid ""
+#~ "After a part of a song has been played, it is added to the history list.\n"
+#~ "You can use this list to see all the songs you have played during the "
+#~ "current session."
+#~ msgstr ""
+#~ "गाण्याचे काही भाग चालवल्या नंतर ते इतिहासाच्या यादीमध्ये जोडले जाते.\n"
+#~ "आपण वर्तमान सत्रादरम्यान चालवलेले सर्व गाणे पाहण्यासाठी या सूचीचा वापर करू शकता."
+
+#~ msgid "Import Music"
+#~ msgstr "संगीत आयात करा"
+
+#~ msgctxt "Name of the playlist"
+#~ msgid "Queue"
+#~ msgstr "ओळ"
+
+#~ msgid "File not found"
+#~ msgstr "फाइल सापडली नाही"
+
+#~ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
+#~ msgstr "<b>%s</b> यांची <b>%s</b> साठी संगीत फाइल सापडू शकली नाही."
+
+#, fuzzy
+#~| msgid "%i music files could not be found?"
+#~ msgid "%i music files could not be found."
+#~ msgstr "%i संगीत फाइल्स सापडली नाहीत?"
+
+#~ msgid "Rescan Library"
+#~ msgstr "लायब्ररी पुन्हा स्कॅन करा"
+
+#~ msgid "Remove Song"
+#~ msgstr "गाणे काढा"
+
+#~ msgid "Find Song"
+#~ msgstr "गाणे शोधा"
+
+#~ msgid "Choose Music Folder"
+#~ msgstr "संगीत फोल्डर निवडा"
+
+#~ msgid "Would you like to install the %s plugin?"
+#~ msgstr "आपण  %s प्लगइन स्थापित करू इच्छिता?"
+
+#~ msgid ""
+#~ "This song cannot be played. The %s plugin is required to play the song."
+#~ msgstr "हे गाणे प्ले केले जाऊ शकत नाही. गाणे प्ले करण्यासाठी %s प्लगइन आवश्यक आहे."
+
+#~ msgid "Install Plugin"
+#~ msgstr "प्लगइन स्थापित करा"
+
+#~ msgid "Title:"
+#~ msgstr "शीर्षक:"
+
+#~ msgid "Artist:"
+#~ msgstr "कलावंत:"
+
+#~ msgid "Album:"
+#~ msgstr "अल्बम:"
+
+#~ msgid "Album Artist:"
+#~ msgstr "अल्बम कलावंत:"
+
+#~ msgid "Composer:"
+#~ msgstr "रचनाकार:"
+
+#~ msgid "Grouping:"
+#~ msgstr "वर्गीकरण:"
+
+#~ msgid "Genre:"
+#~ msgstr "शैली:"
+
+#~ msgid "Year:"
+#~ msgstr "वर्ष:"
+
+#~ msgid "Track:"
+#~ msgstr "ट्रॅक:"
+
+#~ msgid "Disc:"
+#~ msgstr "डिस्क:"
+
+#~ msgid "Rating:"
+#~ msgstr "रेटिंग:"
+
+#~ msgid "Comment:"
+#~ msgstr "टिप्पणी:"
+
+#~ msgid "Close"
+#~ msgstr "बंद करा"
+
+#~ msgid "Issues while importing from %s"
+#~ msgstr "%s पासून आयात करताना समस्या"
+
+#~ msgid "Unable to import %d item. The file may be damaged."
+#~ msgid_plural "Unable to import %d items. The files may be damaged."
+#~ msgstr[0] "%d आयटम आयात करण्यास अक्षम. फाइल खराब असू शकते."
+#~ msgstr[1] "%d आयटम आयात करण्यास अक्षम. फायली खराब असू  शकतात."
+
+#~ msgid "Move all corrupted files to trash"
+#~ msgstr "सर्व दूषित फाइल्स कचर्यामध्ये हलवा"
+
+#~ msgid "del"
+#~ msgstr "del"
+
+#~ msgid "File Location"
+#~ msgstr "फाइल स्थान"
+
+#~ msgid "Select individual files to move to trash:"
+#~ msgstr "कचर्यामध्ये हलविण्यासाठी स्वतंत्र फायली निवडा:"
+
+#~ msgid "Move to Trash"
+#~ msgstr "कचर्यामध्ये हलवा"
+
+#~ msgid "Ignore"
+#~ msgstr "दुर्लक्ष करा"
+
+#~ msgid "Select Music Folder…"
+#~ msgstr "संगीत फोल्डर निवडा…"
+
+#~ msgid "Music Folder Location"
+#~ msgstr "संगीत फोल्डर स्थान"
+
+#~ msgid "Library Management"
+#~ msgstr "लायब्ररी व्यवस्थापन"
+
+#~ msgid "Keep Music folder organized:"
+#~ msgstr "संगीत फोल्डर व्यवस्थापित ठेवा:"
+
+#~ msgid "Write metadata to file:"
+#~ msgstr "फाइलमध्ये मेटाडेटा लिहा:"
+
+#~ msgid "Copy imported files to Library:"
+#~ msgstr "आयात केलेल्या फायली लायब्ररीत कॉपी करा:"
+
+#~ msgid "Desktop Integration"
+#~ msgstr "डेस्कटॉप एकत्रीकरण"
+
+#~ msgid "Continue playback when closed:"
+#~ msgstr "बंद असताना प्लेबॅक सुरू ठेवा:"
+
+#~ msgid "Remove %d Song From Library?"
+#~ msgid_plural "Remove %d Songs From Library?"
+#~ msgstr[0] "लायब्ररीमधून %d गाणे काढून टाकायचे?"
+#~ msgstr[1] "लायब्ररीमधून %d गाणी काढून टाकायची?"
+
+#~ msgid "Remove \"%s\" From Library?"
+#~ msgstr "लायब्ररीमधून \"%s\" काढायचे?"
+
+#~ msgid ""
+#~ "This will remove the song from your library and from any device synced "
+#~ "automatically."
+#~ msgid_plural ""
+#~ "This will remove the songs from your library and from any device synced "
+#~ "automatically."
+#~ msgstr[0] ""
+#~ "हे आपल्या लायब्ररीमधील आणि आपल्या स्वयंचलितपणे समक्रमित केलेल्या सर्व डिव्हाइसेसवरून गाणे "
+#~ "काढेल."
+#~ msgstr[1] ""
+#~ "हे आपल्या लायब्ररीमधील आणि आपल्या स्वयंचलितपणे समक्रमित केलेल्या सर्व डिव्हाइसेसवरून "
+#~ "गाणी काढेल."
+
+#~ msgid "Remove from Library"
+#~ msgstr "लायब्ररीमधून काढा"
+
+#~ msgid "Set Music Folder?"
+#~ msgstr "संगीत फोल्डर सेट करायचे?"
+
+#~ msgid ""
+#~ "Are you sure you want to set the music folder to %s? This will reset your "
+#~ "library and remove your playlists."
+#~ msgstr ""
+#~ "आपणास खात्री आहे की आपण संगीत फोल्डर %s वर सेट करू इच्छिता? हे आपले लायब्ररी रीसेट "
+#~ "करेल आणि आपल्या प्लेलिस्ट हटवेल."
+
+#~ msgid "Export Playlists"
+#~ msgstr "प्लेलिस्ट निर्यात करा"
+
+#~ msgid "Set Music Folder"
+#~ msgstr "संगीत फोल्डर सेट करा"
+
+#~ msgid "Playlist Title"
+#~ msgstr "प्लेलिस्ट शीर्षक"
+
+#~ msgid "any"
+#~ msgstr "कोणतेही"
+
+#~ msgid "all"
+#~ msgstr "सर्व"
+
+#~ msgid "Match"
+#~ msgstr "जुळणारे"
+
+#~ msgid "of the following:"
+#~ msgstr "पुढीलपैकी:"
+
+#~ msgid "Add"
+#~ msgstr "जोडा"
+
+#~ msgid "Limit to"
+#~ msgstr "मर्यादित"
+
+#~ msgid "items"
+#~ msgstr "आयटम"
+
+#~ msgid "Name of Playlist"
+#~ msgstr "प्लेलिस्टचे नाव"
+
+#~ msgid "Rules"
+#~ msgstr "नियम"
+
+#~ msgid "Options"
+#~ msgstr "पर्याय"
+
+#~ msgid "Smart Playlist Editor"
+#~ msgstr "स्मार्ट प्लेलिस्ट संपादक"
+
+#~ msgid "Remove"
+#~ msgstr "काढा"
+
+#~ msgid "Album"
+#~ msgstr "अल्बम"
+
+#~ msgid "Artist"
+#~ msgstr "कलावंत"
+
+#~ msgid "Bitrate"
+#~ msgstr "बिटरेट"
+
+#~ msgid "Comment"
+#~ msgstr "टिप्पणी"
+
+#~ msgid "Composer"
+#~ msgstr "रचनाकार"
+
+#~ msgid "Date Added"
+#~ msgstr "तारीख जोडली"
+
+#~ msgid "Genre"
+#~ msgstr "शैली"
+
+#~ msgid "Grouping"
+#~ msgstr "वर्गीकरण"
+
+#~ msgid "Last Played"
+#~ msgstr "शेवटचे वाजवले"
+
+#~ msgid "Length"
+#~ msgstr "अवधी"
+
+#~ msgid "Playcount"
+#~ msgstr "प्लेकाउंट"
+
+#~ msgid "Rating"
+#~ msgstr "रेटिंग"
+
+#~ msgid "Skipcount"
+#~ msgstr "स्कीपकाउंट"
+
+#~ msgid "Title"
+#~ msgstr "शीर्षक"
+
+#~ msgid "Year"
+#~ msgstr "वर्ष"
+
+#~ msgid "URI"
+#~ msgstr "युआरआय"
+
+#~ msgid "is"
+#~ msgstr "आहे"
+
+#~ msgid "contains"
+#~ msgstr "समाविष्ट"
+
+#~ msgid "does not contain"
+#~ msgstr "समाविष्ट नाही"
+
+#~ msgid "is exactly"
+#~ msgstr "नक्कीच आहे"
+
+#~ msgid "is at most"
+#~ msgstr "सर्वात जास्त आहे"
+
+#~ msgid "is at least"
+#~ msgstr "किमान आहे"
+
+#~ msgid "is within"
+#~ msgstr "आत आहे"
+
+#~ msgid "is before"
+#~ msgstr "आधी आहे"
+
+#~ msgid "seconds"
+#~ msgstr "सेकंद"
+
+#~ msgid "days ago"
+#~ msgstr "दिवसांपूर्वी"
+
+#~ msgid "kbps"
+#~ msgstr "केबीपीएस"
+
+#~ msgid "Sync will remove %i item from %s"
+#~ msgid_plural "Sync will remove %i items from %s"
+#~ msgstr[0] "समक्रमण %i आयटम %s मधून काढेल"
+#~ msgstr[1] "समक्रमण %i आयटम %s मधून काढेल"
+
+#~ msgid ""
+#~ "If you continue to sync, media will be removed from %s since they are not "
+#~ "on the sync list. Would you like to import them to your library first?"
+#~ msgstr ""
+#~ "आपण समक्रमित करणे सुरू ठेवल्यास, %s वरून सिंक सूचीवर नसल्यामुळे ते मीडिया काढले जातील. "
+#~ "आपण त्यांना प्रथम आपल्या लायब्ररीमध्ये आयात करू इच्छिता?"
+
+#~ msgid "Continue Syncing"
+#~ msgstr "संकालन सुरू ठेवा"
+
+#~ msgid "Import"
+#~ msgstr "आयात"
+
+#~ msgid "Importing music from %s…"
+#~ msgstr "%s वरुन संगीत आयात करीत आहे…"
+
+#~ msgid "Adding files to library…"
+#~ msgstr "लायब्ररीमध्ये फायली जोडत आहे…"
+
+#~ msgid "<b>Importing</b> music to library…"
+#~ msgstr "संगीत लायब्ररीत संगीत <b> आयात करीत आहे </b>…"
+
+#~ msgid "All music files are already in your library"
+#~ msgstr "सर्व संगीत फायली आधीपासूनच आपल्या लायब्ररीमध्ये आहेत"
+
+#~ msgid "No files were imported."
+#~ msgstr "कोणत्याही फायली आयात केल्या नाहीत."
+
+#~ msgid "Rescanning music for changes. This may take a while…"
+#~ msgstr "बदलांसाठी संगीत पुनर्वितरण. यास काही वेळ लागू शकतो…"
+
+#~ msgid "Added to your queue:"
+#~ msgstr "आपल्या रांगेत जोडले:"
+
+#~ msgid "%d Track"
+#~ msgid_plural "%d Tracks"
+#~ msgstr[0] "%d ट्रॅक"
+#~ msgstr[1] "%d ट्रॅक्स"
+
+#~ msgid "Favorite Songs"
+#~ msgstr "आवडती गाणी"
+
+#~ msgid "Recently Added"
+#~ msgstr "अलीकडे जोडलेले"
+
+#~ msgid "Recent Favorites"
+#~ msgstr "अलीकडील आवडी"
+
+#~ msgid "Never Played"
+#~ msgstr "कधीही न वाजविलेले"
+
+#~ msgid "Over Played"
+#~ msgstr "खूपवेळा वाजविलेले"
+
+#~ msgid "Not Recently Played"
+#~ msgstr "अलीकडे न वाजविलेले"
+
+#~ msgid "History"
+#~ msgstr "इतिहास"
+
+#~ msgid "Playlists"
+#~ msgstr "प्लेलिस्ट"
+
+#~ msgid "Device Name:"
+#~ msgstr "उपकरणाचे नाव:"
+
+#~ msgid "Device Name"
+#~ msgstr "उपकरणाचे नाव"
+
+#~ msgid "Automatically sync when plugged in:"
+#~ msgstr "प्लग इन केलेले असताना स्वयंचलितपणे समक्रमित करा:"
+
+#~ msgid "Sync:"
+#~ msgstr "सिंक:"
+
+#~ msgid "Sync"
+#~ msgstr "सिंक"
+
+#~ msgid "All Music"
+#~ msgstr "सर्व संगीत"
+
+#~ msgid "Sync Failed"
+#~ msgstr "सिंक अयशस्वी"
+
+#~ msgid ""
+#~ "The playlist named %s is used to sync device %s, but could not be found."
+#~ msgstr ""
+#~ "%s नावाची प्लेलिस्टचा वापर %s संकालन करण्यासाठी केला जातो, परंतु ती आढळू शकली नाही."
+
+#~ msgid "Cannot Sync"
+#~ msgstr "सिंक करू शकत नाही"
+
+#~ msgid ""
+#~ "Cannot sync device with selected sync settings. Not enough space on disk"
+#~ msgstr ""
+#~ "निवडलेल्या सिंक सेटिंग्जसह डिव्हाइस समक्रमित करू शकत नाही. डिस्कवर पुरेशी जागा नाही"
+
+#~ msgid "Device is already doing an operation."
+#~ msgstr "डिव्हाइस आधीच ऑपरेशन करत आहे."
+
+#~ msgid "Cancelling…"
+#~ msgstr "रद्द करीत आहे…"
+
+#~ msgid "Device operation has been cancelled and will stop after this media."
+#~ msgstr "डिव्हाइस ऑपरेशन रद्द केले गेले आहे आणि या मीडियानंतर थांबेल."
+
+#~ msgid "No Results"
+#~ msgstr "परिणाम नाहीत"
+
+#~ msgid "Try another search"
+#~ msgstr "दुसरा शोध करून पहा"
+
+#~ msgid "Genres"
+#~ msgstr "शैली"
+
+#~ msgid "Artists"
+#~ msgstr "कलावंत"
+
+#~ msgid "Albums"
+#~ msgstr "अल्बम"
+
+#~ msgid "Years"
+#~ msgstr "वर्षे"
+
+#~ msgid "Ratings"
+#~ msgstr "रेटिंग"
+
+#~ msgid "Composers"
+#~ msgstr "संगीतकार"
+
+#~ msgid "Groupings"
+#~ msgstr "वर्गीकरण"
+
+#~ msgid "All Genres"
+#~ msgstr "सर्व शैली"
+
+#~ msgid "All %i Genres"
+#~ msgstr "सर्व %i शैली"
+
+#~ msgid "No Genres"
+#~ msgstr "कोणतीही शैली नाही"
+
+#~ msgid "All Artists"
+#~ msgstr "सर्व कलावंत"
+
+#~ msgid "All %i Artists"
+#~ msgstr "सर्व %i कलावंत"
+
+#~ msgid "No Artists"
+#~ msgstr "कोणतेही कलावंत नाहीत"
+
+#~ msgid "All Albums"
+#~ msgstr "सर्व अल्बम"
+
+#~ msgid "All %i Albums"
+#~ msgstr "सर्व %i अल्बम"
+
+#~ msgid "No Albums"
+#~ msgstr "कोणतेही अल्बम नाहीत"
+
+#~ msgid "All Years"
+#~ msgstr "सर्व वर्ष"
+
+#~ msgid "All %i Years"
+#~ msgstr "सर्व %i वर्ष"
+
+#~ msgid "No Years"
+#~ msgstr "वर्ष नसलेले"
+
+#~ msgid "All Ratings"
+#~ msgstr "सर्व रेटिंग"
+
+#~ msgid "No Ratings"
+#~ msgstr "रेटिंग नसलेले"
+
+#~ msgid "All Groupings"
+#~ msgstr "सर्व वर्ग"
+
+#~ msgid "All %i Groupings"
+#~ msgstr "सर्व %i वर्ग"
+
+#~ msgid "No Groupings"
+#~ msgstr "वर्गीकरण न केलेले"
+
+#~ msgid "All Composers"
+#~ msgstr "सर्व संगीतकार"
+
+#~ msgid "All %i Composers"
+#~ msgstr "सर्व %i संगीतकार"
+
+#~ msgid "No Composers"
+#~ msgstr "संगीतकार नसलेले"
+
+#~ msgid "Automatic"
+#~ msgstr "स्वयंगतिक"
+
+#~ msgid "On Left"
+#~ msgstr "डावीकडे"
+
+#~ msgid "On Top"
+#~ msgstr "वर"
+
+#~ msgid "Unrated"
+#~ msgstr "अनरेटेड"
+
+#~ msgid "%u Star"
+#~ msgid_plural "%u Stars"
+#~ msgstr[0] "%u तारा"
+#~ msgstr[1] "%u तारे"
+
+#~ msgid "%u kbps"
+#~ msgstr "%u केबीपीएस"
+
+#~ msgid "Never"
+#~ msgstr "कधीही नाही"
+
+#~ msgctxt "List column title"
+#~ msgid "#"
+#~ msgstr "#"
+
+#~ msgctxt "List column title"
+#~ msgid "Track"
+#~ msgstr "ट्रॅक"
+
+#~ msgctxt "List column title"
+#~ msgid "Title"
+#~ msgstr "शीर्षक"
+
+#~ msgctxt "List column title"
+#~ msgid "Length"
+#~ msgstr "अवधी"
+
+#~ msgctxt "List column title"
+#~ msgid "Artist"
+#~ msgstr "कलावंत"
+
+#~ msgctxt "List column title"
+#~ msgid "Album"
+#~ msgstr "अल्बम"
+
+#~ msgctxt "List column title"
+#~ msgid "Album Artist"
+#~ msgstr "अल्बम कलावंत"
+
+#~ msgctxt "List column title"
+#~ msgid "Composer"
+#~ msgstr "संगीतकार"
+
+#~ msgctxt "List column title"
+#~ msgid "Genre"
+#~ msgstr "शैली"
+
+#~ msgctxt "List column title"
+#~ msgid "Year"
+#~ msgstr "वर्ष"
+
+#~ msgctxt "List column title"
+#~ msgid "Grouping"
+#~ msgstr "वर्गीकरण"
+
+#~ msgctxt "List column title"
+#~ msgid "Bitrate"
+#~ msgstr "बिटरेट"
+
+#~ msgctxt "List column title"
+#~ msgid "Rating"
+#~ msgstr "रेटिंग"
+
+#~ msgctxt "List column title"
+#~ msgid "Plays"
+#~ msgstr "चालवते"
+
+#~ msgctxt "List column title"
+#~ msgid "Skips"
+#~ msgstr "वगळते"
+
+#~ msgctxt "List column title"
+#~ msgid "Date Added"
+#~ msgstr "तारीख जोडली"
+
+#~ msgctxt "List column title"
+#~ msgid "Last Played"
+#~ msgstr "वाजविलेले"
+
+#~ msgctxt "List column title (beats per minute)"
+#~ msgid "BPM"
+#~ msgstr "बीपीएम"
+
+#~ msgctxt "List column title (file location)"
+#~ msgid "Location"
+#~ msgstr "स्थान"
+
+#~ msgctxt "List column title"
+#~ msgid "File Size"
+#~ msgstr "फाईलचा आकार"
+
+#~ msgid "Autosize Columns"
+#~ msgstr "ऑटोसाईझ कॉलम"
+
+#~ msgid "1234 kbps"
+#~ msgstr "1234 केबीपीएस"
+
+#~ msgid "Sample List String"
+#~ msgstr "नमुना यादी स्ट्रिंग"
+
+#~ msgid "Get Some Tunes"
+#~ msgstr "काही ट्यून मिळवा"
+
+#~ msgid "Add music to your library."
+#~ msgstr "आपल्या लायब्ररीमध्ये संगीत जोडा."
+
+#~ msgid "Import music from a source into your library."
+#~ msgstr "स्त्रोतापासून आपल्या लायब्ररीत संगीत आयात करा."
+
+#~ msgid "Change Music Folder"
+#~ msgstr "संगीत फोल्डर बदला"
+
+#~ msgid "Load music from a folder, a network or an external disk."
+#~ msgstr "फोल्डर, नेटवर्क किंवा बाह्य डिस्कमधून संगीत लोड करा."
+
+#~ msgid "Import your Music"
+#~ msgstr "आपले संगीत आयात करा"
+
+#~ msgid "Import all your Music from %s into your library."
+#~ msgstr "आपला सर्व संगीत %s वरून आपल्या लायब्ररीत आयात करा."
+
+#~ msgid "Select Music Folder"
+#~ msgstr "संगीत फोल्डर निवडा"
+
+#~ msgid "No Songs"
+#~ msgstr "गाणी नाहीत"
+
+#~ msgid "Updating playlist. Please wait."
+#~ msgstr "प्लेलिस्ट अपडेट करत आहे. कृपया थांबा."
+
+#~ msgid ""
+#~ "To add songs to this playlist, use the <b>secondary click</b> on an item "
+#~ "and choose <b>Add to Playlist</b>."
+#~ msgstr ""
+#~ "या प्लेलिस्टमध्ये गाणी जोडण्यासाठी, आयटमवरील <b> दुय्यम क्लिक </b> वापरा आणि <b> "
+#~ "प्लेलिस्टमध्ये जोडा </b> निवडा."
+
+#~ msgid "Edit Smart Playlist"
+#~ msgstr "स्मार्ट प्लेलिस्ट संपादित करा"
+
+#~ msgid ""
+#~ "This playlist will be automatically populated with songs that match its "
+#~ "rules. To modify these rules, use the <b>secondary click</b> on it in the "
+#~ "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
+#~ "below."
+#~ msgstr ""
+#~ "ही प्लेलिस्ट स्वयंचलितपणे गाण्यांसह पॉप्युलेट केली जाईल जी त्याच्या नियमांशी जुळते. या "
+#~ "नियमांमध्ये सुधारणा करण्यासाठी, साइडबारमध्ये <b> दुय्यम क्लिक </b> वापरा आणि <b> "
+#~ "संपादित करा </b> वर क्लिक करा. वैकल्पिकरित्या, आपण खालील बटणावर क्लिक करू शकता."
+
+#~ msgid "No media"
+#~ msgstr "मीडिया नाहीत"
+
+#~ msgid "Set new album cover"
+#~ msgstr "नवीन अल्बम कव्हर सेट करा"
+
+#~ msgid "Image files"
+#~ msgstr "प्रतिमा फायली"
+
+#~ msgid "_Open"
+#~ msgstr "(_O)उघडा"
+
+#~ msgid "_Cancel"
+#~ msgstr "(_C)रद्द करा"
+
+#~ msgid "Save preset"
+#~ msgstr "प्रीसेट जतन करा"
+
+#~ msgid "Off"
+#~ msgstr "बंद"
+
+#~ msgid "%s (Custom)"
+#~ msgstr "%s (सानुकूल)"
+
+#~ msgid "%s (Custom %i)"
+#~ msgstr "%s (सानुकूल %i)"
+
+#~ msgid "Custom Preset"
+#~ msgstr "सानुकूल प्रीसेट"
+
+#~ msgid "Custom Preset %i"
+#~ msgstr "सानुकूल प्रीसेट %i"
+
+#~ msgid "Scroll to Current Song"
+#~ msgstr "वर्तमान गाण्यावर स्क्रोल करा"
+
+#~ msgid "Show in File Browser…"
+#~ msgstr "फाइल ब्राउझरमध्ये दाखवा…"
+
+#~ msgid "Edit Song Info…"
+#~ msgstr "गाण्याची माहिती संपादित करा…"
+
+#~ msgid "Other Actions"
+#~ msgstr "इतर क्रिया"
+
+#~ msgctxt "Action item (verb)"
+#~ msgid "Queue"
+#~ msgstr "रांग"
+
+#~ msgid "Add to Playlist"
+#~ msgstr "प्लेलिस्टमध्ये जोडा"
+
+#~ msgid "Remove Song…"
+#~ msgstr "गाणे काढा…"
+
+#~ msgid "Import to Library"
+#~ msgstr "लायब्ररीत आयात करा"
+
+#~ msgid "Remove from Library…"
+#~ msgstr "लायब्ररीमधून काढा…"
+
+#~ msgid "Remove from Device"
+#~ msgstr "डिव्हाइसवरून काढा"
+
+#~ msgid "Remove from Queue"
+#~ msgstr "रांगेतून काढा"
+
+#~ msgid "New Playlist…"
+#~ msgstr "नवीन प्लेलिस्ट…"
+
+#~ msgid "Import %i of %i selected songs"
+#~ msgstr "निवडलेल्या %i गाण्यांपैकी %i आयात करा"
+
+#~ msgid "Import %i song"
+#~ msgid_plural "Import %i songs"
+#~ msgstr[0] "%i गाणे आयात करा"
+#~ msgstr[1] "%i गाणी आयात करा"
+
+#~ msgid "Delete Current"
+#~ msgstr "सध्याचे हटवा"
+
+#~ msgid "Rename"
+#~ msgstr "पुनर्नामित करा"
+
+#~ msgid "Edit…"
+#~ msgstr "संपादित करा…"
+
+#~ msgid "Save as Playlist"
+#~ msgstr "प्लेलिस्ट म्हणून जतन करा"
+
+#~ msgid "Export…"
+#~ msgstr "निर्यात करा…"
+
+#~ msgid "Eject"
+#~ msgstr "बाहेर काढा"
+
+#~ msgid "New Playlist"
+#~ msgstr "नवीन प्लेलिस्ट"
+
+#~ msgid "New Smart Playlist"
+#~ msgstr "नवीन स्मार्ट प्लेलिस्ट"
+
+#~ msgid "Import Playlists"
+#~ msgstr "प्लेलिस्ट आयात करा"
+
+#~ msgid "Library"
+#~ msgstr "लायब्ररी"
+
+#~ msgid "Devices"
+#~ msgstr "उपकरणे"
+
+#~ msgid "Network"
+#~ msgstr "नेटवर्क"
+
+#~ msgid "Add Playlist"
+#~ msgstr "प्लेलिस्ट जोडा"
+
+#~ msgid "Add Smart Playlist"
+#~ msgstr "स्मार्ट प्लेलिस्ट जोडा"
+
+#~ msgid "Add Playlist…"
+#~ msgstr "प्लेलिस्ट जोडा…"
+
+#~ msgid "Equalizer: %s"
+#~ msgstr "इक्विलायझर: %s"
+
+#~ msgid "Enable Repeat"
+#~ msgstr "पुनरावृत्ती सक्षम करा"
+
+#~ msgid "Disable Repeat"
+#~ msgstr "पुनरावृत्ती अक्षम करा"
+
+#~ msgid "Disable Shuffle"
+#~ msgstr "शफल अक्षम करा"
+
+#~ msgid "View as albums"
+#~ msgstr "अल्बम म्हणून पहा"
+
+#~ msgid "View as list"
+#~ msgstr "यादी म्हणून पहा"
+
+#~ msgid "View in columns"
+#~ msgstr "स्तंभांमध्ये पहा"
 
 #~ msgid "No similar songs found"
 #~ msgstr "एकही समान गाणी सापडली नाहीत"

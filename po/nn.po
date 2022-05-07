@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-16 19:03+0000\n"
+"POT-Creation-Date: 2022-04-11 14:16-0700\n"
 "PO-Revision-Date: 2020-07-22 07:16+0000\n"
 "Last-Translator: Martin Myrvold <myrvold.martin@gmail.com>\n"
 "Language-Team: Norwegian Nynorsk <https://l10n.elementary.io/projects/music/"
@@ -20,1404 +20,1048 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 
-#: core/LibrariesManager.vala:146
-msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "Importerer <b>$NAME</b> av <b>$ARTIST</b> til biblioteket…"
-
-#. / Used for unknown titles, artists, or album names.
-#: core/Media.vala:33
-msgid "Unknown"
-msgstr "Ukjend"
-
-#. / Please keep $NAME and $ALBUM, they will be replaced by their values
-#: core/Media.vala:180
-msgid "$NAME on $ALBUM"
-msgstr "$NAME på $ALBUM"
-
-#. / Please keep $NAME and $ARTIST, they will be replaced by their values
-#: core/Media.vala:183
-msgid "$NAME by $ARTIST"
-msgstr "$NAME av $ARTIST"
-
-#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
-#: core/Media.vala:189
-msgid "$NAME by $ARTIST on $ALBUM"
-msgstr "$NAME av $ARTIST på $ALBUM"
-
-#: core/GStreamer/Equalizer.vala:70
-msgid "Flat"
-msgstr "Flat"
-
-#: core/GStreamer/Equalizer.vala:71
-msgid "Classical"
-msgstr "Klassisk"
-
-#: core/GStreamer/Equalizer.vala:72
-msgid "Club"
-msgstr "Club"
-
-#: core/GStreamer/Equalizer.vala:73
-msgid "Dance"
-msgstr "Dance"
-
-#: core/GStreamer/Equalizer.vala:74
-msgid "Full Bass"
-msgstr "Full bass"
-
-#: core/GStreamer/Equalizer.vala:75
-msgid "Full Treble"
-msgstr "Full diskant"
-
-#: core/GStreamer/Equalizer.vala:76
-msgid "Full Bass + Treble"
-msgstr "Full bass + diskant"
-
-#: core/GStreamer/Equalizer.vala:77
-msgid "Headphones"
-msgstr "Hovudtelefonar"
-
-#: core/GStreamer/Equalizer.vala:78
-msgid "Large Hall"
-msgstr "Storsal"
-
-#: core/GStreamer/Equalizer.vala:79
-msgid "Live"
-msgstr "Live"
-
-#: core/GStreamer/Equalizer.vala:80
-msgid "Party"
-msgstr "Fest"
-
-#: core/GStreamer/Equalizer.vala:81
-msgid "Pop"
-msgstr "Pop"
-
-#: core/GStreamer/Equalizer.vala:82
-msgid "Reggae"
-msgstr "Reggae"
-
-#: core/GStreamer/Equalizer.vala:83
-msgid "Rock"
-msgstr "Rock"
-
-#: core/GStreamer/Equalizer.vala:84
-msgid "Soft"
-msgstr "Mjukt"
-
-#: core/GStreamer/Equalizer.vala:85
-msgid "Ska"
-msgstr "Ska"
-
-#: core/GStreamer/Equalizer.vala:86
-msgid "Soft Rock"
-msgstr "Mjuk rock"
-
-#: core/GStreamer/Equalizer.vala:87
-msgid "Techno"
-msgstr "Tekno"
-
-#: core/Utils/FileUtils.vala:142
-#, c-format
-msgid " (%d)"
-msgstr " (%d)"
-
-#: core/Utils/PlaylistsUtils.vala:95
-#, c-format
-msgid "%s (%d)"
-msgstr "%s (%d)"
-
-#: core/Utils/PlaylistsUtils.vala:234
-msgid "New playlist"
-msgstr "Ny speleliste"
-
-#. Translators: used for new playlists ex: "New playlist (1)"
-#: core/Utils/PlaylistsUtils.vala:245
-#, c-format
-msgid "%s (%i)"
-msgstr "%s (%i)"
-
-#: core/Utils/PlaylistsUtils.vala:265 core/Utils/PlaylistsUtils.vala:334
-msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr "Utvida MPEG Version 3.0 (*.m3u)"
-
-#: core/Utils/PlaylistsUtils.vala:269 core/Utils/PlaylistsUtils.vala:338
-msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr "Shoutcast speleliste versjon 2.0 (*. Pls)"
-
-#: core/Utils/PlaylistsUtils.vala:272
-msgid "Export Playlist"
-msgstr "Eksporter speleliste"
-
-#: core/Utils/PlaylistsUtils.vala:275 src/Dialogs/MediaEditor.vala:133
-#: src/Dialogs/SmartPlaylistEditor.vala:92
-msgid "Save"
-msgstr "Lagra"
-
-#: core/Utils/PlaylistsUtils.vala:276 core/Utils/PlaylistsUtils.vala:345
-#: src/LibraryWindow.vala:1030 src/Dialogs/FileNotFoundDialog.vala:55
-#: src/Dialogs/FileNotFoundDialog.vala:103
-#: src/Dialogs/InstallGstreamerPluginsDialog.vala:49
-#: src/Dialogs/RemoveFilesDialog.vala:82
-#: src/Dialogs/SetMusicFolderConfirmation.vala:85
-#: src/Dialogs/SmartPlaylistEditor.vala:89
-#: src/Dialogs/SyncWarningDialog.vala:60
-#: src/Views/Wrappers/MusicViewWrapper.vala:147 src/Widgets/TopDisplay.vala:63
-msgid "Cancel"
-msgstr "Avbryt"
-
-#: core/Utils/PlaylistsUtils.vala:329
-msgid "Playlist"
-msgstr "Speleliste"
-
-#: core/Utils/PlaylistsUtils.vala:341
-#, c-format
-msgid "Import %s"
-msgstr "Importer %s"
-
-#: core/Utils/PlaylistsUtils.vala:344 src/LibraryWindow.vala:1029
-#: src/Dialogs/FileNotFoundDialog.vala:102
-#: src/Dialogs/SetMusicFolderConfirmation.vala:84
-#: src/Views/Wrappers/MusicViewWrapper.vala:146
-#: src/Widgets/AlbumListGrid.vala:197
-msgid "Open"
-msgstr "Opna"
-
-#: core/Utils/PlaylistsUtils.vala:371
-msgid "Unrecognized playlist file. Import failed."
-msgstr "Ukjend fil i speleliste. Importering feilte."
-
-#. / Format of date strings. See reference documentation of g_date_time_format()
-#. / for more details.
-#: core/Utils/TimeUtils.vala:40
-msgid "%m/%e/%Y %l:%M %p"
-msgstr "%m/%e/%Y %l:%M %p"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:109
-#: plugins/Devices/iPod/iPodDevice.vala:68
-msgid "Empty device!"
-msgstr "Enheiten er tom!"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:113
-#: plugins/Devices/iPod/iPodDevice.vala:72
-msgid "This device does not contain any music."
-msgstr "Denne enheita har ingen musikk."
-
-#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:158
-msgid "Android Phone"
-msgstr "Android Telefon"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:160
-msgid "Audio Player"
-msgstr "Lydspelar"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:146
-#: plugins/Devices/iPod/iPodLibrary.vala:167
-msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr "Legg til <b>$NAME</b> av <b>$ARTIST</b> til $DEVICE"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:171
-#: plugins/Devices/iPod/iPodLibrary.vala:216
-#, c-format
-msgid "Syncing <b>%s</b>…"
-msgstr "Synkroniserar <b>%s</b>…"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:283
-#: plugins/Devices/iPod/iPodLibrary.vala:561
-msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr "Fjerner <b>$NAME</b> av <b>$ARTIST</b> fra $DEVICE"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:315
-#: plugins/Devices/iPod/iPodLibrary.vala:366
-#, c-format
-msgid "Removing from <b>%s</b>…"
-msgstr "Fjernar frå <b>%s</b>…"
-
-#: plugins/Devices/iPod/iPodLibrary.vala:238
-#: plugins/Devices/iPod/iPodLibrary.vala:404
-msgid "Finishing sync process…"
-msgstr "Sluttfører synkroniseringa…"
-
-#: plugins/Devices/iPod/iPodLibrary.vala:250
-#: plugins/Devices/iPod/iPodLibrary.vala:416
-msgid "Cancelling Sync…"
-msgstr "Avbryter synkroniseringa…"
-
-#: src/FileOperator.vala:306
-msgid "Import Complete"
-msgstr "Ferdig å importere"
-
-#: src/FileOperator.vala:306
-msgid "Your Library Has Been Imported."
-msgstr "Biblioteket ditt har blitt importert."
-
-#. if doing import and copy to music folder is enabled, do copy here
-#: src/FileOperator.vala:316
-msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr "<b>Kopierar</b> filar til <b>Musikkmappe</b>…"
-
-#: src/LibraryWindow.vala:197 src/LibraryWindow.vala:275
-#: src/LibraryWindow.vala:631 src/LibraryWindow.vala:751
+#: src/Application.vala:63 src/Views/NowPlayingView.vala:18
+#: src/Views/NowPlayingView.vala:116
 msgid "Music"
 msgstr "Musikk"
 
-#: src/LibraryWindow.vala:216
-msgid "Import to Library…"
-msgstr "Importer til bibliotek…"
+#: src/MainWindow.vala:26
+#, fuzzy
+msgid "Shuffle"
+msgstr "Slå på shuffle"
 
-#: src/LibraryWindow.vala:219 src/Dialogs/PreferencesWindow.vala:32
-msgid "Preferences"
-msgstr "Brukarval"
+#: src/MainWindow.vala:41
+msgid "Queue is Empty"
+msgstr ""
 
-#: src/LibraryWindow.vala:238
+#: src/MainWindow.vala:42
+msgid "Audio files opened from Files will appear here"
+msgstr ""
+
+#: src/MainWindow.vala:148
+#, fuzzy
+msgid "Repeat None"
+msgstr "Gjenta ein song"
+
+#: src/MainWindow.vala:152
+#, fuzzy
+msgid "Repeat All"
+msgstr "Gjenta eit album"
+
+#: src/MainWindow.vala:156
+#, fuzzy
+msgid "Repeat One"
+msgstr "Gjenta ein song"
+
+#: src/PlaybackManager.vala:103
+#, c-format
+msgid "%d track was added to the queue"
+msgid_plural "%d tracks were added to the queue"
+msgstr[0] ""
+msgstr[1] ""
+
+#. Don't set artist for files without tags
+#: src/PlaybackManager.vala:163
+msgid "Unknown"
+msgstr "Ukjend"
+
+#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
+#, fuzzy
+msgid "Not playing"
+msgstr "Ny speleliste"
+
+#: src/Views/NowPlayingView.vala:45
 msgid "Previous"
 msgstr "Forrige"
 
-#: src/LibraryWindow.vala:245 src/LibraryWindow.vala:311
-msgid "Play"
-msgstr "Køyr"
-
-#: src/LibraryWindow.vala:252
+#: src/Views/NowPlayingView.vala:68
 msgid "Next"
 msgstr "Neste"
 
-#: src/LibraryWindow.vala:256
-msgid "Search Music"
-msgstr "Søk etter musikk"
+#: src/Views/NowPlayingView.vala:93
+msgid "Play"
+msgstr "Køyr"
 
-#: src/LibraryWindow.vala:317
+#: src/Views/NowPlayingView.vala:96
 msgid "Pause"
 msgstr "Pause"
 
-#: src/LibraryWindow.vala:820
-msgid "No songs in Queue"
-msgstr "Ingen songar i køen"
-
-#: src/LibraryWindow.vala:820
-msgid ""
-"To add songs to the queue, use the <b>secondary click</b> on an item and "
-"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
-"first before the next song in the currently playing list."
-msgstr ""
-"For å legge til ein song i køen, brukar du <b>høgreklikk</b> på ein song og "
-"velger <b>Kø</b>. Om ein song er i køen, vil den bli spelt av før resten av "
-"spelelista."
-
-#: src/LibraryWindow.vala:823
-msgid "No songs in History"
-msgstr "Ingen songar i historien"
-
-#: src/LibraryWindow.vala:823
-msgid ""
-"After a part of a song has been played, it is added to the history list.\n"
-"You can use this list to see all the songs you have played during the "
-"current session."
-msgstr ""
-"Etter at ein del av songen er spel, vert den lagt til i historielista.\n"
-"Du kan bruke denne lista for å sjå alle songane som har blitt spelt i denne "
-"økta."
-
-#: src/LibraryWindow.vala:1026 src/Views/Wrappers/MusicViewWrapper.vala:59
-msgid "Import Music"
-msgstr "Importer musikk"
-
-#: src/PlaybackManager.vala:117
-msgctxt "Name of the playlist"
-msgid "Queue"
-msgstr "Legg i kø"
-
-#: src/Dialogs/FileNotFoundDialog.vala:37
-msgid "File not found"
-msgstr "Fann ikkje fil"
-
-#: src/Dialogs/FileNotFoundDialog.vala:47
-#, c-format
-msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
-msgstr "Musikkfila for <b>%s</b> av <b>%s</b> vart ikkje funne."
-
-#: src/Dialogs/FileNotFoundDialog.vala:50
-#, fuzzy, c-format
-#| msgid "%i music files could not be found?"
-msgid "%i music files could not be found."
-msgstr "%i musikkfiler kunne ikkje bli funne?"
-
-#: src/Dialogs/FileNotFoundDialog.vala:53
-msgid "Rescan Library"
-msgstr "Leit gjennom biblioteket på nytt"
-
-#: src/Dialogs/FileNotFoundDialog.vala:54
-msgid "Remove Song"
-msgstr "Fjern songen"
-
-#: src/Dialogs/FileNotFoundDialog.vala:56
-msgid "Find Song"
-msgstr "Finn song"
-
-#: src/Dialogs/FileNotFoundDialog.vala:99
-#: src/Dialogs/SetMusicFolderConfirmation.vala:81
-msgid "Choose Music Folder"
-msgstr "Vel musikkmappe"
-
-#: src/Dialogs/InstallGstreamerPluginsDialog.vala:41
-#, c-format
-msgid "Would you like to install the %s plugin?"
-msgstr "Vil du installere %s-tillegget?"
-
-#: src/Dialogs/InstallGstreamerPluginsDialog.vala:42
-#, c-format
-msgid "This song cannot be played. The %s plugin is required to play the song."
-msgstr ""
-"Denne songen kan ikkje spelast av. %s-tillegget er kravd for avspeling."
-
-#: src/Dialogs/InstallGstreamerPluginsDialog.vala:51
-msgid "Install Plugin"
-msgstr "Installer utvidelse"
-
-#: src/Dialogs/MediaEditor.vala:96
-msgid "Title:"
-msgstr "Tittel:"
-
-#: src/Dialogs/MediaEditor.vala:98
-msgid "Artist:"
-msgstr "Artist:"
-
-#: src/Dialogs/MediaEditor.vala:100
-msgid "Album:"
-msgstr "Album:"
-
-#: src/Dialogs/MediaEditor.vala:102
-msgid "Album Artist:"
-msgstr "Albumartist:"
-
-#: src/Dialogs/MediaEditor.vala:104
-msgid "Composer:"
-msgstr "Komponist:"
-
-#: src/Dialogs/MediaEditor.vala:106
-msgid "Grouping:"
-msgstr "Gruppering:"
-
-#: src/Dialogs/MediaEditor.vala:108
-msgid "Genre:"
-msgstr "Sjanger:"
-
-#: src/Dialogs/MediaEditor.vala:110
-msgid "Year:"
-msgstr "År:"
-
-#: src/Dialogs/MediaEditor.vala:112
-msgid "Track:"
-msgstr "Spor:"
-
-#: src/Dialogs/MediaEditor.vala:114
-msgid "Disc:"
-msgstr "Plate:"
-
-#: src/Dialogs/MediaEditor.vala:116
-msgid "Rating:"
-msgstr "Vurdering:"
-
-#: src/Dialogs/MediaEditor.vala:118
-msgid "Comment:"
-msgstr "Kommentar:"
-
-#. FIXME: don't know if I can delete this
-#: src/Dialogs/MediaEditor.vala:131 src/Dialogs/PreferencesWindow.vala:88
-#: src/Views/DeviceView.vala:45
-msgid "Close"
-msgstr "Lukk"
-
-#: src/Dialogs/NotImportedDialog.vala:50
-#, c-format
-msgid "Issues while importing from %s"
-msgstr "Feil oppstod under importering frå %s"
-
-#: src/Dialogs/NotImportedDialog.vala:56
-#, c-format
-msgid "Unable to import %d item. The file may be damaged."
-msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] "Kunne ikkje importere %d element. Fila kan vere skada."
-msgstr[1] "Kunne ikkje importere %d element. Filene kan vere skada."
-
-#: src/Dialogs/NotImportedDialog.vala:64
-msgid "Move all corrupted files to trash"
-msgstr "Flytt alle dei øydelagte filene til papirkorga"
-
-#: src/Dialogs/NotImportedDialog.vala:71
-msgid "del"
-msgstr "del"
-
-#: src/Dialogs/NotImportedDialog.vala:80
-msgid "File Location"
-msgstr "Plassering av fila"
-
-#: src/Dialogs/NotImportedDialog.vala:96
-msgid "Select individual files to move to trash:"
-msgstr "Velg enkelte filer som skal flyttast til papirkorga:"
-
-#: src/Dialogs/NotImportedDialog.vala:100 src/Dialogs/RemoveFilesDialog.vala:73
-msgid "Move to Trash"
-msgstr "Flytt til papirkorga"
-
-#: src/Dialogs/NotImportedDialog.vala:103
-msgid "Ignore"
-msgstr "Oversjå"
-
-#: src/Dialogs/PreferencesWindow.vala:38
-msgid "Select Music Folder…"
-msgstr "Vel musikkmappe…"
-
-#: src/Dialogs/PreferencesWindow.vala:70
-msgid "Music Folder Location"
-msgstr "Musikkmappeplassering"
-
-#: src/Dialogs/PreferencesWindow.vala:72
-msgid "Library Management"
-msgstr "Organisering av bibliotek"
-
-#: src/Dialogs/PreferencesWindow.vala:73
-msgid "Keep Music folder organized:"
-msgstr "Hald musikkmappa organisert:"
-
-#: src/Dialogs/PreferencesWindow.vala:75
-msgid "Write metadata to file:"
-msgstr "Skriv metadata til fil:"
-
-#: src/Dialogs/PreferencesWindow.vala:77
-msgid "Copy imported files to Library:"
-msgstr "Kopier dei importerte filene til biblioteket:"
-
-#: src/Dialogs/PreferencesWindow.vala:79
-msgid "Desktop Integration"
-msgstr "Skrivebordsintegrasjon"
-
-#: src/Dialogs/PreferencesWindow.vala:80
-msgid "Continue playback when closed:"
-msgstr "Hald fram med avspeling i bakgrunnen:"
-
-#: src/Dialogs/RemoveFilesDialog.vala:49
-#, c-format
-msgid "Remove %d Song From Library?"
-msgid_plural "Remove %d Songs From Library?"
-msgstr[0] "Fjern %d song frå biblioteket?"
-msgstr[1] "Fjern %d songar frå biblioteket?"
-
-#: src/Dialogs/RemoveFilesDialog.vala:55
-#, c-format
-msgid "Remove \"%s\" From Library?"
-msgstr "Fjern «%s» frå biblioteket?"
-
-#: src/Dialogs/RemoveFilesDialog.vala:59
-msgid ""
-"This will remove the song from your library and from any device synced "
-"automatically."
-msgid_plural ""
-"This will remove the songs from your library and from any device synced "
-"automatically."
-msgstr[0] ""
-"Dette vil fjerne songen frå biblioteket ditt, og i tillegg frå ei kvar "
-"eining som vert synkronisert automatisk."
-msgstr[1] ""
-"Dette vil fjerne songane frå biblioteket ditt, og i tillegg frå ei kvar "
-"eining som vert synkronisert automatisk."
-
-#: src/Dialogs/RemoveFilesDialog.vala:83
-msgid "Remove from Library"
-msgstr "Fjern frå biblioteket"
-
-#: src/Dialogs/SetMusicFolderConfirmation.vala:38
-msgid "Set Music Folder?"
-msgstr "Valgt musikkmappe?"
-
-#: src/Dialogs/SetMusicFolderConfirmation.vala:39
-#, c-format
-msgid ""
-"Are you sure you want to set the music folder to %s? This will reset your "
-"library and remove your playlists."
-msgstr ""
-"Er du sikker på at du vil hente musikken din frå %s? Dette vil tilbakestille "
-"biblioteket ditt, og fjerne spelelistene du har lagra."
-
-#: src/Dialogs/SetMusicFolderConfirmation.vala:47
-msgid "Export Playlists"
-msgstr "Eksporter spelelister"
-
-#: src/Dialogs/SetMusicFolderConfirmation.vala:61
-msgid "Set Music Folder"
-msgstr "Vel musikkmappe"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:55
-msgid "Playlist Title"
-msgstr "Tittel på spelelista"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:58
-msgid "any"
-msgstr "nokre"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:59
-msgid "all"
-msgstr "alle"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:63
-msgid "Match"
-msgstr "Samsvar"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:65
-msgid "of the following:"
-msgstr "av følgjande:"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:74
-msgid "Add"
-msgstr "Legg til"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:79
-msgid "Limit to"
-msgstr "Avgrens til"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:87
-msgid "items"
-msgstr "element"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:103
-msgid "Name of Playlist"
-msgstr "Namn på spelelista"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:105
-msgid "Rules"
-msgstr "Reglar"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:108
-msgid "Options"
-msgstr "Innstillingar"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:113
-msgid "Smart Playlist Editor"
-msgstr "Redigerar for smartespelelister"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:256 src/Widgets/SourceListView.vala:67
-#: src/Widgets/SourceListView.vala:80
-msgid "Remove"
-msgstr "Fjern"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:259
-msgid "Album"
-msgstr "Album"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:260
-msgid "Artist"
-msgstr "Artist"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:261
-msgid "Bitrate"
-msgstr "Bitfart"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:262
-msgid "Comment"
-msgstr "Kommentar"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:263
-msgid "Composer"
-msgstr "Komponist"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:264
-msgid "Date Added"
-msgstr "Dato lagt til"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:265
-msgid "Genre"
-msgstr "Sjanger"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:266
-msgid "Grouping"
-msgstr "Gruppering"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:267
-msgid "Last Played"
-msgstr "Sist spelt"
-
-#. helper for units
-#: src/Dialogs/SmartPlaylistEditor.vala:268
-#: src/Dialogs/SmartPlaylistEditor.vala:413
-msgid "Length"
-msgstr "Lengd"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:269
-msgid "Playcount"
-msgstr "Gongar spela"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:270
-msgid "Rating"
-msgstr "Vurdering"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:271
-msgid "Skipcount"
-msgstr "Hoppa over"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:272
-msgid "Title"
-msgstr "Tittel"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:273
-msgid "Year"
-msgstr "År"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:274
-msgid "URI"
-msgstr "URI"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:347
-msgid "is"
-msgstr "er"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:348
-msgid "contains"
-msgstr "inneheld"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:349
-msgid "does not contain"
-msgstr "inneheld ikkje"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:375
-#: src/Dialogs/SmartPlaylistEditor.vala:390
-msgid "is exactly"
-msgstr "er akuratt"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:376
-msgid "is at most"
-msgstr "er på det meste"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:377
-msgid "is at least"
-msgstr "er i det minste"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:391
-msgid "is within"
-msgstr "er innanfor"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:392
-msgid "is before"
-msgstr "er før"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:414
-msgid "seconds"
-msgstr "sekund"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:417
-msgid "days ago"
-msgstr "dagar sidan"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:420
-msgid "kbps"
-msgstr "kbps"
-
-#. be a bit explicit to make translations better
-#: src/Dialogs/SyncWarningDialog.vala:52
-#, c-format
-msgid "Sync will remove %i item from %s"
-msgid_plural "Sync will remove %i items from %s"
-msgstr[0] "Synkroniseringa vil fjerne %i element frå %s"
-msgstr[1] "Synkroniseringa vil fjerne %i element frå %s"
-
-#: src/Dialogs/SyncWarningDialog.vala:55
-#, c-format
-msgid ""
-"If you continue to sync, media will be removed from %s since they are not on "
-"the sync list. Would you like to import them to your library first?"
-msgstr ""
-"Om du held fram med synkroniseringa, vil media frå %s bli fjerna fordi dei "
-"ikkje er på synkroniseringslista. Ynskjer du å importere dei til biblioteket "
-"ditt fyrst?"
-
-#: src/Dialogs/SyncWarningDialog.vala:57
-msgid "Continue Syncing"
-msgstr "Hald synkroniseringa igang"
-
-#: src/Dialogs/SyncWarningDialog.vala:62
-msgid "Import"
-msgstr "Importer"
-
-#: src/LocalBackend/LocalLibrary.vala:188
-#, c-format
-msgid "Importing music from %s…"
-msgstr "Importerar musikk frå %s…"
-
-#: src/LocalBackend/LocalLibrary.vala:215
-msgid "Adding files to library…"
-msgstr "Legger filer til bibliotek…"
-
-#: src/LocalBackend/LocalLibrary.vala:228
-msgid "<b>Importing</b> music to library…"
-msgstr "<b>Importerar</b> musikk til bibliotek…"
-
-#: src/LocalBackend/LocalLibrary.vala:250
-msgid "All music files are already in your library"
-msgstr "Alle musikkfiler er allerede i ditt bibliotek"
-
-#: src/LocalBackend/LocalLibrary.vala:250
-msgid "No files were imported."
-msgstr "Ingen filer ble importert."
-
-#: src/LocalBackend/LocalLibrary.vala:255
-msgid "Rescanning music for changes. This may take a while…"
-msgstr "Søkjer på nytt etter musikk for endringar. Dette kan ta ei stund…"
-
-#: src/LocalBackend/LocalLibrary.vala:356
-msgid "Added to your queue:"
-msgstr "Lagt i køen din:"
-
-#: src/LocalBackend/LocalLibrary.vala:367
-#, c-format
-msgid "%d Track"
-msgid_plural "%d Tracks"
-msgstr[0] "%d spor"
-msgstr[1] "%d spor"
-
-#: src/LocalBackend/LocalSmartPlaylist.vala:218
-msgid "Favorite Songs"
-msgstr "Favorittsongar"
-
-#: src/LocalBackend/LocalSmartPlaylist.vala:226
-msgid "Recently Added"
-msgstr "Nyleg lagt til"
-
-#: src/LocalBackend/LocalSmartPlaylist.vala:234
-msgid "Recent Favorites"
-msgstr "Siste favorittar"
-
-#: src/LocalBackend/LocalSmartPlaylist.vala:242
-msgid "Never Played"
-msgstr "Aldri spelt"
-
-#: src/LocalBackend/LocalSmartPlaylist.vala:250
-msgid "Over Played"
-msgstr "Overspelt"
-
-#: src/LocalBackend/LocalSmartPlaylist.vala:258
-msgid "Not Recently Played"
-msgstr "Ikkje nyleg spelt"
-
-#: src/Objects/HistoryPlaylist.vala:38
-msgid "History"
-msgstr "Historikk"
-
-#: src/Objects/MPRIS.vala:617 src/Widgets/SourceListView.vala:341
-msgid "Playlists"
-msgstr "Spelelister"
-
-#: src/Views/DeviceSummaryWidget.vala:60
-msgid "Device Name:"
-msgstr "Enheitnamn:"
-
-#: src/Views/DeviceSummaryWidget.vala:64
-msgid "Device Name"
-msgstr "Enheitsnamn"
-
-#: src/Views/DeviceSummaryWidget.vala:66
-msgid "Automatically sync when plugged in:"
-msgstr "Synkroniser denne automatisk:"
-
-#: src/Views/DeviceSummaryWidget.vala:72
-msgid "Sync:"
-msgstr "Synkroniser:"
-
-#: src/Views/DeviceSummaryWidget.vala:100 src/Widgets/SourceListView.vala:192
-msgid "Sync"
-msgstr "Synkroniser"
-
-#: src/Views/DeviceSummaryWidget.vala:244
-msgid "All Music"
-msgstr "All musikk"
-
-#: src/Views/DeviceSummaryWidget.vala:298
-msgid "Sync Failed"
-msgstr "Synkroniseringa feila"
-
-#: src/Views/DeviceSummaryWidget.vala:299
-#, c-format
-msgid ""
-"The playlist named %s is used to sync device %s, but could not be found."
-msgstr ""
-"Spelelista %s som er brukt for synkroniseringa av %s, kunne ikkje finnast."
-
-#: src/Views/DeviceSummaryWidget.vala:316
-#: src/Views/DeviceSummaryWidget.vala:321
-msgid "Cannot Sync"
-msgstr "Kan ikkje synkronisera"
-
-#: src/Views/DeviceSummaryWidget.vala:317
-msgid ""
-"Cannot sync device with selected sync settings. Not enough space on disk"
-msgstr ""
-"Synkroniseringa går ikkje med dei valde instillingane. Det er for lite plass "
-"på disken"
-
-#: src/Views/DeviceSummaryWidget.vala:322
-msgid "Device is already doing an operation."
-msgstr "Einheten gjer allereie ein operasjon."
-
-#: src/Views/DeviceView.vala:66
-msgid "Cancelling…"
-msgstr "Stoppar …"
-
-#: src/Views/DeviceView.vala:66
-msgid "Device operation has been cancelled and will stop after this media."
-msgstr ""
-"Drift av eininga har blitt kansellert og vil stoppe etter dette mediet."
-
-#: src/Views/ViewStack.vala:45
-msgid "No Results"
-msgstr "Resultatlaust"
-
-#: src/Views/ViewStack.vala:45
-msgid "Try another search"
-msgstr "Prøv eit søk til"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
-msgid "Genres"
-msgstr "Sjangrar"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:60
-msgid "Artists"
-msgstr "Artistar"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:62
-msgid "Albums"
-msgstr "Album"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:64
-msgid "Years"
-msgstr "År"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:66
-msgid "Ratings"
-msgstr "Vurderingar"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:68
-msgid "Composers"
-msgstr "Komponistar"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:70
-msgid "Groupings"
-msgstr "Grupperingar"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
-msgid "All Genres"
-msgstr "Alle sjangre"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
-#, c-format
-msgid "All %i Genres"
-msgstr "Alle %i sjangre"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
-msgid "No Genres"
-msgstr "Ingen sjangre"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
-msgid "All Artists"
-msgstr "Alle artistar"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
-#, c-format
-msgid "All %i Artists"
-msgstr "Alle %i artistar"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
-msgid "No Artists"
-msgstr "Ingen artistar"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
-msgid "All Albums"
-msgstr "Alle album"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
-#, c-format
-msgid "All %i Albums"
-msgstr "Alle %i album"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
-msgid "No Albums"
-msgstr "Ingen album"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
-msgid "All Years"
-msgstr "Alle år"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
-#, c-format
-msgid "All %i Years"
-msgstr "Alle %i år"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:250
-msgid "No Years"
-msgstr "Ingen år"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
-msgid "All Ratings"
-msgstr "Alle vurderingar"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
-msgid "No Ratings"
-msgstr "Ingen vurderingar"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
-msgid "All Groupings"
-msgstr "Alle grupperingar"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
-#, c-format
-msgid "All %i Groupings"
-msgstr "Alle %i grupperingar"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
-msgid "No Groupings"
-msgstr "Ingen grupperingar"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:271
-msgid "All Composers"
-msgstr "Alle komponistar"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:273
-#, c-format
-msgid "All %i Composers"
-msgstr "Alle %i komponistar"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:275
-msgid "No Composers"
-msgstr "Ingen komponistar"
-
-#. We cannot make these constants due to issues with N_()
-#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
-#: src/Widgets/EqualizerPopover.vala:326 src/Widgets/PresetList.vala:52
-msgid "Automatic"
-msgstr "Automatisk"
-
-#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:146
-msgid "On Left"
-msgstr "På venstre"
-
-#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:147
-msgid "On Top"
-msgstr "På toppen"
-
-#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:428
-msgid "Unrated"
-msgstr "Ikkje vurdert"
-
-#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:430
-#, c-format
-msgid "%u Star"
-msgid_plural "%u Stars"
-msgstr[0] "%u Stjerne"
-msgstr[1] "%u Stjerner"
-
-#: src/Views/ListView/Lists/CellDataFunctionHelper.vala:128
-#, c-format
-msgid "%u kbps"
-msgstr "%u kbps"
-
-#: src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
-#: src/Views/ListView/Lists/MusicListView.vala:425
-msgid "Never"
-msgstr "Aldri"
-
-#: src/Views/ListView/Lists/ListColumn.vala:69
-msgctxt "List column title"
-msgid "#"
-msgstr "#"
-
-#: src/Views/ListView/Lists/ListColumn.vala:72
-msgctxt "List column title"
-msgid "Track"
-msgstr "Spor"
-
-#: src/Views/ListView/Lists/ListColumn.vala:75
-msgctxt "List column title"
-msgid "Title"
-msgstr "Tittel"
-
-#: src/Views/ListView/Lists/ListColumn.vala:78
-msgctxt "List column title"
-msgid "Length"
-msgstr "Lengd"
-
-#: src/Views/ListView/Lists/ListColumn.vala:81
-msgctxt "List column title"
-msgid "Artist"
-msgstr "Artist"
-
-#: src/Views/ListView/Lists/ListColumn.vala:84
-msgctxt "List column title"
-msgid "Album"
-msgstr "Album"
-
-#: src/Views/ListView/Lists/ListColumn.vala:87
-msgctxt "List column title"
-msgid "Album Artist"
-msgstr "Albumartist"
-
-#: src/Views/ListView/Lists/ListColumn.vala:90
-msgctxt "List column title"
-msgid "Composer"
-msgstr "Komponist"
-
-#: src/Views/ListView/Lists/ListColumn.vala:93
-msgctxt "List column title"
-msgid "Genre"
-msgstr "Sjanger"
-
-#: src/Views/ListView/Lists/ListColumn.vala:96
-msgctxt "List column title"
-msgid "Year"
-msgstr "År"
-
-#: src/Views/ListView/Lists/ListColumn.vala:99
-msgctxt "List column title"
-msgid "Grouping"
-msgstr "Gruppering"
-
-#: src/Views/ListView/Lists/ListColumn.vala:102
-msgctxt "List column title"
-msgid "Bitrate"
-msgstr "Bitrate"
-
-#: src/Views/ListView/Lists/ListColumn.vala:105
-msgctxt "List column title"
-msgid "Rating"
-msgstr "Vurdering"
-
-#: src/Views/ListView/Lists/ListColumn.vala:108
-msgctxt "List column title"
-msgid "Plays"
-msgstr "Avspelingar"
-
-#: src/Views/ListView/Lists/ListColumn.vala:111
-msgctxt "List column title"
-msgid "Skips"
-msgstr "Hoppa over"
-
-#: src/Views/ListView/Lists/ListColumn.vala:114
-msgctxt "List column title"
-msgid "Date Added"
-msgstr "Dato lagt til"
-
-#: src/Views/ListView/Lists/ListColumn.vala:117
-msgctxt "List column title"
-msgid "Last Played"
-msgstr "Sist spelt"
-
-#: src/Views/ListView/Lists/ListColumn.vala:120
-msgctxt "List column title (beats per minute)"
-msgid "BPM"
-msgstr "BPM"
-
-#: src/Views/ListView/Lists/ListColumn.vala:123
-msgctxt "List column title (file location)"
-msgid "Location"
-msgstr "Stad"
-
-#: src/Views/ListView/Lists/ListColumn.vala:126
-msgctxt "List column title"
-msgid "File Size"
-msgstr "Filstorleik"
-
-#: src/Views/ListView/Lists/MusicListView.vala:74
-msgid "Autosize Columns"
-msgstr "Still inn kolonnene automatisk"
-
-#: src/Views/ListView/Lists/MusicListView.vala:410
-msgid "1234 kbps"
-msgstr "1234 kbps"
-
-#. / Sample string used to measure the ideal size of the Title, Artist,
-#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
-#. / list view. It's *never* displayed in the user interface. The translated
-#. / string should have a reasonable length, similar to the average length
-#. / of a song title or artist name in your language. The automatic column
-#. / width will depend on the length of this string and the space needed
-#. / by the column's title header.
-#: src/Views/ListView/Lists/MusicListView.vala:481
-msgid "Sample List String"
-msgstr "Eksempel på listelengde"
-
-#. Welcome screen
-#: src/Views/Wrappers/MusicViewWrapper.vala:56
-msgid "Get Some Tunes"
-msgstr "Få tak i musikk"
-
-#: src/Views/Wrappers/MusicViewWrapper.vala:57
-msgid "Add music to your library."
-msgstr "Legg til musikk i biblioteket ditt."
-
-#: src/Views/Wrappers/MusicViewWrapper.vala:60
-msgid "Import music from a source into your library."
-msgstr "Importer musikk frå ei anna kjelde til biblioteket ditt."
-
-#: src/Views/Wrappers/MusicViewWrapper.vala:62
-msgid "Change Music Folder"
-msgstr "Endra Musikk mappa"
-
-#: src/Views/Wrappers/MusicViewWrapper.vala:63
-msgid "Load music from a folder, a network or an external disk."
-msgstr "Hent musikk frå ei mappe, eit nettverk eller ein ekstern disk."
-
-#: src/Views/Wrappers/MusicViewWrapper.vala:110
-#: src/Views/Wrappers/MusicViewWrapper.vala:130
-msgid "Import your Music"
-msgstr "Importer musikk"
-
-#: src/Views/Wrappers/MusicViewWrapper.vala:111
-#: src/Views/Wrappers/MusicViewWrapper.vala:131
-#, c-format
-msgid "Import all your Music from %s into your library."
-msgstr "Importer all musikken din frå %s til biblioteket."
-
-#: src/Views/Wrappers/MusicViewWrapper.vala:143
-msgid "Select Music Folder"
-msgstr "Velg musikkmappe"
-
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:50
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:54
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:64
-msgid "No Songs"
-msgstr "Ingen songar"
-
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:51
-msgid "Updating playlist. Please wait."
-msgstr "Oppdaterer speleliste. Ver venleg og vent."
-
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:55
-msgid ""
-"To add songs to this playlist, use the <b>secondary click</b> on an item and "
-"choose <b>Add to Playlist</b>."
-msgstr ""
-"For å legge til songar i spelelista, <b>dobbeltklikk</b> på eit element og "
-"velg <b>Legg til i spelelista</b>."
-
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:58
-msgid "Edit Smart Playlist"
-msgstr "Rediger smartspeleliste"
-
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:65
-msgid ""
-"This playlist will be automatically populated with songs that match its "
-"rules. To modify these rules, use the <b>secondary click</b> on it in the "
-"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
-"below."
-msgstr ""
-"Denne spelelista vil automatisk bli fylt med songar som passar inn. For å "
-"endre kva for type songar som blir spelt, <b>dobbeltklikk</b> på spelelista "
-"i sidefeltet, og trykk på <b>Rediger</b>. Du kan og trykke på knappen "
-"nedanfor."
-
-#: src/Views/Wrappers/ViewWrapper.vala:418
-msgid "No media"
-msgstr "Ingen media"
-
-#: src/Widgets/AlbumListGrid.vala:63
-msgid "Set new album cover"
-msgstr "Sett nytt albumomslag"
-
-#: src/Widgets/AlbumListGrid.vala:193
-msgid "Image files"
-msgstr "Bildefiler"
-
-#: src/Widgets/AlbumListGrid.vala:200
-msgid "_Open"
-msgstr "_Opne"
-
-#: src/Widgets/AlbumListGrid.vala:201
-msgid "_Cancel"
-msgstr "_Avbryt"
-
-#: src/Widgets/EqualizerPopover.vala:162
-msgid "Save preset"
-msgstr "Lagra førehandsval"
-
-#: src/Widgets/EqualizerPopover.vala:330
-msgid "Off"
-msgstr "Av"
-
-#: src/Widgets/EqualizerPopover.vala:418
-#, c-format
-msgid "%s (Custom)"
-msgstr "%s (Egendefinert)"
-
-#: src/Widgets/EqualizerPopover.vala:420
-#, c-format
-msgid "%s (Custom %i)"
-msgstr "%s (Egendefinert %i)"
-
-#: src/Widgets/EqualizerPopover.vala:423
-msgid "Custom Preset"
-msgstr "Egendefinert førehandsval"
-
-#: src/Widgets/EqualizerPopover.vala:425
-#, c-format
-msgid "Custom Preset %i"
-msgstr "Egendefinert førehandsval %i"
-
-#: src/Widgets/MediaMenu.vala:46
-msgid "Scroll to Current Song"
-msgstr "Bla til gjeldande song"
-
-#: src/Widgets/MediaMenu.vala:49
-msgid "Show in File Browser…"
-msgstr "_Vis i filbehandlaren…"
-
-#: src/Widgets/MediaMenu.vala:50
-msgid "Edit Song Info…"
-msgstr "Endre songinformasjon…"
-
-#: src/Widgets/MediaMenu.vala:51
-msgid "Other Actions"
-msgstr "Andre handlingar"
-
-#: src/Widgets/MediaMenu.vala:53
-msgctxt "Action item (verb)"
-msgid "Queue"
-msgstr "Legg til i kø"
-
-#: src/Widgets/MediaMenu.vala:54
-msgid "Add to Playlist"
-msgstr "Legg til i speleliste"
-
-#: src/Widgets/MediaMenu.vala:55
-msgid "Remove Song…"
-msgstr "Fjern song…"
-
-#: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
-msgid "Import to Library"
-msgstr "Importer til bibliotek"
-
-#: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
-msgid "Remove from Library…"
-msgstr "Fjern frå biblioteket…"
-
-#: src/Widgets/MediaMenu.vala:99
-msgid "Remove from Device"
-msgstr "Fjern frå enheiten"
-
-#: src/Widgets/MediaMenu.vala:119
-msgid "Remove from Queue"
-msgstr "Fjern frå køen"
-
-#: src/Widgets/MediaMenu.vala:153
-msgid "New Playlist…"
-msgstr "Ny speleliste…"
-
-#: src/Widgets/MediaMenu.vala:193
-#, c-format
-msgid "Import %i of %i selected songs"
-msgstr "Importer %i av %i valde songar"
-
-#: src/Widgets/MediaMenu.vala:195
-#, c-format
-msgid "Import %i song"
-msgid_plural "Import %i songs"
-msgstr[0] "Importer &i song"
-msgstr[1] "Importer %i songar"
-
-#: src/Widgets/PresetList.vala:53
-msgid "Delete Current"
-msgstr "Fjern den noverande"
-
-#: src/Widgets/SourceListView.vala:66 src/Widgets/SourceListView.vala:78
-msgid "Rename"
-msgstr "Endra namn"
-
-#: src/Widgets/SourceListView.vala:79
-msgid "Edit…"
-msgstr "Rediger…"
-
-#: src/Widgets/SourceListView.vala:95
-msgid "Save as Playlist"
-msgstr "Lagra som speleliste"
-
-#: src/Widgets/SourceListView.vala:103
-msgid "Export…"
-msgstr "Eksporter…"
-
-#: src/Widgets/SourceListView.vala:166
-msgid "Eject"
-msgstr "Løys ut"
-
-#: src/Widgets/SourceListView.vala:176 src/Widgets/SourceListView.vala:219
-msgid "New Playlist"
-msgstr "Ny speleliste"
-
-#: src/Widgets/SourceListView.vala:184 src/Widgets/SourceListView.vala:220
-msgid "New Smart Playlist"
-msgstr "Ny smart speleliste"
-
-#: src/Widgets/SourceListView.vala:221
-msgid "Import Playlists"
-msgstr "Importer spelelister"
-
-#. Adds the different sidebar categories.
-#: src/Widgets/SourceListView.vala:338
-msgid "Library"
-msgstr "Bibliotek"
-
-#: src/Widgets/SourceListView.vala:339
-msgid "Devices"
-msgstr "Enheitar"
-
-#: src/Widgets/SourceListView.vala:340
-msgid "Network"
-msgstr "Nettverk"
-
-#: src/Widgets/StatusBar.vala:36
-msgid "Add Playlist"
-msgstr "Legg til speleliste"
-
-#: src/Widgets/StatusBar.vala:37
-msgid "Add Smart Playlist"
-msgstr "Legg til ei smartspeleliste"
-
-#: src/Widgets/StatusBar.vala:48
+#~ msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
+#~ msgstr "Importerer <b>$NAME</b> av <b>$ARTIST</b> til biblioteket…"
+
+#~ msgid "$NAME on $ALBUM"
+#~ msgstr "$NAME på $ALBUM"
+
+#~ msgid "$NAME by $ARTIST"
+#~ msgstr "$NAME av $ARTIST"
+
+#~ msgid "$NAME by $ARTIST on $ALBUM"
+#~ msgstr "$NAME av $ARTIST på $ALBUM"
+
+#~ msgid "Flat"
+#~ msgstr "Flat"
+
+#~ msgid "Classical"
+#~ msgstr "Klassisk"
+
+#~ msgid "Club"
+#~ msgstr "Club"
+
+#~ msgid "Dance"
+#~ msgstr "Dance"
+
+#~ msgid "Full Bass"
+#~ msgstr "Full bass"
+
+#~ msgid "Full Treble"
+#~ msgstr "Full diskant"
+
+#~ msgid "Full Bass + Treble"
+#~ msgstr "Full bass + diskant"
+
+#~ msgid "Headphones"
+#~ msgstr "Hovudtelefonar"
+
+#~ msgid "Large Hall"
+#~ msgstr "Storsal"
+
+#~ msgid "Live"
+#~ msgstr "Live"
+
+#~ msgid "Party"
+#~ msgstr "Fest"
+
+#~ msgid "Pop"
+#~ msgstr "Pop"
+
+#~ msgid "Reggae"
+#~ msgstr "Reggae"
+
+#~ msgid "Rock"
+#~ msgstr "Rock"
+
+#~ msgid "Soft"
+#~ msgstr "Mjukt"
+
+#~ msgid "Ska"
+#~ msgstr "Ska"
+
+#~ msgid "Soft Rock"
+#~ msgstr "Mjuk rock"
+
+#~ msgid "Techno"
+#~ msgstr "Tekno"
+
+#~ msgid " (%d)"
+#~ msgstr " (%d)"
+
+#~ msgid "%s (%d)"
+#~ msgstr "%s (%d)"
+
+#~ msgid "%s (%i)"
+#~ msgstr "%s (%i)"
+
+#~ msgid "MPEG Version 3.0 Extended (*.m3u)"
+#~ msgstr "Utvida MPEG Version 3.0 (*.m3u)"
+
+#~ msgid "Shoutcast Playlist Version 2.0 (*.pls)"
+#~ msgstr "Shoutcast speleliste versjon 2.0 (*. Pls)"
+
+#~ msgid "Export Playlist"
+#~ msgstr "Eksporter speleliste"
+
+#~ msgid "Save"
+#~ msgstr "Lagra"
+
+#~ msgid "Cancel"
+#~ msgstr "Avbryt"
+
+#~ msgid "Playlist"
+#~ msgstr "Speleliste"
+
+#~ msgid "Import %s"
+#~ msgstr "Importer %s"
+
+#~ msgid "Open"
+#~ msgstr "Opna"
+
+#~ msgid "Unrecognized playlist file. Import failed."
+#~ msgstr "Ukjend fil i speleliste. Importering feilte."
+
+#~ msgid "%m/%e/%Y %l:%M %p"
+#~ msgstr "%m/%e/%Y %l:%M %p"
+
+#~ msgid "Empty device!"
+#~ msgstr "Enheiten er tom!"
+
+#~ msgid "This device does not contain any music."
+#~ msgstr "Denne enheita har ingen musikk."
+
+#~ msgid "Android Phone"
+#~ msgstr "Android Telefon"
+
+#~ msgid "Audio Player"
+#~ msgstr "Lydspelar"
+
+#~ msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
+#~ msgstr "Legg til <b>$NAME</b> av <b>$ARTIST</b> til $DEVICE"
+
+#~ msgid "Syncing <b>%s</b>…"
+#~ msgstr "Synkroniserar <b>%s</b>…"
+
+#~ msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
+#~ msgstr "Fjerner <b>$NAME</b> av <b>$ARTIST</b> fra $DEVICE"
+
+#~ msgid "Removing from <b>%s</b>…"
+#~ msgstr "Fjernar frå <b>%s</b>…"
+
+#~ msgid "Finishing sync process…"
+#~ msgstr "Sluttfører synkroniseringa…"
+
+#~ msgid "Cancelling Sync…"
+#~ msgstr "Avbryter synkroniseringa…"
+
+#~ msgid "Import Complete"
+#~ msgstr "Ferdig å importere"
+
+#~ msgid "Your Library Has Been Imported."
+#~ msgstr "Biblioteket ditt har blitt importert."
+
+#~ msgid "<b>Copying</b> files to <b>Music Folder</b>…"
+#~ msgstr "<b>Kopierar</b> filar til <b>Musikkmappe</b>…"
+
+#~ msgid "Import to Library…"
+#~ msgstr "Importer til bibliotek…"
+
+#~ msgid "Preferences"
+#~ msgstr "Brukarval"
+
+#~ msgid "Search Music"
+#~ msgstr "Søk etter musikk"
+
+#~ msgid "No songs in Queue"
+#~ msgstr "Ingen songar i køen"
+
+#~ msgid ""
+#~ "To add songs to the queue, use the <b>secondary click</b> on an item and "
+#~ "choose <b>Queue</b>. When a song finishes, the queued songs will be "
+#~ "played first before the next song in the currently playing list."
+#~ msgstr ""
+#~ "For å legge til ein song i køen, brukar du <b>høgreklikk</b> på ein song "
+#~ "og velger <b>Kø</b>. Om ein song er i køen, vil den bli spelt av før "
+#~ "resten av spelelista."
+
+#~ msgid "No songs in History"
+#~ msgstr "Ingen songar i historien"
+
+#~ msgid ""
+#~ "After a part of a song has been played, it is added to the history list.\n"
+#~ "You can use this list to see all the songs you have played during the "
+#~ "current session."
+#~ msgstr ""
+#~ "Etter at ein del av songen er spel, vert den lagt til i historielista.\n"
+#~ "Du kan bruke denne lista for å sjå alle songane som har blitt spelt i "
+#~ "denne økta."
+
+#~ msgid "Import Music"
+#~ msgstr "Importer musikk"
+
+#~ msgctxt "Name of the playlist"
+#~ msgid "Queue"
+#~ msgstr "Legg i kø"
+
+#~ msgid "File not found"
+#~ msgstr "Fann ikkje fil"
+
+#~ msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
+#~ msgstr "Musikkfila for <b>%s</b> av <b>%s</b> vart ikkje funne."
+
 #, fuzzy
-#| msgid "Add Playlist"
-msgid "Add Playlist…"
-msgstr "Legg til speleliste"
+#~| msgid "%i music files could not be found?"
+#~ msgid "%i music files could not be found."
+#~ msgstr "%i musikkfiler kunne ikkje bli funne?"
 
-#. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
-#: src/Widgets/StatusBar.vala:74
-#, c-format
-msgid "Equalizer: %s"
-msgstr "Tonekontroll (EQ): %s"
+#~ msgid "Rescan Library"
+#~ msgstr "Leit gjennom biblioteket på nytt"
 
-#. MUST follow the exact same order of Music.Player.Repeat
-#: src/Widgets/TopDisplay.vala:138
-msgid "Enable Repeat"
-msgstr "Slå på gjentaking"
+#~ msgid "Remove Song"
+#~ msgstr "Fjern songen"
 
-#: src/Widgets/TopDisplay.vala:139
-msgid "Repeat Song"
-msgstr "Gjenta ein song"
+#~ msgid "Find Song"
+#~ msgstr "Finn song"
 
-#: src/Widgets/TopDisplay.vala:140
-msgid "Disable Repeat"
-msgstr "Slå av gjentaking"
+#~ msgid "Choose Music Folder"
+#~ msgstr "Vel musikkmappe"
 
-#: src/Widgets/TopDisplay.vala:159
-msgid "Enable Shuffle"
-msgstr "Slå på shuffle"
+#~ msgid "Would you like to install the %s plugin?"
+#~ msgstr "Vil du installere %s-tillegget?"
 
-#: src/Widgets/TopDisplay.vala:160
-msgid "Disable Shuffle"
-msgstr "Slå av shuffle"
+#~ msgid ""
+#~ "This song cannot be played. The %s plugin is required to play the song."
+#~ msgstr ""
+#~ "Denne songen kan ikkje spelast av. %s-tillegget er kravd for avspeling."
 
-#: src/Widgets/ViewSelector.vala:81
-msgid "View as albums"
-msgstr "Vis som album"
+#~ msgid "Install Plugin"
+#~ msgstr "Installer utvidelse"
 
-#: src/Widgets/ViewSelector.vala:87
-msgid "View as list"
-msgstr "Vis som liste"
+#~ msgid "Title:"
+#~ msgstr "Tittel:"
 
-#: src/Widgets/ViewSelector.vala:93
-msgid "View in columns"
-msgstr "Vis i kolonnar"
+#~ msgid "Artist:"
+#~ msgstr "Artist:"
+
+#~ msgid "Album:"
+#~ msgstr "Album:"
+
+#~ msgid "Album Artist:"
+#~ msgstr "Albumartist:"
+
+#~ msgid "Composer:"
+#~ msgstr "Komponist:"
+
+#~ msgid "Grouping:"
+#~ msgstr "Gruppering:"
+
+#~ msgid "Genre:"
+#~ msgstr "Sjanger:"
+
+#~ msgid "Year:"
+#~ msgstr "År:"
+
+#~ msgid "Track:"
+#~ msgstr "Spor:"
+
+#~ msgid "Disc:"
+#~ msgstr "Plate:"
+
+#~ msgid "Rating:"
+#~ msgstr "Vurdering:"
+
+#~ msgid "Comment:"
+#~ msgstr "Kommentar:"
+
+#~ msgid "Close"
+#~ msgstr "Lukk"
+
+#~ msgid "Issues while importing from %s"
+#~ msgstr "Feil oppstod under importering frå %s"
+
+#~ msgid "Unable to import %d item. The file may be damaged."
+#~ msgid_plural "Unable to import %d items. The files may be damaged."
+#~ msgstr[0] "Kunne ikkje importere %d element. Fila kan vere skada."
+#~ msgstr[1] "Kunne ikkje importere %d element. Filene kan vere skada."
+
+#~ msgid "Move all corrupted files to trash"
+#~ msgstr "Flytt alle dei øydelagte filene til papirkorga"
+
+#~ msgid "del"
+#~ msgstr "del"
+
+#~ msgid "File Location"
+#~ msgstr "Plassering av fila"
+
+#~ msgid "Select individual files to move to trash:"
+#~ msgstr "Velg enkelte filer som skal flyttast til papirkorga:"
+
+#~ msgid "Move to Trash"
+#~ msgstr "Flytt til papirkorga"
+
+#~ msgid "Ignore"
+#~ msgstr "Oversjå"
+
+#~ msgid "Select Music Folder…"
+#~ msgstr "Vel musikkmappe…"
+
+#~ msgid "Music Folder Location"
+#~ msgstr "Musikkmappeplassering"
+
+#~ msgid "Library Management"
+#~ msgstr "Organisering av bibliotek"
+
+#~ msgid "Keep Music folder organized:"
+#~ msgstr "Hald musikkmappa organisert:"
+
+#~ msgid "Write metadata to file:"
+#~ msgstr "Skriv metadata til fil:"
+
+#~ msgid "Copy imported files to Library:"
+#~ msgstr "Kopier dei importerte filene til biblioteket:"
+
+#~ msgid "Desktop Integration"
+#~ msgstr "Skrivebordsintegrasjon"
+
+#~ msgid "Continue playback when closed:"
+#~ msgstr "Hald fram med avspeling i bakgrunnen:"
+
+#~ msgid "Remove %d Song From Library?"
+#~ msgid_plural "Remove %d Songs From Library?"
+#~ msgstr[0] "Fjern %d song frå biblioteket?"
+#~ msgstr[1] "Fjern %d songar frå biblioteket?"
+
+#~ msgid "Remove \"%s\" From Library?"
+#~ msgstr "Fjern «%s» frå biblioteket?"
+
+#~ msgid ""
+#~ "This will remove the song from your library and from any device synced "
+#~ "automatically."
+#~ msgid_plural ""
+#~ "This will remove the songs from your library and from any device synced "
+#~ "automatically."
+#~ msgstr[0] ""
+#~ "Dette vil fjerne songen frå biblioteket ditt, og i tillegg frå ei kvar "
+#~ "eining som vert synkronisert automatisk."
+#~ msgstr[1] ""
+#~ "Dette vil fjerne songane frå biblioteket ditt, og i tillegg frå ei kvar "
+#~ "eining som vert synkronisert automatisk."
+
+#~ msgid "Remove from Library"
+#~ msgstr "Fjern frå biblioteket"
+
+#~ msgid "Set Music Folder?"
+#~ msgstr "Valgt musikkmappe?"
+
+#~ msgid ""
+#~ "Are you sure you want to set the music folder to %s? This will reset your "
+#~ "library and remove your playlists."
+#~ msgstr ""
+#~ "Er du sikker på at du vil hente musikken din frå %s? Dette vil "
+#~ "tilbakestille biblioteket ditt, og fjerne spelelistene du har lagra."
+
+#~ msgid "Export Playlists"
+#~ msgstr "Eksporter spelelister"
+
+#~ msgid "Set Music Folder"
+#~ msgstr "Vel musikkmappe"
+
+#~ msgid "Playlist Title"
+#~ msgstr "Tittel på spelelista"
+
+#~ msgid "any"
+#~ msgstr "nokre"
+
+#~ msgid "all"
+#~ msgstr "alle"
+
+#~ msgid "Match"
+#~ msgstr "Samsvar"
+
+#~ msgid "of the following:"
+#~ msgstr "av følgjande:"
+
+#~ msgid "Add"
+#~ msgstr "Legg til"
+
+#~ msgid "Limit to"
+#~ msgstr "Avgrens til"
+
+#~ msgid "items"
+#~ msgstr "element"
+
+#~ msgid "Name of Playlist"
+#~ msgstr "Namn på spelelista"
+
+#~ msgid "Rules"
+#~ msgstr "Reglar"
+
+#~ msgid "Options"
+#~ msgstr "Innstillingar"
+
+#~ msgid "Smart Playlist Editor"
+#~ msgstr "Redigerar for smartespelelister"
+
+#~ msgid "Remove"
+#~ msgstr "Fjern"
+
+#~ msgid "Album"
+#~ msgstr "Album"
+
+#~ msgid "Artist"
+#~ msgstr "Artist"
+
+#~ msgid "Bitrate"
+#~ msgstr "Bitfart"
+
+#~ msgid "Comment"
+#~ msgstr "Kommentar"
+
+#~ msgid "Composer"
+#~ msgstr "Komponist"
+
+#~ msgid "Date Added"
+#~ msgstr "Dato lagt til"
+
+#~ msgid "Genre"
+#~ msgstr "Sjanger"
+
+#~ msgid "Grouping"
+#~ msgstr "Gruppering"
+
+#~ msgid "Last Played"
+#~ msgstr "Sist spelt"
+
+#~ msgid "Length"
+#~ msgstr "Lengd"
+
+#~ msgid "Playcount"
+#~ msgstr "Gongar spela"
+
+#~ msgid "Rating"
+#~ msgstr "Vurdering"
+
+#~ msgid "Skipcount"
+#~ msgstr "Hoppa over"
+
+#~ msgid "Title"
+#~ msgstr "Tittel"
+
+#~ msgid "Year"
+#~ msgstr "År"
+
+#~ msgid "URI"
+#~ msgstr "URI"
+
+#~ msgid "is"
+#~ msgstr "er"
+
+#~ msgid "contains"
+#~ msgstr "inneheld"
+
+#~ msgid "does not contain"
+#~ msgstr "inneheld ikkje"
+
+#~ msgid "is exactly"
+#~ msgstr "er akuratt"
+
+#~ msgid "is at most"
+#~ msgstr "er på det meste"
+
+#~ msgid "is at least"
+#~ msgstr "er i det minste"
+
+#~ msgid "is within"
+#~ msgstr "er innanfor"
+
+#~ msgid "is before"
+#~ msgstr "er før"
+
+#~ msgid "seconds"
+#~ msgstr "sekund"
+
+#~ msgid "days ago"
+#~ msgstr "dagar sidan"
+
+#~ msgid "kbps"
+#~ msgstr "kbps"
+
+#~ msgid "Sync will remove %i item from %s"
+#~ msgid_plural "Sync will remove %i items from %s"
+#~ msgstr[0] "Synkroniseringa vil fjerne %i element frå %s"
+#~ msgstr[1] "Synkroniseringa vil fjerne %i element frå %s"
+
+#~ msgid ""
+#~ "If you continue to sync, media will be removed from %s since they are not "
+#~ "on the sync list. Would you like to import them to your library first?"
+#~ msgstr ""
+#~ "Om du held fram med synkroniseringa, vil media frå %s bli fjerna fordi "
+#~ "dei ikkje er på synkroniseringslista. Ynskjer du å importere dei til "
+#~ "biblioteket ditt fyrst?"
+
+#~ msgid "Continue Syncing"
+#~ msgstr "Hald synkroniseringa igang"
+
+#~ msgid "Import"
+#~ msgstr "Importer"
+
+#~ msgid "Importing music from %s…"
+#~ msgstr "Importerar musikk frå %s…"
+
+#~ msgid "Adding files to library…"
+#~ msgstr "Legger filer til bibliotek…"
+
+#~ msgid "<b>Importing</b> music to library…"
+#~ msgstr "<b>Importerar</b> musikk til bibliotek…"
+
+#~ msgid "All music files are already in your library"
+#~ msgstr "Alle musikkfiler er allerede i ditt bibliotek"
+
+#~ msgid "No files were imported."
+#~ msgstr "Ingen filer ble importert."
+
+#~ msgid "Rescanning music for changes. This may take a while…"
+#~ msgstr "Søkjer på nytt etter musikk for endringar. Dette kan ta ei stund…"
+
+#~ msgid "Added to your queue:"
+#~ msgstr "Lagt i køen din:"
+
+#~ msgid "%d Track"
+#~ msgid_plural "%d Tracks"
+#~ msgstr[0] "%d spor"
+#~ msgstr[1] "%d spor"
+
+#~ msgid "Favorite Songs"
+#~ msgstr "Favorittsongar"
+
+#~ msgid "Recently Added"
+#~ msgstr "Nyleg lagt til"
+
+#~ msgid "Recent Favorites"
+#~ msgstr "Siste favorittar"
+
+#~ msgid "Never Played"
+#~ msgstr "Aldri spelt"
+
+#~ msgid "Over Played"
+#~ msgstr "Overspelt"
+
+#~ msgid "Not Recently Played"
+#~ msgstr "Ikkje nyleg spelt"
+
+#~ msgid "History"
+#~ msgstr "Historikk"
+
+#~ msgid "Playlists"
+#~ msgstr "Spelelister"
+
+#~ msgid "Device Name:"
+#~ msgstr "Enheitnamn:"
+
+#~ msgid "Device Name"
+#~ msgstr "Enheitsnamn"
+
+#~ msgid "Automatically sync when plugged in:"
+#~ msgstr "Synkroniser denne automatisk:"
+
+#~ msgid "Sync:"
+#~ msgstr "Synkroniser:"
+
+#~ msgid "Sync"
+#~ msgstr "Synkroniser"
+
+#~ msgid "All Music"
+#~ msgstr "All musikk"
+
+#~ msgid "Sync Failed"
+#~ msgstr "Synkroniseringa feila"
+
+#~ msgid ""
+#~ "The playlist named %s is used to sync device %s, but could not be found."
+#~ msgstr ""
+#~ "Spelelista %s som er brukt for synkroniseringa av %s, kunne ikkje finnast."
+
+#~ msgid "Cannot Sync"
+#~ msgstr "Kan ikkje synkronisera"
+
+#~ msgid ""
+#~ "Cannot sync device with selected sync settings. Not enough space on disk"
+#~ msgstr ""
+#~ "Synkroniseringa går ikkje med dei valde instillingane. Det er for lite "
+#~ "plass på disken"
+
+#~ msgid "Device is already doing an operation."
+#~ msgstr "Einheten gjer allereie ein operasjon."
+
+#~ msgid "Cancelling…"
+#~ msgstr "Stoppar …"
+
+#~ msgid "Device operation has been cancelled and will stop after this media."
+#~ msgstr ""
+#~ "Drift av eininga har blitt kansellert og vil stoppe etter dette mediet."
+
+#~ msgid "No Results"
+#~ msgstr "Resultatlaust"
+
+#~ msgid "Try another search"
+#~ msgstr "Prøv eit søk til"
+
+#~ msgid "Genres"
+#~ msgstr "Sjangrar"
+
+#~ msgid "Artists"
+#~ msgstr "Artistar"
+
+#~ msgid "Albums"
+#~ msgstr "Album"
+
+#~ msgid "Years"
+#~ msgstr "År"
+
+#~ msgid "Ratings"
+#~ msgstr "Vurderingar"
+
+#~ msgid "Composers"
+#~ msgstr "Komponistar"
+
+#~ msgid "Groupings"
+#~ msgstr "Grupperingar"
+
+#~ msgid "All Genres"
+#~ msgstr "Alle sjangre"
+
+#~ msgid "All %i Genres"
+#~ msgstr "Alle %i sjangre"
+
+#~ msgid "No Genres"
+#~ msgstr "Ingen sjangre"
+
+#~ msgid "All Artists"
+#~ msgstr "Alle artistar"
+
+#~ msgid "All %i Artists"
+#~ msgstr "Alle %i artistar"
+
+#~ msgid "No Artists"
+#~ msgstr "Ingen artistar"
+
+#~ msgid "All Albums"
+#~ msgstr "Alle album"
+
+#~ msgid "All %i Albums"
+#~ msgstr "Alle %i album"
+
+#~ msgid "No Albums"
+#~ msgstr "Ingen album"
+
+#~ msgid "All Years"
+#~ msgstr "Alle år"
+
+#~ msgid "All %i Years"
+#~ msgstr "Alle %i år"
+
+#~ msgid "No Years"
+#~ msgstr "Ingen år"
+
+#~ msgid "All Ratings"
+#~ msgstr "Alle vurderingar"
+
+#~ msgid "No Ratings"
+#~ msgstr "Ingen vurderingar"
+
+#~ msgid "All Groupings"
+#~ msgstr "Alle grupperingar"
+
+#~ msgid "All %i Groupings"
+#~ msgstr "Alle %i grupperingar"
+
+#~ msgid "No Groupings"
+#~ msgstr "Ingen grupperingar"
+
+#~ msgid "All Composers"
+#~ msgstr "Alle komponistar"
+
+#~ msgid "All %i Composers"
+#~ msgstr "Alle %i komponistar"
+
+#~ msgid "No Composers"
+#~ msgstr "Ingen komponistar"
+
+#~ msgid "Automatic"
+#~ msgstr "Automatisk"
+
+#~ msgid "On Left"
+#~ msgstr "På venstre"
+
+#~ msgid "On Top"
+#~ msgstr "På toppen"
+
+#~ msgid "Unrated"
+#~ msgstr "Ikkje vurdert"
+
+#~ msgid "%u Star"
+#~ msgid_plural "%u Stars"
+#~ msgstr[0] "%u Stjerne"
+#~ msgstr[1] "%u Stjerner"
+
+#~ msgid "%u kbps"
+#~ msgstr "%u kbps"
+
+#~ msgid "Never"
+#~ msgstr "Aldri"
+
+#~ msgctxt "List column title"
+#~ msgid "#"
+#~ msgstr "#"
+
+#~ msgctxt "List column title"
+#~ msgid "Track"
+#~ msgstr "Spor"
+
+#~ msgctxt "List column title"
+#~ msgid "Title"
+#~ msgstr "Tittel"
+
+#~ msgctxt "List column title"
+#~ msgid "Length"
+#~ msgstr "Lengd"
+
+#~ msgctxt "List column title"
+#~ msgid "Artist"
+#~ msgstr "Artist"
+
+#~ msgctxt "List column title"
+#~ msgid "Album"
+#~ msgstr "Album"
+
+#~ msgctxt "List column title"
+#~ msgid "Album Artist"
+#~ msgstr "Albumartist"
+
+#~ msgctxt "List column title"
+#~ msgid "Composer"
+#~ msgstr "Komponist"
+
+#~ msgctxt "List column title"
+#~ msgid "Genre"
+#~ msgstr "Sjanger"
+
+#~ msgctxt "List column title"
+#~ msgid "Year"
+#~ msgstr "År"
+
+#~ msgctxt "List column title"
+#~ msgid "Grouping"
+#~ msgstr "Gruppering"
+
+#~ msgctxt "List column title"
+#~ msgid "Bitrate"
+#~ msgstr "Bitrate"
+
+#~ msgctxt "List column title"
+#~ msgid "Rating"
+#~ msgstr "Vurdering"
+
+#~ msgctxt "List column title"
+#~ msgid "Plays"
+#~ msgstr "Avspelingar"
+
+#~ msgctxt "List column title"
+#~ msgid "Skips"
+#~ msgstr "Hoppa over"
+
+#~ msgctxt "List column title"
+#~ msgid "Date Added"
+#~ msgstr "Dato lagt til"
+
+#~ msgctxt "List column title"
+#~ msgid "Last Played"
+#~ msgstr "Sist spelt"
+
+#~ msgctxt "List column title (beats per minute)"
+#~ msgid "BPM"
+#~ msgstr "BPM"
+
+#~ msgctxt "List column title (file location)"
+#~ msgid "Location"
+#~ msgstr "Stad"
+
+#~ msgctxt "List column title"
+#~ msgid "File Size"
+#~ msgstr "Filstorleik"
+
+#~ msgid "Autosize Columns"
+#~ msgstr "Still inn kolonnene automatisk"
+
+#~ msgid "1234 kbps"
+#~ msgstr "1234 kbps"
+
+#~ msgid "Sample List String"
+#~ msgstr "Eksempel på listelengde"
+
+#~ msgid "Get Some Tunes"
+#~ msgstr "Få tak i musikk"
+
+#~ msgid "Add music to your library."
+#~ msgstr "Legg til musikk i biblioteket ditt."
+
+#~ msgid "Import music from a source into your library."
+#~ msgstr "Importer musikk frå ei anna kjelde til biblioteket ditt."
+
+#~ msgid "Change Music Folder"
+#~ msgstr "Endra Musikk mappa"
+
+#~ msgid "Load music from a folder, a network or an external disk."
+#~ msgstr "Hent musikk frå ei mappe, eit nettverk eller ein ekstern disk."
+
+#~ msgid "Import your Music"
+#~ msgstr "Importer musikk"
+
+#~ msgid "Import all your Music from %s into your library."
+#~ msgstr "Importer all musikken din frå %s til biblioteket."
+
+#~ msgid "Select Music Folder"
+#~ msgstr "Velg musikkmappe"
+
+#~ msgid "No Songs"
+#~ msgstr "Ingen songar"
+
+#~ msgid "Updating playlist. Please wait."
+#~ msgstr "Oppdaterer speleliste. Ver venleg og vent."
+
+#~ msgid ""
+#~ "To add songs to this playlist, use the <b>secondary click</b> on an item "
+#~ "and choose <b>Add to Playlist</b>."
+#~ msgstr ""
+#~ "For å legge til songar i spelelista, <b>dobbeltklikk</b> på eit element "
+#~ "og velg <b>Legg til i spelelista</b>."
+
+#~ msgid "Edit Smart Playlist"
+#~ msgstr "Rediger smartspeleliste"
+
+#~ msgid ""
+#~ "This playlist will be automatically populated with songs that match its "
+#~ "rules. To modify these rules, use the <b>secondary click</b> on it in the "
+#~ "sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
+#~ "below."
+#~ msgstr ""
+#~ "Denne spelelista vil automatisk bli fylt med songar som passar inn. For å "
+#~ "endre kva for type songar som blir spelt, <b>dobbeltklikk</b> på "
+#~ "spelelista i sidefeltet, og trykk på <b>Rediger</b>. Du kan og trykke på "
+#~ "knappen nedanfor."
+
+#~ msgid "No media"
+#~ msgstr "Ingen media"
+
+#~ msgid "Set new album cover"
+#~ msgstr "Sett nytt albumomslag"
+
+#~ msgid "Image files"
+#~ msgstr "Bildefiler"
+
+#~ msgid "_Open"
+#~ msgstr "_Opne"
+
+#~ msgid "_Cancel"
+#~ msgstr "_Avbryt"
+
+#~ msgid "Save preset"
+#~ msgstr "Lagra førehandsval"
+
+#~ msgid "Off"
+#~ msgstr "Av"
+
+#~ msgid "%s (Custom)"
+#~ msgstr "%s (Egendefinert)"
+
+#~ msgid "%s (Custom %i)"
+#~ msgstr "%s (Egendefinert %i)"
+
+#~ msgid "Custom Preset"
+#~ msgstr "Egendefinert førehandsval"
+
+#~ msgid "Custom Preset %i"
+#~ msgstr "Egendefinert førehandsval %i"
+
+#~ msgid "Scroll to Current Song"
+#~ msgstr "Bla til gjeldande song"
+
+#~ msgid "Show in File Browser…"
+#~ msgstr "_Vis i filbehandlaren…"
+
+#~ msgid "Edit Song Info…"
+#~ msgstr "Endre songinformasjon…"
+
+#~ msgid "Other Actions"
+#~ msgstr "Andre handlingar"
+
+#~ msgctxt "Action item (verb)"
+#~ msgid "Queue"
+#~ msgstr "Legg til i kø"
+
+#~ msgid "Add to Playlist"
+#~ msgstr "Legg til i speleliste"
+
+#~ msgid "Remove Song…"
+#~ msgstr "Fjern song…"
+
+#~ msgid "Import to Library"
+#~ msgstr "Importer til bibliotek"
+
+#~ msgid "Remove from Library…"
+#~ msgstr "Fjern frå biblioteket…"
+
+#~ msgid "Remove from Device"
+#~ msgstr "Fjern frå enheiten"
+
+#~ msgid "Remove from Queue"
+#~ msgstr "Fjern frå køen"
+
+#~ msgid "New Playlist…"
+#~ msgstr "Ny speleliste…"
+
+#~ msgid "Import %i of %i selected songs"
+#~ msgstr "Importer %i av %i valde songar"
+
+#~ msgid "Import %i song"
+#~ msgid_plural "Import %i songs"
+#~ msgstr[0] "Importer &i song"
+#~ msgstr[1] "Importer %i songar"
+
+#~ msgid "Delete Current"
+#~ msgstr "Fjern den noverande"
+
+#~ msgid "Rename"
+#~ msgstr "Endra namn"
+
+#~ msgid "Edit…"
+#~ msgstr "Rediger…"
+
+#~ msgid "Save as Playlist"
+#~ msgstr "Lagra som speleliste"
+
+#~ msgid "Export…"
+#~ msgstr "Eksporter…"
+
+#~ msgid "Eject"
+#~ msgstr "Løys ut"
+
+#~ msgid "New Playlist"
+#~ msgstr "Ny speleliste"
+
+#~ msgid "New Smart Playlist"
+#~ msgstr "Ny smart speleliste"
+
+#~ msgid "Import Playlists"
+#~ msgstr "Importer spelelister"
+
+#~ msgid "Library"
+#~ msgstr "Bibliotek"
+
+#~ msgid "Devices"
+#~ msgstr "Enheitar"
+
+#~ msgid "Network"
+#~ msgstr "Nettverk"
+
+#~ msgid "Add Playlist"
+#~ msgstr "Legg til speleliste"
+
+#~ msgid "Add Smart Playlist"
+#~ msgstr "Legg til ei smartspeleliste"
+
+#, fuzzy
+#~| msgid "Add Playlist"
+#~ msgid "Add Playlist…"
+#~ msgstr "Legg til speleliste"
+
+#~ msgid "Equalizer: %s"
+#~ msgstr "Tonekontroll (EQ): %s"
+
+#~ msgid "Enable Repeat"
+#~ msgstr "Slå på gjentaking"
+
+#~ msgid "Disable Repeat"
+#~ msgstr "Slå av gjentaking"
+
+#~ msgid "Disable Shuffle"
+#~ msgstr "Slå av shuffle"
+
+#~ msgid "View as albums"
+#~ msgstr "Vis som album"
+
+#~ msgid "View as list"
+#~ msgstr "Vis som liste"
+
+#~ msgid "View in columns"
+#~ msgstr "Vis i kolonnar"
 
 #~ msgid "No similar songs found"
 #~ msgstr "Fann ingen lignande songar"
@@ -1557,9 +1201,6 @@ msgstr "Vis i kolonnar"
 
 #~ msgid "Song"
 #~ msgstr "Song"
-
-#~ msgid "Repeat Album"
-#~ msgstr "Gjenta eit album"
 
 #~ msgid "Repeat Artist"
 #~ msgstr "Gjenta ein artist"

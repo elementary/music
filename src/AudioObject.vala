@@ -4,13 +4,13 @@
  */
 
 public class Music.AudioObject : Object {
-    public File file { get; construct; }
+    public string uri { get; construct; }
     public Gdk.Texture texture { get; set; }
     public string artist { get; set; }
     public string title { get; set; }
     public int64 duration { get; set; default = 0; }
 
-    public AudioObject (File file) {
-        Object (file: file);
+    public AudioObject (string uri) {
+        Object (uri: uri);
     }
 }

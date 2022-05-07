@@ -1,0 +1,4 @@
+namespace Constants {
+    public const string GETTEXT_PACKAGE = @GETTEXT_PACKAGE@;
+    public const string LOCALEDIR = @LOCALEDIR@;
+}

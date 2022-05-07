@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-16 19:03+0000\n"
+"POT-Creation-Date: 2022-04-11 14:16-0700\n"
 "PO-Revision-Date: 2018-10-08 00:04+0000\n"
 "Last-Translator: Axel Philip Advento <badwolf.bloodseeker.rev@gmail.com>\n"
 "Language-Team: Tagalog <https://weblate.elementary.io/projects/music/music/"
@@ -15,1387 +15,781 @@ msgstr ""
 "X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:55+0000\n"
 
-#: core/LibrariesManager.vala:146
-msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
-msgstr "Ini-import ang <b>$NAME</b> ni <b>$ARTIST</b> sa library…"
-
-#. / Used for unknown titles, artists, or album names.
-#: core/Media.vala:33
-msgid "Unknown"
-msgstr "Hindi Kilala"
-
-#. / Please keep $NAME and $ALBUM, they will be replaced by their values
-#: core/Media.vala:180
-msgid "$NAME on $ALBUM"
-msgstr "$NAME mula sa $ALBUM"
-
-#. / Please keep $NAME and $ARTIST, they will be replaced by their values
-#: core/Media.vala:183
-msgid "$NAME by $ARTIST"
-msgstr "$NAME ni $ARTIST"
-
-#. / Please keep $NAME, $ARTIST and $ALBUM, they will be replaced by their values
-#: core/Media.vala:189
-msgid "$NAME by $ARTIST on $ALBUM"
-msgstr "$NAME ni $ARTIST mula sa $ALBUM"
-
-#: core/GStreamer/Equalizer.vala:70
-msgid "Flat"
-msgstr "Patag"
-
-#: core/GStreamer/Equalizer.vala:71
-msgid "Classical"
-msgstr "Klasikal"
-
-#: core/GStreamer/Equalizer.vala:72
-msgid "Club"
-msgstr "Pangclub"
-
-#: core/GStreamer/Equalizer.vala:73
-msgid "Dance"
-msgstr "Pangsayaw"
-
-#: core/GStreamer/Equalizer.vala:74
-msgid "Full Bass"
-msgstr "Todong Bass"
-
-#: core/GStreamer/Equalizer.vala:75
-msgid "Full Treble"
-msgstr "Todong Treble"
-
-#: core/GStreamer/Equalizer.vala:76
-msgid "Full Bass + Treble"
-msgstr "Todong Bass at Treble"
-
-#: core/GStreamer/Equalizer.vala:77
-msgid "Headphones"
-msgstr "Pang-headphone"
-
-#: core/GStreamer/Equalizer.vala:78
-msgid "Large Hall"
-msgstr "Malaking Bulwagan"
-
-#: core/GStreamer/Equalizer.vala:79
-msgid "Live"
-msgstr "Live"
-
-#: core/GStreamer/Equalizer.vala:80
-msgid "Party"
-msgstr "Pang-Party"
-
-#: core/GStreamer/Equalizer.vala:81
-msgid "Pop"
-msgstr "Pop"
-
-#: core/GStreamer/Equalizer.vala:82
-msgid "Reggae"
-msgstr "Reggae"
-
-#: core/GStreamer/Equalizer.vala:83
-msgid "Rock"
-msgstr "Rock"
-
-#: core/GStreamer/Equalizer.vala:84
-msgid "Soft"
-msgstr "Malambot"
-
-#: core/GStreamer/Equalizer.vala:85
-msgid "Ska"
-msgstr "Ska"
-
-#: core/GStreamer/Equalizer.vala:86
-msgid "Soft Rock"
-msgstr "Soft Rock"
-
-#: core/GStreamer/Equalizer.vala:87
-msgid "Techno"
-msgstr "Techno"
-
-#: core/Utils/FileUtils.vala:142
-#, c-format
-msgid " (%d)"
-msgstr " (%d)"
-
-#: core/Utils/PlaylistsUtils.vala:95
-#, c-format
-msgid "%s (%d)"
-msgstr "%s (%d)"
-
-#: core/Utils/PlaylistsUtils.vala:234
-msgid "New playlist"
-msgstr "Bagong playlist"
-
-#. Translators: used for new playlists ex: "New playlist (1)"
-#: core/Utils/PlaylistsUtils.vala:245
-#, c-format
-msgid "%s (%i)"
-msgstr "%s (%i)"
-
-#: core/Utils/PlaylistsUtils.vala:265 core/Utils/PlaylistsUtils.vala:334
-msgid "MPEG Version 3.0 Extended (*.m3u)"
-msgstr "MPEG Version 3.0 Extended (*.m3u)"
-
-#: core/Utils/PlaylistsUtils.vala:269 core/Utils/PlaylistsUtils.vala:338
-msgid "Shoutcast Playlist Version 2.0 (*.pls)"
-msgstr "Shoutcast Playlist Version 2.0 (*.pls)"
-
-#: core/Utils/PlaylistsUtils.vala:272
-msgid "Export Playlist"
-msgstr "I-export ang Playlist"
-
-#: core/Utils/PlaylistsUtils.vala:275 src/Dialogs/MediaEditor.vala:133
-#: src/Dialogs/SmartPlaylistEditor.vala:92
-msgid "Save"
-msgstr "I-save"
-
-#: core/Utils/PlaylistsUtils.vala:276 core/Utils/PlaylistsUtils.vala:345
-#: src/LibraryWindow.vala:1030 src/Dialogs/FileNotFoundDialog.vala:55
-#: src/Dialogs/FileNotFoundDialog.vala:103
-#: src/Dialogs/InstallGstreamerPluginsDialog.vala:49
-#: src/Dialogs/RemoveFilesDialog.vala:82
-#: src/Dialogs/SetMusicFolderConfirmation.vala:85
-#: src/Dialogs/SmartPlaylistEditor.vala:89
-#: src/Dialogs/SyncWarningDialog.vala:60
-#: src/Views/Wrappers/MusicViewWrapper.vala:147 src/Widgets/TopDisplay.vala:63
-msgid "Cancel"
-msgstr "Ikansela"
-
-#: core/Utils/PlaylistsUtils.vala:329
-msgid "Playlist"
-msgstr "Playlist"
-
-#: core/Utils/PlaylistsUtils.vala:341
-#, c-format
-msgid "Import %s"
-msgstr "I-import ang %s"
-
-#: core/Utils/PlaylistsUtils.vala:344 src/LibraryWindow.vala:1029
-#: src/Dialogs/FileNotFoundDialog.vala:102
-#: src/Dialogs/SetMusicFolderConfirmation.vala:84
-#: src/Views/Wrappers/MusicViewWrapper.vala:146
-#: src/Widgets/AlbumListGrid.vala:197
-msgid "Open"
-msgstr "Buksan"
-
-#: core/Utils/PlaylistsUtils.vala:371
-msgid "Unrecognized playlist file. Import failed."
-msgstr "Hindi matukoy na playlist file. Hindi nagtagumpay ang pag-import."
-
-#. / Format of date strings. See reference documentation of g_date_time_format()
-#. / for more details.
-#: core/Utils/TimeUtils.vala:40
-msgid "%m/%e/%Y %l:%M %p"
-msgstr "%m/%e/%Y %l:%M %p"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:109
-#: plugins/Devices/iPod/iPodDevice.vala:68
-msgid "Empty device!"
-msgstr "Walang laman ang device!"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:113
-#: plugins/Devices/iPod/iPodDevice.vala:72
-msgid "This device does not contain any music."
-msgstr "Walang lamang kanta ang device na ito."
-
-#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:158
-msgid "Android Phone"
-msgstr "Teleponong Android"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerDevice.vala:160
-msgid "Audio Player"
-msgstr "Audio Player"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:146
-#: plugins/Devices/iPod/iPodLibrary.vala:167
-msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
-msgstr "Inilalagay <b>$NAME</b> ni <b>$ARTIST</b> sa $DEVICE"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:171
-#: plugins/Devices/iPod/iPodLibrary.vala:216
-#, c-format
-msgid "Syncing <b>%s</b>…"
-msgstr "Isini-sync ang <b>%s</b>"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:283
-#: plugins/Devices/iPod/iPodLibrary.vala:561
-msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
-msgstr "Tinatanggal ang <b>$NAME</b> ni <b>$ARTIST</b> mula sa $DEVICE"
-
-#: plugins/Devices/AudioPlayers/AudioPlayerLibrary.vala:315
-#: plugins/Devices/iPod/iPodLibrary.vala:366
-#, c-format
-msgid "Removing from <b>%s</b>…"
-msgstr "Tinatanggal mula sa <b>%s</b>…"
-
-#: plugins/Devices/iPod/iPodLibrary.vala:238
-#: plugins/Devices/iPod/iPodLibrary.vala:404
-msgid "Finishing sync process…"
-msgstr "Tinatapos ang proseso ng pag-sync..."
-
-#: plugins/Devices/iPod/iPodLibrary.vala:250
-#: plugins/Devices/iPod/iPodLibrary.vala:416
-msgid "Cancelling Sync…"
-msgstr "Kinakansela ang Pagsi-sync"
-
-#: src/FileOperator.vala:306
-msgid "Import Complete"
-msgstr "Tapos na ang Pag-import"
-
-#: src/FileOperator.vala:306
-msgid "Your Library Has Been Imported."
-msgstr "Na-import Na Ang Iyong Library."
-
-#. if doing import and copy to music folder is enabled, do copy here
-#: src/FileOperator.vala:316
-msgid "<b>Copying</b> files to <b>Music Folder</b>…"
-msgstr "<b>Kumokopya</b> ng mga file sa <b>Music Folder</b>"
-
-#: src/LibraryWindow.vala:197 src/LibraryWindow.vala:275
-#: src/LibraryWindow.vala:631 src/LibraryWindow.vala:751
+#: src/Application.vala:63 src/Views/NowPlayingView.vala:18
+#: src/Views/NowPlayingView.vala:116
 msgid "Music"
 msgstr "Musika"
 
-#: src/LibraryWindow.vala:216
-msgid "Import to Library…"
-msgstr "I-import sa Library"
+#: src/MainWindow.vala:26
+msgid "Shuffle"
+msgstr ""
 
-#: src/LibraryWindow.vala:219 src/Dialogs/PreferencesWindow.vala:32
-msgid "Preferences"
-msgstr "Mga Preference"
+#: src/MainWindow.vala:41
+msgid "Queue is Empty"
+msgstr ""
 
-#: src/LibraryWindow.vala:238
+#: src/MainWindow.vala:42
+msgid "Audio files opened from Files will appear here"
+msgstr ""
+
+#: src/MainWindow.vala:148
+#, fuzzy
+msgid "Repeat None"
+msgstr "Ulitin ang kanta"
+
+#: src/MainWindow.vala:152
+#, fuzzy
+msgid "Repeat All"
+msgstr "Ulitin ang Album"
+
+#: src/MainWindow.vala:156
+#, fuzzy
+msgid "Repeat One"
+msgstr "Ulitin ang kanta"
+
+#: src/PlaybackManager.vala:103
+#, c-format
+msgid "%d track was added to the queue"
+msgid_plural "%d tracks were added to the queue"
+msgstr[0] ""
+msgstr[1] ""
+
+#. Don't set artist for files without tags
+#: src/PlaybackManager.vala:163
+msgid "Unknown"
+msgstr "Hindi Kilala"
+
+#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
+#, fuzzy
+msgid "Not playing"
+msgstr "Bagong playlist"
+
+#: src/Views/NowPlayingView.vala:45
 msgid "Previous"
 msgstr "Nakaraan"
 
-#: src/LibraryWindow.vala:245 src/LibraryWindow.vala:311
-msgid "Play"
-msgstr "Patugtugin"
-
-#: src/LibraryWindow.vala:252
+#: src/Views/NowPlayingView.vala:68
 msgid "Next"
 msgstr "Susunod"
 
-#: src/LibraryWindow.vala:256
-msgid "Search Music"
-msgstr "Maghanap ng Musika"
+#: src/Views/NowPlayingView.vala:93
+msgid "Play"
+msgstr "Patugtugin"
 
-#: src/LibraryWindow.vala:317
+#: src/Views/NowPlayingView.vala:96
 msgid "Pause"
 msgstr ""
 
-#: src/LibraryWindow.vala:820
-msgid "No songs in Queue"
-msgstr ""
-
-#: src/LibraryWindow.vala:820
-msgid ""
-"To add songs to the queue, use the <b>secondary click</b> on an item and "
-"choose <b>Queue</b>. When a song finishes, the queued songs will be played "
-"first before the next song in the currently playing list."
-msgstr ""
-
-#: src/LibraryWindow.vala:823
-msgid "No songs in History"
-msgstr "Walang mga kanta sa Kasaysayan"
-
-#: src/LibraryWindow.vala:823
-msgid ""
-"After a part of a song has been played, it is added to the history list.\n"
-"You can use this list to see all the songs you have played during the "
-"current session."
-msgstr ""
-
-#: src/LibraryWindow.vala:1026 src/Views/Wrappers/MusicViewWrapper.vala:59
-msgid "Import Music"
-msgstr "Mag-import ng musika"
-
-#: src/PlaybackManager.vala:117
-msgctxt "Name of the playlist"
-msgid "Queue"
-msgstr ""
-
-#: src/Dialogs/FileNotFoundDialog.vala:37
-msgid "File not found"
-msgstr ""
-
-#: src/Dialogs/FileNotFoundDialog.vala:47
-#, c-format
-msgid "The music file for <b>%s</b> by <b>%s</b> could not be found."
-msgstr ""
-
-#: src/Dialogs/FileNotFoundDialog.vala:50
-#, c-format
-msgid "%i music files could not be found."
-msgstr ""
-
-#: src/Dialogs/FileNotFoundDialog.vala:53
-msgid "Rescan Library"
-msgstr "Iscan Muli ang Library"
-
-#: src/Dialogs/FileNotFoundDialog.vala:54
-msgid "Remove Song"
-msgstr "Tanggalin ang Kanta"
-
-#: src/Dialogs/FileNotFoundDialog.vala:56
-msgid "Find Song"
-msgstr ""
-
-#: src/Dialogs/FileNotFoundDialog.vala:99
-#: src/Dialogs/SetMusicFolderConfirmation.vala:81
-msgid "Choose Music Folder"
-msgstr ""
-
-#: src/Dialogs/InstallGstreamerPluginsDialog.vala:41
-#, c-format
-msgid "Would you like to install the %s plugin?"
-msgstr ""
-
-#: src/Dialogs/InstallGstreamerPluginsDialog.vala:42
-#, c-format
-msgid "This song cannot be played. The %s plugin is required to play the song."
-msgstr ""
-
-#: src/Dialogs/InstallGstreamerPluginsDialog.vala:51
-msgid "Install Plugin"
-msgstr "Mag-install ng Plugin"
-
-#: src/Dialogs/MediaEditor.vala:96
-msgid "Title:"
-msgstr "Pamagat:"
-
-#: src/Dialogs/MediaEditor.vala:98
-msgid "Artist:"
-msgstr ""
-
-#: src/Dialogs/MediaEditor.vala:100
-msgid "Album:"
-msgstr "Album:"
-
-#: src/Dialogs/MediaEditor.vala:102
-msgid "Album Artist:"
-msgstr ""
-
-#: src/Dialogs/MediaEditor.vala:104
-msgid "Composer:"
-msgstr "Kompositor:"
-
-#: src/Dialogs/MediaEditor.vala:106
-msgid "Grouping:"
-msgstr ""
-
-#: src/Dialogs/MediaEditor.vala:108
-msgid "Genre:"
-msgstr ""
-
-#: src/Dialogs/MediaEditor.vala:110
-msgid "Year:"
-msgstr "Taon:"
-
-#: src/Dialogs/MediaEditor.vala:112
-msgid "Track:"
-msgstr ""
-
-#: src/Dialogs/MediaEditor.vala:114
-msgid "Disc:"
-msgstr ""
-
-#: src/Dialogs/MediaEditor.vala:116
-msgid "Rating:"
-msgstr ""
-
-#: src/Dialogs/MediaEditor.vala:118
-msgid "Comment:"
-msgstr "Komento:"
-
-#. FIXME: don't know if I can delete this
-#: src/Dialogs/MediaEditor.vala:131 src/Dialogs/PreferencesWindow.vala:88
-#: src/Views/DeviceView.vala:45
-msgid "Close"
-msgstr "Isara"
-
-#: src/Dialogs/NotImportedDialog.vala:50
-#, c-format
-msgid "Issues while importing from %s"
-msgstr ""
-
-#: src/Dialogs/NotImportedDialog.vala:56
-#, c-format
-msgid "Unable to import %d item. The file may be damaged."
-msgid_plural "Unable to import %d items. The files may be damaged."
-msgstr[0] ""
-msgstr[1] ""
-
-#: src/Dialogs/NotImportedDialog.vala:64
-msgid "Move all corrupted files to trash"
-msgstr "Ilipat lahat ng sirang mga file sa basura"
-
-#: src/Dialogs/NotImportedDialog.vala:71
-msgid "del"
-msgstr "del"
-
-#: src/Dialogs/NotImportedDialog.vala:80
-msgid "File Location"
-msgstr ""
-
-#: src/Dialogs/NotImportedDialog.vala:96
-msgid "Select individual files to move to trash:"
-msgstr ""
-
-#: src/Dialogs/NotImportedDialog.vala:100 src/Dialogs/RemoveFilesDialog.vala:73
-msgid "Move to Trash"
-msgstr "Ilipat sa Basura"
-
-#: src/Dialogs/NotImportedDialog.vala:103
-msgid "Ignore"
-msgstr ""
-
-#: src/Dialogs/PreferencesWindow.vala:38
-msgid "Select Music Folder…"
-msgstr "Pumili ng Folder ng Musika…"
-
-#: src/Dialogs/PreferencesWindow.vala:70
-msgid "Music Folder Location"
-msgstr ""
-
-#: src/Dialogs/PreferencesWindow.vala:72
-msgid "Library Management"
-msgstr "Pamamahala sa Library"
-
-#: src/Dialogs/PreferencesWindow.vala:73
-msgid "Keep Music folder organized:"
-msgstr ""
-
-#: src/Dialogs/PreferencesWindow.vala:75
-msgid "Write metadata to file:"
-msgstr ""
-
-#: src/Dialogs/PreferencesWindow.vala:77
-msgid "Copy imported files to Library:"
-msgstr ""
-
-#: src/Dialogs/PreferencesWindow.vala:79
-msgid "Desktop Integration"
-msgstr ""
-
-#: src/Dialogs/PreferencesWindow.vala:80
-msgid "Continue playback when closed:"
-msgstr ""
-
-#: src/Dialogs/RemoveFilesDialog.vala:49
-#, c-format
-msgid "Remove %d Song From Library?"
-msgid_plural "Remove %d Songs From Library?"
-msgstr[0] "Tanggalin ang %d Kanta mula sa Library?"
-msgstr[1] "Tanggalin ang %d Kanta mula sa Library?"
-
-#: src/Dialogs/RemoveFilesDialog.vala:55
-#, c-format
-msgid "Remove \"%s\" From Library?"
-msgstr "Tanggalin ang \"%s\" mula sa Library?"
-
-#: src/Dialogs/RemoveFilesDialog.vala:59
-msgid ""
-"This will remove the song from your library and from any device synced "
-"automatically."
-msgid_plural ""
-"This will remove the songs from your library and from any device synced "
-"automatically."
-msgstr[0] ""
-msgstr[1] ""
-
-#: src/Dialogs/RemoveFilesDialog.vala:83
-msgid "Remove from Library"
-msgstr "Tanggalin sa Library"
-
-#: src/Dialogs/SetMusicFolderConfirmation.vala:38
-msgid "Set Music Folder?"
-msgstr ""
-
-#: src/Dialogs/SetMusicFolderConfirmation.vala:39
-#, c-format
-msgid ""
-"Are you sure you want to set the music folder to %s? This will reset your "
-"library and remove your playlists."
-msgstr ""
-
-#: src/Dialogs/SetMusicFolderConfirmation.vala:47
-msgid "Export Playlists"
-msgstr ""
-
-#: src/Dialogs/SetMusicFolderConfirmation.vala:61
-msgid "Set Music Folder"
-msgstr ""
-
-#: src/Dialogs/SmartPlaylistEditor.vala:55
-msgid "Playlist Title"
-msgstr ""
-
-#: src/Dialogs/SmartPlaylistEditor.vala:58
-msgid "any"
-msgstr "alinman"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:59
-msgid "all"
-msgstr "lahat"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:63
-msgid "Match"
-msgstr "Itugma sa"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:65
-msgid "of the following:"
-msgstr "sa mga sumusunod:"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:74
-msgid "Add"
-msgstr "Magdagdag"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:79
-msgid "Limit to"
-msgstr "Ilimita sa"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:87
-msgid "items"
-msgstr "na mga aytem"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:103
-msgid "Name of Playlist"
-msgstr ""
-
-#: src/Dialogs/SmartPlaylistEditor.vala:105
-msgid "Rules"
-msgstr ""
-
-#: src/Dialogs/SmartPlaylistEditor.vala:108
-msgid "Options"
-msgstr "Mga Option"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:113
-msgid "Smart Playlist Editor"
-msgstr ""
-
-#: src/Dialogs/SmartPlaylistEditor.vala:256 src/Widgets/SourceListView.vala:67
-#: src/Widgets/SourceListView.vala:80
-msgid "Remove"
-msgstr "Tanggalin"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:259
-msgid "Album"
-msgstr "Album"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:260
-msgid "Artist"
-msgstr "Artista"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:261
-msgid "Bitrate"
-msgstr ""
-
-#: src/Dialogs/SmartPlaylistEditor.vala:262
-msgid "Comment"
-msgstr "Komento"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:263
-msgid "Composer"
-msgstr "Kompositor"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:264
-msgid "Date Added"
-msgstr "Petsa ng Pagdagdag"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:265
-msgid "Genre"
-msgstr "Genre"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:266
-msgid "Grouping"
-msgstr "Pag-grupo"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:267
-msgid "Last Played"
-msgstr "Huling Pinatugtog"
-
-#. helper for units
-#: src/Dialogs/SmartPlaylistEditor.vala:268
-#: src/Dialogs/SmartPlaylistEditor.vala:413
-msgid "Length"
-msgstr "Haba"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:269
-msgid "Playcount"
-msgstr "Bilang ng pagpapatugtog"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:270
-msgid "Rating"
-msgstr "Marka"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:271
-msgid "Skipcount"
-msgstr "Bilang ng paglalaktaw"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:272
-msgid "Title"
-msgstr "Pamagat"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:273
-msgid "Year"
-msgstr "Taon"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:274
-msgid "URI"
-msgstr "URI"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:347
-msgid "is"
-msgstr "ay"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:348
-msgid "contains"
-msgstr "ay mayroong"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:349
-msgid "does not contain"
-msgstr "ay hindi naglalaman ng"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:375
-#: src/Dialogs/SmartPlaylistEditor.vala:390
-msgid "is exactly"
-msgstr "ay eksaktong"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:376
-msgid "is at most"
-msgstr "ay hindi lalagpas sa"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:377
-msgid "is at least"
-msgstr "ay hindi bababa sa"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:391
-msgid "is within"
-msgstr ""
-
-#: src/Dialogs/SmartPlaylistEditor.vala:392
-msgid "is before"
-msgstr ""
-
-#: src/Dialogs/SmartPlaylistEditor.vala:414
-msgid "seconds"
-msgstr "mga segundo"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:417
-msgid "days ago"
-msgstr "na mga araw ang nakaraan"
-
-#: src/Dialogs/SmartPlaylistEditor.vala:420
-msgid "kbps"
-msgstr "kbps"
-
-#. be a bit explicit to make translations better
-#: src/Dialogs/SyncWarningDialog.vala:52
-#, c-format
-msgid "Sync will remove %i item from %s"
-msgid_plural "Sync will remove %i items from %s"
-msgstr[0] ""
-msgstr[1] ""
-
-#: src/Dialogs/SyncWarningDialog.vala:55
-#, c-format
-msgid ""
-"If you continue to sync, media will be removed from %s since they are not on "
-"the sync list. Would you like to import them to your library first?"
-msgstr ""
-
-#: src/Dialogs/SyncWarningDialog.vala:57
-msgid "Continue Syncing"
-msgstr "ipagpatuloy ang Pagsi-sync"
-
-#: src/Dialogs/SyncWarningDialog.vala:62
-msgid "Import"
-msgstr "Import"
-
-#: src/LocalBackend/LocalLibrary.vala:188
-#, c-format
-msgid "Importing music from %s…"
-msgstr ""
-
-#: src/LocalBackend/LocalLibrary.vala:215
-msgid "Adding files to library…"
-msgstr "Nagdadagdag ng mga file papunta sa library…"
-
-#: src/LocalBackend/LocalLibrary.vala:228
-msgid "<b>Importing</b> music to library…"
-msgstr ""
-
-#: src/LocalBackend/LocalLibrary.vala:250
-msgid "All music files are already in your library"
-msgstr "Lahat ng mga file na pangmusika ay nasa library mo na"
-
-#: src/LocalBackend/LocalLibrary.vala:250
-msgid "No files were imported."
-msgstr ""
-
-#: src/LocalBackend/LocalLibrary.vala:255
-msgid "Rescanning music for changes. This may take a while…"
-msgstr ""
-"Iniiscan muli ang musika kung may mga nagbago. Pwede itong umabot ng ilang "
-"saglit..."
-
-#: src/LocalBackend/LocalLibrary.vala:356
-msgid "Added to your queue:"
-msgstr ""
-
-#: src/LocalBackend/LocalLibrary.vala:367
-#, c-format
-msgid "%d Track"
-msgid_plural "%d Tracks"
-msgstr[0] ""
-msgstr[1] ""
-
-#: src/LocalBackend/LocalSmartPlaylist.vala:218
-msgid "Favorite Songs"
-msgstr "Paboritong mga Kanta"
-
-#: src/LocalBackend/LocalSmartPlaylist.vala:226
-msgid "Recently Added"
-msgstr "Kasalukuyang Dinagdag"
-
-#: src/LocalBackend/LocalSmartPlaylist.vala:234
-msgid "Recent Favorites"
-msgstr "Kasalukuyang mga Paborito"
-
-#: src/LocalBackend/LocalSmartPlaylist.vala:242
-msgid "Never Played"
-msgstr "Hindi pa Napapatugtog"
-
-#: src/LocalBackend/LocalSmartPlaylist.vala:250
-msgid "Over Played"
-msgstr ""
-
-#: src/LocalBackend/LocalSmartPlaylist.vala:258
-msgid "Not Recently Played"
-msgstr "Hindi pa Kasalukuyan Napapatugtog"
-
-#: src/Objects/HistoryPlaylist.vala:38
-msgid "History"
-msgstr "Kasaysayan"
-
-#: src/Objects/MPRIS.vala:617 src/Widgets/SourceListView.vala:341
-msgid "Playlists"
-msgstr "Mga Playlist"
-
-#: src/Views/DeviceSummaryWidget.vala:60
-msgid "Device Name:"
-msgstr "Pangalan ng Aparato"
-
-#: src/Views/DeviceSummaryWidget.vala:64
-msgid "Device Name"
-msgstr "Pangalan ng Aparato:"
-
-#: src/Views/DeviceSummaryWidget.vala:66
-msgid "Automatically sync when plugged in:"
-msgstr "Awtomatikong i-sync kapang nakasaksak:"
-
-#: src/Views/DeviceSummaryWidget.vala:72
-msgid "Sync:"
-msgstr ""
-
-#: src/Views/DeviceSummaryWidget.vala:100 src/Widgets/SourceListView.vala:192
-msgid "Sync"
-msgstr ""
-
-#: src/Views/DeviceSummaryWidget.vala:244
-msgid "All Music"
-msgstr "Lahat ng Musika"
-
-#: src/Views/DeviceSummaryWidget.vala:298
-msgid "Sync Failed"
-msgstr "Hindi Nai-sync"
-
-#: src/Views/DeviceSummaryWidget.vala:299
-#, c-format
-msgid ""
-"The playlist named %s is used to sync device %s, but could not be found."
-msgstr ""
-
-#: src/Views/DeviceSummaryWidget.vala:316
-#: src/Views/DeviceSummaryWidget.vala:321
-msgid "Cannot Sync"
-msgstr "Hindi Mai-sync"
-
-#: src/Views/DeviceSummaryWidget.vala:317
-msgid ""
-"Cannot sync device with selected sync settings. Not enough space on disk"
-msgstr ""
-
-#: src/Views/DeviceSummaryWidget.vala:322
-msgid "Device is already doing an operation."
-msgstr "May ginagawa nang operasyon ang aparato"
-
-#: src/Views/DeviceView.vala:66
-msgid "Cancelling…"
-msgstr "Kinakansela"
-
-#: src/Views/DeviceView.vala:66
-msgid "Device operation has been cancelled and will stop after this media."
-msgstr ""
-
-#: src/Views/ViewStack.vala:45
+#~ msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
+#~ msgstr "Ini-import ang <b>$NAME</b> ni <b>$ARTIST</b> sa library…"
+
+#~ msgid "$NAME on $ALBUM"
+#~ msgstr "$NAME mula sa $ALBUM"
+
+#~ msgid "$NAME by $ARTIST"
+#~ msgstr "$NAME ni $ARTIST"
+
+#~ msgid "$NAME by $ARTIST on $ALBUM"
+#~ msgstr "$NAME ni $ARTIST mula sa $ALBUM"
+
+#~ msgid "Flat"
+#~ msgstr "Patag"
+
+#~ msgid "Classical"
+#~ msgstr "Klasikal"
+
+#~ msgid "Club"
+#~ msgstr "Pangclub"
+
+#~ msgid "Dance"
+#~ msgstr "Pangsayaw"
+
+#~ msgid "Full Bass"
+#~ msgstr "Todong Bass"
+
+#~ msgid "Full Treble"
+#~ msgstr "Todong Treble"
+
+#~ msgid "Full Bass + Treble"
+#~ msgstr "Todong Bass at Treble"
+
+#~ msgid "Headphones"
+#~ msgstr "Pang-headphone"
+
+#~ msgid "Large Hall"
+#~ msgstr "Malaking Bulwagan"
+
+#~ msgid "Live"
+#~ msgstr "Live"
+
+#~ msgid "Party"
+#~ msgstr "Pang-Party"
+
+#~ msgid "Pop"
+#~ msgstr "Pop"
+
+#~ msgid "Reggae"
+#~ msgstr "Reggae"
+
+#~ msgid "Rock"
+#~ msgstr "Rock"
+
+#~ msgid "Soft"
+#~ msgstr "Malambot"
+
+#~ msgid "Ska"
+#~ msgstr "Ska"
+
+#~ msgid "Soft Rock"
+#~ msgstr "Soft Rock"
+
+#~ msgid "Techno"
+#~ msgstr "Techno"
+
+#~ msgid " (%d)"
+#~ msgstr " (%d)"
+
+#~ msgid "%s (%d)"
+#~ msgstr "%s (%d)"
+
+#~ msgid "%s (%i)"
+#~ msgstr "%s (%i)"
+
+#~ msgid "MPEG Version 3.0 Extended (*.m3u)"
+#~ msgstr "MPEG Version 3.0 Extended (*.m3u)"
+
+#~ msgid "Shoutcast Playlist Version 2.0 (*.pls)"
+#~ msgstr "Shoutcast Playlist Version 2.0 (*.pls)"
+
+#~ msgid "Export Playlist"
+#~ msgstr "I-export ang Playlist"
+
+#~ msgid "Save"
+#~ msgstr "I-save"
+
+#~ msgid "Cancel"
+#~ msgstr "Ikansela"
+
+#~ msgid "Playlist"
+#~ msgstr "Playlist"
+
+#~ msgid "Import %s"
+#~ msgstr "I-import ang %s"
+
+#~ msgid "Open"
+#~ msgstr "Buksan"
+
+#~ msgid "Unrecognized playlist file. Import failed."
+#~ msgstr "Hindi matukoy na playlist file. Hindi nagtagumpay ang pag-import."
+
+#~ msgid "%m/%e/%Y %l:%M %p"
+#~ msgstr "%m/%e/%Y %l:%M %p"
+
+#~ msgid "Empty device!"
+#~ msgstr "Walang laman ang device!"
+
+#~ msgid "This device does not contain any music."
+#~ msgstr "Walang lamang kanta ang device na ito."
+
+#~ msgid "Android Phone"
+#~ msgstr "Teleponong Android"
+
+#~ msgid "Audio Player"
+#~ msgstr "Audio Player"
+
+#~ msgid "Adding <b>$NAME</b> by <b>$ARTIST</b> to $DEVICE"
+#~ msgstr "Inilalagay <b>$NAME</b> ni <b>$ARTIST</b> sa $DEVICE"
+
+#~ msgid "Syncing <b>%s</b>…"
+#~ msgstr "Isini-sync ang <b>%s</b>"
+
+#~ msgid "Removing <b>$NAME</b> by <b>$ARTIST</b> from $DEVICE"
+#~ msgstr "Tinatanggal ang <b>$NAME</b> ni <b>$ARTIST</b> mula sa $DEVICE"
+
+#~ msgid "Removing from <b>%s</b>…"
+#~ msgstr "Tinatanggal mula sa <b>%s</b>…"
+
+#~ msgid "Finishing sync process…"
+#~ msgstr "Tinatapos ang proseso ng pag-sync..."
+
+#~ msgid "Cancelling Sync…"
+#~ msgstr "Kinakansela ang Pagsi-sync"
+
+#~ msgid "Import Complete"
+#~ msgstr "Tapos na ang Pag-import"
+
+#~ msgid "Your Library Has Been Imported."
+#~ msgstr "Na-import Na Ang Iyong Library."
+
+#~ msgid "<b>Copying</b> files to <b>Music Folder</b>…"
+#~ msgstr "<b>Kumokopya</b> ng mga file sa <b>Music Folder</b>"
+
+#~ msgid "Import to Library…"
+#~ msgstr "I-import sa Library"
+
+#~ msgid "Preferences"
+#~ msgstr "Mga Preference"
+
+#~ msgid "Search Music"
+#~ msgstr "Maghanap ng Musika"
+
+#~ msgid "No songs in History"
+#~ msgstr "Walang mga kanta sa Kasaysayan"
+
+#~ msgid "Import Music"
+#~ msgstr "Mag-import ng musika"
+
+#~ msgid "Rescan Library"
+#~ msgstr "Iscan Muli ang Library"
+
+#~ msgid "Remove Song"
+#~ msgstr "Tanggalin ang Kanta"
+
+#~ msgid "Install Plugin"
+#~ msgstr "Mag-install ng Plugin"
+
+#~ msgid "Title:"
+#~ msgstr "Pamagat:"
+
+#~ msgid "Album:"
+#~ msgstr "Album:"
+
+#~ msgid "Composer:"
+#~ msgstr "Kompositor:"
+
+#~ msgid "Year:"
+#~ msgstr "Taon:"
+
+#~ msgid "Comment:"
+#~ msgstr "Komento:"
+
+#~ msgid "Close"
+#~ msgstr "Isara"
+
+#~ msgid "Move all corrupted files to trash"
+#~ msgstr "Ilipat lahat ng sirang mga file sa basura"
+
+#~ msgid "del"
+#~ msgstr "del"
+
+#~ msgid "Move to Trash"
+#~ msgstr "Ilipat sa Basura"
+
+#~ msgid "Select Music Folder…"
+#~ msgstr "Pumili ng Folder ng Musika…"
+
+#~ msgid "Library Management"
+#~ msgstr "Pamamahala sa Library"
+
+#~ msgid "Remove %d Song From Library?"
+#~ msgid_plural "Remove %d Songs From Library?"
+#~ msgstr[0] "Tanggalin ang %d Kanta mula sa Library?"
+#~ msgstr[1] "Tanggalin ang %d Kanta mula sa Library?"
+
+#~ msgid "Remove \"%s\" From Library?"
+#~ msgstr "Tanggalin ang \"%s\" mula sa Library?"
+
+#~ msgid "Remove from Library"
+#~ msgstr "Tanggalin sa Library"
+
+#~ msgid "any"
+#~ msgstr "alinman"
+
+#~ msgid "all"
+#~ msgstr "lahat"
+
+#~ msgid "Match"
+#~ msgstr "Itugma sa"
+
+#~ msgid "of the following:"
+#~ msgstr "sa mga sumusunod:"
+
+#~ msgid "Add"
+#~ msgstr "Magdagdag"
+
+#~ msgid "Limit to"
+#~ msgstr "Ilimita sa"
+
+#~ msgid "items"
+#~ msgstr "na mga aytem"
+
+#~ msgid "Options"
+#~ msgstr "Mga Option"
+
+#~ msgid "Remove"
+#~ msgstr "Tanggalin"
+
+#~ msgid "Album"
+#~ msgstr "Album"
+
+#~ msgid "Artist"
+#~ msgstr "Artista"
+
+#~ msgid "Comment"
+#~ msgstr "Komento"
+
+#~ msgid "Composer"
+#~ msgstr "Kompositor"
+
+#~ msgid "Date Added"
+#~ msgstr "Petsa ng Pagdagdag"
+
+#~ msgid "Genre"
+#~ msgstr "Genre"
+
+#~ msgid "Grouping"
+#~ msgstr "Pag-grupo"
+
+#~ msgid "Last Played"
+#~ msgstr "Huling Pinatugtog"
+
+#~ msgid "Length"
+#~ msgstr "Haba"
+
+#~ msgid "Playcount"
+#~ msgstr "Bilang ng pagpapatugtog"
+
+#~ msgid "Rating"
+#~ msgstr "Marka"
+
+#~ msgid "Skipcount"
+#~ msgstr "Bilang ng paglalaktaw"
+
+#~ msgid "Title"
+#~ msgstr "Pamagat"
+
+#~ msgid "Year"
+#~ msgstr "Taon"
+
+#~ msgid "URI"
+#~ msgstr "URI"
+
+#~ msgid "is"
+#~ msgstr "ay"
+
+#~ msgid "contains"
+#~ msgstr "ay mayroong"
+
+#~ msgid "does not contain"
+#~ msgstr "ay hindi naglalaman ng"
+
+#~ msgid "is exactly"
+#~ msgstr "ay eksaktong"
+
+#~ msgid "is at most"
+#~ msgstr "ay hindi lalagpas sa"
+
+#~ msgid "is at least"
+#~ msgstr "ay hindi bababa sa"
+
+#~ msgid "seconds"
+#~ msgstr "mga segundo"
+
+#~ msgid "days ago"
+#~ msgstr "na mga araw ang nakaraan"
+
+#~ msgid "kbps"
+#~ msgstr "kbps"
+
+#~ msgid "Continue Syncing"
+#~ msgstr "ipagpatuloy ang Pagsi-sync"
+
+#~ msgid "Import"
+#~ msgstr "Import"
+
+#~ msgid "Adding files to library…"
+#~ msgstr "Nagdadagdag ng mga file papunta sa library…"
+
+#~ msgid "All music files are already in your library"
+#~ msgstr "Lahat ng mga file na pangmusika ay nasa library mo na"
+
+#~ msgid "Rescanning music for changes. This may take a while…"
+#~ msgstr ""
+#~ "Iniiscan muli ang musika kung may mga nagbago. Pwede itong umabot ng "
+#~ "ilang saglit..."
+
+#~ msgid "Favorite Songs"
+#~ msgstr "Paboritong mga Kanta"
+
+#~ msgid "Recently Added"
+#~ msgstr "Kasalukuyang Dinagdag"
+
+#~ msgid "Recent Favorites"
+#~ msgstr "Kasalukuyang mga Paborito"
+
+#~ msgid "Never Played"
+#~ msgstr "Hindi pa Napapatugtog"
+
+#~ msgid "Not Recently Played"
+#~ msgstr "Hindi pa Kasalukuyan Napapatugtog"
+
+#~ msgid "History"
+#~ msgstr "Kasaysayan"
+
+#~ msgid "Playlists"
+#~ msgstr "Mga Playlist"
+
+#~ msgid "Device Name:"
+#~ msgstr "Pangalan ng Aparato"
+
+#~ msgid "Device Name"
+#~ msgstr "Pangalan ng Aparato:"
+
+#~ msgid "Automatically sync when plugged in:"
+#~ msgstr "Awtomatikong i-sync kapang nakasaksak:"
+
+#~ msgid "All Music"
+#~ msgstr "Lahat ng Musika"
+
+#~ msgid "Sync Failed"
+#~ msgstr "Hindi Nai-sync"
+
+#~ msgid "Cannot Sync"
+#~ msgstr "Hindi Mai-sync"
+
+#~ msgid "Device is already doing an operation."
+#~ msgstr "May ginagawa nang operasyon ang aparato"
+
+#~ msgid "Cancelling…"
+#~ msgstr "Kinakansela"
+
 #, fuzzy
-msgid "No Results"
-msgstr "Walang mga Rating"
-
-#: src/Views/ViewStack.vala:45
-msgid "Try another search"
-msgstr ""
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:58
-msgid "Genres"
-msgstr "Mga Uri ng Kanta"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:60
-msgid "Artists"
-msgstr "Mga Artista"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:62
-msgid "Albums"
-msgstr "Mga Album"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:64
-msgid "Years"
-msgstr "Mga Taon"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:66
-msgid "Ratings"
-msgstr "Mga Rating"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:68
-msgid "Composers"
-msgstr "Mga Nag-compose"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumn.vala:70
-msgid "Groupings"
-msgstr "Mga Grupo"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:219
-msgid "All Genres"
-msgstr "Lahat ng Uri ng Kanta"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:221
-#, c-format
-msgid "All %i Genres"
-msgstr "Lahat ng %i na Uri ng Kanta"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:223
-msgid "No Genres"
-msgstr "Walang Mga Uri ng Kanta"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:228
-msgid "All Artists"
-msgstr "Lahat ng mga Artista"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:230
-#, c-format
-msgid "All %i Artists"
-msgstr "Lahat ng %i na mga Artista"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:232
-msgid "No Artists"
-msgstr "Walang mga Artista"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:237
-msgid "All Albums"
-msgstr "Lahat ng mga Album"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:239
-#, c-format
-msgid "All %i Albums"
-msgstr "Lahat ng %i na mga Album"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:241
-msgid "No Albums"
-msgstr "Walang mga Album"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:246
-msgid "All Years"
-msgstr "Lahat ng mga Taon"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:248
-#, c-format
-msgid "All %i Years"
-msgstr "Lahat ng %i na mga Taon"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:250
-msgid "No Years"
-msgstr "Walang mga Taon"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:255
-msgid "All Ratings"
-msgstr "Lahat ng mga Rating"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:257
-msgid "No Ratings"
-msgstr "Walang mga Rating"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:262
-msgid "All Groupings"
-msgstr "Lahat ng mga Grupo"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:264
-#, c-format
-msgid "All %i Groupings"
-msgstr "Lahat ng %i na mga Grupo"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:266
-msgid "No Groupings"
-msgstr "Walang mga Grupo"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:271
-msgid "All Composers"
-msgstr "Lahat ng mga Nag-kompose"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:273
-#, c-format
-msgid "All %i Composers"
-msgstr "Lahat ng %i na mga Nag-kompose"
-
-#: src/Views/ListView/ColumnBrowser/BrowserColumnModel.vala:275
-msgid "No Composers"
-msgstr "Walang mga Nag-kompose"
-
-#. We cannot make these constants due to issues with N_()
-#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:145
-#: src/Widgets/EqualizerPopover.vala:326 src/Widgets/PresetList.vala:52
-msgid "Automatic"
-msgstr "Awtomatiko"
-
-#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:146
-msgid "On Left"
-msgstr "Sa Kaliwa"
-
-#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:147
-msgid "On Top"
-msgstr "Sa Kanan"
-
-#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:428
-msgid "Unrated"
-msgstr "Hindi naka-rate"
-
-#: src/Views/ListView/ColumnBrowser/ColumnBrowser.vala:430
-#, c-format
-msgid "%u Star"
-msgid_plural "%u Stars"
-msgstr[0] ""
-msgstr[1] ""
-
-#: src/Views/ListView/Lists/CellDataFunctionHelper.vala:128
-#, c-format
-msgid "%u kbps"
-msgstr ""
-
-#: src/Views/ListView/Lists/CellDataFunctionHelper.vala:149
-#: src/Views/ListView/Lists/MusicListView.vala:425
-msgid "Never"
-msgstr "Huwag kailanman"
-
-#: src/Views/ListView/Lists/ListColumn.vala:69
-msgctxt "List column title"
-msgid "#"
-msgstr "#"
-
-#: src/Views/ListView/Lists/ListColumn.vala:72
-msgctxt "List column title"
-msgid "Track"
-msgstr ""
-
-#: src/Views/ListView/Lists/ListColumn.vala:75
-msgctxt "List column title"
-msgid "Title"
-msgstr "Pamagat"
-
-#: src/Views/ListView/Lists/ListColumn.vala:78
-msgctxt "List column title"
-msgid "Length"
-msgstr "Haba"
-
-#: src/Views/ListView/Lists/ListColumn.vala:81
-msgctxt "List column title"
-msgid "Artist"
-msgstr "Artista"
-
-#: src/Views/ListView/Lists/ListColumn.vala:84
-msgctxt "List column title"
-msgid "Album"
-msgstr "Album"
-
-#: src/Views/ListView/Lists/ListColumn.vala:87
-msgctxt "List column title"
-msgid "Album Artist"
-msgstr "Artista ng Album"
-
-#: src/Views/ListView/Lists/ListColumn.vala:90
-msgctxt "List column title"
-msgid "Composer"
-msgstr "Nag-compose"
-
-#: src/Views/ListView/Lists/ListColumn.vala:93
-msgctxt "List column title"
-msgid "Genre"
-msgstr "Uri ng awit"
-
-#: src/Views/ListView/Lists/ListColumn.vala:96
-msgctxt "List column title"
-msgid "Year"
-msgstr "Taon"
-
-#: src/Views/ListView/Lists/ListColumn.vala:99
-msgctxt "List column title"
-msgid "Grouping"
-msgstr "Pag-grupo"
-
-#: src/Views/ListView/Lists/ListColumn.vala:102
-msgctxt "List column title"
-msgid "Bitrate"
-msgstr ""
-
-#: src/Views/ListView/Lists/ListColumn.vala:105
-msgctxt "List column title"
-msgid "Rating"
-msgstr "Marka"
-
-#: src/Views/ListView/Lists/ListColumn.vala:108
-msgctxt "List column title"
-msgid "Plays"
-msgstr "Ilang beses na pinatugtog"
-
-#: src/Views/ListView/Lists/ListColumn.vala:111
-msgctxt "List column title"
-msgid "Skips"
-msgstr "Iniskip"
-
-#: src/Views/ListView/Lists/ListColumn.vala:114
-msgctxt "List column title"
-msgid "Date Added"
-msgstr "Petsa ng Pagdagdag"
-
-#: src/Views/ListView/Lists/ListColumn.vala:117
-msgctxt "List column title"
-msgid "Last Played"
-msgstr "Huling Pinatugtog"
-
-#: src/Views/ListView/Lists/ListColumn.vala:120
-msgctxt "List column title (beats per minute)"
-msgid "BPM"
-msgstr "BPM"
-
-#: src/Views/ListView/Lists/ListColumn.vala:123
-msgctxt "List column title (file location)"
-msgid "Location"
-msgstr "Kinalalagyan"
-
-#: src/Views/ListView/Lists/ListColumn.vala:126
-msgctxt "List column title"
-msgid "File Size"
-msgstr "Laki ng File"
-
-#: src/Views/ListView/Lists/MusicListView.vala:74
-msgid "Autosize Columns"
-msgstr ""
-
-#: src/Views/ListView/Lists/MusicListView.vala:410
-msgid "1234 kbps"
-msgstr "1234 kbps"
-
-#. / Sample string used to measure the ideal size of the Title, Artist,
-#. / Album, Album Artist, Composer, Genre, and Grouping columns in the
-#. / list view. It's *never* displayed in the user interface. The translated
-#. / string should have a reasonable length, similar to the average length
-#. / of a song title or artist name in your language. The automatic column
-#. / width will depend on the length of this string and the space needed
-#. / by the column's title header.
-#: src/Views/ListView/Lists/MusicListView.vala:481
-msgid "Sample List String"
-msgstr "Sample List String"
-
-#. Welcome screen
-#: src/Views/Wrappers/MusicViewWrapper.vala:56
-msgid "Get Some Tunes"
-msgstr "Kumuha ng mga Tugtugin"
-
-#: src/Views/Wrappers/MusicViewWrapper.vala:57
-msgid "Add music to your library."
-msgstr "Magdagdag ng musika sa iyong library."
-
-#: src/Views/Wrappers/MusicViewWrapper.vala:60
-msgid "Import music from a source into your library."
-msgstr ""
-"Mag-import ng musika mula sa isang pagmumulan papunta sa iyong library."
-
-#: src/Views/Wrappers/MusicViewWrapper.vala:62
-msgid "Change Music Folder"
-msgstr "Baguhin ang Folder ng Musika"
-
-#: src/Views/Wrappers/MusicViewWrapper.vala:63
-msgid "Load music from a folder, a network or an external disk."
-msgstr ""
-"Magbukas ng musika mula sa isang folder, sa network o sa external na disk."
-
-#: src/Views/Wrappers/MusicViewWrapper.vala:110
-#: src/Views/Wrappers/MusicViewWrapper.vala:130
-msgid "Import your Music"
-msgstr "I-import ang iyong Musika"
-
-#: src/Views/Wrappers/MusicViewWrapper.vala:111
-#: src/Views/Wrappers/MusicViewWrapper.vala:131
-#, c-format
-msgid "Import all your Music from %s into your library."
-msgstr "I-import ang iyong Musika mula sa %s papunta sa iyong library."
-
-#: src/Views/Wrappers/MusicViewWrapper.vala:143
-msgid "Select Music Folder"
-msgstr "Pumili ng Folder ng Musika"
-
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:50
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:54
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:64
-msgid "No Songs"
-msgstr "Walang mga kanta"
-
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:51
-msgid "Updating playlist. Please wait."
-msgstr "Ina-update ang playlist. Maaaring maghintay."
-
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:55
-msgid ""
-"To add songs to this playlist, use the <b>secondary click</b> on an item and "
-"choose <b>Add to Playlist</b>."
-msgstr ""
-"Para magdagdag ng mga kanta sa playlist na ito, gamitin ang <b>secondary "
-"click</b> sa isang aytem at piliin ang <b>Idagdag sa Playlist</b>."
-
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:58
-msgid "Edit Smart Playlist"
-msgstr "Baguhin ang Smart Playlist"
-
-#: src/Views/Wrappers/PlaylistViewWrapper.vala:65
-msgid ""
-"This playlist will be automatically populated with songs that match its "
-"rules. To modify these rules, use the <b>secondary click</b> on it in the "
-"sidebar and click on <b>Edit</b>. Optionally, you can click on the button "
-"below."
-msgstr ""
-
-#: src/Views/Wrappers/ViewWrapper.vala:418
-msgid "No media"
-msgstr "Walang mga media"
-
-#: src/Widgets/AlbumListGrid.vala:63
-msgid "Set new album cover"
-msgstr "Maglagay ng bagong album cover"
-
-#: src/Widgets/AlbumListGrid.vala:193
-msgid "Image files"
-msgstr "Mga lmahen na files"
-
-#: src/Widgets/AlbumListGrid.vala:200
-msgid "_Open"
-msgstr "_Buksan"
-
-#: src/Widgets/AlbumListGrid.vala:201
-msgid "_Cancel"
-msgstr "_Ikansela"
-
-#: src/Widgets/EqualizerPopover.vala:162
-msgid "Save preset"
-msgstr ""
-
-#: src/Widgets/EqualizerPopover.vala:330
-msgid "Off"
-msgstr "Nakapatay"
-
-#: src/Widgets/EqualizerPopover.vala:418
-#, c-format
-msgid "%s (Custom)"
-msgstr "%s (Custom)"
-
-#: src/Widgets/EqualizerPopover.vala:420
-#, c-format
-msgid "%s (Custom %i)"
-msgstr "%s (Custom %i)"
-
-#: src/Widgets/EqualizerPopover.vala:423
-msgid "Custom Preset"
-msgstr ""
-
-#: src/Widgets/EqualizerPopover.vala:425
-#, c-format
-msgid "Custom Preset %i"
-msgstr ""
-
-#: src/Widgets/MediaMenu.vala:46
-msgid "Scroll to Current Song"
-msgstr "Magiscroll sa Kasalukuyang Kanta"
-
-#: src/Widgets/MediaMenu.vala:49
-msgid "Show in File Browser…"
-msgstr "Ipakita sa File Browser…"
-
-#: src/Widgets/MediaMenu.vala:50
-msgid "Edit Song Info…"
-msgstr "Baguhin ang Impormasyon ng Kanta…"
-
-#: src/Widgets/MediaMenu.vala:51
-msgid "Other Actions"
-msgstr "Iba pang mga Aksyon"
-
-#: src/Widgets/MediaMenu.vala:53
-msgctxt "Action item (verb)"
-msgid "Queue"
-msgstr ""
-
-#: src/Widgets/MediaMenu.vala:54
-msgid "Add to Playlist"
-msgstr "Idagdag sa Playlist"
-
-#: src/Widgets/MediaMenu.vala:55
-msgid "Remove Song…"
-msgstr "Tanggalin ang Kanta…"
-
-#: src/Widgets/MediaMenu.vala:56 src/Widgets/SourceListView.vala:157
-msgid "Import to Library"
-msgstr "I-import sa Library"
-
-#: src/Widgets/MediaMenu.vala:69 src/Widgets/MediaMenu.vala:85
-msgid "Remove from Library…"
-msgstr "Tanggalin sa Library…"
-
-#: src/Widgets/MediaMenu.vala:99
-msgid "Remove from Device"
-msgstr "Tanggalin sa Aparato"
-
-#: src/Widgets/MediaMenu.vala:119
-msgid "Remove from Queue"
-msgstr ""
-
-#: src/Widgets/MediaMenu.vala:153
-msgid "New Playlist…"
-msgstr "Bagong Playlist..."
-
-#: src/Widgets/MediaMenu.vala:193
-#, c-format
-msgid "Import %i of %i selected songs"
-msgstr "I-import ang %i sa %i na mga napiling kanta"
-
-#: src/Widgets/MediaMenu.vala:195
-#, c-format
-msgid "Import %i song"
-msgid_plural "Import %i songs"
-msgstr[0] "I-import ang %i kanta"
-msgstr[1] "I-import ang mga %i na kanta"
-
-#: src/Widgets/PresetList.vala:53
-msgid "Delete Current"
-msgstr ""
-
-#: src/Widgets/SourceListView.vala:66 src/Widgets/SourceListView.vala:78
-msgid "Rename"
-msgstr "Palitan ang Pangalan"
-
-#: src/Widgets/SourceListView.vala:79
-msgid "Edit…"
-msgstr "I-edit..."
-
-#: src/Widgets/SourceListView.vala:95
-msgid "Save as Playlist"
-msgstr "I-save bilang Playlist"
-
-#: src/Widgets/SourceListView.vala:103
-msgid "Export…"
-msgstr "I-export..."
-
-#: src/Widgets/SourceListView.vala:166
-msgid "Eject"
-msgstr "I-eject"
-
-#: src/Widgets/SourceListView.vala:176 src/Widgets/SourceListView.vala:219
-msgid "New Playlist"
-msgstr "Bagong Playlist"
-
-#: src/Widgets/SourceListView.vala:184 src/Widgets/SourceListView.vala:220
-msgid "New Smart Playlist"
-msgstr "Bagong Ismart Playlist"
-
-#: src/Widgets/SourceListView.vala:221
-msgid "Import Playlists"
-msgstr ""
-
-#. Adds the different sidebar categories.
-#: src/Widgets/SourceListView.vala:338
-msgid "Library"
-msgstr "Library"
-
-#: src/Widgets/SourceListView.vala:339
-msgid "Devices"
-msgstr "Mga Device"
-
-#: src/Widgets/SourceListView.vala:340
-msgid "Network"
-msgstr "Network"
-
-#: src/Widgets/StatusBar.vala:36
-msgid "Add Playlist"
-msgstr ""
-
-#: src/Widgets/StatusBar.vala:37
-msgid "Add Smart Playlist"
-msgstr ""
-
-#: src/Widgets/StatusBar.vala:48
+#~ msgid "No Results"
+#~ msgstr "Walang mga Rating"
+
+#~ msgid "Genres"
+#~ msgstr "Mga Uri ng Kanta"
+
+#~ msgid "Artists"
+#~ msgstr "Mga Artista"
+
+#~ msgid "Albums"
+#~ msgstr "Mga Album"
+
+#~ msgid "Years"
+#~ msgstr "Mga Taon"
+
+#~ msgid "Ratings"
+#~ msgstr "Mga Rating"
+
+#~ msgid "Composers"
+#~ msgstr "Mga Nag-compose"
+
+#~ msgid "Groupings"
+#~ msgstr "Mga Grupo"
+
+#~ msgid "All Genres"
+#~ msgstr "Lahat ng Uri ng Kanta"
+
+#~ msgid "All %i Genres"
+#~ msgstr "Lahat ng %i na Uri ng Kanta"
+
+#~ msgid "No Genres"
+#~ msgstr "Walang Mga Uri ng Kanta"
+
+#~ msgid "All Artists"
+#~ msgstr "Lahat ng mga Artista"
+
+#~ msgid "All %i Artists"
+#~ msgstr "Lahat ng %i na mga Artista"
+
+#~ msgid "No Artists"
+#~ msgstr "Walang mga Artista"
+
+#~ msgid "All Albums"
+#~ msgstr "Lahat ng mga Album"
+
+#~ msgid "All %i Albums"
+#~ msgstr "Lahat ng %i na mga Album"
+
+#~ msgid "No Albums"
+#~ msgstr "Walang mga Album"
+
+#~ msgid "All Years"
+#~ msgstr "Lahat ng mga Taon"
+
+#~ msgid "All %i Years"
+#~ msgstr "Lahat ng %i na mga Taon"
+
+#~ msgid "No Years"
+#~ msgstr "Walang mga Taon"
+
+#~ msgid "All Ratings"
+#~ msgstr "Lahat ng mga Rating"
+
+#~ msgid "No Ratings"
+#~ msgstr "Walang mga Rating"
+
+#~ msgid "All Groupings"
+#~ msgstr "Lahat ng mga Grupo"
+
+#~ msgid "All %i Groupings"
+#~ msgstr "Lahat ng %i na mga Grupo"
+
+#~ msgid "No Groupings"
+#~ msgstr "Walang mga Grupo"
+
+#~ msgid "All Composers"
+#~ msgstr "Lahat ng mga Nag-kompose"
+
+#~ msgid "All %i Composers"
+#~ msgstr "Lahat ng %i na mga Nag-kompose"
+
+#~ msgid "No Composers"
+#~ msgstr "Walang mga Nag-kompose"
+
+#~ msgid "Automatic"
+#~ msgstr "Awtomatiko"
+
+#~ msgid "On Left"
+#~ msgstr "Sa Kaliwa"
+
+#~ msgid "On Top"
+#~ msgstr "Sa Kanan"
+
+#~ msgid "Unrated"
+#~ msgstr "Hindi naka-rate"
+
+#~ msgid "Never"
+#~ msgstr "Huwag kailanman"
+
+#~ msgctxt "List column title"
+#~ msgid "#"
+#~ msgstr "#"
+
+#~ msgctxt "List column title"
+#~ msgid "Title"
+#~ msgstr "Pamagat"
+
+#~ msgctxt "List column title"
+#~ msgid "Length"
+#~ msgstr "Haba"
+
+#~ msgctxt "List column title"
+#~ msgid "Artist"
+#~ msgstr "Artista"
+
+#~ msgctxt "List column title"
+#~ msgid "Album"
+#~ msgstr "Album"
+
+#~ msgctxt "List column title"
+#~ msgid "Album Artist"
+#~ msgstr "Artista ng Album"
+
+#~ msgctxt "List column title"
+#~ msgid "Composer"
+#~ msgstr "Nag-compose"
+
+#~ msgctxt "List column title"
+#~ msgid "Genre"
+#~ msgstr "Uri ng awit"
+
+#~ msgctxt "List column title"
+#~ msgid "Year"
+#~ msgstr "Taon"
+
+#~ msgctxt "List column title"
+#~ msgid "Grouping"
+#~ msgstr "Pag-grupo"
+
+#~ msgctxt "List column title"
+#~ msgid "Rating"
+#~ msgstr "Marka"
+
+#~ msgctxt "List column title"
+#~ msgid "Plays"
+#~ msgstr "Ilang beses na pinatugtog"
+
+#~ msgctxt "List column title"
+#~ msgid "Skips"
+#~ msgstr "Iniskip"
+
+#~ msgctxt "List column title"
+#~ msgid "Date Added"
+#~ msgstr "Petsa ng Pagdagdag"
+
+#~ msgctxt "List column title"
+#~ msgid "Last Played"
+#~ msgstr "Huling Pinatugtog"
+
+#~ msgctxt "List column title (beats per minute)"
+#~ msgid "BPM"
+#~ msgstr "BPM"
+
+#~ msgctxt "List column title (file location)"
+#~ msgid "Location"
+#~ msgstr "Kinalalagyan"
+
+#~ msgctxt "List column title"
+#~ msgid "File Size"
+#~ msgstr "Laki ng File"
+
+#~ msgid "1234 kbps"
+#~ msgstr "1234 kbps"
+
+#~ msgid "Sample List String"
+#~ msgstr "Sample List String"
+
+#~ msgid "Get Some Tunes"
+#~ msgstr "Kumuha ng mga Tugtugin"
+
+#~ msgid "Add music to your library."
+#~ msgstr "Magdagdag ng musika sa iyong library."
+
+#~ msgid "Import music from a source into your library."
+#~ msgstr ""
+#~ "Mag-import ng musika mula sa isang pagmumulan papunta sa iyong library."
+
+#~ msgid "Change Music Folder"
+#~ msgstr "Baguhin ang Folder ng Musika"
+
+#~ msgid "Load music from a folder, a network or an external disk."
+#~ msgstr ""
+#~ "Magbukas ng musika mula sa isang folder, sa network o sa external na disk."
+
+#~ msgid "Import your Music"
+#~ msgstr "I-import ang iyong Musika"
+
+#~ msgid "Import all your Music from %s into your library."
+#~ msgstr "I-import ang iyong Musika mula sa %s papunta sa iyong library."
+
+#~ msgid "Select Music Folder"
+#~ msgstr "Pumili ng Folder ng Musika"
+
+#~ msgid "No Songs"
+#~ msgstr "Walang mga kanta"
+
+#~ msgid "Updating playlist. Please wait."
+#~ msgstr "Ina-update ang playlist. Maaaring maghintay."
+
+#~ msgid ""
+#~ "To add songs to this playlist, use the <b>secondary click</b> on an item "
+#~ "and choose <b>Add to Playlist</b>."
+#~ msgstr ""
+#~ "Para magdagdag ng mga kanta sa playlist na ito, gamitin ang <b>secondary "
+#~ "click</b> sa isang aytem at piliin ang <b>Idagdag sa Playlist</b>."
+
+#~ msgid "Edit Smart Playlist"
+#~ msgstr "Baguhin ang Smart Playlist"
+
+#~ msgid "No media"
+#~ msgstr "Walang mga media"
+
+#~ msgid "Set new album cover"
+#~ msgstr "Maglagay ng bagong album cover"
+
+#~ msgid "Image files"
+#~ msgstr "Mga lmahen na files"
+
+#~ msgid "_Open"
+#~ msgstr "_Buksan"
+
+#~ msgid "_Cancel"
+#~ msgstr "_Ikansela"
+
+#~ msgid "Off"
+#~ msgstr "Nakapatay"
+
+#~ msgid "%s (Custom)"
+#~ msgstr "%s (Custom)"
+
+#~ msgid "%s (Custom %i)"
+#~ msgstr "%s (Custom %i)"
+
+#~ msgid "Scroll to Current Song"
+#~ msgstr "Magiscroll sa Kasalukuyang Kanta"
+
+#~ msgid "Show in File Browser…"
+#~ msgstr "Ipakita sa File Browser…"
+
+#~ msgid "Edit Song Info…"
+#~ msgstr "Baguhin ang Impormasyon ng Kanta…"
+
+#~ msgid "Other Actions"
+#~ msgstr "Iba pang mga Aksyon"
+
+#~ msgid "Add to Playlist"
+#~ msgstr "Idagdag sa Playlist"
+
+#~ msgid "Remove Song…"
+#~ msgstr "Tanggalin ang Kanta…"
+
+#~ msgid "Import to Library"
+#~ msgstr "I-import sa Library"
+
+#~ msgid "Remove from Library…"
+#~ msgstr "Tanggalin sa Library…"
+
+#~ msgid "Remove from Device"
+#~ msgstr "Tanggalin sa Aparato"
+
+#~ msgid "New Playlist…"
+#~ msgstr "Bagong Playlist..."
+
+#~ msgid "Import %i of %i selected songs"
+#~ msgstr "I-import ang %i sa %i na mga napiling kanta"
+
+#~ msgid "Import %i song"
+#~ msgid_plural "Import %i songs"
+#~ msgstr[0] "I-import ang %i kanta"
+#~ msgstr[1] "I-import ang mga %i na kanta"
+
+#~ msgid "Rename"
+#~ msgstr "Palitan ang Pangalan"
+
+#~ msgid "Edit…"
+#~ msgstr "I-edit..."
+
+#~ msgid "Save as Playlist"
+#~ msgstr "I-save bilang Playlist"
+
+#~ msgid "Export…"
+#~ msgstr "I-export..."
+
+#~ msgid "Eject"
+#~ msgstr "I-eject"
+
+#~ msgid "New Playlist"
+#~ msgstr "Bagong Playlist"
+
+#~ msgid "New Smart Playlist"
+#~ msgstr "Bagong Ismart Playlist"
+
+#~ msgid "Library"
+#~ msgstr "Library"
+
+#~ msgid "Devices"
+#~ msgstr "Mga Device"
+
+#~ msgid "Network"
+#~ msgstr "Network"
+
 #, fuzzy
-#| msgid "Add to Playlist"
-msgid "Add Playlist…"
-msgstr "Idagdag sa Playlist"
+#~| msgid "Add to Playlist"
+#~ msgid "Add Playlist…"
+#~ msgstr "Idagdag sa Playlist"
 
-#. / Do not remove '%s'. It's a placeholder for selected equalizer preset name.
-#: src/Widgets/StatusBar.vala:74
-#, c-format
-msgid "Equalizer: %s"
-msgstr "Equalizer: %s"
+#~ msgid "Equalizer: %s"
+#~ msgstr "Equalizer: %s"
 
-#. MUST follow the exact same order of Music.Player.Repeat
-#: src/Widgets/TopDisplay.vala:138
-msgid "Enable Repeat"
-msgstr "Paganahin ang Pag-uulit"
+#~ msgid "Enable Repeat"
+#~ msgstr "Paganahin ang Pag-uulit"
 
-#: src/Widgets/TopDisplay.vala:139
-msgid "Repeat Song"
-msgstr "Ulitin ang kanta"
+#~ msgid "Disable Repeat"
+#~ msgstr "Huwag paganahin ang Paguulit"
 
-#: src/Widgets/TopDisplay.vala:140
-msgid "Disable Repeat"
-msgstr "Huwag paganahin ang Paguulit"
-
-#: src/Widgets/TopDisplay.vala:159
-msgid "Enable Shuffle"
-msgstr ""
-
-#: src/Widgets/TopDisplay.vala:160
-msgid "Disable Shuffle"
-msgstr ""
-
-#: src/Widgets/ViewSelector.vala:81
 #, fuzzy
-msgid "View as albums"
-msgstr "Ipakita bilang mga Album"
+#~ msgid "View as albums"
+#~ msgstr "Ipakita bilang mga Album"
 
-#: src/Widgets/ViewSelector.vala:87
 #, fuzzy
-msgid "View as list"
-msgstr "Tignan bilang Listahan"
+#~ msgid "View as list"
+#~ msgstr "Tignan bilang Listahan"
 
-#: src/Widgets/ViewSelector.vala:93
 #, fuzzy
-msgid "View in columns"
-msgstr "Ipakita bilang mga Album"
+#~ msgid "View in columns"
+#~ msgstr "Ipakita bilang mga Album"
 
 #~ msgid "No similar songs found"
 #~ msgstr "Walang nakitang mga katulad na kanta"
@@ -1516,9 +910,6 @@ msgstr "Ipakita bilang mga Album"
 
 #~ msgid "Song"
 #~ msgstr "Kanta"
-
-#~ msgid "Repeat Album"
-#~ msgstr "Ulitin ang Album"
 
 #~ msgid "Repeat Artist"
 #~ msgstr "Ulitin ang Artista"

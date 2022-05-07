@@ -8,11 +8,13 @@ public class Music.Application : Gtk.Application {
     public const string ACTION_NEXT = "action-next";
     public const string ACTION_PLAY_PAUSE = "action-play-pause";
     public const string ACTION_PREVIOUS = "action-previous";
+    public const string ACTION_SHUFFLE = "action-shuffle";
 
     private const ActionEntry[] ACTION_ENTRIES = {
         { ACTION_PLAY_PAUSE, action_play_pause, null, "false" },
         { ACTION_NEXT, action_next },
-        { ACTION_PREVIOUS, action_previous }
+        { ACTION_PREVIOUS, action_previous },
+        { ACTION_SHUFFLE, action_shuffle }
     };
 
     private PlaybackManager? playback_manager = null;
@@ -24,53 +26,77 @@ public class Music.Application : Gtk.Application {
         );
     }
 
+    construct {
+        GLib.Intl.setlocale (LocaleCategory.ALL, "");
+        GLib.Intl.bindtextdomain (Constants.GETTEXT_PACKAGE, Constants.LOCALEDIR);
+        GLib.Intl.bind_textdomain_codeset (Constants.GETTEXT_PACKAGE, "UTF-8");
+        GLib.Intl.textdomain (Constants.GETTEXT_PACKAGE);
+    }
+
     protected override void activate () {
-        add_action_entries (ACTION_ENTRIES, this);
+        if (active_window == null) {
+            add_action_entries (ACTION_ENTRIES, this);
 
-        ((SimpleAction) lookup_action (ACTION_PLAY_PAUSE)).set_enabled (false);
-        ((SimpleAction) lookup_action (ACTION_PLAY_PAUSE)).set_state (false);
-        ((SimpleAction) lookup_action (ACTION_NEXT)).set_enabled (false);
-        ((SimpleAction) lookup_action (ACTION_PREVIOUS)).set_enabled (false);
+            ((SimpleAction) lookup_action (ACTION_PLAY_PAUSE)).set_enabled (false);
+            ((SimpleAction) lookup_action (ACTION_PLAY_PAUSE)).set_state (false);
+            ((SimpleAction) lookup_action (ACTION_NEXT)).set_enabled (false);
+            ((SimpleAction) lookup_action (ACTION_PREVIOUS)).set_enabled (false);
+            ((SimpleAction) lookup_action (ACTION_SHUFFLE)).set_enabled (false);
 
-        MediaKeyListener.get_default ();
-        playback_manager = PlaybackManager.get_default ();
+            playback_manager = PlaybackManager.get_default ();
 
-        var main_window = new MainWindow () {
-            application = this,
-            title = _("Music")
-        };
-        main_window.present ();
+            var mpris_id = Bus.own_name (
+                BusType.SESSION,
+                "org.mpris.MediaPlayer2.io.elementary.music",
+                BusNameOwnerFlags.NONE,
+                on_bus_acquired,
+                null,
+                null
+            );
+
+            if (mpris_id == 0) {
+                warning ("Could not initialize MPRIS session.\n");
+            }
+
+            var main_window = new MainWindow () {
+                title = _("Music")
+            };
+
+            add_window (main_window);
+
+            Gtk.IconTheme.get_for_display (Gdk.Display.get_default ()).add_resource_path ("/io/elementary/music");
+
+            var granite_settings = Granite.Settings.get_default ();
+            var gtk_settings = Gtk.Settings.get_default ();
+
+            gtk_settings.gtk_application_prefer_dark_theme = (
+                granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK
+            );
+
+            granite_settings.notify["prefers-color-scheme"].connect (() => {
+                gtk_settings.gtk_application_prefer_dark_theme = (
+                    granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK
+                );
+            });
+        }
+
+        active_window.present_with_time (Gdk.CURRENT_TIME);
 
         var settings = new Settings ("io.elementary.music");
         var rect = Gtk.Allocation ();
         settings.get ("window-size", "(ii)", out rect.width, out rect.height);
 
         // Set size after present to prevent resizing
-        main_window.default_height = rect.height;
-        main_window.default_width = rect.width;
+        active_window.default_height = rect.height;
+        active_window.default_width = rect.width;
 
         if (settings.get_boolean ("window-maximized")) {
-            main_window.maximize ();
+            active_window.maximize ();
         }
-
-        Gtk.IconTheme.get_for_display (Gdk.Display.get_default ()).add_resource_path ("/io/elementary/music");
-
-        var granite_settings = Granite.Settings.get_default ();
-        var gtk_settings = Gtk.Settings.get_default ();
-
-        gtk_settings.gtk_application_prefer_dark_theme = (
-            granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK
-        );
-
-        granite_settings.notify["prefers-color-scheme"].connect (() => {
-            gtk_settings.gtk_application_prefer_dark_theme = (
-                granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK
-            );
-        });
     }
 
     protected override void open (File[] files, string hint) {
-        if (playback_manager == null) {
+        if (active_window == null) {
             activate ();
         }
 
@@ -78,12 +104,7 @@ public class Music.Application : Gtk.Application {
     }
 
     private void action_play_pause () {
-        var play_pause_action = lookup_action (ACTION_PLAY_PAUSE);
-        if (play_pause_action.get_state ().get_boolean ()) {
-            ((SimpleAction) play_pause_action).set_state (false);
-        } else {
-            ((SimpleAction) play_pause_action).set_state (true);
-        }
+        playback_manager.play_pause ();
     }
 
     private void action_next () {
@@ -92,6 +113,19 @@ public class Music.Application : Gtk.Application {
 
     private void action_previous () {
         playback_manager.previous ();
+    }
+
+    private void action_shuffle () {
+        playback_manager.shuffle ();
+    }
+
+    private void on_bus_acquired (DBusConnection connection, string name) {
+        try {
+            connection.register_object ("/org/mpris/MediaPlayer2", new MprisRoot ());
+            connection.register_object ("/org/mpris/MediaPlayer2", new MprisPlayer (connection));
+        } catch (IOError e) {
+            warning ("could not create MPRIS player: %s\n", e.message);
+        }
     }
 
     public static int main (string[] args) {
