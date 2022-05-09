@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-11 14:16-0700\n"
+"POT-Creation-Date: 2022-05-09 10:10-0700\n"
 "PO-Revision-Date: 2021-07-22 10:14+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.elementary.io/projects/"
@@ -25,16 +25,15 @@ msgid "Music"
 msgstr "Música"
 
 #: data/music.appdata.xml.in:10
-msgid "The official elementary music player"
-msgstr "O reprodutor de música oficial do elementary"
+msgid "Queue and play local audio files"
+msgstr ""
 
 #: data/music.appdata.xml.in:12
 msgid ""
-"Music is a fast and beautiful audio player with a focus on music and "
-"libraries. It handles external devices and album art."
+"Quickly queue up and listen to your local music files without any extra "
+"frills. See embedded album artwork. Control playback with media keys or in "
+"the system audio indicator."
 msgstr ""
-"Musica é um rápido e belo reprodutor de áudio com foco em música e "
-"bibliotecas. Ele comporta dispositivos externos e artes de álbum."
 
 #: data/music.appdata.xml.in:33
 msgid "elementary, Inc."
@@ -237,6 +236,16 @@ msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
 "Noise;Áudio;Reprodutor;MP3;iPod;Tocar;Lista de reprodução;Mídia;Telefone;"
 "Músicas;"
+
+#~ msgid "The official elementary music player"
+#~ msgstr "O reprodutor de música oficial do elementary"
+
+#~ msgid ""
+#~ "Music is a fast and beautiful audio player with a focus on music and "
+#~ "libraries. It handles external devices and album art."
+#~ msgstr ""
+#~ "Musica é um rápido e belo reprodutor de áudio com foco em música e "
+#~ "bibliotecas. Ele comporta dispositivos externos e artes de álbum."
 
 #~ msgid "io.elementary.music"
 #~ msgstr "io.elementary.music"

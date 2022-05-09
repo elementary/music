@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-11 14:16-0700\n"
+"POT-Creation-Date: 2022-05-09 10:10-0700\n"
 "PO-Revision-Date: 2021-04-29 20:55+0000\n"
 "Last-Translator: colindemian <colindemian@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
@@ -25,17 +25,15 @@ msgid "Music"
 msgstr "音乐"
 
 #: data/music.appdata.xml.in:10
-msgid "The official elementary music player"
-msgstr "elementary OS 专属音乐播放器"
+msgid "Queue and play local audio files"
+msgstr ""
 
 #: data/music.appdata.xml.in:12
-#, fuzzy
 msgid ""
-"Music is a fast and beautiful audio player with a focus on music and "
-"libraries. It handles external devices and album art."
+"Quickly queue up and listen to your local music files without any extra "
+"frills. See embedded album artwork. Control playback with media keys or in "
+"the system audio indicator."
 msgstr ""
-"“音乐”是一款快速美观、简洁有序的音乐播放器，集播放外设、播放CD、唱片封面功能"
-"于一身。"
 
 #: data/music.appdata.xml.in:33
 #, fuzzy
@@ -233,6 +231,17 @@ msgstr "聆听音乐"
 #, fuzzy
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr "Noise;音频;播放器;MP3;iPod;播放;播放列表;媒体;CD;电话;歌曲;"
+
+#~ msgid "The official elementary music player"
+#~ msgstr "elementary OS 专属音乐播放器"
+
+#, fuzzy
+#~ msgid ""
+#~ "Music is a fast and beautiful audio player with a focus on music and "
+#~ "libraries. It handles external devices and album art."
+#~ msgstr ""
+#~ "“音乐”是一款快速美观、简洁有序的音乐播放器，集播放外设、播放CD、唱片封面功"
+#~ "能于一身。"
 
 #~ msgid "io.elementary.music"
 #~ msgstr "io.elementary.music"

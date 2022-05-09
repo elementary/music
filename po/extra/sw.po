@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-11 14:16-0700\n"
+"POT-Creation-Date: 2022-05-09 10:10-0700\n"
 "PO-Revision-Date: 2018-02-05 10:06-0800\n"
 "Last-Translator: Gakuru Maina <gakurumaina@gmail.com>\n"
 "Language-Team: \n"
@@ -18,18 +18,15 @@ msgid "Music"
 msgstr "Muziki"
 
 #: data/music.appdata.xml.in:10
-msgid "The official elementary music player"
-msgstr "Programu rasmi ya elementary ya kucheza muziki"
+msgid "Queue and play local audio files"
+msgstr ""
 
 #: data/music.appdata.xml.in:12
-#, fuzzy
 msgid ""
-"Music is a fast and beautiful audio player with a focus on music and "
-"libraries. It handles external devices and album art."
+"Quickly queue up and listen to your local music files without any extra "
+"frills. See embedded album artwork. Control playback with media keys or in "
+"the system audio indicator."
 msgstr ""
-"Muziki ni programu ichezayo nyimbo kwa upesi na ni maridadi, hutilia maanani "
-"nyimbo na maktaba isitoshe huzingatia pia vifaa vya nje, santuri na albamu "
-"za sanaa."
 
 #: data/music.appdata.xml.in:33
 msgid "elementary, Inc."
@@ -228,6 +225,18 @@ msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
 "Kelele; Sauti; Kichezaji; MP3; iPod; Cheza; Orodaha ya kucheza; Santuri; "
 "Simu; Nyimbo;"
+
+#~ msgid "The official elementary music player"
+#~ msgstr "Programu rasmi ya elementary ya kucheza muziki"
+
+#, fuzzy
+#~ msgid ""
+#~ "Music is a fast and beautiful audio player with a focus on music and "
+#~ "libraries. It handles external devices and album art."
+#~ msgstr ""
+#~ "Muziki ni programu ichezayo nyimbo kwa upesi na ni maridadi, hutilia "
+#~ "maanani nyimbo na maktaba isitoshe huzingatia pia vifaa vya nje, santuri "
+#~ "na albamu za sanaa."
 
 #~ msgid "About Music"
 #~ msgstr "Kuhusu muziki"

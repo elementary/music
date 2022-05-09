@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-11 14:16-0700\n"
+"POT-Creation-Date: 2022-05-09 10:10-0700\n"
 "PO-Revision-Date: 2021-07-22 10:14+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Norwegian Bokmål <https://l10n.elementary.io/projects/music/"
@@ -25,17 +25,15 @@ msgid "Music"
 msgstr "Musikk"
 
 #: data/music.appdata.xml.in:10
-msgid "The official elementary music player"
-msgstr "Det offisielle musikkprogrammet i elementary"
+msgid "Queue and play local audio files"
+msgstr ""
 
 #: data/music.appdata.xml.in:12
-#, fuzzy
 msgid ""
-"Music is a fast and beautiful audio player with a focus on music and "
-"libraries. It handles external devices and album art."
+"Quickly queue up and listen to your local music files without any extra "
+"frills. See embedded album artwork. Control playback with media keys or in "
+"the system audio indicator."
 msgstr ""
-"Musikk er en rask og vakker lydavspiller med fokus på musikk og ansamlinger "
-"derav. Den håndterer eksterne enheter, CD-er og platecover."
 
 #: data/music.appdata.xml.in:33
 msgid "elementary, Inc."
@@ -236,6 +234,17 @@ msgstr "Lytt til musikk"
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
 "Noise;Audio;Spiller;MP3;iPod;Spill;Spilleliste;Media;CD;Telefon;Sanger;"
+
+#~ msgid "The official elementary music player"
+#~ msgstr "Det offisielle musikkprogrammet i elementary"
+
+#, fuzzy
+#~ msgid ""
+#~ "Music is a fast and beautiful audio player with a focus on music and "
+#~ "libraries. It handles external devices and album art."
+#~ msgstr ""
+#~ "Musikk er en rask og vakker lydavspiller med fokus på musikk og "
+#~ "ansamlinger derav. Den håndterer eksterne enheter, CD-er og platecover."
 
 #~ msgid "io.elementary.music"
 #~ msgstr "io.elementary.music"
