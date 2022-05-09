@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2015-2021 elementary, Inc. <contact@elementary.io> -->
+<!-- Copyright 2015-2022 elementary, Inc. <contact@elementary.io> -->
 <component type="desktop-application">
   <id>io.elementary.music</id>
   <launchable type="desktop-id">io.elementary.music.desktop</launchable>
@@ -7,9 +7,9 @@
   <project_license>GPL-3.0-only</project_license>
 
   <name>Music</name>
-  <summary>The official elementary music player</summary>
+  <summary>Queue and play local audio files</summary>
   <description>
-    <p>Music is a fast and beautiful audio player with a focus on music and libraries. It handles external devices and album art.</p>
+    <p>Quickly queue up and listen to your local music files without any extra frills. See embedded album artwork. Control playback with media keys or in the system audio indicator.</p>
   </description>
 
   <screenshots>
