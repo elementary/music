@@ -90,7 +90,6 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         };
 
         var paned = new Gtk.Paned (Gtk.Orientation.HORIZONTAL) {
-            position = 350,
             start_child = queue_handle,
             end_child = now_playing_handle,
             resize_end_child = false,
@@ -107,6 +106,7 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         set_titlebar (null_title);
 
         settings = new Settings ("io.elementary.music");
+        settings.bind ("pane-position", paned, "position", SettingsBindFlags.DEFAULT);
         settings.changed["repeat-mode"].connect (update_repeat_button);
 
         update_repeat_button ();

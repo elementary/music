@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-11 14:16-0700\n"
+"POT-Creation-Date: 2022-05-09 10:10-0700\n"
 "PO-Revision-Date: 2021-07-22 10:14+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Esperanto <https://l10n.elementary.io/projects/music/extra/eo/"
@@ -25,17 +25,15 @@ msgid "Music"
 msgstr "Muziko"
 
 #: data/music.appdata.xml.in:10
-msgid "The official elementary music player"
-msgstr "La oficiala muzikilo de elementary"
+msgid "Queue and play local audio files"
+msgstr ""
 
 #: data/music.appdata.xml.in:12
-#, fuzzy
 msgid ""
-"Music is a fast and beautiful audio player with a focus on music and "
-"libraries. It handles external devices and album art."
+"Quickly queue up and listen to your local music files without any extra "
+"frills. See embedded album artwork. Control playback with media keys or in "
+"the system audio indicator."
 msgstr ""
-"Muziko estas rapida kaj bela muzikilo, fokusiĝanta al muziko kaj biblioteko. "
-"Ĝi subtenas memorujojn, lumdiskojn kaj albumajn kovrilojn."
 
 #: data/music.appdata.xml.in:33
 msgid "elementary, Inc."
@@ -235,6 +233,17 @@ msgstr "Aŭskulti muzikon"
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
 "brui;aŭdo;ludilo;MP3;iPod;muziko;kanto;listo;aŭdvido;lumdisko;KD;telefono;"
+
+#~ msgid "The official elementary music player"
+#~ msgstr "La oficiala muzikilo de elementary"
+
+#, fuzzy
+#~ msgid ""
+#~ "Music is a fast and beautiful audio player with a focus on music and "
+#~ "libraries. It handles external devices and album art."
+#~ msgstr ""
+#~ "Muziko estas rapida kaj bela muzikilo, fokusiĝanta al muziko kaj "
+#~ "biblioteko. Ĝi subtenas memorujojn, lumdiskojn kaj albumajn kovrilojn."
 
 #~ msgid "io.elementary.music"
 #~ msgstr "io.elementary.music"

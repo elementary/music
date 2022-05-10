@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-11 14:16-0700\n"
+"POT-Creation-Date: 2022-05-09 10:10-0700\n"
 "PO-Revision-Date: 2021-07-22 10:14+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Tagalog <https://l10n.elementary.io/projects/music/extra/tl/"
@@ -21,18 +21,15 @@ msgid "Music"
 msgstr "Musika"
 
 #: data/music.appdata.xml.in:10
-msgid "The official elementary music player"
-msgstr "Ang opisyal na music player ng elementary"
+msgid "Queue and play local audio files"
+msgstr ""
 
 #: data/music.appdata.xml.in:12
-#, fuzzy
 msgid ""
-"Music is a fast and beautiful audio player with a focus on music and "
-"libraries. It handles external devices and album art."
+"Quickly queue up and listen to your local music files without any extra "
+"frills. See embedded album artwork. Control playback with media keys or in "
+"the system audio indicator."
 msgstr ""
-"Ang Musika ay isang mabilis at magandang audio player na may pokus sa musika "
-"at mga library. Pinamamahalaan nito ang external na mga device, mga CD, at "
-"album art."
 
 #: data/music.appdata.xml.in:33
 #, fuzzy
@@ -230,6 +227,18 @@ msgstr "Makinig sa musika"
 #, fuzzy
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr "Ingay;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Telepono;Awitin;"
+
+#~ msgid "The official elementary music player"
+#~ msgstr "Ang opisyal na music player ng elementary"
+
+#, fuzzy
+#~ msgid ""
+#~ "Music is a fast and beautiful audio player with a focus on music and "
+#~ "libraries. It handles external devices and album art."
+#~ msgstr ""
+#~ "Ang Musika ay isang mabilis at magandang audio player na may pokus sa "
+#~ "musika at mga library. Pinamamahalaan nito ang external na mga device, "
+#~ "mga CD, at album art."
 
 #~ msgid "io.elementary.music"
 #~ msgstr "io.elementary.music"

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-11 14:16-0700\n"
+"POT-Creation-Date: 2022-05-09 10:10-0700\n"
 "PO-Revision-Date: 2018-05-26 11:00+0000\n"
 "Last-Translator: Romanic Ion Nicușor <contact.romanic@gmail.com>\n"
 "Language-Team: Moldovan <https://weblate.elementary.io/projects/music/extra/"
@@ -18,17 +18,15 @@ msgid "Music"
 msgstr "Muzică"
 
 #: data/music.appdata.xml.in:10
-msgid "The official elementary music player"
-msgstr "Elemente oficiale reproductor muzică"
+msgid "Queue and play local audio files"
+msgstr ""
 
 #: data/music.appdata.xml.in:12
-#, fuzzy
 msgid ""
-"Music is a fast and beautiful audio player with a focus on music and "
-"libraries. It handles external devices and album art."
+"Quickly queue up and listen to your local music files without any extra "
+"frills. See embedded album artwork. Control playback with media keys or in "
+"the system audio indicator."
 msgstr ""
-"Muzica este un player audio rapid și frumos, cu accent pe muzică și "
-"biblioteci. Ea gestionează dispozitive externe, CD-uri și arta albumelor."
 
 #: data/music.appdata.xml.in:33
 msgid "elementary, Inc."
@@ -227,6 +225,17 @@ msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
 "Zgomot, audio, player, MP3, iPod, Redare, listei de redare media, CD-uri, "
 "telefoane; cântece;"
+
+#~ msgid "The official elementary music player"
+#~ msgstr "Elemente oficiale reproductor muzică"
+
+#, fuzzy
+#~ msgid ""
+#~ "Music is a fast and beautiful audio player with a focus on music and "
+#~ "libraries. It handles external devices and album art."
+#~ msgstr ""
+#~ "Muzica este un player audio rapid și frumos, cu accent pe muzică și "
+#~ "biblioteci. Ea gestionează dispozitive externe, CD-uri și arta albumelor."
 
 #~ msgid "About Music"
 #~ msgstr "Despre muzică"

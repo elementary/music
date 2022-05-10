@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-11 14:16-0700\n"
+"POT-Creation-Date: 2022-05-09 10:10-0700\n"
 "PO-Revision-Date: 2018-02-05 00:11+0000\n"
 "Last-Translator: Rokar <mail@rokar.de>\n"
 "Language-Team: Kurdish <https://weblate.elementary.io/projects/music/extra/"
@@ -20,13 +20,14 @@ msgid "Music"
 msgstr "Mûzîk"
 
 #: data/music.appdata.xml.in:10
-msgid "The official elementary music player"
-msgstr "Lêderê Mûzîkê fermî li elementary"
+msgid "Queue and play local audio files"
+msgstr ""
 
 #: data/music.appdata.xml.in:12
 msgid ""
-"Music is a fast and beautiful audio player with a focus on music and "
-"libraries. It handles external devices and album art."
+"Quickly queue up and listen to your local music files without any extra "
+"frills. See embedded album artwork. Control playback with media keys or in "
+"the system audio indicator."
 msgstr ""
 
 #: data/music.appdata.xml.in:33
@@ -225,6 +226,9 @@ msgstr "Muzîk le bihîstin"
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
 "Noise;deng;Lêder;MP3;iPod;lîstik;Pirrjimara lîstik;Media;CD;telefon;stiran;"
+
+#~ msgid "The official elementary music player"
+#~ msgstr "Lêderê Mûzîkê fermî li elementary"
 
 #~ msgid "About Music"
 #~ msgstr "ser Muzîkê"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-11 14:16-0700\n"
+"POT-Creation-Date: 2022-05-09 10:10-0700\n"
 "PO-Revision-Date: 2021-07-22 10:14+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Korean <https://l10n.elementary.io/projects/music/extra/ko/>\n"
@@ -24,17 +24,15 @@ msgid "Music"
 msgstr "음악"
 
 #: data/music.appdata.xml.in:10
-msgid "The official elementary music player"
-msgstr "elementary 공식 음악 플레이어"
+msgid "Queue and play local audio files"
+msgstr ""
 
 #: data/music.appdata.xml.in:12
-#, fuzzy
 msgid ""
-"Music is a fast and beautiful audio player with a focus on music and "
-"libraries. It handles external devices and album art."
+"Quickly queue up and listen to your local music files without any extra "
+"frills. See embedded album artwork. Control playback with media keys or in "
+"the system audio indicator."
 msgstr ""
-"음악은 음악과 라이브러리에 중심을 둔 빠르고 아름다운 오디오 플레이어입니다. "
-"외부 연결 장치와, CD, 앨범 아트를 관리합니다."
 
 #: data/music.appdata.xml.in:33
 #, fuzzy
@@ -232,6 +230,17 @@ msgstr "음악 듣기"
 #, fuzzy
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr "노이즈;오디오;플레이어;MP3;iPod;재생;재생 목록;미디어;CD;폰;음악들;"
+
+#~ msgid "The official elementary music player"
+#~ msgstr "elementary 공식 음악 플레이어"
+
+#, fuzzy
+#~ msgid ""
+#~ "Music is a fast and beautiful audio player with a focus on music and "
+#~ "libraries. It handles external devices and album art."
+#~ msgstr ""
+#~ "음악은 음악과 라이브러리에 중심을 둔 빠르고 아름다운 오디오 플레이어입니"
+#~ "다. 외부 연결 장치와, CD, 앨범 아트를 관리합니다."
 
 #~ msgid "io.elementary.music"
 #~ msgstr "io.elementary.music"
