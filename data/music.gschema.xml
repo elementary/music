@@ -12,5 +12,27 @@
       <summary>An index representing the repeat mode</summary>
       <description>An index representing the repeat mode</description>
     </key>
+
+    <key name="window-height" type="i">
+      <default>475</default>
+      <summary>Most recent window height</summary>
+      <description>Most recent window height</description>
+    </key>
+    <key name="window-width" type="i">
+      <default>650</default>
+      <summary>Most recent window width</summary>
+      <description>Most recent window width</description>
+    </key>
+    <key name="window-maximized" type="b">
+      <default>false</default>
+      <summary>Open window maximized.</summary>
+      <description>Whether the main window of the application should open maximized or not.</description>
+    </key>
+
+    <key name="pane-position" type="i">
+      <default>370</default>
+      <summary>Pane position between the queue and now playing view</summary>
+      <description>Pane position between the queue and now playing view</description>
+    </key>
   </schema>
 </schemalist>

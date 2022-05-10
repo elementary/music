@@ -34,54 +34,70 @@ public class Music.Application : Gtk.Application {
     }
 
     protected override void activate () {
-        if (active_window == null) {
-            add_action_entries (ACTION_ENTRIES, this);
+        if (active_window != null) {
+            active_window.present_with_time (Gdk.CURRENT_TIME);
+            return;
+        }
 
-            ((SimpleAction) lookup_action (ACTION_PLAY_PAUSE)).set_enabled (false);
-            ((SimpleAction) lookup_action (ACTION_PLAY_PAUSE)).set_state (false);
-            ((SimpleAction) lookup_action (ACTION_NEXT)).set_enabled (false);
-            ((SimpleAction) lookup_action (ACTION_PREVIOUS)).set_enabled (false);
-            ((SimpleAction) lookup_action (ACTION_SHUFFLE)).set_enabled (false);
+        add_action_entries (ACTION_ENTRIES, this);
 
-            playback_manager = PlaybackManager.get_default ();
+        ((SimpleAction) lookup_action (ACTION_PLAY_PAUSE)).set_enabled (false);
+        ((SimpleAction) lookup_action (ACTION_PLAY_PAUSE)).set_state (false);
+        ((SimpleAction) lookup_action (ACTION_NEXT)).set_enabled (false);
+        ((SimpleAction) lookup_action (ACTION_PREVIOUS)).set_enabled (false);
+        ((SimpleAction) lookup_action (ACTION_SHUFFLE)).set_enabled (false);
 
-            var mpris_id = Bus.own_name (
-                BusType.SESSION,
-                "org.mpris.MediaPlayer2.io.elementary.music",
-                BusNameOwnerFlags.NONE,
-                on_bus_acquired,
-                null,
-                null
-            );
+        playback_manager = PlaybackManager.get_default ();
 
-            if (mpris_id == 0) {
-                warning ("Could not initialize MPRIS session.\n");
-            }
+        var mpris_id = Bus.own_name (
+            BusType.SESSION,
+            "org.mpris.MediaPlayer2.io.elementary.music",
+            BusNameOwnerFlags.NONE,
+            on_bus_acquired,
+            null,
+            null
+        );
 
-            var main_window = new MainWindow () {
-                default_width = 650,
-                title = _("Music")
-            };
+        if (mpris_id == 0) {
+            warning ("Could not initialize MPRIS session.\n");
+        }
 
-            add_window (main_window);
+        var main_window = new MainWindow () {
+            title = _("Music")
+        };
+        main_window.present ();
 
-            Gtk.IconTheme.get_for_display (Gdk.Display.get_default ()).add_resource_path ("/io/elementary/music");
+        add_window (main_window);
 
-            var granite_settings = Granite.Settings.get_default ();
-            var gtk_settings = Gtk.Settings.get_default ();
+        Gtk.IconTheme.get_for_display (Gdk.Display.get_default ()).add_resource_path ("/io/elementary/music");
 
+        var granite_settings = Granite.Settings.get_default ();
+        var gtk_settings = Gtk.Settings.get_default ();
+
+        gtk_settings.gtk_application_prefer_dark_theme = (
+            granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK
+        );
+
+        granite_settings.notify["prefers-color-scheme"].connect (() => {
             gtk_settings.gtk_application_prefer_dark_theme = (
                 granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK
             );
+        });
 
-            granite_settings.notify["prefers-color-scheme"].connect (() => {
-                gtk_settings.gtk_application_prefer_dark_theme = (
-                    granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK
-                );
-            });
+        /*
+        * This is very finicky. Bind size after present else set_titlebar gives us bad sizes
+        * Set maximize after height/width else window is min size on unmaximize
+        * Bind maximize as SET else get get bad sizes
+        */
+        var settings = new Settings ("io.elementary.music");
+        settings.bind ("window-height", main_window, "default-height", SettingsBindFlags.DEFAULT);
+        settings.bind ("window-width", main_window, "default-width", SettingsBindFlags.DEFAULT);
+
+        if (settings.get_boolean ("window-maximized")) {
+            main_window.maximize ();
         }
 
-        active_window.present_with_time (Gdk.CURRENT_TIME);
+        settings.bind ("window-maximized", main_window, "maximized", SettingsBindFlags.SET);
     }
 
     protected override void open (File[] files, string hint) {
