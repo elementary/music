@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-11 14:16-0700\n"
+"POT-Creation-Date: 2022-05-09 10:10-0700\n"
 "PO-Revision-Date: 2021-07-22 10:14+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Arabic <https://l10n.elementary.io/projects/music/extra/ar/>\n"
@@ -25,17 +25,15 @@ msgid "Music"
 msgstr "الموسيقى"
 
 #: data/music.appdata.xml.in:10
-msgid "The official elementary music player"
-msgstr "مشغّل الموسيقى الرسمي لإليمنتري"
+msgid "Queue and play local audio files"
+msgstr ""
 
 #: data/music.appdata.xml.in:12
-#, fuzzy
 msgid ""
-"Music is a fast and beautiful audio player with a focus on music and "
-"libraries. It handles external devices and album art."
+"Quickly queue up and listen to your local music files without any extra "
+"frills. See embedded album artwork. Control playback with media keys or in "
+"the system audio indicator."
 msgstr ""
-"الموسيقى هو مشغل صوت سريع وجميل مع التركيز على الموسيقى والمكتبات. يتعامل مع "
-"الأجهزة الخارجية والأقراص المرنة ، والألبومات."
 
 #: data/music.appdata.xml.in:33
 #, fuzzy
@@ -232,6 +230,17 @@ msgstr "إستمع للموسيقى"
 #: data/music.desktop.in:13
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
+
+#~ msgid "The official elementary music player"
+#~ msgstr "مشغّل الموسيقى الرسمي لإليمنتري"
+
+#, fuzzy
+#~ msgid ""
+#~ "Music is a fast and beautiful audio player with a focus on music and "
+#~ "libraries. It handles external devices and album art."
+#~ msgstr ""
+#~ "الموسيقى هو مشغل صوت سريع وجميل مع التركيز على الموسيقى والمكتبات. يتعامل "
+#~ "مع الأجهزة الخارجية والأقراص المرنة ، والألبومات."
 
 #~ msgid "io.elementary.music"
 #~ msgstr "io.elementary.music"
