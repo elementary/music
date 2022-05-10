@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-09 10:10-0700\n"
-"PO-Revision-Date: 2022-04-17 14:00+0000\n"
+"PO-Revision-Date: 2022-05-10 16:53+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
-"Language-Team: Catalan <https://l10n.elementary.io/projects/music/extra/ca/"
-">\n"
+"Language-Team: Catalan <https://l10n.elementary.io/projects/music/extra/ca/>"
+"\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,7 +26,7 @@ msgstr "Música"
 
 #: data/music.appdata.xml.in:10
 msgid "Queue and play local audio files"
-msgstr ""
+msgstr "Posa a la cua i reprodueix fitxers d'àudio locals"
 
 #: data/music.appdata.xml.in:12
 msgid ""
@@ -34,6 +34,10 @@ msgid ""
 "frills. See embedded album artwork. Control playback with media keys or in "
 "the system audio indicator."
 msgstr ""
+"Poseu ràpidament els fitxers de música locals en una cua i escolteu-los "
+"sense complicacions. Hi podeu veure la imatge de l'àlbum encastada. "
+"Controleu-ne la reproducció amb les tecles multimèdia o amb l'indicador "
+"d'àudio del sistema."
 
 #: data/music.appdata.xml.in:33
 msgid "elementary, Inc."
