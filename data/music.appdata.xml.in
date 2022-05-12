@@ -35,7 +35,7 @@
   <update_contact>contact_at_elementary.io</update_contact>
 
   <releases>
-    <release version="7.0.0" date="2022-05-06" urgency="medium">
+    <release version="7.0.0" date="2022-05-12" urgency="medium">
       <description>
         <p>Complete rewrite</p>
       </description>
