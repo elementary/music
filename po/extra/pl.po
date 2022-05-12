@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box 0.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-09 10:10-0700\n"
-"PO-Revision-Date: 2022-04-12 07:25+0000\n"
+"PO-Revision-Date: 2022-05-10 08:48+0000\n"
 "Last-Translator: Marcin Serwin <marcin.serwin0@protonmail.com>\n"
 "Language-Team: Polish <https://l10n.elementary.io/projects/music/extra/pl/>\n"
 "Language: pl\n"
@@ -26,7 +26,7 @@ msgstr "Muzyka"
 
 #: data/music.appdata.xml.in:10
 msgid "Queue and play local audio files"
-msgstr ""
+msgstr "Kolejkowanie i odtwarzanie lokalnych plików audio"
 
 #: data/music.appdata.xml.in:12
 msgid ""
@@ -34,6 +34,9 @@ msgid ""
 "frills. See embedded album artwork. Control playback with media keys or in "
 "the system audio indicator."
 msgstr ""
+"Szybko dodaj do kolejki i słuchaj swoich lokalnych plików muzyki bez "
+"zbędnych przeszkód. Zobacz dołączoną okładkę albumu. Kontroluj odtwarzanie "
+"przy użyciu przycisków medialnych lub systemowego indykatora audio."
 
 #: data/music.appdata.xml.in:33
 msgid "elementary, Inc."
