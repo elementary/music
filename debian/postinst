@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -e
+
+flatpak remote-add --if-not-exists --system appcenter https://flatpak.elementary.io/repo.flatpakrepo
+flatpak install --system --noninteractive appcenter io.elementary.music//stable || true
+
+#DEBHELPER#
+
+exit 0
