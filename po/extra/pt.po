@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-09 10:10-0700\n"
-"PO-Revision-Date: 2022-04-30 17:58+0000\n"
+"PO-Revision-Date: 2022-05-19 16:25+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.elementary.io/projects/music/extra/"
 "pt/>\n"
@@ -26,7 +26,7 @@ msgstr "Música"
 
 #: data/music.appdata.xml.in:10
 msgid "Queue and play local audio files"
-msgstr ""
+msgstr "Colocar na fila e reproduzir ficheiros áudio locais"
 
 #: data/music.appdata.xml.in:12
 msgid ""
@@ -34,6 +34,9 @@ msgid ""
 "frills. See embedded album artwork. Control playback with media keys or in "
 "the system audio indicator."
 msgstr ""
+"Coloca rapidamente na fila e ouça os ficheiros de música local sem quaisquer "
+"inconvenientes extra. Veja a capa do álbum incorporada. Controla a "
+"reprodução com as teclas de multimédia ou no indicador de áudio do sistema."
 
 #: data/music.appdata.xml.in:33
 msgid "elementary, Inc."
