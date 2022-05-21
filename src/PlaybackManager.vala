@@ -22,6 +22,14 @@ public class Music.PlaybackManager : Object {
     private uint progress_timer = 0;
     private Settings settings;
 
+    private enum Direction {
+        NONE,
+        NEXT,
+        PREVIOUS
+    }
+
+    private Direction direction = Direction.NONE;
+
     private PlaybackManager () {}
 
     construct {
@@ -181,6 +189,18 @@ public class Music.PlaybackManager : Object {
             case Gst.MessageType.EOS:
                 next ();
                 break;
+            case Gst.MessageType.ERROR:
+                switch (direction) {
+                    case Direction.NEXT:
+                        next ();
+                        break;
+                    case Direction.PREVIOUS:
+                        previous ();
+                        break;
+                    default:
+                        break;
+                }
+                break;
             case Gst.MessageType.STATE_CHANGED:
                 if (progress_timer != 0) {
                     Source.remove (progress_timer);
@@ -222,6 +242,7 @@ public class Music.PlaybackManager : Object {
     }
 
     public void next () {
+        direction = Direction.NEXT;
         uint position = -1;
         queue_liststore.find (current_audio, out position);
 
@@ -250,6 +271,7 @@ public class Music.PlaybackManager : Object {
     }
 
     public void previous () {
+        direction = Direction.PREVIOUS;
         uint position = -1;
         queue_liststore.find (current_audio, out position);
 
