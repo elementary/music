@@ -81,7 +81,14 @@ public class Music.PlaybackManager : Object {
         foreach (unowned var file in files) {
             if (file.query_exists ()) {
                 var audio_object = new AudioObject (file.get_uri ());
-                audio_object.title = audio_object.uri;
+
+                string? basename = file.get_basename ();
+
+                if (basename != null) {
+                    audio_object.title = basename;
+                } else {
+                    audio_object.title = audio_object.uri;
+                }
 
                 discoverer.discover_uri_async (audio_object.uri);
 
