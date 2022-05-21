@@ -70,6 +70,7 @@ public class Music.PlaybackManager : Object {
         });
 
         settings = new Settings ("io.elementary.music");
+        settings.changed["repeat-mode"].connect (update_next_previous_sensitivity);
     }
 
     public void seek_to_progress (double percent) {
@@ -238,6 +239,7 @@ public class Music.PlaybackManager : Object {
                     break;
 
                 case "all":
+                case "one":
                     if (position == queue_liststore.get_n_items () - 1) {
                         current_audio = (AudioObject) queue_liststore.get_item (0);
                     } else {
@@ -287,7 +289,8 @@ public class Music.PlaybackManager : Object {
             queue_liststore.find (current_audio, out position);
 
             if (position != -1) {
-                if (position != queue_liststore.get_n_items () - 1) {
+                if (position != queue_liststore.get_n_items () - 1 ||
+                        settings.get_string ("repeat-mode") == "all") {
                     next_sensitive = true;
                 }
 
