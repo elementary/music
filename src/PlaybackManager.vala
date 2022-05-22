@@ -7,6 +7,7 @@ public class Music.PlaybackManager : Object {
     public AudioObject? current_audio { get; set; default = null; }
     public ListStore queue_liststore { get; private set; }
     public int64 playback_position { get; private set; }
+    public signal void process_error (string file);
 
     private static PlaybackManager? _instance;
     public static PlaybackManager get_default () {
@@ -87,7 +88,7 @@ public class Music.PlaybackManager : Object {
     public void queue_files (File[] files) {
         discoverer.start ();
         foreach (unowned var file in files) {
-            if (file.query_exists ()) {
+            if (file.query_exists () && "audio" in ContentType.guess (file.get_path (), null, null)) {
                 var audio_object = new AudioObject (file.get_uri ());
 
                 string? basename = file.get_basename ();
@@ -101,6 +102,10 @@ public class Music.PlaybackManager : Object {
                 discoverer.discover_uri_async (audio_object.uri);
 
                 queue_liststore.append (audio_object);
+            } else {
+                var basename = file.get_basename ();
+                var label = (basename.length > 10) ? "%s...%s".printf (basename[:5], basename[-5:]) : basename;
+                process_error ("%s is not an audio file, or does not exist.".printf (label));
             }
         }
 
@@ -144,6 +149,9 @@ public class Music.PlaybackManager : Object {
                 return;
             case Gst.PbUtils.DiscovererResult.MISSING_PLUGINS:
                 critical ("Couldn't read metadata for '%s': Missing plugins.", uri);
+                var parts = uri.split ("/");
+                var label = (uri.length > 10) ? "%s...%s".printf (parts[parts.length - 1][:5], uri[-5:]) : uri;
+                process_error ("Couldn't read metadata for '%s': Missing plugins.".printf (label));
                 return;
             default:
                 break;
