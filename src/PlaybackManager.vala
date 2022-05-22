@@ -87,6 +87,7 @@ public class Music.PlaybackManager : Object {
 
     public void queue_files (File[] files) {
         discoverer.start ();
+        int invalids = 0;
         foreach (unowned var file in files) {
             if (file.query_exists () && "audio" in ContentType.guess (file.get_path (), null, null)) {
                 var audio_object = new AudioObject (file.get_uri ());
@@ -103,10 +104,17 @@ public class Music.PlaybackManager : Object {
 
                 queue_liststore.append (audio_object);
             } else {
-                var basename = file.get_basename ();
-                var label = (basename.length > 10) ? "%s...%s".printf (basename[:5], basename[-5:]) : basename;
-                process_error ("%s is not an audio file, or does not exist.".printf (label));
+                invalids++;
+                continue;
             }
+        }
+
+        if (invalids > 0) {
+            process_error (ngettext (
+                "%d invalid file was not added to the queue",
+                "%d invalid files were not added to the queue",
+                invalids).printf (invalids)
+            );
         }
 
         if (current_audio == null) {
@@ -122,8 +130,8 @@ public class Music.PlaybackManager : Object {
                     ngettext (
                         "%d track was added to the queue",
                         "%d tracks were added to the queue",
-                        files.length
-                    ).printf (files.length)
+                        files.length - invalids
+                    ).printf (files.length - invalids)
                 );
                 notification.set_icon (new ThemedIcon ("playlist-queue"));
 
@@ -149,9 +157,6 @@ public class Music.PlaybackManager : Object {
                 return;
             case Gst.PbUtils.DiscovererResult.MISSING_PLUGINS:
                 critical ("Couldn't read metadata for '%s': Missing plugins.", uri);
-                var parts = uri.split ("/");
-                var label = (uri.length > 10) ? "%s...%s".printf (parts[parts.length - 1][:5], uri[-5:]) : uri;
-                process_error ("Couldn't read metadata for '%s': Missing plugins.".printf (label));
                 return;
             default:
                 break;
