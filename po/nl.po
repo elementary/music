@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-11 14:16-0700\n"
-"PO-Revision-Date: 2020-10-31 21:15+0000\n"
-"Last-Translator: Jaimie85 <alsemgeest@gmail.com>\n"
+"PO-Revision-Date: 2022-05-22 13:49+0000\n"
+"Last-Translator: Dennis ten Hoove <dennistenhoove@protonmail.com>\n"
 "Language-Team: Dutch <https://l10n.elementary.io/projects/music/music/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:52+0000\n"
 
 #: src/Application.vala:63 src/Views/NowPlayingView.vala:18
@@ -25,39 +25,35 @@ msgid "Music"
 msgstr "Muziek"
 
 #: src/MainWindow.vala:26
-#, fuzzy
 msgid "Shuffle"
-msgstr "Shuffle inschakelen"
+msgstr "Shuffle"
 
 #: src/MainWindow.vala:41
 msgid "Queue is Empty"
-msgstr ""
+msgstr "Wachtrij is leeg"
 
 #: src/MainWindow.vala:42
 msgid "Audio files opened from Files will appear here"
-msgstr ""
+msgstr "Geluidsbestanden geopend vanuit Bestanden zullen hier verschijnen"
 
 #: src/MainWindow.vala:148
-#, fuzzy
 msgid "Repeat None"
-msgstr "Nummer herhalen"
+msgstr "Niks herhalen"
 
 #: src/MainWindow.vala:152
-#, fuzzy
 msgid "Repeat All"
-msgstr "Album herhalen"
+msgstr "Alles herhalen"
 
 #: src/MainWindow.vala:156
-#, fuzzy
 msgid "Repeat One"
-msgstr "Nummer herhalen"
+msgstr "Een herhalen"
 
 #: src/PlaybackManager.vala:103
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d nummer is toegevoegd aan de wachtrij"
+msgstr[1] "%d nummers zijn toegevoegd aan de wachtrij"
 
 #. Don't set artist for files without tags
 #: src/PlaybackManager.vala:163
@@ -65,9 +61,8 @@ msgid "Unknown"
 msgstr "Onbekend"
 
 #: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
-#, fuzzy
 msgid "Not playing"
-msgstr "Nieuwe afspeellijst"
+msgstr "Niet spelen"
 
 #: src/Views/NowPlayingView.vala:45
 msgid "Previous"
