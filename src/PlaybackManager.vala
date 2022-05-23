@@ -89,7 +89,7 @@ public class Music.PlaybackManager : Object {
         discoverer.start ();
         int invalids = 0;
         foreach (unowned var file in files) {
-            if (file.query_exists () && "audio" in ContentType.guess (file.get_path (), null, null)) {
+            if (file.query_exists () && "audio" in ContentType.guess (file.get_uri (), null, null)) {
                 var audio_object = new AudioObject (file.get_uri ());
 
                 string? basename = file.get_basename ();
