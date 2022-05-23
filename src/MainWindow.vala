@@ -62,8 +62,15 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         queue.attach (scrolled, 0, 1);
         queue.add_controller (drop_target);
 
-        var queue_handle = new Gtk.WindowHandle () {
+        var error_toast = new Granite.Toast ("");
+
+        var queue_overlay = new Gtk.Overlay () {
             child = queue
+        };
+        queue_overlay.add_overlay (error_toast);
+
+        var queue_handle = new Gtk.WindowHandle () {
+            child = queue_overlay
         };
 
         var end_window_controls = new Gtk.WindowControls (Gtk.PackType.END) {
@@ -125,6 +132,11 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
             }
 
             return false;
+        });
+
+        playback_manager.process_error.connect ((message) => {
+            error_toast.title = message;
+            error_toast.send_notification ();
         });
 
         repeat_button.clicked.connect (() => {

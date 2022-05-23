@@ -7,6 +7,7 @@ public class Music.PlaybackManager : Object {
     public AudioObject? current_audio { get; set; default = null; }
     public ListStore queue_liststore { get; private set; }
     public int64 playback_position { get; private set; }
+    public signal void process_error (string file);
 
     private static PlaybackManager? _instance;
     public static PlaybackManager get_default () {
@@ -86,8 +87,9 @@ public class Music.PlaybackManager : Object {
 
     public void queue_files (File[] files) {
         discoverer.start ();
+        int invalids = 0;
         foreach (unowned var file in files) {
-            if (file.query_exists ()) {
+            if (file.query_exists () && "audio" in ContentType.guess (file.get_path (), null, null)) {
                 var audio_object = new AudioObject (file.get_uri ());
 
                 string? basename = file.get_basename ();
@@ -101,7 +103,18 @@ public class Music.PlaybackManager : Object {
                 discoverer.discover_uri_async (audio_object.uri);
 
                 queue_liststore.append (audio_object);
+            } else {
+                invalids++;
+                continue;
             }
+        }
+
+        if (invalids > 0) {
+            process_error (ngettext (
+                "%d invalid file was not added to the queue",
+                "%d invalid files were not added to the queue",
+                invalids).printf (invalids)
+            );
         }
 
         if (current_audio == null) {
@@ -117,8 +130,8 @@ public class Music.PlaybackManager : Object {
                     ngettext (
                         "%d track was added to the queue",
                         "%d tracks were added to the queue",
-                        files.length
-                    ).printf (files.length)
+                        files.length - invalids
+                    ).printf (files.length - invalids)
                 );
                 notification.set_icon (new ThemedIcon ("playlist-queue"));
 
