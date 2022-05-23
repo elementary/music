@@ -134,8 +134,11 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
             return false;
         });
 
-        playback_manager.process_error.connect ((message) => {
-            error_toast.title = message;
+        playback_manager.invalids_found.connect ((count) => {
+            error_toast.title = ngettext (
+                "%d invalid file was not added to the queue",
+                "%d invalid files were not added to the queue",
+                count).printf (count);
             error_toast.send_notification ();
         });
 
