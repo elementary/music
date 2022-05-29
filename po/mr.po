@@ -3,10 +3,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-11 14:16-0700\n"
-"PO-Revision-Date: 2022-04-17 03:26+0000\n"
+"PO-Revision-Date: 2022-05-29 19:24+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
-"Language-Team: Marathi <https://l10n.elementary.io/projects/music/music/mr/"
-">\n"
+"Language-Team: Marathi <https://l10n.elementary.io/projects/music/music/mr/>"
+"\n"
 "Language: mr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -48,8 +48,8 @@ msgstr "एक गाणे पुन्हा चालवा"
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "रांगेत %d ट्रॅक जोडला गेला"
+msgstr[1] "रांगेत %d ट्रॅक जोडले गेले"
 
 #. Don't set artist for files without tags
 #: src/PlaybackManager.vala:163
@@ -57,9 +57,8 @@ msgid "Unknown"
 msgstr "अनोळखी"
 
 #: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
-#, fuzzy
 msgid "Not playing"
-msgstr "नवीन यादी"
+msgstr "वाजत नाही"
 
 #: src/Views/NowPlayingView.vala:45
 msgid "Previous"
