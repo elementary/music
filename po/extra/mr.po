@@ -3,10 +3,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-09 10:10-0700\n"
-"PO-Revision-Date: 2021-07-22 10:14+0000\n"
-"Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
-"Language-Team: Marathi <https://l10n.elementary.io/projects/music/extra/mr/"
-">\n"
+"PO-Revision-Date: 2022-05-29 18:19+0000\n"
+"Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
+"Language-Team: Marathi <https://l10n.elementary.io/projects/music/extra/mr/>"
+"\n"
 "Language: mr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +21,7 @@ msgstr "संगीत"
 
 #: data/music.appdata.xml.in:10
 msgid "Queue and play local audio files"
-msgstr ""
+msgstr "रांगेत लावा आणि स्थानिक ऑडिओ फायली प्ले करा"
 
 #: data/music.appdata.xml.in:12
 msgid ""
@@ -29,6 +29,9 @@ msgid ""
 "frills. See embedded album artwork. Control playback with media keys or in "
 "the system audio indicator."
 msgstr ""
+"त्वरीत रांगेत लावा आणि कोणत्याही अतिरिक्त फ्रिलशिवाय तुमच्या लोकल संगीत फाइल्"
+"स ऐका. एम्बेडेड अल्बम आर्टवर्क पहा. मीडिया की किंवा सिस्टम ऑडिओ इंडिकेटरमध्ये"
+" प्लेबॅक नियंत्रित करा."
 
 #: data/music.appdata.xml.in:33
 msgid "elementary, Inc."
@@ -36,12 +39,11 @@ msgstr "एलिमेंटरी, Inc."
 
 #: data/music.appdata.xml.in:40
 msgid "Complete rewrite"
-msgstr ""
+msgstr "पूर्ण पुनर्लेखन"
 
 #: data/music.appdata.xml.in:46
-#, fuzzy
 msgid "Drop support for Last.FM"
-msgstr "सीडी-रॉमसाठी समर्थन ड्रॉप करा"
+msgstr "Last.FM साठी समर्थन ड्रॉप करा"
 
 #: data/music.appdata.xml.in:47 data/music.appdata.xml.in:57
 #: data/music.appdata.xml.in:65 data/music.appdata.xml.in:76
@@ -52,7 +54,7 @@ msgstr "अद्ययावत भाषांतर"
 
 #: data/music.appdata.xml.in:53
 msgid "Fix an issue with saving smart playlists"
-msgstr ""
+msgstr "स्मार्ट प्लेलिस्ट जतन करण्याशी संबंधित समस्येचे निराकरण करा"
 
 #: data/music.appdata.xml.in:54
 msgid "Drop support for CD-ROM"
@@ -60,12 +62,11 @@ msgstr "सीडी-रॉमसाठी समर्थन ड्रॉप �
 
 #: data/music.appdata.xml.in:55
 msgid "Dark style support"
-msgstr ""
+msgstr "गडद शैली समर्थन"
 
 #: data/music.appdata.xml.in:56
-#, fuzzy
 msgid "Minor visual improvements"
-msgstr "कामगिरी सुधारणा"
+msgstr "किरकोळ दृश्य सुधारणा"
 
 #: data/music.appdata.xml.in:63
 msgid "Fix removing items from the queue"
@@ -224,9 +225,8 @@ msgid "Listen to music"
 msgstr "संगीत ऐका"
 
 #: data/music.desktop.in:13
-#, fuzzy
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
-msgstr "ध्वनी; ऑडियो; प्लेअर; एमपी 3; आयपॉड; प्ले; प्लेलिस्ट; मीडिया; सीडी; फोन; गाणी;"
+msgstr "ध्वनी; ऑडियो; प्लेअर; एमपी 3; प्ले; प्लेलिस्ट; मीडिया; गाणी;"
 
 #~ msgid "The official elementary music player"
 #~ msgstr "एलिमेंटरी चे अधिकृत संगीत वादक अप्लिकेशन"
