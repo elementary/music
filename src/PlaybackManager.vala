@@ -297,7 +297,8 @@ public class Music.PlaybackManager : Object {
 
             if (position != -1) {
                 if (position != queue_liststore.get_n_items () - 1 ||
-                        settings.get_string ("repeat-mode") == "all") {
+                    settings.get_string ("repeat-mode") == "all") {
+
                     next_sensitive = true;
                 }
 
