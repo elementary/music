@@ -7,6 +7,7 @@ public class Music.PlaybackManager : Object {
     public AudioObject? current_audio { get; set; default = null; }
     public ListStore queue_liststore { get; private set; }
     public int64 playback_position { get; private set; }
+    public signal void invalids_found (int count);
 
     private static PlaybackManager? _instance;
     public static PlaybackManager get_default () {
@@ -21,6 +22,14 @@ public class Music.PlaybackManager : Object {
     private Gst.PbUtils.Discoverer discoverer;
     private uint progress_timer = 0;
     private Settings settings;
+
+    private enum Direction {
+        NONE,
+        NEXT,
+        PREVIOUS
+    }
+
+    private Direction direction = Direction.NONE;
 
     private PlaybackManager () {}
 
@@ -79,8 +88,9 @@ public class Music.PlaybackManager : Object {
 
     public void queue_files (File[] files) {
         discoverer.start ();
+        int invalids = 0;
         foreach (unowned var file in files) {
-            if (file.query_exists ()) {
+            if (file.query_exists () && "audio" in ContentType.guess (file.get_uri (), null, null)) {
                 var audio_object = new AudioObject (file.get_uri ());
 
                 string? basename = file.get_basename ();
@@ -94,7 +104,14 @@ public class Music.PlaybackManager : Object {
                 discoverer.discover_uri_async (audio_object.uri);
 
                 queue_liststore.append (audio_object);
+            } else {
+                invalids++;
+                continue;
             }
+        }
+
+        if (invalids > 0) {
+            invalids_found (invalids);
         }
 
         if (current_audio == null) {
@@ -104,14 +121,18 @@ public class Music.PlaybackManager : Object {
             }
         } else {
             // Don't notify on app startup or if the app is focused
-            var application = GLib.Application.get_default ();
-            if (!((Gtk.Application) application).get_active_window ().has_focus) {
+            var application = (Gtk.Application) GLib.Application.get_default ();
+            var added_tracks = files.length - invalids;
+            if (
+                !application.get_active_window ().is_active &&
+                added_tracks > 0
+            ) {
                 var notification = new Notification (
                     ngettext (
                         "%d track was added to the queue",
                         "%d tracks were added to the queue",
-                        files.length
-                    ).printf (files.length)
+                        added_tracks
+                    ).printf (added_tracks)
                 );
                 notification.set_icon (new ThemedIcon ("playlist-queue"));
 
@@ -189,6 +210,18 @@ public class Music.PlaybackManager : Object {
             case Gst.MessageType.EOS:
                 next ();
                 break;
+            case Gst.MessageType.ERROR:
+                switch (direction) {
+                    case Direction.NEXT:
+                        next ();
+                        break;
+                    case Direction.PREVIOUS:
+                        previous ();
+                        break;
+                    default:
+                        break;
+                }
+                break;
             case Gst.MessageType.STATE_CHANGED:
                 if (progress_timer != 0) {
                     Source.remove (progress_timer);
@@ -230,6 +263,7 @@ public class Music.PlaybackManager : Object {
     }
 
     public void next () {
+        direction = Direction.NEXT;
         uint position = -1;
         queue_liststore.find (current_audio, out position);
 
@@ -259,6 +293,7 @@ public class Music.PlaybackManager : Object {
     }
 
     public void previous () {
+        direction = Direction.PREVIOUS;
         uint position = -1;
         queue_liststore.find (current_audio, out position);
 
