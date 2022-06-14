@@ -120,15 +120,18 @@ public class Music.PlaybackManager : Object {
             }
         } else {
             // Don't notify on app startup or if the app is focused
-            var application = GLib.Application.get_default ();
-            if (!((Gtk.Application) application).get_active_window ().has_focus &&
-                ((files.length - invalids) > 0)) {
+            var application = (Gtk.Application) GLib.Application.get_default ();
+            var added_tracks = files.length - invalids;
+            if (
+                !application.get_active_window ().is_active &&
+                added_tracks > 0
+            ) {
                 var notification = new Notification (
                     ngettext (
                         "%d track was added to the queue",
                         "%d tracks were added to the queue",
-                        files.length - invalids
-                    ).printf (files.length - invalids)
+                        added_tracks
+                    ).printf (added_tracks)
                 );
                 notification.set_icon (new ThemedIcon ("playlist-queue"));
 
