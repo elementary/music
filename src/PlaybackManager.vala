@@ -281,10 +281,11 @@ public class Music.PlaybackManager : Object {
 
                 case "all":
                 case "one":
-                    if (position == 0) {
-                        seek_to_progress (0);
-                    } else if (position == queue_liststore.get_n_items () - 1) {
+                    if (position == queue_liststore.get_n_items () - 1) {
                         current_audio = (AudioObject) queue_liststore.get_item (0);
+                        if (position == 0) {
+                            seek_to_progress (0);
+                        }
                     } else {
                         current_audio = (AudioObject) queue_liststore.get_item (position + 1);
                     }
@@ -301,6 +302,10 @@ public class Music.PlaybackManager : Object {
 
         if (position != -1 && position != 0) {
             current_audio = (AudioObject) queue_liststore.get_item (position - 1);
+        }
+
+        if (position == 0 && queue_liststore.get_n_items () == 1) {
+            seek_to_progress (0);
         }
     }
 
