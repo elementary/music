@@ -29,6 +29,8 @@ public class Music.PlaybackManager : Object {
         PREVIOUS
     }
 
+    private bool next_by_eos = false;
+
     private Direction direction = Direction.NONE;
 
     private PlaybackManager () {}
@@ -207,12 +209,12 @@ public class Music.PlaybackManager : Object {
     private bool bus_callback (Gst.Bus bus, Gst.Message message) {
         switch (message.type) {
             case Gst.MessageType.EOS:
-                next ();
+                next (true);
                 break;
             case Gst.MessageType.ERROR:
                 switch (direction) {
                     case Direction.NEXT:
-                        next ();
+                        next (next_by_eos);
                         break;
                     case Direction.PREVIOUS:
                         previous ();
@@ -261,12 +263,25 @@ public class Music.PlaybackManager : Object {
         }
     }
 
-    public void next () {
+    public void next (bool eos = false) {
         direction = Direction.NEXT;
+        next_by_eos = eos;
         uint position = -1;
         queue_liststore.find (current_audio, out position);
 
         if (position != -1) {
+            if (!next_by_eos) {
+                if (position == queue_liststore.get_n_items () - 1) {
+                    current_audio = (AudioObject) queue_liststore.get_item (0);
+                    if (position == 0) {
+                        seek_to_progress (0);
+                    }
+                } else {
+                    current_audio = (AudioObject) queue_liststore.get_item (position + 1);
+                }
+
+                return;
+            }
             switch (settings.get_string ("repeat-mode")) {
                 case "disabled":
                     if (position == queue_liststore.get_n_items () - 1) {
@@ -281,10 +296,17 @@ public class Music.PlaybackManager : Object {
                 case "all":
                     if (position == queue_liststore.get_n_items () - 1) {
                         current_audio = (AudioObject) queue_liststore.get_item (0);
+                        if (position == 0) {
+                            seek_to_progress (0);
+                        }
                     } else {
                         current_audio = (AudioObject) queue_liststore.get_item (position + 1);
                     }
 
+                    break;
+
+                case "one":
+                    seek_to_progress (0);
                     break;
             }
         }
@@ -297,6 +319,15 @@ public class Music.PlaybackManager : Object {
 
         if (position != -1 && position != 0) {
             current_audio = (AudioObject) queue_liststore.get_item (position - 1);
+        }
+
+        if (position == 0) {
+            uint n_items = queue_liststore.get_n_items ();
+            if (n_items == 1) {
+                seek_to_progress (0);
+            } else {
+                current_audio = (AudioObject) queue_liststore.get_item (n_items - 1);
+            }
         }
     }
 
@@ -324,20 +355,7 @@ public class Music.PlaybackManager : Object {
         var next_sensitive = false;
         var previous_sensitive = false;
 
-        if (current_audio != null) {
-            uint position = -1;
-            queue_liststore.find (current_audio, out position);
-
-            if (position != -1) {
-                if (position != queue_liststore.get_n_items () - 1) {
-                    next_sensitive = true;
-                }
-
-                if (position != 0) {
-                    previous_sensitive = true;
-                }
-            }
-        }
+        next_sensitive = previous_sensitive = current_audio != null;
 
         var default_application = GLib.Application.get_default ();
 
