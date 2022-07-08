@@ -209,7 +209,6 @@ public class Music.PlaybackManager : Object {
     private bool bus_callback (Gst.Bus bus, Gst.Message message) {
         switch (message.type) {
             case Gst.MessageType.EOS:
-                next_by_eos = true;
                 next (true);
                 break;
             case Gst.MessageType.ERROR:
@@ -280,6 +279,7 @@ public class Music.PlaybackManager : Object {
                 } else {
                     current_audio = (AudioObject) queue_liststore.get_item (position + 1);
                 }
+
                 return;
             }
             switch (settings.get_string ("repeat-mode")) {
