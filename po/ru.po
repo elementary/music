@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-11 14:16-0700\n"
-"PO-Revision-Date: 2021-08-16 09:16+0000\n"
-"Last-Translator: DartDeaDia <dartdeadia@protonmail.com>\n"
-"Language-Team: Russian <https://l10n.elementary.io/projects/music/music/ru/"
-">\n"
+"PO-Revision-Date: 2022-07-12 19:28+0000\n"
+"Last-Translator: кубик круглый <megarainbow29@gmail.com>\n"
+"Language-Team: Russian <https://l10n.elementary.io/projects/music/music/ru/>"
+"\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,27 +27,24 @@ msgid "Music"
 msgstr "Музыка"
 
 #: src/MainWindow.vala:26
-#, fuzzy
 msgid "Shuffle"
-msgstr "Включить воспроизведение в случайном порядке"
+msgstr "В случайном порядке"
 
 #: src/MainWindow.vala:41
 msgid "Queue is Empty"
-msgstr ""
+msgstr "Очередь пуста"
 
 #: src/MainWindow.vala:42
 msgid "Audio files opened from Files will appear here"
 msgstr ""
 
 #: src/MainWindow.vala:148
-#, fuzzy
 msgid "Repeat None"
-msgstr "Повторять композицию"
+msgstr "Не повторять"
 
 #: src/MainWindow.vala:152
-#, fuzzy
 msgid "Repeat All"
-msgstr "Повторять альбом"
+msgstr "Повторять всё"
 
 #: src/MainWindow.vala:156
 #, fuzzy
@@ -58,9 +55,9 @@ msgstr "Повторять композицию"
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d трек был добавлен в очередь"
+msgstr[1] "%d трека было добавлено в очередь"
+msgstr[2] "%d треков было добавлено в очередь"
 
 #. Don't set artist for files without tags
 #: src/PlaybackManager.vala:163
@@ -68,9 +65,8 @@ msgid "Unknown"
 msgstr "Неизвестный"
 
 #: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
-#, fuzzy
 msgid "Not playing"
-msgstr "Новый список воспроизведения"
+msgstr "Не играет"
 
 #: src/Views/NowPlayingView.vala:45
 msgid "Previous"
