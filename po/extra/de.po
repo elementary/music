@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-09 10:10-0700\n"
 "PO-Revision-Date: 2022-07-16 00:56+0000\n"
-"Last-Translator: ActualDisaster2447 <1jbe1vkry@mozmail.com>\n"
+"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <https://l10n.elementary.io/projects/music/extra/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -40,7 +40,7 @@ msgstr "elementary, Inc."
 
 #: data/music.appdata.xml.in:40
 msgid "Complete rewrite"
-msgstr ""
+msgstr "Komplett neu geschrieben"
 
 #: data/music.appdata.xml.in:46
 msgid "Drop support for Last.FM"
