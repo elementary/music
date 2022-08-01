@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-09 10:10-0700\n"
 "PO-Revision-Date: 2022-08-01 16:29+0000\n"
-"Last-Translator: lenemter <lenemter@gmail.com>\n"
+"Last-Translator: кубик круглый <megarainbow29@gmail.com>\n"
 "Language-Team: Russian <https://l10n.elementary.io/projects/music/extra/ru/>"
 "\n"
 "Language: ru\n"
@@ -27,7 +27,7 @@ msgstr "Музыка"
 
 #: data/music.appdata.xml.in:10
 msgid "Queue and play local audio files"
-msgstr ""
+msgstr "Ставьте в очередь и воспроизводите локальные аудиофайлы"
 
 #: data/music.appdata.xml.in:12
 msgid ""
