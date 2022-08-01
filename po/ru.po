@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-11 14:16-0700\n"
-"PO-Revision-Date: 2022-07-12 19:28+0000\n"
+"PO-Revision-Date: 2022-08-01 16:29+0000\n"
 "Last-Translator: кубик круглый <megarainbow29@gmail.com>\n"
 "Language-Team: Russian <https://l10n.elementary.io/projects/music/music/ru/>"
 "\n"
@@ -47,9 +47,8 @@ msgid "Repeat All"
 msgstr "Повторять всё"
 
 #: src/MainWindow.vala:156
-#, fuzzy
 msgid "Repeat One"
-msgstr "Повторять композицию"
+msgstr "Повторять этот трек"
 
 #: src/PlaybackManager.vala:103
 #, c-format
