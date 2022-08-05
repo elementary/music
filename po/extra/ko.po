@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-09 10:10-0700\n"
-"PO-Revision-Date: 2022-08-05 17:58+0000\n"
+"PO-Revision-Date: 2022-08-05 18:20+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://l10n.elementary.io/projects/music/extra/ko/>\n"
 "Language: ko\n"
@@ -200,23 +200,23 @@ msgstr "Opus Ogg에 대한 지원 추가"
 
 #: data/music.appdata.xml.in:164
 msgid "Fix Ctrl+Q support for non-Latin keyboard layouts"
-msgstr ""
+msgstr "non-Latin 키보드 레이아웃 용 Ctrl+Q 지원 수정"
 
 #: data/music.appdata.xml.in:165
 msgid "Reorganize media edition layout"
-msgstr ""
+msgstr "미디어 편집 레이아웃 재구성"
 
 #: data/music.appdata.xml.in:166
 msgid "Port grid to support HiDPI displays"
-msgstr ""
+msgstr "HiDPI 디스플레이를 지원하는 포트 그리드"
 
 #: data/music.appdata.xml.in:167
 msgid "Update icons to latest elementary icon release"
-msgstr ""
+msgstr "최신 elementary 용 아이콘으로 업데이트"
 
 #: data/music.appdata.xml.in:168
 msgid "Respect privacy mode"
-msgstr ""
+msgstr "개인 정보 보호 모드 존중"
 
 #: data/music.desktop.in:5
 msgid "Music Player"
@@ -227,9 +227,8 @@ msgid "Listen to music"
 msgstr "음악 듣기"
 
 #: data/music.desktop.in:13
-#, fuzzy
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
-msgstr "노이즈;오디오;플레이어;MP3;iPod;재생;재생 목록;미디어;CD;폰;음악들;"
+msgstr "노이즈;오디오;플레이어;MP3;재생;재생 목록;미디어;음악;"
 
 #~ msgid "The official elementary music player"
 #~ msgstr "elementary 공식 음악 플레이어"
