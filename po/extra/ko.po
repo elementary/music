@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-09 10:10-0700\n"
-"PO-Revision-Date: 2021-07-22 10:14+0000\n"
-"Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
+"PO-Revision-Date: 2022-08-05 16:19+0000\n"
+"Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://l10n.elementary.io/projects/music/extra/ko/>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -52,7 +52,7 @@ msgstr ""
 #: data/music.appdata.xml.in:85 data/music.appdata.xml.in:97
 #: data/music.appdata.xml.in:107 data/music.appdata.xml.in:117
 msgid "Updated translations"
-msgstr ""
+msgstr "최신 번역"
 
 #: data/music.appdata.xml.in:53
 msgid "Fix an issue with saving smart playlists"
@@ -84,36 +84,36 @@ msgstr ""
 
 #: data/music.appdata.xml.in:72
 msgid "Removed old gsignond vapi"
-msgstr ""
+msgstr "오래된 gsignond vapi를 제거했습니다"
 
 #: data/music.appdata.xml.in:73
 msgid "LibraryWindow: Use Granite.MessageDialog for showing alerts"
-msgstr ""
+msgstr "LibraryWindow: 경고 표시를 위해 Granite.MessageDialog 사용"
 
 #: data/music.appdata.xml.in:74
 msgid "PlaylistsUtils: Use Gtk.FileChooserNative"
-msgstr ""
+msgstr "PlaylistsUtils: Gtk.FileChooserNative 사용"
 
 #: data/music.appdata.xml.in:75
 msgid "Accurately remember window size"
-msgstr ""
+msgstr "창 크기를 정확하게 기억하기"
 
 #: data/music.appdata.xml.in:82
 msgid "Scale album art properly at high resolutions"
-msgstr ""
+msgstr "고해상도에서 앨범 아트의 크기를 적절하게 조정하기"
 
 #: data/music.appdata.xml.in:83
 msgid ""
 "Accurately select Music Folder Location for directories with spaces in name"
-msgstr ""
+msgstr "이름에 공백이 있는 디렉토리의 음악 폴더 위치를 정확하게 선택하세요"
 
 #: data/music.appdata.xml.in:84
 msgid "New MediaKeyListener path for gnome-settings-daemon"
-msgstr ""
+msgstr "gnome-settings-daemon에 대한 새 MediaKeyListener 경로"
 
 #: data/music.appdata.xml.in:91
 msgid "AlbumView: double-click to play album"
-msgstr ""
+msgstr "AlbumView: 앨범을 재생하려면 두 번 클릭하세요"
 
 #: data/music.appdata.xml.in:92
 msgid "Associate with s3m files"
