@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-09 10:10-0700\n"
-"PO-Revision-Date: 2022-08-05 23:25+0000\n"
+"PO-Revision-Date: 2022-08-06 09:29+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://l10n.elementary.io/projects/music/extra/ko/>\n"
 "Language: ko\n"
@@ -221,7 +221,7 @@ msgstr "개인 정보 보호 모드 존중"
 
 #: data/music.desktop.in:5
 msgid "Music Player"
-msgstr "음악 재생기"
+msgstr "뮤직 플레이어"
 
 #: data/music.desktop.in:6
 msgid "Listen to music"
