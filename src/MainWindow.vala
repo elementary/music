@@ -11,11 +11,6 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
     construct {
         var playback_manager = PlaybackManager.get_default ();
 
-        var css_provider = new Gtk.CssProvider ();
-        css_provider.load_from_data ("@define-color accent_color @ORANGE_500;".data);
-
-        Gtk.StyleContext.add_provider_for_display (Gdk.Display.get_default (), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-
         var start_window_controls = new Gtk.WindowControls (Gtk.PackType.START) {
             hexpand = true
         };
