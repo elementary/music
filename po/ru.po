@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-11 14:16-0700\n"
-"PO-Revision-Date: 2022-08-01 16:29+0000\n"
-"Last-Translator: кубик круглый <megarainbow29@gmail.com>\n"
-"Language-Team: Russian <https://l10n.elementary.io/projects/music/music/ru/"
-">\n"
+"PO-Revision-Date: 2022-08-11 23:40+0000\n"
+"Last-Translator: sn <useruseruser1233211@gmail.com>\n"
+"Language-Team: Russian <https://l10n.elementary.io/projects/music/music/ru/>"
+"\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,8 +35,9 @@ msgid "Queue is Empty"
 msgstr "Очередь пуста"
 
 #: src/MainWindow.vala:42
+#, fuzzy
 msgid "Audio files opened from Files will appear here"
-msgstr ""
+msgstr "Звуковые дорожки открытые из Файлов появятся здесь"
 
 #: src/MainWindow.vala:148
 msgid "Repeat None"
