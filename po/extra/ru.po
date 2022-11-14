@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-09 10:10-0700\n"
-"PO-Revision-Date: 2022-08-05 14:56+0000\n"
+"PO-Revision-Date: 2022-10-09 12:10+0000\n"
 "Last-Translator: lenemter <lenemter@gmail.com>\n"
 "Language-Team: Russian <https://l10n.elementary.io/projects/music/extra/ru/>"
 "\n"
@@ -70,7 +70,7 @@ msgstr "Прекращена поддержка CD-ROM"
 
 #: data/music.appdata.xml.in:55
 msgid "Dark style support"
-msgstr "Поддержка темного стиля"
+msgstr "Поддержка тёмного стиля"
 
 #: data/music.appdata.xml.in:56
 msgid "Minor visual improvements"
@@ -91,7 +91,7 @@ msgstr "Улучшения производительности"
 
 #: data/music.appdata.xml.in:72
 msgid "Removed old gsignond vapi"
-msgstr "Удален старый gsignond vapi"
+msgstr "Удалён старый gsignond vapi"
 
 #: data/music.appdata.xml.in:73
 msgid "LibraryWindow: Use Granite.MessageDialog for showing alerts"
@@ -181,7 +181,7 @@ msgstr "Поддержка поиска по URI"
 
 #: data/music.appdata.xml.in:125
 msgid "Change the queue mechanism to make it less confusing."
-msgstr "Изменен механизм очереди, чтобы сделать его менее запутанным."
+msgstr "Изменён механизм очереди, чтобы сделать его менее запутанным."
 
 #: data/music.appdata.xml.in:126
 msgid "Improve equalizer style."
@@ -194,7 +194,7 @@ msgstr "Исправления незначительных ошибок."
 
 #: data/music.appdata.xml.in:151
 msgid "Add rounded bottom window corner."
-msgstr "Добавлены закругленные нижние углы окна."
+msgstr "Добавлены закруглённые нижние углы окна."
 
 #: data/music.appdata.xml.in:154 data/music.appdata.xml.in:170
 msgid "New translations"
@@ -239,7 +239,8 @@ msgstr "Слушайте музыку"
 #: data/music.desktop.in:13
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
-"Шум;Аудио;Проигрыватель;MP3;Воспроизведение;Плейлист;Медиа;Телефон;Песни;"
+"Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;Шум;Аудио;Проигрыватель;Восп"
+"роизведение;Плейлист;Медиа;Телефон;Песни;"
 
 #~ msgid "The official elementary music player"
 #~ msgstr "Официальный музыкальный проигрыватель elementary"
