@@ -31,6 +31,15 @@
     <binary>io.elementary.music</binary>
   </provides>
 
+  <recommends>
+    <display_length compare="ge">380</display_length>
+  </recommends>
+  <supports>
+    <control>pointing</control>
+    <control>keyboard</control>
+    <control>touch</control>
+  </supports>
+  
   <url type="homepage">https://elementary.io/</url>
   <url type="bugtracker">https://github.com/elementary/music/issues</url>
   <url type="donation">https://elementary.io/get-involved#funding</url>
