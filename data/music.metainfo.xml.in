@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2015-2022 elementary, Inc. <contact@elementary.io> -->
+<component type="desktop-application">
+  <id>io.elementary.music</id>
+  <launchable type="desktop-id">io.elementary.music.desktop</launchable>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-only</project_license>
+
+  <name>Music</name>
+  <summary>Queue and play local audio files</summary>
+  <description>
+    <p>Quickly queue up and listen to your local music files without any extra frills. See embedded album artwork. Control playback with media keys or in the system audio indicator.</p>
+  </description>
+
+  <screenshots>
+    <screenshot type="default">
+      <caption>Quickly queue up your favorite tracks</caption>
+      <image>https://raw.githubusercontent.com/elementary/music/7.0.0/data/screenshot.png</image>
+    </screenshot>
+  </screenshots>
+
+  <branding>
+    <color type="primary">#f37329</color>
+    <color type="primary" scheme_preference="light">#cc3b02</color>
+    <color type="primary" scheme_preference="dark">#ffa154</color>
+  </branding>
+
+  <content_rating type="oars-1.1" />
+
+  <provides>
+    <binary>io.elementary.music</binary>
+  </provides>
+
+  <recommends>
+    <display_length compare="ge">380</display_length>
+  </recommends>
+  <supports>
+    <control>pointing</control>
+    <control>keyboard</control>
+    <control>touch</control>
+  </supports>
+  
+  <url type="homepage">https://elementary.io/</url>
+  <url type="bugtracker">https://github.com/elementary/music/issues</url>
+  <url type="donation">https://elementary.io/get-involved#funding</url>
+  <url type="help">https://github.com/elementary/music/discussions</url>
+  <url type="translate">https://l10n.elementary.io/projects/music</url>
+
+  <developer_name>elementary, Inc.</developer_name>
+  <project_group>elementary</project_group>
+  <update_contact>contact_at_elementary.io</update_contact>
+
+  <releases>
+    <release version="7.0.0" date="2022-05-12" urgency="medium">
+      <description>
+        <p>Complete rewrite</p>
+      </description>
+    </release>
+
+    <release version="5.1.1" date="2021-07-16" urgency="medium">
+      <description>
+        <p>Drop support for Last.FM</p>
+        <p>Updated translations</p>
+      </description>
+    </release>
+
+    <release version="5.1.0" date="2021-07-13" urgency="medium">
+      <description>
+        <p>Fix an issue with saving smart playlists</p>
+        <p>Drop support for CD-ROM</p>
+        <p>Dark style support</p>
+        <p>Minor visual improvements</p>
+        <p>Updated translations</p>
+      </description>
+    </release>
+
+    <release version="5.0.5" date="2020-03-04" urgency="medium">
+      <description>
+        <p>Fix removing items from the queue</p>
+        <p>Fix equalizer sliders not properly disabled sometimes</p>
+        <p>Updated translations</p>
+        <p>Performance improvements</p>
+      </description>
+    </release>
+
+    <release version="5.0.4" date="2019-04-17" urgency="medium">
+      <description>
+        <p>Removed old gsignond vapi</p>
+        <p>LibraryWindow: Use Granite.MessageDialog for showing alerts</p>
+        <p>PlaylistsUtils: Use Gtk.FileChooserNative</p>
+        <p>Accurately remember window size</p>
+        <p>Updated translations</p>
+      </description>
+    </release>
+  </releases>
+</component>
