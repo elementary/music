@@ -8,6 +8,21 @@ on:
       - main
 
 jobs:
+  gettext:
+    name: Gettext
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1 # Avoid an error when pushing
+
+      - name: Gettext
+        uses: elementary/actions/gettext-template@horus
+        env:
+          GIT_USER_TOKEN: "${{ secrets.GIT_USER_TOKEN }}"
+          GIT_USER_NAME: "elementaryBot"
+          GIT_USER_EMAIL: "builds@elementary.io"
+
   deploy_flatpak:
     name: Deploy Flatpak
     runs-on: ubuntu-latest
