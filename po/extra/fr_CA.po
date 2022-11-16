@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-09 10:10-0700\n"
+"POT-Creation-Date: 2022-11-16 16:47+0000\n"
 "PO-Revision-Date: 2016-01-04 18:56+0000\n"
 "Last-Translator: Corentin Noël <corentin@elementaryos.org>\n"
 "Language-Team: French (Canada) <fr_CA@li.org>\n"
@@ -18,202 +18,84 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 "X-Generator: Launchpad (build 18330)\n"
 
-#: data/music.appdata.xml.in:9 data/music.desktop.in:4
+#: data/music.metainfo.xml.in:9 data/music.desktop.in:4
 msgid "Music"
 msgstr "Musique"
 
-#: data/music.appdata.xml.in:10
+#: data/music.metainfo.xml.in:10
 msgid "Queue and play local audio files"
 msgstr ""
 
-#: data/music.appdata.xml.in:12
+#: data/music.metainfo.xml.in:12
 msgid ""
 "Quickly queue up and listen to your local music files without any extra "
 "frills. See embedded album artwork. Control playback with media keys or in "
 "the system audio indicator."
 msgstr ""
 
-#: data/music.appdata.xml.in:33
+#: data/music.metainfo.xml.in:17
+msgid "Quickly queue up your favorite tracks"
+msgstr ""
+
+#: data/music.metainfo.xml.in:49
 msgid "elementary, Inc."
 msgstr ""
 
-#: data/music.appdata.xml.in:40
+#: data/music.metainfo.xml.in:56
 msgid "Complete rewrite"
 msgstr ""
 
-#: data/music.appdata.xml.in:46
+#: data/music.metainfo.xml.in:62
 msgid "Drop support for Last.FM"
 msgstr ""
 
-#: data/music.appdata.xml.in:47 data/music.appdata.xml.in:57
-#: data/music.appdata.xml.in:65 data/music.appdata.xml.in:76
-#: data/music.appdata.xml.in:85 data/music.appdata.xml.in:97
-#: data/music.appdata.xml.in:107 data/music.appdata.xml.in:117
+#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:73
+#: data/music.metainfo.xml.in:81 data/music.metainfo.xml.in:92
 msgid "Updated translations"
 msgstr ""
 
-#: data/music.appdata.xml.in:53
+#: data/music.metainfo.xml.in:69
 msgid "Fix an issue with saving smart playlists"
 msgstr ""
 
-#: data/music.appdata.xml.in:54
+#: data/music.metainfo.xml.in:70
 msgid "Drop support for CD-ROM"
 msgstr ""
 
-#: data/music.appdata.xml.in:55
+#: data/music.metainfo.xml.in:71
 msgid "Dark style support"
 msgstr ""
 
-#: data/music.appdata.xml.in:56
+#: data/music.metainfo.xml.in:72
 msgid "Minor visual improvements"
 msgstr ""
 
-#: data/music.appdata.xml.in:63
+#: data/music.metainfo.xml.in:79
 msgid "Fix removing items from the queue"
 msgstr ""
 
-#: data/music.appdata.xml.in:64
+#: data/music.metainfo.xml.in:80
 msgid "Fix equalizer sliders not properly disabled sometimes"
 msgstr ""
 
-#: data/music.appdata.xml.in:66
+#: data/music.metainfo.xml.in:82
 msgid "Performance improvements"
 msgstr ""
 
-#: data/music.appdata.xml.in:72
+#: data/music.metainfo.xml.in:88
 msgid "Removed old gsignond vapi"
 msgstr ""
 
-#: data/music.appdata.xml.in:73
+#: data/music.metainfo.xml.in:89
 msgid "LibraryWindow: Use Granite.MessageDialog for showing alerts"
 msgstr ""
 
-#: data/music.appdata.xml.in:74
+#: data/music.metainfo.xml.in:90
 msgid "PlaylistsUtils: Use Gtk.FileChooserNative"
 msgstr ""
 
-#: data/music.appdata.xml.in:75
+#: data/music.metainfo.xml.in:91
 msgid "Accurately remember window size"
-msgstr ""
-
-#: data/music.appdata.xml.in:82
-msgid "Scale album art properly at high resolutions"
-msgstr ""
-
-#: data/music.appdata.xml.in:83
-msgid ""
-"Accurately select Music Folder Location for directories with spaces in name"
-msgstr ""
-
-#: data/music.appdata.xml.in:84
-msgid "New MediaKeyListener path for gnome-settings-daemon"
-msgstr ""
-
-#: data/music.appdata.xml.in:91
-msgid "AlbumView: double-click to play album"
-msgstr ""
-
-#: data/music.appdata.xml.in:92
-msgid "Associate with s3m files"
-msgstr ""
-
-#: data/music.appdata.xml.in:93
-msgid "Queue fixes"
-msgstr ""
-
-#: data/music.appdata.xml.in:94
-msgid "Properly restore playlists"
-msgstr ""
-
-#: data/music.appdata.xml.in:95
-msgid "Always respect custom music folder setting"
-msgstr ""
-
-#: data/music.appdata.xml.in:96 data/music.appdata.xml.in:106
-#: data/music.appdata.xml.in:116 data/music.appdata.xml.in:153
-#: data/music.appdata.xml.in:169
-msgid "Minor bug fixes"
-msgstr ""
-
-#: data/music.appdata.xml.in:103
-msgid "Fix list and column view sorting"
-msgstr ""
-
-#: data/music.appdata.xml.in:104
-msgid "Add orange accent color"
-msgstr ""
-
-#: data/music.appdata.xml.in:105
-msgid "Add shortcut accels to tooltips"
-msgstr ""
-
-#: data/music.appdata.xml.in:113
-msgid "Various UI changes"
-msgstr ""
-
-#: data/music.appdata.xml.in:114
-msgid "Shuffle fixes"
-msgstr ""
-
-#: data/music.appdata.xml.in:115
-msgid "Initial MPRIS support"
-msgstr ""
-
-#: data/music.appdata.xml.in:123
-msgid "Detect library changes at startup."
-msgstr ""
-
-#: data/music.appdata.xml.in:124
-msgid "Support searching by URI"
-msgstr ""
-
-#: data/music.appdata.xml.in:125
-msgid "Change the queue mechanism to make it less confusing."
-msgstr ""
-
-#: data/music.appdata.xml.in:126
-msgid "Improve equalizer style."
-msgstr ""
-
-#: data/music.appdata.xml.in:127 data/music.appdata.xml.in:133
-#: data/music.appdata.xml.in:139 data/music.appdata.xml.in:145
-msgid "Minor bug fixes."
-msgstr ""
-
-#: data/music.appdata.xml.in:151
-msgid "Add rounded bottom window corner."
-msgstr ""
-
-#: data/music.appdata.xml.in:154 data/music.appdata.xml.in:170
-msgid "New translations"
-msgstr ""
-
-#: data/music.appdata.xml.in:161
-msgid "Release for Loki."
-msgstr ""
-
-#: data/music.appdata.xml.in:163
-msgid "Add support for Opus Ogg"
-msgstr ""
-
-#: data/music.appdata.xml.in:164
-msgid "Fix Ctrl+Q support for non-Latin keyboard layouts"
-msgstr ""
-
-#: data/music.appdata.xml.in:165
-msgid "Reorganize media edition layout"
-msgstr ""
-
-#: data/music.appdata.xml.in:166
-msgid "Port grid to support HiDPI displays"
-msgstr ""
-
-#: data/music.appdata.xml.in:167
-msgid "Update icons to latest elementary icon release"
-msgstr ""
-
-#: data/music.appdata.xml.in:168
-msgid "Respect privacy mode"
 msgstr ""
 
 #: data/music.desktop.in:5

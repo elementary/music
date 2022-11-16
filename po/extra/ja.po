@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-09 10:10-0700\n"
+"POT-Creation-Date: 2022-11-16 16:47+0000\n"
 "PO-Revision-Date: 2022-05-22 13:49+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
-"Language-Team: Japanese <https://l10n.elementary.io/projects/music/extra/ja/>"
-"\n"
+"Language-Team: Japanese <https://l10n.elementary.io/projects/music/extra/ja/"
+">\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,206 +20,89 @@ msgstr ""
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
-#: data/music.appdata.xml.in:9 data/music.desktop.in:4
+#: data/music.metainfo.xml.in:9 data/music.desktop.in:4
 msgid "Music"
 msgstr "ミュージック"
 
-#: data/music.appdata.xml.in:10
+#: data/music.metainfo.xml.in:10
 msgid "Queue and play local audio files"
 msgstr "ローカルの音声ファイルをキューに追加して再生します"
 
-#: data/music.appdata.xml.in:12
+#: data/music.metainfo.xml.in:12
 msgid ""
 "Quickly queue up and listen to your local music files without any extra "
 "frills. See embedded album artwork. Control playback with media keys or in "
 "the system audio indicator."
 msgstr ""
-"手持ちの音声ファイルを簡単にキューに追加して再生しましょう。機能は至ってシンプルです。また、ファイルに埋め込まれたアルバムアートワークを表示できます。メデ"
-"ィアキーやシステム音声インジケーターを使うことで、曲の再生／停止／切り替えも可能です。"
+"手持ちの音声ファイルを簡単にキューに追加して再生しましょう。機能は至ってシン"
+"プルです。また、ファイルに埋め込まれたアルバムアートワークを表示できます。メ"
+"ディアキーやシステム音声インジケーターを使うことで、曲の再生／停止／切り替え"
+"も可能です。"
 
-#: data/music.appdata.xml.in:33
+#: data/music.metainfo.xml.in:17
+msgid "Quickly queue up your favorite tracks"
+msgstr ""
+
+#: data/music.metainfo.xml.in:49
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
 
-#: data/music.appdata.xml.in:40
+#: data/music.metainfo.xml.in:56
 msgid "Complete rewrite"
 msgstr "コードの完全な書き直し"
 
-#: data/music.appdata.xml.in:46
+#: data/music.metainfo.xml.in:62
 msgid "Drop support for Last.FM"
 msgstr "Last.FM への対応を終了"
 
-#: data/music.appdata.xml.in:47 data/music.appdata.xml.in:57
-#: data/music.appdata.xml.in:65 data/music.appdata.xml.in:76
-#: data/music.appdata.xml.in:85 data/music.appdata.xml.in:97
-#: data/music.appdata.xml.in:107 data/music.appdata.xml.in:117
+#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:73
+#: data/music.metainfo.xml.in:81 data/music.metainfo.xml.in:92
 msgid "Updated translations"
 msgstr "新しい翻訳"
 
-#: data/music.appdata.xml.in:53
+#: data/music.metainfo.xml.in:69
 msgid "Fix an issue with saving smart playlists"
 msgstr "スマートプレイリストの保存時に発生する不具合を修正"
 
-#: data/music.appdata.xml.in:54
+#: data/music.metainfo.xml.in:70
 msgid "Drop support for CD-ROM"
 msgstr "CD-ROM への対応を終了"
 
-#: data/music.appdata.xml.in:55
+#: data/music.metainfo.xml.in:71
 msgid "Dark style support"
 msgstr "ダークスタイルへの対応"
 
-#: data/music.appdata.xml.in:56
+#: data/music.metainfo.xml.in:72
 msgid "Minor visual improvements"
 msgstr "軽微な視覚上の改善"
 
-#: data/music.appdata.xml.in:63
+#: data/music.metainfo.xml.in:79
 msgid "Fix removing items from the queue"
 msgstr "キューから項目を削除する際の不具合を修正"
 
-#: data/music.appdata.xml.in:64
+#: data/music.metainfo.xml.in:80
 msgid "Fix equalizer sliders not properly disabled sometimes"
 msgstr "イコライザーのスライダーが適切に無効にならないことがある不具合を修正"
 
-#: data/music.appdata.xml.in:66
+#: data/music.metainfo.xml.in:82
 msgid "Performance improvements"
 msgstr "パフォーマンスの改善"
 
-#: data/music.appdata.xml.in:72
+#: data/music.metainfo.xml.in:88
 msgid "Removed old gsignond vapi"
 msgstr "古い gsignond vapi を削除"
 
-#: data/music.appdata.xml.in:73
+#: data/music.metainfo.xml.in:89
 msgid "LibraryWindow: Use Granite.MessageDialog for showing alerts"
 msgstr "ライブラリーウィンドウ: 警告の表示に Granite.MessageDialog を使用"
 
-#: data/music.appdata.xml.in:74
+#: data/music.metainfo.xml.in:90
 msgid "PlaylistsUtils: Use Gtk.FileChooserNative"
 msgstr "PlaylistsUtils: Gtk.FileChooserNative を使用"
 
-#: data/music.appdata.xml.in:75
+#: data/music.metainfo.xml.in:91
 msgid "Accurately remember window size"
 msgstr "正確なウィンドウサイズを保存"
-
-#: data/music.appdata.xml.in:82
-msgid "Scale album art properly at high resolutions"
-msgstr "高解像度においてアルバムアートの大きさを正しく調整"
-
-#: data/music.appdata.xml.in:83
-msgid ""
-"Accurately select Music Folder Location for directories with spaces in name"
-msgstr ""
-"名前に空白が含まれるミュージックフォルダーの場所を正しく選択できるように修正"
-
-#: data/music.appdata.xml.in:84
-msgid "New MediaKeyListener path for gnome-settings-daemon"
-msgstr "gnome-settings-daemon に対する新しい MediaKeyListener のパスを使用"
-
-#: data/music.appdata.xml.in:91
-msgid "AlbumView: double-click to play album"
-msgstr "アルバムビュー: ダブルクリックでアルバムを再生"
-
-#: data/music.appdata.xml.in:92
-msgid "Associate with s3m files"
-msgstr "s3m ファイルとの関連付け"
-
-#: data/music.appdata.xml.in:93
-msgid "Queue fixes"
-msgstr "キューの修正"
-
-#: data/music.appdata.xml.in:94
-msgid "Properly restore playlists"
-msgstr "プレイリストを正しく復元するように修正"
-
-#: data/music.appdata.xml.in:95
-msgid "Always respect custom music folder setting"
-msgstr "カスタムミュージックフォルダーの設定を常に反映するように修正"
-
-#: data/music.appdata.xml.in:96 data/music.appdata.xml.in:106
-#: data/music.appdata.xml.in:116 data/music.appdata.xml.in:153
-#: data/music.appdata.xml.in:169
-msgid "Minor bug fixes"
-msgstr "軽微なバグの修正"
-
-#: data/music.appdata.xml.in:103
-msgid "Fix list and column view sorting"
-msgstr "リスト表示とコラム表示におけるファイルの表示順を修正"
-
-#: data/music.appdata.xml.in:104
-msgid "Add orange accent color"
-msgstr "オレンジ色のアクセントカラーを追加"
-
-#: data/music.appdata.xml.in:105
-msgid "Add shortcut accels to tooltips"
-msgstr "ツールチップにショートカットアクセラレーターを追加"
-
-#: data/music.appdata.xml.in:113
-msgid "Various UI changes"
-msgstr "UI のさまざまな変更"
-
-#: data/music.appdata.xml.in:114
-msgid "Shuffle fixes"
-msgstr "シャッフル再生の修正"
-
-#: data/music.appdata.xml.in:115
-msgid "Initial MPRIS support"
-msgstr "MPRIS への最初の対応"
-
-#: data/music.appdata.xml.in:123
-msgid "Detect library changes at startup."
-msgstr "起動時にライブラリーの変更を検出するように修正しました。"
-
-#: data/music.appdata.xml.in:124
-msgid "Support searching by URI"
-msgstr "URI による検索に対応"
-
-#: data/music.appdata.xml.in:125
-msgid "Change the queue mechanism to make it less confusing."
-msgstr "キューの仕組みを単純化しました。"
-
-#: data/music.appdata.xml.in:126
-msgid "Improve equalizer style."
-msgstr "イコライザーのスタイルを改善しました。"
-
-#: data/music.appdata.xml.in:127 data/music.appdata.xml.in:133
-#: data/music.appdata.xml.in:139 data/music.appdata.xml.in:145
-msgid "Minor bug fixes."
-msgstr "軽微なバグを修正しました。"
-
-#: data/music.appdata.xml.in:151
-msgid "Add rounded bottom window corner."
-msgstr "ウィンドウ下部の角を丸くしました。"
-
-#: data/music.appdata.xml.in:154 data/music.appdata.xml.in:170
-msgid "New translations"
-msgstr "新しい翻訳"
-
-#: data/music.appdata.xml.in:161
-msgid "Release for Loki."
-msgstr "Loki 向けのリリースです。"
-
-#: data/music.appdata.xml.in:163
-msgid "Add support for Opus Ogg"
-msgstr "Opus Ogg への対応"
-
-#: data/music.appdata.xml.in:164
-msgid "Fix Ctrl+Q support for non-Latin keyboard layouts"
-msgstr "非ラテンキーボードレイアウトへの Ctrl+Q キーの対応を修正"
-
-#: data/music.appdata.xml.in:165
-msgid "Reorganize media edition layout"
-msgstr "メディアエディションレイアウトを認識するように修正"
-
-#: data/music.appdata.xml.in:166
-msgid "Port grid to support HiDPI displays"
-msgstr "グリッドの HiDPI ディスプレイへの対応"
-
-#: data/music.appdata.xml.in:167
-msgid "Update icons to latest elementary icon release"
-msgstr "最新の elementary アイコンテーマのアイコンに更新"
-
-#: data/music.appdata.xml.in:168
-msgid "Respect privacy mode"
-msgstr "プライバシーモードの設定を反映するように修正"
 
 #: data/music.desktop.in:5
 msgid "Music Player"
@@ -234,6 +117,97 @@ msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
 "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;オーディオ;音声;プレーヤー;"
 "プレイヤー;再生;プレイリスト;メディア;曲;"
+
+#~ msgid "Scale album art properly at high resolutions"
+#~ msgstr "高解像度においてアルバムアートの大きさを正しく調整"
+
+#~ msgid ""
+#~ "Accurately select Music Folder Location for directories with spaces in "
+#~ "name"
+#~ msgstr ""
+#~ "名前に空白が含まれるミュージックフォルダーの場所を正しく選択できるように修"
+#~ "正"
+
+#~ msgid "New MediaKeyListener path for gnome-settings-daemon"
+#~ msgstr "gnome-settings-daemon に対する新しい MediaKeyListener のパスを使用"
+
+#~ msgid "AlbumView: double-click to play album"
+#~ msgstr "アルバムビュー: ダブルクリックでアルバムを再生"
+
+#~ msgid "Associate with s3m files"
+#~ msgstr "s3m ファイルとの関連付け"
+
+#~ msgid "Queue fixes"
+#~ msgstr "キューの修正"
+
+#~ msgid "Properly restore playlists"
+#~ msgstr "プレイリストを正しく復元するように修正"
+
+#~ msgid "Always respect custom music folder setting"
+#~ msgstr "カスタムミュージックフォルダーの設定を常に反映するように修正"
+
+#~ msgid "Minor bug fixes"
+#~ msgstr "軽微なバグの修正"
+
+#~ msgid "Fix list and column view sorting"
+#~ msgstr "リスト表示とコラム表示におけるファイルの表示順を修正"
+
+#~ msgid "Add orange accent color"
+#~ msgstr "オレンジ色のアクセントカラーを追加"
+
+#~ msgid "Add shortcut accels to tooltips"
+#~ msgstr "ツールチップにショートカットアクセラレーターを追加"
+
+#~ msgid "Various UI changes"
+#~ msgstr "UI のさまざまな変更"
+
+#~ msgid "Shuffle fixes"
+#~ msgstr "シャッフル再生の修正"
+
+#~ msgid "Initial MPRIS support"
+#~ msgstr "MPRIS への最初の対応"
+
+#~ msgid "Detect library changes at startup."
+#~ msgstr "起動時にライブラリーの変更を検出するように修正しました。"
+
+#~ msgid "Support searching by URI"
+#~ msgstr "URI による検索に対応"
+
+#~ msgid "Change the queue mechanism to make it less confusing."
+#~ msgstr "キューの仕組みを単純化しました。"
+
+#~ msgid "Improve equalizer style."
+#~ msgstr "イコライザーのスタイルを改善しました。"
+
+#~ msgid "Minor bug fixes."
+#~ msgstr "軽微なバグを修正しました。"
+
+#~ msgid "Add rounded bottom window corner."
+#~ msgstr "ウィンドウ下部の角を丸くしました。"
+
+#~ msgid "New translations"
+#~ msgstr "新しい翻訳"
+
+#~ msgid "Release for Loki."
+#~ msgstr "Loki 向けのリリースです。"
+
+#~ msgid "Add support for Opus Ogg"
+#~ msgstr "Opus Ogg への対応"
+
+#~ msgid "Fix Ctrl+Q support for non-Latin keyboard layouts"
+#~ msgstr "非ラテンキーボードレイアウトへの Ctrl+Q キーの対応を修正"
+
+#~ msgid "Reorganize media edition layout"
+#~ msgstr "メディアエディションレイアウトを認識するように修正"
+
+#~ msgid "Port grid to support HiDPI displays"
+#~ msgstr "グリッドの HiDPI ディスプレイへの対応"
+
+#~ msgid "Update icons to latest elementary icon release"
+#~ msgstr "最新の elementary アイコンテーマのアイコンに更新"
+
+#~ msgid "Respect privacy mode"
+#~ msgstr "プライバシーモードの設定を反映するように修正"
 
 #~ msgid "The official elementary music player"
 #~ msgstr "elementary の公式ミュージックプレーヤー"

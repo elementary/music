@@ -2,11 +2,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-09 10:10-0700\n"
+"POT-Creation-Date: 2022-11-16 16:47+0000\n"
 "PO-Revision-Date: 2022-05-29 18:19+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
-"Language-Team: Marathi <https://l10n.elementary.io/projects/music/extra/mr/>"
-"\n"
+"Language-Team: Marathi <https://l10n.elementary.io/projects/music/extra/mr/"
+">\n"
 "Language: mr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,206 +15,87 @@ msgstr ""
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
-#: data/music.appdata.xml.in:9 data/music.desktop.in:4
+#: data/music.metainfo.xml.in:9 data/music.desktop.in:4
 msgid "Music"
 msgstr "संगीत"
 
-#: data/music.appdata.xml.in:10
+#: data/music.metainfo.xml.in:10
 msgid "Queue and play local audio files"
 msgstr "रांगेत लावा आणि स्थानिक ऑडिओ फायली प्ले करा"
 
-#: data/music.appdata.xml.in:12
+#: data/music.metainfo.xml.in:12
 msgid ""
 "Quickly queue up and listen to your local music files without any extra "
 "frills. See embedded album artwork. Control playback with media keys or in "
 "the system audio indicator."
 msgstr ""
-"त्वरीत रांगेत लावा आणि कोणत्याही अतिरिक्त फ्रिलशिवाय तुमच्या लोकल संगीत फाइल्"
-"स ऐका. एम्बेडेड अल्बम आर्टवर्क पहा. मीडिया की किंवा सिस्टम ऑडिओ इंडिकेटरमध्ये"
-" प्लेबॅक नियंत्रित करा."
+"त्वरीत रांगेत लावा आणि कोणत्याही अतिरिक्त फ्रिलशिवाय तुमच्या लोकल संगीत फाइल्स ऐका. "
+"एम्बेडेड अल्बम आर्टवर्क पहा. मीडिया की किंवा सिस्टम ऑडिओ इंडिकेटरमध्ये प्लेबॅक नियंत्रित करा."
 
-#: data/music.appdata.xml.in:33
+#: data/music.metainfo.xml.in:17
+msgid "Quickly queue up your favorite tracks"
+msgstr ""
+
+#: data/music.metainfo.xml.in:49
 msgid "elementary, Inc."
 msgstr "एलिमेंटरी, Inc."
 
-#: data/music.appdata.xml.in:40
+#: data/music.metainfo.xml.in:56
 msgid "Complete rewrite"
 msgstr "पूर्ण पुनर्लेखन"
 
-#: data/music.appdata.xml.in:46
+#: data/music.metainfo.xml.in:62
 msgid "Drop support for Last.FM"
 msgstr "Last.FM साठी समर्थन ड्रॉप करा"
 
-#: data/music.appdata.xml.in:47 data/music.appdata.xml.in:57
-#: data/music.appdata.xml.in:65 data/music.appdata.xml.in:76
-#: data/music.appdata.xml.in:85 data/music.appdata.xml.in:97
-#: data/music.appdata.xml.in:107 data/music.appdata.xml.in:117
+#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:73
+#: data/music.metainfo.xml.in:81 data/music.metainfo.xml.in:92
 msgid "Updated translations"
 msgstr "अद्ययावत भाषांतर"
 
-#: data/music.appdata.xml.in:53
+#: data/music.metainfo.xml.in:69
 msgid "Fix an issue with saving smart playlists"
 msgstr "स्मार्ट प्लेलिस्ट जतन करण्याशी संबंधित समस्येचे निराकरण करा"
 
-#: data/music.appdata.xml.in:54
+#: data/music.metainfo.xml.in:70
 msgid "Drop support for CD-ROM"
 msgstr "सीडी-रॉमसाठी समर्थन ड्रॉप करा"
 
-#: data/music.appdata.xml.in:55
+#: data/music.metainfo.xml.in:71
 msgid "Dark style support"
 msgstr "गडद शैली समर्थन"
 
-#: data/music.appdata.xml.in:56
+#: data/music.metainfo.xml.in:72
 msgid "Minor visual improvements"
 msgstr "किरकोळ दृश्य सुधारणा"
 
-#: data/music.appdata.xml.in:63
+#: data/music.metainfo.xml.in:79
 msgid "Fix removing items from the queue"
 msgstr "रांगेतून आयटम काढण्याचे निराकरण करा"
 
-#: data/music.appdata.xml.in:64
+#: data/music.metainfo.xml.in:80
 msgid "Fix equalizer sliders not properly disabled sometimes"
 msgstr "बरोबरीच्या स्लाइडर कधीकधी योग्यरित्या अक्षम केल्या जात नाहीत त्याचे निराकरण करा"
 
-#: data/music.appdata.xml.in:66
+#: data/music.metainfo.xml.in:82
 msgid "Performance improvements"
 msgstr "कामगिरी सुधारणा"
 
-#: data/music.appdata.xml.in:72
+#: data/music.metainfo.xml.in:88
 msgid "Removed old gsignond vapi"
 msgstr "जुन्या gsignond vapi काढल्या"
 
-#: data/music.appdata.xml.in:73
+#: data/music.metainfo.xml.in:89
 msgid "LibraryWindow: Use Granite.MessageDialog for showing alerts"
 msgstr "लाइब्ररीविंडो: अ‍ॅलर्ट दर्शविण्यासाठी Granite.MessageDialog वापरा"
 
-#: data/music.appdata.xml.in:74
+#: data/music.metainfo.xml.in:90
 msgid "PlaylistsUtils: Use Gtk.FileChooserNative"
 msgstr "PlaylistsUtils: Gtk.FileChooserNative वापरा"
 
-#: data/music.appdata.xml.in:75
+#: data/music.metainfo.xml.in:91
 msgid "Accurately remember window size"
 msgstr "विंडोचा आकार अचूकपणे लक्षात ठेवा"
-
-#: data/music.appdata.xml.in:82
-msgid "Scale album art properly at high resolutions"
-msgstr "उच्च रिजोल्यूशनवर योग्यरित्या अल्बम कला स्केल करा"
-
-#: data/music.appdata.xml.in:83
-msgid ""
-"Accurately select Music Folder Location for directories with spaces in name"
-msgstr "नावांमध्ये रिक्त स्थाने असलेल्या डिरेक्टरीजसाठी संगीत फोल्डर स्थान अचूकपणे निवडा"
-
-#: data/music.appdata.xml.in:84
-msgid "New MediaKeyListener path for gnome-settings-daemon"
-msgstr "gnome-settings-daemon साठी नवीन MediaKeyListener पथ"
-
-#: data/music.appdata.xml.in:91
-msgid "AlbumView: double-click to play album"
-msgstr "अल्बमव्ह्यू: अल्बम प्ले करण्यासाठी डबल क्लिक करा"
-
-#: data/music.appdata.xml.in:92
-msgid "Associate with s3m files"
-msgstr "s3m फायली संबद्ध करा"
-
-#: data/music.appdata.xml.in:93
-msgid "Queue fixes"
-msgstr "रांगेचे निराकरण"
-
-#: data/music.appdata.xml.in:94
-msgid "Properly restore playlists"
-msgstr "प्लेलिस्ट योग्यरित्या पुनर्संचयित करा"
-
-#: data/music.appdata.xml.in:95
-msgid "Always respect custom music folder setting"
-msgstr "नेहमी सानुकूल संगीत फोल्डर सेटिंगचा आदर करा"
-
-#: data/music.appdata.xml.in:96 data/music.appdata.xml.in:106
-#: data/music.appdata.xml.in:116 data/music.appdata.xml.in:153
-#: data/music.appdata.xml.in:169
-msgid "Minor bug fixes"
-msgstr "किरकोळ दोष निराकरणे"
-
-#: data/music.appdata.xml.in:103
-msgid "Fix list and column view sorting"
-msgstr "यादी आणि स्तंभ दृश्य क्रमवारी निश्चित करा"
-
-#: data/music.appdata.xml.in:104
-msgid "Add orange accent color"
-msgstr "नारंगी उच्चारण रंग जोडा"
-
-#: data/music.appdata.xml.in:105
-msgid "Add shortcut accels to tooltips"
-msgstr "टूलटिपमध्ये शॉर्टकट अ‍ॅक्सेल्स जोडा"
-
-#: data/music.appdata.xml.in:113
-msgid "Various UI changes"
-msgstr "विविध UI बदल"
-
-#: data/music.appdata.xml.in:114
-msgid "Shuffle fixes"
-msgstr "शफल निराकरणे"
-
-#: data/music.appdata.xml.in:115
-msgid "Initial MPRIS support"
-msgstr "आरंभिक MPRIS समर्थन"
-
-#: data/music.appdata.xml.in:123
-msgid "Detect library changes at startup."
-msgstr "सुरूवातीस लायब्ररी बदल शोधा."
-
-#: data/music.appdata.xml.in:124
-msgid "Support searching by URI"
-msgstr "URI द्वारे शोध समर्थन"
-
-#: data/music.appdata.xml.in:125
-msgid "Change the queue mechanism to make it less confusing."
-msgstr "कमी गोंधळात टाकण्यासाठी रांग यंत्रणा बदला."
-
-#: data/music.appdata.xml.in:126
-msgid "Improve equalizer style."
-msgstr "बराबरीची शैली सुधारित करा."
-
-#: data/music.appdata.xml.in:127 data/music.appdata.xml.in:133
-#: data/music.appdata.xml.in:139 data/music.appdata.xml.in:145
-msgid "Minor bug fixes."
-msgstr "किरकोळ दोष निराकरणे."
-
-#: data/music.appdata.xml.in:151
-msgid "Add rounded bottom window corner."
-msgstr "विंडोच्या तळाशी गोलाकार कोपरा जोडा."
-
-#: data/music.appdata.xml.in:154 data/music.appdata.xml.in:170
-msgid "New translations"
-msgstr "नवीन भाषांतरे"
-
-#: data/music.appdata.xml.in:161
-msgid "Release for Loki."
-msgstr "लोकीसाठी रिलीज."
-
-#: data/music.appdata.xml.in:163
-msgid "Add support for Opus Ogg"
-msgstr "ऑपस ओगसाठी समर्थन जोडा"
-
-#: data/music.appdata.xml.in:164
-msgid "Fix Ctrl+Q support for non-Latin keyboard layouts"
-msgstr "नॉन-लॅटिन कीबोर्ड लेआउटसाठी Ctrl + Q समर्थन निश्चित करा"
-
-#: data/music.appdata.xml.in:165
-msgid "Reorganize media edition layout"
-msgstr "मीडिया आवृत्ती लेआउटची पुनर्रचना करा"
-
-#: data/music.appdata.xml.in:166
-msgid "Port grid to support HiDPI displays"
-msgstr "HiDPI प्रदर्शनांना समर्थन देण्यासाठी पोर्ट ग्रीड"
-
-#: data/music.appdata.xml.in:167
-msgid "Update icons to latest elementary icon release"
-msgstr "नवीनतम एलिमेंटरी आयकॉनच्या रीलिझवर आयकॉन अपडेट करा"
-
-#: data/music.appdata.xml.in:168
-msgid "Respect privacy mode"
-msgstr "गोपनीयता मोडचा आदर करा"
 
 #: data/music.desktop.in:5
 msgid "Music Player"
@@ -227,6 +108,95 @@ msgstr "संगीत ऐका"
 #: data/music.desktop.in:13
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr "ध्वनी; ऑडियो; प्लेअर; एमपी 3; प्ले; प्लेलिस्ट; मीडिया; गाणी;"
+
+#~ msgid "Scale album art properly at high resolutions"
+#~ msgstr "उच्च रिजोल्यूशनवर योग्यरित्या अल्बम कला स्केल करा"
+
+#~ msgid ""
+#~ "Accurately select Music Folder Location for directories with spaces in "
+#~ "name"
+#~ msgstr "नावांमध्ये रिक्त स्थाने असलेल्या डिरेक्टरीजसाठी संगीत फोल्डर स्थान अचूकपणे निवडा"
+
+#~ msgid "New MediaKeyListener path for gnome-settings-daemon"
+#~ msgstr "gnome-settings-daemon साठी नवीन MediaKeyListener पथ"
+
+#~ msgid "AlbumView: double-click to play album"
+#~ msgstr "अल्बमव्ह्यू: अल्बम प्ले करण्यासाठी डबल क्लिक करा"
+
+#~ msgid "Associate with s3m files"
+#~ msgstr "s3m फायली संबद्ध करा"
+
+#~ msgid "Queue fixes"
+#~ msgstr "रांगेचे निराकरण"
+
+#~ msgid "Properly restore playlists"
+#~ msgstr "प्लेलिस्ट योग्यरित्या पुनर्संचयित करा"
+
+#~ msgid "Always respect custom music folder setting"
+#~ msgstr "नेहमी सानुकूल संगीत फोल्डर सेटिंगचा आदर करा"
+
+#~ msgid "Minor bug fixes"
+#~ msgstr "किरकोळ दोष निराकरणे"
+
+#~ msgid "Fix list and column view sorting"
+#~ msgstr "यादी आणि स्तंभ दृश्य क्रमवारी निश्चित करा"
+
+#~ msgid "Add orange accent color"
+#~ msgstr "नारंगी उच्चारण रंग जोडा"
+
+#~ msgid "Add shortcut accels to tooltips"
+#~ msgstr "टूलटिपमध्ये शॉर्टकट अ‍ॅक्सेल्स जोडा"
+
+#~ msgid "Various UI changes"
+#~ msgstr "विविध UI बदल"
+
+#~ msgid "Shuffle fixes"
+#~ msgstr "शफल निराकरणे"
+
+#~ msgid "Initial MPRIS support"
+#~ msgstr "आरंभिक MPRIS समर्थन"
+
+#~ msgid "Detect library changes at startup."
+#~ msgstr "सुरूवातीस लायब्ररी बदल शोधा."
+
+#~ msgid "Support searching by URI"
+#~ msgstr "URI द्वारे शोध समर्थन"
+
+#~ msgid "Change the queue mechanism to make it less confusing."
+#~ msgstr "कमी गोंधळात टाकण्यासाठी रांग यंत्रणा बदला."
+
+#~ msgid "Improve equalizer style."
+#~ msgstr "बराबरीची शैली सुधारित करा."
+
+#~ msgid "Minor bug fixes."
+#~ msgstr "किरकोळ दोष निराकरणे."
+
+#~ msgid "Add rounded bottom window corner."
+#~ msgstr "विंडोच्या तळाशी गोलाकार कोपरा जोडा."
+
+#~ msgid "New translations"
+#~ msgstr "नवीन भाषांतरे"
+
+#~ msgid "Release for Loki."
+#~ msgstr "लोकीसाठी रिलीज."
+
+#~ msgid "Add support for Opus Ogg"
+#~ msgstr "ऑपस ओगसाठी समर्थन जोडा"
+
+#~ msgid "Fix Ctrl+Q support for non-Latin keyboard layouts"
+#~ msgstr "नॉन-लॅटिन कीबोर्ड लेआउटसाठी Ctrl + Q समर्थन निश्चित करा"
+
+#~ msgid "Reorganize media edition layout"
+#~ msgstr "मीडिया आवृत्ती लेआउटची पुनर्रचना करा"
+
+#~ msgid "Port grid to support HiDPI displays"
+#~ msgstr "HiDPI प्रदर्शनांना समर्थन देण्यासाठी पोर्ट ग्रीड"
+
+#~ msgid "Update icons to latest elementary icon release"
+#~ msgstr "नवीनतम एलिमेंटरी आयकॉनच्या रीलिझवर आयकॉन अपडेट करा"
+
+#~ msgid "Respect privacy mode"
+#~ msgstr "गोपनीयता मोडचा आदर करा"
 
 #~ msgid "The official elementary music player"
 #~ msgstr "एलिमेंटरी चे अधिकृत संगीत वादक अप्लिकेशन"

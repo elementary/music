@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-09 10:10-0700\n"
+"POT-Creation-Date: 2022-11-16 16:47+0000\n"
 "PO-Revision-Date: 2021-07-22 10:14+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Lithuanian <https://l10n.elementary.io/projects/music/extra/"
@@ -22,207 +22,86 @@ msgstr ""
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
-#: data/music.appdata.xml.in:9 data/music.desktop.in:4
+#: data/music.metainfo.xml.in:9 data/music.desktop.in:4
 msgid "Music"
 msgstr "Muzika"
 
-#: data/music.appdata.xml.in:10
+#: data/music.metainfo.xml.in:10
 msgid "Queue and play local audio files"
 msgstr ""
 
-#: data/music.appdata.xml.in:12
+#: data/music.metainfo.xml.in:12
 msgid ""
 "Quickly queue up and listen to your local music files without any extra "
 "frills. See embedded album artwork. Control playback with media keys or in "
 "the system audio indicator."
 msgstr ""
 
-#: data/music.appdata.xml.in:33
+#: data/music.metainfo.xml.in:17
+msgid "Quickly queue up your favorite tracks"
+msgstr ""
+
+#: data/music.metainfo.xml.in:49
 #, fuzzy
 msgid "elementary, Inc."
 msgstr "elementary LLC."
 
-#: data/music.appdata.xml.in:40
+#: data/music.metainfo.xml.in:56
 msgid "Complete rewrite"
 msgstr ""
 
-#: data/music.appdata.xml.in:46
+#: data/music.metainfo.xml.in:62
 msgid "Drop support for Last.FM"
 msgstr ""
 
-#: data/music.appdata.xml.in:47 data/music.appdata.xml.in:57
-#: data/music.appdata.xml.in:65 data/music.appdata.xml.in:76
-#: data/music.appdata.xml.in:85 data/music.appdata.xml.in:97
-#: data/music.appdata.xml.in:107 data/music.appdata.xml.in:117
+#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:73
+#: data/music.metainfo.xml.in:81 data/music.metainfo.xml.in:92
 msgid "Updated translations"
 msgstr "Atnaujinti vertimai"
 
-#: data/music.appdata.xml.in:53
+#: data/music.metainfo.xml.in:69
 msgid "Fix an issue with saving smart playlists"
 msgstr ""
 
-#: data/music.appdata.xml.in:54
+#: data/music.metainfo.xml.in:70
 msgid "Drop support for CD-ROM"
 msgstr ""
 
-#: data/music.appdata.xml.in:55
+#: data/music.metainfo.xml.in:71
 msgid "Dark style support"
 msgstr ""
 
-#: data/music.appdata.xml.in:56
+#: data/music.metainfo.xml.in:72
 msgid "Minor visual improvements"
 msgstr ""
 
-#: data/music.appdata.xml.in:63
+#: data/music.metainfo.xml.in:79
 msgid "Fix removing items from the queue"
 msgstr ""
 
-#: data/music.appdata.xml.in:64
+#: data/music.metainfo.xml.in:80
 msgid "Fix equalizer sliders not properly disabled sometimes"
 msgstr ""
 
-#: data/music.appdata.xml.in:66
+#: data/music.metainfo.xml.in:82
 msgid "Performance improvements"
 msgstr ""
 
-#: data/music.appdata.xml.in:72
+#: data/music.metainfo.xml.in:88
 msgid "Removed old gsignond vapi"
 msgstr "Pašalintas senas gsignond vapi"
 
-#: data/music.appdata.xml.in:73
+#: data/music.metainfo.xml.in:89
 msgid "LibraryWindow: Use Granite.MessageDialog for showing alerts"
 msgstr "LibraryWindow: Įspėjimų rodymui naudoti Granite.MessageDialog"
 
-#: data/music.appdata.xml.in:74
+#: data/music.metainfo.xml.in:90
 msgid "PlaylistsUtils: Use Gtk.FileChooserNative"
 msgstr "PlaylistsUtils: Naudoti Gtk.FileChooserNative"
 
-#: data/music.appdata.xml.in:75
+#: data/music.metainfo.xml.in:91
 msgid "Accurately remember window size"
 msgstr "Atidžiai įsiminti lango dydį"
-
-#: data/music.appdata.xml.in:82
-msgid "Scale album art properly at high resolutions"
-msgstr "Didelėse raiškose tinkamai keisti albumo iliustracijos mastelį"
-
-#: data/music.appdata.xml.in:83
-msgid ""
-"Accurately select Music Folder Location for directories with spaces in name"
-msgstr ""
-"Atidžiai pasirinkti muzikos aplanko vietą katalogams, kurių pavadinime yra "
-"tarpai"
-
-#: data/music.appdata.xml.in:84
-msgid "New MediaKeyListener path for gnome-settings-daemon"
-msgstr "Naujas MediaKeyListener kelias, skirtas gnome-settings-daemon"
-
-#: data/music.appdata.xml.in:91
-msgid "AlbumView: double-click to play album"
-msgstr "Albumo rodinys: spustelėti du kartus, norint atkurti albumą"
-
-#: data/music.appdata.xml.in:92
-msgid "Associate with s3m files"
-msgstr "Susieti su s3m failais"
-
-#: data/music.appdata.xml.in:93
-msgid "Queue fixes"
-msgstr "Eilės pataisymai"
-
-#: data/music.appdata.xml.in:94
-msgid "Properly restore playlists"
-msgstr "Tinkamai atkurti grojaraščius"
-
-#: data/music.appdata.xml.in:95
-msgid "Always respect custom music folder setting"
-msgstr "Visada gerbti tinkinto muzikos aplanko nustatymą"
-
-#: data/music.appdata.xml.in:96 data/music.appdata.xml.in:106
-#: data/music.appdata.xml.in:116 data/music.appdata.xml.in:153
-#: data/music.appdata.xml.in:169
-msgid "Minor bug fixes"
-msgstr "Nežymių klaidų pataisymai"
-
-#: data/music.appdata.xml.in:103
-msgid "Fix list and column view sorting"
-msgstr "Pataisytas sąrašo ir stulpelio rodinio rikiavimas"
-
-#: data/music.appdata.xml.in:104
-msgid "Add orange accent color"
-msgstr "Pridėti oranžinę akcento spalvą"
-
-#: data/music.appdata.xml.in:105
-msgid "Add shortcut accels to tooltips"
-msgstr "Į paaiškinimus pridėti susiejimai"
-
-#: data/music.appdata.xml.in:113
-msgid "Various UI changes"
-msgstr "Įvairūs naudotojo sąsajos pakeitimai"
-
-#: data/music.appdata.xml.in:114
-msgid "Shuffle fixes"
-msgstr "Maišymo pataisymai"
-
-#: data/music.appdata.xml.in:115
-msgid "Initial MPRIS support"
-msgstr "Pradinis MPRIS palaikymas"
-
-#: data/music.appdata.xml.in:123
-msgid "Detect library changes at startup."
-msgstr "Aptikti bibliotekos pakeitimus paleidimo metu."
-
-#: data/music.appdata.xml.in:124
-msgid "Support searching by URI"
-msgstr "Palaikyti paiešką pagal URI"
-
-#: data/music.appdata.xml.in:125
-msgid "Change the queue mechanism to make it less confusing."
-msgstr "Pakeistas eilės mechanizmas, kad būtų mažiau painus."
-
-#: data/music.appdata.xml.in:126
-msgid "Improve equalizer style."
-msgstr "Patobulintas glodintuvo stilius."
-
-#: data/music.appdata.xml.in:127 data/music.appdata.xml.in:133
-#: data/music.appdata.xml.in:139 data/music.appdata.xml.in:145
-msgid "Minor bug fixes."
-msgstr "Nežymūs klaidų pataisymai."
-
-#: data/music.appdata.xml.in:151
-msgid "Add rounded bottom window corner."
-msgstr "Pridėtas apvalusis apatinis lango kampas."
-
-#: data/music.appdata.xml.in:154 data/music.appdata.xml.in:170
-msgid "New translations"
-msgstr "Nauji vertimai"
-
-#: data/music.appdata.xml.in:161
-msgid "Release for Loki."
-msgstr "Laida, skirta Loki."
-
-#: data/music.appdata.xml.in:163
-msgid "Add support for Opus Ogg"
-msgstr "Pridėtas Opus Ogg palaikymas"
-
-#: data/music.appdata.xml.in:164
-msgid "Fix Ctrl+Q support for non-Latin keyboard layouts"
-msgstr ""
-"Pataisytas Vald(Ctrl)+Q palaikymas nelotyniškiems klaviatūros išdėstymams"
-
-#: data/music.appdata.xml.in:165
-msgid "Reorganize media edition layout"
-msgstr "Pertvarkytas medijos taisymo išdėstymas"
-
-#: data/music.appdata.xml.in:166
-msgid "Port grid to support HiDPI displays"
-msgstr "Perkeltas tinklelis, kad būtų palaikomi HiDPI ekranai"
-
-#: data/music.appdata.xml.in:167
-msgid "Update icons to latest elementary icon release"
-msgstr "Atnaujintos piktogramos į naujausią elementary piktogramų laidą"
-
-#: data/music.appdata.xml.in:168
-msgid "Respect privacy mode"
-msgstr "Gerbti privatumo veikseną"
 
 #: data/music.desktop.in:5
 msgid "Music Player"
@@ -238,6 +117,98 @@ msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
 "Noise;Leistuvė;Garsas;Grotuvas;MP3;iPod;Groti;Grojaraštis;Medija;CD;"
 "Telefonas;Dainos;Giesmės;"
+
+#~ msgid "Scale album art properly at high resolutions"
+#~ msgstr "Didelėse raiškose tinkamai keisti albumo iliustracijos mastelį"
+
+#~ msgid ""
+#~ "Accurately select Music Folder Location for directories with spaces in "
+#~ "name"
+#~ msgstr ""
+#~ "Atidžiai pasirinkti muzikos aplanko vietą katalogams, kurių pavadinime "
+#~ "yra tarpai"
+
+#~ msgid "New MediaKeyListener path for gnome-settings-daemon"
+#~ msgstr "Naujas MediaKeyListener kelias, skirtas gnome-settings-daemon"
+
+#~ msgid "AlbumView: double-click to play album"
+#~ msgstr "Albumo rodinys: spustelėti du kartus, norint atkurti albumą"
+
+#~ msgid "Associate with s3m files"
+#~ msgstr "Susieti su s3m failais"
+
+#~ msgid "Queue fixes"
+#~ msgstr "Eilės pataisymai"
+
+#~ msgid "Properly restore playlists"
+#~ msgstr "Tinkamai atkurti grojaraščius"
+
+#~ msgid "Always respect custom music folder setting"
+#~ msgstr "Visada gerbti tinkinto muzikos aplanko nustatymą"
+
+#~ msgid "Minor bug fixes"
+#~ msgstr "Nežymių klaidų pataisymai"
+
+#~ msgid "Fix list and column view sorting"
+#~ msgstr "Pataisytas sąrašo ir stulpelio rodinio rikiavimas"
+
+#~ msgid "Add orange accent color"
+#~ msgstr "Pridėti oranžinę akcento spalvą"
+
+#~ msgid "Add shortcut accels to tooltips"
+#~ msgstr "Į paaiškinimus pridėti susiejimai"
+
+#~ msgid "Various UI changes"
+#~ msgstr "Įvairūs naudotojo sąsajos pakeitimai"
+
+#~ msgid "Shuffle fixes"
+#~ msgstr "Maišymo pataisymai"
+
+#~ msgid "Initial MPRIS support"
+#~ msgstr "Pradinis MPRIS palaikymas"
+
+#~ msgid "Detect library changes at startup."
+#~ msgstr "Aptikti bibliotekos pakeitimus paleidimo metu."
+
+#~ msgid "Support searching by URI"
+#~ msgstr "Palaikyti paiešką pagal URI"
+
+#~ msgid "Change the queue mechanism to make it less confusing."
+#~ msgstr "Pakeistas eilės mechanizmas, kad būtų mažiau painus."
+
+#~ msgid "Improve equalizer style."
+#~ msgstr "Patobulintas glodintuvo stilius."
+
+#~ msgid "Minor bug fixes."
+#~ msgstr "Nežymūs klaidų pataisymai."
+
+#~ msgid "Add rounded bottom window corner."
+#~ msgstr "Pridėtas apvalusis apatinis lango kampas."
+
+#~ msgid "New translations"
+#~ msgstr "Nauji vertimai"
+
+#~ msgid "Release for Loki."
+#~ msgstr "Laida, skirta Loki."
+
+#~ msgid "Add support for Opus Ogg"
+#~ msgstr "Pridėtas Opus Ogg palaikymas"
+
+#~ msgid "Fix Ctrl+Q support for non-Latin keyboard layouts"
+#~ msgstr ""
+#~ "Pataisytas Vald(Ctrl)+Q palaikymas nelotyniškiems klaviatūros išdėstymams"
+
+#~ msgid "Reorganize media edition layout"
+#~ msgstr "Pertvarkytas medijos taisymo išdėstymas"
+
+#~ msgid "Port grid to support HiDPI displays"
+#~ msgstr "Perkeltas tinklelis, kad būtų palaikomi HiDPI ekranai"
+
+#~ msgid "Update icons to latest elementary icon release"
+#~ msgstr "Atnaujintos piktogramos į naujausią elementary piktogramų laidą"
+
+#~ msgid "Respect privacy mode"
+#~ msgstr "Gerbti privatumo veikseną"
 
 #~ msgid "The official elementary music player"
 #~ msgstr "Oficialus elementary muzikos grotuvas"
