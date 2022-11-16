@@ -2,7 +2,13 @@ Source: io.elementary.music
 Section: sound
 Priority: optional
 Maintainer: elementary, Inc. <builds@elementary.io>
-Build-Depends: debhelper (>= 10.5.1)
+Build-Depends: debhelper (>= 10.5.1),
+               libgranite-7-dev,
+               libgstreamer-plugins-base1.0-dev,
+               libgstreamer1.0-dev,
+               libgtk-4-dev,
+               meson,
+               valac
 Standards-Version: 4.1.1
 Homepage: https://github.com/elementary/music
 
