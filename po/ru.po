@@ -8,17 +8,17 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-11-16 16:47+0000\n"
-"PO-Revision-Date: 2022-08-12 07:05+0000\n"
-"Last-Translator: кубик круглый <megarainbow29@gmail.com>\n"
-"Language-Team: Russian <https://l10n.elementary.io/projects/music/music/ru/"
-">\n"
+"PO-Revision-Date: 2022-11-19 05:10+0000\n"
+"Last-Translator: lenemter <lenemter@gmail.com>\n"
+"Language-Team: Russian <https://l10n.elementary.io/projects/music/music/ru/>"
+"\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 4.14.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 
 #: src/Application.vala:66 src/Views/NowPlayingView.vala:18
@@ -39,14 +39,12 @@ msgid "Audio files opened from Files will appear here"
 msgstr "Открытые вами аудиофайлы появятся здесь"
 
 #: src/MainWindow.vala:134
-#, fuzzy, c-format
-#| msgid "%d track was added to the queue"
-#| msgid_plural "%d tracks were added to the queue"
+#, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
-msgstr[0] "%d трек был добавлен в очередь"
-msgstr[1] "%d трека было добавлено в очередь"
-msgstr[2] "%d треков было добавлено в очередь"
+msgstr[0] "%d недействительный файл не был добавлен в очередь"
+msgstr[1] "%d недействительных файла не были добавлены в очередь"
+msgstr[2] "%d недействительных файлов не были добавлены в очередь"
 
 #: src/MainWindow.vala:158
 msgid "Repeat None"
