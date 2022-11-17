@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-11-16 16:47+0000\n"
-"PO-Revision-Date: 2022-04-12 02:08+0000\n"
+"PO-Revision-Date: 2022-11-19 05:10+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://l10n.elementary.io/projects/music/"
 "music/nb/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 4.14.2\n"
 "X-Launchpad-Export-Date: 2017-04-14 05:41+0000\n"
 
 #: src/Application.vala:66 src/Views/NowPlayingView.vala:18
@@ -39,13 +39,11 @@ msgid "Audio files opened from Files will appear here"
 msgstr "Lydfiler åpnet fra Filer vil vises her"
 
 #: src/MainWindow.vala:134
-#, fuzzy, c-format
-#| msgid "%d track was added to the queue"
-#| msgid_plural "%d tracks were added to the queue"
+#, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
-msgstr[0] "%d spor lagt til i køen"
-msgstr[1] "%d spor lagt til i køen"
+msgstr[0] "%d ugyldig fil ble ikke lagt til i køen"
+msgstr[1] "%d ugyldige filer ble ikke lagt til i køen"
 
 #: src/MainWindow.vala:158
 msgid "Repeat None"
