@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beatbox 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-11-16 16:47+0000\n"
-"PO-Revision-Date: 2022-05-10 08:48+0000\n"
+"PO-Revision-Date: 2022-11-26 14:25+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://l10n.elementary.io/projects/music/extra/fr/>\n"
 "Language: fr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 4.14.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
 #: data/music.metainfo.xml.in:9 data/music.desktop.in:4
@@ -40,7 +40,7 @@ msgstr ""
 
 #: data/music.metainfo.xml.in:17
 msgid "Quickly queue up your favorite tracks"
-msgstr ""
+msgstr "Mettez rapidement en file d'attente vos morceaux préférés"
 
 #: data/music.metainfo.xml.in:49
 msgid "elementary, Inc."
