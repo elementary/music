@@ -51,6 +51,21 @@
   <update_contact>contact_at_elementary.io</update_contact>
 
   <releases>
+    <release version="7.0.1" date="2022-12-04" urgency="medium">
+      <description>
+        <p>Improvements:</p>
+        <ul>
+          <li>For tracks without a title, use the file name instead of the whole URI</li>
+          <li>Skip invalid files instead of stopping playback</li>
+          <li>Next and Repeat buttons always work regardless of repeat mode</li>
+          <li>Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, Russian, Simplified Chinese, Turkish, and Ukrainian</li>
+        </ul>
+      </description>
+      <issues>
+        <issue url="https://github.com/elementary/music/pull/723">Always use the elementary stylesheet, even on other platforms</issue>
+      </issues>
+    </release>
+
     <release version="7.0.0" date="2022-05-12" urgency="medium">
       <description>
         <p>Complete rewrite</p>
@@ -80,16 +95,6 @@
         <p>Fix equalizer sliders not properly disabled sometimes</p>
         <p>Updated translations</p>
         <p>Performance improvements</p>
-      </description>
-    </release>
-
-    <release version="5.0.4" date="2019-04-17" urgency="medium">
-      <description>
-        <p>Removed old gsignond vapi</p>
-        <p>LibraryWindow: Use Granite.MessageDialog for showing alerts</p>
-        <p>PlaylistsUtils: Use Gtk.FileChooserNative</p>
-        <p>Accurately remember window size</p>
-        <p>Updated translations</p>
       </description>
     </release>
   </releases>
