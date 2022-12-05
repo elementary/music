@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-16 16:47+0000\n"
+"POT-Creation-Date: 2022-12-05 20:37+0000\n"
 "PO-Revision-Date: 2021-07-22 10:14+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://l10n.elementary.io/projects/"
@@ -45,63 +45,70 @@ msgid "elementary, Inc."
 msgstr "elementary LLC."
 
 #: data/music.metainfo.xml.in:56
+msgid "Improvements:"
+msgstr ""
+
+#: data/music.metainfo.xml.in:58
+msgid "For tracks without a title, use the file name instead of the whole URI"
+msgstr ""
+
+#: data/music.metainfo.xml.in:59
+msgid "Skip invalid files instead of stopping playback"
+msgstr ""
+
+#: data/music.metainfo.xml.in:60
+msgid "Next and Repeat buttons always work regardless of repeat mode"
+msgstr ""
+
+#: data/music.metainfo.xml.in:61
+msgid ""
+"Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
+"Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
+"Russian, Simplified Chinese, Turkish, and Ukrainian"
+msgstr ""
+
+#: data/music.metainfo.xml.in:71
 msgid "Complete rewrite"
 msgstr ""
 
-#: data/music.metainfo.xml.in:62
+#: data/music.metainfo.xml.in:77
 #, fuzzy
 msgid "Drop support for Last.FM"
 msgstr "放下 CD-ROM 的支援"
 
-#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:73
-#: data/music.metainfo.xml.in:81 data/music.metainfo.xml.in:92
+#: data/music.metainfo.xml.in:78 data/music.metainfo.xml.in:88
+#: data/music.metainfo.xml.in:96
 msgid "Updated translations"
 msgstr "更新翻譯"
 
-#: data/music.metainfo.xml.in:69
+#: data/music.metainfo.xml.in:84
 msgid "Fix an issue with saving smart playlists"
 msgstr ""
 
-#: data/music.metainfo.xml.in:70
+#: data/music.metainfo.xml.in:85
 msgid "Drop support for CD-ROM"
 msgstr "放下 CD-ROM 的支援"
 
-#: data/music.metainfo.xml.in:71
+#: data/music.metainfo.xml.in:86
 msgid "Dark style support"
 msgstr ""
 
-#: data/music.metainfo.xml.in:72
+#: data/music.metainfo.xml.in:87
 #, fuzzy
 msgid "Minor visual improvements"
 msgstr "性能提升"
 
-#: data/music.metainfo.xml.in:79
+#: data/music.metainfo.xml.in:94
 msgid "Fix removing items from the queue"
 msgstr "修正從佇列中移除項目的功能"
 
-#: data/music.metainfo.xml.in:80
+#: data/music.metainfo.xml.in:95
 msgid "Fix equalizer sliders not properly disabled sometimes"
 msgstr ""
 
-#: data/music.metainfo.xml.in:82
+#: data/music.metainfo.xml.in:97
 msgid "Performance improvements"
 msgstr "性能提升"
-
-#: data/music.metainfo.xml.in:88
-msgid "Removed old gsignond vapi"
-msgstr ""
-
-#: data/music.metainfo.xml.in:89
-msgid "LibraryWindow: Use Granite.MessageDialog for showing alerts"
-msgstr ""
-
-#: data/music.metainfo.xml.in:90
-msgid "PlaylistsUtils: Use Gtk.FileChooserNative"
-msgstr ""
-
-#: data/music.metainfo.xml.in:91
-msgid "Accurately remember window size"
-msgstr ""
 
 #: data/music.desktop.in:5
 msgid "Music Player"

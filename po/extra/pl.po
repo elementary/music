@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-16 16:47+0000\n"
+"POT-Creation-Date: 2022-12-05 20:37+0000\n"
 "PO-Revision-Date: 2022-11-19 05:10+0000\n"
 "Last-Translator: Marcin Serwin <marcin.serwin0@protonmail.com>\n"
 "Language-Team: Polish <https://l10n.elementary.io/projects/music/extra/pl/>\n"
@@ -47,61 +47,68 @@ msgid "elementary, Inc."
 msgstr "elementary, Inc."
 
 #: data/music.metainfo.xml.in:56
+msgid "Improvements:"
+msgstr ""
+
+#: data/music.metainfo.xml.in:58
+msgid "For tracks without a title, use the file name instead of the whole URI"
+msgstr ""
+
+#: data/music.metainfo.xml.in:59
+msgid "Skip invalid files instead of stopping playback"
+msgstr ""
+
+#: data/music.metainfo.xml.in:60
+msgid "Next and Repeat buttons always work regardless of repeat mode"
+msgstr ""
+
+#: data/music.metainfo.xml.in:61
+msgid ""
+"Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
+"Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
+"Russian, Simplified Chinese, Turkish, and Ukrainian"
+msgstr ""
+
+#: data/music.metainfo.xml.in:71
 msgid "Complete rewrite"
 msgstr "Całkowite przepisanie"
 
-#: data/music.metainfo.xml.in:62
+#: data/music.metainfo.xml.in:77
 msgid "Drop support for Last.FM"
 msgstr "Usunięto wsparcie dla Last.FM"
 
-#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:73
-#: data/music.metainfo.xml.in:81 data/music.metainfo.xml.in:92
+#: data/music.metainfo.xml.in:78 data/music.metainfo.xml.in:88
+#: data/music.metainfo.xml.in:96
 msgid "Updated translations"
 msgstr "Zaktualizowane tłumaczenia"
 
-#: data/music.metainfo.xml.in:69
+#: data/music.metainfo.xml.in:84
 msgid "Fix an issue with saving smart playlists"
 msgstr "Naprawiono problem z zapisywaniem inteligentnych playlist"
 
-#: data/music.metainfo.xml.in:70
+#: data/music.metainfo.xml.in:85
 msgid "Drop support for CD-ROM"
 msgstr "Usunięto wsparcie dla CD-ROM"
 
-#: data/music.metainfo.xml.in:71
+#: data/music.metainfo.xml.in:86
 msgid "Dark style support"
 msgstr "Wsparcie dla trybu ciemnego"
 
-#: data/music.metainfo.xml.in:72
+#: data/music.metainfo.xml.in:87
 msgid "Minor visual improvements"
 msgstr "Mniejsze poprawki wizualne"
 
-#: data/music.metainfo.xml.in:79
+#: data/music.metainfo.xml.in:94
 msgid "Fix removing items from the queue"
 msgstr "Naprawiono usuwanie elementów z kolejki"
 
-#: data/music.metainfo.xml.in:80
+#: data/music.metainfo.xml.in:95
 msgid "Fix equalizer sliders not properly disabled sometimes"
 msgstr "Naprawiono niepoprawnie się wyłączające słupki equalizera"
 
-#: data/music.metainfo.xml.in:82
+#: data/music.metainfo.xml.in:97
 msgid "Performance improvements"
 msgstr "Ulepszenia wydajności"
-
-#: data/music.metainfo.xml.in:88
-msgid "Removed old gsignond vapi"
-msgstr "Usunięto stare gsignond vapi"
-
-#: data/music.metainfo.xml.in:89
-msgid "LibraryWindow: Use Granite.MessageDialog for showing alerts"
-msgstr "LibraryWindow: Użyto Granite.MessageDialog do pokazywania alertów"
-
-#: data/music.metainfo.xml.in:90
-msgid "PlaylistsUtils: Use Gtk.FileChooserNative"
-msgstr "PlaylistsUtils: Użyto Gtk.FileChooserNative"
-
-#: data/music.metainfo.xml.in:91
-msgid "Accurately remember window size"
-msgstr "Pamiętaj dokładnie wielkość okna"
 
 #: data/music.desktop.in:5
 msgid "Music Player"
@@ -116,6 +123,18 @@ msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
 "Muzyka;Dźwięk;Audio;Odtwarzacz;MP3;Odtwarzaj;Lista odtwarzania;Media;"
 "Piosenki;"
+
+#~ msgid "Removed old gsignond vapi"
+#~ msgstr "Usunięto stare gsignond vapi"
+
+#~ msgid "LibraryWindow: Use Granite.MessageDialog for showing alerts"
+#~ msgstr "LibraryWindow: Użyto Granite.MessageDialog do pokazywania alertów"
+
+#~ msgid "PlaylistsUtils: Use Gtk.FileChooserNative"
+#~ msgstr "PlaylistsUtils: Użyto Gtk.FileChooserNative"
+
+#~ msgid "Accurately remember window size"
+#~ msgstr "Pamiętaj dokładnie wielkość okna"
 
 #~ msgid "Scale album art properly at high resolutions"
 #~ msgstr "Poprawne skalowanie okładki albumów w wysokich rozdzielczościach"
