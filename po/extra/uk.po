@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-05 20:37+0000\n"
-"PO-Revision-Date: 2022-11-19 05:10+0000\n"
+"PO-Revision-Date: 2022-12-06 15:09+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/music/extra/uk/"
 ">\n"
@@ -49,19 +49,21 @@ msgstr "elementary, Inc."
 
 #: data/music.metainfo.xml.in:56
 msgid "Improvements:"
-msgstr ""
+msgstr "Поліпшення:"
 
 #: data/music.metainfo.xml.in:58
 msgid "For tracks without a title, use the file name instead of the whole URI"
-msgstr ""
+msgstr "Для доріжок без назви використовується назва файлу, а не весь URI"
 
 #: data/music.metainfo.xml.in:59
 msgid "Skip invalid files instead of stopping playback"
-msgstr ""
+msgstr "Пропуск неприпустимих файлів замість припинення відтворення"
 
 #: data/music.metainfo.xml.in:60
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr ""
+"Кнопки «Далі» та «Повторити» працюватимуть завжди, незалежно від режиму "
+"повтору"
 
 #: data/music.metainfo.xml.in:61
 msgid ""
@@ -69,6 +71,10 @@ msgid ""
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
 "Russian, Simplified Chinese, Turkish, and Ukrainian"
 msgstr ""
+"Відтепер доступний каталонською, нідерландською, фінською, французькою, "
+"німецькою, івритом, угорською, японською, корейською, курдською, маратхі, "
+"норвезькою букмол, польською, португальською, російською, спрощеною "
+"китайською, турецькою, українською та японською мовами"
 
 #: data/music.metainfo.xml.in:71
 msgid "Complete rewrite"
