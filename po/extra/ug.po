@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-16 16:47+0000\n"
+"POT-Creation-Date: 2022-12-05 20:37+0000\n"
 "PO-Revision-Date: 2016-12-10 02:01+0000\n"
 "Last-Translator: ablimet <Unknown>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,60 +37,67 @@ msgid "elementary, Inc."
 msgstr ""
 
 #: data/music.metainfo.xml.in:56
-msgid "Complete rewrite"
+msgid "Improvements:"
 msgstr ""
 
-#: data/music.metainfo.xml.in:62
-msgid "Drop support for Last.FM"
+#: data/music.metainfo.xml.in:58
+msgid "For tracks without a title, use the file name instead of the whole URI"
 msgstr ""
 
-#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:73
-#: data/music.metainfo.xml.in:81 data/music.metainfo.xml.in:92
-msgid "Updated translations"
+#: data/music.metainfo.xml.in:59
+msgid "Skip invalid files instead of stopping playback"
 msgstr ""
 
-#: data/music.metainfo.xml.in:69
-msgid "Fix an issue with saving smart playlists"
+#: data/music.metainfo.xml.in:60
+msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr ""
 
-#: data/music.metainfo.xml.in:70
-msgid "Drop support for CD-ROM"
+#: data/music.metainfo.xml.in:61
+msgid ""
+"Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
+"Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
+"Russian, Simplified Chinese, Turkish, and Ukrainian"
 msgstr ""
 
 #: data/music.metainfo.xml.in:71
+msgid "Complete rewrite"
+msgstr ""
+
+#: data/music.metainfo.xml.in:77
+msgid "Drop support for Last.FM"
+msgstr ""
+
+#: data/music.metainfo.xml.in:78 data/music.metainfo.xml.in:88
+#: data/music.metainfo.xml.in:96
+msgid "Updated translations"
+msgstr ""
+
+#: data/music.metainfo.xml.in:84
+msgid "Fix an issue with saving smart playlists"
+msgstr ""
+
+#: data/music.metainfo.xml.in:85
+msgid "Drop support for CD-ROM"
+msgstr ""
+
+#: data/music.metainfo.xml.in:86
 msgid "Dark style support"
 msgstr ""
 
-#: data/music.metainfo.xml.in:72
+#: data/music.metainfo.xml.in:87
 msgid "Minor visual improvements"
 msgstr ""
 
-#: data/music.metainfo.xml.in:79
+#: data/music.metainfo.xml.in:94
 msgid "Fix removing items from the queue"
 msgstr ""
 
-#: data/music.metainfo.xml.in:80
+#: data/music.metainfo.xml.in:95
 msgid "Fix equalizer sliders not properly disabled sometimes"
 msgstr ""
 
-#: data/music.metainfo.xml.in:82
+#: data/music.metainfo.xml.in:97
 msgid "Performance improvements"
-msgstr ""
-
-#: data/music.metainfo.xml.in:88
-msgid "Removed old gsignond vapi"
-msgstr ""
-
-#: data/music.metainfo.xml.in:89
-msgid "LibraryWindow: Use Granite.MessageDialog for showing alerts"
-msgstr ""
-
-#: data/music.metainfo.xml.in:90
-msgid "PlaylistsUtils: Use Gtk.FileChooserNative"
-msgstr ""
-
-#: data/music.metainfo.xml.in:91
-msgid "Accurately remember window size"
 msgstr ""
 
 #: data/music.desktop.in:5

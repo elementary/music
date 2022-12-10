@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-16 16:47+0000\n"
-"PO-Revision-Date: 2022-11-19 05:10+0000\n"
+"POT-Creation-Date: 2022-12-05 20:37+0000\n"
+"PO-Revision-Date: 2022-12-06 15:09+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/music/extra/he/>\n"
 "Language: he\n"
@@ -41,61 +41,71 @@ msgid "elementary, Inc."
 msgstr "elementary בע״מ"
 
 #: data/music.metainfo.xml.in:56
+msgid "Improvements:"
+msgstr "שיפורים:"
+
+#: data/music.metainfo.xml.in:58
+msgid "For tracks without a title, use the file name instead of the whole URI"
+msgstr "לרצועות ללא כותרת, יש להשתמש בשם הקובץ במקום בכל המיקום"
+
+#: data/music.metainfo.xml.in:59
+msgid "Skip invalid files instead of stopping playback"
+msgstr "לדלג על קבצים שגויים במקום לעצור את הנגינה"
+
+#: data/music.metainfo.xml.in:60
+msgid "Next and Repeat buttons always work regardless of repeat mode"
+msgstr "כפתורי הבא והחזרה תמיד עובדים ללא תלות במצב החזרה"
+
+#: data/music.metainfo.xml.in:61
+msgid ""
+"Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
+"Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
+"Russian, Simplified Chinese, Turkish, and Ukrainian"
+msgstr ""
+"זמין כעת בקטלאנית, הולנדית, פינית, צרפתית, גרמנית, עברית, הונגרית, יפנית, "
+"קוריאנית, כורדית, מרטהי, נורווגית ספרותית (בוקמול), פולנית, פורטוגלית, "
+"רוסית, סינית מפושטת, טורקית ואוקראינית"
+
+#: data/music.metainfo.xml.in:71
 msgid "Complete rewrite"
 msgstr "שכתוב מאפס"
 
-#: data/music.metainfo.xml.in:62
+#: data/music.metainfo.xml.in:77
 msgid "Drop support for Last.FM"
 msgstr "השמטת תמיכה ב־Last.FM"
 
-#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:73
-#: data/music.metainfo.xml.in:81 data/music.metainfo.xml.in:92
+#: data/music.metainfo.xml.in:78 data/music.metainfo.xml.in:88
+#: data/music.metainfo.xml.in:96
 msgid "Updated translations"
 msgstr "התרגומים עודכנו"
 
-#: data/music.metainfo.xml.in:69
+#: data/music.metainfo.xml.in:84
 msgid "Fix an issue with saving smart playlists"
 msgstr "תוקנה תקלה בשמירת רשימות נגינה חכמות"
 
-#: data/music.metainfo.xml.in:70
+#: data/music.metainfo.xml.in:85
 msgid "Drop support for CD-ROM"
 msgstr "השמטת תמיכה בתקליטורים"
 
-#: data/music.metainfo.xml.in:71
+#: data/music.metainfo.xml.in:86
 msgid "Dark style support"
 msgstr "תמיכה בסגנון כהה"
 
-#: data/music.metainfo.xml.in:72
+#: data/music.metainfo.xml.in:87
 msgid "Minor visual improvements"
 msgstr "תיקונים חזותיים קלים"
 
-#: data/music.metainfo.xml.in:79
+#: data/music.metainfo.xml.in:94
 msgid "Fix removing items from the queue"
 msgstr "תיקון הסרת פריטים מהתור"
 
-#: data/music.metainfo.xml.in:80
+#: data/music.metainfo.xml.in:95
 msgid "Fix equalizer sliders not properly disabled sometimes"
 msgstr "תיקון הבעיה שמחווני האקולייזר לא מושבתים כראוי לפעמים"
 
-#: data/music.metainfo.xml.in:82
+#: data/music.metainfo.xml.in:97
 msgid "Performance improvements"
 msgstr "שיפורי ביצועים"
-
-#: data/music.metainfo.xml.in:88
-msgid "Removed old gsignond vapi"
-msgstr "הוסר ה־vapi הישן של gsignond"
-
-#: data/music.metainfo.xml.in:89
-msgid "LibraryWindow: Use Granite.MessageDialog for showing alerts"
-msgstr "LibraryWindow: משתמש ב־Granite.MessageDialog כדי להציג התרעות"
-
-#: data/music.metainfo.xml.in:90
-msgid "PlaylistsUtils: Use Gtk.FileChooserNative"
-msgstr "PlaylistsUtils: מעבר לשימוש ב־Gtk.FileChooserNative"
-
-#: data/music.metainfo.xml.in:91
-msgid "Accurately remember window size"
-msgstr "גודל החלון נשמר במדויק"
 
 #: data/music.desktop.in:5
 msgid "Music Player"
@@ -110,6 +120,18 @@ msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
 "Noise;נגן;מוזיקה;MP3;אייפוד;נגן;רשימת-נגינה;מדיה;פלאפון;סלולרי;סלולר;אייפון;"
 "שירים;רעש;"
+
+#~ msgid "Removed old gsignond vapi"
+#~ msgstr "הוסר ה־vapi הישן של gsignond"
+
+#~ msgid "LibraryWindow: Use Granite.MessageDialog for showing alerts"
+#~ msgstr "LibraryWindow: משתמש ב־Granite.MessageDialog כדי להציג התרעות"
+
+#~ msgid "PlaylistsUtils: Use Gtk.FileChooserNative"
+#~ msgstr "PlaylistsUtils: מעבר לשימוש ב־Gtk.FileChooserNative"
+
+#~ msgid "Accurately remember window size"
+#~ msgstr "גודל החלון נשמר במדויק"
 
 #~ msgid "Scale album art properly at high resolutions"
 #~ msgstr "גודל עטיפת האלבום משתנה בצורה נכונה ברזולוציה גבוהה"

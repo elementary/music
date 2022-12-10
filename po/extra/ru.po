@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-16 16:47+0000\n"
-"PO-Revision-Date: 2022-11-19 05:10+0000\n"
-"Last-Translator: lenemter <lenemter@gmail.com>\n"
+"POT-Creation-Date: 2022-12-05 20:37+0000\n"
+"PO-Revision-Date: 2022-12-08 11:25+0000\n"
+"Last-Translator: кубик круглый <megarainbow29@gmail.com>\n"
 "Language-Team: Russian <https://l10n.elementary.io/projects/music/extra/ru/>"
 "\n"
 "Language: ru\n"
@@ -49,64 +49,76 @@ msgid "elementary, Inc."
 msgstr "elementary, Inc."
 
 #: data/music.metainfo.xml.in:56
+msgid "Improvements:"
+msgstr "Улучшения:"
+
+#: data/music.metainfo.xml.in:58
+msgid "For tracks without a title, use the file name instead of the whole URI"
+msgstr "Использование для треков без названия имя файла вместо всего URI адреса"
+
+#: data/music.metainfo.xml.in:59
+msgid "Skip invalid files instead of stopping playback"
+msgstr "Пропуск некорректных файлов вместо остановки воспроизведения"
+
+#: data/music.metainfo.xml.in:60
+msgid "Next and Repeat buttons always work regardless of repeat mode"
+msgstr ""
+"Кнопки «Следующий» и «Повтор» теперь работают всегда, вне зависимости от "
+"режима повтора"
+
+#: data/music.metainfo.xml.in:61
+msgid ""
+"Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
+"Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
+"Russian, Simplified Chinese, Turkish, and Ukrainian"
+msgstr ""
+"Теперь доступно на каталанском, голландском, финском, французском, немецком, "
+"иврите, венгерском, японском, корейском, курдском, маратхи, норвежском "
+"букмоле, польском, португальском, русском, упрощенном китайском, турецком и "
+"украинском языках"
+
+#: data/music.metainfo.xml.in:71
 msgid "Complete rewrite"
 msgstr "Приложение было полностью переписано"
 
-#: data/music.metainfo.xml.in:62
+#: data/music.metainfo.xml.in:77
 msgid "Drop support for Last.FM"
 msgstr "Прекращена поддержка Last.FM"
 
-#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:73
-#: data/music.metainfo.xml.in:81 data/music.metainfo.xml.in:92
+#: data/music.metainfo.xml.in:78 data/music.metainfo.xml.in:88
+#: data/music.metainfo.xml.in:96
 msgid "Updated translations"
 msgstr "Обновлены переводы"
 
-#: data/music.metainfo.xml.in:69
+#: data/music.metainfo.xml.in:84
 msgid "Fix an issue with saving smart playlists"
 msgstr ""
 "Исправлена проблема с сохранением интеллектуальных списков воспроизведения"
 
-#: data/music.metainfo.xml.in:70
+#: data/music.metainfo.xml.in:85
 msgid "Drop support for CD-ROM"
 msgstr "Прекращена поддержка CD-ROM"
 
-#: data/music.metainfo.xml.in:71
+#: data/music.metainfo.xml.in:86
 msgid "Dark style support"
 msgstr "Поддержка тёмного стиля"
 
-#: data/music.metainfo.xml.in:72
+#: data/music.metainfo.xml.in:87
 msgid "Minor visual improvements"
 msgstr "Незначительные визуальные улучшения"
 
-#: data/music.metainfo.xml.in:79
+#: data/music.metainfo.xml.in:94
 msgid "Fix removing items from the queue"
 msgstr "Исправлено удаление элементов из очереди"
 
-#: data/music.metainfo.xml.in:80
+#: data/music.metainfo.xml.in:95
 msgid "Fix equalizer sliders not properly disabled sometimes"
 msgstr ""
 "Исправлены ползунки эквалайзера, которые иногда неправильно отключаются"
 
-#: data/music.metainfo.xml.in:82
+#: data/music.metainfo.xml.in:97
 msgid "Performance improvements"
 msgstr "Улучшения производительности"
-
-#: data/music.metainfo.xml.in:88
-msgid "Removed old gsignond vapi"
-msgstr "Удалён старый gsignond vapi"
-
-#: data/music.metainfo.xml.in:89
-msgid "LibraryWindow: Use Granite.MessageDialog for showing alerts"
-msgstr ""
-"LibraryWindow: Использование Granite.MessageDialog для показа уведомлений"
-
-#: data/music.metainfo.xml.in:90
-msgid "PlaylistsUtils: Use Gtk.FileChooserNative"
-msgstr "PlaylistsUtils: Использование Gtk.FileChooserNative"
-
-#: data/music.metainfo.xml.in:91
-msgid "Accurately remember window size"
-msgstr "Точное запоминание размера окна"
 
 #: data/music.desktop.in:5
 msgid "Music Player"
@@ -121,6 +133,19 @@ msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
 "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;Шум;Аудио;Проигрыватель;"
 "Воспроизведение;Плейлист;Медиа;Телефон;Песни;"
+
+#~ msgid "Removed old gsignond vapi"
+#~ msgstr "Удалён старый gsignond vapi"
+
+#~ msgid "LibraryWindow: Use Granite.MessageDialog for showing alerts"
+#~ msgstr ""
+#~ "LibraryWindow: Использование Granite.MessageDialog для показа уведомлений"
+
+#~ msgid "PlaylistsUtils: Use Gtk.FileChooserNative"
+#~ msgstr "PlaylistsUtils: Использование Gtk.FileChooserNative"
+
+#~ msgid "Accurately remember window size"
+#~ msgstr "Точное запоминание размера окна"
 
 #~ msgid "Scale album art properly at high resolutions"
 #~ msgstr "Правильное масштабирование обложек альбомов с высоким разрешением"

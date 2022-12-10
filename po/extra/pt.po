@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-16 16:47+0000\n"
+"POT-Creation-Date: 2022-12-05 20:37+0000\n"
 "PO-Revision-Date: 2022-05-19 16:25+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.elementary.io/projects/music/extra/"
@@ -47,64 +47,71 @@ msgid "elementary, Inc."
 msgstr "elementary, Inc."
 
 #: data/music.metainfo.xml.in:56
+msgid "Improvements:"
+msgstr ""
+
+#: data/music.metainfo.xml.in:58
+msgid "For tracks without a title, use the file name instead of the whole URI"
+msgstr ""
+
+#: data/music.metainfo.xml.in:59
+msgid "Skip invalid files instead of stopping playback"
+msgstr ""
+
+#: data/music.metainfo.xml.in:60
+msgid "Next and Repeat buttons always work regardless of repeat mode"
+msgstr ""
+
+#: data/music.metainfo.xml.in:61
+msgid ""
+"Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
+"Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
+"Russian, Simplified Chinese, Turkish, and Ukrainian"
+msgstr ""
+
+#: data/music.metainfo.xml.in:71
 msgid "Complete rewrite"
 msgstr "Reescrita completa"
 
-#: data/music.metainfo.xml.in:62
+#: data/music.metainfo.xml.in:77
 msgid "Drop support for Last.FM"
 msgstr "Abandono do suporte à Last.FM"
 
-#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:73
-#: data/music.metainfo.xml.in:81 data/music.metainfo.xml.in:92
+#: data/music.metainfo.xml.in:78 data/music.metainfo.xml.in:88
+#: data/music.metainfo.xml.in:96
 msgid "Updated translations"
 msgstr "Traduções atualizadas"
 
-#: data/music.metainfo.xml.in:69
+#: data/music.metainfo.xml.in:84
 msgid "Fix an issue with saving smart playlists"
 msgstr ""
 "Resolve um problema com a gravação de listas de reprodução inteligentes"
 
-#: data/music.metainfo.xml.in:70
+#: data/music.metainfo.xml.in:85
 msgid "Drop support for CD-ROM"
 msgstr "Abandono do suporte para CD-ROM"
 
-#: data/music.metainfo.xml.in:71
+#: data/music.metainfo.xml.in:86
 msgid "Dark style support"
 msgstr "Suporte a estilo escuro"
 
-#: data/music.metainfo.xml.in:72
+#: data/music.metainfo.xml.in:87
 msgid "Minor visual improvements"
 msgstr "Pequenas melhorias visuais"
 
-#: data/music.metainfo.xml.in:79
+#: data/music.metainfo.xml.in:94
 msgid "Fix removing items from the queue"
 msgstr "Corrigir a remoção de itens da fila"
 
-#: data/music.metainfo.xml.in:80
+#: data/music.metainfo.xml.in:95
 msgid "Fix equalizer sliders not properly disabled sometimes"
 msgstr ""
 "Corrige os controlos deslizantes do equalizador que às vezes não são "
 "devidamente desativados"
 
-#: data/music.metainfo.xml.in:82
+#: data/music.metainfo.xml.in:97
 msgid "Performance improvements"
 msgstr "Melhorias de desempenho"
-
-#: data/music.metainfo.xml.in:88
-msgid "Removed old gsignond vapi"
-msgstr "Removido o antigo gsignond vapi"
-
-#: data/music.metainfo.xml.in:89
-msgid "LibraryWindow: Use Granite.MessageDialog for showing alerts"
-msgstr "LibraryWindow: Use o Granite.MessageDialog para exibir alertas"
-
-#: data/music.metainfo.xml.in:90
-msgid "PlaylistsUtils: Use Gtk.FileChooserNative"
-msgstr "PlaylistsUtils: Use o Gtk.FileChooserNative"
-
-#: data/music.metainfo.xml.in:91
-msgid "Accurately remember window size"
-msgstr "Lembre-se com precisão do tamanho da janela"
 
 #: data/music.desktop.in:5
 msgid "Music Player"
@@ -117,6 +124,18 @@ msgstr "Ouvir música"
 #: data/music.desktop.in:13
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr "Ruído;Áudio;Reprodutor;MP3;Tocar;Lista de reprodução;Media;Músicas;"
+
+#~ msgid "Removed old gsignond vapi"
+#~ msgstr "Removido o antigo gsignond vapi"
+
+#~ msgid "LibraryWindow: Use Granite.MessageDialog for showing alerts"
+#~ msgstr "LibraryWindow: Use o Granite.MessageDialog para exibir alertas"
+
+#~ msgid "PlaylistsUtils: Use Gtk.FileChooserNative"
+#~ msgstr "PlaylistsUtils: Use o Gtk.FileChooserNative"
+
+#~ msgid "Accurately remember window size"
+#~ msgstr "Lembre-se com precisão do tamanho da janela"
 
 #~ msgid "Scale album art properly at high resolutions"
 #~ msgstr "Redimensiona a arte do álbum adequadamente em altas resoluções"
