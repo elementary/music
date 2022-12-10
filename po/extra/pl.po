@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box 0.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-05 20:37+0000\n"
-"PO-Revision-Date: 2022-11-19 05:10+0000\n"
+"PO-Revision-Date: 2022-12-11 10:25+0000\n"
 "Last-Translator: Marcin Serwin <marcin.serwin0@protonmail.com>\n"
 "Language-Team: Polish <https://l10n.elementary.io/projects/music/extra/pl/>\n"
 "Language: pl\n"
@@ -48,19 +48,22 @@ msgstr "elementary, Inc."
 
 #: data/music.metainfo.xml.in:56
 msgid "Improvements:"
-msgstr ""
+msgstr "Ulepszenia:"
 
 #: data/music.metainfo.xml.in:58
 msgid "For tracks without a title, use the file name instead of the whole URI"
 msgstr ""
+"Dla utworów bez tytułu używana jest teraz nazwa pliku zamiast całego URI"
 
 #: data/music.metainfo.xml.in:59
 msgid "Skip invalid files instead of stopping playback"
-msgstr ""
+msgstr "Niepoprawne pliki są teraz pomijane, zamiast zatrzymywania odtwarzania"
 
 #: data/music.metainfo.xml.in:60
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr ""
+"Przyciski Następny oraz Powtarzaj działają zawsze, niezależnie od trybu "
+"powtarzania"
 
 #: data/music.metainfo.xml.in:61
 msgid ""
@@ -68,6 +71,10 @@ msgid ""
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
 "Russian, Simplified Chinese, Turkish, and Ukrainian"
 msgstr ""
+"Teraz dostępne również po katalońsku, duńsku, fińsku, francusku, niemiecku, "
+"hebrajsku, węgiersku, japońsku, koreańsku, kurdyjsku, marathi, norweskim "
+"bokmål, polsku, portugalsku, rosyjsku, chińsku (uproszczony), turecku i "
+"ukraińsku"
 
 #: data/music.metainfo.xml.in:71
 msgid "Complete rewrite"
