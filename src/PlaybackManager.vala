@@ -9,13 +9,9 @@ public class Music.PlaybackManager : Object {
     public int64 playback_position { get; private set; }
     public signal void invalids_found (int count);
 
-    private static PlaybackManager? _instance;
-    public static PlaybackManager get_default () {
-        if (_instance == null) {
-            _instance = new PlaybackManager ();
-        }
-
-        return _instance;
+    private static GLib.Once<PlaybackManager> instance;
+    public static unowned PlaybackManager get_default () {
+        return instance.once (() => { return new PlaybackManager (); });
     }
 
     private dynamic Gst.Element playbin;

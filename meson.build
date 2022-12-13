@@ -1,7 +1,7 @@
 project(
   'io.elementary.music',
   'vala', 'c',
-  version: '7.0.0'
+  version: '7.0.1'
 )
 
 i18n = import('i18n')

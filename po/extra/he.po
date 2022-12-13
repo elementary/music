@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-05 20:37+0000\n"
-"PO-Revision-Date: 2022-11-19 05:10+0000\n"
+"PO-Revision-Date: 2022-12-06 15:09+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/music/extra/he/>\n"
 "Language: he\n"
@@ -42,19 +42,19 @@ msgstr "elementary בע״מ"
 
 #: data/music.metainfo.xml.in:56
 msgid "Improvements:"
-msgstr ""
+msgstr "שיפורים:"
 
 #: data/music.metainfo.xml.in:58
 msgid "For tracks without a title, use the file name instead of the whole URI"
-msgstr ""
+msgstr "לרצועות ללא כותרת, יש להשתמש בשם הקובץ במקום בכל המיקום"
 
 #: data/music.metainfo.xml.in:59
 msgid "Skip invalid files instead of stopping playback"
-msgstr ""
+msgstr "לדלג על קבצים שגויים במקום לעצור את הנגינה"
 
 #: data/music.metainfo.xml.in:60
 msgid "Next and Repeat buttons always work regardless of repeat mode"
-msgstr ""
+msgstr "כפתורי הבא והחזרה תמיד עובדים ללא תלות במצב החזרה"
 
 #: data/music.metainfo.xml.in:61
 msgid ""
@@ -62,6 +62,9 @@ msgid ""
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
 "Russian, Simplified Chinese, Turkish, and Ukrainian"
 msgstr ""
+"זמין כעת בקטלאנית, הולנדית, פינית, צרפתית, גרמנית, עברית, הונגרית, יפנית, "
+"קוריאנית, כורדית, מרטהי, נורווגית ספרותית (בוקמול), פולנית, פורטוגלית, "
+"רוסית, סינית מפושטת, טורקית ואוקראינית"
 
 #: data/music.metainfo.xml.in:71
 msgid "Complete rewrite"

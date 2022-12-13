@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-05 20:37+0000\n"
-"PO-Revision-Date: 2022-11-27 14:11+0000\n"
+"PO-Revision-Date: 2022-12-08 11:25+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
-"Language-Team: Catalan <https://l10n.elementary.io/projects/music/extra/ca/"
-">\n"
+"Language-Team: Catalan <https://l10n.elementary.io/projects/music/extra/ca/>"
+"\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,19 +49,22 @@ msgstr "elementary, Inc."
 
 #: data/music.metainfo.xml.in:56
 msgid "Improvements:"
-msgstr ""
+msgstr "Millores:"
 
 #: data/music.metainfo.xml.in:58
 msgid "For tracks without a title, use the file name instead of the whole URI"
 msgstr ""
+"Per a les pistes sense títol, usa el nom del fitxer en lloc de l'URI sencer."
 
 #: data/music.metainfo.xml.in:59
 msgid "Skip invalid files instead of stopping playback"
-msgstr ""
+msgstr "Omet els fitxers no vàlids en lloc d'aturar la reproducció."
 
 #: data/music.metainfo.xml.in:60
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr ""
+"Els botons Següent i Repeteix sempre funcionen independentment del mode de "
+"repetició."
 
 #: data/music.metainfo.xml.in:61
 msgid ""
@@ -69,6 +72,9 @@ msgid ""
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
 "Russian, Simplified Chinese, Turkish, and Ukrainian"
 msgstr ""
+"Ara- està disponible en català, alemany, finès, francès, hebreu, hongarès, "
+"japonès, coreà, kurd, marathi, noruec bokmål, polonès, portuguès, rus, xinès "
+"simplificat, turc i ucraïnès."
 
 #: data/music.metainfo.xml.in:71
 msgid "Complete rewrite"
