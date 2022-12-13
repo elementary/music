@@ -23,9 +23,7 @@ public class Music.TrackRow : Gtk.ListBoxRow {
     }
 
     construct {
-        play_icon = new Gtk.Spinner () {
-            spinning = playback_manager.current_audio == audio_object
-        };
+        play_icon = new Gtk.Spinner ();
         play_icon.get_style_context ().add_provider (css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
         var album_image = new Music.AlbumImage ();
@@ -65,7 +63,11 @@ public class Music.TrackRow : Gtk.ListBoxRow {
         audio_object.bind_property ("texture", album_image.image, "paintable", BindingFlags.SYNC_CREATE);
 
         playback_manager.notify["current-audio"].connect (() => {
-            play_icon.spinning = playback_manager.current_audio == audio_object;
+            play_icon.spinning = false;
+            GLib.Timeout.add (250, () => {
+                play_icon.spinning = playback_manager.current_audio == audio_object;
+                return Source.REMOVE;
+            });
         });
 
         var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
@@ -80,10 +82,13 @@ public class Music.TrackRow : Gtk.ListBoxRow {
     }
 
     private void update_playing (bool playing) {
-        if (playing) {
-            play_icon.add_css_class ("playing");
-        } else {
-            play_icon.remove_css_class ("playing");
-        }
+        GLib.Timeout.add (250, () => {
+            if (playing) {
+                play_icon.add_css_class ("playing");
+            } else {
+                play_icon.remove_css_class ("playing");
+            }
+            return Source.REMOVE;
+        });
     }
 }

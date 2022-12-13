@@ -118,7 +118,10 @@ public class Music.PlaybackManager : Object {
         if (current_audio == null) {
             var audio_object = (AudioObject) queue_liststore.get_object (0);
             if (audio_object != null) {
-                current_audio = audio_object;
+                GLib.Timeout.add (250, () => {
+                    current_audio = audio_object;
+                    return Source.REMOVE;
+                });
             }
         } else {
             // Don't notify on app startup or if the app is focused
