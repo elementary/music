@@ -114,6 +114,7 @@ public class Music.PlaybackManager : Object {
         if (current_audio == null) {
             var audio_object = (AudioObject) queue_liststore.get_object (0);
             if (audio_object != null) {
+                // Timeout is a workaround for https://gitlab.gnome.org/GNOME/gtk/-/issues/4426
                 GLib.Timeout.add (250, () => {
                     current_audio = audio_object;
                     return Source.REMOVE;

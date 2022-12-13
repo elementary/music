@@ -64,6 +64,7 @@ public class Music.TrackRow : Gtk.ListBoxRow {
 
         playback_manager.notify["current-audio"].connect (() => {
             play_icon.spinning = false;
+            // Timeout is a workaround for https://gitlab.gnome.org/GNOME/gtk/-/issues/4426
             GLib.Timeout.add (250, () => {
                 play_icon.spinning = playback_manager.current_audio == audio_object;
                 return Source.REMOVE;
@@ -82,6 +83,7 @@ public class Music.TrackRow : Gtk.ListBoxRow {
     }
 
     private void update_playing (bool playing) {
+        // Timeout is a workaround for https://gitlab.gnome.org/GNOME/gtk/-/issues/4426
         GLib.Timeout.add (250, () => {
             if (playing) {
                 play_icon.add_css_class ("playing");
