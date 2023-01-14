@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-05 20:37+0000\n"
-"PO-Revision-Date: 2022-11-19 05:10+0000\n"
+"PO-Revision-Date: 2022-12-25 02:25+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
-"Language-Team: Japanese <https://l10n.elementary.io/projects/music/extra/ja/"
-">\n"
+"Language-Team: Japanese <https://l10n.elementary.io/projects/music/extra/ja/>"
+"\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,19 +49,21 @@ msgstr "elementary, Inc."
 
 #: data/music.metainfo.xml.in:56
 msgid "Improvements:"
-msgstr ""
+msgstr "改善点:"
 
 #: data/music.metainfo.xml.in:58
 msgid "For tracks without a title, use the file name instead of the whole URI"
-msgstr ""
+msgstr "タイトルのないトラックの場合は、URI "
+"全体ではなくファイル名のみを使用するように修正"
 
 #: data/music.metainfo.xml.in:59
 msgid "Skip invalid files instead of stopping playback"
-msgstr ""
+msgstr "無効なファイルが存在する場合、再生停止するのではなくスキップするように修正"
 
 #: data/music.metainfo.xml.in:60
 msgid "Next and Repeat buttons always work regardless of repeat mode"
-msgstr ""
+msgstr "リピートの設定に関わらず、“次へ”および“繰り返し”ボタンが常に使用できるように"
+"修正"
 
 #: data/music.metainfo.xml.in:61
 msgid ""
@@ -69,6 +71,10 @@ msgid ""
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
 "Russian, Simplified Chinese, Turkish, and Ukrainian"
 msgstr ""
+"カタロニア語、オランダ語、フィンランド語、フランス語、ドイツ語、ヘブライ語、"
+"ハンガリー語、日本語、韓国語、クルド語、マラーティー語、ノルウェー語、ポーラ"
+"ンド語、ポルトガル語、ロシア語、簡体字中国語、トルコ語、ウクライナ語で利用可"
+"能"
 
 #: data/music.metainfo.xml.in:71
 msgid "Complete rewrite"
