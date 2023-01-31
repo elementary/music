@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-05 20:37+0000\n"
-"PO-Revision-Date: 2022-05-22 13:49+0000\n"
+"PO-Revision-Date: 2023-02-01 19:25+0000\n"
 "Last-Translator: Dennis ten Hoove <dennistenhoove@protonmail.com>\n"
 "Language-Team: Dutch <https://l10n.elementary.io/projects/music/music/nl/>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 4.14.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:52+0000\n"
 
 #: src/Application.vala:66 src/Views/NowPlayingView.vala:18
@@ -34,16 +34,14 @@ msgstr "Wachtrij is leeg"
 
 #: src/MainWindow.vala:37
 msgid "Audio files opened from Files will appear here"
-msgstr "Geluidsbestanden geopend vanuit Bestanden zullen hier verschijnen"
+msgstr "Geluidsbestanden geopend met Bestanden zullen hier verschijnen"
 
 #: src/MainWindow.vala:134
-#, fuzzy, c-format
-#| msgid "%d track was added to the queue"
-#| msgid_plural "%d tracks were added to the queue"
+#, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
-msgstr[0] "%d nummer is toegevoegd aan de wachtrij"
-msgstr[1] "%d nummers zijn toegevoegd aan de wachtrij"
+msgstr[0] "%d ongeldig bestand was niet ingevoegd in de wachtrij"
+msgstr[1] "%d ongeldige bestanden zijn niet ingevoegd in de wachtrij"
 
 #: src/MainWindow.vala:158
 msgid "Repeat None"
