@@ -3,7 +3,9 @@
 set -e
 
 flatpak remote-add --if-not-exists --system appcenter https://flatpak.elementary.io/repo.flatpakrepo
-flatpak install --system --noninteractive appcenter io.elementary.music//stable || true
+if ping -q -w 1 -c 1 flatpak.elementary.io > /dev/null; then
+    flatpak install --system --noninteractive appcenter io.elementary.music//stable || true
+fi
 
 #DEBHELPER#
 
