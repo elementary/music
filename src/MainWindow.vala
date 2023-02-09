@@ -127,7 +127,6 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
                 }
 
                 file_list.reverse ();
-                //TODO Order the files in some way.
                 foreach (unowned var file in file_list) {
                     files += file;
                 }
@@ -177,8 +176,6 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
                 if (info.get_file_type () == FileType.DIRECTORY) {
                     prepend_directory_files (child, ref file_list);
                 } else {
-                    //TODO Check file is a playable type
-                    //TODO Check number of files within limits?
                     file_list.prepend (child);
                 }
             }
