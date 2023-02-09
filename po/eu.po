@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-05 20:37+0000\n"
+"POT-Creation-Date: 2023-02-09 20:26+0000\n"
 "PO-Revision-Date: 2015-12-21 13:46+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Basque <eu@li.org>\n"
@@ -37,29 +37,29 @@ msgstr ""
 msgid "Audio files opened from Files will appear here"
 msgstr ""
 
-#: src/MainWindow.vala:134
+#: src/MainWindow.vala:144
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/MainWindow.vala:158
+#: src/MainWindow.vala:191
 #, fuzzy
 msgid "Repeat None"
 msgstr "Errepikatu kanta"
 
-#: src/MainWindow.vala:162
+#: src/MainWindow.vala:195
 #, fuzzy
 msgid "Repeat All"
 msgstr "Errepikatu albuma"
 
-#: src/MainWindow.vala:166
+#: src/MainWindow.vala:199
 #, fuzzy
 msgid "Repeat One"
 msgstr "Errepikatu kanta"
 
-#: src/PlaybackManager.vala:133
+#: src/PlaybackManager.vala:129
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
@@ -67,7 +67,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:193
+#: src/PlaybackManager.vala:189
 msgid "Unknown"
 msgstr "Ezezaguna"
 
