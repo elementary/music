@@ -115,9 +115,20 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
 
         drop_target.on_drop.connect ((target, value, x, y) => {
             if (value.type () == typeof (Gdk.FileList)) {
-
                 File[] files;
+                SList<File> file_list = null;
                 foreach (unowned var file in (SList<File>) value.get_boxed ()) {
+                    var file_type = file.query_file_type (FileQueryInfoFlags.NONE);
+                    if (file_type == FileType.DIRECTORY) {
+                        prepend_directory_files (file, ref file_list);
+                    } else {
+                        file_list.prepend (file);
+                    }
+                }
+
+                file_list.reverse ();
+                //TODO Order the files in some way.
+                foreach (unowned var file in file_list) {
                     files += file;
                 }
 
@@ -149,6 +160,31 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         queue_listbox.row_activated.connect ((row) => {
             playback_manager.current_audio = ((TrackRow) row).audio_object;
         });
+    }
+
+    //Array concatenation not permitted for parameters so use a list instead
+    private void prepend_directory_files (GLib.File dir, ref SList<File> file_list) {
+        try {
+            var enumerator = dir.enumerate_children (
+                "standard::*",
+                FileQueryInfoFlags.NOFOLLOW_SYMLINKS,
+                null
+            );
+
+            FileInfo info = null;
+            while ((info = enumerator.next_file (null)) != null) {
+                var child = dir.resolve_relative_path (info.get_name ());
+                if (info.get_file_type () == FileType.DIRECTORY) {
+                    prepend_directory_files (child, ref file_list);
+                } else {
+                    //TODO Check file is a playable type
+                    //TODO Check number of files within limits?
+                    file_list.prepend (child);
+                }
+            }
+        } catch (Error e) {
+            warning ("Error while enumerating children of %s: %s", dir.get_uri (), e.message);
+        }
     }
 
     private void update_repeat_button () {
