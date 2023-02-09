@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-05 20:37+0000\n"
+"POT-Creation-Date: 2023-02-09 20:26+0000\n"
 "PO-Revision-Date: 2022-08-06 09:29+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://l10n.elementary.io/projects/music/extra/ko/>\n"
@@ -45,69 +45,60 @@ msgstr ""
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
 
-#: data/music.metainfo.xml.in:56
+#: data/music.metainfo.xml.in:56 data/music.metainfo.xml.in:65
 msgid "Improvements:"
 msgstr ""
 
 #: data/music.metainfo.xml.in:58
+msgid "Drag and drop whole folders into the queue"
+msgstr ""
+
+#: data/music.metainfo.xml.in:67
 msgid "For tracks without a title, use the file name instead of the whole URI"
 msgstr ""
 
-#: data/music.metainfo.xml.in:59
+#: data/music.metainfo.xml.in:68
 msgid "Skip invalid files instead of stopping playback"
 msgstr ""
 
-#: data/music.metainfo.xml.in:60
+#: data/music.metainfo.xml.in:69
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr ""
 
-#: data/music.metainfo.xml.in:61
+#: data/music.metainfo.xml.in:70
 msgid ""
 "Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
 "Russian, Simplified Chinese, Turkish, and Ukrainian"
 msgstr ""
 
-#: data/music.metainfo.xml.in:71
+#: data/music.metainfo.xml.in:80
 msgid "Complete rewrite"
 msgstr "다시 쓰기 완료"
 
-#: data/music.metainfo.xml.in:77
+#: data/music.metainfo.xml.in:86
 msgid "Drop support for Last.FM"
 msgstr "Last.FM에 대한 지원 중단"
 
-#: data/music.metainfo.xml.in:78 data/music.metainfo.xml.in:88
-#: data/music.metainfo.xml.in:96
+#: data/music.metainfo.xml.in:87 data/music.metainfo.xml.in:97
 msgid "Updated translations"
 msgstr "최신 번역"
 
-#: data/music.metainfo.xml.in:84
+#: data/music.metainfo.xml.in:93
 msgid "Fix an issue with saving smart playlists"
 msgstr "스마트 재생 목록 저장 문제 해결"
 
-#: data/music.metainfo.xml.in:85
+#: data/music.metainfo.xml.in:94
 msgid "Drop support for CD-ROM"
 msgstr "CD-ROM 지원 중단"
 
-#: data/music.metainfo.xml.in:86
+#: data/music.metainfo.xml.in:95
 msgid "Dark style support"
 msgstr "다크 스타일 지원"
 
-#: data/music.metainfo.xml.in:87
+#: data/music.metainfo.xml.in:96
 msgid "Minor visual improvements"
 msgstr "소소한 비주얼 개선"
-
-#: data/music.metainfo.xml.in:94
-msgid "Fix removing items from the queue"
-msgstr "대기열에서 항목 제거 수정"
-
-#: data/music.metainfo.xml.in:95
-msgid "Fix equalizer sliders not properly disabled sometimes"
-msgstr "이퀄라이저 슬라이더가 이따금 제대로 비활성화되지 않는 문제 수정"
-
-#: data/music.metainfo.xml.in:97
-msgid "Performance improvements"
-msgstr "성능 개선"
 
 #: data/music.desktop.in:5
 msgid "Music Player"
@@ -120,6 +111,15 @@ msgstr "음악 듣기"
 #: data/music.desktop.in:13
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr "노이즈;오디오;플레이어;MP3;재생;재생 목록;미디어;노래;"
+
+#~ msgid "Fix removing items from the queue"
+#~ msgstr "대기열에서 항목 제거 수정"
+
+#~ msgid "Fix equalizer sliders not properly disabled sometimes"
+#~ msgstr "이퀄라이저 슬라이더가 이따금 제대로 비활성화되지 않는 문제 수정"
+
+#~ msgid "Performance improvements"
+#~ msgstr "성능 개선"
 
 #~ msgid "Removed old gsignond vapi"
 #~ msgstr "오래된 gsignond vapi를 제거했습니다"

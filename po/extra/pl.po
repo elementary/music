@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-05 20:37+0000\n"
+"POT-Creation-Date: 2023-02-09 20:26+0000\n"
 "PO-Revision-Date: 2022-12-11 10:25+0000\n"
 "Last-Translator: Marcin Serwin <marcin.serwin0@protonmail.com>\n"
 "Language-Team: Polish <https://l10n.elementary.io/projects/music/extra/pl/>\n"
@@ -46,26 +46,30 @@ msgstr "Szybkie kolejkowanie twoich ulubionych utworów"
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
 
-#: data/music.metainfo.xml.in:56
+#: data/music.metainfo.xml.in:56 data/music.metainfo.xml.in:65
 msgid "Improvements:"
 msgstr "Ulepszenia:"
 
 #: data/music.metainfo.xml.in:58
+msgid "Drag and drop whole folders into the queue"
+msgstr ""
+
+#: data/music.metainfo.xml.in:67
 msgid "For tracks without a title, use the file name instead of the whole URI"
 msgstr ""
 "Dla utworów bez tytułu używana jest teraz nazwa pliku zamiast całego URI"
 
-#: data/music.metainfo.xml.in:59
+#: data/music.metainfo.xml.in:68
 msgid "Skip invalid files instead of stopping playback"
 msgstr "Niepoprawne pliki są teraz pomijane, zamiast zatrzymywania odtwarzania"
 
-#: data/music.metainfo.xml.in:60
+#: data/music.metainfo.xml.in:69
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr ""
 "Przyciski Następny oraz Powtarzaj działają zawsze, niezależnie od trybu "
 "powtarzania"
 
-#: data/music.metainfo.xml.in:61
+#: data/music.metainfo.xml.in:70
 msgid ""
 "Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
@@ -76,46 +80,33 @@ msgstr ""
 "bokmål, polsku, portugalsku, rosyjsku, chińsku (uproszczony), turecku i "
 "ukraińsku"
 
-#: data/music.metainfo.xml.in:71
+#: data/music.metainfo.xml.in:80
 msgid "Complete rewrite"
 msgstr "Całkowite przepisanie"
 
-#: data/music.metainfo.xml.in:77
+#: data/music.metainfo.xml.in:86
 msgid "Drop support for Last.FM"
 msgstr "Usunięto wsparcie dla Last.FM"
 
-#: data/music.metainfo.xml.in:78 data/music.metainfo.xml.in:88
-#: data/music.metainfo.xml.in:96
+#: data/music.metainfo.xml.in:87 data/music.metainfo.xml.in:97
 msgid "Updated translations"
 msgstr "Zaktualizowane tłumaczenia"
 
-#: data/music.metainfo.xml.in:84
+#: data/music.metainfo.xml.in:93
 msgid "Fix an issue with saving smart playlists"
 msgstr "Naprawiono problem z zapisywaniem inteligentnych playlist"
 
-#: data/music.metainfo.xml.in:85
+#: data/music.metainfo.xml.in:94
 msgid "Drop support for CD-ROM"
 msgstr "Usunięto wsparcie dla CD-ROM"
 
-#: data/music.metainfo.xml.in:86
+#: data/music.metainfo.xml.in:95
 msgid "Dark style support"
 msgstr "Wsparcie dla trybu ciemnego"
 
-#: data/music.metainfo.xml.in:87
+#: data/music.metainfo.xml.in:96
 msgid "Minor visual improvements"
 msgstr "Mniejsze poprawki wizualne"
-
-#: data/music.metainfo.xml.in:94
-msgid "Fix removing items from the queue"
-msgstr "Naprawiono usuwanie elementów z kolejki"
-
-#: data/music.metainfo.xml.in:95
-msgid "Fix equalizer sliders not properly disabled sometimes"
-msgstr "Naprawiono niepoprawnie się wyłączające słupki equalizera"
-
-#: data/music.metainfo.xml.in:97
-msgid "Performance improvements"
-msgstr "Ulepszenia wydajności"
 
 #: data/music.desktop.in:5
 msgid "Music Player"
@@ -130,6 +121,15 @@ msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
 "Muzyka;Dźwięk;Audio;Odtwarzacz;MP3;Odtwarzaj;Lista odtwarzania;Media;"
 "Piosenki;"
+
+#~ msgid "Fix removing items from the queue"
+#~ msgstr "Naprawiono usuwanie elementów z kolejki"
+
+#~ msgid "Fix equalizer sliders not properly disabled sometimes"
+#~ msgstr "Naprawiono niepoprawnie się wyłączające słupki equalizera"
+
+#~ msgid "Performance improvements"
+#~ msgstr "Ulepszenia wydajności"
 
 #~ msgid "Removed old gsignond vapi"
 #~ msgstr "Usunięto stare gsignond vapi"

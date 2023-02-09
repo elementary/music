@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-05 20:37+0000\n"
+"POT-Creation-Date: 2023-02-09 20:26+0000\n"
 "PO-Revision-Date: 2022-12-25 02:25+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
-"Language-Team: Japanese <https://l10n.elementary.io/projects/music/extra/ja/>"
-"\n"
+"Language-Team: Japanese <https://l10n.elementary.io/projects/music/extra/ja/"
+">\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -47,25 +47,32 @@ msgstr "お気に入りの楽曲を簡単にキューに追加できます"
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
 
-#: data/music.metainfo.xml.in:56
+#: data/music.metainfo.xml.in:56 data/music.metainfo.xml.in:65
 msgid "Improvements:"
 msgstr "改善点:"
 
 #: data/music.metainfo.xml.in:58
+msgid "Drag and drop whole folders into the queue"
+msgstr ""
+
+#: data/music.metainfo.xml.in:67
 msgid "For tracks without a title, use the file name instead of the whole URI"
-msgstr "タイトルのないトラックの場合は、URI "
-"全体ではなくファイル名のみを使用するように修正"
+msgstr ""
+"タイトルのないトラックの場合は、URI 全体ではなくファイル名のみを使用するよう"
+"に修正"
 
-#: data/music.metainfo.xml.in:59
+#: data/music.metainfo.xml.in:68
 msgid "Skip invalid files instead of stopping playback"
-msgstr "無効なファイルが存在する場合、再生停止するのではなくスキップするように修正"
+msgstr ""
+"無効なファイルが存在する場合、再生停止するのではなくスキップするように修正"
 
-#: data/music.metainfo.xml.in:60
+#: data/music.metainfo.xml.in:69
 msgid "Next and Repeat buttons always work regardless of repeat mode"
-msgstr "リピートの設定に関わらず、“次へ”および“繰り返し”ボタンが常に使用できるように"
+msgstr ""
+"リピートの設定に関わらず、“次へ”および“繰り返し”ボタンが常に使用できるように"
 "修正"
 
-#: data/music.metainfo.xml.in:61
+#: data/music.metainfo.xml.in:70
 msgid ""
 "Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
@@ -76,46 +83,33 @@ msgstr ""
 "ンド語、ポルトガル語、ロシア語、簡体字中国語、トルコ語、ウクライナ語で利用可"
 "能"
 
-#: data/music.metainfo.xml.in:71
+#: data/music.metainfo.xml.in:80
 msgid "Complete rewrite"
 msgstr "コードの完全な書き直し"
 
-#: data/music.metainfo.xml.in:77
+#: data/music.metainfo.xml.in:86
 msgid "Drop support for Last.FM"
 msgstr "Last.FM への対応を終了"
 
-#: data/music.metainfo.xml.in:78 data/music.metainfo.xml.in:88
-#: data/music.metainfo.xml.in:96
+#: data/music.metainfo.xml.in:87 data/music.metainfo.xml.in:97
 msgid "Updated translations"
 msgstr "新しい翻訳"
 
-#: data/music.metainfo.xml.in:84
+#: data/music.metainfo.xml.in:93
 msgid "Fix an issue with saving smart playlists"
 msgstr "スマートプレイリストの保存時に発生する不具合を修正"
 
-#: data/music.metainfo.xml.in:85
+#: data/music.metainfo.xml.in:94
 msgid "Drop support for CD-ROM"
 msgstr "CD-ROM への対応を終了"
 
-#: data/music.metainfo.xml.in:86
+#: data/music.metainfo.xml.in:95
 msgid "Dark style support"
 msgstr "ダークスタイルへの対応"
 
-#: data/music.metainfo.xml.in:87
+#: data/music.metainfo.xml.in:96
 msgid "Minor visual improvements"
 msgstr "軽微な視覚上の改善"
-
-#: data/music.metainfo.xml.in:94
-msgid "Fix removing items from the queue"
-msgstr "キューから項目を削除する際の不具合を修正"
-
-#: data/music.metainfo.xml.in:95
-msgid "Fix equalizer sliders not properly disabled sometimes"
-msgstr "イコライザーのスライダーが適切に無効にならないことがある不具合を修正"
-
-#: data/music.metainfo.xml.in:97
-msgid "Performance improvements"
-msgstr "パフォーマンスの改善"
 
 #: data/music.desktop.in:5
 msgid "Music Player"
@@ -130,6 +124,16 @@ msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
 "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;オーディオ;音声;プレーヤー;"
 "プレイヤー;再生;プレイリスト;メディア;曲;"
+
+#~ msgid "Fix removing items from the queue"
+#~ msgstr "キューから項目を削除する際の不具合を修正"
+
+#~ msgid "Fix equalizer sliders not properly disabled sometimes"
+#~ msgstr ""
+#~ "イコライザーのスライダーが適切に無効にならないことがある不具合を修正"
+
+#~ msgid "Performance improvements"
+#~ msgstr "パフォーマンスの改善"
 
 #~ msgid "Removed old gsignond vapi"
 #~ msgstr "古い gsignond vapi を削除"

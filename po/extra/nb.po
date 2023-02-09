@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-05 20:37+0000\n"
+"POT-Creation-Date: 2023-02-09 20:26+0000\n"
 "PO-Revision-Date: 2022-11-09 15:29+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://l10n.elementary.io/projects/music/"
@@ -43,70 +43,61 @@ msgstr ""
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
 
-#: data/music.metainfo.xml.in:56
+#: data/music.metainfo.xml.in:56 data/music.metainfo.xml.in:65
 msgid "Improvements:"
 msgstr ""
 
 #: data/music.metainfo.xml.in:58
+msgid "Drag and drop whole folders into the queue"
+msgstr ""
+
+#: data/music.metainfo.xml.in:67
 msgid "For tracks without a title, use the file name instead of the whole URI"
 msgstr ""
 
-#: data/music.metainfo.xml.in:59
+#: data/music.metainfo.xml.in:68
 msgid "Skip invalid files instead of stopping playback"
 msgstr ""
 
-#: data/music.metainfo.xml.in:60
+#: data/music.metainfo.xml.in:69
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr ""
 
-#: data/music.metainfo.xml.in:61
+#: data/music.metainfo.xml.in:70
 msgid ""
 "Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
 "Russian, Simplified Chinese, Turkish, and Ukrainian"
 msgstr ""
 
-#: data/music.metainfo.xml.in:71
+#: data/music.metainfo.xml.in:80
 msgid "Complete rewrite"
 msgstr "Fullstendig omskriving"
 
-#: data/music.metainfo.xml.in:77
+#: data/music.metainfo.xml.in:86
 #, fuzzy
 msgid "Drop support for Last.FM"
 msgstr "Droppet støtte for CD-ROM"
 
-#: data/music.metainfo.xml.in:78 data/music.metainfo.xml.in:88
-#: data/music.metainfo.xml.in:96
+#: data/music.metainfo.xml.in:87 data/music.metainfo.xml.in:97
 msgid "Updated translations"
 msgstr "Oppdaterte oversettelser"
 
-#: data/music.metainfo.xml.in:84
+#: data/music.metainfo.xml.in:93
 msgid "Fix an issue with saving smart playlists"
 msgstr ""
 
-#: data/music.metainfo.xml.in:85
+#: data/music.metainfo.xml.in:94
 msgid "Drop support for CD-ROM"
 msgstr "Droppet støtte for CD-ROM"
 
-#: data/music.metainfo.xml.in:86
+#: data/music.metainfo.xml.in:95
 msgid "Dark style support"
 msgstr ""
 
-#: data/music.metainfo.xml.in:87
+#: data/music.metainfo.xml.in:96
 #, fuzzy
 msgid "Minor visual improvements"
-msgstr "Ytelsesforbedringer"
-
-#: data/music.metainfo.xml.in:94
-msgid "Fix removing items from the queue"
-msgstr "Fikset fjerning av elementer fra køen"
-
-#: data/music.metainfo.xml.in:95
-msgid "Fix equalizer sliders not properly disabled sometimes"
-msgstr "Fikset tonekontroll-glidebrytere som ikke alltid skrur seg av"
-
-#: data/music.metainfo.xml.in:97
-msgid "Performance improvements"
 msgstr "Ytelsesforbedringer"
 
 #: data/music.desktop.in:5
@@ -122,6 +113,15 @@ msgstr "Lytt til musikk"
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
 "Noise;Audio;Spiller;MP3;iPod;Spill;Spilleliste;Media;CD;Telefon;Sanger;"
+
+#~ msgid "Fix removing items from the queue"
+#~ msgstr "Fikset fjerning av elementer fra køen"
+
+#~ msgid "Fix equalizer sliders not properly disabled sometimes"
+#~ msgstr "Fikset tonekontroll-glidebrytere som ikke alltid skrur seg av"
+
+#~ msgid "Performance improvements"
+#~ msgstr "Ytelsesforbedringer"
 
 #, fuzzy
 #~ msgid "Removed old gsignond vapi"

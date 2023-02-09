@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-05 20:37+0000\n"
+"POT-Creation-Date: 2023-02-09 20:26+0000\n"
 "PO-Revision-Date: 2021-07-22 10:14+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Esperanto <https://l10n.elementary.io/projects/music/extra/eo/"
@@ -43,69 +43,60 @@ msgstr ""
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
 
-#: data/music.metainfo.xml.in:56
+#: data/music.metainfo.xml.in:56 data/music.metainfo.xml.in:65
 msgid "Improvements:"
 msgstr ""
 
 #: data/music.metainfo.xml.in:58
+msgid "Drag and drop whole folders into the queue"
+msgstr ""
+
+#: data/music.metainfo.xml.in:67
 msgid "For tracks without a title, use the file name instead of the whole URI"
 msgstr ""
 
-#: data/music.metainfo.xml.in:59
+#: data/music.metainfo.xml.in:68
 msgid "Skip invalid files instead of stopping playback"
 msgstr ""
 
-#: data/music.metainfo.xml.in:60
+#: data/music.metainfo.xml.in:69
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr ""
 
-#: data/music.metainfo.xml.in:61
+#: data/music.metainfo.xml.in:70
 msgid ""
 "Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
 "Russian, Simplified Chinese, Turkish, and Ukrainian"
 msgstr ""
 
-#: data/music.metainfo.xml.in:71
+#: data/music.metainfo.xml.in:80
 msgid "Complete rewrite"
 msgstr ""
 
-#: data/music.metainfo.xml.in:77
+#: data/music.metainfo.xml.in:86
 msgid "Drop support for Last.FM"
 msgstr ""
 
-#: data/music.metainfo.xml.in:78 data/music.metainfo.xml.in:88
-#: data/music.metainfo.xml.in:96
+#: data/music.metainfo.xml.in:87 data/music.metainfo.xml.in:97
 msgid "Updated translations"
 msgstr "Ĝisdatigitaj tradukoj"
 
-#: data/music.metainfo.xml.in:84
+#: data/music.metainfo.xml.in:93
 msgid "Fix an issue with saving smart playlists"
 msgstr ""
 
-#: data/music.metainfo.xml.in:85
+#: data/music.metainfo.xml.in:94
 msgid "Drop support for CD-ROM"
 msgstr ""
 
-#: data/music.metainfo.xml.in:86
+#: data/music.metainfo.xml.in:95
 msgid "Dark style support"
 msgstr ""
 
-#: data/music.metainfo.xml.in:87
+#: data/music.metainfo.xml.in:96
 #, fuzzy
 msgid "Minor visual improvements"
-msgstr "Rendimentaj plibonigoj"
-
-#: data/music.metainfo.xml.in:94
-msgid "Fix removing items from the queue"
-msgstr "Ripari forigon de elementoj el la vico"
-
-#: data/music.metainfo.xml.in:95
-msgid "Fix equalizer sliders not properly disabled sometimes"
-msgstr "Ripari ekvaliziajn ŝovilojn foje ne ĝuste malebligitaj"
-
-#: data/music.metainfo.xml.in:97
-msgid "Performance improvements"
 msgstr "Rendimentaj plibonigoj"
 
 #: data/music.desktop.in:5
@@ -121,6 +112,15 @@ msgstr "Aŭskulti muzikon"
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
 "brui;aŭdo;ludilo;MP3;iPod;muziko;kanto;listo;aŭdvido;lumdisko;KD;telefono;"
+
+#~ msgid "Fix removing items from the queue"
+#~ msgstr "Ripari forigon de elementoj el la vico"
+
+#~ msgid "Fix equalizer sliders not properly disabled sometimes"
+#~ msgstr "Ripari ekvaliziajn ŝovilojn foje ne ĝuste malebligitaj"
+
+#~ msgid "Performance improvements"
+#~ msgstr "Rendimentaj plibonigoj"
 
 #~ msgid "Removed old gsignond vapi"
 #~ msgstr "Forigo de la malnova gsignond-vapi-aŭtentigilo"
