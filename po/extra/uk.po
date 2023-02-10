@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-02-09 20:26+0000\n"
-"PO-Revision-Date: 2022-12-06 15:09+0000\n"
+"PO-Revision-Date: 2023-02-11 14:25+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/music/extra/uk/"
 ">\n"
@@ -53,7 +53,7 @@ msgstr "Поліпшення:"
 
 #: data/music.metainfo.xml.in:58
 msgid "Drag and drop whole folders into the queue"
-msgstr ""
+msgstr "Перетягування цілих тек до черги"
 
 #: data/music.metainfo.xml.in:67
 msgid "For tracks without a title, use the file name instead of the whole URI"
