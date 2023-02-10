@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box 0.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-02-09 20:26+0000\n"
-"PO-Revision-Date: 2022-12-11 10:25+0000\n"
+"PO-Revision-Date: 2023-02-11 14:25+0000\n"
 "Last-Translator: Marcin Serwin <marcin.serwin0@protonmail.com>\n"
 "Language-Team: Polish <https://l10n.elementary.io/projects/music/extra/pl/>\n"
 "Language: pl\n"
@@ -52,7 +52,7 @@ msgstr "Ulepszenia:"
 
 #: data/music.metainfo.xml.in:58
 msgid "Drag and drop whole folders into the queue"
-msgstr ""
+msgstr "Przeciąganie i upuszczanie całych folderów do kolejki"
 
 #: data/music.metainfo.xml.in:67
 msgid "For tracks without a title, use the file name instead of the whole URI"
