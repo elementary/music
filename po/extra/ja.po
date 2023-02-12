@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-02-09 20:26+0000\n"
-"PO-Revision-Date: 2022-12-25 02:25+0000\n"
+"PO-Revision-Date: 2023-02-13 12:25+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
-"Language-Team: Japanese <https://l10n.elementary.io/projects/music/extra/ja/"
-">\n"
+"Language-Team: Japanese <https://l10n.elementary.io/projects/music/extra/ja/>"
+"\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,7 +53,8 @@ msgstr "改善点:"
 
 #: data/music.metainfo.xml.in:58
 msgid "Drag and drop whole folders into the queue"
-msgstr ""
+msgstr "フォルダーをドラッグアンドドロップすることで、中の全項目をキューに追加できる"
+"ように修正"
 
 #: data/music.metainfo.xml.in:67
 msgid "For tracks without a title, use the file name instead of the whole URI"
