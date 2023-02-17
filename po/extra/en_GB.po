@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-02-09 20:26+0000\n"
-"PO-Revision-Date: 2021-07-18 00:28+0000\n"
-"Last-Translator: Ciarán Ainsworth <ciaranainsworth@outlook.com>\n"
+"PO-Revision-Date: 2023-02-17 14:25+0000\n"
+"Last-Translator: David Hewitt <davidmhewitt@gmail.com>\n"
 "Language-Team: English (United Kingdom) <https://l10n.elementary.io/projects/"
 "music/extra/en_GB/>\n"
 "Language: en_GB\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 4.14.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
 #: data/music.metainfo.xml.in:9 data/music.desktop.in:4
@@ -26,7 +26,7 @@ msgstr "Music"
 
 #: data/music.metainfo.xml.in:10
 msgid "Queue and play local audio files"
-msgstr ""
+msgstr "Queue and play local audio files"
 
 #: data/music.metainfo.xml.in:12
 msgid ""
@@ -34,10 +34,13 @@ msgid ""
 "frills. See embedded album artwork. Control playback with media keys or in "
 "the system audio indicator."
 msgstr ""
+"Quickly queue up and listen to your local music files without any extra "
+"frills. See embedded album artwork. Control playback with media keys or in "
+"the system audio indicator."
 
 #: data/music.metainfo.xml.in:17
 msgid "Quickly queue up your favorite tracks"
-msgstr ""
+msgstr "Quickly queue up your favourite tracks"
 
 #: data/music.metainfo.xml.in:49
 msgid "elementary, Inc."
@@ -45,23 +48,23 @@ msgstr "elementary, Inc."
 
 #: data/music.metainfo.xml.in:56 data/music.metainfo.xml.in:65
 msgid "Improvements:"
-msgstr ""
+msgstr "Improvements:"
 
 #: data/music.metainfo.xml.in:58
 msgid "Drag and drop whole folders into the queue"
-msgstr ""
+msgstr "Drag and drop whole folders into the queue"
 
 #: data/music.metainfo.xml.in:67
 msgid "For tracks without a title, use the file name instead of the whole URI"
-msgstr ""
+msgstr "For tracks without a title, use the file name instead of the whole URI"
 
 #: data/music.metainfo.xml.in:68
 msgid "Skip invalid files instead of stopping playback"
-msgstr ""
+msgstr "Skip invalid files instead of stopping playback"
 
 #: data/music.metainfo.xml.in:69
 msgid "Next and Repeat buttons always work regardless of repeat mode"
-msgstr ""
+msgstr "Next and Repeat buttons always work regardless of repeat mode"
 
 #: data/music.metainfo.xml.in:70
 msgid ""
@@ -69,10 +72,13 @@ msgid ""
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
 "Russian, Simplified Chinese, Turkish, and Ukrainian"
 msgstr ""
+"Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
+"Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
+"Russian, Simplified Chinese, Turkish, and Ukrainian"
 
 #: data/music.metainfo.xml.in:80
 msgid "Complete rewrite"
-msgstr ""
+msgstr "Complete rewrite"
 
 #: data/music.metainfo.xml.in:86
 msgid "Drop support for Last.FM"
@@ -107,9 +113,8 @@ msgid "Listen to music"
 msgstr "Listen to music"
 
 #: data/music.desktop.in:13
-#, fuzzy
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
-msgstr "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;Phone;Songs;"
+msgstr "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 
 #~ msgid "Fix removing items from the queue"
 #~ msgstr "Fix removing items from the queue"
