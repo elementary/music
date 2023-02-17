@@ -3,6 +3,7 @@
 <component type="desktop-application">
   <id>io.elementary.music</id>
   <launchable type="desktop-id">io.elementary.music.desktop</launchable>
+  <translation type="gettext">io.elementary.music</translation>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-only</project_license>
 
