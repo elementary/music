@@ -8,15 +8,17 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-02-09 20:26+0000\n"
-"PO-Revision-Date: 2016-01-04 18:54+0000\n"
-"Last-Translator: Corentin Noël <corentin@elementaryos.org>\n"
-"Language-Team: Georgian <ka@li.org>\n"
+"PO-Revision-Date: 2023-03-12 10:25+0000\n"
+"Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
+"Language-Team: Georgian <https://l10n.elementary.io/projects/music/extra/ka/>"
+"\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
-"X-Generator: Launchpad (build 18330)\n"
 
 #: data/music.metainfo.xml.in:9 data/music.desktop.in:4
 msgid "Music"
@@ -24,7 +26,7 @@ msgstr "მუსიკა"
 
 #: data/music.metainfo.xml.in:10
 msgid "Queue and play local audio files"
-msgstr ""
+msgstr "შეაგროვეთ ერთად და დაუკარით ლოკალური ხმოვანი ფაილები"
 
 #: data/music.metainfo.xml.in:12
 msgid ""
@@ -32,34 +34,41 @@ msgid ""
 "frills. See embedded album artwork. Control playback with media keys or in "
 "the system audio indicator."
 msgstr ""
+"სწრაფად მოაგროვეთ და მოუსმინეთ თქვენს ლოკალურ მუსიკას ზედმეტი თავის ტკივილის "
+"გარეშე. იხილეთ ჩაშენებული ალბომის ყდები. აკონტროლეთ დაკვრა მედიის ღილაკებით "
+"ან სისტემის აუდიოს ინდიკატორით."
 
 #: data/music.metainfo.xml.in:17
 msgid "Quickly queue up your favorite tracks"
-msgstr ""
+msgstr "სწრაფად მოძებნეთ რჩეული ტრეკები"
 
 #: data/music.metainfo.xml.in:49
 msgid "elementary, Inc."
-msgstr ""
+msgstr "elementary, Inc."
 
 #: data/music.metainfo.xml.in:56 data/music.metainfo.xml.in:65
 msgid "Improvements:"
-msgstr ""
+msgstr "გაუმჯობესებები:"
 
 #: data/music.metainfo.xml.in:58
 msgid "Drag and drop whole folders into the queue"
-msgstr ""
+msgstr "რიგში საქაღალდეების გადათრევის მხაარდაჭერა"
 
 #: data/music.metainfo.xml.in:67
 msgid "For tracks without a title, use the file name instead of the whole URI"
 msgstr ""
+"სათაურის არმქონე ტრეკებისთვის სრული URI-ის მაგიერ მხოლოდ სახელის ჩვენება"
 
 #: data/music.metainfo.xml.in:68
 msgid "Skip invalid files instead of stopping playback"
 msgstr ""
+"არასწორი ფაილის შემთხვევაში დაკვრის შეჩერების მაგიერ შემდეგ ფაილზე გადასვლა"
 
 #: data/music.metainfo.xml.in:69
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr ""
+"შემდეგი და გამეორების ღილაკები გამეორების რეჟიმისგან დამოუკიდებლად, "
+"ყოველთვის მუშაობს"
 
 #: data/music.metainfo.xml.in:70
 msgid ""
@@ -67,34 +76,38 @@ msgid ""
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
 "Russian, Simplified Chinese, Turkish, and Ukrainian"
 msgstr ""
+"ახლა ხელმისაწვდომია ქართულად, კატალანურად, ჰოლანდიურად, ფინურად, ფრანგულად, "
+"გერმანულად, ივრითზე, უნგრულად, იაპონურად, კორეულად, ქურთულად, მარათიზე, "
+"ნორვეგიულ ბოქმალზე, პოლონურად, რუსულად, გამარტივებულ ჩინურზე, თურქულად და "
+"უკრაინულად"
 
 #: data/music.metainfo.xml.in:80
 msgid "Complete rewrite"
-msgstr ""
+msgstr "სრული გადაწერა"
 
 #: data/music.metainfo.xml.in:86
 msgid "Drop support for Last.FM"
-msgstr ""
+msgstr "Last.FM-ის მხარდაჭერა"
 
 #: data/music.metainfo.xml.in:87 data/music.metainfo.xml.in:97
 msgid "Updated translations"
-msgstr ""
+msgstr "განახლებული თარგმანები"
 
 #: data/music.metainfo.xml.in:93
 msgid "Fix an issue with saving smart playlists"
-msgstr ""
+msgstr "ჭკვიანი დასაკრავი სიების შენახვის შეცდომის გასწორება"
 
 #: data/music.metainfo.xml.in:94
 msgid "Drop support for CD-ROM"
-msgstr ""
+msgstr "CD-ROM-ის მხარდაჭერა"
 
 #: data/music.metainfo.xml.in:95
 msgid "Dark style support"
-msgstr ""
+msgstr "ბნელი სტილის მხარდაჭერა"
 
 #: data/music.metainfo.xml.in:96
 msgid "Minor visual improvements"
-msgstr ""
+msgstr "ინტერფეისის მცირე გაუმჯობესება"
 
 #: data/music.desktop.in:5
 msgid "Music Player"
@@ -105,7 +118,6 @@ msgid "Listen to music"
 msgstr "მოუსმინეთ მუსიკას"
 
 #: data/music.desktop.in:13
-#, fuzzy
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr "Noise;აუდიო;დამკვრელი;MP3;iPod;დაკვრა;სია;მედია;CD;ტელეფონი;სიმღერები;"
 
