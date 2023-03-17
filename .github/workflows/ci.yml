@@ -35,7 +35,7 @@ jobs:
           platforms: arm64
 
       - name: Build
-        uses: bilelmoussaoui/flatpak-github-actions/flatpak-builder@v4
+        uses: bilelmoussaoui/flatpak-github-actions/flatpak-builder@v5
         with:
           bundle: Music.flatpak
           manifest-path: io.elementary.music.yml
