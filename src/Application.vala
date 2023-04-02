@@ -103,12 +103,57 @@ public class Music.Application : Gtk.Application {
         settings.bind ("window-maximized", main_window, "maximized", SettingsBindFlags.SET);
     }
 
+    // FIXME(aitor-gomila): improve algorithm and make code cleaner
+    Array<File> listDirectory(string directory) {
+        var dir = Dir.open(directory, 0);
+        string? name = null;
+        Array<File> elements = new Array<File>();
+
+        while((name = dir.read_name ()) != null) {
+            string filePath = Path.build_filename (directory, name);
+            File file = File.new_for_path(filePath);
+            elements.append_val(file);
+        }
+        return elements;
+    }
+
+    private bool isDirectory(string file) {
+        return FileUtils.test(file, FileTest.IS_DIR);
+    }
+
+    private void loopThroughFiles(Array<File> files) {
+        for (var i = 0; i < files.length; i++) {
+            var file = files.index(i);
+            var filePath = file.get_path();
+            var isDirectory = isDirectory(filePath);
+
+            if (!isDirectory) {
+                File[] arr = new File[1];
+                arr[0] = file;
+                playback_manager.queue_files(arr);
+                return;
+            }
+            // Is a directory
+            var directoryElements = listDirectory(filePath);
+            loopThroughFiles(directoryElements);
+        }
+    }
+
     protected override void open (File[] files, string hint) {
         if (active_window == null) {
             activate ();
         }
 
-        playback_manager.queue_files (files);
+        // Turns File[] into Array<Files>
+        // Is there a cleaner way to do this?
+        Array<File> filesArr = new Array<File>();
+
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            filesArr.append_val(file);
+        }
+
+        loopThroughFiles(filesArr);
     }
 
     private void action_play_pause () {
