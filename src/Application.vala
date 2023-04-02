@@ -104,15 +104,15 @@ public class Music.Application : Gtk.Application {
     }
 
     // FIXME(aitor-gomila): improve algorithm and make code cleaner
-    Array<File> listDirectory(string directory) {
+    File[] listDirectory(string directory) {
         var dir = Dir.open(directory, 0);
         string? name = null;
-        Array<File> elements = new Array<File>();
+        File[] elements = new File[1];
 
         while((name = dir.read_name ()) != null) {
             string filePath = Path.build_filename (directory, name);
             File file = File.new_for_path(filePath);
-            elements.append_val(file);
+            elements += file;
         }
         return elements;
     }
@@ -121,9 +121,9 @@ public class Music.Application : Gtk.Application {
         return FileUtils.test(file, FileTest.IS_DIR);
     }
 
-    private void loopThroughFiles(Array<File> files) {
+    private void loopThroughFiles(File[] files) {
         for (var i = 0; i < files.length; i++) {
-            var file = files.index(i);
+            var file = files[i];
             var filePath = file.get_path();
             var isDirectory = isDirectory(filePath);
 
@@ -144,16 +144,7 @@ public class Music.Application : Gtk.Application {
             activate ();
         }
 
-        // Turns File[] into Array<Files>
-        // Is there a cleaner way to do this?
-        Array<File> filesArr = new Array<File>();
-
-        for (var i = 0; i < files.length; i++) {
-            var file = files[i];
-            filesArr.append_val(file);
-        }
-
-        loopThroughFiles(filesArr);
+        loopThroughFiles(files);
     }
 
     private void action_play_pause () {
