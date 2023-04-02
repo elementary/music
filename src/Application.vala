@@ -131,7 +131,7 @@ public class Music.Application : Gtk.Application {
                 File[] arr = new File[1];
                 arr[0] = file;
                 playback_manager.queue_files(arr);
-                return;
+                continue;
             }
             // Is a directory
             var directoryElements = listDirectory(filePath);
