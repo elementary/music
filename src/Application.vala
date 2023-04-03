@@ -109,7 +109,6 @@ public class Music.Application : Gtk.Application {
             dir = Dir.open (directory, 0);
         } catch (FileError e) {
             warning (e.message);
-
             return {};
         }
 
