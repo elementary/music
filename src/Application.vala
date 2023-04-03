@@ -138,7 +138,12 @@ public class Music.Application : Gtk.Application {
 
             if (isDirectory) {
                 var directoryElements = list_directory(filePath);
-                elements += loop_through_files(directoryElements);
+                var directoryFiles =  loop_through_files(directoryElements);
+
+                foreach (var directoryFile in directoryFiles) {
+                    elements += directoryFile;
+                }
+
                 continue;
             }
 
