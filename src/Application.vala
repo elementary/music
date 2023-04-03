@@ -106,22 +106,23 @@ public class Music.Application : Gtk.Application {
     private File[] list_directory (string directory) {
         try {
             var dir = Dir.open (directory, 0);
-
-            string? name = null;
-            File[] elements = {};
-
-            while ((name = dir.read_name ()) != null) {
-                string file_path = Path.build_filename (directory, name);
-                File file = File.new_for_path (file_path);
-
-                elements += file;
-            }
-
-            return elements;
         } catch (FileError e) {
             warning (e.message);
+
             return {};
         }
+
+        string? name = null;
+        File[] elements = {};
+
+        while ((name = dir.read_name ()) != null) {
+            string file_path = Path.build_filename (directory, name);
+            File file = File.new_for_path (file_path);
+
+            elements += file;
+        }
+
+        return elements;
     }
 
     private File[] loop_through_files (File[] files) {
