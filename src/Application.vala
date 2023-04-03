@@ -124,15 +124,15 @@ public class Music.Application : Gtk.Application {
     }
 
     private void loopThroughFiles(File[] files) {
+        // All of these are added later in bulk
+        File[] elements = {};
+
         foreach (var file in files) {
             var filePath = file.get_path();
             var isDirectory = isDirectory(filePath);
 
             if (!isDirectory) {
-                File[] arr = {};
-                arr[0] = file;
-
-                playback_manager.queue_files(arr);
+                elements += file;
 
                 continue;
             }
@@ -141,6 +141,8 @@ public class Music.Application : Gtk.Application {
             var directoryElements = listDirectory(filePath);
             loopThroughFiles(directoryElements);
         }
+
+        playback_manager.queue_files (elements);
     }
 
     protected override void open (File[] files, string hint) {
