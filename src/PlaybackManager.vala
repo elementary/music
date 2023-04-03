@@ -83,6 +83,7 @@ public class Music.PlaybackManager : Object {
         playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)(percent * current_audio.duration));
     }
 
+    // Files[] must not contain any null entries
     public void queue_files (File[] files) {
         discoverer.start ();
         int invalids = 0;
