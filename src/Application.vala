@@ -134,9 +134,8 @@ public class Music.Application : Gtk.Application {
 
         foreach (var file in files) {
             var file_path = file.get_path ();
-            var is_directory = is_directory (file_path);
 
-            if (is_directory) {
+            if (is_directory (file_path)) {
                 var directory_elements = list_directory (file_path);
                 var directory_files = loop_through_files (directory_elements);
 
