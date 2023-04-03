@@ -155,7 +155,9 @@ public class Music.Application : Gtk.Application {
             activate ();
         }
 
-        playback_manager.queue_files (loop_through_files (files));
+        var files_to_play = loop_through_files (files);
+        debug ("Application: Number of files to play %u", files_to_play.length);
+        playback_manager.queue_files (files_to_play);
     }
 
     private void action_play_pause () {
