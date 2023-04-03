@@ -103,45 +103,45 @@ public class Music.Application : Gtk.Application {
         settings.bind ("window-maximized", main_window, "maximized", SettingsBindFlags.SET);
     }
 
-    File[] list_directory(string directory) {
+    File[] list_directory (string directory) {
         try {
-            var dir = Dir.open(directory, 0);
+            var dir = Dir.open (directory, 0);
 
             string? name = null;
             File[] elements = {};
 
-            while((name = dir.read_name ()) != null) {
-                string filePath = Path.build_filename (directory, name);
-                File file = File.new_for_path(filePath);
+            while ((name = dir.read_name ()) != null) {
+                string file_path = Path.build_filename (directory, name);
+                File file = File.new_for_path (file_path);
 
                 elements += file;
             }
 
             return elements;
         } catch (FileError e) {
-            warning(e.message);
+            warning (e.message);
             return {};
         }
     }
 
-    private bool is_directory(string file) {
-        return FileUtils.test(file, FileTest.IS_DIR);
+    private bool is_directory (string file) {
+        return FileUtils.test (file, FileTest.IS_DIR);
     }
 
-    private File[] loop_through_files(File[] files) {
+    private File[] loop_through_files (File[] files) {
         // All of these will be returned later in bulk
         File[] elements = {};
 
         foreach (var file in files) {
-            var filePath = file.get_path();
-            var isDirectory = is_directory(filePath);
+            var file_path = file.get_path ();
+            var is_directory = is_directory (file_path);
 
-            if (isDirectory) {
-                var directoryElements = list_directory(filePath);
-                var directoryFiles =  loop_through_files(directoryElements);
+            if (is_directory) {
+                var directory_elements = list_directory (file_path);
+                var directory_files = loop_through_files (directory_elements);
 
-                foreach (var directoryFile in directoryFiles) {
-                    elements += directoryFile;
+                foreach (var directory_file in directory_files) {
+                    elements += directory_file;
                 }
 
                 continue;
@@ -158,7 +158,7 @@ public class Music.Application : Gtk.Application {
             activate ();
         }
 
-        playback_manager.queue_files(loop_through_files(files));
+        playback_manager.queue_files (loop_through_files (files));
     }
 
     private void action_play_pause () {
