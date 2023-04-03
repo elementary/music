@@ -124,10 +124,6 @@ public class Music.Application : Gtk.Application {
         }
     }
 
-    private bool is_directory (string file) {
-        return FileUtils.test (file, FileTest.IS_DIR);
-    }
-
     private File[] loop_through_files (File[] files) {
         // All of these will be returned later in bulk
         File[] elements = {};
@@ -135,7 +131,7 @@ public class Music.Application : Gtk.Application {
         foreach (var file in files) {
             var file_path = file.get_path ();
 
-            if (is_directory (file_path)) {
+            if (FileUtils.test (file_path, FileTest.IS_DIR)) {
                 var directory_elements = list_directory (file_path);
                 var directory_files = loop_through_files (directory_elements);
 
