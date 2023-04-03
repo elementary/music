@@ -103,17 +103,19 @@ public class Music.Application : Gtk.Application {
         settings.bind ("window-maximized", main_window, "maximized", SettingsBindFlags.SET);
     }
 
-    // FIXME(aitor-gomila): improve algorithm and make code cleaner
     File[] listDirectory(string directory) {
         var dir = Dir.open(directory, 0);
+
         string? name = null;
-        File[] elements = new File[1];
+        File[] elements = {};
 
         while((name = dir.read_name ()) != null) {
             string filePath = Path.build_filename (directory, name);
             File file = File.new_for_path(filePath);
+
             elements += file;
         }
+
         return elements;
     }
 
@@ -122,17 +124,19 @@ public class Music.Application : Gtk.Application {
     }
 
     private void loopThroughFiles(File[] files) {
-        for (var i = 0; i < files.length; i++) {
-            var file = files[i];
+        foreach (var file in files) {
             var filePath = file.get_path();
             var isDirectory = isDirectory(filePath);
 
             if (!isDirectory) {
-                File[] arr = new File[1];
+                File[] arr = {};
                 arr[0] = file;
+
                 playback_manager.queue_files(arr);
+
                 continue;
             }
+
             // Is a directory
             var directoryElements = listDirectory(filePath);
             loopThroughFiles(directoryElements);
