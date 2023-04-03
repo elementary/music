@@ -104,19 +104,24 @@ public class Music.Application : Gtk.Application {
     }
 
     File[] list_directory(string directory) {
-        var dir = Dir.open(directory, 0);
+        try {
+            var dir = Dir.open(directory, 0);
 
-        string? name = null;
-        File[] elements = {};
+            string? name = null;
+            File[] elements = {};
 
-        while((name = dir.read_name ()) != null) {
-            string filePath = Path.build_filename (directory, name);
-            File file = File.new_for_path(filePath);
+            while((name = dir.read_name ()) != null) {
+                string filePath = Path.build_filename (directory, name);
+                File file = File.new_for_path(filePath);
 
-            elements += file;
+                elements += file;
+            }
+
+            return elements;
+        } catch (FileError e) {
+            warning(e.message);
+            return {};
         }
-
-        return elements;
     }
 
     private bool is_directory(string file) {
