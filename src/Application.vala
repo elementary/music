@@ -116,8 +116,8 @@ public class Music.Application : Gtk.Application {
         File[] elements = {};
 
         while ((name = dir.read_name ()) != null) {
-            string file_path = Path.build_filename (directory, name);
-            File file = File.new_for_path (file_path);
+            var file_path = Path.build_filename (directory, name);
+            var file = File.new_for_path (file_path);
 
             elements += file;
         }
