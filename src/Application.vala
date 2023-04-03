@@ -103,7 +103,7 @@ public class Music.Application : Gtk.Application {
         settings.bind ("window-maximized", main_window, "maximized", SettingsBindFlags.SET);
     }
 
-    File[] list_directory (string directory) {
+    private File[] list_directory (string directory) {
         try {
             var dir = Dir.open (directory, 0);
 
