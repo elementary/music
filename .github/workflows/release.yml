@@ -54,7 +54,7 @@ jobs:
           platforms: arm64
 
       - name: Build
-        uses: flatpak/flatpak-github-actions/flatpak-builder@v5
+        uses: flatpak/flatpak-github-actions/flatpak-builder@v6
         with:
           bundle: music.flatpak
           manifest-path: io.elementary.music.yml
@@ -66,7 +66,7 @@ jobs:
           arch: ${{ matrix.arch }}
 
       - name: Deploy
-        uses: flatpak/flatpak-github-actions/flat-manager@v5
+        uses: flatpak/flatpak-github-actions/flat-manager@v6
         with:
           repository: appcenter
           flat-manager-url: https://flatpak-api.elementary.io
