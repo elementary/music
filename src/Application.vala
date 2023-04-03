@@ -104,8 +104,9 @@ public class Music.Application : Gtk.Application {
     }
 
     private File[] list_directory (string directory) {
+        Dir dir;
         try {
-            var dir = Dir.open (directory, 0);
+            dir = Dir.open (directory, 0);
         } catch (FileError e) {
             warning (e.message);
 
