@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-09 20:26+0000\n"
+"POT-Creation-Date: 2023-04-04 17:17+0000\n"
 "PO-Revision-Date: 2021-07-22 10:14+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Occidental <https://l10n.elementary.io/projects/music/extra/"
@@ -13,82 +13,86 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.4.2\n"
 
-#: data/music.metainfo.xml.in:9 data/music.desktop.in:4
+#: data/music.metainfo.xml.in:10 data/music.desktop.in:4
 msgid "Music"
 msgstr "Musica"
 
-#: data/music.metainfo.xml.in:10
+#: data/music.metainfo.xml.in:11
 msgid "Queue and play local audio files"
 msgstr ""
 
-#: data/music.metainfo.xml.in:12
+#: data/music.metainfo.xml.in:13
 msgid ""
 "Quickly queue up and listen to your local music files without any extra "
 "frills. See embedded album artwork. Control playback with media keys or in "
 "the system audio indicator."
 msgstr ""
 
-#: data/music.metainfo.xml.in:17
+#: data/music.metainfo.xml.in:18
 msgid "Quickly queue up your favorite tracks"
 msgstr ""
 
-#: data/music.metainfo.xml.in:49
+#: data/music.metainfo.xml.in:50
 #, fuzzy
 msgid "elementary, Inc."
 msgstr "elementary LLC."
 
-#: data/music.metainfo.xml.in:56 data/music.metainfo.xml.in:65
+#: data/music.metainfo.xml.in:57 data/music.metainfo.xml.in:71
 msgid "Improvements:"
 msgstr ""
 
-#: data/music.metainfo.xml.in:58
+#: data/music.metainfo.xml.in:59
 msgid "Drag and drop whole folders into the queue"
 msgstr ""
 
-#: data/music.metainfo.xml.in:67
+#: data/music.metainfo.xml.in:60
+msgid "Open folders in the filemanager with Music"
+msgstr ""
+
+#: data/music.metainfo.xml.in:73
 msgid "For tracks without a title, use the file name instead of the whole URI"
 msgstr ""
 
-#: data/music.metainfo.xml.in:68
+#: data/music.metainfo.xml.in:74
 msgid "Skip invalid files instead of stopping playback"
 msgstr ""
 
-#: data/music.metainfo.xml.in:69
+#: data/music.metainfo.xml.in:75
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr ""
 
-#: data/music.metainfo.xml.in:70
+#: data/music.metainfo.xml.in:76
 msgid ""
 "Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
 "Russian, Simplified Chinese, Turkish, and Ukrainian"
 msgstr ""
 
-#: data/music.metainfo.xml.in:80
+#: data/music.metainfo.xml.in:86
 msgid "Complete rewrite"
 msgstr ""
 
-#: data/music.metainfo.xml.in:86
+#: data/music.metainfo.xml.in:92
 msgid "Drop support for Last.FM"
 msgstr ""
 
-#: data/music.metainfo.xml.in:87 data/music.metainfo.xml.in:97
+#: data/music.metainfo.xml.in:93 data/music.metainfo.xml.in:103
 msgid "Updated translations"
 msgstr ""
 
-#: data/music.metainfo.xml.in:93
+#: data/music.metainfo.xml.in:99
 msgid "Fix an issue with saving smart playlists"
 msgstr ""
 
-#: data/music.metainfo.xml.in:94
+#: data/music.metainfo.xml.in:100
 msgid "Drop support for CD-ROM"
 msgstr ""
 
-#: data/music.metainfo.xml.in:95
+#: data/music.metainfo.xml.in:101
 msgid "Dark style support"
 msgstr ""
 
-#: data/music.metainfo.xml.in:96
+#: data/music.metainfo.xml.in:102
 msgid "Minor visual improvements"
 msgstr ""
 

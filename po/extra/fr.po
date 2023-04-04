@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beatbox 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-09 20:26+0000\n"
+"POT-Creation-Date: 2023-04-04 17:17+0000\n"
 "PO-Revision-Date: 2023-02-16 09:25+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://l10n.elementary.io/projects/music/extra/fr/>\n"
@@ -19,16 +19,16 @@ msgstr ""
 "X-Generator: Weblate 4.14.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
-#: data/music.metainfo.xml.in:9 data/music.desktop.in:4
+#: data/music.metainfo.xml.in:10 data/music.desktop.in:4
 msgid "Music"
 msgstr "Musique"
 
-#: data/music.metainfo.xml.in:10
+#: data/music.metainfo.xml.in:11
 msgid "Queue and play local audio files"
 msgstr ""
 "Ajoutez des fichiers audio à la file d'attente et jouez des fichiers locaux"
 
-#: data/music.metainfo.xml.in:12
+#: data/music.metainfo.xml.in:13
 msgid ""
 "Quickly queue up and listen to your local music files without any extra "
 "frills. See embedded album artwork. Control playback with media keys or in "
@@ -38,39 +38,43 @@ msgstr ""
 "sans superflu. Visualisez les pochettes d'album intégrées. Contrôlez la "
 "lecture avec les touches multimédia ou dans l'indicateur audio du système."
 
-#: data/music.metainfo.xml.in:17
+#: data/music.metainfo.xml.in:18
 msgid "Quickly queue up your favorite tracks"
 msgstr "Mettez rapidement en file d'attente vos morceaux préférés"
 
-#: data/music.metainfo.xml.in:49
+#: data/music.metainfo.xml.in:50
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
 
-#: data/music.metainfo.xml.in:56 data/music.metainfo.xml.in:65
+#: data/music.metainfo.xml.in:57 data/music.metainfo.xml.in:71
 msgid "Improvements:"
 msgstr "Améliorations :"
 
-#: data/music.metainfo.xml.in:58
+#: data/music.metainfo.xml.in:59
 msgid "Drag and drop whole folders into the queue"
 msgstr "Glissez-déposez des dossiers dans la file d'attente"
 
-#: data/music.metainfo.xml.in:67
+#: data/music.metainfo.xml.in:60
+msgid "Open folders in the filemanager with Music"
+msgstr ""
+
+#: data/music.metainfo.xml.in:73
 msgid "For tracks without a title, use the file name instead of the whole URI"
 msgstr ""
 "Pour les morceaux sans titre, utilisation du nom du fichier au lieu de l'URI "
 "complet"
 
-#: data/music.metainfo.xml.in:68
+#: data/music.metainfo.xml.in:74
 msgid "Skip invalid files instead of stopping playback"
 msgstr "Saut des fichiers non valides plutôt que d'arrêter la lecture"
 
-#: data/music.metainfo.xml.in:69
+#: data/music.metainfo.xml.in:75
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr ""
 "Les boutons Suivant et Répéter fonctionnent toujours, quel que soit le mode "
 "de répétition"
 
-#: data/music.metainfo.xml.in:70
+#: data/music.metainfo.xml.in:76
 msgid ""
 "Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
@@ -80,32 +84,32 @@ msgstr ""
 "hébreu, hongrois, japonais, kurde, marathi, norvégien Bokmål, néerlandais, "
 "polonais, portugais, russe, chinois simplifié, turc et ukrainien"
 
-#: data/music.metainfo.xml.in:80
+#: data/music.metainfo.xml.in:86
 msgid "Complete rewrite"
 msgstr "Réécriture complète"
 
-#: data/music.metainfo.xml.in:86
+#: data/music.metainfo.xml.in:92
 msgid "Drop support for Last.FM"
 msgstr "Arrêt de la prise en charge de Last.FM"
 
-#: data/music.metainfo.xml.in:87 data/music.metainfo.xml.in:97
+#: data/music.metainfo.xml.in:93 data/music.metainfo.xml.in:103
 msgid "Updated translations"
 msgstr "Mise à jour des traductions"
 
-#: data/music.metainfo.xml.in:93
+#: data/music.metainfo.xml.in:99
 msgid "Fix an issue with saving smart playlists"
 msgstr ""
 "Correction d'un problème avec l'enregistrement des playlists intelligentes"
 
-#: data/music.metainfo.xml.in:94
+#: data/music.metainfo.xml.in:100
 msgid "Drop support for CD-ROM"
 msgstr "Arrêt de la prise en charge des CD-ROM"
 
-#: data/music.metainfo.xml.in:95
+#: data/music.metainfo.xml.in:101
 msgid "Dark style support"
 msgstr "Prise en charge du thème sombre"
 
-#: data/music.metainfo.xml.in:96
+#: data/music.metainfo.xml.in:102
 msgid "Minor visual improvements"
 msgstr "Améliorations visuelles mineures"
 

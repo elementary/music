@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-09 20:26+0000\n"
+"POT-Creation-Date: 2023-04-04 17:17+0000\n"
 "PO-Revision-Date: 2023-03-12 10:25+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
-"Language-Team: Georgian <https://l10n.elementary.io/projects/music/extra/ka/>"
-"\n"
+"Language-Team: Georgian <https://l10n.elementary.io/projects/music/extra/ka/"
+">\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,15 +20,15 @@ msgstr ""
 "X-Generator: Weblate 4.14.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
-#: data/music.metainfo.xml.in:9 data/music.desktop.in:4
+#: data/music.metainfo.xml.in:10 data/music.desktop.in:4
 msgid "Music"
 msgstr "მუსიკა"
 
-#: data/music.metainfo.xml.in:10
+#: data/music.metainfo.xml.in:11
 msgid "Queue and play local audio files"
 msgstr "შეაგროვეთ ერთად და დაუკარით ლოკალური ხმოვანი ფაილები"
 
-#: data/music.metainfo.xml.in:12
+#: data/music.metainfo.xml.in:13
 msgid ""
 "Quickly queue up and listen to your local music files without any extra "
 "frills. See embedded album artwork. Control playback with media keys or in "
@@ -38,39 +38,43 @@ msgstr ""
 "გარეშე. იხილეთ ჩაშენებული ალბომის ყდები. აკონტროლეთ დაკვრა მედიის ღილაკებით "
 "ან სისტემის აუდიოს ინდიკატორით."
 
-#: data/music.metainfo.xml.in:17
+#: data/music.metainfo.xml.in:18
 msgid "Quickly queue up your favorite tracks"
 msgstr "სწრაფად მოძებნეთ რჩეული ტრეკები"
 
-#: data/music.metainfo.xml.in:49
+#: data/music.metainfo.xml.in:50
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
 
-#: data/music.metainfo.xml.in:56 data/music.metainfo.xml.in:65
+#: data/music.metainfo.xml.in:57 data/music.metainfo.xml.in:71
 msgid "Improvements:"
 msgstr "გაუმჯობესებები:"
 
-#: data/music.metainfo.xml.in:58
+#: data/music.metainfo.xml.in:59
 msgid "Drag and drop whole folders into the queue"
 msgstr "რიგში საქაღალდეების გადათრევის მხაარდაჭერა"
 
-#: data/music.metainfo.xml.in:67
+#: data/music.metainfo.xml.in:60
+msgid "Open folders in the filemanager with Music"
+msgstr ""
+
+#: data/music.metainfo.xml.in:73
 msgid "For tracks without a title, use the file name instead of the whole URI"
 msgstr ""
 "სათაურის არმქონე ტრეკებისთვის სრული URI-ის მაგიერ მხოლოდ სახელის ჩვენება"
 
-#: data/music.metainfo.xml.in:68
+#: data/music.metainfo.xml.in:74
 msgid "Skip invalid files instead of stopping playback"
 msgstr ""
 "არასწორი ფაილის შემთხვევაში დაკვრის შეჩერების მაგიერ შემდეგ ფაილზე გადასვლა"
 
-#: data/music.metainfo.xml.in:69
+#: data/music.metainfo.xml.in:75
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr ""
 "შემდეგი და გამეორების ღილაკები გამეორების რეჟიმისგან დამოუკიდებლად, "
 "ყოველთვის მუშაობს"
 
-#: data/music.metainfo.xml.in:70
+#: data/music.metainfo.xml.in:76
 msgid ""
 "Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
@@ -81,31 +85,31 @@ msgstr ""
 "ნორვეგიულ ბოქმალზე, პოლონურად, რუსულად, გამარტივებულ ჩინურზე, თურქულად და "
 "უკრაინულად"
 
-#: data/music.metainfo.xml.in:80
+#: data/music.metainfo.xml.in:86
 msgid "Complete rewrite"
 msgstr "სრული გადაწერა"
 
-#: data/music.metainfo.xml.in:86
+#: data/music.metainfo.xml.in:92
 msgid "Drop support for Last.FM"
 msgstr "Last.FM-ის მხარდაჭერა"
 
-#: data/music.metainfo.xml.in:87 data/music.metainfo.xml.in:97
+#: data/music.metainfo.xml.in:93 data/music.metainfo.xml.in:103
 msgid "Updated translations"
 msgstr "განახლებული თარგმანები"
 
-#: data/music.metainfo.xml.in:93
+#: data/music.metainfo.xml.in:99
 msgid "Fix an issue with saving smart playlists"
 msgstr "ჭკვიანი დასაკრავი სიების შენახვის შეცდომის გასწორება"
 
-#: data/music.metainfo.xml.in:94
+#: data/music.metainfo.xml.in:100
 msgid "Drop support for CD-ROM"
 msgstr "CD-ROM-ის მხარდაჭერა"
 
-#: data/music.metainfo.xml.in:95
+#: data/music.metainfo.xml.in:101
 msgid "Dark style support"
 msgstr "ბნელი სტილის მხარდაჭერა"
 
-#: data/music.metainfo.xml.in:96
+#: data/music.metainfo.xml.in:102
 msgid "Minor visual improvements"
 msgstr "ინტერფეისის მცირე გაუმჯობესება"
 

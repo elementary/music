@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-09 20:26+0000\n"
+"POT-Creation-Date: 2023-04-04 17:17+0000\n"
 "PO-Revision-Date: 2022-08-06 09:29+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://l10n.elementary.io/projects/music/extra/ko/>\n"
@@ -19,15 +19,15 @@ msgstr ""
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
-#: data/music.metainfo.xml.in:9 data/music.desktop.in:4
+#: data/music.metainfo.xml.in:10 data/music.desktop.in:4
 msgid "Music"
 msgstr "음악"
 
-#: data/music.metainfo.xml.in:10
+#: data/music.metainfo.xml.in:11
 msgid "Queue and play local audio files"
 msgstr "로컬 오디오 파일 대기열 및 재생"
 
-#: data/music.metainfo.xml.in:12
+#: data/music.metainfo.xml.in:13
 msgid ""
 "Quickly queue up and listen to your local music files without any extra "
 "frills. See embedded album artwork. Control playback with media keys or in "
@@ -37,66 +37,70 @@ msgstr ""
 "범 아트워크를 참조하세요. 미디어 키 또는 시스템 오디오 인디케이터를 사용하여 "
 "재생을 제어합니다."
 
-#: data/music.metainfo.xml.in:17
+#: data/music.metainfo.xml.in:18
 msgid "Quickly queue up your favorite tracks"
 msgstr ""
 
-#: data/music.metainfo.xml.in:49
+#: data/music.metainfo.xml.in:50
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
 
-#: data/music.metainfo.xml.in:56 data/music.metainfo.xml.in:65
+#: data/music.metainfo.xml.in:57 data/music.metainfo.xml.in:71
 msgid "Improvements:"
 msgstr ""
 
-#: data/music.metainfo.xml.in:58
+#: data/music.metainfo.xml.in:59
 msgid "Drag and drop whole folders into the queue"
 msgstr ""
 
-#: data/music.metainfo.xml.in:67
+#: data/music.metainfo.xml.in:60
+msgid "Open folders in the filemanager with Music"
+msgstr ""
+
+#: data/music.metainfo.xml.in:73
 msgid "For tracks without a title, use the file name instead of the whole URI"
 msgstr ""
 
-#: data/music.metainfo.xml.in:68
+#: data/music.metainfo.xml.in:74
 msgid "Skip invalid files instead of stopping playback"
 msgstr ""
 
-#: data/music.metainfo.xml.in:69
+#: data/music.metainfo.xml.in:75
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr ""
 
-#: data/music.metainfo.xml.in:70
+#: data/music.metainfo.xml.in:76
 msgid ""
 "Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
 "Russian, Simplified Chinese, Turkish, and Ukrainian"
 msgstr ""
 
-#: data/music.metainfo.xml.in:80
+#: data/music.metainfo.xml.in:86
 msgid "Complete rewrite"
 msgstr "다시 쓰기 완료"
 
-#: data/music.metainfo.xml.in:86
+#: data/music.metainfo.xml.in:92
 msgid "Drop support for Last.FM"
 msgstr "Last.FM에 대한 지원 중단"
 
-#: data/music.metainfo.xml.in:87 data/music.metainfo.xml.in:97
+#: data/music.metainfo.xml.in:93 data/music.metainfo.xml.in:103
 msgid "Updated translations"
 msgstr "최신 번역"
 
-#: data/music.metainfo.xml.in:93
+#: data/music.metainfo.xml.in:99
 msgid "Fix an issue with saving smart playlists"
 msgstr "스마트 재생 목록 저장 문제 해결"
 
-#: data/music.metainfo.xml.in:94
+#: data/music.metainfo.xml.in:100
 msgid "Drop support for CD-ROM"
 msgstr "CD-ROM 지원 중단"
 
-#: data/music.metainfo.xml.in:95
+#: data/music.metainfo.xml.in:101
 msgid "Dark style support"
 msgstr "다크 스타일 지원"
 
-#: data/music.metainfo.xml.in:96
+#: data/music.metainfo.xml.in:102
 msgid "Minor visual improvements"
 msgstr "소소한 비주얼 개선"
 
