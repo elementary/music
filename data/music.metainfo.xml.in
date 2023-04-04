@@ -40,7 +40,7 @@
     <control>keyboard</control>
     <control>touch</control>
   </supports>
-  
+
   <url type="homepage">https://elementary.io/</url>
   <url type="bugtracker">https://github.com/elementary/music/issues</url>
   <url type="donation">https://elementary.io/get-involved#funding</url>
@@ -52,13 +52,18 @@
   <update_contact>contact_at_elementary.io</update_contact>
 
   <releases>
-    <release version="7.1.0" date="2023-02-09" urgency="medium">
+    <release version="7.1.0" date="2023-04-04" urgency="medium">
       <description>
         <p>Improvements:</p>
         <ul>
           <li>Drag and drop whole folders into the queue</li>
+          <li>Open folders in the filemanager with Music</li>
         </ul>
       </description>
+      <issues>
+        <issue url="https://github.com/elementary/music/issues/750">Play files in home Music folder when  installed as Flatpak</issue>
+        <issue url="https://github.com/elementary/music/issues/734">Drop folders onto queue</issue>
+      </issues>
     </release>
 
     <release version="7.0.1" date="2022-12-05" urgency="medium">
