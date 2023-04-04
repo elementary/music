@@ -59,11 +59,11 @@
           <li>Drag and drop whole folders into the playlist</li>
           <li>Open folders in the filemanager with Music</li>
         </ul>
-        <issues>
-          <issue url="https://github.com/elementary/music/issues/750">Play files in home Music folder when  installed as Flatpak</issue>
-          <issue url="https://github.com/elementary/music/issues/734">Drop folders onto playlist</issue>
-        </issues>
       </description>
+      <issues>
+        <issue url="https://github.com/elementary/music/issues/750">Play files in home Music folder when  installed as Flatpak</issue>
+        <issue url="https://github.com/elementary/music/issues/734">Drop folders onto playlist</issue>
+      </issues>
     </release>
 
     <release version="7.0.1" date="2022-12-05" urgency="medium">
