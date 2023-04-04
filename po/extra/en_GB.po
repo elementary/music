@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-04 17:17+0000\n"
-"PO-Revision-Date: 2023-02-17 14:25+0000\n"
+"PO-Revision-Date: 2023-04-06 19:59+0000\n"
 "Last-Translator: David Hewitt <davidmhewitt@gmail.com>\n"
 "Language-Team: English (United Kingdom) <https://l10n.elementary.io/projects/"
 "music/extra/en_GB/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.2\n"
+"X-Generator: Weblate 4.16.4\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
 #: data/music.metainfo.xml.in:10 data/music.desktop.in:4
@@ -56,7 +56,7 @@ msgstr "Drag and drop whole folders into the queue"
 
 #: data/music.metainfo.xml.in:60
 msgid "Open folders in the filemanager with Music"
-msgstr ""
+msgstr "Open folders in the file manager with Music"
 
 #: data/music.metainfo.xml.in:73
 msgid "For tracks without a title, use the file name instead of the whole URI"
