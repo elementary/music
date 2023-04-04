@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-04 17:17+0000\n"
-"PO-Revision-Date: 2023-02-11 14:25+0000\n"
+"PO-Revision-Date: 2023-04-06 19:59+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/music/extra/he/>\n"
 "Language: he\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Weblate 4.14.2\n"
+"X-Generator: Weblate 4.16.4\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
 #: data/music.metainfo.xml.in:10 data/music.desktop.in:4
@@ -50,7 +50,7 @@ msgstr "גרירה והשלכה של תיקיות שלמות לתור"
 
 #: data/music.metainfo.xml.in:60
 msgid "Open folders in the filemanager with Music"
-msgstr ""
+msgstr "פתיחת תיקיות במנהל הקבצים עם מוזיקה"
 
 #: data/music.metainfo.xml.in:73
 msgid "For tracks without a title, use the file name instead of the whole URI"
