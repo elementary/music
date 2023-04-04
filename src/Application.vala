@@ -103,12 +103,60 @@ public class Music.Application : Gtk.Application {
         settings.bind ("window-maximized", main_window, "maximized", SettingsBindFlags.SET);
     }
 
+    private File[] list_directory (string directory) {
+        Dir dir;
+        try {
+            dir = Dir.open (directory, 0);
+        } catch (FileError e) {
+            warning (e.message);
+            return {};
+        }
+
+        string? name = null;
+        File[] elements = {};
+
+        while ((name = dir.read_name ()) != null) {
+            var file_path = Path.build_filename (directory, name);
+            var file = File.new_for_path (file_path);
+
+            elements += file;
+        }
+
+        return elements;
+    }
+
+    private File[] loop_through_files (File[] files) {
+        // All of these will be returned later in bulk
+        File[] elements = {};
+
+        foreach (var file in files) {
+            var file_path = file.get_path ();
+
+            if (FileUtils.test (file_path, FileTest.IS_DIR)) {
+                var directory_elements = list_directory (file_path);
+                var directory_files = loop_through_files (directory_elements);
+
+                foreach (var directory_file in directory_files) {
+                    elements += directory_file;
+                }
+
+                continue;
+            }
+
+            elements += file;
+        }
+
+        return elements;
+    }
+
     protected override void open (File[] files, string hint) {
         if (active_window == null) {
             activate ();
         }
 
-        playback_manager.queue_files (files);
+        var files_to_play = loop_through_files (files);
+        debug ("Application: Number of files to play %u", files_to_play.length);
+        playback_manager.queue_files (files_to_play);
     }
 
     private void action_play_pause () {
