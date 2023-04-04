@@ -9,6 +9,7 @@ finish-args:
   - '--socket=wayland'
   - '--socket=pulseaudio'
   - '--device=dri'
+  - '--filesystem=xdg-music:ro'
 
 modules:
   - name: music
