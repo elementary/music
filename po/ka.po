@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-09 20:26+0000\n"
+"POT-Creation-Date: 2023-04-04 17:17+0000\n"
 "PO-Revision-Date: 2023-03-12 10:25+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
-"Language-Team: Georgian <https://l10n.elementary.io/projects/music/music/ka/>"
-"\n"
+"Language-Team: Georgian <https://l10n.elementary.io/projects/music/music/ka/"
+">\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -55,14 +55,14 @@ msgstr "ყველას გამეორება"
 msgid "Repeat One"
 msgstr "ერთის გამეორება"
 
-#: src/PlaybackManager.vala:129
+#: src/PlaybackManager.vala:130
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
 msgstr[0] "რიგში ჩამატებულია %d ტრეკი"
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:189
+#: src/PlaybackManager.vala:190
 msgid "Unknown"
 msgstr "უცნობი"
 

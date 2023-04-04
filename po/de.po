@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-09 20:26+0000\n"
+"POT-Creation-Date: 2023-04-04 17:17+0000\n"
 "PO-Revision-Date: 2022-11-19 05:10+0000\n"
 "Last-Translator: Uwe S <saabisto@gmx.de>\n"
 "Language-Team: German <https://l10n.elementary.io/projects/music/music/de/>\n"
@@ -55,7 +55,7 @@ msgstr "Alle Titel wiederholen"
 msgid "Repeat One"
 msgstr "Einen Titel wiederholen"
 
-#: src/PlaybackManager.vala:129
+#: src/PlaybackManager.vala:130
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
@@ -63,7 +63,7 @@ msgstr[0] "%d Titel zur Warteschlange hinzugefügt"
 msgstr[1] "%d Titel zur Warteschlange hinzugefügt"
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:189
+#: src/PlaybackManager.vala:190
 msgid "Unknown"
 msgstr "Unbekannt"
 

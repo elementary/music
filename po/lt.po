@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-09 20:26+0000\n"
+"POT-Creation-Date: 2023-04-04 17:17+0000\n"
 "PO-Revision-Date: 2018-11-06 20:47+0000\n"
 "Last-Translator: Moo <hazap@hotmail.com>\n"
 "Language-Team: Lithuanian <https://weblate.elementary.io/projects/music/"
@@ -63,7 +63,7 @@ msgstr "Kartoti albumą"
 msgid "Repeat One"
 msgstr "Kartoti dainą"
 
-#: src/PlaybackManager.vala:129
+#: src/PlaybackManager.vala:130
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
@@ -73,7 +73,7 @@ msgstr[2] ""
 msgstr[3] ""
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:189
+#: src/PlaybackManager.vala:190
 msgid "Unknown"
 msgstr "Nežinoma"
 

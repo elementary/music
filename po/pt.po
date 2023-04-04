@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-09 20:26+0000\n"
+"POT-Creation-Date: 2023-04-04 17:17+0000\n"
 "PO-Revision-Date: 2022-12-20 23:25+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.elementary.io/projects/music/music/"
@@ -56,7 +56,7 @@ msgstr "Repetir tudo"
 msgid "Repeat One"
 msgstr "Repetir uma"
 
-#: src/PlaybackManager.vala:129
+#: src/PlaybackManager.vala:130
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
@@ -64,7 +64,7 @@ msgstr[0] "%d faixa foi adicionada à fila"
 msgstr[1] "%d faixas foram adicionadas à fila"
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:189
+#: src/PlaybackManager.vala:190
 msgid "Unknown"
 msgstr "Desconhecido"
 

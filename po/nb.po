@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-09 20:26+0000\n"
+"POT-Creation-Date: 2023-04-04 17:17+0000\n"
 "PO-Revision-Date: 2022-11-19 05:10+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://l10n.elementary.io/projects/music/"
@@ -57,7 +57,7 @@ msgstr "Gjenta alle"
 msgid "Repeat One"
 msgstr "Gjenta spor"
 
-#: src/PlaybackManager.vala:129
+#: src/PlaybackManager.vala:130
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
@@ -65,7 +65,7 @@ msgstr[0] "%d spor lagt til i køen"
 msgstr[1] "%d spor lagt til i køen"
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:189
+#: src/PlaybackManager.vala:190
 msgid "Unknown"
 msgstr "Ukjente"
 
