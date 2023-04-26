@@ -11,27 +11,24 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
     construct {
         var playback_manager = PlaybackManager.get_default ();
 
-        var start_window_controls = new Gtk.WindowControls (Gtk.PackType.START) {
-            hexpand = true
-        };
+        var start_window_controls = new Gtk.WindowControls (Gtk.PackType.START);
 
         shuffle_button = new Gtk.Button.from_icon_name ("media-playlist-shuffle-symbolic") {
             action_name = Application.ACTION_PREFIX + Application.ACTION_SHUFFLE,
-            margin_end = 3,
             tooltip_text = _("Shuffle")
         };
 
-        repeat_button = new Gtk.Button () {
-            margin_end = 6
-        };
+        repeat_button = new Gtk.Button ();
 
-        var queue_header = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-        queue_header.add_css_class ("titlebar");
+        var queue_header = new Gtk.HeaderBar () {
+            show_title_buttons = false,
+            title_widget = new Gtk.Label ("")
+        };
         queue_header.add_css_class (Granite.STYLE_CLASS_FLAT);
         queue_header.add_css_class (Granite.STYLE_CLASS_DEFAULT_DECORATION);
-        queue_header.append (start_window_controls);
-        queue_header.append (shuffle_button);
-        queue_header.append (repeat_button);
+        queue_header.pack_start (start_window_controls);
+        queue_header.pack_end (shuffle_button);
+        queue_header.pack_end (repeat_button);
 
         var queue_placeholder = new Granite.Placeholder (_("Queue is Empty")) {
             description = _("Audio files opened from Files will appear here"),
@@ -68,12 +65,15 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
             child = queue_overlay
         };
 
-        var end_window_controls = new Gtk.WindowControls (Gtk.PackType.END) {
-            halign = Gtk.Align.END
+        var end_window_controls = new Gtk.WindowControls (Gtk.PackType.END);
+
+        var end_header = new Gtk.HeaderBar () {
+            show_title_buttons = false,
+            title_widget = new Gtk.Label ("")
         };
-        end_window_controls.add_css_class ("titlebar");
-        end_window_controls.add_css_class (Granite.STYLE_CLASS_FLAT);
-        end_window_controls.add_css_class (Granite.STYLE_CLASS_DEFAULT_DECORATION);
+        end_header.add_css_class (Granite.STYLE_CLASS_FLAT);
+        end_header.add_css_class (Granite.STYLE_CLASS_DEFAULT_DECORATION);
+        end_header.pack_end (end_window_controls);
 
         var now_playing_view = new NowPlayingView () {
             margin_top = 12,
@@ -83,9 +83,9 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
             vexpand = true
         };
 
-        var now_playing = new Gtk.Grid ();
-        now_playing.attach (end_window_controls, 0, 0);
-        now_playing.attach (now_playing_view, 0, 1);
+        var now_playing = new Gtk.Box (VERTICAL, 0);
+        now_playing.append (end_header);
+        now_playing.append (now_playing_view);
 
         var now_playing_handle = new Gtk.WindowHandle () {
             child = now_playing
