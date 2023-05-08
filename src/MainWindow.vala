@@ -113,7 +113,7 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
 
         update_repeat_button ();
 
-        drop_target.on_drop.connect ((target, value, x, y) => {
+        drop_target.drop.connect ((target, value, x, y) => {
             if (value.type () == typeof (Gdk.FileList)) {
                 File[] files;
                 SList<File> file_list = null;
