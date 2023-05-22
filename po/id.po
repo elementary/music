@@ -7,8 +7,9 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-04 17:17+0000\n"
-"PO-Revision-Date: 2023-05-22 16:44+0000\n"
-"Last-Translator: Eldest Pasirula <aknutman@gmail.com>\n"
+"PO-Revision-Date: 2023-05-23 17:06+0000\n"
+"Last-Translator: Faisal Rachmadin <frachmadin@users.noreply.l10n.elementary."
+"io>\n"
 "Language-Team: Indonesian <https://l10n.elementary.io/projects/music/music/"
 "id/>\n"
 "Language: id\n"
@@ -44,21 +45,21 @@ msgstr[0] "%d berkas tidak valid tidak ditambahkan ke antrian"
 
 #: src/MainWindow.vala:191
 msgid "Repeat None"
-msgstr "Tidak Putar Ulang"
+msgstr "Tidak Ulangi"
 
 #: src/MainWindow.vala:195
 msgid "Repeat All"
-msgstr "Putar Ulang Semua"
+msgstr "Ulangi Semua"
 
 #: src/MainWindow.vala:199
 msgid "Repeat One"
-msgstr "Putar Ulang Satu"
+msgstr "Ulangi Satu"
 
 #: src/PlaybackManager.vala:130
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
-msgstr[0] ""
+msgstr[0] "%d trek ditambahkan ke antrean"
 
 #. Don't set artist for files without tags
 #: src/PlaybackManager.vala:190
@@ -80,7 +81,7 @@ msgstr "Selanjutnya"
 
 #: src/Views/NowPlayingView.vala:93
 msgid "Play"
-msgstr "Mainkan"
+msgstr "Putar"
 
 #: src/Views/NowPlayingView.vala:96
 msgid "Pause"
