@@ -7,8 +7,9 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-04 17:17+0000\n"
-"PO-Revision-Date: 2021-07-22 10:14+0000\n"
-"Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
+"PO-Revision-Date: 2023-05-27 17:07+0000\n"
+"Last-Translator: Faisal Rachmadin <frachmadin@users.noreply.l10n.elementary."
+"io>\n"
 "Language-Team: Indonesian <https://l10n.elementary.io/projects/music/extra/"
 "id/>\n"
 "Language: id\n"
@@ -16,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 4.17\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
 #: data/music.metainfo.xml.in:10 data/music.desktop.in:4
@@ -25,7 +26,7 @@ msgstr "Musik"
 
 #: data/music.metainfo.xml.in:11
 msgid "Queue and play local audio files"
-msgstr ""
+msgstr "Mengantre dan memutar berkas audio lokal"
 
 #: data/music.metainfo.xml.in:13
 msgid ""
@@ -33,38 +34,42 @@ msgid ""
 "frills. See embedded album artwork. Control playback with media keys or in "
 "the system audio indicator."
 msgstr ""
+"Mengantre dengan cepat dan dengarkan berkas musik lokal Anda tanpa embel-"
+"embel tambahan. Lihat sampul album yang disematkan. Mengendali pemutaran "
+"dengan tombol media atau di indikator audio sistem."
 
 #: data/music.metainfo.xml.in:18
 msgid "Quickly queue up your favorite tracks"
-msgstr ""
+msgstr "Mengantre trek favorit Anda dengan cepat"
 
 #: data/music.metainfo.xml.in:50
 msgid "elementary, Inc."
-msgstr "elementary, PT."
+msgstr "elementary, Inc."
 
 #: data/music.metainfo.xml.in:57 data/music.metainfo.xml.in:71
 msgid "Improvements:"
-msgstr ""
+msgstr "Peningkatan:"
 
 #: data/music.metainfo.xml.in:59
 msgid "Drag and drop whole folders into the queue"
-msgstr ""
+msgstr "Seret dan jatuhkan seluruh folder ke dalam antrean"
 
 #: data/music.metainfo.xml.in:60
 msgid "Open folders in the filemanager with Music"
-msgstr ""
+msgstr "Membuka folder di pengelola berkas dengan Musik"
 
 #: data/music.metainfo.xml.in:73
 msgid "For tracks without a title, use the file name instead of the whole URI"
-msgstr ""
+msgstr "Untuk trek tanpa judul, gunakan nama berkas, bukan seluruh URI"
 
 #: data/music.metainfo.xml.in:74
 msgid "Skip invalid files instead of stopping playback"
-msgstr ""
+msgstr "Lewati berkas yang tidak valid alih-alih menghentikan pemutaran"
 
 #: data/music.metainfo.xml.in:75
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr ""
+"Tombol Berikutnya dan Ulangi selalu berfungsi terlepas dari mode pengulangan"
 
 #: data/music.metainfo.xml.in:76
 msgid ""
@@ -72,15 +77,17 @@ msgid ""
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
 "Russian, Simplified Chinese, Turkish, and Ukrainian"
 msgstr ""
+"Kini tersedia dalam bahasa Katalan, Belanda, Finlandia, Prancis, Jerman, "
+"Ibrani, Hongaria, Jepang, Korea, Kurdi, Marathi, Bokmål Norwegia, Polandia, "
+"Portugis, Rusia, Tionghoa Sederhana, Turki, dan Ukraina"
 
 #: data/music.metainfo.xml.in:86
 msgid "Complete rewrite"
-msgstr ""
+msgstr "Penulisan ulang lengkap"
 
 #: data/music.metainfo.xml.in:92
-#, fuzzy
 msgid "Drop support for Last.FM"
-msgstr "Lepas dukungan untuk CD-ROM"
+msgstr "Melepas dukungan untuk Last.FM"
 
 #: data/music.metainfo.xml.in:93 data/music.metainfo.xml.in:103
 msgid "Updated translations"
@@ -88,20 +95,19 @@ msgstr "Pembaruan terjemahan"
 
 #: data/music.metainfo.xml.in:99
 msgid "Fix an issue with saving smart playlists"
-msgstr ""
+msgstr "Memperbaiki masalah saat menyimpan daftar putar pintar"
 
 #: data/music.metainfo.xml.in:100
 msgid "Drop support for CD-ROM"
-msgstr "Lepas dukungan untuk CD-ROM"
+msgstr "Melepas dukungan untuk CD-ROM"
 
 #: data/music.metainfo.xml.in:101
 msgid "Dark style support"
-msgstr ""
+msgstr "Dukungan gaya gelap"
 
 #: data/music.metainfo.xml.in:102
-#, fuzzy
 msgid "Minor visual improvements"
-msgstr "Peningkatan kinerja"
+msgstr "Peningkatan visual kecil"
 
 #: data/music.desktop.in:5
 msgid "Music Player"
@@ -109,12 +115,11 @@ msgstr "Pemutar Musik"
 
 #: data/music.desktop.in:6
 msgid "Listen to music"
-msgstr "Dengarkan music"
+msgstr "Dengarkan musik"
 
 #: data/music.desktop.in:13
-#, fuzzy
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
-msgstr "Noise;Audio;Player;MP3;IPod;Player;CD;Songs;Lagu;Musik;"
+msgstr "Kebisingan;Audio;Pemutar;MP3;Memutar;Daftar putar;Media;Lagu;"
 
 #~ msgid "Fix removing items from the queue"
 #~ msgstr "Perbaikan hapus lagu-lagu dari antrean"
