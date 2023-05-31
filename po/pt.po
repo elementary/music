@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-04 17:17+0000\n"
+"POT-Creation-Date: 2023-05-31 15:44+0000\n"
 "PO-Revision-Date: 2022-12-20 23:25+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.elementary.io/projects/music/music/"
@@ -25,15 +25,15 @@ msgstr ""
 msgid "Music"
 msgstr "Música"
 
-#: src/MainWindow.vala:21
+#: src/MainWindow.vala:18
 msgid "Shuffle"
 msgstr "Aleatório"
 
-#: src/MainWindow.vala:36
+#: src/MainWindow.vala:33
 msgid "Queue is Empty"
 msgstr "A fila de espera está vazia"
 
-#: src/MainWindow.vala:37
+#: src/MainWindow.vala:34
 msgid "Audio files opened from Files will appear here"
 msgstr "Os ficheiros áudio abertos a partir do Ficheiros aparecerão aqui"
 

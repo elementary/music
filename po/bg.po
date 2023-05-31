@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-04 17:17+0000\n"
+"POT-Creation-Date: 2023-05-31 15:44+0000\n"
 "PO-Revision-Date: 2017-05-09 22:27+0000\n"
 "Last-Translator: Martin Tomov <martin.tomov@boomer.digital>\n"
 "Language-Team: Bulgarian <https://l10n.elementary.io/projects/music/music/bg/"
@@ -25,16 +25,16 @@ msgstr ""
 msgid "Music"
 msgstr "Музика"
 
-#: src/MainWindow.vala:21
+#: src/MainWindow.vala:18
 #, fuzzy
 msgid "Shuffle"
 msgstr "Включване на разбъркване"
 
-#: src/MainWindow.vala:36
+#: src/MainWindow.vala:33
 msgid "Queue is Empty"
 msgstr ""
 
-#: src/MainWindow.vala:37
+#: src/MainWindow.vala:34
 msgid "Audio files opened from Files will appear here"
 msgstr ""
 

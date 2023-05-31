@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-04 17:17+0000\n"
+"POT-Creation-Date: 2023-05-31 15:44+0000\n"
 "PO-Revision-Date: 2023-05-23 17:06+0000\n"
 "Last-Translator: Eldest Pasirula <aknutman@gmail.com>\n"
 "Language-Team: Indonesian <https://l10n.elementary.io/projects/music/music/"
@@ -24,15 +24,15 @@ msgstr ""
 msgid "Music"
 msgstr "Musik"
 
-#: src/MainWindow.vala:21
+#: src/MainWindow.vala:18
 msgid "Shuffle"
 msgstr "Putar Acak"
 
-#: src/MainWindow.vala:36
+#: src/MainWindow.vala:33
 msgid "Queue is Empty"
 msgstr "Antrian Kosong"
 
-#: src/MainWindow.vala:37
+#: src/MainWindow.vala:34
 msgid "Audio files opened from Files will appear here"
 msgstr "Berkas audio yang dibuka dari Files akan muncul di sini"
 

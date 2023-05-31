@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-04 17:17+0000\n"
+"POT-Creation-Date: 2023-05-31 15:44+0000\n"
 "PO-Revision-Date: 2019-02-12 00:06+0000\n"
 "Last-Translator: Rico Tzschichholz <ricotz@ubuntu.com>\n"
 "Language-Team: Greek <https://weblate.elementary.io/projects/music/music/el/"
@@ -25,16 +25,16 @@ msgstr ""
 msgid "Music"
 msgstr "Μουσική"
 
-#: src/MainWindow.vala:21
+#: src/MainWindow.vala:18
 #, fuzzy
 msgid "Shuffle"
 msgstr "Ενεργοποίηση τυχαίας σειράς αναπαραγωγής"
 
-#: src/MainWindow.vala:36
+#: src/MainWindow.vala:33
 msgid "Queue is Empty"
 msgstr ""
 
-#: src/MainWindow.vala:37
+#: src/MainWindow.vala:34
 msgid "Audio files opened from Files will appear here"
 msgstr ""
 

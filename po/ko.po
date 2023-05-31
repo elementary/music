@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-04 17:17+0000\n"
+"POT-Creation-Date: 2023-05-31 15:44+0000\n"
 "PO-Revision-Date: 2022-08-06 09:29+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://l10n.elementary.io/projects/music/music/ko/>\n"
@@ -24,15 +24,15 @@ msgstr ""
 msgid "Music"
 msgstr "음악"
 
-#: src/MainWindow.vala:21
+#: src/MainWindow.vala:18
 msgid "Shuffle"
 msgstr "섞기"
 
-#: src/MainWindow.vala:36
+#: src/MainWindow.vala:33
 msgid "Queue is Empty"
 msgstr "대기열이 비어 있습니다"
 
-#: src/MainWindow.vala:37
+#: src/MainWindow.vala:34
 msgid "Audio files opened from Files will appear here"
 msgstr "파일에서 연 오디오 파일이 여기에 표시됩니다"
 

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-04 17:17+0000\n"
+"POT-Creation-Date: 2023-05-31 15:44+0000\n"
 "PO-Revision-Date: 2020-02-25 13:09+0000\n"
 "Last-Translator: gkkulik <g.kulik@o2.pl>\n"
 "Language-Team: Silesian <https://l10n.elementary.io/projects/music/music/szl/"
@@ -19,16 +19,16 @@ msgstr ""
 msgid "Music"
 msgstr "Muzyka"
 
-#: src/MainWindow.vala:21
+#: src/MainWindow.vala:18
 #, fuzzy
 msgid "Shuffle"
 msgstr "Włōncz miynszanie"
 
-#: src/MainWindow.vala:36
+#: src/MainWindow.vala:33
 msgid "Queue is Empty"
 msgstr ""
 
-#: src/MainWindow.vala:37
+#: src/MainWindow.vala:34
 msgid "Audio files opened from Files will appear here"
 msgstr ""
 
