@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-04 17:17+0000\n"
+"POT-Creation-Date: 2023-05-31 15:44+0000\n"
 "PO-Revision-Date: 2023-05-27 17:07+0000\n"
 "Last-Translator: Faisal Rachmadin <frachmadin@users.noreply.l10n.elementary."
 "io>\n"
@@ -51,12 +51,13 @@ msgid "Improvements:"
 msgstr "Peningkatan:"
 
 #: data/music.metainfo.xml.in:59
-msgid "Drag and drop whole folders into the queue"
-msgstr "Seret dan jatuhkan seluruh folder ke dalam antrean"
-
-#: data/music.metainfo.xml.in:60
 msgid "Open folders in the filemanager with Music"
 msgstr "Membuka folder di pengelola berkas dengan Musik"
+
+#: data/music.metainfo.xml.in:60 data/music.metainfo.xml.in:93
+#: data/music.metainfo.xml.in:103
+msgid "Updated translations"
+msgstr "Pembaruan terjemahan"
 
 #: data/music.metainfo.xml.in:73
 msgid "For tracks without a title, use the file name instead of the whole URI"
@@ -89,10 +90,6 @@ msgstr "Penulisan ulang lengkap"
 msgid "Drop support for Last.FM"
 msgstr "Melepas dukungan untuk Last.FM"
 
-#: data/music.metainfo.xml.in:93 data/music.metainfo.xml.in:103
-msgid "Updated translations"
-msgstr "Pembaruan terjemahan"
-
 #: data/music.metainfo.xml.in:99
 msgid "Fix an issue with saving smart playlists"
 msgstr "Memperbaiki masalah saat menyimpan daftar putar pintar"
@@ -120,6 +117,9 @@ msgstr "Dengarkan musik"
 #: data/music.desktop.in:13
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr "Kebisingan;Audio;Pemutar;MP3;Memutar;Daftar putar;Media;Lagu;"
+
+#~ msgid "Drag and drop whole folders into the queue"
+#~ msgstr "Seret dan jatuhkan seluruh folder ke dalam antrean"
 
 #~ msgid "Fix removing items from the queue"
 #~ msgstr "Perbaikan hapus lagu-lagu dari antrean"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-04 17:17+0000\n"
+"POT-Creation-Date: 2023-05-31 15:44+0000\n"
 "PO-Revision-Date: 2021-07-22 10:14+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Bulgarian <https://l10n.elementary.io/projects/music/extra/bg/"
@@ -49,11 +49,12 @@ msgid "Improvements:"
 msgstr ""
 
 #: data/music.metainfo.xml.in:59
-msgid "Drag and drop whole folders into the queue"
+msgid "Open folders in the filemanager with Music"
 msgstr ""
 
-#: data/music.metainfo.xml.in:60
-msgid "Open folders in the filemanager with Music"
+#: data/music.metainfo.xml.in:60 data/music.metainfo.xml.in:93
+#: data/music.metainfo.xml.in:103
+msgid "Updated translations"
 msgstr ""
 
 #: data/music.metainfo.xml.in:73
@@ -81,10 +82,6 @@ msgstr ""
 
 #: data/music.metainfo.xml.in:92
 msgid "Drop support for Last.FM"
-msgstr ""
-
-#: data/music.metainfo.xml.in:93 data/music.metainfo.xml.in:103
-msgid "Updated translations"
 msgstr ""
 
 #: data/music.metainfo.xml.in:99

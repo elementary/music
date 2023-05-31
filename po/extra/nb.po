@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-04 17:17+0000\n"
+"POT-Creation-Date: 2023-05-31 15:44+0000\n"
 "PO-Revision-Date: 2023-03-02 10:25+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://l10n.elementary.io/projects/music/"
@@ -51,12 +51,13 @@ msgid "Improvements:"
 msgstr "Forbedringer:"
 
 #: data/music.metainfo.xml.in:59
-msgid "Drag and drop whole folders into the queue"
-msgstr "Dra og slipp hele mapper inn i køen"
-
-#: data/music.metainfo.xml.in:60
 msgid "Open folders in the filemanager with Music"
 msgstr ""
+
+#: data/music.metainfo.xml.in:60 data/music.metainfo.xml.in:93
+#: data/music.metainfo.xml.in:103
+msgid "Updated translations"
+msgstr "Oppdaterte oversettelser"
 
 #: data/music.metainfo.xml.in:73
 #, fuzzy
@@ -86,10 +87,6 @@ msgstr "Fullstendig omskriving"
 #, fuzzy
 msgid "Drop support for Last.FM"
 msgstr "Droppet støtte for CD-ROM"
-
-#: data/music.metainfo.xml.in:93 data/music.metainfo.xml.in:103
-msgid "Updated translations"
-msgstr "Oppdaterte oversettelser"
 
 #: data/music.metainfo.xml.in:99
 msgid "Fix an issue with saving smart playlists"
@@ -121,6 +118,9 @@ msgstr "Lytt til musikk"
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
 "Noise;Audio;Spiller;MP3;iPod;Spill;Spilleliste;Media;CD;Telefon;Sanger;"
+
+#~ msgid "Drag and drop whole folders into the queue"
+#~ msgstr "Dra og slipp hele mapper inn i køen"
 
 #~ msgid "Fix removing items from the queue"
 #~ msgstr "Fikset fjerning av elementer fra køen"

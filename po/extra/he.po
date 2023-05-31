@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-04 17:17+0000\n"
+"POT-Creation-Date: 2023-05-31 15:44+0000\n"
 "PO-Revision-Date: 2023-04-06 19:59+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/music/extra/he/>\n"
@@ -45,12 +45,13 @@ msgid "Improvements:"
 msgstr "שיפורים:"
 
 #: data/music.metainfo.xml.in:59
-msgid "Drag and drop whole folders into the queue"
-msgstr "גרירה והשלכה של תיקיות שלמות לתור"
-
-#: data/music.metainfo.xml.in:60
 msgid "Open folders in the filemanager with Music"
 msgstr "פתיחת תיקיות במנהל הקבצים עם מוזיקה"
+
+#: data/music.metainfo.xml.in:60 data/music.metainfo.xml.in:93
+#: data/music.metainfo.xml.in:103
+msgid "Updated translations"
+msgstr "התרגומים עודכנו"
 
 #: data/music.metainfo.xml.in:73
 msgid "For tracks without a title, use the file name instead of the whole URI"
@@ -82,10 +83,6 @@ msgstr "שכתוב מאפס"
 msgid "Drop support for Last.FM"
 msgstr "השמטת תמיכה ב־Last.FM"
 
-#: data/music.metainfo.xml.in:93 data/music.metainfo.xml.in:103
-msgid "Updated translations"
-msgstr "התרגומים עודכנו"
-
 #: data/music.metainfo.xml.in:99
 msgid "Fix an issue with saving smart playlists"
 msgstr "תוקנה תקלה בשמירת רשימות נגינה חכמות"
@@ -115,6 +112,9 @@ msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
 "Noise;נגן;מוזיקה;MP3;אייפוד;נגן;רשימת-נגינה;מדיה;פלאפון;סלולרי;סלולר;אייפון;"
 "שירים;רעש;"
+
+#~ msgid "Drag and drop whole folders into the queue"
+#~ msgstr "גרירה והשלכה של תיקיות שלמות לתור"
 
 #~ msgid "Fix removing items from the queue"
 #~ msgstr "תיקון הסרת פריטים מהתור"

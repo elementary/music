@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-04 17:17+0000\n"
+"POT-Creation-Date: 2023-05-31 15:44+0000\n"
 "PO-Revision-Date: 2023-04-06 19:59+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/music/extra/uk/"
@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.16.4\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
@@ -52,12 +52,13 @@ msgid "Improvements:"
 msgstr "Поліпшення:"
 
 #: data/music.metainfo.xml.in:59
-msgid "Drag and drop whole folders into the queue"
-msgstr "Перетягування цілих тек до черги"
-
-#: data/music.metainfo.xml.in:60
 msgid "Open folders in the filemanager with Music"
 msgstr "Відкривайте теки у файловому менеджері за допомогою застосунку Музика"
+
+#: data/music.metainfo.xml.in:60 data/music.metainfo.xml.in:93
+#: data/music.metainfo.xml.in:103
+msgid "Updated translations"
+msgstr "Оновлено переклади"
 
 #: data/music.metainfo.xml.in:73
 msgid "For tracks without a title, use the file name instead of the whole URI"
@@ -92,10 +93,6 @@ msgstr "Повністю перероблено"
 msgid "Drop support for Last.FM"
 msgstr "Завершено підтримку Last.FM"
 
-#: data/music.metainfo.xml.in:93 data/music.metainfo.xml.in:103
-msgid "Updated translations"
-msgstr "Оновлено переклади"
-
 #: data/music.metainfo.xml.in:99
 msgid "Fix an issue with saving smart playlists"
 msgstr "Виправлено проблему зі збереженням розумних добірок"
@@ -125,6 +122,9 @@ msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
 "Noise;Audio;Аудіо;Player;Програвач;MP3;Play;Відтворення;Playlist;Добірка;"
 "Список відтворення;Плейліст;Медіа;Media;Songs;Пісні;"
+
+#~ msgid "Drag and drop whole folders into the queue"
+#~ msgstr "Перетягування цілих тек до черги"
 
 #~ msgid "Fix removing items from the queue"
 #~ msgstr "Виправлено ваду вилучення елементів із черги"

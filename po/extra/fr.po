@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beatbox 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-04 17:17+0000\n"
+"POT-Creation-Date: 2023-05-31 15:44+0000\n"
 "PO-Revision-Date: 2023-04-25 08:59+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://l10n.elementary.io/projects/music/extra/fr/>\n"
@@ -51,12 +51,13 @@ msgid "Improvements:"
 msgstr "Améliorations :"
 
 #: data/music.metainfo.xml.in:59
-msgid "Drag and drop whole folders into the queue"
-msgstr "Glissez-déposez des dossiers dans la file d'attente"
-
-#: data/music.metainfo.xml.in:60
 msgid "Open folders in the filemanager with Music"
 msgstr "Ouvrez des dossiers dans le gestionnaire de fichiers avec Musique"
+
+#: data/music.metainfo.xml.in:60 data/music.metainfo.xml.in:93
+#: data/music.metainfo.xml.in:103
+msgid "Updated translations"
+msgstr "Mise à jour des traductions"
 
 #: data/music.metainfo.xml.in:73
 msgid "For tracks without a title, use the file name instead of the whole URI"
@@ -92,10 +93,6 @@ msgstr "Réécriture complète"
 msgid "Drop support for Last.FM"
 msgstr "Arrêt de la prise en charge de Last.FM"
 
-#: data/music.metainfo.xml.in:93 data/music.metainfo.xml.in:103
-msgid "Updated translations"
-msgstr "Mise à jour des traductions"
-
 #: data/music.metainfo.xml.in:99
 msgid "Fix an issue with saving smart playlists"
 msgstr ""
@@ -126,6 +123,9 @@ msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
 "Bruit;Audio;Lecteur;MP3;Lecture;Playlist;Liste de lecture;Média;Musique;"
 "Chanson;"
+
+#~ msgid "Drag and drop whole folders into the queue"
+#~ msgstr "Glissez-déposez des dossiers dans la file d'attente"
 
 #~ msgid "Fix removing items from the queue"
 #~ msgstr "Correction de la suppression d'éléments dans la file d'attente"

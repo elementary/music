@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-04 17:17+0000\n"
+"POT-Creation-Date: 2023-05-31 15:44+0000\n"
 "PO-Revision-Date: 2022-05-29 18:19+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://l10n.elementary.io/projects/music/extra/mr/"
@@ -45,12 +45,13 @@ msgid "Improvements:"
 msgstr ""
 
 #: data/music.metainfo.xml.in:59
-msgid "Drag and drop whole folders into the queue"
-msgstr ""
-
-#: data/music.metainfo.xml.in:60
 msgid "Open folders in the filemanager with Music"
 msgstr ""
+
+#: data/music.metainfo.xml.in:60 data/music.metainfo.xml.in:93
+#: data/music.metainfo.xml.in:103
+msgid "Updated translations"
+msgstr "अद्ययावत भाषांतर"
 
 #: data/music.metainfo.xml.in:73
 msgid "For tracks without a title, use the file name instead of the whole URI"
@@ -78,10 +79,6 @@ msgstr "पूर्ण पुनर्लेखन"
 #: data/music.metainfo.xml.in:92
 msgid "Drop support for Last.FM"
 msgstr "Last.FM साठी समर्थन ड्रॉप करा"
-
-#: data/music.metainfo.xml.in:93 data/music.metainfo.xml.in:103
-msgid "Updated translations"
-msgstr "अद्ययावत भाषांतर"
 
 #: data/music.metainfo.xml.in:99
 msgid "Fix an issue with saving smart playlists"

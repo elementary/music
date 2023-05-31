@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-04 17:17+0000\n"
+"POT-Creation-Date: 2023-05-31 15:44+0000\n"
 "PO-Revision-Date: 2023-04-06 19:59+0000\n"
 "Last-Translator: Marcin Serwin <marcin.serwin0@protonmail.com>\n"
 "Language-Team: Polish <https://l10n.elementary.io/projects/music/extra/pl/>\n"
@@ -51,12 +51,13 @@ msgid "Improvements:"
 msgstr "Ulepszenia:"
 
 #: data/music.metainfo.xml.in:59
-msgid "Drag and drop whole folders into the queue"
-msgstr "Przeciąganie i upuszczanie całych folderów do kolejki"
-
-#: data/music.metainfo.xml.in:60
 msgid "Open folders in the filemanager with Music"
 msgstr "Otwieranie folderów przy użyciu menedżera plików używając Muzyki"
+
+#: data/music.metainfo.xml.in:60 data/music.metainfo.xml.in:93
+#: data/music.metainfo.xml.in:103
+msgid "Updated translations"
+msgstr "Zaktualizowane tłumaczenia"
 
 #: data/music.metainfo.xml.in:73
 msgid "For tracks without a title, use the file name instead of the whole URI"
@@ -92,10 +93,6 @@ msgstr "Całkowite przepisanie"
 msgid "Drop support for Last.FM"
 msgstr "Usunięto wsparcie dla Last.FM"
 
-#: data/music.metainfo.xml.in:93 data/music.metainfo.xml.in:103
-msgid "Updated translations"
-msgstr "Zaktualizowane tłumaczenia"
-
 #: data/music.metainfo.xml.in:99
 msgid "Fix an issue with saving smart playlists"
 msgstr "Naprawiono problem z zapisywaniem inteligentnych playlist"
@@ -125,6 +122,9 @@ msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
 "Muzyka;Dźwięk;Audio;Odtwarzacz;MP3;Odtwarzaj;Lista odtwarzania;Media;"
 "Piosenki;"
+
+#~ msgid "Drag and drop whole folders into the queue"
+#~ msgstr "Przeciąganie i upuszczanie całych folderów do kolejki"
 
 #~ msgid "Fix removing items from the queue"
 #~ msgstr "Naprawiono usuwanie elementów z kolejki"
