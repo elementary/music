@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-31 15:44+0000\n"
-"PO-Revision-Date: 2023-03-02 10:25+0000\n"
+"PO-Revision-Date: 2023-06-16 10:07+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://l10n.elementary.io/projects/music/"
 "extra/nb/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.2\n"
+"X-Generator: Weblate 4.17\n"
 "X-Launchpad-Export-Date: 2017-04-05 07:07+0000\n"
 
 #: data/music.metainfo.xml.in:10 data/music.desktop.in:4
@@ -52,7 +52,7 @@ msgstr "Forbedringer:"
 
 #: data/music.metainfo.xml.in:59
 msgid "Open folders in the filemanager with Music"
-msgstr ""
+msgstr "Åpne mapper i filbehandleren med Musikk"
 
 #: data/music.metainfo.xml.in:60 data/music.metainfo.xml.in:93
 #: data/music.metainfo.xml.in:103
@@ -71,6 +71,7 @@ msgstr "Hopp over ugyldige filer istedenfor stopping av avspilling"
 #: data/music.metainfo.xml.in:75
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr ""
+"«Neste» og «Gjenta»-knapper virker alltid uavhengig av gjentagelsesmodus"
 
 #: data/music.metainfo.xml.in:76
 msgid ""
@@ -78,6 +79,9 @@ msgid ""
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
 "Russian, Simplified Chinese, Turkish, and Ukrainian"
 msgstr ""
+"Nå tilgjengelig på katalansk, hollandsk, finsk, fransk, tysk, hebraisk, "
+"ungarsk, japansk, koreansk, kurdisk, marathi, bokmål, polsk, portugisisk, "
+"russisk, forenklet kinesisk, tyrkisk og ukrainsk."
 
 #: data/music.metainfo.xml.in:86
 msgid "Complete rewrite"
