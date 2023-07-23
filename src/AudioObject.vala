@@ -13,4 +13,16 @@ public class Music.AudioObject : Object {
     public AudioObject (string uri) {
         Object (uri: uri);
     }
+
+    public AudioObject.from_file (File file) {
+        base (file.get_uri ());
+
+        string? basename = file.get_basename ();
+
+        if (basename != null) {
+            title = basename;
+        } else {
+            title = uri;
+        }
+    }
 }

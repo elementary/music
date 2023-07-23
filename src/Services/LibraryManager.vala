@@ -51,7 +51,7 @@ public class Music.LibraryManager : Object {
                     unchecked_directories.push_tail (file);
                     detect_audio_files.begin ();
                 } else if (is_file_valid (file)) {
-                    songs.append (create_audio_object (file));
+                    songs.append (AudioObject.from_file (file));
                 }
 
                 break;
@@ -94,7 +94,7 @@ public class Music.LibraryManager : Object {
                         continue;
                     } else {
                         if (is_file_valid (file)) {
-                            songs.append (create_audio_object (file));
+                            songs.append (new AudioObject.from_file (file));
                             position_by_uri[file.get_uri ()] = songs.get_n_items () - 1;
                         }
                     }
@@ -109,19 +109,5 @@ public class Music.LibraryManager : Object {
 
     private bool is_file_valid (File file) {
         return file.query_exists () && "audio" in ContentType.guess (file.get_uri (), null, null);
-    }
-
-    private AudioObject create_audio_object (File file) {
-        var audio_object = new AudioObject (file.get_uri ());
-
-        string? basename = file.get_basename ();
-
-        if (basename != null) {
-            audio_object.title = basename;
-        } else {
-            audio_object.title = audio_object.uri;
-        }
-
-        return audio_object;
     }
 }

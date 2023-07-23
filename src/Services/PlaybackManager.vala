@@ -92,19 +92,9 @@ public class Music.PlaybackManager : Object {
         int invalids = 0;
         foreach (unowned var file in files) {
             if (file.query_exists () && "audio" in ContentType.guess (file.get_uri (), null, null)) {
-                var audio_object = new AudioObject (file.get_uri ());
-
-                string? basename = file.get_basename ();
-
-                if (basename != null) {
-                    audio_object.title = basename;
-                } else {
-                    audio_object.title = audio_object.uri;
-                }
-
-                discoverer.discover_uri_async (audio_object.uri);
-
+                var audio_object = new AudioObject.from_file (file);
                 queue_liststore.append (audio_object);
+                discoverer.discover_uri_async (audio_object.uri);
             } else {
                 invalids++;
                 continue;
