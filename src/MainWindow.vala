@@ -4,36 +4,33 @@
  */
 
 public class Music.MainWindow : Gtk.ApplicationWindow {
-    private Gtk.Button back_button;
-    private QueueView queue_view;
     private Gtk.Stack stack;
     private Settings settings;
 
     construct {
         var start_window_controls = new Gtk.WindowControls (Gtk.PackType.START);
 
-        back_button = new Gtk.Button.with_label (_("Library"));
-        back_button.add_css_class (Granite.STYLE_CLASS_BACK_BUTTON);
-
-        var queue_button = new Gtk.Button.from_icon_name ("view-list-symbolic");
+        var stack_switcher = new Gtk.StackSwitcher () {
+            hexpand = false
+        };
+        ((Gtk.BoxLayout)stack_switcher.get_layout_manager ()).homogeneous = true;
 
         var start_header = new Gtk.HeaderBar () {
             show_title_buttons = false,
-            title_widget = new Gtk.Label ("")
+            title_widget = stack_switcher
         };
         start_header.add_css_class (Granite.STYLE_CLASS_FLAT);
         start_header.pack_start (start_window_controls);
-        start_header.pack_start (back_button);
-        start_header.pack_end (queue_button);
 
-        queue_view = new QueueView ();
+        var queue_view = new QueueView ();
 
         var library_view = new LibraryView ();
 
         stack = new Gtk.Stack ();
-        stack.add_child (queue_view);
-        stack.add_child (library_view);
-        stack.visible_child = library_view;
+        stack.add_titled (library_view, null, _("Library"));
+        stack.add_titled (queue_view, null, _("Play Queue"));
+
+        stack_switcher.stack = stack;
 
         var start_box = new Gtk.Box (VERTICAL, 0);
         start_box.add_css_class (Granite.STYLE_CLASS_VIEW);
@@ -83,20 +80,5 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
 
         settings = new Settings ("io.elementary.music");
         settings.bind ("pane-position", paned, "position", SettingsBindFlags.DEFAULT);
-
-        update_header_buttons ();
-        stack.notify["visible-child"].connect (update_header_buttons);
-
-        queue_button.clicked.connect (() => {
-            stack.visible_child = queue_view;
-        });
-
-        back_button.clicked.connect (() => {
-            stack.visible_child = library_view;
-        });
-    }
-
-    private void update_header_buttons () {
-        back_button.visible = stack.visible_child == queue_view;
     }
 }
