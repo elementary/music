@@ -51,7 +51,7 @@ public class Music.LibraryManager : Object {
                     unchecked_directories.push_tail (file);
                     detect_audio_files.begin ();
                 } else if (is_file_valid (file)) {
-                    songs.append (AudioObject.from_file (file));
+                    songs.append (new AudioObject.from_file (file));
                 }
 
                 break;
