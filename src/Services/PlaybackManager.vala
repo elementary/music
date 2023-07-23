@@ -269,6 +269,11 @@ public class Music.PlaybackManager : Object {
         uint position;
         bool from_queue = queue_liststore.find (current_audio, out position);
 
+        if (from_queue && position != queue_liststore.get_n_items () - 1) {
+            current_audio = (AudioObject) queue_liststore.get_item (position + 1);
+            return;
+        }
+
         if (next_by_eos) {
             switch (settings.get_string ("repeat-mode")) {
                 case "disabled":
@@ -278,26 +283,18 @@ public class Music.PlaybackManager : Object {
                     if (!from_queue) {
                         ask_has_next (true);
                         return;
+                    } else {
+                        current_audio = (AudioObject) queue_liststore.get_item (0);
+                        if (position == 0) {
+                            seek_to_progress (0);
+                        }
+                        return;
                     }
-                    break;
 
                 case "one":
                     seek_to_progress (0);
-                    break;
+                    return;
             }
-        }
-
-        if (from_queue) {
-            if (position == queue_liststore.get_n_items () - 1) {
-                current_audio = (AudioObject) queue_liststore.get_item (0);
-                if (position == 0) {
-                    seek_to_progress (0);
-                }
-            } else {
-                current_audio = (AudioObject) queue_liststore.get_item (position + 1);
-            }
-
-            return;
         }
 
         ask_has_next (false);

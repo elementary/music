@@ -16,7 +16,11 @@ public class Music.LibraryView : Gtk.Box {
             hexpand = true
         };
 
-        append (list_view);
+        var scrolled_window = new Gtk.ScrolledWindow () {
+            child = list_view
+        };
+
+        append (scrolled_window);
 
         playback_manager.ask_has_next.connect ((repeat_all) => {
             if (selection_model.selected < selection_model.get_n_items () - 1) {
