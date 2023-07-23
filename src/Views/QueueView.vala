@@ -21,16 +21,12 @@ public class Music.QueueView : Gtk.Box {
         };
 
         var drop_target = new Gtk.DropTarget (typeof (Gdk.FileList), Gdk.DragAction.COPY);
-
-        var queue = new Gtk.Grid ();
-        // queue.attach (queue_header, 0, 0);
-        queue.attach (scrolled, 0, 1);
-        queue.add_controller (drop_target);
+        scrolled.add_controller (drop_target);
 
         var error_toast = new Granite.Toast ("");
 
         var queue_overlay = new Gtk.Overlay () {
-            child = queue
+            child = scrolled
         };
         queue_overlay.add_overlay (error_toast);
 
