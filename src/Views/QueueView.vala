@@ -159,7 +159,9 @@ public class Music.QueueView : Gtk.Box {
 
     private Gtk.Widget create_queue_row (GLib.Object object) {
         unowned var audio_object = (AudioObject) object;
-        return new TrackRow (audio_object);
+        var track_row = new TrackRow ();
+        track_row.bind_audio_object (audio_object);
+        return track_row;
     }
 
 }

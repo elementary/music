@@ -5,6 +5,7 @@ sources = [
     'PlaybackManager.vala',
     'DBus/MprisPlayer.vala',
     'DBus/MprisRoot.vala',
+    'Services/LibraryManager.vala',
     'Views/LibraryView.vala',
     'Views/NowPlayingView.vala',
     'Views/QueueView.vala',
