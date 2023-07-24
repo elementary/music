@@ -14,6 +14,11 @@ public class Music.LibraryManager : Object {
         try {
             tracker_connection = Tracker.Sparql.Connection.bus_new ("org.freedesktop.Tracker3.Miner.Files", null, null);
 
+            var notifier = tracker_connection.create_notifier ();
+            if (notifier != null) {
+                notifier.events.connect (on_tracker_event);
+            }
+
             get_audio_files.begin ();
         } catch (Error e) {
             warning (e.message);
@@ -67,6 +72,27 @@ public class Music.LibraryManager : Object {
             cursor.close ();
         } catch (Error e) {
             warning (e.message);
+        }
+    }
+
+    private void on_tracker_event (string service, string graph, GenericArray<Tracker.NotifierEvent> events) {
+        print (service);
+        print (graph);
+        foreach (var event in events) {
+            var type = event.get_event_type ();
+            switch (type) {
+                case DELETE:
+                    print ("FILE DELETED");
+                    break;
+
+                case CREATE:
+                    print ("FILE CREATED");
+                    break;
+
+                case UPDATE:
+                    print ("FILE UPDATED");
+                    break;
+            }
         }
     }
 
