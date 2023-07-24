@@ -4,7 +4,7 @@
  */
 
 public class Music.AudioObject : Object {
-    public string uri { get; construct; }
+    public string uri { get; set; }
     public Gdk.Texture texture { get; set; }
     public string artist { get; set; }
     public string title { get; set; }

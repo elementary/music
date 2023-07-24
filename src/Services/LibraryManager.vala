@@ -2,6 +2,8 @@ public class Music.LibraryManager : Object {
     public ListStore songs { get; construct; }
 
     private Tracker.Sparql.Connection tracker_connection;
+    private Tracker.Notifier notifier;
+    private HashTable<string, AudioObject> songs_by_urn;
 
     private static GLib.Once<LibraryManager> instance;
     public static unowned LibraryManager get_instance () {
@@ -10,13 +12,13 @@ public class Music.LibraryManager : Object {
 
     construct {
         songs = new ListStore (typeof (AudioObject));
+        songs_by_urn = new HashTable<string, AudioObject> (str_hash, str_equal);
 
         try {
             tracker_connection = Tracker.Sparql.Connection.bus_new ("org.freedesktop.Tracker3.Miner.Files", null, null);
 
-            var notifier = tracker_connection.create_notifier ();
+            notifier = tracker_connection.create_notifier ();
             if (notifier != null) {
-                //TODO doesn't get emitted
                 notifier.events.connect (on_tracker_event);
             }
 
@@ -30,10 +32,10 @@ public class Music.LibraryManager : Object {
         try {
             var tracker_statement = tracker_connection.query_statement (
                 """
-                    SELECT ?url ?title ?artist ?duration
+                    SELECT ?url ?title ?artist ?duration ?id
                     WHERE {
                         GRAPH tracker:Audio {
-                            SELECT ?url ?title ?artist ?duration
+                            SELECT ?url ?title ?artist ?duration ?song AS ?id
                             WHERE {
                                 ?song a nmm:MusicPiece ;
                                         nie:isStoredAs ?url .
@@ -71,6 +73,8 @@ public class Music.LibraryManager : Object {
                     audio_object.duration = cursor.get_integer (3);
                 }
 
+                songs_by_urn[cursor.get_string (4)] = audio_object;
+
                 songs.append (audio_object);
             }
 
@@ -80,24 +84,106 @@ public class Music.LibraryManager : Object {
         }
     }
 
-    private void on_tracker_event (string service, string graph, GenericArray<Tracker.NotifierEvent> events) {
-        print (service);
-        print (graph);
+    private void on_tracker_event (string? service, string? graph, GenericArray<Tracker.NotifierEvent> events) {
         foreach (var event in events) {
+            if (event.get_urn () == null) {
+                continue;
+            }
+
             var type = event.get_event_type ();
             switch (type) {
                 case DELETE:
-                    print ("FILE DELETED");
+                    var audio_object = songs_by_urn[event.get_urn ()];
+                    if (audio_object != null) {
+                        uint position = Gtk.INVALID_LIST_POSITION;
+                        if (songs.find_with_equal_func (audio_object, equal_func, out position)) {
+                            songs.remove (position);
+                        }
+                    }
                     break;
 
                 case CREATE:
-                    print ("FILE CREATED");
+                    update_audio_object (event.get_urn ());
                     break;
 
                 case UPDATE:
-                    print ("FILE UPDATED");
+                    update_audio_object (event.get_urn ());
                     break;
             }
         }
+    }
+
+    private void update_audio_object (string urn) {
+        try {
+            var tracker_statement = tracker_connection.query_statement (
+                """
+                    SELECT ?url ?title ?artist ?duration
+                    WHERE {
+                        GRAPH tracker:Audio {
+                            SELECT ?url ?title ?artist ?duration
+                            WHERE {
+                                ~urn nie:isStoredAs ?url .
+                                OPTIONAL {
+                                    ~urn nie:title ?title
+                                } .
+                                OPTIONAL {
+                                    ~urn nmm:artist [ nmm:artistName ?artist ] ;
+                                } .
+                                OPTIONAL {
+                                    ~urn nfo:duration ?duration ;
+                                } .
+                            }
+                        }
+                    }
+                """
+            );
+
+            tracker_statement.bind_string ("urn", urn);
+
+            var cursor = tracker_statement.execute (null);
+
+            while (cursor.next ()) {
+                uint position = Gtk.INVALID_LIST_POSITION;
+                bool found = false;
+                AudioObject audio_object;
+
+                if (!(urn in songs_by_urn)) {
+                    audio_object = new AudioObject (cursor.get_string (0));
+                } else {
+                    audio_object = songs_by_urn[urn];
+                    found = songs.find_with_equal_func (audio_object, equal_func, out position);
+
+                    audio_object.uri = cursor.get_string (0);
+                }
+
+                if (cursor.is_bound (1)) {
+                    audio_object.title = cursor.get_string (1);
+                } else {
+                    audio_object.title = audio_object.uri;
+                }
+
+                if (cursor.is_bound (2)) {
+                    audio_object.artist = cursor.get_string (2);
+                }
+
+                if (cursor.is_bound (3)) {
+                    audio_object.duration = cursor.get_integer (3);
+                }
+
+                if (found) {
+                    songs.items_changed (position, 1, 1);
+                } else {
+                    songs.append (audio_object);
+                }
+            }
+
+            cursor.close ();
+        } catch (Error e) {
+            warning (e.message);
+        }
+    }
+
+    private static bool equal_func (Object a, Object b) {
+        return ((AudioObject) a).uri == ((AudioObject) b).uri;
     }
 }
