@@ -29,48 +29,41 @@ public class Music.LibraryManager : Object {
     }
 
     private async void get_audio_files () {
-        new Thread<void*> (null, () => {
-            try {
-                var tracker_statement = tracker_connection.query_statement (
-                    """
-                        SELECT ?urn ?url ?title ?artist ?duration
-                        WHERE {
-                            GRAPH tracker:Audio {
-                                SELECT ?song AS ?urn ?url ?title ?artist ?duration
-                                WHERE {
-                                    ?song a nmm:MusicPiece ;
-                                          nie:isStoredAs ?url .
-                                    OPTIONAL {
-                                        ?song nie:title ?title
-                                    } .
-                                    OPTIONAL {
-                                        ?song nmm:artist [ nmm:artistName ?artist ] ;
-                                    } .
-                                    OPTIONAL {
-                                        ?song nfo:duration ?duration ;
-                                    } .
-                                }
+        try {
+            var tracker_statement = tracker_connection.query_statement (
+                """
+                    SELECT ?urn ?url ?title ?artist ?duration
+                    WHERE {
+                        GRAPH tracker:Audio {
+                            SELECT ?song AS ?urn ?url ?title ?artist ?duration
+                            WHERE {
+                                ?song a nmm:MusicPiece ;
+                                      nie:isStoredAs ?url .
+                                OPTIONAL {
+                                    ?song nie:title ?title
+                                } .
+                                OPTIONAL {
+                                    ?song nmm:artist [ nmm:artistName ?artist ] ;
+                                } .
+                                OPTIONAL {
+                                    ?song nfo:duration ?duration ;
+                                } .
                             }
                         }
-                    """
-                );
+                    }
+                """
+            );
 
-                var cursor = tracker_statement.execute (null);
+            var cursor = yield tracker_statement.execute_async (null);
 
-                while (cursor.next ()) {
-                    create_audio_object (cursor, false);
-                }
-
-                cursor.close ();
-            } catch (Error e) {
-                warning (e.message);
+            while (cursor.next ()) {
+                create_audio_object (cursor, false);
             }
 
-            Idle.add (get_audio_files.callback);
-            return null;
-        });
-
-        yield;
+            cursor.close ();
+        } catch (Error e) {
+            warning (e.message);
+        }
     }
 
     private void on_tracker_event (string? service, string? graph, GenericArray<Tracker.NotifierEvent> events) {
