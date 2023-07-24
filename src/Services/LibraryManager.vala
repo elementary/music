@@ -30,37 +30,58 @@ public class Music.LibraryManager : Object {
 
     private async void get_audio_files () {
         try {
-            var tracker_statement = tracker_connection.query_statement (
+            // There currently is a bug in tracker that from a flatpak large queries will stall indefinitely.
+            // Therefore we query all URN's and do separate queries for the details of each URN
+            // This will cost us quite a bit of performance which shoudln't be visible thought
+            // as it only leads to the library filling bit by bit but doesn't block anything
+            // Tested with Ryzen 5 3600 and about 600 Songs it took 1/2 second to fully load
+            var tracker_statement_urn = tracker_connection.query_statement (
                 """
-                    SELECT ?urn ?url ?title ?artist ?duration
+                    SELECT ?urn
                     WHERE {
                         GRAPH tracker:Audio {
-                            SELECT ?song AS ?urn ?url ?title ?artist ?duration
+                            SELECT ?song AS ?urn
                             WHERE {
-                                ?song a nmm:MusicPiece ;
-                                      nie:isStoredAs ?url .
-                                OPTIONAL {
-                                    ?song nie:title ?title
-                                } .
-                                OPTIONAL {
-                                    ?song nmm:artist [ nmm:artistName ?artist ] ;
-                                } .
-                                OPTIONAL {
-                                    ?song nfo:duration ?duration ;
-                                } .
+                                ?song a nmm:MusicPiece .
                             }
                         }
                     }
                 """
             );
 
-            var cursor = yield tracker_statement.execute_async (null);
+            var urn_cursor = yield tracker_statement_urn.execute_async (null);
 
-            while (cursor.next ()) {
-                create_audio_object (cursor, false);
+            while (yield urn_cursor.next_async ()) {
+                yield query_update_audio_object (urn_cursor.get_string (0), false);
             }
 
-            cursor.close ();
+            urn_cursor.close ();
+
+            // This would be the correct query:
+
+            // var tracker_statement = tracker_connection.query_statement (
+            //     """
+            //         SELECT ?urn ?url ?title ?artist ?duration
+            //         WHERE {
+            //             GRAPH tracker:Audio {
+            //                 SELECT ?song AS ?urn ?url ?title ?artist ?duration
+            //                 WHERE {
+            //                     ?song a nmm:MusicPiece ;
+            //                           nie:isStoredAs ?url .
+            //                     OPTIONAL {
+            //                         ?song nie:title ?title
+            //                     } .
+            //                     OPTIONAL {
+            //                         ?song nmm:artist [ nmm:artistName ?artist ] ;
+            //                     } .
+            //                     OPTIONAL {
+            //                         ?song nfo:duration ?duration ;
+            //                     } .
+            //                 }
+            //             }
+            //         }
+            //     """
+            // );
         } catch (Error e) {
             warning (e.message);
         }
@@ -74,17 +95,17 @@ public class Music.LibraryManager : Object {
                     break;
 
                 case CREATE:
-                    query_update_audio_object (event.get_urn (), false);
+                    query_update_audio_object.begin (event.get_urn (), false);
                     break;
 
                 case UPDATE:
-                    query_update_audio_object (event.get_urn (), true);
+                    query_update_audio_object.begin (event.get_urn (), true);
                     break;
             }
         }
     }
 
-    private void query_update_audio_object (string urn, bool update) {
+    private async void query_update_audio_object (string urn, bool update) {
         try {
             var tracker_statement = tracker_connection.query_statement (
                 """
@@ -112,7 +133,7 @@ public class Music.LibraryManager : Object {
 
             tracker_statement.bind_string ("urn", urn);
 
-            var cursor = tracker_statement.execute (null);
+            var cursor = yield tracker_statement.execute_async (null);
 
             while (cursor.next ()) {
                 create_audio_object (cursor, update);
