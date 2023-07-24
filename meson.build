@@ -22,13 +22,15 @@ gstreamer_dep = dependency('gstreamer-1.0')
 gstreamer_pbutils_dep = dependency('gstreamer-pbutils-1.0')
 gstreamer_tag_dep = dependency('gstreamer-tag-1.0')
 gtk_dep = dependency('gtk4')
+tracker_dep = dependency('tracker-sparql-3.0')
 
 dependencies = [
     granite_dep,
     gstreamer_dep,
     gstreamer_pbutils_dep,
     gstreamer_tag_dep,
-    gtk_dep
+    gtk_dep,
+    tracker_dep
 ]
 
 meson.add_install_script('meson/post_install.py')
