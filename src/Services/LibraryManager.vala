@@ -1,10 +1,7 @@
 public class Music.LibraryManager : Object {
     public ListStore songs { get; construct; }
 
-    // private List<FileMonitor> directory_monitors;
-    // private Queue<File> unchecked_directories;
-    // private HashTable<string, uint> position_by_uri;
-    // private bool is_scanning = false;
+    private Tracker.Sparql.Connection tracker_connection;
 
     private static GLib.Once<LibraryManager> instance;
     public static unowned LibraryManager get_instance () {
@@ -15,34 +12,62 @@ public class Music.LibraryManager : Object {
         songs = new ListStore (typeof (AudioObject));
 
         try {
-            var tracker_connection = Tracker.Sparql.Connection.bus_new ("org.freedesktop.Tracker3.Miner.Files", null, null);
+            tracker_connection = Tracker.Sparql.Connection.bus_new ("org.freedesktop.Tracker3.Miner.Files", null, null);
 
-            var tracker_statement = tracker_connection.query_statement (
-                """SELECT nie:url(?u) WHERE { ?u a nfo:FileDataObject ; nfo:fileName "dicht & ergreifend - Zipfeschwinga.mp3" }"""
-            );
-
-            print ("execute");
-            var cursor = tracker_statement.execute (null);
-
-            print ("finish execute");
-
-            int i = 0;
-            while (cursor.next ()) {
-                print ("Result [%i]: %s\n", i++, cursor.get_string (0));
-            }
-            print ("finished");
-
-            cursor.close ();
-            tracker_connection.close ();
+            get_audio_files.begin ();
         } catch (Error e) {
             warning (e.message);
         }
-        // directory_monitors = new List<FileMonitor> ();
-        // unchecked_directories = new Queue<File> ();
-        // unchecked_directories.push_tail (File.new_for_path (Environment.get_user_special_dir (UserDirectory.MUSIC)));
-        // position_by_uri = new HashTable<string, uint> (str_hash, str_equal);
+    }
 
-        // detect_audio_files.begin ();
+    private async void get_audio_files () {
+        try {
+            var tracker_statement = tracker_connection.query_statement (
+                """
+                    SELECT ?url ?title ?artist ?duration
+                    WHERE {
+                        ?song a nmm:MusicPiece ;
+                             nie:isStoredAs ?as .
+                        ?as nie:url ?url .
+                        OPTIONAL {
+                            ?song nie:title ?title
+                        } .
+                        OPTIONAL {
+                            ?song nmm:artist [ nmm:artistName ?artist ] ;
+                        } .
+                        OPTIONAL {
+                            ?song nfo:duration ?duration ;
+                        } .
+                    }
+                """
+            );
+
+            var cursor = tracker_statement.execute (null);
+
+            while (cursor.next ()) {
+                var audio_object = new AudioObject (cursor.get_string (0));
+
+                if (cursor.is_bound (1)) {
+                    audio_object.title = cursor.get_string (1);
+                } else {
+                    audio_object.title = audio_object.uri;
+                }
+
+                if (cursor.is_bound (2)) {
+                    audio_object.artist = cursor.get_string (2);
+                }
+
+                if (cursor.is_bound (3)) {
+                    audio_object.duration = cursor.get_integer (3);
+                }
+
+                songs.append (audio_object);
+            }
+
+            cursor.close ();
+        } catch (Error e) {
+            warning (e.message);
+        }
     }
 
     // private void on_directory_change (File file, File? other_file, FileMonitorEvent event_type) {
