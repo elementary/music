@@ -31,18 +31,22 @@ public class Music.LibraryManager : Object {
                 """
                     SELECT ?url ?title ?artist ?duration
                     WHERE {
-                        ?song a nmm:MusicPiece ;
-                             nie:isStoredAs ?as .
-                        ?as nie:url ?url .
-                        OPTIONAL {
-                            ?song nie:title ?title
-                        } .
-                        OPTIONAL {
-                            ?song nmm:artist [ nmm:artistName ?artist ] ;
-                        } .
-                        OPTIONAL {
-                            ?song nfo:duration ?duration ;
-                        } .
+                        GRAPH tracker:Audio {
+                            SELECT ?url ?title ?artist ?duration
+                            WHERE {
+                                ?song a nmm:MusicPiece ;
+                                        nie:isStoredAs ?url .
+                                OPTIONAL {
+                                    ?song nie:title ?title
+                                } .
+                                OPTIONAL {
+                                    ?song nmm:artist [ nmm:artistName ?artist ] ;
+                                } .
+                                OPTIONAL {
+                                    ?song nfo:duration ?duration ;
+                                } .
+                            }
+                        }
                     }
                 """
             );
