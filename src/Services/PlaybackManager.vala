@@ -158,7 +158,9 @@ public class Music.PlaybackManager : Object {
             return ((AudioObject) a).uri == ((AudioObject) b).uri;
         };
 
-        var temp_audio_object = new AudioObject (uri);
+        var temp_audio_object = new AudioObject () {
+            uri = uri
+        };
 
         uint position = -1;
         queue_liststore.find_with_equal_func (temp_audio_object, equal_func, out position);

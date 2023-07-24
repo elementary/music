@@ -10,12 +10,8 @@ public class Music.AudioObject : Object {
     public string title { get; set; }
     public int64 duration { get; set; default = 0; }
 
-    public AudioObject (string uri) {
-        Object (uri: uri);
-    }
-
     public AudioObject.from_file (File file) {
-        base (file.get_uri ());
+        uri = file.get_uri ();
 
         string? basename = file.get_basename ();
 
