@@ -16,6 +16,7 @@ public class Music.LibraryManager : Object {
 
             var notifier = tracker_connection.create_notifier ();
             if (notifier != null) {
+                //TODO doesn't get emitted
                 notifier.events.connect (on_tracker_event);
             }
 
@@ -99,94 +100,4 @@ public class Music.LibraryManager : Object {
             }
         }
     }
-
-    // private void on_directory_change (File file, File? other_file, FileMonitorEvent event_type) {
-    //     uint position = Gtk.INVALID_LIST_POSITION;
-    //     if (file.get_uri () in position_by_uri) {
-    //         position = position_by_uri[file.get_uri ()];
-    //     }
-
-    //     switch (event_type) {
-    //         case DELETED:
-    //             if (position != Gtk.INVALID_LIST_POSITION) {
-    //                 songs.remove (position);
-    //             }
-    //             break;
-
-    //         case CHANGES_DONE_HINT:
-    //             if (position != Gtk.INVALID_LIST_POSITION) {
-    //                 songs.remove (position);
-    //             }
-
-    //             FileInfo file_info;
-    //             try {
-    //                 file_info = file.query_info ("standard::*", NONE);
-    //             } catch (Error e) {
-    //                 warning (e.message);
-    //                 return;
-    //             }
-
-    //             if (file_info.get_file_type () == FileType.DIRECTORY) {
-    //                 unchecked_directories.push_tail (file);
-    //                 detect_audio_files.begin ();
-    //             } else if (is_file_valid (file)) {
-    //                 songs.append (new AudioObject.from_file (file));
-    //             }
-
-    //             break;
-
-    //         default:
-    //             break;
-    //     }
-    // }
-
-    // public async void detect_audio_files () {
-    //     if (is_scanning) {
-    //         return;
-    //     }
-
-    //     is_scanning = true;
-
-    //     while (!unchecked_directories.is_empty ()) {
-    //         var directory = unchecked_directories.pop_head ();
-
-    //         try {
-    //             var directory_monitor = directory.monitor (NONE);
-    //             directory_monitor.changed.connect (on_directory_change);
-    //             directory_monitors.append (directory_monitor);
-    //         } catch (Error e) {
-    //             warning ("Failed to monitor directory %s: %s", directory.get_path (), e.message);
-    //         }
-
-    //         try {
-    //             var enumerator = directory.enumerate_children (
-    //                 "standard::*",
-    //                 FileQueryInfoFlags.NOFOLLOW_SYMLINKS,
-    //                 null
-    //             );
-
-    //             FileInfo info = null;
-    //             while ((info = enumerator.next_file (null)) != null) {
-    //                 var file = directory.resolve_relative_path (info.get_name ());
-    //                 if (info.get_file_type () == FileType.DIRECTORY) {
-    //                     unchecked_directories.push_tail (file);
-    //                     continue;
-    //                 } else {
-    //                     if (is_file_valid (file)) {
-    //                         songs.append (new AudioObject.from_file (file));
-    //                         position_by_uri[file.get_uri ()] = songs.get_n_items () - 1;
-    //                     }
-    //                 }
-    //             }
-    //         } catch (Error e) {
-    //             warning ("Failed to get children of directory %s: %s", directory.get_path (), e.message);
-    //         }
-    //     }
-
-    //     is_scanning = false;
-    // }
-
-    // private bool is_file_valid (File file) {
-    //     return file.query_exists () && "audio" in ContentType.guess (file.get_uri (), null, null);
-    // }
 }
