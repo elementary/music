@@ -351,7 +351,7 @@ public class Music.PlaybackManager : Object {
 
     }
 
-    private Gst.Sample? get_cover_sample (Gst.TagList tag_list) {
+    public static Gst.Sample? get_cover_sample (Gst.TagList tag_list) {
         Gst.Sample cover_sample = null;
         Gst.Sample sample;
         for (int i = 0; tag_list.get_sample_index (Gst.Tags.IMAGE, i, out sample); i++) {
@@ -369,7 +369,7 @@ public class Music.PlaybackManager : Object {
         return cover_sample;
     }
 
-    private Gdk.Pixbuf? get_pixbuf_from_buffer (Gst.Buffer buffer) {
+    public static Gdk.Pixbuf? get_pixbuf_from_buffer (Gst.Buffer buffer) {
         Gst.MapInfo map_info;
 
         if (!buffer.map (out map_info, Gst.MapFlags.READ)) {

@@ -21,4 +21,34 @@ public class Music.AudioObject : Object {
             title = uri;
         }
     }
+
+    construct {
+        new Thread<void*> (null, () => {
+            try {
+                var discoverer = new Gst.PbUtils.Discoverer ((Gst.ClockTime) (5 * Gst.SECOND));
+
+                var info = discoverer.discover_uri (uri);
+
+                if (info == null) {
+                    warning ("Discovery failed.");
+                    return null;
+                }
+
+                unowned Gst.TagList? tag_list = info.get_tags ();
+
+                var sample = PlaybackManager.get_cover_sample (tag_list);
+                if (sample != null) {
+                    var buffer = sample.get_buffer ();
+
+                    if (buffer != null) {
+                        texture = Gdk.Texture.for_pixbuf (PlaybackManager.get_pixbuf_from_buffer (buffer));
+                    }
+                }
+            } catch (Error e) {
+                warning ("Failed to create texture: %s", e.message);
+            }
+
+            return null;
+        });
+    }
 }

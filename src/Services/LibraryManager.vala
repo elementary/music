@@ -176,7 +176,11 @@ public class Music.LibraryManager : Object {
         if (cursor.is_bound (1)) {
             audio_object.title = cursor.get_string (1);
         } else {
-            audio_object.title = audio_object.uri; //TODO: Try basename, only then use URI
+            try {
+                audio_object.title = Filename.display_basename (Filename.from_uri (audio_object.uri));
+            } catch (Error e) {
+                audio_object.title = audio_object.uri;
+            }
         }
 
         if (cursor.is_bound (2)) {
