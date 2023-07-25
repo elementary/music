@@ -11,7 +11,10 @@ public class Music.LibraryView : Gtk.Box {
             icon = new ThemedIcon ("folder-music")
         };
 
-        // var sort_model = new Gtk.SortListModel (library_manager.songs, new Gtk.CustomSorter (sort_func));
+        var loading_placeholder = new Granite.Placeholder (_("Loading Songs")) {
+            description = _("Looking for Audio files in your Music directory"),
+            icon = new ThemedIcon ("sync-synchronizing")
+        };
 
         selection_model = new Gtk.SingleSelection (library_manager.songs) {
             can_unselect = true,
@@ -33,10 +36,28 @@ public class Music.LibraryView : Gtk.Box {
         placeholder_stack = new Gtk.Stack ();
         placeholder_stack.add_named (scrolled_window, "list-view");
         placeholder_stack.add_named (placeholder, "placeholder");
+        placeholder_stack.add_named (loading_placeholder, "loading-placeholder");
+        placeholder_stack.visible_child_name = "loading-placeholder";
 
-        append (placeholder_stack);
+        var overlay = new Gtk.Overlay () {
+            child = placeholder_stack
+        };
 
-        selection_model.items_changed.connect (update_stack);
+        var loading_overlay_bar = new Granite.OverlayBar (overlay) {
+            label = _("Discovering Songs"),
+            active = true
+        };
+
+        append (overlay);
+
+        bool loading = true;
+        library_manager.get_audio_files.begin (() => {
+            loading_overlay_bar.visible = false;
+            loading = false;
+            update_stack (loading);
+        });
+
+        selection_model.items_changed.connect (() => update_stack (loading));
 
         selection_model.selection_changed.connect (() => {
             //TODO: Should clear play queue?
@@ -44,7 +65,6 @@ public class Music.LibraryView : Gtk.Box {
         });
 
         selection_model.set_selected (Gtk.INVALID_LIST_POSITION);
-        update_stack ();
 
         playback_manager.ask_has_next.connect ((repeat_all) => {
             if (selection_model.get_n_items () == 0) {
@@ -77,13 +97,11 @@ public class Music.LibraryView : Gtk.Box {
         });
     }
 
-    // private static int sort_func<null> (Object a, Object b) {
-    //     var audio_object_a = (AudioObject)a;
-    //     var audio_object_b = (AudioObject)b;
-    //     return audio_object_a.title.collate (audio_object_b.title);
-    // }
+    private void update_stack (bool loading) {
+        if (loading) {
+            return;
+        }
 
-    private void update_stack () {
         placeholder_stack.visible_child_name = selection_model.get_n_items () > 0 ? "list-view" : "placeholder";
     }
 

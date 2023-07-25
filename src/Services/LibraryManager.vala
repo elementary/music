@@ -21,14 +21,12 @@ public class Music.LibraryManager : Object {
             if (notifier != null) {
                 notifier.events.connect (on_tracker_event);
             }
-
-            get_audio_files.begin ();
         } catch (Error e) {
             warning (e.message);
         }
     }
 
-    private async void get_audio_files () {
+    public async void get_audio_files () {
         try {
             // There currently is a bug in tracker that from a flatpak large queries will stall indefinitely.
             // Therefore we query all ID's and do separate queries for the details of each ID
