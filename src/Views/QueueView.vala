@@ -74,7 +74,7 @@ public class Music.QueueView : Gtk.Box {
         });
 
         queue_listbox.row_activated.connect ((row) => {
-            playback_manager.current_audio = ((TrackRow) row).audio_object;
+            playback_manager.current_audio = ((TrackRow) row.child).audio_object;
         });
     }
 

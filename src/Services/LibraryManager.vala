@@ -3,7 +3,7 @@ public class Music.LibraryManager : Object {
 
     private Tracker.Sparql.Connection tracker_connection;
     private Tracker.Notifier notifier;
-    private HashTable<string, AudioObject> songs_by_urn;
+    private HashTable<string, AudioObject> songs_by_id;
 
     private static GLib.Once<LibraryManager> instance;
     public static unowned LibraryManager get_instance () {
@@ -12,7 +12,7 @@ public class Music.LibraryManager : Object {
 
     construct {
         songs = new ListStore (typeof (AudioObject));
-        songs_by_urn = new HashTable<string, AudioObject> (str_hash, str_equal);
+        songs_by_id = new HashTable<string, AudioObject> (str_hash, str_equal);
 
         try {
             tracker_connection = Tracker.Sparql.Connection.bus_new ("org.freedesktop.Tracker3.Miner.Files", null, null);
@@ -37,7 +37,7 @@ public class Music.LibraryManager : Object {
             // Tested with Ryzen 5 3600 and about 600 Songs it took 1/2 second to fully load
             var tracker_statement_urn = tracker_connection.query_statement (
                 """
-                    SELECT ?urn
+                    SELECT tracker:id(?urn)
                     WHERE {
                         GRAPH tracker:Audio {
                             SELECT ?song AS ?urn
@@ -52,7 +52,7 @@ public class Music.LibraryManager : Object {
             var urn_cursor = yield tracker_statement_urn.execute_async (null);
 
             while (yield urn_cursor.next_async ()) {
-                yield query_update_audio_object (urn_cursor.get_string (0), false);
+                yield query_update_audio_object (urn_cursor.get_integer (0), false);
             }
 
             urn_cursor.close ();
@@ -92,51 +92,63 @@ public class Music.LibraryManager : Object {
             var type = event.get_event_type ();
             switch (type) {
                 case DELETE:
+                    var id = event.get_id ().to_string ();
+                    var audio_object = songs_by_id[id];
+
+                    if (audio_object != null) {
+                        songs_by_id.remove (id);
+
+                        uint position = Gtk.INVALID_LIST_POSITION;
+                        if (songs.find_with_equal_func (audio_object, equal_func, out position)) {
+                            songs.remove (position);
+                        }
+                    }
                     break;
 
                 case CREATE:
-                    query_update_audio_object.begin (event.get_urn (), false);
+                    query_update_audio_object.begin (event.get_id (), false);
                     break;
 
                 case UPDATE:
-                    query_update_audio_object.begin (event.get_urn (), true);
+                    query_update_audio_object.begin (event.get_id (), true);
                     break;
             }
         }
     }
 
-    private async void query_update_audio_object (string urn, bool update) {
+    private async void query_update_audio_object (int64 id, bool update) {
         try {
             var tracker_statement = tracker_connection.query_statement (
                 """
-                    SELECT ~urn ?url ?title ?artist ?duration
+                    SELECT ?url ?title ?artist ?duration
                     WHERE {
                         GRAPH tracker:Audio {
-                            SELECT ~urn ?url ?title ?artist ?duration
+                            SELECT ?song ?url ?title ?artist ?duration
                             WHERE {
-                                ~urn a nmm:MusicPiece ;
-                                     nie:isStoredAs ?url .
+                                ?song a nmm:MusicPiece ;
+                                      nie:isStoredAs ?url .
                                 OPTIONAL {
-                                    ~urn nie:title ?title
+                                    ?song nie:title ?title
                                 } .
                                 OPTIONAL {
-                                    ~urn nmm:artist [ nmm:artistName ?artist ] ;
+                                    ?song nmm:artist [ nmm:artistName ?artist ] ;
                                 } .
                                 OPTIONAL {
-                                    ~urn nfo:duration ?duration ;
+                                    ?song nfo:duration ?duration ;
                                 } .
+                                FILTER(tracker:id (?song) = ~id)
                             }
                         }
                     }
                 """
             );
 
-            tracker_statement.bind_string ("urn", urn);
+            tracker_statement.bind_int ("id", id);
 
             var cursor = yield tracker_statement.execute_async (null);
 
             while (cursor.next ()) {
-                create_audio_object (cursor, update);
+                create_audio_object (id, cursor, update);
             }
 
             cursor.close ();
@@ -145,10 +157,10 @@ public class Music.LibraryManager : Object {
         }
     }
 
-    private void create_audio_object (Tracker.Sparql.Cursor cursor, bool update = false) {
-        var urn = cursor.get_string (0);
+    private void create_audio_object (int64 _id, Tracker.Sparql.Cursor cursor, bool update = false) {
+        var id = _id.to_string ();
 
-        AudioObject? audio_object = songs_by_urn[urn];
+        AudioObject? audio_object = songs_by_id[id];
 
         uint position = Gtk.INVALID_LIST_POSITION;
         bool found = false;
@@ -161,27 +173,27 @@ public class Music.LibraryManager : Object {
             found = songs.find_with_equal_func (audio_object, equal_func, out position);
         }
 
-        audio_object.uri = cursor.get_string (1);
+        audio_object.uri = cursor.get_string (0);
 
-        if (cursor.is_bound (2)) {
-            audio_object.title = cursor.get_string (2);
+        if (cursor.is_bound (1)) {
+            audio_object.title = cursor.get_string (1);
         } else {
             audio_object.title = audio_object.uri; //TODO: Try basename, only then use URI
         }
 
-        if (cursor.is_bound (3)) {
-            audio_object.artist = cursor.get_string (3);
+        if (cursor.is_bound (2)) {
+            audio_object.artist = cursor.get_string (2);
         }
 
-        if (cursor.is_bound (4)) {
-            audio_object.duration = cursor.get_integer (4);
+        if (cursor.is_bound (3)) {
+            audio_object.duration = cursor.get_integer (3);
         }
 
         if (found) {
             songs.items_changed (position, 1, 1);
         } else {
             songs.append (audio_object);
-            songs_by_urn[urn] = audio_object;
+            songs_by_id[id] = audio_object;
         }
     }
 
