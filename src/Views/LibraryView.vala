@@ -11,6 +11,8 @@ public class Music.LibraryView : Gtk.Box {
             icon = new ThemedIcon ("folder-music")
         };
 
+        // var sort_model = new Gtk.SortListModel (library_manager.songs, new Gtk.CustomSorter (sort_func));
+
         selection_model = new Gtk.SingleSelection (library_manager.songs) {
             can_unselect = true,
             autoselect = false
@@ -74,6 +76,12 @@ public class Music.LibraryView : Gtk.Box {
             return true;
         });
     }
+
+    // private static int sort_func<null> (Object a, Object b) {
+    //     var audio_object_a = (AudioObject)a;
+    //     var audio_object_b = (AudioObject)b;
+    //     return audio_object_a.title.collate (audio_object_b.title);
+    // }
 
     private void update_stack () {
         placeholder_stack.visible_child_name = selection_model.get_n_items () > 0 ? "list-view" : "placeholder";

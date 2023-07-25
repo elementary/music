@@ -31,11 +31,11 @@ public class Music.LibraryManager : Object {
     private async void get_audio_files () {
         try {
             // There currently is a bug in tracker that from a flatpak large queries will stall indefinitely.
-            // Therefore we query all URN's and do separate queries for the details of each URN
+            // Therefore we query all ID's and do separate queries for the details of each ID
             // This will cost us quite a bit of performance which shoudln't be visible thought
             // as it only leads to the library filling bit by bit but doesn't block anything
             // Tested with Ryzen 5 3600 and about 600 Songs it took 1/2 second to fully load
-            var tracker_statement_urn = tracker_connection.query_statement (
+            var tracker_statement_id = tracker_connection.query_statement (
                 """
                     SELECT tracker:id(?urn)
                     WHERE {
@@ -49,22 +49,22 @@ public class Music.LibraryManager : Object {
                 """
             );
 
-            var urn_cursor = yield tracker_statement_urn.execute_async (null);
+            var id_cursor = yield tracker_statement_id.execute_async (null);
 
-            while (yield urn_cursor.next_async ()) {
-                yield query_update_audio_object (urn_cursor.get_integer (0), false);
+            while (yield id_cursor.next_async ()) {
+                yield query_update_audio_object (id_cursor.get_integer (0), false);
             }
 
-            urn_cursor.close ();
+            id_cursor.close ();
 
-            // This would be the correct query:
+            // This would be the actual query:
 
             // var tracker_statement = tracker_connection.query_statement (
             //     """
-            //         SELECT ?urn ?url ?title ?artist ?duration
+            //         SELECT ?url ?title ?artist ?duration
             //         WHERE {
             //             GRAPH tracker:Audio {
-            //                 SELECT ?song AS ?urn ?url ?title ?artist ?duration
+            //                 SELECT ?url ?title ?artist ?duration
             //                 WHERE {
             //                     ?song a nmm:MusicPiece ;
             //                           nie:isStoredAs ?url .
@@ -158,7 +158,7 @@ public class Music.LibraryManager : Object {
     }
 
     private void create_audio_object (int64 _id, Tracker.Sparql.Cursor cursor, bool update = false) {
-        var id = _id.to_string ();
+        var id = _id.to_string (); //TODO: Maybe use the int64 directly as key
 
         AudioObject? audio_object = songs_by_id[id];
 
@@ -192,9 +192,13 @@ public class Music.LibraryManager : Object {
         if (found) {
             songs.items_changed (position, 1, 1);
         } else {
-            songs.append (audio_object);
+            songs.insert_sorted (audio_object, compare_func);
             songs_by_id[id] = audio_object;
         }
+    }
+
+    private static int compare_func (Object a, Object b) {
+        return ((AudioObject) a).title.collate (((AudioObject) b).title);
     }
 
     private static bool equal_func (Object a, Object b) {
