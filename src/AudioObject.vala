@@ -22,7 +22,7 @@ public class Music.AudioObject : Object {
         }
     }
 
-    construct {
+    public void update_metadata () {
         try {
             new Thread<void*>.try (null, () => {
                 try {
@@ -37,12 +37,38 @@ public class Music.AudioObject : Object {
 
                     unowned Gst.TagList? tag_list = info.get_tags ();
 
+                    duration = (int64) info.get_duration ();
+
+                    string _title;
+                    tag_list.get_string (Gst.Tags.TITLE, out _title);
+                    if (_title != null) {
+                        title = _title;
+                    }
+
+                    string _artist;
+                    tag_list.get_string (Gst.Tags.ARTIST, out _artist);
+                    if (_artist != null) {
+                        artist = _artist;
+                    } else if (_title != null) { // Don't set artist for files without tags
+                        artist = _("Unknown");
+                    }
+
                     var sample = PlaybackManager.get_cover_sample (tag_list);
                     if (sample != null) {
                         var buffer = sample.get_buffer ();
 
-                        if (buffer != null) {
-                            texture = Gdk.Texture.for_pixbuf (PlaybackManager.get_pixbuf_from_buffer (buffer));
+                        Gst.MapInfo? map_info = null;
+                        if (buffer != null && buffer.map (out map_info, Gst.MapFlags.READ) && map_info != null) {
+                            var bytes = new Bytes (map_info.data);
+                            try {
+                                texture = Gdk.Texture.from_bytes (bytes);
+                            } catch (Error e) {
+                                warning ("Error processing image data: %s", e.message);
+                            }
+
+                            buffer.unmap (map_info);
+                        } else {
+                            warning ("Could not map memory buffer");
                         }
                     }
                 } catch (Error e) {

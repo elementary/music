@@ -35,17 +35,17 @@ public class Music.LibraryManager : Object {
             // Tested with Ryzen 5 3600 and about 600 Songs it took half a second to fully load
             var tracker_statement_id = tracker_connection.query_statement (
                 """
-                    SELECT tracker:id(?urn) ?url
+                    SELECT tracker:id(?urn) ?sort_prop
                     WHERE {
                         GRAPH tracker:Audio {
-                            SELECT ?song AS ?urn ?url
+                            SELECT ?song AS ?urn ?sort_prop
                             WHERE {
                                 ?song a nmm:MusicPiece ;
-                                      nie:isStoredAs ?url .
+                                      nie:isStoredAs ?sort_prop .
                             }
                         }
                     }
-                    ORDER BY ?url
+                    ORDER BY ?sort_prop
                 """
             );
 
@@ -175,6 +175,10 @@ public class Music.LibraryManager : Object {
 
         audio_object.uri = cursor.get_string (0);
 
+        // We set the following properties although they are set anyway in
+        // update_metadata. We do this because update_metadata takes a while
+        // and we want the ui to already show something
+
         if (cursor.is_bound (1)) {
             audio_object.title = cursor.get_string (1);
         } else {
@@ -192,6 +196,8 @@ public class Music.LibraryManager : Object {
         if (cursor.is_bound (3)) {
             audio_object.duration = cursor.get_integer (3);
         }
+
+        audio_object.update_metadata ();
 
         if (found) {
             songs.items_changed (position, 1, 1);
