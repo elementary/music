@@ -30,20 +30,22 @@ public class Music.LibraryManager : Object {
         try {
             // There currently is a bug in tracker that from a flatpak large queries will stall indefinitely.
             // Therefore we query all ID's and do separate queries for the details of each ID
-            // This will cost us quite a bit of performance which shoudln't be visible thought
+            // This will cost us quite a bit of performance which shouldn't be visible though
             // as it only leads to the library filling bit by bit but doesn't block anything
-            // Tested with Ryzen 5 3600 and about 600 Songs it took 1/2 second to fully load
+            // Tested with Ryzen 5 3600 and about 600 Songs it took half a second to fully load
             var tracker_statement_id = tracker_connection.query_statement (
                 """
-                    SELECT tracker:id(?urn)
+                    SELECT tracker:id(?urn) ?url
                     WHERE {
                         GRAPH tracker:Audio {
-                            SELECT ?song AS ?urn
+                            SELECT ?song AS ?urn ?url
                             WHERE {
-                                ?song a nmm:MusicPiece .
+                                ?song a nmm:MusicPiece ;
+                                      nie:isStoredAs ?url .
                             }
                         }
                     }
+                    ORDER BY ?url
                 """
             );
 

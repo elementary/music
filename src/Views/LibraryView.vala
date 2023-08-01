@@ -11,11 +11,6 @@ public class Music.LibraryView : Gtk.Box {
             icon = new ThemedIcon ("folder-music")
         };
 
-        var loading_placeholder = new Granite.Placeholder (_("Loading Songs")) {
-            description = _("Looking for Audio files in your Music directory"),
-            icon = new ThemedIcon ("sync-synchronizing")
-        };
-
         selection_model = new Gtk.SingleSelection (library_manager.songs) {
             can_unselect = true,
             autoselect = false
@@ -36,8 +31,7 @@ public class Music.LibraryView : Gtk.Box {
         placeholder_stack = new Gtk.Stack ();
         placeholder_stack.add_named (scrolled_window, "list-view");
         placeholder_stack.add_named (placeholder, "placeholder");
-        placeholder_stack.add_named (loading_placeholder, "loading-placeholder");
-        placeholder_stack.visible_child_name = "loading-placeholder";
+        placeholder_stack.visible_child_name = "placeholder";
 
         var overlay = new Gtk.Overlay () {
             child = placeholder_stack
@@ -50,14 +44,10 @@ public class Music.LibraryView : Gtk.Box {
 
         append (overlay);
 
-        bool loading = true;
-        library_manager.get_audio_files.begin (() => {
-            loading_overlay_bar.visible = false;
-            loading = false;
-            update_stack (loading);
-        });
+        library_manager.get_audio_files.begin (() => loading_overlay_bar.visible = false);
 
-        selection_model.items_changed.connect (() => update_stack (loading));
+        selection_model.items_changed.connect (update_stack);
+        update_stack ();
 
         selection_model.selection_changed.connect (() => {
             //TODO: Should clear play queue?
@@ -97,11 +87,7 @@ public class Music.LibraryView : Gtk.Box {
         });
     }
 
-    private void update_stack (bool loading) {
-        if (loading) {
-            return;
-        }
-
+    private void update_stack () {
         placeholder_stack.visible_child_name = selection_model.get_n_items () > 0 ? "list-view" : "placeholder";
     }
 
