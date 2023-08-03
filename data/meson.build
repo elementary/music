@@ -1,4 +1,3 @@
-gnome = import('gnome')
 gresource = gnome.compile_resources(
     'music-resources',
     'music.gresource.xml',
