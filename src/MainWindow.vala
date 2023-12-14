@@ -7,6 +7,7 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
     private Gtk.Button repeat_button;
     private Gtk.Button shuffle_button;
     private Settings settings;
+    private Gtk.SearchEntry search_entry;
 
     construct {
         var playback_manager = PlaybackManager.get_default ();
@@ -20,9 +21,20 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
 
         repeat_button = new Gtk.Button ();
 
+        search_entry = new Gtk.SearchEntry () {
+            placeholder_text = _("Search titles in playlist")
+        };
+
+        var search_revealer = new Gtk.Revealer () {
+            child = search_entry
+        };
+
+        playback_manager.bind_property (
+            "has-items", search_revealer, "reveal-child", DEFAULT | SYNC_CREATE
+        );
         var queue_header = new Gtk.HeaderBar () {
             show_title_buttons = false,
-            title_widget = new Gtk.Label ("")
+            title_widget = search_revealer
         };
         queue_header.add_css_class (Granite.STYLE_CLASS_FLAT);
         queue_header.add_css_class (Granite.STYLE_CLASS_DEFAULT_DECORATION);

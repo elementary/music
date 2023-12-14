@@ -6,6 +6,7 @@
 public class Music.PlaybackManager : Object {
     public AudioObject? current_audio { get; set; default = null; }
     public ListStore queue_liststore { get; private set; }
+    public bool has_items { get; private set; }
     public int64 playback_position { get; private set; }
     public signal void invalids_found (int count);
 
@@ -50,8 +51,8 @@ public class Music.PlaybackManager : Object {
 
         queue_liststore.items_changed.connect (() => {
             var shuffle_action_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_SHUFFLE);
+            has_items = queue_liststore.get_n_items () > 0;
             shuffle_action_action.set_enabled (queue_liststore.get_n_items () > 1);
-
             update_next_previous_sensitivity ();
         });
 
