@@ -8,6 +8,7 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
     private Gtk.Button shuffle_button;
     private Settings settings;
     private Gtk.SearchEntry search_entry;
+    private Gtk.Revealer search_revealer;
 
     construct {
         var playback_manager = PlaybackManager.get_default ();
@@ -25,7 +26,7 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
             placeholder_text = _("Search titles in playlist")
         };
 
-        var search_revealer = new Gtk.Revealer () {
+        search_revealer = new Gtk.Revealer () {
             child = search_entry
         };
 
@@ -189,6 +190,12 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
                 selected.activate ();
             }
         });
+    }
+
+    public void start_search () {
+        if (search_revealer.child_revealed) {
+            search_entry.grab_focus ();
+        }
     }
 
     //Array concatenation not permitted for parameters so use a list instead
