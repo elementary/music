@@ -7,6 +7,11 @@ public class Music.PlaybackManager : Object {
     public AudioObject? current_audio { get; set; default = null; }
     public ListStore queue_liststore { get; private set; }
     public bool has_items { get; private set; }
+    public uint n_items {
+        get {
+            return queue_liststore != null ? queue_liststore.get_n_items () : 0;
+        }
+    }
     public int64 playback_position { get; private set; }
     public signal void invalids_found (int count);
 
