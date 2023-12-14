@@ -182,6 +182,13 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
                 adj.@value = adj.upper * ratio;
             }
         });
+
+        search_entry.activate.connect (() => {
+            var selected = queue_listbox.get_selected_row ();
+            if (selected != null) {
+                selected.activate ();
+            }
+        });
     }
 
     //Array concatenation not permitted for parameters so use a list instead
