@@ -54,7 +54,8 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         add_button_box.append (add_button_label);
 
         var add_button = new Gtk.Button () {
-            child = add_button_box
+            child = add_button_box,
+            action_name = Application.ACTION_PREFIX + Application.ACTION_OPEN
         };
         add_button.add_css_class (Granite.STYLE_CLASS_FLAT);
 
@@ -130,24 +131,8 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
 
         drop_target.drop.connect ((target, value, x, y) => {
             if (value.type () == typeof (Gdk.FileList)) {
-                File[] files;
-                SList<File> file_list = null;
-                foreach (unowned var file in (SList<File>) value.get_boxed ()) {
-                    var file_type = file.query_file_type (FileQueryInfoFlags.NONE);
-                    if (file_type == FileType.DIRECTORY) {
-                        prepend_directory_files (file, ref file_list);
-                    } else {
-                        file_list.prepend (file);
-                    }
-                }
-
-                file_list.reverse ();
-                foreach (unowned var file in file_list) {
-                    files += file;
-                }
-
-                playback_manager.queue_files (files);
-
+                var list = (Gdk.FileList)value;
+                queue_files (list.get_files ());
                 return true;
             }
 
@@ -176,6 +161,25 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         });
     }
 
+    public void queue_files (SList<weak File> files) {
+        File[] file_array = {};
+        SList<File> file_list = null;
+        foreach (unowned var file in files) {
+            var file_type = file.query_file_type (FileQueryInfoFlags.NONE);
+            if (file_type == FileType.DIRECTORY) {
+                prepend_directory_files (file, ref file_list);
+            } else {
+                file_list.prepend (file);
+            }
+        }
+
+        file_list.reverse ();
+        foreach (unowned var file in file_list) {
+            file_array += file;
+        }
+
+        PlaybackManager.get_default ().queue_files (file_array);
+    }
     //Array concatenation not permitted for parameters so use a list instead
     private void prepend_directory_files (GLib.File dir, ref SList<File> file_list) {
         try {
