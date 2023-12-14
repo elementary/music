@@ -171,6 +171,13 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         queue_listbox.row_activated.connect ((row) => {
             playback_manager.current_audio = ((TrackRow) row).audio_object;
         });
+
+        search_entry.search_changed.connect (() => {
+            int pos = playback_manager.find_title (search_entry.text);
+            if (pos > 0) {
+                queue_listbox.select_row (queue_listbox.get_row_at_index (pos));
+            }
+        });
     }
 
     //Array concatenation not permitted for parameters so use a list instead
