@@ -3,17 +3,16 @@
  * SPDX-FileCopyrightText: 2021 elementary, Inc. (https://elementary.io)
  */
 
-public class Music.TrackRow : Gtk.ListBoxRow {
-    public AudioObject audio_object { get; construct; }
+public class Music.TrackRow : Gtk.Box {
+    public AudioObject audio_object { get; private set; }
 
     private static Gtk.CssProvider css_provider;
     private static PlaybackManager playback_manager;
 
+    private Gtk.Label title_label;
+    private Gtk.Label artist_label;
+    private AlbumImage album_image;
     private Gtk.Spinner play_icon;
-
-    public TrackRow (AudioObject audio_object) {
-        Object (audio_object: audio_object);
-    }
 
     static construct {
         playback_manager = PlaybackManager.get_default ();
@@ -28,17 +27,17 @@ public class Music.TrackRow : Gtk.ListBoxRow {
         };
         play_icon.get_style_context ().add_provider (css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
-        var album_image = new Music.AlbumImage ();
+        album_image = new Music.AlbumImage ();
         album_image.image.height_request = 32;
         album_image.image.width_request = 32;
 
-        var title_label = new Gtk.Label (audio_object.title) {
+        title_label = new Gtk.Label ("") {
             ellipsize = Pango.EllipsizeMode.MIDDLE,
             hexpand = true,
             xalign = 0
         };
 
-        var artist_label = new Gtk.Label (audio_object.artist) {
+        artist_label = new Gtk.Label ("") {
             ellipsize = Pango.EllipsizeMode.MIDDLE,
             hexpand = true,
             xalign = 0
@@ -58,14 +57,10 @@ public class Music.TrackRow : Gtk.ListBoxRow {
         grid.attach (artist_label, 1, 1);
         grid.attach (play_icon, 2, 0, 1, 2);
 
-        child = grid;
-
-        audio_object.bind_property ("artist", artist_label, "label", BindingFlags.SYNC_CREATE);
-        audio_object.bind_property ("title", title_label, "label", BindingFlags.SYNC_CREATE);
-        audio_object.bind_property ("texture", album_image.image, "paintable", BindingFlags.SYNC_CREATE);
+        append (grid);
 
         playback_manager.notify["current-audio"].connect (() => {
-            play_icon.spinning = playback_manager.current_audio == audio_object;
+            play_icon.spinning = audio_object != null ? playback_manager.current_audio == audio_object : false;
         });
 
         var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
@@ -77,6 +72,16 @@ public class Music.TrackRow : Gtk.ListBoxRow {
             }
         });
 
+    }
+
+    public void bind_audio_object (AudioObject audio_object) {
+        this.audio_object = audio_object;
+
+        title_label.label = audio_object.title;
+        artist_label.label = audio_object.artist;
+        album_image.image.paintable = audio_object.texture;
+
+        play_icon.spinning = playback_manager.current_audio == audio_object;
     }
 
     private void update_playing (bool playing) {
