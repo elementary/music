@@ -1,0 +1,72 @@
+/*
+ * SPDX-License-Identifier: LGPL-3.0-or-later
+ * SPDX-FileCopyrightText: 2021 elementary, Inc. (https://elementary.io)
+ */
+
+album {
+    background-image:
+        linear-gradient(
+            170deg,
+            alpha(
+                @highlight_color,
+                0.1
+            ),
+            alpha(
+                @highlight_color,
+                0.15
+            ) 43%,
+            alpha(
+                @highlight_color,
+                0
+            ) 44%
+        ),
+        -gtk-icontheme("audio-x-generic-symbolic"),
+        linear-gradient(
+            to bottom,
+            @base_color,
+            @base_color
+        );
+    background-size: cover, 50%, cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    color: alpha(@insensitive_fg_color, 0.75);
+}
+
+spinner.play-indicator {
+    animation: none;
+    color: @accent_color;
+    min-width: 16px;
+    transition: none;
+}
+
+spinner.play-indicator:checked {
+    opacity: 1;
+    -gtk-icon-source: -gtk-icontheme("playback-paused-symbolic");
+}
+
+spinner.play-indicator:checked.playing {
+    animation: playing 1.1s linear infinite;
+    -gtk-icon-source: -gtk-icontheme("playback-playing-00-symbolic");
+}
+
+@keyframes playing {
+    0% { -gtk-icon-source: -gtk-icontheme("playback-playing-00-symbolic"); }
+    6% { -gtk-icon-source: -gtk-icontheme("playback-playing-01-symbolic"); }
+    13% { -gtk-icon-source: -gtk-icontheme("playback-playing-02-symbolic"); }
+    20% { -gtk-icon-source: -gtk-icontheme("playback-playing-03-symbolic"); }
+    26% { -gtk-icon-source: -gtk-icontheme("playback-playing-04-symbolic"); }
+    31% { -gtk-icon-source: -gtk-icontheme("playback-playing-05-symbolic"); }
+    37% { -gtk-icon-source: -gtk-icontheme("playback-playing-06-symbolic"); }
+    42% { -gtk-icon-source: -gtk-icontheme("playback-playing-07-symbolic"); }
+    48% { -gtk-icon-source: -gtk-icontheme("playback-playing-08-symbolic"); }
+    53% { -gtk-icon-source: -gtk-icontheme("playback-playing-09-symbolic"); }
+    58% { -gtk-icon-source: -gtk-icontheme("playback-playing-10-symbolic"); }
+    63% { -gtk-icon-source: -gtk-icontheme("playback-playing-11-symbolic"); }
+    69% { -gtk-icon-source: -gtk-icontheme("playback-playing-12-symbolic"); }
+    74% { -gtk-icon-source: -gtk-icontheme("playback-playing-13-symbolic"); }
+    79% { -gtk-icon-source: -gtk-icontheme("playback-playing-14-symbolic"); }
+    84% { -gtk-icon-source: -gtk-icontheme("playback-playing-15-symbolic"); }
+    90% { -gtk-icon-source: -gtk-icontheme("playback-playing-16-symbolic"); }
+    95% { -gtk-icon-source: -gtk-icontheme("playback-playing-17-symbolic"); }
+    100% { -gtk-icon-source: -gtk-icontheme("playback-playing-00-symbolic"); }
+}
