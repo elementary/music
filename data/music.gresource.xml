@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
   <gresource prefix="/io/elementary/music">
-    <file compressed="true">AlbumImage.css</file>
-
-    <file compressed="true">PlaybackIndicator.css</file>
+    <file compressed="true">Application.css</file>
+  </gresource>
+  <gresource prefix="/io/elementary/music/icons">
     <file alias="16x16/status/playback-paused-symbolic.svg" compressed="true">playback-indicator/paused.svg</file>
     <file alias="16x16/status/playback-playing-00-symbolic.svg" compressed="true">playback-indicator/playing-00.svg</file>
     <file alias="16x16/status/playback-playing-01-symbolic.svg" compressed="true">playback-indicator/playing-01.svg</file>
