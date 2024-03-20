@@ -6,7 +6,6 @@
 public class Music.TrackRow : Gtk.ListBoxRow {
     public AudioObject audio_object { get; construct; }
 
-    private static Gtk.CssProvider css_provider;
     private static PlaybackManager playback_manager;
 
     private Gtk.Spinner play_icon;
@@ -17,16 +16,13 @@ public class Music.TrackRow : Gtk.ListBoxRow {
 
     static construct {
         playback_manager = PlaybackManager.get_default ();
-
-        css_provider = new Gtk.CssProvider ();
-        css_provider.load_from_resource ("io/elementary/music/PlaybackIndicator.css");
     }
 
     construct {
         play_icon = new Gtk.Spinner () {
             spinning = playback_manager.current_audio == audio_object
         };
-        play_icon.get_style_context ().add_provider (css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+        play_icon.add_css_class ("play-indicator");
 
         var album_image = new Music.AlbumImage ();
         album_image.image.height_request = 32;
