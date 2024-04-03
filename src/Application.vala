@@ -65,7 +65,7 @@ public class Music.Application : Gtk.Application {
 
     protected override void activate () {
         if (active_window != null) {
-            active_window.present_with_time (Gdk.CURRENT_TIME);
+            active_window.present ();
             return;
         }
 
