@@ -9,14 +9,12 @@ public class Music.Application : Gtk.Application {
     public const string ACTION_PLAY_PAUSE = "action-play-pause";
     public const string ACTION_PREVIOUS = "action-previous";
     public const string ACTION_SHUFFLE = "action-shuffle";
-    public const string ACTION_OPEN = "action-open";
 
     private const ActionEntry[] ACTION_ENTRIES = {
         { ACTION_PLAY_PAUSE, action_play_pause, null, "false" },
         { ACTION_NEXT, action_next },
         { ACTION_PREVIOUS, action_previous },
-        { ACTION_SHUFFLE, action_shuffle },
-        { ACTION_OPEN, action_open }
+        { ACTION_SHUFFLE, action_shuffle }
     };
 
     private PlaybackManager? playback_manager = null;
@@ -179,43 +177,6 @@ public class Music.Application : Gtk.Application {
 
     private void action_shuffle () {
         playback_manager.shuffle ();
-    }
-
-    private void action_open () {
-        var all_files_filter = new Gtk.FileFilter () {
-            name = _("All files"),
-        };
-        all_files_filter.add_pattern ("*");
-
-        var music_files_filter = new Gtk.FileFilter () {
-            name = _("Music files"),
-        };
-        music_files_filter.add_mime_type ("audio/*");
-
-        var filter_model = new ListStore (typeof (Gtk.FileFilter));
-        filter_model.append (all_files_filter);
-        filter_model.append (music_files_filter);
-
-        var file_dialog = new Gtk.FileDialog () {
-            accept_label = _("Open"),
-            default_filter = music_files_filter,
-            filters = filter_model,
-            modal = true,
-            title = _("Open audio files")
-        };
-
-        file_dialog.open_multiple.begin (active_window, null, (obj, res) => {
-            var files = file_dialog.open_multiple.end (res);
-
-            SList<weak File> file_list = null;
-            int index = 0;
-            while (files.get_item (index) != null) {
-                file_list.prepend ((File)(files.get_item (index)));
-                index++;
-            }
-
-            ((MainWindow) active_window).queue_files (file_list);
-        });
     }
 
     private void on_bus_acquired (DBusConnection connection, string name) {

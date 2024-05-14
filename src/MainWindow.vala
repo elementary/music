@@ -55,7 +55,6 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
 
         var add_button = new Gtk.Button () {
             child = add_button_box,
-            action_name = Application.ACTION_PREFIX + Application.ACTION_OPEN
         };
         add_button.add_css_class (Granite.STYLE_CLASS_FLAT);
 
@@ -147,6 +146,8 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
             error_toast.send_notification ();
         });
 
+        add_button.clicked.connect (action_open);
+
         repeat_button.clicked.connect (() => {
             var enum_step = settings.get_enum ("repeat-mode");
             if (enum_step < 2) {
@@ -158,6 +159,47 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
 
         queue_listbox.row_activated.connect ((row) => {
             playback_manager.current_audio = ((TrackRow) row).audio_object;
+        });
+    }
+
+    private void action_open () {
+        var all_files_filter = new Gtk.FileFilter () {
+            name = _("All files"),
+        };
+        all_files_filter.add_pattern ("*");
+
+        var music_files_filter = new Gtk.FileFilter () {
+            name = _("Music files"),
+        };
+        music_files_filter.add_mime_type ("audio/*");
+
+        var filter_model = new ListStore (typeof (Gtk.FileFilter));
+        filter_model.append (all_files_filter);
+        filter_model.append (music_files_filter);
+
+        var file_dialog = new Gtk.FileDialog () {
+            accept_label = _("Open"),
+            default_filter = music_files_filter,
+            filters = filter_model,
+            modal = true,
+            title = _("Open audio files")
+        };
+
+        file_dialog.open_multiple.begin (this, null, (obj, res) => {
+            try {
+                var files = file_dialog.open_multiple.end (res);
+
+                SList<weak File> file_list = null;
+                int index = 0;
+                while (files.get_item (index) != null) {
+                    file_list.prepend ((File)(files.get_item (index)));
+                    index++;
+                }
+
+                queue_files (file_list);
+            } catch (Error e) {
+                // FIXME: throw error dialog
+            }
         });
     }
 
