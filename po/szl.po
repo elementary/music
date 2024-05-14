@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-31 15:44+0000\n"
+"POT-Creation-Date: 2024-05-14 17:49+0000\n"
 "PO-Revision-Date: 2020-02-25 13:09+0000\n"
 "Last-Translator: gkkulik <g.kulik@o2.pl>\n"
 "Language-Team: Silesian <https://l10n.elementary.io/projects/music/music/szl/"
@@ -14,7 +14,7 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-#: src/Application.vala:66 src/Views/NowPlayingView.vala:18
+#: src/Application.vala:88 src/Views/NowPlayingView.vala:18
 #: src/Views/NowPlayingView.vala:116
 msgid "Music"
 msgstr "Muzyka"
@@ -24,15 +24,19 @@ msgstr "Muzyka"
 msgid "Shuffle"
 msgstr "Włōncz miynszanie"
 
-#: src/MainWindow.vala:33
+#: src/MainWindow.vala:32
 msgid "Queue is Empty"
 msgstr ""
 
-#: src/MainWindow.vala:34
+#: src/MainWindow.vala:33
 msgid "Audio files opened from Files will appear here"
 msgstr ""
 
-#: src/MainWindow.vala:144
+#: src/MainWindow.vala:50
+msgid "Open Files…"
+msgstr ""
+
+#: src/MainWindow.vala:154
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
@@ -40,17 +44,37 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: src/MainWindow.vala:191
+#: src/MainWindow.vala:178
+#, fuzzy
+#| msgid "All Years"
+msgid "All files"
+msgstr "Wszyjske lata"
+
+#: src/MainWindow.vala:183
+#, fuzzy
+#| msgid "Music"
+msgid "Music files"
+msgstr "Muzyka"
+
+#: src/MainWindow.vala:192
+msgid "Open"
+msgstr "Ôtwōrz"
+
+#: src/MainWindow.vala:196
+msgid "Open audio files"
+msgstr ""
+
+#: src/MainWindow.vala:234
 #, fuzzy
 msgid "Repeat None"
 msgstr "Powtōrz śpiywka"
 
-#: src/MainWindow.vala:195
+#: src/MainWindow.vala:238
 #, fuzzy
 msgid "Repeat All"
 msgstr "Powtōrz śpiywka"
 
-#: src/MainWindow.vala:199
+#: src/MainWindow.vala:242
 #, fuzzy
 msgid "Repeat One"
 msgstr "Powtōrz śpiywka"
@@ -184,9 +208,6 @@ msgstr "Pauza"
 
 #~ msgid "Import %s"
 #~ msgstr "Import %s"
-
-#~ msgid "Open"
-#~ msgstr "Ôtwōrz"
 
 #~ msgid "Unrecognized playlist file. Import failed."
 #~ msgstr "Niyznōmy zbiōr playlisty. Niy szło importować."
@@ -732,9 +753,6 @@ msgstr "Pauza"
 
 #~ msgid "No Albums"
 #~ msgstr "Brak albumōw"
-
-#~ msgid "All Years"
-#~ msgstr "Wszyjske lata"
 
 #~ msgid "All %i Years"
 #~ msgstr "Wszyjske %i lot"
