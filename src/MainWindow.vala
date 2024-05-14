@@ -180,6 +180,7 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
 
         PlaybackManager.get_default ().queue_files (file_array);
     }
+
     //Array concatenation not permitted for parameters so use a list instead
     private void prepend_directory_files (GLib.File dir, ref SList<File> file_list) {
         try {
