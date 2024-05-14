@@ -35,13 +35,14 @@ public class Music.Application : Gtk.Application {
         GLib.Intl.textdomain (Constants.GETTEXT_PACKAGE);
     }
 
-    protected override void activate () {
-        if (active_window != null) {
-            active_window.present_with_time (Gdk.CURRENT_TIME);
-            return;
-        }
+    protected override void startup () {
+        base.startup ();
+
+        Granite.init ();
 
         add_action_entries (ACTION_ENTRIES, this);
+
+        set_accels_for_action (ACTION_PREFIX + ACTION_FIND, {"<Ctrl>F"});
 
         ((SimpleAction) lookup_action (ACTION_PLAY_PAUSE)).set_enabled (false);
         ((SimpleAction) lookup_action (ACTION_PLAY_PAUSE)).set_state (false);
@@ -49,7 +50,28 @@ public class Music.Application : Gtk.Application {
         ((SimpleAction) lookup_action (ACTION_PREVIOUS)).set_enabled (false);
         ((SimpleAction) lookup_action (ACTION_SHUFFLE)).set_enabled (false);
 
-        set_accels_for_action (ACTION_PREFIX + ACTION_FIND, {"<Ctrl>F"});
+        var granite_settings = Granite.Settings.get_default ();
+        var gtk_settings = Gtk.Settings.get_default ();
+
+        gtk_settings.gtk_icon_theme_name = "elementary";
+        gtk_settings.gtk_theme_name = "io.elementary.stylesheet.orange";
+
+        gtk_settings.gtk_application_prefer_dark_theme = (
+            granite_settings.prefers_color_scheme == DARK
+        );
+
+        granite_settings.notify["prefers-color-scheme"].connect (() => {
+            gtk_settings.gtk_application_prefer_dark_theme = (
+                granite_settings.prefers_color_scheme == DARK
+            );
+        });
+    }
+
+    protected override void activate () {
+        if (active_window != null) {
+            active_window.present ();
+            return;
+        }
 
         playback_manager = PlaybackManager.get_default ();
 
@@ -72,24 +94,6 @@ public class Music.Application : Gtk.Application {
         main_window.present ();
 
         add_window (main_window);
-
-        Gtk.IconTheme.get_for_display (Gdk.Display.get_default ()).add_resource_path ("/io/elementary/music");
-
-        var granite_settings = Granite.Settings.get_default ();
-        var gtk_settings = Gtk.Settings.get_default ();
-
-        gtk_settings.gtk_icon_theme_name = "elementary";
-        gtk_settings.gtk_theme_name = "io.elementary.stylesheet.orange";
-
-        gtk_settings.gtk_application_prefer_dark_theme = (
-            granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK
-        );
-
-        granite_settings.notify["prefers-color-scheme"].connect (() => {
-            gtk_settings.gtk_application_prefer_dark_theme = (
-                granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK
-            );
-        });
 
         /*
         * This is very finicky. Bind size after present else set_titlebar gives us bad sizes
