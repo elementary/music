@@ -19,6 +19,7 @@ config_file = configure_file(
     configuration: config_data
 )
 
+adw_dep = dependency('libadwaita-1', version: '>=1.4.0')
 granite_dep = dependency('granite-7')
 gstreamer_dep = dependency('gstreamer-1.0')
 gstreamer_pbutils_dep = dependency('gstreamer-pbutils-1.0')
@@ -26,6 +27,7 @@ gstreamer_tag_dep = dependency('gstreamer-tag-1.0')
 gtk_dep = dependency('gtk4')
 
 dependencies = [
+    adw_dep,
     granite_dep,
     gstreamer_dep,
     gstreamer_pbutils_dep,
