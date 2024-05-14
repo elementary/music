@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-05-14 17:49+0000\n"
-"PO-Revision-Date: 2024-05-07 04:13+0000\n"
+"PO-Revision-Date: 2024-05-15 20:13+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
-"Language-Team: Japanese <https://l10n.elementary.io/projects/music/music/ja/"
-">\n"
+"Language-Team: Japanese <https://l10n.elementary.io/projects/music/music/ja/>"
+"\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,10 +38,8 @@ msgid "Audio files opened from Files will appear here"
 msgstr "“ファイル”から開いた音声ファイルがここに表示されます"
 
 #: src/MainWindow.vala:50
-#, fuzzy
-#| msgid "Other Files"
 msgid "Open Files…"
-msgstr "その他のファイル"
+msgstr "ファイルを開く…"
 
 #: src/MainWindow.vala:154
 #, c-format
@@ -50,16 +48,12 @@ msgid_plural "%d invalid files were not added to the queue"
 msgstr[0] "無効な %d 項目のファイルはキューに追加されませんでした"
 
 #: src/MainWindow.vala:178
-#, fuzzy
-#| msgid "All Years"
 msgid "All files"
-msgstr "すべての年"
+msgstr "すべてのファイル"
 
 #: src/MainWindow.vala:183
-#, fuzzy
-#| msgid "Music Player"
 msgid "Music files"
-msgstr "ミュージックプレーヤー"
+msgstr "音楽ファイル"
 
 #: src/MainWindow.vala:192
 msgid "Open"
@@ -67,7 +61,7 @@ msgstr "開く"
 
 #: src/MainWindow.vala:196
 msgid "Open audio files"
-msgstr ""
+msgstr "音声ファイルを開く"
 
 #: src/MainWindow.vala:234
 msgid "Repeat None"
