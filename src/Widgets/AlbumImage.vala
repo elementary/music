@@ -6,21 +6,11 @@
 public class Music.AlbumImage : Gtk.Grid {
     public Gtk.Image image;
 
-    private static Gtk.CssProvider css_provider;
-
     class construct {
         set_css_name ("album");
     }
 
-    static construct {
-        css_provider = new Gtk.CssProvider ();
-        css_provider.load_from_resource ("/io/elementary/music/AlbumImage.css");
-    }
-
     construct {
-        unowned var style_context = get_style_context ();
-        style_context.add_provider (css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-
         image = new Gtk.Image ();
 
         add_css_class (Granite.STYLE_CLASS_CARD);
