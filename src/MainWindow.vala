@@ -24,7 +24,6 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
             show_title_buttons = false,
             title_widget = new Gtk.Label ("")
         };
-        queue_header.add_css_class (Granite.STYLE_CLASS_FLAT);
         queue_header.add_css_class (Granite.STYLE_CLASS_DEFAULT_DECORATION);
         queue_header.pack_start (start_window_controls);
         queue_header.pack_end (shuffle_button);
@@ -49,6 +48,7 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         var drop_target = new Gtk.DropTarget (typeof (Gdk.FileList), Gdk.DragAction.COPY);
 
         var add_button_label = new Gtk.Label (_("Add Music…"));
+
         var add_button_box = new Gtk.Box (HORIZONTAL, 0);
         add_button_box.append (new Gtk.Image.from_icon_name ("list-add-symbolic"));
         add_button_box.append (add_button_label);
@@ -58,16 +58,19 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         };
         add_button.add_css_class (Granite.STYLE_CLASS_FLAT);
 
+        add_button_label.mnemonic_widget = add_button;
+
         var queue_action_bar = new Gtk.ActionBar ();
         queue_action_bar.pack_start (add_button);
-        queue_action_bar.add_css_class (Granite.STYLE_CLASS_FLAT);
 
-        var queue = new Gtk.Grid ();
-        queue.add_css_class (Granite.STYLE_CLASS_VIEW);
-        queue.attach (queue_header, 0, 0);
-        queue.attach (scrolled, 0, 1);
-        queue.attach (queue_action_bar, 0, 2);
+        var queue = new Adw.ToolbarView () {
+            bottom_bar_style = RAISED,
+            content = scrolled
+        };
         queue.add_controller (drop_target);
+        queue.add_css_class (Granite.STYLE_CLASS_VIEW);
+        queue.add_top_bar (queue_header);
+        queue.add_bottom_bar (queue_action_bar);
 
         var error_toast = new Granite.Toast ("");
 
