@@ -47,10 +47,10 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
 
         var drop_target = new Gtk.DropTarget (typeof (Gdk.FileList), Gdk.DragAction.COPY);
 
-        var add_button_label = new Gtk.Label (_("Add Music…"));
+        var add_button_label = new Gtk.Label (_("Open Files…"));
 
         var add_button_box = new Gtk.Box (HORIZONTAL, 0);
-        add_button_box.append (new Gtk.Image.from_icon_name ("list-add-symbolic"));
+        add_button_box.append (new Gtk.Image.from_icon_name ("document-open-symbolic"));
         add_button_box.append (add_button_label);
 
         var add_button = new Gtk.Button () {
@@ -208,7 +208,21 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
                 var files_to_play = Application.loop_through_files (file_array);
                 PlaybackManager.get_default ().queue_files (files_to_play);
             } catch (Error e) {
-                // FIXME: throw error dialog
+                if (e.matches (Gtk.DialogError.quark (), Gtk.DialogError.DISMISSED)) {
+                    return;
+                }
+
+                var dialog = new Granite.MessageDialog (
+                    "Couldn't add audio files",
+                    e.message,
+                    new ThemedIcon ("document-open")
+                ) {
+                    badge_icon = new ThemedIcon ("dialog-error"),
+                    modal = true,
+                    transient_for = this
+                };
+                dialog.present ();
+                dialog.response.connect (dialog.destroy);
             }
         });
     }
