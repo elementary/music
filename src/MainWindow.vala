@@ -134,7 +134,15 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         drop_target.drop.connect ((target, value, x, y) => {
             if (value.type () == typeof (Gdk.FileList)) {
                 var list = (Gdk.FileList)value;
-                queue_files (list.get_files ());
+
+                File[] file_array = {};
+                foreach (unowned var file in list.get_files ()) {
+                    file_array += file;
+                }
+
+                var files_to_play = Application.loop_through_files (file_array);
+                PlaybackManager.get_default ().queue_files (files_to_play);
+
                 return true;
             }
 
@@ -192,61 +200,17 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
             try {
                 var files = file_dialog.open_multiple.end (res);
 
-                SList<weak File> file_list = null;
-                int index = 0;
-                while (files.get_item (index) != null) {
-                    file_list.prepend ((File)(files.get_item (index)));
-                    index++;
+                File[] file_array = {};
+                for (int i = 0; i < files.get_n_items (); i++) {
+                    file_array += (File)(files.get_item (i));
                 }
 
-                queue_files (file_list);
+                var files_to_play = Application.loop_through_files (file_array);
+                PlaybackManager.get_default ().queue_files (files_to_play);
             } catch (Error e) {
                 // FIXME: throw error dialog
             }
         });
-    }
-
-    public void queue_files (SList<weak File> files) {
-        File[] file_array = {};
-        SList<File> file_list = null;
-        foreach (unowned var file in files) {
-            var file_type = file.query_file_type (FileQueryInfoFlags.NONE);
-            if (file_type == FileType.DIRECTORY) {
-                prepend_directory_files (file, ref file_list);
-            } else {
-                file_list.prepend (file);
-            }
-        }
-
-        file_list.reverse ();
-        foreach (unowned var file in file_list) {
-            file_array += file;
-        }
-
-        PlaybackManager.get_default ().queue_files (file_array);
-    }
-
-    //Array concatenation not permitted for parameters so use a list instead
-    private void prepend_directory_files (GLib.File dir, ref SList<File> file_list) {
-        try {
-            var enumerator = dir.enumerate_children (
-                "standard::*",
-                FileQueryInfoFlags.NOFOLLOW_SYMLINKS,
-                null
-            );
-
-            FileInfo info = null;
-            while ((info = enumerator.next_file (null)) != null) {
-                var child = dir.resolve_relative_path (info.get_name ());
-                if (info.get_file_type () == FileType.DIRECTORY) {
-                    prepend_directory_files (child, ref file_list);
-                } else {
-                    file_list.prepend (child);
-                }
-            }
-        } catch (Error e) {
-            warning ("Error while enumerating children of %s: %s", dir.get_uri (), e.message);
-        }
     }
 
     private void update_repeat_button () {
