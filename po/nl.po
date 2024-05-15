@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-05-14 17:49+0000\n"
-"PO-Revision-Date: 2023-02-01 19:25+0000\n"
+"PO-Revision-Date: 2024-05-15 20:13+0000\n"
 "Last-Translator: Dennis ten Hoove <dennistenhoove@protonmail.com>\n"
 "Language-Team: Dutch <https://l10n.elementary.io/projects/music/music/nl/>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.2\n"
+"X-Generator: Weblate 5.5\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:52+0000\n"
 
 #: src/Application.vala:88 src/Views/NowPlayingView.vala:18
@@ -37,10 +37,8 @@ msgid "Audio files opened from Files will appear here"
 msgstr "Geluidsbestanden geopend met Bestanden zullen hier verschijnen"
 
 #: src/MainWindow.vala:50
-#, fuzzy
-#| msgid "Other Files"
 msgid "Open Files…"
-msgstr "Andere bestanden"
+msgstr "Bestanden openen…"
 
 #: src/MainWindow.vala:154
 #, c-format
@@ -50,16 +48,12 @@ msgstr[0] "%d ongeldig bestand was niet ingevoegd in de wachtrij"
 msgstr[1] "%d ongeldige bestanden zijn niet ingevoegd in de wachtrij"
 
 #: src/MainWindow.vala:178
-#, fuzzy
-#| msgid "All Years"
 msgid "All files"
-msgstr "Alle Jaren"
+msgstr "Alle bestanden"
 
 #: src/MainWindow.vala:183
-#, fuzzy
-#| msgid "Music Folder"
 msgid "Music files"
-msgstr "Muziekmap"
+msgstr "Muziekbestanden"
 
 #: src/MainWindow.vala:192
 msgid "Open"
@@ -67,7 +61,7 @@ msgstr "Open"
 
 #: src/MainWindow.vala:196
 msgid "Open audio files"
-msgstr ""
+msgstr "Open audiobestand"
 
 #: src/MainWindow.vala:234
 msgid "Repeat None"
