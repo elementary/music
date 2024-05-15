@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beatbox 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-05-14 17:49+0000\n"
-"PO-Revision-Date: 2022-11-19 05:10+0000\n"
-"Last-Translator: Corentin Noël <tintou@noel.tf>\n"
+"PO-Revision-Date: 2024-05-15 20:13+0000\n"
+"Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://l10n.elementary.io/projects/music/music/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.14.2\n"
+"X-Generator: Weblate 5.5\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:52+0000\n"
 
 #: src/Application.vala:88 src/Views/NowPlayingView.vala:18
@@ -38,10 +38,8 @@ msgstr ""
 "Les fichiers audio ouvert depuis l'explorateur de fichiers apparaîtront ici"
 
 #: src/MainWindow.vala:50
-#, fuzzy
-#| msgid "Other Files"
 msgid "Open Files…"
-msgstr "Autres fichiers"
+msgstr "Ouvrir les fichiers…"
 
 #: src/MainWindow.vala:154
 #, c-format
@@ -51,16 +49,12 @@ msgstr[0] "%d fichier invalide n'a pas été ajouté à la file d'attente"
 msgstr[1] "%d fichiers invalides n'ont pas été ajoutés à la file d'attente"
 
 #: src/MainWindow.vala:178
-#, fuzzy
-#| msgid "All Years"
 msgid "All files"
-msgstr "Toutes les années"
+msgstr "Tous les fichiers"
 
 #: src/MainWindow.vala:183
-#, fuzzy
-#| msgid "Music Folder"
 msgid "Music files"
-msgstr "Dossier musique"
+msgstr "Fichiers musicaux"
 
 #: src/MainWindow.vala:192
 msgid "Open"
@@ -68,7 +62,7 @@ msgstr "Ouvrir"
 
 #: src/MainWindow.vala:196
 msgid "Open audio files"
-msgstr ""
+msgstr "Ouvrir des fichiers audio"
 
 #: src/MainWindow.vala:234
 msgid "Repeat None"
