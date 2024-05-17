@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-31 15:44+0000\n"
+"POT-Creation-Date: 2024-05-14 17:49+0000\n"
 "PO-Revision-Date: 2022-05-07 05:22+0000\n"
 "Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
 "Language-Team: Slovak <https://l10n.elementary.io/projects/music/music/sk/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 
-#: src/Application.vala:66 src/Views/NowPlayingView.vala:18
+#: src/Application.vala:88 src/Views/NowPlayingView.vala:18
 #: src/Views/NowPlayingView.vala:116
 msgid "Music"
 msgstr "Hudba"
@@ -29,15 +29,21 @@ msgstr "Hudba"
 msgid "Shuffle"
 msgstr "Náhodné prehrávanie"
 
-#: src/MainWindow.vala:33
+#: src/MainWindow.vala:32
 msgid "Queue is Empty"
 msgstr "Fronta je prázdna"
 
-#: src/MainWindow.vala:34
+#: src/MainWindow.vala:33
 msgid "Audio files opened from Files will appear here"
 msgstr "Zvukové súbory otvorené v aplikácii Súbory sa zobrazia tu"
 
-#: src/MainWindow.vala:144
+#: src/MainWindow.vala:50
+#, fuzzy
+#| msgid "Other Files"
+msgid "Open Files…"
+msgstr "Iné súbory"
+
+#: src/MainWindow.vala:154
 #, fuzzy, c-format
 #| msgid "%d track was added to the queue"
 #| msgid_plural "%d tracks were added to the queue"
@@ -47,15 +53,35 @@ msgstr[0] "%d zvukových stôp bolo pridaných do fronty"
 msgstr[1] "%d zvuková stopa bola pridaná do fronty"
 msgstr[2] "%d zvukové stopy boli pridané do fronty"
 
-#: src/MainWindow.vala:191
+#: src/MainWindow.vala:178
+#, fuzzy
+#| msgid "All Years"
+msgid "All files"
+msgstr "Všetke roky"
+
+#: src/MainWindow.vala:183
+#, fuzzy
+#| msgid "Music Player"
+msgid "Music files"
+msgstr "Prehrávač hudby"
+
+#: src/MainWindow.vala:192
+msgid "Open"
+msgstr "Otvoriť"
+
+#: src/MainWindow.vala:196
+msgid "Open audio files"
+msgstr ""
+
+#: src/MainWindow.vala:234
 msgid "Repeat None"
 msgstr "Neopakovať"
 
-#: src/MainWindow.vala:195
+#: src/MainWindow.vala:238
 msgid "Repeat All"
 msgstr "Opakovať všetko"
 
-#: src/MainWindow.vala:199
+#: src/MainWindow.vala:242
 msgid "Repeat One"
 msgstr "Opakovať jednu skladbu"
 
@@ -187,9 +213,6 @@ msgstr "Pozastaviť"
 
 #~ msgid "Import %s"
 #~ msgstr "Import %s"
-
-#~ msgid "Open"
-#~ msgstr "Otvoriť"
 
 #~ msgid "Unrecognized playlist file. Import failed."
 #~ msgstr "Nerozpoznaný súbor so zoznamom. Importovanie zlyhalo."
@@ -739,9 +762,6 @@ msgstr "Pozastaviť"
 
 #~ msgid "No Albums"
 #~ msgstr "Žiadne albumy"
-
-#~ msgid "All Years"
-#~ msgstr "Všetke roky"
 
 #~ msgid "All %i Years"
 #~ msgstr "Všetke %i roky"
@@ -1337,9 +1357,6 @@ msgstr "Pozastaviť"
 #~ msgid "%s, %s"
 #~ msgstr "%s, %s"
 
-#~ msgid "Other Files"
-#~ msgstr "Iné súbory"
-
 #~ msgid "translator-credits"
 #~ msgstr ""
 #~ "Launchpad Contributions:\n"
@@ -1366,9 +1383,6 @@ msgstr "Pozastaviť"
 
 #~ msgid "Listen to music"
 #~ msgstr "Počúvať hudbu"
-
-#~ msgid "Music Player"
-#~ msgstr "Prehrávač hudby"
 
 #~ msgid "Unknown Artist"
 #~ msgstr "Neznámy interpret"

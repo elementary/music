@@ -111,7 +111,7 @@ public class Music.Application : Gtk.Application {
         settings.bind ("window-maximized", main_window, "maximized", SettingsBindFlags.SET);
     }
 
-    private File[] list_directory (string directory) {
+    private static File[] list_directory (string directory) {
         Dir dir;
         try {
             dir = Dir.open (directory, 0);
@@ -133,7 +133,7 @@ public class Music.Application : Gtk.Application {
         return elements;
     }
 
-    private File[] loop_through_files (File[] files) {
+    public static File[] loop_through_files (File[] files) {
         // All of these will be returned later in bulk
         File[] elements = {};
 

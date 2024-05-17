@@ -37,7 +37,6 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
             show_title_buttons = false,
             title_widget = search_revealer
         };
-        queue_header.add_css_class (Granite.STYLE_CLASS_FLAT);
         queue_header.add_css_class (Granite.STYLE_CLASS_DEFAULT_DECORATION);
         queue_header.pack_start (start_window_controls);
         queue_header.pack_end (shuffle_button);
@@ -61,11 +60,30 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
 
         var drop_target = new Gtk.DropTarget (typeof (Gdk.FileList), Gdk.DragAction.COPY);
 
-        var queue = new Gtk.Grid ();
-        queue.add_css_class (Granite.STYLE_CLASS_VIEW);
-        queue.attach (queue_header, 0, 0);
-        queue.attach (scrolled, 0, 1);
+        var add_button_label = new Gtk.Label (_("Open Files…"));
+
+        var add_button_box = new Gtk.Box (HORIZONTAL, 0);
+        add_button_box.append (new Gtk.Image.from_icon_name ("document-open-symbolic"));
+        add_button_box.append (add_button_label);
+
+        var add_button = new Gtk.Button () {
+            child = add_button_box,
+        };
+        add_button.add_css_class (Granite.STYLE_CLASS_FLAT);
+
+        add_button_label.mnemonic_widget = add_button;
+
+        var queue_action_bar = new Gtk.ActionBar ();
+        queue_action_bar.pack_start (add_button);
+
+        var queue = new Adw.ToolbarView () {
+            bottom_bar_style = RAISED,
+            content = scrolled
+        };
         queue.add_controller (drop_target);
+        queue.add_css_class (Granite.STYLE_CLASS_VIEW);
+        queue.add_top_bar (queue_header);
+        queue.add_bottom_bar (queue_action_bar);
 
         var error_toast = new Granite.Toast ("");
 
@@ -128,23 +146,15 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
 
         drop_target.drop.connect ((target, value, x, y) => {
             if (value.type () == typeof (Gdk.FileList)) {
-                File[] files;
-                SList<File> file_list = null;
-                foreach (unowned var file in (SList<File>) value.get_boxed ()) {
-                    var file_type = file.query_file_type (FileQueryInfoFlags.NONE);
-                    if (file_type == FileType.DIRECTORY) {
-                        prepend_directory_files (file, ref file_list);
-                    } else {
-                        file_list.prepend (file);
-                    }
+                var list = (Gdk.FileList)value;
+
+                File[] file_array = {};
+                foreach (unowned var file in list.get_files ()) {
+                    file_array += file;
                 }
 
-                file_list.reverse ();
-                foreach (unowned var file in file_list) {
-                    files += file;
-                }
-
-                playback_manager.queue_files (files);
+                var files_to_play = Application.loop_through_files (file_array);
+                PlaybackManager.get_default ().queue_files (files_to_play);
 
                 return true;
             }
@@ -159,6 +169,8 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
                 count).printf (count);
             error_toast.send_notification ();
         });
+
+        add_button.clicked.connect (action_open);
 
         repeat_button.clicked.connect (() => {
             var enum_step = settings.get_enum ("repeat-mode");
@@ -198,27 +210,58 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         }
     }
 
-    //Array concatenation not permitted for parameters so use a list instead
-    private void prepend_directory_files (GLib.File dir, ref SList<File> file_list) {
-        try {
-            var enumerator = dir.enumerate_children (
-                "standard::*",
-                FileQueryInfoFlags.NOFOLLOW_SYMLINKS,
-                null
-            );
+    private void action_open () {
+        var all_files_filter = new Gtk.FileFilter () {
+            name = _("All files"),
+        };
+        all_files_filter.add_pattern ("*");
 
-            FileInfo info = null;
-            while ((info = enumerator.next_file (null)) != null) {
-                var child = dir.resolve_relative_path (info.get_name ());
-                if (info.get_file_type () == FileType.DIRECTORY) {
-                    prepend_directory_files (child, ref file_list);
-                } else {
-                    file_list.prepend (child);
+        var music_files_filter = new Gtk.FileFilter () {
+            name = _("Music files"),
+        };
+        music_files_filter.add_mime_type ("audio/*");
+
+        var filter_model = new ListStore (typeof (Gtk.FileFilter));
+        filter_model.append (all_files_filter);
+        filter_model.append (music_files_filter);
+
+        var file_dialog = new Gtk.FileDialog () {
+            accept_label = _("Open"),
+            default_filter = music_files_filter,
+            filters = filter_model,
+            modal = true,
+            title = _("Open audio files")
+        };
+
+        file_dialog.open_multiple.begin (this, null, (obj, res) => {
+            try {
+                var files = file_dialog.open_multiple.end (res);
+
+                File[] file_array = {};
+                for (int i = 0; i < files.get_n_items (); i++) {
+                    file_array += (File)(files.get_item (i));
                 }
+
+                var files_to_play = Application.loop_through_files (file_array);
+                PlaybackManager.get_default ().queue_files (files_to_play);
+            } catch (Error e) {
+                if (e.matches (Gtk.DialogError.quark (), Gtk.DialogError.DISMISSED)) {
+                    return;
+                }
+
+                var dialog = new Granite.MessageDialog (
+                    "Couldn't add audio files",
+                    e.message,
+                    new ThemedIcon ("document-open")
+                ) {
+                    badge_icon = new ThemedIcon ("dialog-error"),
+                    modal = true,
+                    transient_for = this
+                };
+                dialog.present ();
+                dialog.response.connect (dialog.destroy);
             }
-        } catch (Error e) {
-            warning ("Error while enumerating children of %s: %s", dir.get_uri (), e.message);
-        }
+        });
     }
 
     private void update_repeat_button () {
