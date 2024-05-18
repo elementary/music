@@ -8,15 +8,17 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-31 15:44+0000\n"
-"PO-Revision-Date: 2016-01-04 18:39+0000\n"
-"Last-Translator: Corentin Noël <corentin@elementaryos.org>\n"
-"Language-Team: Luxembourgish <lb@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2024-05-19 17:13+0000\n"
+"Last-Translator: Arno <arnoant21@gmail.com>\n"
+"Language-Team: Luxembourgish <https://l10n.elementary.io/projects/music/"
+"extra/lb/>\n"
+"Language: lb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.5\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
-"X-Generator: Launchpad (build 18330)\n"
 
 #: data/music.metainfo.xml.in:10 data/music.desktop.in:4
 msgid "Music"
@@ -24,7 +26,7 @@ msgstr "Musek"
 
 #: data/music.metainfo.xml.in:11
 msgid "Queue and play local audio files"
-msgstr ""
+msgstr "Lokal Audiodateien an der Wardeschlaang stellen an ofspillen"
 
 #: data/music.metainfo.xml.in:13
 msgid ""
@@ -32,39 +34,45 @@ msgid ""
 "frills. See embedded album artwork. Control playback with media keys or in "
 "the system audio indicator."
 msgstr ""
+"Schnell an der Wardeschlaang stellen an lauschtert Är lokal Audiodateien "
+"ouni Problemer. Kuckt embedéiert Albumkonscht. Kontrolléiert de Playback mat "
+"Medienknäppchen oder am System Audio Indikator."
 
 #: data/music.metainfo.xml.in:18
 msgid "Quickly queue up your favorite tracks"
-msgstr ""
+msgstr "Är léifsten Titel séier an d'Wardeschlaang stellen"
 
 #: data/music.metainfo.xml.in:50
 msgid "elementary, Inc."
-msgstr ""
+msgstr "elementary, Inc."
 
 #: data/music.metainfo.xml.in:57 data/music.metainfo.xml.in:71
 msgid "Improvements:"
-msgstr ""
+msgstr "Verbesserungen:"
 
 #: data/music.metainfo.xml.in:59
 msgid "Open folders in the filemanager with Music"
-msgstr ""
+msgstr "Dossieren an Dateien-Manager mat Musek opmaachen"
 
 #: data/music.metainfo.xml.in:60 data/music.metainfo.xml.in:93
 #: data/music.metainfo.xml.in:103
 msgid "Updated translations"
-msgstr ""
+msgstr "Aktualiséiert Iwwersetzungen"
 
 #: data/music.metainfo.xml.in:73
 msgid "For tracks without a title, use the file name instead of the whole URI"
 msgstr ""
+"Fir Musek Titel ouni Titel, benotzt d'Dateinumm amplaz vun der ganzer URI"
 
 #: data/music.metainfo.xml.in:74
 msgid "Skip invalid files instead of stopping playback"
-msgstr ""
+msgstr "Invalid Dateien iwwersprangen amplaz den Ofspillen ze stoppen"
 
 #: data/music.metainfo.xml.in:75
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr ""
+"\"Nächsten\" and \"Widderhuelen\" Knäppercher fuktionéieren onofhängeg vum "
+"Widderhuel-Modus"
 
 #: data/music.metainfo.xml.in:76
 msgid ""
@@ -72,30 +80,34 @@ msgid ""
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
 "Russian, Simplified Chinese, Turkish, and Ukrainian"
 msgstr ""
+"Elo verfügbar op Katalanesch, Hollännesch, Finnesch, Franséisch, Däitsch, "
+"Hebräesch, Ungaresch, Japanesch, Koreanesch, Kurdesch, Marathi, Norwegesch "
+"Bokmål, Polnesch, Portugisesch, Russesch, Vereinfacht Chinesesch, Türkesch, "
+"Ukrainesch a Lëtzebuergesch"
 
 #: data/music.metainfo.xml.in:86
 msgid "Complete rewrite"
-msgstr ""
+msgstr "Komplett nei geschriwwen"
 
 #: data/music.metainfo.xml.in:92
 msgid "Drop support for Last.FM"
-msgstr ""
+msgstr "Last.FM Ënnerstëtzung gestoppt"
 
 #: data/music.metainfo.xml.in:99
 msgid "Fix an issue with saving smart playlists"
-msgstr ""
+msgstr "E Feeler fixéiert dee geschitt, wann Dir Smart Playlists späichert"
 
 #: data/music.metainfo.xml.in:100
 msgid "Drop support for CD-ROM"
-msgstr ""
+msgstr "CD-Rom Ënnerstëtzung gestoppt"
 
 #: data/music.metainfo.xml.in:101
 msgid "Dark style support"
-msgstr ""
+msgstr "Donkel-Modus Ënnerstëtzung"
 
 #: data/music.metainfo.xml.in:102
 msgid "Minor visual improvements"
-msgstr ""
+msgstr "Kleng visuell Verbesserungen"
 
 #: data/music.desktop.in:5
 msgid "Music Player"
@@ -103,11 +115,13 @@ msgstr "Musekspiller"
 
 #: data/music.desktop.in:6
 msgid "Listen to music"
-msgstr "Lauschter Musek"
+msgstr "Lauschtert Musek"
 
 #: data/music.desktop.in:13
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
+"Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;Geräischer;Audio;Spiller;MP3"
+";Ofspillen;Playlist;Medien;Lidder;"
 
 #~ msgid "About Music"
 #~ msgstr "Iwer Musek"
