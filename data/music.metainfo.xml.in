@@ -54,6 +54,17 @@
   <update_contact>contact_at_elementary.io</update_contact>
 
   <releases>
+    <release version="8..0" date="2024-05-19" urgency="medium">
+      <description>
+        <p>Improvements:</p>
+        <ul>
+          <li>Toolbar shows a shadow when the view is scrolled</li>
+          <li>Open audio files from within Music</li>
+          <li>Updated translations</li>
+        </ul>
+      </description>
+    </release>
+
     <release version="7.1.0" date="2023-05-30" urgency="medium">
       <description>
         <p>Improvements:</p>
@@ -96,16 +107,7 @@
       </description>
     </release>
 
-    <release version="5.1.0" date="2021-07-13" urgency="medium">
-      <description>
-        <p>Fix an issue with saving smart playlists</p>
-        <p>Drop support for CD-ROM</p>
-        <p>Dark style support</p>
-        <p>Minor visual improvements</p>
-        <p>Updated translations</p>
-      </description>
-    </release>
-
-    <release version="5.0.5" date="2020-03-04" urgency="medium"/>
+    <release version="5.1.0" date="2021-07-13" />
+    <release version="5.0.5" date="2020-03-04" />
   </releases>
 </component>
