@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-05-14 17:49+0000\n"
-"PO-Revision-Date: 2015-12-21 13:45+0000\n"
-"Last-Translator: Daniel Fore <Unknown>\n"
-"Language-Team: Luxembourgish <lb@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2024-05-19 17:13+0000\n"
+"Last-Translator: Arno <arnoant21@gmail.com>\n"
+"Language-Team: Luxembourgish <https://l10n.elementary.io/projects/music/"
+"music/lb/>\n"
+"Language: lb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.5\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:53+0000\n"
-"X-Generator: Launchpad (build 18330)\n"
 
 #: src/Application.vala:88 src/Views/NowPlayingView.vala:18
 #: src/Views/NowPlayingView.vala:116
@@ -26,36 +27,34 @@ msgstr "Musek"
 
 #: src/MainWindow.vala:18
 msgid "Shuffle"
-msgstr ""
+msgstr "Zoufälleg"
 
 #: src/MainWindow.vala:32
 msgid "Queue is Empty"
-msgstr ""
+msgstr "Wardeschlaang eidel"
 
 #: src/MainWindow.vala:33
 msgid "Audio files opened from Files will appear here"
-msgstr ""
+msgstr "Vun Dateien aus oppen Audiodateien erschéngen hei"
 
 #: src/MainWindow.vala:50
 msgid "Open Files…"
-msgstr ""
+msgstr "Dateien opmaachen…"
 
 #: src/MainWindow.vala:154
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d ongëlteg Datei net an d'Wardeschlaang bäigefüügt"
+msgstr[1] "%d ongëlteg Dateien net an d'Wardeschlaang bäigefüügt"
 
 #: src/MainWindow.vala:178
 msgid "All files"
-msgstr ""
+msgstr "All Dateien"
 
 #: src/MainWindow.vala:183
-#, fuzzy
-#| msgid "Music Player"
 msgid "Music files"
-msgstr "Musekspiller"
+msgstr "Musek Dateien"
 
 #: src/MainWindow.vala:192
 msgid "Open"
@@ -63,26 +62,26 @@ msgstr "Opmaachen"
 
 #: src/MainWindow.vala:196
 msgid "Open audio files"
-msgstr ""
+msgstr "Audiodateien opmaachen"
 
 #: src/MainWindow.vala:234
 msgid "Repeat None"
-msgstr ""
+msgstr "Näischt widderhuelen"
 
 #: src/MainWindow.vala:238
 msgid "Repeat All"
-msgstr ""
+msgstr "Alles widderhuelen"
 
 #: src/MainWindow.vala:242
 msgid "Repeat One"
-msgstr ""
+msgstr "Eng Titel widderhuelen"
 
 #: src/PlaybackManager.vala:130
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Titel zu der Wardeschlaang bäigefüügt"
+msgstr[1] "%d Titel zu der Wardeschlaang bäigefüügt"
 
 #. Don't set artist for files without tags
 #: src/PlaybackManager.vala:190
@@ -91,11 +90,11 @@ msgstr "Onbekannt"
 
 #: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
 msgid "Not playing"
-msgstr ""
+msgstr "Kee Playback"
 
 #: src/Views/NowPlayingView.vala:45
 msgid "Previous"
-msgstr "Fierderun"
+msgstr "Virengten"
 
 #: src/Views/NowPlayingView.vala:68
 msgid "Next"
