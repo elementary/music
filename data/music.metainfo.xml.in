@@ -16,7 +16,7 @@
   <screenshots>
     <screenshot type="default">
       <caption>Quickly queue up your favorite tracks</caption>
-      <image>https://raw.githubusercontent.com/elementary/music/7.1.0/data/screenshot.png</image>
+      <image>https://raw.githubusercontent.com/elementary/music/8.0.0/data/screenshot.png</image>
     </screenshot>
   </screenshots>
 
@@ -54,7 +54,7 @@
   <update_contact>contact_at_elementary.io</update_contact>
 
   <releases>
-    <release version="8.0.0" date="2024-05-19" urgency="medium">
+    <release version="8.0.0" date="2024-05-20" urgency="medium">
       <description>
         <p>Improvements:</p>
         <ul>
