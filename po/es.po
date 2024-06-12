@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-05-14 17:49+0000\n"
 "PO-Revision-Date: 2024-06-13 04:08+0000\n"
-"Last-Translator: Italo Felipe Capasso Ballesteros <edwood.grant@gmail.com>\n"
+"Last-Translator: Walter Walls <windowsfan589@gmail.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/music/music/es/>"
 "\n"
 "Language: es\n"
@@ -80,8 +80,8 @@ msgstr "Repetir canción"
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d pista se ha añadido a la cola"
+msgstr[1] "%d pistas se han añadido a la cola"
 
 #. Don't set artist for files without tags
 #: src/PlaybackManager.vala:190
