@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-05-14 17:49+0000\n"
-"PO-Revision-Date: 2024-05-31 15:13+0000\n"
+"PO-Revision-Date: 2024-07-05 14:16+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://l10n.elementary.io/projects/music/"
 "music/nb/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5\n"
+"X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2017-04-14 05:41+0000\n"
 
 #: src/Application.vala:88 src/Views/NowPlayingView.vala:18
@@ -39,10 +39,8 @@ msgid "Audio files opened from Files will appear here"
 msgstr "Lydfiler åpnet fra Filer vil vises her"
 
 #: src/MainWindow.vala:50
-#, fuzzy
-#| msgid "Other Files"
 msgid "Open Files…"
-msgstr "Andre filer"
+msgstr "Åpne filer …"
 
 #: src/MainWindow.vala:154
 #, c-format
@@ -52,16 +50,12 @@ msgstr[0] "%d ugyldig fil ble ikke lagt til i køen"
 msgstr[1] "%d ugyldige filer ble ikke lagt til i køen"
 
 #: src/MainWindow.vala:178
-#, fuzzy
-#| msgid "All Years"
 msgid "All files"
-msgstr "Alle år"
+msgstr "Alle filer"
 
 #: src/MainWindow.vala:183
-#, fuzzy
-#| msgid "Music Folder"
 msgid "Music files"
-msgstr "Musikkmappe"
+msgstr "Musikkfiler"
 
 #: src/MainWindow.vala:192
 msgid "Open"
