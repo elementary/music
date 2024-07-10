@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-05-14 17:49+0000\n"
-"PO-Revision-Date: 2022-05-07 05:22+0000\n"
+"PO-Revision-Date: 2024-07-11 09:16+0000\n"
 "Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
 "Language-Team: Slovak <https://l10n.elementary.io/projects/music/music/sk/>\n"
 "Language: sk\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 
 #: src/Application.vala:88 src/Views/NowPlayingView.vala:18
@@ -38,32 +38,24 @@ msgid "Audio files opened from Files will appear here"
 msgstr "Zvukové súbory otvorené v aplikácii Súbory sa zobrazia tu"
 
 #: src/MainWindow.vala:50
-#, fuzzy
-#| msgid "Other Files"
 msgid "Open Files…"
-msgstr "Iné súbory"
+msgstr "Otvoriť súbory…"
 
 #: src/MainWindow.vala:154
-#, fuzzy, c-format
-#| msgid "%d track was added to the queue"
-#| msgid_plural "%d tracks were added to the queue"
+#, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
-msgstr[0] "%d zvukových stôp bolo pridaných do fronty"
-msgstr[1] "%d zvuková stopa bola pridaná do fronty"
-msgstr[2] "%d zvukové stopy boli pridané do fronty"
+msgstr[0] "%d neplatných zvukových stôp nebolo pridaných do fronty"
+msgstr[1] "%d neplatná zvuková stopa nebola pridaná do fronty"
+msgstr[2] "%d neplatné zvukové stopy neboli pridané do fronty"
 
 #: src/MainWindow.vala:178
-#, fuzzy
-#| msgid "All Years"
 msgid "All files"
-msgstr "Všetke roky"
+msgstr "Všetky súbory"
 
 #: src/MainWindow.vala:183
-#, fuzzy
-#| msgid "Music Player"
 msgid "Music files"
-msgstr "Prehrávač hudby"
+msgstr "Hudobné súbory"
 
 #: src/MainWindow.vala:192
 msgid "Open"
@@ -71,7 +63,7 @@ msgstr "Otvoriť"
 
 #: src/MainWindow.vala:196
 msgid "Open audio files"
-msgstr ""
+msgstr "Otvoriť hudobné súbory"
 
 #: src/MainWindow.vala:234
 msgid "Repeat None"
