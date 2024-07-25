@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-05-14 17:49+0000\n"
-"PO-Revision-Date: 2021-04-23 11:47+0000\n"
-"Last-Translator: Alvaro <alvaroaraoz_92@hotmail.com>\n"
-"Language-Team: Spanish <https://l10n.elementary.io/projects/music/music/es/"
-">\n"
+"PO-Revision-Date: 2024-06-13 04:08+0000\n"
+"Last-Translator: Walter Walls <windowsfan589@gmail.com>\n"
+"Language-Team: Spanish <https://l10n.elementary.io/projects/music/music/es/>"
+"\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 5.5.5\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:55+0000\n"
 
 #: src/Application.vala:88 src/Views/NowPlayingView.vala:18
@@ -26,42 +26,35 @@ msgid "Music"
 msgstr "Música"
 
 #: src/MainWindow.vala:18
-#, fuzzy
 msgid "Shuffle"
-msgstr "Activar reproducción aleatoria"
+msgstr "Reproducción aleatoria"
 
 #: src/MainWindow.vala:32
 msgid "Queue is Empty"
-msgstr ""
+msgstr "La cola está vacía"
 
 #: src/MainWindow.vala:33
 msgid "Audio files opened from Files will appear here"
-msgstr ""
+msgstr "Los archivos de audio abiertos desde Archivos aparecerán aquí"
 
 #: src/MainWindow.vala:50
-#, fuzzy
-#| msgid "Other Files"
 msgid "Open Files…"
-msgstr "Otros archivos"
+msgstr "Abrir archivos…"
 
 #: src/MainWindow.vala:154
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d archivo no válido no fue añadido a la cola"
+msgstr[1] "%d archivos no válidos no fueron añadidos a la cola"
 
 #: src/MainWindow.vala:178
-#, fuzzy
-#| msgid "All Years"
 msgid "All files"
-msgstr "Todos los años"
+msgstr "Todos los archivos"
 
 #: src/MainWindow.vala:183
-#, fuzzy
-#| msgid "Music Folder"
 msgid "Music files"
-msgstr "Carpeta de música"
+msgstr "Archivos de música"
 
 #: src/MainWindow.vala:192
 msgid "Open"
@@ -69,20 +62,17 @@ msgstr "Abrir"
 
 #: src/MainWindow.vala:196
 msgid "Open audio files"
-msgstr ""
+msgstr "Abrir archivos de audio"
 
 #: src/MainWindow.vala:234
-#, fuzzy
 msgid "Repeat None"
-msgstr "Repetir canción"
+msgstr "No repetir"
 
 #: src/MainWindow.vala:238
-#, fuzzy
 msgid "Repeat All"
-msgstr "Repetir álbum"
+msgstr "Repetir todo"
 
 #: src/MainWindow.vala:242
-#, fuzzy
 msgid "Repeat One"
 msgstr "Repetir canción"
 
@@ -90,8 +80,8 @@ msgstr "Repetir canción"
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d pista se ha añadido a la cola"
+msgstr[1] "%d pistas se han añadido a la cola"
 
 #. Don't set artist for files without tags
 #: src/PlaybackManager.vala:190
@@ -99,9 +89,8 @@ msgid "Unknown"
 msgstr "Desconocido"
 
 #: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
-#, fuzzy
 msgid "Not playing"
-msgstr "Lista nueva"
+msgstr "No se reproduce nada"
 
 #: src/Views/NowPlayingView.vala:45
 msgid "Previous"
