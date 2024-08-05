@@ -187,7 +187,7 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
 
         search_entry.search_changed.connect (() => {
             int pos = playback_manager.find_title (search_entry.text);
-            if (pos > 0) {
+            if (pos >= 0) {
                 queue_listbox.select_row (queue_listbox.get_row_at_index (pos));
                 var adj = scrolled.vadjustment;
                 // Search entry is hidden if n_items is zero so no need to check
