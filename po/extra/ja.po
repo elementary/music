@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-31 15:44+0000\n"
-"PO-Revision-Date: 2024-05-26 23:30+0000\n"
+"PO-Revision-Date: 2024-08-04 00:16+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/music/extra/ja/>"
 "\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.5\n"
+"X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
 #: data/music.metainfo.xml.in:10 data/music.desktop.in:4
@@ -84,10 +84,10 @@ msgid ""
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
 "Russian, Simplified Chinese, Turkish, and Ukrainian"
 msgstr ""
-"カタロニア語、オランダ語、フィンランド語、フランス語、ドイツ語、ヘブライ語、"
-"ハンガリー語、日本語、韓国語、クルド語、マラーティー語、ノルウェー語、ポーラ"
-"ンド語、ポルトガル語、ロシア語、簡体字中国語、トルコ語、ウクライナ語で利用可"
-"能"
+"次の言語で利用可能になりました: カタロニア語、オランダ語、フィンランド語、フ"
+"ランス語、ドイツ語、ヘブライ語、ハンガリー語、日本語、韓国語、クルド語、マラ"
+"ーティー語、ノルウェー語、ポーランド語、ポルトガル語、ロシア語、簡体字中国語"
+"、トルコ語、ウクライナ語"
 
 #: data/music.metainfo.xml.in:86
 msgid "Complete rewrite"
@@ -107,7 +107,7 @@ msgstr "CD-ROM への対応を終了"
 
 #: data/music.metainfo.xml.in:101
 msgid "Dark style support"
-msgstr "ダークスタイルへの対応"
+msgstr "ダークモードへの対応"
 
 #: data/music.metainfo.xml.in:102
 msgid "Minor visual improvements"

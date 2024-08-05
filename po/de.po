@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-05-14 17:49+0000\n"
-"PO-Revision-Date: 2022-11-19 05:10+0000\n"
+"PO-Revision-Date: 2024-06-08 11:16+0000\n"
 "Last-Translator: Uwe S <saabisto@gmx.de>\n"
 "Language-Team: German <https://l10n.elementary.io/projects/music/music/de/>\n"
 "Language: de\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.2\n"
+"X-Generator: Weblate 5.5.5\n"
 "X-Launchpad-Export-Date: 2017-03-09 05:47+0000\n"
 
 #: src/Application.vala:88 src/Views/NowPlayingView.vala:18
@@ -37,10 +37,8 @@ msgid "Audio files opened from Files will appear here"
 msgstr "Von »Dateien« aus geöffnete Audiodateien erscheinen hier"
 
 #: src/MainWindow.vala:50
-#, fuzzy
-#| msgid "Other Files"
 msgid "Open Files…"
-msgstr "Andere Dateien"
+msgstr "Dateien öffnen …"
 
 #: src/MainWindow.vala:154
 #, c-format
@@ -50,16 +48,12 @@ msgstr[0] "%d ungültiger Titel nicht zur Warteschlange hinzugefügt"
 msgstr[1] "%d ungültige Titel nicht zur Warteschlange hinzugefügt"
 
 #: src/MainWindow.vala:178
-#, fuzzy
-#| msgid "All Years"
 msgid "All files"
-msgstr "Alle Jahre"
+msgstr "Alle Dateien"
 
 #: src/MainWindow.vala:183
-#, fuzzy
-#| msgid "Music Folder"
 msgid "Music files"
-msgstr "Musikordner"
+msgstr "Musikdateien"
 
 #: src/MainWindow.vala:192
 msgid "Open"
@@ -67,7 +61,7 @@ msgstr "Öffnen"
 
 #: src/MainWindow.vala:196
 msgid "Open audio files"
-msgstr ""
+msgstr "Audiodateien öffnen"
 
 #: src/MainWindow.vala:234
 msgid "Repeat None"
