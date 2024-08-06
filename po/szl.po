@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-14 17:49+0000\n"
+"POT-Creation-Date: 2024-08-06 15:22+0000\n"
 "PO-Revision-Date: 2020-02-25 13:09+0000\n"
 "Last-Translator: gkkulik <g.kulik@o2.pl>\n"
 "Language-Team: Silesian <https://l10n.elementary.io/projects/music/music/szl/"
@@ -14,29 +14,33 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-#: src/Application.vala:88 src/Views/NowPlayingView.vala:18
+#: src/Application.vala:92 src/Views/NowPlayingView.vala:18
 #: src/Views/NowPlayingView.vala:116
 msgid "Music"
 msgstr "Muzyka"
 
-#: src/MainWindow.vala:18
+#: src/MainWindow.vala:20
 #, fuzzy
 msgid "Shuffle"
 msgstr "Włōncz miynszanie"
 
-#: src/MainWindow.vala:32
+#: src/MainWindow.vala:26
+msgid "Search titles in playlist"
+msgstr ""
+
+#: src/MainWindow.vala:45
 msgid "Queue is Empty"
 msgstr ""
 
-#: src/MainWindow.vala:33
+#: src/MainWindow.vala:46
 msgid "Audio files opened from Files will appear here"
 msgstr ""
 
-#: src/MainWindow.vala:50
+#: src/MainWindow.vala:63
 msgid "Open Files…"
 msgstr ""
 
-#: src/MainWindow.vala:154
+#: src/MainWindow.vala:167
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
@@ -44,42 +48,42 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: src/MainWindow.vala:178
+#: src/MainWindow.vala:215
 #, fuzzy
 #| msgid "All Years"
 msgid "All files"
 msgstr "Wszyjske lata"
 
-#: src/MainWindow.vala:183
+#: src/MainWindow.vala:220
 #, fuzzy
 #| msgid "Music"
 msgid "Music files"
 msgstr "Muzyka"
 
-#: src/MainWindow.vala:192
+#: src/MainWindow.vala:229
 msgid "Open"
 msgstr "Ôtwōrz"
 
-#: src/MainWindow.vala:196
+#: src/MainWindow.vala:233
 msgid "Open audio files"
 msgstr ""
 
-#: src/MainWindow.vala:234
+#: src/MainWindow.vala:271
 #, fuzzy
 msgid "Repeat None"
 msgstr "Powtōrz śpiywka"
 
-#: src/MainWindow.vala:238
+#: src/MainWindow.vala:275
 #, fuzzy
 msgid "Repeat All"
 msgstr "Powtōrz śpiywka"
 
-#: src/MainWindow.vala:242
+#: src/MainWindow.vala:279
 #, fuzzy
 msgid "Repeat One"
 msgstr "Powtōrz śpiywka"
 
-#: src/PlaybackManager.vala:130
+#: src/PlaybackManager.vala:136
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
@@ -88,7 +92,7 @@ msgstr[1] ""
 msgstr[2] ""
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:190
+#: src/PlaybackManager.vala:196
 msgid "Unknown"
 msgstr "Niyznōme"
 

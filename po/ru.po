@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-14 17:49+0000\n"
+"POT-Creation-Date: 2024-08-06 15:22+0000\n"
 "PO-Revision-Date: 2024-05-15 20:13+0000\n"
 "Last-Translator: кубик круглый <megarainbow29@gmail.com>\n"
-"Language-Team: Russian <https://l10n.elementary.io/projects/music/music/ru/>"
-"\n"
+"Language-Team: Russian <https://l10n.elementary.io/projects/music/music/ru/"
+">\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,28 +21,32 @@ msgstr ""
 "X-Generator: Weblate 5.5\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 
-#: src/Application.vala:88 src/Views/NowPlayingView.vala:18
+#: src/Application.vala:92 src/Views/NowPlayingView.vala:18
 #: src/Views/NowPlayingView.vala:116
 msgid "Music"
 msgstr "Музыка"
 
-#: src/MainWindow.vala:18
+#: src/MainWindow.vala:20
 msgid "Shuffle"
 msgstr "В случайном порядке"
 
-#: src/MainWindow.vala:32
+#: src/MainWindow.vala:26
+msgid "Search titles in playlist"
+msgstr ""
+
+#: src/MainWindow.vala:45
 msgid "Queue is Empty"
 msgstr "Очередь пуста"
 
-#: src/MainWindow.vala:33
+#: src/MainWindow.vala:46
 msgid "Audio files opened from Files will appear here"
 msgstr "Открытые вами аудиофайлы появятся здесь"
 
-#: src/MainWindow.vala:50
+#: src/MainWindow.vala:63
 msgid "Open Files…"
 msgstr "Открыть файлы…"
 
-#: src/MainWindow.vala:154
+#: src/MainWindow.vala:167
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
@@ -50,35 +54,35 @@ msgstr[0] "%d недействительный файл не был добавл
 msgstr[1] "%d недействительных файла не были добавлены в очередь"
 msgstr[2] "%d недействительных файлов не были добавлены в очередь"
 
-#: src/MainWindow.vala:178
+#: src/MainWindow.vala:215
 msgid "All files"
 msgstr "Все файлы"
 
-#: src/MainWindow.vala:183
+#: src/MainWindow.vala:220
 msgid "Music files"
 msgstr "Аудиофайлы"
 
-#: src/MainWindow.vala:192
+#: src/MainWindow.vala:229
 msgid "Open"
 msgstr "Открыть"
 
-#: src/MainWindow.vala:196
+#: src/MainWindow.vala:233
 msgid "Open audio files"
 msgstr "Открыть аудиофайлы"
 
-#: src/MainWindow.vala:234
+#: src/MainWindow.vala:271
 msgid "Repeat None"
 msgstr "Не повторять"
 
-#: src/MainWindow.vala:238
+#: src/MainWindow.vala:275
 msgid "Repeat All"
 msgstr "Повторять всё"
 
-#: src/MainWindow.vala:242
+#: src/MainWindow.vala:279
 msgid "Repeat One"
 msgstr "Повторять этот трек"
 
-#: src/PlaybackManager.vala:130
+#: src/PlaybackManager.vala:136
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
@@ -87,7 +91,7 @@ msgstr[1] "%d трека было добавлено в очередь"
 msgstr[2] "%d треков было добавлено в очередь"
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:190
+#: src/PlaybackManager.vala:196
 msgid "Unknown"
 msgstr "Неизвестный"
 
