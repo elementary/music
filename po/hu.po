@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-08-06 15:22+0000\n"
-"PO-Revision-Date: 2024-05-21 23:11+0000\n"
+"PO-Revision-Date: 2024-08-07 16:16+0000\n"
 "Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/music/music/hu/"
 ">\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5\n"
+"X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:52+0000\n"
 
 #: src/Application.vala:92 src/Views/NowPlayingView.vala:18
@@ -31,7 +31,7 @@ msgstr "Keverés"
 
 #: src/MainWindow.vala:26
 msgid "Search titles in playlist"
-msgstr ""
+msgstr "Címek keresése a lejátszási listában"
 
 #: src/MainWindow.vala:45
 msgid "Queue is Empty"
