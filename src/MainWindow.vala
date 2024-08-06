@@ -7,6 +7,8 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
     private Gtk.Button repeat_button;
     private Gtk.Button shuffle_button;
     private Settings settings;
+    private Gtk.SearchEntry search_entry;
+    private Gtk.Revealer search_revealer;
 
     construct {
         var playback_manager = PlaybackManager.get_default ();
@@ -20,9 +22,20 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
 
         repeat_button = new Gtk.Button ();
 
+        search_entry = new Gtk.SearchEntry () {
+            placeholder_text = _("Search titles in playlist")
+        };
+
+        search_revealer = new Gtk.Revealer () {
+            child = search_entry
+        };
+
+        playback_manager.bind_property (
+            "has-items", search_revealer, "reveal-child", DEFAULT | SYNC_CREATE
+        );
         var queue_header = new Gtk.HeaderBar () {
             show_title_buttons = false,
-            title_widget = new Gtk.Label ("")
+            title_widget = search_revealer
         };
         queue_header.add_css_class (Granite.STYLE_CLASS_DEFAULT_DECORATION);
         queue_header.pack_start (start_window_controls);
@@ -171,6 +184,30 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         queue_listbox.row_activated.connect ((row) => {
             playback_manager.current_audio = ((TrackRow) row).audio_object;
         });
+
+        search_entry.search_changed.connect (() => {
+            int pos = playback_manager.find_title (search_entry.text);
+            if (pos >= 0) {
+                queue_listbox.select_row (queue_listbox.get_row_at_index (pos));
+                var adj = scrolled.vadjustment;
+                // Search entry is hidden if n_items is zero so no need to check
+                var ratio = (double)pos / (double)playback_manager.n_items;
+                adj.@value = adj.upper * ratio;
+            }
+        });
+
+        search_entry.activate.connect (() => {
+            var selected = queue_listbox.get_selected_row ();
+            if (selected != null) {
+                selected.activate ();
+            }
+        });
+    }
+
+    public void start_search () {
+        if (search_revealer.child_revealed) {
+            search_entry.grab_focus ();
+        }
     }
 
     private void action_open () {
