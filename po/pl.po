@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beat-box 0.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-08-06 15:22+0000\n"
-"PO-Revision-Date: 2024-08-11 07:50+0000\n"
-"Last-Translator: Marcin Serwin <marcin@serwin.dev>\n"
+"PO-Revision-Date: 2024-08-12 08:16+0000\n"
+"Last-Translator: Piotr Strebski <strebski@gmail.com>\n"
 "Language-Team: Polish <https://l10n.elementary.io/projects/music/music/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -31,7 +31,7 @@ msgstr "Losowo"
 
 #: src/MainWindow.vala:26
 msgid "Search titles in playlist"
-msgstr "Wyszukaj tytułu w playliście"
+msgstr "Wyszukuj tytuły w playliście"
 
 #: src/MainWindow.vala:45
 msgid "Queue is Empty"
