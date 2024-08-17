@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-31 15:44+0000\n"
-"PO-Revision-Date: 2024-08-17 19:46+0000\n"
+"PO-Revision-Date: 2024-08-18 20:16+0000\n"
 "Last-Translator: Patrick dos Reis Dolores <patrickdosreis537@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.elementary.io/projects/"
 "music/extra/pt_BR/>\n"
@@ -70,6 +70,7 @@ msgstr "Pule arquivos inválidos ao invés de parar a reprodução."
 #: data/music.metainfo.xml.in:75
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr ""
+"Os botões de próximo e repetir funcionam independente do modo de repetição"
 
 #: data/music.metainfo.xml.in:76
 msgid ""
@@ -77,10 +78,13 @@ msgid ""
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
 "Russian, Simplified Chinese, Turkish, and Ukrainian"
 msgstr ""
+"Agora disponível em Catalão, Alemão, Finlandês, Francês, Alemão, Hebreu, "
+"Húngaro, Japonês, Coreano, Curdo, Marathi, Norueguês, Bokmal, Polonês, "
+"Português, Russo, Chinês Simplificado, Turco e Ucraniano"
 
 #: data/music.metainfo.xml.in:86
 msgid "Complete rewrite"
-msgstr ""
+msgstr "Reescrita completa"
 
 #: data/music.metainfo.xml.in:92
 msgid "Drop support for Last.FM"
