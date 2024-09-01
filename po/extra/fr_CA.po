@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-31 15:44+0000\n"
+"POT-Creation-Date: 2024-09-01 10:32+0000\n"
 "PO-Revision-Date: 2016-01-04 18:56+0000\n"
 "Last-Translator: Corentin Noël <corentin@elementaryos.org>\n"
 "Language-Team: French (Canada) <fr_CA@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 "X-Generator: Launchpad (build 18330)\n"
 
-#: data/music.metainfo.xml.in:10 data/music.desktop.in:4
+#: data/music.metainfo.xml.in:10 data/music.desktop.in:6
 msgid "Music"
 msgstr "Musique"
 
@@ -37,80 +37,68 @@ msgstr ""
 msgid "Quickly queue up your favorite tracks"
 msgstr ""
 
-#: data/music.metainfo.xml.in:50
-msgid "elementary, Inc."
-msgstr ""
-
-#: data/music.metainfo.xml.in:57 data/music.metainfo.xml.in:71
+#: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:70
+#: data/music.metainfo.xml.in:84
 msgid "Improvements:"
 msgstr ""
 
-#: data/music.metainfo.xml.in:59
-msgid "Open folders in the filemanager with Music"
+#: data/music.metainfo.xml.in:61
+msgid "Toolbar shows a shadow when the view is scrolled"
 msgstr ""
 
-#: data/music.metainfo.xml.in:60 data/music.metainfo.xml.in:93
-#: data/music.metainfo.xml.in:103
+#: data/music.metainfo.xml.in:62
+msgid "Open audio files from within Music"
+msgstr ""
+
+#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:73
+#: data/music.metainfo.xml.in:106
 msgid "Updated translations"
 msgstr ""
 
-#: data/music.metainfo.xml.in:73
+#: data/music.metainfo.xml.in:72
+msgid "Open folders in the filemanager with Music"
+msgstr ""
+
+#: data/music.metainfo.xml.in:86
 msgid "For tracks without a title, use the file name instead of the whole URI"
 msgstr ""
 
-#: data/music.metainfo.xml.in:74
+#: data/music.metainfo.xml.in:87
 msgid "Skip invalid files instead of stopping playback"
 msgstr ""
 
-#: data/music.metainfo.xml.in:75
+#: data/music.metainfo.xml.in:88
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr ""
 
-#: data/music.metainfo.xml.in:76
+#: data/music.metainfo.xml.in:89
 msgid ""
 "Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
 "Russian, Simplified Chinese, Turkish, and Ukrainian"
 msgstr ""
 
-#: data/music.metainfo.xml.in:86
+#: data/music.metainfo.xml.in:99
 msgid "Complete rewrite"
 msgstr ""
 
-#: data/music.metainfo.xml.in:92
+#: data/music.metainfo.xml.in:105
 msgid "Drop support for Last.FM"
 msgstr ""
 
-#: data/music.metainfo.xml.in:99
-msgid "Fix an issue with saving smart playlists"
-msgstr ""
-
-#: data/music.metainfo.xml.in:100
-msgid "Drop support for CD-ROM"
-msgstr ""
-
-#: data/music.metainfo.xml.in:101
-msgid "Dark style support"
-msgstr ""
-
-#: data/music.metainfo.xml.in:102
-msgid "Minor visual improvements"
-msgstr ""
-
-#: data/music.desktop.in:5
-msgid "Music Player"
-msgstr "Lecteur de musique"
-
-#: data/music.desktop.in:6
+#: data/music.desktop.in:7
 msgid "Listen to music"
 msgstr "Écouter de la musique"
 
-#: data/music.desktop.in:13
+#: data/music.desktop.in:9
 #, fuzzy
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
 "Noise;Audio;Lecteur;MP3;iPod;Lire;Playlist;Liste de lecture;Média;CD;"
 "Téléphone;Musique;Chanson;"
+
+#~ msgid "Music Player"
+#~ msgstr "Lecteur de musique"
 
 #~ msgid "About Music"
 #~ msgstr "À propos de Musique"

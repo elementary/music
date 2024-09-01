@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-31 15:44+0000\n"
+"POT-Creation-Date: 2024-09-01 10:32+0000\n"
 "PO-Revision-Date: 2023-02-17 14:25+0000\n"
 "Last-Translator: ActualDisaster2447 <1jbe1vkry@mozmail.com>\n"
 "Language-Team: German <https://l10n.elementary.io/projects/music/extra/de/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Weblate 4.14.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
-#: data/music.metainfo.xml.in:10 data/music.desktop.in:4
+#: data/music.metainfo.xml.in:10 data/music.desktop.in:6
 msgid "Music"
 msgstr "Musik"
 
@@ -38,78 +38,81 @@ msgstr ""
 msgid "Quickly queue up your favorite tracks"
 msgstr ""
 
-#: data/music.metainfo.xml.in:50
-msgid "elementary, Inc."
-msgstr "elementary, Inc."
-
-#: data/music.metainfo.xml.in:57 data/music.metainfo.xml.in:71
+#: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:70
+#: data/music.metainfo.xml.in:84
 msgid "Improvements:"
 msgstr ""
 
-#: data/music.metainfo.xml.in:59
-msgid "Open folders in the filemanager with Music"
+#: data/music.metainfo.xml.in:61
+msgid "Toolbar shows a shadow when the view is scrolled"
 msgstr ""
 
-#: data/music.metainfo.xml.in:60 data/music.metainfo.xml.in:93
-#: data/music.metainfo.xml.in:103
+#: data/music.metainfo.xml.in:62
+msgid "Open audio files from within Music"
+msgstr ""
+
+#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:73
+#: data/music.metainfo.xml.in:106
 msgid "Updated translations"
 msgstr "Aktualisierte Übersetzungen"
 
-#: data/music.metainfo.xml.in:73
+#: data/music.metainfo.xml.in:72
+msgid "Open folders in the filemanager with Music"
+msgstr ""
+
+#: data/music.metainfo.xml.in:86
 msgid "For tracks without a title, use the file name instead of the whole URI"
 msgstr ""
 
-#: data/music.metainfo.xml.in:74
+#: data/music.metainfo.xml.in:87
 msgid "Skip invalid files instead of stopping playback"
 msgstr ""
 
-#: data/music.metainfo.xml.in:75
+#: data/music.metainfo.xml.in:88
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr ""
 
-#: data/music.metainfo.xml.in:76
+#: data/music.metainfo.xml.in:89
 msgid ""
 "Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
 "Russian, Simplified Chinese, Turkish, and Ukrainian"
 msgstr ""
 
-#: data/music.metainfo.xml.in:86
+#: data/music.metainfo.xml.in:99
 msgid "Complete rewrite"
 msgstr "Komplett neu geschrieben"
 
-#: data/music.metainfo.xml.in:92
+#: data/music.metainfo.xml.in:105
 msgid "Drop support for Last.FM"
 msgstr "Support für Last.FM eingestellt"
 
-#: data/music.metainfo.xml.in:99
-msgid "Fix an issue with saving smart playlists"
-msgstr "Fehler behoben, der beim Speichern von smarten Playlists auftrat"
-
-#: data/music.metainfo.xml.in:100
-msgid "Drop support for CD-ROM"
-msgstr "Support für CD-ROM eingestellt"
-
-#: data/music.metainfo.xml.in:101
-msgid "Dark style support"
-msgstr "Unterstützung für Dark Mode"
-
-#: data/music.metainfo.xml.in:102
-msgid "Minor visual improvements"
-msgstr "Kleinere visuelle Verbesserungen"
-
-#: data/music.desktop.in:5
-msgid "Music Player"
-msgstr "Musikwiedergabe"
-
-#: data/music.desktop.in:6
+#: data/music.desktop.in:7
 msgid "Listen to music"
 msgstr "Musik anhören"
 
-#: data/music.desktop.in:13
+#: data/music.desktop.in:9
 #, fuzzy
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr "Noise;Audio;Player;MP3;iPod;Play;Playlist;Medien;Telefon;Songs;"
+
+#~ msgid "elementary, Inc."
+#~ msgstr "elementary, Inc."
+
+#~ msgid "Fix an issue with saving smart playlists"
+#~ msgstr "Fehler behoben, der beim Speichern von smarten Playlists auftrat"
+
+#~ msgid "Drop support for CD-ROM"
+#~ msgstr "Support für CD-ROM eingestellt"
+
+#~ msgid "Dark style support"
+#~ msgstr "Unterstützung für Dark Mode"
+
+#~ msgid "Minor visual improvements"
+#~ msgstr "Kleinere visuelle Verbesserungen"
+
+#~ msgid "Music Player"
+#~ msgstr "Musikwiedergabe"
 
 #~ msgid "Fix removing items from the queue"
 #~ msgstr ""

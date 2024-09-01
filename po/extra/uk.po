@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-31 15:44+0000\n"
+"POT-Creation-Date: 2024-09-01 10:32+0000\n"
 "PO-Revision-Date: 2024-08-15 10:16+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/music/extra/uk/"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
-#: data/music.metainfo.xml.in:10 data/music.desktop.in:4
+#: data/music.metainfo.xml.in:10 data/music.desktop.in:6
 msgid "Music"
 msgstr "Музика"
 
@@ -43,38 +43,45 @@ msgstr ""
 msgid "Quickly queue up your favorite tracks"
 msgstr "Швидке створення черги з улюблених доріжок"
 
-#: data/music.metainfo.xml.in:50
-msgid "elementary, Inc."
-msgstr "elementary, Inc."
-
-#: data/music.metainfo.xml.in:57 data/music.metainfo.xml.in:71
+#: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:70
+#: data/music.metainfo.xml.in:84
 msgid "Improvements:"
 msgstr "Поліпшення:"
 
-#: data/music.metainfo.xml.in:59
-msgid "Open folders in the filemanager with Music"
+#: data/music.metainfo.xml.in:61
+msgid "Toolbar shows a shadow when the view is scrolled"
+msgstr ""
+
+#: data/music.metainfo.xml.in:62
+#, fuzzy
+#| msgid "Open folders in the filemanager with Music"
+msgid "Open audio files from within Music"
 msgstr "Відкривайте теки у файловому менеджері за допомогою застосунку Музика"
 
-#: data/music.metainfo.xml.in:60 data/music.metainfo.xml.in:93
-#: data/music.metainfo.xml.in:103
+#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:73
+#: data/music.metainfo.xml.in:106
 msgid "Updated translations"
 msgstr "Оновлено переклади"
 
-#: data/music.metainfo.xml.in:73
+#: data/music.metainfo.xml.in:72
+msgid "Open folders in the filemanager with Music"
+msgstr "Відкривайте теки у файловому менеджері за допомогою застосунку Музика"
+
+#: data/music.metainfo.xml.in:86
 msgid "For tracks without a title, use the file name instead of the whole URI"
 msgstr "Для доріжок без назви використовується назва файлу, а не весь URI"
 
-#: data/music.metainfo.xml.in:74
+#: data/music.metainfo.xml.in:87
 msgid "Skip invalid files instead of stopping playback"
 msgstr "Пропуск неприпустимих файлів замість припинення відтворення"
 
-#: data/music.metainfo.xml.in:75
+#: data/music.metainfo.xml.in:88
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr ""
 "Кнопки «Далі» та «Повторити» працюватимуть завжди, незалежно від режиму "
 "повтору"
 
-#: data/music.metainfo.xml.in:76
+#: data/music.metainfo.xml.in:89
 msgid ""
 "Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
@@ -85,43 +92,41 @@ msgstr ""
 "норвезькою букмол, польською, португальською, російською, спрощеною "
 "китайською, турецькою, українською та японською мовами"
 
-#: data/music.metainfo.xml.in:86
+#: data/music.metainfo.xml.in:99
 msgid "Complete rewrite"
 msgstr "Повністю перероблено"
 
-#: data/music.metainfo.xml.in:92
+#: data/music.metainfo.xml.in:105
 msgid "Drop support for Last.FM"
 msgstr "Завершено підтримку Last.FM"
 
-#: data/music.metainfo.xml.in:99
-msgid "Fix an issue with saving smart playlists"
-msgstr "Виправлено проблему зі збереженням розумних списків відтворення"
-
-#: data/music.metainfo.xml.in:100
-msgid "Drop support for CD-ROM"
-msgstr "Завершено підтримку CD-ROM"
-
-#: data/music.metainfo.xml.in:101
-msgid "Dark style support"
-msgstr "Підтримка темного стилю"
-
-#: data/music.metainfo.xml.in:102
-msgid "Minor visual improvements"
-msgstr "Незначні покращення вигляду"
-
-#: data/music.desktop.in:5
-msgid "Music Player"
-msgstr "Музичний програвач"
-
-#: data/music.desktop.in:6
+#: data/music.desktop.in:7
 msgid "Listen to music"
 msgstr "Прослуховування музики"
 
-#: data/music.desktop.in:13
+#: data/music.desktop.in:9
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
 "Noise;Audio;Аудіо;Player;Програвач;MP3;Play;Відтворення;Playlist;Добірка;"
 "Список відтворення;Плейліст;Медіа;Media;Songs;Пісні;"
+
+#~ msgid "elementary, Inc."
+#~ msgstr "elementary, Inc."
+
+#~ msgid "Fix an issue with saving smart playlists"
+#~ msgstr "Виправлено проблему зі збереженням розумних списків відтворення"
+
+#~ msgid "Drop support for CD-ROM"
+#~ msgstr "Завершено підтримку CD-ROM"
+
+#~ msgid "Dark style support"
+#~ msgstr "Підтримка темного стилю"
+
+#~ msgid "Minor visual improvements"
+#~ msgstr "Незначні покращення вигляду"
+
+#~ msgid "Music Player"
+#~ msgstr "Музичний програвач"
 
 #~ msgid "Drag and drop whole folders into the queue"
 #~ msgstr "Перетягування цілих тек до черги"

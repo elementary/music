@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-31 15:44+0000\n"
+"POT-Creation-Date: 2024-09-01 10:32+0000\n"
 "PO-Revision-Date: 2023-07-29 21:08+0000\n"
 "Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/music/extra/hu/"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
-#: data/music.metainfo.xml.in:10 data/music.desktop.in:4
+#: data/music.metainfo.xml.in:10 data/music.desktop.in:6
 msgid "Music"
 msgstr "Zene"
 
@@ -43,38 +43,45 @@ msgstr ""
 msgid "Quickly queue up your favorite tracks"
 msgstr "Tegye könnyedén lejátszási listára a kedvenc zeneszámait"
 
-#: data/music.metainfo.xml.in:50
-msgid "elementary, Inc."
-msgstr "elementary, Inc."
-
-#: data/music.metainfo.xml.in:57 data/music.metainfo.xml.in:71
+#: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:70
+#: data/music.metainfo.xml.in:84
 msgid "Improvements:"
 msgstr "Újítások:"
 
-#: data/music.metainfo.xml.in:59
-msgid "Open folders in the filemanager with Music"
+#: data/music.metainfo.xml.in:61
+msgid "Toolbar shows a shadow when the view is scrolled"
+msgstr ""
+
+#: data/music.metainfo.xml.in:62
+#, fuzzy
+#| msgid "Open folders in the filemanager with Music"
+msgid "Open audio files from within Music"
 msgstr "Mappák megnyitása a fájlkezelőből a Zenével"
 
-#: data/music.metainfo.xml.in:60 data/music.metainfo.xml.in:93
-#: data/music.metainfo.xml.in:103
+#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:73
+#: data/music.metainfo.xml.in:106
 msgid "Updated translations"
 msgstr "Frissített fordítások"
 
-#: data/music.metainfo.xml.in:73
+#: data/music.metainfo.xml.in:72
+msgid "Open folders in the filemanager with Music"
+msgstr "Mappák megnyitása a fájlkezelőből a Zenével"
+
+#: data/music.metainfo.xml.in:86
 msgid "For tracks without a title, use the file name instead of the whole URI"
 msgstr "A cím nélküli számoknál a fájlnév használata a teljes URI helyett"
 
-#: data/music.metainfo.xml.in:74
+#: data/music.metainfo.xml.in:87
 msgid "Skip invalid files instead of stopping playback"
 msgstr "Az érvénytelen számok átugrása a lejátszás megállítása helyett"
 
-#: data/music.metainfo.xml.in:75
+#: data/music.metainfo.xml.in:88
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr ""
 "A Következő és Ismétlés gombok mindig működnek, az ismétlési módtól "
 "függetlenül"
 
-#: data/music.metainfo.xml.in:76
+#: data/music.metainfo.xml.in:89
 msgid ""
 "Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
@@ -84,43 +91,41 @@ msgstr ""
 "japán, katalán, koreai, kurd, lengyel, maráthi, német, norvég bokmål, orosz, "
 "portugál, török és ukrán nyelven"
 
-#: data/music.metainfo.xml.in:86
+#: data/music.metainfo.xml.in:99
 msgid "Complete rewrite"
 msgstr "Teljes újraírás"
 
-#: data/music.metainfo.xml.in:92
+#: data/music.metainfo.xml.in:105
 msgid "Drop support for Last.FM"
 msgstr "Last.FM támogatásának megszűnése"
 
-#: data/music.metainfo.xml.in:99
-msgid "Fix an issue with saving smart playlists"
-msgstr "Okos lejátszási listák mentésével kapcsolatos hibajavítás"
-
-#: data/music.metainfo.xml.in:100
-msgid "Drop support for CD-ROM"
-msgstr "CD-ROM-ok támogatásának megszűnése"
-
-#: data/music.metainfo.xml.in:101
-msgid "Dark style support"
-msgstr "Sötét téma támogatása"
-
-#: data/music.metainfo.xml.in:102
-msgid "Minor visual improvements"
-msgstr "Kisebb vizuális javítások"
-
-#: data/music.desktop.in:5
-msgid "Music Player"
-msgstr "Zenelejátszó"
-
-#: data/music.desktop.in:6
+#: data/music.desktop.in:7
 msgid "Listen to music"
 msgstr "Zene hallgatása"
 
-#: data/music.desktop.in:13
+#: data/music.desktop.in:9
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
 "Noise;Audió;Lejátszó;MP3;iPod;Lejátszás;Lejátszási lista;Média;Számok;Zenék;"
 "Zene;"
+
+#~ msgid "elementary, Inc."
+#~ msgstr "elementary, Inc."
+
+#~ msgid "Fix an issue with saving smart playlists"
+#~ msgstr "Okos lejátszási listák mentésével kapcsolatos hibajavítás"
+
+#~ msgid "Drop support for CD-ROM"
+#~ msgstr "CD-ROM-ok támogatásának megszűnése"
+
+#~ msgid "Dark style support"
+#~ msgstr "Sötét téma támogatása"
+
+#~ msgid "Minor visual improvements"
+#~ msgstr "Kisebb vizuális javítások"
+
+#~ msgid "Music Player"
+#~ msgstr "Zenelejátszó"
 
 #~ msgid "The official elementary music player"
 #~ msgstr "A hivatalos elementary zenelejátszó"
