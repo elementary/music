@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-09-01 10:32+0000\n"
-"PO-Revision-Date: 2024-08-15 10:16+0000\n"
+"PO-Revision-Date: 2024-09-02 20:05+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/music/extra/uk/"
 ">\n"
@@ -50,13 +50,11 @@ msgstr "Поліпшення:"
 
 #: data/music.metainfo.xml.in:61
 msgid "Toolbar shows a shadow when the view is scrolled"
-msgstr ""
+msgstr "Панель інструментів показує тінь під час гортання"
 
 #: data/music.metainfo.xml.in:62
-#, fuzzy
-#| msgid "Open folders in the filemanager with Music"
 msgid "Open audio files from within Music"
-msgstr "Відкривайте теки у файловому менеджері за допомогою застосунку Музика"
+msgstr "Відкриття аудіофайлів у застосунку Музика"
 
 #: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:73
 #: data/music.metainfo.xml.in:106
