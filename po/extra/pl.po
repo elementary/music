@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beat-box 0.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-09-01 10:32+0000\n"
-"PO-Revision-Date: 2023-04-06 19:59+0000\n"
-"Last-Translator: Marcin Serwin <marcin.serwin0@protonmail.com>\n"
+"PO-Revision-Date: 2024-09-07 14:28+0000\n"
+"Last-Translator: Marcin Serwin <marcin@serwin.dev>\n"
 "Language-Team: Polish <https://l10n.elementary.io/projects/music/extra/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.16.4\n"
+"X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
 #: data/music.metainfo.xml.in:10 data/music.desktop.in:6
@@ -49,13 +49,11 @@ msgstr "Ulepszenia:"
 
 #: data/music.metainfo.xml.in:61
 msgid "Toolbar shows a shadow when the view is scrolled"
-msgstr ""
+msgstr "Pasek narzędzi pokazuje teraz cień gdy widok jest przesunięty"
 
 #: data/music.metainfo.xml.in:62
-#, fuzzy
-#| msgid "Open folders in the filemanager with Music"
 msgid "Open audio files from within Music"
-msgstr "Otwieranie folderów przy użyciu menedżera plików używając Muzyki"
+msgstr "Otwieranie plików audio z Muzyki"
 
 #: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:73
 #: data/music.metainfo.xml.in:106
