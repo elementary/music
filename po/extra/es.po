@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-09-01 10:32+0000\n"
-"PO-Revision-Date: 2024-06-13 04:08+0000\n"
+"PO-Revision-Date: 2024-09-09 10:20+0000\n"
 "Last-Translator: Italo Felipe Capasso Ballesteros <edwood.grant@gmail.com>\n"
-"Language-Team: Spanish <https://l10n.elementary.io/projects/music/extra/es/"
-">\n"
+"Language-Team: Spanish <https://l10n.elementary.io/projects/music/extra/es/>"
+"\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5.5\n"
+"X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
 #: data/music.metainfo.xml.in:10 data/music.desktop.in:6
@@ -49,14 +49,11 @@ msgstr "Mejoras:"
 
 #: data/music.metainfo.xml.in:61
 msgid "Toolbar shows a shadow when the view is scrolled"
-msgstr ""
+msgstr "La barra de herramientas ahora muestra una sombra al desplazar la vista"
 
 #: data/music.metainfo.xml.in:62
-#, fuzzy
-#| msgid "Open folders in the filemanager with Music"
 msgid "Open audio files from within Music"
-msgstr ""
-"Ahora se pueden abrir carpetas en Música desde el administrador de archivos"
+msgstr "Ahora se pueden archivos de audio dentro de Music"
 
 #: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:73
 #: data/music.metainfo.xml.in:106
