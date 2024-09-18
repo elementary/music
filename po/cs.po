@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-09-01 10:32+0000\n"
-"PO-Revision-Date: 2020-05-30 13:11+0000\n"
-"Last-Translator: p-bo <pavel.borecki@gmail.com>\n"
+"PO-Revision-Date: 2024-09-19 07:21+0000\n"
+"Last-Translator: hnklp <hynek.puta@seznam.cz>\n"
 "Language-Team: Czech <https://l10n.elementary.io/projects/music/music/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:52+0000\n"
 
 #: src/Application.vala:92 src/Views/NowPlayingView.vala:18
@@ -25,47 +25,40 @@ msgid "Music"
 msgstr "Hudba"
 
 #: src/MainWindow.vala:20
-#, fuzzy
 msgid "Shuffle"
-msgstr "Zapnout náhodný výběr"
+msgstr "Náhodný výběr"
 
 #: src/MainWindow.vala:26
 msgid "Search titles in playlist"
-msgstr ""
+msgstr "Hledat názvy v seznamu skladeb"
 
 #: src/MainWindow.vala:45
 msgid "Queue is Empty"
-msgstr ""
+msgstr "Fronta je prázdná"
 
 #: src/MainWindow.vala:46
 msgid "Audio files opened from Files will appear here"
-msgstr ""
+msgstr "Zvukové soubory otevřené z aplikace Soubory se objeví zde"
 
 #: src/MainWindow.vala:63
-#, fuzzy
-#| msgid "Other Files"
 msgid "Open Files…"
-msgstr "Ostatní soubory"
+msgstr "Otevřít soubory…"
 
 #: src/MainWindow.vala:167
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d neplatný soubor nebyl přidán do fronty"
+msgstr[1] "%d neplatné soubory nebyly přidány do fronty"
+msgstr[2] "%d neplatných souborů nebylo přidáno do fronty"
 
 #: src/MainWindow.vala:215
-#, fuzzy
-#| msgid "All Years"
 msgid "All files"
-msgstr "Všechny roky"
+msgstr "Všechny soubory"
 
 #: src/MainWindow.vala:220
-#, fuzzy
-#| msgid "Music Folder"
 msgid "Music files"
-msgstr "Složka s hudbou"
+msgstr "Zvukové soubory"
 
 #: src/MainWindow.vala:229
 msgid "Open"
@@ -73,30 +66,27 @@ msgstr "Otevřít"
 
 #: src/MainWindow.vala:233
 msgid "Open audio files"
-msgstr ""
+msgstr "Otevřít zvukové soubory"
 
 #: src/MainWindow.vala:271
-#, fuzzy
 msgid "Repeat None"
-msgstr "Opakovat píseň"
+msgstr "Neopakovat"
 
 #: src/MainWindow.vala:275
-#, fuzzy
 msgid "Repeat All"
-msgstr "Opakovat album"
+msgstr "Opakovat vše"
 
 #: src/MainWindow.vala:279
-#, fuzzy
 msgid "Repeat One"
-msgstr "Opakovat píseň"
+msgstr "Opakovat jednu"
 
 #: src/PlaybackManager.vala:136
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d skladba byla přidána do řady"
+msgstr[1] "%d skladby byly přidány do fronty"
+msgstr[2] "%d skladeb bylo přidáno do fronty"
 
 #. Don't set artist for files without tags
 #: src/PlaybackManager.vala:196
@@ -104,9 +94,8 @@ msgid "Unknown"
 msgstr "Neznámý"
 
 #: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
-#, fuzzy
 msgid "Not playing"
-msgstr "Nový playlist"
+msgstr "Nic nehraje"
 
 #: src/Views/NowPlayingView.vala:45
 msgid "Previous"
