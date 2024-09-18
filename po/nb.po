@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-09-01 10:32+0000\n"
-"PO-Revision-Date: 2024-07-05 14:16+0000\n"
+"PO-Revision-Date: 2024-09-19 07:21+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://l10n.elementary.io/projects/music/"
 "music/nb/>\n"
@@ -32,7 +32,7 @@ msgstr "Tilfeldig avspilling"
 
 #: src/MainWindow.vala:26
 msgid "Search titles in playlist"
-msgstr ""
+msgstr "Søk etter navn i spillelisten"
 
 #: src/MainWindow.vala:45
 msgid "Queue is Empty"
