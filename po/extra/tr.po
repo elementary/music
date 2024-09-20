@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-09-01 10:32+0000\n"
-"PO-Revision-Date: 2022-11-19 05:10+0000\n"
-"Last-Translator: Özgür Baskin <queeup@zoho.com>\n"
-"Language-Team: Turkish <https://l10n.elementary.io/projects/music/extra/tr/"
-">\n"
+"PO-Revision-Date: 2024-09-21 03:16+0000\n"
+"Last-Translator: Sinan Decron <sinanveyasinan@gmail.com>\n"
+"Language-Team: Turkish <https://l10n.elementary.io/projects/music/extra/tr/>"
+"\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.2\n"
+"X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
 #: data/music.metainfo.xml.in:10 data/music.desktop.in:6
@@ -45,15 +45,15 @@ msgstr "En sevdiğiniz parçaları hızlı bir şekilde sıraya alın"
 #: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:70
 #: data/music.metainfo.xml.in:84
 msgid "Improvements:"
-msgstr ""
+msgstr "İyileştirmeler:"
 
 #: data/music.metainfo.xml.in:61
 msgid "Toolbar shows a shadow when the view is scrolled"
-msgstr ""
+msgstr "Görünüm kaydırıldığında araç çubuğu bir gölge gösterir"
 
 #: data/music.metainfo.xml.in:62
 msgid "Open audio files from within Music"
-msgstr ""
+msgstr "Müzik içinden ses dosyalarını açın"
 
 #: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:73
 #: data/music.metainfo.xml.in:106
@@ -62,19 +62,21 @@ msgstr "Çeviriler güncellendi"
 
 #: data/music.metainfo.xml.in:72
 msgid "Open folders in the filemanager with Music"
-msgstr ""
+msgstr "Müzik ile dosya yöneticisindeki klasörleri açın"
 
 #: data/music.metainfo.xml.in:86
 msgid "For tracks without a title, use the file name instead of the whole URI"
-msgstr ""
+msgstr "Başlığı olmayan parçalar için tüm URI yerine dosya adını kullan"
 
 #: data/music.metainfo.xml.in:87
 msgid "Skip invalid files instead of stopping playback"
-msgstr ""
+msgstr "Oynatmayı durdurmak yerine geçersiz dosyaları atla"
 
 #: data/music.metainfo.xml.in:88
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr ""
+"Sonraki ve Tekrar düğmeleri, tekrarlama modundan bağımsız olarak her zaman "
+"çalışır"
 
 #: data/music.metainfo.xml.in:89
 msgid ""
@@ -82,6 +84,9 @@ msgid ""
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
 "Russian, Simplified Chinese, Turkish, and Ukrainian"
 msgstr ""
+"Artık Katalanca, Felemenkçe, Fince, Fransızca, Almanca, İbranice, Macarca, "
+"Japonca, Korece, Kürtçe, Marathi, Norveççe Bokmål, Lehçe, Portekizce, Rusça, "
+"Basitleştirilmiş Çince, Türkçe ve Ukraynaca dillerinde mevcuttur"
 
 #: data/music.metainfo.xml.in:99
 msgid "Complete rewrite"
