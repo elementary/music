@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-09-01 10:32+0000\n"
-"PO-Revision-Date: 2022-11-19 05:10+0000\n"
-"Last-Translator: Özgür Baskin <queeup@zoho.com>\n"
-"Language-Team: Turkish <https://l10n.elementary.io/projects/music/music/tr/"
-">\n"
+"PO-Revision-Date: 2024-09-21 03:16+0000\n"
+"Last-Translator: Sinan Decron <sinanveyasinan@gmail.com>\n"
+"Language-Team: Turkish <https://l10n.elementary.io/projects/music/music/tr/>"
+"\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.14.2\n"
+"X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:55+0000\n"
 
 #: src/Application.vala:92 src/Views/NowPlayingView.vala:18
@@ -31,7 +31,7 @@ msgstr "Karıştır"
 
 #: src/MainWindow.vala:26
 msgid "Search titles in playlist"
-msgstr ""
+msgstr "Çalma listesinde başlıkları ara"
 
 #: src/MainWindow.vala:45
 msgid "Queue is Empty"
@@ -42,10 +42,8 @@ msgid "Audio files opened from Files will appear here"
 msgstr "Dosyalar uygulamasından açılan ses dosyaları burada görünecek"
 
 #: src/MainWindow.vala:63
-#, fuzzy
-#| msgid "Other Files"
 msgid "Open Files…"
-msgstr "Diğer Dosyalar"
+msgstr "Dosyaları Aç…"
 
 #: src/MainWindow.vala:167
 #, c-format
@@ -55,16 +53,12 @@ msgstr[0] "%d geçersiz parça sıraya eklenemedi"
 msgstr[1] "%d geçersiz parça sıraya eklenemedi"
 
 #: src/MainWindow.vala:215
-#, fuzzy
-#| msgid "All Years"
 msgid "All files"
-msgstr "Tüm Yıllar"
+msgstr "Tüm dosyalar"
 
 #: src/MainWindow.vala:220
-#, fuzzy
-#| msgid "Music Folder"
 msgid "Music files"
-msgstr "Müzik Dizini"
+msgstr "Müzik Dosyaları"
 
 #: src/MainWindow.vala:229
 msgid "Open"
@@ -72,7 +66,7 @@ msgstr "Aç"
 
 #: src/MainWindow.vala:233
 msgid "Open audio files"
-msgstr ""
+msgstr "Ses dosyalarını aç"
 
 #: src/MainWindow.vala:271
 msgid "Repeat None"
