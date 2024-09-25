@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-09-01 10:32+0000\n"
-"PO-Revision-Date: 2015-12-21 13:43+0000\n"
-"Last-Translator: Daniel Fore <Unknown>\n"
-"Language-Team: Persian <fa@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2024-09-25 23:27+0000\n"
+"Last-Translator: Hossein <hossein17@duck.com>\n"
+"Language-Team: Persian <https://l10n.elementary.io/projects/music/music/fa/>"
+"\n"
+"Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
-"X-Generator: Launchpad (build 18330)\n"
 
 #: src/Application.vala:92 src/Views/NowPlayingView.vala:18
 #: src/Views/NowPlayingView.vala:116
@@ -25,64 +26,56 @@ msgid "Music"
 msgstr "موسیقی"
 
 #: src/MainWindow.vala:20
-#, fuzzy
 msgid "Shuffle"
-msgstr "فعال کردن آمیختگی"
+msgstr "پخش تصادفی"
 
 #: src/MainWindow.vala:26
 msgid "Search titles in playlist"
-msgstr ""
+msgstr "جستجوی عناوین در پلی لیست"
 
 #: src/MainWindow.vala:45
 msgid "Queue is Empty"
-msgstr ""
+msgstr "صف خالیست"
 
 #: src/MainWindow.vala:46
 msgid "Audio files opened from Files will appear here"
-msgstr ""
+msgstr "فایل های صوتی باز شده از Files در اینجا ظاهر می شوند"
 
 #: src/MainWindow.vala:63
 msgid "Open Files…"
-msgstr ""
+msgstr "باز کردن فایل ها…"
 
 #: src/MainWindow.vala:167
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
-msgstr[0] ""
+msgstr[0] "%d فایل نامعتبر به صف اضافه نشد"
 
 #: src/MainWindow.vala:215
-#, fuzzy
-#| msgid "All Years"
 msgid "All files"
-msgstr "همه سال‌ها"
+msgstr "همه فایل ها"
 
 #: src/MainWindow.vala:220
-#, fuzzy
-#| msgid "Music Player"
 msgid "Music files"
-msgstr "پخش کننده موسیقی"
+msgstr "فایل های موسیقی"
 
 #: src/MainWindow.vala:229
 msgid "Open"
-msgstr ""
+msgstr "باز کردن"
 
 #: src/MainWindow.vala:233
 msgid "Open audio files"
-msgstr ""
+msgstr "باز کردن فایل صوتی"
 
 #: src/MainWindow.vala:271
-#, fuzzy
 msgid "Repeat None"
-msgstr "بازپخش آهنگ"
+msgstr "بازپخش هیچکدام"
 
 #: src/MainWindow.vala:275
-#, fuzzy
 msgid "Repeat All"
 msgstr "بازپخش آلبوم"
 
 #: src/MainWindow.vala:279
-#, fuzzy
 msgid "Repeat One"
 msgstr "بازپخش آهنگ"
 
@@ -90,7 +83,7 @@ msgstr "بازپخش آهنگ"
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
-msgstr[0] ""
+msgstr[0] "%d آهنگ به صف اضافه شد"
 
 #. Don't set artist for files without tags
 #: src/PlaybackManager.vala:196
@@ -98,25 +91,24 @@ msgid "Unknown"
 msgstr "ناشناخته"
 
 #: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
-#, fuzzy
 msgid "Not playing"
-msgstr "فهرست پخش جدید"
+msgstr "پخش نمی شود"
 
 #: src/Views/NowPlayingView.vala:45
 msgid "Previous"
-msgstr ""
+msgstr "قبلی"
 
 #: src/Views/NowPlayingView.vala:68
 msgid "Next"
-msgstr ""
+msgstr "بعدی"
 
 #: src/Views/NowPlayingView.vala:93
 msgid "Play"
-msgstr ""
+msgstr "پخش"
 
 #: src/Views/NowPlayingView.vala:96
 msgid "Pause"
-msgstr ""
+msgstr "نگه داشتن"
 
 #~ msgid "$NAME on $ALBUM"
 #~ msgstr "$NAME  از آلبوم $ALBUM"
