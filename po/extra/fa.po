@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-09-01 10:32+0000\n"
-"PO-Revision-Date: 2017-07-31 10:51+0000\n"
-"Last-Translator: mohamad12121 <mohamadij2@gmail.com>\n"
-"Language-Team: Persian <https://weblate.elementary.io/projects/music/extra/"
-"fa/>\n"
+"PO-Revision-Date: 2024-09-30 16:16+0000\n"
+"Last-Translator: Hossein <hossein17@duck.com>\n"
+"Language-Team: Persian <https://l10n.elementary.io/projects/music/extra/fa/>"
+"\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 2.15\n"
+"X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
 #: data/music.metainfo.xml.in:10 data/music.desktop.in:6
@@ -26,7 +26,7 @@ msgstr "موسیقی"
 
 #: data/music.metainfo.xml.in:11
 msgid "Queue and play local audio files"
-msgstr ""
+msgstr "صف بندی و پخش فایل های صوتی"
 
 #: data/music.metainfo.xml.in:13
 msgid ""
@@ -34,44 +34,47 @@ msgid ""
 "frills. See embedded album artwork. Control playback with media keys or in "
 "the system audio indicator."
 msgstr ""
+"به سرعت در صف قرار دهید و به فایل های موسیقی های درون کامپیوتر خود بدون هیچ "
+"گونه زواید اضافی گوش دهید. آثار هنری آلبوم جاسازی شده را ببینید. پخش را با "
+"کلیدهای رسانه یا در نشانگر صوتی سیستم کنترل کنید."
 
 #: data/music.metainfo.xml.in:18
 msgid "Quickly queue up your favorite tracks"
-msgstr ""
+msgstr "به سرعت آهنگ های مورد علاقه خود را در صف قرار دهید"
 
 #: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:70
 #: data/music.metainfo.xml.in:84
 msgid "Improvements:"
-msgstr ""
+msgstr "بهبودها:"
 
 #: data/music.metainfo.xml.in:61
 msgid "Toolbar shows a shadow when the view is scrolled"
-msgstr ""
+msgstr "وقتی نما اسکرول می شود، تولبار یک سایه را نشان می دهد"
 
 #: data/music.metainfo.xml.in:62
 msgid "Open audio files from within Music"
-msgstr ""
+msgstr "فایل های صوتی را از داخل Music باز کنید"
 
 #: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:73
 #: data/music.metainfo.xml.in:106
 msgid "Updated translations"
-msgstr ""
+msgstr "ترجمه های به روز شده"
 
 #: data/music.metainfo.xml.in:72
 msgid "Open folders in the filemanager with Music"
-msgstr ""
+msgstr "پوشه ها را در فایل منیجر با Music باز کنید"
 
 #: data/music.metainfo.xml.in:86
 msgid "For tracks without a title, use the file name instead of the whole URI"
-msgstr ""
+msgstr "برای ترک‌های بدون عنوان، از نام فایل به جای کل URI استفاده کنید"
 
 #: data/music.metainfo.xml.in:87
 msgid "Skip invalid files instead of stopping playback"
-msgstr ""
+msgstr "به جای توقف پخش، فایل های نامعتبر را رد کنید"
 
 #: data/music.metainfo.xml.in:88
 msgid "Next and Repeat buttons always work regardless of repeat mode"
-msgstr ""
+msgstr "دکمه های Next و Repeat همیشه بدون توجه به حالت تکرار کار می کنند"
 
 #: data/music.metainfo.xml.in:89
 msgid ""
@@ -79,23 +82,25 @@ msgid ""
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
 "Russian, Simplified Chinese, Turkish, and Ukrainian"
 msgstr ""
+"اکنون به زبان های کاتالان، هلندی، فنلاندی، فرانسوی، آلمانی، عبری، مجارستانی، "
+"ژاپنی، کره ای، کردی، مراتی، نروژی بوکمال، لهستانی، پرتغالی، روسی، چینی ساده "
+"شده، ترکی و اوکراینی موجود است"
 
 #: data/music.metainfo.xml.in:99
 msgid "Complete rewrite"
-msgstr ""
+msgstr "بازنویسی کامل"
 
 #: data/music.metainfo.xml.in:105
 msgid "Drop support for Last.FM"
-msgstr ""
+msgstr "پشتیبانی Last.FM را قطع کنید"
 
 #: data/music.desktop.in:7
 msgid "Listen to music"
 msgstr "گوش دادن به موسیقی"
 
 #: data/music.desktop.in:9
-#, fuzzy
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
-msgstr "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+msgstr "نویز;صوتی;پلیر;MP3;پلی;لیست پخش;رسانه;آهنگ;"
 
 #~ msgid "Music Player"
 #~ msgstr "پخش کننده موسیقی"
