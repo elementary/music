@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-01 10:32+0000\n"
+"POT-Creation-Date: 2024-11-27 13:06+0000\n"
 "PO-Revision-Date: 2017-12-28 18:44+0000\n"
 "Last-Translator: Hải Hồ <hochihai1997@gmail.com>\n"
 "Language-Team: Vietnamese <https://weblate.elementary.io/projects/music/"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 2.18\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:55+0000\n"
 
-#: src/Application.vala:92 src/Views/NowPlayingView.vala:18
+#: src/Application.vala:95 src/Views/NowPlayingView.vala:18
 #: src/Views/NowPlayingView.vala:116
 msgid "Music"
 msgstr "Nhạc"

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-01 10:32+0000\n"
+"POT-Creation-Date: 2024-11-27 13:06+0000\n"
 "PO-Revision-Date: 2018-08-29 19:33+0000\n"
 "Last-Translator: Carmina16 <mistresssilvara@hotmail.com>\n"
 "Language-Team: Occidental <https://weblate.elementary.io/projects/music/"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 3.0.1\n"
 
-#: src/Application.vala:92 src/Views/NowPlayingView.vala:18
+#: src/Application.vala:95 src/Views/NowPlayingView.vala:18
 #: src/Views/NowPlayingView.vala:116
 msgid "Music"
 msgstr "Musica"

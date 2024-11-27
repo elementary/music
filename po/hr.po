@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-01 10:32+0000\n"
+"POT-Creation-Date: 2024-11-27 13:06+0000\n"
 "PO-Revision-Date: 2019-02-12 00:06+0000\n"
 "Last-Translator: Rico Tzschichholz <ricotz@ubuntu.com>\n"
 "Language-Team: Croatian <https://weblate.elementary.io/projects/music/music/"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 
-#: src/Application.vala:92 src/Views/NowPlayingView.vala:18
+#: src/Application.vala:95 src/Views/NowPlayingView.vala:18
 #: src/Views/NowPlayingView.vala:116
 msgid "Music"
 msgstr "Glazba"
