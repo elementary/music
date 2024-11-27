@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-01 10:32+0000\n"
+"POT-Creation-Date: 2024-11-27 13:06+0000\n"
 "PO-Revision-Date: 2024-09-02 02:38+0000\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Chinese (Traditional) <https://l10n.elementary.io/projects/"
@@ -33,12 +33,18 @@ msgid ""
 "Quickly queue up and listen to your local music files without any extra "
 "frills. See embedded album artwork. Control playback with media keys or in "
 "the system audio indicator."
-msgstr "輕易的佇列並聆聽您本機的音樂檔案。查看內嵌的專輯封面。用媒體按鍵或系統音訊指"
+msgstr ""
+"輕易的佇列並聆聽您本機的音樂檔案。查看內嵌的專輯封面。用媒體按鍵或系統音訊指"
 "示器來控制播放。"
 
 #: data/music.metainfo.xml.in:18
 msgid "Quickly queue up your favorite tracks"
 msgstr "快速將您最愛的曲目加入待播清單"
+
+#: data/music.metainfo.xml.in:51
+#, fuzzy
+msgid "elementary, Inc."
+msgstr "elementary LLC."
 
 #: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:70
 #: data/music.metainfo.xml.in:84
@@ -101,10 +107,6 @@ msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
 "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;音樂;音訊;播放器;播放;播放清"
 "單;媒體;歌;曲;"
-
-#, fuzzy
-#~ msgid "elementary, Inc."
-#~ msgstr "elementary LLC."
 
 #~ msgid "Drop support for CD-ROM"
 #~ msgstr "放下 CD-ROM 的支援"

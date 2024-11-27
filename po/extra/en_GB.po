@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-01 10:32+0000\n"
+"POT-Creation-Date: 2024-11-27 13:06+0000\n"
 "PO-Revision-Date: 2024-09-29 02:16+0000\n"
 "Last-Translator: David Hewitt <davidmhewitt@gmail.com>\n"
 "Language-Team: English (United Kingdom) <https://l10n.elementary.io/projects/"
@@ -41,6 +41,10 @@ msgstr ""
 #: data/music.metainfo.xml.in:18
 msgid "Quickly queue up your favorite tracks"
 msgstr "Quickly queue up your favourite tracks"
+
+#: data/music.metainfo.xml.in:51
+msgid "elementary, Inc."
+msgstr "elementary, Inc."
 
 #: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:70
 #: data/music.metainfo.xml.in:84
@@ -101,9 +105,6 @@ msgstr "Listen to music"
 #: data/music.desktop.in:9
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
-
-#~ msgid "elementary, Inc."
-#~ msgstr "elementary, Inc."
 
 #~ msgid "Fix an issue with saving smart playlists"
 #~ msgstr "Fix an issue with saving smart playlists"

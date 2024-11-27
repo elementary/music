@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-01 10:32+0000\n"
+"POT-Creation-Date: 2024-11-27 13:06+0000\n"
 "PO-Revision-Date: 2022-05-29 18:19+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://l10n.elementary.io/projects/music/extra/mr/"
@@ -35,6 +35,10 @@ msgstr ""
 #: data/music.metainfo.xml.in:18
 msgid "Quickly queue up your favorite tracks"
 msgstr ""
+
+#: data/music.metainfo.xml.in:51
+msgid "elementary, Inc."
+msgstr "एलिमेंटरी, Inc."
 
 #: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:70
 #: data/music.metainfo.xml.in:84
@@ -92,9 +96,6 @@ msgstr "संगीत ऐका"
 #: data/music.desktop.in:9
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr "ध्वनी; ऑडियो; प्लेअर; एमपी 3; प्ले; प्लेलिस्ट; मीडिया; गाणी;"
-
-#~ msgid "elementary, Inc."
-#~ msgstr "एलिमेंटरी, Inc."
 
 #~ msgid "Fix an issue with saving smart playlists"
 #~ msgstr "स्मार्ट प्लेलिस्ट जतन करण्याशी संबंधित समस्येचे निराकरण करा"

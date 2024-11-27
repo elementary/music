@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-01 10:32+0000\n"
+"POT-Creation-Date: 2024-11-27 13:06+0000\n"
 "PO-Revision-Date: 2023-06-16 10:07+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://l10n.elementary.io/projects/music/"
@@ -41,6 +41,10 @@ msgstr ""
 #: data/music.metainfo.xml.in:18
 msgid "Quickly queue up your favorite tracks"
 msgstr "Legg til favorittspor i spilleliste raskt"
+
+#: data/music.metainfo.xml.in:51
+msgid "elementary, Inc."
+msgstr "elementary, Inc."
 
 #: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:70
 #: data/music.metainfo.xml.in:84
@@ -108,9 +112,6 @@ msgstr "Lytt til musikk"
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
 "Noise;Audio;Spiller;MP3;iPod;Spill;Spilleliste;Media;CD;Telefon;Sanger;"
-
-#~ msgid "elementary, Inc."
-#~ msgstr "elementary, Inc."
 
 #~ msgid "Fix an issue with saving smart playlists"
 #~ msgstr "Fikset et problem med lagring av smarte spillelister"

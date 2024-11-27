@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-01 10:32+0000\n"
+"POT-Creation-Date: 2024-11-27 13:06+0000\n"
 "PO-Revision-Date: 2021-07-22 10:14+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Norwegian Nynorsk <https://l10n.elementary.io/projects/music/"
@@ -38,6 +38,11 @@ msgstr ""
 #: data/music.metainfo.xml.in:18
 msgid "Quickly queue up your favorite tracks"
 msgstr ""
+
+#: data/music.metainfo.xml.in:51
+#, fuzzy
+msgid "elementary, Inc."
+msgstr "elementary LLC."
 
 #: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:70
 #: data/music.metainfo.xml.in:84
@@ -96,10 +101,6 @@ msgstr "Høyr på musikk"
 #, fuzzy
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-
-#, fuzzy
-#~ msgid "elementary, Inc."
-#~ msgstr "elementary LLC."
 
 #, fuzzy
 #~ msgid "Minor visual improvements"

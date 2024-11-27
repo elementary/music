@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-01 10:32+0000\n"
+"POT-Creation-Date: 2024-11-27 13:06+0000\n"
 "PO-Revision-Date: 2024-09-09 10:20+0000\n"
 "Last-Translator: Italo Felipe Capasso Ballesteros <edwood.grant@gmail.com>\n"
-"Language-Team: Spanish <https://l10n.elementary.io/projects/music/extra/es/>"
-"\n"
+"Language-Team: Spanish <https://l10n.elementary.io/projects/music/extra/es/"
+">\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,6 +42,10 @@ msgstr ""
 msgid "Quickly queue up your favorite tracks"
 msgstr "Ponga rápidamente en la cola de reproducción sus pistas favoritas"
 
+#: data/music.metainfo.xml.in:51
+msgid "elementary, Inc."
+msgstr "elementary, Inc."
+
 #: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:70
 #: data/music.metainfo.xml.in:84
 msgid "Improvements:"
@@ -49,7 +53,8 @@ msgstr "Mejoras:"
 
 #: data/music.metainfo.xml.in:61
 msgid "Toolbar shows a shadow when the view is scrolled"
-msgstr "La barra de herramientas ahora muestra una sombra al desplazar la vista"
+msgstr ""
+"La barra de herramientas ahora muestra una sombra al desplazar la vista"
 
 #: data/music.metainfo.xml.in:62
 msgid "Open audio files from within Music"
@@ -109,9 +114,6 @@ msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
 "Ruido; Audio; Reproductor; MP3; Reproducción; Lista de reproducción; Medios; "
 "Canciones;"
-
-#~ msgid "elementary, Inc."
-#~ msgstr "elementary, Inc."
 
 #~ msgid "Fix an issue with saving smart playlists"
 #~ msgstr ""

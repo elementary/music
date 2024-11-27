@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-01 10:32+0000\n"
+"POT-Creation-Date: 2024-11-27 13:06+0000\n"
 "PO-Revision-Date: 2021-04-29 20:55+0000\n"
 "Last-Translator: colindemian <colindemian@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
@@ -38,6 +38,11 @@ msgstr ""
 #: data/music.metainfo.xml.in:18
 msgid "Quickly queue up your favorite tracks"
 msgstr ""
+
+#: data/music.metainfo.xml.in:51
+#, fuzzy
+msgid "elementary, Inc."
+msgstr "elementary LLC."
 
 #: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:70
 #: data/music.metainfo.xml.in:84
@@ -96,10 +101,6 @@ msgstr "聆听音乐"
 #, fuzzy
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr "Noise;音频;播放器;MP3;iPod;播放;播放列表;媒体;CD;电话;歌曲;"
-
-#, fuzzy
-#~ msgid "elementary, Inc."
-#~ msgstr "elementary LLC."
 
 #~ msgid "Music Player"
 #~ msgstr "音乐播放器"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-01 10:32+0000\n"
+"POT-Creation-Date: 2024-11-27 13:06+0000\n"
 "PO-Revision-Date: 2020-08-29 21:13+0000\n"
 "Last-Translator: Mejans <farga@mejans.fr>\n"
 "Language-Team: Occitan <https://l10n.elementary.io/projects/music/extra/oc/"
@@ -32,6 +32,10 @@ msgstr ""
 
 #: data/music.metainfo.xml.in:18
 msgid "Quickly queue up your favorite tracks"
+msgstr ""
+
+#: data/music.metainfo.xml.in:51
+msgid "elementary, Inc."
 msgstr ""
 
 #: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:70
