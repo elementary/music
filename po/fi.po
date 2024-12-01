@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-11-27 13:06+0000\n"
-"PO-Revision-Date: 2023-01-26 09:25+0000\n"
+"PO-Revision-Date: 2024-12-01 12:56+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
-"Language-Team: Finnish <https://l10n.elementary.io/projects/music/music/fi/"
-">\n"
+"Language-Team: Finnish <https://l10n.elementary.io/projects/music/music/fi/>"
+"\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.2\n"
+"X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2017-03-19 06:29+0000\n"
 
 #: src/Application.vala:95 src/Views/NowPlayingView.vala:18
@@ -31,7 +31,7 @@ msgstr "Sekoita"
 
 #: src/MainWindow.vala:26
 msgid "Search titles in playlist"
-msgstr ""
+msgstr "Etsi kappaleita soittolistalta"
 
 #: src/MainWindow.vala:45
 msgid "Queue is Empty"
@@ -42,10 +42,8 @@ msgid "Audio files opened from Files will appear here"
 msgstr "Tiedostonhallinnasta avatut äänitiedostot ilmestyvät tänne"
 
 #: src/MainWindow.vala:63
-#, fuzzy
-#| msgid "Other Files"
 msgid "Open Files…"
-msgstr "Muut tiedostot"
+msgstr "Avaa tiedostoja…"
 
 #: src/MainWindow.vala:167
 #, c-format
@@ -55,16 +53,12 @@ msgstr[0] "%d virheellistä tiedostoa ei lisätty jonoon"
 msgstr[1] "%d virheellistä tiedostoa ei lisätty jonoon"
 
 #: src/MainWindow.vala:215
-#, fuzzy
-#| msgid "All Years"
 msgid "All files"
-msgstr "Kaikki vuodet"
+msgstr "Kaikki tiedostot"
 
 #: src/MainWindow.vala:220
-#, fuzzy
-#| msgid "Music Folder"
 msgid "Music files"
-msgstr "Musiikkikansio"
+msgstr "Musiikkitiedostot"
 
 #: src/MainWindow.vala:229
 msgid "Open"
@@ -72,7 +66,7 @@ msgstr "Avaa"
 
 #: src/MainWindow.vala:233
 msgid "Open audio files"
-msgstr ""
+msgstr "Avaa äänitiedostoja"
 
 #: src/MainWindow.vala:271
 msgid "Repeat None"
