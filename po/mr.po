@@ -3,16 +3,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-11-27 13:06+0000\n"
-"PO-Revision-Date: 2022-05-29 19:24+0000\n"
+"PO-Revision-Date: 2025-01-28 22:58+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
-"Language-Team: Marathi <https://l10n.elementary.io/projects/music/music/mr/"
-">\n"
+"Language-Team: Marathi <https://l10n.elementary.io/projects/music/music/mr/>"
+"\n"
 "Language: mr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 5.9.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 
 #: src/Application.vala:95 src/Views/NowPlayingView.vala:18
@@ -26,7 +26,7 @@ msgstr "शफल करा"
 
 #: src/MainWindow.vala:26
 msgid "Search titles in playlist"
-msgstr ""
+msgstr "प्लेलिस्टमध्ये शीर्षके शोधा"
 
 #: src/MainWindow.vala:45
 msgid "Queue is Empty"
@@ -37,29 +37,24 @@ msgid "Audio files opened from Files will appear here"
 msgstr "Files मधून उघडलेल्या ऑडिओ फाइल्स येथे दिसतील"
 
 #: src/MainWindow.vala:63
+#, fuzzy
 msgid "Open Files…"
-msgstr ""
+msgstr "फाइल्स उघडा…"
 
 #: src/MainWindow.vala:167
-#, fuzzy, c-format
-#| msgid "%d track was added to the queue"
-#| msgid_plural "%d tracks were added to the queue"
+#, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
-msgstr[0] "रांगेत %d ट्रॅक जोडला गेला"
-msgstr[1] "रांगेत %d ट्रॅक जोडले गेले"
+msgstr[0] "रांगेत %d अवैध फाइल जोडली गेली नाही"
+msgstr[1] "रांगेत %d अवैध फाइल्स जोडल्या गेल्या नाहीत"
 
 #: src/MainWindow.vala:215
-#, fuzzy
-#| msgid "All Years"
 msgid "All files"
-msgstr "सर्व वर्ष"
+msgstr "सर्व फायली"
 
 #: src/MainWindow.vala:220
-#, fuzzy
-#| msgid "Music"
 msgid "Music files"
-msgstr "संगीत"
+msgstr "संगीत फाइल्स"
 
 #: src/MainWindow.vala:229
 msgid "Open"
@@ -67,7 +62,7 @@ msgstr "उघडा"
 
 #: src/MainWindow.vala:233
 msgid "Open audio files"
-msgstr ""
+msgstr "ऑडिओ फायली उघडा"
 
 #: src/MainWindow.vala:271
 msgid "Repeat None"
