@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-27 13:06+0000\n"
+"POT-Creation-Date: 2025-01-28 23:00+0000\n"
 "PO-Revision-Date: 2024-09-12 22:16+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://l10n.elementary.io/projects/music/extra/ka/"
@@ -41,10 +41,6 @@ msgstr ""
 #: data/music.metainfo.xml.in:18
 msgid "Quickly queue up your favorite tracks"
 msgstr "სწრაფად მოძებნეთ რჩეული ტრეკები"
-
-#: data/music.metainfo.xml.in:51
-msgid "elementary, Inc."
-msgstr "elementary, Inc."
 
 #: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:70
 #: data/music.metainfo.xml.in:84
@@ -110,6 +106,9 @@ msgstr "მოუსმინეთ მუსიკას"
 #: data/music.desktop.in:9
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr "Noise;აუდიო;დამკვრელი;MP3;iPod;დაკვრა;სია;მედია;CD;ტელეფონი;სიმღერები;"
+
+#~ msgid "elementary, Inc."
+#~ msgstr "elementary, Inc."
 
 #~ msgid "Fix an issue with saving smart playlists"
 #~ msgstr "ჭკვიანი დასაკრავი სიების შენახვის შეცდომის გასწორება"

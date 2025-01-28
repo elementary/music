@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-27 13:06+0000\n"
+"POT-Creation-Date: 2025-01-28 23:00+0000\n"
 "PO-Revision-Date: 2018-01-21 00:04+0000\n"
 "Last-Translator: Laurence Bahiirwa <laurence@mediauganda.com>\n"
 "Language-Team: Ganda <https://weblate.elementary.io/projects/music/extra/lg/"
@@ -32,10 +32,6 @@ msgstr ""
 
 #: data/music.metainfo.xml.in:18
 msgid "Quickly queue up your favorite tracks"
-msgstr ""
-
-#: data/music.metainfo.xml.in:51
-msgid "elementary, Inc."
 msgstr ""
 
 #: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:70

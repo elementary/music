@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-27 13:06+0000\n"
+"POT-Creation-Date: 2025-01-28 23:00+0000\n"
 "PO-Revision-Date: 2021-07-22 10:14+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Slovenian <https://l10n.elementary.io/projects/music/extra/sl/"
@@ -39,11 +39,6 @@ msgstr ""
 #: data/music.metainfo.xml.in:18
 msgid "Quickly queue up your favorite tracks"
 msgstr ""
-
-#: data/music.metainfo.xml.in:51
-#, fuzzy
-msgid "elementary, Inc."
-msgstr "elementary, Inc."
 
 #: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:70
 #: data/music.metainfo.xml.in:84
@@ -104,6 +99,10 @@ msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
 "Noise;Audio;Predvajalnik;Glasba;MP3;iPod;Igraj;Media;CD;Play;Phone;Songs;"
 "Pesmi;"
+
+#, fuzzy
+#~ msgid "elementary, Inc."
+#~ msgstr "elementary, Inc."
 
 #, fuzzy
 #~ msgid "Minor visual improvements"

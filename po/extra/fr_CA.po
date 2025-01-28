@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-27 13:06+0000\n"
+"POT-Creation-Date: 2025-01-28 23:00+0000\n"
 "PO-Revision-Date: 2016-01-04 18:56+0000\n"
 "Last-Translator: Corentin Noël <corentin@elementaryos.org>\n"
 "Language-Team: French (Canada) <fr_CA@li.org>\n"
@@ -35,10 +35,6 @@ msgstr ""
 
 #: data/music.metainfo.xml.in:18
 msgid "Quickly queue up your favorite tracks"
-msgstr ""
-
-#: data/music.metainfo.xml.in:51
-msgid "elementary, Inc."
 msgstr ""
 
 #: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:70

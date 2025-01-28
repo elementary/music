@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-27 13:06+0000\n"
+"POT-Creation-Date: 2025-01-28 23:00+0000\n"
 "PO-Revision-Date: 2024-09-02 00:57+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/music/extra/he/>\n"
@@ -35,10 +35,6 @@ msgstr ""
 #: data/music.metainfo.xml.in:18
 msgid "Quickly queue up your favorite tracks"
 msgstr "הוספת הרצועות המועדפות עליך במהירות"
-
-#: data/music.metainfo.xml.in:51
-msgid "elementary, Inc."
-msgstr "elementary בע״מ"
 
 #: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:70
 #: data/music.metainfo.xml.in:84
@@ -101,6 +97,9 @@ msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
 "Noise;נגן;מוזיקה;MP3;אייפוד;נגן;רשימת-נגינה;מדיה;פלאפון;סלולרי;סלולר;אייפון;"
 "שירים;רעש;"
+
+#~ msgid "elementary, Inc."
+#~ msgstr "elementary בע״מ"
 
 #~ msgid "Fix an issue with saving smart playlists"
 #~ msgstr "תוקנה תקלה בשמירת רשימות נגינה חכמות"
