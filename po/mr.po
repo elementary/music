@@ -3,10 +3,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-28 23:00+0000\n"
-"PO-Revision-Date: 2025-01-28 22:58+0000\n"
+"PO-Revision-Date: 2025-02-14 15:40+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
-"Language-Team: Marathi <https://l10n.elementary.io/projects/music/music/mr/"
-">\n"
+"Language-Team: Marathi <https://l10n.elementary.io/projects/music/music/mr/>"
+"\n"
 "Language: mr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,7 +37,6 @@ msgid "Audio files opened from Files will appear here"
 msgstr "Files मधून उघडलेल्या ऑडिओ फाइल्स येथे दिसतील"
 
 #: src/MainWindow.vala:63
-#, fuzzy
 msgid "Open Files…"
 msgstr "फाइल्स उघडा…"
 
