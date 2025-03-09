@@ -1,8 +1,42 @@
-public class Music.QueueView : Granite.Bin {
+public class Music.QueueView : Gtk.Box {
+    private Gtk.Button repeat_button;
+    private Gtk.Button shuffle_button;
+    private Settings settings;
+    private Gtk.SearchEntry search_entry;
+    private Gtk.Revealer search_revealer;
+
     construct {
         var playback_manager = PlaybackManager.get_default ();
 
-        var start_window_controls = new Gtk.WindowControls (Gtk.PackType.START);
+        var end_window_controls = new Gtk.WindowControls (END);
+
+        shuffle_button = new Gtk.Button.from_icon_name ("media-playlist-shuffle-symbolic") {
+            action_name = Application.ACTION_PREFIX + Application.ACTION_SHUFFLE,
+            tooltip_text = _("Shuffle")
+        };
+
+        repeat_button = new Gtk.Button ();
+
+        search_entry = new Gtk.SearchEntry () {
+            placeholder_text = _("Search titles in playlist")
+        };
+
+        search_revealer = new Gtk.Revealer () {
+            child = search_entry
+        };
+
+        playback_manager.bind_property (
+            "has-items", search_revealer, "reveal-child", DEFAULT | SYNC_CREATE
+        );
+
+        var queue_header = new Gtk.HeaderBar () {
+            show_title_buttons = false,
+            title_widget = search_revealer
+        };
+        queue_header.add_css_class (Granite.STYLE_CLASS_DEFAULT_DECORATION);
+        queue_header.pack_start (shuffle_button);
+        queue_header.pack_start (repeat_button);
+        queue_header.pack_end (end_window_controls);
 
         var queue_placeholder = new Granite.Placeholder (_("Queue is Empty")) {
             description = _("Audio files opened from Files will appear here"),
@@ -28,6 +62,7 @@ public class Music.QueueView : Granite.Bin {
 
         var add_button = new Gtk.Button () {
             child = add_button_box,
+            action_name = Application.ACTION_PREFIX + Application.ACTION_OPEN
         };
         add_button.add_css_class (Granite.STYLE_CLASS_FLAT);
 
@@ -40,7 +75,9 @@ public class Music.QueueView : Granite.Bin {
             bottom_bar_style = RAISED,
             content = scrolled
         };
+        toolbar_view.add_top_bar (queue_header);
         toolbar_view.add_bottom_bar (action_bar);
+        toolbar_view.add_css_class (Granite.STYLE_CLASS_VIEW);
 
         var drop_target = new Gtk.DropTarget (typeof (Gdk.FileList), Gdk.DragAction.COPY);
         scrolled.add_controller (drop_target);
@@ -59,7 +96,7 @@ public class Music.QueueView : Granite.Bin {
 
         hexpand = true;
         vexpand = true;
-        child = queue_handle;
+        append (queue_handle);
 
         drop_target.drop.connect ((target, value, x, y) => {
             if (value.type () == typeof (Gdk.FileList)) {
@@ -98,6 +135,37 @@ public class Music.QueueView : Granite.Bin {
         queue_listbox.row_activated.connect ((row) => {
             playback_manager.current_audio = ((TrackRow) row.child).audio_object;
         });
+
+        settings = new Settings ("io.elementary.music");
+        settings.changed["repeat-mode"].connect (update_repeat_button);
+
+        update_repeat_button ();
+
+        repeat_button.clicked.connect (() => {
+            var enum_step = settings.get_enum ("repeat-mode");
+            if (enum_step < 2) {
+                settings.set_enum ("repeat-mode", enum_step + 1);
+            } else {
+                settings.set_enum ("repeat-mode", 0);
+            }
+        });
+    }
+
+    private void update_repeat_button () {
+        switch (settings.get_string ("repeat-mode")) {
+            case "disabled":
+                repeat_button.icon_name = "media-playlist-no-repeat-symbolic";
+                repeat_button.tooltip_text = _("Repeat None");
+                break;
+            case "all":
+                repeat_button.icon_name = "media-playlist-repeat-symbolic";
+                repeat_button.tooltip_text = _("Repeat All");
+                break;
+            case "one":
+                repeat_button.icon_name = "media-playlist-repeat-song-symbolic";
+                repeat_button.tooltip_text = _("Repeat One");
+                break;
+        }
     }
 
     //Array concatenation not permitted for parameters so use a list instead
