@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-31 15:44+0000\n"
-"PO-Revision-Date: 2023-04-06 19:59+0000\n"
+"POT-Creation-Date: 2025-01-28 23:00+0000\n"
+"PO-Revision-Date: 2024-09-04 11:16+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/music/extra/ja/"
 ">\n"
@@ -17,10 +17,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.16.4\n"
+"X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
-#: data/music.metainfo.xml.in:10 data/music.desktop.in:4
+#: data/music.metainfo.xml.in:10 data/music.desktop.in:6
 msgid "Music"
 msgstr "ミュージック"
 
@@ -36,96 +36,99 @@ msgid ""
 msgstr ""
 "手持ちの音声ファイルを簡単にキューに追加して再生しましょう。機能は至ってシン"
 "プルです。また、ファイルに埋め込まれたアルバムアートワークを表示できます。メ"
-"ディアキーやシステム音声インジケーターを使うことで、曲の再生／停止／切り替え"
-"も可能です。"
+"ディアキーやシステム音声インジケーターを使うことで、曲の再生/停止/切り替えも"
+"可能です。"
 
 #: data/music.metainfo.xml.in:18
 msgid "Quickly queue up your favorite tracks"
 msgstr "お気に入りの楽曲を簡単にキューに追加できます"
 
-#: data/music.metainfo.xml.in:50
-msgid "elementary, Inc."
-msgstr "elementary, Inc."
-
-#: data/music.metainfo.xml.in:57 data/music.metainfo.xml.in:71
+#: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:70
+#: data/music.metainfo.xml.in:84
 msgid "Improvements:"
 msgstr "改善点:"
 
-#: data/music.metainfo.xml.in:59
+#: data/music.metainfo.xml.in:61
+msgid "Toolbar shows a shadow when the view is scrolled"
+msgstr "ビューがスクロールされた場合に、ツールバーが影を表示するように修正"
+
+#: data/music.metainfo.xml.in:62
+msgid "Open audio files from within Music"
+msgstr "“ミュージック”内で音声ファイルを開く機能を追加"
+
+#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:73
+#: data/music.metainfo.xml.in:106
+msgid "Updated translations"
+msgstr "新しい翻訳"
+
+#: data/music.metainfo.xml.in:72
 msgid "Open folders in the filemanager with Music"
 msgstr ""
 "ファイルマネージャーからフォルダーを指定して“ミュージック”で開く機能を追加"
 
-#: data/music.metainfo.xml.in:60 data/music.metainfo.xml.in:93
-#: data/music.metainfo.xml.in:103
-msgid "Updated translations"
-msgstr "新しい翻訳"
-
-#: data/music.metainfo.xml.in:73
+#: data/music.metainfo.xml.in:86
 msgid "For tracks without a title, use the file name instead of the whole URI"
 msgstr ""
 "タイトルのないトラックの場合は、URI 全体ではなくファイル名のみを使用するよう"
 "に修正"
 
-#: data/music.metainfo.xml.in:74
+#: data/music.metainfo.xml.in:87
 msgid "Skip invalid files instead of stopping playback"
 msgstr ""
 "無効なファイルが存在する場合、再生停止するのではなくスキップするように修正"
 
-#: data/music.metainfo.xml.in:75
+#: data/music.metainfo.xml.in:88
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr ""
 "リピートの設定に関わらず、“次へ”および“繰り返し”ボタンが常に使用できるように"
 "修正"
 
-#: data/music.metainfo.xml.in:76
+#: data/music.metainfo.xml.in:89
 msgid ""
 "Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
 "Russian, Simplified Chinese, Turkish, and Ukrainian"
 msgstr ""
-"カタロニア語、オランダ語、フィンランド語、フランス語、ドイツ語、ヘブライ語、"
-"ハンガリー語、日本語、韓国語、クルド語、マラーティー語、ノルウェー語、ポーラ"
-"ンド語、ポルトガル語、ロシア語、簡体字中国語、トルコ語、ウクライナ語で利用可"
-"能"
+"次の言語で利用可能になりました: カタロニア語、オランダ語、フィンランド語、フ"
+"ランス語、ドイツ語、ヘブライ語、ハンガリー語、日本語、韓国語、クルド語、マ"
+"ラーティー語、ノルウェー語、ポーランド語、ポルトガル語、ロシア語、簡体字中国"
+"語、トルコ語、ウクライナ語"
 
-#: data/music.metainfo.xml.in:86
+#: data/music.metainfo.xml.in:99
 msgid "Complete rewrite"
-msgstr "コードの完全な書き直し"
+msgstr "コードの全面的な書き直し"
 
-#: data/music.metainfo.xml.in:92
+#: data/music.metainfo.xml.in:105
 msgid "Drop support for Last.FM"
 msgstr "Last.FM への対応を終了"
 
-#: data/music.metainfo.xml.in:99
-msgid "Fix an issue with saving smart playlists"
-msgstr "スマートプレイリストの保存時に発生する不具合を修正"
-
-#: data/music.metainfo.xml.in:100
-msgid "Drop support for CD-ROM"
-msgstr "CD-ROM への対応を終了"
-
-#: data/music.metainfo.xml.in:101
-msgid "Dark style support"
-msgstr "ダークスタイルへの対応"
-
-#: data/music.metainfo.xml.in:102
-msgid "Minor visual improvements"
-msgstr "軽微な視覚上の改善"
-
-#: data/music.desktop.in:5
-msgid "Music Player"
-msgstr "ミュージックプレーヤー"
-
-#: data/music.desktop.in:6
+#: data/music.desktop.in:7
 msgid "Listen to music"
 msgstr "音楽を聴きます"
 
-#: data/music.desktop.in:13
+#: data/music.desktop.in:9
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
 "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;オーディオ;音声;プレーヤー;"
 "プレイヤー;再生;プレイリスト;メディア;曲;"
+
+#~ msgid "elementary, Inc."
+#~ msgstr "elementary, Inc."
+
+#~ msgid "Fix an issue with saving smart playlists"
+#~ msgstr "スマートプレイリストの保存時に発生する不具合を修正"
+
+#~ msgid "Drop support for CD-ROM"
+#~ msgstr "CD-ROM への対応を終了"
+
+#~ msgid "Dark style support"
+#~ msgstr "ダークモードへの対応"
+
+#~ msgid "Minor visual improvements"
+#~ msgstr "軽微な視覚上の改善"
+
+#~ msgid "Music Player"
+#~ msgstr "ミュージックプレーヤー"
 
 #~ msgid "Drag and drop whole folders into the queue"
 #~ msgstr ""

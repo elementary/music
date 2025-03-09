@@ -7,26 +7,26 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-31 15:44+0000\n"
-"PO-Revision-Date: 2021-07-22 10:14+0000\n"
-"Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
-"Language-Team: Chinese (Traditional) <https://l10n.elementary.io/projects/"
-"music/extra/zh_Hant/>\n"
+"POT-Creation-Date: 2025-01-28 23:00+0000\n"
+"PO-Revision-Date: 2024-12-09 11:10+0000\n"
+"Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
+"Language-Team: Chinese (Traditional Han script) <https://l10n.elementary.io/"
+"projects/music/extra/zh_Hant/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 5.8.4\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
-#: data/music.metainfo.xml.in:10 data/music.desktop.in:4
+#: data/music.metainfo.xml.in:10 data/music.desktop.in:6
 msgid "Music"
 msgstr "音樂"
 
 #: data/music.metainfo.xml.in:11
 msgid "Queue and play local audio files"
-msgstr ""
+msgstr "佇列並播放本地音訊檔案"
 
 #: data/music.metainfo.xml.in:13
 msgid ""
@@ -34,88 +34,87 @@ msgid ""
 "frills. See embedded album artwork. Control playback with media keys or in "
 "the system audio indicator."
 msgstr ""
+"輕易的佇列並聆聽您本機的音樂檔案。查看內嵌的專輯封面。用媒體按鍵或系統音訊指"
+"示器來控制播放。"
 
 #: data/music.metainfo.xml.in:18
 msgid "Quickly queue up your favorite tracks"
-msgstr ""
+msgstr "快速將您最愛的曲目加入待播清單"
 
-#: data/music.metainfo.xml.in:50
-#, fuzzy
-msgid "elementary, Inc."
-msgstr "elementary LLC."
-
-#: data/music.metainfo.xml.in:57 data/music.metainfo.xml.in:71
+#: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:70
+#: data/music.metainfo.xml.in:84
 msgid "Improvements:"
-msgstr ""
+msgstr "改善項目："
 
-#: data/music.metainfo.xml.in:59
-msgid "Open folders in the filemanager with Music"
-msgstr ""
+#: data/music.metainfo.xml.in:61
+msgid "Toolbar shows a shadow when the view is scrolled"
+msgstr "工具列在捲動檢視時會顯示陰影"
 
-#: data/music.metainfo.xml.in:60 data/music.metainfo.xml.in:93
-#: data/music.metainfo.xml.in:103
+#: data/music.metainfo.xml.in:62
+msgid "Open audio files from within Music"
+msgstr "從《音樂》開啟音訊檔案"
+
+#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:73
+#: data/music.metainfo.xml.in:106
 msgid "Updated translations"
 msgstr "更新翻譯"
 
-#: data/music.metainfo.xml.in:73
+#: data/music.metainfo.xml.in:72
+msgid "Open folders in the filemanager with Music"
+msgstr "從檔案管理員用《音樂》開啟資料夾"
+
+#: data/music.metainfo.xml.in:86
 msgid "For tracks without a title, use the file name instead of the whole URI"
-msgstr ""
+msgstr "為沒有標題的曲目使用檔案名稱而非整個 URI"
 
-#: data/music.metainfo.xml.in:74
+#: data/music.metainfo.xml.in:87
 msgid "Skip invalid files instead of stopping playback"
-msgstr ""
+msgstr "跳過無效檔案而非停止播放"
 
-#: data/music.metainfo.xml.in:75
+#: data/music.metainfo.xml.in:88
 msgid "Next and Repeat buttons always work regardless of repeat mode"
-msgstr ""
+msgstr "下一首和重複按鈕現在不論重複模式為何仍然會正常運作"
 
-#: data/music.metainfo.xml.in:76
+#: data/music.metainfo.xml.in:89
 msgid ""
 "Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
 "Russian, Simplified Chinese, Turkish, and Ukrainian"
 msgstr ""
-
-#: data/music.metainfo.xml.in:86
-msgid "Complete rewrite"
-msgstr ""
-
-#: data/music.metainfo.xml.in:92
-#, fuzzy
-msgid "Drop support for Last.FM"
-msgstr "放下 CD-ROM 的支援"
+"現在支援加泰羅尼亞語、荷蘭語、芬蘭語、法語、德文、希伯來文、匈牙利語、日文、"
+"韓文、庫德語、馬拉提語、挪威語（博克馬爾語）、波蘭語、葡萄牙語、俄文、簡體中"
+"文、土耳其文，以及烏克蘭語"
 
 #: data/music.metainfo.xml.in:99
-msgid "Fix an issue with saving smart playlists"
-msgstr ""
+msgid "Complete rewrite"
+msgstr "完全重寫"
 
-#: data/music.metainfo.xml.in:100
-msgid "Drop support for CD-ROM"
-msgstr "放下 CD-ROM 的支援"
+#: data/music.metainfo.xml.in:105
+msgid "Drop support for Last.FM"
+msgstr "捨棄對 Last.FM 的支援"
 
-#: data/music.metainfo.xml.in:101
-msgid "Dark style support"
-msgstr ""
-
-#: data/music.metainfo.xml.in:102
-#, fuzzy
-msgid "Minor visual improvements"
-msgstr "性能提升"
-
-#: data/music.desktop.in:5
-msgid "Music Player"
-msgstr "音樂播放器"
-
-#: data/music.desktop.in:6
+#: data/music.desktop.in:7
 msgid "Listen to music"
 msgstr "聆聽音樂"
 
-#: data/music.desktop.in:13
-#, fuzzy
+#: data/music.desktop.in:9
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
-"Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;音樂;音訊;播放"
-"器;播放;播放清單;媒體;光碟;唱片;手機;歌;曲;"
+"Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;音樂;音訊;播放器;播放;播放清"
+"單;媒體;歌;曲;"
+
+#~ msgid "elementary, Inc."
+#~ msgstr "elementary, Inc."
+
+#~ msgid "Drop support for CD-ROM"
+#~ msgstr "放下 CD-ROM 的支援"
+
+#, fuzzy
+#~ msgid "Minor visual improvements"
+#~ msgstr "性能提升"
+
+#~ msgid "Music Player"
+#~ msgstr "音樂播放器"
 
 #~ msgid "Fix removing items from the queue"
 #~ msgstr "修正從佇列中移除項目的功能"

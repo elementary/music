@@ -1,4 +1,4 @@
-public class Music.QueueView : Gtk.Box {
+public class Music.QueueView : Granite.Bin {
     construct {
         var playback_manager = PlaybackManager.get_default ();
 
@@ -20,13 +20,35 @@ public class Music.QueueView : Gtk.Box {
             child = queue_listbox
         };
 
+        var add_button_label = new Gtk.Label (_("Open Files…"));
+
+        var add_button_box = new Gtk.Box (HORIZONTAL, 0);
+        add_button_box.append (new Gtk.Image.from_icon_name ("document-open-symbolic"));
+        add_button_box.append (add_button_label);
+
+        var add_button = new Gtk.Button () {
+            child = add_button_box,
+        };
+        add_button.add_css_class (Granite.STYLE_CLASS_FLAT);
+
+        add_button_label.mnemonic_widget = add_button;
+
+        var action_bar = new Gtk.ActionBar ();
+        action_bar.pack_start (add_button);
+
+        var toolbar_view = new Adw.ToolbarView () {
+            bottom_bar_style = RAISED,
+            content = scrolled
+        };
+        toolbar_view.add_bottom_bar (action_bar);
+
         var drop_target = new Gtk.DropTarget (typeof (Gdk.FileList), Gdk.DragAction.COPY);
         scrolled.add_controller (drop_target);
 
         var error_toast = new Granite.Toast ("");
 
         var queue_overlay = new Gtk.Overlay () {
-            child = scrolled
+            child = toolbar_view
         };
         queue_overlay.add_overlay (error_toast);
 
@@ -37,7 +59,7 @@ public class Music.QueueView : Gtk.Box {
 
         hexpand = true;
         vexpand = true;
-        append (queue_handle);
+        child = queue_handle;
 
         drop_target.drop.connect ((target, value, x, y) => {
             if (value.type () == typeof (Gdk.FileList)) {

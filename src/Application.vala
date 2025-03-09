@@ -9,12 +9,16 @@ public class Music.Application : Gtk.Application {
     public const string ACTION_PLAY_PAUSE = "action-play-pause";
     public const string ACTION_PREVIOUS = "action-previous";
     public const string ACTION_SHUFFLE = "action-shuffle";
+    public const string ACTION_FIND = "action-find";
+    public const string ACTION_QUIT = "action-quit";
 
     private const ActionEntry[] ACTION_ENTRIES = {
         { ACTION_PLAY_PAUSE, action_play_pause, null, "false" },
         { ACTION_NEXT, action_next },
         { ACTION_PREVIOUS, action_previous },
-        { ACTION_SHUFFLE, action_shuffle }
+        { ACTION_SHUFFLE, action_shuffle },
+        { ACTION_FIND, action_find },
+        { ACTION_QUIT, quit }
     };
 
     private PlaybackManager? playback_manager = null;
@@ -33,19 +37,44 @@ public class Music.Application : Gtk.Application {
         GLib.Intl.textdomain (Constants.GETTEXT_PACKAGE);
     }
 
-    protected override void activate () {
-        if (active_window != null) {
-            active_window.present_with_time (Gdk.CURRENT_TIME);
-            return;
-        }
+    protected override void startup () {
+        base.startup ();
+
+        Granite.init ();
 
         add_action_entries (ACTION_ENTRIES, this);
+
+        set_accels_for_action (ACTION_PREFIX + ACTION_FIND, {"<Ctrl>F"});
+        set_accels_for_action (ACTION_PREFIX + ACTION_QUIT, {"<Ctrl>Q"});
 
         ((SimpleAction) lookup_action (ACTION_PLAY_PAUSE)).set_enabled (false);
         ((SimpleAction) lookup_action (ACTION_PLAY_PAUSE)).set_state (false);
         ((SimpleAction) lookup_action (ACTION_NEXT)).set_enabled (false);
         ((SimpleAction) lookup_action (ACTION_PREVIOUS)).set_enabled (false);
         ((SimpleAction) lookup_action (ACTION_SHUFFLE)).set_enabled (false);
+
+        var granite_settings = Granite.Settings.get_default ();
+        var gtk_settings = Gtk.Settings.get_default ();
+
+        gtk_settings.gtk_icon_theme_name = "elementary";
+        gtk_settings.gtk_theme_name = "io.elementary.stylesheet.orange";
+
+        gtk_settings.gtk_application_prefer_dark_theme = (
+            granite_settings.prefers_color_scheme == DARK
+        );
+
+        granite_settings.notify["prefers-color-scheme"].connect (() => {
+            gtk_settings.gtk_application_prefer_dark_theme = (
+                granite_settings.prefers_color_scheme == DARK
+            );
+        });
+    }
+
+    protected override void activate () {
+        if (active_window != null) {
+            active_window.present ();
+            return;
+        }
 
         playback_manager = PlaybackManager.get_default ();
 
@@ -69,24 +98,6 @@ public class Music.Application : Gtk.Application {
 
         add_window (main_window);
 
-        Gtk.IconTheme.get_for_display (Gdk.Display.get_default ()).add_resource_path ("/io/elementary/music");
-
-        var granite_settings = Granite.Settings.get_default ();
-        var gtk_settings = Gtk.Settings.get_default ();
-
-        gtk_settings.gtk_icon_theme_name = "elementary";
-        gtk_settings.gtk_theme_name = "io.elementary.stylesheet.orange";
-
-        gtk_settings.gtk_application_prefer_dark_theme = (
-            granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK
-        );
-
-        granite_settings.notify["prefers-color-scheme"].connect (() => {
-            gtk_settings.gtk_application_prefer_dark_theme = (
-                granite_settings.prefers_color_scheme == Granite.Settings.ColorScheme.DARK
-            );
-        });
-
         /*
         * This is very finicky. Bind size after present else set_titlebar gives us bad sizes
         * Set maximize after height/width else window is min size on unmaximize
@@ -103,7 +114,7 @@ public class Music.Application : Gtk.Application {
         settings.bind ("window-maximized", main_window, "maximized", SettingsBindFlags.SET);
     }
 
-    private File[] list_directory (string directory) {
+    private static File[] list_directory (string directory) {
         Dir dir;
         try {
             dir = Dir.open (directory, 0);
@@ -125,7 +136,7 @@ public class Music.Application : Gtk.Application {
         return elements;
     }
 
-    private File[] loop_through_files (File[] files) {
+    public static File[] loop_through_files (File[] files) {
         // All of these will be returned later in bulk
         File[] elements = {};
 
@@ -173,6 +184,10 @@ public class Music.Application : Gtk.Application {
 
     private void action_shuffle () {
         playback_manager.shuffle ();
+    }
+
+    private void action_find () {
+        ((MainWindow)active_window).start_search ();
     }
 
     private void on_bus_acquired (DBusConnection connection, string name) {

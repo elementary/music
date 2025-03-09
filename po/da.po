@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-31 15:44+0000\n"
+"POT-Creation-Date: 2025-01-28 23:00+0000\n"
 "PO-Revision-Date: 2018-12-12 23:02+0000\n"
 "Last-Translator: Kaj Printz Madsen <kajprintz@gmail.com>\n"
 "Language-Team: Danish <https://weblate.elementary.io/projects/music/music/da/"
@@ -20,47 +20,77 @@ msgstr ""
 "X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-22 06:52+0000\n"
 
-#: src/Application.vala:66 src/Views/NowPlayingView.vala:18
+#: src/Application.vala:95 src/Views/NowPlayingView.vala:18
 #: src/Views/NowPlayingView.vala:116
 msgid "Music"
 msgstr "Musik"
 
-#: src/MainWindow.vala:18
+#: src/MainWindow.vala:20
 #, fuzzy
 msgid "Shuffle"
 msgstr "Slå blanding til"
 
-#: src/MainWindow.vala:33
+#: src/MainWindow.vala:26
+msgid "Search titles in playlist"
+msgstr ""
+
+#: src/MainWindow.vala:45
 msgid "Queue is Empty"
 msgstr ""
 
-#: src/MainWindow.vala:34
+#: src/MainWindow.vala:46
 msgid "Audio files opened from Files will appear here"
 msgstr ""
 
-#: src/MainWindow.vala:144
+#: src/MainWindow.vala:63
+#, fuzzy
+#| msgid "Other Files"
+msgid "Open Files…"
+msgstr "Andre filer"
+
+#: src/MainWindow.vala:167
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/MainWindow.vala:191
+#: src/MainWindow.vala:215
+#, fuzzy
+#| msgid "All Years"
+msgid "All files"
+msgstr "Alle år"
+
+#: src/MainWindow.vala:220
+#, fuzzy
+#| msgid "Music Folder"
+msgid "Music files"
+msgstr "Musikmappe"
+
+#: src/MainWindow.vala:229
+msgid "Open"
+msgstr "Åbn"
+
+#: src/MainWindow.vala:233
+msgid "Open audio files"
+msgstr ""
+
+#: src/MainWindow.vala:271
 #, fuzzy
 msgid "Repeat None"
 msgstr "Gentag Sang"
 
-#: src/MainWindow.vala:195
+#: src/MainWindow.vala:275
 #, fuzzy
 msgid "Repeat All"
 msgstr "Gentag Album"
 
-#: src/MainWindow.vala:199
+#: src/MainWindow.vala:279
 #, fuzzy
 msgid "Repeat One"
 msgstr "Gentag Sang"
 
-#: src/PlaybackManager.vala:130
+#: src/PlaybackManager.vala:136
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
@@ -68,7 +98,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:190
+#: src/PlaybackManager.vala:196
 msgid "Unknown"
 msgstr "Ukendt"
 
@@ -192,9 +222,6 @@ msgstr "Pause"
 #, c-format
 #~ msgid "Import %s"
 #~ msgstr "Importér %s"
-
-#~ msgid "Open"
-#~ msgstr "Åbn"
 
 #~ msgid "Unrecognized playlist file. Import failed."
 #~ msgstr "Ikke genkendt playliste fil. Importering fejlede."
@@ -772,9 +799,6 @@ msgstr "Pause"
 
 #~ msgid "No Albums"
 #~ msgstr "Ingen albums"
-
-#~ msgid "All Years"
-#~ msgstr "Alle år"
 
 #, c-format
 #~ msgid "All %i Years"
@@ -1384,9 +1408,6 @@ msgstr "Pause"
 #~ msgid "%s, %s"
 #~ msgstr "%s, %s"
 
-#~ msgid "Other Files"
-#~ msgstr "Andre filer"
-
 #~ msgid "translator-credits"
 #~ msgstr ""
 #~ "Launchpad Contributions:\n"
@@ -1572,9 +1593,6 @@ msgstr "Pause"
 
 #~ msgid "Album Artist"
 #~ msgstr "Albumkunstner"
-
-#~ msgid "Music Folder"
-#~ msgstr "Musikmappe"
 
 #~ msgid "is not"
 #~ msgstr "er ikke"

@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-31 15:44+0000\n"
-"PO-Revision-Date: 2022-11-19 05:10+0000\n"
-"Last-Translator: Özgür Baskin <queeup@zoho.com>\n"
+"POT-Creation-Date: 2025-01-28 23:00+0000\n"
+"PO-Revision-Date: 2024-09-21 03:16+0000\n"
+"Last-Translator: Sinan Decron <sinanveyasinan@gmail.com>\n"
 "Language-Team: Turkish <https://l10n.elementary.io/projects/music/extra/tr/"
 ">\n"
 "Language: tr\n"
@@ -17,10 +17,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.2\n"
+"X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
-#: data/music.metainfo.xml.in:10 data/music.desktop.in:4
+#: data/music.metainfo.xml.in:10 data/music.desktop.in:6
 msgid "Music"
 msgstr "Müzik"
 
@@ -42,79 +42,87 @@ msgstr ""
 msgid "Quickly queue up your favorite tracks"
 msgstr "En sevdiğiniz parçaları hızlı bir şekilde sıraya alın"
 
-#: data/music.metainfo.xml.in:50
-msgid "elementary, Inc."
-msgstr "elementary, Inc."
-
-#: data/music.metainfo.xml.in:57 data/music.metainfo.xml.in:71
+#: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:70
+#: data/music.metainfo.xml.in:84
 msgid "Improvements:"
-msgstr ""
+msgstr "İyileştirmeler:"
 
-#: data/music.metainfo.xml.in:59
-msgid "Open folders in the filemanager with Music"
-msgstr ""
+#: data/music.metainfo.xml.in:61
+msgid "Toolbar shows a shadow when the view is scrolled"
+msgstr "Görünüm kaydırıldığında araç çubuğu bir gölge gösterir"
 
-#: data/music.metainfo.xml.in:60 data/music.metainfo.xml.in:93
-#: data/music.metainfo.xml.in:103
+#: data/music.metainfo.xml.in:62
+msgid "Open audio files from within Music"
+msgstr "Müzik içinden ses dosyalarını açın"
+
+#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:73
+#: data/music.metainfo.xml.in:106
 msgid "Updated translations"
 msgstr "Çeviriler güncellendi"
 
-#: data/music.metainfo.xml.in:73
+#: data/music.metainfo.xml.in:72
+msgid "Open folders in the filemanager with Music"
+msgstr "Müzik ile dosya yöneticisindeki klasörleri açın"
+
+#: data/music.metainfo.xml.in:86
 msgid "For tracks without a title, use the file name instead of the whole URI"
-msgstr ""
+msgstr "Başlığı olmayan parçalar için tüm URI yerine dosya adını kullan"
 
-#: data/music.metainfo.xml.in:74
+#: data/music.metainfo.xml.in:87
 msgid "Skip invalid files instead of stopping playback"
-msgstr ""
+msgstr "Oynatmayı durdurmak yerine geçersiz dosyaları atla"
 
-#: data/music.metainfo.xml.in:75
+#: data/music.metainfo.xml.in:88
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr ""
+"Sonraki ve Tekrar düğmeleri, tekrarlama modundan bağımsız olarak her zaman "
+"çalışır"
 
-#: data/music.metainfo.xml.in:76
+#: data/music.metainfo.xml.in:89
 msgid ""
 "Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
 "Russian, Simplified Chinese, Turkish, and Ukrainian"
 msgstr ""
+"Artık Katalanca, Felemenkçe, Fince, Fransızca, Almanca, İbranice, Macarca, "
+"Japonca, Korece, Kürtçe, Marathi, Norveççe Bokmål, Lehçe, Portekizce, Rusça, "
+"Basitleştirilmiş Çince, Türkçe ve Ukraynaca dillerinde mevcuttur"
 
-#: data/music.metainfo.xml.in:86
+#: data/music.metainfo.xml.in:99
 msgid "Complete rewrite"
 msgstr "Tamamen yeniden yazıldı"
 
-#: data/music.metainfo.xml.in:92
+#: data/music.metainfo.xml.in:105
 msgid "Drop support for Last.FM"
 msgstr "Last.FM desteği sonlandırıldı"
 
-#: data/music.metainfo.xml.in:99
-msgid "Fix an issue with saving smart playlists"
-msgstr "Akıllı çalma listelerini kaydetmeyle ilgili bir sorun düzeltildi"
-
-#: data/music.metainfo.xml.in:100
-msgid "Drop support for CD-ROM"
-msgstr "CD-ROM desteği sonlandırıldı"
-
-#: data/music.metainfo.xml.in:101
-msgid "Dark style support"
-msgstr "Koyu renk tema desteği eklendi"
-
-#: data/music.metainfo.xml.in:102
-msgid "Minor visual improvements"
-msgstr "Küçük görsel iyileştirmeler"
-
-#: data/music.desktop.in:5
-msgid "Music Player"
-msgstr "Müzik Çalar"
-
-#: data/music.desktop.in:6
+#: data/music.desktop.in:7
 msgid "Listen to music"
 msgstr "Müzik dinle"
 
-#: data/music.desktop.in:13
+#: data/music.desktop.in:9
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
 "Noise;Ses;Oynatıcı;MP3;iPod;Çal;Çalma Listesi;Medya;Şarkılar;Audio;Player;"
 "Play;Playlist;Media;Songs;"
+
+#~ msgid "elementary, Inc."
+#~ msgstr "elementary, Inc."
+
+#~ msgid "Fix an issue with saving smart playlists"
+#~ msgstr "Akıllı çalma listelerini kaydetmeyle ilgili bir sorun düzeltildi"
+
+#~ msgid "Drop support for CD-ROM"
+#~ msgstr "CD-ROM desteği sonlandırıldı"
+
+#~ msgid "Dark style support"
+#~ msgstr "Koyu renk tema desteği eklendi"
+
+#~ msgid "Minor visual improvements"
+#~ msgstr "Küçük görsel iyileştirmeler"
+
+#~ msgid "Music Player"
+#~ msgstr "Müzik Çalar"
 
 #~ msgid "Fix removing items from the queue"
 #~ msgstr "Öğelerin kuyruktan kaldırılması düzeltildi"

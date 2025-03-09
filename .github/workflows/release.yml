@@ -16,7 +16,7 @@ jobs:
 
      steps:
        - name: Checkout
-         uses: actions/checkout@v3
+         uses: actions/checkout@v4
 
        - name: Release
          uses: elementary/actions/release@master
@@ -28,33 +28,31 @@ jobs:
            release_branch: 'odin'
 
   deploy_flatpak:
-    name: Deploy Flatpak
-    runs-on: ubuntu-latest
+    name: Deploy Flatpak (${{ matrix.configuration.arch }})
+    runs-on: ${{ matrix.configuration.runs-on }}
 
     if: github.event.pull_request.merged == true && true == contains(join(github.event.pull_request.labels.*.name), 'Release')
 
     strategy:
       matrix:
-        arch: [x86_64, aarch64]
+        configuration:
+          - arch: x86_64
+            runs-on: ubuntu-latest
+          - arch: aarch64
+            runs-on: ubuntu-24.04-arm
       # Don't fail the whole workflow if one architecture fails
       fail-fast: false
 
     container:
-      image: ghcr.io/elementary/flatpak-platform/runtime:7.2-${{ matrix.arch }}
+      image: ghcr.io/elementary/flatpak-platform/runtime:8-${{ matrix.configuration.arch }}
       options: --privileged
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Set up QEMU for aarch64 emulation
-        if: ${{ matrix.arch != 'x86_64' }}
-        uses: docker/setup-qemu-action@v2
-        with:
-          platforms: arm64
+        uses: actions/checkout@v4
 
       - name: Build
-        uses: flatpak/flatpak-github-actions/flatpak-builder@v6
+        uses: flatpak/flatpak-github-actions/flatpak-builder@v6.4
         with:
           bundle: music.flatpak
           manifest-path: io.elementary.music.yml
@@ -63,10 +61,10 @@ jobs:
           repository-url: https://flatpak.elementary.io/repo.flatpakrepo
           cache-key: "flatpak-builder-${{ github.sha }}"
           branch: stable
-          arch: ${{ matrix.arch }}
+          arch: ${{ matrix.configuration.arch }}
 
       - name: Deploy
-        uses: flatpak/flatpak-github-actions/flat-manager@v6
+        uses: flatpak/flatpak-github-actions/flat-manager@v6.4
         with:
           repository: appcenter
           flat-manager-url: https://flatpak-api.elementary.io

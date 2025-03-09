@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-31 15:44+0000\n"
-"PO-Revision-Date: 2021-07-18 23:12+0000\n"
-"Last-Translator: Alvaro <alvaroaraoz_92@hotmail.com>\n"
+"POT-Creation-Date: 2025-01-28 23:00+0000\n"
+"PO-Revision-Date: 2024-09-09 10:20+0000\n"
+"Last-Translator: Italo Felipe Capasso Ballesteros <edwood.grant@gmail.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/music/extra/es/"
 ">\n"
 "Language: es\n"
@@ -17,16 +17,16 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
-#: data/music.metainfo.xml.in:10 data/music.desktop.in:4
+#: data/music.metainfo.xml.in:10 data/music.desktop.in:6
 msgid "Music"
 msgstr "Música"
 
 #: data/music.metainfo.xml.in:11
 msgid "Queue and play local audio files"
-msgstr ""
+msgstr "Reproduzca archivos de audio locales"
 
 #: data/music.metainfo.xml.in:13
 msgid ""
@@ -34,85 +34,101 @@ msgid ""
 "frills. See embedded album artwork. Control playback with media keys or in "
 "the system audio indicator."
 msgstr ""
+"Agregue y escuche la música local de su computador sin complicaciones. "
+"Consulte la carátula del álbum incrustada. Controle la reproducción con "
+"teclas multimedia o en el indicador de audio del sistema."
 
 #: data/music.metainfo.xml.in:18
 msgid "Quickly queue up your favorite tracks"
-msgstr ""
+msgstr "Ponga rápidamente en la cola de reproducción sus pistas favoritas"
 
-#: data/music.metainfo.xml.in:50
-msgid "elementary, Inc."
-msgstr "elementary, Inc."
-
-#: data/music.metainfo.xml.in:57 data/music.metainfo.xml.in:71
+#: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:70
+#: data/music.metainfo.xml.in:84
 msgid "Improvements:"
-msgstr ""
+msgstr "Mejoras:"
 
-#: data/music.metainfo.xml.in:59
-msgid "Open folders in the filemanager with Music"
+#: data/music.metainfo.xml.in:61
+msgid "Toolbar shows a shadow when the view is scrolled"
 msgstr ""
+"La barra de herramientas ahora muestra una sombra al desplazar la vista"
 
-#: data/music.metainfo.xml.in:60 data/music.metainfo.xml.in:93
-#: data/music.metainfo.xml.in:103
+#: data/music.metainfo.xml.in:62
+msgid "Open audio files from within Music"
+msgstr "Ahora se pueden archivos de audio dentro de Music"
+
+#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:73
+#: data/music.metainfo.xml.in:106
 msgid "Updated translations"
 msgstr "Traducciones actualizadas"
 
-#: data/music.metainfo.xml.in:73
+#: data/music.metainfo.xml.in:72
+msgid "Open folders in the filemanager with Music"
+msgstr ""
+"Ahora se pueden abrir carpetas en Música desde el administrador de archivos"
+
+#: data/music.metainfo.xml.in:86
 msgid "For tracks without a title, use the file name instead of the whole URI"
 msgstr ""
+"Para archivos sin título, ahora se muestra el nombre del archivo en vez de "
+"la ruta completa"
 
-#: data/music.metainfo.xml.in:74
+#: data/music.metainfo.xml.in:87
 msgid "Skip invalid files instead of stopping playback"
 msgstr ""
+"Ahora los archivos no válidos se omiten en vez de detener la reproducción"
 
-#: data/music.metainfo.xml.in:75
+#: data/music.metainfo.xml.in:88
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr ""
+"Los botones de «Siguiente» y «Repetir» ahora funcionan siempre sin importar "
+"el modo de repetición"
 
-#: data/music.metainfo.xml.in:76
+#: data/music.metainfo.xml.in:89
 msgid ""
 "Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
 "Russian, Simplified Chinese, Turkish, and Ukrainian"
 msgstr ""
-
-#: data/music.metainfo.xml.in:86
-msgid "Complete rewrite"
-msgstr ""
-
-#: data/music.metainfo.xml.in:92
-msgid "Drop support for Last.FM"
-msgstr "Eliminación de soporte para Last.FM"
+"Ahora disponible en catalán, holandés, finlandés, francés, alemán, hebreo, "
+"húngaro, japonés, coreano, kurdo, marathi, bokmål noruego, polaco, "
+"portugués, ruso, chino simplificado, turco y ucraniano"
 
 #: data/music.metainfo.xml.in:99
-msgid "Fix an issue with saving smart playlists"
-msgstr "Solucionar un problema al guardar listas de reproducción inteligentes"
+msgid "Complete rewrite"
+msgstr "Reescritura completa"
 
-#: data/music.metainfo.xml.in:100
-msgid "Drop support for CD-ROM"
-msgstr "Ya no se admiten CD-ROM"
+#: data/music.metainfo.xml.in:105
+msgid "Drop support for Last.FM"
+msgstr "Eliminado soporte para Last.FM"
 
-#: data/music.metainfo.xml.in:101
-msgid "Dark style support"
-msgstr "Soporte para el modo oscuro"
-
-#: data/music.metainfo.xml.in:102
-msgid "Minor visual improvements"
-msgstr "Pequeñas mejoras visuales"
-
-#: data/music.desktop.in:5
-msgid "Music Player"
-msgstr "Música"
-
-#: data/music.desktop.in:6
+#: data/music.desktop.in:7
 msgid "Listen to music"
 msgstr "Escucha música"
 
-#: data/music.desktop.in:13
-#, fuzzy
+#: data/music.desktop.in:9
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
-"Ruido; Audio; Reproductor; MP3; iPod; Reproducción; Lista de reproducción; "
-"Medios; Teléfono; Canciones;"
+"Ruido; Audio; Reproductor; MP3; Reproducción; Lista de reproducción; Medios; "
+"Canciones;"
+
+#~ msgid "elementary, Inc."
+#~ msgstr "elementary, Inc."
+
+#~ msgid "Fix an issue with saving smart playlists"
+#~ msgstr ""
+#~ "Corregido un problema al guardar listas de reproducción inteligentes"
+
+#~ msgid "Drop support for CD-ROM"
+#~ msgstr "Ya no se admiten CD-ROM"
+
+#~ msgid "Dark style support"
+#~ msgstr "Agregado soporte para modo oscuro"
+
+#~ msgid "Minor visual improvements"
+#~ msgstr "Pequeñas mejoras visuales"
+
+#~ msgid "Music Player"
+#~ msgstr "Reproductor de música"
 
 #~ msgid "Fix removing items from the queue"
 #~ msgstr "Corrección de la eliminación de elementos de la cola"

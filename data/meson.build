@@ -1,8 +1,7 @@
-gnome = import('gnome')
 gresource = gnome.compile_resources(
     'music-resources',
     'music.gresource.xml',
-    source_dir: join_paths(meson.source_root(), 'data')
+    source_dir: join_paths(meson.project_source_root(), 'data')
 )
 
 install_data(
@@ -14,7 +13,7 @@ install_data(
 i18n.merge_file(
     input: 'music.desktop.in',
     output: meson.project_name() + '.desktop',
-    po_dir: join_paths(meson.source_root(), 'po', 'extra'),
+    po_dir: join_paths(meson.project_source_root(), 'po', 'extra'),
     type: 'desktop',
     install: true,
     install_dir: join_paths(get_option('datadir'), 'applications')
@@ -23,7 +22,7 @@ i18n.merge_file(
 i18n.merge_file(
     input: 'music.metainfo.xml.in',
     output: meson.project_name() + '.metainfo.xml',
-    po_dir: meson.source_root() / 'po' / 'extra',
+    po_dir: meson.project_source_root() / 'po' / 'extra',
     type: 'xml',
     install: true,
     install_dir: get_option('datadir') / 'metainfo',

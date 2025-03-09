@@ -7,6 +7,8 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
     private Gtk.Button repeat_button;
     private Gtk.Button shuffle_button;
     private Settings settings;
+    private Gtk.SearchEntry search_entry;
+    private Gtk.Revealer search_revealer;
 
     construct {
         var start_window_controls = new Gtk.WindowControls (Gtk.PackType.START);
@@ -23,9 +25,20 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
 
         repeat_button = new Gtk.Button ();
 
+        search_entry = new Gtk.SearchEntry () {
+            placeholder_text = _("Search titles in playlist")
+        };
+
+        search_revealer = new Gtk.Revealer () {
+            child = search_entry
+        };
+
+        playback_manager.bind_property (
+            "has-items", search_revealer, "reveal-child", DEFAULT | SYNC_CREATE
+        );
         var queue_header = new Gtk.HeaderBar () {
             show_title_buttons = false,
-            title_widget = new Gtk.Label ("")
+            title_widget = search_revealer
         };
 
         var start_header = new Gtk.HeaderBar () {
@@ -45,7 +58,34 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         stack.add_titled (library_view, null, _("Library"));
         stack.add_titled (queue_view, null, _("Play Queue"));
 
+<<<<<<< HEAD
         stack_switcher.stack = stack;
+=======
+        var add_button_label = new Gtk.Label (_("Open Files…"));
+
+        var add_button_box = new Gtk.Box (HORIZONTAL, 0);
+        add_button_box.append (new Gtk.Image.from_icon_name ("document-open-symbolic"));
+        add_button_box.append (add_button_label);
+
+        var add_button = new Gtk.Button () {
+            child = add_button_box,
+        };
+        add_button.add_css_class (Granite.STYLE_CLASS_FLAT);
+
+        add_button_label.mnemonic_widget = add_button;
+
+        var queue_action_bar = new Gtk.ActionBar ();
+        queue_action_bar.pack_start (add_button);
+
+        var queue = new Adw.ToolbarView () {
+            bottom_bar_style = RAISED,
+            content = scrolled
+        };
+        queue.add_controller (drop_target);
+        queue.add_css_class (Granite.STYLE_CLASS_VIEW);
+        queue.add_top_bar (queue_header);
+        queue.add_bottom_bar (queue_action_bar);
+>>>>>>> main
 
         var start_box = new Gtk.Box (VERTICAL, 0);
         start_box.add_css_class (Granite.STYLE_CLASS_VIEW);
@@ -105,6 +145,60 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
                 settings.set_enum ("repeat-mode", enum_step + 1);
             } else {
                 settings.set_enum ("repeat-mode", 0);
+            }
+        });
+    }
+
+    private void action_open () {
+        var all_files_filter = new Gtk.FileFilter () {
+            name = _("All files"),
+        };
+        all_files_filter.add_pattern ("*");
+
+        var music_files_filter = new Gtk.FileFilter () {
+            name = _("Music files"),
+        };
+        music_files_filter.add_mime_type ("audio/*");
+
+        var filter_model = new ListStore (typeof (Gtk.FileFilter));
+        filter_model.append (all_files_filter);
+        filter_model.append (music_files_filter);
+
+        var file_dialog = new Gtk.FileDialog () {
+            accept_label = _("Open"),
+            default_filter = music_files_filter,
+            filters = filter_model,
+            modal = true,
+            title = _("Open audio files")
+        };
+
+        file_dialog.open_multiple.begin (this, null, (obj, res) => {
+            try {
+                var files = file_dialog.open_multiple.end (res);
+
+                File[] file_array = {};
+                for (int i = 0; i < files.get_n_items (); i++) {
+                    file_array += (File)(files.get_item (i));
+                }
+
+                var files_to_play = Application.loop_through_files (file_array);
+                PlaybackManager.get_default ().queue_files (files_to_play);
+            } catch (Error e) {
+                if (e.matches (Gtk.DialogError.quark (), Gtk.DialogError.DISMISSED)) {
+                    return;
+                }
+
+                var dialog = new Granite.MessageDialog (
+                    "Couldn't add audio files",
+                    e.message,
+                    new ThemedIcon ("document-open")
+                ) {
+                    badge_icon = new ThemedIcon ("dialog-error"),
+                    modal = true,
+                    transient_for = this
+                };
+                dialog.present ();
+                dialog.response.connect (dialog.destroy);
             }
         });
     }

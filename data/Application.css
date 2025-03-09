@@ -1,16 +1,67 @@
-spinner {
+/*
+ * SPDX-License-Identifier: LGPL-3.0-or-later
+ * SPDX-FileCopyrightText: 2021 elementary, Inc. (https://elementary.io)
+ */
+
+toolbarview revealer.bottom-bar.raised {
+    box-shadow: 0 -1px alpha(@highlight_color, 0.2);
+    background-color: alpha(black, 0.01);
+    background-image:
+        linear-gradient(
+            to bottom,
+            @borders 1px,
+            alpha(black, 0.07) 1px,
+            transparent 3px
+        );
+    color: mix(@text_color, @insensitive_bg_color, 0.15);
+}
+
+toolbarview revealer.bottom-bar actionbar {
+    padding: 6px;
+}
+
+album {
+    background-image:
+        linear-gradient(
+            170deg,
+            alpha(
+                @highlight_color,
+                0.1
+            ),
+            alpha(
+                @highlight_color,
+                0.15
+            ) 43%,
+            alpha(
+                @highlight_color,
+                0
+            ) 44%
+        ),
+        -gtk-icontheme("audio-x-generic-symbolic"),
+        linear-gradient(
+            to bottom,
+            @base_color,
+            @base_color
+        );
+    background-size: cover, 50%, cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    color: alpha(@insensitive_fg_color, 0.75);
+}
+
+spinner.play-indicator {
     animation: none;
     color: @accent_color;
     min-width: 16px;
     transition: none;
 }
 
-spinner:checked {
+spinner.play-indicator:checked {
     opacity: 1;
     -gtk-icon-source: -gtk-icontheme("playback-paused-symbolic");
 }
 
-spinner:checked.playing {
+spinner.play-indicator:checked.playing {
     animation: playing 1.1s linear infinite;
     -gtk-icon-source: -gtk-icontheme("playback-playing-00-symbolic");
 }
@@ -36,4 +87,3 @@ spinner:checked.playing {
     95% { -gtk-icon-source: -gtk-icontheme("playback-playing-17-symbolic"); }
     100% { -gtk-icon-source: -gtk-icontheme("playback-playing-00-symbolic"); }
 }
-
