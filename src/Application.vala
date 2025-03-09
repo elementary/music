@@ -10,6 +10,7 @@ public class Music.Application : Gtk.Application {
     public const string ACTION_PREVIOUS = "action-previous";
     public const string ACTION_SHUFFLE = "action-shuffle";
     public const string ACTION_FIND = "action-find";
+    public const string ACTION_OPEN = "action-open";
     public const string ACTION_QUIT = "action-quit";
 
     private const ActionEntry[] ACTION_ENTRIES = {
@@ -18,6 +19,7 @@ public class Music.Application : Gtk.Application {
         { ACTION_PREVIOUS, action_previous },
         { ACTION_SHUFFLE, action_shuffle },
         { ACTION_FIND, action_find },
+        { ACTION_OPEN, action_open },
         { ACTION_QUIT, quit }
     };
 
@@ -187,7 +189,61 @@ public class Music.Application : Gtk.Application {
     }
 
     private void action_find () {
-        ((MainWindow)active_window).start_search ();
+        //  ((MainWindow)active_window).start_search ();
+    }
+
+    private void action_open () {
+        var all_files_filter = new Gtk.FileFilter () {
+            name = _("All files"),
+        };
+        all_files_filter.add_pattern ("*");
+
+        var music_files_filter = new Gtk.FileFilter () {
+            name = _("Music files"),
+        };
+        music_files_filter.add_mime_type ("audio/*");
+
+        var filter_model = new ListStore (typeof (Gtk.FileFilter));
+        filter_model.append (all_files_filter);
+        filter_model.append (music_files_filter);
+
+        var file_dialog = new Gtk.FileDialog () {
+            accept_label = _("Open"),
+            default_filter = music_files_filter,
+            filters = filter_model,
+            modal = true,
+            title = _("Open audio files")
+        };
+
+        file_dialog.open_multiple.begin (active_window, null, (obj, res) => {
+            try {
+                var files = file_dialog.open_multiple.end (res);
+
+                File[] file_array = {};
+                for (int i = 0; i < files.get_n_items (); i++) {
+                    file_array += (File)(files.get_item (i));
+                }
+
+                var files_to_play = Application.loop_through_files (file_array);
+                PlaybackManager.get_default ().queue_files (files_to_play);
+            } catch (Error e) {
+                if (e.matches (Gtk.DialogError.quark (), Gtk.DialogError.DISMISSED)) {
+                    return;
+                }
+
+                var dialog = new Granite.MessageDialog (
+                    "Couldn't add audio files",
+                    e.message,
+                    new ThemedIcon ("document-open")
+                ) {
+                    badge_icon = new ThemedIcon ("dialog-error"),
+                    modal = true,
+                    transient_for = active_window
+                };
+                dialog.present ();
+                dialog.response.connect (dialog.destroy);
+            }
+        });
     }
 
     private void on_bus_acquired (DBusConnection connection, string name) {
