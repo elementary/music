@@ -4,8 +4,6 @@
  */
 
 public class Music.PlaybackManager : Object {
-    public signal bool ask_has_previous ();
-    public signal bool ask_has_next (bool repeat_all);
     public signal void invalids_found (int count);
 
     public AudioObject? current_audio { get; set; default = null; }
@@ -187,61 +185,69 @@ public class Music.PlaybackManager : Object {
     public void next (bool eos = false) {
         direction = Direction.NEXT;
         next_by_eos = eos;
-        uint position;
-        bool from_queue = queue_liststore.find (current_audio, out position);
+        uint position = -1;
+        queue_liststore.find (current_audio, out position);
 
-        if (from_queue && position != queue_liststore.get_n_items () - 1) {
-            current_audio = (AudioObject) queue_liststore.get_item (position + 1);
-            return;
-        }
+        if (position != -1) {
+            if (!next_by_eos) {
+                if (position == queue_liststore.get_n_items () - 1) {
+                    current_audio = (AudioObject) queue_liststore.get_item (0);
+                    if (position == 0) {
+                        seek_to_progress (0);
+                    }
+                } else {
+                    current_audio = (AudioObject) queue_liststore.get_item (position + 1);
+                }
 
-        if (next_by_eos) {
+                return;
+            }
             switch (settings.get_string ("repeat-mode")) {
                 case "disabled":
+                    if (position == queue_liststore.get_n_items () - 1) {
+                        current_audio = null;
+                        return;
+                    }
+
+                    current_audio = (AudioObject) queue_liststore.get_item (position + 1);
+
                     break;
 
                 case "all":
-                    if (!from_queue) {
-                        ask_has_next (true);
-                        return;
-                    } else {
+                    if (position == queue_liststore.get_n_items () - 1) {
                         current_audio = (AudioObject) queue_liststore.get_item (0);
                         if (position == 0) {
                             seek_to_progress (0);
                         }
-                        return;
+                    } else {
+                        current_audio = (AudioObject) queue_liststore.get_item (position + 1);
                     }
+
+                    break;
 
                 case "one":
                     seek_to_progress (0);
-                    return;
+                    break;
             }
         }
-
-        ask_has_next (false);
     }
 
     public void previous () {
         direction = Direction.PREVIOUS;
         uint position = -1;
+        queue_liststore.find (current_audio, out position);
 
-        if (queue_liststore.find (current_audio, out position)) {
-            if (position == 0) {
-                uint n_items = queue_liststore.get_n_items ();
-                if (n_items == 1) {
-                    seek_to_progress (0);
-                } else {
-                    current_audio = (AudioObject) queue_liststore.get_item (n_items - 1);
-                }
-
-                return;
-            }
-
+        if (position != -1 && position != 0) {
             current_audio = (AudioObject) queue_liststore.get_item (position - 1);
-            return;
         }
 
-        ask_has_previous ();
+        if (position == 0) {
+            uint n_items = queue_liststore.get_n_items ();
+            if (n_items == 1) {
+                seek_to_progress (0);
+            } else {
+                current_audio = (AudioObject) queue_liststore.get_item (n_items - 1);
+            }
+        }
     }
 
     public void shuffle () {

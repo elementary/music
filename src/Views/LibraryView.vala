@@ -55,36 +55,6 @@ public class Music.LibraryView : Gtk.Box {
         });
 
         selection_model.set_selected (Gtk.INVALID_LIST_POSITION);
-
-        playback_manager.ask_has_next.connect ((repeat_all) => {
-            if (selection_model.get_n_items () == 0) {
-                return false;
-            }
-
-            if (selection_model.selected < selection_model.get_n_items () - 1) {
-                selection_model.set_selected (selection_model.selected + 1);
-                return true;
-            } else if (repeat_all) {
-                selection_model.set_selected (0);
-                return true;
-            }
-
-            return false;
-        });
-
-        playback_manager.ask_has_previous.connect (() => {
-            if (selection_model.get_n_items () == 0) {
-                return false;
-            }
-
-            if (selection_model.selected > 0) {
-                selection_model.set_selected (selection_model.selected - 1);
-            } else {
-                selection_model.set_selected (selection_model.get_n_items () - 1);
-            }
-
-            return true;
-        });
     }
 
     private void update_stack () {
