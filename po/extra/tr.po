@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-28 23:00+0000\n"
+"POT-Creation-Date: 2025-03-12 05:02+0000\n"
 "PO-Revision-Date: 2024-09-21 03:16+0000\n"
 "Last-Translator: Sinan Decron <sinanveyasinan@gmail.com>\n"
 "Language-Team: Turkish <https://l10n.elementary.io/projects/music/extra/tr/"
@@ -41,6 +41,10 @@ msgstr ""
 #: data/music.metainfo.xml.in:18
 msgid "Quickly queue up your favorite tracks"
 msgstr "En sevdiğiniz parçaları hızlı bir şekilde sıraya alın"
+
+#: data/music.metainfo.xml.in:51
+msgid "elementary, Inc."
+msgstr "elementary, Inc."
 
 #: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:70
 #: data/music.metainfo.xml.in:84
@@ -105,9 +109,6 @@ msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr ""
 "Noise;Ses;Oynatıcı;MP3;iPod;Çal;Çalma Listesi;Medya;Şarkılar;Audio;Player;"
 "Play;Playlist;Media;Songs;"
-
-#~ msgid "elementary, Inc."
-#~ msgstr "elementary, Inc."
 
 #~ msgid "Fix an issue with saving smart playlists"
 #~ msgstr "Akıllı çalma listelerini kaydetmeyle ilgili bir sorun düzeltildi"

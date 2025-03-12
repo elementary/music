@@ -2,11 +2,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-28 23:00+0000\n"
+"POT-Creation-Date: 2025-03-12 05:02+0000\n"
 "PO-Revision-Date: 2025-02-14 15:40+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
-"Language-Team: Marathi <https://l10n.elementary.io/projects/music/extra/mr/>"
-"\n"
+"Language-Team: Marathi <https://l10n.elementary.io/projects/music/extra/mr/"
+">\n"
 "Language: mr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,6 +35,10 @@ msgstr ""
 #: data/music.metainfo.xml.in:18
 msgid "Quickly queue up your favorite tracks"
 msgstr "तुमचे आवडते ट्रॅक पटकन रांगेत लावा"
+
+#: data/music.metainfo.xml.in:51
+msgid "elementary, Inc."
+msgstr "एलिमेंटरी, Inc."
 
 #: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:70
 #: data/music.metainfo.xml.in:84
@@ -68,8 +72,7 @@ msgstr "प्लेबॅक थांबवण्याऐवजी अवै�
 
 #: data/music.metainfo.xml.in:88
 msgid "Next and Repeat buttons always work regardless of repeat mode"
-msgstr ""
-"पुढील आणि पुनरावृत्ती बटणे नेहमी पुनरावृत्ती मोडकडे दुर्लक्ष करून कार्य करतात"
+msgstr "पुढील आणि पुनरावृत्ती बटणे नेहमी पुनरावृत्ती मोडकडे दुर्लक्ष करून कार्य करतात"
 
 #: data/music.metainfo.xml.in:89
 msgid ""
@@ -78,8 +81,8 @@ msgid ""
 "Russian, Simplified Chinese, Turkish, and Ukrainian"
 msgstr ""
 "आता कॅटलान, डच, फिनिश, फ्रेंच, जर्मन, हिब्रू, हंगेरियन, जपानी, कोरियन, कुर्दिश, मराठी, "
-"नॉर्वेजियन बोकमाल, पोलिश, पोर्तुगीज, रशियन, सरलीकृत चीनी, तुर्की आणि युक्रेनियनमध्ये उपलब्"
-"ध आहे"
+"नॉर्वेजियन बोकमाल, पोलिश, पोर्तुगीज, रशियन, सरलीकृत चीनी, तुर्की आणि युक्रेनियनमध्ये "
+"उपलब्ध आहे"
 
 #: data/music.metainfo.xml.in:99
 msgid "Complete rewrite"
@@ -96,9 +99,6 @@ msgstr "संगीत ऐका"
 #: data/music.desktop.in:9
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 msgstr "ध्वनी; ऑडियो; प्लेअर; एमपी 3; प्ले; प्लेलिस्ट; मीडिया; गाणी;"
-
-#~ msgid "elementary, Inc."
-#~ msgstr "एलिमेंटरी, Inc."
 
 #~ msgid "Fix an issue with saving smart playlists"
 #~ msgstr "स्मार्ट प्लेलिस्ट जतन करण्याशी संबंधित समस्येचे निराकरण करा"
