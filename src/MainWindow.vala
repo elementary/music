@@ -7,7 +7,7 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
     private Gtk.Button repeat_button;
     private Gtk.Button shuffle_button;
     private Settings settings;
-    private Gtk.SearchEntry search_entry;
+    private SearchBar search_bar;
     private Gtk.Revealer search_revealer;
 
     construct {
@@ -22,12 +22,12 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
 
         repeat_button = new Gtk.Button ();
 
-        search_entry = new Gtk.SearchEntry () {
-            placeholder_text = _("Search titles in playlist")
-        };
+        var filter_model = new Gtk.FilterListModel (playback_manager.queue_liststore, null);
+
+        search_bar = new SearchBar (filter_model);
 
         search_revealer = new Gtk.Revealer () {
-            child = search_entry
+            child = search_bar
         };
 
         playback_manager.bind_property (
@@ -51,7 +51,7 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
             hexpand = true,
             vexpand = true
         };
-        queue_listbox.bind_model (playback_manager.queue_liststore, create_queue_row);
+        queue_listbox.bind_model (filter_model, create_queue_row);
         queue_listbox.set_placeholder (queue_placeholder);
 
         var scrolled = new Gtk.ScrolledWindow () {
@@ -185,18 +185,7 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
             playback_manager.current_audio = ((TrackRow) row).audio_object;
         });
 
-        search_entry.search_changed.connect (() => {
-            int pos = playback_manager.find_title (search_entry.text);
-            if (pos >= 0) {
-                queue_listbox.select_row (queue_listbox.get_row_at_index (pos));
-                var adj = scrolled.vadjustment;
-                // Search entry is hidden if n_items is zero so no need to check
-                var ratio = (double)pos / (double)playback_manager.n_items;
-                adj.@value = adj.upper * ratio;
-            }
-        });
-
-        search_entry.activate.connect (() => {
+        search_bar.activated.connect (() => {
             var selected = queue_listbox.get_selected_row ();
             if (selected != null) {
                 selected.activate ();
@@ -206,7 +195,7 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
 
     public void start_search () {
         if (search_revealer.child_revealed) {
-            search_entry.grab_focus ();
+            search_bar.start_search ();
         }
     }
 
