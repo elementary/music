@@ -371,28 +371,6 @@ public class Music.PlaybackManager : Object {
         }
     }
 
-    public int find_title (string term) {
-        var search_object = new AudioObject ("") {
-            title = term
-        };
-
-        int found_at = -1;
-        uint position;
-        if (queue_liststore.find_with_equal_func (
-            search_object,
-            (a, b) => {
-                var term_a = ((AudioObject)a).title.down ();
-                var term_b = ((AudioObject)b).title.down ();
-                return term_a.contains (term_b);
-            },
-            out position
-        )) {
-            found_at = (int)position;
-        }
-
-        return found_at;
-    }
-
     private void update_next_previous_sensitivity () {
         var next_sensitive = false;
         var previous_sensitive = false;
