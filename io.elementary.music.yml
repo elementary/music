@@ -9,7 +9,8 @@ finish-args:
   - '--socket=wayland'
   - '--socket=pulseaudio'
   - '--device=dri'
-  - '--filesystem=xdg-music:ro'
+  - '--filesystem=xdg-music'
+  - '--add-policy=Tracker3.dbus:org.freedesktop.Tracker3.Miner.Files=tracker:Audio'
 
 modules:
   - name: music
