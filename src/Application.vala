@@ -10,6 +10,7 @@ public class Music.Application : Gtk.Application {
     public const string ACTION_PREVIOUS = "action-previous";
     public const string ACTION_SHUFFLE = "action-shuffle";
     public const string ACTION_FIND = "action-find";
+    public const string ACTION_CLEAR_QUEUE = "action-clear-queue";
     public const string ACTION_QUIT = "action-quit";
 
     private const ActionEntry[] ACTION_ENTRIES = {
@@ -18,6 +19,7 @@ public class Music.Application : Gtk.Application {
         { ACTION_PREVIOUS, action_previous },
         { ACTION_SHUFFLE, action_shuffle },
         { ACTION_FIND, action_find },
+        { ACTION_CLEAR_QUEUE, action_clear_queue },
         { ACTION_QUIT, quit }
     };
 
@@ -188,6 +190,10 @@ public class Music.Application : Gtk.Application {
 
     private void action_find () {
         ((MainWindow)active_window).start_search ();
+    }
+
+    private void action_clear_queue () {
+        playback_manager.clear_queue ();
     }
 
     private void on_bus_acquired (DBusConnection connection, string name) {

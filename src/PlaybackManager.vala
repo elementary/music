@@ -145,6 +145,12 @@ public class Music.PlaybackManager : Object {
         }
     }
 
+    public void clear_queue () {
+        playbin.set_state (Gst.State.NULL);
+        current_audio = null;
+        queue_liststore.remove_all ();
+    }
+
     private void update_metadata (Gst.PbUtils.DiscovererInfo info, Error? err) {
         string uri = info.get_uri ();
         switch (info.get_result ()) {

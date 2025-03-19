@@ -73,8 +73,28 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
 
         add_button_label.mnemonic_widget = add_button;
 
+        var clear_button_label = new Gtk.Label (_("Clear Queue"));
+
+        var clear_button_box = new Gtk.Box (HORIZONTAL, 0);
+        clear_button_box.append (new Gtk.Image.from_icon_name ("edit-clear-all-symbolic"));
+        clear_button_box.append (clear_button_label);
+
+        var clear_button = new Gtk.Button () {
+            child = clear_button_box,
+            action_name = Application.ACTION_PREFIX + Application.ACTION_CLEAR_QUEUE
+        };
+        clear_button.add_css_class (Granite.STYLE_CLASS_FLAT);
+
+        clear_button_label.mnemonic_widget = clear_button;
+
+        var clear_queue_action = GLib.Application.get_default ().lookup_action (Application.ACTION_CLEAR_QUEUE);
+        playback_manager.bind_property (
+            "has-items", clear_queue_action, "enabled", DEFAULT | SYNC_CREATE
+        );
+
         var queue_action_bar = new Gtk.ActionBar ();
         queue_action_bar.pack_start (add_button);
+        queue_action_bar.pack_end (clear_button);
 
         var queue = new Adw.ToolbarView () {
             bottom_bar_style = RAISED,
