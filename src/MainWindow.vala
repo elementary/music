@@ -76,7 +76,7 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         var clear_button_label = new Gtk.Label (_("Clear Queue"));
 
         var clear_button_box = new Gtk.Box (HORIZONTAL, 0);
-        clear_button_box.append (new Gtk.Image.from_icon_name ("edit-delete-symbolic"));
+        clear_button_box.append (new Gtk.Image.from_icon_name ("edit-clear-all-symbolic"));
         clear_button_box.append (clear_button_label);
 
         var clear_button = new Gtk.Button () {
