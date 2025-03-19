@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-12 05:02+0000\n"
+"POT-Creation-Date: 2025-03-19 22:54+0000\n"
 "PO-Revision-Date: 2020-12-29 15:16+0000\n"
 "Last-Translator: Silviu Popescu <teodorspopescu@gmail.com>\n"
 "Language-Team: Romanian <https://l10n.elementary.io/projects/music/music/ro/"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 
-#: src/Application.vala:95 src/Views/NowPlayingView.vala:18
+#: src/Application.vala:97 src/Views/NowPlayingView.vala:18
 #: src/Views/NowPlayingView.vala:116
 msgid "Music"
 msgstr "Muzică"
@@ -49,7 +49,13 @@ msgstr ""
 msgid "Open Files…"
 msgstr "Alte fișiere"
 
-#: src/MainWindow.vala:167
+#: src/MainWindow.vala:76
+#, fuzzy
+#| msgid "Queue"
+msgid "Clear Queue"
+msgstr "rând"
+
+#: src/MainWindow.vala:187
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
@@ -57,37 +63,37 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: src/MainWindow.vala:215
+#: src/MainWindow.vala:235
 #, fuzzy
 #| msgid "All Years"
 msgid "All files"
 msgstr "Toți Anii"
 
-#: src/MainWindow.vala:220
+#: src/MainWindow.vala:240
 #, fuzzy
 #| msgid "Music Player"
 msgid "Music files"
 msgstr "Player muzical"
 
-#: src/MainWindow.vala:229
+#: src/MainWindow.vala:249
 msgid "Open"
 msgstr "Deschideţi"
 
-#: src/MainWindow.vala:233
+#: src/MainWindow.vala:253
 msgid "Open audio files"
 msgstr ""
 
-#: src/MainWindow.vala:271
+#: src/MainWindow.vala:291
 #, fuzzy
 msgid "Repeat None"
 msgstr "Redă Piesa"
 
-#: src/MainWindow.vala:275
+#: src/MainWindow.vala:295
 #, fuzzy
 msgid "Repeat All"
 msgstr "Repetă albumul"
 
-#: src/MainWindow.vala:279
+#: src/MainWindow.vala:299
 #, fuzzy
 msgid "Repeat One"
 msgstr "Redă Piesa"
@@ -101,7 +107,7 @@ msgstr[1] ""
 msgstr[2] ""
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:196
+#: src/PlaybackManager.vala:202
 msgid "Unknown"
 msgstr "Necunoscut"
 
@@ -1438,9 +1444,6 @@ msgstr "Pauza"
 
 #~ msgid "Change your music folder."
 #~ msgstr "Schimbă dosarul cu muzică"
-
-#~ msgid "Queue"
-#~ msgstr "rând"
 
 #~ msgid "Unknown Artist"
 #~ msgstr "Artist necunoscut"

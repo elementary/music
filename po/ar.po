@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-12 05:02+0000\n"
+"POT-Creation-Date: 2025-03-19 22:54+0000\n"
 "PO-Revision-Date: 2020-05-12 23:10+0000\n"
 "Last-Translator: nasserbinlaboun <nasser1990com@gmail.com>\n"
 "Language-Team: Arabic <https://l10n.elementary.io/projects/music/music/ar/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:51+0000\n"
 
-#: src/Application.vala:95 src/Views/NowPlayingView.vala:18
+#: src/Application.vala:97 src/Views/NowPlayingView.vala:18
 #: src/Views/NowPlayingView.vala:116
 msgid "Music"
 msgstr "الموسيقى"
@@ -45,7 +45,14 @@ msgstr ""
 msgid "Open Files…"
 msgstr ""
 
-#: src/MainWindow.vala:167
+#: src/MainWindow.vala:76
+#, fuzzy
+#| msgctxt "Name of the playlist"
+#| msgid "Queue"
+msgid "Clear Queue"
+msgstr "قائمة الانتظار"
+
+#: src/MainWindow.vala:187
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
@@ -56,37 +63,37 @@ msgstr[3] ""
 msgstr[4] ""
 msgstr[5] ""
 
-#: src/MainWindow.vala:215
+#: src/MainWindow.vala:235
 #, fuzzy
 #| msgid "All Years"
 msgid "All files"
 msgstr "كل سنوات"
 
-#: src/MainWindow.vala:220
+#: src/MainWindow.vala:240
 #, fuzzy
 #| msgid "Music Folder"
 msgid "Music files"
 msgstr "ملف الموسيقى"
 
-#: src/MainWindow.vala:229
+#: src/MainWindow.vala:249
 msgid "Open"
 msgstr "فتح"
 
-#: src/MainWindow.vala:233
+#: src/MainWindow.vala:253
 msgid "Open audio files"
 msgstr ""
 
-#: src/MainWindow.vala:271
+#: src/MainWindow.vala:291
 #, fuzzy
 msgid "Repeat None"
 msgstr "أعادة الأغنية"
 
-#: src/MainWindow.vala:275
+#: src/MainWindow.vala:295
 #, fuzzy
 msgid "Repeat All"
 msgstr "أعادة الألبوم"
 
-#: src/MainWindow.vala:279
+#: src/MainWindow.vala:299
 #, fuzzy
 msgid "Repeat One"
 msgstr "أعادة الأغنية"
@@ -103,7 +110,7 @@ msgstr[4] ""
 msgstr[5] ""
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:196
+#: src/PlaybackManager.vala:202
 msgid "Unknown"
 msgstr "غير معروف"
 
@@ -293,10 +300,6 @@ msgstr ""
 
 #~ msgid "Import Music"
 #~ msgstr "استورد موسيقى"
-
-#~ msgctxt "Name of the playlist"
-#~ msgid "Queue"
-#~ msgstr "قائمة الانتظار"
 
 #~ msgid "Remove Song"
 #~ msgstr "إزالة الاغنية"

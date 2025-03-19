@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-12 05:02+0000\n"
+"POT-Creation-Date: 2025-03-19 22:54+0000\n"
 "PO-Revision-Date: 2020-01-05 14:18+0000\n"
 "Last-Translator: Marko <marko.dolar@gmail.com>\n"
 "Language-Team: Slovenian <https://l10n.elementary.io/projects/music/music/sl/"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 
-#: src/Application.vala:95 src/Views/NowPlayingView.vala:18
+#: src/Application.vala:97 src/Views/NowPlayingView.vala:18
 #: src/Views/NowPlayingView.vala:116
 msgid "Music"
 msgstr "Glasba"
@@ -49,7 +49,13 @@ msgstr ""
 msgid "Open Files…"
 msgstr "Druge datoteke"
 
-#: src/MainWindow.vala:167
+#: src/MainWindow.vala:76
+#, fuzzy
+#| msgid "Queue"
+msgid "Clear Queue"
+msgstr "Vrsta"
+
+#: src/MainWindow.vala:187
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
@@ -58,37 +64,37 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: src/MainWindow.vala:215
+#: src/MainWindow.vala:235
 #, fuzzy
 #| msgid "All Years"
 msgid "All files"
 msgstr "Vsa leta"
 
-#: src/MainWindow.vala:220
+#: src/MainWindow.vala:240
 #, fuzzy
 #| msgid "Music Folder"
 msgid "Music files"
 msgstr "Mapa z glasbo"
 
-#: src/MainWindow.vala:229
+#: src/MainWindow.vala:249
 msgid "Open"
 msgstr "Odpri"
 
-#: src/MainWindow.vala:233
+#: src/MainWindow.vala:253
 msgid "Open audio files"
 msgstr ""
 
-#: src/MainWindow.vala:271
+#: src/MainWindow.vala:291
 #, fuzzy
 msgid "Repeat None"
 msgstr "Ponavljaj skladbo"
 
-#: src/MainWindow.vala:275
+#: src/MainWindow.vala:295
 #, fuzzy
 msgid "Repeat All"
 msgstr "Ponovi album"
 
-#: src/MainWindow.vala:279
+#: src/MainWindow.vala:299
 #, fuzzy
 msgid "Repeat One"
 msgstr "Ponavljaj skladbo"
@@ -103,7 +109,7 @@ msgstr[2] ""
 msgstr[3] ""
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:196
+#: src/PlaybackManager.vala:202
 msgid "Unknown"
 msgstr "Neznano"
 
@@ -1462,9 +1468,6 @@ msgstr "Premor"
 
 #~ msgid "Unknown Album"
 #~ msgstr "Neznan album"
-
-#~ msgid "Queue"
-#~ msgstr "Vrsta"
 
 #~ msgid "%s is already doing an import"
 #~ msgstr "%s že uvaža"

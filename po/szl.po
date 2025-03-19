@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-12 05:02+0000\n"
+"POT-Creation-Date: 2025-03-19 22:54+0000\n"
 "PO-Revision-Date: 2020-02-25 13:09+0000\n"
 "Last-Translator: gkkulik <g.kulik@o2.pl>\n"
 "Language-Team: Silesian <https://l10n.elementary.io/projects/music/music/szl/"
@@ -14,7 +14,7 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-#: src/Application.vala:95 src/Views/NowPlayingView.vala:18
+#: src/Application.vala:97 src/Views/NowPlayingView.vala:18
 #: src/Views/NowPlayingView.vala:116
 msgid "Music"
 msgstr "Muzyka"
@@ -40,7 +40,14 @@ msgstr ""
 msgid "Open Files…"
 msgstr ""
 
-#: src/MainWindow.vala:167
+#: src/MainWindow.vala:76
+#, fuzzy
+#| msgctxt "Name of the playlist"
+#| msgid "Queue"
+msgid "Clear Queue"
+msgstr "Raja"
+
+#: src/MainWindow.vala:187
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
@@ -48,37 +55,37 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: src/MainWindow.vala:215
+#: src/MainWindow.vala:235
 #, fuzzy
 #| msgid "All Years"
 msgid "All files"
 msgstr "Wszyjske lata"
 
-#: src/MainWindow.vala:220
+#: src/MainWindow.vala:240
 #, fuzzy
 #| msgid "Music"
 msgid "Music files"
 msgstr "Muzyka"
 
-#: src/MainWindow.vala:229
+#: src/MainWindow.vala:249
 msgid "Open"
 msgstr "Ôtwōrz"
 
-#: src/MainWindow.vala:233
+#: src/MainWindow.vala:253
 msgid "Open audio files"
 msgstr ""
 
-#: src/MainWindow.vala:271
+#: src/MainWindow.vala:291
 #, fuzzy
 msgid "Repeat None"
 msgstr "Powtōrz śpiywka"
 
-#: src/MainWindow.vala:275
+#: src/MainWindow.vala:295
 #, fuzzy
 msgid "Repeat All"
 msgstr "Powtōrz śpiywka"
 
-#: src/MainWindow.vala:279
+#: src/MainWindow.vala:299
 #, fuzzy
 msgid "Repeat One"
 msgstr "Powtōrz śpiywka"
@@ -92,7 +99,7 @@ msgstr[1] ""
 msgstr[2] ""
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:196
+#: src/PlaybackManager.vala:202
 msgid "Unknown"
 msgstr "Niyznōme"
 
@@ -294,10 +301,6 @@ msgstr "Pauza"
 
 #~ msgid "Import Music"
 #~ msgstr "Zaimportuj muzyka"
-
-#~ msgctxt "Name of the playlist"
-#~ msgid "Queue"
-#~ msgstr "Raja"
 
 #~ msgid "File not found"
 #~ msgstr "Niy szło znojś zbioru"

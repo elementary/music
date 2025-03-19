@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-12 05:02+0000\n"
+"POT-Creation-Date: 2025-03-19 22:54+0000\n"
 "PO-Revision-Date: 2024-07-11 09:16+0000\n"
 "Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
 "Language-Team: Slovak <https://l10n.elementary.io/projects/music/music/sk/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 
-#: src/Application.vala:95 src/Views/NowPlayingView.vala:18
+#: src/Application.vala:97 src/Views/NowPlayingView.vala:18
 #: src/Views/NowPlayingView.vala:116
 msgid "Music"
 msgstr "Hudba"
@@ -45,7 +45,14 @@ msgstr "Zvukové súbory otvorené v aplikácii Súbory sa zobrazia tu"
 msgid "Open Files…"
 msgstr "Otvoriť súbory…"
 
-#: src/MainWindow.vala:167
+#: src/MainWindow.vala:76
+#, fuzzy
+#| msgctxt "Name of the playlist"
+#| msgid "Queue"
+msgid "Clear Queue"
+msgstr "Poradie"
+
+#: src/MainWindow.vala:187
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
@@ -53,31 +60,31 @@ msgstr[0] "%d neplatných zvukových stôp nebolo pridaných do fronty"
 msgstr[1] "%d neplatná zvuková stopa nebola pridaná do fronty"
 msgstr[2] "%d neplatné zvukové stopy neboli pridané do fronty"
 
-#: src/MainWindow.vala:215
+#: src/MainWindow.vala:235
 msgid "All files"
 msgstr "Všetky súbory"
 
-#: src/MainWindow.vala:220
+#: src/MainWindow.vala:240
 msgid "Music files"
 msgstr "Hudobné súbory"
 
-#: src/MainWindow.vala:229
+#: src/MainWindow.vala:249
 msgid "Open"
 msgstr "Otvoriť"
 
-#: src/MainWindow.vala:233
+#: src/MainWindow.vala:253
 msgid "Open audio files"
 msgstr "Otvoriť hudobné súbory"
 
-#: src/MainWindow.vala:271
+#: src/MainWindow.vala:291
 msgid "Repeat None"
 msgstr "Neopakovať"
 
-#: src/MainWindow.vala:275
+#: src/MainWindow.vala:295
 msgid "Repeat All"
 msgstr "Opakovať všetko"
 
-#: src/MainWindow.vala:279
+#: src/MainWindow.vala:299
 msgid "Repeat One"
 msgstr "Opakovať jednu skladbu"
 
@@ -90,7 +97,7 @@ msgstr[1] "%d zvuková stopa bola pridaná do fronty"
 msgstr[2] "%d zvukové stopy boli pridané do fronty"
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:196
+#: src/PlaybackManager.vala:202
 msgid "Unknown"
 msgstr "Neznámy"
 
@@ -287,10 +294,6 @@ msgstr "Pozastaviť"
 
 #~ msgid "Import Music"
 #~ msgstr "Importovať hudbu"
-
-#~ msgctxt "Name of the playlist"
-#~ msgid "Queue"
-#~ msgstr "Poradie"
 
 #~ msgid "File not found"
 #~ msgstr "Súbor nebol nájdený"

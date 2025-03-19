@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-12 05:02+0000\n"
+"POT-Creation-Date: 2025-03-19 22:54+0000\n"
 "PO-Revision-Date: 2018-11-06 20:47+0000\n"
 "Last-Translator: Moo <hazap@hotmail.com>\n"
 "Language-Team: Lithuanian <https://weblate.elementary.io/projects/music/"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:53+0000\n"
 
-#: src/Application.vala:95 src/Views/NowPlayingView.vala:18
+#: src/Application.vala:97 src/Views/NowPlayingView.vala:18
 #: src/Views/NowPlayingView.vala:116
 msgid "Music"
 msgstr "Muzika"
@@ -49,7 +49,14 @@ msgstr ""
 msgid "Open Files…"
 msgstr "Kiti failai"
 
-#: src/MainWindow.vala:167
+#: src/MainWindow.vala:76
+#, fuzzy
+#| msgctxt "Name of the playlist"
+#| msgid "Queue"
+msgid "Clear Queue"
+msgstr "Eilė"
+
+#: src/MainWindow.vala:187
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
@@ -58,37 +65,37 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: src/MainWindow.vala:215
+#: src/MainWindow.vala:235
 #, fuzzy
 #| msgid "All Years"
 msgid "All files"
 msgstr "Visi metai"
 
-#: src/MainWindow.vala:220
+#: src/MainWindow.vala:240
 #, fuzzy
 #| msgid "Music"
 msgid "Music files"
 msgstr "Muzika"
 
-#: src/MainWindow.vala:229
+#: src/MainWindow.vala:249
 msgid "Open"
 msgstr "Atverti"
 
-#: src/MainWindow.vala:233
+#: src/MainWindow.vala:253
 msgid "Open audio files"
 msgstr ""
 
-#: src/MainWindow.vala:271
+#: src/MainWindow.vala:291
 #, fuzzy
 msgid "Repeat None"
 msgstr "Kartoti dainą"
 
-#: src/MainWindow.vala:275
+#: src/MainWindow.vala:295
 #, fuzzy
 msgid "Repeat All"
 msgstr "Kartoti albumą"
 
-#: src/MainWindow.vala:279
+#: src/MainWindow.vala:299
 #, fuzzy
 msgid "Repeat One"
 msgstr "Kartoti dainą"
@@ -103,7 +110,7 @@ msgstr[2] ""
 msgstr[3] ""
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:196
+#: src/PlaybackManager.vala:202
 msgid "Unknown"
 msgstr "Nežinoma"
 
@@ -306,10 +313,6 @@ msgstr "Pristabdyti"
 
 #~ msgid "Import Music"
 #~ msgstr "Importuoti muziką"
-
-#~ msgctxt "Name of the playlist"
-#~ msgid "Queue"
-#~ msgstr "Eilė"
 
 #~ msgid "File not found"
 #~ msgstr "Failas nerastas"

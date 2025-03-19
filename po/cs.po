@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-12 05:02+0000\n"
+"POT-Creation-Date: 2025-03-19 22:54+0000\n"
 "PO-Revision-Date: 2024-09-19 07:21+0000\n"
 "Last-Translator: hnklp <hynek.puta@seznam.cz>\n"
 "Language-Team: Czech <https://l10n.elementary.io/projects/music/music/cs/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:52+0000\n"
 
-#: src/Application.vala:95 src/Views/NowPlayingView.vala:18
+#: src/Application.vala:97 src/Views/NowPlayingView.vala:18
 #: src/Views/NowPlayingView.vala:116
 msgid "Music"
 msgstr "Hudba"
@@ -44,7 +44,13 @@ msgstr "Zvukové soubory otevřené z aplikace Soubory se objeví zde"
 msgid "Open Files…"
 msgstr "Otevřít soubory…"
 
-#: src/MainWindow.vala:167
+#: src/MainWindow.vala:76
+#, fuzzy
+#| msgid "Queue"
+msgid "Clear Queue"
+msgstr "Fronta"
+
+#: src/MainWindow.vala:187
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
@@ -52,31 +58,31 @@ msgstr[0] "%d neplatný soubor nebyl přidán do fronty"
 msgstr[1] "%d neplatné soubory nebyly přidány do fronty"
 msgstr[2] "%d neplatných souborů nebylo přidáno do fronty"
 
-#: src/MainWindow.vala:215
+#: src/MainWindow.vala:235
 msgid "All files"
 msgstr "Všechny soubory"
 
-#: src/MainWindow.vala:220
+#: src/MainWindow.vala:240
 msgid "Music files"
 msgstr "Zvukové soubory"
 
-#: src/MainWindow.vala:229
+#: src/MainWindow.vala:249
 msgid "Open"
 msgstr "Otevřít"
 
-#: src/MainWindow.vala:233
+#: src/MainWindow.vala:253
 msgid "Open audio files"
 msgstr "Otevřít zvukové soubory"
 
-#: src/MainWindow.vala:271
+#: src/MainWindow.vala:291
 msgid "Repeat None"
 msgstr "Neopakovat"
 
-#: src/MainWindow.vala:275
+#: src/MainWindow.vala:295
 msgid "Repeat All"
 msgstr "Opakovat vše"
 
-#: src/MainWindow.vala:279
+#: src/MainWindow.vala:299
 msgid "Repeat One"
 msgstr "Opakovat jednu"
 
@@ -89,7 +95,7 @@ msgstr[1] "%d skladby byly přidány do fronty"
 msgstr[2] "%d skladeb bylo přidáno do fronty"
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:196
+#: src/PlaybackManager.vala:202
 msgid "Unknown"
 msgstr "Neznámý"
 
@@ -1378,9 +1384,6 @@ msgstr "Pozastavit"
 
 #~ msgid "Lyrics fetched from www.lyricsmania.com"
 #~ msgstr "Text stažen z www.lyricsmania.com"
-
-#~ msgid "Queue"
-#~ msgstr "Fronta"
 
 #~ msgid "Unknown Album"
 #~ msgstr "Neznámé album"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-12 05:02+0000\n"
+"POT-Creation-Date: 2025-03-19 22:54+0000\n"
 "PO-Revision-Date: 2024-08-07 16:16+0000\n"
 "Last-Translator: Italo Felipe Capasso Ballesteros <edwood.grant@gmail.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/music/music/es/"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:55+0000\n"
 
-#: src/Application.vala:95 src/Views/NowPlayingView.vala:18
+#: src/Application.vala:97 src/Views/NowPlayingView.vala:18
 #: src/Views/NowPlayingView.vala:116
 msgid "Music"
 msgstr "Música"
@@ -45,38 +45,44 @@ msgstr "Los archivos de audio abiertos desde Archivos aparecerán aquí"
 msgid "Open Files…"
 msgstr "Abrir archivos…"
 
-#: src/MainWindow.vala:167
+#: src/MainWindow.vala:76
+#, fuzzy
+#| msgid "Queue"
+msgid "Clear Queue"
+msgstr "Cola"
+
+#: src/MainWindow.vala:187
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
 msgstr[0] "%d archivo no válido no fue añadido a la cola"
 msgstr[1] "%d archivos no válidos no fueron añadidos a la cola"
 
-#: src/MainWindow.vala:215
+#: src/MainWindow.vala:235
 msgid "All files"
 msgstr "Todos los archivos"
 
-#: src/MainWindow.vala:220
+#: src/MainWindow.vala:240
 msgid "Music files"
 msgstr "Archivos de música"
 
-#: src/MainWindow.vala:229
+#: src/MainWindow.vala:249
 msgid "Open"
 msgstr "Abrir"
 
-#: src/MainWindow.vala:233
+#: src/MainWindow.vala:253
 msgid "Open audio files"
 msgstr "Abrir archivos de audio"
 
-#: src/MainWindow.vala:271
+#: src/MainWindow.vala:291
 msgid "Repeat None"
 msgstr "No repetir"
 
-#: src/MainWindow.vala:275
+#: src/MainWindow.vala:295
 msgid "Repeat All"
 msgstr "Repetir todo"
 
-#: src/MainWindow.vala:279
+#: src/MainWindow.vala:299
 msgid "Repeat One"
 msgstr "Repetir canción"
 
@@ -88,7 +94,7 @@ msgstr[0] "%d pista se ha añadido a la cola"
 msgstr[1] "%d pistas se han añadido a la cola"
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:196
+#: src/PlaybackManager.vala:202
 msgid "Unknown"
 msgstr "Desconocido"
 
@@ -1444,9 +1450,6 @@ msgstr "Pausar"
 
 #~ msgid "Change your music folder."
 #~ msgstr "Cambiar la carpeta de música."
-
-#~ msgid "Queue"
-#~ msgstr "Cola"
 
 #~ msgid "Unknown Artist"
 #~ msgstr "Artista desconocido"
