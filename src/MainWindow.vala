@@ -87,6 +87,11 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
 
         clear_button_label.mnemonic_widget = clear_button;
 
+        var clear_queue_action = GLib.Application.get_default ().lookup_action (Application.ACTION_CLEAR_QUEUE);
+        playback_manager.bind_property (
+            "has-items", clear_queue_action, "enabled", DEFAULT | SYNC_CREATE
+        );
+
         var queue_action_bar = new Gtk.ActionBar ();
         queue_action_bar.pack_start (add_button);
         queue_action_bar.pack_end (clear_button);
