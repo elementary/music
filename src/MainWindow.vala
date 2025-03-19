@@ -303,6 +303,8 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
 
     private Gtk.Widget create_queue_row (GLib.Object object) {
         unowned var audio_object = (AudioObject) object;
-        return new TrackRow (audio_object);
+        return new TrackRow () {
+            audio_object = audio_object
+        };
     }
 }
