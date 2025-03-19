@@ -3,12 +3,42 @@
  * SPDX-FileCopyrightText: 2021 elementary, Inc. (https://elementary.io)
  */
 
-public class Music.TrackRow : Gtk.ListBoxRow {
-    public AudioObject audio_object { get; set ; }
+public class Music.TrackRow : Granite.Bin {
+    private AudioObject _audio_object = null;
+    public AudioObject audio_object {
+        get {
+            return _audio_object;
+        }
+
+        set {
+            if (_audio_object != null) {
+                artist_binding.unbind ();
+                texture_binding.unbind ();
+                title_binding.unbind ();
+            }
+
+            _audio_object = value;
+
+            if (_audio_object == null) {
+                return;
+            }
+
+            artist_binding = _audio_object.bind_property ("artist", artist_label, "label", SYNC_CREATE);
+            title_binding = _audio_object.bind_property ("title", title_label, "label", SYNC_CREATE);
+            texture_binding = _audio_object.bind_property ("texture", album_image.image, "paintable", SYNC_CREATE);
+        }
+    }
 
     private static PlaybackManager playback_manager;
 
+    private Binding artist_binding;
+    private Binding texture_binding;
+    private Binding title_binding;
+
+    private Gtk.Label artist_label;
+    private Gtk.Label title_label;
     private Gtk.Spinner play_icon;
+    private Music.AlbumImage album_image;
 
     static construct {
         playback_manager = PlaybackManager.get_default ();
@@ -18,17 +48,17 @@ public class Music.TrackRow : Gtk.ListBoxRow {
         play_icon = new Gtk.Spinner ();
         play_icon.add_css_class ("play-indicator");
 
-        var album_image = new Music.AlbumImage ();
+        album_image = new Music.AlbumImage ();
         album_image.image.height_request = 32;
         album_image.image.width_request = 32;
 
-        var title_label = new Gtk.Label (null) {
+        title_label = new Gtk.Label (null) {
             ellipsize = Pango.EllipsizeMode.MIDDLE,
             hexpand = true,
             xalign = 0
         };
 
-        var artist_label = new Gtk.Label (null) {
+        artist_label = new Gtk.Label (null) {
             ellipsize = Pango.EllipsizeMode.MIDDLE,
             hexpand = true,
             xalign = 0
@@ -64,10 +94,6 @@ public class Music.TrackRow : Gtk.ListBoxRow {
         });
 
         notify["audio-object"].connect (() => {
-            audio_object.bind_property ("artist", artist_label, "label", SYNC_CREATE);
-            audio_object.bind_property ("title", title_label, "label", SYNC_CREATE);
-            audio_object.bind_property ("texture", album_image.image, "paintable", SYNC_CREATE);
-
             play_icon.spinning = playback_manager.current_audio == audio_object;
         });
     }

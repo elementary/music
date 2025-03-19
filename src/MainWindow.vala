@@ -4,11 +4,16 @@
  */
 
 public class Music.MainWindow : Gtk.ApplicationWindow {
+    private Granite.Placeholder queue_placeholder;
     private Gtk.Button repeat_button;
     private Gtk.Button shuffle_button;
-    private Settings settings;
-    private Gtk.SearchEntry search_entry;
+    private Gtk.ListView queue_listview;
     private Gtk.Revealer search_revealer;
+    private Gtk.ScrolledWindow scrolled;
+    private Gtk.SearchEntry search_entry;
+    private Gtk.SingleSelection selection_model;
+    private Gtk.Stack queue_stack;
+    private Settings settings;
 
     construct {
         var playback_manager = PlaybackManager.get_default ();
@@ -42,21 +47,28 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         queue_header.pack_end (shuffle_button);
         queue_header.pack_end (repeat_button);
 
-        var queue_placeholder = new Granite.Placeholder (_("Queue is Empty")) {
+        queue_placeholder = new Granite.Placeholder (_("Queue is Empty")) {
             description = _("Audio files opened from Files will appear here"),
             icon = new ThemedIcon ("playlist-queue")
         };
 
-        var queue_listbox = new Gtk.ListBox () {
+        selection_model = new Gtk.SingleSelection (playback_manager.queue_liststore);
+
+        var factory = new Gtk.SignalListItemFactory ();
+
+        queue_listview = new Gtk.ListView (selection_model, factory) {
+            single_click_activate = true,
             hexpand = true,
             vexpand = true
         };
-        queue_listbox.bind_model (playback_manager.queue_liststore, create_queue_row);
-        queue_listbox.set_placeholder (queue_placeholder);
 
-        var scrolled = new Gtk.ScrolledWindow () {
-            child = queue_listbox
+        scrolled = new Gtk.ScrolledWindow () {
+            child = queue_listview
         };
+
+        queue_stack = new Gtk.Stack ();
+        queue_stack.add_child (queue_placeholder);
+        queue_stack.add_child (scrolled);
 
         var drop_target = new Gtk.DropTarget (typeof (Gdk.FileList), Gdk.DragAction.COPY);
 
@@ -98,7 +110,7 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
 
         var queue = new Adw.ToolbarView () {
             bottom_bar_style = RAISED,
-            content = scrolled
+            content = queue_stack
         };
         queue.add_controller (drop_target);
         queue.add_css_class (Granite.STYLE_CLASS_VIEW);
@@ -201,25 +213,39 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
             }
         });
 
-        queue_listbox.row_activated.connect ((row) => {
-            playback_manager.current_audio = ((TrackRow) row).audio_object;
+        factory.setup.connect ((obj) => {
+            var list_item = (Gtk.ListItem) obj;
+            list_item.child = new TrackRow ();
         });
+
+        factory.bind.connect ((obj) => {
+            var list_item = (Gtk.ListItem) obj;
+            ((TrackRow) list_item.child).audio_object = (AudioObject) list_item.item;
+        });
+
+        factory.unbind.connect ((obj) => {
+            var list_item = (Gtk.ListItem) obj;
+            ((TrackRow) list_item.child).audio_object = null;
+        });
+
+        queue_listview.activate.connect ((index) => {
+            playback_manager.current_audio = (AudioObject) selection_model.get_item (index);
+        });
+
+        selection_model.items_changed.connect (on_items_changed);
 
         search_entry.search_changed.connect (() => {
             int pos = playback_manager.find_title (search_entry.text);
             if (pos >= 0) {
-                queue_listbox.select_row (queue_listbox.get_row_at_index (pos));
-                var adj = scrolled.vadjustment;
-                // Search entry is hidden if n_items is zero so no need to check
-                var ratio = (double)pos / (double)playback_manager.n_items;
-                adj.@value = adj.upper * ratio;
+                queue_listview.scroll_to (pos, SELECT, null);
             }
         });
 
         search_entry.activate.connect (() => {
-            var selected = queue_listbox.get_selected_row ();
-            if (selected != null) {
-                selected.activate ();
+            var selected = selection_model.get_selected ();
+            if (selected != -1) {
+                var selected_audio = (AudioObject) selection_model.get_item (selected);
+                playback_manager.current_audio = selected_audio;
             }
         });
     }
@@ -301,10 +327,11 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         }
     }
 
-    private Gtk.Widget create_queue_row (GLib.Object object) {
-        unowned var audio_object = (AudioObject) object;
-        return new TrackRow () {
-            audio_object = audio_object
-        };
+    private void on_items_changed () {
+        if (selection_model.n_items > 0) {
+            queue_stack.visible_child = scrolled;
+        } else {
+            queue_stack.visible_child = queue_placeholder;
+        }
     }
 }
