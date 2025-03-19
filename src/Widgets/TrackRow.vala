@@ -4,37 +4,31 @@
  */
 
 public class Music.TrackRow : Gtk.ListBoxRow {
-    public AudioObject audio_object { get; construct; }
+    public AudioObject audio_object { get; set ; }
 
     private static PlaybackManager playback_manager;
 
     private Gtk.Spinner play_icon;
-
-    public TrackRow (AudioObject audio_object) {
-        Object (audio_object: audio_object);
-    }
 
     static construct {
         playback_manager = PlaybackManager.get_default ();
     }
 
     construct {
-        play_icon = new Gtk.Spinner () {
-            spinning = playback_manager.current_audio == audio_object
-        };
+        play_icon = new Gtk.Spinner ();
         play_icon.add_css_class ("play-indicator");
 
         var album_image = new Music.AlbumImage ();
         album_image.image.height_request = 32;
         album_image.image.width_request = 32;
 
-        var title_label = new Gtk.Label (audio_object.title) {
+        var title_label = new Gtk.Label (null) {
             ellipsize = Pango.EllipsizeMode.MIDDLE,
             hexpand = true,
             xalign = 0
         };
 
-        var artist_label = new Gtk.Label (audio_object.artist) {
+        var artist_label = new Gtk.Label (null) {
             ellipsize = Pango.EllipsizeMode.MIDDLE,
             hexpand = true,
             xalign = 0
@@ -56,10 +50,6 @@ public class Music.TrackRow : Gtk.ListBoxRow {
 
         child = grid;
 
-        audio_object.bind_property ("artist", artist_label, "label", BindingFlags.SYNC_CREATE);
-        audio_object.bind_property ("title", title_label, "label", BindingFlags.SYNC_CREATE);
-        audio_object.bind_property ("texture", album_image.image, "paintable", BindingFlags.SYNC_CREATE);
-
         playback_manager.notify["current-audio"].connect (() => {
             play_icon.spinning = playback_manager.current_audio == audio_object;
         });
@@ -73,6 +63,13 @@ public class Music.TrackRow : Gtk.ListBoxRow {
             }
         });
 
+        notify["audio-object"].connect (() => {
+            audio_object.bind_property ("artist", artist_label, "label", SYNC_CREATE);
+            audio_object.bind_property ("title", title_label, "label", SYNC_CREATE);
+            audio_object.bind_property ("texture", album_image.image, "paintable", SYNC_CREATE);
+
+            play_icon.spinning = playback_manager.current_audio == audio_object;
+        });
     }
 
     private void update_playing (bool playing) {
