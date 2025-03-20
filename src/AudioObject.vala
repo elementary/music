@@ -9,7 +9,7 @@ public class Music.AudioObject : Object {
     public string artist { get; set; }
     public string title { get; set; }
     public int64 duration { get; set; default = 0; }
-    private static MetadataDiscoverer discoverer = new MetadataDiscoverer();
+    private static MetadataDiscoverer discoverer = new MetadataDiscoverer ();
 
     public AudioObject (string uri) {
         Object (
