@@ -3,7 +3,7 @@
  * SPDX-FileCopyrightText: 2021 elementary, Inc. (https://elementary.io)
  */
 
-public class Music.TrackRow : Gtk.ListBoxRow {
+public class Music.TrackRow : Granite.Bin {
     public AudioObject audio_object { get; set ; }
 
     private static PlaybackManager playback_manager;
