@@ -73,6 +73,40 @@ public class Music.TrackRow : Gtk.ListBoxRow {
             }
         });
 
+        var action_remove = new SimpleAction ("remove", null);
+        action_remove.activate.connect (() => {
+            playback_manager.remove (this.audio_object);
+        });
+
+        var row_action_group = new SimpleActionGroup ();
+        row_action_group.add_action (action_remove);
+
+        insert_action_group ("trackrow", row_action_group);
+
+        var menu = new Menu ();
+        menu.append (_("Remove"), "trackrow.remove");
+
+        var context_menu = new Gtk.PopoverMenu.from_model (menu) {
+            halign = Gtk.Align.START,
+            has_arrow = false,
+            position = Gtk.PositionType.BOTTOM
+        };
+        context_menu.set_parent (this);
+
+        var right_click = new Gtk.GestureClick () {
+            button = Gdk.BUTTON_SECONDARY
+        };
+        right_click.pressed.connect ((n_press, x, y) => {
+            var rect = Gdk.Rectangle () {
+                x = (int) x,
+                y = (int) y
+            };
+            context_menu.pointing_to = rect;
+            context_menu.popup ();
+        });
+
+        add_controller (right_click);
+
     }
 
     private void update_playing (bool playing) {
