@@ -82,6 +82,7 @@ public class Music.TrackRow : Gtk.ListBoxRow {
         row_action_group.add_action (action_remove);
 
         insert_action_group ("trackrow", row_action_group);
+        add_binding_action (Gdk.Key.Delete, Gdk.ModifierType.NO_MODIFIER_MASK, "trackrow.remove", null);
 
         var menu = new Menu ();
         menu.append (_("Remove"), "trackrow.remove");
@@ -106,7 +107,6 @@ public class Music.TrackRow : Gtk.ListBoxRow {
         });
 
         add_controller (right_click);
-
     }
 
     private void update_playing (bool playing) {
