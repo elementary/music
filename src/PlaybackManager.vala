@@ -151,6 +151,17 @@ public class Music.PlaybackManager : Object {
         queue_liststore.remove_all ();
     }
 
+    public void remove (AudioObject song) {
+        if (song == current_audio) {
+            playbin.set_state (Gst.State.NULL);
+            current_audio = null;
+        }
+
+        uint position;
+        queue_liststore.find (song, out position);
+        queue_liststore.remove (position);
+    }
+
     private void update_metadata (Gst.PbUtils.DiscovererInfo info, Error? err) {
         string uri = info.get_uri ();
         switch (info.get_result ()) {
