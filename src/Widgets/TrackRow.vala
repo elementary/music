@@ -98,26 +98,25 @@ public class Music.TrackRow : Gtk.ListBoxRow {
             button = Gdk.BUTTON_SECONDARY
         };
         right_click.pressed.connect ((n_press, x, y) => {
-            var rect = Gdk.Rectangle () {
-                x = (int) x,
-                y = (int) y
-            };
-            context_menu.pointing_to = rect;
-            context_menu.popup ();
+            menu_popup_at_pointer (context_menu, x, y);
         });
 
         var long_press = new Gtk.GestureLongPress ();
         long_press.pressed.connect ((x, y) => {
-            var rect = Gdk.Rectangle () {
-                x = (int) x,
-                y = (int) y
-            };
-            context_menu.pointing_to = rect;
-            context_menu.popup ();
+            menu_popup_at_pointer (context_menu, x, y);
         });
 
         add_controller (right_click);
         add_controller (long_press);
+    }
+
+    private void menu_popup_at_pointer (Gtk.PopoverMenu popover, double x, double y) {
+        var rect = Gdk.Rectangle () {
+            x = (int) x,
+            y = (int) y
+        };
+        popover.pointing_to = rect;
+        popover.popup ();
     }
 
     private void update_playing (bool playing) {
