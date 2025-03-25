@@ -12,9 +12,9 @@ public class Music.TrackRow : Granite.Bin {
 
         set {
             if (_audio_object != null) {
-                artist_binding.unbind ();
-                texture_binding.unbind ();
-                title_binding.unbind ();
+                _audio_object.notify["artist"].disconnect (update_artist_label);
+                _audio_object.notify["title"].disconnect (update_title_label);
+                _audio_object.notify["texture"].disconnect (update_cover_art);
             }
 
             _audio_object = value;
@@ -23,17 +23,18 @@ public class Music.TrackRow : Granite.Bin {
                 return;
             }
 
-            artist_binding = _audio_object.bind_property ("artist", artist_label, "label", SYNC_CREATE);
-            title_binding = _audio_object.bind_property ("title", title_label, "label", SYNC_CREATE);
-            texture_binding = _audio_object.bind_property ("texture", album_image.image, "paintable", SYNC_CREATE);
+            artist_label.label = _audio_object.artist;
+            title_label.label = _audio_object.title;
+            album_image.image.paintable = _audio_object.texture;
+
+            _audio_object.notify["artist"].connect (update_artist_label);
+            _audio_object.notify["title"].connect (update_title_label);
+            _audio_object.notify["texture"].connect (update_cover_art);
+
         }
     }
 
     private static PlaybackManager playback_manager;
-
-    private Binding artist_binding;
-    private Binding texture_binding;
-    private Binding title_binding;
 
     private Gtk.Label artist_label;
     private Gtk.Label title_label;
@@ -104,5 +105,17 @@ public class Music.TrackRow : Granite.Bin {
         } else {
             play_icon.remove_css_class ("playing");
         }
+    }
+
+    private void update_title_label () {
+        title_label.label = _audio_object.title;
+    }
+
+    private void update_artist_label () {
+        artist_label.label = _audio_object.artist;
+    }
+
+    private void update_cover_art () {
+        album_image.image.paintable = _audio_object.texture;
     }
 }
