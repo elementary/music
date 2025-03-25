@@ -106,7 +106,18 @@ public class Music.TrackRow : Gtk.ListBoxRow {
             context_menu.popup ();
         });
 
+        var long_press = new Gtk.GestureLongPress ();
+        long_press.pressed.connect ((x, y) => {
+            var rect = Gdk.Rectangle () {
+                x = (int) x,
+                y = (int) y
+            };
+            context_menu.pointing_to = rect;
+            context_menu.popup ();
+        });
+
         add_controller (right_click);
+        add_controller (long_press);
     }
 
     private void update_playing (bool playing) {
