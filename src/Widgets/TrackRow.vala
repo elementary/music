@@ -23,10 +23,9 @@ public class Music.TrackRow : Granite.Bin {
                 return;
             }
 
-            artist_label.label = _audio_object.artist;
-            title_label.label = _audio_object.title;
-            album_image.image.paintable = _audio_object.texture;
-
+            update_artist_label ();
+            update_title_label ();
+            update_cover_art ();
             _audio_object.notify["artist"].connect (update_artist_label);
             _audio_object.notify["title"].connect (update_title_label);
             _audio_object.notify["texture"].connect (update_cover_art);

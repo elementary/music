@@ -223,11 +223,6 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
             ((TrackRow) list_item.child).audio_object = (AudioObject) list_item.item;
         });
 
-        factory.unbind.connect ((obj) => {
-            var list_item = (Gtk.ListItem) obj;
-            ((TrackRow) list_item.child).audio_object = null;
-        });
-
         queue_listview.activate.connect ((index) => {
             playback_manager.current_audio = (AudioObject) selection_model.get_item (index);
         });
