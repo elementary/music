@@ -77,6 +77,50 @@ public class Music.TrackRow : Gtk.ListBoxRow {
             }
         });
 
+        var action_remove = new SimpleAction ("remove", null);
+        action_remove.activate.connect (() => {
+            playback_manager.remove (this.audio_object);
+        });
+
+        var row_action_group = new SimpleActionGroup ();
+        row_action_group.add_action (action_remove);
+
+        insert_action_group ("trackrow", row_action_group);
+        add_binding_action (Gdk.Key.Delete, Gdk.ModifierType.NO_MODIFIER_MASK, "trackrow.remove", null);
+
+        var menu = new Menu ();
+        menu.append (_("Remove"), "trackrow.remove");
+
+        var context_menu = new Gtk.PopoverMenu.from_model (menu) {
+            halign = Gtk.Align.START,
+            has_arrow = false,
+            position = Gtk.PositionType.BOTTOM
+        };
+        context_menu.set_parent (this);
+
+        var right_click = new Gtk.GestureClick () {
+            button = Gdk.BUTTON_SECONDARY
+        };
+        right_click.pressed.connect ((n_press, x, y) => {
+            menu_popup_at_pointer (context_menu, x, y);
+        });
+
+        var long_press = new Gtk.GestureLongPress ();
+        long_press.pressed.connect ((x, y) => {
+            menu_popup_at_pointer (context_menu, x, y);
+        });
+
+        add_controller (right_click);
+        add_controller (long_press);
+    }
+
+    private void menu_popup_at_pointer (Gtk.PopoverMenu popover, double x, double y) {
+        var rect = Gdk.Rectangle () {
+            x = (int) x,
+            y = (int) y
+        };
+        popover.pointing_to = rect;
+        popover.popup ();
     }
 
     private void update_playing (bool playing) {
