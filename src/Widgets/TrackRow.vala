@@ -28,6 +28,10 @@ public class Music.TrackRow : Gtk.ListBoxRow {
         album_image.image.height_request = 32;
         album_image.image.width_request = 32;
 
+        var aspect_frame = new Gtk.AspectFrame (0.5f, 0.5f, 1, false) {
+            child = album_image
+        };
+
         var title_label = new Gtk.Label (audio_object.title) {
             ellipsize = Pango.EllipsizeMode.MIDDLE,
             hexpand = true,
@@ -49,7 +53,7 @@ public class Music.TrackRow : Gtk.ListBoxRow {
             margin_end = 12,
             margin_bottom = 6
         };
-        grid.attach (album_image, 0, 0, 1, 2);
+        grid.attach (aspect_frame, 0, 0, 1, 2);
         grid.attach (title_label, 1, 0);
         grid.attach (artist_label, 1, 1);
         grid.attach (play_icon, 2, 0, 1, 2);
