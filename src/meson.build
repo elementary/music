@@ -3,6 +3,7 @@ sources = [
     'AudioObject.vala',
     'MainWindow.vala',
     'PlaybackManager.vala',
+    'CoverCache.vala',
     'DBus/MprisPlayer.vala',
     'DBus/MprisRoot.vala',
     'Views/NowPlayingView.vala',
