@@ -22,6 +22,7 @@ public class Music.PlaybackManager : Object {
 
     private dynamic Gst.Element playbin;
     private Gst.PbUtils.Discoverer discoverer;
+    private CoverCache cover_cache;
     private uint progress_timer = 0;
     private Settings settings;
 
@@ -38,6 +39,7 @@ public class Music.PlaybackManager : Object {
     private PlaybackManager () {}
 
     construct {
+        cover_cache = new CoverCache ();
         queue_liststore = new ListStore (typeof (AudioObject));
 
         playbin = Gst.ElementFactory.make ("playbin", "playbin");
@@ -213,12 +215,21 @@ public class Music.PlaybackManager : Object {
                 audio_object.artist = _("Unknown");
             }
 
+            string _album;
+            tag_list.get_string (Gst.Tags.ALBUM, out _album);
+
+            string album_key = "%s-%s".printf (_album, audio_object.artist);
+            audio_object.texture = cover_cache.get_cover (album_key);
+            if (audio_object.texture != null) {
+                return;
+            }
+
             var sample = get_cover_sample (tag_list);
             if (sample != null) {
                 var buffer = sample.get_buffer ();
 
                 if (buffer != null) {
-                    audio_object.texture = Gdk.Texture.for_pixbuf (get_pixbuf_from_buffer (buffer));
+                    audio_object.texture = cover_cache.add_cover (album_key, get_pixbuf_from_buffer (buffer));
                 }
             }
         } else {
