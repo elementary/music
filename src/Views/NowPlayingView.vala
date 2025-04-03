@@ -20,7 +20,9 @@ public class Music.NowPlayingView : Gtk.Box {
         };
         title_label.add_css_class (Granite.STYLE_CLASS_H3_LABEL);
 
-        var artist_label = new Gtk.Label (_("Not playing"));
+        var artist_label = new Gtk.Label (_("Not playing")) {
+            ellipsize = Pango.EllipsizeMode.MIDDLE
+        };
 
         var artist_revealer = new Gtk.Revealer () {
             child = artist_label
@@ -119,11 +121,8 @@ public class Music.NowPlayingView : Gtk.Box {
             }
         });
 
-        artist_label.bind_property (
-            "label", artist_revealer, "reveal-child", BindingFlags.SYNC_CREATE,
-            (binding, src_val, ref target_val) => {
-                target_val.set_boolean (src_val.get_string () != null);
-            }
-        );
+        artist_label.notify["label"].connect (() => {
+            artist_revealer.reveal_child = artist_label.label != "";
+        });
     }
 }
