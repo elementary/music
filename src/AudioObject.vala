@@ -28,19 +28,19 @@ public class Music.AudioObject : Object {
     }
 
     private async void save_art_file () throws Error requires (texture != null) {
-        var path = Path.build_path (
+        var art_cache_dir = Path.build_path (
             Path.DIR_SEPARATOR_S,
             Environment.get_user_cache_dir (),
             GLib.Application.get_default ().application_id,
             "art"
         );
 
-        DirUtils.create_with_parents (path, 0755);
+        DirUtils.create_with_parents (art_cache_dir, 0755);
 
         //FIXME: make a hash that re-uses art instead of one per file
         var file = File.new_for_path (Path.build_path (
             Path.DIR_SEPARATOR_S,
-            path,
+            art_cache_dir,
             Checksum.compute_for_string (SHA256, uri)
         ));
 
