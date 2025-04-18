@@ -17,18 +17,35 @@ public class Music.AudioObject : Object {
 
     construct {
         notify["texture"].connect (() => {
-            save_art_file.begin ();
+            save_art_file.begin ((obj, res) => {
+                try {
+                    save_art_file.end (res);
+                } catch (Error e) {
+                    critical (e.message);
+                }
+            });
         });
     }
 
     private async void save_art_file () throws Error requires (texture != null) {
-        FileIOStream iostream;
-        var file = yield File.new_tmp_async ("io.elementary.music-XXXXXX.png", GLib.Priority.DEFAULT, null, out iostream);
+        var path = Path.build_path (
+            Path.DIR_SEPARATOR_S,
+            Environment.get_user_cache_dir (),
+            GLib.Application.get_default ().application_id,
+            "art"
+        );
 
-        var bytes = texture.save_to_png_bytes ();
+        DirUtils.create_with_parents (path, 0755);
 
-        var ostream = iostream.output_stream;
-        yield ostream.write_bytes_async (bytes);
+        //FIXME: make a hash that re-uses art instead of one per file
+        var file = File.new_for_path (Path.build_path (
+            Path.DIR_SEPARATOR_S,
+            path,
+            Checksum.compute_for_string (SHA256, uri)
+        ));
+
+        var ostream = yield file.create_async (NONE);
+        yield ostream.write_bytes_async (texture.save_to_png_bytes ());
 
         art_url = file.get_uri ();
     }
