@@ -33,7 +33,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build
-        uses: flatpak/flatpak-github-actions/flatpak-builder@v6.4
+        uses: flatpak/flatpak-github-actions/flatpak-builder@v6.5
         with:
           bundle: Music.flatpak
           manifest-path: io.elementary.music.yml
