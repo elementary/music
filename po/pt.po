@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-19 22:54+0000\n"
-"PO-Revision-Date: 2024-11-27 13:04+0000\n"
+"PO-Revision-Date: 2025-05-03 18:55+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
-"Language-Team: Portuguese <https://l10n.elementary.io/projects/music/music/"
-"pt/>\n"
+"Language-Team: Portuguese <https://l10n.elementaryos.org/projects/music/"
+"music/pt/>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.10.4\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 
 #: src/Application.vala:97 src/Views/NowPlayingView.vala:18
@@ -46,10 +46,8 @@ msgid "Open Files…"
 msgstr "Abrir ficheiros…"
 
 #: src/MainWindow.vala:76
-#, fuzzy
-#| msgid "Queue"
 msgid "Clear Queue"
-msgstr "Fila de reprodução"
+msgstr "Limpar fila de reprodução"
 
 #: src/MainWindow.vala:187
 #, c-format
