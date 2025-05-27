@@ -54,12 +54,7 @@ public class Music.PlaybackManager : Object {
             critical ("Unable to start Gstreamer Discoverer: %s", e.message);
         }
 
-        queue_liststore.items_changed.connect (() => {
-            var shuffle_action_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_SHUFFLE);
-            has_items = queue_liststore.get_n_items () > 0;
-            shuffle_action_action.set_enabled (queue_liststore.get_n_items () > 1);
-            update_next_previous_sensitivity ();
-        });
+        queue_liststore.items_changed.connect (on_items_changed);
 
         notify["current-audio"].connect (() => {
             playbin.set_state (Gst.State.NULL);
@@ -83,8 +78,6 @@ public class Music.PlaybackManager : Object {
         });
 
         settings = new Settings ("io.elementary.music");
-
-        restore_queue ();
     }
 
     public void seek_to_progress (double percent) {
@@ -454,17 +447,34 @@ public class Music.PlaybackManager : Object {
         return pix;
     }
 
-    private void restore_queue () {
+    public void restore_queue () {
         var last_session_uri = settings.get_strv ("previous-queue");
         var last_session_files = new File[last_session_uri.length];
 
-        foreach (var uri in last_session_uri) {
-            print("\n" + uri);
+        for (var i = 0; i < last_session_uri.length; i++) {
+            var uri = last_session_uri[i];
             var file = File.new_for_uri (uri);
-            last_session_files += file;
+            last_session_files[i] = file;
         }
 
         var files_to_play = Application.loop_through_files (last_session_files);
         queue_files (files_to_play);
+    }
+
+    private void on_items_changed () {
+        var shuffle_action_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_SHUFFLE);
+        has_items = queue_liststore.get_n_items () > 0;
+        shuffle_action_action.set_enabled (queue_liststore.get_n_items () > 1);
+        update_next_previous_sensitivity ();
+
+        // Save current queue in gsettings
+        string[] list_uri = new string[queue_liststore.n_items];
+
+        for (var i = 0; i < queue_liststore.n_items; i++) {
+            var item = (Music.AudioObject)queue_liststore.get_item (i);
+            list_uri[i] = item.uri;
+        }
+
+        settings.set_strv ("previous-queue", list_uri);
     }
 }
