@@ -459,6 +459,7 @@ public class Music.PlaybackManager : Object {
 
         var files_to_play = Application.loop_through_files (last_session_files);
         queue_files (files_to_play);
+        //playback_position = (int)settings.get_int ("index-last-played");
     }
 
     private void on_items_changed () {
@@ -476,5 +477,6 @@ public class Music.PlaybackManager : Object {
         }
 
         settings.set_strv ("previous-queue", list_uri);
+        //settings.set_int ("index-last-played", (int)playback_position);
     }
 }
