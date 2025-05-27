@@ -243,6 +243,21 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
                 playback_manager.current_audio = selected_audio;
             }
         });
+
+        close_request.connect (e => {
+            return before_destroy ();
+        });
+
+        var last_session_uri = settings.get_strv ("previous-queue");
+        var last_session_files = new File[last_session_uri.length];
+
+        foreach (var uri in last_session_uri) {
+            var file = File.new_for_uri (uri);
+            last_session_files += file;
+        }
+
+        var files_to_play = Application.loop_through_files (last_session_files);
+        PlaybackManager.get_default ().queue_files (files_to_play);
     }
 
     public void start_search () {
@@ -328,5 +343,18 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         } else {
             queue_stack.visible_child = queue_placeholder;
         }
+    }
+
+    private bool before_destroy () {
+        var current_queue = PlaybackManager.get_default ().queue_liststore;
+        string[] list_uri = new string[current_queue.n_items];
+
+        for (var i = 0; i < current_queue.n_items; i++) {
+            var item = (Music.AudioObject)current_queue.get_item (i);
+            list_uri += item.uri;
+        }
+
+        settings.set_strv ("previous-queue", list_uri);
+        return false;
     }
 }
