@@ -83,6 +83,8 @@ public class Music.PlaybackManager : Object {
         });
 
         settings = new Settings ("io.elementary.music");
+
+        restore_queue ();
     }
 
     public void seek_to_progress (double percent) {
@@ -450,5 +452,19 @@ public class Music.PlaybackManager : Object {
         buffer.unmap (map_info);
 
         return pix;
+    }
+
+    private void restore_queue () {
+        var last_session_uri = settings.get_strv ("previous-queue");
+        var last_session_files = new File[last_session_uri.length];
+
+        foreach (var uri in last_session_uri) {
+            print("\n" + uri);
+            var file = File.new_for_uri (uri);
+            last_session_files += file;
+        }
+
+        var files_to_play = Application.loop_through_files (last_session_files);
+        queue_files (files_to_play);
     }
 }
