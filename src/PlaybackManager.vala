@@ -38,6 +38,8 @@ public class Music.PlaybackManager : Object {
     private PlaybackManager () {}
 
     construct {
+        settings = new Settings ("io.elementary.music");
+
         queue_liststore = new ListStore (typeof (AudioObject));
 
         playbin = Gst.ElementFactory.make ("playbin", "playbin");
@@ -56,28 +58,7 @@ public class Music.PlaybackManager : Object {
 
         queue_liststore.items_changed.connect (on_items_changed);
 
-        notify["current-audio"].connect (() => {
-            playbin.set_state (Gst.State.NULL);
-            if (current_audio != null) {
-                playbin.uri = current_audio.uri;
-                playbin.set_state (Gst.State.PLAYING);
-            } else {
-                playbin.uri = "";
-                playback_position = 0;
-
-                if (progress_timer != 0) {
-                    Source.remove (progress_timer);
-                    progress_timer = 0;
-                }
-            }
-
-            update_next_previous_sensitivity ();
-
-            var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
-            play_pause_action.set_enabled (current_audio != null);
-        });
-
-        settings = new Settings ("io.elementary.music");
+        notify["current-audio"].connect (on_audio_changed);
     }
 
     public void seek_to_progress (double percent) {
@@ -459,7 +440,18 @@ public class Music.PlaybackManager : Object {
 
         var files_to_play = Application.loop_through_files (last_session_files);
         queue_files (files_to_play);
-        //playback_position = (int)settings.get_int ("index-last-played");
+    }
+
+    public void restore_last_played () {
+        var? uri_last_played = settings.get_string ("uri-last-played");
+        var file_last_played = File.new_for_uri (uri_last_played);
+
+        if (( uri_last_played != "" ) && (file_last_played.query_exists ())) {
+            uint position = -1;
+            var audio_object = new AudioObject (uri_last_played);
+            queue_liststore.find (audio_object, out position);
+            current_audio = (AudioObject) queue_liststore.get_item (position);
+        }
     }
 
     private void on_items_changed () {
@@ -477,6 +469,28 @@ public class Music.PlaybackManager : Object {
         }
 
         settings.set_strv ("previous-queue", list_uri);
-        //settings.set_int ("index-last-played", (int)playback_position);
+    }
+
+    private void on_audio_changed () {
+        playbin.set_state (Gst.State.NULL);
+        if (current_audio != null) {
+            playbin.uri = current_audio.uri;
+            playbin.set_state (Gst.State.PLAYING);
+        } else {
+            playbin.uri = "";
+            playback_position = 0;
+
+            if (progress_timer != 0) {
+                Source.remove (progress_timer);
+                progress_timer = 0;
+            }
+        }
+
+        update_next_previous_sensitivity ();
+
+        var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
+        play_pause_action.set_enabled (current_audio != null);
+
+        settings.set_string ("uri-last-played", current_audio.uri);
     }
 }

@@ -100,10 +100,6 @@ public class Music.Application : Gtk.Application {
 
         add_window (main_window);
 
-        // This needs to be done after window is constructed
-        // Else music plays but the queue seems empty
-        PlaybackManager.get_default ().restore_queue ();
-
         /*
         * This is very finicky. Bind size after present else set_titlebar gives us bad sizes
         * Set maximize after height/width else window is min size on unmaximize
@@ -118,6 +114,16 @@ public class Music.Application : Gtk.Application {
         }
 
         settings.bind ("window-maximized", main_window, "maximized", SettingsBindFlags.SET);
+
+        // Restoring the queue overwrites the last played. So we need to retrieve it before
+        var? uri_last_played = settings.get_string ("uri-last-played");
+
+        // This needs to be done after window is constructed
+        // Else music plays but the queue seems empty
+        PlaybackManager.get_default ().restore_queue ();
+
+        settings.set_string ("uri-last-played", uri_last_played);
+        PlaybackManager.get_default ().restore_last_played ();
 
     }
 

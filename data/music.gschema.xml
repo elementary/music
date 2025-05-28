@@ -17,10 +17,10 @@
       <summary>The queue from last session to restore</summary>
       <description>An array of strings representing the files played last</description>
     </key>
-    <key type="i" name="index-last-played">
-      <default>0</default>
+    <key type="s" name="uri-last-played">
+      <default>''</default>
       <summary>The item that was playing when the user closed Music</summary>
-      <description>An Integer representing the position in the ListStore of the last played music file</description>
+      <description>A string representing the uri of the last played music file</description>
     </key>
 
     <key name="window-height" type="i">
