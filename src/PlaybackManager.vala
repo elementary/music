@@ -38,6 +38,7 @@ public class Music.PlaybackManager : Object {
     private PlaybackManager () {}
 
     construct {
+        settings = new Settings ("io.elementary.music");
         queue_liststore = new ListStore (typeof (AudioObject));
 
         playbin = Gst.ElementFactory.make ("playbin", "playbin");
@@ -59,6 +60,7 @@ public class Music.PlaybackManager : Object {
             has_items = queue_liststore.get_n_items () > 0;
             shuffle_action_action.set_enabled (queue_liststore.get_n_items () > 1);
             update_next_previous_sensitivity ();
+            save_queue ();
         });
 
         notify["current-audio"].connect (() => {
@@ -81,8 +83,6 @@ public class Music.PlaybackManager : Object {
             var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
             play_pause_action.set_enabled (current_audio != null);
         });
-
-        settings = new Settings ("io.elementary.music");
     }
 
     public void seek_to_progress (double percent) {
@@ -450,5 +450,31 @@ public class Music.PlaybackManager : Object {
         buffer.unmap (map_info);
 
         return pix;
+    }
+
+    public void save_queue () {
+        // Save current queue in gsettings
+        string[] list_uri = new string[queue_liststore.n_items];
+
+        for (var i = 0; i < queue_liststore.n_items; i++) {
+            var item = (Music.AudioObject)queue_liststore.get_item (i);
+            list_uri[i] = item.uri;
+        }
+
+        settings.set_strv ("previous-queue", list_uri);
+    }
+
+    public void restore_queue () {
+        var last_session_uri = settings.get_strv ("previous-queue");
+        var last_session_files = new File[last_session_uri.length];
+
+        for (var i = 0; i < last_session_uri.length; i++) {
+            var uri = last_session_uri[i];
+            var file = File.new_for_uri (uri);
+            last_session_files[i] = file;
+        }
+
+        var files_to_play = Application.loop_through_files (last_session_files);
+        queue_files (files_to_play);
     }
 }

@@ -12,6 +12,11 @@
       <summary>An index representing the repeat mode</summary>
       <description>An index representing the repeat mode</description>
     </key>
+    <key type="as" name="previous-queue">
+      <default>['']</default>
+      <summary>The queue from last session to restore</summary>
+      <description>An array of strings representing the files played last</description>
+    </key>
 
     <key name="window-height" type="i">
       <default>475</default>
