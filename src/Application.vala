@@ -114,6 +114,8 @@ public class Music.Application : Gtk.Application {
         }
 
         settings.bind ("window-maximized", main_window, "maximized", SettingsBindFlags.SET);
+
+        playback_manager.restore_last_played ();
     }
 
     private static File[] list_directory (string directory) {
