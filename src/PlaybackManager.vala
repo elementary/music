@@ -434,7 +434,7 @@ public class Music.PlaybackManager : Object {
         has_items = queue_liststore.get_n_items () > 0;
         shuffle_action_action.set_enabled (queue_liststore.get_n_items () > 1);
         update_next_previous_sensitivity ();
-        save_queue
+        save_queue ();
     }
 
     private void on_audio_changed () {
