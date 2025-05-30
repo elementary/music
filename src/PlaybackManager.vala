@@ -458,8 +458,7 @@ public class Music.PlaybackManager : Object {
         play_pause_action.set_enabled (current_audio != null);
     }
 
-        public void save_queue () {
-        // Save current queue in gsettings
+    private void save_queue () {
         string[] list_uri = new string[queue_liststore.n_items];
 
         for (var i = 0; i < queue_liststore.n_items; i++) {
