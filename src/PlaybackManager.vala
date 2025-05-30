@@ -55,34 +55,11 @@ public class Music.PlaybackManager : Object {
             critical ("Unable to start Gstreamer Discoverer: %s", e.message);
         }
 
-        queue_liststore.items_changed.connect (() => {
-            var shuffle_action_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_SHUFFLE);
-            has_items = queue_liststore.get_n_items () > 0;
-            shuffle_action_action.set_enabled (queue_liststore.get_n_items () > 1);
-            update_next_previous_sensitivity ();
-            save_queue ();
-        });
+        queue_liststore.items_changed.connect (on_items_changed);
 
-        notify["current-audio"].connect (() => {
-            playbin.set_state (Gst.State.NULL);
-            if (current_audio != null) {
-                playbin.uri = current_audio.uri;
-                playbin.set_state (Gst.State.PLAYING);
-            } else {
-                playbin.uri = "";
-                playback_position = 0;
+        notify["current-audio"].connect (on_audio_changed);
 
-                if (progress_timer != 0) {
-                    Source.remove (progress_timer);
-                    progress_timer = 0;
-                }
-            }
-
-            update_next_previous_sensitivity ();
-
-            var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
-            play_pause_action.set_enabled (current_audio != null);
-        });
+        settings = new Settings ("io.elementary.music");
     }
 
     public void seek_to_progress (double percent) {
@@ -452,7 +429,35 @@ public class Music.PlaybackManager : Object {
         return pix;
     }
 
-    public void save_queue () {
+    private void on_items_changed () {
+        var shuffle_action_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_SHUFFLE);
+        has_items = queue_liststore.get_n_items () > 0;
+        shuffle_action_action.set_enabled (queue_liststore.get_n_items () > 1);
+        update_next_previous_sensitivity ();
+    }
+
+    private void on_audio_changed () {
+        playbin.set_state (Gst.State.NULL);
+        if (current_audio != null) {
+            playbin.uri = current_audio.uri;
+            playbin.set_state (Gst.State.PLAYING);
+        } else {
+            playbin.uri = "";
+            playback_position = 0;
+
+            if (progress_timer != 0) {
+                Source.remove (progress_timer);
+                progress_timer = 0;
+            }
+        }
+
+        update_next_previous_sensitivity ();
+
+        var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
+        play_pause_action.set_enabled (current_audio != null);
+    }
+    
+        public void save_queue () {
         // Save current queue in gsettings
         string[] list_uri = new string[queue_liststore.n_items];
 
