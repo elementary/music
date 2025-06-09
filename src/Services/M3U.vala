@@ -28,6 +28,10 @@ namespace Music.M3U {
                     if (line.ascii_down ().has_prefix ("file:///")) {
                         target = File.new_for_uri (line);
 
+                    //FIXME: URL get skipped.
+                    //} else if (line.ascii_down ().has_prefix ("http")) {
+                    //    print ("URL are currently unsupported:" + line + "\n");
+
                     } else {
                         target = File.new_for_path (line);
 
@@ -35,10 +39,8 @@ namespace Music.M3U {
 
                     // We do not need to test yet whether files exist
                     list += target;
-
                 }
             }
-
 
         } catch (Error e) {
             print ("Error: %s\n", e.message);
@@ -47,10 +49,6 @@ namespace Music.M3U {
         return list;
 
     }
-
-
-
-
 
     public void save_playlist (MainWindow parent, ListStore queue_liststore) {
         debug ("Saving queue as playlist" + "\n");
@@ -85,6 +83,4 @@ namespace Music.M3U {
 
 
     }
-
-
 }
