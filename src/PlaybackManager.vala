@@ -176,6 +176,12 @@ public class Music.PlaybackManager : Object {
 
             unowned Gst.TagList? tag_list = info.get_tags ();
 
+            string _album;
+            tag_list.get_string (Gst.Tags.ALBUM, out _album);
+            if (_album != null) {
+                audio_object.album = _album;
+            }
+
             string _title;
             tag_list.get_string (Gst.Tags.TITLE, out _title);
             if (_title != null) {
@@ -190,12 +196,37 @@ public class Music.PlaybackManager : Object {
                 audio_object.artist = _("Unknown");
             }
 
-            var sample = get_cover_sample (tag_list);
-            if (sample != null) {
-                var buffer = sample.get_buffer ();
+            string art_hash = uri;
+            if (_artist != null && _album != null) {
+                art_hash = "%s:%s".printf (_artist, _album);
+            }
 
-                if (buffer != null) {
-                    audio_object.texture = Gdk.Texture.for_pixbuf (get_pixbuf_from_buffer (buffer));
+            var art_file = File.new_for_path (Path.build_path (
+                Path.DIR_SEPARATOR_S,
+                get_art_cache_dir (),
+                Checksum.compute_for_string (SHA256, art_hash)
+            ));
+
+            if (art_file.query_exists ()) {
+                audio_object.art_url = art_file.get_uri ();
+                audio_object.texture = Gdk.Texture.from_file (art_file);
+            } else {
+                var sample = get_cover_sample (tag_list);
+                if (sample != null) {
+                    var buffer = sample.get_buffer ();
+
+                    if (buffer != null) {
+                        var texture = Gdk.Texture.for_pixbuf (get_pixbuf_from_buffer (buffer));
+                        audio_object.texture = texture;
+
+                        save_art_file.begin (texture, art_file, (obj, res) => {
+                            try {
+                                audio_object.art_url = save_art_file.end (res);
+                            } catch (Error e) {
+                                critical (e.message);
+                            }
+                        });
+                    }
                 }
             }
         } else {
@@ -427,6 +458,24 @@ public class Music.PlaybackManager : Object {
         buffer.unmap (map_info);
 
         return pix;
+    }
+
+    private async string save_art_file (Gdk.Texture texture, File file) throws Error requires (texture != null) {
+        DirUtils.create_with_parents (get_art_cache_dir (), 0755);
+
+        var ostream = yield file.create_async (NONE);
+        yield ostream.write_bytes_async (texture.save_to_png_bytes ());
+
+        return file.get_uri ();
+    }
+
+    private string get_art_cache_dir () {
+        return Path.build_path (
+            Path.DIR_SEPARATOR_S,
+            Environment.get_user_cache_dir (),
+            GLib.Application.get_default ().application_id,
+            "art"
+        );
     }
 
     private void on_items_changed () {
