@@ -25,7 +25,6 @@ public class Music.Application : Gtk.Application {
         { ACTION_SAVE_M3U_PLAYLIST, action_save_m3u_playlist}
     };
 
-    private MainWindow main_window;
     private PlaybackManager? playback_manager = null;
 
     public Application () {
@@ -97,7 +96,7 @@ public class Music.Application : Gtk.Application {
             warning ("Could not initialize MPRIS session.\n");
         }
 
-        main_window = new MainWindow () {
+        var main_window = new MainWindow () {
             title = _("Music")
         };
         main_window.present ();
