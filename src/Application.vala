@@ -122,10 +122,8 @@ public class Music.Application : Gtk.Application {
         // This needs to be done after window is constructed
         // Else music plays but the queue seems empty
         playback_manager.restore_queue ();
-
         settings.set_string ("uri-last-played", uri_last_played);
         playback_manager.restore_last_played ();
-        print(uri_last_played);
 
     }
 
