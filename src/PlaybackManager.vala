@@ -539,7 +539,6 @@ public class Music.PlaybackManager : Object {
         var? file_last_played = File.new_for_uri (uri_last_played);
 
         if (( uri_last_played != "" ) && (file_last_played.query_exists ())) {
-
             var audio_object = new AudioObject (uri_last_played);
             uint position = -1;
             int found_at = -1;
