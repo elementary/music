@@ -12,7 +12,7 @@ jobs:
     name: Gettext
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/elementary/flatpak-platform/runtime:8.1-x86_64
+      image: ghcr.io/elementary/flatpak-platform/runtime:8.2-x86_64
       options: --privileged
 
     steps:
@@ -52,7 +52,7 @@ jobs:
       fail-fast: false
 
     container:
-      image: ghcr.io/elementary/flatpak-platform/runtime:8.1-${{ matrix.configuration.arch }}
+      image: ghcr.io/elementary/flatpak-platform/runtime:8.2-${{ matrix.configuration.arch }}
       options: --privileged
 
     steps:
