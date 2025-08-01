@@ -505,6 +505,8 @@ public class Music.PlaybackManager : Object {
 
         var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
         play_pause_action.set_enabled (current_audio != null);
+
+        settings.set_string ("uri-last-played", current_audio.uri ?? "");
     }
 
     private void save_queue () {
@@ -530,5 +532,30 @@ public class Music.PlaybackManager : Object {
 
         var files_to_play = Application.loop_through_files (last_session_files);
         queue_files (files_to_play);
+    }
+
+    public void restore_last_played () {
+        var? uri_last_played = settings.get_string ("uri-last-played");
+        var? file_last_played = File.new_for_uri (uri_last_played);
+
+        if (( uri_last_played != "" ) && (file_last_played.query_exists ())) {
+            var audio_object = new AudioObject (uri_last_played);
+            uint position = -1;
+            int found_at = -1;
+
+            if (queue_liststore.find_with_equal_func (
+                audio_object,
+                (a, b) => {
+                    var term_a = ((AudioObject)a).uri;
+                    var term_b = ((AudioObject)b).uri;
+                    return term_a.contains (term_b);
+                },
+                out position
+            )) {
+                found_at = (int)position;
+            }
+
+            current_audio = (AudioObject) queue_liststore.get_item (position);
+        }
     }
 }
