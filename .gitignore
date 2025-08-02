@@ -2,3 +2,5 @@
 .flatpak-builder
 .flatpak
 build
+.vscode/settings.json
+.gitignore
