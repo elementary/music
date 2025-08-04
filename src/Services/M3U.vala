@@ -7,7 +7,7 @@ namespace Music.M3U {
 
     // Standard specification here: https://en.wikipedia.org/wiki/M3U
     public File[] parse_playlist (File playlist) {
-        debug ("Parsing playlist: " + playlist.get_basename () + "\n");
+        debug ("Parsing playlist: %s", playlist.get_path ());
         File[] list = {};
 
         try {
