@@ -22,7 +22,7 @@ public class Music.Application : Gtk.Application {
         { ACTION_FIND, action_find },
         { ACTION_CLEAR_QUEUE, action_clear_queue },
         { ACTION_QUIT, quit },
-        { ACTION_SAVE_M3U_PLAYLIST, action_save_m3u_playlist}
+        { ACTION_SAVE_M3U_PLAYLIST, action_save_m3u_playlist }
     };
 
     private PlaybackManager? playback_manager = null;
