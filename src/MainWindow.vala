@@ -291,7 +291,7 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
                 }
 
                 var dialog = new Granite.MessageDialog (
-                    "Couldn't add audio files",
+                    _("Couldn't add audio files"),
                     e.message,
                     new ThemedIcon ("document-open")
                 ) {
