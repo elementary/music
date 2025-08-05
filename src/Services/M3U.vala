@@ -21,34 +21,29 @@ namespace Music.M3U {
                 // Skip extended
                 if (line.has_prefix ("#EXT")) {
                     debug ("Skipping EXTM3U: " + line);
-
-                } else {
-                    File target;
-
-                    if (line.ascii_down ().has_prefix ("file:///")) {
-                        target = File.new_for_uri (line);
-
-                    //FIXME: URL get skipped.
-                    //} else if (line.ascii_down ().has_prefix ("http")) {
-                    //    debug ("URL are currently unsupported:" + line);
-
-                    } else {
-                        target = File.new_for_path (line);
-
-                    };
-
-                    // We do not need to test yet whether files exist
-                    list += target;
+                    continue;
                 }
-            }
 
+                File target;
+
+                if (line.ascii_down ().has_prefix ("file:///")) {
+                    target = File.new_for_uri (line);
+                //FIXME: URL get skipped.
+                //} else if (line.ascii_down ().has_prefix ("http")) {
+                //    debug ("URL are currently unsupported:" + line);
+                } else {
+                    target = File.new_for_path (line);
+                };
+
+                // We do not need to test yet whether files exist
+                list += target;
+            }
         } catch (Error e) {
             warning ("Error: %s", e.message);
             return null;
         }
 
         return list;
-
     }
 
     public void save_playlist (ListStore queue_liststore, File playlist) {
@@ -65,7 +60,6 @@ namespace Music.M3U {
             var dostream = new DataOutputStream (ostream);
 
             dostream.put_string (content);
-
         } catch (Error err) {
             warning ("Failed to save file: %s", err.message);
         }
