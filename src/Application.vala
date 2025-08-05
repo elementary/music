@@ -163,7 +163,9 @@ public class Music.Application : Gtk.Application {
                 continue;
             }
 
-            if ((file_path.ascii_down ().has_suffix (".m3u")) || (file_path.ascii_down ().has_suffix (".m3u8"))) {
+            // Check if the file has M3U suffix: "foo.m3u", "bar.M3U8", etc.
+            var m3u_suffix = /^.+.m3u8?$/i;
+            if (m3u_suffix.match (file_path)) {
                 foreach (var track in M3U.parse_playlist (file)) {
                     elements += track;
                 }
