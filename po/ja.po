@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-05 14:30+0000\n"
-"PO-Revision-Date: 2025-03-20 00:46+0000\n"
+"PO-Revision-Date: 2025-08-06 14:55+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementaryos.org/projects/music/music/"
 "ja/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.11.4\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:53+0000\n"
 
 #: src/Application.vala:97 src/Views/NowPlayingView.vala:18
@@ -72,10 +72,8 @@ msgid "Open audio files"
 msgstr "音声ファイルを開く"
 
 #: src/MainWindow.vala:294
-#, fuzzy
-#| msgid "Open audio files"
 msgid "Couldn't add audio files"
-msgstr "音声ファイルを開く"
+msgstr "音声ファイルを追加できませんでした"
 
 #: src/MainWindow.vala:312
 msgid "Repeat None"
