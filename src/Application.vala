@@ -228,12 +228,27 @@ public class Music.Application : Gtk.Application {
             File? file;
             try {
                 file = save_dialog.save.end (res);
-            } catch (Error err) {
-                warning ("Failed to save file: %s", err.message);
-                return;
-            }
 
-            M3U.save_playlist (playback_manager.queue_liststore, file);
+                M3U.save_playlist (playback_manager.queue_liststore, file);
+            } catch (Error err) {
+                if (err.matches (Gtk.DialogError.quark (), Gtk.DialogError.DISMISSED)) {
+                    return;
+                }
+
+                warning ("Failed to save file: %s", err.message);
+
+                var dialog = new Granite.MessageDialog (
+                    _("Couldn't save playlist"),
+                    err.message,
+                    new ThemedIcon ("playlist-queue")
+                ) {
+                    badge_icon = new ThemedIcon ("dialog-error"),
+                    modal = true,
+                    transient_for = active_window
+                };
+                dialog.present ();
+                dialog.response.connect (dialog.destroy);
+            }
         });
     }
 

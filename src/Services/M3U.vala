@@ -46,7 +46,7 @@ namespace Music.M3U {
         return list;
     }
 
-    public void save_playlist (ListStore queue_liststore, File playlist) {
+    public void save_playlist (ListStore queue_liststore, File playlist) throws Error {
         debug ("Saving queue as playlist");
         string content = "";
 
@@ -62,6 +62,7 @@ namespace Music.M3U {
             dostream.put_string (content);
         } catch (Error err) {
             warning ("Failed to save file: %s", err.message);
+            throw err;
         }
     }
 }
