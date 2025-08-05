@@ -228,7 +228,6 @@ public class Music.Application : Gtk.Application {
             File? file;
             try {
                 file = save_dialog.save.end (res);
-
                 M3U.save_playlist (playback_manager.queue_liststore, file);
             } catch (Error err) {
                 if (err.matches (Gtk.DialogError.quark (), Gtk.DialogError.DISMISSED)) {

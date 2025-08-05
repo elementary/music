@@ -33,7 +33,7 @@ namespace Music.M3U {
                 //    debug ("URL are currently unsupported:" + line);
                 } else {
                     target = File.new_for_path (line);
-                };
+                }
 
                 // We do not need to test yet whether files exist
                 list += target;
@@ -58,7 +58,6 @@ namespace Music.M3U {
         try {
             var ostream = playlist.replace (null, false, GLib.FileCreateFlags.REPLACE_DESTINATION);
             var dostream = new DataOutputStream (ostream);
-
             dostream.put_string (content);
         } catch (Error err) {
             warning ("Failed to writing to playlist: %s", err.message);
