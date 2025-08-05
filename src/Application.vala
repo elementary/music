@@ -224,7 +224,7 @@ public class Music.Application : Gtk.Application {
             initial_name = _("New playlist.m3u")
         };
 
-        save_dialog.save.begin ((MainWindow)active_window, null, (obj, res) => {
+        save_dialog.save.begin (active_window, null, (obj, res) => {
             File? file;
             try {
                 file = save_dialog.save.end (res);
