@@ -16,11 +16,11 @@ namespace Music.M3U {
             string line;
 
             while ((line = dis.read_line ()) != null) {
-                print ("%s\n", line);
+                debug ("%s", line);
 
-                // Skip extended 
+                // Skip extended
                 if (line.has_prefix ("#EXT")) {
-                    print ("Skipping EXTM3U: " + line + "\n");
+                    debug ("Skipping EXTM3U: " + line);
 
                 } else {
                     File target;
@@ -30,7 +30,7 @@ namespace Music.M3U {
 
                     //FIXME: URL get skipped.
                     //} else if (line.ascii_down ().has_prefix ("http")) {
-                    //    print ("URL are currently unsupported:" + line + "\n");
+                    //    debug ("URL are currently unsupported:" + line);
 
                     } else {
                         target = File.new_for_path (line);
@@ -43,7 +43,7 @@ namespace Music.M3U {
             }
 
         } catch (Error e) {
-            print ("Error: %s\n", e.message);
+            warning ("Error: %s", e.message);
             return null;
         }
 
@@ -52,7 +52,7 @@ namespace Music.M3U {
     }
 
     public void save_playlist (ListStore queue_liststore, File playlist) {
-        debug ("Saving queue as playlist" + "\n");
+        debug ("Saving queue as playlist");
         string content = "";
 
         for (var i = 0; i < queue_liststore.n_items; i++) {
