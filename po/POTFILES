@@ -4,4 +4,3 @@ src/PlaybackManager.vala
 src/Views/NowPlayingView.vala
 src/Widgets/AlbumImage.vala
 src/Widgets/SeekBar.vala
-src/Services/M3U.vala
