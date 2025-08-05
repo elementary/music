@@ -60,13 +60,8 @@ namespace Music.M3U {
         }
 
         try {
-            var dostream = new DataOutputStream (
-                                         playlist.replace (
-                                                       null,
-                                                       false,
-                                                       GLib.FileCreateFlags.REPLACE_DESTINATION
-                                         )
-            );
+            var ostream = playlist.replace (null, false, GLib.FileCreateFlags.REPLACE_DESTINATION);
+            var dostream = new DataOutputStream (ostream);
 
             dostream.put_string (content);
 
