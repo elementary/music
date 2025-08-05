@@ -50,7 +50,7 @@ namespace Music.M3U {
 
     }
 
-    public void save_playlist (MainWindow parent, ListStore queue_liststore) {
+    public void save_playlist (ListStore queue_liststore, File playlist) {
         debug ("Saving queue as playlist" + "\n");
         string content = "";
 
@@ -59,28 +59,19 @@ namespace Music.M3U {
             content = content + item.uri + "\n";
         }
 
-        var save_dialog = new Gtk.FileDialog () {
-            initial_name = _("New playlist.m3u")
-        };
-
-        save_dialog.save.begin (parent, null, (obj, res) => {
-            try {
-                var file = save_dialog.save.end (res);
-                var dostream = new DataOutputStream (
-                                             file.replace (
-                                                           null,
-                                                           false,
-                                                           GLib.FileCreateFlags.REPLACE_DESTINATION
-                                             )
-                );
+        try {
+            var dostream = new DataOutputStream (
+                                         playlist.replace (
+                                                       null,
+                                                       false,
+                                                       GLib.FileCreateFlags.REPLACE_DESTINATION
+                                         )
+            );
 
             dostream.put_string (content);
 
-            } catch (Error err) {
-                    warning ("Failed to save file: %s", err.message);
-            }
-        });
-
-
+        } catch (Error err) {
+            warning ("Failed to save file: %s", err.message);
+        }
     }
 }

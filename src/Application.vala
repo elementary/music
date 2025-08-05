@@ -213,7 +213,21 @@ public class Music.Application : Gtk.Application {
     }
 
     private void action_save_m3u_playlist () {
-        M3U.save_playlist ((MainWindow)active_window, playback_manager.queue_liststore);
+        var save_dialog = new Gtk.FileDialog () {
+            initial_name = _("New playlist.m3u")
+        };
+
+        save_dialog.save.begin ((MainWindow)active_window, null, (obj, res) => {
+            File? file;
+            try {
+                file = save_dialog.save.end (res);
+            } catch (Error err) {
+                warning ("Failed to save file: %s", err.message);
+                return;
+            }
+
+            M3U.save_playlist (playback_manager.queue_liststore, file);
+        });
     }
 
     private void on_bus_acquired (DBusConnection connection, string name) {
