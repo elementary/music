@@ -235,7 +235,7 @@ public class Music.Application : Gtk.Application {
                     return;
                 }
 
-                warning ("Failed to save file: %s", err.message);
+                warning ("Failed to save playlist: %s", err.message);
 
                 var dialog = new Granite.MessageDialog (
                     _("Couldn't save playlist"),

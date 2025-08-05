@@ -61,7 +61,7 @@ namespace Music.M3U {
 
             dostream.put_string (content);
         } catch (Error err) {
-            warning ("Failed to save file: %s", err.message);
+            warning ("Failed to writing to playlist: %s", err.message);
             throw err;
         }
     }
