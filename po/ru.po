@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-05 14:30+0000\n"
-"PO-Revision-Date: 2025-03-25 16:55+0000\n"
+"PO-Revision-Date: 2025-08-06 14:55+0000\n"
 "Last-Translator: кубик круглый <megarainbow29@gmail.com>\n"
 "Language-Team: Russian <https://l10n.elementaryos.org/projects/music/music/"
 "ru/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.11.4\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 
 #: src/Application.vala:97 src/Views/NowPlayingView.vala:18
@@ -75,10 +75,8 @@ msgid "Open audio files"
 msgstr "Открыть аудиофайлы"
 
 #: src/MainWindow.vala:294
-#, fuzzy
-#| msgid "Could not find media file"
 msgid "Couldn't add audio files"
-msgstr "Не удалось найти файл"
+msgstr "Не удалось добавить аудиофайлы"
 
 #: src/MainWindow.vala:312
 msgid "Repeat None"
