@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-19 22:54+0000\n"
+"POT-Creation-Date: 2025-08-05 14:30+0000\n"
 "PO-Revision-Date: 2018-11-06 20:47+0000\n"
 "Last-Translator: Moo <hazap@hotmail.com>\n"
 "Language-Team: Lithuanian <https://weblate.elementary.io/projects/music/"
@@ -22,41 +22,41 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-03-07 05:53+0000\n"
 
 #: src/Application.vala:97 src/Views/NowPlayingView.vala:18
-#: src/Views/NowPlayingView.vala:116
+#: src/Views/NowPlayingView.vala:118
 msgid "Music"
 msgstr "Muzika"
 
-#: src/MainWindow.vala:20
+#: src/MainWindow.vala:25
 #, fuzzy
 msgid "Shuffle"
 msgstr "Įjungti maišymą"
 
-#: src/MainWindow.vala:26
+#: src/MainWindow.vala:31
 msgid "Search titles in playlist"
 msgstr ""
 
-#: src/MainWindow.vala:45
+#: src/MainWindow.vala:50
 msgid "Queue is Empty"
 msgstr ""
 
-#: src/MainWindow.vala:46
+#: src/MainWindow.vala:51
 msgid "Audio files opened from Files will appear here"
 msgstr ""
 
-#: src/MainWindow.vala:63
+#: src/MainWindow.vala:75
 #, fuzzy
 #| msgid "Other Files"
 msgid "Open Files…"
 msgstr "Kiti failai"
 
-#: src/MainWindow.vala:76
+#: src/MainWindow.vala:88
 #, fuzzy
 #| msgctxt "Name of the playlist"
 #| msgid "Queue"
 msgid "Clear Queue"
 msgstr "Eilė"
 
-#: src/MainWindow.vala:187
+#: src/MainWindow.vala:199
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
@@ -65,42 +65,48 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: src/MainWindow.vala:235
+#: src/MainWindow.vala:256
 #, fuzzy
 #| msgid "All Years"
 msgid "All files"
 msgstr "Visi metai"
 
-#: src/MainWindow.vala:240
+#: src/MainWindow.vala:261
 #, fuzzy
 #| msgid "Music"
 msgid "Music files"
 msgstr "Muzika"
 
-#: src/MainWindow.vala:249
+#: src/MainWindow.vala:270
 msgid "Open"
 msgstr "Atverti"
 
-#: src/MainWindow.vala:253
+#: src/MainWindow.vala:274
 msgid "Open audio files"
 msgstr ""
 
-#: src/MainWindow.vala:291
+#: src/MainWindow.vala:294
+#, fuzzy
+#| msgid "Could not load this Audio CD."
+msgid "Couldn't add audio files"
+msgstr "Nepavyko įkelti šio garso CD."
+
+#: src/MainWindow.vala:312
 #, fuzzy
 msgid "Repeat None"
 msgstr "Kartoti dainą"
 
-#: src/MainWindow.vala:295
+#: src/MainWindow.vala:316
 #, fuzzy
 msgid "Repeat All"
 msgstr "Kartoti albumą"
 
-#: src/MainWindow.vala:299
+#: src/MainWindow.vala:320
 #, fuzzy
 msgid "Repeat One"
 msgstr "Kartoti dainą"
 
-#: src/PlaybackManager.vala:136
+#: src/PlaybackManager.vala:113
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
@@ -110,28 +116,28 @@ msgstr[2] ""
 msgstr[3] ""
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:202
+#: src/PlaybackManager.vala:196
 msgid "Unknown"
 msgstr "Nežinoma"
 
-#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
+#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:117
 #, fuzzy
 msgid "Not playing"
 msgstr "Naujas grojaraštis"
 
-#: src/Views/NowPlayingView.vala:45
+#: src/Views/NowPlayingView.vala:47
 msgid "Previous"
 msgstr "Ankstesnis"
 
-#: src/Views/NowPlayingView.vala:68
+#: src/Views/NowPlayingView.vala:70
 msgid "Next"
 msgstr "Kitas"
 
-#: src/Views/NowPlayingView.vala:93
+#: src/Views/NowPlayingView.vala:95
 msgid "Play"
 msgstr "Groti"
 
-#: src/Views/NowPlayingView.vala:96
+#: src/Views/NowPlayingView.vala:98
 msgid "Pause"
 msgstr "Pristabdyti"
 
@@ -1181,9 +1187,6 @@ msgstr "Pristabdyti"
 
 #~ msgid "An Error Occurred"
 #~ msgstr "Įvyko klaida"
-
-#~ msgid "Could not load this Audio CD."
-#~ msgstr "Nepavyko įkelti šio garso CD."
 
 #~ msgid "Importation of a song from Audio CD finished."
 #~ msgstr "Dainos importavimas iš Garso CD užbaigtas."

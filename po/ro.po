@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-19 22:54+0000\n"
+"POT-Creation-Date: 2025-08-05 14:30+0000\n"
 "PO-Revision-Date: 2020-12-29 15:16+0000\n"
 "Last-Translator: Silviu Popescu <teodorspopescu@gmail.com>\n"
 "Language-Team: Romanian <https://l10n.elementary.io/projects/music/music/ro/"
@@ -22,40 +22,40 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 
 #: src/Application.vala:97 src/Views/NowPlayingView.vala:18
-#: src/Views/NowPlayingView.vala:116
+#: src/Views/NowPlayingView.vala:118
 msgid "Music"
 msgstr "Muzică"
 
-#: src/MainWindow.vala:20
+#: src/MainWindow.vala:25
 #, fuzzy
 msgid "Shuffle"
 msgstr "Activează Redarea Aleatorie"
 
-#: src/MainWindow.vala:26
+#: src/MainWindow.vala:31
 msgid "Search titles in playlist"
 msgstr ""
 
-#: src/MainWindow.vala:45
+#: src/MainWindow.vala:50
 msgid "Queue is Empty"
 msgstr ""
 
-#: src/MainWindow.vala:46
+#: src/MainWindow.vala:51
 msgid "Audio files opened from Files will appear here"
 msgstr ""
 
-#: src/MainWindow.vala:63
+#: src/MainWindow.vala:75
 #, fuzzy
 #| msgid "Other Files"
 msgid "Open Files…"
 msgstr "Alte fișiere"
 
-#: src/MainWindow.vala:76
+#: src/MainWindow.vala:88
 #, fuzzy
 #| msgid "Queue"
 msgid "Clear Queue"
 msgstr "rând"
 
-#: src/MainWindow.vala:187
+#: src/MainWindow.vala:199
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
@@ -63,42 +63,48 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: src/MainWindow.vala:235
+#: src/MainWindow.vala:256
 #, fuzzy
 #| msgid "All Years"
 msgid "All files"
 msgstr "Toți Anii"
 
-#: src/MainWindow.vala:240
+#: src/MainWindow.vala:261
 #, fuzzy
 #| msgid "Music Player"
 msgid "Music files"
 msgstr "Player muzical"
 
-#: src/MainWindow.vala:249
+#: src/MainWindow.vala:270
 msgid "Open"
 msgstr "Deschideţi"
 
-#: src/MainWindow.vala:253
+#: src/MainWindow.vala:274
 msgid "Open audio files"
 msgstr ""
 
-#: src/MainWindow.vala:291
+#: src/MainWindow.vala:294
+#, fuzzy
+#| msgid "Could not find media file"
+msgid "Couldn't add audio files"
+msgstr "Nu am găsit fișiere multimedia"
+
+#: src/MainWindow.vala:312
 #, fuzzy
 msgid "Repeat None"
 msgstr "Redă Piesa"
 
-#: src/MainWindow.vala:295
+#: src/MainWindow.vala:316
 #, fuzzy
 msgid "Repeat All"
 msgstr "Repetă albumul"
 
-#: src/MainWindow.vala:299
+#: src/MainWindow.vala:320
 #, fuzzy
 msgid "Repeat One"
 msgstr "Redă Piesa"
 
-#: src/PlaybackManager.vala:136
+#: src/PlaybackManager.vala:113
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
@@ -107,28 +113,28 @@ msgstr[1] ""
 msgstr[2] ""
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:202
+#: src/PlaybackManager.vala:196
 msgid "Unknown"
 msgstr "Necunoscut"
 
-#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
+#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:117
 #, fuzzy
 msgid "Not playing"
 msgstr "Listă de redare nouă"
 
-#: src/Views/NowPlayingView.vala:45
+#: src/Views/NowPlayingView.vala:47
 msgid "Previous"
 msgstr "Precedent"
 
-#: src/Views/NowPlayingView.vala:68
+#: src/Views/NowPlayingView.vala:70
 msgid "Next"
 msgstr "Urmatorul"
 
-#: src/Views/NowPlayingView.vala:93
+#: src/Views/NowPlayingView.vala:95
 msgid "Play"
 msgstr "Redare"
 
-#: src/Views/NowPlayingView.vala:96
+#: src/Views/NowPlayingView.vala:98
 msgid "Pause"
 msgstr "Pauza"
 
@@ -1290,8 +1296,8 @@ msgstr "Pauza"
 #~ "The following files were found on %s, but are not in your library. Check "
 #~ "all the files you would like to import."
 #~ msgstr ""
-#~ "Următoarele fișiere au fost găsite în %s, dar nu sunt în bibliotecă."
-#~ "Verifică toate fișierele pe care dorești ca să le imporți."
+#~ "Următoarele fișiere au fost găsite în %s, dar nu sunt în "
+#~ "bibliotecă.Verifică toate fișierele pe care dorești ca să le imporți."
 
 #~ msgid "Import all media"
 #~ msgstr "Importă toată multimedia"
@@ -1599,8 +1605,8 @@ msgstr "Pauza"
 #~ "songs may not have matches."
 #~ msgstr ""
 #~ "%s nu s-au putut găsi piese similare ca %s de %s în bibliotecă. Asigură-"
-#~ "te că informațiile piesei sunt corecte și că ești conectat la internet."
-#~ "Unele piese s-ar putea să nu fie găsite."
+#~ "te că informațiile piesei sunt corecte și că ești conectat la "
+#~ "internet.Unele piese s-ar putea să nu fie găsite."
 
 #~ msgid "Similar to %s"
 #~ msgstr "Similar ca %s"
@@ -1675,9 +1681,6 @@ msgstr "Pauza"
 
 #~ msgid "Remove Media"
 #~ msgstr "Elimină Multimedia"
-
-#~ msgid "Could not find media file"
-#~ msgstr "Nu am găsit fișiere multimedia"
 
 #~ msgid "%i media files could not be found. What would you like to do?"
 #~ msgstr "%i fișiere multimedia nu au fost găsite. Ce doriți să faceți?"
@@ -1766,8 +1769,8 @@ msgstr "Pauza"
 
 #~ msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 #~ msgstr ""
-#~ "Noise;Audio;Player;MP3;iPod;Redare;Listă de redare;Media;CD;Telefon;"
-#~ "Melodii"
+#~ "Noise;Audio;Player;MP3;iPod;Redare;Listă de "
+#~ "redare;Media;CD;Telefon;Melodii"
 
 #~ msgid "About Noise"
 #~ msgstr "Despre Noise"
