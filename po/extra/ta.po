@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-19 22:54+0000\n"
+"POT-Creation-Date: 2025-08-05 14:30+0000\n"
 "PO-Revision-Date: 2016-01-04 18:58+0000\n"
 "Last-Translator: Corentin Noël <corentin@elementaryos.org>\n"
 "Language-Team: Tamil <ta@li.org>\n"
@@ -97,8 +97,7 @@ msgstr ""
 #: data/music.desktop.in:9
 #, fuzzy
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
-msgstr ""
-"சத்தம்;ஆடியோ;பிளேயர்;எம்பி3;ஐபாட்;பிளே;பிளேலிஸ்ட்;மீடியா;குறுவட்டு;தொலைபேசி;பாடல்கள்;"
+msgstr "சத்தம்;ஆடியோ;பிளேயர்;எம்பி3;ஐபாட்;பிளே;பிளேலிஸ்ட்;மீடியா;குறுவட்டு;தொலைபேசி;பாடல்கள்;"
 
 #~ msgid "Music Player"
 #~ msgstr "இசை இயக்கி"
