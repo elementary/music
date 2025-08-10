@@ -28,9 +28,11 @@ namespace Music.M3U {
 
                 if (line.ascii_down ().has_prefix ("file:///")) {
                     target = File.new_for_uri (line);
-                //FIXME: URL get skipped.
+
+                //FIXME: Music does not handle URL
                 //} else if (line.ascii_down ().has_prefix ("http")) {
-                //    debug ("URL are currently unsupported:" + line);
+                //  target = File.new_for_url (line);
+
                 } else {
                     target = File.new_for_path (line);
                 }
