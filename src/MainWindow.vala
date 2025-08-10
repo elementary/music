@@ -251,7 +251,7 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         }
     }
 
-    private void action_open () {
+    public void action_open () {
         var all_files_filter = new Gtk.FileFilter () {
             name = _("All files"),
         };
