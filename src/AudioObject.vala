@@ -17,6 +17,6 @@ public class Music.AudioObject : Object {
     }
 
     public static bool equal_func (AudioObject a, AudioObject b) {
-		return (a.uri == b.uri);
-	}
+        return (a.uri == b.uri);
+    }
 }
