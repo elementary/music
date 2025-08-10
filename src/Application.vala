@@ -223,54 +223,7 @@ public class Music.Application : Gtk.Application {
     }
 
     private void action_save_m3u_playlist () {
-        var all_files_filter = new Gtk.FileFilter () {
-            name = _("All files"),
-        };
-        all_files_filter.add_pattern ("*");
-
-        var playlist_filter = new Gtk.FileFilter () {
-            name = _("M3U Playlists"),
-        };
-        playlist_filter.add_mime_type ("audio/x-mpegurl");
-
-        var filter_model = new ListStore (typeof (Gtk.FileFilter));
-        filter_model.append (all_files_filter);
-        filter_model.append (playlist_filter);
-
-        var save_dialog = new Gtk.FileDialog () {
-            accept_label = _("Save"),
-            default_filter = playlist_filter,
-            filters = filter_model,
-            modal = true,
-            title = _("Save playlist"),
-            initial_name = _("New playlist.m3u")
-        };
-
-        save_dialog.save.begin (active_window, null, (obj, res) => {
-            File? file;
-            try {
-                file = save_dialog.save.end (res);
-                M3U.save_playlist (playback_manager.queue_liststore, file);
-            } catch (Error err) {
-                if (err.matches (Gtk.DialogError.quark (), Gtk.DialogError.DISMISSED)) {
-                    return;
-                }
-
-                warning ("Failed to save playlist: %s", err.message);
-
-                var dialog = new Granite.MessageDialog (
-                    _("Couldn't save playlist"),
-                    err.message,
-                    new ThemedIcon ("playlist-queue")
-                ) {
-                    badge_icon = new ThemedIcon ("dialog-error"),
-                    modal = true,
-                    transient_for = active_window
-                };
-                dialog.present ();
-                dialog.response.connect (dialog.destroy);
-            }
-        });
+        ((MainWindow)active_window).action_save_m3u_playlist ();
     }
 
     private void action_open () {
