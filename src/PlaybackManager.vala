@@ -546,9 +546,7 @@ public class Music.PlaybackManager : Object {
             if (queue_liststore.find_with_equal_func (
                 audio_object,
                 (a, b) => {
-                    var term_a = ((AudioObject)a).uri;
-                    var term_b = ((AudioObject)b).uri;
-                    return term_a.contains (term_b);
+                    return AudioObject.equal_func ((AudioObject)a, (AudioObject)b);
                 },
                 out position
             )) {
