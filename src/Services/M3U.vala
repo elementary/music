@@ -6,7 +6,7 @@
 namespace Music.M3U {
 
     // Standard specification here: https://en.wikipedia.org/wiki/M3U
-    public File[] parse_playlist (File playlist) {
+    public File[]? parse_playlist (File playlist) {
         debug ("Parsing playlist: %s", playlist.get_path ());
         File[] list = {};
 
@@ -16,42 +16,38 @@ namespace Music.M3U {
             string line;
 
             while ((line = dis.read_line ()) != null) {
-                print ("%s\n", line);
+                debug ("%s", line);
 
-                // Skip extended 
+                // Skip extended
                 if (line.has_prefix ("#EXT")) {
-                    print ("Skipping EXTM3U: " + line + "\n");
-
-                } else {
-                    File target;
-
-                    if (line.ascii_down ().has_prefix ("file:///")) {
-                        target = File.new_for_uri (line);
-
-                    //FIXME: URL get skipped.
-                    //} else if (line.ascii_down ().has_prefix ("http")) {
-                    //    print ("URL are currently unsupported:" + line + "\n");
-
-                    } else {
-                        target = File.new_for_path (line);
-
-                    };
-
-                    // We do not need to test yet whether files exist
-                    list += target;
+                    debug ("Skipping EXTM3U: " + line);
+                    continue;
                 }
-            }
 
+                File target;
+
+                if (line.ascii_down ().has_prefix ("file:///")) {
+                    target = File.new_for_uri (line);
+                //FIXME: URL get skipped.
+                //} else if (line.ascii_down ().has_prefix ("http")) {
+                //    debug ("URL are currently unsupported:" + line);
+                } else {
+                    target = File.new_for_path (line);
+                }
+
+                // We do not need to test yet whether files exist
+                list += target;
+            }
         } catch (Error e) {
-            print ("Error: %s\n", e.message);
+            warning ("Error: %s", e.message);
+            return null;
         }
 
         return list;
-
     }
 
-    public void save_playlist (MainWindow parent, ListStore queue_liststore) {
-        debug ("Saving queue as playlist" + "\n");
+    public void save_playlist (ListStore queue_liststore, File playlist) throws Error {
+        debug ("Saving queue as playlist");
         string content = "";
 
         for (var i = 0; i < queue_liststore.n_items; i++) {
@@ -59,28 +55,13 @@ namespace Music.M3U {
             content = content + item.uri + "\n";
         }
 
-        var save_dialog = new Gtk.FileDialog () {
-            initial_name = _("New playlist.m3u")
-        };
-
-        save_dialog.save.begin (parent, null, (obj, res) => {
-            try {
-                var file = save_dialog.save.end (res);
-                var dostream = new DataOutputStream (
-                                             file.replace (
-                                                           null,
-                                                           false,
-                                                           GLib.FileCreateFlags.REPLACE_DESTINATION
-                                             )
-                );
-
+        try {
+            var ostream = playlist.replace (null, false, GLib.FileCreateFlags.REPLACE_DESTINATION);
+            var dostream = new DataOutputStream (ostream);
             dostream.put_string (content);
-
-            } catch (Error err) {
-                    warning ("Failed to save file: %s", err.message);
-            }
-        });
-
-
+        } catch (Error err) {
+            warning ("Failed to writing to playlist: %s", err.message);
+            throw err;
+        }
     }
 }

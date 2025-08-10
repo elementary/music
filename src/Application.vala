@@ -163,8 +163,15 @@ public class Music.Application : Gtk.Application {
                 continue;
             }
 
-            if ((file_path.ascii_down ().has_suffix (".m3u")) || (file_path.ascii_down ().has_suffix (".m3u8"))) {
-                foreach (var track in M3U.parse_playlist (file)) {
+            // Check if the file has M3U suffix: "foo.m3u", "bar.M3U8", etc.
+            var m3u_suffix = /^.+.m3u8?$/i;
+            if (m3u_suffix.match (file_path)) {
+                File[] tracks = M3U.parse_playlist (file);
+                if (tracks == null) {
+                    continue;
+                }
+
+                foreach (var track in tracks) {
                     elements += track;
                 }
 
@@ -213,7 +220,35 @@ public class Music.Application : Gtk.Application {
     }
 
     private void action_save_m3u_playlist () {
-        M3U.save_playlist ((MainWindow)active_window, playback_manager.queue_liststore);
+        var save_dialog = new Gtk.FileDialog () {
+            initial_name = _("New playlist.m3u")
+        };
+
+        save_dialog.save.begin (active_window, null, (obj, res) => {
+            File? file;
+            try {
+                file = save_dialog.save.end (res);
+                M3U.save_playlist (playback_manager.queue_liststore, file);
+            } catch (Error err) {
+                if (err.matches (Gtk.DialogError.quark (), Gtk.DialogError.DISMISSED)) {
+                    return;
+                }
+
+                warning ("Failed to save playlist: %s", err.message);
+
+                var dialog = new Granite.MessageDialog (
+                    _("Couldn't save playlist"),
+                    err.message,
+                    new ThemedIcon ("playlist-queue")
+                ) {
+                    badge_icon = new ThemedIcon ("dialog-error"),
+                    modal = true,
+                    transient_for = active_window
+                };
+                dialog.present ();
+                dialog.response.connect (dialog.destroy);
+            }
+        });
     }
 
     private void on_bus_acquired (DBusConnection connection, string name) {
