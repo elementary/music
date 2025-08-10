@@ -223,7 +223,26 @@ public class Music.Application : Gtk.Application {
     }
 
     private void action_save_m3u_playlist () {
+        var all_files_filter = new Gtk.FileFilter () {
+            name = _("All files"),
+        };
+        all_files_filter.add_pattern ("*");
+
+        var playlist_filter = new Gtk.FileFilter () {
+            name = _("M3U Playlists"),
+        };
+        playlist_filter.add_mime_type ("audio/x-mpegurl");
+
+        var filter_model = new ListStore (typeof (Gtk.FileFilter));
+        filter_model.append (all_files_filter);
+        filter_model.append (playlist_filter);
+
         var save_dialog = new Gtk.FileDialog () {
+            accept_label = _("Save"),
+            default_filter = playlist_filter,
+            filters = filter_model,
+            modal = true,
+            title = _("Save playlist"),
             initial_name = _("New playlist.m3u")
         };
 
