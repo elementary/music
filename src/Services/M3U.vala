@@ -24,15 +24,16 @@ namespace Music.M3U {
                     continue;
                 }
 
+                // Skip URL
+                if (line.ascii_down ().has_prefix ("http")) {
+                    debug ("Skipping URL: " + line);
+                    continue;
+                }
+
                 File target;
 
                 if (line.ascii_down ().has_prefix ("file:///")) {
                     target = File.new_for_uri (line);
-
-                //FIXME: Music does not handle URL
-                //} else if (line.ascii_down ().has_prefix ("http")) {
-                //  target = File.new_for_url (line);
-
                 } else {
                     target = File.new_for_path (line);
                 }
