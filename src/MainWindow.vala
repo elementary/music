@@ -14,10 +14,9 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
     private Gtk.SingleSelection selection_model;
     private Gtk.Stack queue_stack;
     private Settings settings;
-    public PlaybackManager playback_manager;
 
     construct {
-        playback_manager = PlaybackManager.get_default ();
+        var playback_manager = PlaybackManager.get_default ();
 
         var start_window_controls = new Gtk.WindowControls (Gtk.PackType.START);
 
@@ -334,6 +333,7 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
             File? file;
             try {
                 file = save_dialog.save.end (res);
+                var playback_manager = PlaybackManager.get_default ();
                 M3U.save_playlist (playback_manager.queue_liststore, file);
             } catch (Error err) {
                 if (err.matches (Gtk.DialogError.quark (), Gtk.DialogError.DISMISSED)) {
