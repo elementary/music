@@ -37,7 +37,8 @@ namespace Music.M3U {
                     target = File.new_for_path (line);
                 }
 
-                // We do not need to test yet whether files exist
+                // The caller is responsible for testing whether files exist and
+                // are valid using PlaybackManager.queue_files() instead of here
                 list += target;
             }
         } catch (Error e) {
