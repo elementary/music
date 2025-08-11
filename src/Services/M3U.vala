@@ -16,8 +16,6 @@ namespace Music.M3U {
             string line;
 
             while ((line = dis.read_line ()) != null) {
-                debug ("%s", line);
-
                 // Skip extended
                 if (line.has_prefix ("#EXT")) {
                     debug ("Skipping EXTM3U: " + line);
