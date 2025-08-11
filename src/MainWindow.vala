@@ -327,7 +327,7 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
             filters = filter_model,
             modal = true,
             title = _("Save playlist"),
-            initial_name = _("New playlist.m3u")
+            initial_name = "%s.m3u".printf (_("New playlist"))
         };
 
         save_dialog.save.begin (this, null, (obj, res) => {
