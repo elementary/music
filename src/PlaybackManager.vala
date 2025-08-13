@@ -38,6 +38,7 @@ public class Music.PlaybackManager : Object {
     private SimpleAction next_action;
     private SimpleAction play_pause_action;
     private SimpleAction previous_action;
+    private SimpleAction shuffle_action;
 
     private PlaybackManager () {}
 
@@ -74,14 +75,19 @@ public class Music.PlaybackManager : Object {
         previous_action = new SimpleAction (Application.ACTION_PREVIOUS, null);
         previous_action.activate.connect (previous);
 
+        shuffle_action = new SimpleAction (Application.ACTION_SHUFFLE, null);
+        shuffle_action.activate.connect (shuffle);
+
         next_action.set_enabled (false);
         play_pause_action.set_enabled (false);
         previous_action.set_enabled (false);
+        shuffle_action.set_enabled (false);
 
         var action_group = GLib.Application.get_default ();
         action_group.add_action (next_action);
         action_group.add_action (play_pause_action);
         action_group.add_action (previous_action);
+        action_group.add_action (shuffle_action);
     }
 
     public void seek_to_progress (double percent) {
@@ -380,7 +386,7 @@ public class Music.PlaybackManager : Object {
         }
     }
 
-    public void shuffle () {
+    private void shuffle () {
         var temp_list = new ListStore (typeof (AudioObject));
         temp_list.append (current_audio);
 
@@ -497,9 +503,8 @@ public class Music.PlaybackManager : Object {
     }
 
     private void on_items_changed () {
-        var shuffle_action_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_SHUFFLE);
         has_items = queue_liststore.get_n_items () > 0;
-        shuffle_action_action.set_enabled (queue_liststore.get_n_items () > 1);
+        shuffle_action.set_enabled (queue_liststore.get_n_items () > 1);
         update_next_previous_sensitivity ();
         save_queue ();
     }

@@ -14,7 +14,6 @@ public class Music.Application : Gtk.Application {
     public const string ACTION_QUIT = "action-quit";
 
     private const ActionEntry[] ACTION_ENTRIES = {
-        { ACTION_SHUFFLE, action_shuffle },
         { ACTION_FIND, action_find },
         { ACTION_CLEAR_QUEUE, action_clear_queue },
         { ACTION_QUIT, quit }
@@ -47,8 +46,6 @@ public class Music.Application : Gtk.Application {
 
         set_accels_for_action (ACTION_PREFIX + ACTION_FIND, {"<Ctrl>F"});
         set_accels_for_action (ACTION_PREFIX + ACTION_QUIT, {"<Ctrl>Q"});
-
-        ((SimpleAction) lookup_action (ACTION_SHUFFLE)).set_enabled (false);
 
         var granite_settings = Granite.Settings.get_default ();
         var gtk_settings = Gtk.Settings.get_default ();
@@ -167,10 +164,6 @@ public class Music.Application : Gtk.Application {
         var files_to_play = loop_through_files (files);
         debug ("Application: Number of files to play %u", files_to_play.length);
         playback_manager.queue_files (files_to_play);
-    }
-
-    private void action_shuffle () {
-        playback_manager.shuffle ();
     }
 
     private void action_find () {
