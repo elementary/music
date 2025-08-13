@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-05 14:30+0000\n"
-"PO-Revision-Date: 2025-03-20 12:06+0000\n"
+"PO-Revision-Date: 2025-08-11 20:55+0000\n"
 "Last-Translator: Italo Felipe Capasso Ballesteros <italo@gp-mail.com>\n"
 "Language-Team: Spanish <https://l10n.elementaryos.org/projects/music/music/"
 "es/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.11.4\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:55+0000\n"
 
 #: src/Application.vala:97 src/Views/NowPlayingView.vala:18
@@ -73,10 +73,8 @@ msgid "Open audio files"
 msgstr "Abrir archivos de audio"
 
 #: src/MainWindow.vala:294
-#, fuzzy
-#| msgid "Could not find media file"
 msgid "Couldn't add audio files"
-msgstr "No se pudo encontrar el archivo multimedia"
+msgstr "No se pudieron agregar los archivos de audio"
 
 #: src/MainWindow.vala:312
 msgid "Repeat None"
