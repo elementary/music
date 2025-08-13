@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-05 14:30+0000\n"
+"POT-Creation-Date: 2025-08-13 16:43+0000\n"
 "PO-Revision-Date: 2024-09-02 00:57+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/music/extra/he/>\n"
@@ -40,41 +40,49 @@ msgstr "הוספת הרצועות המועדפות עליך במהירות"
 msgid "elementary, Inc."
 msgstr "elementary בע״מ"
 
-#: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:70
-#: data/music.metainfo.xml.in:84
+#: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:77
+#: data/music.metainfo.xml.in:88 data/music.metainfo.xml.in:102
 msgid "Improvements:"
 msgstr "שיפורים:"
 
 #: data/music.metainfo.xml.in:61
-msgid "Toolbar shows a shadow when the view is scrolled"
-msgstr "סרגל הכלים מציג הצלחה כשהתצוגה נגללת"
+msgid "Show album art in the sound indicator"
+msgstr ""
 
 #: data/music.metainfo.xml.in:62
-msgid "Open audio files from within Music"
-msgstr "פתיחת קובצי שמע מתוך מוזיקה"
+msgid "Clear the queue"
+msgstr ""
 
-#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:73
-#: data/music.metainfo.xml.in:106
+#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:81
+#: data/music.metainfo.xml.in:91 data/music.metainfo.xml.in:124
 msgid "Updated translations"
 msgstr "התרגומים עודכנו"
 
-#: data/music.metainfo.xml.in:72
+#: data/music.metainfo.xml.in:79
+msgid "Toolbar shows a shadow when the view is scrolled"
+msgstr "סרגל הכלים מציג הצלחה כשהתצוגה נגללת"
+
+#: data/music.metainfo.xml.in:80
+msgid "Open audio files from within Music"
+msgstr "פתיחת קובצי שמע מתוך מוזיקה"
+
+#: data/music.metainfo.xml.in:90
 msgid "Open folders in the filemanager with Music"
 msgstr "פתיחת תיקיות במנהל הקבצים עם מוזיקה"
 
-#: data/music.metainfo.xml.in:86
+#: data/music.metainfo.xml.in:104
 msgid "For tracks without a title, use the file name instead of the whole URI"
 msgstr "לרצועות ללא כותרת, יש להשתמש בשם הקובץ במקום בכל המיקום"
 
-#: data/music.metainfo.xml.in:87
+#: data/music.metainfo.xml.in:105
 msgid "Skip invalid files instead of stopping playback"
 msgstr "לדלג על קבצים שגויים במקום לעצור את הנגינה"
 
-#: data/music.metainfo.xml.in:88
+#: data/music.metainfo.xml.in:106
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr "כפתורי הבא והחזרה תמיד עובדים ללא תלות במצב החזרה"
 
-#: data/music.metainfo.xml.in:89
+#: data/music.metainfo.xml.in:107
 msgid ""
 "Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
@@ -84,11 +92,11 @@ msgstr ""
 "קוריאנית, כורדית, מרטהי, נורווגית ספרותית (בוקמול), פולנית, פורטוגלית, "
 "רוסית, סינית מפושטת, טורקית ואוקראינית"
 
-#: data/music.metainfo.xml.in:99
+#: data/music.metainfo.xml.in:117
 msgid "Complete rewrite"
 msgstr "שכתוב מאפס"
 
-#: data/music.metainfo.xml.in:105
+#: data/music.metainfo.xml.in:123
 msgid "Drop support for Last.FM"
 msgstr "השמטת תמיכה ב־Last.FM"
 
