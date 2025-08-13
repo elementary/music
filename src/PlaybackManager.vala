@@ -35,7 +35,9 @@ public class Music.PlaybackManager : Object {
 
     private Direction direction = Direction.NONE;
 
+    private SimpleAction next_action;
     private SimpleAction play_pause_action;
+    private SimpleAction previous_action;
 
     private PlaybackManager () {}
 
@@ -63,13 +65,23 @@ public class Music.PlaybackManager : Object {
 
         settings = new Settings ("io.elementary.music");
 
+        next_action = new SimpleAction (Application.ACTION_NEXT, null);
+        next_action.activate.connect (() => next ());
+
         play_pause_action = new SimpleAction.stateful (Application.ACTION_PLAY_PAUSE, null, new Variant.boolean (false));
         play_pause_action.change_state.connect (play_pause);
 
+        previous_action = new SimpleAction (Application.ACTION_PREVIOUS, null);
+        previous_action.activate.connect (previous);
+
+        next_action.set_enabled (false);
         play_pause_action.set_enabled (false);
+        previous_action.set_enabled (false);
 
         var action_group = GLib.Application.get_default ();
+        action_group.add_action (next_action);
         action_group.add_action (play_pause_action);
+        action_group.add_action (previous_action);
     }
 
     public void seek_to_progress (double percent) {
@@ -300,7 +312,7 @@ public class Music.PlaybackManager : Object {
         }
     }
 
-    public void next (bool eos = false) {
+    private void next (bool eos = false) {
         direction = Direction.NEXT;
         next_by_eos = eos;
         uint position = -1;
@@ -349,7 +361,7 @@ public class Music.PlaybackManager : Object {
         }
     }
 
-    public void previous () {
+    private void previous () {
         direction = Direction.PREVIOUS;
         uint position = -1;
         queue_liststore.find (current_audio, out position);
@@ -418,10 +430,7 @@ public class Music.PlaybackManager : Object {
 
         var default_application = GLib.Application.get_default ();
 
-        var next_action = (SimpleAction) default_application.lookup_action (Application.ACTION_NEXT);
         next_action.set_enabled (next_sensitive);
-
-        var previous_action = (SimpleAction) default_application.lookup_action (Application.ACTION_PREVIOUS);
         previous_action.set_enabled (previous_sensitive);
 
     }
