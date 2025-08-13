@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-05 14:30+0000\n"
+"POT-Creation-Date: 2025-08-13 16:43+0000\n"
 "PO-Revision-Date: 2024-07-11 09:16+0000\n"
 "Last-Translator: JohnDumpling <john_dumpling@protonmail.com>\n"
 "Language-Team: Slovak <https://l10n.elementary.io/projects/music/extra/sk/>\n"
@@ -45,44 +45,52 @@ msgstr "Rýchlo zaraďte vaše obľúbené stopy do fronty"
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
 
-#: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:70
-#: data/music.metainfo.xml.in:84
+#: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:77
+#: data/music.metainfo.xml.in:88 data/music.metainfo.xml.in:102
 msgid "Improvements:"
 msgstr "Vylepšenia:"
 
 #: data/music.metainfo.xml.in:61
-msgid "Toolbar shows a shadow when the view is scrolled"
+msgid "Show album art in the sound indicator"
 msgstr ""
 
 #: data/music.metainfo.xml.in:62
+msgid "Clear the queue"
+msgstr ""
+
+#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:81
+#: data/music.metainfo.xml.in:91 data/music.metainfo.xml.in:124
+msgid "Updated translations"
+msgstr "Aktualizované preklady"
+
+#: data/music.metainfo.xml.in:79
+msgid "Toolbar shows a shadow when the view is scrolled"
+msgstr ""
+
+#: data/music.metainfo.xml.in:80
 #, fuzzy
 #| msgid "Open folders in the filemanager with Music"
 msgid "Open audio files from within Music"
 msgstr "Otvorte priečinky v správcovi súborov s Hudbou"
 
-#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:73
-#: data/music.metainfo.xml.in:106
-msgid "Updated translations"
-msgstr "Aktualizované preklady"
-
-#: data/music.metainfo.xml.in:72
+#: data/music.metainfo.xml.in:90
 msgid "Open folders in the filemanager with Music"
 msgstr "Otvorte priečinky v správcovi súborov s Hudbou"
 
-#: data/music.metainfo.xml.in:86
+#: data/music.metainfo.xml.in:104
 msgid "For tracks without a title, use the file name instead of the whole URI"
 msgstr "Pre stopy bez názvu použiť názov súboru namiesto celého URI"
 
-#: data/music.metainfo.xml.in:87
+#: data/music.metainfo.xml.in:105
 msgid "Skip invalid files instead of stopping playback"
 msgstr "Preskočiť neplatné súbory namiesto zastavenia prehrávania"
 
-#: data/music.metainfo.xml.in:88
+#: data/music.metainfo.xml.in:106
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr ""
 "Tlačidlá Ďalšie a Opakovať vždy fungujú, bez ohľadu na režim opakovania"
 
-#: data/music.metainfo.xml.in:89
+#: data/music.metainfo.xml.in:107
 msgid ""
 "Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
@@ -93,11 +101,11 @@ msgstr ""
 "Poľštine, Portugalčine, Ruštine, Zjednodušenej Čínštine, Turečtine a "
 "Ukrajinčine"
 
-#: data/music.metainfo.xml.in:99
+#: data/music.metainfo.xml.in:117
 msgid "Complete rewrite"
 msgstr "Prekopanie základov"
 
-#: data/music.metainfo.xml.in:105
+#: data/music.metainfo.xml.in:123
 msgid "Drop support for Last.FM"
 msgstr "Odstránená podpora pre Last.FM"
 
