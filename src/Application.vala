@@ -14,7 +14,6 @@ public class Music.Application : Gtk.Application {
     public const string ACTION_QUIT = "action-quit";
 
     private const ActionEntry[] ACTION_ENTRIES = {
-        { ACTION_PLAY_PAUSE, action_play_pause, null, "false" },
         { ACTION_NEXT, action_next },
         { ACTION_PREVIOUS, action_previous },
         { ACTION_SHUFFLE, action_shuffle },
@@ -44,13 +43,13 @@ public class Music.Application : Gtk.Application {
 
         Granite.init ();
 
+        playback_manager = PlaybackManager.get_default ();
+
         add_action_entries (ACTION_ENTRIES, this);
 
         set_accels_for_action (ACTION_PREFIX + ACTION_FIND, {"<Ctrl>F"});
         set_accels_for_action (ACTION_PREFIX + ACTION_QUIT, {"<Ctrl>Q"});
 
-        ((SimpleAction) lookup_action (ACTION_PLAY_PAUSE)).set_enabled (false);
-        ((SimpleAction) lookup_action (ACTION_PLAY_PAUSE)).set_state (false);
         ((SimpleAction) lookup_action (ACTION_NEXT)).set_enabled (false);
         ((SimpleAction) lookup_action (ACTION_PREVIOUS)).set_enabled (false);
         ((SimpleAction) lookup_action (ACTION_SHUFFLE)).set_enabled (false);
@@ -77,8 +76,6 @@ public class Music.Application : Gtk.Application {
             active_window.present ();
             return;
         }
-
-        playback_manager = PlaybackManager.get_default ();
 
         var mpris_id = Bus.own_name (
             BusType.SESSION,
@@ -174,10 +171,6 @@ public class Music.Application : Gtk.Application {
         var files_to_play = loop_through_files (files);
         debug ("Application: Number of files to play %u", files_to_play.length);
         playback_manager.queue_files (files_to_play);
-    }
-
-    private void action_play_pause () {
-        playback_manager.play_pause ();
     }
 
     private void action_next () {

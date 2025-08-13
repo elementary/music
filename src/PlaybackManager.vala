@@ -35,6 +35,8 @@ public class Music.PlaybackManager : Object {
 
     private Direction direction = Direction.NONE;
 
+    private SimpleAction play_pause_action;
+
     private PlaybackManager () {}
 
     construct {
@@ -60,6 +62,14 @@ public class Music.PlaybackManager : Object {
         notify["current-audio"].connect (on_audio_changed);
 
         settings = new Settings ("io.elementary.music");
+
+        play_pause_action = new SimpleAction.stateful (Application.ACTION_PLAY_PAUSE, null, new Variant.boolean (false));
+        play_pause_action.change_state.connect (play_pause);
+
+        play_pause_action.set_enabled (false);
+
+        var action_group = GLib.Application.get_default ();
+        action_group.add_action (play_pause_action);
     }
 
     public void seek_to_progress (double percent) {
@@ -257,8 +267,6 @@ public class Music.PlaybackManager : Object {
                     progress_timer = 0;
                 }
 
-                var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
-
                 Gst.State old_state, new_state, pending_state;
                 message.parse_state_changed (out old_state, out new_state, out pending_state);
                 if (new_state == Gst.State.PLAYING) {
@@ -282,12 +290,13 @@ public class Music.PlaybackManager : Object {
         return true;
     }
 
-    public void play_pause () {
-        var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
-        if (play_pause_action.get_state ().get_boolean ()) {
-            playbin.set_state (Gst.State.PAUSED);
-        } else {
+    private void play_pause (SimpleAction action, Variant? value) {
+        action.set_state (value);
+
+        if (value.get_boolean ()) {
             playbin.set_state (Gst.State.PLAYING);
+        } else {
+            playbin.set_state (Gst.State.PAUSED);
         }
     }
 
@@ -503,7 +512,6 @@ public class Music.PlaybackManager : Object {
 
         update_next_previous_sensitivity ();
 
-        var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
         play_pause_action.set_enabled (current_audio != null);
     }
 
