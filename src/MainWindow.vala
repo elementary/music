@@ -5,13 +5,13 @@
 
 public class Music.MainWindow : Gtk.ApplicationWindow {
     private Granite.Placeholder queue_placeholder;
+    private Granite.Placeholder search_placeholder;
     private Gtk.Button repeat_button;
     private Gtk.Button shuffle_button;
     private SearchBar search_bar;
     private Gtk.ListView queue_listview;
     private Gtk.Revealer search_revealer;
     private Gtk.ScrolledWindow scrolled;
-    private Gtk.SearchEntry search_entry;
     private Gtk.SingleSelection selection_model;
     private Gtk.Stack queue_stack;
     private Settings settings;
@@ -52,6 +52,11 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
             icon = new ThemedIcon ("playlist-queue")
         };
 
+        search_placeholder = new Granite.Placeholder ("") {
+            description = _("Try changing search terms"),
+            icon = new ThemedIcon ("edit-find-symbolic")
+        };
+
         selection_model = new Gtk.SingleSelection (list_model);
 
         var factory = new Gtk.SignalListItemFactory ();
@@ -68,6 +73,7 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
 
         queue_stack = new Gtk.Stack ();
         queue_stack.add_child (queue_placeholder);
+        queue_stack.add_child (search_placeholder);
         queue_stack.add_child (scrolled);
 
         var drop_target = new Gtk.DropTarget (typeof (Gdk.FileList), Gdk.DragAction.COPY);
@@ -194,6 +200,13 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
             return false;
         });
 
+        playback_manager.queue_liststore.items_changed.connect (() => {
+            if (playback_manager.n_items == 0) {
+                queue_stack.visible_child = queue_placeholder;
+                search_bar.search_entry.text = "";
+            }
+        });
+
         playback_manager.invalids_found.connect ((count) => {
             error_toast.title = ngettext (
                 "%d invalid file was not added to the queue",
@@ -318,6 +331,12 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
     private void on_items_changed () {
         if (selection_model.n_items > 0) {
             queue_stack.visible_child = scrolled;
+            return;
+        }
+
+        if (search_bar.search_entry.text != "") {
+            search_placeholder.title = _("No Results for “%s”").printf (search_bar.search_entry.text);
+            queue_stack.visible_child = search_placeholder;
         } else {
             queue_stack.visible_child = queue_placeholder;
         }
