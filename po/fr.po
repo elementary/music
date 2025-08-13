@@ -7,86 +7,91 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beatbox 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-19 22:54+0000\n"
-"PO-Revision-Date: 2024-08-27 08:16+0000\n"
+"POT-Creation-Date: 2025-08-13 16:43+0000\n"
+"PO-Revision-Date: 2025-04-01 13:55+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
-"Language-Team: French <https://l10n.elementary.io/projects/music/music/fr/>\n"
+"Language-Team: French <https://l10n.elementaryos.org/projects/music/music/fr/"
+">\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.10.4\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:52+0000\n"
 
 #: src/Application.vala:97 src/Views/NowPlayingView.vala:18
-#: src/Views/NowPlayingView.vala:116
+#: src/Views/NowPlayingView.vala:118
 msgid "Music"
 msgstr "Musique"
 
-#: src/MainWindow.vala:20
+#: src/MainWindow.vala:25
 msgid "Shuffle"
 msgstr "Aléatoire"
 
-#: src/MainWindow.vala:26
+#: src/MainWindow.vala:31
 msgid "Search titles in playlist"
 msgstr "Recherchez des titres dans les listes de lecture"
 
-#: src/MainWindow.vala:45
+#: src/MainWindow.vala:50
 msgid "Queue is Empty"
 msgstr "La file d'attente est vide"
 
-#: src/MainWindow.vala:46
+#: src/MainWindow.vala:51
 msgid "Audio files opened from Files will appear here"
 msgstr ""
 "Les fichiers audio ouvert depuis l'explorateur de fichiers apparaîtront ici"
 
-#: src/MainWindow.vala:63
+#: src/MainWindow.vala:75
 msgid "Open Files…"
 msgstr "Ouvrir les fichiers…"
 
-#: src/MainWindow.vala:76
-#, fuzzy
-#| msgid "Queue"
+#: src/MainWindow.vala:88
 msgid "Clear Queue"
-msgstr "File d'attente"
+msgstr "Effacer la file d'attente"
 
-#: src/MainWindow.vala:187
+#: src/MainWindow.vala:199
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
 msgstr[0] "%d fichier invalide n'a pas été ajouté à la file d'attente"
 msgstr[1] "%d fichiers invalides n'ont pas été ajoutés à la file d'attente"
 
-#: src/MainWindow.vala:235
+#: src/MainWindow.vala:256
 msgid "All files"
 msgstr "Tous les fichiers"
 
-#: src/MainWindow.vala:240
+#: src/MainWindow.vala:261
 msgid "Music files"
 msgstr "Fichiers musicaux"
 
-#: src/MainWindow.vala:249
+#: src/MainWindow.vala:270
 msgid "Open"
 msgstr "Ouvrir"
 
-#: src/MainWindow.vala:253
+#: src/MainWindow.vala:274
 msgid "Open audio files"
 msgstr "Ouvrir des fichiers audio"
 
-#: src/MainWindow.vala:291
+#: src/MainWindow.vala:294
+#, fuzzy
+#| msgid "Could not find media file"
+msgid "Couldn't add audio files"
+msgstr "Impossible de trouver de la musique"
+
+#: src/MainWindow.vala:312
 msgid "Repeat None"
 msgstr "Répétition désactivée"
 
-#: src/MainWindow.vala:295
+#: src/MainWindow.vala:316
 msgid "Repeat All"
 msgstr "Répéter tout"
 
-#: src/MainWindow.vala:299
+#: src/MainWindow.vala:320
 msgid "Repeat One"
 msgstr "Répéter une fois"
 
-#: src/PlaybackManager.vala:136
+#: src/PlaybackManager.vala:113
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
@@ -94,27 +99,27 @@ msgstr[0] "%d titre a été ajouté à la file d'attente"
 msgstr[1] "%d titre ont été ajoutés à la file d'attente"
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:202
+#: src/PlaybackManager.vala:196
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
+#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:117
 msgid "Not playing"
 msgstr "Pas de lecture en cours"
 
-#: src/Views/NowPlayingView.vala:45
+#: src/Views/NowPlayingView.vala:47
 msgid "Previous"
 msgstr "Précédent"
 
-#: src/Views/NowPlayingView.vala:68
+#: src/Views/NowPlayingView.vala:70
 msgid "Next"
 msgstr "Suivant"
 
-#: src/Views/NowPlayingView.vala:93
+#: src/Views/NowPlayingView.vala:95
 msgid "Play"
 msgstr "Lecture"
 
-#: src/Views/NowPlayingView.vala:96
+#: src/Views/NowPlayingView.vala:98
 msgid "Pause"
 msgstr "Pause"
 
@@ -1684,9 +1689,6 @@ msgstr "Pause"
 #~ "Le fichier pour la musique %s par %s n'a pas été trouvé. Que voulez-vous "
 #~ "faire ?"
 
-#~ msgid "Could not find media file"
-#~ msgstr "Impossible de trouver de la musique"
-
 #~ msgid "%i albums"
 #~ msgstr "%i albums"
 
@@ -1889,8 +1891,8 @@ msgstr "Pause"
 
 #~ msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
 #~ msgstr ""
-#~ "Noise;Audio;Lecteur;MP3;iPod;Lire;Playlist;Liste de lecture;Média;CD;"
-#~ "Téléphone;Musique;Chanson;"
+#~ "Noise;Audio;Lecteur;MP3;iPod;Lire;Playlist;Liste de "
+#~ "lecture;Média;CD;Téléphone;Musique;Chanson;"
 
 #~ msgid "Reset"
 #~ msgstr "Réinitialiser"

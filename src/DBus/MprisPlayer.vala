@@ -34,6 +34,10 @@ public class Music.MprisPlayer : Object {
                     _metadata.insert ("xesam:artist", array);
                 }
 
+                if (audio.art_url != "") {
+                    _metadata.insert ("mpris:artUrl", audio.art_url);
+                }
+
                 if (audio.title != null) {
                     _metadata.insert ("xesam:title", audio.title);
                 }

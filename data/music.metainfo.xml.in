@@ -14,9 +14,13 @@
   </description>
 
   <screenshots>
-    <screenshot type="default">
+    <screenshot environment="pantheon" type="default">
       <caption>Quickly queue up your favorite tracks</caption>
       <image>https://raw.githubusercontent.com/elementary/music/8.0.0/data/screenshot.png</image>
+    </screenshot>
+    <screenshot environment="pantheon:dark" type="default">
+      <caption>Quickly queue up your favorite tracks</caption>
+      <image>https://raw.githubusercontent.com/elementary/music/8.0.0/data/screenshot-dark.png</image>
     </screenshot>
   </screenshots>
 
@@ -54,6 +58,24 @@
   <update_contact>contact_at_elementary.io</update_contact>
 
   <releases>
+    <release version="8.1.0" date="2025-08-13" urgency="medium">
+      <description>
+        <p>Improvements:</p>
+        <ul>
+          <li>Show album art in the sound indicator</li>
+          <li>Clear the queue</li>
+          <li>Updated translations</li>
+        </ul>
+      </description>
+      <issues>
+        <issue url="https://github.com/elementary/music/issues/762">Search mechanism in the app</issue>
+        <issue url="https://github.com/elementary/music/issues/777">Ctrl+Q to Quit app</issue>
+        <issue url="https://github.com/elementary/music/issues/787">Ability to remove a track</issue>
+        <issue url="https://github.com/elementary/music/issues/798">Gap below album cover when setting text size greater than 1</issue>
+        <issue url="https://github.com/elementary/music/issues/803">NowPlaying area resizes when playing song with long artist name</issue>
+      </issues>
+    </release>
+
     <release version="8.0.0" date="2024-05-20" urgency="medium">
       <description>
         <p>Improvements:</p>

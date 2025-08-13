@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-19 22:54+0000\n"
+"POT-Creation-Date: 2025-08-13 16:43+0000\n"
 "PO-Revision-Date: 2024-05-15 20:13+0000\n"
 "Last-Translator: Dennis ten Hoove <dennistenhoove@protonmail.com>\n"
 "Language-Team: Dutch <https://l10n.elementary.io/projects/music/music/nl/>\n"
@@ -20,72 +20,78 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-03-07 05:52+0000\n"
 
 #: src/Application.vala:97 src/Views/NowPlayingView.vala:18
-#: src/Views/NowPlayingView.vala:116
+#: src/Views/NowPlayingView.vala:118
 msgid "Music"
 msgstr "Muziek"
 
-#: src/MainWindow.vala:20
+#: src/MainWindow.vala:25
 msgid "Shuffle"
 msgstr "Shuffle"
 
-#: src/MainWindow.vala:26
+#: src/MainWindow.vala:31
 msgid "Search titles in playlist"
 msgstr ""
 
-#: src/MainWindow.vala:45
+#: src/MainWindow.vala:50
 msgid "Queue is Empty"
 msgstr "Wachtrij is leeg"
 
-#: src/MainWindow.vala:46
+#: src/MainWindow.vala:51
 msgid "Audio files opened from Files will appear here"
 msgstr "Geluidsbestanden geopend met Bestanden zullen hier verschijnen"
 
-#: src/MainWindow.vala:63
+#: src/MainWindow.vala:75
 msgid "Open Files…"
 msgstr "Bestanden openen…"
 
-#: src/MainWindow.vala:76
+#: src/MainWindow.vala:88
 #, fuzzy
 #| msgid "Queue"
 msgid "Clear Queue"
 msgstr "Wachtrij"
 
-#: src/MainWindow.vala:187
+#: src/MainWindow.vala:199
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
 msgstr[0] "%d ongeldig bestand was niet ingevoegd in de wachtrij"
 msgstr[1] "%d ongeldige bestanden zijn niet ingevoegd in de wachtrij"
 
-#: src/MainWindow.vala:235
+#: src/MainWindow.vala:256
 msgid "All files"
 msgstr "Alle bestanden"
 
-#: src/MainWindow.vala:240
+#: src/MainWindow.vala:261
 msgid "Music files"
 msgstr "Muziekbestanden"
 
-#: src/MainWindow.vala:249
+#: src/MainWindow.vala:270
 msgid "Open"
 msgstr "Open"
 
-#: src/MainWindow.vala:253
+#: src/MainWindow.vala:274
 msgid "Open audio files"
 msgstr "Open audiobestand"
 
-#: src/MainWindow.vala:291
+#: src/MainWindow.vala:294
+#, fuzzy
+#| msgid "Could not find media file"
+msgid "Couldn't add audio files"
+msgstr "Kon mediabestand niet vinden"
+
+#: src/MainWindow.vala:312
 msgid "Repeat None"
 msgstr "Niks herhalen"
 
-#: src/MainWindow.vala:295
+#: src/MainWindow.vala:316
 msgid "Repeat All"
 msgstr "Alles herhalen"
 
-#: src/MainWindow.vala:299
+#: src/MainWindow.vala:320
 msgid "Repeat One"
 msgstr "Een herhalen"
 
-#: src/PlaybackManager.vala:136
+#: src/PlaybackManager.vala:113
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
@@ -93,27 +99,27 @@ msgstr[0] "%d nummer is toegevoegd aan de wachtrij"
 msgstr[1] "%d nummers zijn toegevoegd aan de wachtrij"
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:202
+#: src/PlaybackManager.vala:196
 msgid "Unknown"
 msgstr "Onbekend"
 
-#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
+#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:117
 msgid "Not playing"
 msgstr "Niet spelen"
 
-#: src/Views/NowPlayingView.vala:45
+#: src/Views/NowPlayingView.vala:47
 msgid "Previous"
 msgstr "Vorige"
 
-#: src/Views/NowPlayingView.vala:68
+#: src/Views/NowPlayingView.vala:70
 msgid "Next"
 msgstr "Volgende"
 
-#: src/Views/NowPlayingView.vala:93
+#: src/Views/NowPlayingView.vala:95
 msgid "Play"
 msgstr "Afspelen"
 
-#: src/Views/NowPlayingView.vala:96
+#: src/Views/NowPlayingView.vala:98
 msgid "Pause"
 msgstr "Pauze"
 
@@ -1592,9 +1598,6 @@ msgstr "Pauze"
 #~ msgid "Remove Media"
 #~ msgstr "Verwijder media"
 
-#~ msgid "Could not find media file"
-#~ msgstr "Kon mediabestand niet vinden"
-
 #~ msgid "Date Released"
 #~ msgstr "Uitgebracht op"
 
@@ -1765,9 +1768,7 @@ msgstr "Pauze"
 #~ msgstr "Geef %s toegangsrechten"
 
 #~ msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-#~ msgstr ""
-#~ "Noise;Muziek;Speler;Audio;MP3;iPod;Afspeellijst;Speel;Media;CD;Telefoon;"
-#~ "Liedjes"
+#~ msgstr "Noise;Muziek;Speler;Audio;MP3;iPod;Afspeellijst;Speel;Media;CD;Telefoon;Liedjes"
 
 #~ msgid "<b>Stats</b>"
 #~ msgstr "<b>Statistieken</b>"

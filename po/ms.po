@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-19 22:54+0000\n"
+"POT-Creation-Date: 2025-08-13 16:43+0000\n"
 "PO-Revision-Date: 2015-12-21 13:43+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Malay <ms@li.org>\n"
@@ -20,82 +20,88 @@ msgstr ""
 "X-Generator: Launchpad (build 18330)\n"
 
 #: src/Application.vala:97 src/Views/NowPlayingView.vala:18
-#: src/Views/NowPlayingView.vala:116
+#: src/Views/NowPlayingView.vala:118
 msgid "Music"
 msgstr "Muzik"
 
-#: src/MainWindow.vala:20
+#: src/MainWindow.vala:25
 #, fuzzy
 msgid "Shuffle"
 msgstr "Benarkan Kocok"
 
-#: src/MainWindow.vala:26
+#: src/MainWindow.vala:31
 msgid "Search titles in playlist"
 msgstr ""
 
-#: src/MainWindow.vala:45
+#: src/MainWindow.vala:50
 msgid "Queue is Empty"
 msgstr ""
 
-#: src/MainWindow.vala:46
+#: src/MainWindow.vala:51
 msgid "Audio files opened from Files will appear here"
 msgstr ""
 
-#: src/MainWindow.vala:63
+#: src/MainWindow.vala:75
 #, fuzzy
 #| msgid "Other Files"
 msgid "Open Files…"
 msgstr "Fail Lain"
 
-#: src/MainWindow.vala:76
+#: src/MainWindow.vala:88
 #, fuzzy
 #| msgid "Queue"
 msgid "Clear Queue"
 msgstr "Baris Gilir"
 
-#: src/MainWindow.vala:187
+#: src/MainWindow.vala:199
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/MainWindow.vala:235
+#: src/MainWindow.vala:256
 #, fuzzy
 #| msgid "All Years"
 msgid "All files"
 msgstr "Semua Tahun"
 
-#: src/MainWindow.vala:240
+#: src/MainWindow.vala:261
 #, fuzzy
 #| msgid "Music Folder"
 msgid "Music files"
 msgstr "Folder Muzik"
 
-#: src/MainWindow.vala:249
+#: src/MainWindow.vala:270
 msgid "Open"
 msgstr "Buka"
 
-#: src/MainWindow.vala:253
+#: src/MainWindow.vala:274
 msgid "Open audio files"
 msgstr ""
 
-#: src/MainWindow.vala:291
+#: src/MainWindow.vala:294
+#, fuzzy
+#| msgid "Could not find media file"
+msgid "Couldn't add audio files"
+msgstr "Tidak dapat cari fail media"
+
+#: src/MainWindow.vala:312
 #, fuzzy
 msgid "Repeat None"
 msgstr "Ulang Lagu"
 
-#: src/MainWindow.vala:295
+#: src/MainWindow.vala:316
 #, fuzzy
 msgid "Repeat All"
 msgstr "Ulang Album"
 
-#: src/MainWindow.vala:299
+#: src/MainWindow.vala:320
 #, fuzzy
 msgid "Repeat One"
 msgstr "Ulang Lagu"
 
-#: src/PlaybackManager.vala:136
+#: src/PlaybackManager.vala:113
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
@@ -103,28 +109,28 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:202
+#: src/PlaybackManager.vala:196
 msgid "Unknown"
 msgstr "Tidak diketahui"
 
-#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
+#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:117
 #, fuzzy
 msgid "Not playing"
 msgstr "Senarai main baru"
 
-#: src/Views/NowPlayingView.vala:45
+#: src/Views/NowPlayingView.vala:47
 msgid "Previous"
 msgstr "Terdahulu"
 
-#: src/Views/NowPlayingView.vala:68
+#: src/Views/NowPlayingView.vala:70
 msgid "Next"
 msgstr "Berikutnya"
 
-#: src/Views/NowPlayingView.vala:93
+#: src/Views/NowPlayingView.vala:95
 msgid "Play"
 msgstr "Main"
 
-#: src/Views/NowPlayingView.vala:96
+#: src/Views/NowPlayingView.vala:98
 msgid "Pause"
 msgstr "Jeda"
 
@@ -1611,9 +1617,6 @@ msgstr "Jeda"
 #~ msgid ""
 #~ "The music file for %s by %s could not be found. What would you like to do?"
 #~ msgstr "Fail muzik %s oleh %s tidak ditemui. Apa anda hendak lakukan?"
-
-#~ msgid "Could not find media file"
-#~ msgstr "Tidak dapat cari fail media"
 
 #~ msgid "%i media files could not be found. What would you like to do?"
 #~ msgstr "%i fail media tidak dapat ditemui. Apa anda hendak lakukan?"

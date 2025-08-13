@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-19 22:54+0000\n"
-"PO-Revision-Date: 2025-03-25 16:55+0000\n"
+"POT-Creation-Date: 2025-08-13 16:43+0000\n"
+"PO-Revision-Date: 2025-08-06 14:55+0000\n"
 "Last-Translator: кубик круглый <megarainbow29@gmail.com>\n"
 "Language-Team: Russian <https://l10n.elementaryos.org/projects/music/music/"
 "ru/>\n"
@@ -18,39 +18,39 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.11.4\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 
 #: src/Application.vala:97 src/Views/NowPlayingView.vala:18
-#: src/Views/NowPlayingView.vala:116
+#: src/Views/NowPlayingView.vala:118
 msgid "Music"
 msgstr "Музыка"
 
-#: src/MainWindow.vala:20
+#: src/MainWindow.vala:25
 msgid "Shuffle"
 msgstr "В случайном порядке"
 
-#: src/MainWindow.vala:26
+#: src/MainWindow.vala:31
 msgid "Search titles in playlist"
 msgstr "Поиск по названиям в плейлисте"
 
-#: src/MainWindow.vala:45
+#: src/MainWindow.vala:50
 msgid "Queue is Empty"
 msgstr "Очередь пуста"
 
-#: src/MainWindow.vala:46
+#: src/MainWindow.vala:51
 msgid "Audio files opened from Files will appear here"
 msgstr "Открытые вами аудиофайлы появятся здесь"
 
-#: src/MainWindow.vala:63
+#: src/MainWindow.vala:75
 msgid "Open Files…"
 msgstr "Открыть файлы…"
 
-#: src/MainWindow.vala:76
+#: src/MainWindow.vala:88
 msgid "Clear Queue"
 msgstr "Очистить очередь"
 
-#: src/MainWindow.vala:187
+#: src/MainWindow.vala:199
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
@@ -58,35 +58,39 @@ msgstr[0] "%d недействительный файл не был добавл
 msgstr[1] "%d недействительных файла не были добавлены в очередь"
 msgstr[2] "%d недействительных файлов не были добавлены в очередь"
 
-#: src/MainWindow.vala:235
+#: src/MainWindow.vala:256
 msgid "All files"
 msgstr "Все файлы"
 
-#: src/MainWindow.vala:240
+#: src/MainWindow.vala:261
 msgid "Music files"
 msgstr "Аудиофайлы"
 
-#: src/MainWindow.vala:249
+#: src/MainWindow.vala:270
 msgid "Open"
 msgstr "Открыть"
 
-#: src/MainWindow.vala:253
+#: src/MainWindow.vala:274
 msgid "Open audio files"
 msgstr "Открыть аудиофайлы"
 
-#: src/MainWindow.vala:291
+#: src/MainWindow.vala:294
+msgid "Couldn't add audio files"
+msgstr "Не удалось добавить аудиофайлы"
+
+#: src/MainWindow.vala:312
 msgid "Repeat None"
 msgstr "Не повторять"
 
-#: src/MainWindow.vala:295
+#: src/MainWindow.vala:316
 msgid "Repeat All"
 msgstr "Повторять всё"
 
-#: src/MainWindow.vala:299
+#: src/MainWindow.vala:320
 msgid "Repeat One"
 msgstr "Повторять этот трек"
 
-#: src/PlaybackManager.vala:136
+#: src/PlaybackManager.vala:113
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
@@ -95,27 +99,27 @@ msgstr[1] "%d трека было добавлено в очередь"
 msgstr[2] "%d треков было добавлено в очередь"
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:202
+#: src/PlaybackManager.vala:196
 msgid "Unknown"
 msgstr "Неизвестный"
 
-#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
+#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:117
 msgid "Not playing"
 msgstr "Не играет"
 
-#: src/Views/NowPlayingView.vala:45
+#: src/Views/NowPlayingView.vala:47
 msgid "Previous"
 msgstr "Назад"
 
-#: src/Views/NowPlayingView.vala:68
+#: src/Views/NowPlayingView.vala:70
 msgid "Next"
 msgstr "Далее"
 
-#: src/Views/NowPlayingView.vala:93
+#: src/Views/NowPlayingView.vala:95
 msgid "Play"
 msgstr "Воспроизвести"
 
-#: src/Views/NowPlayingView.vala:96
+#: src/Views/NowPlayingView.vala:98
 msgid "Pause"
 msgstr "Пауза"
 
@@ -1701,9 +1705,6 @@ msgstr "Пауза"
 #~ msgstr ""
 #~ "Файл с композицией «%s» в исполнении %s не был найден. Каковы дальнейшие "
 #~ "действия?"
-
-#~ msgid "Could not find media file"
-#~ msgstr "Не удалось найти файл"
 
 #~ msgid "%i media files could not be found. What would you like to do?"
 #~ msgstr "%i файлов не были найдены. Каковы дальнейшие действия?"
