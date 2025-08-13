@@ -15,7 +15,6 @@ public class Music.Application : Gtk.Application {
 
     private const ActionEntry[] ACTION_ENTRIES = {
         { ACTION_FIND, action_find },
-        { ACTION_CLEAR_QUEUE, action_clear_queue },
         { ACTION_QUIT, quit }
     };
 
@@ -168,10 +167,6 @@ public class Music.Application : Gtk.Application {
 
     private void action_find () {
         ((MainWindow)active_window).start_search ();
-    }
-
-    private void action_clear_queue () {
-        playback_manager.clear_queue ();
     }
 
     private void on_bus_acquired (DBusConnection connection, string name) {

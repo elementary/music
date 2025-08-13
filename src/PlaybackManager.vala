@@ -66,6 +66,9 @@ public class Music.PlaybackManager : Object {
 
         settings = new Settings ("io.elementary.music");
 
+        var clear_action = new SimpleAction (Application.ACTION_CLEAR_QUEUE, null);
+        clear_action.activate.connect (clear_queue);
+
         next_action = new SimpleAction (Application.ACTION_NEXT, null);
         next_action.activate.connect (() => next ());
 
@@ -84,10 +87,13 @@ public class Music.PlaybackManager : Object {
         shuffle_action.set_enabled (false);
 
         var action_group = GLib.Application.get_default ();
+        action_group.add_action (clear_action);
         action_group.add_action (next_action);
         action_group.add_action (play_pause_action);
         action_group.add_action (previous_action);
         action_group.add_action (shuffle_action);
+
+        bind_property ("has-items", clear_action, "enabled", SYNC_CREATE);
     }
 
     public void seek_to_progress (double percent) {
@@ -150,7 +156,7 @@ public class Music.PlaybackManager : Object {
         }
     }
 
-    public void clear_queue () {
+    private void clear_queue () {
         playbin.set_state (Gst.State.NULL);
         current_audio = null;
         queue_liststore.remove_all ();
