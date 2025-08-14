@@ -541,16 +541,12 @@ public class Music.PlaybackManager : Object {
         if (( uri_last_played != "" ) && (file_last_played.query_exists ())) {
             var audio_object = new AudioObject (uri_last_played);
             uint position = -1;
-            int found_at = -1;
-
-            if (queue_liststore.find_with_equal_func (
+            if (!queue_liststore.find_with_equal_func (
                 audio_object,
-                (a, b) => {
-                    return AudioObject.equal_func ((AudioObject)a, (AudioObject)b);
-                },
+                (EqualFunc<AudioObject>) AudioObject.equal_func,
                 out position
             )) {
-                found_at = (int)position;
+                return;
             }
 
             current_audio = (AudioObject) queue_liststore.get_item (position);
