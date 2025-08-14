@@ -506,7 +506,8 @@ public class Music.PlaybackManager : Object {
         var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
         play_pause_action.set_enabled (current_audio != null);
 
-        settings.set_string ("uri-last-played", current_audio.uri ?? "");
+        var uri_last_played = current_audio != null ? current_audio.uri : "";
+        settings.set_string ("uri-last-played", uri_last_played);
     }
 
     private void save_queue () {
