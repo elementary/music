@@ -538,7 +538,7 @@ public class Music.PlaybackManager : Object {
         var? uri_last_played = settings.get_string ("uri-last-played");
         var? file_last_played = File.new_for_uri (uri_last_played);
 
-        if (( uri_last_played != "" ) && (file_last_played.query_exists ())) {
+        if (uri_last_played != "" && file_last_played.query_exists ()) {
             var audio_object = new AudioObject (uri_last_played);
             uint position = -1;
             if (!queue_liststore.find_with_equal_func (
