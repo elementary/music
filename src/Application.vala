@@ -12,7 +12,6 @@ public class Music.Application : Gtk.Application {
     public const string ACTION_FIND = "action-find";
     public const string ACTION_CLEAR_QUEUE = "action-clear-queue";
     public const string ACTION_QUIT = "action-quit";
-    public const string ACTION_OPEN = "action-open";
 
     private const ActionEntry[] ACTION_ENTRIES = {
         { ACTION_PLAY_PAUSE, action_play_pause, null, "false" },
@@ -21,8 +20,7 @@ public class Music.Application : Gtk.Application {
         { ACTION_SHUFFLE, action_shuffle },
         { ACTION_FIND, action_find },
         { ACTION_CLEAR_QUEUE, action_clear_queue },
-        { ACTION_QUIT, quit },
-        { ACTION_OPEN, action_open }
+        { ACTION_QUIT, quit }
     };
 
     private PlaybackManager? playback_manager = null;
@@ -50,7 +48,6 @@ public class Music.Application : Gtk.Application {
 
         set_accels_for_action (ACTION_PREFIX + ACTION_FIND, {"<Ctrl>F"});
         set_accels_for_action (ACTION_PREFIX + ACTION_QUIT, {"<Ctrl>Q"});
-        set_accels_for_action (ACTION_PREFIX + ACTION_OPEN, {"<Ctrl>O"});
 
         ((SimpleAction) lookup_action (ACTION_PLAY_PAUSE)).set_enabled (false);
         ((SimpleAction) lookup_action (ACTION_PLAY_PAUSE)).set_state (false);
@@ -201,10 +198,6 @@ public class Music.Application : Gtk.Application {
 
     private void action_clear_queue () {
         playback_manager.clear_queue ();
-    }
-
-    private void action_open () {
-        ((MainWindow)active_window).action_open ();
     }
 
     private void on_bus_acquired (DBusConnection connection, string name) {
