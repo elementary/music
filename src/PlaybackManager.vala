@@ -86,12 +86,12 @@ public class Music.PlaybackManager : Object {
         previous_action.set_enabled (false);
         shuffle_action.set_enabled (false);
 
-        var action_group = GLib.Application.get_default ();
-        action_group.add_action (clear_action);
-        action_group.add_action (next_action);
-        action_group.add_action (play_pause_action);
-        action_group.add_action (previous_action);
-        action_group.add_action (shuffle_action);
+        unowned var app = GLib.Application.get_default ();
+        app.add_action (clear_action);
+        app.add_action (next_action);
+        app.add_action (play_pause_action);
+        app.add_action (previous_action);
+        app.add_action (shuffle_action);
 
         bind_property ("has-items", clear_action, "enabled", SYNC_CREATE);
     }
