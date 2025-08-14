@@ -12,7 +12,6 @@ public class Music.Application : Gtk.Application {
     public const string ACTION_FIND = "action-find";
     public const string ACTION_CLEAR_QUEUE = "action-clear-queue";
     public const string ACTION_QUIT = "action-quit";
-    public const string ACTION_SAVE_M3U_PLAYLIST = "action-save-m3u-playlist";
 
     private const ActionEntry[] ACTION_ENTRIES = {
         { ACTION_PLAY_PAUSE, action_play_pause, null, "false" },
@@ -21,8 +20,7 @@ public class Music.Application : Gtk.Application {
         { ACTION_SHUFFLE, action_shuffle },
         { ACTION_FIND, action_find },
         { ACTION_CLEAR_QUEUE, action_clear_queue },
-        { ACTION_QUIT, quit },
-        { ACTION_SAVE_M3U_PLAYLIST, action_save_m3u_playlist }
+        { ACTION_QUIT, quit }
     };
 
     private PlaybackManager? playback_manager = null;
@@ -50,7 +48,6 @@ public class Music.Application : Gtk.Application {
 
         set_accels_for_action (ACTION_PREFIX + ACTION_FIND, {"<Ctrl>F"});
         set_accels_for_action (ACTION_PREFIX + ACTION_QUIT, {"<Ctrl>Q"});
-        set_accels_for_action (ACTION_PREFIX + ACTION_SAVE_M3U_PLAYLIST, {"<Ctrl>S"});
 
         ((SimpleAction) lookup_action (ACTION_PLAY_PAUSE)).set_enabled (false);
         ((SimpleAction) lookup_action (ACTION_PLAY_PAUSE)).set_state (false);
@@ -217,10 +214,6 @@ public class Music.Application : Gtk.Application {
 
     private void action_clear_queue () {
         playback_manager.clear_queue ();
-    }
-
-    private void action_save_m3u_playlist () {
-        ((MainWindow)active_window).action_save_m3u_playlist ();
     }
 
     private void on_bus_acquired (DBusConnection connection, string name) {
