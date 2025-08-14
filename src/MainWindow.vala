@@ -81,7 +81,7 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         add_button_box.append (new Gtk.Image.from_icon_name ("document-open-symbolic"));
         add_button_box.append (add_button_label);
 
-        open_action = new SimpleAction (ACTION_OPEN, null);
+        var open_action = new SimpleAction (ACTION_OPEN, null);
         open_action.activate.connect (open_files);
 
         var add_button = new Gtk.Button () {
