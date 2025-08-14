@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-05 14:30+0000\n"
+"POT-Creation-Date: 2025-08-13 16:43+0000\n"
 "PO-Revision-Date: 2024-09-09 10:20+0000\n"
 "Last-Translator: Italo Felipe Capasso Ballesteros <edwood.grant@gmail.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/music/extra/es/"
@@ -46,48 +46,56 @@ msgstr "Ponga rápidamente en la cola de reproducción sus pistas favoritas"
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
 
-#: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:70
-#: data/music.metainfo.xml.in:84
+#: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:77
+#: data/music.metainfo.xml.in:88 data/music.metainfo.xml.in:102
 msgid "Improvements:"
 msgstr "Mejoras:"
 
 #: data/music.metainfo.xml.in:61
+msgid "Show album art in the sound indicator"
+msgstr ""
+
+#: data/music.metainfo.xml.in:62
+msgid "Clear the queue"
+msgstr ""
+
+#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:81
+#: data/music.metainfo.xml.in:91 data/music.metainfo.xml.in:124
+msgid "Updated translations"
+msgstr "Traducciones actualizadas"
+
+#: data/music.metainfo.xml.in:79
 msgid "Toolbar shows a shadow when the view is scrolled"
 msgstr ""
 "La barra de herramientas ahora muestra una sombra al desplazar la vista"
 
-#: data/music.metainfo.xml.in:62
+#: data/music.metainfo.xml.in:80
 msgid "Open audio files from within Music"
 msgstr "Ahora se pueden archivos de audio dentro de Music"
 
-#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:73
-#: data/music.metainfo.xml.in:106
-msgid "Updated translations"
-msgstr "Traducciones actualizadas"
-
-#: data/music.metainfo.xml.in:72
+#: data/music.metainfo.xml.in:90
 msgid "Open folders in the filemanager with Music"
 msgstr ""
 "Ahora se pueden abrir carpetas en Música desde el administrador de archivos"
 
-#: data/music.metainfo.xml.in:86
+#: data/music.metainfo.xml.in:104
 msgid "For tracks without a title, use the file name instead of the whole URI"
 msgstr ""
 "Para archivos sin título, ahora se muestra el nombre del archivo en vez de "
 "la ruta completa"
 
-#: data/music.metainfo.xml.in:87
+#: data/music.metainfo.xml.in:105
 msgid "Skip invalid files instead of stopping playback"
 msgstr ""
 "Ahora los archivos no válidos se omiten en vez de detener la reproducción"
 
-#: data/music.metainfo.xml.in:88
+#: data/music.metainfo.xml.in:106
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr ""
 "Los botones de «Siguiente» y «Repetir» ahora funcionan siempre sin importar "
 "el modo de repetición"
 
-#: data/music.metainfo.xml.in:89
+#: data/music.metainfo.xml.in:107
 msgid ""
 "Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
@@ -97,11 +105,11 @@ msgstr ""
 "húngaro, japonés, coreano, kurdo, marathi, bokmål noruego, polaco, "
 "portugués, ruso, chino simplificado, turco y ucraniano"
 
-#: data/music.metainfo.xml.in:99
+#: data/music.metainfo.xml.in:117
 msgid "Complete rewrite"
 msgstr "Reescritura completa"
 
-#: data/music.metainfo.xml.in:105
+#: data/music.metainfo.xml.in:123
 msgid "Drop support for Last.FM"
 msgstr "Eliminado soporte para Last.FM"
 
