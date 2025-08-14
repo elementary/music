@@ -6,7 +6,8 @@
 ## Building, Testing, and Installation
 
 You'll need the following dependencies:
-* granite-7
+* libadwaita-1 >=1.4.0
+* granite-7 >=7.6.0
 * gstreamer-1.0
 * gstreamer-pbutils-1.0
 * gstreamer-tag-1.0
