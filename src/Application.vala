@@ -115,6 +115,8 @@ public class Music.Application : Gtk.Application {
 
         settings.bind ("window-maximized", main_window, "maximized", SettingsBindFlags.SET);
 
+        // This needs to be done after window is constructed
+        // Else music plays but the queue seems empty
         playback_manager.restore_queue ();
     }
 
