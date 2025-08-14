@@ -19,7 +19,7 @@
     </key>
     <key type="s" name="uri-last-played">
       <default>''</default>
-      <summary>The item that was playing when the user closed Music</summary>
+      <summary>The last song played by Music</summary>
       <description>A string representing the uri of the last played music file</description>
     </key>
 
