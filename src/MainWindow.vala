@@ -17,7 +17,6 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
     private Gtk.SingleSelection selection_model;
     private Gtk.Stack queue_stack;
     private Settings settings;
-    private SimpleAction open_action;
 
     construct {
         var playback_manager = PlaybackManager.get_default ();
