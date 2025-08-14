@@ -4,6 +4,9 @@
  */
 
 public class Music.MainWindow : Gtk.ApplicationWindow {
+    private const string ACTION_PREFIX = "win.";
+    private const string ACTION_OPEN = "action-open";
+
     private Granite.Placeholder queue_placeholder;
     private Gtk.Button repeat_button;
     private Gtk.Button shuffle_button;
@@ -14,6 +17,7 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
     private Gtk.SingleSelection selection_model;
     private Gtk.Stack queue_stack;
     private Settings settings;
+    private SimpleAction open_action;
 
     construct {
         var playback_manager = PlaybackManager.get_default ();
@@ -78,8 +82,12 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         add_button_box.append (new Gtk.Image.from_icon_name ("document-open-symbolic"));
         add_button_box.append (add_button_label);
 
+        open_action = new SimpleAction (ACTION_OPEN, null);
+        open_action.activate.connect (open_files);
+
         var add_button = new Gtk.Button () {
             child = add_button_box,
+            action_name = ACTION_PREFIX + ACTION_OPEN
         };
         add_button.add_css_class (Granite.STYLE_CLASS_FLAT);
 
@@ -176,6 +184,11 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
 
         update_repeat_button ();
 
+        unowned var app = ((Gtk.Application) GLib.Application.get_default ());
+        app.set_accels_for_action (ACTION_PREFIX + ACTION_OPEN, {"<Ctrl>O"});
+
+        add_action (open_action);
+
         drop_target.drop.connect ((target, value, x, y) => {
             if (value.type () == typeof (Gdk.FileList)) {
                 var list = (Gdk.FileList)value;
@@ -201,8 +214,6 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
                 count).printf (count);
             error_toast.send_notification ();
         });
-
-        add_button.clicked.connect (action_open);
 
         repeat_button.clicked.connect (() => {
             var enum_step = settings.get_enum ("repeat-mode");
@@ -251,7 +262,7 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         }
     }
 
-    public void action_open () {
+    private void open_files () {
         var all_files_filter = new Gtk.FileFilter () {
             name = _("All files"),
         };
