@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-05 14:30+0000\n"
+"POT-Creation-Date: 2025-08-13 16:43+0000\n"
 "PO-Revision-Date: 2025-02-14 15:40+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://l10n.elementary.io/projects/music/extra/mr/"
@@ -40,41 +40,49 @@ msgstr "तुमचे आवडते ट्रॅक पटकन रां�
 msgid "elementary, Inc."
 msgstr "एलिमेंटरी, Inc."
 
-#: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:70
-#: data/music.metainfo.xml.in:84
+#: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:77
+#: data/music.metainfo.xml.in:88 data/music.metainfo.xml.in:102
 msgid "Improvements:"
 msgstr "सुधारणा:"
 
 #: data/music.metainfo.xml.in:61
-msgid "Toolbar shows a shadow when the view is scrolled"
-msgstr "जेव्हा दृश्य स्क्रोल केले जाते तेव्हा टूलबार सावली दाखवते"
+msgid "Show album art in the sound indicator"
+msgstr ""
 
 #: data/music.metainfo.xml.in:62
-msgid "Open audio files from within Music"
-msgstr "संगीत मधून ऑडिओ फायली उघडा"
+msgid "Clear the queue"
+msgstr ""
 
-#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:73
-#: data/music.metainfo.xml.in:106
+#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:81
+#: data/music.metainfo.xml.in:91 data/music.metainfo.xml.in:124
 msgid "Updated translations"
 msgstr "अद्ययावत भाषांतर"
 
-#: data/music.metainfo.xml.in:72
+#: data/music.metainfo.xml.in:79
+msgid "Toolbar shows a shadow when the view is scrolled"
+msgstr "जेव्हा दृश्य स्क्रोल केले जाते तेव्हा टूलबार सावली दाखवते"
+
+#: data/music.metainfo.xml.in:80
+msgid "Open audio files from within Music"
+msgstr "संगीत मधून ऑडिओ फायली उघडा"
+
+#: data/music.metainfo.xml.in:90
 msgid "Open folders in the filemanager with Music"
 msgstr "संगीत सह फाइल व्यवस्थापकामध्ये फोल्डर उघडा"
 
-#: data/music.metainfo.xml.in:86
+#: data/music.metainfo.xml.in:104
 msgid "For tracks without a title, use the file name instead of the whole URI"
 msgstr "शीर्षक नसलेल्या ट्रॅकसाठी, संपूर्ण URI ऐवजी फाइल नाव वापरा"
 
-#: data/music.metainfo.xml.in:87
+#: data/music.metainfo.xml.in:105
 msgid "Skip invalid files instead of stopping playback"
 msgstr "प्लेबॅक थांबवण्याऐवजी अवैध फाइल्स वगळा"
 
-#: data/music.metainfo.xml.in:88
+#: data/music.metainfo.xml.in:106
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr "पुढील आणि पुनरावृत्ती बटणे नेहमी पुनरावृत्ती मोडकडे दुर्लक्ष करून कार्य करतात"
 
-#: data/music.metainfo.xml.in:89
+#: data/music.metainfo.xml.in:107
 msgid ""
 "Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
@@ -84,11 +92,11 @@ msgstr ""
 "नॉर्वेजियन बोकमाल, पोलिश, पोर्तुगीज, रशियन, सरलीकृत चीनी, तुर्की आणि युक्रेनियनमध्ये "
 "उपलब्ध आहे"
 
-#: data/music.metainfo.xml.in:99
+#: data/music.metainfo.xml.in:117
 msgid "Complete rewrite"
 msgstr "पूर्ण पुनर्लेखन"
 
-#: data/music.metainfo.xml.in:105
+#: data/music.metainfo.xml.in:123
 msgid "Drop support for Last.FM"
 msgstr "Last.FM साठी समर्थन ड्रॉप करा"
 
