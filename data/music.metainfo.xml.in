@@ -14,16 +14,20 @@
   </description>
 
   <screenshots>
-    <screenshot type="default">
+    <screenshot environment="pantheon" type="default">
       <caption>Quickly queue up your favorite tracks</caption>
       <image>https://raw.githubusercontent.com/elementary/music/8.0.0/data/screenshot.png</image>
+    </screenshot>
+    <screenshot environment="pantheon:dark" type="default">
+      <caption>Quickly queue up your favorite tracks</caption>
+      <image>https://raw.githubusercontent.com/elementary/music/8.0.0/data/screenshot-dark.png</image>
     </screenshot>
   </screenshots>
 
   <branding>
     <color type="primary">#f37329</color>
-    <color type="primary" scheme_preference="light">#cc3b02</color>
-    <color type="primary" scheme_preference="dark">#ffa154</color>
+    <color type="primary" scheme_preference="light">#ffa154</color>
+    <color type="primary" scheme_preference="dark">#cc3b02</color>
   </branding>
 
   <content_rating type="oars-1.1" />
