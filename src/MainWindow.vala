@@ -356,7 +356,7 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
                 var dialog = new Granite.MessageDialog (
                     _("Couldn't save playlist"),
                     err.message,
-                    new ThemedIcon ("playlist-queue")
+                    new ThemedIcon ("audio-x-playlist")
                 ) {
                     badge_icon = new ThemedIcon ("dialog-error"),
                     modal = true,
