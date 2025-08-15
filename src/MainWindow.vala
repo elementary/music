@@ -5,6 +5,7 @@
 
 public class Music.MainWindow : Gtk.ApplicationWindow {
     private const string ACTION_PREFIX = "win.";
+    private const string ACTION_OPEN = "action-open";
     private const string ACTION_SAVE_M3U_PLAYLIST = "action-save-m3u-playlist";
 
     private Granite.Placeholder queue_placeholder;
@@ -82,8 +83,12 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         add_button_box.append (new Gtk.Image.from_icon_name ("document-open-symbolic"));
         add_button_box.append (add_button_label);
 
+        var open_action = new SimpleAction (ACTION_OPEN, null);
+        open_action.activate.connect (open_files);
+
         var add_button = new Gtk.Button () {
             child = add_button_box,
+            action_name = ACTION_PREFIX + ACTION_OPEN
         };
         add_button.add_css_class (Granite.STYLE_CLASS_FLAT);
 
@@ -102,11 +107,6 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         clear_button.add_css_class (Granite.STYLE_CLASS_FLAT);
 
         clear_button_label.mnemonic_widget = clear_button;
-
-        var clear_queue_action = GLib.Application.get_default ().lookup_action (Application.ACTION_CLEAR_QUEUE);
-        playback_manager.bind_property (
-            "has-items", clear_queue_action, "enabled", DEFAULT | SYNC_CREATE
-        );
 
         var queue_action_bar = new Gtk.ActionBar ();
         queue_action_bar.pack_start (add_button);
@@ -180,6 +180,11 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
 
         update_repeat_button ();
 
+        unowned var app = ((Gtk.Application) GLib.Application.get_default ());
+        app.set_accels_for_action (ACTION_PREFIX + ACTION_OPEN, {"<Ctrl>O"});
+
+        add_action (open_action);
+
         drop_target.drop.connect ((target, value, x, y) => {
             if (value.type () == typeof (Gdk.FileList)) {
                 var list = (Gdk.FileList)value;
@@ -205,8 +210,6 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
                 count).printf (count);
             error_toast.send_notification ();
         });
-
-        add_button.clicked.connect (action_open);
 
         repeat_button.clicked.connect (() => {
             var enum_step = settings.get_enum ("repeat-mode");
@@ -262,7 +265,7 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         }
     }
 
-    private void action_open () {
+    private void open_files () {
         var all_files_filter = new Gtk.FileFilter () {
             name = _("All files"),
         };
