@@ -26,8 +26,8 @@
 
   <branding>
     <color type="primary">#f37329</color>
-    <color type="primary" scheme_preference="light">#cc3b02</color>
-    <color type="primary" scheme_preference="dark">#ffa154</color>
+    <color type="primary" scheme_preference="light">#ffa154</color>
+    <color type="primary" scheme_preference="dark">#cc3b02</color>
   </branding>
 
   <content_rating type="oars-1.1" />
