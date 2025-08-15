@@ -86,6 +86,9 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         var open_action = new SimpleAction (ACTION_OPEN, null);
         open_action.activate.connect (open_files);
 
+        var save_action = new SimpleAction (ACTION_SAVE_M3U_PLAYLIST, null);
+        save_action.activate.connect (action_save_m3u_playlist);
+
         var add_button = new Gtk.Button () {
             child = add_button_box,
             action_name = ACTION_PREFIX + ACTION_OPEN
@@ -182,8 +185,10 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
 
         unowned var app = ((Gtk.Application) GLib.Application.get_default ());
         app.set_accels_for_action (ACTION_PREFIX + ACTION_OPEN, {"<Ctrl>O"});
-
         add_action (open_action);
+
+        app.set_accels_for_action (ACTION_PREFIX + ACTION_SAVE_M3U_PLAYLIST, {"<Ctrl>S"});
+        add_action (save_action);
 
         drop_target.drop.connect ((target, value, x, y) => {
             if (value.type () == typeof (Gdk.FileList)) {
@@ -250,13 +255,6 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
                 playback_manager.current_audio = selected_audio;
             }
         });
-
-        var save_action = new SimpleAction (ACTION_SAVE_M3U_PLAYLIST, null);
-        save_action.activate.connect (action_save_m3u_playlist);
-
-        unowned var app = ((Gtk.Application) GLib.Application.get_default ());
-        app.set_accels_for_action (ACTION_PREFIX + ACTION_SAVE_M3U_PLAYLIST, {"<Ctrl>S"});
-        add_action (save_action);
     }
 
     public void start_search () {
