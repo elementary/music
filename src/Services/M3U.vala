@@ -57,13 +57,8 @@ namespace Music.M3U {
             content = content + item.uri + "\n";
         }
 
-        try {
-            var ostream = playlist.replace (null, false, GLib.FileCreateFlags.REPLACE_DESTINATION);
-            var dostream = new DataOutputStream (ostream);
-            dostream.put_string (content);
-        } catch (Error err) {
-            warning ("Failed to writing to playlist: %s", err.message);
-            throw err;
-        }
+        var ostream = playlist.replace (null, false, GLib.FileCreateFlags.REPLACE_DESTINATION);
+        var dostream = new DataOutputStream (ostream);
+        dostream.put_string (content);
     }
 }
