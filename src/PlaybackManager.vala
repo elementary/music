@@ -440,11 +440,8 @@ public class Music.PlaybackManager : Object {
 
         next_sensitive = previous_sensitive = current_audio != null;
 
-        var default_application = GLib.Application.get_default ();
-
         next_action.set_enabled (next_sensitive);
         previous_action.set_enabled (previous_sensitive);
-
     }
 
     private Gst.Sample? get_cover_sample (Gst.TagList tag_list) {
