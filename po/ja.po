@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-13 16:43+0000\n"
-"PO-Revision-Date: 2025-08-06 14:55+0000\n"
+"PO-Revision-Date: 2025-08-17 12:55+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementaryos.org/projects/music/music/"
 "ja/>\n"
@@ -47,7 +47,7 @@ msgstr "ファイルを開く…"
 
 #: src/MainWindow.vala:88
 msgid "Clear Queue"
-msgstr "再生リストを消去"
+msgstr "キューを消去"
 
 #: src/MainWindow.vala:199
 #, c-format
