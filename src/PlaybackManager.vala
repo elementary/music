@@ -508,6 +508,9 @@ public class Music.PlaybackManager : Object {
         update_next_previous_sensitivity ();
 
         play_pause_action.set_enabled (current_audio != null);
+
+        var uri_last_played = current_audio != null ? current_audio.uri : "";
+        settings.set_string ("uri-last-played", uri_last_played);
     }
 
     private void save_queue () {
@@ -522,6 +525,10 @@ public class Music.PlaybackManager : Object {
     }
 
     public void restore_queue () {
+        // Restoring the queue overwrites the last played. So we need to retrieve it before taking care of the queue
+        var uri_last_played = settings.get_string ("uri-last-played");
+        var file_last_played = File.new_for_uri (uri_last_played);
+
         var last_session_uri = settings.get_strv ("previous-queue");
         var last_session_files = new File[last_session_uri.length];
 
@@ -533,5 +540,19 @@ public class Music.PlaybackManager : Object {
 
         var files_to_play = Application.loop_through_files (last_session_files);
         queue_files (files_to_play);
+
+        if (uri_last_played != "" && file_last_played.query_exists ()) {
+            var audio_object = new AudioObject (uri_last_played);
+            uint position = -1;
+            if (!queue_liststore.find_with_equal_func (
+                audio_object,
+                (EqualFunc<AudioObject>) AudioObject.equal_func,
+                out position
+            )) {
+                return;
+            }
+
+            current_audio = (AudioObject) queue_liststore.get_item (position);
+        }
     }
 }
