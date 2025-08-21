@@ -9,6 +9,7 @@ sources = [
     'Widgets/AlbumImage.vala',
     'Widgets/SeekBar.vala',
     'Widgets/TrackRow.vala',
+    'Services/M3U.vala',
 ]
 
 executable(
