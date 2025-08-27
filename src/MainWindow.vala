@@ -31,8 +31,7 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
 
         repeat_button = new Gtk.Button ();
 
-        ListModel list_model;
-        search_bar = new SearchBar (playback_manager.queue_liststore, out list_model);
+        search_bar = new SearchBar (playback_manager.queue_liststore);
 
         search_revealer = new Gtk.Revealer () {
             child = search_bar
@@ -60,7 +59,7 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
             icon = new ThemedIcon ("edit-find-symbolic")
         };
 
-        selection_model = new Gtk.SingleSelection (list_model);
+        selection_model = new Gtk.SingleSelection (search_bar.filter_model);
 
         var factory = new Gtk.SignalListItemFactory ();
 

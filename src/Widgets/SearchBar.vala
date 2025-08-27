@@ -10,17 +10,16 @@ public class Music.SearchBar : Granite.Bin {
 
     public Gtk.SearchEntry search_entry { get; private set; }
 
-    private Gtk.StringFilter filter;
-    private Gtk.FilterListModel filter_model;
-
     /**
-     * @param new_model the new model with the search applied. Make sure to use this one in further UI
+     * The new model with the search applied. Make sure to use this one in further UI
      * instead of the old given model.
      */
-    public SearchBar (ListModel list_model, out ListModel new_model) {
-        Object (list_model: list_model);
+    public Gtk.FilterListModel filter_model { get; private set; }
 
-        new_model = filter_model;
+    private Gtk.StringFilter filter;
+
+    public SearchBar (ListModel list_model) {
+        Object (list_model: list_model);
     }
 
     construct {
