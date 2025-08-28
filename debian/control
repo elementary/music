@@ -15,7 +15,7 @@ Homepage: https://github.com/elementary/music
 
 Package: io.elementary.music
 Architecture: any
-Depends: flatpak, ${misc:Depends}
+Depends: elementary-flatpak-repo, flatpak, ${misc:Depends}
 Replaces: noise
 Description: Music player for elementary OS.
 
