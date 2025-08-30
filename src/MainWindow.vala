@@ -253,6 +253,12 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
                 playback_manager.current_audio = selected_audio;
             }
         });
+
+        search_bar.search_entry.search_changed.connect (() => {
+            if (selection_model.n_items <= 0 && search_bar.search_entry.text != "") {
+                search_placeholder.title = _("No Results for “%s”").printf (search_bar.search_entry.text);
+            }
+        });
     }
 
     public void start_search () {
@@ -339,7 +345,6 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         }
 
         if (search_bar.search_entry.text != "") {
-            search_placeholder.title = _("No Results for “%s”").printf (search_bar.search_entry.text);
             queue_stack.visible_child = search_placeholder;
         } else {
             queue_stack.visible_child = queue_placeholder;
