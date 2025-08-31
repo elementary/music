@@ -17,6 +17,11 @@
       <summary>The queue from last session to restore</summary>
       <description>An array of strings representing the files played last</description>
     </key>
+    <key type="s" name="uri-last-played">
+      <default>''</default>
+      <summary>The last song played by Music</summary>
+      <description>A string representing the uri of the last played music file</description>
+    </key>
 
     <key name="window-height" type="i">
       <default>475</default>

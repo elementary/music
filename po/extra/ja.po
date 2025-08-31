@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-13 16:43+0000\n"
-"PO-Revision-Date: 2024-09-04 11:16+0000\n"
+"PO-Revision-Date: 2025-08-17 12:55+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
-"Language-Team: Japanese <https://l10n.elementary.io/projects/music/extra/ja/"
-">\n"
+"Language-Team: Japanese <https://l10n.elementaryos.org/projects/music/extra/"
+"ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
 #: data/music.metainfo.xml.in:10 data/music.desktop.in:6
@@ -54,11 +54,11 @@ msgstr "改善点:"
 
 #: data/music.metainfo.xml.in:61
 msgid "Show album art in the sound indicator"
-msgstr ""
+msgstr "サウンドインジケーターにアルバムアートを表示するように修正"
 
 #: data/music.metainfo.xml.in:62
 msgid "Clear the queue"
-msgstr ""
+msgstr "キューを消去するボタンを追加"
 
 #: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:81
 #: data/music.metainfo.xml.in:91 data/music.metainfo.xml.in:124

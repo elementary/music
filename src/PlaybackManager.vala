@@ -35,6 +35,11 @@ public class Music.PlaybackManager : Object {
 
     private Direction direction = Direction.NONE;
 
+    private SimpleAction next_action;
+    private SimpleAction play_pause_action;
+    private SimpleAction previous_action;
+    private SimpleAction shuffle_action;
+
     private PlaybackManager () {}
 
     construct {
@@ -60,6 +65,35 @@ public class Music.PlaybackManager : Object {
         notify["current-audio"].connect (on_audio_changed);
 
         settings = new Settings ("io.elementary.music");
+
+        var clear_action = new SimpleAction (Application.ACTION_CLEAR_QUEUE, null);
+        clear_action.activate.connect (clear_queue);
+
+        next_action = new SimpleAction (Application.ACTION_NEXT, null);
+        next_action.activate.connect (() => next ());
+
+        play_pause_action = new SimpleAction.stateful (Application.ACTION_PLAY_PAUSE, null, new Variant.boolean (false));
+        play_pause_action.change_state.connect (play_pause);
+
+        previous_action = new SimpleAction (Application.ACTION_PREVIOUS, null);
+        previous_action.activate.connect (previous);
+
+        shuffle_action = new SimpleAction (Application.ACTION_SHUFFLE, null);
+        shuffle_action.activate.connect (shuffle);
+
+        next_action.set_enabled (false);
+        play_pause_action.set_enabled (false);
+        previous_action.set_enabled (false);
+        shuffle_action.set_enabled (false);
+
+        unowned var app = GLib.Application.get_default ();
+        app.add_action (clear_action);
+        app.add_action (next_action);
+        app.add_action (play_pause_action);
+        app.add_action (previous_action);
+        app.add_action (shuffle_action);
+
+        bind_property ("has-items", clear_action, "enabled", SYNC_CREATE);
     }
 
     public void seek_to_progress (double percent) {
@@ -122,7 +156,7 @@ public class Music.PlaybackManager : Object {
         }
     }
 
-    public void clear_queue () {
+    private void clear_queue () {
         playbin.set_state (Gst.State.NULL);
         current_audio = null;
         queue_liststore.remove_all ();
@@ -257,8 +291,6 @@ public class Music.PlaybackManager : Object {
                     progress_timer = 0;
                 }
 
-                var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
-
                 Gst.State old_state, new_state, pending_state;
                 message.parse_state_changed (out old_state, out new_state, out pending_state);
                 if (new_state == Gst.State.PLAYING) {
@@ -282,16 +314,17 @@ public class Music.PlaybackManager : Object {
         return true;
     }
 
-    public void play_pause () {
-        var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
-        if (play_pause_action.get_state ().get_boolean ()) {
-            playbin.set_state (Gst.State.PAUSED);
-        } else {
+    private void play_pause (SimpleAction action, Variant? value) {
+        action.set_state (value);
+
+        if (value.get_boolean ()) {
             playbin.set_state (Gst.State.PLAYING);
+        } else {
+            playbin.set_state (Gst.State.PAUSED);
         }
     }
 
-    public void next (bool eos = false) {
+    private void next (bool eos = false) {
         direction = Direction.NEXT;
         next_by_eos = eos;
         uint position = -1;
@@ -340,7 +373,7 @@ public class Music.PlaybackManager : Object {
         }
     }
 
-    public void previous () {
+    private void previous () {
         direction = Direction.PREVIOUS;
         uint position = -1;
         queue_liststore.find (current_audio, out position);
@@ -359,7 +392,7 @@ public class Music.PlaybackManager : Object {
         }
     }
 
-    public void shuffle () {
+    private void shuffle () {
         var temp_list = new ListStore (typeof (AudioObject));
         temp_list.append (current_audio);
 
@@ -379,42 +412,14 @@ public class Music.PlaybackManager : Object {
         }
     }
 
-    public int find_title (string term) {
-        var search_object = new AudioObject ("") {
-            title = term
-        };
-
-        int found_at = -1;
-        uint position;
-        if (queue_liststore.find_with_equal_func (
-            search_object,
-            (a, b) => {
-                var term_a = ((AudioObject)a).title.down ();
-                var term_b = ((AudioObject)b).title.down ();
-                return term_a.contains (term_b);
-            },
-            out position
-        )) {
-            found_at = (int)position;
-        }
-
-        return found_at;
-    }
-
     private void update_next_previous_sensitivity () {
         var next_sensitive = false;
         var previous_sensitive = false;
 
         next_sensitive = previous_sensitive = current_audio != null;
 
-        var default_application = GLib.Application.get_default ();
-
-        var next_action = (SimpleAction) default_application.lookup_action (Application.ACTION_NEXT);
         next_action.set_enabled (next_sensitive);
-
-        var previous_action = (SimpleAction) default_application.lookup_action (Application.ACTION_PREVIOUS);
         previous_action.set_enabled (previous_sensitive);
-
     }
 
     private Gst.Sample? get_cover_sample (Gst.TagList tag_list) {
@@ -479,9 +484,8 @@ public class Music.PlaybackManager : Object {
     }
 
     private void on_items_changed () {
-        var shuffle_action_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_SHUFFLE);
         has_items = queue_liststore.get_n_items () > 0;
-        shuffle_action_action.set_enabled (queue_liststore.get_n_items () > 1);
+        shuffle_action.set_enabled (queue_liststore.get_n_items () > 1);
         update_next_previous_sensitivity ();
         save_queue ();
     }
@@ -503,8 +507,10 @@ public class Music.PlaybackManager : Object {
 
         update_next_previous_sensitivity ();
 
-        var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
         play_pause_action.set_enabled (current_audio != null);
+
+        var uri_last_played = current_audio != null ? current_audio.uri : "";
+        settings.set_string ("uri-last-played", uri_last_played);
     }
 
     private void save_queue () {
@@ -519,6 +525,10 @@ public class Music.PlaybackManager : Object {
     }
 
     public void restore_queue () {
+        // Restoring the queue overwrites the last played. So we need to retrieve it before taking care of the queue
+        var uri_last_played = settings.get_string ("uri-last-played");
+        var file_last_played = File.new_for_uri (uri_last_played);
+
         var last_session_uri = settings.get_strv ("previous-queue");
         var last_session_files = new File[last_session_uri.length];
 
@@ -530,5 +540,19 @@ public class Music.PlaybackManager : Object {
 
         var files_to_play = Application.loop_through_files (last_session_files);
         queue_files (files_to_play);
+
+        if (uri_last_played != "" && file_last_played.query_exists ()) {
+            var audio_object = new AudioObject (uri_last_played);
+            uint position = -1;
+            if (!queue_liststore.find_with_equal_func (
+                audio_object,
+                (EqualFunc<AudioObject>) AudioObject.equal_func,
+                out position
+            )) {
+                return;
+            }
+
+            current_audio = (AudioObject) queue_liststore.get_item (position);
+        }
     }
 }
