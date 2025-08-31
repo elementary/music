@@ -8,12 +8,13 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
     private const string ACTION_OPEN = "action-open";
 
     private Granite.Placeholder queue_placeholder;
+    private Granite.Placeholder search_placeholder;
     private Gtk.Button repeat_button;
     private Gtk.Button shuffle_button;
+    private SearchBar search_bar;
     private Gtk.ListView queue_listview;
     private Gtk.Revealer search_revealer;
     private Gtk.ScrolledWindow scrolled;
-    private Gtk.SearchEntry search_entry;
     private Gtk.SingleSelection selection_model;
     private Gtk.Stack queue_stack;
     private Settings settings;
@@ -30,12 +31,10 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
 
         repeat_button = new Gtk.Button ();
 
-        search_entry = new Gtk.SearchEntry () {
-            placeholder_text = _("Search titles in playlist")
-        };
+        search_bar = new SearchBar (playback_manager.queue_liststore);
 
         search_revealer = new Gtk.Revealer () {
-            child = search_entry
+            child = search_bar
         };
 
         playback_manager.bind_property (
@@ -55,7 +54,12 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
             icon = new ThemedIcon ("playlist-queue")
         };
 
-        selection_model = new Gtk.SingleSelection (playback_manager.queue_liststore);
+        search_placeholder = new Granite.Placeholder ("") {
+            description = _("Try changing search terms"),
+            icon = new ThemedIcon ("edit-find-symbolic")
+        };
+
+        selection_model = new Gtk.SingleSelection (search_bar.filter_model);
 
         var factory = new Gtk.SignalListItemFactory ();
 
@@ -71,6 +75,7 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
 
         queue_stack = new Gtk.Stack ();
         queue_stack.add_child (queue_placeholder);
+        queue_stack.add_child (search_placeholder);
         queue_stack.add_child (scrolled);
 
         var drop_target = new Gtk.DropTarget (typeof (Gdk.FileList), Gdk.DragAction.COPY);
@@ -201,6 +206,13 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
             return false;
         });
 
+        playback_manager.queue_liststore.items_changed.connect (() => {
+            if (playback_manager.n_items == 0) {
+                queue_stack.visible_child = queue_placeholder;
+                search_bar.search_entry.text = "";
+            }
+        });
+
         playback_manager.invalids_found.connect ((count) => {
             error_toast.title = ngettext (
                 "%d invalid file was not added to the queue",
@@ -234,25 +246,24 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
 
         selection_model.items_changed.connect (on_items_changed);
 
-        search_entry.search_changed.connect (() => {
-            int pos = playback_manager.find_title (search_entry.text);
-            if (pos >= 0) {
-                queue_listview.scroll_to (pos, SELECT, null);
-            }
-        });
-
-        search_entry.activate.connect (() => {
+        search_bar.activated.connect (() => {
             var selected = selection_model.get_selected ();
             if (selected != -1) {
                 var selected_audio = (AudioObject) selection_model.get_item (selected);
                 playback_manager.current_audio = selected_audio;
             }
         });
+
+        search_bar.search_entry.search_changed.connect (() => {
+            if (selection_model.n_items <= 0 && search_bar.search_entry.text != "") {
+                search_placeholder.title = _("No Results for “%s”").printf (search_bar.search_entry.text);
+            }
+        });
     }
 
     public void start_search () {
         if (search_revealer.child_revealed) {
-            search_entry.grab_focus ();
+            search_bar.start_search ();
         }
     }
 
@@ -330,6 +341,11 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
     private void on_items_changed () {
         if (selection_model.n_items > 0) {
             queue_stack.visible_child = scrolled;
+            return;
+        }
+
+        if (search_bar.search_entry.text != "") {
+            queue_stack.visible_child = search_placeholder;
         } else {
             queue_stack.visible_child = queue_placeholder;
         }

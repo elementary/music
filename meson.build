@@ -20,7 +20,7 @@ config_file = configure_file(
 )
 
 adw_dep = dependency('libadwaita-1', version: '>=1.4.0')
-granite_dep = dependency('granite-7', version: '>=7.6.0')
+granite_dep = dependency('granite-7', version: '>=7.6.0') # Granite.Bin
 gstreamer_dep = dependency('gstreamer-1.0')
 gstreamer_pbutils_dep = dependency('gstreamer-pbutils-1.0')
 gstreamer_tag_dep = dependency('gstreamer-tag-1.0')
