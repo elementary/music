@@ -7,16 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beatbox 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-13 16:43+0000\n"
-"PO-Revision-Date: 2025-02-07 15:16+0000\n"
+"POT-Creation-Date: 2025-08-31 20:05+0000\n"
+"PO-Revision-Date: 2025-08-21 13:55+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
-"Language-Team: French <https://l10n.elementary.io/projects/music/extra/fr/>\n"
+"Language-Team: French <https://l10n.elementaryos.org/projects/music/extra/fr/"
+">\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.9.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
 #: data/music.metainfo.xml.in:10 data/music.desktop.in:6
@@ -38,61 +39,61 @@ msgstr ""
 "sans superflu. Visualisez les pochettes d'album intégrées. Contrôlez la "
 "lecture avec les touches multimédia ou dans l'indicateur audio du système."
 
-#: data/music.metainfo.xml.in:18
+#: data/music.metainfo.xml.in:18 data/music.metainfo.xml.in:22
 msgid "Quickly queue up your favorite tracks"
 msgstr "Mettez rapidement en file d'attente vos morceaux préférés"
 
-#: data/music.metainfo.xml.in:51
+#: data/music.metainfo.xml.in:55
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
 
-#: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:77
-#: data/music.metainfo.xml.in:88 data/music.metainfo.xml.in:102
+#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:82
+#: data/music.metainfo.xml.in:93 data/music.metainfo.xml.in:107
 msgid "Improvements:"
 msgstr "Améliorations :"
 
-#: data/music.metainfo.xml.in:61
+#: data/music.metainfo.xml.in:65
 msgid "Show album art in the sound indicator"
-msgstr ""
+msgstr "Affichage de la pochette d'album dans l'indicateur de son"
 
-#: data/music.metainfo.xml.in:62
+#: data/music.metainfo.xml.in:66
 msgid "Clear the queue"
-msgstr ""
+msgstr "Effacement de la file d'attente"
 
-#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:81
-#: data/music.metainfo.xml.in:91 data/music.metainfo.xml.in:124
+#: data/music.metainfo.xml.in:67 data/music.metainfo.xml.in:86
+#: data/music.metainfo.xml.in:96 data/music.metainfo.xml.in:129
 msgid "Updated translations"
 msgstr "Mise à jour des traductions"
 
-#: data/music.metainfo.xml.in:79
+#: data/music.metainfo.xml.in:84
 msgid "Toolbar shows a shadow when the view is scrolled"
 msgstr "La barre d'outils affiche une ombre lorsque la vue défile"
 
-#: data/music.metainfo.xml.in:80
+#: data/music.metainfo.xml.in:85
 msgid "Open audio files from within Music"
 msgstr "Ouvrez des fichiers audio à partir de Musique"
 
-#: data/music.metainfo.xml.in:90
+#: data/music.metainfo.xml.in:95
 msgid "Open folders in the filemanager with Music"
 msgstr "Ouvrez des dossiers dans le gestionnaire de fichiers avec Musique"
 
-#: data/music.metainfo.xml.in:104
+#: data/music.metainfo.xml.in:109
 msgid "For tracks without a title, use the file name instead of the whole URI"
 msgstr ""
 "Pour les morceaux sans titre, utilisation du nom du fichier au lieu de l'URI "
 "complet"
 
-#: data/music.metainfo.xml.in:105
+#: data/music.metainfo.xml.in:110
 msgid "Skip invalid files instead of stopping playback"
 msgstr "Saut des fichiers non valides plutôt que d'arrêter la lecture"
 
-#: data/music.metainfo.xml.in:106
+#: data/music.metainfo.xml.in:111
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr ""
 "Les boutons Suivant et Répéter fonctionnent toujours, quel que soit le mode "
 "de répétition"
 
-#: data/music.metainfo.xml.in:107
+#: data/music.metainfo.xml.in:112
 msgid ""
 "Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
@@ -102,11 +103,11 @@ msgstr ""
 "hébreu, hongrois, japonais, kurde, marathi, norvégien Bokmål, néerlandais, "
 "polonais, portugais, russe, chinois simplifié, turc et ukrainien"
 
-#: data/music.metainfo.xml.in:117
+#: data/music.metainfo.xml.in:122
 msgid "Complete rewrite"
 msgstr "Réécriture complète"
 
-#: data/music.metainfo.xml.in:123
+#: data/music.metainfo.xml.in:128
 msgid "Drop support for Last.FM"
 msgstr "Arrêt de la prise en charge de Last.FM"
 
