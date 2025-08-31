@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-13 16:43+0000\n"
+"POT-Creation-Date: 2025-08-31 20:05+0000\n"
 "PO-Revision-Date: 2025-03-21 23:55+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementaryos.org/projects/music/music/"
@@ -21,36 +21,38 @@ msgstr ""
 "X-Generator: Weblate 5.10.4\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:55+0000\n"
 
-#: src/Application.vala:97 src/Views/NowPlayingView.vala:18
+#: src/Application.vala:86 src/Views/NowPlayingView.vala:18
 #: src/Views/NowPlayingView.vala:118
 msgid "Music"
 msgstr "Музика"
 
-#: src/MainWindow.vala:25
+#: src/MainWindow.vala:29
 msgid "Shuffle"
 msgstr "Перемішати"
 
-#: src/MainWindow.vala:31
-msgid "Search titles in playlist"
-msgstr "Пошук назв у списку відтворення"
-
-#: src/MainWindow.vala:50
+#: src/MainWindow.vala:52
 msgid "Queue is Empty"
 msgstr "Черга порожня"
 
-#: src/MainWindow.vala:51
+#: src/MainWindow.vala:53
 msgid "Audio files opened from Files will appear here"
 msgstr "Тут з'являться відкриті з Файлів аудіофайли"
 
-#: src/MainWindow.vala:75
+#: src/MainWindow.vala:58
+#, fuzzy
+#| msgid "Try another search"
+msgid "Try changing search terms"
+msgstr "Спробуйте інший варіант пошуку"
+
+#: src/MainWindow.vala:83
 msgid "Open Files…"
 msgstr "Відкрити файли…"
 
-#: src/MainWindow.vala:88
+#: src/MainWindow.vala:100
 msgid "Clear Queue"
 msgstr "Очистити чергу"
 
-#: src/MainWindow.vala:199
+#: src/MainWindow.vala:218
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
@@ -58,41 +60,47 @@ msgstr[0] "До черги не додано %d недійсний файл"
 msgstr[1] "До черги не додано %d недійсні файли"
 msgstr[2] "До черги не додано %d недійсних файлів"
 
-#: src/MainWindow.vala:256
+#: src/MainWindow.vala:259
+#, fuzzy, c-format
+#| msgid "No Results"
+msgid "No Results for “%s”"
+msgstr "Немає результатів"
+
+#: src/MainWindow.vala:272
 msgid "All files"
 msgstr "Додати файли"
 
-#: src/MainWindow.vala:261
+#: src/MainWindow.vala:277
 msgid "Music files"
 msgstr "Музичні файли"
 
-#: src/MainWindow.vala:270
+#: src/MainWindow.vala:286
 msgid "Open"
 msgstr "Відкрити"
 
-#: src/MainWindow.vala:274
+#: src/MainWindow.vala:290
 msgid "Open audio files"
 msgstr "Відкрити аудіофайли"
 
-#: src/MainWindow.vala:294
+#: src/MainWindow.vala:310
 #, fuzzy
 #| msgid "Could not find media file"
 msgid "Couldn't add audio files"
 msgstr "Не вдалося знайти медіа-файл"
 
-#: src/MainWindow.vala:312
+#: src/MainWindow.vala:328
 msgid "Repeat None"
 msgstr "Не повторювати"
 
-#: src/MainWindow.vala:316
+#: src/MainWindow.vala:332
 msgid "Repeat All"
 msgstr "Повторювати всі"
 
-#: src/MainWindow.vala:320
+#: src/MainWindow.vala:336
 msgid "Repeat One"
 msgstr "Повторювати одну"
 
-#: src/PlaybackManager.vala:113
+#: src/PlaybackManager.vala:147
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
@@ -101,7 +109,7 @@ msgstr[1] "%d доріжки додано до черги"
 msgstr[2] "%d доріжок додано до черги"
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:196
+#: src/PlaybackManager.vala:230
 msgid "Unknown"
 msgstr "Невідомо"
 
@@ -124,6 +132,10 @@ msgstr "Відтворити"
 #: src/Views/NowPlayingView.vala:98
 msgid "Pause"
 msgstr "Пауза"
+
+#: src/Widgets/SearchBar.vala:36
+msgid "Search titles in playlist"
+msgstr "Пошук назв у списку відтворення"
 
 #~ msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 #~ msgstr "Завантаження <b>$NAME</b> виконавця <b>$ARTIST</b> до бібліотеки…"
@@ -708,12 +720,6 @@ msgstr "Пауза"
 
 #~ msgid "Device operation has been cancelled and will stop after this media."
 #~ msgstr "Операція з пристроєм відмінена і буде зупиненна після цієї дії."
-
-#~ msgid "No Results"
-#~ msgstr "Немає результатів"
-
-#~ msgid "Try another search"
-#~ msgstr "Спробуйте інший варіант пошуку"
 
 #~ msgid "Genres"
 #~ msgstr "Жанри"
