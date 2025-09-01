@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-13 16:43+0000\n"
+"POT-Creation-Date: 2025-08-31 20:05+0000\n"
 "PO-Revision-Date: 2015-12-21 13:43+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: Latvian <lv@li.org>\n"
@@ -19,42 +19,42 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-03-07 05:53+0000\n"
 "X-Generator: Launchpad (build 18330)\n"
 
-#: src/Application.vala:97 src/Views/NowPlayingView.vala:18
+#: src/Application.vala:86 src/Views/NowPlayingView.vala:18
 #: src/Views/NowPlayingView.vala:118
 msgid "Music"
 msgstr "Mūzika"
 
-#: src/MainWindow.vala:25
+#: src/MainWindow.vala:29
 #, fuzzy
 msgid "Shuffle"
 msgstr "Ieslēgt jaukšanu"
 
-#: src/MainWindow.vala:31
-msgid "Search titles in playlist"
-msgstr ""
-
-#: src/MainWindow.vala:50
+#: src/MainWindow.vala:52
 msgid "Queue is Empty"
 msgstr ""
 
-#: src/MainWindow.vala:51
+#: src/MainWindow.vala:53
 msgid "Audio files opened from Files will appear here"
 msgstr ""
 
-#: src/MainWindow.vala:75
+#: src/MainWindow.vala:58
+msgid "Try changing search terms"
+msgstr ""
+
+#: src/MainWindow.vala:83
 #, fuzzy
 #| msgid "Other Files"
 msgid "Open Files…"
 msgstr "Citi faili"
 
-#: src/MainWindow.vala:88
+#: src/MainWindow.vala:100
 #, fuzzy
 #| msgctxt "Name of the playlist"
 #| msgid "Queue"
 msgid "Clear Queue"
 msgstr "Secība"
 
-#: src/MainWindow.vala:199
+#: src/MainWindow.vala:218
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
@@ -62,46 +62,51 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: src/MainWindow.vala:256
+#: src/MainWindow.vala:259
+#, fuzzy, c-format
+msgid "No Results for “%s”"
+msgstr "Nav reitingu"
+
+#: src/MainWindow.vala:272
 #, fuzzy
 #| msgid "All Years"
 msgid "All files"
 msgstr "Visi gadi"
 
-#: src/MainWindow.vala:261
+#: src/MainWindow.vala:277
 #, fuzzy
 #| msgid "Music Player"
 msgid "Music files"
 msgstr "Mūzikas atskaņotājs"
 
-#: src/MainWindow.vala:270
+#: src/MainWindow.vala:286
 msgid "Open"
 msgstr "Atvērt"
 
-#: src/MainWindow.vala:274
+#: src/MainWindow.vala:290
 msgid "Open audio files"
 msgstr ""
 
-#: src/MainWindow.vala:294
+#: src/MainWindow.vala:310
 msgid "Couldn't add audio files"
 msgstr ""
 
-#: src/MainWindow.vala:312
+#: src/MainWindow.vala:328
 #, fuzzy
 msgid "Repeat None"
 msgstr "Atkārtot dziesmu"
 
-#: src/MainWindow.vala:316
+#: src/MainWindow.vala:332
 #, fuzzy
 msgid "Repeat All"
 msgstr "Atkārtot albumu"
 
-#: src/MainWindow.vala:320
+#: src/MainWindow.vala:336
 #, fuzzy
 msgid "Repeat One"
 msgstr "Atkārtot dziesmu"
 
-#: src/PlaybackManager.vala:113
+#: src/PlaybackManager.vala:147
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
@@ -110,7 +115,7 @@ msgstr[1] ""
 msgstr[2] ""
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:196
+#: src/PlaybackManager.vala:230
 msgid "Unknown"
 msgstr "Nezināms izpildītājs/Nosaukums"
 
@@ -134,6 +139,10 @@ msgstr "Atskaņot"
 #: src/Views/NowPlayingView.vala:98
 msgid "Pause"
 msgstr "Apturēt"
+
+#: src/Widgets/SearchBar.vala:36
+msgid "Search titles in playlist"
+msgstr ""
 
 #~ msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 #~ msgstr "Importē <b>$ARTIST</b> - <b>$NAME</b> bibliotekā…"
@@ -576,10 +585,6 @@ msgstr "Apturēt"
 
 #~ msgid "Device operation has been cancelled and will stop after this media."
 #~ msgstr "Ierīces darbība ir apturēta un tiks pārtraukta pēc šī mēdija."
-
-#, fuzzy
-#~ msgid "No Results"
-#~ msgstr "Nav reitingu"
 
 #~ msgid "Genres"
 #~ msgstr "Žanri"
