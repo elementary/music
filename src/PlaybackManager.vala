@@ -530,6 +530,10 @@ public class Music.PlaybackManager : Object {
         var file_last_played = File.new_for_uri (uri_last_played);
 
         var last_session_uri = settings.get_strv ("previous-queue");
+        if (last_session_uri.length == 0) {
+            return;
+        }
+
         var last_session_files = new File[last_session_uri.length];
 
         for (var i = 0; i < last_session_uri.length; i++) {
