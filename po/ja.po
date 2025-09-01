@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-31 20:05+0000\n"
-"PO-Revision-Date: 2025-08-17 12:55+0000\n"
+"PO-Revision-Date: 2025-09-02 12:55+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementaryos.org/projects/music/music/"
 "ja/>\n"
@@ -38,10 +38,8 @@ msgid "Audio files opened from Files will appear here"
 msgstr "“ファイル”から開いた音声ファイルがここに表示されます"
 
 #: src/MainWindow.vala:58
-#, fuzzy
-#| msgid "Try another search"
 msgid "Try changing search terms"
-msgstr "ほかの検索用語を試してみてください"
+msgstr "他のキーワードを試してください"
 
 #: src/MainWindow.vala:83
 msgid "Open Files…"
@@ -58,10 +56,9 @@ msgid_plural "%d invalid files were not added to the queue"
 msgstr[0] "無効な %d 項目のファイルはキューに追加されませんでした"
 
 #: src/MainWindow.vala:259
-#, fuzzy, c-format
-#| msgid "No Results"
+#, c-format
 msgid "No Results for “%s”"
-msgstr "検索結果はありません"
+msgstr "“%s”の結果なし"
 
 #: src/MainWindow.vala:272
 msgid "All files"
