@@ -16,11 +16,11 @@
   <screenshots>
     <screenshot environment="pantheon" type="default">
       <caption>Quickly queue up your favorite tracks</caption>
-      <image>https://raw.githubusercontent.com/elementary/music/8.0.0/data/screenshot.png</image>
+      <image>https://raw.githubusercontent.com/elementary/music/8.1.0/data/screenshot.png</image>
     </screenshot>
     <screenshot environment="pantheon:dark" type="default">
       <caption>Quickly queue up your favorite tracks</caption>
-      <image>https://raw.githubusercontent.com/elementary/music/8.0.0/data/screenshot-dark.png</image>
+      <image>https://raw.githubusercontent.com/elementary/music/8.1.0/data/screenshot-dark.png</image>
     </screenshot>
   </screenshots>
 
@@ -58,7 +58,7 @@
   <update_contact>contact_at_elementary.io</update_contact>
 
   <releases>
-    <release version="8.1.0" date="2025-08-13" urgency="medium">
+    <release version="8.1.0" date="2025-09-01" urgency="medium">
       <description>
         <p>Improvements:</p>
         <ul>
@@ -74,6 +74,8 @@
         <issue url="https://github.com/elementary/music/issues/794">Search function only shows first occurrence of search term</issue>
         <issue url="https://github.com/elementary/music/issues/798">Gap below album cover when setting text size greater than 1</issue>
         <issue url="https://github.com/elementary/music/issues/803">NowPlaying area resizes when playing song with long artist name</issue>
+        <issue url="https://github.com/elementary/music/issues/829">The toast "1 invalid file was not added to the queue" and terminal warning is shown</issue>
+
       </issues>
     </release>
 
