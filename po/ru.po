@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-31 20:05+0000\n"
-"PO-Revision-Date: 2025-08-06 14:55+0000\n"
-"Last-Translator: кубик круглый <megarainbow29@gmail.com>\n"
+"PO-Revision-Date: 2025-09-07 17:55+0000\n"
+"Last-Translator: Leo <lenemter@gmail.com>\n"
 "Language-Team: Russian <https://l10n.elementaryos.org/projects/music/music/"
 "ru/>\n"
 "Language: ru\n"
@@ -39,10 +39,8 @@ msgid "Audio files opened from Files will appear here"
 msgstr "Открытые вами аудиофайлы появятся здесь"
 
 #: src/MainWindow.vala:58
-#, fuzzy
-#| msgid "Try another search"
 msgid "Try changing search terms"
-msgstr "Попробуйте другой запрос"
+msgstr "Попробуйте изменить запрос"
 
 #: src/MainWindow.vala:83
 msgid "Open Files…"
@@ -61,10 +59,9 @@ msgstr[1] "%d недействительных файла не были доба
 msgstr[2] "%d недействительных файлов не были добавлены в очередь"
 
 #: src/MainWindow.vala:259
-#, fuzzy, c-format
-#| msgid "No Results"
+#, c-format
 msgid "No Results for “%s”"
-msgstr "Нет результатов"
+msgstr "Нет результатов для «%s»"
 
 #: src/MainWindow.vala:272
 msgid "All files"
