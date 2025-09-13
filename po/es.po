@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-31 20:05+0000\n"
-"PO-Revision-Date: 2025-08-11 20:55+0000\n"
+"PO-Revision-Date: 2025-09-14 19:55+0000\n"
 "Last-Translator: Italo Felipe Capasso Ballesteros <italo@gp-mail.com>\n"
 "Language-Team: Spanish <https://l10n.elementaryos.org/projects/music/music/"
 "es/>\n"
@@ -38,10 +38,8 @@ msgid "Audio files opened from Files will appear here"
 msgstr "Los archivos de audio abiertos desde Archivos aparecerán aquí"
 
 #: src/MainWindow.vala:58
-#, fuzzy
-#| msgid "Try another search"
 msgid "Try changing search terms"
-msgstr "Buscar de nuevo"
+msgstr "Intente cambiar los términos de búsqueda"
 
 #: src/MainWindow.vala:83
 msgid "Open Files…"
@@ -59,10 +57,9 @@ msgstr[0] "%d archivo no válido no fue añadido a la cola"
 msgstr[1] "%d archivos no válidos no fueron añadidos a la cola"
 
 #: src/MainWindow.vala:259
-#, fuzzy, c-format
-#| msgid "No Results"
+#, c-format
 msgid "No Results for “%s”"
-msgstr "Sin resultados"
+msgstr "Sin resultados para «%s»"
 
 #: src/MainWindow.vala:272
 msgid "All files"
