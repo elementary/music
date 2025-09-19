@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-31 20:05+0000\n"
-"PO-Revision-Date: 2025-04-22 11:59+0000\n"
+"PO-Revision-Date: 2025-09-12 11:55+0000\n"
 "Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementaryos.org/projects/music/music/"
 "hu/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.11.4\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:52+0000\n"
 
 #: src/Application.vala:86 src/Views/NowPlayingView.vala:18
@@ -39,7 +39,7 @@ msgstr "Itt jelennek meg a Fájlkezelőből megnyitott hangfájlok"
 
 #: src/MainWindow.vala:58
 msgid "Try changing search terms"
-msgstr ""
+msgstr "Próbálja megváltoztatni a keresési kifejezéseket"
 
 #: src/MainWindow.vala:83
 msgid "Open Files…"
@@ -57,9 +57,9 @@ msgstr[0] "%d érvénytelen szám nem lett hozzáadva a lejátszási sorhoz"
 msgstr[1] "%d érvénytelen szám nem lett hozzáadva a lejátszási sorhoz"
 
 #: src/MainWindow.vala:259
-#, fuzzy, c-format
+#, c-format
 msgid "No Results for “%s”"
-msgstr "Nincs értékelés"
+msgstr "Nincs találat: “%s”"
 
 #: src/MainWindow.vala:272
 msgid "All files"
@@ -78,10 +78,8 @@ msgid "Open audio files"
 msgstr "Hangfájlok megnyitása"
 
 #: src/MainWindow.vala:310
-#, fuzzy
-#| msgid "Could not find media file"
 msgid "Couldn't add audio files"
-msgstr "Nem található médiafájl"
+msgstr "Nem sikerült hozzáadni a hangfájlokat"
 
 #: src/MainWindow.vala:328
 msgid "Repeat None"

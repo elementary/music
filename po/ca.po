@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-31 20:05+0000\n"
-"PO-Revision-Date: 2025-08-06 14:55+0000\n"
+"PO-Revision-Date: 2025-09-04 08:55+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
 "Language-Team: Catalan <https://l10n.elementaryos.org/projects/music/music/"
 "ca/>\n"
@@ -38,10 +38,8 @@ msgid "Audio files opened from Files will appear here"
 msgstr "Els fitxers d'àudio oberts des del Fitxers apareixeran aquí."
 
 #: src/MainWindow.vala:58
-#, fuzzy
-#| msgid "Try another search"
 msgid "Try changing search terms"
-msgstr "Proveu de fer una altra cerca"
+msgstr "Proveu de canviar els termes de cerca"
 
 #: src/MainWindow.vala:83
 msgid "Open Files…"
@@ -59,10 +57,9 @@ msgstr[0] "%d fitxer no vàlid no s'ha afegit a la cua"
 msgstr[1] "%d fitxers no vàlids no s'han afegit a la cua"
 
 #: src/MainWindow.vala:259
-#, fuzzy, c-format
-#| msgid "No Results"
+#, c-format
 msgid "No Results for “%s”"
-msgstr "Sense resultats"
+msgstr "No hi ha resultats per a «%s»"
 
 #: src/MainWindow.vala:272
 msgid "All files"

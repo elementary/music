@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beatbox 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-31 20:05+0000\n"
-"PO-Revision-Date: 2025-08-21 13:55+0000\n"
+"PO-Revision-Date: 2025-09-10 08:55+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://l10n.elementaryos.org/projects/music/music/fr/"
 ">\n"
@@ -39,10 +39,8 @@ msgstr ""
 "Les fichiers audio ouvert depuis l'explorateur de fichiers apparaîtront ici"
 
 #: src/MainWindow.vala:58
-#, fuzzy
-#| msgid "Try another search"
 msgid "Try changing search terms"
-msgstr "Rechercher autre chose"
+msgstr "Essayez de modifier la recherche"
 
 #: src/MainWindow.vala:83
 msgid "Open Files…"
@@ -60,10 +58,9 @@ msgstr[0] "%d fichier invalide n'a pas été ajouté à la file d'attente"
 msgstr[1] "%d fichiers invalides n'ont pas été ajoutés à la file d'attente"
 
 #: src/MainWindow.vala:259
-#, fuzzy, c-format
-#| msgid "No Results"
+#, c-format
 msgid "No Results for “%s”"
-msgstr "Aucun résultat"
+msgstr "Aucun résultat pour « %s »"
 
 #: src/MainWindow.vala:272
 msgid "All files"
