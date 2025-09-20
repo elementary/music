@@ -6,43 +6,38 @@
 namespace Music.M3U {
 
     // Standard specification here: https://en.wikipedia.org/wiki/M3U
-    public File[]? parse_playlist (File playlist) {
+    public File[]? parse_playlist (File playlist) throws Error {
         debug ("Parsing playlist: %s", playlist.get_path ());
         File[] list = {};
 
-        try {
-            FileInputStream @is = playlist.read ();
-            DataInputStream dis = new DataInputStream (@is);
-            string line;
+        FileInputStream @is = playlist.read ();
+        DataInputStream dis = new DataInputStream (@is);
+        string line;
 
-            while ((line = dis.read_line ()) != null) {
-                // Skip extended
-                if (line.has_prefix ("#EXT")) {
-                    debug ("Skipping EXTM3U: " + line);
-                    continue;
-                }
-
-                // Skip URL
-                if (line.ascii_down ().has_prefix ("http")) {
-                    debug ("Skipping URL: " + line);
-                    continue;
-                }
-
-                File target;
-
-                if (line.ascii_down ().has_prefix ("file:///")) {
-                    target = File.new_for_uri (line);
-                } else {
-                    target = File.new_for_path (line);
-                }
-
-                // The caller is responsible for testing whether files exist and
-                // are valid using PlaybackManager.queue_files() instead of here
-                list += target;
+        while ((line = dis.read_line ()) != null) {
+            // Skip extended
+            if (line.has_prefix ("#EXT")) {
+                debug ("Skipping EXTM3U: " + line);
+                continue;
             }
-        } catch (Error e) {
-            warning ("Error: %s", e.message);
-            return null;
+
+            // Skip URL
+            if (line.ascii_down ().has_prefix ("http")) {
+                debug ("Skipping URL: " + line);
+                continue;
+            }
+
+            File target;
+
+            if (line.ascii_down ().has_prefix ("file:///")) {
+                target = File.new_for_uri (line);
+            } else {
+                target = File.new_for_path (line);
+            }
+
+            // The caller is responsible for testing whether files exist and
+            // are valid using PlaybackManager.queue_files() instead of here
+            list += target;
         }
 
         return list;
