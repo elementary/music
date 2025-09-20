@@ -285,9 +285,15 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         };
         music_files_filter.add_mime_type ("audio/*");
 
+        var playlist_filter = new Gtk.FileFilter () {
+            name = _("M3U Playlists"),
+        };
+        playlist_filter.add_mime_type ("audio/x-mpegurl");
+
         var filter_model = new ListStore (typeof (Gtk.FileFilter));
         filter_model.append (all_files_filter);
         filter_model.append (music_files_filter);
+        filter_model.append (playlist_filter);
 
         var file_dialog = new Gtk.FileDialog () {
             accept_label = _("Open"),
