@@ -4,6 +4,19 @@
  */
 
 namespace Music.M3U {
+    public bool is_playlist (File suspicious_file) {
+        bool if_playlist = false;
+        try {
+            var info = suspicious_file.query_info (GLib.FileAttribute.STANDARD_CONTENT_TYPE, FileQueryInfoFlags.NONE);
+            var mimetype = info.get_content_type () ?? "";
+            if_playlist = mimetype == "audio/x-mpegurl";
+
+        } catch (Error e) {
+            warning (e.message);
+        }
+
+        return if_playlist;
+    }
 
     // Standard specification here: https://en.wikipedia.org/wiki/M3U
     public File[]? parse_playlist (File playlist) throws Error {
