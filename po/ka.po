@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-31 20:05+0000\n"
-"PO-Revision-Date: 2025-08-09 11:55+0000\n"
+"PO-Revision-Date: 2025-09-28 06:55+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://l10n.elementaryos.org/projects/music/music/"
 "ka/>\n"
@@ -39,7 +39,7 @@ msgstr "Files-დან გახსნილი ხმოვანი ფაი
 
 #: src/MainWindow.vala:58
 msgid "Try changing search terms"
-msgstr ""
+msgstr "სცადეთ შეცვალოთ ძებნის პირობა"
 
 #: src/MainWindow.vala:83
 msgid "Open Files…"
@@ -56,9 +56,9 @@ msgid_plural "%d invalid files were not added to the queue"
 msgstr[0] "%d არასწორი ფაილი რიგში არ ჩამატებულა"
 
 #: src/MainWindow.vala:259
-#, fuzzy, c-format
+#, c-format
 msgid "No Results for “%s”"
-msgstr "შეფასებები არაა"
+msgstr "\"%s\"-სთვის შედეგების გარეშე"
 
 #: src/MainWindow.vala:272
 msgid "All files"
