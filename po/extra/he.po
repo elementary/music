@@ -3,16 +3,17 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-31 20:05+0000\n"
-"PO-Revision-Date: 2024-09-02 00:57+0000\n"
+"PO-Revision-Date: 2025-10-06 12:55+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
-"Language-Team: Hebrew <https://l10n.elementary.io/projects/music/extra/he/>\n"
+"Language-Team: Hebrew <https://l10n.elementaryos.org/projects/music/extra/he/"
+">\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
 #: data/music.metainfo.xml.in:10 data/music.desktop.in:6
@@ -47,11 +48,11 @@ msgstr "שיפורים:"
 
 #: data/music.metainfo.xml.in:65
 msgid "Show album art in the sound indicator"
-msgstr ""
+msgstr "הצגת עטיפת אלבום במחוון השמע"
 
 #: data/music.metainfo.xml.in:66
 msgid "Clear the queue"
-msgstr ""
+msgstr "לפנות את התור"
 
 #: data/music.metainfo.xml.in:67 data/music.metainfo.xml.in:86
 #: data/music.metainfo.xml.in:96 data/music.metainfo.xml.in:129
