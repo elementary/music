@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-31 20:05+0000\n"
-"PO-Revision-Date: 2024-12-01 12:56+0000\n"
+"PO-Revision-Date: 2025-09-29 19:55+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
-"Language-Team: Finnish <https://l10n.elementary.io/projects/music/music/fi/"
-">\n"
+"Language-Team: Finnish <https://l10n.elementaryos.org/projects/music/music/"
+"fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "X-Launchpad-Export-Date: 2017-03-19 06:29+0000\n"
 
 #: src/Application.vala:86 src/Views/NowPlayingView.vala:18
@@ -38,20 +38,16 @@ msgid "Audio files opened from Files will appear here"
 msgstr "Tiedostonhallinnasta avatut äänitiedostot ilmestyvät tänne"
 
 #: src/MainWindow.vala:58
-#, fuzzy
-#| msgid "Try another search"
 msgid "Try changing search terms"
-msgstr "Kokeile muita hakuehtoja"
+msgstr "Kokeile muuttaa hakuehtoja"
 
 #: src/MainWindow.vala:83
 msgid "Open Files…"
 msgstr "Avaa tiedostoja…"
 
 #: src/MainWindow.vala:100
-#, fuzzy
-#| msgid "Queue"
 msgid "Clear Queue"
-msgstr "Lisää jonoon"
+msgstr "Tyhjennä jono"
 
 #: src/MainWindow.vala:218
 #, c-format
@@ -61,10 +57,9 @@ msgstr[0] "%d virheellistä tiedostoa ei lisätty jonoon"
 msgstr[1] "%d virheellistä tiedostoa ei lisätty jonoon"
 
 #: src/MainWindow.vala:259
-#, fuzzy, c-format
-#| msgid "No Results"
+#, c-format
 msgid "No Results for “%s”"
-msgstr "Ei tuloksia"
+msgstr "Ei tuloksia haulla “%s”"
 
 #: src/MainWindow.vala:272
 msgid "All files"
@@ -83,10 +78,8 @@ msgid "Open audio files"
 msgstr "Avaa äänitiedostoja"
 
 #: src/MainWindow.vala:310
-#, fuzzy
-#| msgid "Could not find media file"
 msgid "Couldn't add audio files"
-msgstr "Mediatiedostoa ei löytynyt"
+msgstr "Äänitiedostoja ei voitu lisätä"
 
 #: src/MainWindow.vala:328
 msgid "Repeat None"

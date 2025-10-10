@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-31 20:05+0000\n"
-"PO-Revision-Date: 2025-03-20 11:09+0000\n"
+"PO-Revision-Date: 2025-10-06 12:55+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementaryos.org/projects/music/music/he/"
 ">\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.11.4\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:52+0000\n"
 
 #: src/Application.vala:86 src/Views/NowPlayingView.vala:18
@@ -33,10 +33,8 @@ msgid "Audio files opened from Files will appear here"
 msgstr "קובצי שמע שנפתחו מיישום הקבצים יופיעו כאן"
 
 #: src/MainWindow.vala:58
-#, fuzzy
-#| msgid "Try another search"
 msgid "Try changing search terms"
-msgstr "לנסות חיפוש נוסף"
+msgstr "כדאי לנסות לשנות את ביטויי החיפוש"
 
 #: src/MainWindow.vala:83
 msgid "Open Files…"
@@ -54,10 +52,9 @@ msgstr[0] "קובץ שגוי לא נוסף לתור"
 msgstr[1] "%d קבצים שגויים לא נוספו לתור"
 
 #: src/MainWindow.vala:259
-#, fuzzy, c-format
-#| msgid "No Results"
+#, c-format
 msgid "No Results for “%s”"
-msgstr "אין תוצאות"
+msgstr "אין תוצאות לחיפוש אחר „%s”"
 
 #: src/MainWindow.vala:272
 msgid "All files"
@@ -76,10 +73,8 @@ msgid "Open audio files"
 msgstr "פתיחת קובצי שמע"
 
 #: src/MainWindow.vala:310
-#, fuzzy
-#| msgid "Could not find media file"
 msgid "Couldn't add audio files"
-msgstr "לא ניתן למצוא את קובץ המדיה"
+msgstr "לא ניתן להוסיף קובצי שמע"
 
 #: src/MainWindow.vala:328
 msgid "Repeat None"
