@@ -4,18 +4,21 @@
  */
 
 namespace Music.M3U {
-    public bool is_playlist (File suspicious_file) {
-        bool if_playlist = false;
+    public bool is_playlist (File file) {
         try {
-            var info = suspicious_file.query_info (GLib.FileAttribute.STANDARD_CONTENT_TYPE, FileQueryInfoFlags.NONE);
-            var mimetype = info.get_content_type () ?? "";
-            if_playlist = mimetype == "audio/x-mpegurl";
-
+            var info = file.query_info (GLib.FileAttribute.STANDARD_CONTENT_TYPE, FileQueryInfoFlags.NONE);
         } catch (Error e) {
             warning (e.message);
+            return false;
         }
 
-        return if_playlist;
+        var mimetype = info.get_content_type ();
+        if (mimetype == null) {
+            warning ("Failed to get content type");
+            return false;
+        }
+
+        return mimetype == "audio/x-mpegurl";
     }
 
     // Standard specification here: https://en.wikipedia.org/wiki/M3U
