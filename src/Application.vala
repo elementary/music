@@ -154,7 +154,6 @@ public class Music.Application : Gtk.Application {
                 File[]? tracks = null;
                 try {
                     tracks = M3U.parse_playlist (file);
-
                 } catch (Error e) {
                     warning (e.message);
                 }
