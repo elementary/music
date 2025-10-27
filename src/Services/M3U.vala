@@ -5,8 +5,10 @@
 
 namespace Music.M3U {
     public bool is_playlist (File file) {
+        FileInfo info;
+
         try {
-            var info = file.query_info (GLib.FileAttribute.STANDARD_CONTENT_TYPE, FileQueryInfoFlags.NONE);
+            info = file.query_info (GLib.FileAttribute.STANDARD_CONTENT_TYPE, FileQueryInfoFlags.NONE);
         } catch (Error e) {
             warning (e.message);
             return false;
