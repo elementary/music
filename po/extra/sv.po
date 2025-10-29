@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-31 20:05+0000\n"
-"PO-Revision-Date: 2025-10-22 08:07+0000\n"
+"PO-Revision-Date: 2025-10-30 09:55+0000\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <https://l10n.elementaryos.org/projects/music/extra/"
 "sv/>\n"
@@ -35,13 +35,13 @@ msgid ""
 "frills. See embedded album artwork. Control playback with media keys or in "
 "the system audio indicator."
 msgstr ""
-"Ställ snabbt upp i kö och lyssna på dina lokala musikfiler utan några extra "
+"Lägg snabbt upp i kö och lyssna på dina lokala musikfiler utan några extra "
 "krusiduller. Se inbäddade albumomslag. Styr uppspelningen med mediaknappar "
 "eller i systemets ljudindikator."
 
 #: data/music.metainfo.xml.in:18 data/music.metainfo.xml.in:22
 msgid "Quickly queue up your favorite tracks"
-msgstr "Ställ snabbt upp dina favoritlåtar i kö"
+msgstr "Lägg snabbt upp dina favoritlåtar i kö"
 
 #: data/music.metainfo.xml.in:55
 msgid "elementary, Inc."
@@ -113,7 +113,7 @@ msgstr "Lyssna på musik"
 
 #: data/music.desktop.in:9
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
-msgstr "Oljud;Ljud;Spelare;MP3;Spela;Spellista;Media;Låtar;"
+msgstr "Brus;Ljud;Spelare;MP3;Spela;Spellista;Media;Låtar;"
 
 #~ msgid "Music Player"
 #~ msgstr "Musikspelare"
