@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-31 20:05+0000\n"
-"PO-Revision-Date: 2025-10-06 12:55+0000\n"
+"PO-Revision-Date: 2025-10-30 09:55+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementaryos.org/projects/music/extra/he/"
 ">\n"
@@ -39,7 +39,7 @@ msgstr "הוספת הרצועות המועדפות עליך במהירות"
 
 #: data/music.metainfo.xml.in:55
 msgid "elementary, Inc."
-msgstr "elementary בע״מ"
+msgstr "elementary בע״מ."
 
 #: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:82
 #: data/music.metainfo.xml.in:93 data/music.metainfo.xml.in:107
