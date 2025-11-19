@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-19 22:54+0000\n"
+"POT-Creation-Date: 2025-08-31 20:05+0000\n"
 "PO-Revision-Date: 2018-11-09 07:20+0000\n"
 "Last-Translator: Elvis Mujanović <elvis.mujanovic@gmail.com>\n"
 "Language-Team: Bosnian <https://weblate.elementary.io/projects/music/music/"
@@ -21,42 +21,44 @@ msgstr ""
 "X-Generator: Weblate 3.0.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:51+0000\n"
 
-#: src/Application.vala:97 src/Views/NowPlayingView.vala:18
-#: src/Views/NowPlayingView.vala:116
+#: src/Application.vala:86 src/Views/NowPlayingView.vala:18
+#: src/Views/NowPlayingView.vala:118
 msgid "Music"
 msgstr "Muzika"
 
-#: src/MainWindow.vala:20
+#: src/MainWindow.vala:29
 #, fuzzy
 msgid "Shuffle"
 msgstr "Omogući random reprodukciju"
 
-#: src/MainWindow.vala:26
-msgid "Search titles in playlist"
-msgstr ""
-
-#: src/MainWindow.vala:45
+#: src/MainWindow.vala:52
 msgid "Queue is Empty"
 msgstr ""
 
-#: src/MainWindow.vala:46
+#: src/MainWindow.vala:53
 msgid "Audio files opened from Files will appear here"
 msgstr ""
 
-#: src/MainWindow.vala:63
+#: src/MainWindow.vala:58
+#, fuzzy
+#| msgid "Try another search"
+msgid "Try changing search terms"
+msgstr "Pokušajte s drugom pretragom"
+
+#: src/MainWindow.vala:83
 #, fuzzy
 #| msgid "Other Files"
 msgid "Open Files…"
 msgstr "Druge datoteke"
 
-#: src/MainWindow.vala:76
+#: src/MainWindow.vala:100
 #, fuzzy
 #| msgctxt "Name of the playlist"
 #| msgid "Queue"
 msgid "Clear Queue"
 msgstr "Red čekanja"
 
-#: src/MainWindow.vala:187
+#: src/MainWindow.vala:218
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
@@ -64,42 +66,54 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: src/MainWindow.vala:235
+#: src/MainWindow.vala:259
+#, fuzzy, c-format
+#| msgid "No Results"
+msgid "No Results for “%s”"
+msgstr "Nema rezultata"
+
+#: src/MainWindow.vala:272
 #, fuzzy
 #| msgid "All Years"
 msgid "All files"
 msgstr "Sve godine"
 
-#: src/MainWindow.vala:240
+#: src/MainWindow.vala:277
 #, fuzzy
 #| msgid "Music Player"
 msgid "Music files"
 msgstr "Muzički program"
 
-#: src/MainWindow.vala:249
+#: src/MainWindow.vala:286
 msgid "Open"
 msgstr "Otvori"
 
-#: src/MainWindow.vala:253
+#: src/MainWindow.vala:290
 msgid "Open audio files"
 msgstr ""
 
-#: src/MainWindow.vala:291
+#: src/MainWindow.vala:310
+#, fuzzy
+#| msgid "Could not load this Audio CD."
+msgid "Couldn't add audio files"
+msgstr "Nemoguće očitati ovaj audio CD."
+
+#: src/MainWindow.vala:328
 #, fuzzy
 msgid "Repeat None"
 msgstr "Ponovi pjesmu"
 
-#: src/MainWindow.vala:295
+#: src/MainWindow.vala:332
 #, fuzzy
 msgid "Repeat All"
 msgstr "Ponovi album"
 
-#: src/MainWindow.vala:299
+#: src/MainWindow.vala:336
 #, fuzzy
 msgid "Repeat One"
 msgstr "Ponovi pjesmu"
 
-#: src/PlaybackManager.vala:136
+#: src/PlaybackManager.vala:147
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
@@ -108,30 +122,34 @@ msgstr[1] ""
 msgstr[2] ""
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:202
+#: src/PlaybackManager.vala:230
 msgid "Unknown"
 msgstr "Nepoznato"
 
-#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
+#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:117
 #, fuzzy
 msgid "Not playing"
 msgstr "Nova lista pjesama"
 
-#: src/Views/NowPlayingView.vala:45
+#: src/Views/NowPlayingView.vala:47
 msgid "Previous"
 msgstr "Prethodni"
 
-#: src/Views/NowPlayingView.vala:68
+#: src/Views/NowPlayingView.vala:70
 msgid "Next"
 msgstr "Sljedeći"
 
-#: src/Views/NowPlayingView.vala:93
+#: src/Views/NowPlayingView.vala:95
 msgid "Play"
 msgstr "Pusti"
 
-#: src/Views/NowPlayingView.vala:96
+#: src/Views/NowPlayingView.vala:98
 msgid "Pause"
 msgstr "Pauza"
+
+#: src/Widgets/SearchBar.vala:36
+msgid "Search titles in playlist"
+msgstr ""
 
 #~ msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 #~ msgstr "Uvoz <b>$NAME</b> od <b>$ARTIST</b> u muzičku zbirku…"
@@ -715,12 +733,6 @@ msgstr "Pauza"
 #~ msgid "Device operation has been cancelled and will stop after this media."
 #~ msgstr "Operacije su otkazane i biće prekinute nakon ove datoteke."
 
-#~ msgid "No Results"
-#~ msgstr "Nema rezultata"
-
-#~ msgid "Try another search"
-#~ msgstr "Pokušajte s drugom pretragom"
-
 #~ msgid "Genres"
 #~ msgstr "Žanrovi"
 
@@ -1171,9 +1183,6 @@ msgstr "Pauza"
 
 #~ msgid "An Error Occurred"
 #~ msgstr "Došlo je do greške"
-
-#~ msgid "Could not load this Audio CD."
-#~ msgstr "Nemoguće očitati ovaj audio CD."
 
 #~ msgid "Importation of a song from Audio CD finished."
 #~ msgstr "Unošenje pjesama sa Audio CD-a izvršeno."

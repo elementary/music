@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-19 22:54+0000\n"
+"POT-Creation-Date: 2025-08-31 20:05+0000\n"
 "PO-Revision-Date: 2024-09-19 07:21+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://l10n.elementary.io/projects/music/"
@@ -20,74 +20,88 @@ msgstr ""
 "X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2017-04-14 05:41+0000\n"
 
-#: src/Application.vala:97 src/Views/NowPlayingView.vala:18
-#: src/Views/NowPlayingView.vala:116
+#: src/Application.vala:86 src/Views/NowPlayingView.vala:18
+#: src/Views/NowPlayingView.vala:118
 msgid "Music"
 msgstr "Musikk"
 
-#: src/MainWindow.vala:20
+#: src/MainWindow.vala:29
 #, fuzzy
 msgid "Shuffle"
 msgstr "Tilfeldig avspilling"
 
-#: src/MainWindow.vala:26
-msgid "Search titles in playlist"
-msgstr "Søk etter navn i spillelisten"
-
-#: src/MainWindow.vala:45
+#: src/MainWindow.vala:52
 msgid "Queue is Empty"
 msgstr "Køen er tom"
 
-#: src/MainWindow.vala:46
+#: src/MainWindow.vala:53
 msgid "Audio files opened from Files will appear here"
 msgstr "Lydfiler åpnet fra Filer vil vises her"
 
-#: src/MainWindow.vala:63
+#: src/MainWindow.vala:58
+#, fuzzy
+#| msgid "Try another search"
+msgid "Try changing search terms"
+msgstr "Prøv et søk til"
+
+#: src/MainWindow.vala:83
 msgid "Open Files…"
 msgstr "Åpne filer …"
 
-#: src/MainWindow.vala:76
+#: src/MainWindow.vala:100
 #, fuzzy
 #| msgid "Queue"
 msgid "Clear Queue"
 msgstr "Legg i kø"
 
-#: src/MainWindow.vala:187
+#: src/MainWindow.vala:218
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
 msgstr[0] "%d ugyldig fil ble ikke lagt til i køen"
 msgstr[1] "%d ugyldige filer ble ikke lagt til i køen"
 
-#: src/MainWindow.vala:235
+#: src/MainWindow.vala:259
+#, fuzzy, c-format
+#| msgid "No Results"
+msgid "No Results for “%s”"
+msgstr "Resultatløst"
+
+#: src/MainWindow.vala:272
 msgid "All files"
 msgstr "Alle filer"
 
-#: src/MainWindow.vala:240
+#: src/MainWindow.vala:277
 msgid "Music files"
 msgstr "Musikkfiler"
 
-#: src/MainWindow.vala:249
+#: src/MainWindow.vala:286
 msgid "Open"
 msgstr "Åpne"
 
-#: src/MainWindow.vala:253
+#: src/MainWindow.vala:290
 msgid "Open audio files"
 msgstr "Åpne lydfiler"
 
-#: src/MainWindow.vala:291
+#: src/MainWindow.vala:310
+#, fuzzy
+#| msgid "Could not find media file"
+msgid "Couldn't add audio files"
+msgstr "Kunne ikke finne media filen"
+
+#: src/MainWindow.vala:328
 msgid "Repeat None"
 msgstr "Ikke gjenta noe"
 
-#: src/MainWindow.vala:295
+#: src/MainWindow.vala:332
 msgid "Repeat All"
 msgstr "Gjenta alle"
 
-#: src/MainWindow.vala:299
+#: src/MainWindow.vala:336
 msgid "Repeat One"
 msgstr "Gjenta spor"
 
-#: src/PlaybackManager.vala:136
+#: src/PlaybackManager.vala:147
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
@@ -95,29 +109,33 @@ msgstr[0] "%d spor lagt til i køen"
 msgstr[1] "%d spor lagt til i køen"
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:202
+#: src/PlaybackManager.vala:230
 msgid "Unknown"
 msgstr "Ukjente"
 
-#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
+#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:117
 msgid "Not playing"
 msgstr "Spiller ikke"
 
-#: src/Views/NowPlayingView.vala:45
+#: src/Views/NowPlayingView.vala:47
 msgid "Previous"
 msgstr "Forrige"
 
-#: src/Views/NowPlayingView.vala:68
+#: src/Views/NowPlayingView.vala:70
 msgid "Next"
 msgstr "Neste"
 
-#: src/Views/NowPlayingView.vala:93
+#: src/Views/NowPlayingView.vala:95
 msgid "Play"
 msgstr "Avspill"
 
-#: src/Views/NowPlayingView.vala:96
+#: src/Views/NowPlayingView.vala:98
 msgid "Pause"
 msgstr "Pause"
+
+#: src/Widgets/SearchBar.vala:36
+msgid "Search titles in playlist"
+msgstr "Søk etter navn i spillelisten"
 
 #~ msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 #~ msgstr "Importerer <b>$NAME</b> av <b>$ARTIST</b> til biblioteket…"
@@ -694,12 +712,6 @@ msgstr "Pause"
 #~ msgid "Device operation has been cancelled and will stop after this media."
 #~ msgstr ""
 #~ "Drift av enheten har blitt kansellert og vil stoppe etter dette mediet."
-
-#~ msgid "No Results"
-#~ msgstr "Resultatløst"
-
-#~ msgid "Try another search"
-#~ msgstr "Prøv et søk til"
 
 #~ msgid "Genres"
 #~ msgstr "Sjangere"
@@ -1540,9 +1552,6 @@ msgstr "Pause"
 #~ "The music file for %s by %s could not be found. What would you like to do?"
 #~ msgstr "Musikk filen %s av %s kunne ikke bli funnet. Hva vil du gjøre?"
 
-#~ msgid "Could not find media file"
-#~ msgstr "Kunne ikke finne media filen"
-
 #~ msgid "The name %s is already in use"
 #~ msgstr "Navnet %s er allerede i burk"
 
@@ -1811,8 +1820,7 @@ msgstr "Pause"
 #~ msgstr "Gi %s tilgang"
 
 #~ msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-#~ msgstr ""
-#~ "Noise;Audio;Spiller;MP3;iPod;Spill;Spilleliste;Media;CD;Telefon;Sanger;"
+#~ msgstr "Noise;Audio;Spiller;MP3;iPod;Spill;Spilleliste;Media;CD;Telefon;Sanger;"
 
 #~ msgid "Reset"
 #~ msgstr "Nullstill"

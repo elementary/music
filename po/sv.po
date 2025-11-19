@@ -7,128 +7,128 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-19 22:54+0000\n"
-"PO-Revision-Date: 2018-10-21 09:30+0000\n"
-"Last-Translator: Cleiton Floss <cleitonfloss@gmail.com>\n"
-"Language-Team: Swedish <https://weblate.elementary.io/projects/music/music/"
+"POT-Creation-Date: 2025-08-31 20:05+0000\n"
+"PO-Revision-Date: 2025-10-22 08:07+0000\n"
+"Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
+"Language-Team: Swedish <https://l10n.elementaryos.org/projects/music/music/"
 "sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 5.11.4\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:55+0000\n"
 "X-Poedit-Language: Swedish\n"
 
-#: src/Application.vala:97 src/Views/NowPlayingView.vala:18
-#: src/Views/NowPlayingView.vala:116
+#: src/Application.vala:86 src/Views/NowPlayingView.vala:18
+#: src/Views/NowPlayingView.vala:118
 msgid "Music"
 msgstr "Musik"
 
-#: src/MainWindow.vala:20
-#, fuzzy
+#: src/MainWindow.vala:29
 msgid "Shuffle"
-msgstr "Aktivera slumpvis uppspelning"
+msgstr "Blanda"
 
-#: src/MainWindow.vala:26
-msgid "Search titles in playlist"
-msgstr ""
-
-#: src/MainWindow.vala:45
+#: src/MainWindow.vala:52
 msgid "Queue is Empty"
-msgstr ""
+msgstr "Kön är tom"
 
-#: src/MainWindow.vala:46
+#: src/MainWindow.vala:53
 msgid "Audio files opened from Files will appear here"
-msgstr ""
+msgstr "Ljudfiler som öppnats från Filer visas här"
 
-#: src/MainWindow.vala:63
-#, fuzzy
-#| msgid "Other Files"
+#: src/MainWindow.vala:58
+msgid "Try changing search terms"
+msgstr "Försök att ändra söktermer"
+
+#: src/MainWindow.vala:83
 msgid "Open Files…"
-msgstr "Andra filer"
+msgstr "Öppna filer…"
 
-#: src/MainWindow.vala:76
-#, fuzzy
-#| msgid "Queue"
+#: src/MainWindow.vala:100
 msgid "Clear Queue"
-msgstr "Kö"
+msgstr "Töm kö"
 
-#: src/MainWindow.vala:187
+#: src/MainWindow.vala:218
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d ogiltig fil lades inte till i kön"
+msgstr[1] "%d ogiltiga filer lades inte till i kön"
 
-#: src/MainWindow.vala:235
-#, fuzzy
-#| msgid "All Years"
+#: src/MainWindow.vala:259
+#, c-format
+msgid "No Results for “%s”"
+msgstr "Inga resultat för \"%s\""
+
+#: src/MainWindow.vala:272
 msgid "All files"
-msgstr "Alla årtal"
+msgstr "Alla filer"
 
-#: src/MainWindow.vala:240
-#, fuzzy
-#| msgid "Music Folder"
+#: src/MainWindow.vala:277
 msgid "Music files"
-msgstr "Musikmapp"
+msgstr "Musikfiler"
 
-#: src/MainWindow.vala:249
+#: src/MainWindow.vala:286
 msgid "Open"
 msgstr "Öppna"
 
-#: src/MainWindow.vala:253
+#: src/MainWindow.vala:290
 msgid "Open audio files"
-msgstr ""
+msgstr "Öppna ljudfiler"
 
-#: src/MainWindow.vala:291
-#, fuzzy
+#: src/MainWindow.vala:310
+msgid "Couldn't add audio files"
+msgstr "Kunde inte lägga till ljudfiler"
+
+#: src/MainWindow.vala:328
 msgid "Repeat None"
-msgstr "Upprepa låt"
+msgstr "Upprepa ingen"
 
-#: src/MainWindow.vala:295
-#, fuzzy
+#: src/MainWindow.vala:332
 msgid "Repeat All"
-msgstr "Upprepa album"
+msgstr "Upprepa alla"
 
-#: src/MainWindow.vala:299
-#, fuzzy
+#: src/MainWindow.vala:336
 msgid "Repeat One"
-msgstr "Upprepa låt"
+msgstr "Upprepa en"
 
-#: src/PlaybackManager.vala:136
+#: src/PlaybackManager.vala:147
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d spår lades till i kön"
+msgstr[1] "%d spår lades till i kön"
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:202
+#: src/PlaybackManager.vala:230
 msgid "Unknown"
 msgstr "Okänd"
 
-#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
-#, fuzzy
+#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:117
 msgid "Not playing"
-msgstr "Ny spellista"
+msgstr "Spelar inte"
 
-#: src/Views/NowPlayingView.vala:45
+#: src/Views/NowPlayingView.vala:47
 msgid "Previous"
 msgstr "Föregående"
 
-#: src/Views/NowPlayingView.vala:68
+#: src/Views/NowPlayingView.vala:70
 msgid "Next"
 msgstr "Nästa"
 
-#: src/Views/NowPlayingView.vala:93
+#: src/Views/NowPlayingView.vala:95
 msgid "Play"
-msgstr "Spela"
+msgstr "Spela upp"
 
-#: src/Views/NowPlayingView.vala:96
+#: src/Views/NowPlayingView.vala:98
 msgid "Pause"
 msgstr "Pausa"
+
+#: src/Widgets/SearchBar.vala:36
+msgid "Search titles in playlist"
+msgstr "Sök efter titlar i spellistan"
 
 #~ msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 #~ msgstr "Importerar <b>$NAME</b> av <b>$ARTIST</b> till bibliotek…"
@@ -709,12 +709,6 @@ msgstr "Pausa"
 #~ msgid "Device operation has been cancelled and will stop after this media."
 #~ msgstr ""
 #~ "Åtgärden för enheten har avbrutits och kommer att stoppas efter denna fil."
-
-#~ msgid "No Results"
-#~ msgstr "Inga resultat"
-
-#~ msgid "Try another search"
-#~ msgstr "Prova med en annan sökning"
 
 #~ msgid "Genres"
 #~ msgstr "Genrer"
@@ -1855,9 +1849,6 @@ msgstr "Pausa"
 
 #~ msgid "Give %s Permission"
 #~ msgstr "Tillåt %s"
-
-#~ msgid "Could not find media file"
-#~ msgstr "Kunde inte hitta mediafil"
 
 #~ msgid "Locate Media"
 #~ msgstr "Sök media"

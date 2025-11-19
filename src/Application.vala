@@ -14,12 +14,7 @@ public class Music.Application : Gtk.Application {
     public const string ACTION_QUIT = "action-quit";
 
     private const ActionEntry[] ACTION_ENTRIES = {
-        { ACTION_PLAY_PAUSE, action_play_pause, null, "false" },
-        { ACTION_NEXT, action_next },
-        { ACTION_PREVIOUS, action_previous },
-        { ACTION_SHUFFLE, action_shuffle },
         { ACTION_FIND, action_find },
-        { ACTION_CLEAR_QUEUE, action_clear_queue },
         { ACTION_QUIT, quit }
     };
 
@@ -44,16 +39,12 @@ public class Music.Application : Gtk.Application {
 
         Granite.init ();
 
+        playback_manager = PlaybackManager.get_default ();
+
         add_action_entries (ACTION_ENTRIES, this);
 
         set_accels_for_action (ACTION_PREFIX + ACTION_FIND, {"<Ctrl>F"});
         set_accels_for_action (ACTION_PREFIX + ACTION_QUIT, {"<Ctrl>Q"});
-
-        ((SimpleAction) lookup_action (ACTION_PLAY_PAUSE)).set_enabled (false);
-        ((SimpleAction) lookup_action (ACTION_PLAY_PAUSE)).set_state (false);
-        ((SimpleAction) lookup_action (ACTION_NEXT)).set_enabled (false);
-        ((SimpleAction) lookup_action (ACTION_PREVIOUS)).set_enabled (false);
-        ((SimpleAction) lookup_action (ACTION_SHUFFLE)).set_enabled (false);
 
         var granite_settings = Granite.Settings.get_default ();
         var gtk_settings = Gtk.Settings.get_default ();
@@ -77,8 +68,6 @@ public class Music.Application : Gtk.Application {
             active_window.present ();
             return;
         }
-
-        playback_manager = PlaybackManager.get_default ();
 
         var mpris_id = Bus.own_name (
             BusType.SESSION,
@@ -114,6 +103,10 @@ public class Music.Application : Gtk.Application {
         }
 
         settings.bind ("window-maximized", main_window, "maximized", SettingsBindFlags.SET);
+
+        // This needs to be done after window is constructed
+        // Else music plays but the queue seems empty
+        playback_manager.restore_queue ();
     }
 
     private static File[] list_directory (string directory) {
@@ -172,28 +165,8 @@ public class Music.Application : Gtk.Application {
         playback_manager.queue_files (files_to_play);
     }
 
-    private void action_play_pause () {
-        playback_manager.play_pause ();
-    }
-
-    private void action_next () {
-        playback_manager.next ();
-    }
-
-    private void action_previous () {
-        playback_manager.previous ();
-    }
-
-    private void action_shuffle () {
-        playback_manager.shuffle ();
-    }
-
     private void action_find () {
         ((MainWindow)active_window).start_search ();
-    }
-
-    private void action_clear_queue () {
-        playback_manager.clear_queue ();
     }
 
     private void on_bus_acquired (DBusConnection connection, string name) {

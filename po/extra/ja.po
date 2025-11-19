@@ -7,17 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-19 22:54+0000\n"
-"PO-Revision-Date: 2024-09-04 11:16+0000\n"
+"POT-Creation-Date: 2025-08-31 20:05+0000\n"
+"PO-Revision-Date: 2025-08-17 12:55+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
-"Language-Team: Japanese <https://l10n.elementary.io/projects/music/extra/ja/"
-">\n"
+"Language-Team: Japanese <https://l10n.elementaryos.org/projects/music/extra/"
+"ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
 #: data/music.metainfo.xml.in:10 data/music.desktop.in:6
@@ -39,55 +39,63 @@ msgstr ""
 "ディアキーやシステム音声インジケーターを使うことで、曲の再生/停止/切り替えも"
 "可能です。"
 
-#: data/music.metainfo.xml.in:18
+#: data/music.metainfo.xml.in:18 data/music.metainfo.xml.in:22
 msgid "Quickly queue up your favorite tracks"
 msgstr "お気に入りの楽曲を簡単にキューに追加できます"
 
-#: data/music.metainfo.xml.in:51
+#: data/music.metainfo.xml.in:55
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
 
-#: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:70
-#: data/music.metainfo.xml.in:84
+#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:82
+#: data/music.metainfo.xml.in:93 data/music.metainfo.xml.in:107
 msgid "Improvements:"
 msgstr "改善点:"
 
-#: data/music.metainfo.xml.in:61
-msgid "Toolbar shows a shadow when the view is scrolled"
-msgstr "ビューがスクロールされた場合に、ツールバーが影を表示するように修正"
+#: data/music.metainfo.xml.in:65
+msgid "Show album art in the sound indicator"
+msgstr "サウンドインジケーターにアルバムアートを表示するように修正"
 
-#: data/music.metainfo.xml.in:62
-msgid "Open audio files from within Music"
-msgstr "“ミュージック”内で音声ファイルを開く機能を追加"
+#: data/music.metainfo.xml.in:66
+msgid "Clear the queue"
+msgstr "キューを消去するボタンを追加"
 
-#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:73
-#: data/music.metainfo.xml.in:106
+#: data/music.metainfo.xml.in:67 data/music.metainfo.xml.in:86
+#: data/music.metainfo.xml.in:96 data/music.metainfo.xml.in:129
 msgid "Updated translations"
 msgstr "新しい翻訳"
 
-#: data/music.metainfo.xml.in:72
+#: data/music.metainfo.xml.in:84
+msgid "Toolbar shows a shadow when the view is scrolled"
+msgstr "ビューがスクロールされた場合に、ツールバーが影を表示するように修正"
+
+#: data/music.metainfo.xml.in:85
+msgid "Open audio files from within Music"
+msgstr "“ミュージック”内で音声ファイルを開く機能を追加"
+
+#: data/music.metainfo.xml.in:95
 msgid "Open folders in the filemanager with Music"
 msgstr ""
 "ファイルマネージャーからフォルダーを指定して“ミュージック”で開く機能を追加"
 
-#: data/music.metainfo.xml.in:86
+#: data/music.metainfo.xml.in:109
 msgid "For tracks without a title, use the file name instead of the whole URI"
 msgstr ""
 "タイトルのないトラックの場合は、URI 全体ではなくファイル名のみを使用するよう"
 "に修正"
 
-#: data/music.metainfo.xml.in:87
+#: data/music.metainfo.xml.in:110
 msgid "Skip invalid files instead of stopping playback"
 msgstr ""
 "無効なファイルが存在する場合、再生停止するのではなくスキップするように修正"
 
-#: data/music.metainfo.xml.in:88
+#: data/music.metainfo.xml.in:111
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr ""
 "リピートの設定に関わらず、“次へ”および“繰り返し”ボタンが常に使用できるように"
 "修正"
 
-#: data/music.metainfo.xml.in:89
+#: data/music.metainfo.xml.in:112
 msgid ""
 "Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
@@ -98,11 +106,11 @@ msgstr ""
 "ラーティー語、ノルウェー語、ポーランド語、ポルトガル語、ロシア語、簡体字中国"
 "語、トルコ語、ウクライナ語"
 
-#: data/music.metainfo.xml.in:99
+#: data/music.metainfo.xml.in:122
 msgid "Complete rewrite"
 msgstr "コードの全面的な書き直し"
 
-#: data/music.metainfo.xml.in:105
+#: data/music.metainfo.xml.in:128
 msgid "Drop support for Last.FM"
 msgstr "Last.FM への対応を終了"
 

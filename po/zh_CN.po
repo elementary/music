@@ -7,122 +7,128 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-19 22:54+0000\n"
-"PO-Revision-Date: 2022-07-21 13:23+0000\n"
-"Last-Translator: colindemian <colindemian@outlook.com>\n"
-"Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
-"music/music/zh_Hans/>\n"
+"POT-Creation-Date: 2025-08-31 20:05+0000\n"
+"PO-Revision-Date: 2025-08-13 16:43+0000\n"
+"Last-Translator: JieXu <xujie0739@qq.com>\n"
+"Language-Team: Chinese (Simplified Han script) <https://"
+"l10n.elementaryos.org/projects/music/music/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
-#: src/Application.vala:97 src/Views/NowPlayingView.vala:18
-#: src/Views/NowPlayingView.vala:116
+#: src/Application.vala:86 src/Views/NowPlayingView.vala:18
+#: src/Views/NowPlayingView.vala:118
 msgid "Music"
 msgstr "音乐"
 
-#: src/MainWindow.vala:20
+#: src/MainWindow.vala:29
 msgid "Shuffle"
 msgstr "随机播放"
 
-#: src/MainWindow.vala:26
-msgid "Search titles in playlist"
-msgstr ""
-
-#: src/MainWindow.vala:45
+#: src/MainWindow.vala:52
 msgid "Queue is Empty"
 msgstr "队列为空"
 
-#: src/MainWindow.vala:46
+#: src/MainWindow.vala:53
 msgid "Audio files opened from Files will appear here"
 msgstr "此处将显示从文件管理器中打开的文件"
 
-#: src/MainWindow.vala:63
+#: src/MainWindow.vala:58
 #, fuzzy
-#| msgid "Other Files"
+#| msgid "Try another search"
+msgid "Try changing search terms"
+msgstr "重新搜索"
+
+#: src/MainWindow.vala:83
 msgid "Open Files…"
-msgstr "其它文件"
+msgstr "打开文件…"
 
-#: src/MainWindow.vala:76
-#, fuzzy
-#| msgid "Queue"
+#: src/MainWindow.vala:100
 msgid "Clear Queue"
-msgstr "队列"
+msgstr "清空待播列表"
 
-#: src/MainWindow.vala:187
-#, fuzzy, c-format
-#| msgid "%d track was added to the queue"
-#| msgid_plural "%d tracks were added to the queue"
+#: src/MainWindow.vala:218
+#, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
-msgstr[0] "%d 首歌曲已添加至队列"
+msgstr[0] "%d 个无效文件未被添加到待播列表中"
 
-#: src/MainWindow.vala:235
-#, fuzzy
-#| msgid "All Years"
+#: src/MainWindow.vala:259
+#, fuzzy, c-format
+#| msgid "No Results"
+msgid "No Results for “%s”"
+msgstr "无结果"
+
+#: src/MainWindow.vala:272
 msgid "All files"
-msgstr "所有年份"
+msgstr "所有文件"
 
-#: src/MainWindow.vala:240
-#, fuzzy
-#| msgid "Music Folder"
+#: src/MainWindow.vala:277
 msgid "Music files"
-msgstr "音乐文件夹"
+msgstr "音乐文件"
 
-#: src/MainWindow.vala:249
+#: src/MainWindow.vala:286
 msgid "Open"
 msgstr "打开"
 
-#: src/MainWindow.vala:253
+#: src/MainWindow.vala:290
 msgid "Open audio files"
-msgstr ""
+msgstr "打开音频文件"
 
-#: src/MainWindow.vala:291
+#: src/MainWindow.vala:310
+msgid "Couldn't add audio files"
+msgstr "无法添加音频文件"
+
+#: src/MainWindow.vala:328
 msgid "Repeat None"
 msgstr "停用重复"
 
-#: src/MainWindow.vala:295
+#: src/MainWindow.vala:332
 msgid "Repeat All"
 msgstr "重复所有"
 
-#: src/MainWindow.vala:299
+#: src/MainWindow.vala:336
 msgid "Repeat One"
 msgstr "重复单曲"
 
-#: src/PlaybackManager.vala:136
+#: src/PlaybackManager.vala:147
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
 msgstr[0] "%d 首歌曲已添加至队列"
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:202
+#: src/PlaybackManager.vala:230
 msgid "Unknown"
 msgstr "未知"
 
-#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
+#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:117
 msgid "Not playing"
 msgstr "尚未播放"
 
-#: src/Views/NowPlayingView.vala:45
+#: src/Views/NowPlayingView.vala:47
 msgid "Previous"
 msgstr "上一首"
 
-#: src/Views/NowPlayingView.vala:68
+#: src/Views/NowPlayingView.vala:70
 msgid "Next"
 msgstr "下一首"
 
-#: src/Views/NowPlayingView.vala:93
+#: src/Views/NowPlayingView.vala:95
 msgid "Play"
 msgstr "播放"
 
-#: src/Views/NowPlayingView.vala:96
+#: src/Views/NowPlayingView.vala:98
 msgid "Pause"
 msgstr "暂停"
+
+#: src/Widgets/SearchBar.vala:36
+msgid "Search titles in playlist"
+msgstr "在播放列表中搜索标题"
 
 #~ msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 #~ msgstr "正在导入 <b>$NAME</b> (艺人 <b>$ARTIST</b>) …"
@@ -680,12 +686,6 @@ msgstr "暂停"
 
 #~ msgid "Device operation has been cancelled and will stop after this media."
 #~ msgstr "设备操作已被取消且会在该媒体完成后停止。"
-
-#~ msgid "No Results"
-#~ msgstr "无结果"
-
-#~ msgid "Try another search"
-#~ msgstr "重新搜索"
 
 #~ msgid "Genres"
 #~ msgstr "流派"
@@ -1620,9 +1620,6 @@ msgstr "暂停"
 
 #~ msgid "Remove %d %s from %s?"
 #~ msgstr "从 %3$s 中移除 %1$d %2$s 吗？"
-
-#~ msgid "Could not find media file"
-#~ msgstr "无法找到媒体文件"
 
 #~ msgid "The name %s is already in use"
 #~ msgstr "名称 %s 已在使用"

@@ -12,7 +12,7 @@ jobs:
     name: Gettext
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/elementary/flatpak-platform/runtime:8.1-x86_64
+      image: ghcr.io/elementary/flatpak-platform/runtime:8.2-x86_64
       options: --privileged
 
     steps:
@@ -22,7 +22,7 @@ jobs:
         apt-get install git jq python3-git -y
 
     - name: Clone repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         token: ${{ secrets.GIT_USER_TOKEN }}
 
@@ -52,15 +52,15 @@ jobs:
       fail-fast: false
 
     container:
-      image: ghcr.io/elementary/flatpak-platform/runtime:8.1-${{ matrix.configuration.arch }}
+      image: ghcr.io/elementary/flatpak-platform/runtime:8.2-${{ matrix.configuration.arch }}
       options: --privileged
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Build
-        uses: flatpak/flatpak-github-actions/flatpak-builder@v6.4
+        uses: flatpak/flatpak-github-actions/flatpak-builder@v6.6
         with:
           bundle: music.flatpak
           manifest-path: io.elementary.music.yml
@@ -72,7 +72,7 @@ jobs:
           arch: ${{ matrix.configuration.arch }}
 
       - name: Deploy
-        uses: flatpak/flatpak-github-actions/flat-manager@v6.4
+        uses: flatpak/flatpak-github-actions/flat-manager@v6.6
         with:
           repository: appcenter
           flat-manager-url: https://flatpak-api.elementary.io

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-19 22:54+0000\n"
+"POT-Creation-Date: 2025-08-31 20:05+0000\n"
 "PO-Revision-Date: 2024-05-15 20:13+0000\n"
 "Last-Translator: Dennis ten Hoove <dennistenhoove@protonmail.com>\n"
 "Language-Team: Dutch <https://l10n.elementary.io/projects/music/music/nl/>\n"
@@ -19,73 +19,87 @@ msgstr ""
 "X-Generator: Weblate 5.5\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:52+0000\n"
 
-#: src/Application.vala:97 src/Views/NowPlayingView.vala:18
-#: src/Views/NowPlayingView.vala:116
+#: src/Application.vala:86 src/Views/NowPlayingView.vala:18
+#: src/Views/NowPlayingView.vala:118
 msgid "Music"
 msgstr "Muziek"
 
-#: src/MainWindow.vala:20
+#: src/MainWindow.vala:29
 msgid "Shuffle"
 msgstr "Shuffle"
 
-#: src/MainWindow.vala:26
-msgid "Search titles in playlist"
-msgstr ""
-
-#: src/MainWindow.vala:45
+#: src/MainWindow.vala:52
 msgid "Queue is Empty"
 msgstr "Wachtrij is leeg"
 
-#: src/MainWindow.vala:46
+#: src/MainWindow.vala:53
 msgid "Audio files opened from Files will appear here"
 msgstr "Geluidsbestanden geopend met Bestanden zullen hier verschijnen"
 
-#: src/MainWindow.vala:63
+#: src/MainWindow.vala:58
+#, fuzzy
+#| msgid "Try another search"
+msgid "Try changing search terms"
+msgstr "Probeer een andere zoekopdracht"
+
+#: src/MainWindow.vala:83
 msgid "Open Files…"
 msgstr "Bestanden openen…"
 
-#: src/MainWindow.vala:76
+#: src/MainWindow.vala:100
 #, fuzzy
 #| msgid "Queue"
 msgid "Clear Queue"
 msgstr "Wachtrij"
 
-#: src/MainWindow.vala:187
+#: src/MainWindow.vala:218
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
 msgstr[0] "%d ongeldig bestand was niet ingevoegd in de wachtrij"
 msgstr[1] "%d ongeldige bestanden zijn niet ingevoegd in de wachtrij"
 
-#: src/MainWindow.vala:235
+#: src/MainWindow.vala:259
+#, fuzzy, c-format
+#| msgid "No Results"
+msgid "No Results for “%s”"
+msgstr "Geen resultaten"
+
+#: src/MainWindow.vala:272
 msgid "All files"
 msgstr "Alle bestanden"
 
-#: src/MainWindow.vala:240
+#: src/MainWindow.vala:277
 msgid "Music files"
 msgstr "Muziekbestanden"
 
-#: src/MainWindow.vala:249
+#: src/MainWindow.vala:286
 msgid "Open"
 msgstr "Open"
 
-#: src/MainWindow.vala:253
+#: src/MainWindow.vala:290
 msgid "Open audio files"
 msgstr "Open audiobestand"
 
-#: src/MainWindow.vala:291
+#: src/MainWindow.vala:310
+#, fuzzy
+#| msgid "Could not find media file"
+msgid "Couldn't add audio files"
+msgstr "Kon mediabestand niet vinden"
+
+#: src/MainWindow.vala:328
 msgid "Repeat None"
 msgstr "Niks herhalen"
 
-#: src/MainWindow.vala:295
+#: src/MainWindow.vala:332
 msgid "Repeat All"
 msgstr "Alles herhalen"
 
-#: src/MainWindow.vala:299
+#: src/MainWindow.vala:336
 msgid "Repeat One"
 msgstr "Een herhalen"
 
-#: src/PlaybackManager.vala:136
+#: src/PlaybackManager.vala:147
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
@@ -93,29 +107,33 @@ msgstr[0] "%d nummer is toegevoegd aan de wachtrij"
 msgstr[1] "%d nummers zijn toegevoegd aan de wachtrij"
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:202
+#: src/PlaybackManager.vala:230
 msgid "Unknown"
 msgstr "Onbekend"
 
-#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
+#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:117
 msgid "Not playing"
 msgstr "Niet spelen"
 
-#: src/Views/NowPlayingView.vala:45
+#: src/Views/NowPlayingView.vala:47
 msgid "Previous"
 msgstr "Vorige"
 
-#: src/Views/NowPlayingView.vala:68
+#: src/Views/NowPlayingView.vala:70
 msgid "Next"
 msgstr "Volgende"
 
-#: src/Views/NowPlayingView.vala:93
+#: src/Views/NowPlayingView.vala:95
 msgid "Play"
 msgstr "Afspelen"
 
-#: src/Views/NowPlayingView.vala:96
+#: src/Views/NowPlayingView.vala:98
 msgid "Pause"
 msgstr "Pauze"
+
+#: src/Widgets/SearchBar.vala:36
+msgid "Search titles in playlist"
+msgstr ""
 
 #~ msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 #~ msgstr "Importeren van <b>$NAME</b> door <b>$ARTIST</b> naar bibliotheek…"
@@ -702,12 +720,6 @@ msgstr "Pauze"
 
 #~ msgid "Device operation has been cancelled and will stop after this media."
 #~ msgstr "Apparaat bewerking is geannuleerd en stopt na deze media."
-
-#~ msgid "No Results"
-#~ msgstr "Geen resultaten"
-
-#~ msgid "Try another search"
-#~ msgstr "Probeer een andere zoekopdracht"
 
 #~ msgid "Genres"
 #~ msgstr "Genres"
@@ -1592,9 +1604,6 @@ msgstr "Pauze"
 #~ msgid "Remove Media"
 #~ msgstr "Verwijder media"
 
-#~ msgid "Could not find media file"
-#~ msgstr "Kon mediabestand niet vinden"
-
 #~ msgid "Date Released"
 #~ msgstr "Uitgebracht op"
 
@@ -1765,9 +1774,7 @@ msgstr "Pauze"
 #~ msgstr "Geef %s toegangsrechten"
 
 #~ msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-#~ msgstr ""
-#~ "Noise;Muziek;Speler;Audio;MP3;iPod;Afspeellijst;Speel;Media;CD;Telefoon;"
-#~ "Liedjes"
+#~ msgstr "Noise;Muziek;Speler;Audio;MP3;iPod;Afspeellijst;Speel;Media;CD;Telefoon;Liedjes"
 
 #~ msgid "<b>Stats</b>"
 #~ msgstr "<b>Statistieken</b>"

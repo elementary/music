@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-19 22:54+0000\n"
+"POT-Creation-Date: 2025-08-31 20:05+0000\n"
 "PO-Revision-Date: 2016-01-04 18:38+0000\n"
 "Last-Translator: Corentin Noël <corentin@elementaryos.org>\n"
 "Language-Team: Malay <ms@li.org>\n"
@@ -33,60 +33,68 @@ msgid ""
 "the system audio indicator."
 msgstr ""
 
-#: data/music.metainfo.xml.in:18
+#: data/music.metainfo.xml.in:18 data/music.metainfo.xml.in:22
 msgid "Quickly queue up your favorite tracks"
 msgstr ""
 
-#: data/music.metainfo.xml.in:51
+#: data/music.metainfo.xml.in:55
 msgid "elementary, Inc."
 msgstr ""
 
-#: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:70
-#: data/music.metainfo.xml.in:84
+#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:82
+#: data/music.metainfo.xml.in:93 data/music.metainfo.xml.in:107
 msgid "Improvements:"
 msgstr ""
 
-#: data/music.metainfo.xml.in:61
-msgid "Toolbar shows a shadow when the view is scrolled"
+#: data/music.metainfo.xml.in:65
+msgid "Show album art in the sound indicator"
 msgstr ""
 
-#: data/music.metainfo.xml.in:62
-msgid "Open audio files from within Music"
+#: data/music.metainfo.xml.in:66
+msgid "Clear the queue"
 msgstr ""
 
-#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:73
-#: data/music.metainfo.xml.in:106
+#: data/music.metainfo.xml.in:67 data/music.metainfo.xml.in:86
+#: data/music.metainfo.xml.in:96 data/music.metainfo.xml.in:129
 msgid "Updated translations"
 msgstr ""
 
-#: data/music.metainfo.xml.in:72
+#: data/music.metainfo.xml.in:84
+msgid "Toolbar shows a shadow when the view is scrolled"
+msgstr ""
+
+#: data/music.metainfo.xml.in:85
+msgid "Open audio files from within Music"
+msgstr ""
+
+#: data/music.metainfo.xml.in:95
 msgid "Open folders in the filemanager with Music"
 msgstr ""
 
-#: data/music.metainfo.xml.in:86
+#: data/music.metainfo.xml.in:109
 msgid "For tracks without a title, use the file name instead of the whole URI"
 msgstr ""
 
-#: data/music.metainfo.xml.in:87
+#: data/music.metainfo.xml.in:110
 msgid "Skip invalid files instead of stopping playback"
 msgstr ""
 
-#: data/music.metainfo.xml.in:88
+#: data/music.metainfo.xml.in:111
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr ""
 
-#: data/music.metainfo.xml.in:89
+#: data/music.metainfo.xml.in:112
 msgid ""
 "Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
 "Russian, Simplified Chinese, Turkish, and Ukrainian"
 msgstr ""
 
-#: data/music.metainfo.xml.in:99
+#: data/music.metainfo.xml.in:122
 msgid "Complete rewrite"
 msgstr ""
 
-#: data/music.metainfo.xml.in:105
+#: data/music.metainfo.xml.in:128
 msgid "Drop support for Last.FM"
 msgstr ""
 

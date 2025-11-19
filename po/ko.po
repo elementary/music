@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-19 22:54+0000\n"
+"POT-Creation-Date: 2025-08-31 20:05+0000\n"
 "PO-Revision-Date: 2022-08-06 09:29+0000\n"
 "Last-Translator: Jung-Kyu Park <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean <https://l10n.elementary.io/projects/music/music/ko/>\n"
@@ -19,41 +19,43 @@ msgstr ""
 "X-Generator: Weblate 4.4.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:53+0000\n"
 
-#: src/Application.vala:97 src/Views/NowPlayingView.vala:18
-#: src/Views/NowPlayingView.vala:116
+#: src/Application.vala:86 src/Views/NowPlayingView.vala:18
+#: src/Views/NowPlayingView.vala:118
 msgid "Music"
 msgstr "음악"
 
-#: src/MainWindow.vala:20
+#: src/MainWindow.vala:29
 msgid "Shuffle"
 msgstr "섞기"
 
-#: src/MainWindow.vala:26
-msgid "Search titles in playlist"
-msgstr ""
-
-#: src/MainWindow.vala:45
+#: src/MainWindow.vala:52
 msgid "Queue is Empty"
 msgstr "대기열이 비어 있습니다"
 
-#: src/MainWindow.vala:46
+#: src/MainWindow.vala:53
 msgid "Audio files opened from Files will appear here"
 msgstr "파일에서 연 오디오 파일이 여기에 표시됩니다"
 
-#: src/MainWindow.vala:63
+#: src/MainWindow.vala:58
+#, fuzzy
+#| msgid "Try another search"
+msgid "Try changing search terms"
+msgstr "다르게 검색해보세요"
+
+#: src/MainWindow.vala:83
 #, fuzzy
 #| msgid "Other Files"
 msgid "Open Files…"
 msgstr "다른 파일"
 
-#: src/MainWindow.vala:76
+#: src/MainWindow.vala:100
 #, fuzzy
 #| msgctxt "Name of the playlist"
 #| msgid "Queue"
 msgid "Clear Queue"
 msgstr "대기열"
 
-#: src/MainWindow.vala:187
+#: src/MainWindow.vala:218
 #, fuzzy, c-format
 #| msgid "%d track was added to the queue"
 #| msgid_plural "%d tracks were added to the queue"
@@ -61,68 +63,84 @@ msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
 msgstr[0] "%d 개의 트랙이 대기열에 추가되었습니다"
 
-#: src/MainWindow.vala:235
+#: src/MainWindow.vala:259
+#, fuzzy, c-format
+#| msgid "No Results"
+msgid "No Results for “%s”"
+msgstr "해당 사항 없음"
+
+#: src/MainWindow.vala:272
 #, fuzzy
 #| msgid "All Years"
 msgid "All files"
 msgstr "모든 연도"
 
-#: src/MainWindow.vala:240
+#: src/MainWindow.vala:277
 #, fuzzy
 #| msgid "Music Player"
 msgid "Music files"
 msgstr "음악 재생기"
 
-#: src/MainWindow.vala:249
+#: src/MainWindow.vala:286
 msgid "Open"
 msgstr "열기"
 
-#: src/MainWindow.vala:253
+#: src/MainWindow.vala:290
 msgid "Open audio files"
 msgstr ""
 
-#: src/MainWindow.vala:291
+#: src/MainWindow.vala:310
+#, fuzzy
+#| msgid "Could not find media file"
+msgid "Couldn't add audio files"
+msgstr "미디어를 찾지 못 하였습니다"
+
+#: src/MainWindow.vala:328
 msgid "Repeat None"
 msgstr "반복 안 함"
 
-#: src/MainWindow.vala:295
+#: src/MainWindow.vala:332
 msgid "Repeat All"
 msgstr "모두 반복하기"
 
-#: src/MainWindow.vala:299
+#: src/MainWindow.vala:336
 msgid "Repeat One"
 msgstr "한 곡 반복하기"
 
-#: src/PlaybackManager.vala:136
+#: src/PlaybackManager.vala:147
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
 msgstr[0] "%d 개의 트랙이 대기열에 추가되었습니다"
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:202
+#: src/PlaybackManager.vala:230
 msgid "Unknown"
 msgstr "알 수 없음"
 
-#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
+#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:117
 msgid "Not playing"
 msgstr "지금은 연주하고 있지 않습니다"
 
-#: src/Views/NowPlayingView.vala:45
+#: src/Views/NowPlayingView.vala:47
 msgid "Previous"
 msgstr "이전"
 
-#: src/Views/NowPlayingView.vala:68
+#: src/Views/NowPlayingView.vala:70
 msgid "Next"
 msgstr "다음"
 
-#: src/Views/NowPlayingView.vala:93
+#: src/Views/NowPlayingView.vala:95
 msgid "Play"
 msgstr "재생"
 
-#: src/Views/NowPlayingView.vala:96
+#: src/Views/NowPlayingView.vala:98
 msgid "Pause"
 msgstr "일시 정지"
+
+#: src/Widgets/SearchBar.vala:36
+msgid "Search titles in playlist"
+msgstr ""
 
 #~ msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 #~ msgstr "<b>$NAME</b> (<b>$ARTIST</b>)를 가져오는 중…"
@@ -688,12 +706,6 @@ msgstr "일시 정지"
 
 #~ msgid "Device operation has been cancelled and will stop after this media."
 #~ msgstr "장치 운영이 취소되어 이 미디어 후에 중단될 것입니다."
-
-#~ msgid "No Results"
-#~ msgstr "해당 사항 없음"
-
-#~ msgid "Try another search"
-#~ msgstr "다르게 검색해보세요"
 
 #~ msgid "Genres"
 #~ msgstr "장르"
@@ -1526,9 +1538,6 @@ msgstr "일시 정지"
 
 #~ msgid "Album Artist"
 #~ msgstr "앨범 아티스트"
-
-#~ msgid "Could not find media file"
-#~ msgstr "미디어를 찾지 못 하였습니다"
 
 #~ msgid "Success!"
 #~ msgstr "성공!"

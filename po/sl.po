@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-19 22:54+0000\n"
+"POT-Creation-Date: 2025-08-31 20:05+0000\n"
 "PO-Revision-Date: 2020-01-05 14:18+0000\n"
 "Last-Translator: Marko <marko.dolar@gmail.com>\n"
 "Language-Team: Slovenian <https://l10n.elementary.io/projects/music/music/sl/"
@@ -21,41 +21,43 @@ msgstr ""
 "X-Generator: Weblate 3.9.1\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 
-#: src/Application.vala:97 src/Views/NowPlayingView.vala:18
-#: src/Views/NowPlayingView.vala:116
+#: src/Application.vala:86 src/Views/NowPlayingView.vala:18
+#: src/Views/NowPlayingView.vala:118
 msgid "Music"
 msgstr "Glasba"
 
-#: src/MainWindow.vala:20
+#: src/MainWindow.vala:29
 #, fuzzy
 msgid "Shuffle"
 msgstr "Omogoči prerazporeditev"
 
-#: src/MainWindow.vala:26
-msgid "Search titles in playlist"
-msgstr ""
-
-#: src/MainWindow.vala:45
+#: src/MainWindow.vala:52
 msgid "Queue is Empty"
 msgstr ""
 
-#: src/MainWindow.vala:46
+#: src/MainWindow.vala:53
 msgid "Audio files opened from Files will appear here"
 msgstr ""
 
-#: src/MainWindow.vala:63
+#: src/MainWindow.vala:58
+#, fuzzy
+#| msgid "Try another search"
+msgid "Try changing search terms"
+msgstr "Poskusite z drugim iskalnim terminom"
+
+#: src/MainWindow.vala:83
 #, fuzzy
 #| msgid "Other Files"
 msgid "Open Files…"
 msgstr "Druge datoteke"
 
-#: src/MainWindow.vala:76
+#: src/MainWindow.vala:100
 #, fuzzy
 #| msgid "Queue"
 msgid "Clear Queue"
 msgstr "Vrsta"
 
-#: src/MainWindow.vala:187
+#: src/MainWindow.vala:218
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
@@ -64,42 +66,54 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: src/MainWindow.vala:235
+#: src/MainWindow.vala:259
+#, fuzzy, c-format
+#| msgid "No Results"
+msgid "No Results for “%s”"
+msgstr "Ni zadetkov"
+
+#: src/MainWindow.vala:272
 #, fuzzy
 #| msgid "All Years"
 msgid "All files"
 msgstr "Vsa leta"
 
-#: src/MainWindow.vala:240
+#: src/MainWindow.vala:277
 #, fuzzy
 #| msgid "Music Folder"
 msgid "Music files"
 msgstr "Mapa z glasbo"
 
-#: src/MainWindow.vala:249
+#: src/MainWindow.vala:286
 msgid "Open"
 msgstr "Odpri"
 
-#: src/MainWindow.vala:253
+#: src/MainWindow.vala:290
 msgid "Open audio files"
 msgstr ""
 
-#: src/MainWindow.vala:291
+#: src/MainWindow.vala:310
+#, fuzzy
+#| msgid "Could not find media file"
+msgid "Couldn't add audio files"
+msgstr "Ni mogoče najti predstavnostne datoteke"
+
+#: src/MainWindow.vala:328
 #, fuzzy
 msgid "Repeat None"
 msgstr "Ponavljaj skladbo"
 
-#: src/MainWindow.vala:295
+#: src/MainWindow.vala:332
 #, fuzzy
 msgid "Repeat All"
 msgstr "Ponovi album"
 
-#: src/MainWindow.vala:299
+#: src/MainWindow.vala:336
 #, fuzzy
 msgid "Repeat One"
 msgstr "Ponavljaj skladbo"
 
-#: src/PlaybackManager.vala:136
+#: src/PlaybackManager.vala:147
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
@@ -109,30 +123,34 @@ msgstr[2] ""
 msgstr[3] ""
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:202
+#: src/PlaybackManager.vala:230
 msgid "Unknown"
 msgstr "Neznano"
 
-#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
+#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:117
 #, fuzzy
 msgid "Not playing"
 msgstr "Nov seznam predvajanja"
 
-#: src/Views/NowPlayingView.vala:45
+#: src/Views/NowPlayingView.vala:47
 msgid "Previous"
 msgstr "Predhodna skladba"
 
-#: src/Views/NowPlayingView.vala:68
+#: src/Views/NowPlayingView.vala:70
 msgid "Next"
 msgstr "Naslednja skladba"
 
-#: src/Views/NowPlayingView.vala:93
+#: src/Views/NowPlayingView.vala:95
 msgid "Play"
 msgstr "Predvajaj"
 
-#: src/Views/NowPlayingView.vala:96
+#: src/Views/NowPlayingView.vala:98
 msgid "Pause"
 msgstr "Premor"
+
+#: src/Widgets/SearchBar.vala:36
+msgid "Search titles in playlist"
+msgstr ""
 
 #~ msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 #~ msgstr "Uvažanje <b>$NAME</b> od izvajalca <b>$ARTIST</b> v knjižnico…"
@@ -727,12 +745,6 @@ msgstr "Premor"
 #~ msgid "Device operation has been cancelled and will stop after this media."
 #~ msgstr ""
 #~ "Opravilo naprave je preklicano in se bo končalo po tej predstavni vsebini."
-
-#~ msgid "No Results"
-#~ msgstr "Ni zadetkov"
-
-#~ msgid "Try another search"
-#~ msgstr "Poskusite z drugim iskalnim terminom"
 
 #~ msgid "Genres"
 #~ msgstr "Zvrsti"
@@ -1616,9 +1628,6 @@ msgstr "Premor"
 #~ msgid "Do Nothing"
 #~ msgstr "Ne naredi ničesar"
 
-#~ msgid "Could not find media file"
-#~ msgstr "Ni mogoče najti predstavnostne datoteke"
-
 #~ msgid "Remove Media"
 #~ msgstr "Odstrani predstavnost"
 
@@ -1822,6 +1831,4 @@ msgstr "Premor"
 #~ msgstr "<b>Statistika</b>"
 
 #~ msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-#~ msgstr ""
-#~ "Noise;Audio;Predvajalnik;Glasba;MP3;iPod;Igraj;Media;CD;Play;Phone;Songs;"
-#~ "Pesmi"
+#~ msgstr "Noise;Audio;Predvajalnik;Glasba;MP3;iPod;Igraj;Media;CD;Play;Phone;Songs;Pesmi"

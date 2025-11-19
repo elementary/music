@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-19 22:54+0000\n"
+"POT-Creation-Date: 2025-08-31 20:05+0000\n"
 "PO-Revision-Date: 2024-09-25 23:27+0000\n"
 "Last-Translator: Hossein <hossein17@duck.com>\n"
 "Language-Team: Persian <https://l10n.elementary.io/projects/music/music/fa/"
@@ -20,102 +20,117 @@ msgstr ""
 "X-Generator: Weblate 5.6.2\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:54+0000\n"
 
-#: src/Application.vala:97 src/Views/NowPlayingView.vala:18
-#: src/Views/NowPlayingView.vala:116
+#: src/Application.vala:86 src/Views/NowPlayingView.vala:18
+#: src/Views/NowPlayingView.vala:118
 msgid "Music"
 msgstr "موسیقی"
 
-#: src/MainWindow.vala:20
+#: src/MainWindow.vala:29
 msgid "Shuffle"
 msgstr "پخش تصادفی"
 
-#: src/MainWindow.vala:26
-msgid "Search titles in playlist"
-msgstr "جستجوی عناوین در پلی لیست"
-
-#: src/MainWindow.vala:45
+#: src/MainWindow.vala:52
 msgid "Queue is Empty"
 msgstr "صف خالیست"
 
-#: src/MainWindow.vala:46
+#: src/MainWindow.vala:53
 msgid "Audio files opened from Files will appear here"
 msgstr "فایل های صوتی باز شده از Files در اینجا ظاهر می شوند"
 
-#: src/MainWindow.vala:63
+#: src/MainWindow.vala:58
+msgid "Try changing search terms"
+msgstr ""
+
+#: src/MainWindow.vala:83
 msgid "Open Files…"
 msgstr "باز کردن فایل ها…"
 
-#: src/MainWindow.vala:76
+#: src/MainWindow.vala:100
 #, fuzzy
 #| msgctxt "Name of the playlist"
 #| msgid "Queue"
 msgid "Clear Queue"
 msgstr "صف"
 
-#: src/MainWindow.vala:187
+#: src/MainWindow.vala:218
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
 msgstr[0] "%d فایل نامعتبر به صف اضافه نشد"
 
-#: src/MainWindow.vala:235
+#: src/MainWindow.vala:259
+#, fuzzy, c-format
+msgid "No Results for “%s”"
+msgstr "بدون امتیاز"
+
+#: src/MainWindow.vala:272
 msgid "All files"
 msgstr "همه فایل ها"
 
-#: src/MainWindow.vala:240
+#: src/MainWindow.vala:277
 msgid "Music files"
 msgstr "فایل های موسیقی"
 
-#: src/MainWindow.vala:249
+#: src/MainWindow.vala:286
 msgid "Open"
 msgstr "باز کردن"
 
-#: src/MainWindow.vala:253
+#: src/MainWindow.vala:290
 msgid "Open audio files"
 msgstr "باز کردن فایل صوتی"
 
-#: src/MainWindow.vala:291
+#: src/MainWindow.vala:310
+#, fuzzy
+#| msgid "Could not find media file"
+msgid "Couldn't add audio files"
+msgstr "نمی‌توان پرونده رسانه را پیدا کرد"
+
+#: src/MainWindow.vala:328
 msgid "Repeat None"
 msgstr "بازپخش هیچکدام"
 
-#: src/MainWindow.vala:295
+#: src/MainWindow.vala:332
 msgid "Repeat All"
 msgstr "بازپخش آلبوم"
 
-#: src/MainWindow.vala:299
+#: src/MainWindow.vala:336
 msgid "Repeat One"
 msgstr "بازپخش آهنگ"
 
-#: src/PlaybackManager.vala:136
+#: src/PlaybackManager.vala:147
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
 msgstr[0] "%d آهنگ به صف اضافه شد"
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:202
+#: src/PlaybackManager.vala:230
 msgid "Unknown"
 msgstr "ناشناخته"
 
-#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
+#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:117
 msgid "Not playing"
 msgstr "پخش نمی شود"
 
-#: src/Views/NowPlayingView.vala:45
+#: src/Views/NowPlayingView.vala:47
 msgid "Previous"
 msgstr "قبلی"
 
-#: src/Views/NowPlayingView.vala:68
+#: src/Views/NowPlayingView.vala:70
 msgid "Next"
 msgstr "بعدی"
 
-#: src/Views/NowPlayingView.vala:93
+#: src/Views/NowPlayingView.vala:95
 msgid "Play"
 msgstr "پخش"
 
-#: src/Views/NowPlayingView.vala:96
+#: src/Views/NowPlayingView.vala:98
 msgid "Pause"
 msgstr "نگه داشتن"
+
+#: src/Widgets/SearchBar.vala:36
+msgid "Search titles in playlist"
+msgstr "جستجوی عناوین در پلی لیست"
 
 #~ msgid "$NAME on $ALBUM"
 #~ msgstr "$NAME  از آلبوم $ALBUM"
@@ -591,10 +606,6 @@ msgstr "نگه داشتن"
 
 #~ msgid "Device operation has been cancelled and will stop after this media."
 #~ msgstr "عملیات دستگاه لغو شد و بعد از این رسانه متوقف خواهد شد."
-
-#, fuzzy
-#~ msgid "No Results"
-#~ msgstr "بدون امتیاز"
 
 #~ msgid "Genres"
 #~ msgstr "موضوعات"
@@ -1311,9 +1322,6 @@ msgstr "نگه داشتن"
 
 #~ msgid "Do Nothing"
 #~ msgstr "هیچ کاری انجام نشود"
-
-#~ msgid "Could not find media file"
-#~ msgstr "نمی‌توان پرونده رسانه را پیدا کرد"
 
 #~ msgid "The name %s is already in use"
 #~ msgstr "پیش از این از نام %s استفاده شده است"

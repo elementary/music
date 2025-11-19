@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-19 22:54+0000\n"
-"PO-Revision-Date: 2025-03-20 11:09+0000\n"
+"POT-Creation-Date: 2025-08-31 20:05+0000\n"
+"PO-Revision-Date: 2025-09-28 06:55+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://l10n.elementaryos.org/projects/music/music/"
 "ka/>\n"
@@ -17,102 +17,115 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.11.4\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:52+0000\n"
 
-#: src/Application.vala:97 src/Views/NowPlayingView.vala:18
-#: src/Views/NowPlayingView.vala:116
+#: src/Application.vala:86 src/Views/NowPlayingView.vala:18
+#: src/Views/NowPlayingView.vala:118
 msgid "Music"
 msgstr "მუსიკა"
 
-#: src/MainWindow.vala:20
+#: src/MainWindow.vala:29
 msgid "Shuffle"
 msgstr "არევა"
 
-#: src/MainWindow.vala:26
-msgid "Search titles in playlist"
-msgstr "სათაურების ძებნა დასაკრავ სიაში"
-
-#: src/MainWindow.vala:45
+#: src/MainWindow.vala:52
 msgid "Queue is Empty"
 msgstr "რიგი ცარიელია"
 
-#: src/MainWindow.vala:46
+#: src/MainWindow.vala:53
 msgid "Audio files opened from Files will appear here"
 msgstr "Files-დან გახსნილი ხმოვანი ფაილები აქ გამოჩნდება"
 
-#: src/MainWindow.vala:63
+#: src/MainWindow.vala:58
+msgid "Try changing search terms"
+msgstr "სცადეთ შეცვალოთ ძებნის პირობა"
+
+#: src/MainWindow.vala:83
 msgid "Open Files…"
 msgstr "ფაილების გახსნა…"
 
-#: src/MainWindow.vala:76
+#: src/MainWindow.vala:100
 msgid "Clear Queue"
 msgstr "რიგის გასუფთავება"
 
-#: src/MainWindow.vala:187
+#: src/MainWindow.vala:218
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
 msgstr[0] "%d არასწორი ფაილი რიგში არ ჩამატებულა"
 
-#: src/MainWindow.vala:235
+#: src/MainWindow.vala:259
+#, c-format
+msgid "No Results for “%s”"
+msgstr "\"%s\"-სთვის შედეგების გარეშე"
+
+#: src/MainWindow.vala:272
 msgid "All files"
 msgstr "ყველა ფაილი"
 
-#: src/MainWindow.vala:240
+#: src/MainWindow.vala:277
 msgid "Music files"
 msgstr "მუსიკის ფაილები"
 
-#: src/MainWindow.vala:249
+#: src/MainWindow.vala:286
 msgid "Open"
 msgstr "გახსნა"
 
-#: src/MainWindow.vala:253
+#: src/MainWindow.vala:290
 msgid "Open audio files"
 msgstr "აუდიო ფაილების გახსნა"
 
-#: src/MainWindow.vala:291
+#: src/MainWindow.vala:310
+msgid "Couldn't add audio files"
+msgstr "აუდიოფაილების დამატება შეუძლებელია"
+
+#: src/MainWindow.vala:328
 msgid "Repeat None"
 msgstr "არ გამეორება"
 
-#: src/MainWindow.vala:295
+#: src/MainWindow.vala:332
 msgid "Repeat All"
 msgstr "ყველას გამეორება"
 
-#: src/MainWindow.vala:299
+#: src/MainWindow.vala:336
 msgid "Repeat One"
 msgstr "ერთის გამეორება"
 
-#: src/PlaybackManager.vala:136
+#: src/PlaybackManager.vala:147
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
 msgstr[0] "რიგში ჩამატებულია %d ტრეკი"
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:202
+#: src/PlaybackManager.vala:230
 msgid "Unknown"
 msgstr "უცნობი"
 
-#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
+#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:117
 msgid "Not playing"
 msgstr "არ ვუკრავ"
 
-#: src/Views/NowPlayingView.vala:45
+#: src/Views/NowPlayingView.vala:47
 msgid "Previous"
 msgstr "წინა"
 
-#: src/Views/NowPlayingView.vala:68
+#: src/Views/NowPlayingView.vala:70
 msgid "Next"
 msgstr "შემდეგი"
 
-#: src/Views/NowPlayingView.vala:93
+#: src/Views/NowPlayingView.vala:95
 msgid "Play"
 msgstr "დაკვრა"
 
-#: src/Views/NowPlayingView.vala:96
+#: src/Views/NowPlayingView.vala:98
 msgid "Pause"
 msgstr "დაპაუზება"
+
+#: src/Widgets/SearchBar.vala:36
+msgid "Search titles in playlist"
+msgstr "სათაურების ძებნა დასაკრავ სიაში"
 
 #~ msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 #~ msgstr ""
@@ -376,10 +389,6 @@ msgstr "დაპაუზება"
 
 #~ msgid "Device operation has been cancelled and will stop after this media."
 #~ msgstr "მოწყობილობის ოპერაცია გაუქმდა და ამ მედიის შემდეგ შეჩერდება."
-
-#, fuzzy
-#~ msgid "No Results"
-#~ msgstr "შეფასებები არაა"
 
 #~ msgid "Genres"
 #~ msgstr "ჟანრები"
@@ -833,8 +842,7 @@ msgstr "დაპაუზება"
 #~ msgstr "მუსიკის შესახებ"
 
 #~ msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-#~ msgstr ""
-#~ "Noise;აუდიო;დამკვრელი;MP3;iPod;დაკვრა;სია;მედია;CD;ტელეფონი;სიმღერები;"
+#~ msgstr "Noise;აუდიო;დამკვრელი;MP3;iPod;დაკვრა;სია;მედია;CD;ტელეფონი;სიმღერები;"
 
 #~ msgid "About Noise"
 #~ msgstr "Noise-ს შესახებ"

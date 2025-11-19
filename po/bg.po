@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-19 22:54+0000\n"
+"POT-Creation-Date: 2025-08-31 20:05+0000\n"
 "PO-Revision-Date: 2017-05-09 22:27+0000\n"
 "Last-Translator: Martin Tomov <martin.tomov@boomer.digital>\n"
 "Language-Team: Bulgarian <https://l10n.elementary.io/projects/music/music/bg/"
@@ -20,83 +20,94 @@ msgstr ""
 "X-Generator: Weblate 2.13-dev\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:51+0000\n"
 
-#: src/Application.vala:97 src/Views/NowPlayingView.vala:18
-#: src/Views/NowPlayingView.vala:116
+#: src/Application.vala:86 src/Views/NowPlayingView.vala:18
+#: src/Views/NowPlayingView.vala:118
 msgid "Music"
 msgstr "Музика"
 
-#: src/MainWindow.vala:20
+#: src/MainWindow.vala:29
 #, fuzzy
 msgid "Shuffle"
 msgstr "Включване на разбъркване"
 
-#: src/MainWindow.vala:26
-msgid "Search titles in playlist"
-msgstr ""
-
-#: src/MainWindow.vala:45
+#: src/MainWindow.vala:52
 msgid "Queue is Empty"
 msgstr ""
 
-#: src/MainWindow.vala:46
+#: src/MainWindow.vala:53
 msgid "Audio files opened from Files will appear here"
 msgstr ""
 
-#: src/MainWindow.vala:63
+#: src/MainWindow.vala:58
+msgid "Try changing search terms"
+msgstr ""
+
+#: src/MainWindow.vala:83
 #, fuzzy
 #| msgid "Other Files"
 msgid "Open Files…"
 msgstr "Други файлове"
 
-#: src/MainWindow.vala:76
+#: src/MainWindow.vala:100
 #, fuzzy
 #| msgid "Queue"
 msgid "Clear Queue"
 msgstr "Опашка"
 
-#: src/MainWindow.vala:187
+#: src/MainWindow.vala:218
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/MainWindow.vala:235
+#: src/MainWindow.vala:259
+#, fuzzy, c-format
+msgid "No Results for “%s”"
+msgstr "Няма оценки"
+
+#: src/MainWindow.vala:272
 #, fuzzy
 #| msgid "All Years"
 msgid "All files"
 msgstr "Всички години"
 
-#: src/MainWindow.vala:240
+#: src/MainWindow.vala:277
 #, fuzzy
 #| msgid "Music Folder"
 msgid "Music files"
 msgstr "Папка за музика"
 
-#: src/MainWindow.vala:249
+#: src/MainWindow.vala:286
 msgid "Open"
 msgstr "Отваряне"
 
-#: src/MainWindow.vala:253
+#: src/MainWindow.vala:290
 msgid "Open audio files"
 msgstr ""
 
-#: src/MainWindow.vala:291
+#: src/MainWindow.vala:310
+#, fuzzy
+#| msgid "Could not find media file"
+msgid "Couldn't add audio files"
+msgstr "Не може да се намери медиен файл"
+
+#: src/MainWindow.vala:328
 #, fuzzy
 msgid "Repeat None"
 msgstr "Повтаряне на песен"
 
-#: src/MainWindow.vala:295
+#: src/MainWindow.vala:332
 #, fuzzy
 msgid "Repeat All"
 msgstr "Повтаряне на албум"
 
-#: src/MainWindow.vala:299
+#: src/MainWindow.vala:336
 #, fuzzy
 msgid "Repeat One"
 msgstr "Повтаряне на песен"
 
-#: src/PlaybackManager.vala:136
+#: src/PlaybackManager.vala:147
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
@@ -104,30 +115,34 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:202
+#: src/PlaybackManager.vala:230
 msgid "Unknown"
 msgstr "Неизвестен"
 
-#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
+#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:117
 #, fuzzy
 msgid "Not playing"
 msgstr "Нов списък с песни"
 
-#: src/Views/NowPlayingView.vala:45
+#: src/Views/NowPlayingView.vala:47
 msgid "Previous"
 msgstr "Предишна"
 
-#: src/Views/NowPlayingView.vala:68
+#: src/Views/NowPlayingView.vala:70
 msgid "Next"
 msgstr "Следваща"
 
-#: src/Views/NowPlayingView.vala:93
+#: src/Views/NowPlayingView.vala:95
 msgid "Play"
 msgstr "Изпълнение"
 
-#: src/Views/NowPlayingView.vala:96
+#: src/Views/NowPlayingView.vala:98
 msgid "Pause"
 msgstr "Прекъсване"
+
+#: src/Widgets/SearchBar.vala:36
+msgid "Search titles in playlist"
+msgstr ""
 
 #~ msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 #~ msgstr "Добавяне <b>$NAME</b> от <b>$ARTIST</b> в библиотеката…"
@@ -716,10 +731,6 @@ msgstr "Прекъсване"
 #~ msgid "Device operation has been cancelled and will stop after this media."
 #~ msgstr ""
 #~ "Употребата на устройството е преустановена и ще спре след тази пътечка."
-
-#, fuzzy
-#~ msgid "No Results"
-#~ msgstr "Няма оценки"
 
 #~ msgid "Genres"
 #~ msgstr "Жанрове"
@@ -1544,9 +1555,6 @@ msgstr "Прекъсване"
 #~ msgid "Remove %d %s from %s?"
 #~ msgstr "Премахване на %d %s от %s?"
 
-#~ msgid "Could not find media file"
-#~ msgstr "Не може да се намери медиен файл"
-
 #~ msgid "The name %s is already in use"
 #~ msgstr "Името %s вече се използва"
 
@@ -1885,9 +1893,7 @@ msgstr "Прекъсване"
 #~ msgstr "Работно-Плотно Вграждане:"
 
 #~ msgid "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
-#~ msgstr ""
-#~ "Шум(Noise);Звук;Възпроизведител;МП3;айПод;Пусни;Музикален;Списък;Диск;"
-#~ "Телефон;Песен;"
+#~ msgstr "Шум(Noise);Звук;Възпроизведител;МП3;айПод;Пусни;Музикален;Списък;Диск;Телефон;Песен;"
 
 #~ msgid ""
 #~ "Noise is already doing file operations. Please wait until those finish to "

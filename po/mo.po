@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-19 22:54+0000\n"
+"POT-Creation-Date: 2025-08-31 20:05+0000\n"
 "PO-Revision-Date: 2018-05-27 08:51+0000\n"
 "Last-Translator: Romanic Ion Nicușor <contact.romanic@gmail.com>\n"
 "Language-Team: Moldovan <https://weblate.elementary.io/projects/music/music/"
@@ -13,79 +13,89 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2.18\n"
 
-#: src/Application.vala:97 src/Views/NowPlayingView.vala:18
-#: src/Views/NowPlayingView.vala:116
+#: src/Application.vala:86 src/Views/NowPlayingView.vala:18
+#: src/Views/NowPlayingView.vala:118
 msgid "Music"
 msgstr "Muzică"
 
-#: src/MainWindow.vala:20
+#: src/MainWindow.vala:29
 #, fuzzy
 msgid "Shuffle"
 msgstr "Activați Shuffle"
 
-#: src/MainWindow.vala:26
-msgid "Search titles in playlist"
-msgstr ""
-
-#: src/MainWindow.vala:45
+#: src/MainWindow.vala:52
 msgid "Queue is Empty"
 msgstr ""
 
-#: src/MainWindow.vala:46
+#: src/MainWindow.vala:53
 msgid "Audio files opened from Files will appear here"
 msgstr ""
 
-#: src/MainWindow.vala:63
+#: src/MainWindow.vala:58
+msgid "Try changing search terms"
+msgstr ""
+
+#: src/MainWindow.vala:83
 msgid "Open Files…"
 msgstr ""
 
-#: src/MainWindow.vala:76
+#: src/MainWindow.vala:100
 msgid "Clear Queue"
 msgstr ""
 
-#: src/MainWindow.vala:187
+#: src/MainWindow.vala:218
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/MainWindow.vala:235
+#: src/MainWindow.vala:259
+#, fuzzy, c-format
+msgid "No Results for “%s”"
+msgstr "Nicio evaluare"
+
+#: src/MainWindow.vala:272
 #, fuzzy
 #| msgid "All Years"
 msgid "All files"
 msgstr "Toți anii"
 
-#: src/MainWindow.vala:240
+#: src/MainWindow.vala:277
 #, fuzzy
 #| msgid "Music"
 msgid "Music files"
 msgstr "Muzică"
 
-#: src/MainWindow.vala:249
+#: src/MainWindow.vala:286
 msgid "Open"
 msgstr "Deschide"
 
-#: src/MainWindow.vala:253
+#: src/MainWindow.vala:290
 msgid "Open audio files"
 msgstr ""
 
-#: src/MainWindow.vala:291
+#: src/MainWindow.vala:310
+#, fuzzy
+msgid "Couldn't add audio files"
+msgstr "A apărut o eroare la încărcarea acestui CD audio."
+
+#: src/MainWindow.vala:328
 #, fuzzy
 msgid "Repeat None"
 msgstr "Repetare melodii"
 
-#: src/MainWindow.vala:295
+#: src/MainWindow.vala:332
 #, fuzzy
 msgid "Repeat All"
 msgstr "Repetare melodii"
 
-#: src/MainWindow.vala:299
+#: src/MainWindow.vala:336
 #, fuzzy
 msgid "Repeat One"
 msgstr "Repetare melodii"
 
-#: src/PlaybackManager.vala:136
+#: src/PlaybackManager.vala:147
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
@@ -93,30 +103,34 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:202
+#: src/PlaybackManager.vala:230
 msgid "Unknown"
 msgstr "Necunoscut"
 
-#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
+#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:117
 #, fuzzy
 msgid "Not playing"
 msgstr "Listă nouă"
 
-#: src/Views/NowPlayingView.vala:45
+#: src/Views/NowPlayingView.vala:47
 msgid "Previous"
 msgstr "Anterior"
 
-#: src/Views/NowPlayingView.vala:68
+#: src/Views/NowPlayingView.vala:70
 msgid "Next"
 msgstr "Următor"
 
-#: src/Views/NowPlayingView.vala:93
+#: src/Views/NowPlayingView.vala:95
 msgid "Play"
 msgstr "Redare"
 
-#: src/Views/NowPlayingView.vala:96
+#: src/Views/NowPlayingView.vala:98
 msgid "Pause"
 msgstr "Pauză"
+
+#: src/Widgets/SearchBar.vala:36
+msgid "Search titles in playlist"
+msgstr ""
 
 #~ msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 #~ msgstr ""
@@ -703,10 +717,6 @@ msgstr "Pauză"
 #~ "Funcționarea dispozitivului a fost anulată și se va opri după acest "
 #~ "suport."
 
-#, fuzzy
-#~ msgid "No Results"
-#~ msgstr "Nicio evaluare"
-
 #~ msgid "Genres"
 #~ msgstr "Genuri"
 
@@ -1152,10 +1162,6 @@ msgstr "Pauză"
 #, fuzzy
 #~ msgid "An Error Occurred"
 #~ msgstr "A apărut o eroare"
-
-#, fuzzy
-#~ msgid "Could not load this Audio CD."
-#~ msgstr "A apărut o eroare la încărcarea acestui CD audio."
 
 #~ msgid "Importation of a song from Audio CD finished."
 #~ msgstr "Sa terminat importul unei melodii de pe CD-ul Audio."

@@ -7,17 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-19 22:54+0000\n"
-"PO-Revision-Date: 2021-07-22 10:14+0000\n"
-"Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
-"Language-Team: Swedish <https://l10n.elementary.io/projects/music/extra/sv/"
-">\n"
+"POT-Creation-Date: 2025-08-31 20:05+0000\n"
+"PO-Revision-Date: 2025-10-30 09:55+0000\n"
+"Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
+"Language-Team: Swedish <https://l10n.elementaryos.org/projects/music/extra/"
+"sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 "X-Poedit-Language: Swedish\n"
 
@@ -27,7 +27,7 @@ msgstr "Musik"
 
 #: data/music.metainfo.xml.in:11
 msgid "Queue and play local audio files"
-msgstr ""
+msgstr "Köa och spela upp lokala ljudfiler"
 
 #: data/music.metainfo.xml.in:13
 msgid ""
@@ -35,73 +35,85 @@ msgid ""
 "frills. See embedded album artwork. Control playback with media keys or in "
 "the system audio indicator."
 msgstr ""
+"Lägg snabbt upp i kö och lyssna på dina lokala musikfiler utan några extra "
+"krusiduller. Se inbäddade albumomslag. Styr uppspelningen med mediaknappar "
+"eller i systemets ljudindikator."
 
-#: data/music.metainfo.xml.in:18
+#: data/music.metainfo.xml.in:18 data/music.metainfo.xml.in:22
 msgid "Quickly queue up your favorite tracks"
-msgstr ""
+msgstr "Lägg snabbt upp dina favoritlåtar i kö"
 
-#: data/music.metainfo.xml.in:51
-#, fuzzy
+#: data/music.metainfo.xml.in:55
 msgid "elementary, Inc."
-msgstr "elementary LLC."
+msgstr "elementary, Inc."
 
-#: data/music.metainfo.xml.in:59 data/music.metainfo.xml.in:70
-#: data/music.metainfo.xml.in:84
+#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:82
+#: data/music.metainfo.xml.in:93 data/music.metainfo.xml.in:107
 msgid "Improvements:"
-msgstr ""
+msgstr "Förbättringar:"
 
-#: data/music.metainfo.xml.in:61
-msgid "Toolbar shows a shadow when the view is scrolled"
-msgstr ""
+#: data/music.metainfo.xml.in:65
+msgid "Show album art in the sound indicator"
+msgstr "Visa albumomslag i ljudindikatorn"
 
-#: data/music.metainfo.xml.in:62
-msgid "Open audio files from within Music"
-msgstr ""
+#: data/music.metainfo.xml.in:66
+msgid "Clear the queue"
+msgstr "Töm kön"
 
-#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:73
-#: data/music.metainfo.xml.in:106
+#: data/music.metainfo.xml.in:67 data/music.metainfo.xml.in:86
+#: data/music.metainfo.xml.in:96 data/music.metainfo.xml.in:129
 msgid "Updated translations"
-msgstr ""
+msgstr "Uppdaterade översättningar"
 
-#: data/music.metainfo.xml.in:72
+#: data/music.metainfo.xml.in:84
+msgid "Toolbar shows a shadow when the view is scrolled"
+msgstr "Verktygsfältet visar en skugga när vyn rullas"
+
+#: data/music.metainfo.xml.in:85
+msgid "Open audio files from within Music"
+msgstr "Öppna ljudfiler inifrån Musik"
+
+#: data/music.metainfo.xml.in:95
 msgid "Open folders in the filemanager with Music"
-msgstr ""
+msgstr "Öppna mappar i filhanteraren med Musik"
 
-#: data/music.metainfo.xml.in:86
+#: data/music.metainfo.xml.in:109
 msgid "For tracks without a title, use the file name instead of the whole URI"
-msgstr ""
+msgstr "För spår utan titel, använd filnamnet i stället för hela URI:n"
 
-#: data/music.metainfo.xml.in:87
+#: data/music.metainfo.xml.in:110
 msgid "Skip invalid files instead of stopping playback"
-msgstr ""
+msgstr "Hoppa över ogiltiga filer istället för att stoppa uppspelningen"
 
-#: data/music.metainfo.xml.in:88
+#: data/music.metainfo.xml.in:111
 msgid "Next and Repeat buttons always work regardless of repeat mode"
-msgstr ""
+msgstr "Knapparna Nästa och Upprepa fungerar alltid oavsett upprepningsläge"
 
-#: data/music.metainfo.xml.in:89
+#: data/music.metainfo.xml.in:112
 msgid ""
 "Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
 "Russian, Simplified Chinese, Turkish, and Ukrainian"
 msgstr ""
+"Nu tillgänglig på katalanska, nederländska, finska, franska, tyska, "
+"hebreiska, ungerska, japanska, koreanska, kurdiska, marathi, norska bokmål, "
+"polska, portugisiska, ryska, förenklad kinesiska, turkiska och ukrainska"
 
-#: data/music.metainfo.xml.in:99
+#: data/music.metainfo.xml.in:122
 msgid "Complete rewrite"
-msgstr ""
+msgstr "Fullständig omskrivning"
 
-#: data/music.metainfo.xml.in:105
+#: data/music.metainfo.xml.in:128
 msgid "Drop support for Last.FM"
-msgstr ""
+msgstr "Slopat stöd för Last.FM"
 
 #: data/music.desktop.in:7
 msgid "Listen to music"
 msgstr "Lyssna på musik"
 
 #: data/music.desktop.in:9
-#, fuzzy
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
-msgstr "Noise;Ljud;Spelare;MP3;iPod;Spela;Spellista;Media;CD;Telefon;Låtar;"
+msgstr "Brus;Ljud;Spelare;MP3;Spela;Spellista;Media;Låtar;"
 
 #~ msgid "Music Player"
 #~ msgstr "Musikspelare"

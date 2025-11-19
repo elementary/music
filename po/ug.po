@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-19 22:54+0000\n"
+"POT-Creation-Date: 2025-08-31 20:05+0000\n"
 "PO-Revision-Date: 2016-12-12 07:21+0000\n"
 "Last-Translator: Daniel Fore <Unknown>\n"
 "Language-Team: \n"
@@ -14,113 +14,127 @@ msgstr ""
 "X-Launchpad-Export-Date: 2017-03-07 05:55+0000\n"
 "X-Generator: Launchpad (build 18330)\n"
 
-#: src/Application.vala:97 src/Views/NowPlayingView.vala:18
-#: src/Views/NowPlayingView.vala:116
+#: src/Application.vala:86 src/Views/NowPlayingView.vala:18
+#: src/Views/NowPlayingView.vala:118
 msgid "Music"
 msgstr "مۇزىكا"
 
-#: src/MainWindow.vala:20
+#: src/MainWindow.vala:29
 #, fuzzy
 msgid "Shuffle"
 msgstr "خالىغانچە قويۇش"
 
-#: src/MainWindow.vala:26
-msgid "Search titles in playlist"
-msgstr ""
-
-#: src/MainWindow.vala:45
+#: src/MainWindow.vala:52
 msgid "Queue is Empty"
 msgstr ""
 
-#: src/MainWindow.vala:46
+#: src/MainWindow.vala:53
 msgid "Audio files opened from Files will appear here"
 msgstr ""
 
-#: src/MainWindow.vala:63
+#: src/MainWindow.vala:58
+msgid "Try changing search terms"
+msgstr ""
+
+#: src/MainWindow.vala:83
 #, fuzzy
 #| msgid "Other Files"
 msgid "Open Files…"
 msgstr "باشقا ھۆججەتلەر"
 
-#: src/MainWindow.vala:76
+#: src/MainWindow.vala:100
 #, fuzzy
 #| msgctxt "Name of the playlist"
 #| msgid "Queue"
 msgid "Clear Queue"
 msgstr "سەپ"
 
-#: src/MainWindow.vala:187
+#: src/MainWindow.vala:218
 #, c-format
 msgid "%d invalid file was not added to the queue"
 msgid_plural "%d invalid files were not added to the queue"
 msgstr[0] ""
 
-#: src/MainWindow.vala:235
+#: src/MainWindow.vala:259
+#, fuzzy, c-format
+msgid "No Results for “%s”"
+msgstr "نومۇر يوق"
+
+#: src/MainWindow.vala:272
 #, fuzzy
 #| msgid "All Years"
 msgid "All files"
 msgstr "بارلىق يىللار"
 
-#: src/MainWindow.vala:240
+#: src/MainWindow.vala:277
 #, fuzzy
 #| msgid "Music"
 msgid "Music files"
 msgstr "مۇزىكا"
 
-#: src/MainWindow.vala:249
+#: src/MainWindow.vala:286
 msgid "Open"
 msgstr "ئىچىش"
 
-#: src/MainWindow.vala:253
+#: src/MainWindow.vala:290
 msgid "Open audio files"
 msgstr ""
 
-#: src/MainWindow.vala:291
+#: src/MainWindow.vala:310
+#, fuzzy
+msgid "Couldn't add audio files"
+msgstr "CD ئاۋاز ھۆججىتىنى يۈكلەش جەريانىدا بىر خاتالىق كۆرۈلدى."
+
+#: src/MainWindow.vala:328
 #, fuzzy
 msgid "Repeat None"
 msgstr "ناخشىنى تەكرارلاش"
 
-#: src/MainWindow.vala:295
+#: src/MainWindow.vala:332
 #, fuzzy
 msgid "Repeat All"
 msgstr "ئالبومنى تەكرارلاش"
 
-#: src/MainWindow.vala:299
+#: src/MainWindow.vala:336
 #, fuzzy
 msgid "Repeat One"
 msgstr "ناخشىنى تەكرارلاش"
 
-#: src/PlaybackManager.vala:136
+#: src/PlaybackManager.vala:147
 #, c-format
 msgid "%d track was added to the queue"
 msgid_plural "%d tracks were added to the queue"
 msgstr[0] ""
 
 #. Don't set artist for files without tags
-#: src/PlaybackManager.vala:202
+#: src/PlaybackManager.vala:230
 msgid "Unknown"
 msgstr "نامەلۇم"
 
-#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:115
+#: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:117
 #, fuzzy
 msgid "Not playing"
 msgstr "يىڭى قويۇش تىزىملىكى"
 
-#: src/Views/NowPlayingView.vala:45
+#: src/Views/NowPlayingView.vala:47
 msgid "Previous"
 msgstr "ئالدىنقىسى"
 
-#: src/Views/NowPlayingView.vala:68
+#: src/Views/NowPlayingView.vala:70
 msgid "Next"
 msgstr "كىيىنكىسى"
 
-#: src/Views/NowPlayingView.vala:93
+#: src/Views/NowPlayingView.vala:95
 msgid "Play"
 msgstr "قويۇش"
 
-#: src/Views/NowPlayingView.vala:96
+#: src/Views/NowPlayingView.vala:98
 msgid "Pause"
 msgstr "توختىتىش"
+
+#: src/Widgets/SearchBar.vala:36
+msgid "Search titles in playlist"
+msgstr ""
 
 #~ msgid "Importing <b>$NAME</b> by <b>$ARTIST</b> to library…"
 #~ msgstr ""
@@ -693,10 +707,6 @@ msgstr "توختىتىش"
 #~ "ئۈسكۈنە مەشغۇلاتى ئەمەلدىن قالدۇرۇلدى، نۆۋەتتىكى مېدىئا ئاخىرلاشقاندىن "
 #~ "كىيىن توختايدۇ."
 
-#, fuzzy
-#~ msgid "No Results"
-#~ msgstr "نومۇر يوق"
-
 #~ msgid "Genres"
 #~ msgstr "ئىقىملار"
 
@@ -1134,10 +1144,6 @@ msgstr "توختىتىش"
 #, fuzzy
 #~ msgid "An Error Occurred"
 #~ msgstr "بىر خاتالىق كۆرۈلدى"
-
-#, fuzzy
-#~ msgid "Could not load this Audio CD."
-#~ msgstr "CD ئاۋاز ھۆججىتىنى يۈكلەش جەريانىدا بىر خاتالىق كۆرۈلدى."
 
 #~ msgid "Importation of a song from Audio CD finished."
 #~ msgstr "ئاۋاز ھۆججىتى  CD دىن بىر ناخشىنى كىرگۈزۈش تامام بولدى."
