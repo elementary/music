@@ -1,6 +1,11 @@
+/*
+ * SPDX-License-Identifier: LGPL-3.0-or-later
+ * SPDX-FileCopyrightText: 2025 elementary, Inc. (https://elementary.io)
+ */
+
 [SingleInstance]
 public class Music.MetadataDiscoverer : Object {
-    private Gst.PbUtils.Discoverer discoverer;
+    private Gst.PbUtils.Discoverer? discoverer;
     private HashTable<string, AudioObject> objects_to_update;
 
     construct {
@@ -11,19 +16,21 @@ public class Music.MetadataDiscoverer : Object {
         } catch (Error e) {
             critical ("Unable to start Gstreamer Discoverer: %s", e.message);
         }
+
         objects_to_update = new HashTable<string, AudioObject> (str_hash, str_equal);
     }
 
-    public void request (AudioObject audio) {
-        objects_to_update.insert (audio.uri, audio);
+    public void request (AudioObject audio) requires (discoverer != null && !objects_to_update.contains (audio.uri)) {
+        objects_to_update[audio.uri] = audio;
         discoverer.start ();
         discoverer.discover_uri_async (audio.uri);
     }
 
     private void relay_metadata (Gst.PbUtils.DiscovererInfo info, Error? err) {
         string uri = info.get_uri ();
-        var audio_obj = objects_to_update.get (uri);
-        objects_to_update.remove (uri);
+
+        var audio_obj = objects_to_update.take (uri, null);
+
         switch (info.get_result ()) {
             case Gst.PbUtils.DiscovererResult.URI_INVALID:
                 critical ("Couldn't read metadata for '%s': invalid URI.", uri);

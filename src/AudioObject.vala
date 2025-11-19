@@ -5,23 +5,21 @@
 
 public class Music.AudioObject : Object {
     public string uri { get; construct; }
-    public Gdk.Texture? texture { get; set; default = null; }
-    public string album { get; set; }
-    public string artist { get; set; }
-    public string title { get; set; }
-    public int64 duration { get; set; default = 0; }
-    public string art_url { get; set; default = ""; }
+    public Gdk.Texture? texture { get; private set; default = null; }
+    public string album { get; private set; }
+    public string artist { get; private set; }
+    public string title { get; private set; }
+    public int64 duration { get; private set; default = 0; }
+    public string art_url { get; private set; default = ""; }
 
     private static MetadataDiscoverer discoverer = new MetadataDiscoverer ();
 
     public AudioObject (string uri) {
-        Object (
-            uri: uri,
-            title: uri
-        );
+        Object (uri: uri);
     }
 
     construct {
+        title = uri;
         discoverer.request (this);
     }
 
@@ -44,12 +42,29 @@ public class Music.AudioObject : Object {
             artist = _("Unknown");
         }
 
-        var sample = get_cover_sample (tag_list);
-        if (sample != null) {
-            var buffer = sample.get_buffer ();
+        string art_hash = uri;
+        if (_artist != null && _album != null) {
+            art_hash = "%s:%s".printf (_artist, _album);
+        }
 
-            if (buffer != null) {
-                texture = Gdk.Texture.for_pixbuf (get_pixbuf_from_buffer (buffer));
+        var art_file = File.new_for_path (Path.build_path (
+            Path.DIR_SEPARATOR_S,
+            get_art_cache_dir (),
+            Checksum.compute_for_string (SHA256, art_hash)
+        ));
+
+        if (art_file.query_exists ()) {
+            art_url = art_file.get_uri ();
+            texture = Gdk.Texture.from_file (art_file);
+        } else {
+            var sample = get_cover_sample (tag_list);
+            if (sample != null) {
+                var buffer = sample.get_buffer ();
+
+                if (buffer != null) {
+                    texture = Gdk.Texture.for_pixbuf (get_pixbuf_from_buffer (buffer));
+                    save_art_file.begin (texture, art_file);
+                }
             }
         }
     }
@@ -95,6 +110,28 @@ public class Music.AudioObject : Object {
         buffer.unmap (map_info);
 
         return pix;
+    }
+
+    private async void save_art_file (Gdk.Texture? texture, File file) requires (texture != null) {
+        try {
+            DirUtils.create_with_parents (get_art_cache_dir (), 0755);
+
+            var ostream = yield file.create_async (NONE);
+            yield ostream.write_bytes_async (texture.save_to_png_bytes ());
+
+            art_url = file.get_uri ();
+        } catch (Error e) {
+            critical ("Error saving artwork file: %s", e.message);
+        }
+    }
+
+    private string get_art_cache_dir () {
+        return Path.build_path (
+            Path.DIR_SEPARATOR_S,
+            Environment.get_user_cache_dir (),
+            GLib.Application.get_default ().application_id,
+            "art"
+        );
     }
 
     public static bool equal_func (AudioObject a, AudioObject b) {
