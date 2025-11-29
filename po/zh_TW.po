@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-31 20:05+0000\n"
-"PO-Revision-Date: 2025-08-22 15:58+0000\n"
+"PO-Revision-Date: 2025-11-30 19:55+0000\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://"
-"l10n.elementaryos.org/projects/music/music/zh_Hant/>\n"
+"l10n.elementaryos.org/projects/music/music/zh_TW/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,10 +38,8 @@ msgid "Audio files opened from Files will appear here"
 msgstr "從《檔案》所開啟的音訊檔案會出現在此"
 
 #: src/MainWindow.vala:58
-#, fuzzy
-#| msgid "Try another search"
 msgid "Try changing search terms"
-msgstr "嘗試其他搜尋"
+msgstr "試試看別的搜尋字串"
 
 #: src/MainWindow.vala:83
 msgid "Open Files…"
@@ -58,10 +56,9 @@ msgid_plural "%d invalid files were not added to the queue"
 msgstr[0] "%d 個無效的檔案未被加入待播清單"
 
 #: src/MainWindow.vala:259
-#, fuzzy, c-format
-#| msgid "No Results"
+#, c-format
 msgid "No Results for “%s”"
-msgstr "無結果"
+msgstr "「%s」無結果"
 
 #: src/MainWindow.vala:272
 msgid "All files"
