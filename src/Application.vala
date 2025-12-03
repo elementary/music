@@ -149,6 +149,27 @@ public class Music.Application : Gtk.Application {
                 continue;
             }
 
+            if (M3U.is_playlist (file)) {
+
+                File[]? tracks = null;
+                try {
+                    tracks = M3U.parse_playlist (file);
+                } catch (Error e) {
+                    warning (e.message);
+                }
+
+                if (tracks == null) {
+                    continue;
+                }
+
+                foreach (var track in tracks) {
+                    elements += track;
+                }
+
+                // Avoid adding the m3u - Else its content gets re-added every startup
+                continue;
+            }
+
             elements += file;
         }
 

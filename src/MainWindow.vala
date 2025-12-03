@@ -6,6 +6,7 @@
 public class Music.MainWindow : Gtk.ApplicationWindow {
     private const string ACTION_PREFIX = "win.";
     private const string ACTION_OPEN = "action-open";
+    private const string ACTION_SAVE_M3U_PLAYLIST = "action-save-m3u-playlist";
 
     private Granite.Placeholder queue_placeholder;
     private Granite.Placeholder search_placeholder;
@@ -18,9 +19,10 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
     private Gtk.SingleSelection selection_model;
     private Gtk.Stack queue_stack;
     private Settings settings;
+    private unowned PlaybackManager playback_manager;
 
     construct {
-        var playback_manager = PlaybackManager.get_default ();
+        playback_manager = PlaybackManager.get_default ();
 
         var start_window_controls = new Gtk.WindowControls (Gtk.PackType.START);
 
@@ -88,6 +90,9 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
 
         var open_action = new SimpleAction (ACTION_OPEN, null);
         open_action.activate.connect (open_files);
+
+        var save_action = new SimpleAction (ACTION_SAVE_M3U_PLAYLIST, null);
+        save_action.activate.connect (action_save_m3u_playlist);
 
         var add_button = new Gtk.Button () {
             child = add_button_box,
@@ -185,8 +190,10 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
 
         unowned var app = ((Gtk.Application) GLib.Application.get_default ());
         app.set_accels_for_action (ACTION_PREFIX + ACTION_OPEN, {"<Ctrl>O"});
-
         add_action (open_action);
+
+        app.set_accels_for_action (ACTION_PREFIX + ACTION_SAVE_M3U_PLAYLIST, {"<Ctrl>S"});
+        add_action (save_action);
 
         drop_target.drop.connect ((target, value, x, y) => {
             if (value.type () == typeof (Gdk.FileList)) {
@@ -278,9 +285,15 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         };
         music_files_filter.add_mime_type ("audio/*");
 
+        var playlist_filter = new Gtk.FileFilter () {
+            name = _("M3U Playlists"),
+        };
+        playlist_filter.add_mime_type ("audio/x-mpegurl");
+
         var filter_model = new ListStore (typeof (Gtk.FileFilter));
         filter_model.append (all_files_filter);
         filter_model.append (music_files_filter);
+        filter_model.append (playlist_filter);
 
         var file_dialog = new Gtk.FileDialog () {
             accept_label = _("Open"),
@@ -310,6 +323,57 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
                     _("Couldn't add audio files"),
                     e.message,
                     new ThemedIcon ("document-open")
+                ) {
+                    badge_icon = new ThemedIcon ("dialog-error"),
+                    modal = true,
+                    transient_for = this
+                };
+                dialog.present ();
+                dialog.response.connect (dialog.destroy);
+            }
+        });
+    }
+
+    public void action_save_m3u_playlist () {
+        var all_files_filter = new Gtk.FileFilter () {
+            name = _("All files"),
+        };
+        all_files_filter.add_pattern ("*");
+
+        var playlist_filter = new Gtk.FileFilter () {
+            name = _("M3U Playlists"),
+        };
+        playlist_filter.add_mime_type ("audio/x-mpegurl");
+
+        var filter_model = new ListStore (typeof (Gtk.FileFilter));
+        filter_model.append (all_files_filter);
+        filter_model.append (playlist_filter);
+
+        var save_dialog = new Gtk.FileDialog () {
+            accept_label = _("Save"),
+            default_filter = playlist_filter,
+            filters = filter_model,
+            modal = true,
+            title = _("Save playlist"),
+            initial_name = "%s.m3u".printf (_("New playlist"))
+        };
+
+        save_dialog.save.begin (this, null, (obj, res) => {
+            File? file;
+            try {
+                file = save_dialog.save.end (res);
+                M3U.save_playlist (playback_manager.queue_liststore, file);
+            } catch (Error err) {
+                if (err.matches (Gtk.DialogError.quark (), Gtk.DialogError.DISMISSED)) {
+                    return;
+                }
+
+                warning ("Failed to save playlist: %s", err.message);
+
+                var dialog = new Granite.MessageDialog (
+                    _("Couldn't save playlist"),
+                    err.message,
+                    new ThemedIcon ("audio-x-playlist")
                 ) {
                     badge_icon = new ThemedIcon ("dialog-error"),
                     modal = true,
