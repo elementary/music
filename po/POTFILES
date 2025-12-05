@@ -2,6 +2,7 @@ src/Application.vala
 src/MainWindow.vala
 src/PlaybackManager.vala
 src/Views/NowPlayingView.vala
+src/Views/QueueView.vala
 src/Widgets/AlbumImage.vala
 src/Widgets/SearchBar.vala
 src/Widgets/SeekBar.vala
