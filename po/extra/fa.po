@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-31 20:05+0000\n"
+"POT-Creation-Date: 2025-12-05 18:04+0000\n"
 "PO-Revision-Date: 2024-09-30 16:16+0000\n"
 "Last-Translator: Hossein <hossein17@duck.com>\n"
 "Language-Team: Persian <https://l10n.elementary.io/projects/music/extra/fa/"
@@ -46,8 +46,8 @@ msgstr "به سرعت آهنگ های مورد علاقه خود را در صف 
 msgid "elementary, Inc."
 msgstr ""
 
-#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:82
-#: data/music.metainfo.xml.in:93 data/music.metainfo.xml.in:107
+#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:84
+#: data/music.metainfo.xml.in:95 data/music.metainfo.xml.in:109
 msgid "Improvements:"
 msgstr "بهبودها:"
 
@@ -59,36 +59,36 @@ msgstr ""
 msgid "Clear the queue"
 msgstr ""
 
-#: data/music.metainfo.xml.in:67 data/music.metainfo.xml.in:86
-#: data/music.metainfo.xml.in:96 data/music.metainfo.xml.in:129
+#: data/music.metainfo.xml.in:67 data/music.metainfo.xml.in:88
+#: data/music.metainfo.xml.in:98 data/music.metainfo.xml.in:131
 msgid "Updated translations"
 msgstr "ترجمه های به روز شده"
 
-#: data/music.metainfo.xml.in:84
+#: data/music.metainfo.xml.in:86
 msgid "Toolbar shows a shadow when the view is scrolled"
 msgstr "وقتی نما اسکرول می شود، تولبار یک سایه را نشان می دهد"
 
-#: data/music.metainfo.xml.in:85
+#: data/music.metainfo.xml.in:87
 msgid "Open audio files from within Music"
 msgstr "فایل های صوتی را از داخل Music باز کنید"
 
-#: data/music.metainfo.xml.in:95
+#: data/music.metainfo.xml.in:97
 msgid "Open folders in the filemanager with Music"
 msgstr "پوشه ها را در فایل منیجر با Music باز کنید"
 
-#: data/music.metainfo.xml.in:109
+#: data/music.metainfo.xml.in:111
 msgid "For tracks without a title, use the file name instead of the whole URI"
 msgstr "برای ترک‌های بدون عنوان، از نام فایل به جای کل URI استفاده کنید"
 
-#: data/music.metainfo.xml.in:110
+#: data/music.metainfo.xml.in:112
 msgid "Skip invalid files instead of stopping playback"
 msgstr "به جای توقف پخش، فایل های نامعتبر را رد کنید"
 
-#: data/music.metainfo.xml.in:111
+#: data/music.metainfo.xml.in:113
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr "دکمه های Next و Repeat همیشه بدون توجه به حالت تکرار کار می کنند"
 
-#: data/music.metainfo.xml.in:112
+#: data/music.metainfo.xml.in:114
 msgid ""
 "Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
@@ -98,11 +98,11 @@ msgstr ""
 "ژاپنی، کره ای، کردی، مراتی، نروژی بوکمال، لهستانی، پرتغالی، روسی، چینی ساده "
 "شده، ترکی و اوکراینی موجود است"
 
-#: data/music.metainfo.xml.in:122
+#: data/music.metainfo.xml.in:124
 msgid "Complete rewrite"
 msgstr "بازنویسی کامل"
 
-#: data/music.metainfo.xml.in:128
+#: data/music.metainfo.xml.in:130
 msgid "Drop support for Last.FM"
 msgstr "پشتیبانی Last.FM را قطع کنید"
 

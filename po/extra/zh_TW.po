@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-31 20:05+0000\n"
+"POT-Creation-Date: 2025-12-05 18:04+0000\n"
 "PO-Revision-Date: 2025-08-22 15:58+0000\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://"
@@ -45,8 +45,8 @@ msgstr "快速將您最愛的曲目加入待播清單"
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
 
-#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:82
-#: data/music.metainfo.xml.in:93 data/music.metainfo.xml.in:107
+#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:84
+#: data/music.metainfo.xml.in:95 data/music.metainfo.xml.in:109
 msgid "Improvements:"
 msgstr "改善項目："
 
@@ -58,36 +58,36 @@ msgstr "在音效指示器內顯示專輯封面"
 msgid "Clear the queue"
 msgstr "清空佇列"
 
-#: data/music.metainfo.xml.in:67 data/music.metainfo.xml.in:86
-#: data/music.metainfo.xml.in:96 data/music.metainfo.xml.in:129
+#: data/music.metainfo.xml.in:67 data/music.metainfo.xml.in:88
+#: data/music.metainfo.xml.in:98 data/music.metainfo.xml.in:131
 msgid "Updated translations"
 msgstr "更新翻譯"
 
-#: data/music.metainfo.xml.in:84
+#: data/music.metainfo.xml.in:86
 msgid "Toolbar shows a shadow when the view is scrolled"
 msgstr "工具列在捲動檢視時會顯示陰影"
 
-#: data/music.metainfo.xml.in:85
+#: data/music.metainfo.xml.in:87
 msgid "Open audio files from within Music"
 msgstr "從《音樂》開啟音訊檔案"
 
-#: data/music.metainfo.xml.in:95
+#: data/music.metainfo.xml.in:97
 msgid "Open folders in the filemanager with Music"
 msgstr "從檔案管理員用《音樂》開啟資料夾"
 
-#: data/music.metainfo.xml.in:109
+#: data/music.metainfo.xml.in:111
 msgid "For tracks without a title, use the file name instead of the whole URI"
 msgstr "為沒有標題的曲目使用檔案名稱而非整個 URI"
 
-#: data/music.metainfo.xml.in:110
+#: data/music.metainfo.xml.in:112
 msgid "Skip invalid files instead of stopping playback"
 msgstr "跳過無效檔案而非停止播放"
 
-#: data/music.metainfo.xml.in:111
+#: data/music.metainfo.xml.in:113
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr "下一首和重複按鈕現在不論重複模式為何仍然會正常運作"
 
-#: data/music.metainfo.xml.in:112
+#: data/music.metainfo.xml.in:114
 msgid ""
 "Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
@@ -97,11 +97,11 @@ msgstr ""
 "韓文、庫德語、馬拉提語、挪威語（博克馬爾語）、波蘭語、葡萄牙語、俄文、簡體中"
 "文、土耳其文，以及烏克蘭語"
 
-#: data/music.metainfo.xml.in:122
+#: data/music.metainfo.xml.in:124
 msgid "Complete rewrite"
 msgstr "完全重寫"
 
-#: data/music.metainfo.xml.in:128
+#: data/music.metainfo.xml.in:130
 msgid "Drop support for Last.FM"
 msgstr "捨棄對 Last.FM 的支援"
 

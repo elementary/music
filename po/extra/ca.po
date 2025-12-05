@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-31 20:05+0000\n"
+"POT-Creation-Date: 2025-12-05 18:04+0000\n"
 "PO-Revision-Date: 2025-08-15 07:55+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
 "Language-Team: Catalan <https://l10n.elementaryos.org/projects/music/extra/"
@@ -47,8 +47,8 @@ msgstr "Poseu ràpidament les cançons preferides a la cua"
 msgid "elementary, Inc."
 msgstr "elementary, Inc."
 
-#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:82
-#: data/music.metainfo.xml.in:93 data/music.metainfo.xml.in:107
+#: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:84
+#: data/music.metainfo.xml.in:95 data/music.metainfo.xml.in:109
 msgid "Improvements:"
 msgstr "Millores:"
 
@@ -60,39 +60,39 @@ msgstr "Mostra la portada de l'àlbum a l'indicador de so"
 msgid "Clear the queue"
 msgstr "Buida la cua"
 
-#: data/music.metainfo.xml.in:67 data/music.metainfo.xml.in:86
-#: data/music.metainfo.xml.in:96 data/music.metainfo.xml.in:129
+#: data/music.metainfo.xml.in:67 data/music.metainfo.xml.in:88
+#: data/music.metainfo.xml.in:98 data/music.metainfo.xml.in:131
 msgid "Updated translations"
 msgstr "Traduccions actualitzades"
 
-#: data/music.metainfo.xml.in:84
+#: data/music.metainfo.xml.in:86
 msgid "Toolbar shows a shadow when the view is scrolled"
 msgstr "La barra d'eines mostra una ombra quan es desplaça la vista."
 
-#: data/music.metainfo.xml.in:85
+#: data/music.metainfo.xml.in:87
 msgid "Open audio files from within Music"
 msgstr "Obriu fitxers d'àudio des de Música."
 
-#: data/music.metainfo.xml.in:95
+#: data/music.metainfo.xml.in:97
 msgid "Open folders in the filemanager with Music"
 msgstr "Obre les carpetes al gestor de fitxers amb Música"
 
-#: data/music.metainfo.xml.in:109
+#: data/music.metainfo.xml.in:111
 msgid "For tracks without a title, use the file name instead of the whole URI"
 msgstr ""
 "Per a les pistes sense títol, usa el nom del fitxer en lloc de l'URI sencer."
 
-#: data/music.metainfo.xml.in:110
+#: data/music.metainfo.xml.in:112
 msgid "Skip invalid files instead of stopping playback"
 msgstr "Omet els fitxers no vàlids en lloc d'aturar la reproducció."
 
-#: data/music.metainfo.xml.in:111
+#: data/music.metainfo.xml.in:113
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr ""
 "Els botons Següent i Repeteix sempre funcionen independentment del mode de "
 "repetició."
 
-#: data/music.metainfo.xml.in:112
+#: data/music.metainfo.xml.in:114
 msgid ""
 "Now available in Catalan, Dutch, Finnish, French, German, Hebrew, Hungarian, "
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
@@ -102,11 +102,11 @@ msgstr ""
 "japonès, coreà, kurd, marathi, noruec bokmål, polonès, portuguès, rus, xinès "
 "simplificat, turc i ucraïnès."
 
-#: data/music.metainfo.xml.in:122
+#: data/music.metainfo.xml.in:124
 msgid "Complete rewrite"
 msgstr "Reescriptura completa"
 
-#: data/music.metainfo.xml.in:128
+#: data/music.metainfo.xml.in:130
 msgid "Drop support for Last.FM"
 msgstr "S'abandona el suport per a Last.FM"
 
