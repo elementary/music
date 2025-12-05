@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-31 20:05+0000\n"
-"PO-Revision-Date: 2021-07-22 10:14+0000\n"
-"Last-Translator: Niels Van Laerhoven <niels1995@gmail.com>\n"
-"Language-Team: Dutch <https://l10n.elementary.io/projects/music/extra/nl/>\n"
+"PO-Revision-Date: 2025-12-05 18:04+0000\n"
+"Last-Translator: Bas Ernst <bas@ernstgenova.it>\n"
+"Language-Team: Dutch <https://l10n.elementaryos.org/projects/music/extra/nl/>"
+"\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4.2\n"
+"X-Generator: Weblate 5.11.4\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
 
 #: data/music.metainfo.xml.in:10 data/music.desktop.in:6
@@ -25,7 +26,7 @@ msgstr "Muziek"
 
 #: data/music.metainfo.xml.in:11
 msgid "Queue and play local audio files"
-msgstr ""
+msgstr "Lokale audiobestanden in de wachtrij plaatsen en afspelen"
 
 #: data/music.metainfo.xml.in:13
 msgid ""
@@ -33,10 +34,13 @@ msgid ""
 "frills. See embedded album artwork. Control playback with media keys or in "
 "the system audio indicator."
 msgstr ""
+"Zonder poespas snel je lokale muziekbestanden aan de wachtrij toevoegen en "
+"beluisteren. Bekijk de bijgesloten albumillustraties. Bedien het afspelen "
+"met de mediatoetsen of via de audio-indicator van het systeem."
 
 #: data/music.metainfo.xml.in:18 data/music.metainfo.xml.in:22
 msgid "Quickly queue up your favorite tracks"
-msgstr ""
+msgstr "Snel je favoriete nummers aan de wachtrij toevoegen"
 
 #: data/music.metainfo.xml.in:55
 msgid "elementary, Inc."
@@ -45,15 +49,15 @@ msgstr "elementary, Inc."
 #: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:82
 #: data/music.metainfo.xml.in:93 data/music.metainfo.xml.in:107
 msgid "Improvements:"
-msgstr ""
+msgstr "Verbeteringen:"
 
 #: data/music.metainfo.xml.in:65
 msgid "Show album art in the sound indicator"
-msgstr ""
+msgstr "Toon albumillustraties in de geluidsindicator"
 
 #: data/music.metainfo.xml.in:66
 msgid "Clear the queue"
-msgstr ""
+msgstr "De wachtrij leegmaken"
 
 #: data/music.metainfo.xml.in:67 data/music.metainfo.xml.in:86
 #: data/music.metainfo.xml.in:96 data/music.metainfo.xml.in:129
@@ -62,27 +66,28 @@ msgstr "Bijgewerkte vertalingen"
 
 #: data/music.metainfo.xml.in:84
 msgid "Toolbar shows a shadow when the view is scrolled"
-msgstr ""
+msgstr "De werkbalk toont een schaduw wanneer door de weergave wordt gebladerd"
 
 #: data/music.metainfo.xml.in:85
 msgid "Open audio files from within Music"
-msgstr ""
+msgstr "Open geluidsbestanden vanuit Muziek"
 
 #: data/music.metainfo.xml.in:95
 msgid "Open folders in the filemanager with Music"
-msgstr ""
+msgstr "Open mappen in de bestandsbeheerder met Muziek"
 
 #: data/music.metainfo.xml.in:109
 msgid "For tracks without a title, use the file name instead of the whole URI"
 msgstr ""
+"Voor nummers zonder titel, gebruik de bestandsnaam in plaats van de hele URI"
 
 #: data/music.metainfo.xml.in:110
 msgid "Skip invalid files instead of stopping playback"
-msgstr ""
+msgstr "Sla ongeldige bestanden over in plaats van het afspelen te stoppen"
 
 #: data/music.metainfo.xml.in:111
 msgid "Next and Repeat buttons always work regardless of repeat mode"
-msgstr ""
+msgstr "De knoppen Volgende en Herhaal werken altijd ongeacht de herhaalmodus"
 
 #: data/music.metainfo.xml.in:112
 msgid ""
@@ -90,24 +95,25 @@ msgid ""
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
 "Russian, Simplified Chinese, Turkish, and Ukrainian"
 msgstr ""
+"Nu beschikbaar in het Catalaans, Nederlands, Fins, Frans, Duits, Hebreeuws, "
+"Hongaars, Japans, Koreaans, Koerdisch, Marathi, Noors Bokmål, Pools, "
+"Portugees, Russisch, Vereenvoudigd Chinees, Turks en Oekraïens"
 
 #: data/music.metainfo.xml.in:122
 msgid "Complete rewrite"
-msgstr ""
+msgstr "Volledig herschrijven"
 
 #: data/music.metainfo.xml.in:128
-#, fuzzy
 msgid "Drop support for Last.FM"
-msgstr "CD-ROM wordt niet langer ondersteund"
+msgstr "Ondersteuning voor Last.FM stopzetten"
 
 #: data/music.desktop.in:7
 msgid "Listen to music"
 msgstr "Luister naar muziek"
 
 #: data/music.desktop.in:9
-#, fuzzy
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
-msgstr "Noise;Muziek;Speler;Audio;MP3;iPod;Afspeellijst;Speel;Media;CD;Telefoon;Liedjes;"
+msgstr "Ruis;Audio;Speler;MP3;Afspelen;Afspeellijst;Media;Liedjes;"
 
 #~ msgid "Drop support for CD-ROM"
 #~ msgstr "CD-ROM wordt niet langer ondersteund"
