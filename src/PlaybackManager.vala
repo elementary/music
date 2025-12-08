@@ -21,7 +21,6 @@ public class Music.PlaybackManager : Object {
     }
 
     private dynamic Gst.Element playbin;
-    private Gst.PbUtils.Discoverer discoverer;
     private uint progress_timer = 0;
     private Settings settings;
 
@@ -51,14 +50,6 @@ public class Music.PlaybackManager : Object {
         var bus = playbin.get_bus ();
         bus.add_watch (0, bus_callback);
         bus.enable_sync_message_emission ();
-
-        try {
-            discoverer = new Gst.PbUtils.Discoverer ((Gst.ClockTime) (5 * Gst.SECOND));
-            discoverer.discovered.connect (update_metadata);
-            discoverer.finished.connect (discoverer.stop);
-        } catch (Error e) {
-            critical ("Unable to start Gstreamer Discoverer: %s", e.message);
-        }
 
         queue_liststore.items_changed.connect (on_items_changed);
 
@@ -102,22 +93,10 @@ public class Music.PlaybackManager : Object {
 
     // Files[] must not contain any null entries
     public void queue_files (File[] files) {
-        discoverer.start ();
         int invalids = 0;
         foreach (unowned var file in files) {
             if (file.query_exists () && "audio" in ContentType.guess (file.get_uri (), null, null)) {
                 var audio_object = new AudioObject (file.get_uri ());
-
-                string? basename = file.get_basename ();
-
-                if (basename != null) {
-                    audio_object.title = basename;
-                } else {
-                    audio_object.title = audio_object.uri;
-                }
-
-                discoverer.discover_uri_async (audio_object.uri);
-
                 queue_liststore.append (audio_object);
             } else {
                 invalids++;
@@ -171,101 +150,6 @@ public class Music.PlaybackManager : Object {
         uint position;
         queue_liststore.find (song, out position);
         queue_liststore.remove (position);
-    }
-
-    private void update_metadata (Gst.PbUtils.DiscovererInfo info, Error? err) {
-        string uri = info.get_uri ();
-        switch (info.get_result ()) {
-            case Gst.PbUtils.DiscovererResult.URI_INVALID:
-                critical ("Couldn't read metadata for '%s': invalid URI.", uri);
-                return;
-            case Gst.PbUtils.DiscovererResult.ERROR:
-                critical ("Couldn't read metadata for '%s': %s", uri, err.message);
-                return;
-            case Gst.PbUtils.DiscovererResult.TIMEOUT:
-                critical ("Couldn't read metadata for '%s': Discovery timed out.", uri);
-                return;
-            case Gst.PbUtils.DiscovererResult.BUSY:
-                critical ("Couldn't read metadata for '%s': Already discovering a file.", uri);
-                return;
-            case Gst.PbUtils.DiscovererResult.MISSING_PLUGINS:
-                critical ("Couldn't read metadata for '%s': Missing plugins.", uri);
-                return;
-            default:
-                break;
-        }
-
-        EqualFunc<string> equal_func = (a, b) => {
-            return ((AudioObject) a).uri == ((AudioObject) b).uri;
-        };
-
-        var temp_audio_object = new AudioObject (uri);
-
-        uint position = -1;
-        queue_liststore.find_with_equal_func (temp_audio_object, equal_func, out position);
-
-        if (position != -1) {
-            var audio_object = (AudioObject) queue_liststore.get_item (position);
-            audio_object.duration = (int64) info.get_duration ();
-
-            unowned Gst.TagList? tag_list = info.get_tags ();
-
-            string _album;
-            tag_list.get_string (Gst.Tags.ALBUM, out _album);
-            if (_album != null) {
-                audio_object.album = _album;
-            }
-
-            string _title;
-            tag_list.get_string (Gst.Tags.TITLE, out _title);
-            if (_title != null) {
-                audio_object.title = _title;
-            }
-
-            string _artist;
-            tag_list.get_string (Gst.Tags.ARTIST, out _artist);
-            if (_artist != null) {
-                audio_object.artist = _artist;
-            } else if (_title != null) { // Don't set artist for files without tags
-                audio_object.artist = _("Unknown");
-            }
-
-            string art_hash = uri;
-            if (_artist != null && _album != null) {
-                art_hash = "%s:%s".printf (_artist, _album);
-            }
-
-            var art_file = File.new_for_path (Path.build_path (
-                Path.DIR_SEPARATOR_S,
-                get_art_cache_dir (),
-                Checksum.compute_for_string (SHA256, art_hash)
-            ));
-
-            if (art_file.query_exists ()) {
-                audio_object.art_url = art_file.get_uri ();
-                audio_object.texture = Gdk.Texture.from_file (art_file);
-            } else {
-                var sample = get_cover_sample (tag_list);
-                if (sample != null) {
-                    var buffer = sample.get_buffer ();
-
-                    if (buffer != null) {
-                        var texture = Gdk.Texture.for_pixbuf (get_pixbuf_from_buffer (buffer));
-                        audio_object.texture = texture;
-
-                        save_art_file.begin (texture, art_file, (obj, res) => {
-                            try {
-                                audio_object.art_url = save_art_file.end (res);
-                            } catch (Error e) {
-                                critical (e.message);
-                            }
-                        });
-                    }
-                }
-            }
-        } else {
-            critical ("Couldn't find '%s' in queue", uri);
-        }
     }
 
     private bool bus_callback (Gst.Bus bus, Gst.Message message) {
@@ -420,67 +304,6 @@ public class Music.PlaybackManager : Object {
 
         next_action.set_enabled (next_sensitive);
         previous_action.set_enabled (previous_sensitive);
-    }
-
-    private Gst.Sample? get_cover_sample (Gst.TagList tag_list) {
-        Gst.Sample cover_sample = null;
-        Gst.Sample sample;
-        for (int i = 0; tag_list.get_sample_index (Gst.Tags.IMAGE, i, out sample); i++) {
-            var caps = sample.get_caps ();
-            unowned Gst.Structure caps_struct = caps.get_structure (0);
-            int image_type = Gst.Tag.ImageType.UNDEFINED;
-            caps_struct.get_enum ("image-type", typeof (Gst.Tag.ImageType), out image_type);
-            if (image_type == Gst.Tag.ImageType.UNDEFINED && cover_sample == null) {
-                cover_sample = sample;
-            } else if (image_type == Gst.Tag.ImageType.FRONT_COVER) {
-                return sample;
-            }
-        }
-
-        return cover_sample;
-    }
-
-    private Gdk.Pixbuf? get_pixbuf_from_buffer (Gst.Buffer buffer) {
-        Gst.MapInfo map_info;
-
-        if (!buffer.map (out map_info, Gst.MapFlags.READ)) {
-            warning ("Could not map memory buffer");
-            return null;
-        }
-
-        Gdk.Pixbuf pix = null;
-
-        try {
-            var loader = new Gdk.PixbufLoader ();
-
-            if (loader.write (map_info.data) && loader.close ()) {
-                pix = loader.get_pixbuf ();
-            }
-        } catch (Error err) {
-            warning ("Error processing image data: %s", err.message);
-        }
-
-        buffer.unmap (map_info);
-
-        return pix;
-    }
-
-    private async string save_art_file (Gdk.Texture texture, File file) throws Error requires (texture != null) {
-        DirUtils.create_with_parents (get_art_cache_dir (), 0755);
-
-        var ostream = yield file.create_async (NONE);
-        yield ostream.write_bytes_async (texture.save_to_png_bytes ());
-
-        return file.get_uri ();
-    }
-
-    private string get_art_cache_dir () {
-        return Path.build_path (
-            Path.DIR_SEPARATOR_S,
-            Environment.get_user_cache_dir (),
-            GLib.Application.get_default ().application_id,
-            "art"
-        );
     }
 
     private void on_items_changed () {
