@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-31 20:05+0000\n"
+"POT-Creation-Date: 2025-12-05 18:04+0000\n"
 "PO-Revision-Date: 2025-05-16 13:55+0000\n"
 "Last-Translator: David Hewitt <davidmhewitt@gmail.com>\n"
 "Language-Team: English (United Kingdom) <https://l10n.elementaryos.org/"
@@ -25,78 +25,27 @@ msgstr ""
 msgid "Music"
 msgstr "Music"
 
-#: src/MainWindow.vala:29
-msgid "Shuffle"
-msgstr "Shuffle"
-
-#: src/MainWindow.vala:52
-msgid "Queue is Empty"
-msgstr "Queue is Empty"
-
-#: src/MainWindow.vala:53
-msgid "Audio files opened from Files will appear here"
-msgstr "Audio files opened from Files will appear here"
-
-#: src/MainWindow.vala:58
-#, fuzzy
-#| msgid "Try another search"
-msgid "Try changing search terms"
-msgstr "Try another search"
-
-#: src/MainWindow.vala:83
-msgid "Open Files…"
-msgstr "Open Files…"
-
-#: src/MainWindow.vala:100
-msgid "Clear Queue"
-msgstr "Clear Queue"
-
-#: src/MainWindow.vala:218
-#, c-format
-msgid "%d invalid file was not added to the queue"
-msgid_plural "%d invalid files were not added to the queue"
-msgstr[0] "%d invalid file was not added to the queue"
-msgstr[1] "%d invalid files were not added to the queue"
-
-#: src/MainWindow.vala:259
-#, fuzzy, c-format
-#| msgid "No Results"
-msgid "No Results for “%s”"
-msgstr "No Results"
-
-#: src/MainWindow.vala:272
+#: src/MainWindow.vala:74
 msgid "All files"
 msgstr "All files"
 
-#: src/MainWindow.vala:277
+#: src/MainWindow.vala:79
 msgid "Music files"
 msgstr "Music files"
 
-#: src/MainWindow.vala:286
+#: src/MainWindow.vala:88
 msgid "Open"
 msgstr "Open"
 
-#: src/MainWindow.vala:290
+#: src/MainWindow.vala:92
 msgid "Open audio files"
 msgstr "Open audio files"
 
-#: src/MainWindow.vala:310
+#: src/MainWindow.vala:112
 #, fuzzy
 #| msgid "Could not find media file"
 msgid "Couldn't add audio files"
 msgstr "Could not find media file"
-
-#: src/MainWindow.vala:328
-msgid "Repeat None"
-msgstr "Repeat None"
-
-#: src/MainWindow.vala:332
-msgid "Repeat All"
-msgstr "Repeat All"
-
-#: src/MainWindow.vala:336
-msgid "Repeat One"
-msgstr "Repeat One"
 
 #: src/PlaybackManager.vala:147
 #, c-format
@@ -129,6 +78,57 @@ msgstr "Play"
 #: src/Views/NowPlayingView.vala:98
 msgid "Pause"
 msgstr "Pause"
+
+#: src/Views/QueueView.vala:26
+msgid "Shuffle"
+msgstr "Shuffle"
+
+#: src/Views/QueueView.vala:49
+msgid "Queue is Empty"
+msgstr "Queue is Empty"
+
+#: src/Views/QueueView.vala:50
+msgid "Audio files opened from Files will appear here"
+msgstr "Audio files opened from Files will appear here"
+
+#: src/Views/QueueView.vala:55
+#, fuzzy
+#| msgid "Try another search"
+msgid "Try changing search terms"
+msgstr "Try another search"
+
+#: src/Views/QueueView.vala:80
+msgid "Open Files…"
+msgstr "Open Files…"
+
+#: src/Views/QueueView.vala:94
+msgid "Clear Queue"
+msgstr "Clear Queue"
+
+#: src/Views/QueueView.vala:166
+#, c-format
+msgid "%d invalid file was not added to the queue"
+msgid_plural "%d invalid files were not added to the queue"
+msgstr[0] "%d invalid file was not added to the queue"
+msgstr[1] "%d invalid files were not added to the queue"
+
+#: src/Views/QueueView.vala:207
+#, fuzzy, c-format
+#| msgid "No Results"
+msgid "No Results for “%s”"
+msgstr "No Results"
+
+#: src/Views/QueueView.vala:222
+msgid "Repeat None"
+msgstr "Repeat None"
+
+#: src/Views/QueueView.vala:226
+msgid "Repeat All"
+msgstr "Repeat All"
+
+#: src/Views/QueueView.vala:230
+msgid "Repeat One"
+msgstr "Repeat One"
 
 #: src/Widgets/SearchBar.vala:36
 msgid "Search titles in playlist"

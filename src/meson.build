@@ -7,6 +7,7 @@ sources = [
     'DBus/MprisPlayer.vala',
     'DBus/MprisRoot.vala',
     'Views/NowPlayingView.vala',
+    'Views/QueueView.vala',
     'Widgets/AlbumImage.vala',
     'Widgets/SearchBar.vala',
     'Widgets/SeekBar.vala',

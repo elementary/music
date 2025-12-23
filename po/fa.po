@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-31 20:05+0000\n"
+"POT-Creation-Date: 2025-12-05 18:04+0000\n"
 "PO-Revision-Date: 2024-09-25 23:27+0000\n"
 "Last-Translator: Hossein <hossein17@duck.com>\n"
 "Language-Team: Persian <https://l10n.elementary.io/projects/music/music/fa/"
@@ -25,77 +25,27 @@ msgstr ""
 msgid "Music"
 msgstr "موسیقی"
 
-#: src/MainWindow.vala:29
-msgid "Shuffle"
-msgstr "پخش تصادفی"
-
-#: src/MainWindow.vala:52
-msgid "Queue is Empty"
-msgstr "صف خالیست"
-
-#: src/MainWindow.vala:53
-msgid "Audio files opened from Files will appear here"
-msgstr "فایل های صوتی باز شده از Files در اینجا ظاهر می شوند"
-
-#: src/MainWindow.vala:58
-msgid "Try changing search terms"
-msgstr ""
-
-#: src/MainWindow.vala:83
-msgid "Open Files…"
-msgstr "باز کردن فایل ها…"
-
-#: src/MainWindow.vala:100
-#, fuzzy
-#| msgctxt "Name of the playlist"
-#| msgid "Queue"
-msgid "Clear Queue"
-msgstr "صف"
-
-#: src/MainWindow.vala:218
-#, c-format
-msgid "%d invalid file was not added to the queue"
-msgid_plural "%d invalid files were not added to the queue"
-msgstr[0] "%d فایل نامعتبر به صف اضافه نشد"
-
-#: src/MainWindow.vala:259
-#, fuzzy, c-format
-msgid "No Results for “%s”"
-msgstr "بدون امتیاز"
-
-#: src/MainWindow.vala:272
+#: src/MainWindow.vala:74
 msgid "All files"
 msgstr "همه فایل ها"
 
-#: src/MainWindow.vala:277
+#: src/MainWindow.vala:79
 msgid "Music files"
 msgstr "فایل های موسیقی"
 
-#: src/MainWindow.vala:286
+#: src/MainWindow.vala:88
 msgid "Open"
 msgstr "باز کردن"
 
-#: src/MainWindow.vala:290
+#: src/MainWindow.vala:92
 msgid "Open audio files"
 msgstr "باز کردن فایل صوتی"
 
-#: src/MainWindow.vala:310
+#: src/MainWindow.vala:112
 #, fuzzy
 #| msgid "Could not find media file"
 msgid "Couldn't add audio files"
 msgstr "نمی‌توان پرونده رسانه را پیدا کرد"
-
-#: src/MainWindow.vala:328
-msgid "Repeat None"
-msgstr "بازپخش هیچکدام"
-
-#: src/MainWindow.vala:332
-msgid "Repeat All"
-msgstr "بازپخش آلبوم"
-
-#: src/MainWindow.vala:336
-msgid "Repeat One"
-msgstr "بازپخش آهنگ"
 
 #: src/PlaybackManager.vala:147
 #, c-format
@@ -127,6 +77,56 @@ msgstr "پخش"
 #: src/Views/NowPlayingView.vala:98
 msgid "Pause"
 msgstr "نگه داشتن"
+
+#: src/Views/QueueView.vala:26
+msgid "Shuffle"
+msgstr "پخش تصادفی"
+
+#: src/Views/QueueView.vala:49
+msgid "Queue is Empty"
+msgstr "صف خالیست"
+
+#: src/Views/QueueView.vala:50
+msgid "Audio files opened from Files will appear here"
+msgstr "فایل های صوتی باز شده از Files در اینجا ظاهر می شوند"
+
+#: src/Views/QueueView.vala:55
+msgid "Try changing search terms"
+msgstr ""
+
+#: src/Views/QueueView.vala:80
+msgid "Open Files…"
+msgstr "باز کردن فایل ها…"
+
+#: src/Views/QueueView.vala:94
+#, fuzzy
+#| msgctxt "Name of the playlist"
+#| msgid "Queue"
+msgid "Clear Queue"
+msgstr "صف"
+
+#: src/Views/QueueView.vala:166
+#, c-format
+msgid "%d invalid file was not added to the queue"
+msgid_plural "%d invalid files were not added to the queue"
+msgstr[0] "%d فایل نامعتبر به صف اضافه نشد"
+
+#: src/Views/QueueView.vala:207
+#, fuzzy, c-format
+msgid "No Results for “%s”"
+msgstr "بدون امتیاز"
+
+#: src/Views/QueueView.vala:222
+msgid "Repeat None"
+msgstr "بازپخش هیچکدام"
+
+#: src/Views/QueueView.vala:226
+msgid "Repeat All"
+msgstr "بازپخش آلبوم"
+
+#: src/Views/QueueView.vala:230
+msgid "Repeat One"
+msgstr "بازپخش آهنگ"
 
 #: src/Widgets/SearchBar.vala:36
 msgid "Search titles in playlist"

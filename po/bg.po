@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-31 20:05+0000\n"
+"POT-Creation-Date: 2025-12-05 18:04+0000\n"
 "PO-Revision-Date: 2017-05-09 22:27+0000\n"
 "Last-Translator: Martin Tomov <martin.tomov@boomer.digital>\n"
 "Language-Team: Bulgarian <https://l10n.elementary.io/projects/music/music/bg/"
@@ -25,87 +25,31 @@ msgstr ""
 msgid "Music"
 msgstr "Музика"
 
-#: src/MainWindow.vala:29
-#, fuzzy
-msgid "Shuffle"
-msgstr "Включване на разбъркване"
-
-#: src/MainWindow.vala:52
-msgid "Queue is Empty"
-msgstr ""
-
-#: src/MainWindow.vala:53
-msgid "Audio files opened from Files will appear here"
-msgstr ""
-
-#: src/MainWindow.vala:58
-msgid "Try changing search terms"
-msgstr ""
-
-#: src/MainWindow.vala:83
-#, fuzzy
-#| msgid "Other Files"
-msgid "Open Files…"
-msgstr "Други файлове"
-
-#: src/MainWindow.vala:100
-#, fuzzy
-#| msgid "Queue"
-msgid "Clear Queue"
-msgstr "Опашка"
-
-#: src/MainWindow.vala:218
-#, c-format
-msgid "%d invalid file was not added to the queue"
-msgid_plural "%d invalid files were not added to the queue"
-msgstr[0] ""
-msgstr[1] ""
-
-#: src/MainWindow.vala:259
-#, fuzzy, c-format
-msgid "No Results for “%s”"
-msgstr "Няма оценки"
-
-#: src/MainWindow.vala:272
+#: src/MainWindow.vala:74
 #, fuzzy
 #| msgid "All Years"
 msgid "All files"
 msgstr "Всички години"
 
-#: src/MainWindow.vala:277
+#: src/MainWindow.vala:79
 #, fuzzy
 #| msgid "Music Folder"
 msgid "Music files"
 msgstr "Папка за музика"
 
-#: src/MainWindow.vala:286
+#: src/MainWindow.vala:88
 msgid "Open"
 msgstr "Отваряне"
 
-#: src/MainWindow.vala:290
+#: src/MainWindow.vala:92
 msgid "Open audio files"
 msgstr ""
 
-#: src/MainWindow.vala:310
+#: src/MainWindow.vala:112
 #, fuzzy
 #| msgid "Could not find media file"
 msgid "Couldn't add audio files"
 msgstr "Не може да се намери медиен файл"
-
-#: src/MainWindow.vala:328
-#, fuzzy
-msgid "Repeat None"
-msgstr "Повтаряне на песен"
-
-#: src/MainWindow.vala:332
-#, fuzzy
-msgid "Repeat All"
-msgstr "Повтаряне на албум"
-
-#: src/MainWindow.vala:336
-#, fuzzy
-msgid "Repeat One"
-msgstr "Повтаряне на песен"
 
 #: src/PlaybackManager.vala:147
 #, c-format
@@ -139,6 +83,62 @@ msgstr "Изпълнение"
 #: src/Views/NowPlayingView.vala:98
 msgid "Pause"
 msgstr "Прекъсване"
+
+#: src/Views/QueueView.vala:26
+#, fuzzy
+msgid "Shuffle"
+msgstr "Включване на разбъркване"
+
+#: src/Views/QueueView.vala:49
+msgid "Queue is Empty"
+msgstr ""
+
+#: src/Views/QueueView.vala:50
+msgid "Audio files opened from Files will appear here"
+msgstr ""
+
+#: src/Views/QueueView.vala:55
+msgid "Try changing search terms"
+msgstr ""
+
+#: src/Views/QueueView.vala:80
+#, fuzzy
+#| msgid "Other Files"
+msgid "Open Files…"
+msgstr "Други файлове"
+
+#: src/Views/QueueView.vala:94
+#, fuzzy
+#| msgid "Queue"
+msgid "Clear Queue"
+msgstr "Опашка"
+
+#: src/Views/QueueView.vala:166
+#, c-format
+msgid "%d invalid file was not added to the queue"
+msgid_plural "%d invalid files were not added to the queue"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Views/QueueView.vala:207
+#, fuzzy, c-format
+msgid "No Results for “%s”"
+msgstr "Няма оценки"
+
+#: src/Views/QueueView.vala:222
+#, fuzzy
+msgid "Repeat None"
+msgstr "Повтаряне на песен"
+
+#: src/Views/QueueView.vala:226
+#, fuzzy
+msgid "Repeat All"
+msgstr "Повтаряне на албум"
+
+#: src/Views/QueueView.vala:230
+#, fuzzy
+msgid "Repeat One"
+msgstr "Повтаряне на песен"
 
 #: src/Widgets/SearchBar.vala:36
 msgid "Search titles in playlist"

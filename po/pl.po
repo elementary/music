@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: beat-box 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-31 20:05+0000\n"
+"POT-Creation-Date: 2025-12-05 18:04+0000\n"
 "PO-Revision-Date: 2025-03-30 11:55+0000\n"
 "Last-Translator: Marcin Serwin <marcin@serwin.dev>\n"
 "Language-Team: Polish <https://l10n.elementaryos.org/projects/music/music/pl/"
@@ -26,79 +26,27 @@ msgstr ""
 msgid "Music"
 msgstr "Muzyka"
 
-#: src/MainWindow.vala:29
-msgid "Shuffle"
-msgstr "Losowo"
-
-#: src/MainWindow.vala:52
-msgid "Queue is Empty"
-msgstr "Kolejka jest pusta"
-
-#: src/MainWindow.vala:53
-msgid "Audio files opened from Files will appear here"
-msgstr "Pliki audio otwarte przez Pliki pojawią się tutaj"
-
-#: src/MainWindow.vala:58
-#, fuzzy
-#| msgid "Try another search"
-msgid "Try changing search terms"
-msgstr "Spróbuj innego wyszukiwania"
-
-#: src/MainWindow.vala:83
-msgid "Open Files…"
-msgstr "Otwórz pliki…"
-
-#: src/MainWindow.vala:100
-msgid "Clear Queue"
-msgstr "Wyczyść kolejkę"
-
-#: src/MainWindow.vala:218
-#, c-format
-msgid "%d invalid file was not added to the queue"
-msgid_plural "%d invalid files were not added to the queue"
-msgstr[0] "%d niepoprawny plik nie został dodana do kolejki"
-msgstr[1] "%d niepoprawne pliki nie zostały dodane do kolejki"
-msgstr[2] "%d niepoprawnych plików nie zostało dodanych do kolejki"
-
-#: src/MainWindow.vala:259
-#, fuzzy, c-format
-#| msgid "No Results"
-msgid "No Results for “%s”"
-msgstr "Brak wyników"
-
-#: src/MainWindow.vala:272
+#: src/MainWindow.vala:74
 msgid "All files"
 msgstr "Wszystkie pliki"
 
-#: src/MainWindow.vala:277
+#: src/MainWindow.vala:79
 msgid "Music files"
 msgstr "Pliki z muzyką"
 
-#: src/MainWindow.vala:286
+#: src/MainWindow.vala:88
 msgid "Open"
 msgstr "Otwórz"
 
-#: src/MainWindow.vala:290
+#: src/MainWindow.vala:92
 msgid "Open audio files"
 msgstr "Otwórz pliki audio"
 
-#: src/MainWindow.vala:310
+#: src/MainWindow.vala:112
 #, fuzzy
 #| msgid "Could not find media file"
 msgid "Couldn't add audio files"
 msgstr "Nie można odnaleźć plików nagrań"
-
-#: src/MainWindow.vala:328
-msgid "Repeat None"
-msgstr "Nie powtarzaj"
-
-#: src/MainWindow.vala:332
-msgid "Repeat All"
-msgstr "Powtarzaj wszystko"
-
-#: src/MainWindow.vala:336
-msgid "Repeat One"
-msgstr "Powtarzaj jedno"
 
 #: src/PlaybackManager.vala:147
 #, c-format
@@ -132,6 +80,58 @@ msgstr "Odtwórz"
 #: src/Views/NowPlayingView.vala:98
 msgid "Pause"
 msgstr "Pauza"
+
+#: src/Views/QueueView.vala:26
+msgid "Shuffle"
+msgstr "Losowo"
+
+#: src/Views/QueueView.vala:49
+msgid "Queue is Empty"
+msgstr "Kolejka jest pusta"
+
+#: src/Views/QueueView.vala:50
+msgid "Audio files opened from Files will appear here"
+msgstr "Pliki audio otwarte przez Pliki pojawią się tutaj"
+
+#: src/Views/QueueView.vala:55
+#, fuzzy
+#| msgid "Try another search"
+msgid "Try changing search terms"
+msgstr "Spróbuj innego wyszukiwania"
+
+#: src/Views/QueueView.vala:80
+msgid "Open Files…"
+msgstr "Otwórz pliki…"
+
+#: src/Views/QueueView.vala:94
+msgid "Clear Queue"
+msgstr "Wyczyść kolejkę"
+
+#: src/Views/QueueView.vala:166
+#, c-format
+msgid "%d invalid file was not added to the queue"
+msgid_plural "%d invalid files were not added to the queue"
+msgstr[0] "%d niepoprawny plik nie został dodana do kolejki"
+msgstr[1] "%d niepoprawne pliki nie zostały dodane do kolejki"
+msgstr[2] "%d niepoprawnych plików nie zostało dodanych do kolejki"
+
+#: src/Views/QueueView.vala:207
+#, fuzzy, c-format
+#| msgid "No Results"
+msgid "No Results for “%s”"
+msgstr "Brak wyników"
+
+#: src/Views/QueueView.vala:222
+msgid "Repeat None"
+msgstr "Nie powtarzaj"
+
+#: src/Views/QueueView.vala:226
+msgid "Repeat All"
+msgstr "Powtarzaj wszystko"
+
+#: src/Views/QueueView.vala:230
+msgid "Repeat One"
+msgstr "Powtarzaj jedno"
 
 #: src/Widgets/SearchBar.vala:36
 msgid "Search titles in playlist"
