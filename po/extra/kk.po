@@ -3,23 +3,25 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-05 18:04+0000\n"
-"PO-Revision-Date: 2016-01-04 18:37+0000\n"
-"Last-Translator: Launchpad Translations Administrators <Unknown>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2026-03-16 08:55+0000\n"
+"Last-Translator: AnmiTaliDev <anmitali198@gmail.com>\n"
+"Language-Team: Kazakh <https://l10n.elementaryos.org/projects/music/extra/kk/"
+">\n"
+"Language: kk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.11.4\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:56+0000\n"
-"X-Generator: Launchpad (build 18330)\n"
 
 #: data/music.metainfo.xml.in:10 data/music.desktop.in:6
 msgid "Music"
-msgstr ""
+msgstr "Музыка"
 
 #: data/music.metainfo.xml.in:11
 msgid "Queue and play local audio files"
-msgstr ""
+msgstr "Жергілікті аудио файлдарды кезекке қою және ойнату"
 
 #: data/music.metainfo.xml.in:13
 msgid ""
@@ -27,56 +29,61 @@ msgid ""
 "frills. See embedded album artwork. Control playback with media keys or in "
 "the system audio indicator."
 msgstr ""
+"Жергілікті музыка файлдарыңызды артық мүмкіндіктерсіз тез кезекке қойып "
+"тыңдаңыз. Енгізілген альбом өнерін қараңыз. Медиа пернелер немесе жүйелік "
+"аудио индикатор арқылы ойнатуды басқарыңыз."
 
 #: data/music.metainfo.xml.in:18 data/music.metainfo.xml.in:22
 msgid "Quickly queue up your favorite tracks"
-msgstr ""
+msgstr "Таңдаулы треклеріңізді тез кезекке қойыңыз"
 
 #: data/music.metainfo.xml.in:55
 msgid "elementary, Inc."
-msgstr ""
+msgstr "elementary, Inc."
 
 #: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:84
 #: data/music.metainfo.xml.in:95 data/music.metainfo.xml.in:109
 msgid "Improvements:"
-msgstr ""
+msgstr "Жақсартулар:"
 
 #: data/music.metainfo.xml.in:65
 msgid "Show album art in the sound indicator"
-msgstr ""
+msgstr "Дыбыс индикаторында альбом суретін көрсету"
 
 #: data/music.metainfo.xml.in:66
 msgid "Clear the queue"
-msgstr ""
+msgstr "Кезекті тазалау"
 
 #: data/music.metainfo.xml.in:67 data/music.metainfo.xml.in:88
 #: data/music.metainfo.xml.in:98 data/music.metainfo.xml.in:131
 msgid "Updated translations"
-msgstr ""
+msgstr "Аудармалар жаңартылды"
 
 #: data/music.metainfo.xml.in:86
 msgid "Toolbar shows a shadow when the view is scrolled"
-msgstr ""
+msgstr "Қарау айналдырылғанда құралдар тақтасы көлеңке көрсетеді"
 
 #: data/music.metainfo.xml.in:87
 msgid "Open audio files from within Music"
-msgstr ""
+msgstr "Музыка ішінен аудио файлдарды ашу"
 
 #: data/music.metainfo.xml.in:97
 msgid "Open folders in the filemanager with Music"
-msgstr ""
+msgstr "Музыкамен файл менеджерінде қалталарды ашу"
 
 #: data/music.metainfo.xml.in:111
 msgid "For tracks without a title, use the file name instead of the whole URI"
-msgstr ""
+msgstr "Атауы жоқ треклер үшін толық URI орнына файл атауын пайдалану"
 
 #: data/music.metainfo.xml.in:112
 msgid "Skip invalid files instead of stopping playback"
-msgstr ""
+msgstr "Ойнатуды тоқтатудың орнына жарамсыз файлдарды өткізіп жіберу"
 
 #: data/music.metainfo.xml.in:113
 msgid "Next and Repeat buttons always work regardless of repeat mode"
 msgstr ""
+"Келесі және Қайталау түймелері қайталау режиміне қарамастан әрдайым жұмыс "
+"істейді"
 
 #: data/music.metainfo.xml.in:114
 msgid ""
@@ -84,19 +91,22 @@ msgid ""
 "Japanese, Korean, Kurdish, Marathi, Norwegian Bokmål, Polish, Portuguese, "
 "Russian, Simplified Chinese, Turkish, and Ukrainian"
 msgstr ""
+"Қазір каталан, голланд, фин, француз, неміс, иврит, венгр, жапон, корей, "
+"күрд, маратхи, норвег бокмол, поляк, португал, орыс, жеңілдетілген қытай, "
+"түрік және украин тілдерінде қол жетімді"
 
 #: data/music.metainfo.xml.in:124
 msgid "Complete rewrite"
-msgstr ""
+msgstr "Толық қайта жазу"
 
 #: data/music.metainfo.xml.in:130
 msgid "Drop support for Last.FM"
-msgstr ""
+msgstr "Last.FM қолдауын алып тастау"
 
 #: data/music.desktop.in:7
 msgid "Listen to music"
-msgstr ""
+msgstr "Музыка тыңдау"
 
 #: data/music.desktop.in:9
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
-msgstr ""
+msgstr "Шу;Аудио;Ойнатқыш;MP3;Ойнату;Ойнату тізімі;Медиа;Әндер;"
