@@ -131,6 +131,9 @@ public class Music.Application : Gtk.Application {
         return elements;
     }
 
+    /**
+     * Flattens files and those contained in (sub)directories
+     */
     public static File[] loop_through_files (File[] files) {
         // All of these will be returned later in bulk
         File[] elements = {};
