@@ -11,7 +11,7 @@ public class Music.PlaylistObject : Object {
 
 
     public PlaylistObject.with_file (File playlist) {
-        Object(playlist_file: playlist);
+        Object (playlist_file: playlist);
     }
 
     construct {
