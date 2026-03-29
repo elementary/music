@@ -11,6 +11,7 @@ public class Music.Application : Gtk.Application {
     public const string ACTION_SHUFFLE = "action-shuffle";
     public const string ACTION_FIND = "action-find";
     public const string ACTION_CLEAR_QUEUE = "action-clear-queue";
+    public const string ACTION_SAVE_TO_PLAYLIST = "action-save-to-playlist";
     public const string ACTION_QUIT = "action-quit";
 
     private const ActionEntry[] ACTION_ENTRIES = {
@@ -45,6 +46,7 @@ public class Music.Application : Gtk.Application {
 
         set_accels_for_action (ACTION_PREFIX + ACTION_FIND, {"<Ctrl>F"});
         set_accels_for_action (ACTION_PREFIX + ACTION_QUIT, {"<Ctrl>Q"});
+        set_accels_for_action (ACTION_PREFIX + ACTION_SAVE_TO_PLAYLIST, {"<Ctrl>S"});
 
         var granite_settings = Granite.Settings.get_default ();
         var gtk_settings = Gtk.Settings.get_default ();
@@ -146,6 +148,16 @@ public class Music.Application : Gtk.Application {
                     elements += directory_file;
                 }
 
+                continue;
+            }
+            else if (PlaylistObject.is_playlist (file)) {
+                PlaylistObject playlist = new PlaylistObject.with_file (file);
+
+                foreach (File playlist_file in playlist.get_uri_list ()) {
+                    elements += playlist_file;
+                }
+
+                // Don't add the playlist file itself
                 continue;
             }
 
