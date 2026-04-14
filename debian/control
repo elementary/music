@@ -1,7 +1,7 @@
 Source: io.elementary.music
 Section: sound
 Priority: optional
-Maintainer: elementary, Inc. <builds@elementary.io>
+Maintainer: elementary <builds@elementary.io>
 Build-Depends: debhelper (>= 10.5.1),
                libadwaita-1-dev (>= 1.4.0),
                libgranite-7-dev (>= 7.6.0),
