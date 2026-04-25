@@ -21,6 +21,7 @@ public class Music.PlaybackManager : Object {
     }
 
     private dynamic Gst.Element playbin;
+    private dynamic Gst.Element rgvolume;
     private uint progress_timer = 0;
     private Settings settings;
 
@@ -46,6 +47,8 @@ public class Music.PlaybackManager : Object {
         queue_liststore = new ListStore (typeof (AudioObject));
 
         playbin = Gst.ElementFactory.make ("playbin", "playbin");
+        rgvolume = Gst.ElementFactory.make ("rgvolume", "replaygain");
+        playbin.set_property ("audio-filter", rgvolume);
 
         var bus = playbin.get_bus ();
         bus.add_watch (0, bus_callback);
