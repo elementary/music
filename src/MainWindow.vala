@@ -6,6 +6,7 @@
 public class Music.MainWindow : Gtk.ApplicationWindow {
     public const string ACTION_PREFIX = "win.";
     public const string ACTION_OPEN = "action-open";
+    public const string ACTION_OPEN_FOLDER = "action-open-folder";
 
     private QueueView queue_view;
 
@@ -61,8 +62,13 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
         open_action.activate.connect (open_files);
         add_action (open_action);
 
+        var open_folder_action = new SimpleAction (ACTION_OPEN_FOLDER, null);
+        open_folder_action.activate.connect (open_folder);
+        add_action (open_folder_action);
+
         unowned var app = ((Gtk.Application) GLib.Application.get_default ());
         app.set_accels_for_action (ACTION_PREFIX + ACTION_OPEN, {"<Ctrl>O"});
+        app.set_accels_for_action (ACTION_PREFIX + ACTION_OPEN_FOLDER, {"<Ctrl><Shift>O"});
     }
 
     public void start_search () {
@@ -96,30 +102,59 @@ public class Music.MainWindow : Gtk.ApplicationWindow {
             try {
                 var files = file_dialog.open_multiple.end (res);
 
-                File[] file_array = {};
-                for (int i = 0; i < files.get_n_items (); i++) {
-                    file_array += (File)(files.get_item (i));
-                }
-
-                var files_to_play = Application.loop_through_files (file_array);
-                PlaybackManager.get_default ().queue_files (files_to_play);
+                handle_selected_files (files);
             } catch (Error e) {
-                if (e.matches (Gtk.DialogError.quark (), Gtk.DialogError.DISMISSED)) {
-                    return;
-                }
-
-                var dialog = new Granite.MessageDialog (
-                    _("Couldn't add audio files"),
-                    e.message,
-                    new ThemedIcon ("document-open")
-                ) {
-                    badge_icon = new ThemedIcon ("dialog-error"),
-                    modal = true,
-                    transient_for = this
-                };
-                dialog.present ();
-                dialog.response.connect (dialog.destroy);
+                handle_file_dialog_error (e);
             }
         });
+    }
+
+    /**
+     * Same as open_files, except there is not filter and it uses the Folder dialog :
+     *  No folder/file is pre-selected when entering a directory and individual files cannot be selected
+     */
+    private void open_folder () {
+        var file_dialog = new Gtk.FileDialog () {
+            accept_label = _("Open"),
+            modal = true,
+            title = _("Open folder(s) containing audio files")
+        };
+
+        file_dialog.select_multiple_folders.begin (this, null, (obj, res) => {
+            try {
+                var folders = file_dialog.select_multiple_folders.end (res);
+
+                handle_selected_files (folders);
+            } catch (Error e) {
+                handle_file_dialog_error (e);
+            }
+        });
+    }
+
+    private void handle_selected_files (GLib.ListModel files) {
+        File[] file_array = {};
+        for (int i = 0; i < files.get_n_items (); i++) {
+            file_array += (File)(files.get_item (i));
+        }
+        var files_to_play = Application.loop_through_files (file_array);
+        PlaybackManager.get_default ().queue_files (files_to_play);
+    }
+
+    private void handle_file_dialog_error (Error e) {
+        if (e.matches (Gtk.DialogError.quark (), Gtk.DialogError.DISMISSED)) {
+            return;
+        }
+
+        var dialog = new Granite.MessageDialog (
+            _("Couldn't add audio files"),
+            e.message,
+            new ThemedIcon ("document-open")
+        ) {
+            badge_icon = new ThemedIcon ("dialog-error"),
+            modal = true,
+            transient_for = this
+        };
+        dialog.present ();
+        dialog.response.connect (dialog.destroy);
     }
 }
