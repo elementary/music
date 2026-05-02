@@ -43,7 +43,6 @@ public class Music.PlaybackManager : Object {
     private PlaybackManager () {}
 
     construct {
-        settings = new Settings ("io.elementary.music");
         queue_liststore = new ListStore (typeof (AudioObject));
 
         playbin = Gst.ElementFactory.make ("playbin", "playbin");
@@ -66,7 +65,8 @@ public class Music.PlaybackManager : Object {
         next_action = new SimpleAction (Application.ACTION_NEXT, null);
         next_action.activate.connect (() => next ());
 
-        play_pause_action = new SimpleAction.stateful (Application.ACTION_PLAY_PAUSE, null, new Variant.boolean (false));
+        play_pause_action =
+            new SimpleAction.stateful (Application.ACTION_PLAY_PAUSE, null, new Variant.boolean (false));
         play_pause_action.change_state.connect (play_pause);
 
         previous_action = new SimpleAction (Application.ACTION_PREVIOUS, null);
@@ -90,8 +90,12 @@ public class Music.PlaybackManager : Object {
         bind_property ("has-items", clear_action, "enabled", SYNC_CREATE);
     }
 
+    public void seek_to_progress_nano_seconds (int64 progress) {
+        playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, progress);
+    }
+
     public void seek_to_progress (double percent) {
-        playbin.seek_simple (Gst.Format.TIME, Gst.SeekFlags.FLUSH, (int64)(percent * current_audio.duration));
+        seek_to_progress_nano_seconds ((int64)(percent * current_audio.duration));
     }
 
     // Files[] must not contain any null entries
@@ -187,6 +191,13 @@ public class Music.PlaybackManager : Object {
                         int64 position = 0;
                         playbin.query_position (Gst.Format.TIME, out position);
                         playback_position = position.clamp (0, current_audio.duration);
+
+                        int playback_position_seconds = (int)(playback_position / 1000000000);
+                        // Save progress every other second, to reduce disk writes
+                        if (playback_position_seconds % 2 == 0) {
+                            debug ("setting progress: " + (playback_position_seconds).to_string () + "s");
+                            settings.set_int ("progression-last-played", playback_position_seconds);
+                        }
 
                         return Source.CONTINUE;
                     });
@@ -383,6 +394,27 @@ public class Music.PlaybackManager : Object {
             }
 
             current_audio = (AudioObject) queue_liststore.get_item (position);
+
+            // Read then restore saved progress
+            var progression_last_played_seconds = settings.get_int ("progression-last-played");
+            if (progression_last_played_seconds > 0) {
+                int64 progression_last_played = (int64)progression_last_played_seconds * 1000000000;
+
+                // Wait for current_audio.duration to be set by the object responsible for setting it
+                GLib.Timeout.add (50, () => {
+                    if (current_audio.duration != 0) {
+                        // Do not seek if duration is inferior to seeking position
+                        if (current_audio.duration > progression_last_played) {
+                            info ("saved progress found and valid, restoring it: %i", progression_last_played_seconds);
+                            seek_to_progress_nano_seconds (progression_last_played);
+                        }
+                        return Source.REMOVE;
+                    }
+
+                    // Track metadata are not set yet, continue to wait before restoring playback position
+                    return Source.CONTINUE;
+                });
+            }
         }
     }
 }

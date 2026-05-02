@@ -88,7 +88,8 @@ public class Music.TrackRow : Granite.Bin {
             play_icon.spinning = playback_manager.current_audio == audio_object;
         });
 
-        var play_pause_action = (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
+        var play_pause_action =
+            (SimpleAction) GLib.Application.get_default ().lookup_action (Application.ACTION_PLAY_PAUSE);
         update_playing (play_pause_action.get_state ().get_boolean ());
 
         GLib.Application.get_default ().action_state_changed.connect ((name, new_state) => {
