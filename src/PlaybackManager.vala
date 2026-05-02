@@ -65,7 +65,8 @@ public class Music.PlaybackManager : Object {
         next_action = new SimpleAction (Application.ACTION_NEXT, null);
         next_action.activate.connect (() => next ());
 
-        play_pause_action = new SimpleAction.stateful (Application.ACTION_PLAY_PAUSE, null, new Variant.boolean (false));
+        play_pause_action =
+            new SimpleAction.stateful (Application.ACTION_PLAY_PAUSE, null, new Variant.boolean (false));
         play_pause_action.change_state.connect (play_pause);
 
         previous_action = new SimpleAction (Application.ACTION_PREVIOUS, null);
@@ -398,7 +399,7 @@ public class Music.PlaybackManager : Object {
             var progression_last_played_seconds = settings.get_int ("progression-last-played");
             if (progression_last_played_seconds > 0) {
                 int64 progression_last_played = (int64)progression_last_played_seconds * 1000000000;
-                
+
                 // Wait for current_audio.duration to be set by the object responsible for setting it
                 GLib.Timeout.add (50, () => {
                     if (current_audio.duration != 0) {
