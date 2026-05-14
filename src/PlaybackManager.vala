@@ -95,6 +95,8 @@ public class Music.PlaybackManager : Object {
     }
 
     // Files[] must not contain any null entries
+    // The entries in Files[] are in an undefined order so we must order them somehow
+    // AudioObjects start discovering metadata asynchronously on creation
     public void queue_files (File[] files) {
         int invalids = 0;
         foreach (unowned var file in files) {
@@ -136,6 +138,36 @@ public class Music.PlaybackManager : Object {
                 application.send_notification ("queue-files", notification);
             }
         }
+    }
+
+    private uint queue_sort_timeout = 0;
+    private bool ready_to_sort = false;
+    private const int SORT_DELAY_MSEC = 200;
+    public void schedule_queue_sort () {
+        if (queue_sort_timeout > 0) {
+            ready_to_sort = false;
+        } else {
+            queue_sort_timeout = Timeout.add (SORT_DELAY_MSEC, () => {
+                if (ready_to_sort) {
+                    sort_queue ();
+                } else {
+                    ready_to_sort = true;
+                    return Source.CONTINUE;
+                }
+
+                queue_sort_timeout = 0;
+                return Source.REMOVE;
+            });
+        }
+    }
+
+    private void sort_queue () {
+        queue_liststore.sort ((a, b) => {
+            var tna = ((AudioObject)a).track_number;
+            var tnb = ((AudioObject)b).track_number;
+
+            return tna > tnb ? 1 : tnb > tna ? -1 : strcmp (((AudioObject)a).title, ((AudioObject)b).title);
+        });
     }
 
     private void clear_queue () {
