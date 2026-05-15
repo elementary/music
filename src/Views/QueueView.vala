@@ -169,6 +169,14 @@ public class Music.QueueView : Granite.Bin {
             error_toast.send_notification ();
         });
 
+        playback_manager.duplicates_found.connect ((count) => {
+            error_toast.title = ngettext (
+                "%d file was already in the queue and was not re-added",
+                "%d files were already in the queue and were not re-added",
+                count).printf (count);
+            error_toast.send_notification ();
+        });
+
         repeat_button.clicked.connect (() => {
             var enum_step = settings.get_enum ("repeat-mode");
             if (enum_step < 2) {
