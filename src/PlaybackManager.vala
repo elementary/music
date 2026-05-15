@@ -1,6 +1,6 @@
 /*
  * SPDX-License-Identifier: LGPL-3.0-or-later
- * SPDX-FileCopyrightText: 2021-2022 elementary, Inc. (https://elementary.io)
+ * SPDX-FileCopyrightText: 2021-2026 elementary, Inc. (https://elementary.io)
  */
 
 public class Music.PlaybackManager : Object {
