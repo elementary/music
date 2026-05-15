@@ -151,7 +151,8 @@ public class Music.Application : Gtk.Application {
                 continue;
             }
             else if (PlaylistObject.is_playlist (file)) {
-                PlaylistObject playlist = new PlaylistObject.with_file (file);
+                PlaylistObject playlist = new PlaylistObject (file);
+                playlist.load_playlist ();
 
                 foreach (File playlist_file in playlist.get_uri_list ()) {
                     elements += playlist_file;

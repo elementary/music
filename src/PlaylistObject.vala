@@ -7,15 +7,8 @@ public class Music.PlaylistObject : Object {
     public File playlist_file { get; construct; }
     private File[] uri_list = {};
 
-    public PlaylistObject () {}
-
-
-    public PlaylistObject.with_file (File playlist) {
+    public PlaylistObject (File playlist) {
         Object (playlist_file: playlist);
-    }
-
-    construct {
-        load_playlist (playlist_file);
     }
 
     public static bool is_playlist (File playlist) {
@@ -43,8 +36,8 @@ public class Music.PlaylistObject : Object {
         return uri_list;
     }
 
-    private void load_playlist (File playlist) {
-        FileInputStream fis = playlist.read ();
+    public void load_playlist () requires (playlist_file != null) {
+        FileInputStream fis = playlist_file.read ();
         DataInputStream dis = new DataInputStream (fis);
         string current_line;
 
@@ -61,7 +54,7 @@ public class Music.PlaylistObject : Object {
         }
     }
 
-    public void save_playlist (ListStore queue) {
+    public void save_playlist (ListStore queue) requires (playlist_file != null) {
         FileOutputStream fos = playlist_file.replace (null, false, GLib.FileCreateFlags.REPLACE_DESTINATION);
         DataOutputStream dos = new DataOutputStream (fos);
 

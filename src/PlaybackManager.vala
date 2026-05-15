@@ -419,7 +419,7 @@ public class Music.PlaybackManager : Object {
                 File? file;
                 file = save_dialog.save.end (res);
 
-                PlaylistObject playlist = new PlaylistObject.with_file (file);
+                PlaylistObject playlist = new PlaylistObject (file);
                 playlist.save_playlist (queue_liststore);
             } catch (Error err) {
                 if (err.matches (Gtk.DialogError.quark (), Gtk.DialogError.DISMISSED)) {
