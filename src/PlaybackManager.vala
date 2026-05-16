@@ -1,6 +1,6 @@
 /*
  * SPDX-License-Identifier: LGPL-3.0-or-later
- * SPDX-FileCopyrightText: 2021-2022 elementary, Inc. (https://elementary.io)
+ * SPDX-FileCopyrightText: 2021-2026 elementary, Inc. (https://elementary.io)
  */
 
 public class Music.PlaybackManager : Object {
@@ -14,6 +14,7 @@ public class Music.PlaybackManager : Object {
     }
     public int64 playback_position { get; private set; }
     public signal void invalids_found (int count);
+    public signal void duplicates_found (int count);
 
     private static GLib.Once<PlaybackManager> instance;
     public static unowned PlaybackManager get_default () {
@@ -97,10 +98,26 @@ public class Music.PlaybackManager : Object {
     // Files[] must not contain any null entries
     public void queue_files (File[] files) {
         int invalids = 0;
+        int duplicates = 0;
+        int added_tracks = 0;
         foreach (unowned var file in files) {
             if (file.query_exists () && "audio" in ContentType.guess (file.get_uri (), null, null)) {
-                var audio_object = new AudioObject (file.get_uri ());
-                queue_liststore.append (audio_object);
+                uint pos = 0;
+                bool found = false;
+                Object? item = queue_liststore.get_item (pos++);
+                while (item != null && !found) {
+                    if (((AudioObject)item).uri == file.get_uri ()) {
+                        found = true;
+                    }
+
+                    item = queue_liststore.get_item (pos++);
+                }
+                if (!found) {
+                    queue_liststore.append (new AudioObject (file.get_uri ()));
+                    added_tracks++;
+                } else {
+                    duplicates++;
+                }
             } else {
                 invalids++;
                 continue;
@@ -109,6 +126,9 @@ public class Music.PlaybackManager : Object {
 
         if (invalids > 0) {
             invalids_found (invalids);
+        }
+        if (duplicates > 0) {
+            duplicates_found (duplicates);
         }
 
         if (current_audio == null) {
@@ -119,7 +139,6 @@ public class Music.PlaybackManager : Object {
         } else {
             // Don't notify on app startup or if the app is focused
             var application = (Gtk.Application) GLib.Application.get_default ();
-            var added_tracks = files.length - invalids;
             if (
                 !application.get_active_window ().is_active &&
                 added_tracks > 0

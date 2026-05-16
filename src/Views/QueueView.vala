@@ -1,6 +1,6 @@
 /*
  * SPDX-License-Identifier: LGPL-3.0-or-later
- * SPDX-FileCopyrightText: 2025 elementary, Inc. (https://elementary.io)
+ * SPDX-FileCopyrightText: 2025-2026 elementary, Inc. (https://elementary.io)
  */
 
 public class Music.QueueView : Granite.Bin {
@@ -165,6 +165,14 @@ public class Music.QueueView : Granite.Bin {
             error_toast.title = ngettext (
                 "%d invalid file was not added to the queue",
                 "%d invalid files were not added to the queue",
+                count).printf (count);
+            error_toast.send_notification ();
+        });
+
+        playback_manager.duplicates_found.connect ((count) => {
+            error_toast.title = ngettext (
+                "%d file was already in the queue and was not re-added",
+                "%d files were already in the queue and were not re-added",
                 count).printf (count);
             error_toast.send_notification ();
         });
