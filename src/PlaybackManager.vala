@@ -421,7 +421,7 @@ public class Music.PlaybackManager : Object {
         var playlist_filter = new Gtk.FileFilter () {
             name = _("Playlist files"),
         };
-        playlist_filter.add_pattern ("audio/x-mpegurl");
+        playlist_filter.add_mime_type ("audio/x-mpegurl");
 
         var filter_model = new ListStore (typeof (Gtk.FileFilter));
         filter_model.append (all_files_filter);
