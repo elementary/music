@@ -33,7 +33,7 @@ public class Music.SearchBar : Granite.Bin {
         filter_model = new Gtk.FilterListModel (list_model, filter);
 
         search_entry = new Gtk.SearchEntry () {
-            placeholder_text = _("Search titles in playlist")
+            placeholder_text = _("Search titles in queue")
         };
 
         child = search_entry;

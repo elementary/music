@@ -1,6 +1,6 @@
 /*
  * SPDX-License-Identifier: LGPL-3.0-or-later
- * SPDX-FileCopyrightText: 2021-2022 elementary, Inc. (https://elementary.io)
+ * SPDX-FileCopyrightText: 2021-2026 elementary, Inc. (https://elementary.io)
  */
 
 public class Music.PlaybackManager : Object {
@@ -14,6 +14,7 @@ public class Music.PlaybackManager : Object {
     }
     public int64 playback_position { get; private set; }
     public signal void invalids_found (int count);
+    public signal void duplicates_found (int count);
 
     private static GLib.Once<PlaybackManager> instance;
     public static unowned PlaybackManager get_default () {
@@ -39,6 +40,7 @@ public class Music.PlaybackManager : Object {
     private SimpleAction play_pause_action;
     private SimpleAction previous_action;
     private SimpleAction shuffle_action;
+    private SimpleAction save_playlist_action;
 
     private PlaybackManager () {}
 
@@ -75,10 +77,14 @@ public class Music.PlaybackManager : Object {
         shuffle_action = new SimpleAction (Application.ACTION_SHUFFLE, null);
         shuffle_action.activate.connect (shuffle);
 
+        save_playlist_action = new SimpleAction (Application.ACTION_SAVE_TO_PLAYLIST, null);
+        save_playlist_action.activate.connect (save_queue_to_playlist);
+
         next_action.set_enabled (false);
         play_pause_action.set_enabled (false);
         previous_action.set_enabled (false);
         shuffle_action.set_enabled (false);
+        save_playlist_action.set_enabled (false);
 
         unowned var app = GLib.Application.get_default ();
         app.add_action (clear_action);
@@ -86,8 +92,10 @@ public class Music.PlaybackManager : Object {
         app.add_action (play_pause_action);
         app.add_action (previous_action);
         app.add_action (shuffle_action);
+        app.add_action (save_playlist_action);
 
         bind_property ("has-items", clear_action, "enabled", SYNC_CREATE);
+        bind_property ("has-items", save_playlist_action, "enabled", SYNC_CREATE);
     }
 
     public void seek_to_progress (double percent) {
@@ -99,10 +107,26 @@ public class Music.PlaybackManager : Object {
     // AudioObjects start discovering metadata asynchronously on creation
     public void queue_files (File[] files) {
         int invalids = 0;
+        int duplicates = 0;
+        int added_tracks = 0;
         foreach (unowned var file in files) {
             if (file.query_exists () && "audio" in ContentType.guess (file.get_uri (), null, null)) {
-                var audio_object = new AudioObject (file.get_uri ());
-                queue_liststore.append (audio_object);
+                uint pos = 0;
+                bool found = false;
+                Object? item = queue_liststore.get_item (pos++);
+                while (item != null && !found) {
+                    if (((AudioObject)item).uri == file.get_uri ()) {
+                        found = true;
+                    }
+
+                    item = queue_liststore.get_item (pos++);
+                }
+                if (!found) {
+                    queue_liststore.append (new AudioObject (file.get_uri ()));
+                    added_tracks++;
+                } else {
+                    duplicates++;
+                }
             } else {
                 invalids++;
                 continue;
@@ -111,6 +135,9 @@ public class Music.PlaybackManager : Object {
 
         if (invalids > 0) {
             invalids_found (invalids);
+        }
+        if (duplicates > 0) {
+            duplicates_found (duplicates);
         }
 
         if (current_audio == null) {
@@ -121,7 +148,6 @@ public class Music.PlaybackManager : Object {
         } else {
             // Don't notify on app startup or if the app is focused
             var application = (Gtk.Application) GLib.Application.get_default ();
-            var added_tracks = files.length - invalids;
             if (
                 !application.get_active_window ().is_active &&
                 added_tracks > 0
@@ -416,5 +442,57 @@ public class Music.PlaybackManager : Object {
 
             current_audio = (AudioObject) queue_liststore.get_item (position);
         }
+    }
+
+    public void save_queue_to_playlist () {
+        var all_files_filter = new Gtk.FileFilter () {
+            name = _("All files"),
+        };
+        all_files_filter.add_pattern ("*");
+
+        var playlist_filter = new Gtk.FileFilter () {
+            name = _("Playlist files"),
+        };
+        playlist_filter.add_mime_type ("audio/x-mpegurl");
+
+        var filter_model = new ListStore (typeof (Gtk.FileFilter));
+        filter_model.append (all_files_filter);
+        filter_model.append (playlist_filter);
+
+        var save_dialog = new Gtk.FileDialog () {
+            accept_label = _("Save"),
+            default_filter = playlist_filter,
+            filters = filter_model,
+            modal = true,
+            title = _("Save queue to playlist"),
+            initial_name = "%s.m3u".printf (_("New Playlist")),
+        };
+
+        save_dialog.save.begin (null, null, (obj, res) => {
+            try {
+                File? file;
+                file = save_dialog.save.end (res);
+
+                PlaylistObject playlist = new PlaylistObject (file);
+                playlist.save_playlist (queue_liststore);
+            } catch (Error err) {
+                if (err.matches (Gtk.DialogError.quark (), Gtk.DialogError.DISMISSED)) {
+                    return;
+                }
+
+                warning ("Failed to save playlist: %s", err.message);
+
+                var dialog = new Granite.MessageDialog (
+                    _("Could not save playlist"),
+                    err.message,
+                    new ThemedIcon ("audio-x-playlist")
+                ) {
+                    badge_icon = new ThemedIcon ("dialog-error"),
+                    modal = true
+                };
+                dialog.present ();
+                dialog.response.connect (dialog.destroy);
+            }
+        });
     }
 }
