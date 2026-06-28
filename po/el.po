@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-22 16:59+0000\n"
-"PO-Revision-Date: 2019-02-12 00:06+0000\n"
-"Last-Translator: Rico Tzschichholz <ricotz@ubuntu.com>\n"
-"Language-Team: Greek <https://weblate.elementary.io/projects/music/music/el/"
-">\n"
+"PO-Revision-Date: 2026-06-29 12:05+0000\n"
+"Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
+"Language-Team: Greek <https://l10n.elementaryos.org/projects/music/music/el/>"
+"\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 2026.5\n"
 "X-Launchpad-Export-Date: 2017-03-07 05:52+0000\n"
 
 #: src/Application.vala:86 src/Views/NowPlayingView.vala:18
@@ -26,16 +26,12 @@ msgid "Music"
 msgstr "Μουσική"
 
 #: src/MainWindow.vala:74
-#, fuzzy
-#| msgid "All Years"
 msgid "All files"
-msgstr "Όλες οι χρονολογίες"
+msgstr "Όλα τα αρχεία"
 
 #: src/MainWindow.vala:79
-#, fuzzy
-#| msgid "Music Player"
 msgid "Music files"
-msgstr "Αναπαραγωγέας μουσικής"
+msgstr "Αρχεία μουσικής"
 
 #: src/MainWindow.vala:88
 msgid "Open"
@@ -43,7 +39,7 @@ msgstr "Άνοιγμα"
 
 #: src/MainWindow.vala:92
 msgid "Open audio files"
-msgstr ""
+msgstr "Άνοιγμα αρχείων ήχου"
 
 #: src/MainWindow.vala:112
 #, fuzzy
@@ -80,13 +76,12 @@ msgid "Pause"
 msgstr "Παύση"
 
 #: src/Views/QueueView.vala:26
-#, fuzzy
 msgid "Shuffle"
-msgstr "Ενεργοποίηση τυχαίας σειράς αναπαραγωγής"
+msgstr "Τυχαία αναπαραγωγή"
 
 #: src/Views/QueueView.vala:49
 msgid "Queue is Empty"
-msgstr ""
+msgstr "Η ουρά είναι κενή"
 
 #: src/Views/QueueView.vala:50
 msgid "Audio files opened from Files will appear here"
@@ -94,20 +89,15 @@ msgstr ""
 
 #: src/Views/QueueView.vala:55
 msgid "Try changing search terms"
-msgstr ""
+msgstr "Δοκιμάστε να αλλάξετε τους όρους αναζήτησης"
 
 #: src/Views/QueueView.vala:80
-#, fuzzy
-#| msgid "Other Files"
 msgid "Open Files…"
-msgstr "Άλλα αρχεία"
+msgstr "Άνοιγμα αρχείων…"
 
 #: src/Views/QueueView.vala:94
-#, fuzzy
-#| msgctxt "Name of the playlist"
-#| msgid "Queue"
 msgid "Clear Queue"
-msgstr "Σειρά αναμονής"
+msgstr "Απαλοιφή ουράς"
 
 #: src/Views/QueueView.vala:166
 #, c-format
@@ -122,17 +112,14 @@ msgid "No Results for “%s”"
 msgstr "Καμία βαθμολογία"
 
 #: src/Views/QueueView.vala:222
-#, fuzzy
 msgid "Repeat None"
-msgstr "Επανάληψη τραγουδιού"
+msgstr "Χωρίς επανάληψη"
 
 #: src/Views/QueueView.vala:226
-#, fuzzy
 msgid "Repeat All"
-msgstr "Επανάληψη άλμπουμ"
+msgstr "Επανάληψη όλων"
 
 #: src/Views/QueueView.vala:230
-#, fuzzy
 msgid "Repeat One"
 msgstr "Επανάληψη τραγουδιού"
 
