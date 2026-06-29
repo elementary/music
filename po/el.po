@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-22 16:59+0000\n"
-"PO-Revision-Date: 2026-06-29 12:05+0000\n"
+"PO-Revision-Date: 2026-06-29 15:13+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: Greek <https://l10n.elementaryos.org/projects/music/music/el/>"
 "\n"
@@ -107,9 +107,9 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: src/Views/QueueView.vala:207
-#, fuzzy, c-format
+#, c-format
 msgid "No Results for “%s”"
-msgstr "Καμία βαθμολογία"
+msgstr "Κανένα αποτέλεσμα για «%s»"
 
 #: src/Views/QueueView.vala:222
 msgid "Repeat None"
