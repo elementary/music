@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-22 16:59+0000\n"
-"PO-Revision-Date: 2026-07-09 11:14+0000\n"
+"PO-Revision-Date: 2026-07-10 15:01+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: Greek <https://l10n.elementaryos.org/projects/music/extra/el/>"
 "\n"
@@ -41,7 +41,7 @@ msgstr ""
 
 #: data/music.metainfo.xml.in:55
 msgid "elementary, Inc."
-msgstr ""
+msgstr "elementary, Inc."
 
 #: data/music.metainfo.xml.in:63 data/music.metainfo.xml.in:84
 #: data/music.metainfo.xml.in:95 data/music.metainfo.xml.in:109
