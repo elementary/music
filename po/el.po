@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-22 16:59+0000\n"
-"PO-Revision-Date: 2026-06-29 15:13+0000\n"
+"PO-Revision-Date: 2026-07-25 23:01+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: Greek <https://l10n.elementaryos.org/projects/music/music/el/>"
 "\n"
@@ -55,9 +55,8 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: src/Views/NowPlayingView.vala:23 src/Views/NowPlayingView.vala:117
-#, fuzzy
 msgid "Not playing"
-msgstr "Νέα λίστα αναπαραγωγής"
+msgstr "Δεν γίνεται αναπαραγωγή"
 
 #: src/Views/NowPlayingView.vala:47
 msgid "Previous"
