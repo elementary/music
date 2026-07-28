@@ -29,10 +29,36 @@ public class Music.NowPlayingView : Gtk.Box {
         };
 
         var info_grid = new Gtk.Grid () {
-            halign = Gtk.Align.CENTER
+            halign = Gtk.Align.CENTER,
+            hexpand = true
         };
         info_grid.attach (title_label, 0, 0);
         info_grid.attach (artist_revealer, 0, 1);
+
+       //Show additional information with an expander
+        var location_header = new Gtk.Label (_("File Location")) {
+            halign = START,
+            valign = START
+        };
+        var location_label = new Gtk.Label ("") {
+            lines = 5,
+            wrap = true,
+            wrap_mode = WORD_CHAR,
+            ellipsize = START
+        };
+        //TODO Add more metadata such as Album, Composer, technical info
+        // May need to use Scrolled Window if showing a lot of information
+        var more_info_grid = new Gtk.Grid () {
+            halign = CENTER,
+            margin_top = 12,
+            column_spacing = 12
+        };
+        more_info_grid.attach (location_header, 0, 0);
+        more_info_grid.attach (location_label, 1, 0);
+        var additional_info_expander = new Gtk.Expander (_("More Information")) {
+            halign = START,
+            child = more_info_grid
+        };
 
         var seekbar = new Music.SeekBar ();
 
@@ -78,10 +104,11 @@ public class Music.NowPlayingView : Gtk.Box {
             vexpand = true
         };
         grid.attach (info_grid, 0, 1, 3);
-        grid.attach (seekbar, 0, 2, 3);
-        grid.attach (previous_button, 0, 3);
-        grid.attach (play_button, 1, 3);
-        grid.attach (next_button, 2, 3);
+        grid.attach (additional_info_expander, 0, 2, 3);
+        grid.attach (seekbar, 0, 3, 3);
+        grid.attach (previous_button, 0, 4);
+        grid.attach (play_button, 1, 4);
+        grid.attach (next_button, 2, 4);
 
         orientation = Gtk.Orientation.VERTICAL;
         spacing = 24;
@@ -112,6 +139,7 @@ public class Music.NowPlayingView : Gtk.Box {
                 playback_manager.current_audio.bind_property ("title", title_label, "label", BindingFlags.SYNC_CREATE);
                 playback_manager.current_audio.bind_property ("duration", seekbar, "playback-duration", BindingFlags.SYNC_CREATE);
                 playback_manager.current_audio.bind_property ("texture", album_image.image, "paintable", BindingFlags.SYNC_CREATE);
+                playback_manager.current_audio.bind_property ("display-uri", location_label, "label", SYNC_CREATE);
             } else {
                 album_image.image.clear ();
                 artist_label.label = _("Not playing");
