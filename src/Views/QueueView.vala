@@ -78,7 +78,6 @@ public class Music.QueueView : Granite.Bin {
         var drop_target = new Gtk.DropTarget (typeof (Gdk.FileList), Gdk.DragAction.COPY);
 
         var add_button_label = new Gtk.Label (_("Open Files…"));
-
         var add_button_box = new Gtk.Box (HORIZONTAL, 0);
         add_button_box.append (new Gtk.Image.from_icon_name ("document-open-symbolic"));
         add_button_box.append (add_button_label);
@@ -88,8 +87,19 @@ public class Music.QueueView : Granite.Bin {
             action_name = MainWindow.ACTION_PREFIX + MainWindow.ACTION_OPEN
         };
         add_button.add_css_class (Granite.STYLE_CLASS_FLAT);
-
         add_button_label.mnemonic_widget = add_button;
+
+        var add_folder_button_label = new Gtk.Label (_("Open Folder…"));
+        var add_folder_button_box = new Gtk.Box (HORIZONTAL, 0);
+        add_folder_button_box.append (new Gtk.Image.from_icon_name ("document-open-symbolic"));
+        add_folder_button_box.append (add_folder_button_label);
+
+        var add_folder_button = new Gtk.Button () {
+            child = add_folder_button_box,
+            action_name = MainWindow.ACTION_PREFIX + MainWindow.ACTION_OPEN_FOLDER
+        };
+        add_folder_button.add_css_class (Granite.STYLE_CLASS_FLAT);
+        add_folder_button_label.mnemonic_widget = add_folder_button;
 
         var clear_button_label = new Gtk.Label (_("Clear Queue"));
 
@@ -107,6 +117,7 @@ public class Music.QueueView : Granite.Bin {
 
         var queue_action_bar = new Gtk.ActionBar ();
         queue_action_bar.pack_start (add_button);
+        queue_action_bar.pack_start (add_folder_button);
         queue_action_bar.pack_end (clear_button);
 
         var queue = new Adw.ToolbarView () {
