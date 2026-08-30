@@ -108,10 +108,14 @@ public class Music.NowPlayingView : Gtk.Box {
 
         playback_manager.notify["current-audio"].connect (() => {
             if (playback_manager.current_audio != null) {
-                playback_manager.current_audio.bind_property ("artist", artist_label, "label", BindingFlags.SYNC_CREATE);
-                playback_manager.current_audio.bind_property ("title", title_label, "label", BindingFlags.SYNC_CREATE);
-                playback_manager.current_audio.bind_property ("duration", seekbar, "playback-duration", BindingFlags.SYNC_CREATE);
-                playback_manager.current_audio.bind_property ("texture", album_image.image, "paintable", BindingFlags.SYNC_CREATE);
+                playback_manager.current_audio.bind_property (
+                    "artist", artist_label, "label", BindingFlags.SYNC_CREATE);
+                playback_manager.current_audio.bind_property (
+                    "title", title_label, "label", BindingFlags.SYNC_CREATE);
+                playback_manager.current_audio.bind_property (
+                    "duration", seekbar, "playback-duration", BindingFlags.SYNC_CREATE);
+                playback_manager.current_audio.bind_property (
+                    "texture", album_image.image, "paintable", BindingFlags.SYNC_CREATE);
             } else {
                 album_image.image.clear ();
                 artist_label.label = _("Not playing");
