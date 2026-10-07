@@ -19,7 +19,13 @@ public class Music.AudioObject : Object {
     }
 
     construct {
-        title = uri;
+        try {
+            var u = Uri.parse (uri, NONE);
+            title = Path.get_basename (u.get_path ());
+        } catch (Error e) {
+            title = Uri.escape_string (uri);
+        }
+
         discoverer.request (this);
     }
 
