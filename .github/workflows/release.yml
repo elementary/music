@@ -25,7 +25,7 @@ jobs:
            GIT_USER_NAME: "elementaryBot"
            GIT_USER_EMAIL: "builds@elementary.io"
          with:
-           release_branch: 'odin'
+           release_branch: 'noble'
 
   deploy_flatpak:
     name: Deploy Flatpak (${{ matrix.configuration.arch }})
