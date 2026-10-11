@@ -3,8 +3,8 @@ Section: sound
 Priority: optional
 Maintainer: elementary <builds@elementary.io>
 Build-Depends: debhelper (>= 10.5.1),
-               libadwaita-1-dev (>= 1.4.0),
-               libgranite-7-dev (>= 7.6.0),
+               libadwaita-1-dev,
+               libgranite-7-dev,
                libgstreamer-plugins-base1.0-dev,
                libgstreamer1.0-dev,
                libgtk-4-dev,
