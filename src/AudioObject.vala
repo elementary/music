@@ -11,6 +11,8 @@ public class Music.AudioObject : Object {
     public string title { get; private set; }
     public int64 duration { get; private set; default = 0; }
     public string art_url { get; private set; default = ""; }
+    public uint track_number { get; private set; default = 0; }
+    public bool has_metadata { get; private set; default = false; }
 
     private static MetadataDiscoverer discoverer = new MetadataDiscoverer ();
 
@@ -23,50 +25,65 @@ public class Music.AudioObject : Object {
         discoverer.request (this);
     }
 
-    public void update_metadata (Gst.PbUtils.DiscovererInfo info) {
-        duration = (int64) info.get_duration ();
-
-        unowned Gst.TagList? tag_list = info.get_tags ();
-
-        string _title;
-        tag_list.get_string (Gst.Tags.TITLE, out _title);
-        if (_title != null) {
-            title = _title;
-        }
-
-        string _artist;
-        tag_list.get_string (Gst.Tags.ARTIST, out _artist);
-        if (_artist != null) {
-            artist = _artist;
-        } else if (_title != null) { // Don't set artist for files without tags
-            artist = _("Unknown");
-        }
-
-        string art_hash = uri;
-        if (_artist != null && _album != null) {
-            art_hash = "%s:%s".printf (_artist, _album);
-        }
-
-        var art_file = File.new_for_path (Path.build_path (
-            Path.DIR_SEPARATOR_S,
-            get_art_cache_dir (),
-            Checksum.compute_for_string (SHA256, art_hash)
-        ));
-
-        if (art_file.query_exists ()) {
-            art_url = art_file.get_uri ();
-            texture = Gdk.Texture.from_file (art_file);
-        } else {
-            var sample = get_cover_sample (tag_list);
-            if (sample != null) {
-                var buffer = sample.get_buffer ();
-
-                if (buffer != null) {
-                    texture = Gdk.Texture.for_pixbuf (get_pixbuf_from_buffer (buffer));
-                    save_art_file.begin (texture, art_file);
+    public void update_metadata (Gst.PbUtils.DiscovererInfo? info) {
+        has_metadata = false;
+        if (info != null) {
+            duration = (int64) info.get_duration ();
+            // var stream_info = info.get_stream_info ();
+            var stream_info = info.get_stream_list ();
+            unowned Gst.TagList? tag_list = stream_info != null ? stream_info.data.get_tags () : null;
+            if (tag_list != null) {
+                string _title;
+                tag_list.get_string (Gst.Tags.TITLE, out _title);
+                if (_title != null) {
+                    title = _title;
                 }
+
+                uint _track;
+                if (tag_list.get_uint (Gst.Tags.TRACK_NUMBER, out _track)) {
+                    track_number = _track;
+                    warning ("got track number %u", track_number);
+                }
+
+                string _artist;
+                tag_list.get_string (Gst.Tags.ARTIST, out _artist);
+                if (_artist != null) {
+                    artist = _artist;
+                } else if (_title != null) { // Don't set artist for files without tags
+                    artist = _("Unknown");
+                }
+
+                string art_hash = uri;
+                if (_artist != null && _album != null) {
+                    art_hash = "%s:%s".printf (_artist, _album);
+                }
+
+                var art_file = File.new_for_path (Path.build_path (
+                    Path.DIR_SEPARATOR_S,
+                    get_art_cache_dir (),
+                    Checksum.compute_for_string (SHA256, art_hash)
+                ));
+
+                if (art_file.query_exists ()) {
+                    art_url = art_file.get_uri ();
+                    texture = Gdk.Texture.from_file (art_file);
+                } else {
+                    var sample = get_cover_sample (tag_list);
+                    if (sample != null) {
+                        var buffer = sample.get_buffer ();
+
+                        if (buffer != null) {
+                            texture = Gdk.Texture.for_pixbuf (get_pixbuf_from_buffer (buffer));
+                            save_art_file.begin (texture, art_file);
+                        }
+                    }
+                }
+
+                has_metadata = true;
             }
         }
+
+        PlaybackManager.get_default ().schedule_queue_sort ();
     }
 
     private Gst.Sample? get_cover_sample (Gst.TagList tag_list) {
