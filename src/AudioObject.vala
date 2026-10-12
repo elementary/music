@@ -5,6 +5,7 @@
 
 public class Music.AudioObject : Object {
     public string uri { get; construct; }
+    public string display_uri { get; private set; default = ""; }
     public Gdk.Texture? texture { get; private set; default = null; }
     public string album { get; private set; }
     public string artist { get; private set; }
@@ -19,6 +20,7 @@ public class Music.AudioObject : Object {
     }
 
     construct {
+        display_uri = Uri.unescape_string (uri);
         title = uri;
         discoverer.request (this);
     }
