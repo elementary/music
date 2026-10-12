@@ -16,11 +16,11 @@
   <screenshots>
     <screenshot environment="pantheon" type="default">
       <caption>Quickly queue up your favorite tracks</caption>
-      <image>https://raw.githubusercontent.com/elementary/music/8.1.0/data/screenshot.png</image>
+      <image>https://raw.githubusercontent.com/elementary/music/9.0.0/data/screenshot.png</image>
     </screenshot>
     <screenshot environment="pantheon:dark" type="default">
       <caption>Quickly queue up your favorite tracks</caption>
-      <image>https://raw.githubusercontent.com/elementary/music/8.1.0/data/screenshot-dark.png</image>
+      <image>https://raw.githubusercontent.com/elementary/music/9.0.0/data/screenshot-dark.png</image>
     </screenshot>
   </screenshots>
 
@@ -58,6 +58,21 @@
   <update_contact>contact_at_elementary.io</update_contact>
 
   <releases>
+    <release version="9.0.0" date="2026-10-12" urgency="medium">
+      <description>
+        <p>Improvements:</p>
+        <ul>
+          <li>Introduce a QueueView</li>
+          <li>Respect “ReplayGain” metadata to support track gain/peak, album gain/peak</li>
+          <li>Updated translations</li>
+        </ul>
+      </description>
+      <issues>
+        <issue url="https://github.com/elementary/music/issues/775">Re-adding a file causes a partially corrupt queue item</issue>
+        <issue url="https://github.com/elementary/music/issues/319">How to import playlist?</issue>
+      </issues>
+    </release>
+
     <release version="8.1.0" date="2025-09-01" urgency="medium">
       <description>
         <p>Improvements:</p>
@@ -75,7 +90,6 @@
         <issue url="https://github.com/elementary/music/issues/798">Gap below album cover when setting text size greater than 1</issue>
         <issue url="https://github.com/elementary/music/issues/803">NowPlaying area resizes when playing song with long artist name</issue>
         <issue url="https://github.com/elementary/music/issues/829">The toast "1 invalid file was not added to the queue" and terminal warning is shown</issue>
-
       </issues>
     </release>
 
