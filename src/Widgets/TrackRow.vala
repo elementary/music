@@ -38,7 +38,7 @@ public class Music.TrackRow : Granite.Bin {
     private Gtk.Label artist_label;
     private Gtk.Label title_label;
     private Gtk.Spinner play_icon;
-    private Music.AlbumImage album_image;
+    private Gtk.Image image;
 
     static construct {
         playback_manager = PlaybackManager.get_default ();
@@ -48,9 +48,10 @@ public class Music.TrackRow : Granite.Bin {
         play_icon = new Gtk.Spinner ();
         play_icon.add_css_class ("play-indicator");
 
-        album_image = new Music.AlbumImage ();
-        album_image.image.height_request = 32;
-        album_image.image.width_request = 32;
+        image = new Gtk.Image () {
+            pixel_size = 32
+        };
+        var album_image = new Music.AlbumImage (image);
 
         var aspect_frame = new Gtk.AspectFrame (0.5f, 0.5f, 1, false) {
             child = album_image
@@ -164,6 +165,6 @@ public class Music.TrackRow : Granite.Bin {
     }
 
     private void update_cover_art () {
-        album_image.image.paintable = _audio_object.texture;
+        image.paintable = _audio_object.texture;
     }
 }
