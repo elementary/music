@@ -226,7 +226,7 @@ public class Music.QueueView : Granite.Bin {
     private void update_repeat_button () {
         switch (settings.get_string ("repeat-mode")) {
             case "disabled":
-                repeat_button.icon_name = "media-playlist-no-repeat-symbolic";
+                repeat_button.icon_name = "media-playlist-repeat-disabled-symbolic";
                 repeat_button.tooltip_text = _("Repeat None");
                 break;
             case "all":
