@@ -5,11 +5,13 @@
 
 public class Music.NowPlayingView : Gtk.Box {
     construct {
-        var album_image = new Music.AlbumImage ();
-        album_image.image.hexpand = true;
-        album_image.image.vexpand = true;
-        album_image.image.height_request = 128;
-        album_image.image.width_request = 128;
+        var picture = new Gtk.Picture () {
+            hexpand = true,
+            vexpand = true,
+            height_request = 128,
+            width_request = 128
+        };
+        var album_image = new Music.AlbumImage (picture);
 
         var aspect_frame = new Gtk.AspectFrame (0.5f, 1.0f, 1, false) {
             child = album_image
@@ -111,9 +113,9 @@ public class Music.NowPlayingView : Gtk.Box {
                 playback_manager.current_audio.bind_property ("artist", artist_label, "label", BindingFlags.SYNC_CREATE);
                 playback_manager.current_audio.bind_property ("title", title_label, "label", BindingFlags.SYNC_CREATE);
                 playback_manager.current_audio.bind_property ("duration", seekbar, "playback-duration", BindingFlags.SYNC_CREATE);
-                playback_manager.current_audio.bind_property ("texture", album_image.image, "paintable", BindingFlags.SYNC_CREATE);
+                playback_manager.current_audio.bind_property ("texture", picture, "paintable", BindingFlags.SYNC_CREATE);
             } else {
-                album_image.image.clear ();
+                picture.paintable = null;
                 artist_label.label = _("Not playing");
                 title_label.label = _("Music");
                 seekbar.playback_duration = 0;
