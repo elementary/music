@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: noise\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-22 16:59+0000\n"
-"PO-Revision-Date: 2026-11-22 07:04+0000\n"
+"PO-Revision-Date: 2026-11-24 20:04+0000\n"
 "Last-Translator: Davit Yedigaryan <davit.yedigaryan.1993@gmail.com>\n"
 "Language-Team: Armenian <https://l10n.elementaryos.org/projects/music/extra/"
 "hy/>\n"
@@ -113,9 +113,8 @@ msgid "Listen to music"
 msgstr "Լսել երաժշտություն"
 
 #: data/music.desktop.in:9
-#, fuzzy
 msgid "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
-msgstr "Noise;Audio;Player;MP3;iPod;Play;Playlist;Media;CD;Phone;Songs;"
+msgstr "Noise;Audio;Player;MP3;Play;Playlist;Media;Songs;"
 
 #~ msgid "Music Player"
 #~ msgstr "Նվագարկիչ"
